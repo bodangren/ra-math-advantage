@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 484,
+  "totalSkills": 489,
   "counts": {
     "served": 6,
-    "gap": 478,
+    "gap": 483,
     "newComponent": 0
   },
   "byModule": [
@@ -73,9 +73,9 @@
     },
     {
       "module": "10",
-      "totalSkills": 13,
+      "totalSkills": 18,
       "served": 0,
-      "gap": 13,
+      "gap": 18,
       "newComponent": 0
     },
     {
@@ -202,6 +202,606 @@
       "status": "served",
       "tier": "t17",
       "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.author-axioms-from-observed-categorical-data",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.construct-a-model-that-satisfies-stated-incidence-constraints",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.derive-a-supported-conclusion-from-stated-axioms-and-facts",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.evaluate-whether-a-supplied-candidate-model-satisfies-every-stated-axiom",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
+      "module": "11",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+      "module": "12",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
+      "module": "13",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "fill-in-the-blank",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
+      "module": "14",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
       "priority": "standard"
     },
     {
@@ -3419,566 +4019,6 @@
       "tier": "none",
       "rendererKey": "comprehension-quiz",
       "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "step-by-step-solver",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "step-by-step-solver",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "step-by-step-solver",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "step-by-step-solver",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "step-by-step-solver",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
-      "module": "11",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
-      "module": "12",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "step-by-step-solver",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
-      "module": "13",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "step-by-step-solver",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "fill-in-the-blank",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
-      "module": "14",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "graphing-explorer",
-      "priority": "standard"
     }
   ]
 }

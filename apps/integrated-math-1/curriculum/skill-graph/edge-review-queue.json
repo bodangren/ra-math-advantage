@@ -48,13 +48,6 @@
       "reviewAction": "confirm, upgrade-to-medium, or remove"
     },
     {
-      "edgeId": "math.im1.edge.1192",
-      "sourceId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
-      "targetId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
-      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 10",
-      "reviewAction": "confirm, upgrade-to-medium, or remove"
-    },
-    {
       "edgeId": "math.im1.edge.1193",
       "sourceId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
       "targetId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
@@ -2000,7 +1993,7 @@
     }
   ],
   "counts": {
-    "lowConfidencePrerequisites": 87,
+    "lowConfidencePrerequisites": 86,
     "skillsMissingRenderer": 138,
     "skillsMissingMisconceptionTaxonomy": 138
   }
