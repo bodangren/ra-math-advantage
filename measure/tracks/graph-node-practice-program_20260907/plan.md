@@ -664,7 +664,7 @@ G55 final alignment scope remains under parent review. A proposed blanket remova
 
 G55 final graph scope is accepted after parent correction. Keep the Example 4 and contextual-distance skill G-MG.A.1 edges. Remove the other ten reviewed alignments. A yes/no segment-congruence answer does not show the algebraic proof required by G-GPE.B.4. Remove six exact placeholder activities and their empty specifications. Preserve approved source and skill identities. See `im1-lesson104-final-graph-scope.md` and `im1-lesson104-alignment-disposition.md`.
 
-- [~] Task G55 graph: Implement the accepted four-atom inventory and exact approved response-stage reuse. Preserve two supported modeling alignments and remove ten unsupported alignments. Remove edge 1194 and six reviewed placeholder activities. Use real projectors with changes limited to affected rows. Preserve edge 1195, unrelated content, row order, and approval states. Reuse the current IM1 candidate. Add behavioral graph and projection regressions before implementation.
+- [x] Task G55 graph: Implement the accepted four-atom inventory and exact approved response-stage reuse. Preserve two supported modeling alignments and remove ten unsupported alignments. Remove edge 1194 and six reviewed placeholder activities. Use real projectors with changes limited to affected rows. Preserve edge 1195, unrelated content, row order, and approval states. Reuse the current IM1 candidate. Add behavioral graph and projection regressions before implementation.
 
 - [x] Task b5f1 preservation: Preserve the eleven unique saved Lesson 1.4 candidate files in a separate recovery commit. Compare exact bytes and modes. Verify all 362 states and final process status before directory removal. This snapshot does not integrate or approve the candidate.
 
@@ -697,3 +697,5 @@ Removed the completed G55 native extraction after all 44 files matched the commi
 The corrected QF backend passes the real Convex serialization replay test, final build, and separate TypeScript. The focused suite has 42 passing cases. Parent review found that the new lesson and teacher privacy fixtures return empty results. Add relevant records and positive result assertions before acceptance. No backend source is committed yet.
 
 The next cleanup comparison found 11 unique whole files in b73d and 12 in bc11. None has an exact whole-file copy in the eleven checked recovery branches. Keep both saved directories while independent review determines the required preservation snapshots.
+
+G55 graph repair is committed as `cd3966d85`. Four new capabilities remain draft and source-only. Six placeholder activities are removed. The final fourteen staged files match the accepted candidate. App tests passed 425 cases. Lint, build, and separate TypeScript passed. The existing coverage order failure also reproduces on committed HEAD before G55. See `im1-lesson104-graph-final-review.md`.
