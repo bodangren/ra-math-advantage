@@ -656,4 +656,8 @@ G55 capability review replaces the provisional seven-atom proposal with four dra
 
 - [~] Task IM3-QF server integration scope: Trace the stored activity and protected attempt contracts after the grader and component commits. Define the minimum extension to the existing server-owned route, writer, grading, and receipt flow. Preserve fixed public fields and draft no-progression behavior. Reuse existing activity storage. Add no parallel pilot or evidence system.
 
-- [~] Task b615 cleanup: Independently verify all saved states, modes, links, ignored files, history, and active processes. Confirm exact preservation of the mixed blueprint objects before directory removal. Keep b5f1 and all other saved worktrees during this review.
+- [x] Task b615 cleanup: Independently verify all saved states, modes, links, ignored files, history, and active processes. Confirm exact preservation of the mixed blueprint objects before directory removal. Keep b5f1 and all other saved worktrees during this review.
+
+Removed saved worktree b615 after parent and independent review of all 356 states. Both preservation branches remain. Seven saved worktrees remain. See `saved-b615-final-cleanup-review.md`.
+
+G55 final alignment scope remains under parent review. A proposed blanket removal of G-MG.A.1 requires a source-level check of the contextual distance and perimeter tasks. Do not treat an unverified alignment as demonstrably false. No G55 graph changes are authorized until that disposition is resolved.
