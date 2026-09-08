@@ -1,4 +1,4 @@
-import { internalMutation, internalQuery, type MutationCtx } from "./_generated/server";
+import { internalMutation, internalQuery, type QueryCtx } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
 import { v } from "convex/values";
 import nodesDocument from "../curriculum/skill-graph/nodes.json";
@@ -8,7 +8,7 @@ import {
   PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
   PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY,
 } from "../lib/learning-evidence/precalc-pilot";
-import { gradeTopic11IntervalGraph } from "../lib/practice/topic11-interval-graph";
+import { generateTopic11IntervalGraph, gradeTopic11IntervalGraph } from "../lib/practice/topic11-interval-graph";
 import { PracticeSubmissionEnvelopeSchema } from "@math-platform/practice-core";
 import { generateTopic11IntervalGraphOutput } from "@math-platform/math-content/knowledge-space";
 
@@ -243,6 +243,102 @@ export function isPrecalculusPilotPublished(
   );
 }
 
+const precalculusPilotActivityResultValidator = v.object({
+  activityId: v.id("activities"),
+  stableActivityId: v.string(),
+  mode: v.union(
+    v.literal("worked_example"),
+    v.literal("guided_practice"),
+    v.literal("independent_practice"),
+  ),
+  componentKey: v.string(),
+  props: v.any(),
+});
+
+/**
+ * Gets the approved Topic 1.1 pilot activities.
+ * @param {import('./_generated/server').QueryCtx} ctx - The Convex query context.
+ * @param {Publication} publication - The canonical graph publication.
+ * @returns {Promise<Array<object>>} The safe approved activity projections.
+ */
+export async function getApprovedPrecalculusPilotHandler(
+  ctx: QueryCtx,
+  selectedPublication: Publication = publication,
+) {
+  if (!isPrecalculusPilotPublished(selectedPublication)) return [];
+  const specs = [
+    { mode: "worked_example", stableActivityId: PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID, componentKey: PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY, seed: 0 },
+    { mode: "guided_practice", stableActivityId: PRECALCULUS_PILOT_ACTIVITY_ID, componentKey: PRECALCULUS_PILOT_COMPONENT_KEY, seed: 0 },
+    { mode: "independent_practice", stableActivityId: PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID, componentKey: PRECALCULUS_PILOT_COMPONENT_KEY, seed: 2 },
+  ] as const;
+  const matches = await Promise.all(specs.map((spec) => ctx.db
+    .query("activities")
+    .withIndex("by_stable_activity_id", (query) => query.eq(
+      "stableActivityId",
+      spec.stableActivityId,
+    ))
+    .collect()));
+  if (matches.some((rows) => rows.length !== 1)) return [];
+  const rows = matches.map((rows) => rows[0]!);
+  if (rows.some((row, index) => (
+    !row
+    || row.approval?.status !== "approved"
+    || (specs[index]!.mode === "worked_example"
+      ? !hasTopic11SourceActivityIdentity(row)
+      : !hasExpectedActivityIdentity(row, expectedActivity(specs[index]!.mode)))
+  ))) return [];
+  const publicProps = specs.map((spec) => {
+    const variant = generateTopic11IntervalGraph(spec.seed);
+    const base = {
+      prompt: "Identify the intervals where the graph increases, decreases, and stays constant.",
+      domain: variant.domain,
+      changePoints: variant.changePoints,
+      points: variant.points,
+      presentationMode: spec.mode,
+    };
+    if (spec.mode === "independent_practice") return base;
+    if (spec.mode === "guided_practice") return {
+      ...base,
+      guidedSteps: [
+        `Mark the domain endpoints and the change points x=${variant.changePoints[0]} and x=${variant.changePoints[1]}.`,
+        "Read each graph segment from left to right and decide whether it rises, falls, or stays flat.",
+        "Write each interval. Use U or ∪ between multiple intervals. Enter none when no interval exists.",
+      ],
+      fieldHelp: {
+        increasingIntervals: "Find every segment that rises.",
+        decreasingIntervals: "Find every segment that falls.",
+        constantIntervals: "Check whether any segment stays flat.",
+      },
+    };
+    return {
+      ...base,
+      title: "Worked Example: Classify Graph Intervals",
+      steps: [
+        { description: "Read the graph from left to right.", expression: "The domain is [0, 9]." },
+        { description: "Classify the first segment.", expression: "The graph rises from x=0 to x=3." },
+        { description: "Classify the middle segment.", expression: "The graph falls from x=3 to x=7." },
+        { description: "Classify the final segment.", expression: "The graph rises from x=7 to x=9." },
+        { description: "State the interval answers.", expression: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none." },
+      ],
+      finalAnswer: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none.",
+    };
+  });
+  return rows.map((row, index) => ({
+    activityId: row!._id,
+    stableActivityId: row!.stableActivityId!,
+    mode: specs[index]!.mode,
+    componentKey: row!.componentKey,
+    props: publicProps[index]!,
+  }));
+}
+
+export const getApprovedPrecalculusPilot = internalQuery({
+  args: {},
+  returns: v.array(precalculusPilotActivityResultValidator),
+  handler: (ctx) => getApprovedPrecalculusPilotHandler(ctx),
+});
+
+
 const partValidator = v.object({
   partId: v.string(),
   rawAnswer: v.string(),
@@ -307,7 +403,7 @@ const topic11AcknowledgementResultValidator = v.object({
   submittedAt: v.string(),
 });
 
-function hasTopic11SourceActivityIdentity(activity: Record<string, unknown>): boolean {
+export function hasTopic11SourceActivityIdentity(activity: Record<string, unknown>): boolean {
   return activity.stableActivityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
     && activity.componentKey === PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY
     && activity.displayName === "Topic 1.1: Identify Graph Intervals with Your Teacher"
@@ -321,7 +417,7 @@ function hasTopic11SourceActivityIdentity(activity: Record<string, unknown>): bo
 }
 
 export async function hasCurrentTopic11Source(
-  ctx: MutationCtx,
+  ctx: Pick<QueryCtx, "db">,
   lessonId: Id<"lessons">,
   activityId: Id<"activities">,
   acknowledgedAt: number,
@@ -334,21 +430,214 @@ export async function hasCurrentTopic11Source(
     || !Number.isFinite(versions[0]!.createdAt) || versions[0]!.createdAt > acknowledgedAt) return false;
   const phases = await ctx.db.query("phase_versions")
     .withIndex("by_lesson_version", (query) => query.eq("lessonVersionId", versions[0]!._id)).collect();
-  const matches: unknown[] = [];
+  const workedPhases = phases.filter((phase) => phase.phaseNumber === 4);
+  if (workedPhases.length !== 1 || workedPhases[0]!.phaseType !== "worked_example"
+    || !Number.isFinite(workedPhases[0]!.createdAt) || workedPhases[0]!.createdAt > acknowledgedAt) return false;
+  const workedPhase = workedPhases[0]!;
+  const selectedLinks: unknown[] = [];
+  const workedSequence: unknown[] = [];
   for (const phase of phases) {
-    if (phase.phaseType !== "worked_example" || !Number.isFinite(phase.createdAt)
-      || phase.createdAt > acknowledgedAt) continue;
     const sections = await ctx.db.query("phase_sections")
       .withIndex("by_phase_version", (query) => query.eq("phaseVersionId", phase._id)).collect();
     for (const section of sections) {
-      if (section.sectionType !== "activity" || !record(section.content)
-        || !Number.isFinite(section.createdAt) || section.createdAt > acknowledgedAt) continue;
-      if (String(section.content.activityId) === String(activityId)
-        && section.content.componentKey === PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY) matches.push(section);
+      if (String(phase._id) === String(workedPhase._id) && section.sequenceOrder === 2) workedSequence.push(section);
+      if (record(section.content) && String(section.content.activityId) === String(activityId)) {
+        selectedLinks.push({ phase, section });
+      }
     }
   }
-  return matches.length === 1;
+  if (selectedLinks.length !== 1 || workedSequence.length !== 1) return false;
+  const selectedLink = selectedLinks[0] as { phase: Record<string, unknown>; section: Record<string, unknown> };
+  const content = record(selectedLink.section.content) ? selectedLink.section.content : null;
+  return String(selectedLink.phase._id) === String(workedPhase._id)
+    && selectedLink.section === workedSequence[0]
+    && selectedLink.section.sequenceOrder === 2
+    && selectedLink.section.sectionType === "activity"
+    && content?.componentKey === PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY
+    && Number.isFinite(selectedLink.section.createdAt)
+    && Number(selectedLink.section.createdAt) <= acknowledgedAt;
 }
+
+const topic11WorkedProjectionValidator = v.union(
+  v.null(),
+  v.object({
+    activityId: v.id("activities"),
+    stableActivityId: v.string(),
+    nodeId: v.string(),
+    componentKey: v.string(),
+    mode: v.literal("worked_example"),
+    props: v.any(),
+  }),
+);
+
+/** Gets the exact approved Topic 1.1 Worked source for a learner view. */
+export async function getApprovedTopic11WorkedSourceHandler(
+  ctx: QueryCtx,
+  selectedPublication: Publication = publication,
+) {
+  if (!isTopic11WorkedSourcePublished(selectedPublication)) return null;
+  const blueprints = selectedPublication.blueprints.filter(
+    (blueprint) =>
+      blueprint.nodeId === PRECALCULUS_PILOT_NODE_ID &&
+      blueprint.rendererModeMap?.worked === "interval-classification" &&
+      sameJson(blueprint.workedExampleSpec, TOPIC_11_WORKED_SPEC),
+  );
+  if (blueprints.length !== 1) return null;
+  const workedSpec = blueprints[0]!.workedExampleSpec;
+  if (!record(workedSpec) || !record(workedSpec.rendererProps))
+    return null;
+  const activities = await ctx.db
+    .query("activities")
+    .withIndex("by_stable_activity_id", (query) =>
+      query.eq("stableActivityId", PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID),
+    )
+    .collect();
+  if (activities.length !== 1) return null;
+  const activity = activities[0]!;
+  const now = Date.now();
+  const reviewedAt = record(activity.approval) ? activity.approval.reviewedAt : null;
+  if (
+    activity.approval?.status !== "approved" ||
+    !hasTopic11SourceActivityIdentity(activity) ||
+    !Number.isFinite(activity.createdAt) ||
+    Number(activity.createdAt) < 0 ||
+    Number(activity.createdAt) > now ||
+    !Number.isFinite(reviewedAt) ||
+    Number(reviewedAt) < Number(activity.createdAt) ||
+    Number(reviewedAt) > now
+  )
+    return null;
+  const lessons = await ctx.db
+    .query("lessons")
+    .withIndex("by_unit_and_order", (query) =>
+      query.eq("unitNumber", 1).eq("orderIndex", 1),
+    )
+    .collect();
+  if (
+    lessons.length !== 1 ||
+    !(await hasCurrentTopic11Source(
+      ctx,
+      lessons[0]!._id,
+      activity._id,
+      now,
+    ))
+  )
+    return null;
+  return {
+    activityId: activity._id,
+    stableActivityId: PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
+    nodeId: PRECALCULUS_PILOT_NODE_ID,
+    componentKey: PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY,
+    mode: "worked_example" as const,
+    props: workedSpec.rendererProps,
+  };
+}
+
+export const getApprovedTopic11WorkedSource = internalQuery({
+  args: {},
+  returns: topic11WorkedProjectionValidator,
+  handler: (ctx) => getApprovedTopic11WorkedSourceHandler(ctx),
+});
+
+const topic11LearnerDeliveryStateValidator = v.union(
+  v.null(),
+  v.literal("needs_acknowledgement"),
+  v.literal("awaiting_teacher_confirmation"),
+  v.literal("ready_for_practice"),
+);
+
+export function isStoredTopic11Acknowledgement(
+  submission: Record<string, unknown>,
+  learnerId: Id<"profiles">,
+  activityId: Id<"activities">,
+  now: number,
+): boolean {
+  return String(submission.userId) === String(learnerId)
+    && String(submission.activityId) === String(activityId)
+    && submission.stableActivityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
+    && submission.masteryContractVersion === "learning-evidence.v1"
+    && isCanonicalTopic11Acknowledgement(submission.submissionData)
+    && Number.isInteger(submission.attemptOrdinal)
+    && Number(submission.attemptOrdinal) >= 1
+    && Number.isFinite(submission.submittedAt)
+    && Number(submission.submittedAt) >= 0
+    && Number(submission.submittedAt) <= now
+    && submission.score === undefined
+    && submission.maxScore === undefined
+    && submission.feedback === undefined
+    && submission.gradedAt === undefined;
+}
+
+export function isTopic11TeacherConfirmationForSubmission(
+  evidence: Record<string, unknown>,
+  submission: Record<string, unknown>,
+): boolean {
+  return evidence.nodeId === PRECALCULUS_PILOT_NODE_ID
+    && evidence.activityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
+    && evidence.origin === "teacher_led"
+    && evidence.mode === "teaching"
+    && evidence.attemptOrdinal === submission.attemptOrdinal
+    && evidence.occurredAt === submission.submittedAt
+    && evidence.gradedEvidence === undefined
+    && evidence.idempotencyKey === `precalc:teacher-led:submission:${String(submission._id)}`;
+}
+
+/** Derives the selected Topic 1.1 learner sequence state from stored authority records. */
+export async function getTopic11LearnerDeliveryStateHandler(
+  ctx: QueryCtx,
+  args: { learnerId: Id<"profiles"> },
+  selectedPublication: Publication = publication,
+) {
+  const learner = await ctx.db.get("profiles", args.learnerId);
+  const credential = learner
+    ? await ctx.db.query("auth_credentials")
+      .withIndex("by_username", (query) => query.eq("username", learner.username)).unique()
+    : null;
+  if (!learner || learner.role !== "student" || !credential || !credential.isActive
+    || credential.profileId !== learner._id || credential.username !== learner.username
+    || credential.role !== learner.role || credential.organizationId !== learner.organizationId) return null;
+
+  const source = await getApprovedTopic11WorkedSourceHandler(ctx, selectedPublication);
+  if (!source) return null;
+  const [sourceActivity, lessons] = await Promise.all([
+    ctx.db.get("activities", source.activityId),
+    ctx.db.query("lessons")
+      .withIndex("by_unit_and_order", (query) => query.eq("unitNumber", 1).eq("orderIndex", 1))
+      .collect(),
+  ]);
+  if (!sourceActivity || lessons.length !== 1) return null;
+  const now = Date.now();
+  const submissions = await ctx.db.query("activity_submissions")
+    .withIndex("by_user_and_activity", (query) => (
+      query.eq("userId", args.learnerId).eq("activityId", source.activityId)
+    )).collect();
+  const acknowledgements = (await Promise.all(submissions.map(async (submission) => {
+    if (!isStoredTopic11Acknowledgement(submission, args.learnerId, source.activityId, now)) return null;
+    const acknowledgedAt = Number(submission.submittedAt);
+    if (!Number.isFinite(sourceActivity.createdAt) || sourceActivity.createdAt > acknowledgedAt
+      || !record(sourceActivity.approval)
+      || !Number.isFinite(sourceActivity.approval.reviewedAt)
+      || Number(sourceActivity.approval.reviewedAt) > acknowledgedAt
+      || !await hasCurrentTopic11Source(ctx, lessons[0]!._id, source.activityId, acknowledgedAt)) return null;
+    return submission;
+  }))).filter((submission): submission is NonNullable<typeof submission> => submission !== null);
+  if (acknowledgements.length === 0) return "needs_acknowledgement" as const;
+
+  const teacherEvidence = await ctx.db.query("learning_evidence")
+    .withIndex("by_learner_and_node", (query) => (
+      query.eq("learnerId", args.learnerId).eq("nodeId", PRECALCULUS_PILOT_NODE_ID)
+    )).collect();
+  const confirmed = acknowledgements.some((submission) => teacherEvidence.some((evidence) => (
+    isTopic11TeacherConfirmationForSubmission(evidence, submission)
+  )));
+  return confirmed ? "ready_for_practice" as const : "awaiting_teacher_confirmation" as const;
+}
+
+export const getTopic11LearnerDeliveryState = internalQuery({
+  args: { learnerId: v.id("profiles") },
+  returns: topic11LearnerDeliveryStateValidator,
+  handler: (ctx, args) => getTopic11LearnerDeliveryStateHandler(ctx, args),
+});
 
 function isCanonicalTopic11Acknowledgement(value: unknown): boolean {
   return record(value)

@@ -175,6 +175,9 @@ vi.mock("@/curriculum/skill-graph/blueprints.json", () => ({
 
 import {
   createTopic11DailySubmission,
+  getApprovedPrecalculusPilotHandler,
+  getApprovedTopic11WorkedSourceHandler,
+  getTopic11LearnerDeliveryStateHandler,
 } from "@/convex/activities";
 import { submitTopic11TeacherSubmission } from "@/convex/selectedLearningEvidence";
 import { PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY } from "@/lib/learning-evidence/precalc-pilot";
@@ -207,10 +210,11 @@ function db() {
     lessons: [{ _id: "l", unitNumber: 1, orderIndex: 1 }],
     class_lessons: [{ _id: "a", classId: "c", lessonId: "l", assignedAt: 1 }],
     lesson_versions: [{ _id: "lv", lessonId: "l", version: 1, status: "published", createdAt: 1 }],
-    phase_versions: [{ _id: "pv", lessonVersionId: "lv", phaseType: "worked_example", createdAt: 1 }],
+    phase_versions: [{ _id: "pv", lessonVersionId: "lv", phaseNumber: 4, phaseType: "worked_example", createdAt: 1 }],
     phase_sections: [{
       _id: "ps",
       phaseVersionId: "pv",
+      sequenceOrder: 2,
       sectionType: "activity",
       createdAt: 1,
       content: { activityId: "x", componentKey: PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY },
@@ -412,8 +416,8 @@ describe("trusted Topic 1.1 teacher flow", () => {
     const m = await h(createTopic11DailySubmission)(ctx, ack);
     r.lesson_versions[0].status = "archived";
     for (let version = 2; version <= 25; version++) r.lesson_versions.push({ _id: `lv${version}`, lessonId: "l", version, status: version === 25 ? "published" : "draft", createdAt: 1 });
-    r.phase_versions = Array.from({ length: 21 }, (_, index) => ({ _id: `pv${index}`, lessonVersionId: "lv25", phaseType: index === 20 ? "worked_example" : "learn", createdAt: 1 }));
-    r.phase_sections = Array.from({ length: 51 }, (_, index) => ({ _id: `ps${index}`, phaseVersionId: "pv20", sectionType: index === 50 ? "activity" : "text", createdAt: 1, content: index === 50 ? { activityId: "x", componentKey: PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY } : {} }));
+    r.phase_versions = Array.from({ length: 21 }, (_, index) => ({ _id: `pv${index}`, lessonVersionId: "lv25", phaseNumber: index === 20 ? 4 : index + 5, phaseType: index === 20 ? "worked_example" : "learn", createdAt: 1 }));
+    r.phase_sections = Array.from({ length: 51 }, (_, index) => ({ _id: `ps${index}`, phaseVersionId: "pv20", sequenceOrder: index === 50 ? 2 : index + 3, sectionType: index === 50 ? "activity" : "text", createdAt: 1, content: index === 50 ? { activityId: "x", componentKey: PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY } : {} }));
     await expect(h(submitTopic11TeacherSubmission)(ctx, { teacherId: "t", learnerId: "s", classId: "c", submissionId: m.submissionId })).resolves.toMatchObject({ delivery: "new" });
   });
 
@@ -553,5 +557,189 @@ describe("trusted Topic 1.1 teacher flow", () => {
     })).rejects.toThrow();
     expect(r.learning_evidence).toHaveLength(0);
     expect(r.srs_cards).toHaveLength(0);
+  });
+
+  it("projects the exact Worked source and fails closed for duplicate phase ownership", async () => {
+    const { ctx, r } = db();
+    const publication = { nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints };
+    await expect(getApprovedTopic11WorkedSourceHandler(ctx as never, publication as never))
+      .resolves.toMatchObject({ activityId: "x", stableActivityId: S, mode: "worked_example" });
+    r.phase_versions.push({ ...r.phase_versions[0], _id: "pv-duplicate" });
+    await expect(getApprovedTopic11WorkedSourceHandler(ctx as never, publication as never))
+      .resolves.toBeNull();
+  });
+
+  it.each([
+    ["future physical creation", (row: any) => { row.createdAt = 3; }],
+    ["negative approval time", (row: any) => { row.approval.reviewedAt = -1; }],
+    ["approval before physical creation", (row: any) => { row.createdAt = 1; row.approval.reviewedAt = 0; }],
+  ])("does not project a Worked source with %s", async (_name, change) => {
+    const { ctx, r } = db();
+    change(r.activities[0]);
+    await expect(getApprovedTopic11WorkedSourceHandler(ctx as never, {
+      nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints,
+    } as never)).resolves.toBeNull();
+  });
+
+  it("derives acknowledgement and exact teacher-confirmation delivery states without writes", async () => {
+    const { ctx, r } = db();
+    const publication = { nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints };
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, publication as never))
+      .resolves.toBe("needs_acknowledgement");
+    const acknowledgement = await h(createTopic11DailySubmission)(ctx, ack);
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, publication as never))
+      .resolves.toBe("awaiting_teacher_confirmation");
+    vi.mocked(Date.now).mockReturnValue(99);
+    await h(submitTopic11TeacherSubmission)(ctx, {
+      teacherId: "t", learnerId: "s", classId: "c", submissionId: acknowledgement.submissionId,
+    });
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, publication as never))
+      .resolves.toBe("ready_for_practice");
+    expect(r.srs_cards).toHaveLength(0);
+    expect(r.srs_review_log).toHaveLength(0);
+  });
+
+  it("projects only approved server-owned practice props and conceals Independent answers", async () => {
+    const { ctx, r } = db();
+    r.activities.push(
+      {
+        _id: "guided", stableActivityId: `${N}.guided_practice`,
+        componentKey: "precalculus-mastery-advantage-pilot",
+        displayName: "Mastery Advantage: Identify Graph Intervals",
+        description: "Classify the increasing, decreasing, and constant intervals from a graph.",
+        props: { nodeId: N, mode: "guided_practice" }, gradingConfig: { variantSeed: 0 },
+        approval: { status: "approved" },
+      },
+      {
+        _id: "independent", stableActivityId: `${N}.independent_practice`,
+        componentKey: "precalculus-mastery-advantage-pilot",
+        displayName: "Independent Practice: Classify Graph Intervals",
+        description: "Classify the increasing, decreasing, and constant intervals from a generated graph.",
+        props: { nodeId: N, mode: "independent_practice" }, gradingConfig: { variantSeed: 2 },
+        approval: { status: "approved" },
+      },
+    );
+    const result = await getApprovedPrecalculusPilotHandler(ctx as never, {
+      nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints,
+    } as never);
+    expect(result.map((row) => row.mode)).toEqual(["worked_example", "guided_practice", "independent_practice"]);
+    expect(JSON.stringify(result.find((row) => row.mode === "independent_practice")?.props))
+      .not.toMatch(/answer|solution|hint/i);
+  });
+
+  it("keeps current draft publication closed without database writes", async () => {
+    const { ctx, r } = db();
+    const draft = structuredClone({ nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints });
+    draft.nodes[0].reviewStatus = "draft";
+    const before = [r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length];
+    await expect(getApprovedTopic11WorkedSourceHandler(ctx as never, draft as never)).resolves.toBeNull();
+    await expect(getApprovedPrecalculusPilotHandler(ctx as never, draft as never)).resolves.toEqual([]);
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, draft as never)).resolves.toBeNull();
+    expect([r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length]).toEqual(before);
+  });
+
+  it.each([
+    ["inactive credential", (r: any) => { r.auth_credentials.find((row: any) => row.profileId === "s").isActive = false; }],
+    ["wrong credential role", (r: any) => { r.auth_credentials.find((row: any) => row.profileId === "s").role = "teacher"; }],
+    ["wrong credential organization", (r: any) => { r.auth_credentials.find((row: any) => row.profileId === "s").organizationId = "other"; }],
+    ["wrong credential profile", (r: any) => { r.auth_credentials.find((row: any) => row.profileId === "s").profileId = "other"; }],
+  ])("returns null for %s without read-side effects", async (_name, change) => {
+    const { ctx, r } = db();
+    change(r);
+    const before = [r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length];
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, {
+      nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints,
+    } as never)).resolves.toBeNull();
+    expect([r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length]).toEqual(before);
+  });
+
+  it.each([
+    ["future time", (r: any) => { r.activity_submissions[0].submittedAt = 3; }, "needs_acknowledgement"],
+    ["changed envelope", (r: any) => { r.activity_submissions[0].submissionData.answers = { forged: true }; }, "needs_acknowledgement"],
+    ["changed physical source", (r: any) => { r.activities[0].props.source = "student"; }, null],
+    ["future approval metadata", (r: any) => { r.activities[0].approval.reviewedAt = 3; }, null],
+    ["future publication metadata", (r: any) => { r.lesson_versions[0].createdAt = 3; }, null],
+  ])("does not accept an acknowledgement with %s", async (_name, change, expected) => {
+    const { ctx, r } = db();
+    await h(createTopic11DailySubmission)(ctx, structuredClone(ack));
+    change(r);
+    const before = [r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length];
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, {
+      nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints,
+    } as never)).resolves.toBe(expected);
+    expect([r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length]).toEqual(before);
+  });
+
+  it.each([
+    ["approval", (r: any) => { r.activities[0].approval.reviewedAt = 3; }],
+    ["publication", (r: any) => { r.lesson_versions[0].createdAt = 3; }],
+  ])("rejects an acknowledgement that predates current %s", async (_name, change) => {
+    const { ctx, r } = db();
+    await h(createTopic11DailySubmission)(ctx, structuredClone(ack));
+    change(r);
+    vi.mocked(Date.now).mockReturnValue(4);
+    const publication = { nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints };
+    await expect(getApprovedTopic11WorkedSourceHandler(ctx as never, publication as never))
+      .resolves.toMatchObject({ activityId: "x" });
+    const before = [r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length];
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, publication as never))
+      .resolves.toBe("needs_acknowledgement");
+    expect([r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length]).toEqual(before);
+  });
+
+  it.each([
+    ["wrong learner", { learnerId: "other" }],
+    ["wrong node", { nodeId: "other" }],
+    ["wrong source activity", { activityId: "other" }],
+    ["wrong submission key", { idempotencyKey: "other" }],
+    ["wrong ordinal", { attemptOrdinal: 2 }],
+    ["wrong occurrence time", { occurredAt: 1 }],
+  ])("does not unlock practice for teacher history with %s", async (_name, change) => {
+    const { ctx, r } = db();
+    const acknowledgement = await h(createTopic11DailySubmission)(ctx, structuredClone(ack));
+    r.learning_evidence.push({
+      _id: "teacher-history", learnerId: "s", nodeId: N, activityId: S,
+      attemptOrdinal: 1, origin: "teacher_led", mode: "teaching", occurredAt: 2,
+      idempotencyKey: `precalc:teacher-led:submission:${acknowledgement.submissionId}`, createdAt: 2,
+      ...change,
+    });
+    const before = [r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length];
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, {
+      nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints,
+    } as never)).resolves.toBe("awaiting_teacher_confirmation");
+    expect([r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length]).toEqual(before);
+  });
+
+  it("finds a valid acknowledgement after more than the old fixed limit", async () => {
+    const { ctx, r } = db();
+    await h(createTopic11DailySubmission)(ctx, structuredClone(ack));
+    for (let index = 0; index < 150; index += 1) r.activity_submissions.unshift({
+      _id: `damaged-${index}`, userId: "s", activityId: "x", stableActivityId: S,
+      masteryContractVersion: "learning-evidence.v1", submissionData: {}, attemptOrdinal: index + 2,
+      submittedAt: 2,
+    });
+    const before = [r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length];
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, {
+      nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints,
+    } as never)).resolves.toBe("awaiting_teacher_confirmation");
+    expect([r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length]).toEqual(before);
+  });
+
+  it.each([
+    ["duplicate physical activity", (r: any) => { r.activities.push({ ...structuredClone(r.activities[0]), _id: "x2" }); }],
+    ["duplicate current version", (r: any) => { r.lesson_versions.push({ ...structuredClone(r.lesson_versions[0]), _id: "lv2" }); }],
+    ["occupied sequence", (r: any) => { r.phase_sections.push({ ...structuredClone(r.phase_sections[0]), _id: "ps2", sectionType: "text", content: {} }); }],
+    ["cross-phase selected link", (r: any) => { r.phase_versions.push({ _id: "other-phase", lessonVersionId: "lv", phaseNumber: 5, phaseType: "learn", createdAt: 1 }); r.phase_sections.push({ ...structuredClone(r.phase_sections[0]), _id: "ps2", phaseVersionId: "other-phase", sequenceOrder: 1 }); }],
+    ["tampered physical component", (r: any) => { r.activities[0].componentKey = "other"; }],
+    ["tampered physical props", (r: any) => { r.activities[0].props.source = "student"; }],
+    ["tampered physical grading", (r: any) => { r.activities[0].gradingConfig.variantSeed = 1; }],
+  ])("fails closed projection and state for %s", async (_name, change) => {
+    const { ctx, r } = db();
+    change(r);
+    const publication = { nodes: catalogs.nodes.nodes, blueprints: catalogs.blueprints.blueprints };
+    const before = [r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length];
+    await expect(getApprovedTopic11WorkedSourceHandler(ctx as never, publication as never)).resolves.toBeNull();
+    await expect(getTopic11LearnerDeliveryStateHandler(ctx as never, { learnerId: "s" } as never, publication as never)).resolves.toBeNull();
+    expect([r.learning_evidence.length, r.learning_evidence_receipts.length, r.srs_cards.length, r.srs_review_log.length]).toEqual(before);
   });
 });
