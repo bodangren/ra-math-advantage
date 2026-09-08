@@ -231,6 +231,9 @@ export function PrecalculusMasteryAdvantagePilot({
                 ? {
                     partId: (part as Record<string, unknown>).partId,
                     rawAnswer: (part as Record<string, unknown>).rawAnswer,
+                    hintsUsed: (part as Record<string, unknown>).hintsUsed,
+                    revealStepsSeen: (part as Record<string, unknown>).revealStepsSeen,
+                    changedCount: (part as Record<string, unknown>).changedCount,
                   }
                 : part,
             )

@@ -242,6 +242,8 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
     const Pilot = await loadPilot();
 
     render(<Pilot {...pilotProps()} />);
+    fireEvent.click(screen.getByRole("button", { name: "Show hint for Increasing intervals" }));
+    fireEvent.click(screen.getByRole("button", { name: "Reveal answer for Decreasing intervals" }));
     completeTopicOnePointOne();
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(2));
@@ -260,6 +262,11 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
       decreasingIntervals: SOURCE_CORRECT_ANSWERS.decreasingIntervals,
       constantIntervals: SOURCE_CORRECT_ANSWERS.constantIntervals,
     });
+    expect(createEnvelope.parts).toStrictEqual([
+      { partId: "increasingIntervals", rawAnswer: SOURCE_CORRECT_ANSWERS.increasingIntervals, hintsUsed: 1, revealStepsSeen: 0, changedCount: 1 },
+      { partId: "decreasingIntervals", rawAnswer: SOURCE_CORRECT_ANSWERS.decreasingIntervals, hintsUsed: 0, revealStepsSeen: 1, changedCount: 1 },
+      { partId: "constantIntervals", rawAnswer: SOURCE_CORRECT_ANSWERS.constantIntervals, hintsUsed: 0, revealStepsSeen: 0, changedCount: 1 },
+    ]);
     expect(requestHeader(createCall, "Idempotency-Key")).toEqual(
       expect.any(String),
     );
@@ -284,6 +291,10 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
         .getAllByRole("status")
         .some((status) => status.textContent?.includes(SAFE_SERVER_FEEDBACK)),
     ).toBe(true);
+    fireEvent.click(screen.getByRole("button", { name: "Start new attempt" }));
+    expect(screen.queryByText("Find every segment that rises.")).toBeNull();
+    expect(screen.getByRole("textbox", { name: /increasing intervals/i })).toHaveValue("");
+    expect(screen.getByRole("button", { name: "Show hint for Increasing intervals" })).toBeEnabled();
   });
 
   it("retries only opaque evidence delivery after a producer result already exists", async () => {
@@ -318,6 +329,7 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
     const Pilot = await loadPilot();
 
     render(<Pilot {...pilotProps()} />);
+    fireEvent.click(screen.getByRole("button", { name: "Show hint for Increasing intervals" }));
     completeTopicOnePointOne();
 
     const alert = await screen.findByRole("alert");
@@ -441,6 +453,7 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
     const Pilot = await loadPilot();
 
     render(<Pilot {...pilotProps()} />);
+    fireEvent.click(screen.getByRole("button", { name: "Show hint for Increasing intervals" }));
     completeTopicOnePointOne();
 
     const alert = await screen.findByRole("alert");
@@ -453,6 +466,13 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
     const originalEnvelope = requestBody(originalCreateCall);
     const originalKey = requestHeader(originalCreateCall, "Idempotency-Key");
     expect(originalKey).toEqual(expect.any(String));
+    expect((originalEnvelope.parts as Array<Record<string, unknown>>)[0]).toMatchObject({
+      hintsUsed: 1,
+      revealStepsSeen: 0,
+      changedCount: 1,
+    });
+    expect(screen.getByRole("textbox", { name: /increasing intervals/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Reveal answer for Decreasing intervals" })).toBeDisabled();
 
     fireEvent.click(retryButton);
 
@@ -518,6 +538,10 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
       "Find every segment that falls.",
       "Check whether any segment stays flat.",
     ];
+    inputs.forEach((input) => expect(input.getAttribute("aria-describedby")).toBeNull());
+    ["Increasing intervals", "Decreasing intervals", "Constant intervals"].forEach((label) => {
+      fireEvent.click(screen.getByRole("button", { name: `Show hint for ${label}` }));
+    });
     inputs.forEach((input, index) => {
       const helpId = input.getAttribute("aria-describedby");
       expect(helpId).toBeTruthy();
@@ -658,6 +682,9 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
     });
     expect(new Set(headings.map((heading) => heading.id)).size).toBe(2);
     const inputs = screen.getAllByRole("textbox");
+    ["Increasing intervals", "Decreasing intervals", "Constant intervals"].forEach((label) => {
+      fireEvent.click(screen.getAllByRole("button", { name: `Show hint for ${label}` })[0]!);
+    });
     expect(
       new Set(
         inputs
