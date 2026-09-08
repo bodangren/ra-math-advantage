@@ -479,3 +479,5 @@ Q37 row 8 failed at the server boundary. A browser request inserted Guided pract
 - [~] Task G52 projected prerequisites: Inspect and remove stale SRS prerequisite entries whose canonical edges were removed in earlier repairs. Parent inspection found 14 existing residues in HEAD. G50 separately removes the Lesson 9-7 to Lesson 10-1 residue. Keep one writer per projection file. Add a relationship consistency regression and preserve valid prerequisites.
 
 Q38 parent investigation confirms that the saved physical result is absent from server page data and exists only in client state. Existing indexed submissions and receipts can supply the missing read. The bounded proposal preserves explicit retry and separates historical results from new-attempt and lesson-completion state. See `precalc-saved-practice-views-investigation.md`.
+
+G51 parent source review inspected all 23 prompts and 17 native figures. Exact source restoration is accepted to proceed. The corrected six-capability proposal remains provisional. Preserve average-time, combined-route, curved-line, and complete-premise boundaries. See `im1-lesson101-parent-source-review.md`.
