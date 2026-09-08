@@ -136,31 +136,21 @@
     },
     {
       "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "blueprintId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "standards": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "prerequisites": [
-        "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig"
-      ],
+      "blueprintId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment.blueprint",
+      "standards": [],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "fill-in-the-blank",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "blueprintId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "standards": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
+      "blueprintId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n.blueprint",
+      "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
@@ -1061,7 +1051,7 @@
     },
     {
       "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
-      "blueprintId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+      "blueprintId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali.blueprint",
       "standards": [
         "math.standard.ccss.a-ced-a-4",
         "math.standard.ccss.a-rei-b-3"
@@ -1070,13 +1060,12 @@
         "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult"
       ],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
-      "blueprintId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+      "blueprintId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides.blueprint",
       "standards": [
         "math.standard.ccss.a-rei-a-1",
         "math.standard.ccss.a-rei-b-3"
@@ -1085,9 +1074,8 @@
         "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali"
       ],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
@@ -2289,7 +2277,6 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
-      "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
     },
@@ -3683,6 +3670,51 @@
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+      "blueprintId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+      "blueprintId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+      "blueprintId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+      "blueprintId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
+      "blueprintId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     }
   ]
 }

@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 490,
+  "totalSkills": 495,
   "counts": {
     "served": 6,
-    "gap": 484,
+    "gap": 489,
     "newComponent": 0
   },
   "byModule": [
@@ -4022,6 +4022,46 @@
     },
     {
       "skillId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
       "module": "10",
       "status": "gap",
       "tier": "none",

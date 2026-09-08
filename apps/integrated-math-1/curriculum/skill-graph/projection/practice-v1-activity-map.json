@@ -3,9 +3,9 @@
     "course": "im1",
     "generatedAt": "2026-05-10T06:41:48.253Z",
     "description": "IM1 practice.v1 activity map projection from skill graph",
-    "totalActivities": 309,
-    "totalSrsInputs": 316,
-    "totalSkills": 316
+    "totalActivities": 297,
+    "totalSrsInputs": 321,
+    "totalSkills": 321
   },
   "activities": [
     {
@@ -22,7 +22,7 @@
       "props": {
         "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.worked_example",
         "mode": "teaching",
-        "template": "Write a numerical expression for \u201cthe sum of 16 and 17, divided by 12\u201d: {{blank:expression}}",
+        "template": "Write a numerical expression for “the sum of 16 and 17, divided by 12”: {{blank:expression}}",
         "blanks": [
           {
             "id": "expression",
@@ -30,7 +30,7 @@
             "correctAnswer": "(16 + 17) / 12",
             "acceptedAnswers": [
               "(16 + 17) / 12",
-              "(16 + 17) \u00f7 12"
+              "(16 + 17) ÷ 12"
             ]
           }
         ],
@@ -45,7 +45,7 @@
           },
           {
             "description": "Write the full expression",
-            "expression": "(16 + 17) \u00f7 12"
+            "expression": "(16 + 17) ÷ 12"
           }
         ]
       },
@@ -72,7 +72,7 @@
       "props": {
         "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.guided_practice",
         "mode": "guided",
-        "template": "Write a numerical expression for \u201cthe sum of 9 and 11, divided by 10\u201d: {{blank:expression}}",
+        "template": "Write a numerical expression for “the sum of 9 and 11, divided by 10”: {{blank:expression}}",
         "blanks": [
           {
             "id": "expression",
@@ -80,7 +80,7 @@
             "correctAnswer": "(9 + 11) / 10",
             "acceptedAnswers": [
               "(9 + 11) / 10",
-              "(9 + 11) \u00f7 10"
+              "(9 + 11) ÷ 10"
             ]
           }
         ],
@@ -116,7 +116,7 @@
       "props": {
         "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.independent_practice",
         "mode": "practice",
-        "template": "Write a numerical expression for \u201cthe product of 17 and the difference between 25 and 7\u201d: {{blank:expression}}",
+        "template": "Write a numerical expression for “the product of 17 and the difference between 25 and 7”: {{blank:expression}}",
         "blanks": [
           {
             "id": "expression",
@@ -144,7 +144,7 @@
         "math.standard.ccss.a-sse-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -217,7 +217,7 @@
         "math.standard.ccss.6-ee-a-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -290,7 +290,7 @@
         "math.standard.ccss.7-ee-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -363,7 +363,7 @@
         "math.standard.ccss.a-sse-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -436,7 +436,7 @@
         "math.standard.ccss.a-ced-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -499,152 +499,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment.worked_example",
-      "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "sourceNodeIds": [],
-      "rendererKey": "fill-in-the-blank",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment.guided_practice",
-      "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "sourceNodeIds": [],
-      "rendererKey": "fill-in-the-blank",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 10f: Apply the Segment Addition Postulate to find missing segment lengths",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment.independent_practice",
-      "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "sourceNodeIds": [],
-      "rendererKey": "fill-in-the-blank",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n.worked_example",
-      "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n.guided_practice",
-      "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 10e: Find the length of a segment by reading coordinates from a number line",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n.independent_practice",
-      "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems.worked_example",
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
       "sourceNodeIds": [],
@@ -655,7 +509,7 @@
         "math.standard.ccss.g-mg-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -728,7 +582,7 @@
         "math.standard.ccss.g-mg-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -801,7 +655,7 @@
         "math.standard.ccss.g-gpe-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -874,7 +728,7 @@
         "math.standard.ccss.g-gpe-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -947,7 +801,7 @@
         "math.standard.ccss.g-gpe-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1020,7 +874,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1093,7 +947,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1166,7 +1020,7 @@
         "math.standard.ccss.g-co-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1239,7 +1093,7 @@
         "math.standard.ccss.g-co-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1312,7 +1166,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1385,7 +1239,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1458,7 +1312,7 @@
         "math.standard.ccss.g-gpe-b-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1531,7 +1385,7 @@
         "math.standard.ccss.g-gpe-b-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1604,7 +1458,7 @@
         "math.standard.ccss.g-co-a-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1677,7 +1531,7 @@
         "math.standard.ccss.g-co-a-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1750,7 +1604,7 @@
         "math.standard.ccss.g-gmd-b-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1823,7 +1677,7 @@
         "math.standard.ccss.g-gmd-b-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1895,7 +1749,7 @@
         "math.standard.ccss.g-mg-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -1965,7 +1819,7 @@
         "math.standard.ccss.g-mg-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2036,7 +1890,7 @@
         "math.standard.ccss.g-mg-a-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2109,7 +1963,7 @@
         "math.standard.ccss.g-mg-a-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2181,7 +2035,7 @@
         "math.standard.ccss.g-co-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2251,7 +2105,7 @@
         "math.standard.ccss.g-co-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2321,7 +2175,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2391,7 +2245,7 @@
         "math.standard.ccss.g-co-a-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2461,7 +2315,7 @@
         "math.standard.ccss.g-co-a-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2531,7 +2385,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2601,7 +2455,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2671,7 +2525,7 @@
         "math.standard.ccss.g-co-a-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2741,7 +2595,7 @@
         "math.standard.ccss.g-co-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2811,7 +2665,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2881,7 +2735,7 @@
         "math.standard.ccss.g-co-a-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -2951,7 +2805,7 @@
         "math.standard.ccss.g-co-a-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3021,7 +2875,7 @@
         "math.standard.ccss.g-gpe-b-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3091,7 +2945,7 @@
         "math.standard.ccss.g-gpe-b-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3161,7 +3015,7 @@
         "math.standard.ccss.g-co-a-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3231,7 +3085,7 @@
         "math.standard.ccss.g-co-a-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3302,7 +3156,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3375,7 +3229,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3448,7 +3302,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3521,7 +3375,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3594,7 +3448,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3667,7 +3521,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3691,7 +3545,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
+        "scaffoldedPrompt": "Placeholder guided practice: 13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
         "stepPrompts": [],
         "hints": [],
         "checksPerStep": [],
@@ -3740,7 +3594,7 @@
         "math.standard.ccss.g-co-a-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3813,7 +3667,7 @@
         "math.standard.ccss.g-co-a-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3886,7 +3740,7 @@
         "math.standard.ccss.g-co-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -3959,7 +3813,7 @@
         "math.standard.ccss.g-co-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4032,7 +3886,7 @@
         "math.standard.ccss.g-co-a-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4105,7 +3959,7 @@
         "math.standard.ccss.g-co-a-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4177,7 +4031,7 @@
         "math.standard.ccss.8-g-a-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4247,7 +4101,7 @@
         "math.standard.ccss.8-g-a-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4317,7 +4171,7 @@
         "math.standard.ccss.g-co-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4387,7 +4241,7 @@
         "math.standard.ccss.g-co-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4457,7 +4311,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4527,7 +4381,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4597,7 +4451,7 @@
         "math.standard.ccss.g-co-b-8"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4667,7 +4521,7 @@
         "math.standard.ccss.g-co-b-8"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4737,7 +4591,7 @@
         "math.standard.ccss.g-co-c-9"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4807,7 +4661,7 @@
         "math.standard.ccss.g-co-c-9"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4877,7 +4731,7 @@
         "math.standard.ccss.g-co-c-10"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -4947,7 +4801,7 @@
         "math.standard.ccss.g-co-c-10"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5017,7 +4871,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5087,7 +4941,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5158,7 +5012,7 @@
         "math.standard.ccss.a-ced-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5231,7 +5085,7 @@
         "math.standard.ccss.8-ee-c-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5294,152 +5148,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali.worked_example",
-      "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-4",
-        "math.standard.ccss.a-rei-b-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali.guided_practice",
-      "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-4",
-        "math.standard.ccss.a-rei-b-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 2e: Solve multi-step linear equations using properties of equality and check solutions by substitution",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali.independent_practice",
-      "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-4",
-        "math.standard.ccss.a-rei-b-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides.worked_example",
-      "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-a-1",
-        "math.standard.ccss.a-rei-b-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides.guided_practice",
-      "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-a-1",
-        "math.standard.ccss.a-rei-b-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 2g: Solve linear equations that have the variable on both sides of the equation, including those with fractions and grouping symbols",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides.independent_practice",
-      "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-a-1",
-        "math.standard.ccss.a-rei-b-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu.worked_example",
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
       "sourceNodeIds": [],
@@ -5450,7 +5158,7 @@
         "math.standard.ccss.a-rei-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5523,7 +5231,7 @@
         "math.standard.ccss.a-rei-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5596,7 +5304,7 @@
         "math.standard.ccss.a-ced-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5669,7 +5377,7 @@
         "math.standard.ccss.a-rei-b-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5742,7 +5450,7 @@
         "math.standard.ccss.f-if-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5815,7 +5523,7 @@
         "math.standard.ccss.8-f-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5888,7 +5596,7 @@
         "math.standard.ccss.f-if-c-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -5961,7 +5669,7 @@
         "math.standard.ccss.f-if-b-5"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6034,7 +5742,7 @@
         "math.standard.ccss.f-if-c-9"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6107,7 +5815,7 @@
         "math.standard.ccss.f-if-c-8"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6180,7 +5888,7 @@
         "math.standard.ccss.8-f-b-4"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6253,7 +5961,7 @@
         "math.standard.ccss.f-if-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6326,7 +6034,7 @@
         "math.standard.ccss.f-if-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6399,7 +6107,7 @@
         "math.standard.ccss.f-if-c-8"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6472,7 +6180,7 @@
         "math.standard.ccss.f-bf-b-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6545,7 +6253,7 @@
         "math.standard.ccss.f-le-a-1"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6618,7 +6326,7 @@
         "math.standard.ccss.f-if-c-7"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6691,7 +6399,7 @@
         "math.standard.ccss.f-if-c-9"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6764,7 +6472,7 @@
         "math.standard.ccss.a-rei-d-10"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6837,7 +6545,7 @@
         "math.standard.ccss.a-ced-a-2"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6910,7 +6618,7 @@
         "math.standard.ccss.s-id-b-6"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -6983,7 +6691,7 @@
         "math.standard.ccss.s-id-c-9"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -7056,7 +6764,7 @@
         "math.standard.ccss.s-id-c-8"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -7129,7 +6837,7 @@
         "math.standard.ccss.f-bf-b-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -7202,7 +6910,7 @@
         "math.standard.ccss.a-rei-b-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -7274,7 +6982,7 @@
         "math.standard.ccss.a-rei-b-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.6.2.solve-multi-step-linear-inequalities-using-the-distributive",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.6.2.solve-multi-step-linear-inequalities-using-the-distributive",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -7345,7 +7053,7 @@
         "math.standard.ccss.a-rei-b-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -7418,7 +7126,7 @@
         "math.standard.ccss.a-rei-b-3"
       ],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou",
+        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou",
         "givens": [],
         "steps": [],
         "explanation": "This activity requires generator implementation"
@@ -7613,31 +7321,21 @@
     },
     {
       "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "blueprintId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "standards": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "prerequisites": [
-        "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig"
-      ],
+      "blueprintId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment.blueprint",
+      "standards": [],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "fill-in-the-blank",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "blueprintId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "standards": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
+      "blueprintId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n.blueprint",
+      "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
@@ -8538,7 +8236,7 @@
     },
     {
       "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
-      "blueprintId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+      "blueprintId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali.blueprint",
       "standards": [
         "math.standard.ccss.a-ced-a-4",
         "math.standard.ccss.a-rei-b-3"
@@ -8547,13 +8245,12 @@
         "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult"
       ],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
-      "blueprintId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+      "blueprintId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides.blueprint",
       "standards": [
         "math.standard.ccss.a-rei-a-1",
         "math.standard.ccss.a-rei-b-3"
@@ -8562,9 +8259,8 @@
         "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali"
       ],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
@@ -9766,7 +9462,6 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
-      "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
     },
@@ -11145,6 +10840,51 @@
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+      "blueprintId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+      "blueprintId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+      "blueprintId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+      "blueprintId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
+      "blueprintId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     }
   ],
   "teacherEvidence": {
@@ -11352,12 +11092,8 @@
       },
       {
         "standardId": "math.standard.ccss.g-co-a-2",
-        "standardTitle": "math.standard.ccss.g-co-a-2",
+        "standardTitle": "G-CO.A.2 (placeholder)",
         "nodeIds": [
-          "math.im1.example.10.3.008",
-          "math.im1.example.10.3.009",
-          "math.im1.example.10.3.010",
-          "math.im1.example.10.3.011",
           "math.im1.example.11.4.010",
           "math.im1.example.11.4.011",
           "math.im1.example.11.4.012",
@@ -11383,8 +11119,6 @@
           "math.im1.example.13.4.016",
           "math.im1.example.13.4.017",
           "math.im1.example.13.4.018",
-          "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-          "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
           "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
           "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
           "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
@@ -11398,18 +11132,14 @@
           "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
           "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
         ],
-        "workedExampleCount": 29,
-        "guidedPracticeCount": 14,
+        "workedExampleCount": 25,
+        "guidedPracticeCount": 0,
         "independentPracticeCount": 0
       },
       {
         "standardId": "math.standard.ccss.g-gpe-b-4",
-        "standardTitle": "math.standard.ccss.g-gpe-b-4",
+        "standardTitle": "G-GPE.B.4 (placeholder)",
         "nodeIds": [
-          "math.im1.example.10.3.008",
-          "math.im1.example.10.3.009",
-          "math.im1.example.10.3.010",
-          "math.im1.example.10.3.011",
           "math.im1.example.10.4.012",
           "math.im1.example.10.4.013",
           "math.im1.example.10.4.014",
@@ -11433,8 +11163,6 @@
           "math.im1.example.14.7.024",
           "math.im1.example.14.7.025",
           "math.im1.example.14.7.026",
-          "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-          "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
           "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
           "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
           "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
@@ -11447,8 +11175,8 @@
           "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
           "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian"
         ],
-        "workedExampleCount": 27,
-        "guidedPracticeCount": 13,
+        "workedExampleCount": 23,
+        "guidedPracticeCount": 0,
         "independentPracticeCount": 0
       },
       {
@@ -12873,23 +12601,19 @@
         "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
         "title": "10f: Apply the Segment Addition Postulate to find missing segment lengths",
         "kind": "skill",
-        "standardsCovered": [
-          "math.standard.ccss.g-co-a-2",
-          "math.standard.ccss.g-gpe-b-4"
-        ],
+        "standardsCovered": [],
         "prerequisitesMet": true,
-        "independentPracticeReady": false
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
         "title": "10e: Find the length of a segment by reading coordinates from a number line",
         "kind": "skill",
-        "standardsCovered": [
-          "math.standard.ccss.g-co-a-2",
-          "math.standard.ccss.g-gpe-b-4"
-        ],
-        "prerequisitesMet": false,
-        "independentPracticeReady": false
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
@@ -13345,7 +13069,7 @@
       },
       {
         "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-        "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
+        "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
         "kind": "skill",
         "standardsCovered": [
           "math.standard.ccss.8-g-a-1",
@@ -13590,8 +13314,9 @@
           "math.standard.ccss.a-ced-a-4",
           "math.standard.ccss.a-rei-b-3"
         ],
-        "prerequisitesMet": true,
-        "independentPracticeReady": false
+        "prerequisitesMet": false,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
@@ -13601,8 +13326,9 @@
           "math.standard.ccss.a-rei-a-1",
           "math.standard.ccss.a-rei-b-3"
         ],
-        "prerequisitesMet": true,
-        "independentPracticeReady": false
+        "prerequisitesMet": false,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
@@ -14520,6 +14246,60 @@
       {
         "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
         "title": "Determine the maximum number of distinct lines or planes formed by point subsets",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+        "title": "Classify and justify a part-whole segment inequality from betweenness",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+        "title": "Model two segment constraints as a linear system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+        "title": "Solve a segment-addition equation with quadratic expressions and reject a root that gives a negative segment length",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+        "title": "Use congruent subsegments, equal spacing, or a midpoint to determine segment measures",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
+        "title": "Write a segment-addition equation or statement from betweenness",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+        "title": "Solve a one-solution linear system by scaling equations and elimination",
         "kind": "skill",
         "standardsCovered": [],
         "prerequisitesMet": true,

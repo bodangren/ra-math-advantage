@@ -73,9 +73,9 @@ describe('IM1 Module 2 graph source coverage', () => {
       [newSkills[0][0], ['math.im1.example.2.1.004', 'math.im1.example.2.1.005', 'math.im1.example.2.1.006']],
       ['math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult', ['math.im1.example.2.2.007', 'math.im1.example.2.2.008']],
       [newSkills[1][0], ['math.im1.example.2.2.009', 'math.im1.example.2.2.010', 'math.im1.example.2.2.011']],
-      ['math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali', ['math.im1.example.2.3.012', 'math.im1.example.2.3.013']],
+      ['math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali', ['math.im1.example.2.3.012', 'math.im1.example.2.3.013', 'math.im1.example.10.3.010', 'math.im1.lesson.10.3']],
       [newSkills[2][0], ['math.im1.example.2.3.015']],
-      ['math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides', ['math.im1.example.2.4.016', 'math.im1.example.2.4.017']],
+      ['math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides', ['math.im1.example.2.4.016', 'math.im1.example.2.4.017', 'math.im1.example.10.3.010', 'math.im1.example.10.3.011', 'math.im1.example.10.3.028', 'math.im1.lesson.10.3']],
       [newSkills[3][0], ['math.im1.example.2.4.018', 'math.im1.example.2.4.019']],
       [legacy2i, ['math.im1.example.2.5.source-001', 'math.im1.example.2.5.source-002', 'math.im1.example.2.5.020']],
       ['math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu', ['math.im1.example.2.5.source-001']],
@@ -88,9 +88,10 @@ describe('IM1 Module 2 graph source coverage', () => {
       expect(blueprintsDocument.blueprints.find((row) => row.nodeId === nodeId)?.sourceNodeIds).toEqual(sourceNodeIds);
       for (const sourceNodeId of sourceNodeIds) {
         const source = nodesDocument.nodes.find((node) => node.id === sourceNodeId);
-        expect(source).toMatchObject({ kind: 'worked_example', metadata: { lesson: nodeId.split('.')[4] } });
+        if (sourceNodeId.startsWith('math.im1.example.2.')) expect(source).toMatchObject({ kind: 'worked_example', metadata: { lesson: nodeId.split('.')[4] } });
+        else expect(source).toMatchObject({ metadata: { lesson: '3', module: '10' } });
         const exampleNumber = source?.metadata.exampleNumber;
-        expect(source?.title).toMatch(new RegExp(`^Example ${exampleNumber}:`));
+        if (sourceNodeId.startsWith('math.im1.example.2.')) expect(source?.title).toMatch(new RegExp(`^Example ${exampleNumber}:`));
       }
     }
 
@@ -111,7 +112,7 @@ describe('IM1 Module 2 graph source coverage', () => {
     ]);
     for (const [nodeId, titlePattern] of intendedTitle) {
       const sourceIds = blueprintsDocument.blueprints.find((row) => row.nodeId === nodeId)?.sourceNodeIds ?? [];
-      for (const sourceId of sourceIds) {
+      for (const sourceId of sourceIds.filter((id) => id.startsWith('math.im1.example.2.'))) {
         expect(nodesDocument.nodes.find((node) => node.id === sourceId)?.title).toMatch(titlePattern);
       }
     }

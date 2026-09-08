@@ -1724,23 +1724,19 @@
       "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
       "title": "10f: Apply the Segment Addition Postulate to find missing segment lengths",
       "kind": "skill",
-      "standardsCovered": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
+      "standardsCovered": [],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
       "title": "10e: Find the length of a segment by reading coordinates from a number line",
       "kind": "skill",
-      "standardsCovered": [
-        "math.standard.ccss.g-co-a-2",
-        "math.standard.ccss.g-gpe-b-4"
-      ],
-      "prerequisitesMet": false,
-      "independentPracticeReady": false
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
@@ -2196,7 +2192,7 @@
     },
     {
       "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-      "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
+      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
       "kind": "skill",
       "standardsCovered": [
         "math.standard.ccss.8-g-a-1",
@@ -2441,8 +2437,9 @@
         "math.standard.ccss.a-ced-a-4",
         "math.standard.ccss.a-rei-b-3"
       ],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
@@ -2452,8 +2449,9 @@
         "math.standard.ccss.a-rei-a-1",
         "math.standard.ccss.a-rei-b-3"
       ],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
@@ -3371,6 +3369,60 @@
     {
       "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
       "title": "Determine the maximum number of distinct lines or planes formed by point subsets",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+      "title": "Classify and justify a part-whole segment inequality from betweenness",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+      "title": "Model two segment constraints as a linear system",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+      "title": "Solve a segment-addition equation with quadratic expressions and reject a root that gives a negative segment length",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+      "title": "Use congruent subsegments, equal spacing, or a midpoint to determine segment measures",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
+      "title": "Write a segment-addition equation or statement from betweenness",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "title": "Solve a one-solution linear system by scaling equations and elimination",
       "kind": "skill",
       "standardsCovered": [],
       "prerequisitesMet": true,

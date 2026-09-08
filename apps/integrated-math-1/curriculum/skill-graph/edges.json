@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2620,
-    "totalNodes": 1091,
+    "totalEdges": 2617,
+    "totalNodes": 1097,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -746,7 +746,8 @@
       "title": "Example 1: Find Segment Lengths from Number Lines",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-3, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Examples 1 and 2, Problems 1–9)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Examples 1 and 2, Problems 1–9)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -764,7 +765,8 @@
       "title": "Example 2: Find Segment Lengths from Number Lines",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-3, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Examples 1 and 2, Problems 1–9)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Examples 1 and 2, Problems 1–9)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -782,7 +784,8 @@
       "title": "Example 3: Apply the Segment Addition Postulate Algebraically; Solve Real-World Problems Using Segment Addition",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-3, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Example 3, Problems 10–23)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Example 3, Problems 10–23)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -800,7 +803,8 @@
       "title": "Example 4: Apply the Segment Addition Postulate Algebraically; Solve Real-World Problems Using Segment Addition",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-3, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Example 4, Problems 24–27)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Example 4, Problems 24–27)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9235,7 +9239,9 @@
       "domain": "math.im1",
       "description": "Apply the Segment Addition Postulate to find missing segment lengths",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 1–28, 31, 33–36, 38, and 41–47)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 1–28, 31, 33–36, 38, and 41–47)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -10325,7 +10331,9 @@
       "domain": "math.im1",
       "description": "Solve multi-step linear equations using properties of equality and check solutions by substitution",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 10, 13, 17, 22, 23, 35, 37, and 42; accepted equation stage must be observed separately from the final segment length)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 10, 13, 17, 22, 23, 35, 37, and 42; accepted equation stage must be observed separately from the final segment length)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -10341,7 +10349,9 @@
       "domain": "math.im1",
       "description": "Solve linear equations that have the variable on both sides of the equation, including those with fractions and grouping symbols",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 12, 15, 16, 18, 19, 27a, 32, 33, 36, 43, and 45; accepted equation stage must be observed separately from the final segment length)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 12, 15, 16, 18, 19, 27a, 32, 33, 36, 43, and 45; accepted equation stage must be observed separately from the final segment length)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -16883,7 +16893,9 @@
       "description": "Solve a one-solution linear system by scaling equations and elimination",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)",
-        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)"
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problem 49 only after both segment constraints are supplied or accepted)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problem 49 only after both segment constraints are supplied or accepted)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -19361,6 +19373,116 @@
         "module": "10",
         "lesson": "2"
       }
+    },
+    {
+      "id": "math.im1.example.10.3.028",
+      "kind": "worked_example",
+      "title": "Example 5: Find the measure of each segment",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Example 5, Problems 28–33)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Example 5, Problems 28–33)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "3",
+        "exampleNumber": 5,
+        "sourceLesson": "10-3",
+        "rawText": "10-3, Example 5 — Find the measure of each segment"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+      "kind": "skill",
+      "title": "Use congruent subsegments, equal spacing, or a midpoint to determine segment measures",
+      "domain": "math.im1",
+      "description": "Use congruent subsegments, equal spacing, or a midpoint to determine segment measures.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 28–33, 37, 40, 41, and 45)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 28–33, 37, 40, 41, and 45)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
+      "kind": "skill",
+      "title": "Write a segment-addition equation or statement from betweenness",
+      "domain": "math.im1",
+      "description": "Write a segment-addition equation or statement from betweenness.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 39, 46, 50, and 51)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 39, 46, 50, and 51)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+      "kind": "skill",
+      "title": "Solve a segment-addition equation with quadratic expressions and reject a root that gives a negative segment length",
+      "domain": "math.im1",
+      "description": "Solve a segment-addition equation with quadratic expressions and reject a root that gives a negative segment length.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problem 47 only)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problem 47 only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+      "kind": "skill",
+      "title": "Classify and justify a part-whole segment inequality from betweenness",
+      "domain": "math.im1",
+      "description": "Classify and justify a part-whole segment inequality from betweenness.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problem 48 only)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problem 48 only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+      "kind": "skill",
+      "title": "Model two segment constraints as a linear system",
+      "domain": "math.im1",
+      "description": "Model two segment constraints as a linear system.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problem 49 only)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problem 49 only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "3"
+      }
     }
   ],
   "edges": [
@@ -21032,198 +21154,6 @@
         "course": "im1",
         "originalWeight": 0.8,
         "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-3-008-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.3.008",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-3-008-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.3.008",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-3-009-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.3.009",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-3-009-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.3.009",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-3-010-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.3.010",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-3-010-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.3.010",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-3-011-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.3.011",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-3-011-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.3.011",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
       }
     },
     {
@@ -36526,102 +36456,6 @@
         "course": "im1",
         "originalWeight": 0.8,
         "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-10-3-apply-the-segment-addition-postulate-to-find-missing-segment-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-10-3-apply-the-segment-addition-postulate-to-find-missing-segment-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-10-3-find-the-length-of-a-segment-by-reading-coordinates-from-a-n-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-10-3-find-the-length-of-a-segment-by-reading-coordinates-from-a-n-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-3",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-3",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
       }
     },
     {
@@ -60308,22 +60142,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1193",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
-      "targetId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 10",
-      "metadata": {
-        "fromLesson": "10.2",
-        "toLesson": "10.3"
-      }
-    },
-    {
       "id": "math.im1.edge.1194",
       "type": "prerequisite_for",
       "sourceId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
@@ -68242,6 +68060,166 @@
         "program": "graph-node-practice-program",
         "lesson": "10.2",
         "problem": "46"
+      }
+    },
+    {
+      "id": "math.im1.g54.context.001",
+      "type": "appears_in_context",
+      "sourceId": "math.im1.example.10.3.028",
+      "targetId": "math.im1.lesson.10.3",
+      "weight": 0.75,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Example 5 is the printed Problems 28–33 source group.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.001",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.example.10.3.028",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 contains printed Example 5, Problems 28–33.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.002",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 directly supplies Problems 28–33, 37, 40, 41, and 45.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.003",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 directly supplies Problems 39, 46, 50, and 51.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.004",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 directly supplies Problem 47 only.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.005",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 directly supplies Problem 48 only.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.006",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 directly supplies Problem 49 only.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.007",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 directly supplies the selected response stage in Problems 10, 13, 17, 22, 23, 35, 37, and 42.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.008",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 directly supplies the selected response stage in Problems 12, 15, 16, 18, 19, 27a, 32, 33, 36, 43, and 45.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g54.contains.009",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.10.3",
+      "targetId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "source-review-g54",
+      "rationale": "Lesson 10-3 directly supplies the selected response stage in Problem 49 only after both segment constraints are supplied or accepted.",
+      "metadata": {
+        "module": "10",
+        "lesson": "3"
       }
     }
   ]

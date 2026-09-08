@@ -141,7 +141,6 @@ describe("Lesson 10-2 capability graph", () => {
   });
   it("keeps unrelated alignment rows unchanged", () => {
     for (const id of [
-      "math.alignment.im1-example-10-3-008-to-ccss-g-co-a-2",
       "math.alignment.im1-example-12-4-015-to-ccss-g-co-a-4",
     ]) {
       expect(edges.some((x: any) => x.id === id)).toBe(true);

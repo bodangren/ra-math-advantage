@@ -4355,11 +4355,56 @@
       "rendererAssignmentReason": "Planning classification only",
       "gap": "No reviewed renderer contract",
       "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+      "title": "Use congruent subsegments, equal spacing, or a midpoint to determine segment measures",
+      "module": "10",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
+      "title": "Write a segment-addition equation or statement from betweenness",
+      "module": "10",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+      "title": "Solve a segment-addition equation with quadratic expressions and reject a root that gives a negative segment length",
+      "module": "10",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+      "title": "Classify and justify a part-whole segment inequality from betweenness",
+      "module": "10",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+      "title": "Model two segment constraints as a linear system",
+      "module": "10",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
     }
   ],
   "meta": {
-    "totalSkills": 484,
+    "totalSkills": 489,
     "allNeedGenerators": true,
-    "total": 484
+    "total": 489
   }
 }
