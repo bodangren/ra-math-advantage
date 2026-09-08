@@ -1,124 +1,276 @@
 # Lesson 9-1 — Measures of Center
 
-Source: (Module 9, Lesson 9-1, Int1_0901_practice.docx)
+Source: Module 9, Lesson 9-1, `Int1_0901_practice.docx`.
 
-## Today's Goals
+## Example 1 — Find the mean, median, and mode
 
-* Calculate the mean, median, and mode of a data set.
-* Determine the percentile rank of a data value within a given distribution.
-* Analyze how outliers and data changes affect each measure of center.
-* Choose the most appropriate measure of center for a given context.
+Find the mean, median, and mode for each data set.
 
-## Vocabulary
+### Problem 1
 
-* **Mean** — The arithmetic average of a data set, found by summing all values and dividing by the number of values.
-* **Median** — The middle value of an ordered data set; for an even number of values, it is the average of the two middle values.
-* **Mode** — The value that occurs most frequently in a data set.
-* **Percentile Rank** — The percentage of values in a data set that are less than or equal to a given value.
-* **Outlier** — A data value that is substantially larger or smaller than most other values in the set.
+`{17, 11, 8, 15, 28, 20, 10, 16}`
 
-## Explore: What Is a "Typical" Value?
+### Problem 2
 
-Students discuss what it means for a value to be "typical" or "average" for a group. They consider a data set with one very large or very small value and debate whether the mean, median, or mode best represents the group.
+`{2.5, 6.4, 7.0, 5.3, 1.1, 6.4, 3.5, 6.2, 3.9, 4.0}`
 
-Inquiry Question:
-How can different measures of center give very different pictures of the same data set?
+### Problem 3
 
-## Learn: Measures of Center
+| Data row | Value 1 | Value 2 | Value 3 | Value 4 | Value 5 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 1 | 2 | 1 | 1 | 5 | 7 |
+| 2 | 3 | 2 | 4 | 6 | 2 |
 
-The three main measures of center describe the "typical" value in a data set in different ways.
+![Original data table for Problem 3](/curriculum/module-9-lesson-1/source-image-1.png)
 
-### Key Concept: Mean, Median, and Mode
+### Problem 4
 
-* **Mean** — Add all values and divide by the number of values.
-[
-  \bar{x} = \frac{\sum x_i}{n}
-]
-* **Median** — Arrange values in order from least to greatest. If there is an odd number of values, the median is the middle one. If there is an even number, the median is the mean of the two middle values.
-* **Mode** — Identify the value that appears most often. A data set can have one mode, more than one mode, or no mode.
+| Data row | Value 1 | Value 2 | Value 3 | Value 4 |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 50 | 30 | 40 | 10 |
+| 2 | 20 | 80 | 60 | 90 |
+| 3 | 10 | 30 | 110 | 70 |
 
-### Key Concept: Percentile Rank
+![Original data table for Problem 4](/curriculum/module-9-lesson-1/source-image-2.png)
 
-The percentile rank of a value tells you what percentage of the data falls at or below that value.
+### Problem 5
 
-[
-\text{Percentile Rank} = \frac{\text{number of values less than the selected value}}{\text{total number of values}} \times 100
-]
+Number of students helping at a booth each hour: `3, 5, 8, 1, 4, 11, 3`.
 
-## Example 1 — Find Mean, Median, and Mode
+### Problem 6
 
-Given a data set, find all three measures of center.
+Weight in pounds of boxes loaded onto a semi-truck: `201, 201, 200, 199, 199`.
 
-### Step 1: Order the Data
+### Problem 7
 
-List the values from least to greatest. This makes the median and mode easier to identify.
+Car speeds in miles per hour observed by a highway patrol officer: `60, 53, 53, 52, 53, 55, 55, 57`.
 
-### Step 2: Compute the Mean
+### Problem 8
 
-Add all values and divide by the count.
+Number of songs downloaded by students last week in Ms. Turner's class: `3, 7, 21, 23, 63, 27, 29, 95, 23`.
 
-Representative data set:
-[
-\{17,\; 11,\; 8,\; 15,\; 28,\; 20,\; 10,\; 16\}
-]
+### Problem 9
 
-Mean:
-[
-\bar{x} = \frac{8 + 10 + 11 + 15 + 16 + 17 + 20 + 28}{8} = \frac{125}{8} = 15.625
-]
+Ratings of an online video: `2, 5, 3.5, 4, 4.5, 1, 1, 4, 2, 1.5, 2.5, 2, 3, 3.5`.
 
-### Step 3: Find the Median
+## Example 2 — Find percentile rank
 
-With 8 ordered values, the median is the average of the 4th and 5th values:
-[
-\text{Median} = \frac{15 + 16}{2} = 15.5
-]
+**Marching band.** A competition was recently held for 12 high school marching bands. Each band received a score from 0 through 100, with 100 being the highest.
 
-### Step 4: Identify the Mode
+| Band | Score | Band | Score |
+| --- | ---: | --- | ---: |
+| Freeport | 78 | Madison | 69 |
+| Ross | 85 | Monmouth | 67 |
+| Hamilton | 88 | Carlisle | 65 |
+| Groveport | 94 | Dupont | 48 |
+| Lakehurst | 56 | Cave City | 90 |
+| Benton | 77 | Monroe | 80 |
 
-Look for the most frequently occurring value. In this data set, every value appears once, so there is no mode.
+![Original marching-band score table](/curriculum/module-9-lesson-1/source-image-3.png)
 
-Variations include data sets with decimals, repeated values, and real-world contexts (weights, speeds, ratings).
+### Problem 10
 
-## Example 2 — Find Percentile Rank
+Find Hamilton High School's percentile rank.
 
-Given a ranked distribution of scores, determine the percentile rank for a specific data value.
+### Problem 11
 
-### Step 1: Count Values Below the Selected Score
+Find Monmouth High School's percentile rank.
 
-Determine how many scores in the distribution are strictly less than the value of interest.
+### Problem 12
 
-### Step 2: Apply the Percentile Rank Formula
-
-[
-\text{Percentile Rank} = \frac{\text{number of values below}}{\text{total number of values}} \times 100
-]
-
-Representative problem: In a competition of 12 marching bands with scores from 0 to 100, a band's percentile rank is found by counting how many of the 12 bands scored lower and multiplying that fraction by 100.
+Find Freeport High School's percentile rank.
 
 ## Mixed Exercises
 
-The mixed exercises integrate all skills from the lesson and extend them through reasoning, real-world applications, and error analysis. Problem types include:
+### Problem 13
 
-* Computing mean, median, and mode for tabular and contextual data (football weights, basketball points, bowling scores, novel lengths, volunteer hours, laptop prices).
-* Finding percentile ranks in competition and ranking contexts (singing, dance, band, sports medals).
-* Reasoning about why the mean and median differ, including the effect of outliers and skewed data.
-* Determining an unknown data value needed to achieve a target mean and median.
-* Analyzing how adding, removing, or multiplying all values affects each measure of center.
-* Evaluating statements about percentile rank and identifying errors in reasoning.
-* Constructing a data set that satisfies given mean, median, and mode conditions.
-* Choosing the best measure of center for a given situation and justifying the choice.
+**Reasoning.** The mean number of people at the movies on Saturday nights throughout the year is 425, and the median is 412. Explain why the mean could be slightly higher.
 
-## Review Notes
+### Problem 14
 
-* **Image references (media/image1.png through media/image10.png)** — The worksheet contains images and diagrams whose content could not be fully extracted as text. Key images include:
-  * Image1, image2 — Likely blank work spaces for problems 1–4.
-  * Image3 — Marching band competition score chart for problems 10–12.
-  * Image4 — Basketball points table for problem 19.
-  * Image5 — Laptop prices table for problem 24.
-  * Image6 — Novel lengths table for problem 25.
-  * Image7 — Volunteer hours table for problem 26.
-  * Image8 — Pet adoptions table for problem 28.
-  * Image9 — Bowling scores table for problem 30.
-  * Image10 — "Which One Doesn't Belong" options for problem 36.
-  A human reviewer should verify that all tables and charts are correctly represented or transcribed into the digital curriculum.
+**Reasoning.** The mode length of time it takes to fly from New York City to Chicago is 2 hours 35 minutes, and the mean is 3 hours 15 minutes. Explain why the mode could be slightly lower.
+
+### Problem 15
+
+**Football.** Find the mean, median, and mode for the data set. The weights in pounds of 5 offensive linemen of a football team are `217, 212, 285, 245, 301`.
+
+### Problem 16
+
+**Web sites.** The ratings for a new recipe Web site varied from very low, 1 point, to very high, 10 points, with half of the scores receiving a rating of 7. If a new rating of 7 were added to the data set, how would the mode be affected? Explain.
+
+### Problem 17
+
+Find the mean of `{16, 19, 22, 27, 33, 19, 25}`.
+
+### Problem 18
+
+**Singing.** In a singing competition that involved 50 contestants, Reina's score ranked higher than 40 of the contestants. In what percentile did Reina score?
+
+### Problem 19
+
+**Sports.** The table shows the number of points scored by a basketball team during its first several games. Find the mean, median, and mode of the number of points scored.
+
+| Game | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Points | 43 | 50 | 52 | 47 | 55 | 61 | 48 | 56 |
+
+![Original basketball-points table](/curriculum/module-9-lesson-1/source-image-4.png)
+
+### Problem 20
+
+**Performance.** At a body building competition, Shawnte earned a score of 42 points. There were 19 competitors who received a lower score than Shawnte and 5 competitors who earned a higher score. What was Shawnte's percentile rank in the body building competition?
+
+### Problem 21
+
+**Grades.** On her first four quizzes, Rachael has earned scores of 21, 24, 23, and 17 points. What score must Rachael earn on her fifth and final quiz so that both the mean and median of her quiz scores is 21?
+
+### Problem 22
+
+**Quizzes.** Sequon scored 95, 86, 81, 83, and 95 on his math quizzes this quarter. Find the mode of his quiz scores.
+
+### Problem 23
+
+**Band.** Out of the 30 bands at the competition, Coastal High School's band scored higher than 27 others. Find the percentile rank for Coastal High School's band.
+
+### Problem 24
+
+**Shopping.** The table shows the prices of comparable laptop computers at different retailers.
+
+| Retailer | Price ($) |
+| --- | ---: |
+| A | 389 |
+| B | 425 |
+| C | 350 |
+| D | 499 |
+| E | 475 |
+| F | 360 |
+| G | 319 |
+| H | 425 |
+| I | 299 |
+| J | 379 |
+
+![Original laptop-price table](/curriculum/module-9-lesson-1/source-image-5.png)
+
+a. Find the mean, median, and mode of the prices.
+
+b. Why are the mean and median much lower than the mode?
+
+c. After deliberation, Nikki is interested in buying a laptop from either retailer C, F, or J. What are the percentile ranks for the laptop at each of these retailers?
+
+### Problem 25
+
+**Novels.** The table shows the lengths, in words, of the seven novels on the required reading list of Miguel's language arts class.
+
+| Novel | Number of Words |
+| --- | ---: |
+| Old Yeller | 35,968 |
+| Lord of the Flies | 59,900 |
+| Moby Dick | 206,052 |
+| Jane Eyre | 183,858 |
+| Great Expectations | 183,349 |
+| Call of the Wild | 31,750 |
+| The Color Purple | 66,556 |
+
+![Original novel-length table](/curriculum/module-9-lesson-1/source-image-6.png)
+
+a. Find the mean, median, and mode for the data set.
+
+b. Predict which novels will be lower than the 50th percentile in length. Verify your prediction.
+
+c. If *Lord of the Flies* comes with an additional 10,020-word online reading assignment, then how will the median length be affected? How will the mean be affected?
+
+### Problem 26
+
+**Volunteering.** The table shows the number of hours different students spent volunteering as part of a community outreach program. Find the mean, median, and mode of the data set.
+
+| Data row | Value 1 | Value 2 | Value 3 | Value 4 | Value 5 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 1 | 25 | 30 | 35 | 40 | 35 |
+| 2 | 25 | 50 | 45 | 25 | 90 |
+
+![Original volunteer-hours table](/curriculum/module-9-lesson-1/source-image-7.png)
+
+### Problem 27
+
+**Use a source.** Research the total medal counts for Canada, France, Japan, Russia, Brazil, and Great Britain at the 2016 Rio de Janeiro Olympics. Make a table of the data you collect. Then find the percentile rank of each country.
+
+### Problem 28
+
+**Construct arguments.** The table shows the number of pet adoptions each week for a shelter over a two-month period. If there are 65 pets adopted next week, how are the mean, median, and mode affected?
+
+| Week | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Adoptions | 7 | 19 | 26 | 20 | 23 | 21 | 24 | 20 |
+
+![Original pet-adoptions table](/curriculum/module-9-lesson-1/source-image-8.png)
+
+### Problem 29
+
+**State your assumption.** A data set has a mean of 37, a median of 36.5, and a mode of 37. What assumption(s) can you make about the data set?
+
+### Problem 30
+
+**Bowling.** The table shows Lucinda's score for each of her last ten bowling games.
+
+| Game | Score |
+| ---: | ---: |
+| 1 | 220 |
+| 2 | 235 |
+| 3 | 255 |
+| 4 | 210 |
+| 5 | 240 |
+| 6 | 220 |
+| 7 | 225 |
+| 8 | 220 |
+| 9 | 250 |
+| 10 | 210 |
+
+![Original bowling-score table](/curriculum/module-9-lesson-1/source-image-9.png)
+
+a. Find the mean, median, and mode of the scores. Round to the nearest whole number.
+
+b. Why is the mean slightly higher than the median?
+
+### Problem 31
+
+**Dance competition.** At a dance competition, Pascal earned a score of 73 points. There were 12 competitors who received a lower score than Pascal and 3 competitors who earned a higher score. What was Pascal's percentile rank in the dance competition?
+
+### Problem 32
+
+**Create.** Create a data set that has a mean of 11, a median of 10, and a mode of 8.
+
+### Problem 33
+
+**Write.** Describe how an outlier value that is greater than the numbers in the data set affects each measure of center.
+
+### Problem 34
+
+**Analyze.** Determine whether the statement is true or false. If it is false, explain how to make the statement true.
+
+*To find percentile rank, divide the selected value by the total of all the values.*
+
+### Problem 35
+
+**Persevere.** Describe the effect on the mean, median, and mode of a set when all the items in the set are multiplied by the same number.
+
+### Problem 36
+
+**Which one doesn't belong?** Analyze each situation. Which situation is not best described by the median of the data? Explain.
+
+- An art gallery has many items for sale that are reasonably priced, but it also carries luxury-priced paintings.
+- Most of the students volunteered 2 hours each week, but James volunteered 8 hours per week.
+- The amusement park had about the same number of attendees each day. On the annual bring-a-friend-for-free day, the number of attendees tripled.
+
+![Original situations for Problem 36](/curriculum/module-9-lesson-1/source-image-10.png)
+
+### Problem 37
+
+**Find the error.** Julio is studying Botany and has been tracking the growth of 10 tomato plants each week. The first week the plants measured the following growth: 1 in., 1.5 in., 2.2 in., 0.5 in., 1 in., 1.25 in., 1.4 in., 2 in., 2.1 in., 1.9 in. In his research paper, Julio includes the median growth value for the week. Has Julio chosen the best measure of center to describe the plant growth? Explain.
+
+### Problem 38
+
+**Structure.** Explain how you determine that a data set is best described by the mean.
+
+### Problem 39
+
+**Write.** Explain in your own words the process for finding a percentile rank.
