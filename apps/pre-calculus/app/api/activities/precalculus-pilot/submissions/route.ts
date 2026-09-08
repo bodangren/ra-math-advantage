@@ -242,7 +242,7 @@ export function createPrecalculusPilotSubmissionRoute({
         return jsonResponse(projectSubmissionResult(result), 200);
       } catch (error) {
         const message = error instanceof Error ? error.message : "";
-        if (message === "idempotency_conflict") {
+        if (message.includes("idempotency_conflict")) {
           return jsonResponse(
             {
               error:
