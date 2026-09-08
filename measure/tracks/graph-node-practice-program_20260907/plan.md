@@ -745,3 +745,5 @@ Removed the last saved worktrees, 02d6 and 18ee, after final verification of all
 Source catalog restoration is committed as `508b59c40`. All six staged files match the accepted candidate. Parent and independent checks passed seven source tests. App lint, build, and separate TypeScript passed. All fifteen restored records remain draft. See `im3-lesson16-source-catalog-final-review.md`.
 
 Parent review rejects the first strict receipt batch. It preserves a retry key but rebuilds the request body. It lacks an in-flight request guard and a nonempty receipt ID check. Required behavioral tests are incomplete. The author must correct these defects before integration.
+
+- [ ] Task IM3-L16 remaining Worked sources: Restore .039 and .040 from native PDF page 46 in five existing catalogs and extend the existing source test. Preserve .036 through .038, draft status, identities, ordering, and unrelated data. Keep the five printed Checks as review notes until a separate source representation decision. See `im3-lesson16-remaining-source-scope.md`.
