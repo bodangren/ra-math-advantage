@@ -992,19 +992,19 @@
     },
     {
       "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "title": "8c: Describe transformations of exponential functions verbally and in function notation",
+      "title": "Describe transformations of exponential functions verbally and in function notation",
       "module": "8",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "title": "8d: Write equations for transformed exponential functions given a graph",
+      "title": "Write an equation for a transformed exponential function from its graph",
       "module": "8",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -3221,10 +3221,82 @@
       "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
       "gap": "No generator available for IM1",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations",
+      "title": "Describe vertical translations of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations",
+      "title": "Describe horizontal translations of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations",
+      "title": "Describe reflections of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations",
+      "title": "Describe vertical dilations of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations",
+      "title": "Describe horizontal dilations of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description",
+      "title": "Write a transformed exponential equation from a verbal description",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents",
+      "title": "Justify equivalent exponential transformations using properties of exponents",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions",
+      "title": "Determine and justify the common point of two exponential functions",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 358,
+    "totalSkills": 366,
     "allNeedGenerators": true
   }
 }

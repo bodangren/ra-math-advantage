@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 364,
+  "totalSkills": 372,
   "counts": {
     "served": 6,
-    "gap": 358,
+    "gap": 366,
     "newComponent": 0
   },
   "byModule": [
@@ -59,9 +59,9 @@
     },
     {
       "module": "8",
-      "totalSkills": 18,
+      "totalSkills": 26,
       "served": 0,
-      "gap": 18,
+      "gap": 26,
       "newComponent": 0
     },
     {
@@ -2293,7 +2293,71 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description",
       "module": "8",
       "status": "gap",
       "tier": "none",

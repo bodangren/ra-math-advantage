@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2475,
-    "totalNodes": 963,
+    "totalEdges": 2483,
+    "totalNodes": 971,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -6381,10 +6381,11 @@
     {
       "id": "math.im1.example.8.2.004",
       "kind": "worked_example",
-      "title": "Example 1: Describe Transformations from Equations",
+      "title": "Examples 1\u20133, 6\u20137, and 10\u201312: Describe exponential transformations from equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-2, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312; Problems 1\u201312)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6393,44 +6394,49 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "8-2",
-        "rawText": "8-2, Example 1 \u2014 Describe Transformations from Equations"
-      }
+        "rawText": "Examples 1\u20133, 6\u20137, and 10\u201312 \u2014 Problems 1\u201312"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.2.005",
       "kind": "worked_example",
-      "title": "Example 2: Write Equations from Graphs; Apply Transformations to Real-World Models",
+      "title": "Examples 4\u20135 and 9: Write transformed exponential equations from graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-2, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 4\u20135 and 9; Problems 13\u201316)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "2",
-        "exampleNumber": 2,
+        "exampleNumber": 4,
         "sourceLesson": "8-2",
-        "rawText": "8-2, Examples 2-3 \u2014 Write Equations from Graphs; Apply Transformations to Real-World Models"
-      }
+        "rawText": "Examples 4\u20135 and 9 \u2014 Problems 13\u201316"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.2.006",
       "kind": "worked_example",
-      "title": "Example 3: Write Equations from Graphs; Apply Transformations to Real-World Models",
+      "title": "Example 8: Interpret and apply dilations in exponential contexts",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-2, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Example 8; Problems 17\u201320)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "2",
-        "exampleNumber": 3,
+        "exampleNumber": 8,
         "sourceLesson": "8-2",
-        "rawText": "8-2, Examples 2-3 \u2014 Write Equations from Graphs; Apply Transformations to Real-World Models"
-      }
+        "rawText": "Example 8 \u2014 Problems 17\u201320"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.3.007",
@@ -11036,34 +11042,38 @@
     {
       "id": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
       "kind": "skill",
-      "title": "8c: Describe transformations of exponential functions verbally and in function notation",
+      "title": "Describe transformations of exponential functions verbally and in function notation",
       "domain": "math.im1",
-      "description": "Describe transformations of exponential functions verbally and in function notation",
+      "description": "Describe transformations of exponential functions verbally and in function notation.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Lesson 8-2, Problems 1\u201350; broad planning aggregate)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "2"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
       "kind": "skill",
-      "title": "8d: Write equations for transformed exponential functions given a graph",
+      "title": "Write an equation for a transformed exponential function from its graph",
       "domain": "math.im1",
-      "description": "Write equations for transformed exponential functions given a graph",
+      "description": "Write an equation for a transformed exponential function from its graph.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 4\u20135 and 9, Problems 13\u201316; Mixed Exercises, Problems 37\u201340)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "2"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
@@ -16936,6 +16946,150 @@
         "course": "im1",
         "module": "8",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations",
+      "kind": "skill",
+      "title": "Describe vertical translations of exponential functions from equations",
+      "domain": "math.im1",
+      "description": "Describe vertical translations of exponential functions from equations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 1, 6\u20138, and 12; Mixed Exercises, Problems 21, 24, 42, and 43)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations",
+      "kind": "skill",
+      "title": "Describe horizontal translations of exponential functions from equations",
+      "domain": "math.im1",
+      "description": "Describe horizontal translations of exponential functions from equations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 5 and 11; Mixed Exercises, Problem 42)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations",
+      "kind": "skill",
+      "title": "Describe reflections of exponential functions from equations",
+      "domain": "math.im1",
+      "description": "Describe reflections of exponential functions from equations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 2 and 5\u20138; Mixed Exercises, Problems 23, 25\u201326, 43, and 46)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations",
+      "kind": "skill",
+      "title": "Describe vertical dilations of exponential functions from equations",
+      "domain": "math.im1",
+      "description": "Describe vertical dilations of exponential functions from equations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 9\u201310; Example 8, Problems 17\u201319 and 20(b); Mixed Exercises, Problems 22\u201323, 26, 42\u201343, and 46)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations",
+      "kind": "skill",
+      "title": "Describe horizontal dilations of exponential functions from equations",
+      "domain": "math.im1",
+      "description": "Describe horizontal dilations of exponential functions from equations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 3\u20134; Mixed Exercises, Problem 46)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description",
+      "kind": "skill",
+      "title": "Write a transformed exponential equation from a verbal description",
+      "domain": "math.im1",
+      "description": "Write a transformed exponential equation from a verbal description.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Example 8, Problem 20(a); Mixed Exercises, Problems 27\u201336)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents",
+      "kind": "skill",
+      "title": "Justify equivalent exponential transformations using properties of exponents",
+      "domain": "math.im1",
+      "description": "Justify equivalent exponential transformations using properties of exponents.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Mixed Exercises, Problem 45)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions",
+      "kind": "skill",
+      "title": "Determine and justify the common point of two exponential functions",
+      "domain": "math.im1",
+      "description": "Determine and justify the common point of two exponential functions.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Mixed Exercises, Problem 44)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
       }
     }
   ],
@@ -59139,38 +59293,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1265",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "targetId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 8",
-      "metadata": {
-        "fromLesson": "8.1",
-        "toLesson": "8.2"
-      }
-    },
-    {
-      "id": "math.im1.edge.1266",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "targetId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 8",
-      "metadata": {
-        "fromLesson": "8.2",
-        "toLesson": "8.3"
-      }
-    },
-    {
       "id": "math.im1.edge.1267",
       "type": "prerequisite_for",
       "sourceId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
@@ -63900,6 +64022,156 @@
       "metadata": {
         "module": "8",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.skill.1",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.skill.2",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.skill.3",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.skill.4",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.skill.5",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.skill.6",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.skill.7",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.skill.8",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.reuse.1",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g39.contains.reuse.2",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.2",
+      "targetId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-2 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "2"
       }
     }
   ]

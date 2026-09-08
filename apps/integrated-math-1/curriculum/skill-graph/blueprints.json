@@ -3816,21 +3816,6 @@
         "math.standard.ccss.f-bf-a-1",
         "math.standard.ccss.f-bf-b-3"
       ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
@@ -3840,25 +3825,12 @@
     },
     {
       "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.8.2.005"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.f-bf-a-1",
         "math.standard.ccss.f-bf-b-3"
-      ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7367,6 +7339,107 @@
         "course": "im1",
         "module": "8",
         "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations",
+      "sourceNodeIds": [
+        "math.im1.example.8.2.004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations",
+      "sourceNodeIds": [
+        "math.im1.example.8.2.004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations",
+      "sourceNodeIds": [
+        "math.im1.example.8.2.004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations",
+      "sourceNodeIds": [
+        "math.im1.example.8.2.004",
+        "math.im1.example.8.2.006"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations",
+      "sourceNodeIds": [
+        "math.im1.example.8.2.004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description",
+      "sourceNodeIds": [
+        "math.im1.example.8.2.006"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "2"
       }
     }
   ]

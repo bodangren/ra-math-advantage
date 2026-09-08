@@ -7828,152 +7828,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a.worked_example",
-      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a.guided_practice",
-      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8c: Describe transformations of exponential functions verbally and in function notation",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a.independent_practice",
-      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given.worked_example",
-      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given.guided_practice",
-      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8d: Write equations for transformed exponential functions given a graph",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given.independent_practice",
-      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec.worked_example",
       "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
       "sourceNodeIds": [],
@@ -11080,9 +10934,7 @@
         "math.standard.ccss.f-bf-a-1",
         "math.standard.ccss.f-bf-b-3"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11108,9 +10960,7 @@
         "math.standard.ccss.a-ced-a-1",
         "math.standard.ccss.f-le-a-2"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "step-by-step-solver",
       "generatorKey": null,
@@ -11773,6 +11623,94 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description",
+      "blueprintId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents",
+      "blueprintId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions",
+      "blueprintId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
