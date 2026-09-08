@@ -206,3 +206,29 @@ describe('Lesson 1.6 draft quadratic-formula records', () => {
     expect(JSON.stringify(docs.activity)).not.toMatch(/\"seed\"|roots|canonical/);
   });
 });
+
+
+describe('Lesson 1.6 discriminant Worked seed documents', () => {
+  it('creates exact .039 and .040 as text-only source examples', async () => {
+    const memory = makeSeedContext();
+    await (seedLesson6 as unknown as { _handler(ctx: unknown): Promise<unknown> })._handler(memory.ctx);
+    const phases = memory.rows('phase_versions');
+    expect(phases).toHaveLength(11);
+    for (const [number, title, equation, coefficients, calculation, arithmetic, value, interpretation] of [
+      [8, 'Example 4 The Discriminant, Real Roots', '2x^2 - 10x + 7 = 0', 'a = 2, b = -10, c = 7', 'b^2 - 4ac = (-10)^2 - 4(2)(7)', '100 - 56', '44', 'The discriminant is nonzero, so there are two roots. The discriminant is positive and not a perfect square, so the roots are irrational.'],
+      [9, 'Example 5 The Discriminant, Complex Roots', '-5x^2 + 10x - 15 = 0', 'a = -5, b = 10, c = -15', 'b^2 - 4ac = (10)^2 - 4(-5)(-15)', '100 - 300', '-200', 'The discriminant is nonzero, so there are two roots. The discriminant is negative, so the roots are complex.'],
+    ] as const) {
+      const matches = phases.filter(phase => phase.phaseNumber === number);
+      expect(matches).toHaveLength(1);
+      const sections = memory.rows('phase_sections').filter(section => section.phaseVersionId === matches[0]._id);
+      expect(sections).toHaveLength(1);
+      expect(sections[0].sectionType).toBe('text');
+      expect((sections[0].content as { markdown: string }).markdown).toBe([
+        `## ${title}`, '', `Examine $${equation}$.`, '',
+        `**Part A** Find the value of the discriminant for $${equation}$.`, '',
+        `$${coefficients}$`, '', `$$${calculation}$$`, `$$= ${arithmetic}$$`, `$$= ${value}$$`, '',
+        '**Part B** Describe the number and type of roots for the equation.', '', interpretation,
+      ].join('\n'));
+    }
+  });
+});

@@ -283,18 +283,23 @@ $$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$$` } }],
           {
             sequenceOrder: 1,
             sectionType: "text" as const,
+            // math.im3.example.1.6.039; IM3-reveal-module-1.pdf, page 46.
             content: {
-              markdown: "## Example 4: Use the Discriminant\n\nDetermine the number and type of solutions for $2x^2 - 3x + 5 = 0$\n\n**Calculate the discriminant**:\n$$D = (-3)^2 - 4(2)(5) = 9 - 40 = -31$$\n\n**Since $D < 0$**, there are **two complex solutions** (no real roots).",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "discriminant-analyzer",
-              props: {
-                equation: "2x^2 - 3x + 5 = 0",
-              },
+              markdown: `## Example 4 The Discriminant, Real Roots
+
+Examine $2x^2 - 10x + 7 = 0$.
+
+**Part A** Find the value of the discriminant for $2x^2 - 10x + 7 = 0$.
+
+$a = 2, b = -10, c = 7$
+
+$$b^2 - 4ac = (-10)^2 - 4(2)(7)$$
+$$= 100 - 56$$
+$$= 44$$
+
+**Part B** Describe the number and type of roots for the equation.
+
+The discriminant is nonzero, so there are two roots. The discriminant is positive and not a perfect square, so the roots are irrational.`,
             },
           },
         ],
@@ -308,18 +313,23 @@ $$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$$` } }],
           {
             sequenceOrder: 1,
             sectionType: "text" as const,
+            // math.im3.example.1.6.040; IM3-reveal-module-1.pdf, page 46.
             content: {
-              markdown: "## Example 5: Perfect Square Trinomial\n\nDetermine the number and type of solutions for $x^2 - 6x + 9 = 0$\n\n**Calculate the discriminant**:\n$$D = (-6)^2 - 4(1)(9) = 36 - 36 = 0$$\n\n**Since $D = 0$**, there is **exactly one real solution** (a repeated root).\n\nNote: This trinomial is $(x - 3)^2$, so the solution is $x = 3$.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "discriminant-analyzer",
-              props: {
-                equation: "x^2 - 6x + 9 = 0",
-              },
+              markdown: `## Example 5 The Discriminant, Complex Roots
+
+Examine $-5x^2 + 10x - 15 = 0$.
+
+**Part A** Find the value of the discriminant for $-5x^2 + 10x - 15 = 0$.
+
+$a = -5, b = 10, c = -15$
+
+$$b^2 - 4ac = (10)^2 - 4(-5)(-15)$$
+$$= 100 - 300$$
+$$= -200$$
+
+**Part B** Describe the number and type of roots for the equation.
+
+The discriminant is nonzero, so there are two roots. The discriminant is negative, so the roots are complex.`,
             },
           },
         ],
