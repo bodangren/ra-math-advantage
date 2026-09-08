@@ -4,7 +4,7 @@
    Correct all five knowledge space graphs. Deliver source-based Worked, Guided, and Independent practice. Implementation is authorized. Use gpt-5.6-sol at low effort with up to three workers and one integration owner.
    Current IM1 work: Lesson 9-4 through Lesson 10-1 source and graph repairs are committed. Lesson 10-1 adds five draft capability atoms and preserves two existing skill identities. These records do not establish practice coverage.
    Current Precalculus work: Teacher date, new-submission readiness, and KaTeX layout fixes are committed and verified in the local browser. Saved practice views are in final independent review. Full saved-result browser verification remains open.
-   Cleanup: Removed 85 stale worktree records and completed integration candidates after content checks. Packed Git objects without discarding recovery data. Removed saved worktrees 54d1, 32fb, 2711, and dd99 after full preservation reviews. Preserve the other 20 saved Codex worktrees with uncommitted changes. Commit verified changes before candidate removal.
+   Cleanup: Removed 85 stale worktree records and completed integration candidates after content checks. Packed Git objects without discarding recovery data. Removed saved worktrees 54d1, 32fb, 2711, and dd99 after full preservation reviews. Preserve the other 19 saved Codex worktrees with uncommitted changes. Commit verified changes before candidate removal.
    Source approval, full course coverage, all five course pilots, and complete browser verification remain open. See the track plan for exact scope, commit history, evidence, and remaining work.
    *Link: [./tracks/graph-node-practice-program_20260907/](./tracks/graph-node-practice-program_20260907/)*
 
