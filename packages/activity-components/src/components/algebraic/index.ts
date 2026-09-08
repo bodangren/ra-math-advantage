@@ -8,3 +8,6 @@ export type {
   StepMode,
 } from './StepByStepper';
 export type { StepByStepSolverActivityProps } from './StepByStepSolverActivity';
+
+export { QuadraticFormulaActivity } from './QuadraticFormulaActivity';
+export type { QuadraticFormulaActivityProps } from './QuadraticFormulaActivity';

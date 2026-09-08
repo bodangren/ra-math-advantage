@@ -5,6 +5,7 @@ import { comprehensionQuizSchema } from './comprehension-quiz.schema';
 import { fillInTheBlankSchema } from './fill-in-the-blank.schema';
 import { rateOfChangeCalculatorSchema } from './rate-of-change-calculator.schema';
 import { discriminantAnalyzerSchema } from './discriminant-analyzer.schema';
+import { quadraticFormulaActivitySchema } from './quadratic-formula-activity.schema';
 
 export type ActivityComponentKey =
   | 'graphing-explorer'
@@ -12,7 +13,8 @@ export type ActivityComponentKey =
   | 'comprehension-quiz'
   | 'fill-in-the-blank'
   | 'rate-of-change-calculator'
-  | 'discriminant-analyzer';
+  | 'discriminant-analyzer'
+  | 'quadratic-formula';
 
 export const SCHEMA_REGISTRY: Record<ActivityComponentKey, z.ZodSchema> = {
   'graphing-explorer': graphingExplorerSchema,
@@ -21,6 +23,7 @@ export const SCHEMA_REGISTRY: Record<ActivityComponentKey, z.ZodSchema> = {
   'fill-in-the-blank': fillInTheBlankSchema,
   'rate-of-change-calculator': rateOfChangeCalculatorSchema,
   'discriminant-analyzer': discriminantAnalyzerSchema,
+  'quadratic-formula': quadraticFormulaActivitySchema,
 };
 
 /**
@@ -40,3 +43,5 @@ export * from './fill-in-the-blank.schema';
 export * from './rate-of-change-calculator.schema';
 export * from './discriminant-analyzer.schema';
 export * from './interval-classification.schema';
+
+export * from './quadratic-formula-activity.schema';

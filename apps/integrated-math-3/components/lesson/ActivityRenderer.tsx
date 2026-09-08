@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, Suspense, useMemo } from 'react';
+import React, { useCallback, Suspense, useMemo, useState } from 'react';
 import { getActivityComponent } from '@/lib/activities/registry';
 import { usePracticeTiming } from '@/components/practice-timing';
 import {
@@ -14,7 +14,7 @@ export interface ActivityRendererProps {
   lessonId?: string;
   phaseNumber?: number;
   mode?: 'teaching' | 'guided' | 'practice';
-  onSubmit?: (payload: unknown) => void;
+  onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
   /** Optional activity-specific configuration props (e.g. equation, questions,
    *  template). Forwarded to the registered activity component via spread, so
@@ -38,24 +38,39 @@ export function ActivityRenderer({
 }: ActivityRendererProps) {
   const isStudentContext = mode !== 'teaching';
   const { getTiming } = usePracticeTiming();
+  const [quadraticAttempt, setQuadraticAttempt] = useState<{
+    identity: string;
+    input: object;
+    envelope: PracticeSubmissionEnvelope;
+  }>();
+  const quadraticIdentity = `${activityId}:${mode}`;
 
   const handleSubmit = useCallback(
-    (payload: unknown) => {
+    (payload: unknown): void | Promise<void> => {
+      if (!onSubmit) return;
       const parsed = practiceSubmissionEnvelopeSchema.safeParse(payload);
-      if (isStudentContext && parsed.success && !parsed.data.timing) {
-        const timing = getTiming();
-        if (timing) {
-          const timedPayload: PracticeSubmissionEnvelope = {
-            ...parsed.data,
-            timing,
-          };
-          onSubmit?.(timedPayload);
-          return;
+      if (isStudentContext && parsed.success) {
+        const payloadObject = typeof payload === 'object' && payload !== null ? payload : undefined;
+        if (
+          componentKey === 'quadratic-formula'
+          && payloadObject
+          && quadraticAttempt?.identity === quadraticIdentity
+          && quadraticAttempt.input === payloadObject
+        ) return onSubmit(quadraticAttempt.envelope);
+        if (!parsed.data.timing) {
+          const timing = getTiming();
+          const envelope: PracticeSubmissionEnvelope = timing
+            ? { ...parsed.data, timing }
+            : parsed.data;
+          if (componentKey === 'quadratic-formula' && payloadObject) {
+            setQuadraticAttempt({ identity: quadraticIdentity, input: payloadObject, envelope });
+          }
+          return onSubmit(envelope);
         }
       }
-      onSubmit?.(payload);
+      return onSubmit(payload);
     },
-    [isStudentContext, getTiming, onSubmit],
+    [componentKey, getTiming, isStudentContext, onSubmit, quadraticAttempt, quadraticIdentity],
   );
 
   const ActivityComponent = useMemo(() => getActivityComponent(componentKey), [componentKey]);
@@ -72,11 +87,12 @@ export function ActivityRenderer({
     <div className="my-4">
       <Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Loading activity…</div>}>
         {React.createElement(ActivityComponent, {
+          ...(activityProps ?? {}),
+          key: componentKey === 'quadratic-formula' ? quadraticIdentity : undefined,
           activityId,
           mode,
-          onSubmit: handleSubmit,
+          onSubmit: onSubmit ? handleSubmit : undefined,
           onComplete,
-          ...(activityProps ?? {}),
         })}
       </Suspense>
     </div>

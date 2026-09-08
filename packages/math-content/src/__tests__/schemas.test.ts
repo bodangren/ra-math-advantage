@@ -224,6 +224,7 @@ describe('SCHEMA_REGISTRY dispatch', () => {
     'fill-in-the-blank',
     'rate-of-change-calculator',
     'discriminant-analyzer',
+    'quadratic-formula',
   ];
 
   it('SCHEMA_REGISTRY maps all ActivityComponentKey values', () => {
@@ -247,7 +248,7 @@ describe('SCHEMA_REGISTRY dispatch', () => {
     expect(getPropsSchema('unknown-component')).toBeUndefined();
   });
 
-  it('SCHEMA_REGISTRY has exactly six entries', () => {
-    expect(Object.keys(SCHEMA_REGISTRY)).toHaveLength(6);
+  it('SCHEMA_REGISTRY has exactly seven entries', () => {
+    expect(Object.keys(SCHEMA_REGISTRY)).toHaveLength(7);
   });
 });

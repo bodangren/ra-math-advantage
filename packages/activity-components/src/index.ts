@@ -21,6 +21,7 @@ export type {
   AlgebraicSubmissionInput,
   SourceType,
   IntervalClassificationProps,
+  QuadraticFormulaActivityProps as QuadraticFormulaPublicProps,
 } from './schemas/index';
 
 // ComprehensionQuiz
@@ -52,6 +53,8 @@ export type {
   StepMode,
 } from './components/algebraic/StepByStepper';
 export { MathInputField } from './components/algebraic/MathInputField';
+export { QuadraticFormulaActivity } from './components/algebraic/QuadraticFormulaActivity';
+export type { QuadraticFormulaActivityProps } from './components/algebraic/QuadraticFormulaActivity';
 export type { StepByStepSolverActivityProps } from './components/algebraic/StepByStepSolverActivity';
 
 // GraphingExplorer

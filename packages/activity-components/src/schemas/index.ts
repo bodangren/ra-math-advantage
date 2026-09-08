@@ -7,6 +7,7 @@ export {
   fillInTheBlankSchema,
   rateOfChangeCalculatorSchema,
   discriminantAnalyzerSchema,
+  quadraticFormulaActivitySchema,
 } from '@math-platform/math-content/schemas';
 
 export type {
@@ -22,6 +23,7 @@ export type {
   RateOfChangeCalculatorProps,
   SourceType,
   DiscriminantAnalyzerProps,
+  QuadraticFormulaActivityProps,
 } from '@math-platform/math-content/schemas';
 
 export {

@@ -149,14 +149,15 @@ describe('Activity Schemas Integration', () => {
     expect(parsed.equation).toBe('x^2 + 3x + 2 = 0');
   });
 
-  it('schema registry has all 6 keys', () => {
+  it('schema registry has all 7 keys', () => {
     const keys = Object.keys(SCHEMA_REGISTRY);
-    expect(keys).toHaveLength(6);
+    expect(keys).toHaveLength(7);
     expect(keys.sort()).toEqual([
       'comprehension-quiz',
       'discriminant-analyzer',
       'fill-in-the-blank',
       'graphing-explorer',
+      'quadratic-formula',
       'rate-of-change-calculator',
       'step-by-step-solver',
     ]);

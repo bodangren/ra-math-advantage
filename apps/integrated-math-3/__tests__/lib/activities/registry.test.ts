@@ -83,4 +83,11 @@ describe('registry', () => {
       expect(getActivityComponent('test')).not.toBe(component1);
     });
   });
+
+  it('registers the shared quadratic-formula activity', async () => {
+    await import('@/lib/activities/registry');
+    expect(getRegisteredActivityKeys()).toContain('quadratic-formula');
+    expect(getActivityComponent('quadratic-formula')).toBeDefined();
+  });
+
 });

@@ -42,6 +42,9 @@ const ComprehensionQuizActivity = lazy(() =>
 const RateOfChangeCalculatorActivity = lazy(() =>
   import('@/components/activities/roc/RateOfChangeCalculatorActivity').then(m => ({ default: m.RateOfChangeCalculatorActivity }))
 );
+const QuadraticFormulaActivity = lazy(() =>
+  import('@math-platform/activity-components/algebraic').then(m => ({ default: m.QuadraticFormulaActivity }))
+);
 const DiscriminantAnalyzerActivity = lazy(() =>
   import('@/components/activities/discriminant/DiscriminantAnalyzerActivity').then(m => ({ default: m.DiscriminantAnalyzerActivity }))
 );
@@ -53,3 +56,4 @@ registerActivity('step-by-step-solver', StepByStepSolverActivity);
 registerActivity('comprehension-quiz', ComprehensionQuizActivity);
 registerActivity('rate-of-change-calculator', RateOfChangeCalculatorActivity);
 registerActivity('discriminant-analyzer', DiscriminantAnalyzerActivity);
+registerActivity('quadratic-formula', QuadraticFormulaActivity);

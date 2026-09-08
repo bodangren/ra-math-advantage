@@ -118,8 +118,8 @@ describe('discriminantAnalyzerSchema', () => {
 });
 
 describe('SCHEMA_REGISTRY', () => {
-  it('should contain all 6 activity keys', () => {
-    expect(Object.keys(SCHEMA_REGISTRY).length).toBe(6);
+  it('should contain all 7 activity keys', () => {
+    expect(Object.keys(SCHEMA_REGISTRY).length).toBe(7);
   });
 
   it('should have zod schemas for each key', () => {
@@ -130,6 +130,7 @@ describe('SCHEMA_REGISTRY', () => {
       'fill-in-the-blank',
       'rate-of-change-calculator',
       'discriminant-analyzer',
+      'quadratic-formula',
     ];
     keys.forEach((key) => {
       expect(SCHEMA_REGISTRY[key]).toBeDefined();

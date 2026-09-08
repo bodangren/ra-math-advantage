@@ -20,15 +20,16 @@ import {
 } from '../index';
 
 describe('math-content package scaffold', () => {
-  it('all 6 activity schemas are registered', () => {
+  it('all 7 activity schemas are registered', () => {
     const keys = Object.keys(SCHEMA_REGISTRY);
-    expect(keys).toHaveLength(6);
+    expect(keys).toHaveLength(7);
     expect(keys).toContain('comprehension-quiz');
     expect(keys).toContain('fill-in-the-blank');
     expect(keys).toContain('graphing-explorer');
     expect(keys).toContain('step-by-step-solver');
     expect(keys).toContain('rate-of-change-calculator');
     expect(keys).toContain('discriminant-analyzer');
+    expect(keys).toContain('quadratic-formula');
   });
 
   it('comprehensionQuizSchema validates valid input', () => {
