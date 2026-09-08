@@ -571,3 +571,5 @@ Lesson 1.8 recovery proposal passed direct PDF review of all seven examples and 
 - [~] Task IM3-L18 recovery: Integrate the verified seven Lesson 1.8 source records and two inactive blueprints from preserved commit `0b5392a36`. Synchronize only the affected existing catalogs. Preserve later records and all approval states. Add source and projection regressions. Keep unsupported runtime modes unavailable.
 
 Removed saved worktrees 2968 and 64b9 after independent and parent review of 720 states. Preservation branches retain their three detached commits. Twelve saved worktrees remain. Lesson 1.5 recovery remains open. See `saved-2968-64b9-preservation-review.md`.
+
+IM3 Lesson 1.8 projection review corrected the recovery scope to 12 paths. Add two inactive SRS inventory rows, the missing teacher skill rows, and seven source attempt-artifact rows. Add no activities. The new app-discovered source test failed three cases before source repair and then passed all three. Further parity tests and projection repair are in progress. See `im3-lesson18-recovery-independent-scope.md`.
