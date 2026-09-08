@@ -666,4 +666,6 @@ G55 final graph scope is accepted after parent correction. Keep the Example 4 an
 
 - [~] Task G55 graph: Implement the accepted four-atom inventory and exact approved response-stage reuse. Preserve two supported modeling alignments and remove ten unsupported alignments. Remove edge 1194 and six reviewed placeholder activities. Use real projectors with changes limited to affected rows. Preserve edge 1195, unrelated content, row order, and approval states. Reuse the current IM1 candidate. Add behavioral graph and projection regressions before implementation.
 
-- [~] Task b5f1 preservation: Preserve the eleven unique saved Lesson 1.4 candidate files in a separate recovery commit. Compare exact bytes and modes. Verify all 362 states and final process status before directory removal. This snapshot does not integrate or approve the candidate.
+- [x] Task b5f1 preservation: Preserve the eleven unique saved Lesson 1.4 candidate files in a separate recovery commit. Compare exact bytes and modes. Verify all 362 states and final process status before directory removal. This snapshot does not integrate or approve the candidate.
+
+Removed b5f1 after exact preservation of eleven unique files in recovery commit `e99a846fb` and parent plus independent review of all 362 states. Six saved worktrees remain. See `saved-b5f1-final-cleanup-review.md`.
