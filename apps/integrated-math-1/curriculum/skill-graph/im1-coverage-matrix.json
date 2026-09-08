@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 350,
+  "totalSkills": 356,
   "counts": {
     "served": 6,
-    "gap": 344,
+    "gap": 350,
     "newComponent": 0
   },
   "byModule": [
@@ -52,9 +52,9 @@
     },
     {
       "module": "7",
-      "totalSkills": 32,
+      "totalSkills": 38,
       "served": 0,
-      "gap": 32,
+      "gap": 38,
       "newComponent": 0
     },
     {
@@ -2157,6 +2157,46 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
       "module": "7",
       "status": "gap",
@@ -2165,7 +2205,15 @@
       "priority": "standard"
     },
     {
-      "skillId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
+      "skillId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region",
       "module": "7",
       "status": "gap",
       "tier": "none",

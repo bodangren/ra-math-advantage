@@ -7828,152 +7828,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla.worked_example",
-      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla.guided_practice",
-      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7i: Graph systems of linear inequalities and identify the overlapping solution region (feasible region)",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla.independent_practice",
-      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables.worked_example",
-      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables.guided_practice",
-      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7k: Solve real-world optimization problems by defining variables, writing a system of inequalities, graphing, and interpreting the feasible region",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables.independent_practice",
-      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios.worked_example",
       "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
       "sourceNodeIds": [],
@@ -11286,9 +11140,7 @@
         "math.standard.ccss.f-if-c-7e",
         "math.standard.ccss.f-le-a-1"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -11841,6 +11693,76 @@
     {
       "nodeId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
       "blueprintId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region",
+      "blueprintId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities",
+      "blueprintId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities",
+      "blueprintId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system",
+      "blueprintId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships",
+      "blueprintId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution",
+      "blueprintId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region",
+      "blueprintId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region.blueprint",
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,

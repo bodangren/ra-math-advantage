@@ -168,10 +168,15 @@ describe('Coverage matrix — shape contract (Phase 1, Task 2)', () => {
 describe('Coverage matrix — skill enumeration (Phase 1, Task 1)', () => {
   it('enumerates the exact current IM1 skill set from the rollout nodes artifact', () => {
     const matrix = buildCoverageMatrix();
-    const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as { nodes: Array<{ id: string; kind: string }> };
-    const expected = nodes.nodes.filter((node) => node.kind === 'skill').map((node) => node.id).sort();
+    const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as { nodes: Array<{ id: string; kind: string; reviewStatus?: string }> };
+    const expected = nodes.nodes.filter((node) => node.kind === 'skill' && node.reviewStatus !== 'rejected').map((node) => node.id).sort();
     expect(matrix.totalSkills).toBe(expected.length);
     expect(matrix.skills.map((skill) => skill.skillId).sort()).toEqual(expected);
+  });
+
+  it('excludes rejected historical skill identities from current authoring coverage', () => {
+    const matrix = buildCoverageMatrix();
+    expect(matrix.skills.some((skill) => skill.skillId === 'math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables')).toBe(false);
   });
 
   it('every skill entry carries the required fields (skillId, module, status, tier)', () => {
@@ -225,9 +230,9 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
   it('matrix totalSkills agrees with the rollout nodes.json (kind === "skill")', () => {
     const matrix = buildCoverageMatrix();
     const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as {
-      nodes: Array<{ id: string; kind: string }>;
+      nodes: Array<{ id: string; kind: string; reviewStatus?: string }>;
     };
-    const skillCount = nodes.nodes.filter((n) => n.kind === 'skill').length;
+    const skillCount = nodes.nodes.filter((n) => n.kind === 'skill' && n.reviewStatus !== 'rejected').length;
     expect(matrix.totalSkills).toBe(skillCount);
   });
 

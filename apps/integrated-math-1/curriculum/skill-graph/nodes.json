@@ -6239,30 +6239,30 @@
     {
       "id": "math.im1.example.7.5.016",
       "kind": "worked_example",
-      "title": "Example 1: Graph Systems in Slope-Intercept Form; Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries",
+      "title": "Examples 1 and 2: Graph systems of linear inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-5, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Examples 1 and 2, Problems 1-12)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "7-5",
-        "rawText": "7-5, Examples 1-2 \u2014 Graph Systems in Slope-Intercept Form; Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries"
-      }
+        "rawText": "Examples 1 and 2 \u2014 Problems 1-12"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.7.5.017",
       "kind": "worked_example",
       "title": "Example 2: Graph Systems in Slope-Intercept Form; Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries",
       "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-5, Example 2)"
-      ],
-      "reviewStatus": "approved",
+      "sourceRefs": [],
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "7",
@@ -6270,17 +6270,16 @@
         "exampleNumber": 2,
         "sourceLesson": "7-5",
         "rawText": "7-5, Examples 1-2 \u2014 Graph Systems in Slope-Intercept Form; Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.7.5.018",
       "kind": "worked_example",
       "title": "Example 2: Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries (continued); Model Real-World Situations",
       "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-5, Example 2)"
-      ],
-      "reviewStatus": "approved",
+      "sourceRefs": [],
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "7",
@@ -6288,25 +6287,28 @@
         "exampleNumber": 2,
         "sourceLesson": "7-5",
         "rawText": "7-5, Examples 2-3 \u2014 Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries (continued); Model Real-World Situations"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.7.5.019",
       "kind": "worked_example",
-      "title": "Example 3: Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries (continued); Model Real-World Situations",
+      "title": "Example 3: Model, graph, and interpret contextual systems of inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-5, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Example 3, Problems 13-14)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "7-5",
-        "rawText": "7-5, Examples 2-3 \u2014 Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries (continued); Model Real-World Situations"
-      }
+        "rawText": "Example 3 \u2014 Problems 13-14"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.1.001",
@@ -10969,18 +10971,20 @@
     {
       "id": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
       "kind": "skill",
-      "title": "7i: Graph systems of linear inequalities and identify the overlapping solution region (feasible region)",
+      "title": "Graph a system of linear inequalities and show the common feasible region",
       "domain": "math.im1",
-      "description": "Graph systems of linear inequalities and identify the overlapping solution region (feasible region)",
+      "description": "Graph a system of linear inequalities and show the common feasible region.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Examples 1 and 2, Problems 1-12)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "5"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
@@ -10988,15 +10992,14 @@
       "title": "7k: Solve real-world optimization problems by defining variables, writing a system of inequalities, graphing, and interpreting the feasible region",
       "domain": "math.im1",
       "description": "Solve real-world optimization problems by defining variables, writing a system of inequalities, graphing, and interpreting the feasible region",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md"
-      ],
-      "reviewStatus": "approved",
+      "sourceRefs": [],
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "5"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
@@ -16647,6 +16650,132 @@
         "course": "im1",
         "module": "7",
         "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region",
+      "kind": "skill",
+      "title": "Write a system of linear inequalities from boundary lines and a shaded intersection",
+      "domain": "math.im1",
+      "description": "Write a system of linear inequalities from boundary lines and a shaded intersection",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Mixed Exercises, Problems 15-18)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities",
+      "kind": "skill",
+      "title": "Check whether an ordered pair satisfies every inequality in a system",
+      "domain": "math.im1",
+      "description": "Check whether an ordered pair satisfies every inequality in a system",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Mixed Exercises, Problem 19)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities",
+      "kind": "skill",
+      "title": "Define variables and model contextual constraints with a system of linear inequalities",
+      "domain": "math.im1",
+      "description": "Define variables and model contextual constraints with a system of linear inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Example 3, Problems 13-14; Mixed Exercises, Problems 21-22)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system",
+      "kind": "skill",
+      "title": "Find and interpret points that satisfy a contextual system of inequalities",
+      "domain": "math.im1",
+      "description": "Find and interpret points that satisfy a contextual system of inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Example 3, Problems 13-14; Mixed Exercises, Problems 22-23)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships",
+      "kind": "skill",
+      "title": "Classify the feasible set of a linear inequality system from its boundary relationships",
+      "domain": "math.im1",
+      "description": "Classify the feasible set of a linear inequality system from its boundary relationships",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Mixed Exercises, Problems 25 and 28)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution",
+      "kind": "skill",
+      "title": "Construct a system of linear inequalities with an empty feasible set",
+      "domain": "math.im1",
+      "description": "Construct a system of linear inequalities with an empty feasible set",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Mixed Exercises, Problem 26)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region",
+      "kind": "skill",
+      "title": "Find the area of a bounded feasible region for a system of inequalities",
+      "domain": "math.im1",
+      "description": "Find the area of a bounded feasible region for a system of inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0705_practice.docx (Mixed Exercises, Problem 27)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
       }
     }
   ]

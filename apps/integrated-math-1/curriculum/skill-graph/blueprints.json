@@ -3765,25 +3765,12 @@
     },
     {
       "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.7.5.016"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
-      ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3799,22 +3786,7 @@
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
       ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
-      "reviewStatus": "draft",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "7",
@@ -7227,6 +7199,87 @@
         "course": "im1",
         "module": "7",
         "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.7.5.019"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system",
+      "sourceNodeIds": [
+        "math.im1.example.7.5.019"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "5"
       }
     }
   ]

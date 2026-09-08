@@ -51,6 +51,7 @@ type RolloutNode = {
   id: string;
   kind: string;
   metadata?: { module?: string; course?: string; lesson?: string };
+  reviewStatus?: string;
 };
 
 type RolloutNodesFile = {
@@ -110,7 +111,9 @@ export function buildCoverageMatrix(): CoverageMatrix {
     readFileSync(BLUEPRINTS_JSON, 'utf-8'),
   ) as BlueprintsFile;
 
-  const skills = nodes.nodes.filter((n) => n.kind === 'skill');
+  const skills = nodes.nodes.filter(
+    (node) => node.kind === 'skill' && node.reviewStatus !== 'rejected',
+  );
 
   // Build lookup maps from gap-queue and blueprints for rendererKey / priority.
   const gapByNodeId = new Map<string, GapQueueEntry>(

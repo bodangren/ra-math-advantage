@@ -1719,9 +1719,7 @@
         "math.standard.ccss.f-if-c-7e",
         "math.standard.ccss.f-le-a-1"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -2277,6 +2275,83 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region",
+      "blueprintId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities",
+      "blueprintId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities",
+      "blueprintId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system",
+      "blueprintId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships",
+      "blueprintId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution",
+      "blueprintId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region",
+      "blueprintId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
