@@ -672,7 +672,7 @@ Removed b5f1 after exact preservation of eleven unique files in recovery commit 
 
 QF server scope is accepted with parent corrections. Reuse private practice-variant metadata and the existing activity relation. Use Guided seed 1 and Independent seed 2 for the first draft records. Reject QF writes through both legacy client-graded submission paths. Keep the original request attempt number as telemetry; allocate the authoritative ordinal in the existing indexed field. No protected QF attempt exists before submission. See `im3-quadratic-formula-server-integration-scope.md`.
 
-- [~] Task IM3-QF server integration: Implement the accepted five-file backend scope and behavioral tests in the current IM3 candidate. Regenerate private canonical answers, validate the complete stored relation, persist one server grade, and preserve exact retries. Reject alternate client-graded writes and all progression effects for these draft records. Keep source placement, Guided step checks, later attempt diversity, approval, and learner-flow verification open. Do not deploy or seed a live database.
+- [x] Task IM3-QF server integration: Implement the accepted five-file backend scope and behavioral tests in the current IM3 candidate. Regenerate private canonical answers, validate the complete stored relation, persist one server grade, and preserve exact retries. Reject alternate client-graded writes and all progression effects for these draft records. Keep source placement, Guided step checks, later attempt diversity, approval, and learner-flow verification open. Do not deploy or seed a live database.
 
 - [x] Task IM3-QF phase submission: Preserve the asynchronous submission result through the existing PhaseRenderer. Do not supply a save callback when no parent handler exists. Verify pending, rejection, exact retry, and successful completion through the real quadratic activity. This corrects the rendering boundary without changing lesson placement or source approval.
 
@@ -692,7 +692,7 @@ The backend independent review confirms the storage replay failure and identifie
 
 Removed the completed G55 native extraction after all 44 files matched the committed DOCX archive. All fifteen extracted images also matched the committed public assets. Removed two generated contact sheets. The original worksheet, restored lesson, and public figures remain committed.
 
-- [~] Task b73d and bc11 cleanup review: Compare each saved working state with retained copies and Git history. Identify unique content, file modes, links, ignored files, and active use. Keep both directories until independent preservation review permits removal.
+- [x] Task b73d and bc11 cleanup review: Compare each saved working state with retained copies and Git history. Identify unique content, file modes, links, ignored files, and active use. Keep both directories until independent preservation review permits removal.
 
 The corrected QF backend passes the real Convex serialization replay test, final build, and separate TypeScript. The focused suite has 42 passing cases. Parent review found that the new lesson and teacher privacy fixtures return empty results. Add relevant records and positive result assertions before acceptance. No backend source is committed yet.
 
@@ -700,6 +700,10 @@ The next cleanup comparison found 11 unique whole files in b73d and 12 in bc11. 
 
 G55 graph repair is committed as `cd3966d85`. Four new capabilities remain draft and source-only. Six placeholder activities are removed. The final fourteen staged files match the accepted candidate. App tests passed 425 cases. Lint, build, and separate TypeScript passed. The existing coverage order failure also reproduces on committed HEAD before G55. See `im1-lesson104-graph-final-review.md`.
 
-- [~] Task b73d and bc11 preservation: Save the eleven unique b73d files and twelve unique bc11 files in separate recovery commits on their exact saved base. Verify bytes and modes. These snapshots preserve historical candidates without integrating or approving them. Keep both directories until independent final state review passes.
+- [x] Task b73d and bc11 preservation: Save the eleven unique b73d files and twelve unique bc11 files in separate recovery commits on their exact saved base. Verify bytes and modes. These snapshots preserve historical candidates without integrating or approving them. Keep both directories until independent final state review passes.
 
 - [~] Task IM1 coverage order: Correct the demonstrated stored matrix order defect in one separate change. Use the existing coverage builder order. Preserve all 499 records and all aggregate values. Change only the stored coverage matrix and do not change the builder or test contract. The existing parity test fails on committed HEAD before this repair. Verify parity and audit tests after repair.
+
+QF backend integration is committed as `91e71dd6d`. All nine staged files matched the accepted candidate. Parent and independent checks passed 42 tests. Lint, build, and separate TypeScript passed. Source placement, Guided step checks, varied later attempts, approval, and learner-flow verification remain open. See `im3-quadratic-formula-server-final-review.md`.
+
+Removed b73d and bc11 after exact preservation and independent review. Recovery commits `9b8064d8d` and `1a0de0c90` preserve their 23 unique files. The other 701 states have retained copies. Four saved worktrees remain. See `saved-b73d-bc11-final-cleanup-review.md`.
