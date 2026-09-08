@@ -1,93 +1,199 @@
-# Lesson 10-1 — The Geometric System
+# The Geometric System ⸱ Practice
 
 Source: (Module 10, Lesson 10-1, Int1_1001_practice.docx)
 
-## Today's Goals
+## Example 1
 
-* Understand the structure of an axiomatic system and distinguish between axioms and conclusions.
-* Apply given axioms to real-world situations to draw valid logical conclusions.
-* Differentiate between synthetic geometry and analytic geometry based on their defining characteristics.
-* Construct and evaluate models for a given set of axioms.
+### Problem 1
 
-## Vocabulary
+**BASKETBALL** The Badgers’ basketball team has 10 players. During practice, half of the players wear red jerseys numbered 1–5, and the other half wear yellow jerseys numbered 6–10. The yellow team wins the practice game 32–26.
 
-* **Axiomatic System** — A logical structure built from undefined terms, defined terms, axioms, and theorems.
-* **Axiom** — A statement accepted as true without proof; a rule or assumption in a system.
-* **Conclusion** — A statement that logically follows from one or more axioms or given facts.
-* **Synthetic Geometry** — The study of geometry using logical reasoning and proof without relying on a coordinate system or numerical measurements.
-* **Analytic Geometry** — The study of geometry using a coordinate system, algebra, and numerical calculations to analyze geometric figures.
-* **Model** — A specific interpretation or diagram that satisfies all axioms of an axiomatic system.
+- Kylie wears number 5 and scores 9 points.
+- Kelsey’s team wins the game.
+- Marie and Kylie are on opposing teams.
 
-## Explore: What Makes a System Logical?
+Use the axioms to make three conclusions about the game played.
 
-Students consider how games, sports, and real-world systems operate according to a set of agreed-upon rules. They explore how conclusions can be drawn when rules and facts are known.
+### Problem 2
 
-Inquiry Question:
-How can a small set of rules (axioms) be used to logically determine facts about a situation?
+**PRINTING** Rico’s T-shirt Company sells customized short sleeve Tshirts, long sleeve T-shirts, and sweatshirts. Each type of shirt sells in multiples of 5. It costs $25.00 for 5 short sleeve T-shirts, $30.00 for 5 long sleeve T-shirts, and $40.00 for 5 sweatshirts. Short sleeve and long sleeve Tshirts can be made in any color except navy or black. Sweatshirts are only made in navy and black.
 
-## Learn: Axiomatic Systems in Geometry
+- Mercedes bought green shirts for $55.00.
+- Quinn bought 10 navy sweatshirts.
+- Rachel paid $30.00 for several red shirts.
+- Hector bought black and yellow shirts for $65.00.
 
-An axiomatic system begins with basic assumptions called axioms. From these axioms, logical conclusions can be drawn without needing to measure or calculate.
+Use the axioms to make four conclusions about the shirts sold.
 
-### Key Concept: Structure of an Axiomatic System
+### Problem 3
 
-* Undefined terms are the basic building blocks (for example, point, line, plane).
-* Axioms are assumptions about how those terms relate.
-* Conclusions are statements that must be true if the axioms are true.
-* A model is a specific example or diagram that satisfies every axiom in the system.
+**LANDSCAPING** Tom owns a landscaping business. He charges $40 for a yard clean up, $50 to mow a lawn, and $75 to mulch a yard. On average, it takes Tom 25 minutes for a yard clean up, 40 minutes to mow a lawn, and 2 hours to mulch a yard. Tom’s clients are Mr. Hansen, Ms. Martinez, and Mrs. Johnson.
 
-### Key Concept: Synthetic vs. Analytic Geometry
+- Mr. Hansen paid $125 for lawn services this week.
+- Tom spent over an hour at Ms. Martinez’ house this week.
+- Mrs. Johnson wrote Tom a check for $165 for the week.
+- Tom made $405 from his three clients this week.
 
-* **Synthetic Geometry** relies on logic, axioms, and proof. No coordinates or formulas are used.
-* **Analytic Geometry** uses coordinates, formulas (such as distance or slope), and algebraic calculations to solve geometric problems.
+Use the axioms to make four conclusions about the landscaping that Tom did.
 
-## Example 1 — Draw Conclusions from Axioms
+### Problem 4
 
-Use a given set of axioms about a real-world situation to make logical conclusions. Students analyze facts about a scenario and apply the axioms to deduce what must be true.
+**CUPCAKES** Olivia’s Cupcake Shoppe sells small and large cupcakes in three flavors.
 
-### Step 1: Identify the Axioms and Facts
+![Olivia’s Cupcake Shoppe display. The flavors are chocolate with vanilla icing, vanilla with strawberry icing, and strawberry with buttercream icing. A small cupcake costs $1.75. A large cupcake costs $3.00.](/curriculum/module-10-lesson-1/image1.png)
 
-Read the problem to extract the axioms (rules of the system) and the given facts about individuals or items involved.
+- Niamh paid $3 for a cupcake with buttercream icing.
+- Bethany bought a small vanilla cupcake.
+- Mateo paid $3.50 for a cupcake with strawberry icing and a chocolate cupcake.
 
-### Step 2: Match Facts to Axioms
+Use the axioms to make two conclusions about the cupcakes that were purchased.
 
-Determine which axioms apply to each given fact. Use the rules to reason about quantities, categories, and relationships.
+## Example 2
 
-### Step 3: State Valid Conclusions
+Classify each figure as illustrating synthetic geometry or analytic geometry.
 
-For each fact, write a conclusion that must logically follow. For example, if an axiom states that each item in a category has a specific price, and a person paid that exact price, conclude which item they purchased.
+### Problem 5
 
-## Example 2 — Classify Synthetic and Analytic Geometry
+![A circle has points B and C on the circle and point A inside it. Segments A-B, A-C, and B-C are drawn.](/curriculum/module-10-lesson-1/image2.png)
 
-Examine diagrams and descriptions of geometric work to classify each as synthetic geometry or analytic geometry.
+### Problem 6
 
-### Step 1: Identify Coordinate or Formula Use
+![A filled triangle is on an x-y coordinate grid. Its top side is horizontal. Its lower vertex is on the y-axis.](/curriculum/module-10-lesson-1/image3.png)
 
-Look for evidence of a coordinate grid, numerical coordinates, algebraic formulas, or measured distances. If present, the figure represents analytic geometry.
+### Problem 7
 
-### Step 2: Identify Purely Logical Construction
+![A filled five-vertex polygon is on an x-y coordinate grid.](/curriculum/module-10-lesson-1/image4.png)
 
-Look for compass-and-straightedge constructions, logical proofs without numbers, or figures without grids. If present, the figure represents synthetic geometry.
+### Problem 8
 
-### Step 3: Classify Each Figure
+![Segments P-Q and P′-Q′ are on an x-y coordinate grid. The endpoints are P(-3, -1), Q(0, 6), P′(-3, 3), and Q′(0, 10).](/curriculum/module-10-lesson-1/image5.png)
 
-Based on the presence or absence of coordinates and algebraic tools, label each figure as synthetic geometry or analytic geometry.
+### Problem 9
+
+![A circle has diameter B-A through center O. Points C and D are on the circle. Point P is inside the circle. Solid and dashed segments join the labeled points.](/curriculum/module-10-lesson-1/image6.png)
+
+### Problem 10
+
+![A sphere has points A, B, and C. Two right-angle marks show perpendicular intersections on the sphere.](/curriculum/module-10-lesson-1/image7.png)
 
 ## Mixed Exercises
 
-The mixed exercises section provides practice with all skills from the lesson. Problems include:
+### Problem 11
 
-* Applying axioms about real-world situations (restaurant menu, clothing sale, shopping) to draw logical conclusions.
-* Classifying classroom tools and projects as synthetic or analytic geometry and explaining the reasoning.
-* Determining whether a test problem involving a distance formula represents synthetic or analytic geometry.
-* Writing original axioms based on collected survey data and using them to form a conclusion.
-* Evaluating whether a given set of bus routes satisfies all axioms of an axiomatic system and justifying the argument.
-* Drawing a model that satisfies a given list of axioms about points and lines.
-* Identifying which diagram does not satisfy the axioms of three-point geometry.
-* Finding and explaining errors in a student's conclusions from an axiomatic system.
-* Comparing the rules and plays of a game to the elements of an axiomatic system.
-* Using assumptions to classify a blueprint on a grid as synthetic or analytic geometry.
+**RESTAURANT** Damon sells three types of salads at his restaurant: cobb, wedge, and spinach. Each salad is served with 2 dinner rolls. The price of the cobb salad is $7.99, the price of the wedge salad is $8.99, and the price of the spinach salad is $5.99. Grilled chicken can be added to any salad for an additional $2.00.
 
-## Review Notes
+- Malik spent $7.99 on a salad.
+- Pedro and Deandra each spent $8.99 on their salads.
+- Rafael ate a wedge salad.
+- Drake did not add chicken to his salad.
 
-* Images referenced in the worksheet (landscaping photo, geometric figures for classification, Sydney's blueprint, figures for "Which One Doesn't Belong?") could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and figures.
+Use the axioms to make a conclusion about the salads that are eaten.
+
+### Problem 12
+
+**CLASSROOM** Mrs. Fields teaches high school geometry. Her classroom tools include a compass, straightedge, pencil, and protractor. Does Mrs. Fields likely teach analytic geometry or synthetic geometry? Explain your reasoning.
+
+### Problem 13
+
+**REASONING** Theo is stuck on a problem on a test. The problem is asking him to use a given formula to find the distance between two points on a graph. Is Theo using analytic geometry or synthetic geometry? Explain your reasoning.
+
+### Problem 14
+
+**USE A SOURCE** Survey a group of students in your classroom about favorite colors. Write three axioms about the data you collected. Then use your axioms to write a conclusion. Explain your reasoning.
+
+### Problem 15
+
+**STATE YOUR ASSUMPTION** Sydney is an engineer. She is using a blueprint for a project that is drawn on a grid, as shown. Is Sydney likely using analytic geometry or synthetic geometry? Explain any assumptions that you make.
+
+![Two aircraft views are drawn on a square blueprint grid.](/curriculum/module-10-lesson-1/image8.png)
+
+### Problem 16
+
+Mr. Sail assigns a project where students identify shapes that represent real-world objects. Is this an example of analytic geometry or synthetic geometry? Explain your reasoning.
+
+![A patterned ball represents a sphere.](/curriculum/module-10-lesson-1/image9.jpg)
+
+![A colored puzzle cube represents a cube.](/curriculum/module-10-lesson-1/image10.jpg)
+
+![A metal can represents a cylinder.](/curriculum/module-10-lesson-1/image11.jpg)
+
+### Problem 17
+
+**CONSTRUCT ARGUMENTS** Consider the following axiomatic system for bus routes.
+
+- Each bus route lists the stops in the order at which they are visited by the bus.
+- Each route visits at least four distinct stops.
+- No route visits the same stop twice, except for the first stop, which is always the same as the last stop.
+- There is a stop called Downtown, which is visited by each route.
+- Every stop other than Downtown is visited by at most two routes.
+
+The city has stops at Downtown, King St, Maxwell Ave, Stadium District, State St, Grace Blvd, and Charlotte Ave. Are the following three routes a model for the axiomatic system? Justify your argument.
+
+- ROUTE 1: Downtown, King St, Stadium District, State St, Downtown
+- ROUTE 2: Stadium District, State St, Grace Blvd, Maxwell Ave, Downtown, Stadium District
+- ROUTE 3: King St, Stadium District, Downtown, Maxwell Ave, Stadium District, King St
+
+### Problem 18
+
+**SHOPPING** The Clothing Shop is having a sale. All clothes are 20% off, and all accessories are 30% off.
+
+- Jaisa bought two necklaces.
+- Sheree bought a shirt and a purse.
+
+Use the axioms to make one conclusion about Jaisa or Sheree’s purchases.
+
+### Problem 19
+
+**WRITE** Write a comparison of the rules and plays of a game and the elements of an axiomatic system. Then choose a game or sport for which you know the rules. Explain a rule from the game or sport and a play from the game. Does the play violate or fall within the rule? Explain.
+
+### Problem 20
+
+**CREATE** Given the following list of axioms, draw a model to properly represent the information.
+
+- There exist five points.
+- Each line contains only these five points.
+- There exist two lines.
+- Each line contains at least two points.
+
+### Problem 21
+
+**WHICH ONE DOESN’T BELONG?** Three-point geometry is a finite subset of geometry with the following four axioms:
+
+- There exist exactly three distinct points.
+- Each pair of distinct points are on exactly one line.
+- Not all the points are on the same line.
+- Each pair of distinct lines intersect in at least one point.
+
+Which of the following does not satisfy all the axioms of three-point geometry? Justify your conclusion.
+
+![Three marked points are joined by two straight sides and one curved side.](/curriculum/module-10-lesson-1/image12.png)
+
+![Three marked points are joined by three straight sides.](/curriculum/module-10-lesson-1/image13.png)
+
+![Three marked points lie on one curved line.](/curriculum/module-10-lesson-1/image14.png)
+
+### Problem 22
+
+**FIND THE ERROR** Grant read the following axioms for a video game he is playing.
+
+- There are four keys hidden on each level.
+- Each level ends when the player collects the third key.
+- The game has 10 levels.
+
+From these axioms, Grant concluded:
+
+- to complete the game, he will need to find 30 keys.
+- there are 40 keys in the game.
+- he can collect all 40 keys in the game.
+
+Are Grant’s conclusions correct? Explain your reasoning.
+
+### Problem 23
+
+**WHICH ONE DOESN’T BELONG?** Using your understanding of analytic and synthetic geometry, which of the following figures does not belong? Justify your conclusion.
+
+![A square pyramid has base edge labels a, height h, and a right-angle mark.](/curriculum/module-10-lesson-1/image15.png)
+
+![A triangle is on an x-y coordinate grid. Its vertices are T(0, 0), V(5, 0), and U(5, 3).](/curriculum/module-10-lesson-1/image16.png)
+
+![A wire-frame cube is cut by a highlighted plane.](/curriculum/module-10-lesson-1/image17.png)
