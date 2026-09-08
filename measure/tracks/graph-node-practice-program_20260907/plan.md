@@ -389,3 +389,7 @@ G48 parent and independent review accept the corrected 18-candidate graph propos
 Q37 true workspace isolation found two missing committed public exports. The selected component and schema files already exist. A bounded dependency correction is in progress before teacher surface acceptance. Earlier shared-link builds do not prove wholly committed workspace builds. See `precalc-runtime-workspace-resolution-review.md`. The actual local backend seed and zero-effect initial state are verified; browser verification remains open.
 
 G48 first source review found a changed native label, an invented unit, missing visible A/B/C labels, and incomplete figure descriptions. Exact prompt text and image bytes pass. Corrections and regression tests are in progress. See `im1-lesson95-source-first-review.md`.
+
+G48 exact source restoration is committed as `f6eaf15c`. Final parent and independent source checks pass. All 11 native images were inspected. Seven focused tests, lint, build, and standalone TypeScript passed with candidate-local workspace packages. Graph implementation now follows the accepted 18-candidate proposal.
+
+Q37 public exports are committed as `c8358384`. The schema has one owner in math-content. Teacher surface integration is committed as `9de80ba8`. Independent review, 15 public package tests, 16 teacher surface tests, lint, build, and standalone TypeScript pass with isolated workspace resolution. Full browser verification remains in progress on the disposable local backend. Both real login forms now succeed.
