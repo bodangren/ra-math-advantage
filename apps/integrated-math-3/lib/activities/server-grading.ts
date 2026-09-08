@@ -142,20 +142,37 @@ function matchesPilotPoints(actual: unknown, expected: readonly Point[], toleran
   return remaining.length === 0;
 }
 
+function regenerateQuadraticFormula(activity: ServerOwnedActivity) {
+  if (activity.masteryNodeId !== IM3_QF_NODE || activity.componentKey !== 'quadratic-formula') {
+    throw new Error('Invalid quadratic-formula activity');
+  }
+  const identity = activity.privateGenerator;
+  if (!identity || identity.generatorKey !== 'quadratic-formula'
+    || !Number.isSafeInteger(identity.seed) || identity.seed < 0) {
+    throw new Error('Invalid private quadratic-formula generator identity');
+  }
+  const props = quadraticFormulaActivitySchema.parse(activity.props);
+  const problem = generateQuadraticFormula({ seed: identity.seed });
+  if (props.equation !== problem.quadratic) throw new Error('Quadratic-formula equation does not match its private seed');
+  return problem;
+}
+
+export function checkServerOwnedQuadraticDiscriminant(activity: ServerOwnedActivity, rawAnswer: string): boolean {
+  if (activity.stableActivityId !== IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId
+    || activity.props.presentationMode !== 'guided' || rawAnswer.length > 160) {
+    throw new Error('Invalid Guided discriminant check');
+  }
+  const problem = regenerateQuadraticFormula(activity);
+  return gradeQuadraticFormulaResponse(problem, { discriminant: rawAnswer, x1: '', x2: '' }).parts[0].isCorrect;
+}
+
 /** Grade the selected IM3 quadratic graph submission from server-owned data. */
 export function gradeServerOwnedSubmission(
   activity: ServerOwnedActivity,
   envelope: PracticeSubmissionEnvelope,
 ): ServerGradedSubmission {
   if (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === 'quadratic-formula') {
-    const identity = activity.privateGenerator;
-    if (!identity || identity.generatorKey !== 'quadratic-formula'
-      || !Number.isSafeInteger(identity.seed) || identity.seed < 0) {
-      throw new Error('Invalid private quadratic-formula generator identity');
-    }
-    const props = quadraticFormulaActivitySchema.parse(activity.props);
-    const problem = generateQuadraticFormula({ seed: identity.seed });
-    if (props.equation !== problem.quadratic) throw new Error('Quadratic-formula equation does not match its private seed');
+    const problem = regenerateQuadraticFormula(activity);
     const partsById = new Map(envelope.parts.map((part) => [part.partId, part]));
     const grade = gradeQuadraticFormulaResponse(problem, {
       discriminant: envelope.answers.discriminant,

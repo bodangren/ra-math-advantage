@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { generateQuadraticFormula } from '@math-platform/math-content';
 import { convexToJson, jsonToConvex } from 'convex/values';
-import { createServerOwnedSubmissionHandler, submitActivity, submitAssessment } from '@/convex/activities';
+import { checkQuadraticFormulaDiscriminantHandler, createServerOwnedSubmissionHandler, submitActivity, submitAssessment } from '@/convex/activities';
 import { getActivityById } from '@/convex/activities';
 import { buildIm3QuadraticFormulaDraftDocuments, upsertIm3QuadraticFormulaDrafts } from '@/convex/seed/seed_lesson_1_6';
 import { IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE } from '@/lib/activities/server-grading';
@@ -191,5 +191,43 @@ describe('draft quadratic-formula server writer', () => {
     await expect(submitIm3PublishedEvidenceHandler(f.ctx as never, { learnerId: f.userId as never, submissionId: stored.submissionId as never })).resolves.toEqual({ accepted: false, reason: 'submission_not_found' });
     for (const table of ['learning_evidence', 'learning_evidence_receipts', 'student_competency', 'srs_cards', 'srs_review_log']) expect(f.table(table)).toHaveLength(0);
     expect(f.scheduled).toHaveLength(0);
+  });
+});
+
+
+describe('Guided discriminant check', () => {
+  const check = (f: Awaited<ReturnType<typeof fixture>>, rawAnswer: string, graph = publication) =>
+    checkQuadraticFormulaDiscriminantHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, fieldId: 'discriminant', rawAnswer } as never, graph);
+
+  it('returns only correctness and does not write or schedule', async () => {
+    const f = await fixture('guided_practice');
+    const insert = vi.spyOn(f.ctx.db, 'insert');
+    const patch = vi.spyOn(f.ctx.db, 'patch');
+    const before = structuredClone(['activities', 'practice_items', 'practice_variants', 'activity_submissions'].map(f.table));
+    expect(await check(f, String(f.submissionData.answers.discriminant))).toEqual({ isCorrect: true });
+    expect(await check(f, 'not a number')).toEqual({ isCorrect: false });
+    expect(await check(f, String(f.submissionData.answers.discriminant + 1))).toEqual({ isCorrect: false });
+    expect(['activities', 'practice_items', 'practice_variants', 'activity_submissions'].map(f.table)).toEqual(before);
+    expect(insert).not.toHaveBeenCalled();
+    expect(patch).not.toHaveBeenCalled();
+    expect(f.scheduled).toEqual([]);
+  });
+
+  it.each(['inactive', 'identity', 'independent', 'missingItem', 'duplicateItem', 'reverseItem', 'missingVariant', 'duplicateVariant', 'seed', 'equation', 'approval', 'oversize', 'graph'] as const)('rejects %s before producing a decision', async cause => {
+    const f = await fixture(cause === 'independent' ? 'independent_practice' : 'guided_practice');
+    if (cause === 'inactive') f.table('auth_credentials')[0].isActive = false;
+    if (cause === 'identity') f.table('auth_credentials')[0].profileId = 'profiles:other';
+    if (cause === 'missingItem') f.table('practice_items').length = 0;
+    if (cause === 'duplicateItem') f.table('practice_items').push({ ...f.table('practice_items')[0], _id: 'practice_items:copy' });
+    if (cause === 'reverseItem') f.table('practice_items').push({ ...f.table('practice_items')[0], _id: 'practice_items:other', activityId: 'activities:other' });
+    if (cause === 'missingVariant') f.table('practice_variants').length = 0;
+    if (cause === 'duplicateVariant') f.table('practice_variants').push({ ...f.table('practice_variants')[0], _id: 'practice_variants:copy' });
+    if (cause === 'seed') f.table('practice_variants')[0].metadata.seed++;
+    if (cause === 'equation') f.table('activities')[0].props.equation = 'x^2 = 0';
+    if (cause === 'approval') f.table('activities')[0].approval.status = 'approved';
+    const graph = cause === 'graph' ? { ...publication, nodes: [...publication.nodes, ...publication.nodes] } : publication;
+    await expect(check(f, cause === 'oversize' ? '1'.repeat(161) : '1', graph)).rejects.toThrow();
+    expect(f.table('activity_submissions')).toHaveLength(0);
+    expect(f.scheduled).toEqual([]);
   });
 });

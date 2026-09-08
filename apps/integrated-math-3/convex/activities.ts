@@ -5,7 +5,7 @@ import { internal } from "./_generated/api";
 import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
 import type { Doc, Id } from "./_generated/dataModel";
 import { practiceSubmissionEnvelopeSchema, type PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
-import { gradeServerOwnedSubmission, IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE } from "../lib/activities/server-grading";
+import { checkServerOwnedQuadraticDiscriminant, gradeServerOwnedSubmission, IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE } from "../lib/activities/server-grading";
 import nodesDocument from "../curriculum/skill-graph/nodes.json";
 import blueprintsDocument from "../curriculum/skill-graph/blueprints.json";
 import { IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, IM3_PILOT_NODE, IM3_TEACHER_LED_ACTIVITY_ID } from "../lib/practice/learning-evidence-pilot";
@@ -614,6 +614,72 @@ export function isSelectedWorkedActivity(activity: Doc<"activities">): boolean {
     && grading?.autoGrade === false
     && grading.partialCredit === false;
 }
+async function requireActiveSubmissionStudent(ctx: QueryCtx, userId: Id<"profiles">) {
+  const profile = await ctx.db.get(userId);
+  const credential = profile ? await ctx.db.query("auth_credentials").withIndex("by_username", (q) => q.eq("username", profile.username)).unique() : null;
+  if (!profile || profile.role !== "student" || !credential || !credential.isActive || credential.profileId !== profile._id || credential.username !== profile.username || credential.role !== profile.role || credential.organizationId !== profile.organizationId) throw new Error("Inactive student identity");
+}
+
+async function loadQuadraticFormulaAuthority(
+  ctx: QueryCtx,
+  activity: Doc<"activities">,
+  mode: keyof typeof IM3_QF_DRAFT_MAPPINGS,
+  publication: Im3PilotPublication,
+) {
+  const qfMapping = IM3_QF_DRAFT_MAPPINGS[mode];
+  if (activity.stableActivityId !== qfMapping.stableActivityId || activity.masteryNodeId !== IM3_QF_NODE
+    || activity.componentKey !== "quadratic-formula" || activity.srsEligible !== false
+    || activity.approval?.status !== "unreviewed"
+    || (activity.props as { presentationMode?: unknown }).presentationMode !== qfMapping.presentationMode) {
+    throw new Error("Invalid draft quadratic-formula activity authority");
+  }
+  const graphNodes = publication.nodes.filter(row => row.id === IM3_QF_NODE);
+  const graphBlueprints = publication.blueprints.filter(row => row.nodeId === IM3_QF_NODE);
+  if (graphNodes.length !== 1 || graphBlueprints.length !== 1
+    || graphNodes[0].kind !== "skill" || graphNodes[0].reviewStatus !== "draft"
+    || graphBlueprints[0].reviewStatus !== "draft") {
+    throw new Error("Quadratic-formula server path requires the reviewed draft graph state");
+  }
+  const items = await ctx.db.query("practice_items").withIndex("by_activityId", (q) => q.eq("activityId", activity._id)).take(2);
+  if (items.length !== 1) throw new Error("Invalid quadratic-formula practice item relation");
+  if (items[0].variantKey !== qfMapping.stableActivityId) throw new Error("Invalid quadratic-formula practice item relation");
+  const reverseItems = await ctx.db.query("practice_items").withIndex("by_variantKey", q => q.eq("variantKey", items[0].variantKey)).take(2);
+  if (reverseItems.length !== 1 || reverseItems[0]._id !== items[0]._id) throw new Error("Invalid quadratic-formula reverse item relation");
+  const variants = await ctx.db.query("practice_variants").withIndex("by_variantKey", (q) => q.eq("variantKey", items[0].variantKey)).take(2);
+  if (variants.length !== 1) throw new Error("Invalid quadratic-formula private variant authority");
+  const variant = variants[0];
+  const metadata = variant?.metadata as Record<string, unknown> | undefined;
+  if (!variant || variant.componentKey !== "quadratic-formula"
+    || JSON.stringify(variant.objectiveIds) !== JSON.stringify([IM3_QF_NODE])
+    || Object.keys(metadata ?? {}).sort().join("|") !== "generatorKey|mode|seed|stableActivityId"
+    || metadata?.generatorKey !== "quadratic-formula" || metadata.seed !== qfMapping.seed
+    || metadata.stableActivityId !== qfMapping.stableActivityId || metadata.mode !== mode) {
+    throw new Error("Invalid quadratic-formula private variant authority");
+  }
+  return { generatorKey: "quadratic-formula" as const, seed: qfMapping.seed };
+}
+
+export async function checkQuadraticFormulaDiscriminantHandler(
+  ctx: QueryCtx,
+  args: { userId: Id<"profiles">; activityId: Id<"activities">; fieldId: "discriminant"; rawAnswer: string },
+  publication: Im3PilotPublication = currentIm3PilotPublication,
+) {
+  if (args.fieldId !== "discriminant" || typeof args.rawAnswer !== "string" || args.rawAnswer.length > 160) {
+    throw new Error("Invalid discriminant check");
+  }
+  await requireActiveSubmissionStudent(ctx, args.userId);
+  const activity = await ctx.db.get(args.activityId);
+  if (!activity) throw new Error("Activity not found");
+  const privateGenerator = await loadQuadraticFormulaAuthority(ctx, activity, "guided_practice", publication);
+  return { isCorrect: checkServerOwnedQuadraticDiscriminant({ ...activity, id: String(activity._id), props: activity.props as Record<string, unknown>, privateGenerator }, args.rawAnswer) };
+}
+
+export const checkQuadraticFormulaDiscriminant = internalQuery({
+  args: { userId: v.id("profiles"), activityId: v.id("activities"), fieldId: v.literal("discriminant"), rawAnswer: v.string() },
+  returns: v.object({ isCorrect: v.boolean() }),
+  handler: checkQuadraticFormulaDiscriminantHandler,
+});
+
 export async function createServerOwnedSubmissionHandler(
   ctx: MutationCtx,
   args: ServerOwnedSubmissionArgs,
@@ -622,9 +688,7 @@ export async function createServerOwnedSubmissionHandler(
   const key = args.idempotencyKey.trim();
   if (!key || key.length > 80) throw new Error("Invalid idempotency key");
   if (args.submissionData.contractVersion !== "practice.v1") throw new Error("Invalid practice contract");
-  const profile = await ctx.db.get(args.userId);
-  const credential = profile ? await ctx.db.query("auth_credentials").withIndex("by_username", (q) => q.eq("username", profile.username)).unique() : null;
-  if (!profile || profile.role !== "student" || !credential || !credential.isActive || credential.profileId !== profile._id || credential.username !== profile.username || credential.role !== profile.role || credential.organizationId !== profile.organizationId) throw new Error("Inactive student identity");
+  await requireActiveSubmissionStudent(ctx, args.userId);
   if (String(args.activityId) !== args.submissionData.activityId)
     throw new Error(
       "Submission activityId must match the server activity document",
@@ -637,36 +701,7 @@ export async function createServerOwnedSubmissionHandler(
   let qfPrivateGenerator: { generatorKey: "quadratic-formula"; seed: number } | undefined;
   if (isQf && activity && qfMapping) {
     validateQfEnvelope(args.submissionData);
-    if (activity.stableActivityId !== qfMapping.stableActivityId || activity.masteryNodeId !== IM3_QF_NODE
-      || activity.componentKey !== "quadratic-formula" || activity.srsEligible !== false
-      || activity.approval?.status !== "unreviewed"
-      || (activity.props as { presentationMode?: unknown }).presentationMode !== qfMapping.presentationMode) {
-      throw new Error("Invalid draft quadratic-formula activity authority");
-    }
-    const graphNodes = publication.nodes.filter(row => row.id === IM3_QF_NODE);
-    const graphBlueprints = publication.blueprints.filter(row => row.nodeId === IM3_QF_NODE);
-    if (graphNodes.length !== 1 || graphBlueprints.length !== 1
-      || graphNodes[0].kind !== "skill" || graphNodes[0].reviewStatus !== "draft"
-      || graphBlueprints[0].reviewStatus !== "draft") {
-      throw new Error("Quadratic-formula server path requires the reviewed draft graph state");
-    }
-    const items = await ctx.db.query("practice_items").withIndex("by_activityId", (q) => q.eq("activityId", activity._id)).take(2);
-    if (items.length !== 1) throw new Error("Invalid quadratic-formula practice item relation");
-    if (items[0].variantKey !== qfMapping.stableActivityId) throw new Error("Invalid quadratic-formula practice item relation");
-    const reverseItems = await ctx.db.query("practice_items").withIndex("by_variantKey", q => q.eq("variantKey", items[0].variantKey)).take(2);
-    if (reverseItems.length !== 1 || reverseItems[0]._id !== items[0]._id) throw new Error("Invalid quadratic-formula reverse item relation");
-    const variants = await ctx.db.query("practice_variants").withIndex("by_variantKey", (q) => q.eq("variantKey", items[0].variantKey)).take(2);
-    if (variants.length !== 1) throw new Error("Invalid quadratic-formula private variant authority");
-    const variant = variants[0];
-    const metadata = variant?.metadata as Record<string, unknown> | undefined;
-    if (!variant || variant.componentKey !== "quadratic-formula"
-      || JSON.stringify(variant.objectiveIds) !== JSON.stringify([IM3_QF_NODE])
-      || Object.keys(metadata ?? {}).sort().join("|") !== "generatorKey|mode|seed|stableActivityId"
-      || metadata?.generatorKey !== "quadratic-formula" || metadata.seed !== qfMapping.seed
-      || metadata.stableActivityId !== qfMapping.stableActivityId || metadata.mode !== args.submissionData.mode) {
-      throw new Error("Invalid quadratic-formula private variant authority");
-    }
-    qfPrivateGenerator = { generatorKey: "quadratic-formula", seed: qfMapping.seed };
+    qfPrivateGenerator = await loadQuadraticFormulaAuthority(ctx, activity, args.submissionData.mode as keyof typeof IM3_QF_DRAFT_MAPPINGS, publication);
   } else if (isWorked) {
     if (!isSelectedWorkedAcknowledgement(args.submissionData))
       throw new Error("Invalid selected IM3 Worked acknowledgement");
