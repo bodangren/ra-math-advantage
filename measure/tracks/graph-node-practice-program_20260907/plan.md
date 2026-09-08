@@ -699,3 +699,5 @@ The corrected QF backend passes the real Convex serialization replay test, final
 The next cleanup comparison found 11 unique whole files in b73d and 12 in bc11. None has an exact whole-file copy in the eleven checked recovery branches. Keep both saved directories while independent review determines the required preservation snapshots.
 
 G55 graph repair is committed as `cd3966d85`. Four new capabilities remain draft and source-only. Six placeholder activities are removed. The final fourteen staged files match the accepted candidate. App tests passed 425 cases. Lint, build, and separate TypeScript passed. The existing coverage order failure also reproduces on committed HEAD before G55. See `im1-lesson104-graph-final-review.md`.
+
+- [~] Task b73d and bc11 preservation: Save the eleven unique b73d files and twelve unique bc11 files in separate recovery commits on their exact saved base. Verify bytes and modes. These snapshots preserve historical candidates without integrating or approving them. Keep both directories until independent final state review passes.
