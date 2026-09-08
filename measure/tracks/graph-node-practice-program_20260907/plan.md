@@ -366,3 +366,8 @@ Q37 unit 6 query preparation is in progress in an isolated HEAD candidate. The q
 Unit 6 query preparation now has a valid 21-test missing-query baseline. The first pending fixture failed publication before reaching that boundary. The corrected fixture reuses the complete committed hypothetical publication. See `precalc-runtime-unit6-query-preparation.md`.
 
 G48 first proposal includes incorrect box-plot construction references for comparison, histogram, and matching tasks. Correct exact evidence references and review combined response boundaries before acceptance. See `im1-lesson95-proposal-first-review.md`.
+
+## Worktree cleanup — 2026-09-08
+
+- [x] Remove 85 stale worktree records. All directories were absent. All recorded commits are ancestors of HEAD. The 26 remaining records include the main checkout, one active graph candidate, and 24 saved Codex worktrees with uncommitted changes. Preserve those changes.
+- [~] Commit each verified integration before removing its temporary checkout. Review saved worktree changes before cleanup.
