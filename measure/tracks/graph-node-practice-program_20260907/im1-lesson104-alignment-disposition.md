@@ -29,7 +29,7 @@ Update both retained alignments with exact source rationale. Example 4 must cite
 
 Remove the other 10 canonical Lesson 10-4 alignment edges. This includes every G-GPE.B.4 edge, both Example 1 edges, both Example 3 edges, the Example 2 G-MG.A.1 edge, and the 10g G-MG.A.1 edge.
 
-In `standard-edges.json`, remove three of the four current skill rows. Keep only the 10h-to-G-MG.A.1 skill row.
+In `standard-edges.json`, remove the same ten reviewed alignment rows. Keep the Example 4 and 10h G-MG.A.1 rows. Parent inspection confirms that this catalog contains both source and skill alignments.
 
 Set the 10g blueprint `alignmentNodeIds` to an empty array. Set the 10h blueprint `alignmentNodeIds` to only `math.standard.ccss.g-mg-a-1`.
 
