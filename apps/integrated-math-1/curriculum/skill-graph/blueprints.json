@@ -3901,20 +3901,18 @@
     },
     {
       "nodeId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.8.5.014"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.f-bf-a-2",
         "math.standard.ccss.f-if-a-3"
       ],
-      "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
         "worked": "step-by-step-solver",
         "guidedPractice": "step-by-step-solver",
         "independentPractice": "step-by-step-solver"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3935,15 +3933,11 @@
         "math.standard.ccss.f-bf-a-2",
         "math.standard.ccss.f-if-a-3"
       ],
-      "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
         "worked": "comprehension-quiz",
         "guidedPractice": "comprehension-quiz",
         "independentPractice": "comprehension-quiz"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -7497,6 +7491,56 @@
         "course": "im1",
         "module": "8",
         "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.extend-a-geometric-sequence-forward-or-backward-using-its-common-ratio",
+      "sourceNodeIds": [
+        "math.im1.example.8.5.016"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.evaluate-a-specified-term-of-a-geometric-sequence-with-an-explicit-formula",
+      "sourceNodeIds": [
+        "math.im1.example.8.5.017"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms",
+      "sourceNodeIds": [
+        "math.im1.example.8.5.018"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.determine-an-initial-term-from-two-nonconsecutive-geometric-sequence-terms",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "5"
       }
     }
   ]

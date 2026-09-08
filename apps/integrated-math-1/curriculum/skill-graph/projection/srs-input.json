@@ -1797,9 +1797,7 @@
         "math.standard.ccss.f-bf-a-2",
         "math.standard.ccss.f-if-a-3"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "step-by-step-solver",
       "generatorKey": null,
@@ -2599,6 +2597,58 @@
       "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.extend-a-geometric-sequence-forward-or-backward-using-its-common-ratio",
+      "blueprintId": "math.im1.skill.8.5.extend-a-geometric-sequence-forward-or-backward-using-its-common-ratio",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.evaluate-a-specified-term-of-a-geometric-sequence-with-an-explicit-formula",
+      "blueprintId": "math.im1.skill.8.5.evaluate-a-specified-term-of-a-geometric-sequence-with-an-explicit-formula",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms",
+      "blueprintId": "math.im1.skill.8.5.write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.determine-an-initial-term-from-two-nonconsecutive-geometric-sequence-terms",
+      "blueprintId": "math.im1.skill.8.5.determine-an-initial-term-from-two-nonconsecutive-geometric-sequence-terms",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
       "generatorKey": null,
       "generatorReady": false
     }

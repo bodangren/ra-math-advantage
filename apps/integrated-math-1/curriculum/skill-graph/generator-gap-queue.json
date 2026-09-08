@@ -3356,10 +3356,46 @@
       "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.extend-a-geometric-sequence-forward-or-backward-using-its-common-ratio",
+      "title": "Extend a geometric sequence forward or backward using its common ratio",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.evaluate-a-specified-term-of-a-geometric-sequence-with-an-explicit-formula",
+      "title": "Evaluate a specified term of a geometric sequence with an explicit formula",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms",
+      "title": "Write an explicit formula for a geometric sequence from displayed terms",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.determine-an-initial-term-from-two-nonconsecutive-geometric-sequence-terms",
+      "title": "Determine an initial term from two nonconsecutive geometric-sequence terms",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 373,
+    "totalSkills": 377,
     "allNeedGenerators": true,
     "total": 371
   }
