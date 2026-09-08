@@ -1,147 +1,185 @@
 # Lesson 7-5 — Systems of Inequalities
 
-Source: (Module 7, Lesson 7-5, Int1_0705_practice.docx)
+Source: Module 7, Lesson 7-5, `Int1_0705_practice.docx`.
 
 ## Today's Goals
 
-* Graph systems of linear inequalities and identify the overlapping solution region.
-* Write systems of inequalities to represent real-world constraints with two variables.
-* Determine whether an ordered pair is a solution to a system without graphing.
-* Write a system of inequalities that corresponds to a given graph.
+* Graph systems of linear inequalities and identify the common solution region.
+* Write systems that represent graphs and context constraints.
+* Test a point against every inequality in a system.
 
-## Vocabulary
+## Learn: Systems of Inequalities
 
-* **system of inequalities** — A set of two or more inequalities with the same variables.
-* **solution of a system of inequalities** — An ordered pair that makes every inequality in the system true.
-* **boundary line** — The line formed by replacing the inequality symbol with an equal sign; dashed for strict inequalities, solid for non-strict inequalities.
-* **feasible region** — The overlapping shaded region where all inequalities in the system are satisfied.
+A solution must satisfy every inequality. Graph each boundary on the same coordinate plane. Use a dashed boundary for a strict inequality. Use a solid boundary when equality is included. Select the correct side of each boundary. The common region is the solution set. Check the variable domain when you interpret a context solution.
 
-## Learn: Graphing Systems of Linear Inequalities
+## Examples 1 and 2
 
-A system of linear inequalities is graphed by shading each inequality on the same coordinate plane. The solution to the system is the intersection of all shaded regions.
+Solve each system of inequalities by graphing.
 
-### Key Concept: Graphing a System of Inequalities
+### Problem 1
 
-* Graph each inequality separately: draw the boundary line (dashed for `<` or `>`, solid for `≤` or `≥`), then shade the appropriate half-plane.
-* The solution region is where all shaded areas overlap.
-* If the boundary lines are parallel, the system may have no solution, a bounded strip of solutions, or an unbounded region depending on the inequality directions.
-* To test a point without graphing, substitute its coordinates into every inequality; it must satisfy all of them.
+* `y < 6`
+* `y > x + 3`
 
-## Example 1 — Graph Systems in Slope-Intercept Form
+### Problem 2
 
-Graph systems where both inequalities are given in or easily converted to slope-intercept form. Identify the overlapping feasible region.
+* `y >= 0`
+* `y <= x - 5`
 
-### Step 1: Graph the First Inequality
+### Problem 3
 
-Draw the boundary line and shade the appropriate side.
+* `y <= x + 10`
+* `y > 6x + 2`
 
-[
-y < 6
-]
+### Problem 4
 
-### Step 2: Graph the Second Inequality
+* `y >= x + 10`
+* `y <= x - 3`
 
-On the same axes, draw the second boundary line and shade.
+### Problem 5
 
-[
-y > x + 3
-]
+* `y < 5x - 5`
+* `y > 5x + 9`
 
-### Step 3: Identify the Solution Region
+### Problem 6
 
-The solution is the overlapping shaded area. Points in this region satisfy both inequalities.
+* `y >= 3x - 5`
+* `3x - y > -4`
 
-Other representative systems include:
+### Problem 7
 
-[
-y \ge x + 10 \quad \text{and} \quad y \le x - 3
-]
+* `x > -1`
+* `y <= -3`
 
-[
-y < 5x - 5 \quad \text{and} \quad y > 5x + 9
-]
+### Problem 8
 
-## Example 2 — Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries
+* `y > 2`
+* `x < -2`
 
-Graph systems that include vertical lines, horizontal lines, or inequalities in standard form.
+### Problem 9
 
-### Step 1: Handle Vertical and Horizontal Boundaries
+* `y > x + 3`
+* `y <= -1`
 
-Vertical and horizontal lines divide the plane differently than sloped lines.
+### Problem 10
 
-[
-x > -1 \quad \text{and} \quad y \le -3
-]
+* `x < 2`
+* `y - x <= 2`
 
-[
-y > 2 \quad \text{and} \quad x < -2
-]
+### Problem 11
 
-### Step 2: Convert Standard Form to Convenient Form
+* `x + y <= -1`
+* `x + y >= 3`
 
-For inequalities like [ x + y \le -1 ], graph using intercepts or solve for [ y ].
+### Problem 12
 
-[
-x + y \le -1 \quad \text{and} \quad x + y \ge 3
-]
+* `y - x > 4`
+* `x + y > 2`
 
-[
-y - x > 4 \quad \text{and} \quad x + y > 2
-]
+## Example 3
 
-### Step 3: Identify the Overlap
+### Problem 13
 
-The feasible region is where all conditions are satisfied simultaneously.
+**Fitness.** Diego started an exercise program. Each week he walks from 9 to 12 miles and works out at the gym from 4.5 to 6 hours.
 
-## Example 3 — Model Real-World Situations
+a. Write a system of inequalities to represent this situation. Define your variables.
 
-Write, graph, and interpret systems of inequalities based on contextual constraints.
+b. Graph the system.
 
-### Step 1: Define the Variables
+c. List three viable solutions.
 
-Identify what each variable represents in the situation.
+### Problem 14
 
-### Step 2: Write the System
+**Souvenirs.** Emiliana wants to buy turquoise stones on her trip to New Mexico to give to at least 4 of her friends. The gift shop sells stones for either $4 or $6 per stone. Emiliana has no more than $30 to spend.
 
-Translate each constraint into an inequality.
+a. Write a system of inequalities to represent this situation. Define your variables.
 
-For an exercise program where a person walks from 9 to 12 miles and works out from 4.5 to 6 hours per week:
+b. Graph the system.
 
-[
-9 \le m \le 12
-]
-
-[
-4.5 \le h \le 6
-]
-
-For souvenir stones costing either [ 4 ] or [ 6 ] with a budget of no more than [ 30 ], buying at least 4 stones:
-
-[
-f + s \ge 4
-]
-
-[
-4f + 6s \le 30
-]
-
-where [ f ] is the number of [ 4 ]-dollar stones and [ s ] is the number of [ 6 ]-dollar stones.
-
-### Step 3: Graph and Interpret
-
-Graph the system and list viable solutions as ordered pairs that satisfy all constraints and make sense in context.
+c. List three viable solutions.
 
 ## Mixed Exercises
 
-The mixed exercises integrate all skills from the lesson:
+### Problem 15
 
-* Writing systems of inequalities from given graphs.
-* Verifying whether a point is a solution by substitution.
-* Solving word problems by defining variables, writing systems, graphing, and interpreting solutions.
-* Analyzing conceptual questions about parallel boundaries, equivalent systems, and special cases.
-* Creating original systems to match given conditions, such as a system with no solution or a system equivalent to an absolute-value inequality.
+Write a system of inequalities for the graph.
 
-## Review Notes
+![Two solid parallel lines with the region between them shaded.](/curriculum/module-7-lesson-5/problem-15.png)
 
-* Problems 15–18 require images of graphed systems that could not be described in the extracted source. A human reviewer should inspect the original worksheet images and translate each graph into a system of inequalities.
-* Problem 18 references a graph "shown at the right" that was not available in extracted form.
+Graph description: The grid has unit spacing. One solid line passes through `(-2, 0)` and `(0, 2)`. The other solid line passes through `(0, -3)` and `(3, 0)`. The strip between the lines is shaded. Both boundaries are included.
+
+### Problem 16
+
+Write a system of inequalities for the graph.
+
+![Two dashed diagonal lines through the origin with the upper region shaded.](/curriculum/module-7-lesson-5/problem-16.png)
+
+Graph description: The grid has unit spacing. Both dashed lines pass through `(0, 0)`. One also passes through `(1, 1)`. The other also passes through `(-1, 1)`. The region above both lines is shaded. Neither boundary is included.
+
+### Problem 17
+
+Write a system of inequalities for the graph.
+
+![A solid rising line and a dashed horizontal line with their left wedge shaded.](/curriculum/module-7-lesson-5/problem-17.png)
+
+Graph description: The grid has unit spacing. A solid line passes through `(-1, 0)` and `(0, 1)`. A dashed horizontal line passes through `(0, 1)`. The region above the solid line and below the dashed line is shaded. The solid boundary is included. The dashed boundary is excluded.
+
+### Problem 18
+
+**Precision.** Write a system of inequalities to represent the graph.
+
+![A shaded trapezoid with four solid sides in the first quadrant.](/curriculum/module-7-lesson-5/problem-18.png)
+
+Graph description: The grid has unit spacing. The trapezoid has vertices `(1, 1)`, `(2, 3)`, `(3, 3)`, and `(4, 1)`. Each side is solid. The interior and all four sides are shaded.
+
+### Problem 19
+
+**Construct arguments.** Is `(2.5, 1)` a solution of the system `2x + 3y > 8` and `4x - 5y >= 2`? Justify your argument. Then explain how you can tell if the point is a solution without graphing the inequality.
+
+### Problem 20
+
+**Pets.** Priya's Pet Store never has more than a combined total of 20 cats and dogs and never more than 8 cats. This is represented by `x + y <= 20` and `x <= 8`. Represent the number of cats and dogs that can be at the store on a graph. Solve the system of inequalities by graphing.
+
+### Problem 21
+
+**Fundraising.** The baseball team plans to sell tins of popcorn and peanuts. The players have $900 to spend on products and can order up to 200 tins. They want to order at least as many tins of popcorn as tins of peanuts. A tin of popcorn costs $3. A tin of peanuts costs $4. Define the variables and write a system of inequalities to represent this situation. Then list any constraints for the variables.
+
+### Problem 22
+
+**Business.** For maximum efficiency, a factory must have at least 100 workers, but no more than 200 workers on a shift. The factory also must manufacture at least 30 units per worker.
+
+a. Let `x` be the number of workers. Let `y` be the number of units. Write a system of inequalities that expresses the conditions in the problem.
+
+b. Graph the system of inequalities.
+
+c. Find three possible solutions.
+
+### Problem 23
+
+**Design.** LaShawn designs Web sites for local businesses. He charges $25 an hour to build a Web site. He charges $15 an hour to update Web sites once he builds them. He wants to earn at least $100 every week, but he does not want to work more than 6 hours each week. What is a possible number of hours LaShawn can spend each week building Web sites `x` and updating Web sites `y` that will allow him to attain his goals? Write your answer as an ordered pair.
+
+### Problem 24
+
+**Persevere.** Create a system of inequalities equivalent to `|x| <= 4`.
+
+### Problem 25
+
+**Analyze.** State whether the following statement is sometimes, always, or never true. Justify your argument.
+
+Systems of inequalities with parallel boundaries have no solutions.
+
+### Problem 26
+
+**Create.** One inequality in a system is `3x - y > 4`. Write a second inequality so that the system will have no solution.
+
+### Problem 27
+
+**Persevere.** Graph the system `y >= 1`, `y <= x + 4`, and `y <= -x + 4`. Estimate the area that represents the solution of the system.
+
+### Problem 28
+
+**Write.** Describe the graph of the solution of the system `6x - 3y <= -5` and `6x - 3y >= -5` without graphing. Explain your reasoning.
+
+## Source Notes
+
+The four graph images are the original embedded worksheet figures. The graph descriptions state their visible boundaries and shading. They do not give a solved inequality system. The Learn section gives general method guidance. It is not recovered textbook Worked Example prose.
