@@ -712,7 +712,7 @@ Removed b73d and bc11 after exact preservation and independent review. Recovery 
 
 The IM1 stored coverage order defect is corrected in `02954d9d6`. All 499 record bodies and all aggregate values are unchanged. Parent and independent checks passed all 37 audit and coverage tests. Builder parity now passes. See `im1-coverage-order-final-review.md`.
 
-- [~] Task IM3-QF learner integration scope: Trace the committed LessonRenderer submission flow and Lesson 1.6 source placements after the draft backend commit. Define the smallest source-based Worked, Guided, and Independent integration that uses the existing server receipt path. Identify required Guided step checks and later-attempt variation. Preserve draft approval and no-progression behavior. Reuse the current IM3 candidate. Do not add a pilot, storage system, or live seed.
+- [x] Task IM3-QF learner integration scope: Trace the committed LessonRenderer submission flow and Lesson 1.6 source placements after the draft backend commit. Define the smallest source-based Worked, Guided, and Independent integration that uses the existing server receipt path. Identify required Guided step checks and later-attempt variation. Preserve draft approval and no-progression behavior. Reuse the current IM3 candidate. Do not add a pilot, storage system, or live seed.
 
 - [x] Task completed IM1 candidate cleanup: Remove the completed G53 through G55 candidate after final process checks. All 8,576 regular tracked files have reachable Git copies. Independent review found no unique authored content or mode changes. The remaining dependency links and build output are disposable. Preserve the current IM3 candidate.
 
@@ -721,3 +721,7 @@ Removed the completed IM1 candidate after parent and independent content checks.
 - [x] Task bda5 and d243 preservation: Save ten unique bda5 files and eleven unique d243 files in separate recovery commits on their exact saved base. Preserve bytes and modes. The older graph proposals remain unreviewed. Remove the directories only after independent snapshot checks and final process checks.
 
 Removed bda5 and d243 after parent and independent preservation checks. Recovery commits `e1f0b8b87` and `727d2bf22` preserve their 21 unique files. Only two saved worktrees remain: `02d6` and `18ee`. They retain shared working states and require separate review. See `saved-bda5-d243-final-cleanup-review.md`.
+
+The learner integration scope is accepted with a two-path source Worked batch first. The current seed publishes its lesson version and skips existing phases. Keep draft generated modes outside that published lesson. Strict receipt wiring, Guided checks, and immutable later attempts remain separate required contracts. See `im3-quadratic-formula-learner-integration-scope.md`.
+
+- [~] Task IM3-QF source Worked seed: Replace the invented quadratic-solving Worked content in phases 4 through 6 with exact source examples .036 through .038. Use inline text and remove the broken solver activity sections. Preserve all other phases and the two separate draft generated records. Change only the seed and its test. This repairs new seeds only; existing deployed lesson versions require later reviewed migration. Do not deploy or run a live seed.
