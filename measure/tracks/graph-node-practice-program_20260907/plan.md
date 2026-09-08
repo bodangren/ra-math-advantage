@@ -352,3 +352,5 @@ Q37 unit 6 dependency tracing found the selected teacher writer already committe
 Independent review accepted the G47 ten-candidate proposal and the median-to-five-number-summary prerequisite proposal. Edge 1273 is absent from the active graph but remains in a review queue. Its consumer and historical status are under inspection before any queue change. See `im1-lesson94-proposal-independent-review.md`.
 
 G47 first source candidate failed parent review. It changed several mathematical variables and contexts despite six passing source tests. No source patch was applied. Complete original wording and full-context regressions are required. See `im1-lesson94-source-first-review.md`.
+
+Q37 unit 5 first candidate failed parent source review. Its ordinary bodies predate the accepted Q23 lesson. The required version-2 layout and exact seven-body parity dependency are now explicit. Use the committed lesson from `7aabe987`; preserve all selected activity data. See `precalc-runtime-unit5-first-review.md`.

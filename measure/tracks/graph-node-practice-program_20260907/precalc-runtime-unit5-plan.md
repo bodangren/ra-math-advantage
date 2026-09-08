@@ -19,3 +19,7 @@ Add a real seed-to-`course.getLesson` test. Prove that the public section contai
 Run the unit 4 learner tests and the selected backend suites. Run lint, a fresh build, and post-build standalone TypeScript with candidate package source mappings. Obtain independent review before integration. Record exact commands and results.
 
 This unit does not approve a source, node, or blueprint. It does not run a live seed or deploy. Teacher interface integration and the full selected browser sequence remain later requirements.
+
+## Confirmed source-layout dependency
+
+Parent review confirmed that the version-2 Worked layout is required. Match all seven ordinary text bodies to the accepted lesson committed in `7aabe987`. Include the existing real seed-to-lesson parity regression. The first candidate used pre-Q23 text and is rejected. No lesson edit is expected. Preserve the accepted recovered source section and all selected activity data. See `precalc-runtime-unit5-first-review.md`.
