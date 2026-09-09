@@ -35,6 +35,7 @@ function memoryContext() {
   const table = (name: string) => (rows[name] ??= []);
   const db = {
     async get(first: string, second?: string) { const id = second ?? first; return Object.values(rows).flat().find((row) => row._id === id) ?? null; },
+    normalizeId: (name: string, id: string) => id.startsWith(`${name}:`) ? id : null,
     query(name: string) {
       return { withIndex(_index: string, configure: (query: { eq(field: string, value: unknown): unknown }) => unknown) {
         const conditions = new Map<string, unknown>();

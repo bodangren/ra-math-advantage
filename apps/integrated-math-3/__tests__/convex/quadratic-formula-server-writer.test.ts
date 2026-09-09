@@ -18,6 +18,7 @@ import {
 import {
   IM3_QF_DRAFT_MAPPINGS,
   IM3_QF_NODE,
+  quadraticFormulaPublicProps,
 } from "@/lib/activities/server-grading";
 import { getLessonProgress } from "@/convex/student";
 import {
@@ -35,12 +36,14 @@ function memoryContext() {
   const db = {
     get: async (...args: string[]) => {
       const id = args.at(-1);
+      if (typeof id !== "string" || !id.includes(":")) throw new Error("Invalid Convex ID");
       return (
         Object.values(rows)
           .flat()
-          .find((row) => row._id === id) ?? null
+        .find((row) => row._id === id) ?? null
       );
     },
+    normalizeId: (name: string, id: string) => id.startsWith(`${name}:`) ? id : null,
     query(name: string) {
       return {
         collect: async () => table(name),
@@ -227,7 +230,133 @@ async function fixture(mode: keyof typeof IM3_QF_DRAFT_MAPPINGS) {
   return { ...mem, userId, activityId, submissionData };
 }
 
+function addLessonSection(
+  f: Awaited<ReturnType<typeof fixture>>,
+  content: Record<string, unknown> = {
+    componentKey: "quadratic-formula",
+    activityId: f.activityId,
+  },
+) {
+  f.table("lessons").push({ _id: "lessons:qf", slug: "qf-projection", title: "QF", unitNumber: 1, orderIndex: 6 });
+  f.table("lesson_versions").push({ _id: "lesson_versions:qf", lessonId: "lessons:qf", version: 1, status: "published" });
+  f.table("phase_versions").push({ _id: "phase_versions:qf", lessonVersionId: "lesson_versions:qf", phaseNumber: 1, phaseType: "guided_practice" });
+  f.table("phase_sections").push({ _id: "phase_sections:qf", phaseVersionId: "phase_versions:qf", sequenceOrder: 1, sectionType: "activity", content: structuredClone(content) });
+}
+
+async function projectedQfContent(f: Awaited<ReturnType<typeof fixture>>) {
+  const result = await (getLessonProgress as unknown as { _handler(ctx: unknown, args: unknown): Promise<any> })._handler(f.ctx, { userId: f.userId, lessonIdentifier: "qf-projection" });
+  return result.phases[0].sections[0].content as Record<string, unknown>;
+}
+
 describe("draft quadratic-formula server writer", () => {
+  it.each(["guided_practice", "independent_practice"] as const)("projects the exact public %s identity into a minimal lesson section", async mode => {
+    const f = await fixture(mode);
+    addLessonSection(f);
+    const content = await projectedQfContent(f);
+    expect(content).toEqual({
+      activityId: f.activityId,
+      componentKey: "quadratic-formula",
+      stableActivityId: IM3_QF_DRAFT_MAPPINGS[mode].stableActivityId,
+      masteryNodeId: IM3_QF_NODE,
+      learningEvidenceMode: mode,
+      srsEligible: false,
+      activityProps: quadraticFormulaPublicProps(mode, IM3_QF_DRAFT_MAPPINGS[mode].seed),
+    });
+    expect(JSON.stringify(content)).not.toMatch(/seed|variantKey|privateSentinel|canonicalRoots|gradingConfig|approval/);
+  });
+
+  it("derives the mode from the physical stable activity ID", async () => {
+    const f = await fixture("guided_practice");
+    addLessonSection(f, {
+      activityId: f.activityId,
+      componentKey: "quadratic-formula",
+      stableActivityId: IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId,
+      learningEvidenceMode: "independent_practice",
+    });
+    const content = await projectedQfContent(f);
+    expect(content).toMatchObject({
+      stableActivityId: IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId,
+      learningEvidenceMode: "guided_practice",
+      activityProps: { presentationMode: "guided" },
+    });
+  });
+
+  it.each([
+    ["stable ID", (activity: Record<string, any>) => { activity.stableActivityId = "wrong"; }],
+    ["component key", (activity: Record<string, any>) => { activity.componentKey = "step-by-step-solver"; }],
+    ["mastery node", (activity: Record<string, any>) => { activity.masteryNodeId = "wrong"; }],
+    ["SRS flag", (activity: Record<string, any>) => { activity.srsEligible = true; }],
+    ["approval", (activity: Record<string, any>) => { activity.approval = { status: "approved" }; }],
+    ["public props", (activity: Record<string, any>) => { activity.props.prompt = "changed"; }],
+    ["presentation mode", (activity: Record<string, any>) => { activity.props.presentationMode = "independent"; }],
+  ])("makes a claimed QF section unavailable for an incoherent %s", async (_label, change) => {
+    const f = await fixture("guided_practice");
+    const activity = f.table("activities")[0];
+    change(activity);
+    addLessonSection(f, { activityId: f.activityId, componentKey: "quadratic-formula", stableActivityId: IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId, masteryNodeId: IM3_QF_NODE, learningEvidenceMode: "independent_practice", srsEligible: false, activityProps: quadraticFormulaPublicProps("independent_practice", IM3_QF_DRAFT_MAPPINGS.independent_practice.seed) });
+    expect(await projectedQfContent(f)).toEqual({ activityId: f.activityId, componentKey: "unavailable" });
+  });
+
+  it("makes a missing claimed QF activity unavailable", async () => {
+    const f = await fixture("guided_practice");
+    f.table("activities").length = 0;
+    addLessonSection(f);
+    expect(await projectedQfContent(f)).toEqual({ activityId: f.activityId, componentKey: "unavailable" });
+  });
+
+  it("makes a malformed QF activity ID unavailable without a raw database read", async () => {
+    const f = await fixture("guided_practice");
+    addLessonSection(f, { activityId: "not-a-convex-id", componentKey: "quadratic-formula" });
+    await expect(projectedQfContent(f)).resolves.toEqual({ activityId: "not-a-convex-id", componentKey: "unavailable" });
+  });
+
+  it("leaves an unrelated activity section unchanged", async () => {
+    const f = await fixture("guided_practice");
+    const content = { activityId: "activities:other", componentKey: "step-by-step-solver" };
+    addLessonSection(f, content);
+    expect(await projectedQfContent(f)).toEqual(content);
+  });
+
+  it("fails closed for a mastery-node-only QF claim with an unrelated physical activity", async () => {
+    const f = await fixture("guided_practice");
+    const activity = f.table("activities")[0];
+    activity.componentKey = "step-by-step-solver";
+    activity.stableActivityId = "other.activity";
+    activity.masteryNodeId = "other.node";
+    addLessonSection(f, { activityId: f.activityId, componentKey: "step-by-step-solver", masteryNodeId: IM3_QF_NODE });
+    expect(await projectedQfContent(f)).toEqual({ activityId: f.activityId, componentKey: "unavailable" });
+  });
+
+  it("constructs the QF projection without cached section fields", async () => {
+    const f = await fixture("guided_practice");
+    addLessonSection(f, {
+      activityId: f.activityId,
+      componentKey: "quadratic-formula",
+      privateSeed: 99,
+      variantKey: "private.variant",
+      gradingConfig: { answer: "private" },
+      approval: { status: "approved" },
+    });
+    expect(await projectedQfContent(f)).toEqual({
+      activityId: f.activityId,
+      componentKey: "quadratic-formula",
+      stableActivityId: IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId,
+      masteryNodeId: IM3_QF_NODE,
+      learningEvidenceMode: "guided_practice",
+      srsEligible: false,
+      activityProps: quadraticFormulaPublicProps("guided_practice", IM3_QF_DRAFT_MAPPINGS.guided_practice.seed),
+    });
+  });
+
+  it("does not let QF identity bypass the protected selected Worked source", async () => {
+    const f = await fixture("guided_practice");
+    f.table("lessons").push({ _id: "lessons:qf", slug: "module-1-lesson-1", title: "QF", unitNumber: 1, orderIndex: 1 });
+    f.table("lesson_versions").push({ _id: "lesson_versions:qf", lessonId: "lessons:qf", version: 1, status: "published" });
+    f.table("phase_versions").push({ _id: "phase_versions:qf", lessonVersionId: "lesson_versions:qf", phaseNumber: 4, phaseType: "guided_practice" });
+    f.table("phase_sections").push({ _id: "phase_sections:qf", phaseVersionId: "phase_versions:qf", sequenceOrder: 2, sectionType: "activity", content: { activityId: f.activityId, componentKey: "quadratic-formula" } });
+    const result = await (getLessonProgress as unknown as { _handler(ctx: unknown, args: unknown): Promise<any> })._handler(f.ctx, { userId: f.userId, lessonIdentifier: "module-1-lesson-1" });
+    expect(result.phases[0].sections[0].content).toEqual({ activityId: f.activityId, componentKey: "unavailable" });
+  });
   it("creates, round-trips, replays, and keeps request attempt telemetry separate from ordinal", async () => {
     const f = await fixture("guided_practice");
     const input = {

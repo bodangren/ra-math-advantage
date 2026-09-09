@@ -3,7 +3,7 @@ import {
   internalQuery,
   type QueryCtx,
 } from "./_generated/server";
-import { v, ConvexError } from "convex/values";
+import { v, ConvexError, convexToJson } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
 import {
@@ -27,11 +27,16 @@ import {
   IM3_PILOT_NODE,
   IM3_TEACHER_LED_ACTIVITY_ID,
 } from "../lib/practice/learning-evidence-pilot";
+import {
+  IM3_QF_DRAFT_MAPPINGS,
+  IM3_QF_NODE,
+  quadraticFormulaPublicProps,
+} from "../lib/activities/server-grading";
 
 const IM3_TEACHER_LED_LESSON_SLUG = "module-1-lesson-1";
 const IM3_TEACHER_LED_PHASE_NUMBER = 4;
 
-async function projectSelectedWorkedSection(ctx: QueryCtx, section: {
+async function projectActivitySection(ctx: QueryCtx, section: {
   _id: Id<"phase_sections">;
   sequenceOrder: number;
   sectionType: string;
@@ -39,28 +44,67 @@ async function projectSelectedWorkedSection(ctx: QueryCtx, section: {
 }, selectedSourceSection: boolean) {
   if (section.sectionType !== "activity") return section;
   const content = section.content as { activityId?: Id<"activities">; componentKey?: string; stableActivityId?: string };
-  const withoutSelectedIdentity = (activityStableId?: string) => {
-    const claimsSelectedIdentity = selectedSourceSection
-      || activityStableId === IM3_TEACHER_LED_ACTIVITY_ID
-      || content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-      || (content as Record<string, unknown>).masteryNodeId === IM3_PILOT_NODE;
-    if (!claimsSelectedIdentity) return section;
+  const withoutProjectedIdentity = () => {
     const { stableActivityId: _stableActivityId, masteryNodeId: _masteryNodeId,
       learningEvidenceMode: _learningEvidenceMode, srsEligible: _srsEligible,
       activityProps: _activityProps, ...storedContent } = content as Record<string, unknown>;
     return { ...section, content: { ...storedContent, componentKey: "unavailable" } };
   };
-  const activity = content.activityId ? await ctx.db.get(content.activityId) : null;
-  if (!isIm3GraphPilotPublished()) return withoutSelectedIdentity(activity?.stableActivityId);
-  if (!activity || !isSelectedWorkedActivity(activity)) return withoutSelectedIdentity(activity?.stableActivityId);
+  const activityId = content.activityId
+    ? ctx.db.normalizeId("activities", content.activityId)
+    : null;
+  const activity = activityId ? await ctx.db.get(activityId) : null;
+  const claimsSelectedIdentity = selectedSourceSection
+    || activity?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+    || content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+    || (content as Record<string, unknown>).masteryNodeId === IM3_PILOT_NODE;
+  if (claimsSelectedIdentity) {
+    if (!isIm3GraphPilotPublished() || !activity || !isSelectedWorkedActivity(activity)) {
+      return withoutProjectedIdentity();
+    }
+    return {
+      ...section,
+      content: {
+        ...content,
+        componentKey: activity.componentKey,
+        stableActivityId: activity.stableActivityId,
+        masteryNodeId: activity.masteryNodeId,
+        learningEvidenceMode: activity.learningEvidenceMode,
+        srsEligible: activity.srsEligible,
+        activityProps: activity.props,
+      },
+    };
+  }
+
+  const mappings = Object.entries(IM3_QF_DRAFT_MAPPINGS).filter(([, mapping]) => (
+    mapping.stableActivityId === activity?.stableActivityId
+  ));
+  const claimsQfIdentity = content.componentKey === "quadratic-formula"
+    || (content as Record<string, unknown>).masteryNodeId === IM3_QF_NODE
+    || activity?.componentKey === "quadratic-formula"
+    || activity?.masteryNodeId === IM3_QF_NODE
+    || mappings.length > 0
+    || content.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId
+    || content.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId;
+  if (!claimsQfIdentity) return section;
+  if (!activity || mappings.length !== 1) return withoutProjectedIdentity();
+  const [mode, mapping] = mappings[0] as [keyof typeof IM3_QF_DRAFT_MAPPINGS, (typeof IM3_QF_DRAFT_MAPPINGS)[keyof typeof IM3_QF_DRAFT_MAPPINGS]];
+  const expectedProps = quadraticFormulaPublicProps(mode, mapping.seed);
+  const valid = activity.componentKey === "quadratic-formula"
+    && activity.masteryNodeId === IM3_QF_NODE
+    && activity.srsEligible === false
+    && activity.approval?.status === "unreviewed"
+    && (activity.props as { presentationMode?: unknown }).presentationMode === mapping.presentationMode
+    && JSON.stringify(convexToJson(activity.props as never)) === JSON.stringify(convexToJson(expectedProps as never));
+  if (!valid) return withoutProjectedIdentity();
   return {
     ...section,
     content: {
-      ...content,
+      activityId: content.activityId,
       componentKey: activity.componentKey,
       stableActivityId: activity.stableActivityId,
       masteryNodeId: activity.masteryNodeId,
-      learningEvidenceMode: activity.learningEvidenceMode,
+      learningEvidenceMode: mode,
       srsEligible: activity.srsEligible,
       activityProps: activity.props,
     },
@@ -161,7 +205,7 @@ export const getLessonProgress = internalQuery({
           .query("phase_sections")
           .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
           .collect();
-        return Promise.all(sections.map((section) => projectSelectedWorkedSection(ctx, {
+        return Promise.all(sections.map((section) => projectActivitySection(ctx, {
           _id: section._id,
           sequenceOrder: section.sequenceOrder,
           sectionType: section.sectionType,
