@@ -784,10 +784,12 @@ Independent scope review adds the existing canonical SRS projection to the graph
 
 Parent and independent allocation review found legacy replay, public equation, reload, pending-row consumer, and seed rerun gaps. The first proposal is not accepted. A proposed optional variant reference still needs schema and consumer review. No allocation code is authorized by this scope review. See `im3-quadratic-formula-allocation-review-findings.md`.
 
-- [~] Task IM3-QF pending consumer correction: Exclude draft submission rows before teacher latest-evidence selection and from submission exports. Use the existing teacher and export handlers. Add tests with an older final QF row and a newer draft row. Preserve final evidence and export pagination. The exact pending contract has no score or timing; other readers need regression coverage, not speculative production changes. See `im3-quadratic-formula-pending-consumer-audit.md`.
+- [x] Task IM3-QF pending consumer correction: Exclude draft submission rows before teacher latest-evidence selection and from submission exports. Use the existing teacher and export handlers. Add tests with an older final QF row and a newer draft row. Preserve final evidence and export pagination. The exact pending contract has no score or timing; other readers need regression coverage, not speculative production changes. See `im3-quadratic-formula-pending-consumer-audit.md`.
 
 Graph binding correction is committed as `a85d31f16`. Parent and independent review accepted all sixteen paths. Default canonical authority now passes both draft modes. Teacher readiness and SRS eligibility remain false. See `im3-lesson16-binding-final-review.md`.
 
 The allocation implementation scope now defines the minimum private variant reference, shared scheduled variants, canonical first attempt, immutable legacy replay, explicit Start, reload, exact public output, and seed rerun behavior. See `im3-quadratic-formula-allocation-implementation-scope.md`.
 
 - [~] Task IM3-QF immutable allocation backend: Implement the seven backend paths and focused tests in the allocation implementation scope. Keep the teacher/export correction separate. Client integration, real transaction verification, browser use, and draft publication remain open.
+
+Pending consumer correction is committed as `f3f17b4be`. Three filters preserve finalized teacher evidence and exclude pending export rows. All four paths passed parent and independent review. See `im3-quadratic-formula-pending-consumer-final-review.md`.
