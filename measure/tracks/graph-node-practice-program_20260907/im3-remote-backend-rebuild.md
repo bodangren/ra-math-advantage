@@ -1,19 +1,31 @@
 # IM3 development backend rebuild
 
-The user deleted the entire remote project. It contained only seed/test data. The application had not rolled out. The user confirmed that advanced recovery is not required.
+The deleted IM3 test project is replaced. The user confirmed that it held only seed/test data and had not rolled out. Advanced recovery was not required.
 
-The replacement project is `integrated-math-3` under team `bodangren`. Its project ID is `2960816`. Its development deployment is `accurate-labrador-817`.
+Project: `bodangren/integrated-math-3` (ID `2960816`).
 
-The backend URL is `https://accurate-labrador-817.convex.cloud`.
+Development deployment: `accurate-labrador-817`.
 
-Committed backend source and schema were deployed. The source matched Git HEAD. The local browser fixture was excluded. The application connection change is committed as `b965a5756`. Lint, build, and separate post-build TypeScript passed. No frontend deployment has run.
+Backend URL: `https://accurate-labrador-817.convex.cloud`.
 
-The original seed orchestrator used invalid short function references. Its error handling could return without required data. Repair `1cde40221` maps the existing 67 calls to their registered modules. The handler, seed order, and lesson content are unchanged. The real handler regression failed before the repair. After the repair, 10 focused tests and 837 related tests passed. Lint, build, and separate post-build TypeScript passed. Parent and independent review accepted the exact two-file patch.
+The backend now contains 52 lessons, 44 competency standards, and 79 lesson-standard mappings. It also contains 388 activities, 91 practice variants, and 200 unique practice items. All checked references resolve. The five system activities preserve both source equations. The demo has five active students, one active teacher, and one deactivated test student. The declared demo phase states pass verification.
 
-Before seeding, a read-only remote query confirmed zero lessons, standards, and activities. The repaired orchestrator was deployed. The remote seed returned success at the command level. Only Lesson 1.6 loaded. The other 51 lesson seeds failed: 49 activity-props errors and two phase-section-content errors. All 44 standards loaded. One of 79 lesson-standard relations loaded. Stored data contains 44 objective policies, 89 practice variants, three practice items, one class, and five enrollments. The demo created seven profiles, including six students. It created zero progress rows. These results are partial bootstrap evidence. The helper result semantics and remaining lesson failures require review.
+## Repair and verification
 
-The separate local browser database remains available. Its browser test is paused. The main working tree contains unrelated changes. They remain intact. Only the main checkout is registered with Git.
+The first seed loaded only Lesson 1.6. It exposed invalid function references and legacy seed contracts. The repairs preserve current schemas and source content. They correct system transport, generic variant references, real demo phase progress, and a repeated activity read that exceeded Convex's 16 MiB limit.
 
-Independent verification confirms that seven profiles are expected: one teacher, five active students, and one deactivated test student. The demo progress helper targets missing Lesson 1.1 and returns an empty result. It writes activity_completions, not student_progress. A separate remote query confirms zero activity_completions. One generic quiz practice item has an unresolved variant key. Its physical activity link resolves. The generic helper writes a composite item key into variantKey, but only the parent family key exists in practice_variants. The two quadratic-formula allocation items are separate from this defect.
+The repaired source passed focused tests, related seed tests, lint, build, and separate post-build TypeScript. A separate local Convex backend verified the stored data. Independent review accepted that bounded proof.
 
-Completed seed-reference patch files and gate logs were removed after acceptance. The committed reviews, failed-test evidence, active candidate, local database, and real remote result files remain available.
+The committed source was then deployed to the replacement development backend. All 62 targeted seed calls passed: 51 failed lessons, nine mapping helpers, the generic practice helper, and the progress helper. These calls did not run seedAll or reset demo accounts. A final remote query and independent review passed. See `im3-remote-bootstrap-final-review.md` and `evidence/im3-seed-bootstrap-remote/`.
+
+The generic helper returned 7,838 family/activity outcomes. It stored 200 unique items. These counts do not establish graph-node practice coverage. Its existing first-200 activity selection remains unchanged.
+
+## Configuration and cleanup
+
+Wrangler uses the replacement URL through commit `b965a5756`. The main `.env.local` still selects its separate local deployment. The isolated candidate selects the replacement development deployment. No frontend or production deployment ran.
+
+The local deployment command changed the isolated connection file. The remote target check caught this before a remote call. An explicit development environment file selected the correct target for the final push. The temporary TypeScript settings were restored after each push.
+
+The temporary seed-test backend was stopped. Its database, storage, keys, environment files, and runner files were removed after review. The separate quadratic-formula browser fixture remains available for its open verification task. Only the main Git worktree is registered. Unrelated main changes remain intact.
+
+The backend rebuild is complete. Learner browser verification and the five-course Graph Node Practice Program remain open.
