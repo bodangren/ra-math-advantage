@@ -71,11 +71,12 @@ export const seedPracticeItems = internalMutation({
 
         if (fallbackActivities.length > 0) {
           for (const activity of fallbackActivities) {
-            const variantKey = `${seedVariantKey}:${activity._id}`;
-            if (!variantCounters[variantKey]) {
-              variantCounters[variantKey] = 0;
+            const counterKey = `${seedVariantKey}:${activity._id}`;
+            if (!variantCounters[counterKey]) {
+              variantCounters[counterKey] = 0;
             }
-            const variantNum = variantCounters[variantKey]++;
+            const variantNum = variantCounters[counterKey]++;
+            const variantKey = seedVariantKey;
             const variantLabel = variantNum === 0 ? "Set A" : variantNum === 1 ? "Set B" : `Set ${String.fromCharCode(65 + variantNum)}`;
 
             const practiceItemId = `${seedVariantKey}:${activity._id}`;
@@ -86,10 +87,14 @@ export const seedPracticeItems = internalMutation({
               .first();
 
             if (existing) {
+              const ownsItem = existing.legacyProblemFamilyId === seedVariantKey;
+              if (ownsItem && existing.variantKey !== seedVariantKey) {
+                await ctx.db.patch(existing._id, { variantKey: seedVariantKey });
+              }
               results.push({
                 practiceItemId: existing.practiceItemId,
                 activityId: activity._id,
-                variantKey,
+                variantKey: ownsItem ? seedVariantKey : existing.variantKey,
                 success: true,
               });
               continue;
@@ -143,11 +148,12 @@ export const seedPracticeItems = internalMutation({
       }
 
       for (const activity of matchingActivities) {
-        const variantKey = `${seedVariantKey}:${activity._id}`;
-        if (!variantCounters[variantKey]) {
-          variantCounters[variantKey] = 0;
+        const counterKey = `${seedVariantKey}:${activity._id}`;
+        if (!variantCounters[counterKey]) {
+          variantCounters[counterKey] = 0;
         }
-        const variantNum = variantCounters[variantKey]++;
+        const variantNum = variantCounters[counterKey]++;
+        const variantKey = seedVariantKey;
         const variantLabel = variantNum === 0 ? "Set A" : variantNum === 1 ? "Set B" : `Set ${String.fromCharCode(65 + variantNum)}`;
 
         const practiceItemId = `${seedVariantKey}:${activity._id}`;
@@ -158,10 +164,14 @@ export const seedPracticeItems = internalMutation({
           .first();
 
         if (existing) {
+          const ownsItem = existing.legacyProblemFamilyId === seedVariantKey;
+          if (ownsItem && existing.variantKey !== seedVariantKey) {
+            await ctx.db.patch(existing._id, { variantKey: seedVariantKey });
+          }
           results.push({
             practiceItemId: existing.practiceItemId,
             activityId: activity._id,
-            variantKey,
+            variantKey: ownsItem ? seedVariantKey : existing.variantKey,
             success: true,
           });
           continue;
