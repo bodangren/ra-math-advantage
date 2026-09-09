@@ -21,7 +21,12 @@ it("uses one 180-period calendar with exact source lesson coverage", () => {
       expect(lesson, period.periodId).toBeDefined();
       taught.add(period.sourceLesson);
       expect(period.objective.length).toBeGreaterThan(10);
-      expect(period.workedExamples.length).toBeGreaterThan(0);
+      const sourceWorkedExamples = lesson?.phases.filter(
+        (phase) => phase.phaseType === "worked_example",
+      );
+      if (sourceWorkedExamples?.length)
+        expect(period.workedExamples.length).toBeGreaterThan(0);
+      else expect(period.workedExamples).toEqual([]);
       expect(period.workedExamples.length).toBeLessThanOrEqual(3);
       for (const title of period.workedExamples)
         expect(lesson?.phases.some((phase) => phase.title === title)).toBe(
