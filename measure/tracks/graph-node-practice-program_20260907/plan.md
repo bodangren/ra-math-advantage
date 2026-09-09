@@ -793,3 +793,5 @@ The allocation implementation scope now defines the minimum private variant refe
 - [~] Task IM3-QF immutable allocation backend: Implement the seven backend paths and focused tests in the allocation implementation scope. Keep the teacher/export correction separate. Client integration, real transaction verification, browser use, and draft publication remain open.
 
 Pending consumer correction is committed as `f3f17b4be`. Three filters preserve finalized teacher evidence and exclude pending export rows. All four paths passed parent and independent review. See `im3-quadratic-formula-pending-consumer-final-review.md`.
+
+- [~] Task IM3-L16 discriminant practice scope: Inspect the existing discriminant component, schema, generator, and grading paths. Define source-based Guided and Independent responses for the separate classification skill. Keep source Worked examples distinct from unanswered checks. Prefer existing contracts and components. This is read-only scope work while QF allocation proceeds.
