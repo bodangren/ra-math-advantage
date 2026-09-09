@@ -1,0 +1,793 @@
+{
+  "demo": {
+    "success": true
+  },
+  "lessonStandards": [
+    {
+      "lessonSlug": "module-1-lesson-1",
+      "standardCode": "HSF-IF.C.7c",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-1",
+      "standardCode": "HSA-SSE.B.3",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-2",
+      "standardCode": "HSA-REI.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-3",
+      "standardCode": "N-CN.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-3",
+      "standardCode": "N-CN.C.7",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-4",
+      "standardCode": "HSA-REI.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-5",
+      "standardCode": "HSA-REI.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-6",
+      "standardCode": "HSA-REI.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-7",
+      "standardCode": "HSA-CED.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-7",
+      "standardCode": "HSA-CED.A.3",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-1-lesson-8",
+      "standardCode": "HSA-REI.C.7",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-2-lesson-1",
+      "standardCode": "HSA-APR.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-2-lesson-1",
+      "standardCode": "HSF-IF.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-2-lesson-1",
+      "standardCode": "HSF-IF.C.7c",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-2-lesson-2",
+      "standardCode": "HSF-IF.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-2-lesson-3",
+      "standardCode": "HSA-APR.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-2-lesson-4",
+      "standardCode": "HSA-APR.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-2-lesson-5",
+      "standardCode": "HSA-APR.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-3-lesson-1",
+      "standardCode": "HSA-REI.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-3-lesson-2",
+      "standardCode": "HSA-APR.B.3",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-3-lesson-2",
+      "standardCode": "HSA-REI.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-3-lesson-3",
+      "standardCode": "HSA-APR.C.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-3-lesson-4",
+      "standardCode": "HSA-APR.B.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-3-lesson-4",
+      "standardCode": "HSA-APR.B.3",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-3-lesson-5",
+      "standardCode": "HSA-APR.B.3",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-4-lesson-1",
+      "standardCode": "HSF-BF.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-4-lesson-1",
+      "standardCode": "HSF-BF.A.1a",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-4-lesson-2",
+      "standardCode": "HSF-BF.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-4-lesson-3",
+      "standardCode": "N-RN.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-4-lesson-3",
+      "standardCode": "N-RN.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-4-lesson-4",
+      "standardCode": "HSF-IF.C.7a",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-4-lesson-5",
+      "standardCode": "N-RN.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-4-lesson-6",
+      "standardCode": "HSA-CED.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-1",
+      "standardCode": "HSF-IF.C.7e",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-1",
+      "standardCode": "HSF-LE.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-2",
+      "standardCode": "HSF-LE.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-2",
+      "standardCode": "HSF-LE.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-3",
+      "standardCode": "HSF-LE.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-3",
+      "standardCode": "HSF-LE.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-4",
+      "standardCode": "HSF-LE.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-4",
+      "standardCode": "HSF-LE.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-5",
+      "standardCode": "HSF-LE.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-5-lesson-5",
+      "standardCode": "HSF-LE.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-6-lesson-1",
+      "standardCode": "HSF-BF.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-6-lesson-1",
+      "standardCode": "HSF-IF.C.7e",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-6-lesson-2",
+      "standardCode": "HSF-BF.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-6-lesson-3",
+      "standardCode": "HSF-LE.A.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-6-lesson-3",
+      "standardCode": "HSF-BF.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-6-lesson-4",
+      "standardCode": "HSF-LE.A.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-6-lesson-4",
+      "standardCode": "HSF-IF.C.7e",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-6-lesson-5",
+      "standardCode": "HSF-LE.A.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-7-lesson-1",
+      "standardCode": "HSA-APR.D.6",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-7-lesson-2",
+      "standardCode": "HSA-APR.D.6",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-7-lesson-3",
+      "standardCode": "HSF-IF.C.7d",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-7-lesson-4",
+      "standardCode": "HSF-IF.C.7d",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-7-lesson-5",
+      "standardCode": "HSF-LE.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-7-lesson-5",
+      "standardCode": "HSF-IF.C.7e",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-7-lesson-6",
+      "standardCode": "HSA-REI.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-7-lesson-6",
+      "standardCode": "HSA-CED.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-1",
+      "standardCode": "HSS-IC.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-1",
+      "standardCode": "HSS-IC.B.3",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-2",
+      "standardCode": "HSS-IC.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-2",
+      "standardCode": "HSS-IC.B.6",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-3",
+      "standardCode": "HSS-ID.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-3",
+      "standardCode": "HSS-ID.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-4",
+      "standardCode": "HSS-ID.B.6",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-4",
+      "standardCode": "HSS-ID.A.3",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-5",
+      "standardCode": "HSS-IC.B.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-8-lesson-5",
+      "standardCode": "HSS-IC.B.6",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-1",
+      "standardCode": "HSF-TF.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-2",
+      "standardCode": "HSF-TF.A.1",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-2",
+      "standardCode": "HSF-TF.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-3",
+      "standardCode": "HSF-TF.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-3",
+      "standardCode": "HSF-TF.A.4",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-4",
+      "standardCode": "HSF-TF.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-4",
+      "standardCode": "HSF-TF.A.2",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-5",
+      "standardCode": "HSF-TF.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-6",
+      "standardCode": "HSF-TF.B.5",
+      "success": true
+    },
+    {
+      "lessonSlug": "module-9-lesson-7",
+      "standardCode": "HSF-TF.A.2",
+      "success": true
+    }
+  ],
+  "lessons": [
+    {
+      "slug": "module-1-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-1-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-1-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-1-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-1-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-1-lesson-6",
+      "success": true
+    },
+    {
+      "slug": "module-1-lesson-7",
+      "success": true
+    },
+    {
+      "slug": "module-1-lesson-8",
+      "success": true
+    },
+    {
+      "slug": "module-2-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-2-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-2-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-2-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-2-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-3-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-3-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-3-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-3-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-3-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-4-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-4-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-4-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-4-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-4-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-4-lesson-6",
+      "success": true
+    },
+    {
+      "slug": "module-5-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-5-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-5-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-5-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-5-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-6-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-6-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-6-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-6-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-6-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-7-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-7-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-7-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-7-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-7-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-7-lesson-6",
+      "success": true
+    },
+    {
+      "slug": "module-8-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-8-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-8-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-8-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-8-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-9-lesson-1",
+      "success": true
+    },
+    {
+      "slug": "module-9-lesson-2",
+      "success": true
+    },
+    {
+      "slug": "module-9-lesson-3",
+      "success": true
+    },
+    {
+      "slug": "module-9-lesson-4",
+      "success": true
+    },
+    {
+      "slug": "module-9-lesson-5",
+      "success": true
+    },
+    {
+      "slug": "module-9-lesson-6",
+      "success": true
+    },
+    {
+      "slug": "module-9-lesson-7",
+      "success": true
+    }
+  ],
+  "progress": {
+    "success": true
+  },
+  "standards": [
+    {
+      "code": "HSA-SSE.B.3",
+      "success": true
+    },
+    {
+      "code": "HSA-REI.B.4",
+      "success": true
+    },
+    {
+      "code": "HSA-APR.A.1",
+      "success": true
+    },
+    {
+      "code": "HSA-APR.B.2",
+      "success": true
+    },
+    {
+      "code": "HSA-APR.B.3",
+      "success": true
+    },
+    {
+      "code": "HSA-CED.A.1",
+      "success": true
+    },
+    {
+      "code": "N-CN.A.1",
+      "success": true
+    },
+    {
+      "code": "N-CN.C.7",
+      "success": true
+    },
+    {
+      "code": "N-RN.A.1",
+      "success": true
+    },
+    {
+      "code": "N-RN.A.2",
+      "success": true
+    },
+    {
+      "code": "HSF-IF.B.4",
+      "success": true
+    },
+    {
+      "code": "HSF-BF.A.1",
+      "success": true
+    },
+    {
+      "code": "HSF-BF.B.3",
+      "success": true
+    },
+    {
+      "code": "HSF-BF.B.4",
+      "success": true
+    },
+    {
+      "code": "HSF-BF.B.5",
+      "success": true
+    },
+    {
+      "code": "HSF-LE.A.4",
+      "success": true
+    },
+    {
+      "code": "HSF-IF.C.7e",
+      "success": true
+    },
+    {
+      "code": "HSF-LE.A.1",
+      "success": true
+    },
+    {
+      "code": "HSA-CED.A.2",
+      "success": true
+    },
+    {
+      "code": "HSA-APR.D.6",
+      "success": true
+    },
+    {
+      "code": "HSF-IF.C.7d",
+      "success": true
+    },
+    {
+      "code": "HSA-REI.A.2",
+      "success": true
+    },
+    {
+      "code": "HSS-ID.A.1",
+      "success": true
+    },
+    {
+      "code": "HSS-ID.A.2",
+      "success": true
+    },
+    {
+      "code": "HSS-ID.A.3",
+      "success": true
+    },
+    {
+      "code": "HSS-ID.B.6",
+      "success": true
+    },
+    {
+      "code": "HSS-IC.A.1",
+      "success": true
+    },
+    {
+      "code": "HSS-IC.B.3",
+      "success": true
+    },
+    {
+      "code": "HSS-IC.B.4",
+      "success": true
+    },
+    {
+      "code": "HSS-IC.B.5",
+      "success": true
+    },
+    {
+      "code": "HSS-IC.B.6",
+      "success": true
+    },
+    {
+      "code": "HSF-TF.A.1",
+      "success": true
+    },
+    {
+      "code": "HSF-TF.A.2",
+      "success": true
+    },
+    {
+      "code": "HSF-TF.A.4",
+      "success": true
+    },
+    {
+      "code": "HSF-TF.B.5",
+      "success": true
+    },
+    {
+      "code": "HSA-CED.A.3",
+      "success": true
+    },
+    {
+      "code": "HSA-REI.C.7",
+      "success": true
+    },
+    {
+      "code": "HSF-IF.C.7c",
+      "success": true
+    },
+    {
+      "code": "HSF-IF.A.2",
+      "success": true
+    },
+    {
+      "code": "HSA-APR.C.4",
+      "success": true
+    },
+    {
+      "code": "HSF-IF.C.7a",
+      "success": true
+    },
+    {
+      "code": "HSF-BF.A.1a",
+      "success": true
+    },
+    {
+      "code": "HSF-LE.A.2",
+      "success": true
+    },
+    {
+      "code": "HSF-LE.B.5",
+      "success": true
+    }
+  ]
+}

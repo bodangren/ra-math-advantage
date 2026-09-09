@@ -1,0 +1,342 @@
+{
+  "badReferences": {
+    "activitySections": 0,
+    "completions": 0,
+    "items": 0,
+    "phases": 0,
+    "progress": 0,
+    "sections": 0,
+    "standards": 0,
+    "versions": 0
+  },
+  "counts": {
+    "activities": 388,
+    "activity_completions": 18,
+    "class_enrollments": 5,
+    "classes": 1,
+    "competency_standards": 44,
+    "lesson_standards": 79,
+    "lesson_versions": 52,
+    "lessons": 52,
+    "objective_policies": 44,
+    "organizations": 1,
+    "phase_sections": 979,
+    "phase_versions": 594,
+    "practice_items": 4,
+    "practice_variants": 91,
+    "profiles": 7,
+    "student_progress": 30
+  },
+  "demoStates": [
+    {
+      "alias": "student1",
+      "completionPhases": [],
+      "incoherentCompletions": 0,
+      "progress": []
+    },
+    {
+      "alias": "student2",
+      "completionPhases": [
+        1
+      ],
+      "incoherentCompletions": 0,
+      "progress": [
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 1,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 2,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": false,
+          "phaseNumber": 3,
+          "status": "in_progress"
+        }
+      ]
+    },
+    {
+      "alias": "student3",
+      "completionPhases": [
+        1,
+        4,
+        5
+      ],
+      "incoherentCompletions": 0,
+      "progress": [
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 1,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 2,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 3,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 4,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 5,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": false,
+          "phaseNumber": 6,
+          "status": "in_progress"
+        }
+      ]
+    },
+    {
+      "alias": "student4",
+      "completionPhases": [
+        1,
+        4,
+        5,
+        6,
+        8,
+        9
+      ],
+      "incoherentCompletions": 0,
+      "progress": [
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 1,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 2,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 3,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 4,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 5,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 6,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 7,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 8,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 9,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "alias": "student5",
+      "completionPhases": [
+        1,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "incoherentCompletions": 0,
+      "progress": [
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 1,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 2,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 3,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 4,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 5,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 6,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 7,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 8,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 9,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 10,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 11,
+          "status": "completed"
+        },
+        {
+          "hasCompletedAt": true,
+          "phaseNumber": 12,
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "lessonSlugs": [
+    "module-1-lesson-1",
+    "module-1-lesson-2",
+    "module-1-lesson-3",
+    "module-1-lesson-4",
+    "module-1-lesson-5",
+    "module-1-lesson-6",
+    "module-1-lesson-7",
+    "module-1-lesson-8",
+    "module-2-lesson-1",
+    "module-2-lesson-2",
+    "module-2-lesson-3",
+    "module-2-lesson-4",
+    "module-2-lesson-5",
+    "module-3-lesson-1",
+    "module-3-lesson-2",
+    "module-3-lesson-3",
+    "module-3-lesson-4",
+    "module-3-lesson-5",
+    "module-4-lesson-1",
+    "module-4-lesson-2",
+    "module-4-lesson-3",
+    "module-4-lesson-4",
+    "module-4-lesson-5",
+    "module-4-lesson-6",
+    "module-5-lesson-1",
+    "module-5-lesson-2",
+    "module-5-lesson-3",
+    "module-5-lesson-4",
+    "module-5-lesson-5",
+    "module-6-lesson-1",
+    "module-6-lesson-2",
+    "module-6-lesson-3",
+    "module-6-lesson-4",
+    "module-6-lesson-5",
+    "module-7-lesson-1",
+    "module-7-lesson-2",
+    "module-7-lesson-3",
+    "module-7-lesson-4",
+    "module-7-lesson-5",
+    "module-7-lesson-6",
+    "module-8-lesson-1",
+    "module-8-lesson-2",
+    "module-8-lesson-3",
+    "module-8-lesson-4",
+    "module-8-lesson-5",
+    "module-9-lesson-1",
+    "module-9-lesson-2",
+    "module-9-lesson-3",
+    "module-9-lesson-4",
+    "module-9-lesson-5",
+    "module-9-lesson-6",
+    "module-9-lesson-7"
+  ],
+  "profileRoleCounts": {
+    "student": 6,
+    "teacher": 1
+  },
+  "systems": [
+    {
+      "equations": {
+        "first": "x = 2y^2 + 3y + 1",
+        "second": "-x + y = -1"
+      },
+      "hasSingleEquation": false,
+      "problemType": "system"
+    },
+    {
+      "equations": {
+        "first": "x^2 = y + 5",
+        "second": "-x + y = 7"
+      },
+      "hasSingleEquation": false,
+      "problemType": "system"
+    },
+    {
+      "equations": {
+        "first": "y = x^2 - 2x + 6",
+        "second": "y = 4x + 1"
+      },
+      "hasSingleEquation": false,
+      "problemType": "system"
+    },
+    {
+      "equations": {
+        "first": "R = -0.1x^2 + 4x",
+        "second": "R = 42"
+      },
+      "hasSingleEquation": false,
+      "problemType": "system"
+    },
+    {
+      "equations": {
+        "first": "y = x^2 + 2x",
+        "second": "y = -x^2 + 4x + 6"
+      },
+      "hasSingleEquation": false,
+      "problemType": "system"
+    }
+  ],
+  "uniqueItemIds": 4,
+  "uniqueLessonSlugs": 52,
+  "uniqueStandardCodes": 44,
+  "uniqueVariantKeys": 91
+}

@@ -2,23 +2,25 @@
 
 ## Decision
 
-Rejected as proof of a complete bootstrap.
+Accepted as bounded real local Convex proof for the current bootstrap contract.
 
-The lesson, standards, mapping, solver-system, and demo-progress portions pass.
+The lesson, standards, mapping, solver-system, demo-progress, and repaired generic practice-item helper checks pass.
 
-The generic practice-item helper fails on the real local backend. `seedAll` catches this failure and still returns success for the other sections. Thus, the top-level result is not complete bootstrap proof.
+This acceptance retains the current native first-200 activity limit. It does not claim that every problem family has a distinct stored item.
 
-## Blocking finding
+## Initial hidden helper failure and repair
 
-A direct call to `seed/seed_practice_items:seedPracticeItems` failed.
+The first direct call to `seed/seed_practice_items:seedPracticeItems` failed with `Too many bytes read in a single function execution`. `seedAll` had caught this failure. The original review correctly rejected the first full-bootstrap claim.
 
-Convex reported `Too many bytes read in a single function execution` at `seed_practice_items.ts:71`. The function repeatedly executes the fallback `activities.take(200)` query inside the problem-family loop. The repeated bounded query still exceeds the 16 MiB per-function read limit.
+The failed generic mutation committed no partial writes because Convex rolled back the transaction. The four baseline practice items came from the separate quadratic-formula seed. They did not prove generic helper progress or completion.
 
-`practice-helper-result.json` is empty. `practice-helper-stderr.log` contains the server error.
+The accepted two-file repair at `4294ebb72` reuses the existing bounded fallback activity read once per invocation. It does not add a persisted cache or a new framework.
 
-The four stored practice items show that part of the helper ran before or during `seedAll`. They do not prove that the helper completed. The valid item references do not close this failure.
+After the repaired source was pushed to the local backend, the direct helper returned 7,838 result rows. All 7,838 rows have `success: true`. No row has `success: false`. `practice-helper-fixed-stderr.log` is empty.
 
-Repair the helper with minimum per-invocation reuse of the existing bounded fallback read. Do not add a persisted cache or framework. Run the helper directly and require a successful result. Then rerun the read-only reference and count checks.
+The 7,838 result rows are loop outcomes across 87 source problem families and matching activities. They are not 7,838 stored items. They do not prove one stored item for each family.
+
+The final database contains 200 unique practice items. All item references are valid. This count is bounded by the helper's current native first-200 fallback activity pool.
 
 ## Seed result
 
@@ -52,7 +54,7 @@ The read-only verifier reports zero invalid references for:
 
 It reports zero invalid activity sections. Each activity section has only `activityId` and `componentKey`. Its activity ID exists. Its component key equals the stored activity component key.
 
-The local seed stored 388 activities, 594 phase versions, 979 phase sections, 91 unique variant keys, and 4 unique practice-item IDs. The practice-item reference check is zero for the four rows that exist. This check does not prove helper completion.
+The local seed stored 388 activities, 594 phase versions, 979 phase sections, 91 unique variant keys, and 200 unique practice-item IDs. The final practice-item reference check is zero. The direct repaired helper result proves completion for this bounded run.
 
 ## System records
 
@@ -94,8 +96,14 @@ The first read-only verifier invocation used an incorrect default-export wrapper
 
 The retry passed the query body directly and produced `verify-result.json`. This invocation was read-only. The first error does not weaken the successful result.
 
+## Final verification
+
+`verify-fixed-result.json` reports zero invalid references in every checked category.
+
+The non-practice counts and demo states are unchanged from the accepted partial proof. It still contains 52 lessons, 44 standards, 79 mappings, five exact system pairs, 30 progress rows, and 18 coherent activity completions.
+
 ## Evidence boundary
 
-The stored mapping result gives an exact count, unique response pairs, and valid stored references. The verifier does not return the 79 stored mapping pairs as codes. The clean lesson result and equal stored mapping count provide sufficient proof for the lesson-standard portion. They do not prove the failed practice-item helper. A later audit that needs pair-by-pair stored equality must return those sanitized pairs.
+The stored mapping result gives an exact count, unique response pairs, and valid stored references. The verifier does not return the 79 stored mapping pairs as codes. The clean lesson result and equal stored mapping count provide sufficient proof for the lesson-standard portion. The direct repaired helper result and final reference check provide proof for the bounded practice-item run. A later audit that needs pair-by-pair stored equality must return those sanitized pairs.
 
 The evidence contains no credential, secret, or profile document content.
