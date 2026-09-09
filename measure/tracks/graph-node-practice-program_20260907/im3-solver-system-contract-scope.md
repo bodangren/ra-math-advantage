@@ -2,7 +2,7 @@
 
 ## Decision
 
-The parent accepts this eight-file scope after candidate-based independent review. Apply it after Batch A is frozen and its overlapping Lesson 1.8 source is committed.
+The parent accepts this nine-file scope after candidate-based independent review. Apply it after Batch A is frozen and its overlapping Lesson 1.8 source is committed.
 
 Use one strict public contract for the app schema, Convex schema, app wrapper, and practice submission builder. Preserve the source-defined problem type. Preserve a system as two equations. Do not convert a system to one equation string.
 
@@ -80,6 +80,7 @@ Convex `v.object` rejects unknown fields. Use a native strict `{ first, second }
 6. `apps/integrated-math-3/__tests__/lib/activities/schemas/step-by-step-solver.schema.test.ts`
 7. `apps/integrated-math-3/__tests__/components/activities/algebraic/StepByStepSolverActivity.test.tsx`
 8. `apps/integrated-math-3/__tests__/convex/seed/seed-lesson-1-8.test.ts`
+9. `apps/integrated-math-3/__tests__/convex/seed/seed.test.ts`
 
 The app schema file is a re-export. It does not need a change. The app distractor file is also a re-export. It does not need a change. Do not change the shared fallback wrapper because IM3 does not register it. Do not add another file.
 
@@ -113,3 +114,5 @@ A local Convex seed run must accept all step-by-step records after Batch A and t
 This batch preserves source records and transports them correctly. It does not add a system solver, new grading algorithm, new distractor algorithm, renderer adapter, generic coercion, or fabricated Worked solution.
 
 The five Lesson 1.8 systems include nonlinear systems. The existing distractor function named `system` only changes answer coordinates. Its presence does not prove that each source step is mathematically correct. Keep broader mathematical validation separate.
+
+The ninth path is a direct test dependency from accepted Batch A. Its aggregate handler test asserts the five legacy system arrays. Update that assertion to the exact native equation objects and remove obsolete unresolved wording. Preserve the exact domain-type counts. Parse every stored solver record from all 52 actual handlers with the real shared public schema. This replaces a pending contract check with the implemented contract; it must not remove coverage.
