@@ -1411,14 +1411,6 @@
         "independentPracticeReady": true
       },
       {
-        "nodeId": "math.im3.skill.1.aleks.discriminant-analysis",
-        "title": "discriminant_analysis",
-        "kind": "concept",
-        "standardsCovered": [],
-        "prerequisitesMet": true,
-        "independentPracticeReady": true
-      },
-      {
         "nodeId": "math.im3.skill.1.aleks.imaginary-number-simplification",
         "title": "imaginary_number_simplification",
         "kind": "concept",

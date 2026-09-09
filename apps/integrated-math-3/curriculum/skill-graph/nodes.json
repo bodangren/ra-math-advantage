@@ -1344,7 +1344,9 @@
       "domain": "math.im3",
       "description": "Use the discriminant to determine the number and type of solutions",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=45",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=48"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1541,7 +1543,7 @@
         "status": "component-planned"
       },
       "generatorKey": "algebraic-step-solver",
-      "independentPracticeReady": true,
+      "independentPracticeReady": false,
       "rendererKey": "discriminant-analyzer"
     },
     {
