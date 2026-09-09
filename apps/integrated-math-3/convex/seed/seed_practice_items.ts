@@ -15,6 +15,7 @@ export const seedPracticeItems = internalMutation({
     const results: { practiceItemId: string; activityId: string; variantKey: string; success: boolean; error?: string }[] = [];
 
     const variantCounters: Record<string, number> = {};
+    let fallbackActivityPool: { _id: Id<"activities">; componentKey: string }[] | undefined;
 
     for (const seedVariantKey of ALL_VARIANT_KEYS) {
       const family = await ctx.db
@@ -63,11 +64,11 @@ export const seedPracticeItems = internalMutation({
       const matchingActivities = activities.filter((a) => a.componentKey === family.componentKey);
 
       if (matchingActivities.length === 0) {
-        const allActivities = await ctx.db
+        fallbackActivityPool ??= await ctx.db
           .query("activities")
           .take(200);
 
-        const fallbackActivities = allActivities.filter((a: { componentKey: string }) => a.componentKey === family.componentKey);
+        const fallbackActivities = fallbackActivityPool.filter((a) => a.componentKey === family.componentKey);
 
         if (fallbackActivities.length > 0) {
           for (const activity of fallbackActivities) {

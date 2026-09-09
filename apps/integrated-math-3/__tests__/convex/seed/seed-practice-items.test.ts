@@ -20,6 +20,7 @@ function fixture(input: {
     practice_items: input.items ?? [],
   };
   let nextId = 1;
+  let fallbackActivityReads = 0;
   const db = {
     query(table: Table) {
       const select = (condition?: { field: string; value: unknown }) => {
@@ -39,7 +40,10 @@ function fixture(input: {
         withIndex(_name: string, callback: (q: { eq(field: string, value: unknown): { field: string; value: unknown } }) => { field: string; value: unknown }) {
           return select(callback({ eq: (field, value) => ({ field, value }) }));
         },
-        take: async (count: number) => rows[table].slice(0, count),
+        take: async (count: number) => {
+          if (table === "activities") fallbackActivityReads += 1;
+          return rows[table].slice(0, count);
+        },
       };
     },
     async insert(table: Table, value: Record<string, unknown>) {
@@ -57,7 +61,7 @@ function fixture(input: {
   const handler = seedPracticeItems as unknown as {
     _handler(ctx: { db: typeof db }): Promise<Array<{ practiceItemId: string; activityId: string; variantKey: string; success: boolean }>>;
   };
-  return { rows, run: () => handler._handler({ db }) };
+  return { rows, run: () => handler._handler({ db }), fallbackActivityReads: () => fallbackActivityReads };
 }
 
 function firstFamilyForComponent(componentKey: string) {
@@ -114,6 +118,50 @@ describe("seedPracticeItems", () => {
     expect(f.rows.practice_items[0]).toMatchObject({ _id: legacyItemId, variantKey: family.variantKey });
     expect(result.find((row) => row.practiceItemId === f.rows.practice_items[0].practiceItemId)?.variantKey).toBe(family.variantKey);
     expect(f.rows.practice_variants.filter((row) => row.variantKey === f.rows.practice_items[0].variantKey)).toHaveLength(1);
+    expect(f.fallbackActivityReads()).toBe(1);
+  });
+
+  it("reuses one ordered fallback read across component families", async () => {
+    const activities = [
+      { _id: "activities:quiz-a", componentKey: "comprehension-quiz" },
+      { _id: "activities:solver-a", componentKey: "step-by-step-solver" },
+      { _id: "activities:quiz-b", componentKey: "comprehension-quiz" },
+      ...Array.from({ length: 197 }, (_, index) => ({
+        _id: `activities:filler-${index}`,
+        componentKey: "unused-component",
+      })),
+      { _id: "activities:outside-first-200", componentKey: "comprehension-quiz" },
+    ];
+    const f = fixture({ activities });
+
+    const firstResult = await f.run();
+
+    expect(f.fallbackActivityReads()).toBe(1);
+    const quizFamily = firstFamilyForComponent("comprehension-quiz");
+    const quizItems = f.rows.practice_items.filter((item) => item.legacyProblemFamilyId === quizFamily.variantKey);
+    expect(quizItems.map((item) => item.activityId)).toEqual(["activities:quiz-a", "activities:quiz-b"]);
+    expect(quizItems.map((item) => item.variantLabel)).toEqual(["Set A", "Set A"]);
+    expect(quizItems.map((item) => item.practiceItemId)).toEqual([
+      `${quizFamily.variantKey}:activities:quiz-a`,
+      `${quizFamily.variantKey}:activities:quiz-b`,
+    ]);
+    const solverFamily = firstFamilyForComponent("step-by-step-solver");
+    expect(f.rows.practice_items).toContainEqual(expect.objectContaining({
+      activityId: "activities:solver-a",
+      variantKey: solverFamily.variantKey,
+      practiceItemId: `${solverFamily.variantKey}:activities:solver-a`,
+    }));
+    expect(f.rows.practice_items.some((item) => item.activityId === "activities:outside-first-200")).toBe(false);
+
+    const secondResult = await f.run();
+    expect(secondResult).toEqual(firstResult);
+    expect(f.fallbackActivityReads()).toBe(2);
+  });
+
+  it("reuses an empty fallback result", async () => {
+    const f = fixture({ activities: [] });
+    await f.run();
+    expect(f.fallbackActivityReads()).toBe(1);
   });
 
   it("does not reassign an item that belongs to a different family", async () => {
