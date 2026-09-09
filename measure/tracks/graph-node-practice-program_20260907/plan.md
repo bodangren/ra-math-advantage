@@ -788,6 +788,6 @@ Parent and independent allocation review found legacy replay, public equation, r
 
 Graph binding correction is committed as `a85d31f16`. Parent and independent review accepted all sixteen paths. Default canonical authority now passes both draft modes. Teacher readiness and SRS eligibility remain false. See `im3-lesson16-binding-final-review.md`.
 
-- [x] Task IM3-QF later-attempt allocation scope: The implementation scope now defines the minimum private variant reference, shared scheduled variants, canonical first attempt, immutable legacy replay, explicit Start, reload, exact public output, and seed rerun behavior. See `im3-quadratic-formula-allocation-implementation-scope.md`.
+The allocation implementation scope now defines the minimum private variant reference, shared scheduled variants, canonical first attempt, immutable legacy replay, explicit Start, reload, exact public output, and seed rerun behavior. See `im3-quadratic-formula-allocation-implementation-scope.md`.
 
 - [~] Task IM3-QF immutable allocation backend: Implement the seven backend paths and focused tests in the allocation implementation scope. Keep the teacher/export correction separate. Client integration, real transaction verification, browser use, and draft publication remain open.
