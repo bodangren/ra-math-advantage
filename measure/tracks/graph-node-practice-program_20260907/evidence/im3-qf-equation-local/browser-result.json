@@ -1,0 +1,40 @@
+{
+  "saved": [
+    {
+      "mode": "guided_practice",
+      "state": "final",
+      "equation": "x^2 - 3x + 3 = 0",
+      "renderedEquation": "x^2 - 3x + 3 = 0"
+    },
+    {
+      "mode": "independent_practice",
+      "state": "final",
+      "equation": "2x^2 - x + 1 = 0",
+      "renderedEquation": "2x^2 - x + 1 = 0"
+    }
+  ],
+  "pendingPreflight": [],
+  "pending": [
+    {
+      "mode": "guided_practice",
+      "state": "pending",
+      "attemptOrdinal": 1,
+      "equation": "x^2 + 5x - 5 = 0",
+      "renderedEquation": "x^2 + 5x - 5 = 0"
+    },
+    {
+      "mode": "independent_practice",
+      "state": "pending",
+      "attemptOrdinal": 1,
+      "equation": "x^2 - 2x - 6 = 0",
+      "renderedEquation": "x^2 - 2x - 6 = 0"
+    }
+  ],
+  "counts": {
+    "savedMutationRequests": 0,
+    "pendingStartRequests": 0,
+    "submissionRequests": 0,
+    "blockedFontRequests": 6,
+    "cloudRequests": 0
+  }
+}

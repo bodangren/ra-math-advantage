@@ -1,0 +1,10 @@
+import { internalMutation } from "./_generated/server";
+import { upsertIm3QuadraticFormulaDrafts } from "./seed/seed_lesson_1_6";
+
+export const reconcileQfEquationPresentation = internalMutation({
+  args: {},
+  handler: async ctx => {
+    await upsertIm3QuadraticFormulaDrafts(ctx, Date.now());
+    return null;
+  },
+});
