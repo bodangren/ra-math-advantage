@@ -65,3 +65,31 @@ Write failing tests before code. Prove canonical first use, legacy first-next be
 Prove seed reruns preserve all variant and item records after later allocations. Prove the full public outputs contain expected learner data and no private variant key, seed, metadata, or canonical-answer sentinel. Use both pending and final rows in consumer regressions. Pending rows must not produce evidence, competency, SRS, or scheduler effects.
 
 Memory fixtures do not prove Convex transaction concurrency or rollback. Real local transaction and browser verification remain required before learner rollout. This source batch does not publish the draft graph or mark those requirements complete.
+
+## Bounded history read
+
+Use the existing `by_user_activity_attempt_ordinal` index. Query one learner and one fixed activity. Order by ordinal in descending order. Read at most six rows.
+
+The six rows have these roles:
+
+1. Up to four allocated rows cover the complete finite schedule.
+2. One legacy row is the transition anchor.
+3. One older legacy row is the excess sentinel.
+
+Do not set a maximum on the number of legitimate finalized legacy rows.
+
+Validate every row in the tail that affects the current state. Require a positive safe ordinal. Require strictly descending unique ordinals in the inspected tail. Require adjacent ordinals only within the allocated prefix and at its transition from the newest legacy row. Do not require older legacy ordinals to be contiguous. Require the exact fixed activity and mode in the envelope. Require all allocated rows to form the newest contiguous prefix of the tail. Require at most four allocated rows. Require no more than one pending row. Require a pending row to be the newest row. Apply the full pending or final row validator to each allocated row.
+
+Reverse the allocated prefix before schedule validation. If the tail has no legacy anchor, require the allocated keys to start with canonical index 0 at ordinal 1. If the tail has a legacy anchor, require the allocated keys to start with suffix index 1 immediately after that anchor. Require each later key to advance by one. Reject duplicate, skipped, unknown, and exhausted keys.
+
+Use the newest row for `GET`. Use its ordinal plus one for a new pending row. Select the next schedule index from the newest validated allocated key. If there is no allocated row, select canonical index 0 when the tail is empty. Select suffix index 1 when a legacy anchor exists.
+
+Keep exact retry lookup on `by_user_activity_idempotency_key`. This index gives a bounded single-row read. Validate learner, activity, handle, body, and selected relation after the lookup.
+
+The fifth allocated row is an excess sentinel. It makes an overlong allocated suffix fail. A legacy anchor after four allocated rows also makes the sequence fail because a legacy transition can use only suffix indexes 1 through 3. The row after the anchor checks the immediate legacy boundary and ordinal order without reading the full legacy prefix.
+
+This bounded read detects all invalid allocated sequences that the current writer can create or receive. It detects an invalid latest legacy row and an invalid transition boundary. It does not validate every row in an arbitrarily long legacy prefix.
+
+This design needs one explicit append-only writer assumption: all rows before the inspected legacy anchor were created by the prior server writer and are finalized legacy rows with valid positive ordinals. All legacy receipts predate the first allocated row. The current writer enforces this transition. After the first allocated row exists, it permits only exact indexed legacy replay or finalization of the learner-owned pending row. It does not create a new legacy row. Under this rule, an older allocated row or an older pending row cannot exist behind a newer legacy prefix.
+
+Add focused tests for zero rows, a long legacy prefix, three later rows after a legacy prefix, four canonical-to-later rows without legacy history, a fifth allocated row, an allocated row after a legacy boundary, duplicate or skipped allocated keys, duplicate pending rows, an invalid newest row, and exact legacy replay through the idempotency index.
