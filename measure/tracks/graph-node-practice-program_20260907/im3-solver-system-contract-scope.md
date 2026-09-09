@@ -2,7 +2,7 @@
 
 ## Decision
 
-The parent accepts this nine-file scope after candidate-based independent review. Apply it after Batch A is frozen and its overlapping Lesson 1.8 source is committed.
+The parent accepts this eleven-file scope after candidate-based independent review. Apply it after Batch A is frozen and its overlapping Lesson 1.8 source is committed.
 
 Use one strict public contract for the app schema, Convex schema, app wrapper, and practice submission builder. Preserve the source-defined problem type. Preserve a system as two equations. Do not convert a system to one equation string.
 
@@ -81,6 +81,8 @@ Convex `v.object` rejects unknown fields. Use a native strict `{ first, second }
 7. `apps/integrated-math-3/__tests__/components/activities/algebraic/StepByStepSolverActivity.test.tsx`
 8. `apps/integrated-math-3/__tests__/convex/seed/seed-lesson-1-8.test.ts`
 9. `apps/integrated-math-3/__tests__/convex/seed/seed.test.ts`
+10. `packages/activity-components/src/components/algebraic/StepByStepper.tsx`
+11. `apps/integrated-math-3/__tests__/components/activities/algebraic/StepByStepper.test.tsx`
 
 The app schema file is a re-export. It does not need a change. The app distractor file is also a re-export. It does not need a change. Do not change the shared fallback wrapper because IM3 does not register it. Do not add another file.
 
@@ -116,3 +118,5 @@ This batch preserves source records and transports them correctly. It does not a
 The five Lesson 1.8 systems include nonlinear systems. The existing distractor function named `system` only changes answer coordinates. Its presence does not prove that each source step is mathematically correct. Keep broader mathematical validation separate.
 
 The ninth path is a direct test dependency from accepted Batch A. Its aggregate handler test asserts the five legacy system arrays. Update that assertion to the exact native equation objects and remove obsolete unresolved wording. Preserve the exact domain-type counts. Parse every stored solver record from all 52 actual handlers with the real shared public schema. This replaces a pending contract check with the implemented contract; it must not remove coverage.
+
+The shared stepper is a required display dependency. It labels steps[0].expression as Problem in guided and practice modes. Add one optional showInitialProblem boolean, with a default of true. Thread it only to those two existing prompt blocks. The IM3 system wrapper sets it to false because the wrapper renders both source equations. Keep all solution steps and grading behavior unchanged. Existing consumers keep the default behavior. Test both modes with the option off and with its default. The system wrapper test must reject the duplicate Problem prompt while retaining the ordered two-equation group. Do not use CSS hiding or replace a source solution step.
