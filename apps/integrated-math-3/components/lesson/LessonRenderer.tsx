@@ -3,12 +3,12 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { LessonPageLayout, type PhaseNavItem } from '@/components/textbook/LessonPageLayout';
 import { LessonStepper, type StepperPhase } from './LessonStepper';
-import { PhaseRenderer, getQuadraticFormulaSectionMode, type PhaseSection } from './PhaseRenderer';
+import { PhaseRenderer, getQuadraticFormulaSectionMode, type PhaseSection, type QuadraticFormulaAttemptView } from './PhaseRenderer';
 import { PhaseCompleteButton } from './PhaseCompleteButton';
 import { LessonSkeleton } from './LessonSkeleton';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
 import { LessonChatbot } from '@/components/student/LessonChatbot';
-import { createServerOwnedActivitySubmission, getSelectedWorkedAcknowledgement, submitActivity, type PracticeMode, type SubmitActivityInput } from '@/lib/activities/submission';
+import { createServerOwnedActivitySubmission, getQuadraticFormulaAttempt, getSelectedWorkedAcknowledgement, startQuadraticFormulaAttempt, submitActivity, type PracticeMode, type QuadraticFormulaMode, type SubmitActivityInput } from '@/lib/activities/submission';
 import { toConvexActivityId } from '@math-platform/practice-core';
 import { isPracticeSubmissionEnvelope, type PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
@@ -69,6 +69,12 @@ export function LessonRenderer({
   const [savingWorkedActivityId, setSavingWorkedActivityId] = useState<string | null>(null);
   const quadraticFormulaRequests = useRef(new Map<string, SubmitActivityInput>());
   const quadraticFormulaInFlight = useRef(new Map<string, Promise<void>>());
+  const [quadraticFormulaAttemptState, setQuadraticFormulaAttemptState] = useState<{ identity: string; attempt: QuadraticFormulaAttemptView }>();
+  const quadraticIdentity = useRef('');
+  const quadraticPendingIdentity = useRef('');
+  const quadraticRequestRevision = useRef(0);
+  const quadraticStartInFlight = useRef(new Map<string, Promise<void>>());
+  const [quadraticStartMessage, setQuadraticStartMessage] = useState<{ identity: string; message: string }>();
 
   const requiredActivityIds = useMemo(() => {
     if (!activePhase) return [];
@@ -76,6 +82,75 @@ export function LessonRenderer({
       .filter((s): s is { sectionType: 'activity'; content: { componentKey: string; activityId: string }; id: string; sequenceOrder: number } => s.sectionType === 'activity')
       .map(s => s.content.activityId);
   }, [activePhase]);
+  const selectedQuadraticFormula = useMemo(() => {
+    const section = activePhase?.sections.find((candidate): candidate is Extract<PhaseSection, { sectionType: 'activity' }> => candidate.sectionType === 'activity' && Boolean(getQuadraticFormulaSectionMode(candidate.content)));
+    if (!section) return null;
+    const sectionMode = getQuadraticFormulaSectionMode(section.content);
+    if (sectionMode !== 'guided' && sectionMode !== 'practice') return null;
+    return { activityId: section.content.activityId, mode: (sectionMode === 'guided' ? 'guided_practice' : 'independent_practice') as QuadraticFormulaMode };
+  }, [activePhase]);
+  const selectedQfActivityId = selectedQuadraticFormula?.activityId;
+  const selectedQfMode = selectedQuadraticFormula?.mode;
+  const selectedQfIdentity = selectedQfActivityId && selectedQfMode ? `${selectedQfActivityId}:${selectedQfMode}` : '';
+  const quadraticFormulaAttempt = quadraticFormulaAttemptState?.identity === selectedQfIdentity
+    ? quadraticFormulaAttemptState.attempt
+    : undefined;
+  const setQuadraticFormulaAttempt = useCallback((attempt: QuadraticFormulaAttemptView) => {
+    setQuadraticFormulaAttemptState({ identity: quadraticIdentity.current, attempt });
+  }, []);
+
+  useEffect(() => {
+    if (!selectedQfActivityId || !selectedQfMode) {
+      quadraticRequestRevision.current += 1;
+      quadraticIdentity.current = '';
+      quadraticPendingIdentity.current = '';
+      return;
+    }
+    const identity = selectedQfIdentity;
+    const requestRevision = ++quadraticRequestRevision.current;
+    quadraticIdentity.current = identity;
+    let active = true;
+    void getQuadraticFormulaAttempt(selectedQfActivityId, selectedQfMode).then(result => {
+      if (active && quadraticIdentity.current === identity && quadraticRequestRevision.current === requestRevision) {
+        quadraticPendingIdentity.current = result.state === 'pending' ? result.pendingSubmissionId : '';
+        setQuadraticFormulaAttempt(result);
+        if (result.state === 'final') setCompletedActivities(previous => new Set([...previous, selectedQfActivityId]));
+      }
+    });
+    return () => { active = false; };
+  }, [selectedQfActivityId, selectedQfIdentity, selectedQfMode, setQuadraticFormulaAttempt]);
+
+  const startQuadraticFormula = useCallback(async () => {
+    if (!selectedQuadraticFormula) return;
+    const identity = `${selectedQuadraticFormula.activityId}:${selectedQuadraticFormula.mode}`;
+    const startingPendingId = quadraticPendingIdentity.current;
+    const requestIdentity = `${identity}:${startingPendingId}`;
+    const existingRequest = quadraticStartInFlight.current.get(requestIdentity);
+    if (existingRequest) return existingRequest;
+    const requestRevision = ++quadraticRequestRevision.current;
+    const prior = quadraticFormulaAttempt;
+    const request = (async () => {
+      const result = await startQuadraticFormulaAttempt(selectedQuadraticFormula.activityId, selectedQuadraticFormula.mode);
+      if (quadraticIdentity.current !== identity || quadraticPendingIdentity.current !== startingPendingId || quadraticRequestRevision.current !== requestRevision) return;
+      if ((prior?.state === 'final' || prior?.state === 'saved-awaiting-details') && (result.state === 'exhausted' || result.state === 'unavailable')) {
+        setQuadraticStartMessage({ identity, message: result.state === 'exhausted' ? 'All attempts are complete.' : 'The next attempt is unavailable. Try again.' });
+        return;
+      }
+      if (result.state === 'pending') {
+        quadraticPendingIdentity.current = result.pendingSubmissionId;
+        for (const key of quadraticFormulaRequests.current.keys()) {
+          if (key.startsWith(`${identity}:`)) quadraticFormulaRequests.current.delete(key);
+        }
+        setQuadraticStartMessage(undefined);
+        setQuadraticFormulaAttempt(result);
+        setCompletedActivities(previous => { const next = new Set(previous); next.delete(selectedQuadraticFormula.activityId); return next; });
+      } else if (result.state === 'exhausted' || result.state === 'unavailable') setQuadraticFormulaAttempt(result);
+    })();
+    quadraticStartInFlight.current.set(requestIdentity, request);
+    try { await request; } finally {
+      if (quadraticStartInFlight.current.get(requestIdentity) === request) quadraticStartInFlight.current.delete(requestIdentity);
+    }
+  }, [quadraticFormulaAttempt, selectedQuadraticFormula, setQuadraticFormulaAttempt]);
 
   const allActivitiesComplete = useMemo(() => {
     if (requiredActivityIds.length === 0) return true;
@@ -174,27 +249,34 @@ export function LessonRenderer({
       };
     }
     if (quadraticFormulaMode) {
-      const existingInFlight = quadraticFormulaInFlight.current.get(activityId);
+      if (quadraticFormulaAttempt?.state !== 'pending') throw new Error('Quadratic Formula attempt is not pending');
+      if (input.attemptNumber !== quadraticFormulaAttempt.attemptOrdinal) throw new Error('Submission attempt does not match the pending attempt');
+      const pendingId = quadraticFormulaAttempt.pendingSubmissionId;
+      const requestIdentity = `${activityId}:${input.mode}:${pendingId}`;
+      const existingInFlight = quadraticFormulaInFlight.current.get(requestIdentity);
       if (existingInFlight) return existingInFlight;
-      const frozenInput = quadraticFormulaRequests.current.get(activityId) ?? structuredClone({
+      const frozenInput = quadraticFormulaRequests.current.get(requestIdentity) ?? structuredClone({
         ...input,
-        idempotencyKey: crypto.randomUUID(),
+        idempotencyKey: quadraticFormulaAttempt.idempotencyKey,
+        pendingSubmissionId: pendingId,
       });
-      quadraticFormulaRequests.current.set(activityId, frozenInput);
+      quadraticFormulaRequests.current.set(requestIdentity, frozenInput);
       const request = (async () => {
         const result = await createServerOwnedActivitySubmission(frozenInput);
         if (!result.success) throw new Error(result.error);
-        if (typeof result.submissionId !== 'string' || result.submissionId.trim().length === 0) {
-          throw new Error('Submission creation did not return a server-owned submission ID');
-        }
-        quadraticFormulaRequests.current.delete(activityId);
+        if (result.submissionId !== pendingId) throw new Error('Submission receipt does not match the pending attempt');
+        if (quadraticIdentity.current !== `${activityId}:${input.mode}` || quadraticPendingIdentity.current !== pendingId) return;
+        const saved: QuadraticFormulaAttemptView = { ...quadraticFormulaAttempt, state: 'saved-awaiting-details', submissionId: result.submissionId, answers: structuredClone(frozenInput.answers), score: result.score, maxScore: result.maxScore };
+        setQuadraticFormulaAttempt(saved);
         setCompletedActivities(prev => new Set([...prev, activityId]));
+        const details = await getQuadraticFormulaAttempt(activityId, input.mode as QuadraticFormulaMode);
+        if (quadraticIdentity.current === `${activityId}:${input.mode}` && quadraticPendingIdentity.current === pendingId && details.state === 'final' && details.submissionId === pendingId) setQuadraticFormulaAttempt(details);
       })();
-      quadraticFormulaInFlight.current.set(activityId, request);
+      quadraticFormulaInFlight.current.set(requestIdentity, request);
       try {
         await request;
       } finally {
-        quadraticFormulaInFlight.current.delete(activityId);
+        quadraticFormulaInFlight.current.delete(requestIdentity);
       }
       return;
     }
@@ -204,7 +286,7 @@ export function LessonRenderer({
       throw new Error('Submission did not return a submission ID');
     }
     setCompletedActivities(prev => new Set([...prev, activityId]));
-  }, [activePhase, mode, selectedWorkedSource]);
+  }, [activePhase, mode, quadraticFormulaAttempt, selectedWorkedSource, setQuadraticFormulaAttempt]);
 
   const deliverSelectedWorked = useCallback(async () => {
     if (!selectedWorkedSource) return;
@@ -344,8 +426,22 @@ export function LessonRenderer({
               phaseNumber={activePhase.phaseNumber}
               mode={mode}
               onActivitySubmit={handleActivitySubmit}
+              quadraticFormulaAttempt={quadraticFormulaAttempt}
             />
           )}
+
+          {selectedQuadraticFormula && quadraticFormulaAttempt?.state === 'no_attempt' && (
+            <button type="button" onClick={() => void startQuadraticFormula()}>Start activity</button>
+          )}
+          {selectedQuadraticFormula && (quadraticFormulaAttempt?.state === 'final' || quadraticFormulaAttempt?.state === 'saved-awaiting-details') && (
+            <button type="button" onClick={() => void startQuadraticFormula()}>Start next attempt</button>
+          )}
+          {selectedQuadraticFormula && quadraticFormulaAttempt?.state === 'saved-awaiting-details' && (
+            <button type="button" onClick={() => void getQuadraticFormulaAttempt(selectedQuadraticFormula.activityId, selectedQuadraticFormula.mode).then(result => {
+              if (quadraticIdentity.current === `${selectedQuadraticFormula.activityId}:${selectedQuadraticFormula.mode}` && quadraticPendingIdentity.current === quadraticFormulaAttempt.pendingSubmissionId && result.state === 'final' && result.submissionId === quadraticFormulaAttempt.submissionId) setQuadraticFormulaAttempt(result);
+            })}>Retry result details</button>
+          )}
+          {quadraticStartMessage?.identity === selectedQfIdentity && <p role="alert">{quadraticStartMessage.message}</p>}
 
           {selectedWorkedSource && workedErrorActivityId !== selectedWorkedSource.content.activityId && (
             <button

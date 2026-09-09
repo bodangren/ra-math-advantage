@@ -26,6 +26,7 @@ export type QuadraticFormulaActivityProps = PublicProps & {
   onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
   onCheckDiscriminant?: (rawAnswer: string) => Promise<boolean>;
+  attemptOrdinal?: number;
 };
 
 export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
@@ -67,6 +68,10 @@ export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
         </ol>
       </section>
     );
+  }
+
+  if (!Number.isSafeInteger(props.attemptOrdinal) || (props.attemptOrdinal ?? 0) < 1) {
+    return <p role="alert">This activity attempt is not available.</p>;
   }
 
   const changeAnswer = (field: Field, value: string) => {
@@ -141,7 +146,7 @@ export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
       activityId,
       mode: mode === 'practice' ? 'independent_practice' : 'guided_practice',
       status: 'submitted',
-      attemptNumber: 1,
+      attemptNumber: props.attemptOrdinal!,
       answers: { discriminant: answers.discriminant, x1: answers.x1, x2: answers.x2 },
       parts: FIELDS.map(([partId]) => ({
         partId,

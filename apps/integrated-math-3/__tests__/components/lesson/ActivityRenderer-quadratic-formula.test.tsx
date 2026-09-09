@@ -28,7 +28,7 @@ describe('ActivityRenderer quadratic-formula callback boundary', () => {
   it('awaits failure and retries the exact first timing envelope', async () => {
     const onSubmit = vi.fn().mockRejectedValueOnce(new Error('lost response')).mockResolvedValueOnce(undefined);
     const onComplete = vi.fn();
-    render(<ActivityRenderer componentKey="quadratic-formula" activityId="trusted-id" mode="practice"
+    render(<ActivityRenderer componentKey="quadratic-formula" activityId="trusted-id" mode="practice" pendingSubmissionId="pending:1" attemptOrdinal={2}
       activityProps={{ presentationMode: 'independent', prompt: 'Solve.', equation: 'x^2 + 4x - 17 = 0' }}
       onSubmit={onSubmit} onComplete={onComplete} />);
     const user = userEvent.setup();
@@ -48,7 +48,7 @@ describe('ActivityRenderer quadratic-formula callback boundary', () => {
   it('keeps trusted ID, mode, and callback after hostile activity props', async () => {
     const trusted = vi.fn().mockResolvedValue(undefined);
     const untrusted = vi.fn();
-    render(<ActivityRenderer componentKey="quadratic-formula" activityId="trusted-id" mode="practice"
+    render(<ActivityRenderer componentKey="quadratic-formula" activityId="trusted-id" mode="practice" pendingSubmissionId="pending:1" attemptOrdinal={2}
       activityProps={{ activityId: 'wrong-id', mode: 'teaching', onSubmit: untrusted,
         presentationMode: 'independent', prompt: 'Solve.', equation: 'x^2 + 4x - 17 = 0' }} onSubmit={trusted} />);
     const user = userEvent.setup();
@@ -57,11 +57,12 @@ describe('ActivityRenderer quadratic-formula callback boundary', () => {
     await waitFor(() => expect(trusted).toHaveBeenCalledOnce());
     expect((trusted.mock.calls[0][0] as PracticeSubmissionEnvelope).activityId).toBe('trusted-id');
     expect((trusted.mock.calls[0][0] as PracticeSubmissionEnvelope).mode).toBe('independent_practice');
+    expect((trusted.mock.calls[0][0] as PracticeSubmissionEnvelope).attemptNumber).toBe(2);
     expect(untrusted).not.toHaveBeenCalled();
   });
 
   it('passes no submission handler when none is connected', async () => {
-    render(<ActivityRenderer componentKey="quadratic-formula" activityId="preview" mode="practice"
+    render(<ActivityRenderer componentKey="quadratic-formula" activityId="preview" mode="practice" pendingSubmissionId="pending:1" attemptOrdinal={2}
       activityProps={{ presentationMode: 'independent', prompt: 'Solve.', equation: 'x^2 = 0' }} />);
     expect(((await screen.findByRole('button', { name: 'Submit answer' })) as HTMLButtonElement).disabled).toBe(true);
   });
@@ -69,7 +70,7 @@ describe('ActivityRenderer quadratic-formula callback boundary', () => {
   it('freezes the first envelope when timing is unavailable', async () => {
     getTiming.mockImplementationOnce(() => undefined as never);
     const onSubmit = vi.fn().mockRejectedValueOnce(new Error('lost response')).mockResolvedValueOnce(undefined);
-    render(<ActivityRenderer componentKey="quadratic-formula" activityId="no-timing" mode="practice"
+    render(<ActivityRenderer componentKey="quadratic-formula" activityId="no-timing" mode="practice" pendingSubmissionId="pending:1" attemptOrdinal={2}
       activityProps={{ presentationMode: 'independent', prompt: 'Solve.', equation: 'x^2 + 4x - 17 = 0' }} onSubmit={onSubmit} />);
     const user = userEvent.setup();
     await answer(user);
@@ -86,13 +87,23 @@ describe('ActivityRenderer quadratic-formula callback boundary', () => {
   it('remounts the quadratic activity for a new activity identity', async () => {
     const onSubmit = vi.fn().mockResolvedValue(undefined);
     const props = { presentationMode: 'independent', prompt: 'Solve.', equation: 'x^2 + 4x - 17 = 0' } as const;
-    const { rerender } = render(<ActivityRenderer componentKey="quadratic-formula" activityId="first" mode="practice" activityProps={props} onSubmit={onSubmit} />);
+    const { rerender } = render(<ActivityRenderer componentKey="quadratic-formula" activityId="first" mode="practice" pendingSubmissionId="pending:1" attemptOrdinal={2} activityProps={props} onSubmit={onSubmit} />);
     const user = userEvent.setup();
     await answer(user);
     expect((screen.getByLabelText('First root') as HTMLInputElement).value).not.toBe('');
-    rerender(<ActivityRenderer componentKey="quadratic-formula" activityId="second" mode="practice" activityProps={props} onSubmit={onSubmit} />);
+    rerender(<ActivityRenderer componentKey="quadratic-formula" activityId="second" mode="practice" pendingSubmissionId="pending:1" attemptOrdinal={2} activityProps={props} onSubmit={onSubmit} />);
     await waitFor(() => expect((screen.getByLabelText('First root') as HTMLInputElement).value).toBe(''));
     expect(screen.getByRole('button', { name: 'Submit answer' })).toBeTruthy();
+  });
+
+  it('clears answers and the cached envelope for a new pending identity', async () => {
+    const onSubmit = vi.fn().mockResolvedValue(undefined);
+    const props = { presentationMode: 'independent', prompt: 'Solve.', equation: 'x^2 = 0' } as const;
+    const { rerender } = render(<ActivityRenderer componentKey="quadratic-formula" activityId="same" mode="practice" pendingSubmissionId="pending:1" attemptOrdinal={1} activityProps={props} onSubmit={onSubmit} />);
+    const user = userEvent.setup();
+    await answer(user);
+    rerender(<ActivityRenderer componentKey="quadratic-formula" activityId="same" mode="practice" pendingSubmissionId="pending:2" attemptOrdinal={2} activityProps={props} onSubmit={onSubmit} />);
+    await waitFor(() => expect((screen.getByLabelText('First root') as HTMLInputElement).value).toBe(''));
   });
 
 });

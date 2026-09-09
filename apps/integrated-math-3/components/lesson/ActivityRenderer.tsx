@@ -17,6 +17,8 @@ export interface ActivityRendererProps {
   onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
   onCheckDiscriminant?: (rawAnswer: string) => Promise<boolean>;
+  pendingSubmissionId?: string;
+  attemptOrdinal?: number;
   /** Optional activity-specific configuration props (e.g. equation, questions,
    *  template). Forwarded to the registered activity component via spread, so
    *  authored/previewed content reaches the same rendering path a student sees. */
@@ -36,6 +38,8 @@ export function ActivityRenderer({
   onSubmit,
   onComplete,
   onCheckDiscriminant,
+  pendingSubmissionId,
+  attemptOrdinal,
   activityProps,
 }: ActivityRendererProps) {
   const isStudentContext = mode !== 'teaching';
@@ -45,7 +49,7 @@ export function ActivityRenderer({
     input: object;
     envelope: PracticeSubmissionEnvelope;
   }>();
-  const quadraticIdentity = `${activityId}:${mode}`;
+  const quadraticIdentity = `${activityId}:${mode}:${pendingSubmissionId ?? ''}`;
 
   const handleSubmit = useCallback(
     (payload: unknown): void | Promise<void> => {
@@ -93,6 +97,8 @@ export function ActivityRenderer({
           key: componentKey === 'quadratic-formula' ? quadraticIdentity : undefined,
           activityId,
           mode,
+          pendingSubmissionId,
+          attemptOrdinal,
           onSubmit: onSubmit ? handleSubmit : undefined,
           onComplete,
           onCheckDiscriminant,

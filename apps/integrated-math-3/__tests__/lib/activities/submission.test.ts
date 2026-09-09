@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { submitActivity } from '@/lib/activities/submission';
+import { createServerOwnedActivitySubmission, getQuadraticFormulaAttempt, startQuadraticFormulaAttempt, submitActivity } from '@/lib/activities/submission';
 import { practiceSubmissionEnvelopeSchema } from '@math-platform/practice-core/contract';
 
 global.fetch = vi.fn() as unknown as typeof fetch;
@@ -236,5 +236,36 @@ describe('submitActivity', () => {
       rawAnswer: 42,
       normalizedAnswer: '42',
     });
+  });
+});
+
+describe('quadratic-formula attempt helpers', () => {
+  beforeEach(() => vi.clearAllMocks());
+  it('uses GET for read and POST for explicit Start', async () => {
+    vi.mocked(fetch)
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ state: 'no_attempt' }) } as Response)
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ state: 'exhausted' }) } as Response);
+    await expect(getQuadraticFormulaAttempt('activity:1', 'guided_practice')).resolves.toEqual({ state: 'no_attempt' });
+    await expect(startQuadraticFormulaAttempt('activity:1', 'guided_practice')).resolves.toEqual({ state: 'exhausted' });
+    expect(fetch).toHaveBeenNthCalledWith(1, '/api/activities/quadratic-formula/attempt?activityId=activity%3A1&mode=guided_practice', { method: 'GET' });
+    expect(fetch).toHaveBeenNthCalledWith(2, '/api/activities/quadratic-formula/attempt?activityId=activity%3A1&mode=guided_practice', { method: 'POST' });
+  });
+  it('fails closed for private response fields and identity mismatch', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({ state: 'pending', pendingSubmissionId: 'sub:1', activityId: 'wrong', mode: 'guided_practice', attemptOrdinal: 1, idempotencyKey: 'qf:sub:1', props: { presentationMode: 'guided', prompt: 'Solve.', equation: 'x=0', fieldHelp: { discriminant: 'd', x1: 'a', x2: 'b' } }, privateSeed: 7 }) } as Response);
+    await expect(getQuadraticFormulaAttempt('activity:1', 'guided_practice')).resolves.toEqual({ state: 'unavailable' });
+  });
+  it('accepts a repeated-root final with a zero-weight x2 part', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({ state: 'final', activityId: 'activity:1', mode: 'independent_practice', attemptOrdinal: 3, props: { presentationMode: 'independent', prompt: 'Solve.', equation: 'x^2=0' }, submissionId: 'sub:3', score: 2, maxScore: 2, answers: { discriminant: 0, x1: 0, x2: '' }, parts: [{ partId: 'discriminant', rawAnswer: 0, isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x1', rawAnswer: 0, isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x2', rawAnswer: '', isCorrect: true, score: 0, maxScore: 0 }] }) } as Response);
+    await expect(getQuadraticFormulaAttempt('activity:1', 'independent_practice')).resolves.toMatchObject({ state: 'final', submissionId: 'sub:3', maxScore: 2 });
+  });
+  it('sends the pending ID only as a header and requires its exact receipt', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({ submissionId: 'pending:1', score: 3, maxScore: 3 }) } as Response);
+    const input = { activityId: 'activity:1', mode: 'independent_practice' as const, answers: { x: 1 }, attemptNumber: 2, idempotencyKey: 'qf:pending:1', pendingSubmissionId: 'pending:1' };
+    await expect(createServerOwnedActivitySubmission(input)).resolves.toMatchObject({ success: true, submissionId: 'pending:1' });
+    const options = vi.mocked(fetch).mock.calls[0][1]!;
+    expect(options.headers).toEqual({ 'Content-Type': 'application/json', 'Idempotency-Key': 'qf:pending:1', 'X-Pending-Submission-Id': 'pending:1' });
+    expect(JSON.parse(String(options.body))).not.toHaveProperty('pendingSubmissionId');
+    vi.mocked(fetch).mockResolvedValueOnce({ ok: true, json: async () => ({ submissionId: 'other' }) } as Response);
+    await expect(createServerOwnedActivitySubmission(input)).resolves.toMatchObject({ success: false, error: expect.stringMatching(/does not match/) });
   });
 });

@@ -8,6 +8,7 @@ const base = {
   activityId: 'quadratic-formula:one',
   prompt: 'Solve by using the Quadratic Formula.',
   equation: 'x^2 + 4x - 17 = 0',
+  attemptOrdinal: 2,
 } as const;
 
 async function enterRequiredAnswers() {
@@ -18,6 +19,11 @@ async function enterRequiredAnswers() {
 }
 
 describe('QuadraticFormulaActivity', () => {
+  it.each([undefined, 0, -1, 1.5, Number.MAX_SAFE_INTEGER + 1])('fails closed for invalid editable ordinal %s', (attemptOrdinal) => {
+    render(<QuadraticFormulaActivity {...base} attemptOrdinal={attemptOrdinal} mode="practice" presentationMode="independent" />);
+    expect(screen.getByRole('alert').textContent).toContain('attempt is not available');
+    expect(screen.queryByLabelText('Discriminant')).toBeNull();
+  });
   it('shows source steps only in Worked mode', () => {
     render(<QuadraticFormulaActivity {...base} mode="teaching" presentationMode="worked"
       workedSteps={[{ description: 'Substitute the coefficients.', expression: 'x = (-4 ± √84)/2' }]} />);
@@ -45,6 +51,7 @@ describe('QuadraticFormulaActivity', () => {
     await userEvent.setup().click(screen.getByRole('button', { name: 'Submit answer' }));
     await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
     const envelope = onSubmit.mock.calls[0][0] as PracticeSubmissionEnvelope;
+    expect(envelope.attemptNumber).toBe(2);
     expect(envelope.parts.map((part) => [part.partId, part.rawAnswer])).toEqual([
       ['discriminant', '84'], ['x1', '-2 + sqrt(21)'], ['x2', ''],
     ]);

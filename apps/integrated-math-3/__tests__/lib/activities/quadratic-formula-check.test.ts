@@ -9,12 +9,12 @@ describe('checkQuadraticFormulaDiscriminant', () => {
   it.each([[true], [false]])('posts the exact public request and returns %s', async (isCorrect) => {
     const fetchMock = vi.fn().mockResolvedValue(response({ isCorrect }));
     vi.stubGlobal('fetch', fetchMock);
-    await expect(checkQuadraticFormulaDiscriminant({ activityId: 'activities:guided', rawAnswer: '84' }))
+    await expect(checkQuadraticFormulaDiscriminant({ activityId: 'activities:guided', pendingSubmissionId: 'sub:1', rawAnswer: '84' }))
       .resolves.toBe(isCorrect);
     expect(fetchMock).toHaveBeenCalledWith('/api/activities/quadratic-formula/check', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ activityId: 'activities:guided', fieldId: 'discriminant', rawAnswer: '84' }),
+      body: JSON.stringify({ activityId: 'activities:guided', fieldId: 'discriminant', rawAnswer: '84', pendingSubmissionId: 'sub:1' }),
     });
   });
 
@@ -24,13 +24,19 @@ describe('checkQuadraticFormulaDiscriminant', () => {
     ['an expanded response', response({ isCorrect: true, answer: 84 })],
   ])('rejects %s', async (_label, value) => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(value));
-    await expect(checkQuadraticFormulaDiscriminant({ activityId: 'activities:guided', rawAnswer: '84' }))
+    await expect(checkQuadraticFormulaDiscriminant({ activityId: 'activities:guided', pendingSubmissionId: 'sub:1', rawAnswer: '84' }))
       .rejects.toThrow();
   });
 
   it('rejects a network failure', async () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('offline')));
-    await expect(checkQuadraticFormulaDiscriminant({ activityId: 'activities:guided', rawAnswer: '84' }))
+    await expect(checkQuadraticFormulaDiscriminant({ activityId: 'activities:guided', pendingSubmissionId: 'sub:1', rawAnswer: '84' }))
       .rejects.toThrow('offline');
+  });
+  it.each(['', '   '])('rejects an invalid pending identity before a request', async (pendingSubmissionId) => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+    await expect(checkQuadraticFormulaDiscriminant({ activityId: 'activities:guided', pendingSubmissionId, rawAnswer: '84' })).rejects.toThrow(/pending attempt/);
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 });

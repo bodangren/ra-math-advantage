@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic';
 import { VideoPlayer } from './VideoPlayer';
 import { ActivityRenderer } from './ActivityRenderer';
 import { checkQuadraticFormulaDiscriminant } from '@/lib/activities/submission';
+import type { QuadraticFormulaAttempt, QuadraticFormulaPendingAttempt } from '@/lib/activities/submission';
+export type QuadraticFormulaAttemptView = QuadraticFormulaAttempt | (Omit<QuadraticFormulaPendingAttempt, 'state'> & { state: 'saved-awaiting-details'; answers: Record<string, unknown>; score?: number; maxScore?: number; submissionId: string });
 import { ContentBlockErrorBoundary } from './ContentBlockErrorBoundary';
 import { IM3_TEACHER_LED_ACTIVITY_ID } from '@/lib/practice/learning-evidence-pilot';
 
@@ -96,6 +98,7 @@ export interface PhaseRendererProps {
   mode?: 'teaching' | 'guided' | 'practice';
   onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
+  quadraticFormulaAttempt?: QuadraticFormulaAttemptView;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -114,6 +117,7 @@ export function PhaseRenderer({
   mode = 'practice',
   onActivitySubmit,
   onActivityComplete,
+  quadraticFormulaAttempt,
 }: PhaseRendererProps) {
   if (sections.length === 0) {
     return (
@@ -135,6 +139,7 @@ export function PhaseRenderer({
               mode={mode}
               onActivitySubmit={onActivitySubmit}
               onActivityComplete={onActivityComplete}
+              quadraticFormulaAttempt={quadraticFormulaAttempt}
             />
           </ContentBlockErrorBoundary>
         ))}
@@ -158,6 +163,7 @@ function SectionBlock({
   mode,
   onActivitySubmit,
   onActivityComplete,
+  quadraticFormulaAttempt,
 }: {
   section: PhaseSection;
   lessonId?: string;
@@ -165,6 +171,7 @@ function SectionBlock({
   mode: 'teaching' | 'guided' | 'practice';
   onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
+  quadraticFormulaAttempt?: PhaseRendererProps['quadraticFormulaAttempt'];
 }) {
   switch (section.sectionType) {
     case 'text':
@@ -196,8 +203,22 @@ function SectionBlock({
       const handleComplete = () => {
         onActivityComplete?.(activityId);
       };
+      if (quadraticFormulaMode === 'invalid') return <p role="alert">This activity is unavailable.</p>;
+      if (quadraticFormulaMode && quadraticFormulaAttempt?.state !== 'pending') {
+        if (!quadraticFormulaAttempt) return <p role="status">Loading activity…</p>;
+        if (quadraticFormulaAttempt.state === 'unavailable') return <p role="alert">This activity is unavailable. Try again.</p>;
+        if (quadraticFormulaAttempt.state === 'no_attempt') return <p>Start this activity when you are ready.</p>;
+        if (quadraticFormulaAttempt.state === 'exhausted') return <p>All attempts are complete.</p>;
+        const result = quadraticFormulaAttempt;
+        return <section aria-label="Quadratic Formula saved result" className="space-y-2"><p>{result.props.equation}</p><p>Attempt {result.attemptOrdinal}</p><p>Score: {result.score ?? 'Saved'}{result.maxScore === undefined ? '' : ` / ${result.maxScore}`}</p>{Object.entries(result.answers).map(([field, answer]) => <p key={field}>{field}: {String(answer)}</p>)}{result.state === 'final' && result.parts.map(part => <p key={part.partId}>{part.partId}: {part.isCorrect ? 'Correct' : 'Incorrect'} ({part.score} / {part.maxScore})</p>)}</section>;
+      }
+      const selectedProps = quadraticFormulaMode && quadraticFormulaAttempt?.state === 'pending'
+        ? quadraticFormulaAttempt.props
+        : section.content.activityProps as Record<string, unknown> | undefined;
+      const pending = quadraticFormulaAttempt?.state === 'pending' ? quadraticFormulaAttempt : undefined;
       return (
         <ActivityRenderer
+          key={pending?.pendingSubmissionId}
           componentKey={section.content.componentKey}
           activityId={activityId}
           lessonId={lessonId}
@@ -207,11 +228,13 @@ function SectionBlock({
             : quadraticFormulaMode === 'guided' || quadraticFormulaMode === 'practice'
               ? quadraticFormulaMode
               : mode}
-          activityProps={section.content.activityProps as Record<string, unknown> | undefined}
+          activityProps={selectedProps}
+          pendingSubmissionId={pending?.pendingSubmissionId}
+          attemptOrdinal={pending?.attemptOrdinal}
           onSubmit={onActivitySubmit ? handleSubmit : undefined}
           onComplete={handleComplete}
           onCheckDiscriminant={quadraticFormulaMode === 'guided'
-            ? (rawAnswer) => checkQuadraticFormulaDiscriminant({ activityId, rawAnswer })
+            && pending ? (rawAnswer) => checkQuadraticFormulaDiscriminant({ activityId, pendingSubmissionId: pending.pendingSubmissionId, rawAnswer })
             : undefined}
         />
       );
