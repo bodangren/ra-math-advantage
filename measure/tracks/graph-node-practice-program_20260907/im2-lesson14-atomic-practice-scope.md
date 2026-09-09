@@ -201,7 +201,7 @@ Keep evidence and SRS writes disabled while either graph readiness flag is false
 
 ## Teacher review behavior
 
-Update the existing teacher evidence query for the staged triangle rows. Keep its attempt-list policy. Include each saved triangle part attempt. For an intermediate or incorrect row, show the current public part ID and raw learner answer from its single stored graded part, with the current-part score. For a complete last-part row, show the total score and max score. Keep the current perpendicular answer projection unchanged.
+Update the existing teacher evidence query for the staged triangle rows. Keep its attempt-list policy. Include each saved triangle part attempt. For an intermediate or incorrect row, show the current public part ID and raw learner answer from the stored graded part selected by `currentPartId`, with the current-part score. For a complete last-part row, show the total score and max score. Keep the current perpendicular answer projection unchanged.
 
 Keep `canRecordExposure` false for both triangle nodes. The existing teacher-led exposure mutation is a perpendicular-bisector intervention. Do not broaden that authority in this scope. Add a regression that a triangle Guided submission appears in the generic teacher list but cannot use the perpendicular exposure action.
 
