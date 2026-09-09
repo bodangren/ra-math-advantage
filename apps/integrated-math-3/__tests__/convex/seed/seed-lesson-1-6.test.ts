@@ -193,6 +193,51 @@ describe('Lesson 1.6 source-worked seed documents', () => {
   });
 });
 
+describe('Lesson 1.6 discourse quiz seed document', () => {
+  it('creates the two questions with the current quiz contract', async () => {
+    const memory = makeSeedContext();
+    await (seedLesson6 as unknown as { _handler(ctx: unknown): Promise<unknown> })._handler(memory.ctx);
+
+    const phase = memory.rows('phase_versions').find(candidate => candidate.phaseNumber === 10);
+    expect(phase).toBeDefined();
+    const section = memory.rows('phase_sections').find(candidate => (
+      candidate.phaseVersionId === phase?._id
+      && candidate.sectionType === 'activity'
+    ));
+    expect(section).toBeDefined();
+    const activityId = (section?.content as { activityId?: string } | undefined)?.activityId;
+    const activity = memory.rows('activities').find(candidate => candidate._id === activityId);
+    expect(activity?.componentKey).toBe('comprehension-quiz');
+
+    const questions = [
+      {
+        id: 'discriminant-purpose',
+        type: 'multiple_choice',
+        prompt: 'What does the discriminant tell you?',
+        options: ['The sum of the roots', 'The number and type of solutions', 'The product of the roots', 'The axis of symmetry'],
+        correctAnswer: 'The number and type of solutions',
+      },
+      {
+        id: 'zero-discriminant-real-solution-count',
+        type: 'multiple_choice',
+        prompt: 'If D = 0, how many real solutions are there?',
+        options: ['0', '1', '2', 'Cannot determine'],
+        correctAnswer: '1',
+      },
+    ];
+    expect(activity?.props).toEqual({ questions });
+    expect(new Set(questions.map(question => question.id)).size).toBe(questions.length);
+    for (const question of questions) {
+      expect(question.id.length).toBeGreaterThan(0);
+      expect(question.type).toBe('multiple_choice');
+      expect(question.options).toContain(question.correctAnswer);
+      expect(question).not.toHaveProperty('question');
+      expect(question).not.toHaveProperty('correctIndex');
+    }
+    expect(memory.rows('phase_versions')).toHaveLength(11);
+  });
+});
+
 describe('Lesson 1.6 draft quadratic-formula records', () => {
   it.each([
     ['guided_practice', 1, 'guided'],
