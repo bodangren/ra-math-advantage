@@ -30,7 +30,7 @@ Validate active learner identity, the exact fixed activity and mode, canonical d
 
 Separate fixed activity identity from selected variant props. Generate public props from the selected private seed. Parse them with the current component schema. Keep the existing equation equality check in the grader. Keep the fixed stored activity props unchanged.
 
-Look up a matching retry key after identity and request validation. Preserve legacy same-key and same-body finalized replay before requiring a pending handle. Legacy rows without allocatedVariantKey always use the canonical seed, even when their ordinal exceeds one. New non-replay QF submissions require a learner-owned pending handle. Finalize that same row. Preserve its identity, ordinal, private reference, key, and creation time. Keep exact Convex-serialized body comparison for retries.
+Look up a matching retry key after identity and request validation. Preserve legacy same-key and same-body finalized replay before requiring a pending handle. Legacy rows without allocatedVariantKey always use the canonical seed, even when their ordinal exceeds one. New non-replay QF submissions require a learner-owned pending handle. Require the submitted attemptNumber to equal the pending ordinal before writes. Do not accept a different value and then replace it, because that breaks exact request replay. Finalize that same row. Preserve its identity, ordinal, private reference, key, and creation time. Keep exact Convex-serialized body comparison for retries.
 
 ## HTTP and public state
 
