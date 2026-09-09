@@ -60,6 +60,7 @@ Run `quadratic-formula-server-writer.test.ts` and the existing `selected-worked-
 
 - `apps/integrated-math-3/convex/student.ts`
 - `apps/integrated-math-3/__tests__/convex/quadratic-formula-server-writer.test.ts`
+- `apps/integrated-math-3/__tests__/convex/selected-worked-lesson-consumer.test.tsx` — database fixture only; keep all existing expectations unchanged.
 
 Do not change `convex/schema.ts`, `PhaseRenderer.tsx`, seed code, graph source, activity approval, or stored phase section content.
 
@@ -77,3 +78,7 @@ Do not change `convex/schema.ts`, `PhaseRenderer.tsx`, seed code, graph source, 
 Keep the selected Worked source-section protection first. A QF activity placed in that protected section must not bypass its existing unavailable result. Include that mixed-source case in the unchanged selected Worked coverage or a new assertion in the owned QF test. Normalize object key order with the existing Convex value conversion. Do not add hashes.
 
 Write failing query regressions before implementation. Run app lint, build, and separate post-build TypeScript before integration. The independent browser run must use this actual production projection and the unchanged section schema.
+
+## Database ID validation
+
+Call the existing `ctx.db.normalizeId` directly before reading a section activity. The production database API is required. Do not make it optional or add a fallback for a test fixture. The existing selected Worked consumer fixture lacks this method. Add only the required method to that fixture and keep its expectations unchanged. This extends the final batch to three paths. The malformed-ID regression must prove the actual lesson handler returns an unavailable QF section instead of throwing.
