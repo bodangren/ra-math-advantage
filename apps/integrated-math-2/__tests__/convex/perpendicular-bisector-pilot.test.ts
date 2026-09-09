@@ -27,6 +27,7 @@ describe("IM2 perpendicular-bisector pilot", () => {
     const first = await recordTeacherExposureHandler(t.ctx as never, input as never, approved);
     expect(await recordTeacherExposureHandler(t.ctx as never, input as never, approved)).toMatchObject({ evidenceId: first.evidenceId, replay: true });
     expect(t.tables.learning_evidence).toHaveLength(2);
+    expect(t.tables.learning_evidence[1]).toMatchObject({ nodeId, activityId: `${nodeId}.guided_practice`, masteryBearing: false });
     await expect(recordTeacherExposureHandler(t.ctx as never, { ...input, teacherId: "other", idempotencyKey: "other" } as never, approved)).rejects.toThrow("unauthorized_exposure");
   });
   it.each(["teacher", "student"])("rejects new teacher evidence when the %s credential is disabled", async disabledRole => {

@@ -57,29 +57,85 @@ const pilotItemValidator = v.object({ stableActivityId: v.string(), activityId: 
 export const getApprovedPerpendicularBisectorPilot = internalQuery({ args: { userId: v.id("profiles") }, returns: v.array(pilotItemValidator), handler: (ctx, args) => getApprovedPilotHandler(ctx, args.userId) });
 
 type SubmitArgs = { userId: Id<"profiles">; activityId: Id<"activities">; idempotencyKey: string; rawResponse: string; hintsUsed: number; revealStepsSeen: number };
+export async function resolveTeacherExposureSource(
+  ctx: QueryCtx,
+  studentId: Id<"profiles">,
+  submissionId: Id<"activity_submissions">,
+) {
+  const submission = await ctx.db.get(submissionId);
+  if (!submission || submission.userId !== studentId) return null;
+  const activity = await ctx.db.get(submission.activityId);
+  if (!activity || activity.componentKey !== "im2-question" || activity.approval?.status !== "approved") return null;
+  if (activity.masteryNodeId === nodeId) {
+    if (activity.learningEvidenceMode !== "guided_practice"
+      || activity.stableActivityId !== `${nodeId}.guided_practice`
+      || submission.gradedAt === undefined) return null;
+    const lesson = await ctx.db.query("lessons").withIndex("by_slug", q => q.eq("slug", "module-1-lesson-1")).unique();
+    return lesson ? { submission, activity, lesson, nodeId, stableActivityId: activity.stableActivityId } : null;
+  }
+  if (!Object.values(triangleNodeIds).includes(activity.masteryNodeId as TriangleNodeId)
+    || activity.learningEvidenceMode !== "guided_practice"
+    || activity.stableActivityId !== `${activity.masteryNodeId}.guided_practice`
+    || submission.gradedAt === undefined) return null;
+  const triangleNodeId = activity.masteryNodeId as TriangleNodeId;
+  const spec = triangleModes(triangleNodeId).find(row => row.mode === "guided_practice");
+  if (!spec || activity.generatorSeed !== spec.seed || activity.generatorDifficulty !== 1) return null;
+  const lessons = await ctx.db.query("lessons").withIndex("by_slug", q => q.eq("slug", "module-1-lesson-4")).take(2);
+  if (lessons.length !== 1) return null;
+  try {
+    parseTriangleRow(
+      submission,
+      triangleItem(triangleNodeId, "guided_practice", spec.seed, 1),
+      String(activity._id),
+      triangleNodeId,
+      "guided_practice",
+    );
+    const artifact = (submission.submissionData as { artifact?: { finalPart?: unknown } }).artifact;
+    if (artifact?.finalPart !== true) return null;
+  } catch {
+    return null;
+  }
+  return { submission, activity, lesson: lessons[0], nodeId: triangleNodeId, stableActivityId: activity.stableActivityId };
+}
 export async function recordTeacherExposureHandler(ctx: MutationCtx, args: { teacherId: Id<"profiles">; studentId: Id<"profiles">; classId: Id<"classes">; submissionId: Id<"activity_submissions">; idempotencyKey: string }, publication: Publication = currentPublication) {
   const key = args.idempotencyKey.trim(); if (!key) throw new Error("invalid_exposure");
   const [teacher, student, classroom, enrollment, submission] = await Promise.all([activeAccount(ctx, args.teacherId), activeAccount(ctx, args.studentId), ctx.db.get(args.classId), ctx.db.query("class_enrollments").withIndex("by_class_and_student", q => q.eq("classId", args.classId).eq("studentId", args.studentId)).unique(), ctx.db.get(args.submissionId)]);
-  if (!isPilotPublished(publication)) throw new Error("unpublished_curriculum");
   if (!teacher || teacher.role !== "teacher" || !student || student.role !== "student" || student.organizationId !== teacher.organizationId || !classroom || classroom.teacherId !== args.teacherId || classroom.archived || enrollment?.status !== "active") throw new Error("unauthorized_exposure");
   if (!submission || submission.userId !== args.studentId) throw new Error("invalid_source_submission");
   const activity = await ctx.db.get(submission.activityId);
-  if (!activity || activity.componentKey !== "im2-question" || activity.masteryNodeId !== nodeId || activity.approval?.status !== "approved" || activity.learningEvidenceMode !== "guided_practice" || activity.stableActivityId !== `${nodeId}.guided_practice` || submission.gradedAt === undefined) throw new Error("invalid_source_submission");
-  const lesson = await ctx.db.query("lessons").withIndex("by_slug", q => q.eq("slug", "module-1-lesson-1")).unique();
-  const assignment = lesson ? await ctx.db.query("class_lessons").withIndex("by_class_and_lesson", q => q.eq("classId", args.classId).eq("lessonId", lesson._id)).unique() : null;
-  if (!lesson || submission.lessonId !== lesson._id || !assignment || submission.submittedAt < Math.max(enrollment.enrolledAt, assignment.assignedAt)) throw new Error("invalid_source_assignment");
+  if (activity?.masteryNodeId === nodeId && !isPilotPublished(publication)) throw new Error("unpublished_curriculum");
+  if (Object.values(triangleNodeIds).includes(activity?.masteryNodeId as TriangleNodeId)
+    && !trianglePublished(activity!.masteryNodeId as TriangleNodeId, publication)) throw new Error("unpublished_curriculum");
+  const source = await resolveTeacherExposureSource(ctx, args.studentId, args.submissionId);
+  if (!source) throw new Error("invalid_source_submission");
+  const { lesson, nodeId: sourceNodeId } = source;
+  const assignment = await ctx.db.query("class_lessons").withIndex("by_class_and_lesson", q => q.eq("classId", args.classId).eq("lessonId", lesson._id)).unique();
+  if (submission.lessonId !== lesson._id || !assignment || submission.submittedAt < Math.max(enrollment.enrolledAt, assignment.assignedAt)) throw new Error("invalid_source_assignment");
   const sourceEvidence = await ctx.db.query("learning_evidence").withIndex("by_learner_and_submission_id", q => q.eq("learnerId", args.studentId).eq("submissionId", args.submissionId)).collect();
   const sameSource = sourceEvidence.find(row => row.origin === "teacher_led");
   const existing = await ctx.db.query("learning_evidence").withIndex("by_learner_and_idempotency_key", q => q.eq("learnerId", args.studentId).eq("idempotencyKey", key)).unique();
   const isCanonicalTeacherReceipt = (row: typeof existing) => row !== null
     && row.learnerId === args.studentId && row.submissionId === args.submissionId
-    && row.nodeId === nodeId && row.activityId === activity.stableActivityId
+    && row.nodeId === sourceNodeId && row.activityId === source.stableActivityId
     && row.attemptOrdinal === (submission.attemptOrdinal ?? 1)
     && row.origin === "teacher_led" && row.mode === "guided_practice"
-    && row.masteryBearing === false;
+    && row.masteryBearing === false
+    && (sourceNodeId === nodeId || (
+      row.gradedEvidence === undefined
+      && typeof row.occurredAt === "string"
+      && Number.isFinite(Date.parse(row.occurredAt))
+      && typeof row.createdAt === "number"
+      && Number.isFinite(row.createdAt)
+      && row.occurredAt === new Date(row.createdAt).toISOString()
+      && typeof submission.submittedAt === "number"
+      && Number.isFinite(submission.submittedAt)
+      && row.createdAt >= submission.submittedAt
+      && typeof row.idempotencyKey === "string"
+      && row.idempotencyKey.trim().length > 0
+    ));
   if (existing) { if (!isCanonicalTeacherReceipt(existing)) throw new Error("idempotency_conflict"); return { evidenceId: existing._id, replay: true }; }
   if (sameSource) { if (!isCanonicalTeacherReceipt(sameSource)) throw new Error("idempotency_conflict"); return { evidenceId: sameSource._id, replay: true }; }
-  const now = Date.now(); const evidenceId = await ctx.db.insert("learning_evidence", { learnerId: args.studentId, nodeId, submissionId: args.submissionId, activityId: activity.stableActivityId, attemptOrdinal: submission.attemptOrdinal ?? 1, origin: "teacher_led", mode: "guided_practice", occurredAt: new Date(now).toISOString(), idempotencyKey: key, masteryBearing: false, createdAt: now });
+  const now = Date.now(); const evidenceId = await ctx.db.insert("learning_evidence", { learnerId: args.studentId, nodeId: sourceNodeId, submissionId: args.submissionId, activityId: source.stableActivityId, attemptOrdinal: submission.attemptOrdinal ?? 1, origin: "teacher_led", mode: "guided_practice", occurredAt: new Date(now).toISOString(), idempotencyKey: key, masteryBearing: false, createdAt: now });
   return { evidenceId, replay: false };
 }
 export const recordTeacherPerpendicularBisectorExposure = internalMutation({ args: { teacherId: v.id("profiles"), studentId: v.id("profiles"), classId: v.id("classes"), submissionId: v.id("activity_submissions"), idempotencyKey: v.string() }, returns: v.object({ evidenceId: v.id("learning_evidence"), replay: v.boolean() }), handler: recordTeacherExposureHandler });
@@ -325,7 +381,7 @@ function publicPart(part: TrianglePart): PublicTrianglePart {
       part.question.kind === "choice" ? part.question.choices : undefined,
   };
 }
-function trianglePublished(nodeId: string, publication: Publication) {
+export function trianglePublished(nodeId: string, publication: Publication = currentPublication) {
   return (
     publication.nodes.find((row) => row.id === nodeId)?.kind === "skill" &&
     publication.nodes.find((row) => row.id === nodeId)?.reviewStatus ===

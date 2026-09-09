@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   getTrianglePracticeHandler,
+  recordTeacherExposureHandler,
   submitBoundedPracticeHandler,
   submitTriangleHandler,
 } from "@/convex/activities";
@@ -90,6 +91,72 @@ async function setup(
   return { ...store, userId, activityId };
 }
 describe("triangle staged submissions", () => {
+  it.each([
+    [triangleNodeIds.angles, 8, "choice-1"],
+    [triangleNodeIds.sides, 9, "choice-2"],
+  ] as const)("records one teacher introduction from the final %s Guided row", async (node, seed, finalChoice) => {
+    const t = await setup(node, "guided_practice", seed);
+    const teacherId = await t.db.insert("profiles", { role: "teacher", organizationId: "org", username: "teacher" });
+    await t.db.insert("auth_credentials", { profileId: teacherId, role: "teacher", organizationId: "org", username: "teacher", isActive: true });
+    const classId = await t.db.insert("classes", { teacherId, archived: false });
+    await t.db.insert("class_enrollments", { classId, studentId: t.userId, status: "active", enrolledAt: 0 });
+    const lesson = t.tables.lessons.find((row) => row.slug === "module-1-lesson-4")!;
+    await t.db.insert("class_lessons", { classId, lessonId: lesson._id, assignedAt: 0 });
+    const firstPart = await submitTriangleHandler(t.ctx, {
+      userId: t.userId, activityId: t.activityId, idempotencyKey: "guided-first",
+      answers: { measure_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
+    } as never, approved);
+    const secondPart = await submitTriangleHandler(t.ctx, {
+      userId: t.userId, activityId: t.activityId, idempotencyKey: "guided-final",
+      answers: { measure_order: "choice-1", opposite_correspondence: "choice-1" },
+      hintsUsed: firstPart.hintsUsed, revealStepsSeen: 0,
+    } as never, approved);
+    await expect(recordTeacherExposureHandler(t.ctx, {
+      teacherId, studentId: t.userId, classId, submissionId: secondPart.submissionId,
+      idempotencyKey: "intermediate",
+    } as never, approved)).rejects.toThrow("invalid_source_submission");
+    expect(t.tables.learning_evidence ?? []).toEqual([]);
+    const source = await submitTriangleHandler(t.ctx, {
+      userId: t.userId, activityId: t.activityId, idempotencyKey: "guided-complete",
+      answers: { measure_order: "choice-1", opposite_correspondence: "choice-1", final_order: finalChoice },
+      hintsUsed: secondPart.hintsUsed, revealStepsSeen: 0,
+    } as never, approved);
+    expect(source).toMatchObject({ finalPart: true });
+    const args = { teacherId, studentId: t.userId, classId, submissionId: source.submissionId, idempotencyKey: "teacher" };
+    const recorded = await recordTeacherExposureHandler(t.ctx, args as never, approved);
+    expect(await recordTeacherExposureHandler(t.ctx, args as never, approved)).toEqual({ ...recorded, replay: true });
+    expect(await recordTeacherExposureHandler(t.ctx, { ...args, idempotencyKey: "teacher-second" } as never, approved)).toEqual({ ...recorded, replay: true });
+    expect(t.tables.learning_evidence).toHaveLength(1);
+    expect(t.tables.learning_evidence[0]).toMatchObject({
+      learnerId: t.userId, nodeId: node, submissionId: source.submissionId,
+      activityId: `${node}.guided_practice`, attemptOrdinal: 3,
+      origin: "teacher_led", mode: "guided_practice", masteryBearing: false,
+    });
+    expect(t.tables.learning_evidence[0]).not.toHaveProperty("gradedEvidence");
+    expect(t.tables.srs_cards ?? []).toEqual([]);
+    expect(t.tables.srs_review_log ?? []).toEqual([]);
+    const sourceRow = t.tables.activity_submissions.find(row => row._id === source.submissionId)!;
+    const canonical = structuredClone(t.tables.learning_evidence[0]);
+    for (const corrupt of [
+      (row: Record<string, unknown>) => { row.gradedEvidence = { isCorrect: true, score: 1, maxScore: 1 }; },
+      (row: Record<string, unknown>) => { row.occurredAt = "invalid"; },
+      (row: Record<string, unknown>) => { delete row.occurredAt; },
+      (row: Record<string, unknown>) => { row.createdAt = Number.NaN; },
+      (row: Record<string, unknown>) => { row.occurredAt = "2026-09-09T00:00:00.000Z"; },
+      (row: Record<string, unknown>) => { row.createdAt = (sourceRow.submittedAt as number) - 1; row.occurredAt = new Date(row.createdAt as number).toISOString(); },
+      (row: Record<string, unknown>) => { row.idempotencyKey = " "; },
+    ]) {
+      const row = t.tables.learning_evidence[0];
+      for (const key of Object.keys(row)) delete row[key];
+      Object.assign(row, structuredClone(canonical));
+      corrupt(row);
+      const before = structuredClone(t.tables);
+      await expect(recordTeacherExposureHandler(t.ctx, args as never, approved)).rejects.toThrow("idempotency_conflict");
+      await expect(recordTeacherExposureHandler(t.ctx, { ...args, idempotencyKey: "another-key" } as never, approved)).rejects.toThrow("idempotency_conflict");
+      expect(t.tables).toEqual(before);
+    }
+  });
+
   it.each([
     [triangleNodeIds.angles, 8],
     [triangleNodeIds.sides, undefined],

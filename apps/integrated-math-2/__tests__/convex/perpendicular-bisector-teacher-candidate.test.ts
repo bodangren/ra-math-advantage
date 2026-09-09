@@ -4,8 +4,10 @@ import { database, invoke } from "../helpers/database";
 vi.mock("@/convex/activities", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/convex/activities")>()),
   isPilotPublished: () => true,
+  trianglePublished: () => true,
 }));
-import { submitBoundedPracticeHandler } from "@/convex/activities";
+import { submitBoundedPracticeHandler, submitTriangleHandler } from "@/convex/activities";
+import { triangleNodeIds } from "@/lib/practice/triangle-ordering";
 import { getStudentEvidence } from "@/convex/teacher";
 
 const stableActivityId = "math.im2.skill.1.1.perpendicular-bisector-equidistance.guided_practice";
@@ -89,4 +91,44 @@ it("hides the teacher action for a source with an invalid component contract", a
   });
   const worked = (await read()).submissions.find((row) => row.id === receipt.submissionId);
   expect(worked).toMatchObject({ id: receipt.submissionId, answer: "", score: 0, maxScore: 1, canRecordExposure: false });
+});
+
+it.each([
+  [triangleNodeIds.angles, 8],
+  [triangleNodeIds.sides, 9],
+] as const)("offers teacher confirmation only for the final %s Guided row", async (node, seed) => {
+  const { db, ctx } = database();
+  const teacherId = await db.insert("profiles", { role: "teacher", organizationId: "org", username: "teacher" });
+  const studentId = await db.insert("profiles", { role: "student", organizationId: "org", username: "student" });
+  await db.insert("auth_credentials", { profileId: teacherId, isActive: true, role: "teacher", organizationId: "org", username: "teacher" });
+  await db.insert("auth_credentials", { profileId: studentId, isActive: true, role: "student", organizationId: "org", username: "student" });
+  const classId = await db.insert("classes", { teacherId, archived: false });
+  await db.insert("class_enrollments", { classId, studentId, status: "active", enrolledAt: 0 });
+  const lessonId = await db.insert("lessons", { slug: "module-1-lesson-4" });
+  await db.insert("class_lessons", { classId, lessonId, assignedAt: 0 });
+  const activityId = await db.insert("activities", {
+    stableActivityId: `${node}.guided_practice`, masteryNodeId: node,
+    learningEvidenceMode: "guided_practice", componentKey: "im2-question",
+    generatorSeed: seed, generatorDifficulty: 1, approval: { status: "approved" },
+  });
+  const publication = {
+    nodes: [{ id: node, kind: "skill", reviewStatus: "approved" }],
+    blueprints: [{ nodeId: node, reviewStatus: "approved" }],
+  };
+  await submitTriangleHandler(ctx, {
+    userId: studentId, activityId, idempotencyKey: "one",
+    answers: { measure_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
+  } as never, publication);
+  await submitTriangleHandler(ctx, {
+    userId: studentId, activityId, idempotencyKey: "two",
+    answers: { measure_order: "choice-1", opposite_correspondence: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
+  } as never, publication);
+  const beforeFinal = await invoke<unknown, { submissions: Array<{ canRecordExposure: boolean }> }>(getStudentEvidence, ctx, { teacherId, classId, studentId });
+  expect(beforeFinal.submissions.every((row) => !row.canRecordExposure)).toBe(true);
+  const final = await submitTriangleHandler(ctx, {
+    userId: studentId, activityId, idempotencyKey: "three",
+    answers: { measure_order: "choice-1", opposite_correspondence: "choice-1", final_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
+  } as never, publication);
+  const projected = await invoke<unknown, { submissions: Array<{ id: string; canRecordExposure: boolean }> }>(getStudentEvidence, ctx, { teacherId, classId, studentId });
+  expect(projected.submissions.filter((row) => row.canRecordExposure).map((row) => row.id)).toEqual([final.submissionId]);
 });
