@@ -1068,3 +1068,6 @@ Parent review accepts the two corrected native scopes. IM2 uses committed source
 
 - [~] Task IM2-L14 native verification execution: Execute `im2-lesson14-native-real-teacher-scope.md` against the accepted candidate. Verify all three stages, real teacher records, exact retry/reload, four exact-node results, and all effect counts. Preserve sanitized evidence for independent review before cleanup.
 - [~] Task IM3-L16 quiz native verification execution: Execute `im3-lesson16-quiz-native-verification-scope.md` against accepted source. Verify all four cases, real phase completion, three graded rows, transport, exact retry, live re-entry, and zero learning effects. Preserve sanitized evidence for independent review before cleanup.
+
+
+- [~] Task G56 IM1 Lesson 10-5 source review: Review committed `Int1_1005_practice.docx` and its native figures. Inventory every prompt and demonstrated solution. Compare the current committed lesson content and graph records. Identify assessable capabilities, source identities, valid skill reuse, manual-review boundaries, and supported prerequisites. Propose bounded source and graph corrections. Use Git HEAD files as authority and preserve unrelated main edits. Do not change source or graph files during this review. This work can run while the two native practice verifications execute.
