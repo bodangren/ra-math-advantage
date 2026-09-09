@@ -9404,6 +9404,38 @@
       }
     },
     {
+      "id": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances",
+      "kind": "skill",
+      "title": "Find the inradius from equal perpendicular distances",
+      "domain": "math.im2",
+      "description": "Use equal perpendicular distances from an incenter to solve a linear equation and find the inradius.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle",
+      "kind": "skill",
+      "title": "Solve an equal-angle equation and find the whole bisected angle",
+      "domain": "math.im2",
+      "description": "Use two equal angle expressions to solve a linear equation and find the measure of the whole bisected angle.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
       "id": "math.im2.skill.1.2.solve-real-world-problems-involving-angle-bisectors-and-the",
       "kind": "skill",
       "title": "1d: Solve real-world problems involving angle bisectors and the incenter",
@@ -9432,7 +9464,8 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "2"
+        "lesson": "2",
+        "taxonomyRole": "legacy_objective_aggregator"
       }
     },
     {

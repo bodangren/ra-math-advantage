@@ -9409,6 +9409,38 @@
       }
     },
     {
+      "id": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances",
+      "kind": "skill",
+      "title": "Find the inradius from equal perpendicular distances",
+      "domain": "math.im2",
+      "description": "Use equal perpendicular distances from an incenter to solve a linear equation and find the inradius.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle",
+      "kind": "skill",
+      "title": "Solve an equal-angle equation and find the whole bisected angle",
+      "domain": "math.im2",
+      "description": "Use two equal angle expressions to solve a linear equation and find the measure of the whole bisected angle.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
       "id": "math.im2.skill.1.2.solve-real-world-problems-involving-angle-bisectors-and-the",
       "kind": "skill",
       "title": "1d: Solve real-world problems involving angle bisectors and the incenter",
@@ -9437,7 +9469,8 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "2"
+        "lesson": "2",
+        "taxonomyRole": "legacy_objective_aggregator"
       }
     },
     {
@@ -53419,6 +53452,62 @@
       "rationale": "Lesson 1-1 Example 4 demonstrates coordinate circumcenter calculation.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/modules/module-1-lesson-1"
+      ]
+    },
+    {
+      "id": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances.contains",
+      "type": "contains",
+      "sourceId": "math.im2.lesson.1.2",
+      "targetId": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 1-2 contains the source problem that asks for the inradius.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
+      ]
+    },
+    {
+      "id": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances.appears_in_context",
+      "type": "appears_in_context",
+      "sourceId": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances",
+      "targetId": "math.im2.example.1.2.006",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 1-2 Example 2 demonstrates an equal-distance equation and asks for the inradius.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
+      ]
+    },
+    {
+      "id": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle.contains",
+      "type": "contains",
+      "sourceId": "math.im2.lesson.1.2",
+      "targetId": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 1-2 contains the source problem that asks for the whole bisected angle.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
+      ]
+    },
+    {
+      "id": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle.appears_in_context",
+      "type": "appears_in_context",
+      "sourceId": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle",
+      "targetId": "math.im2.example.1.2.005",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 1-2 Example 1 demonstrates an equal-angle equation and asks for the whole angle.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
       ]
     }
   ]

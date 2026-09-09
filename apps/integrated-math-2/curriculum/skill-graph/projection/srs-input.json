@@ -2,7 +2,7 @@
   "metadata": {
     "course": "im2",
     "description": "Graph practice is not connected to the runtime. All skills remain ineligible for spaced review.",
-    "totalSkills": 203,
+    "totalSkills": 207,
     "srsEligibleCount": 0
   },
   "skills": [
@@ -38,6 +38,34 @@
       "module": "1",
       "lesson": "1",
       "srsEligible": false,
+      "rationale": "Source-only draft capability has no generator",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances.independent_practice",
+      "nodeId": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances",
+      "title": "Find the inradius from equal perpendicular distances",
+      "course": "im2",
+      "module": "1",
+      "lesson": "2",
+      "srsEligible": false,
+      "generatorReady": false,
+      "independentPracticeReady": false,
+      "rationale": "Source-only draft capability has no generator",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle.independent_practice",
+      "nodeId": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle",
+      "title": "Solve an equal-angle equation and find the whole bisected angle",
+      "course": "im2",
+      "module": "1",
+      "lesson": "2",
+      "srsEligible": false,
+      "generatorReady": false,
+      "independentPracticeReady": false,
       "rationale": "Source-only draft capability has no generator",
       "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"

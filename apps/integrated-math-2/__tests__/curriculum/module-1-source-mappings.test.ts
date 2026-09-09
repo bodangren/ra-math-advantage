@@ -6,6 +6,7 @@ import blueprints from "../../curriculum/skill-graph/blueprints.json";
 import draft from "../../curriculum/skill-graph/draft-nodes.json";
 import graph from "../../curriculum/skill-graph/edges.json";
 import inventory from "../../curriculum/skill-graph/nodes.json";
+import activityMap from "../../curriculum/skill-graph/projection/practice-v1-activity-map.json";
 import srs from "../../curriculum/skill-graph/projection/srs-input.json";
 import teacher from "../../curriculum/skill-graph/projection/teacher-evidence-map.json";
 
@@ -17,6 +18,12 @@ const coordinateCircumcenterId =
   "math.im2.skill.1.1.find-coordinates-of-the-circumcenter";
 const lessonSource =
   "apps/integrated-math-2/curriculum/modules/module-1-lesson-3";
+const lesson12Source =
+  "apps/integrated-math-2/curriculum/modules/module-1-lesson-2";
+const equalAngleId =
+  "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle";
+const inradiusId =
+  "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances";
 
 function getNode<T extends { id: string }>(nodes: T[], id: string) {
   return nodes.find((node) => node.id === id);
@@ -189,5 +196,171 @@ describe("IM2 Module 1 source mappings", () => {
       srsEligible: false,
       prerequisiteNodeIds: [],
     });
+  });
+
+  it("uses the full Lesson 1-2 source bodies and preserves the requested final quantities", () => {
+    const source = readFileSync(
+      resolve("curriculum/modules/module-1-lesson-2"),
+      "utf8",
+    );
+    expect(source).toContain(
+      "## Example 1 — Find Angle and Segment Measures Using Angle Bisectors\n\n### Problem\n\nBD bisects angle ABC. Angle ABD is (3x + 4) degrees and angle DBC is (5x - 12) degrees. Find angle ABC.\n\n### Solution\n\nThe two angles are equal. Solve 3x + 4 = 5x - 12 to obtain x = 8. Each smaller angle is 28 degrees, so angle ABC is 56 degrees.",
+    );
+    expect(source).toContain(
+      "## Example 2 — Use the Incenter to Find Measures\n\n### Problem\n\nI is the incenter of triangle ABC. D and E are the feet of perpendiculars from I to AB and BC. ID = 2x + 1 cm and IE = 5x - 8 cm. Find the inradius.\n\n### Solution\n\nThe incenter has equal perpendicular distances to all three sides. Thus 2x + 1 = 5x - 8, so x = 3. The inradius is ID = IE = 7 cm.",
+    );
+
+    for (const exampleId of [
+      "math.im2.example.1.2.005",
+      "math.im2.example.1.2.006",
+    ]) {
+      for (const nodes of [inventory.nodes, draft.nodes, graph.nodes]) {
+        expect(nodes.filter((node) => node.id === exampleId)).toHaveLength(1);
+        expect(getNode(nodes as { id: string }[], exampleId)).toMatchObject({
+          kind: "worked_example",
+        });
+      }
+    }
+
+    expect(
+      blueprints.blueprints.find((item) => item.nodeId === equalAngleId)
+        ?.sourceNodeIds,
+    ).toEqual(["math.im2.example.1.2.005"]);
+    expect(
+      blueprints.blueprints.find((item) => item.nodeId === inradiusId)
+        ?.sourceNodeIds,
+    ).toEqual(["math.im2.example.1.2.006"]);
+  });
+
+  it("adds two inactive atomic Lesson 1-2 capabilities and preserves the broad rows", () => {
+    for (const [id, title, description, exampleId] of [
+      [
+        equalAngleId,
+        "Solve an equal-angle equation and find the whole bisected angle",
+        "Use two equal angle expressions to solve a linear equation and find the measure of the whole bisected angle.",
+        "math.im2.example.1.2.005",
+      ],
+      [
+        inradiusId,
+        "Find the inradius from equal perpendicular distances",
+        "Use equal perpendicular distances from an incenter to solve a linear equation and find the inradius.",
+        "math.im2.example.1.2.006",
+      ],
+    ] as const) {
+      const copies = [
+        getNode(inventory.nodes, id),
+        getNode(draft.nodes, id),
+        getNode(graph.nodes, id),
+      ];
+      expect(copies[0]).toMatchObject({
+        id,
+        kind: "skill",
+        title,
+        description,
+        sourceRefs: [lesson12Source],
+        reviewStatus: "draft",
+        metadata: { course: "im2", module: "1", lesson: "2" },
+      });
+      expect(copies[1]).toEqual(copies[0]);
+      expect(copies[2]).toEqual(copies[0]);
+
+      const blueprint = blueprints.blueprints.find((item) => item.nodeId === id);
+      expect(blueprint).toMatchObject({
+        sourceNodeIds: [exampleId],
+        alignmentNodeIds: [],
+        rendererKey: "",
+        rendererModeMap: {},
+        reviewStatus: "draft",
+        metadata: {
+          implementationStatus: "unavailable",
+          independentPracticeReady: false,
+        },
+      });
+      expect(blueprint).not.toHaveProperty("generatorKey");
+      expect(blueprint).not.toHaveProperty("workedExampleSpec");
+      expect(blueprint).not.toHaveProperty("guidedPracticeSpec");
+      expect(blueprint).not.toHaveProperty("independentPracticeSpec");
+
+      const directEdges = graph.edges.filter(
+        (edge) => edge.sourceId === id || edge.targetId === id,
+      );
+      expect(directEdges.map((edge) => edge.type).sort()).toEqual([
+        "appears_in_context",
+        "contains",
+      ]);
+      expect(directEdges.every((edge) => edge.reviewStatus === "draft")).toBe(
+        true,
+      );
+      expect(
+        directEdges.find((edge) => edge.type === "appears_in_context")
+          ?.targetId,
+      ).toBe(exampleId);
+
+      expect(teacher.skills.find((item) => item.nodeId === id)).toMatchObject({
+        standardsCoverage: { alignedStandards: [] },
+        prerequisites: [],
+        generatorStatus: "not_implemented",
+        rendererKey: "",
+        independentPracticeReady: false,
+      });
+      expect(srs.skills.find((item) => item.nodeId === id)).toMatchObject({
+        prerequisiteNodeIds: [],
+        generatorReady: false,
+        independentPracticeReady: false,
+        srsEligible: false,
+      });
+      expect(
+        activityMap.activities.some((item: { nodeId: string }) => item.nodeId === id),
+      ).toBe(false);
+    }
+
+    const legacy1c =
+      "math.im2.skill.1.2.use-the-angle-bisector-theorem-to-find-angle-and-segment-mea";
+    const supplementary1d =
+      "math.im2.skill.1.2.solve-real-world-problems-involving-angle-bisectors-and-the";
+    for (const nodes of [inventory.nodes, draft.nodes, graph.nodes]) {
+      expect(getNode(nodes as { id: string }[], legacy1c)).toMatchObject({
+        kind: "skill",
+        reviewStatus: "draft",
+        metadata: { taxonomyRole: "legacy_objective_aggregator" },
+      });
+      expect(getNode(nodes as { id: string }[], supplementary1d)).toMatchObject({
+        kind: "skill",
+        reviewStatus: "draft",
+      });
+      expect(
+        getNode(nodes as { id: string; metadata?: Record<string, unknown> }[], supplementary1d)
+          ?.metadata,
+      ).not.toHaveProperty("taxonomyRole");
+    }
+    for (const id of [legacy1c, supplementary1d])
+      expect(
+        blueprints.blueprints.find((item) => item.nodeId === id)?.sourceNodeIds,
+      ).toEqual([]);
+  });
+
+  it("keeps projection metadata equal to the canonical skill inventory", () => {
+    const canonicalSkillIds = inventory.nodes
+      .filter((node) => node.kind === "skill")
+      .map((node) => node.id)
+      .sort();
+    const teacherSkillIds = teacher.skills.map((row) => row.nodeId).sort();
+    const srsSkillIds = srs.skills.map((row) => row.nodeId).sort();
+
+    expect(teacherSkillIds).toEqual(canonicalSkillIds);
+    expect(srsSkillIds).toEqual(canonicalSkillIds);
+    expect(teacher.metadata.totalSkills).toBe(canonicalSkillIds.length);
+    expect(srs.metadata.totalSkills).toBe(canonicalSkillIds.length);
+    expect(teacher.metadata.standardsGapCount).toBe(
+      teacher.skills.filter((row) => row.standardsCoverage.hasStandardsGap)
+        .length,
+    );
+    expect(teacher.metadata.generatorReadyCount).toBe(
+      teacher.skills.filter((row) => row.generatorStatus === "implemented")
+        .length,
+    );
+    expect(srs.metadata.srsEligibleCount).toBe(
+      srs.skills.filter((row) => row.srsEligible).length,
+    );
   });
 });

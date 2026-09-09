@@ -74,6 +74,52 @@
       }
     },
     {
+      "nodeId": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances",
+      "sourceNodeIds": [
+        "math.im2.example.1.2.006"
+      ],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle",
+      "sourceNodeIds": [
+        "math.im2.example.1.2.005"
+      ],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
       "nodeId": "math.im2.skill.1.2.solve-real-world-problems-involving-angle-bisectors-and-the",
       "sourceNodeIds": [],
       "alignmentNodeIds": [

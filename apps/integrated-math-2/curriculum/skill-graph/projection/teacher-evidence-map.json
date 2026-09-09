@@ -2,8 +2,8 @@
   "metadata": {
     "course": "im2",
     "description": "Generator availability and definition coverage. These counts do not certify reviewed standards alignment or runtime practice readiness.",
-    "totalSkills": 203,
-    "standardsGapCount": 53,
+    "totalSkills": 207,
+    "standardsGapCount": 57,
     "generatorReadyCount": 1
   },
   "skills": [
@@ -48,6 +48,36 @@
       "title": "Find the coordinates of the circumcenter of a triangle",
       "module": "1",
       "lesson": "1",
+      "standardsCoverage": {
+        "alignedStandards": [],
+        "hasStandardsGap": true,
+        "placeholderCount": 0
+      },
+      "prerequisites": [],
+      "generatorStatus": "not_implemented",
+      "rendererKey": "",
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances",
+      "title": "Find the inradius from equal perpendicular distances",
+      "module": "1",
+      "lesson": "2",
+      "standardsCoverage": {
+        "alignedStandards": [],
+        "hasStandardsGap": true,
+        "placeholderCount": 0
+      },
+      "prerequisites": [],
+      "generatorStatus": "not_implemented",
+      "rendererKey": "",
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle",
+      "title": "Solve an equal-angle equation and find the whole bisected angle",
+      "module": "1",
+      "lesson": "2",
       "standardsCoverage": {
         "alignedStandards": [],
         "hasStandardsGap": true,
