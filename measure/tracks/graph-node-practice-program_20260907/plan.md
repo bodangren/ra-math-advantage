@@ -876,4 +876,12 @@ Client and projection integration cleanup is complete. The completed reconstruct
 
 The real browser setup reached a seed defect. The local backend accepted the source push with type checking enabled. The existing demo seed passed. seed_lesson_1_6:seedLesson6 failed because its quiz props use question and correctIndex fields that the current activity schema does not accept. The lesson seed transaction rolled back. The browser wrapper fixture and frontend have not started. The temporary TypeScript configuration is restored. Keep the local database for the corrected retry; do not rerun the completed demo seed.
 
-- [~] Task IM3-L16 quiz seed repair scope: Trace the two legacy quiz questions in the existing Lesson 1.6 seed against the current schema and real quiz consumer. Define the minimum seed and regression repair. Preserve question meaning, answers, all other phases, QF draft authority, and the production schema. Do not bypass the failed lesson seed in the browser fixture.
+- [x] Task IM3-L16 quiz seed repair scope: Trace the two legacy quiz questions in the existing Lesson 1.6 seed against the current schema and real quiz consumer. Define the minimum seed and regression repair. Preserve question meaning, answers, all other phases, QF draft authority, and the production schema. Do not bypass the failed lesson seed in the browser fixture.
+
+Parent review accepts the two-file Lesson 1.6 quiz seed scope. The old correctIndex=1 values map to the unchanged second option text. The active local demo seed has already completed and must not run again. See `im3-lesson16-seed-quiz-repair-scope.md`.
+
+- [~] Task IM3-L16 quiz seed repair: Convert only the two Phase 10 quiz objects to the current schema. Add a failing actual-seed regression. Preserve all other phases and QF authority. Require source gates and independent review before the real local retry.
+
+Parent and independent review accept the seven-file IM2 Lesson 1.4 source taxonomy scope with counts derived from actual arrays. Keep occupied example IDs intact. Add atomic draft side-to-angle and angle-to-side ordering capabilities from the combined native group. See `im2-lesson14-source-taxonomy-scope.md`.
+
+- [~] Task IM2-L14 source taxonomy correction: Implement the accepted seven-file scope with failing source and parity regressions. Correct unsupported approved broad rows and stale counts. Preserve unrelated identities, edges, and bytes. Keep new practice projections unavailable until authored components are implemented and verified.
