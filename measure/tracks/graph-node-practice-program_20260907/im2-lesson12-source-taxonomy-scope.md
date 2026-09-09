@@ -51,7 +51,7 @@ Preserve these existing skill IDs and their `kind: "skill"` values:
 - `math.im2.skill.1.2.use-the-angle-bisector-theorem-to-find-angle-and-segment-mea` (`1c`)
 - `math.im2.skill.1.2.solve-real-world-problems-involving-angle-bisectors-and-the` (`1d`)
 
-Both IDs occur in `nodes.json`, `draft-nodes.json`, and the embedded node list in `edges.json`. Each has one draft blueprint, one teacher-evidence row, and one spaced repetition system (SRS) input represented in both `srs-input.json` and the nested SRS list in `teacher-evidence-map.json`.
+Both IDs occur in `nodes.json`, `draft-nodes.json`, and the embedded node list in `edges.json`. Each has one draft blueprint and one teacher-evidence row. Each has one spaced repetition system (SRS) input in `srs-input.json`. The teacher-evidence file has only `metadata` and `skills` as top-level keys.
 
 Each existing ID has draft lesson containment and context edges. Each also has two draft standard-alignment edges in `edges.json` and `standard-edges.json`. Both IDs occur in the edge review, generator gap, geometry renderer gap, and standards review queues.
 
