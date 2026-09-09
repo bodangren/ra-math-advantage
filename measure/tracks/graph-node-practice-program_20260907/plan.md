@@ -979,4 +979,9 @@ The first IM2 fifteen-path practice patch is rejected. Its 49 focused tests do n
 
 - [~] Task IM2-L14 calendar source gate: Correct only the existing calendar test under the accepted one-path scope. Require Worked entries when the source lesson has demonstrated Worked phases. Require zero when it has none. Preserve all coverage, identity, title, and maximum checks. Run the full IM2 suite and required build checks.
 
-- [~] Task IM3-QF equation presentation scope: Trace the minimum change that publishes a complete equation in pending, editable, and saved views. Check stored draft compatibility. Preserve grading authority and existing browser evidence. Define exact paths before implementation.
+- [x] Task IM3-QF equation presentation scope: Trace the minimum change that publishes a complete equation in pending, editable, and saved views. Check stored draft compatibility. Preserve grading authority and existing browser evidence. Define exact paths before implementation.
+
+
+- [~] Task IM3-QF complete equation presentation: Implement the accepted four-path scope. Publish complete equations. Reconcile only exact legacy unreviewed drafts. Preserve all eight verified submissions and their relations. Verify pending, saved-awaiting-details, and final responses. Run focused tests, renderer compatibility tests, lint, build, standalone types, independent review, and bounded native display checks.
+
+The equation presentation scope passed parent and independent review. The temporary frontend is stopped. Its worker credentials are outside the candidate. The saved development environment is restored. Keep the original local backend and database for the bounded reconciliation and display proof.
