@@ -2,6 +2,8 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
+import lessons from "../../curriculum/lessons.json";
+import calendar from "../../curriculum/calendar.json";
 import blueprints from "../../curriculum/skill-graph/blueprints.json";
 import draft from "../../curriculum/skill-graph/draft-nodes.json";
 import graph from "../../curriculum/skill-graph/edges.json";
@@ -337,6 +339,189 @@ describe("IM2 Module 1 source mappings", () => {
       expect(
         blueprints.blueprints.find((item) => item.nodeId === id)?.sourceNodeIds,
       ).toEqual([]);
+  });
+
+  it("preserves all 39 Lesson 1-4 worksheet prompts and their native figures", () => {
+    const source = readFileSync(
+      resolve("curriculum/modules/module-1-lesson-4"),
+      "utf8",
+    );
+
+    expect(source.match(/^## Example 1$/gm)).toHaveLength(1);
+    expect(source.match(/^## Examples 2 and 3$/gm)).toHaveLength(1);
+    expect(source.match(/^## Example 4$/gm)).toHaveLength(1);
+    expect(source.match(/^## Mixed Exercises$/gm)).toHaveLength(1);
+    expect(source.match(/^## Examples? /gm)).toHaveLength(3);
+    const supportedGoals = [
+      "List all angles that satisfy a given condition relative to another angle.",
+      "Order angles and sides of a triangle from smallest to largest.",
+      "Use angle and side relationships in real-world contexts.",
+    ];
+    expect(source).toContain("## Today's Goals");
+    for (const goal of supportedGoals) expect(source).toContain(`* ${goal}`);
+    const calendarEntry = calendar.periods.find(
+      (period) => period.sourceLesson === "module-1-lesson-4",
+    );
+    expect(calendarEntry).toMatchObject({
+      objective: supportedGoals[0],
+      embeddedObjectives: supportedGoals.slice(1),
+      workedExamples: ["Example 1", "Examples 2 and 3"],
+    });
+
+    for (let problem = 1; problem <= 39; problem += 1)
+      expect(
+        source.match(new RegExp(`^### Problem ${problem}$`, "gm")),
+      ).toHaveLength(1);
+
+    const problemBody = (problem: number) => {
+      const start = source.indexOf(`### Problem ${problem}\n`);
+      const end =
+        problem === 39
+          ? source.length
+          : source.indexOf(`### Problem ${problem + 1}\n`, start);
+      expect(start).toBeGreaterThanOrEqual(0);
+      expect(end).toBeGreaterThan(start);
+      return source.slice(start, end);
+    };
+
+    for (const [problem, prompt] of [
+      [1, "measures are greater than m∠3"],
+      [2, "measures are less than m∠1"],
+      [3, "measures are greater than m∠1"],
+      [4, "measures are less than m∠7"],
+      [5, "measures are greater than m∠2"],
+    ] as const)
+      expect(problemBody(problem)).toContain(prompt);
+
+    expect(source).toContain(
+      "### Problem 14\n\n**MAPS** Sata is going to Texas to visit a friend.",
+    );
+    for (const part of ["a.", "b.", "c."])
+      expect(source.match(new RegExp(`^${part.replace(".", "\\.")} `, "gm"))).toHaveLength(1);
+
+    for (const prompt of [
+      "a. Based on the information in the figure, which of the two cities are nearest to each other?",
+      "b. Based on the information in the figure, which of the two cities are farthest apart from each other?",
+      "c. If you were going to use the information from Sata’s sketch in order to plan a road trip between these cities, what is an assumption you would have to make?",
+    ])
+      expect(problemBody(14)).toContain(prompt);
+
+    const problemFigurePairs = [
+      [6, 3],
+      [7, 2],
+      [8, 4],
+      [9, 7],
+      [10, 6],
+      [11, 5],
+      [15, 11],
+      [16, 10],
+    ] as const;
+    for (const [problem, image] of problemFigurePairs)
+      expect(problemBody(problem)).toContain(
+        `module-1-lesson-4/image${image}.png`,
+      );
+
+    const sourceGroupFigures = [
+      [source.slice(source.indexOf("## Example 1"), source.indexOf("## Examples 2 and 3")), [1]],
+      [problemBody(12), [8]],
+      [problemBody(14), [9]],
+      [source.slice(source.indexOf("In △ABC"), source.indexOf("### Problem 20")), [12]],
+      [problemBody(20), [13]],
+      [problemBody(21), [14, 15]],
+      [source.slice(source.indexOf("Use the figure at the right to determine the relationship between the measures"), source.indexOf("### Problem 32")), [16]],
+      [source.slice(source.indexOf("Use the figure at the right to determine the relationship between the given lengths"), source.indexOf("### Problem 36")), [17]],
+      [problemBody(37), [18]],
+      [problemBody(39), [19]],
+    ] as const;
+    for (const [group, images] of sourceGroupFigures)
+      for (const image of images)
+        expect(group).toContain(`module-1-lesson-4/image${image}.png`);
+
+    for (let image = 1; image <= 19; image += 1) {
+      expect(
+        source.match(
+          new RegExp(`module-1-lesson-4/image${image}\\.png`, "g"),
+        ),
+      ).toHaveLength(1);
+      expect(() =>
+        readFileSync(
+          resolve(`public/curriculum/module-1-lesson-4/image${image}.png`),
+        ),
+      ).not.toThrow();
+    }
+
+    for (const exactText of [
+      "List the angles and sides of each triangle in order from smallest to largest.",
+      "In △ABC, segment AY bisects ∠A, segment BX bisects ∠B, and Q is the intersection of segments AY and BX.",
+      "Compare m∠BAY and m∠ABX. Justify your reasoning.",
+      "Cynda claims that segment XC ≅ segment YC if BC > AC.",
+      "which side of △ABQ has the greatest length?",
+      "Give a possible measure for segment AB in △ABC shown. Explain your reasoning.",
+      "∠1, ∠5, ∠6",
+      "∠8, ∠10, ∠11",
+      "∠ABD, ∠BDA",
+      "∠DBF, ∠BFD",
+      "SM, MR",
+      "RM, RQ",
+    ])
+      expect(source).toContain(exactText);
+
+    const listedResponses = new Map<number, string>([
+      [22, "∠1, ∠5, ∠6"],
+      [23, "∠2, ∠4, ∠6"],
+      [24, "∠7, ∠4, ∠5"],
+      [25, "∠3, ∠11, ∠12"],
+      [26, "∠3, ∠9, ∠14"],
+      [27, "∠8, ∠10, ∠11"],
+      [28, "∠ABD, ∠BDA"],
+      [29, "∠BCF, ∠CFB"],
+      [30, "∠BFD, ∠BDF"],
+      [31, "∠DBF, ∠BFD"],
+      [32, "SM, MR"],
+      [33, "RP, MP"],
+      [34, "RQ, PQ"],
+      [35, "RM, RQ"],
+    ]);
+    for (const [problem, response] of listedResponses)
+      expect(problemBody(problem)).toContain(response);
+
+    for (const instruction of [
+      "Use the figure at the right to determine which angle has the greatest measure.",
+      "Use the figure at the right to determine the relationship between the measures of the given angles.",
+      "Use the figure at the right to determine the relationship between the given lengths.",
+    ])
+      expect(source).toContain(instruction);
+
+    expect(source).not.toMatch(/^### Solution$/m);
+    expect(source).not.toContain("Triangle Inequality Theorem");
+    for (const syntheticText of [
+      "35, 65, and 80 degrees",
+      "AB = 7 cm, BC = 9 cm, and CA = 5 cm",
+      "Triangle DEF has angles D = 50 degrees",
+      "AB = 300 m, BC = 500 m, and CA = 400 m",
+    ])
+      expect(source).not.toContain(syntheticText);
+
+    const sourceHeadings = [...source.matchAll(/^## (.+)$/gm)];
+    const sourceSections = sourceHeadings.map((match, index) => ({
+      title: match[1],
+      markdown: source
+        .slice(
+          (match.index ?? 0) + match[0].length,
+          sourceHeadings[index + 1]?.index ?? source.length,
+        )
+        .trim(),
+    }));
+    const bundledLesson = lessons.find(
+      (lesson) => lesson.slug === "module-1-lesson-4",
+    );
+    expect(bundledLesson).toBeDefined();
+    expect(
+      bundledLesson?.phases.map(({ title, markdown }) => ({
+        title,
+        markdown,
+      })),
+    ).toEqual(sourceSections);
   });
 
   it("keeps projection metadata equal to the canonical skill inventory", () => {

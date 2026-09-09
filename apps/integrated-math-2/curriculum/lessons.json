@@ -189,61 +189,37 @@
     "slug": "module-1-lesson-4",
     "unitNumber": 1,
     "orderIndex": 4,
-    "title": "Inequalities in One Triangle",
+    "title": "Inequalities in One Triangle — Practice",
     "phases": [
       {
         "phaseNumber": 1,
         "title": "Today's Goals",
         "phaseType": "learn",
-        "markdown": "* List all angles that satisfy a given condition relative to another angle.\n* Order angles and sides of a triangle from smallest to largest.\n* Apply triangle inequality relationships to solve problems.\n* Use angle and side relationships in real-world contexts."
+        "markdown": "* List all angles that satisfy a given condition relative to another angle.\n* Order angles and sides of a triangle from smallest to largest.\n* Use angle and side relationships in real-world contexts."
       },
       {
         "phaseNumber": 2,
-        "title": "Vocabulary",
-        "phaseType": "vocabulary",
-        "markdown": "* **Triangle Inequality Theorem** — The sum of the lengths of any two sides of a triangle is greater than the length of the third side.\n* **Side-Angle Inequality** — In a triangle, the larger angle is opposite the longer side.\n* **Angle-Side Inequality** — In a triangle, the longer side is opposite the larger angle."
+        "title": "Example 1",
+        "phaseType": "worked_example",
+        "markdown": "List all the angles that satisfy the stated condition.\n\n![Angles 1 through 7 in adjoining triangles and on an extended baseline.](/curriculum/module-1-lesson-4/image1.png)\n\n### Problem 1\n\nmeasures are greater than m∠3\n\n### Problem 2\n\nmeasures are less than m∠1\n\n### Problem 3\n\nmeasures are greater than m∠1\n\n### Problem 4\n\nmeasures are less than m∠7\n\n### Problem 5\n\nmeasures are greater than m∠2"
       },
       {
         "phaseNumber": 3,
-        "title": "Explore: How Are Sides and Angles Related?",
-        "phaseType": "explore",
-        "markdown": "In a triangle, the sides and angles are connected. A bigger angle always sits across from a bigger side, and vice versa. Students explore how to use this relationship to compare the sizes of angles and sides without measuring.\n\nInquiry Question:\nIf you know the side lengths of a triangle, how can you determine which angle is the largest?"
+        "title": "Examples 2 and 3",
+        "phaseType": "worked_example",
+        "markdown": "List the angles and sides of each triangle in order from smallest to largest.\n\n### Problem 6\n\n![Triangle TRS with side lengths TR 48 centimeters, TS 35 centimeters, and RS 23.7 centimeters.](/curriculum/module-1-lesson-4/image3.png)\n\n### Problem 7\n\n![Triangle RST with angle measures R 60 degrees, S 80 degrees, and T 40 degrees.](/curriculum/module-1-lesson-4/image2.png)\n\n### Problem 8\n\n![Triangle ABC with side lengths AB 3.8, AC 4.0, and BC 4.3.](/curriculum/module-1-lesson-4/image4.png)\n\n### Problem 9\n\n![Triangle CDE with angle measures C 35 degrees, D 120 degrees, and E 25 degrees.](/curriculum/module-1-lesson-4/image7.png)\n\n### Problem 10\n\n![Triangle RST with angle measures S 60 degrees and T 54 degrees.](/curriculum/module-1-lesson-4/image6.png)\n\n### Problem 11\n\n![Triangle PQR with side lengths PR 12, RQ 18, and PQ 20.](/curriculum/module-1-lesson-4/image5.png)"
       },
       {
         "phaseNumber": 4,
-        "title": "Learn: Comparing Angles and Sides in Triangles",
-        "phaseType": "learn",
-        "markdown": "### Key Concept: Side-Angle Relationship\n\nIn any triangle, the longest side is opposite the largest angle, and the shortest side is opposite the smallest angle. This means if one side is longer than another, the angle opposite the longer side is larger.\n\n### Key Concept: Listing Angles and Sides in Order\n\nTo order angles or sides from smallest to largest:\n1. Identify the smallest/largest angle or side using the given information or relationships.\n2. Use the side-angle relationship to determine the corresponding angle/side ordering."
+        "title": "Example 4",
+        "phaseType": "worked_example",
+        "markdown": "### Problem 12\n\n**SPORTS** The figure shows the position of three trees on one part of a disc golf course. At which tree position is the angle between the trees the greatest?\n\n![Tree positions 1, 2, and 3 form a triangle. Positions 2 and 3 are 40 feet apart. Positions 1 and 2 are 37.5 feet apart. Positions 1 and 3 are 53 feet apart.](/curriculum/module-1-lesson-4/image8.png)\n\n### Problem 13\n\n**NEIGHBORHOOD** Cain and Remy live on the same straight road. From their balconies, they can see a flagpole in the distance. The angle that each person’s line of sight to the flagpole makes with the road is the same. How do their distances from the flagpole compare?"
       },
       {
         "phaseNumber": 5,
-        "title": "Example 1 — List Angles Satisfying a Condition",
-        "phaseType": "worked_example",
-        "markdown": "### Problem\n\nA triangle has angles labeled 1, 2, and 3 with measures 35, 65, and 80 degrees, respectively. List the angles larger than angle 1 and smaller than angle 3.\n\n### Solution\n\nAngle 2 satisfies both conditions because 35 < 65 < 80. Angle 1 is not larger than itself, and angle 3 is not smaller than itself. Use the stated measures, not the apparent size of a drawing."
-      },
-      {
-        "phaseNumber": 6,
-        "title": "Example 2 — Order Angles and Sides from Smallest to Largest",
-        "phaseType": "worked_example",
-        "markdown": "### Problem\n\nIn triangle ABC, AB = 7 cm, BC = 9 cm, and CA = 5 cm. Order the angles from smallest to largest.\n\n### Solution\n\nEach angle is opposite a side. Angle B is opposite CA = 5, angle C is opposite AB = 7, and angle A is opposite BC = 9. Therefore angle B < angle C < angle A."
-      },
-      {
-        "phaseNumber": 7,
-        "title": "Example 3 — Compare Angles and Sides in Multiple Triangles",
-        "phaseType": "worked_example",
-        "markdown": "### Problem\n\nTriangle ABC has angles A = 40 degrees, B = 60 degrees, and C = 80 degrees. Triangle DEF has angles D = 50 degrees, E = 60 degrees, and F = 70 degrees. Name the longest side in each triangle. Can these angles alone determine which triangle has the longer longest side?\n\n### Solution\n\nAB is opposite angle C, so AB is longest in ABC. DE is opposite angle F, so DE is longest in DEF. The angles do not determine the scale of either triangle. Thus they do not determine whether AB or DE is longer."
-      },
-      {
-        "phaseNumber": 8,
-        "title": "Example 4 — Real-World Angle Comparison",
-        "phaseType": "worked_example",
-        "markdown": "### Problem\n\nThree straight paths form triangle ABC. AB = 300 m, BC = 500 m, and CA = 400 m. Which corner has the largest angle?\n\n### Solution\n\nThe largest angle is opposite the longest side. BC is the longest side, so angle A is the largest. Also, 300 squared + 400 squared = 500 squared, so angle A is 90 degrees."
-      },
-      {
-        "phaseNumber": 9,
         "title": "Mixed Exercises",
         "phaseType": "independent_practice",
-        "markdown": "Practice involves:\n\n* Map problem: determining which two cities are nearest and farthest apart based on angle measures in a triangle formed by three cities.\n* Listing angles and sides of triangles in order from smallest to largest given diagrams.\n* Analyzing angle bisector intersections: if BC > AC, compare m∠BAY and m∠ABX, determine whether XC ≅ YC, and if m∠AQB > m∠BQY, which side of triangle ABQ has the greatest length.\n* Writing a paragraph proof: if WY > YX, then m∠ZWY > m∠YWX.\n* Comparing perimeters of squares arranged to form a triangle.\n* Determining which angle has the greatest measure given a complex diagram with multiple intersecting lines.\n* Comparing two angle measures to determine the relationship (e.g., is one angle greater than, less than, or equal to another).\n* Comparing two side lengths to determine the relationship.\n* Drawing a triangle ABC such that m∠A > m∠B > m∠C using only a ruler, and justifying the drawing.\n* Finding a possible measure for side AB in triangle ABC given a diagram.\n* Analyzing whether the base of an isosceles triangle is sometimes, always, or never the longest side.\n* Listing numbered angles in order from smallest to largest given side lengths and a condition m∠2 = m∠5."
+        "markdown": "### Problem 14\n\n**MAPS** Sata is going to Texas to visit a friend. As she looked at a map to see where she might want to go, she noticed that Austin, Dallas, and Abilene form a triangle. She wanted to determine how the distances between the cities were related, so she used a protractor to measure two angles.\n\n![Austin, Dallas, and Abilene form a triangle with angles of 59 degrees at Abilene and 64 degrees at Dallas.](/curriculum/module-1-lesson-4/image9.png)\n\na. Based on the information in the figure, which of the two cities are nearest to each other?\n\nb. Based on the information in the figure, which of the two cities are farthest apart from each other?\n\nc. If you were going to use the information from Sata’s sketch in order to plan a road trip between these cities, what is an assumption you would have to make?\n\n**REASONING** List the angles and sides of each triangle in order from smallest to largest.\n\n### Problem 15\n\n![Triangle XYZ with a right angle at Z and angle measures 2x plus 1 degrees at X and 2x plus 9 degrees at Y.](/curriculum/module-1-lesson-4/image11.png)\n\n### Problem 16\n\n![Triangle PMQ with angle measures x minus 1 degrees at P, 2x plus 3 degrees at M, and x plus 6 degrees at Q.](/curriculum/module-1-lesson-4/image10.png)\n\nIn △ABC, segment AY bisects ∠A, segment BX bisects ∠B, and Q is the intersection of segments AY and BX. Use the figure for Exercises 17-19.\n\n![Triangle ABC with angle bisectors AY and BX intersecting at Q.](/curriculum/module-1-lesson-4/image12.png)\n\n### Problem 17\n\nSuppose BC > AC. Compare m∠BAY and m∠ABX. Justify your reasoning.\n\n### Problem 18\n\nCynda claims that segment XC ≅ segment YC if BC > AC. Is she correct? Justify your argument.\n\n### Problem 19\n\nIf m∠AQB > m∠BQY, which side of △ABQ has the greatest length?\n\n### Problem 20\n\n**PROOF** Write a paragraph proof.\n\nGiven: WY > YX\n\nProve: m∠ZWY > m∠YWX\n\n![Points Z, W, and X are collinear. Segments WY and XY form triangle WXY.](/curriculum/module-1-lesson-4/image13.png)\n\n### Problem 21\n\n**SQUARES** Mahlik has three different squares. He arranges the squares to form a triangle as shown. Based on the information, list the squares in order from the one with the least perimeter to the one with the greatest perimeter.\n\n![Three squares form a triangle with two angles of 47 degrees and 54 degrees.](/curriculum/module-1-lesson-4/image14.png)\n\nUse the figure at the right to determine which angle has the greatest measure.\n\n![A compound figure has angles numbered 1 through 14.](/curriculum/module-1-lesson-4/image15.png)\n\n### Problem 22\n\n∠1, ∠5, ∠6\n\n### Problem 23\n\n∠2, ∠4, ∠6\n\n### Problem 24\n\n∠7, ∠4, ∠5\n\n### Problem 25\n\n∠3, ∠11, ∠12\n\n### Problem 26\n\n∠3, ∠9, ∠14\n\n### Problem 27\n\n∠8, ∠10, ∠11\n\nUse the figure at the right to determine the relationship between the measures of the given angles.\n\n![A compound figure has points A, B, C, D, and F. AB is 3, BC is 14, AD is 13, BD is 12, BF is 15, CF is 11, and DF is 5.](/curriculum/module-1-lesson-4/image16.png)\n\n### Problem 28\n\n∠ABD, ∠BDA\n\n### Problem 29\n\n∠BCF, ∠CFB\n\n### Problem 30\n\n∠BFD, ∠BDF\n\n### Problem 31\n\n∠DBF, ∠BFD\n\nUse the figure at the right to determine the relationship between the given lengths.\n\n![Triangles SMR, MRP, and RPQ are above a straight line through V, S, R, and Q. The exterior angle at S is 110 degrees. Angle SRM is 60 degrees. Angle RMP is 70 degrees. Angle PRQ is 85 degrees. Angle RPQ is 30 degrees.](/curriculum/module-1-lesson-4/image17.png)\n\n### Problem 32\n\nSM, MR\n\n### Problem 33\n\nRP, MP\n\n### Problem 34\n\nRQ, PQ\n\n### Problem 35\n\nRM, RQ\n\n### Problem 36\n\n**PERSEVERE** Using only a ruler, draw △ABC such that m∠A > m∠B > m∠C. Justify your drawing.\n\n### Problem 37\n\n**CREATE** Give a possible measure for segment AB in △ABC shown. Explain your reasoning.\n\n![Triangle ABC has side AC of length 6, angle C of 62 degrees, and angle B of 34 degrees.](/curriculum/module-1-lesson-4/image18.png)\n\n### Problem 38\n\n**ANALYZE** Is the base of an isosceles triangle sometimes, always, or never the longest side of the triangle? Justify your argument.\n\n### Problem 39\n\n**PERSEVERE** Use the side lengths in the figure to list the numbered angles in order from smallest to largest given that m∠2 = m∠5. Explain your reasoning.\n\n![A compound figure has six numbered angles and side lengths 17 centimeters, 12 centimeters, 11 centimeters, 10 centimeters, and 8 centimeters.](/curriculum/module-1-lesson-4/image19.png)"
       }
     ]
   },

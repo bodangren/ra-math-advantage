@@ -226,25 +226,24 @@
       "objective": "List all angles that satisfy a given condition relative to another angle.",
       "embeddedObjectives": [
         "Order angles and sides of a triangle from smallest to largest.",
-        "Apply triangle inequality relationships to solve problems.",
         "Use angle and side relationships in real-world contexts."
       ],
       "workedExamples": [
-        "Example 1 — List Angles Satisfying a Condition",
-        "Example 2 — Order Angles and Sides from Smallest to Largest"
+        "Example 1",
+        "Examples 2 and 3"
       ],
       "dailyPhases": {
         "warmUp": "G is the centroid of triangle ABC. M is the midpoint of BC. If median AM has length 18 cm, find AG in centimeters.",
         "conceptDevelopment": {
           "sourceLesson": "module-1-lesson-4",
           "workedExamples": [
-            "Example 1 — List Angles Satisfying a Condition"
+            "Example 1"
           ]
         },
         "guidedPractice": {
           "sourceLesson": "module-1-lesson-4",
           "workedExamples": [
-            "Example 2 — Order Angles and Sides from Smallest to Largest"
+            "Examples 2 and 3"
           ]
         },
         "independentPractice": {
@@ -255,7 +254,7 @@
           "questionId": "module-1-lesson-4",
           "requireExplanation": true
         },
-        "capReflection": "Which step in inequalities in one triangle required a change in your method? Explain the change."
+        "capReflection": "Which step in inequalities in one triangle — practice required a change in your method? Explain the change."
       }
     },
     {
