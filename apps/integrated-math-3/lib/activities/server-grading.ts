@@ -22,6 +22,49 @@ export const IM3_QF_DRAFT_MAPPINGS = {
   },
 } as const;
 
+export const IM3_QF_VARIANT_SCHEDULES = {
+  guided_practice: [1, 7, 12, 4],
+  independent_practice: [2, 8, 14, 30],
+} as const;
+
+export function quadraticFormulaVariantKey(
+  mode: keyof typeof IM3_QF_DRAFT_MAPPINGS,
+  index: number,
+): string {
+  const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
+  if (
+    !Number.isInteger(index) ||
+    index < 0 ||
+    index >= IM3_QF_VARIANT_SCHEDULES[mode].length
+  ) {
+    throw new Error("Quadratic-formula schedule is exhausted");
+  }
+  return index === 0
+    ? mapping.stableActivityId
+    : `${mapping.stableActivityId}.variant.${index}`;
+}
+
+export function quadraticFormulaPublicProps(
+  mode: keyof typeof IM3_QF_DRAFT_MAPPINGS,
+  seed: number,
+) {
+  const generated = generateQuadraticFormula({ seed });
+  return quadraticFormulaActivitySchema.parse({
+    prompt: "Use the Quadratic Formula to solve the equation.",
+    equation: generated.quadratic,
+    presentationMode: IM3_QF_DRAFT_MAPPINGS[mode].presentationMode,
+    ...(mode === "guided_practice"
+      ? {
+          fieldHelp: {
+            discriminant: "Calculate b² - 4ac.",
+            x1: "Enter one root.",
+            x2: "Enter the other root. Leave this blank for a repeated root.",
+          },
+        }
+      : {}),
+  });
+}
+
 export interface ServerOwnedActivity {
   readonly id: string;
   readonly stableActivityId?: string;

@@ -1,7 +1,11 @@
-import { generateQuadraticFormula } from "@math-platform/math-content";
-import { quadraticFormulaActivitySchema } from "@math-platform/math-content/schemas";
 import { convexToJson } from "convex/values";
-import { IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE } from "../../lib/activities/server-grading";
+import {
+  IM3_QF_DRAFT_MAPPINGS,
+  IM3_QF_NODE,
+  IM3_QF_VARIANT_SCHEDULES,
+  quadraticFormulaPublicProps,
+  quadraticFormulaVariantKey,
+} from "../../lib/activities/server-grading";
 import { internalMutation } from "../_generated/server";
 import type { MutationCtx } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
@@ -20,15 +24,7 @@ export function buildIm3QuadraticFormulaDraftDocuments(
   now: number,
 ) {
   const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
-  const generated = generateQuadraticFormula({ seed: mapping.seed });
-  const props = quadraticFormulaActivitySchema.parse({
-    prompt: "Use the Quadratic Formula to solve the equation.",
-    equation: generated.quadratic,
-    presentationMode: mapping.presentationMode,
-    ...(mode === "guided_practice" ? { fieldHelp: {
-      discriminant: "Calculate b² - 4ac.", x1: "Enter one root.", x2: "Enter the other root. Leave this blank for a repeated root.",
-    } } : {}),
-  });
+  const props = quadraticFormulaPublicProps(mode, mapping.seed);
   const variantKey = mapping.stableActivityId;
   return {
     activity: {
@@ -67,23 +63,74 @@ export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: num
     if (existing && JSON.stringify(qfActivityContent(existing)) !== JSON.stringify(qfActivityContent(provisional.activity))) {
       throw new Error("Existing quadratic-formula activity content changed");
     }
-    const activityId = existing?._id ?? await ctx.db.insert("activities", provisional.activity);
-    if (existing) await ctx.db.patch(existing._id, { ...provisional.activity, createdAt: existing.createdAt });
+    const activityId =
+      existing?._id ??
+      (await ctx.db.insert("activities", provisional.activity));
     const docs = buildIm3QuadraticFormulaDraftDocuments(mode, activityId, now);
-    const variants = await ctx.db.query("practice_variants").withIndex("by_variantKey", q => q.eq("variantKey", docs.variant.variantKey)).take(2);
-    const items = await ctx.db.query("practice_items").withIndex("by_activityId", q => q.eq("activityId", activityId)).take(2);
-    const reverseItems = await ctx.db.query("practice_items").withIndex("by_variantKey", q => q.eq("variantKey", docs.item.variantKey)).take(2);
-    if (variants.length > 1 || items.length > 1 || variants[0] || items[0]) {
-      const coherent = variants.length === 1 && items.length === 1 && reverseItems.length === 1
-        && reverseItems[0]._id === items[0]._id
-        && variants[0].componentKey === docs.variant.componentKey
-        && JSON.stringify(variants[0].objectiveIds) === JSON.stringify(docs.variant.objectiveIds)
-        && JSON.stringify(variants[0].metadata) === JSON.stringify(docs.variant.metadata)
-        && items[0].variantKey === docs.item.variantKey;
-      if (!coherent) throw new Error("Existing quadratic-formula storage relation is inconsistent");
-    } else {
-      await ctx.db.insert("practice_variants", docs.variant);
-      await ctx.db.insert("practice_items", docs.item);
+    const activityItems = await ctx.db
+      .query("practice_items")
+      .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
+      .take(5);
+    if (
+      activityItems.some(
+        (item) =>
+          !Array.from({ length: 4 }, (_, index) =>
+            quadraticFormulaVariantKey(mode, index),
+          ).includes(item.variantKey),
+      )
+    )
+      throw new Error(
+        "Existing quadratic-formula storage relation is inconsistent",
+      );
+    for (
+      let index = 0;
+      index < IM3_QF_VARIANT_SCHEDULES[mode].length;
+      index++
+    ) {
+      const seed = IM3_QF_VARIANT_SCHEDULES[mode][index];
+      const variantKey = quadraticFormulaVariantKey(mode, index);
+      const expectedVariant = {
+        ...docs.variant,
+        variantKey,
+        metadata: { ...docs.variant.metadata, seed },
+      };
+      const expectedItem = {
+        ...docs.item,
+        variantKey,
+        practiceItemId: `${variantKey}:seed-${seed}`,
+        variantLabel: `Seed ${seed}`,
+      };
+      const variants = await ctx.db
+        .query("practice_variants")
+        .withIndex("by_variantKey", (q) => q.eq("variantKey", variantKey))
+        .take(2);
+      const items = activityItems.filter(
+        (item) => item.variantKey === variantKey,
+      );
+      const reverseItems = await ctx.db
+        .query("practice_items")
+        .withIndex("by_variantKey", (q) => q.eq("variantKey", variantKey))
+        .take(2);
+      if (variants[0] || items[0]) {
+        const coherent =
+          variants.length === 1 &&
+          items.length === 1 &&
+          reverseItems.length === 1 &&
+          reverseItems[0]._id === items[0]._id &&
+          variants[0].componentKey === expectedVariant.componentKey &&
+          JSON.stringify(variants[0].objectiveIds) ===
+            JSON.stringify(expectedVariant.objectiveIds) &&
+          JSON.stringify(convexToJson(variants[0].metadata as never)) ===
+            JSON.stringify(convexToJson(expectedVariant.metadata as never)) &&
+          items[0].practiceItemId === expectedItem.practiceItemId;
+        if (!coherent)
+          throw new Error(
+            "Existing quadratic-formula storage relation is inconsistent",
+          );
+      } else if (index === 0) {
+        await ctx.db.insert("practice_variants", expectedVariant);
+        await ctx.db.insert("practice_items", expectedItem);
+      }
     }
   }
 }

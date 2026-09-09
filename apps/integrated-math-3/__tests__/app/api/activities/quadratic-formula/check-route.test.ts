@@ -3,7 +3,7 @@ const mocks = vi.hoisted(() => ({ auth: vi.fn(), query: vi.fn() }));
 vi.mock('@/lib/auth/server', () => ({ requireStudentRequestClaims: mocks.auth }));
 vi.mock('@/lib/convex/server', () => ({ internal: { activities: { checkQuadraticFormulaDiscriminant: 'check' } }, fetchInternalQuery: mocks.query }));
 import { POST } from '@/app/api/activities/quadratic-formula/check/route';
-const body = { activityId: 'activities:qf', fieldId: 'discriminant', rawAnswer: '16' };
+const body = { activityId: 'activities:qf', pendingSubmissionId: 'activity_submissions:pending', fieldId: 'discriminant', rawAnswer: '16' };
 const request = (value: unknown) => new Request('http://local/api/activities/quadratic-formula/check', { method: 'POST', body: JSON.stringify(value) });
 beforeEach(() => { mocks.auth.mockReset().mockResolvedValue({ sub: 'profiles:student' }); mocks.query.mockReset().mockResolvedValue({ isCorrect: true }); });
 describe('Guided discriminant check route', () => {

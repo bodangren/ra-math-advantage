@@ -107,6 +107,7 @@ export async function POST(request: Request) {
   const claims = await requireStudentRequestClaims(request);
   if (claims instanceof Response) return claims;
   const idempotencyKey = request.headers.get("Idempotency-Key")?.trim();
+  const pendingSubmissionId = request.headers.get("X-Pending-Submission-Id")?.trim();
   if (!idempotencyKey || idempotencyKey.length > 80)
     return NextResponse.json(
       { error: "A non-empty Idempotency-Key is required" },
@@ -119,6 +120,9 @@ export async function POST(request: Request) {
       { error: "Invalid selected IM3 submission" },
       { status: 400 },
     );
+  const isQf = Object.keys(parsed.data.answers).includes("discriminant");
+  if (pendingSubmissionId && !isQf)
+    return NextResponse.json({ error: "A pending handle is only valid for a quadratic-formula submission" }, { status: 400 });
   try {
     const result = await fetchInternalMutation(
       internal.activities.createServerOwnedSubmission,
@@ -127,6 +131,7 @@ export async function POST(request: Request) {
         activityId: parsed.data.activityId as `activities:${string}`,
         submissionData: parsed.data,
         idempotencyKey,
+        ...(pendingSubmissionId ? { pendingSubmissionId: pendingSubmissionId as `activity_submissions:${string}` } : {}),
       },
     );
     return NextResponse.json("acknowledged" in result

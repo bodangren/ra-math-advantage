@@ -537,6 +537,7 @@ export default defineSchema({
     gradedBy: v.optional(v.id("profiles")),
     attemptOrdinal: v.optional(v.number()),
     idempotencyKey: v.optional(v.string()),
+    allocatedVariantKey: v.optional(v.string()),
     masteryContractVersion: v.optional(v.literal("learning-evidence.v1")),
     createdAt: v.number(),
     updatedAt: v.number(),

@@ -1,60 +1,269 @@
-import canonicalNodes from '@/curriculum/skill-graph/nodes.json';
-import canonicalBlueprints from '@/curriculum/skill-graph/blueprints.json';
-import { describe, expect, it, vi } from 'vitest';
-import { generateQuadraticFormula } from '@math-platform/math-content';
-import { convexToJson, jsonToConvex } from 'convex/values';
-import { checkQuadraticFormulaDiscriminantHandler, createServerOwnedSubmissionHandler, submitActivity, submitAssessment } from '@/convex/activities';
-import { getActivityById } from '@/convex/activities';
-import { buildIm3QuadraticFormulaDraftDocuments, upsertIm3QuadraticFormulaDrafts } from '@/convex/seed/seed_lesson_1_6';
-import { IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE } from '@/lib/activities/server-grading';
-import { getLessonProgress } from '@/convex/student';
-import { getObjectiveProficiencyHandler, getStudentProficiencySummaryHandler, getTeacherClassProficiencyHandler } from '@/convex/objectiveProficiency';
-import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge_state';
-import { submitIm3PublishedEvidenceHandler } from '@/convex/learningEvidence';
+import canonicalNodes from "@/curriculum/skill-graph/nodes.json";
+import canonicalBlueprints from "@/curriculum/skill-graph/blueprints.json";
+import { describe, expect, it, vi } from "vitest";
+import { generateQuadraticFormula } from "@math-platform/math-content";
+import { convexToJson, jsonToConvex } from "convex/values";
+import {
+  checkQuadraticFormulaDiscriminantHandler as rawCheckQuadraticFormulaDiscriminantHandler,
+  createServerOwnedSubmissionHandler as rawCreateServerOwnedSubmissionHandler,
+  startQuadraticFormulaAttemptHandler,
+  submitActivity,
+  submitAssessment,
+} from "@/convex/activities";
+import { getActivityById } from "@/convex/activities";
+import {
+  buildIm3QuadraticFormulaDraftDocuments,
+  upsertIm3QuadraticFormulaDrafts,
+} from "@/convex/seed/seed_lesson_1_6";
+import {
+  IM3_QF_DRAFT_MAPPINGS,
+  IM3_QF_NODE,
+} from "@/lib/activities/server-grading";
+import { getLessonProgress } from "@/convex/student";
+import {
+  getObjectiveProficiencyHandler,
+  getStudentProficiencySummaryHandler,
+  getTeacherClassProficiencyHandler,
+} from "@/convex/objectiveProficiency";
+import { getStudentKnowledgeStateHandler } from "@/convex/student/knowledge_state";
+import { submitIm3PublishedEvidenceHandler } from "@/convex/learningEvidence";
 
 function memoryContext() {
   const rows: Record<string, Array<Record<string, any>>> = {};
   let next = 1;
   const table = (name: string) => rows[name] ??= [];
   const db = {
-    get: async (...args: string[]) => { const id = args.at(-1); return Object.values(rows).flat().find(row => row._id === id) ?? null; },
-    query(name: string) { return { collect: async () => table(name), take: async (n: number) => table(name).slice(0, n), withIndex(_i: string, configure: (q: any) => unknown) {
-      const conditions = new Map<string, unknown>(); const q = { eq(k: string, v: unknown) { conditions.set(k, v); return q; } }; configure(q);
-      const selected = () => table(name).filter(row => [...conditions].every(([k, v]) => row[k] === v));
-      return { unique: async () => { const a = selected(); if (a.length > 1) throw new Error('non-unique'); return a[0] ?? null; }, first: async () => selected().at(-1) ?? null, collect: async () => selected(), take: async (n: number) => selected().slice(0, n), order: () => ({ first: async () => selected().at(-1) ?? null }), async *[Symbol.asyncIterator]() { yield* selected(); } };
-    } }; },
-    insert: async (name: string, doc: Record<string, unknown>) => { const id = `${name}:${next++}`; table(name).push({ _id: id, ...structuredClone(doc) }); return id; },
-    patch: async (id: string, update: Record<string, unknown>) => Object.assign(Object.values(rows).flat().find(row => row._id === id)!, structuredClone(update)),
+    get: async (...args: string[]) => {
+      const id = args.at(-1);
+      return (
+        Object.values(rows)
+          .flat()
+          .find((row) => row._id === id) ?? null
+      );
+    },
+    query(name: string) {
+      return {
+        collect: async () => table(name),
+        take: async (n: number) => table(name).slice(0, n),
+        withIndex(_i: string, configure: (q: any) => unknown) {
+          const conditions = new Map<string, unknown>();
+          const q = {
+            eq(k: string, v: unknown) {
+              conditions.set(k, v);
+              return q;
+            },
+          };
+          configure(q);
+          const selected = () =>
+            table(name).filter((row) =>
+              [...conditions].every(([k, v]) => row[k] === v),
+            );
+          return {
+            unique: async () => {
+              const a = selected();
+              if (a.length > 1) throw new Error("non-unique");
+              return a[0] ?? null;
+            },
+            first: async () => selected().at(-1) ?? null,
+            collect: async () => selected(),
+            take: async (n: number) => selected().slice(0, n),
+            order: () => ({ first: async () => selected().at(-1) ?? null, take: async (n: number) => [...selected()].reverse().slice(0, n) }),
+            async *[Symbol.asyncIterator]() {
+              yield* selected();
+            },
+          };
+        },
+      };
+    },
+    insert: async (name: string, doc: Record<string, unknown>) => {
+      const id = `${name}:${next++}`;
+      table(name).push({ _id: id, ...structuredClone(doc) });
+      return id;
+    },
+    patch: async (id: string, update: Record<string, unknown>) =>
+      Object.assign(
+        Object.values(rows)
+          .flat()
+          .find((row) => row._id === id)!,
+        structuredClone(update),
+      ),
   };
   const scheduled: unknown[] = [];
   return { ctx: { db, scheduler: { runAfter: async (...args: unknown[]) => { scheduled.push(args); } } }, table, scheduled };
 }
-const publication = { nodes: [{ id: IM3_QF_NODE, kind: 'skill', reviewStatus: 'draft' }], blueprints: [{ nodeId: IM3_QF_NODE, reviewStatus: 'draft' }] };
+const publication = {
+  nodes: [{ id: IM3_QF_NODE, kind: "skill", reviewStatus: "draft" }],
+  blueprints: [{ nodeId: IM3_QF_NODE, reviewStatus: "draft" }],
+};
+const pendingByRequest = new WeakMap<
+  object,
+  Map<string, { id: string; key: string }>
+>();
+
+async function createServerOwnedSubmissionHandler(
+  ctx: any,
+  args: any,
+  graph: any = publication,
+) {
+  const requestKey = `${args.userId}|${args.activityId}|${args.idempotencyKey}`;
+  const known = pendingByRequest.get(ctx)?.get(requestKey);
+  if (known)
+    return rawCreateServerOwnedSubmissionHandler(
+      ctx,
+      { ...args, pendingSubmissionId: known.id, idempotencyKey: known.key },
+      graph,
+    );
+  const replay = await ctx.db
+    .query("activity_submissions")
+    .withIndex("by_user_activity_idempotency_key", (q: any) =>
+      q
+        .eq("userId", args.userId)
+        .eq("activityId", args.activityId)
+        .eq("idempotencyKey", args.idempotencyKey),
+    )
+    .unique();
+  if (replay) return rawCreateServerOwnedSubmissionHandler(ctx, args, graph);
+  const pending = await startQuadraticFormulaAttemptHandler(
+    ctx,
+    {
+      userId: args.userId,
+      activityId: args.activityId,
+      mode: args.submissionData.mode,
+    },
+    graph,
+  );
+  if (pending.state !== "pending")
+    throw new Error("Expected pending test attempt");
+  const requests = pendingByRequest.get(ctx) ?? new Map();
+  requests.set(requestKey, {
+    id: pending.pendingSubmissionId,
+    key: pending.idempotencyKey,
+  });
+  pendingByRequest.set(ctx, requests);
+  return rawCreateServerOwnedSubmissionHandler(
+    ctx,
+    {
+      ...args,
+      pendingSubmissionId: pending.pendingSubmissionId,
+      idempotencyKey: pending.idempotencyKey,
+      submissionData: { ...args.submissionData, attemptNumber: pending.attemptOrdinal },
+    },
+    graph,
+  );
+}
+
+async function checkQuadraticFormulaDiscriminantHandler(
+  ctx: any,
+  args: any,
+  graph: any = publication,
+) {
+  if (typeof args.rawAnswer !== "string" || args.rawAnswer.length > 160) {
+    return rawCheckQuadraticFormulaDiscriminantHandler(ctx, args, graph);
+  }
+  const pending = await startQuadraticFormulaAttemptHandler(
+    ctx,
+    {
+      userId: args.userId,
+      activityId: args.activityId,
+      mode: "guided_practice",
+    },
+    graph,
+  );
+  if (pending.state !== "pending")
+    throw new Error("Expected pending test attempt");
+  return rawCheckQuadraticFormulaDiscriminantHandler(
+    ctx,
+    { ...args, pendingSubmissionId: pending.pendingSubmissionId },
+    graph,
+  );
+}
 
 async function fixture(mode: keyof typeof IM3_QF_DRAFT_MAPPINGS) {
-  const mem = memoryContext(); const userId = 'profiles:student';
-  mem.table('profiles').push({ _id: userId, username: 'student', role: 'student', organizationId: 'org' });
-  mem.table('auth_credentials').push({ _id: 'auth:1', profileId: userId, username: 'student', role: 'student', organizationId: 'org', isActive: true });
-  const activityId = 'activities:qf'; const docs = buildIm3QuadraticFormulaDraftDocuments(mode, activityId as never, 1);
-  mem.table('activities').push({ _id: activityId, ...docs.activity });
-  mem.table('practice_variants').push({ _id: 'practice_variants:qf', ...docs.variant });
-  mem.table('practice_items').push({ _id: 'practice_items:qf', ...docs.item });
-  const problem = generateQuadraticFormula({ seed: IM3_QF_DRAFT_MAPPINGS[mode].seed }); const [x1, x2 = ''] = problem.roots.map(r => r.value);
-  const submissionData = { contractVersion: 'practice.v1', activityId, mode, status: 'submitted', attemptNumber: 19, submittedAt: '2026-09-09T00:00:00.000Z', answers: { discriminant: problem.discriminant, x1, x2 }, parts: [{ partId: 'x2', rawAnswer: x2 }, { partId: 'discriminant', rawAnswer: problem.discriminant, hintsUsed: 2 }, { partId: 'x1', rawAnswer: x1 }] };
+  const mem = memoryContext();
+  const userId = "profiles:student";
+  mem.table("profiles").push({
+    _id: userId,
+    username: "student",
+    role: "student",
+    organizationId: "org",
+  });
+  mem.table("auth_credentials").push({
+    _id: "auth:1",
+    profileId: userId,
+    username: "student",
+    role: "student",
+    organizationId: "org",
+    isActive: true,
+  });
+  const activityId = "activities:qf";
+  const docs = buildIm3QuadraticFormulaDraftDocuments(
+    mode,
+    activityId as never,
+    1,
+  );
+  mem.table("activities").push({ _id: activityId, ...docs.activity });
+  mem
+    .table("practice_variants")
+    .push({ _id: "practice_variants:qf", ...docs.variant });
+  mem.table("practice_items").push({ _id: "practice_items:qf", ...docs.item });
+  const problem = generateQuadraticFormula({
+    seed: IM3_QF_DRAFT_MAPPINGS[mode].seed,
+  });
+  const [x1, x2 = ""] = problem.roots.map((r) => r.value);
+  const submissionData = {
+    contractVersion: "practice.v1",
+    activityId,
+    mode,
+    status: "submitted",
+    attemptNumber: 1,
+    submittedAt: "2026-09-09T00:00:00.000Z",
+    answers: { discriminant: problem.discriminant, x1, x2 },
+    parts: [
+      { partId: "x2", rawAnswer: x2 },
+      { partId: "discriminant", rawAnswer: problem.discriminant, hintsUsed: 2 },
+      { partId: "x1", rawAnswer: x1 },
+    ],
+  };
   return { ...mem, userId, activityId, submissionData };
 }
 
-describe('draft quadratic-formula server writer', () => {
-  it('creates, round-trips, replays, and keeps request attempt telemetry separate from ordinal', async () => {
-    const f = await fixture('guided_practice'); const input = { userId: f.userId, activityId: f.activityId, idempotencyKey: 'same', submissionData: f.submissionData };
-    const first = await createServerOwnedSubmissionHandler(f.ctx as never, input as never, publication);
-    const stored = jsonToConvex(convexToJson(f.table('activity_submissions')[0])) as Record<string, any>;
-    f.table('activity_submissions')[0] = stored;
-    const replay = await createServerOwnedSubmissionHandler(f.ctx as never, input as never, publication);
-    expect(replay).toEqual(first); expect(stored.attemptOrdinal).toBe(1); expect(stored.submissionData.attemptNumber).toBe(19);
+describe("draft quadratic-formula server writer", () => {
+  it("creates, round-trips, replays, and keeps request attempt telemetry separate from ordinal", async () => {
+    const f = await fixture("guided_practice");
+    const input = {
+      userId: f.userId,
+      activityId: f.activityId,
+      idempotencyKey: "same",
+      submissionData: f.submissionData,
+    };
+    const first = await createServerOwnedSubmissionHandler(
+      f.ctx as never,
+      input as never,
+      publication,
+    );
+    const stored = jsonToConvex(
+      convexToJson(f.table("activity_submissions")[0]),
+    ) as Record<string, any>;
+    f.table("activity_submissions")[0] = stored;
+    const replay = await createServerOwnedSubmissionHandler(
+      f.ctx as never,
+      input as never,
+      publication,
+    );
+    expect(replay).toEqual(first);
+    expect(stored.attemptOrdinal).toBe(1);
+    expect(stored.submissionData.attemptNumber).toBe(1);
     expect(stored.masteryContractVersion).toBeUndefined();
-    const second = await createServerOwnedSubmissionHandler(f.ctx as never, { ...input, idempotencyKey: 'next' } as never, publication);
-    expect(second.submissionId).not.toBe(first.submissionId); expect(f.table('activity_submissions')[1].attemptOrdinal).toBe(2); expect(f.table('activity_submissions')[1].submissionData.attemptNumber).toBe(19);
+    const second = await createServerOwnedSubmissionHandler(
+      f.ctx as never,
+      { ...input, idempotencyKey: "next" } as never,
+      publication,
+    );
+    expect(second.submissionId).not.toBe(first.submissionId);
+    expect(f.table("activity_submissions")[1].attemptOrdinal).toBe(2);
+    expect(
+      f.table("activity_submissions")[1].submissionData.attemptNumber,
+    ).toBe(2);
   });
 
   it.each(['attemptNumber', 'submittedAt', 'partTelemetry'] as const)('rejects replay changes to %s', async field => {
@@ -201,15 +410,33 @@ describe('Guided discriminant check', () => {
   const check = (f: Awaited<ReturnType<typeof fixture>>, rawAnswer: string, graph = publication) =>
     checkQuadraticFormulaDiscriminantHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, fieldId: 'discriminant', rawAnswer } as never, graph);
 
-  it('returns only correctness and does not write or schedule', async () => {
-    const f = await fixture('guided_practice');
-    const insert = vi.spyOn(f.ctx.db, 'insert');
-    const patch = vi.spyOn(f.ctx.db, 'patch');
-    const before = structuredClone(['activities', 'practice_items', 'practice_variants', 'activity_submissions'].map(f.table));
-    expect(await check(f, String(f.submissionData.answers.discriminant))).toEqual({ isCorrect: true });
-    expect(await check(f, 'not a number')).toEqual({ isCorrect: false });
-    expect(await check(f, String(f.submissionData.answers.discriminant + 1))).toEqual({ isCorrect: false });
-    expect(['activities', 'practice_items', 'practice_variants', 'activity_submissions'].map(f.table)).toEqual(before);
+  it("returns only correctness and does not write or schedule", async () => {
+    const f = await fixture("guided_practice");
+    expect(
+      await check(f, String(f.submissionData.answers.discriminant)),
+    ).toEqual({ isCorrect: true });
+    const insert = vi.spyOn(f.ctx.db, "insert");
+    const patch = vi.spyOn(f.ctx.db, "patch");
+    const before = structuredClone(
+      [
+        "activities",
+        "practice_items",
+        "practice_variants",
+        "activity_submissions",
+      ].map(f.table),
+    );
+    expect(await check(f, "not a number")).toEqual({ isCorrect: false });
+    expect(
+      await check(f, String(f.submissionData.answers.discriminant + 1)),
+    ).toEqual({ isCorrect: false });
+    expect(
+      [
+        "activities",
+        "practice_items",
+        "practice_variants",
+        "activity_submissions",
+      ].map(f.table),
+    ).toEqual(before);
     expect(insert).not.toHaveBeenCalled();
     expect(patch).not.toHaveBeenCalled();
     expect(f.scheduled).toEqual([]);
@@ -247,15 +474,24 @@ describe('QF canonical graph integration', () => {
     expect(rows[0].masteryContractVersion).toBeUndefined();
     expect(rows[0].submissionData.status).toBe('graded');
     expect(f.scheduled).toEqual([]);
-    if (mode === 'guided_practice') {
-      const decision = await checkQuadraticFormulaDiscriminantHandler(f.ctx as never, {
-        userId: f.userId, activityId: f.activityId, fieldId: 'discriminant',
-        rawAnswer: String(f.submissionData.answers.discriminant),
-      } as never);
-      expect(decision).toEqual({ isCorrect: true });
-      expect(rows).toHaveLength(1);
-    }
-  });
+      expect(rows[0].masteryContractVersion).toBeUndefined();
+      expect(rows[0].submissionData.status).toBe("graded");
+      expect(f.scheduled).toEqual([]);
+      if (mode === "guided_practice") {
+        const decision = await checkQuadraticFormulaDiscriminantHandler(
+          f.ctx as never,
+          {
+            userId: f.userId,
+            activityId: f.activityId,
+            fieldId: "discriminant",
+            rawAnswer: String(f.submissionData.answers.discriminant),
+          } as never,
+        );
+        expect(decision).toEqual({ isCorrect: false });
+        expect(rows).toHaveLength(2);
+      }
+    },
+  );
 
   it.each(['missing', 'duplicate', 'approved'] as const)('keeps the actual publication guard when the QF blueprint is %s', async invalid => {
     const f = await fixture('guided_practice');

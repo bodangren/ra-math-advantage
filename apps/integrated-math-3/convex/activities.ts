@@ -5,7 +5,7 @@ import { internal } from "./_generated/api";
 import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
 import type { Doc, Id } from "./_generated/dataModel";
 import { practiceSubmissionEnvelopeSchema, type PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
-import { checkServerOwnedQuadraticDiscriminant, gradeServerOwnedSubmission, IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE } from "../lib/activities/server-grading";
+import { checkServerOwnedQuadraticDiscriminant, gradeServerOwnedSubmission, IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE, IM3_QF_VARIANT_SCHEDULES, quadraticFormulaPublicProps, quadraticFormulaVariantKey } from "../lib/activities/server-grading";
 import nodesDocument from "../curriculum/skill-graph/nodes.json";
 import blueprintsDocument from "../curriculum/skill-graph/blueprints.json";
 import { IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, IM3_PILOT_NODE, IM3_TEACHER_LED_ACTIVITY_ID } from "../lib/practice/learning-evidence-pilot";
@@ -508,6 +508,7 @@ type ServerOwnedSubmissionArgs = {
   activityId: Id<"activities">;
   submissionData: ReturnType<typeof practiceSubmissionEnvelopeSchema.parse>;
   idempotencyKey: string;
+  pendingSubmissionId?: Id<"activity_submissions">;
 };
 function canonicalPayload(value: PracticeSubmissionEnvelope): string {
   const parts = [...value.parts].sort((a, b) => a.partId.localeCompare(b.partId)).map(({ partId, rawAnswer, hintsUsed, revealStepsSeen, changedCount, firstInteractionAt, answeredAt, wallClockMs, activeMs }) => ({ partId, rawAnswer, hintsUsed, revealStepsSeen, changedCount, firstInteractionAt, answeredAt, wallClockMs, activeMs }));
@@ -625,12 +626,26 @@ async function loadQuadraticFormulaAuthority(
   activity: Doc<"activities">,
   mode: keyof typeof IM3_QF_DRAFT_MAPPINGS,
   publication: Im3PilotPublication,
+  selectedVariantKey: string = quadraticFormulaVariantKey(mode, 0),
 ) {
   const qfMapping = IM3_QF_DRAFT_MAPPINGS[mode];
-  if (activity.stableActivityId !== qfMapping.stableActivityId || activity.masteryNodeId !== IM3_QF_NODE
-    || activity.componentKey !== "quadratic-formula" || activity.srsEligible !== false
-    || activity.approval?.status !== "unreviewed"
-    || (activity.props as { presentationMode?: unknown }).presentationMode !== qfMapping.presentationMode) {
+  if (
+    JSON.stringify(convexToJson(activity.props as never)) !==
+    JSON.stringify(
+      convexToJson(quadraticFormulaPublicProps(mode, qfMapping.seed) as never),
+    )
+  ) {
+    throw new Error("Invalid draft quadratic-formula activity authority");
+  }
+  if (
+    activity.stableActivityId !== qfMapping.stableActivityId ||
+    activity.masteryNodeId !== IM3_QF_NODE ||
+    activity.componentKey !== "quadratic-formula" ||
+    activity.srsEligible !== false ||
+    activity.approval?.status !== "unreviewed" ||
+    (activity.props as { presentationMode?: unknown }).presentationMode !==
+      qfMapping.presentationMode
+  ) {
     throw new Error("Invalid draft quadratic-formula activity authority");
   }
   const graphNodes = publication.nodes.filter(row => row.id === IM3_QF_NODE);
@@ -640,28 +655,407 @@ async function loadQuadraticFormulaAuthority(
     || graphBlueprints[0].reviewStatus !== "draft") {
     throw new Error("Quadratic-formula server path requires the reviewed draft graph state");
   }
-  const items = await ctx.db.query("practice_items").withIndex("by_activityId", (q) => q.eq("activityId", activity._id)).take(2);
-  if (items.length !== 1) throw new Error("Invalid quadratic-formula practice item relation");
-  if (items[0].variantKey !== qfMapping.stableActivityId) throw new Error("Invalid quadratic-formula practice item relation");
-  const reverseItems = await ctx.db.query("practice_items").withIndex("by_variantKey", q => q.eq("variantKey", items[0].variantKey)).take(2);
-  if (reverseItems.length !== 1 || reverseItems[0]._id !== items[0]._id) throw new Error("Invalid quadratic-formula reverse item relation");
-  const variants = await ctx.db.query("practice_variants").withIndex("by_variantKey", (q) => q.eq("variantKey", items[0].variantKey)).take(2);
-  if (variants.length !== 1) throw new Error("Invalid quadratic-formula private variant authority");
+  const index = Array.from(
+    { length: IM3_QF_VARIANT_SCHEDULES[mode].length },
+    (_, candidate) => quadraticFormulaVariantKey(mode, candidate),
+  ).indexOf(selectedVariantKey);
+  if (index < 0) throw new Error("Invalid quadratic-formula selected relation");
+  const items = await ctx.db
+    .query("practice_items")
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", selectedVariantKey))
+    .take(2);
+  if (items.length !== 1 || items[0].activityId !== activity._id)
+    throw new Error("Invalid quadratic-formula practice item relation");
+  const variants = await ctx.db
+    .query("practice_variants")
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", selectedVariantKey))
+    .take(2);
+  if (variants.length !== 1)
+    throw new Error("Invalid quadratic-formula private variant authority");
   const variant = variants[0];
   const metadata = variant?.metadata as Record<string, unknown> | undefined;
-  if (!variant || variant.componentKey !== "quadratic-formula"
-    || JSON.stringify(variant.objectiveIds) !== JSON.stringify([IM3_QF_NODE])
-    || Object.keys(metadata ?? {}).sort().join("|") !== "generatorKey|mode|seed|stableActivityId"
-    || metadata?.generatorKey !== "quadratic-formula" || metadata.seed !== qfMapping.seed
-    || metadata.stableActivityId !== qfMapping.stableActivityId || metadata.mode !== mode) {
+  if (
+    !variant ||
+    variant.componentKey !== "quadratic-formula" ||
+    JSON.stringify(variant.objectiveIds) !== JSON.stringify([IM3_QF_NODE]) ||
+    Object.keys(metadata ?? {})
+      .sort()
+      .join("|") !== "generatorKey|mode|seed|stableActivityId" ||
+    metadata?.generatorKey !== "quadratic-formula" ||
+    metadata.seed !== IM3_QF_VARIANT_SCHEDULES[mode][index] ||
+    metadata.stableActivityId !== qfMapping.stableActivityId ||
+    metadata.mode !== mode
+  ) {
     throw new Error("Invalid quadratic-formula private variant authority");
   }
-  return { generatorKey: "quadratic-formula" as const, seed: qfMapping.seed };
+  return {
+    generatorKey: "quadratic-formula" as const,
+    seed: IM3_QF_VARIANT_SCHEDULES[mode][index],
+  };
+}
+
+type QfMode = keyof typeof IM3_QF_DRAFT_MAPPINGS;
+const publicPart = (part: PracticeSubmissionEnvelope["parts"][number]) => ({
+  partId: part.partId,
+  rawAnswer: part.rawAnswer as string | number,
+  isCorrect: part.isCorrect,
+  score: part.score,
+  maxScore: part.maxScore,
+});
+function qfPublicState(
+  activity: Doc<"activities">,
+  row: Doc<"activity_submissions">,
+  mode: QfMode,
+  seed: number,
+) {
+  const props = quadraticFormulaPublicProps(mode, seed) as {
+    prompt: string;
+    equation: string;
+    presentationMode: "guided" | "independent";
+    fieldHelp?: { discriminant: string; x1: string; x2: string };
+  };
+  if (row.submissionData.status === "draft")
+    return {
+      state: "pending" as const,
+      pendingSubmissionId: row._id,
+      activityId: activity._id,
+      mode,
+      attemptOrdinal: row.attemptOrdinal!,
+      idempotencyKey: row.idempotencyKey!,
+      props,
+    };
+  return {
+    state: "final" as const,
+    activityId: activity._id,
+    mode,
+    attemptOrdinal: row.attemptOrdinal!,
+    props,
+    submissionId: row._id,
+    score: row.score!,
+    maxScore: row.maxScore!,
+    answers: {
+      discriminant: row.submissionData.answers.discriminant,
+      x1: row.submissionData.answers.x1,
+      x2: row.submissionData.answers.x2,
+    },
+    parts: row.submissionData.parts.map(publicPart),
+  };
+}
+
+async function qfRows(
+  ctx: QueryCtx,
+  userId: Id<"profiles">,
+  activityId: Id<"activities">,
+) {
+  return await ctx.db
+    .query("activity_submissions")
+    .withIndex("by_user_activity_attempt_ordinal", (q) =>
+      q.eq("userId", userId).eq("activityId", activityId),
+    )
+    .order("desc")
+    .take(6);
+}
+
+function validPendingQfRow(
+  row: Doc<"activity_submissions">,
+  args: { userId: Id<"profiles">; activityId: Id<"activities">; mode: QfMode },
+): boolean {
+  const envelope = row.submissionData;
+  return (
+    row.userId === args.userId &&
+    row.activityId === args.activityId &&
+    Number.isSafeInteger(row.attemptOrdinal) &&
+    (row.attemptOrdinal ?? 0) > 0 &&
+    envelope.contractVersion === "practice.v1" &&
+    Object.keys(envelope).sort().join("|") === "activityId|answers|attemptNumber|contractVersion|mode|parts|status|submittedAt" &&
+    envelope.activityId === String(args.activityId) &&
+    envelope.mode === args.mode &&
+    envelope.status === "draft" &&
+    envelope.attemptNumber === row.attemptOrdinal &&
+    Object.keys(envelope.answers).length === 0 &&
+    envelope.parts.length === 0 &&
+    row.score === undefined &&
+    row.maxScore === undefined &&
+    row.gradedAt === undefined &&
+    row.feedback === undefined &&
+    row.gradedBy === undefined &&
+    row.masteryContractVersion === undefined &&
+    row.allocatedVariantKey !== undefined &&
+    row.idempotencyKey === `qf:${String(row._id)}`
+  );
+}
+
+function validateQfRowSequence(
+  rows: Doc<"activity_submissions">[],
+  mode: QfMode,
+  args: { userId: Id<"profiles">; activityId: Id<"activities">; mode: QfMode },
+): void {
+  const ordinals = rows.map((row) => row.attemptOrdinal);
+  if (
+    ordinals.some(
+      (value) => !Number.isSafeInteger(value) || (value ?? 0) < 1,
+    ) ||
+    new Set(ordinals).size !== ordinals.length ||
+    ordinals.some((ordinal, index) => index > 0 && ordinal! >= ordinals[index - 1]!) ||
+    rows.filter((row) => row.submissionData.status === "draft").length > 1
+  )
+    throw new Error("Invalid quadratic-formula attempt sequence");
+  const transition = rows.findIndex(row => !row.allocatedVariantKey);
+  const allocatedDescending = rows.slice(0, transition < 0 ? rows.length : transition);
+  const legacy = rows.slice(allocatedDescending.length);
+  if (allocatedDescending.length > 4 || legacy.some(row => row.allocatedVariantKey)
+    || allocatedDescending.some((row, index) => index > 0 && row.attemptOrdinal !== allocatedDescending[index - 1].attemptOrdinal! - 1))
+    throw new Error("Invalid quadratic-formula allocated sequence");
+  const allocated = [...allocatedDescending].reverse();
+  if (legacy[0] && !validFinalQfRow(legacy[0], args))
+    throw new Error("Invalid quadratic-formula legacy anchor");
+  const latestOrdinal = Math.max(0, ...rows.map(row => row.attemptOrdinal ?? 0));
+  for (const row of allocated) {
+    if (row.submissionData.status === "draft") {
+      if (row.attemptOrdinal !== latestOrdinal || !validPendingQfRow(row, args)) throw new Error("Invalid quadratic-formula attempt sequence");
+    } else if (!validFinalQfRow(row, args)) throw new Error("Invalid quadratic-formula attempt sequence");
+  }
+  const firstIndex =
+    allocated[0]?.allocatedVariantKey === quadraticFormulaVariantKey(mode, 0)
+      ? 0
+      : 1;
+  if ((firstIndex === 0 && (legacy.length > 0 || allocated[0]?.attemptOrdinal !== 1))
+    || (firstIndex === 1 && allocated.length > 0 && (legacy.length === 0 || allocated[0].attemptOrdinal !== legacy[0].attemptOrdinal! + 1)))
+    throw new Error("Invalid quadratic-formula allocated sequence");
+  for (let index = 0; index < allocated.length; index++) {
+    if (
+      firstIndex + index >= IM3_QF_VARIANT_SCHEDULES[mode].length ||
+      allocated[index].allocatedVariantKey !==
+        quadraticFormulaVariantKey(mode, firstIndex + index)
+    )
+      throw new Error("Invalid quadratic-formula allocated sequence");
+  }
+}
+function validFinalQfRow(
+  row: Doc<"activity_submissions">,
+  args: { userId: Id<"profiles">; activityId: Id<"activities">; mode: QfMode },
+): boolean {
+  const envelope = row.submissionData;
+  const answerKeys = ["discriminant", "x1", "x2"];
+  return (
+    row.userId === args.userId &&
+    row.activityId === args.activityId &&
+    Number.isSafeInteger(row.attemptOrdinal) &&
+    (row.attemptOrdinal ?? 0) > 0 &&
+    envelope.contractVersion === "practice.v1" &&
+    envelope.activityId === String(args.activityId) &&
+    envelope.mode === args.mode &&
+    envelope.status === "graded" &&
+    (!row.allocatedVariantKey ||
+      envelope.attemptNumber === row.attemptOrdinal) &&
+    Object.keys(envelope.answers).sort().join("|") ===
+      answerKeys.slice().sort().join("|") &&
+    answerKeys.every(
+      (key) =>
+        typeof envelope.answers[key] === "string" ||
+        (typeof envelope.answers[key] === "number" &&
+          Number.isFinite(envelope.answers[key])),
+    ) &&
+    envelope.parts.length === 3 &&
+    new Set(envelope.parts.map((part) => part.partId)).size === 3 &&
+    envelope.parts.every(
+      (part) =>
+        answerKeys.includes(part.partId) &&
+        (typeof part.rawAnswer === "string" ||
+          (typeof part.rawAnswer === "number" &&
+            Number.isFinite(part.rawAnswer))) &&
+        typeof part.isCorrect === "boolean" &&
+        Number.isFinite(part.score) &&
+        Number.isFinite(part.maxScore) && (part.score ?? -1) >= 0 && (part.maxScore ?? -1) >= 0 && (part.score ?? 1) <= (part.maxScore ?? 0),
+    ) &&
+    Number.isFinite(row.score) &&
+    Number.isFinite(row.maxScore) &&
+    (row.score ?? -1) >= 0 && (row.maxScore ?? -1) > 0 && (row.score ?? 1) <= (row.maxScore ?? 0) &&
+    row.score === envelope.parts.reduce((sum, part) => sum + (part.score ?? 0), 0) &&
+    row.maxScore === envelope.parts.reduce((sum, part) => sum + (part.maxScore ?? 0), 0) &&
+    Number.isFinite(row.gradedAt) &&
+    row.feedback === undefined && row.gradedBy === undefined &&
+    row.masteryContractVersion === undefined &&
+    (!row.allocatedVariantKey || row.idempotencyKey === `qf:${String(row._id)}`)
+  );
+}
+
+async function ensureQuadraticFormulaRelation(
+  ctx: MutationCtx,
+  activity: Doc<"activities">,
+  mode: QfMode,
+  index: number,
+) {
+  const key = quadraticFormulaVariantKey(mode, index);
+  const variants = await ctx.db
+    .query("practice_variants")
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", key))
+    .take(2);
+  const items = await ctx.db
+    .query("practice_items")
+    .withIndex("by_variantKey", (q) => q.eq("variantKey", key))
+    .take(2);
+  if (variants.length || items.length) {
+    if (variants.length !== 1 || items.length !== 1)
+      throw new Error("Invalid quadratic-formula selected relation");
+    return;
+  }
+  const seed = IM3_QF_VARIANT_SCHEDULES[mode][index];
+  await ctx.db.insert("practice_variants", {
+    variantKey: key,
+    componentKey: "quadratic-formula",
+    displayName:
+      mode === "guided_practice"
+        ? "Guided quadratic-formula practice"
+        : "Independent quadratic-formula practice",
+    description: "A draft generated quadratic-formula variant.",
+    objectiveIds: [IM3_QF_NODE],
+    difficulty: "standard",
+    metadata: {
+      generatorKey: "quadratic-formula",
+      seed,
+      stableActivityId: IM3_QF_DRAFT_MAPPINGS[mode].stableActivityId,
+      mode,
+    },
+  });
+  await ctx.db.insert("practice_items", {
+    practiceItemId: `${key}:seed-${seed}`,
+    activityId: activity._id,
+    variantKey: key,
+    variantLabel: `Seed ${seed}`,
+  });
+}
+
+export async function getQuadraticFormulaAttemptHandler(
+  ctx: QueryCtx,
+  args: { userId: Id<"profiles">; activityId: Id<"activities">; mode: QfMode },
+  publication: Im3PilotPublication = currentIm3PilotPublication,
+) {
+  await requireActiveSubmissionStudent(ctx, args.userId);
+  const activity = await ctx.db.get(args.activityId);
+  if (!activity) throw new Error("Activity not found");
+  const rows = await qfRows(ctx, args.userId, args.activityId);
+  validateQfRowSequence(rows, args.mode, args);
+  const latest = rows.sort(
+    (a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0),
+  )[0];
+  if (!latest) {
+    await loadQuadraticFormulaAuthority(ctx, activity, args.mode, publication);
+    return { state: "no_attempt" as const };
+  }
+  const key =
+    latest.allocatedVariantKey ?? quadraticFormulaVariantKey(args.mode, 0);
+  const authority = await loadQuadraticFormulaAuthority(
+    ctx,
+    activity,
+    args.mode,
+    publication,
+    key,
+  );
+  if (!latest.attemptOrdinal || latest.submissionData.mode !== args.mode)
+    throw new Error("Invalid quadratic-formula attempt state");
+  if (
+    latest.submissionData.status === "draft" &&
+    !validPendingQfRow(latest, args)
+  )
+    throw new Error("Invalid quadratic-formula pending state");
+  if (
+    latest.submissionData.status !== "draft" &&
+    !validFinalQfRow(latest, args)
+  )
+    throw new Error("Invalid quadratic-formula final state");
+  return qfPublicState(activity, latest, args.mode, authority.seed);
+}
+
+export async function startQuadraticFormulaAttemptHandler(
+  ctx: MutationCtx,
+  args: { userId: Id<"profiles">; activityId: Id<"activities">; mode: QfMode },
+  publication: Im3PilotPublication = currentIm3PilotPublication,
+) {
+  const current = await getQuadraticFormulaAttemptHandler(
+    ctx,
+    args,
+    publication,
+  );
+  if (current.state === "pending") return current;
+  const rows = await qfRows(ctx, args.userId, args.activityId);
+  const allocated = rows
+    .filter((row) => row.allocatedVariantKey)
+    .sort((a, b) => (a.attemptOrdinal ?? 0) - (b.attemptOrdinal ?? 0));
+  const firstIndex =
+    allocated[0]?.allocatedVariantKey ===
+    quadraticFormulaVariantKey(args.mode, 0)
+      ? 0
+      : 1;
+  const nextIndex =
+    rows.length === 0
+      ? 0
+      : allocated.length === 0
+        ? 1
+        : firstIndex + allocated.length;
+  if (nextIndex >= IM3_QF_VARIANT_SCHEDULES[args.mode].length)
+    return { state: "exhausted" as const };
+  const activity = await ctx.db.get(args.activityId);
+  if (!activity) throw new Error("Activity not found");
+  const latestOrdinal = Math.max(
+    0,
+    ...rows.map((row) => row.attemptOrdinal ?? 0),
+  );
+  if (latestOrdinal >= Number.MAX_SAFE_INTEGER)
+    throw new Error("Quadratic-formula attempt ordinal is exhausted");
+  const variantKey = quadraticFormulaVariantKey(args.mode, nextIndex);
+  await ensureQuadraticFormulaRelation(ctx, activity, args.mode, nextIndex);
+  const authority = await loadQuadraticFormulaAuthority(
+    ctx,
+    activity,
+    args.mode,
+    publication,
+    variantKey,
+  );
+  const attemptOrdinal = latestOrdinal + 1;
+  const now = Date.now();
+  const id = await ctx.db.insert("activity_submissions", {
+    userId: args.userId,
+    activityId: args.activityId,
+    allocatedVariantKey: variantKey,
+    submissionData: {
+      contractVersion: "practice.v1",
+      activityId: String(args.activityId),
+      mode: args.mode,
+      status: "draft",
+      attemptNumber: attemptOrdinal,
+      submittedAt: new Date(now).toISOString(),
+      answers: {},
+      parts: [],
+    },
+    attemptOrdinal,
+    idempotencyKey: "qf:pending",
+    submittedAt: now,
+    createdAt: now,
+    updatedAt: now,
+  });
+  const retryKey = `qf:${String(id)}`;
+  await ctx.db.patch(id, { idempotencyKey: retryKey });
+  return qfPublicState(
+    activity,
+    {
+      ...(await ctx.db.get(id))!,
+      idempotencyKey: retryKey,
+    } as Doc<"activity_submissions">,
+    args.mode,
+    authority.seed,
+  );
 }
 
 export async function checkQuadraticFormulaDiscriminantHandler(
   ctx: QueryCtx,
-  args: { userId: Id<"profiles">; activityId: Id<"activities">; fieldId: "discriminant"; rawAnswer: string },
+  args: {
+    userId: Id<"profiles">;
+    activityId: Id<"activities">;
+    pendingSubmissionId?: Id<"activity_submissions">;
+    fieldId: "discriminant";
+    rawAnswer: string;
+  },
   publication: Im3PilotPublication = currentIm3PilotPublication,
 ) {
   if (args.fieldId !== "discriminant" || typeof args.rawAnswer !== "string" || args.rawAnswer.length > 160) {
@@ -670,12 +1064,45 @@ export async function checkQuadraticFormulaDiscriminantHandler(
   await requireActiveSubmissionStudent(ctx, args.userId);
   const activity = await ctx.db.get(args.activityId);
   if (!activity) throw new Error("Activity not found");
-  const privateGenerator = await loadQuadraticFormulaAuthority(ctx, activity, "guided_practice", publication);
-  return { isCorrect: checkServerOwnedQuadraticDiscriminant({ ...activity, id: String(activity._id), props: activity.props as Record<string, unknown>, privateGenerator }, args.rawAnswer) };
+  const pending = args.pendingSubmissionId
+    ? await ctx.db.get(args.pendingSubmissionId)
+    : null;
+  if (
+    !pending ||
+    !validPendingQfRow(pending, { userId: args.userId, activityId: args.activityId, mode: "guided_practice" })
+  )
+    throw new Error("Invalid pending quadratic-formula attempt");
+  const privateGenerator = await loadQuadraticFormulaAuthority(
+    ctx,
+    activity,
+    "guided_practice",
+    publication,
+    pending.allocatedVariantKey,
+  );
+  return {
+    isCorrect: checkServerOwnedQuadraticDiscriminant(
+      {
+        ...activity,
+        id: String(activity._id),
+        props: quadraticFormulaPublicProps(
+          "guided_practice",
+          privateGenerator.seed,
+        ),
+        privateGenerator,
+      },
+      args.rawAnswer,
+    ),
+  };
 }
 
 export const checkQuadraticFormulaDiscriminant = internalQuery({
-  args: { userId: v.id("profiles"), activityId: v.id("activities"), fieldId: v.literal("discriminant"), rawAnswer: v.string() },
+  args: {
+    userId: v.id("profiles"),
+    activityId: v.id("activities"),
+    pendingSubmissionId: v.optional(v.id("activity_submissions")),
+    fieldId: v.literal("discriminant"),
+    rawAnswer: v.string(),
+  },
   returns: v.object({ isCorrect: v.boolean() }),
   handler: checkQuadraticFormulaDiscriminantHandler,
 });
@@ -706,6 +1133,10 @@ export async function createServerOwnedSubmissionHandler(
     if (!isSelectedWorkedAcknowledgement(args.submissionData))
       throw new Error("Invalid selected IM3 Worked acknowledgement");
   } else {
+    if (args.pendingSubmissionId)
+      throw new Error(
+        "Pending handle is only valid for quadratic-formula submissions",
+      );
     validateSelectedEnvelope(args.submissionData);
   }
   const expectedStable =
@@ -738,7 +1169,39 @@ export async function createServerOwnedSubmissionHandler(
         .eq("idempotencyKey", key),
     )
     .unique();
-  if (existing) {
+  if (
+    existing &&
+    isQf &&
+    existing.allocatedVariantKey &&
+    existing._id !== args.pendingSubmissionId
+  ) {
+    throw new Error("Invalid pending quadratic-formula attempt");
+  }
+  if (
+    existing &&
+    isQf &&
+    !existing.allocatedVariantKey &&
+    args.pendingSubmissionId
+  ) {
+    throw new Error("Invalid pending quadratic-formula attempt");
+  }
+  if (
+    existing &&
+    !(
+      isQf &&
+      existing.allocatedVariantKey &&
+      existing.submissionData.status === "draft"
+    )
+  ) {
+    if (isQf && existing.allocatedVariantKey) {
+      await loadQuadraticFormulaAuthority(
+        ctx,
+        activity!,
+        args.submissionData.mode as QfMode,
+        publication,
+        existing.allocatedVariantKey,
+      );
+    }
     if (
       (isQf ? canonicalQfPayload : isWorked ? canonicalWorkedPayload : canonicalPayload)(
         existing.submissionData as PracticeSubmissionEnvelope,
@@ -791,6 +1254,35 @@ export async function createServerOwnedSubmissionHandler(
     });
     return { id: submissionId, submissionId, acknowledged: true as const };
   }
+  let pending: Doc<"activity_submissions"> | null = null;
+  if (isQf) {
+    if (!args.pendingSubmissionId)
+      throw new Error("A pending quadratic-formula attempt is required");
+    pending = await ctx.db.get(args.pendingSubmissionId);
+    if (
+      !pending ||
+      !validPendingQfRow(pending, {
+        userId: args.userId,
+        activityId: args.activityId,
+        mode: args.submissionData.mode as QfMode,
+      }) ||
+      pending.idempotencyKey !== key ||
+      args.submissionData.attemptNumber !== pending.attemptOrdinal
+    ) {
+      throw new Error("Invalid pending quadratic-formula attempt");
+    }
+    qfPrivateGenerator = await loadQuadraticFormulaAuthority(
+      ctx,
+      activity!,
+      args.submissionData.mode as QfMode,
+      publication,
+      pending.allocatedVariantKey,
+    );
+  } else if (args.pendingSubmissionId) {
+    throw new Error(
+      "Pending handle is only valid for quadratic-formula submissions",
+    );
+  }
   const graded = gradeServerOwnedSubmission(
     {
       id: String(activity!._id),
@@ -798,7 +1290,12 @@ export async function createServerOwnedSubmissionHandler(
       masteryNodeId: activity!.masteryNodeId,
       componentKey: activity!.componentKey,
       srsEligible: activity!.srsEligible,
-      props: activity!.props as Record<string, unknown>,
+      props: qfPrivateGenerator
+        ? quadraticFormulaPublicProps(
+            args.submissionData.mode as QfMode,
+            qfPrivateGenerator.seed,
+          )
+        : (activity!.props as Record<string, unknown>),
       gradingConfig: activity!.gradingConfig,
       ...(qfPrivateGenerator ? { privateGenerator: qfPrivateGenerator } : {}),
     },
@@ -811,8 +1308,19 @@ export async function createServerOwnedSubmissionHandler(
   const now = Date.now();
   const submissionData = {
     ...graded.submissionData,
-    attemptNumber: isQf ? args.submissionData.attemptNumber : attemptOrdinal,
+    attemptNumber: isQf ? pending!.attemptOrdinal! : attemptOrdinal,
   };
+  if (pending) {
+    await ctx.db.patch(pending._id, {
+      submissionData,
+      score,
+      maxScore,
+      gradedAt: now,
+      submittedAt: now,
+      updatedAt: now,
+    });
+    return { id: pending._id, submissionId: pending._id, score, maxScore };
+  }
   const submissionId = await ctx.db.insert("activity_submissions", {
     userId: args.userId,
     activityId: args.activityId,
@@ -850,12 +1358,81 @@ export const createServerOwnedSubmission = internalMutation({
     activityId: v.id("activities"),
     submissionData: practiceSubmissionEnvelopeValidator,
     idempotencyKey: v.string(),
+    pendingSubmissionId: v.optional(v.id("activity_submissions")),
   },
   returns: selectedResult,
   handler: async (ctx, args) => createServerOwnedSubmissionHandler(ctx, {
     ...args,
     submissionData: practiceSubmissionEnvelopeSchema.parse(args.submissionData),
   }),
+});
+
+const qfModeValidator = v.union(
+  v.literal("guided_practice"),
+  v.literal("independent_practice"),
+);
+const qfPropsValidator = v.object({
+  prompt: v.string(),
+  equation: v.string(),
+  presentationMode: v.union(v.literal("guided"), v.literal("independent")),
+  fieldHelp: v.optional(
+    v.object({ discriminant: v.string(), x1: v.string(), x2: v.string() }),
+  ),
+});
+const qfAnswerValidator = v.union(v.string(), v.number());
+const qfPartValidator = v.object({
+  partId: v.string(),
+  rawAnswer: qfAnswerValidator,
+  isCorrect: v.optional(v.boolean()),
+  score: v.optional(v.number()),
+  maxScore: v.optional(v.number()),
+});
+const qfAttemptResult = v.union(
+  v.object({ state: v.literal("no_attempt") }),
+  v.object({ state: v.literal("exhausted") }),
+  v.object({
+    state: v.literal("pending"),
+    pendingSubmissionId: v.id("activity_submissions"),
+    activityId: v.id("activities"),
+    mode: qfModeValidator,
+    attemptOrdinal: v.number(),
+    idempotencyKey: v.string(),
+    props: qfPropsValidator,
+  }),
+  v.object({
+    state: v.literal("final"),
+    activityId: v.id("activities"),
+    mode: qfModeValidator,
+    attemptOrdinal: v.number(),
+    props: qfPropsValidator,
+    submissionId: v.id("activity_submissions"),
+    score: v.number(),
+    maxScore: v.number(),
+    answers: v.object({
+      discriminant: qfAnswerValidator,
+      x1: qfAnswerValidator,
+      x2: qfAnswerValidator,
+    }),
+    parts: v.array(qfPartValidator),
+  }),
+);
+export const getQuadraticFormulaAttempt = internalQuery({
+  args: {
+    userId: v.id("profiles"),
+    activityId: v.id("activities"),
+    mode: qfModeValidator,
+  },
+  returns: qfAttemptResult,
+  handler: getQuadraticFormulaAttemptHandler,
+});
+export const startQuadraticFormulaAttempt = internalMutation({
+  args: {
+    userId: v.id("profiles"),
+    activityId: v.id("activities"),
+    mode: qfModeValidator,
+  },
+  returns: qfAttemptResult,
+  handler: startQuadraticFormulaAttemptHandler,
 });
 
 export async function getSelectedWorkedAcknowledgementHandler(

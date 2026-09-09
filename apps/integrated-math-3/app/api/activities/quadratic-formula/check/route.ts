@@ -13,8 +13,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid check request' }, { status: 400, headers });
   }
   const value = body as Record<string, unknown>;
-  if (Object.keys(value).sort().join('|') !== 'activityId|fieldId|rawAnswer'
+  if (Object.keys(value).sort().join('|') !== 'activityId|fieldId|pendingSubmissionId|rawAnswer'
     || typeof value.activityId !== 'string' || !value.activityId.trim()
+    || typeof value.pendingSubmissionId !== 'string' || !value.pendingSubmissionId.trim()
     || value.fieldId !== 'discriminant' || typeof value.rawAnswer !== 'string' || value.rawAnswer.length > 160) {
     return NextResponse.json({ error: 'Invalid check request' }, { status: 400, headers });
   }
@@ -22,6 +23,7 @@ export async function POST(request: Request) {
     const result: unknown = await fetchInternalQuery(internal.activities.checkQuadraticFormulaDiscriminant, {
       userId: claims.sub as Id<'profiles'>,
       activityId: value.activityId as Id<'activities'>,
+      pendingSubmissionId: value.pendingSubmissionId as Id<'activity_submissions'>,
       fieldId: 'discriminant',
       rawAnswer: value.rawAnswer,
     });
