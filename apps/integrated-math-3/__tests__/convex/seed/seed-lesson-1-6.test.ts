@@ -208,6 +208,7 @@ describe('Lesson 1.6 discourse quiz seed document', () => {
     const activityId = (section?.content as { activityId?: string } | undefined)?.activityId;
     const activity = memory.rows('activities').find(candidate => candidate._id === activityId);
     expect(activity?.componentKey).toBe('comprehension-quiz');
+    expect(section?.content).toEqual({ activityId, componentKey: 'comprehension-quiz' });
 
     const questions = [
       {

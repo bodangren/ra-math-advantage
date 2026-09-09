@@ -483,8 +483,8 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });
