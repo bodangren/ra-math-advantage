@@ -124,21 +124,13 @@ export const seedLesson8_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the maximum error of the estimate for the chess club poll?",
-                    options: ["0.05", "0.11", "0.22", "1.645"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What does the maximum error tell us?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the maximum error of the estimate for the chess club poll?", options: ["0.05", "0.11", "0.22", "1.645"], correctAnswer: "0.11" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What does the maximum error tell us?", options: [
                       "The exact population mean",
                       "How far the sample mean may be from the population mean",
                       "The sample size needed",
                       "The standard deviation of the population"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "How far the sample mean may be from the population mean" },
                 ],
               },
             },
@@ -166,21 +158,13 @@ export const seedLesson8_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the confidence interval for the student survey?",
-                    options: ["7.89 to 9.33", "8.61 to 9.33", "6.01 to 11.21", "7.17 to 10.05"],
-                    correctIndex: 0,
-                  },
-                  {
-                    question: "What does a 95% confidence level mean?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the confidence interval for the student survey?", options: ["7.89 to 9.33", "8.61 to 9.33", "6.01 to 11.21", "7.17 to 10.05"], correctAnswer: "7.89 to 9.33" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What does a 95% confidence level mean?", options: [
                       "95% of sample means equal 8.61",
                       "We are 95% confident the population mean is between 7.89 and 9.33",
                       "95% of students scored between 7.89 and 9.33",
                       "The population mean is exactly 8.61"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "We are 95% confident the population mean is between 7.89 and 9.33" },
                 ],
               },
             },
@@ -224,16 +208,8 @@ export const seedLesson8_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is p-hat for the lunch-period survey?",
-                    options: ["0.52", "0.48", "0.72", "0.50"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What is the 90% confidence interval for the population proportion?",
-                    options: ["[0.413, 0.547]", "[0.480, 0.520]", "[0.350, 0.610]", "[0.450, 0.550]"],
-                    correctIndex: 0,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is p-hat for the lunch-period survey?", options: ["0.52", "0.48", "0.72", "0.50"], correctAnswer: "0.48" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What is the 90% confidence interval for the population proportion?", options: ["[0.413, 0.547]", "[0.480, 0.520]", "[0.350, 0.610]", "[0.450, 0.550]"], correctAnswer: "[0.413, 0.547]" },
                 ],
               },
             },
@@ -261,26 +237,18 @@ export const seedLesson8_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What makes the lobbying group's estimate misleading?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What makes the lobbying group's estimate misleading?", options: [
                       "The sample size is too small",
                       "They reported 50% instead of the actual sample proportion 45%",
                       "The margin of error is too large",
                       "The confidence level is too low"
-                    ],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What should the group have honestly reported?",
-                    options: [
+                    ], correctAnswer: "They reported 50% instead of the actual sample proportion 45%" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What should the group have honestly reported?", options: [
                       "50% ± 5%",
                       "45% ± 5%",
                       "40% ± 10%",
                       "90% support"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "45% ± 5%" },
                 ],
               },
             },
@@ -308,26 +276,18 @@ export const seedLesson8_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What happens to the width of a confidence interval as sample size increases?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What happens to the width of a confidence interval as sample size increases?", options: [
                       "It gets wider",
                       "It gets narrower",
                       "It stays the same",
                       "It becomes negative"
-                    ],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "Which of the following is a way estimates can be misleading?",
-                    options: [
+                    ], correctAnswer: "It gets narrower" },
+                  { id: "question-2", type: "multiple_choice", prompt: "Which of the following is a way estimates can be misleading?", options: [
                       "Using a 95% confidence level",
                       "Reporting the most favorable point estimate instead of the actual sample proportion",
                       "Using a large sample size",
                       "Checking np-hat and nq-hat"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "Reporting the most favorable point estimate instead of the actual sample proportion" },
                 ],
               },
             },
@@ -382,7 +342,7 @@ export const seedLesson8_5 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -397,8 +357,8 @@ export const seedLesson8_5 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

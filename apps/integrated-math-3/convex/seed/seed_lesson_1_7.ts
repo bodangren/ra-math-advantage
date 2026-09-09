@@ -130,10 +130,10 @@ export const seedLesson7 = internalMutation({
                 problemType: "inequality",
                 equation: "x^2 - 5x + 6 > 0",
                 steps: [
-                  { expression: "x^2 - 5x + 6 = 0", explanation: "Find boundary values" },
-                  { expression: "(x-2)(x-3) = 0", explanation: "Factor" },
-                  { expression: "x = 2 or x = 3", explanation: "Zeros" },
-                  { expression: "x < 2 or x > 3", explanation: "Solution (>0 means above axis)" },
+                  { id: "step-1", description: "Find boundary values", expression: "x^2 - 5x + 6 = 0", explanation: "Find boundary values" },
+                  { id: "step-2", description: "Factor", expression: "(x-2)(x-3) = 0", explanation: "Factor" },
+                  { id: "step-3", description: "Zeros", expression: "x = 2 or x = 3", explanation: "Zeros" },
+                  { id: "step-4", description: "Solution (>0 means above axis)", expression: "x < 2 or x > 3", explanation: "Solution (>0 means above axis)" },
                 ],
               },
             },
@@ -162,11 +162,11 @@ export const seedLesson7 = internalMutation({
                 problemType: "inequality",
                 equation: "x^2 - 5x + 6 > 0",
                 steps: [
-                  { expression: "x = 2, 3", explanation: "Boundary values" },
-                  { expression: "Test x=0: positive", explanation: "Interval x < 2" },
-                  { expression: "Test x=2.5: negative", explanation: "Interval 2 < x < 3" },
-                  { expression: "Test x=4: positive", explanation: "Interval x > 3" },
-                  { expression: "x < 2 or x > 3", explanation: "Solution" },
+                  { id: "step-1", description: "Boundary values", expression: "x = 2, 3", explanation: "Boundary values" },
+                  { id: "step-2", description: "Interval x < 2", expression: "Test x=0: positive", explanation: "Interval x < 2" },
+                  { id: "step-3", description: "Interval 2 < x < 3", expression: "Test x=2.5: negative", explanation: "Interval 2 < x < 3" },
+                  { id: "step-4", description: "Interval x > 3", expression: "Test x=4: positive", explanation: "Interval x > 3" },
+                  { id: "step-5", description: "Solution", expression: "x < 2 or x > 3", explanation: "Solution" },
                 ],
               },
             },
@@ -195,10 +195,10 @@ export const seedLesson7 = internalMutation({
                 problemType: "inequality",
                 equation: "2x^2 + x - 3 <= 0",
                 steps: [
-                  { expression: "(2x+3)(x-1) = 0", explanation: "Factor" },
-                  { expression: "x = -3/2 or x = 1", explanation: "Boundary values" },
-                  { expression: "Test intervals", explanation: "Determine signs" },
-                  { expression: "-3/2 <= x <= 1", explanation: "Solution (include boundaries)" },
+                  { id: "step-1", description: "Factor", expression: "(2x+3)(x-1) = 0", explanation: "Factor" },
+                  { id: "step-2", description: "Boundary values", expression: "x = -3/2 or x = 1", explanation: "Boundary values" },
+                  { id: "step-3", description: "Determine signs", expression: "Test intervals", explanation: "Determine signs" },
+                  { id: "step-4", description: "Solution (include boundaries)", expression: "-3/2 <= x <= 1", explanation: "Solution (include boundaries)" },
                 ],
               },
             },
@@ -227,9 +227,9 @@ export const seedLesson7 = internalMutation({
                 problemType: "inequality",
                 equation: "-16t^2 + 64t > 10",
                 steps: [
-                  { expression: "-16t^2 + 64t - 10 = 0", explanation: "Related equation" },
-                  { expression: "t ≈ 0.17 or t ≈ 3.83", explanation: "Solve for t" },
-                  { expression: "0.17 < t < 3.83", explanation: "Between roots (a < 0)" },
+                  { id: "step-1", description: "Related equation", expression: "-16t^2 + 64t - 10 = 0", explanation: "Related equation" },
+                  { id: "step-2", description: "Solve for t", expression: "t ≈ 0.17 or t ≈ 3.83", explanation: "Solve for t" },
+                  { id: "step-3", description: "Between roots (a < 0)", expression: "0.17 < t < 3.83", explanation: "Between roots (a < 0)" },
                 ],
               },
             },
@@ -256,16 +256,8 @@ export const seedLesson7 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "If the inequality is x^2 - 4 > 0, are the boundary values included?",
-                    options: ["Yes", "No", "Depends on the sign of a", "Cannot determine"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What divides the number line into intervals for a quadratic inequality?",
-                    options: ["The y-intercept", "The boundary values", "The vertex", "The axis of symmetry"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "If the inequality is x^2 - 4 > 0, are the boundary values included?", options: ["Yes", "No", "Depends on the sign of a", "Cannot determine"], correctAnswer: "No" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What divides the number line into intervals for a quadratic inequality?", options: ["The y-intercept", "The boundary values", "The vertex", "The axis of symmetry"], correctAnswer: "The boundary values" },
                 ],
               },
             },
@@ -319,7 +311,7 @@ export const seedLesson7 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -334,8 +326,8 @@ export const seedLesson7 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

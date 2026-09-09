@@ -71,10 +71,10 @@ export const seedLesson3_3 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
+              displayName: "Polynomial Identities",
               props: {
                 variant: "explore",
                 equation: "y = x^3 - 4x",
-                title: "Polynomial Identities",
               },
             },
           },
@@ -139,11 +139,11 @@ export const seedLesson3_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "x^3 - y^3 = (x - y)(x^2 + xy + y^2)",
                 steps: [
-                  { expression: "Start with RHS: (x - y)(x² + xy + y²)", explanation: "Begin with the more complicated side" },
-                  { expression: "x(x²) + x(xy) + x(y²) - y(x²) - y(xy) - y(y²)", explanation: "Distribute each term" },
-                  { expression: "x³ + x²y + xy² - x²y - xy² - y³", explanation: "Simplify each product" },
-                  { expression: "x³ - y³", explanation: "Combine like terms to match LHS" },
-                  { expression: "RHS = LHS", explanation: "Identity is proven" },
+                  { id: "step-1", description: "Begin with the more complicated side", expression: "Start with RHS: (x - y)(x² + xy + y²)", explanation: "Begin with the more complicated side" },
+                  { id: "step-2", description: "Distribute each term", expression: "x(x²) + x(xy) + x(y²) - y(x²) - y(xy) - y(y²)", explanation: "Distribute each term" },
+                  { id: "step-3", description: "Simplify each product", expression: "x³ + x²y + xy² - x²y - xy² - y³", explanation: "Simplify each product" },
+                  { id: "step-4", description: "Combine like terms to match LHS", expression: "x³ - y³", explanation: "Combine like terms to match LHS" },
+                  { id: "step-5", description: "Identity is proven", expression: "RHS = LHS", explanation: "Identity is proven" },
                 ],
               },
             },
@@ -172,13 +172,13 @@ export const seedLesson3_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "(x^2 - y^2)^2 + (2xy)^2 = (x^2 + y^2)^2",
                 steps: [
-                  { expression: "Expand (x² - y²)²", explanation: "x⁴ - 2x²y² + y⁴" },
-                  { expression: "Expand (2xy)²", explanation: "4x²y²" },
-                  { expression: "LHS = x⁴ - 2x²y² + y⁴ + 4x²y²", explanation: "Add the expanded terms" },
-                  { expression: "LHS = x⁴ + 2x²y² + y⁴", explanation: "Combine like terms" },
-                  { expression: "Expand RHS: (x² + y²)²", explanation: "x⁴ + 2x²y² + y⁴" },
-                  { expression: "LHS = RHS", explanation: "Both sides are equal; identity is true" },
-                  { expression: "Pedro is correct", explanation: "The expressions form a right triangle" },
+                  { id: "step-1", description: "x⁴ - 2x²y² + y⁴", expression: "Expand (x² - y²)²", explanation: "x⁴ - 2x²y² + y⁴" },
+                  { id: "step-2", description: "4x²y²", expression: "Expand (2xy)²", explanation: "4x²y²" },
+                  { id: "step-3", description: "Add the expanded terms", expression: "LHS = x⁴ - 2x²y² + y⁴ + 4x²y²", explanation: "Add the expanded terms" },
+                  { id: "step-4", description: "Combine like terms", expression: "LHS = x⁴ + 2x²y² + y⁴", explanation: "Combine like terms" },
+                  { id: "step-5", description: "x⁴ + 2x²y² + y⁴", expression: "Expand RHS: (x² + y²)²", explanation: "x⁴ + 2x²y² + y⁴" },
+                  { id: "step-6", description: "Both sides are equal; identity is true", expression: "LHS = RHS", explanation: "Both sides are equal; identity is true" },
+                  { id: "step-7", description: "The expressions form a right triangle", expression: "Pedro is correct", explanation: "The expressions form a right triangle" },
                 ],
               },
             },
@@ -205,24 +205,16 @@ export const seedLesson3_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the best approach to proving a polynomial identity?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the best approach to proving a polynomial identity?", options: [
                       "Assume it is true and solve for variables",
                       "Transform one side until it matches the other",
                       "Graph both sides and compare",
-                    ],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "Which of the following is a polynomial identity?",
-                    options: [
+                    ], correctAnswer: "Transform one side until it matches the other" },
+                  { id: "question-2", type: "multiple_choice", prompt: "Which of the following is a polynomial identity?", options: [
                       "x² - y² = (x - y)(x + y)",
                       "x + 2 = 5",
                       "x² = 4",
-                    ],
-                    correctIndex: 0,
-                  },
+                    ], correctAnswer: "x² - y² = (x - y)(x + y)" },
                 ],
               },
             },
@@ -276,7 +268,7 @@ export const seedLesson3_3 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -291,8 +283,8 @@ export const seedLesson3_3 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

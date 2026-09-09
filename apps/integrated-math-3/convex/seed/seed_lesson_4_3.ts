@@ -71,10 +71,10 @@ export const seedLesson4_3 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
+              displayName: "Explore nth Roots",
               props: {
                 variant: "explore",
                 equation: "y = x^3",
-                title: "Explore nth Roots",
               },
             },
           },
@@ -132,9 +132,9 @@ export const seedLesson4_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "sqrt(25x^4)",
                 steps: [
-                  { expression: "Recognize perfect square", explanation: "25x^4 = (5x^2)^2" },
-                  { expression: "Apply square root", explanation: "sqrt((5x^2)^2) = |5x^2| = 5x^2 (for real x)" },
-                  { expression: "Consider both signs", explanation: "±sqrt(25x^4) = ±5x^2" },
+                  { id: "step-1", description: "25x^4 = (5x^2)^2", expression: "Recognize perfect square", explanation: "25x^4 = (5x^2)^2" },
+                  { id: "step-2", description: "sqrt((5x^2)^2) = |5x^2| = 5x^2 (for real x)", expression: "Apply square root", explanation: "sqrt((5x^2)^2) = |5x^2| = 5x^2 (for real x)" },
+                  { id: "step-3", description: "±sqrt(25x^4) = ±5x^2", expression: "Consider both signs", explanation: "±sqrt(25x^4) = ±5x^2" },
                 ],
               },
             },
@@ -163,9 +163,9 @@ export const seedLesson4_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "sqrt[4](81x^4)",
                 steps: [
-                  { expression: "Recognize perfect fourth power", explanation: "81x^4 = (3x)^4" },
-                  { expression: "Apply fourth root", explanation: "sqrt[4]((3x)^4) = |3x|" },
-                  { expression: "Simplify absolute value", explanation: "|3x| = 3|x|" },
+                  { id: "step-1", description: "81x^4 = (3x)^4", expression: "Recognize perfect fourth power", explanation: "81x^4 = (3x)^4" },
+                  { id: "step-2", description: "sqrt[4]((3x)^4) = |3x|", expression: "Apply fourth root", explanation: "sqrt[4]((3x)^4) = |3x|" },
+                  { id: "step-3", description: "|3x| = 3|x|", expression: "Simplify absolute value", explanation: "|3x| = 3|x|" },
                 ],
               },
             },
@@ -209,9 +209,9 @@ export const seedLesson4_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "x^(4/3)",
                 steps: [
-                  { expression: "Apply rational exponent rule", explanation: "b^(x/y) = y-root(b^x)" },
-                  { expression: "x^(4/3) = sqrt[3](x^4)", explanation: "Denominator becomes root index" },
-                  { expression: "Can also write as (sqrt[3](x))^4", explanation: "Alternative form" },
+                  { id: "step-1", description: "b^(x/y) = y-root(b^x)", expression: "Apply rational exponent rule", explanation: "b^(x/y) = y-root(b^x)" },
+                  { id: "step-2", description: "Denominator becomes root index", expression: "x^(4/3) = sqrt[3](x^4)", explanation: "Denominator becomes root index" },
+                  { id: "step-3", description: "Alternative form", expression: "Can also write as (sqrt[3](x))^4", explanation: "Alternative form" },
                 ],
               },
             },
@@ -240,9 +240,9 @@ export const seedLesson4_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "c(1.047)^(1/4)",
                 steps: [
-                  { expression: "Convert time to years", explanation: "3 months = 3/12 = 1/4 year" },
-                  { expression: "Apply exponent t = 1/4", explanation: "c(1 + 0.047)^(1/4)" },
-                  { expression: "Convert to radical form", explanation: "c * fourth-root(1.047)" },
+                  { id: "step-1", description: "3 months = 3/12 = 1/4 year", expression: "Convert time to years", explanation: "3 months = 3/12 = 1/4 year" },
+                  { id: "step-2", description: "c(1 + 0.047)^(1/4)", expression: "Apply exponent t = 1/4", explanation: "c(1 + 0.047)^(1/4)" },
+                  { id: "step-3", description: "c * fourth-root(1.047)", expression: "Convert to radical form", explanation: "c * fourth-root(1.047)" },
                 ],
               },
             },
@@ -271,11 +271,11 @@ export const seedLesson4_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "32^(-2/5)",
                 steps: [
-                  { expression: "Apply negative exponent rule", explanation: "b^(-n) = 1/b^n" },
-                  { expression: "= 1/32^(2/5)", explanation: "Rewrite with positive exponent" },
-                  { expression: "= 1/(2^5)^(2/5)", explanation: "Write 32 as 2^5" },
-                  { expression: "= 1/2^2", explanation: "Apply (b^x)^y = b^(xy)" },
-                  { expression: "= 1/4", explanation: "Simplify" },
+                  { id: "step-1", description: "b^(-n) = 1/b^n", expression: "Apply negative exponent rule", explanation: "b^(-n) = 1/b^n" },
+                  { id: "step-2", description: "Rewrite with positive exponent", expression: "= 1/32^(2/5)", explanation: "Rewrite with positive exponent" },
+                  { id: "step-3", description: "Write 32 as 2^5", expression: "= 1/(2^5)^(2/5)", explanation: "Write 32 as 2^5" },
+                  { id: "step-4", description: "Apply (b^x)^y = b^(xy)", expression: "= 1/2^2", explanation: "Apply (b^x)^y = b^(xy)" },
+                  { id: "step-5", description: "Simplify", expression: "= 1/4", explanation: "Simplify" },
                 ],
               },
             },
@@ -304,9 +304,9 @@ export const seedLesson4_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "x^(2/3) * x^(1/6)",
                 steps: [
-                  { expression: "Add exponents", explanation: "b^m * b^n = b^(m+n)" },
-                  { expression: "2/3 + 1/6 = 4/6 + 1/6 = 5/6", explanation: "Find common denominator" },
-                  { expression: "= x^(5/6)", explanation: "Simplify exponent" },
+                  { id: "step-1", description: "b^m * b^n = b^(m+n)", expression: "Add exponents", explanation: "b^m * b^n = b^(m+n)" },
+                  { id: "step-2", description: "Find common denominator", expression: "2/3 + 1/6 = 4/6 + 1/6 = 5/6", explanation: "Find common denominator" },
+                  { id: "step-3", description: "Simplify exponent", expression: "= x^(5/6)", explanation: "Simplify exponent" },
                 ],
               },
             },
@@ -333,24 +333,16 @@ export const seedLesson4_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the value of 16^(3/4)?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the value of 16^(3/4)?", options: [
                       "8",
                       "12",
                       "6",
-                    ],
-                    correctIndex: 0,
-                  },
-                  {
-                    question: "The expression x^(2/3) in radical form is:",
-                    options: [
+                    ], correctAnswer: "8" },
+                  { id: "question-2", type: "multiple_choice", prompt: "The expression x^(2/3) in radical form is:", options: [
                       "sqrt(x^3)",
                       "cuberoot(x^2)",
                       "sqrt[3](x)^2",
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "cuberoot(x^2)" },
                 ],
               },
             },
@@ -404,7 +396,7 @@ export const seedLesson4_3 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -419,8 +411,8 @@ export const seedLesson4_3 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

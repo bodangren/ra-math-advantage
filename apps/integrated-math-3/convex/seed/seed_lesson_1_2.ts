@@ -71,10 +71,10 @@ export const seedLesson2 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
+              displayName: "Find the Zeros",
               props: {
                 variant: "find_zeros",
                 equation: "y = x^2 - 4",
-                title: "Find the Zeros",
               },
             },
           },
@@ -132,10 +132,10 @@ export const seedLesson2 = internalMutation({
                 problemType: "graphing",
                 equation: "x^2 = 0",
                 steps: [
-                  { expression: "x^2 = 0", explanation: "Write in standard form" },
-                  { expression: "y = x^2", explanation: "Related function" },
-                  { expression: "Vertex at (0, 0)", explanation: "The parabola touches x-axis at origin" },
-                  { expression: "Solution: x = 0", explanation: "One repeated root" },
+                  { id: "step-1", description: "Write in standard form", expression: "x^2 = 0", explanation: "Write in standard form" },
+                  { id: "step-2", description: "Related function", expression: "y = x^2", explanation: "Related function" },
+                  { id: "step-3", description: "The parabola touches x-axis at origin", expression: "Vertex at (0, 0)", explanation: "The parabola touches x-axis at origin" },
+                  { id: "step-4", description: "One repeated root", expression: "Solution: x = 0", explanation: "One repeated root" },
                 ],
               },
             },
@@ -164,11 +164,11 @@ export const seedLesson2 = internalMutation({
                 problemType: "graphing",
                 equation: "x^2 - 4 = 0",
                 steps: [
-                  { expression: "x^2 - 4 = 0", explanation: "Write in standard form" },
-                  { expression: "y = x^2 - 4", explanation: "Related function" },
-                  { expression: "y = (x+2)(x-2)", explanation: "Factor to find intercepts" },
-                  { expression: "x = -2 or x = 2", explanation: "Two x-intercepts" },
-                  { expression: "Solutions: x = -2, 2", explanation: "Two real solutions" },
+                  { id: "step-1", description: "Write in standard form", expression: "x^2 - 4 = 0", explanation: "Write in standard form" },
+                  { id: "step-2", description: "Related function", expression: "y = x^2 - 4", explanation: "Related function" },
+                  { id: "step-3", description: "Factor to find intercepts", expression: "y = (x+2)(x-2)", explanation: "Factor to find intercepts" },
+                  { id: "step-4", description: "Two x-intercepts", expression: "x = -2 or x = 2", explanation: "Two x-intercepts" },
+                  { id: "step-5", description: "Two real solutions", expression: "Solutions: x = -2, 2", explanation: "Two real solutions" },
                 ],
               },
             },
@@ -193,10 +193,10 @@ export const seedLesson2 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
+              displayName: "Estimate Zeros Graphically",
               props: {
                 variant: "find_zeros",
                 equation: "y = x^2 - 2x - 3",
-                title: "Estimate Zeros Graphically",
               },
             },
           },
@@ -224,9 +224,9 @@ export const seedLesson2 = internalMutation({
                 problemType: "graphing",
                 equation: "x^2 - 2x - 3 = 0",
                 steps: [
-                  { expression: "f(-1) = (-1)^2 - 2(-1) - 3 = 0", explanation: "Check x = -1" },
-                  { expression: "f(3) = 3^2 - 2(3) - 3 = 0", explanation: "Check x = 3" },
-                  { expression: "Solutions confirmed: x = -1, 3", explanation: "Zeros verified" },
+                  { id: "step-1", description: "Check x = -1", expression: "f(-1) = (-1)^2 - 2(-1) - 3 = 0", explanation: "Check x = -1" },
+                  { id: "step-2", description: "Check x = 3", expression: "f(3) = 3^2 - 2(3) - 3 = 0", explanation: "Check x = 3" },
+                  { id: "step-3", description: "Zeros verified", expression: "Solutions confirmed: x = -1, 3", explanation: "Zeros verified" },
                 ],
               },
             },
@@ -251,10 +251,10 @@ export const seedLesson2 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
+              displayName: "Use Technology to Approximate Zeros",
               props: {
                 variant: "find_zeros",
                 equation: "y = x^2 - 3x - 1",
-                title: "Use Technology to Approximate Zeros",
               },
             },
           },
@@ -280,16 +280,8 @@ export const seedLesson2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "The x-intercepts of y = f(x) are also called:",
-                    options: ["the zeros", "the vertex", "the axis", "the domain"],
-                    correctIndex: 0,
-                  },
-                  {
-                    question: "A parabola that doesn't cross the x-axis has:",
-                    options: ["two real solutions", "one real solution", "no real solutions", "infinitely many solutions"],
-                    correctIndex: 2,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "The x-intercepts of y = f(x) are also called:", options: ["the zeros", "the vertex", "the axis", "the domain"], correctAnswer: "the zeros" },
+                  { id: "question-2", type: "multiple_choice", prompt: "A parabola that doesn't cross the x-axis has:", options: ["two real solutions", "one real solution", "no real solutions", "infinitely many solutions"], correctAnswer: "no real solutions" },
                 ],
               },
             },
@@ -343,7 +335,7 @@ export const seedLesson2 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -358,8 +350,8 @@ export const seedLesson2 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

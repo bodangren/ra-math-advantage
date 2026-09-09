@@ -76,16 +76,8 @@ export const seedLesson9_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "A circle has radius 5. What is the arc length subtended by a central angle of 2 radians?",
-                    options: ["10", "25", "5/2"],
-                    correctIndex: 0,
-                  },
-                  {
-                    question: "How many radians are in one full revolution?",
-                    options: ["π", "2π", "360"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "A circle has radius 5. What is the arc length subtended by a central angle of 2 radians?", options: ["10", "25", "5/2"], correctAnswer: "10" },
+                  { id: "question-2", type: "multiple_choice", prompt: "How many radians are in one full revolution?", options: ["π", "2π", "360"], correctAnswer: "2π" },
                 ],
               },
             },
@@ -145,11 +137,7 @@ export const seedLesson9_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "To draw a 200° angle in standard position, which direction do you rotate?",
-                    options: ["Clockwise", "Counterclockwise"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "To draw a 200° angle in standard position, which direction do you rotate?", options: ["Clockwise", "Counterclockwise"], correctAnswer: "Counterclockwise" },
                 ],
               },
             },
@@ -177,11 +165,7 @@ export const seedLesson9_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "How many full rotations does 475° represent?",
-                    options: ["0", "1", "2"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "How many full rotations does 475° represent?", options: ["0", "1", "2"], correctAnswer: "1" },
                 ],
               },
             },
@@ -209,11 +193,7 @@ export const seedLesson9_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Which angle is coterminal with 35°?",
-                    options: ["325°", "395°", "-35°"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "Which angle is coterminal with 35°?", options: ["325°", "395°", "-35°"], correctAnswer: "395°" },
                 ],
               },
             },
@@ -257,11 +237,7 @@ export const seedLesson9_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is -100° in radians?",
-                    options: ["-5π/9", "-10π/18", "-π/2"],
-                    correctIndex: 0,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is -100° in radians?", options: ["-5π/9", "-10π/18", "-π/2"], correctAnswer: "-5π/9" },
                 ],
               },
             },
@@ -289,11 +265,7 @@ export const seedLesson9_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is 11π/4 in degrees?",
-                    options: ["450°", "495°", "540°"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is 11π/4 in degrees?", options: ["450°", "495°", "540°"], correctAnswer: "495°" },
                 ],
               },
             },
@@ -321,11 +293,7 @@ export const seedLesson9_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the arc length for three-fourths of a 160-ft diameter circle?",
-                    options: ["120π feet", "160π feet", "80π feet"],
-                    correctIndex: 0,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the arc length for three-fourths of a 160-ft diameter circle?", options: ["120π feet", "160π feet", "80π feet"], correctAnswer: "120π feet" },
                 ],
               },
             },
@@ -353,16 +321,8 @@ export const seedLesson9_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "How many radians are in a full circle?",
-                    options: ["π", "2π", "360"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What is the formula for arc length?",
-                    options: ["s = rθ", "s = r/θ", "s = θ/r"],
-                    correctIndex: 0,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "How many radians are in a full circle?", options: ["π", "2π", "360"], correctAnswer: "2π" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What is the formula for arc length?", options: ["s = rθ", "s = r/θ", "s = θ/r"], correctAnswer: "s = rθ" },
                 ],
               },
             },
@@ -417,7 +377,7 @@ export const seedLesson9_1 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -432,8 +392,8 @@ export const seedLesson9_1 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

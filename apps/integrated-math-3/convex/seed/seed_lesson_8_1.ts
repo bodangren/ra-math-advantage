@@ -74,10 +74,10 @@ export const seedLesson8_1 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
+              displayName: "Sampling Explorer",
               props: {
                 variant: "explore",
                 equation: "y = 1/x",
-                title: "Sampling Explorer",
               },
             },
           },
@@ -136,11 +136,7 @@ export const seedLesson8_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "In the school app survey, what type of sample is used?",
-                    options: ["Simple random", "Self-selected", "Stratified"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "In the school app survey, what type of sample is used?", options: ["Simple random", "Self-selected", "Stratified"], correctAnswer: "Self-selected" },
                 ],
               },
             },
@@ -168,11 +164,7 @@ export const seedLesson8_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Why is the traffic commission sample biased?",
-                    options: ["It was taken during rush hour only", "The sample size is too small", "Both of the above"],
-                    correctIndex: 2,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "Why is the traffic commission sample biased?", options: ["It was taken during rush hour only", "The sample size is too small", "Both of the above"], correctAnswer: "Both of the above" },
                 ],
               },
             },
@@ -200,11 +192,7 @@ export const seedLesson8_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What makes the restaurant owner's question biased?",
-                    options: ["It offers only two choices", "The wording favors steak", "It is too long"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What makes the restaurant owner's question biased?", options: ["It offers only two choices", "The wording favors steak", "It is too long"], correctAnswer: "The wording favors steak" },
                 ],
               },
             },
@@ -248,11 +236,7 @@ export const seedLesson8_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What type of study is the football uniform research?",
-                    options: ["Experiment", "Survey", "Observational study"],
-                    correctIndex: 2,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What type of study is the football uniform research?", options: ["Experiment", "Survey", "Observational study"], correctAnswer: "Observational study" },
                 ],
               },
             },
@@ -280,11 +264,7 @@ export const seedLesson8_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Which step identifies who the survey targets?",
-                    options: ["State the objective", "Identify the population", "Write an unbiased question"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "Which step identifies who the survey targets?", options: ["State the objective", "Identify the population", "Write an unbiased question"], correctAnswer: "Identify the population" },
                 ],
               },
             },
@@ -312,11 +292,7 @@ export const seedLesson8_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Which goggles should be recommended for production?",
-                    options: ["Types A and B", "Types C and D", "Type E"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "Which goggles should be recommended for production?", options: ["Types A and B", "Types C and D", "Type E"], correctAnswer: "Types C and D" },
                 ],
               },
             },
@@ -344,11 +320,7 @@ export const seedLesson8_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is a major flaw in the music study?",
-                    options: ["The test was too hard", "The groups were not randomly selected", "Music was too loud"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is a major flaw in the music study?", options: ["The test was too hard", "The groups were not randomly selected", "Music was too loud"], correctAnswer: "The groups were not randomly selected" },
                 ],
               },
             },
@@ -376,16 +348,8 @@ export const seedLesson8_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Which sampling method gives every member an equal chance of selection?",
-                    options: ["Simple random", "Convenience", "Self-selected"],
-                    correctIndex: 0,
-                  },
-                  {
-                    question: "In which type of study is the effect of a treatment compared?",
-                    options: ["Observational study", "Experiment", "Survey"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "Which sampling method gives every member an equal chance of selection?", options: ["Simple random", "Convenience", "Self-selected"], correctAnswer: "Simple random" },
+                  { id: "question-2", type: "multiple_choice", prompt: "In which type of study is the effect of a treatment compared?", options: ["Observational study", "Experiment", "Survey"], correctAnswer: "Experiment" },
                 ],
               },
             },
@@ -440,7 +404,7 @@ export const seedLesson8_1 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -455,8 +419,8 @@ export const seedLesson8_1 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

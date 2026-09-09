@@ -76,11 +76,7 @@ export const seedLesson8_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "A restaurant uses a random number generator to pick a daily winner from 200 customers. Which best describes the probability of any single customer winning?",
-                    options: ["1/200", "50/200", "1/100", "200/200"],
-                    correctIndex: 0,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "A restaurant uses a random number generator to pick a daily winner from 200 customers. Which best describes the probability of any single customer winning?", options: ["1/200", "50/200", "1/100", "200/200"], correctAnswer: "1/200" },
                 ],
               },
             },
@@ -140,16 +136,8 @@ export const seedLesson8_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the theoretical probability of rolling an 8 on a fair eight-sided die?",
-                    options: ["1/8", "42/200", "1/6", "8/200"],
-                    correctIndex: 0,
-                  },
-                  {
-                    question: "As the number of rolls increases, what happens to experimental probability?",
-                    options: ["It stays the same", "It approaches theoretical probability", "It moves away from theoretical probability", "It becomes random"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the theoretical probability of rolling an 8 on a fair eight-sided die?", options: ["1/8", "42/200", "1/6", "8/200"], correctAnswer: "1/8" },
+                  { id: "question-2", type: "multiple_choice", prompt: "As the number of rolls increases, what happens to experimental probability?", options: ["It stays the same", "It approaches theoretical probability", "It moves away from theoretical probability", "It becomes random"], correctAnswer: "It approaches theoretical probability" },
                 ],
               },
             },
@@ -193,16 +181,8 @@ export const seedLesson8_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "In a 1-in-8 promotion, what number represents a win using a 1-8 random number generator?",
-                    options: ["Any number", "1 only", "8 only", "2 through 8"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What is the first step in conducting a simulation?",
-                    options: ["Choose the number of trials", "Describe the probability model", "Determine each possible outcome and its theoretical probability", "Generate random numbers"],
-                    correctIndex: 2,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "In a 1-in-8 promotion, what number represents a win using a 1-8 random number generator?", options: ["Any number", "1 only", "8 only", "2 through 8"], correctAnswer: "1 only" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What is the first step in conducting a simulation?", options: ["Choose the number of trials", "Describe the probability model", "Determine each possible outcome and its theoretical probability", "Generate random numbers"], correctAnswer: "Determine each possible outcome and its theoretical probability" },
                 ],
               },
             },
@@ -230,16 +210,8 @@ export const seedLesson8_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Why might a customer buying 20 tickets and winning nothing still be consistent with a 1-in-10 probability?",
-                    options: ["The tickets are biased", "Multiple simulations show long losing streaks can occur naturally", "The customer is unlucky", "The store is cheating"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "When evaluating a simulation, why might running multiple simulations be necessary?",
-                    options: ["To make the results more complicated", "To check whether an outcome is unusual or expected by chance", "To prove the customer wrong", "To waste time"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "Why might a customer buying 20 tickets and winning nothing still be consistent with a 1-in-10 probability?", options: ["The tickets are biased", "Multiple simulations show long losing streaks can occur naturally", "The customer is unlucky", "The store is cheating"], correctAnswer: "Multiple simulations show long losing streaks can occur naturally" },
+                  { id: "question-2", type: "multiple_choice", prompt: "When evaluating a simulation, why might running multiple simulations be necessary?", options: ["To make the results more complicated", "To check whether an outcome is unusual or expected by chance", "To prove the customer wrong", "To waste time"], correctAnswer: "To check whether an outcome is unusual or expected by chance" },
                 ],
               },
             },
@@ -267,16 +239,8 @@ export const seedLesson8_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What does the Law of Large Numbers describe?",
-                    options: ["Experimental probability stays the same as sample size increases", "Experimental probability approaches theoretical probability as sample size increases", "Theoretical probability changes with more data", "Probability is always exact"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What is a simulation used for?",
-                    options: ["To replace real experiments entirely", "To imitate a process when real experimentation is impractical", "To make probability problems harder", "To avoid using probability entirely"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What does the Law of Large Numbers describe?", options: ["Experimental probability stays the same as sample size increases", "Experimental probability approaches theoretical probability as sample size increases", "Theoretical probability changes with more data", "Probability is always exact"], correctAnswer: "Experimental probability approaches theoretical probability as sample size increases" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What is a simulation used for?", options: ["To replace real experiments entirely", "To imitate a process when real experimentation is impractical", "To make probability problems harder", "To avoid using probability entirely"], correctAnswer: "To imitate a process when real experimentation is impractical" },
                 ],
               },
             },
@@ -331,7 +295,7 @@ export const seedLesson8_2 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -346,8 +310,8 @@ export const seedLesson8_2 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

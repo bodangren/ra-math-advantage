@@ -72,7 +72,7 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "x^2 - 4x - 5 = 0",
                 steps: [],
               },
@@ -129,12 +129,12 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "(x-2)^2 = 25",
                 steps: [
-                  { expression: "(x-2)^2 = 25", explanation: "Original equation" },
-                  { expression: "x - 2 = ±5", explanation: "Square Root Property" },
-                  { expression: "x = 7 or x = -3", explanation: "Solve each equation" },
+                  { id: "step-1", description: "Original equation", expression: "(x-2)^2 = 25", explanation: "Original equation" },
+                  { id: "step-2", description: "Square Root Property", expression: "x - 2 = ±5", explanation: "Square Root Property" },
+                  { id: "step-3", description: "Solve each equation", expression: "x = 7 or x = -3", explanation: "Solve each equation" },
                 ],
               },
             },
@@ -160,13 +160,13 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "(x+12)^2 = 192",
                 steps: [
-                  { expression: "(x+12)^2 = 192", explanation: "Original equation" },
-                  { expression: "x + 12 = ±√192", explanation: "Square Root Property" },
-                  { expression: "x + 12 = ±8√3", explanation: "Simplify radical" },
-                  { expression: "x = -12 ± 8√3", explanation: "Solutions" },
+                  { id: "step-1", description: "Original equation", expression: "(x+12)^2 = 192", explanation: "Original equation" },
+                  { id: "step-2", description: "Square Root Property", expression: "x + 12 = ±√192", explanation: "Square Root Property" },
+                  { id: "step-3", description: "Simplify radical", expression: "x + 12 = ±8√3", explanation: "Simplify radical" },
+                  { id: "step-4", description: "Solutions", expression: "x = -12 ± 8√3", explanation: "Solutions" },
                 ],
               },
             },
@@ -192,13 +192,13 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "(x-23)^2 = -36",
                 steps: [
-                  { expression: "(x-23)^2 = -36", explanation: "Original equation" },
-                  { expression: "x - 23 = ±√(-36)", explanation: "Square Root Property" },
-                  { expression: "x - 23 = ±6i", explanation: "Simplify imaginary" },
-                  { expression: "x = 23 ± 6i", explanation: "Complex solutions" },
+                  { id: "step-1", description: "Original equation", expression: "(x-23)^2 = -36", explanation: "Original equation" },
+                  { id: "step-2", description: "Square Root Property", expression: "x - 23 = ±√(-36)", explanation: "Square Root Property" },
+                  { id: "step-3", description: "Simplify imaginary", expression: "x - 23 = ±6i", explanation: "Simplify imaginary" },
+                  { id: "step-4", description: "Complex solutions", expression: "x = 23 ± 6i", explanation: "Complex solutions" },
                 ],
               },
             },
@@ -239,13 +239,13 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "x^2 - 7x + c = (x-3.5)^2",
                 steps: [
-                  { expression: "b = -7", explanation: "Coefficient of x" },
-                  { expression: "b/2 = -3.5", explanation: "Half of b" },
-                  { expression: "(b/2)^2 = 12.25", explanation: "Square it" },
-                  { expression: "c = 12.25", explanation: "Complete the square" },
+                  { id: "step-1", description: "Coefficient of x", expression: "b = -7", explanation: "Coefficient of x" },
+                  { id: "step-2", description: "Half of b", expression: "b/2 = -3.5", explanation: "Half of b" },
+                  { id: "step-3", description: "Square it", expression: "(b/2)^2 = 12.25", explanation: "Square it" },
+                  { id: "step-4", description: "Complete the square", expression: "c = 12.25", explanation: "Complete the square" },
                 ],
               },
             },
@@ -271,13 +271,13 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "x^2 + 8x + 5 = 0",
                 steps: [
-                  { expression: "x^2 + 8x = -5", explanation: "Move the constant" },
-                  { expression: "x^2 + 8x + 16 = 11", explanation: "Add (8/2)^2 to both sides" },
-                  { expression: "(x + 4)^2 = 11", explanation: "Write as a perfect square" },
-                  { expression: "x = -4 ± √11", explanation: "Use the Square Root Property" },
+                  { id: "step-1", description: "Move the constant", expression: "x^2 + 8x = -5", explanation: "Move the constant" },
+                  { id: "step-2", description: "Add (8/2)^2 to both sides", expression: "x^2 + 8x + 16 = 11", explanation: "Add (8/2)^2 to both sides" },
+                  { id: "step-3", description: "Write as a perfect square", expression: "(x + 4)^2 = 11", explanation: "Write as a perfect square" },
+                  { id: "step-4", description: "Use the Square Root Property", expression: "x = -4 ± √11", explanation: "Use the Square Root Property" },
                 ],
               },
             },
@@ -303,12 +303,12 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "2x^2 + 12x + 7",
                 steps: [
-                  { expression: "2(x^2 + 6x) + 7", explanation: "Factor out the leading coefficient" },
-                  { expression: "2(x^2 + 6x + 9 - 9) + 7", explanation: "Complete the square inside" },
-                  { expression: "2(x + 3)^2 - 11", explanation: "Simplify" },
+                  { id: "step-1", description: "Factor out the leading coefficient", expression: "2(x^2 + 6x) + 7", explanation: "Factor out the leading coefficient" },
+                  { id: "step-2", description: "Complete the square inside", expression: "2(x^2 + 6x + 9 - 9) + 7", explanation: "Complete the square inside" },
+                  { id: "step-3", description: "Simplify", expression: "2(x + 3)^2 - 11", explanation: "Simplify" },
                 ],
               },
             },
@@ -334,13 +334,13 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "2x^2 - 8x - 3 = 0",
                 steps: [
-                  { expression: "x^2 - 4x = 3/2", explanation: "Move the constant and divide by 2" },
-                  { expression: "x^2 - 4x + 4 = 11/2", explanation: "Complete the square" },
-                  { expression: "(x - 2)^2 = 11/2", explanation: "Write as a square" },
-                  { expression: "x = 2 ± √22/2", explanation: "Solve" },
+                  { id: "step-1", description: "Move the constant and divide by 2", expression: "x^2 - 4x = 3/2", explanation: "Move the constant and divide by 2" },
+                  { id: "step-2", description: "Complete the square", expression: "x^2 - 4x + 4 = 11/2", explanation: "Complete the square" },
+                  { id: "step-3", description: "Write as a square", expression: "(x - 2)^2 = 11/2", explanation: "Write as a square" },
+                  { id: "step-4", description: "Solve", expression: "x = 2 ± √22/2", explanation: "Solve" },
                 ],
               },
             },
@@ -366,13 +366,13 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
+                problemType: "completing_the_square",
                 equation: "x^2 + 6x + 13 = 0",
                 steps: [
-                  { expression: "x^2 + 6x = -13", explanation: "Move the constant" },
-                  { expression: "x^2 + 6x + 9 = -4", explanation: "Complete the square" },
-                  { expression: "(x + 3)^2 = -4", explanation: "Write as a square" },
-                  { expression: "x = -3 ± 2i", explanation: "Use imaginary roots" },
+                  { id: "step-1", description: "Move the constant", expression: "x^2 + 6x = -13", explanation: "Move the constant" },
+                  { id: "step-2", description: "Complete the square", expression: "x^2 + 6x + 9 = -4", explanation: "Complete the square" },
+                  { id: "step-3", description: "Write as a square", expression: "(x + 3)^2 = -4", explanation: "Write as a square" },
+                  { id: "step-4", description: "Use imaginary roots", expression: "x = -3 ± 2i", explanation: "Use imaginary roots" },
                 ],
               },
             },
@@ -416,9 +416,9 @@ export const seedLesson5 = internalMutation({
                 problemType: "vertex-form",
                 equation: "y = x^2 + 10x + 21",
                 steps: [
-                  { expression: "y = (x^2 + 10x) + 21", explanation: "Group x-terms" },
-                  { expression: "y = (x^2 + 10x + 25) + 21 - 25", explanation: "Complete the square" },
-                  { expression: "y = (x + 5)^2 - 4", explanation: "Write vertex form" },
+                  { id: "step-1", description: "Group x-terms", expression: "y = (x^2 + 10x) + 21", explanation: "Group x-terms" },
+                  { id: "step-2", description: "Complete the square", expression: "y = (x^2 + 10x + 25) + 21 - 25", explanation: "Complete the square" },
+                  { id: "step-3", description: "Write vertex form", expression: "y = (x + 5)^2 - 4", explanation: "Write vertex form" },
                 ],
               },
             },
@@ -444,8 +444,8 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "graphing-explorer",
               props: {
-                functions: ["2(x-3)^2 - 7"],
-                features: ["vertex", "axis of symmetry", "minimum"],
+                variant: "plot_from_equation",
+                equation: "2(x-3)^2 - 7",
               },
             },
           },
@@ -470,8 +470,8 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "graphing-explorer",
               props: {
-                functions: ["-0.75(x-4)^2 + 12"],
-                features: ["vertex", "zeros", "model"],
+                variant: "plot_from_equation",
+                equation: "-0.75(x-4)^2 + 12",
               },
             },
           },
@@ -497,16 +497,8 @@ export const seedLesson5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What value completes x^2 + 10x + ___ to make a perfect square?",
-                    options: ["5", "20", "25", "100"],
-                    correctIndex: 2,
-                  },
-                  {
-                    question: "If (x - 3)^2 = 16, what are the solutions?",
-                    options: ["x = 7 only", "x = -1 only", "x = 7 or x = -1", "x = 3 or x = -3"],
-                    correctIndex: 2,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What value completes x^2 + 10x + ___ to make a perfect square?", options: ["5", "20", "25", "100"], correctAnswer: "25" },
+                  { id: "question-2", type: "multiple_choice", prompt: "If (x - 3)^2 = 16, what are the solutions?", options: ["x = 7 only", "x = -1 only", "x = 7 or x = -1", "x = 3 or x = -3"], correctAnswer: "x = 7 or x = -1" },
                 ],
               },
             },
@@ -560,7 +552,7 @@ export const seedLesson5 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -575,8 +567,8 @@ export const seedLesson5 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

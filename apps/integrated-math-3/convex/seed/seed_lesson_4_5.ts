@@ -74,10 +74,10 @@ export const seedLesson4_5 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
+              displayName: "Explore Radical Operations",
               props: {
                 variant: "explore",
                 equation: "y = sqrt(x)",
-                title: "Explore Radical Operations",
               },
             },
           },
@@ -138,10 +138,10 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "sqrt(75x^12y^7)",
                 steps: [
-                  { expression: "Factor into squares", explanation: "75 = 5^2 * 3, x^12 = (x^6)^2, y^7 = (y^3)^2 * y" },
-                  { expression: "sqrt(5^2 * 3 * (x^6)^2 * (y^3)^2 * y)", explanation: "Break down each factor" },
-                  { expression: "5 * x^6 * y^3 * sqrt(3y)", explanation: "Take square root of perfect powers" },
-                  { expression: "5x^6y^3*sqrt(3y)", explanation: "Simplest form" },
+                  { id: "step-1", description: "75 = 5^2 * 3, x^12 = (x^6)^2, y^7 = (y^3)^2 * y", expression: "Factor into squares", explanation: "75 = 5^2 * 3, x^12 = (x^6)^2, y^7 = (y^3)^2 * y" },
+                  { id: "step-2", description: "Break down each factor", expression: "sqrt(5^2 * 3 * (x^6)^2 * (y^3)^2 * y)", explanation: "Break down each factor" },
+                  { id: "step-3", description: "Take square root of perfect powers", expression: "5 * x^6 * y^3 * sqrt(3y)", explanation: "Take square root of perfect powers" },
+                  { id: "step-4", description: "Simplest form", expression: "5x^6y^3*sqrt(3y)", explanation: "Simplest form" },
                 ],
               },
             },
@@ -171,9 +171,9 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "cuberoot((24a^6)/125)",
                 steps: [
-                  { expression: "cuberoot(24a^6) / cuberoot(125)", explanation: "Apply quotient property" },
-                  { expression: "cuberoot(2^3 * 3 * (a^2)^3) / cuberoot(5^3)", explanation: "Factor into cubes" },
-                  { expression: "2a^2*cuberoot(3) / 5", explanation: "Simplify cube roots" },
+                  { id: "step-1", description: "Apply quotient property", expression: "cuberoot(24a^6) / cuberoot(125)", explanation: "Apply quotient property" },
+                  { id: "step-2", description: "Factor into cubes", expression: "cuberoot(2^3 * 3 * (a^2)^3) / cuberoot(5^3)", explanation: "Factor into cubes" },
+                  { id: "step-3", description: "Simplify cube roots", expression: "2a^2*cuberoot(3) / 5", explanation: "Simplify cube roots" },
                 ],
               },
             },
@@ -219,10 +219,10 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "6*sqrt(45x) + sqrt(12) - 3*sqrt(20x)",
                 steps: [
-                  { expression: "Factor radicands into squares", explanation: "45x = 3^2 * 5x, 12 = 2^2 * 3, 20x = 2^2 * 5x" },
-                  { expression: "6(3sqrt(5x)) + 2sqrt(3) - 3(2sqrt(5x))", explanation: "Take square roots of perfect squares" },
-                  { expression: "18sqrt(5x) + 2sqrt(3) - 6sqrt(5x)", explanation: "Multiply coefficients" },
-                  { expression: "12sqrt(5x) + 2sqrt(3)", explanation: "Combine like terms" },
+                  { id: "step-1", description: "45x = 3^2 * 5x, 12 = 2^2 * 3, 20x = 2^2 * 5x", expression: "Factor radicands into squares", explanation: "45x = 3^2 * 5x, 12 = 2^2 * 3, 20x = 2^2 * 5x" },
+                  { id: "step-2", description: "Take square roots of perfect squares", expression: "6(3sqrt(5x)) + 2sqrt(3) - 3(2sqrt(5x))", explanation: "Take square roots of perfect squares" },
+                  { id: "step-3", description: "Multiply coefficients", expression: "18sqrt(5x) + 2sqrt(3) - 6sqrt(5x)", explanation: "Multiply coefficients" },
+                  { id: "step-4", description: "Combine like terms", expression: "12sqrt(5x) + 2sqrt(3)", explanation: "Combine like terms" },
                 ],
               },
             },
@@ -252,9 +252,9 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "4*fifthroot(-10x^2y^6) * 3*fifthroot(16x^4y^4)",
                 steps: [
-                  { expression: "12*fifthroot((-10x^2y^6)(16x^4y^4))", explanation: "Multiply coefficients and radicands" },
-                  { expression: "12*fifthroot(-1 * 2^5 * 5 * x^5 * x * y^10)", explanation: "Factor into powers of 5" },
-                  { expression: "12(-1)xy^2*fifthroot(5x)", explanation: "Take fifth roots of perfect fifth powers" },
+                  { id: "step-1", description: "Multiply coefficients and radicands", expression: "12*fifthroot((-10x^2y^6)(16x^4y^4))", explanation: "Multiply coefficients and radicands" },
+                  { id: "step-2", description: "Factor into powers of 5", expression: "12*fifthroot(-1 * 2^5 * 5 * x^5 * x * y^10)", explanation: "Factor into powers of 5" },
+                  { id: "step-3", description: "Take fifth roots of perfect fifth powers", expression: "12(-1)xy^2*fifthroot(5x)", explanation: "Take fifth roots of perfect fifth powers" },
                 ],
               },
             },
@@ -284,10 +284,10 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "1/2*(3*sqrt(8)+4)*(7*sqrt(8)+6*sqrt(3))",
                 steps: [
-                  { expression: "1/2 * [(3sqrt(8)+4)(7sqrt(8)+6sqrt(3))]", explanation: "Set up area formula" },
-                  { expression: "1/2 * [21sqrt(64) + 18sqrt(24) + 28sqrt(8) + 24sqrt(3)]", explanation: "Apply distributive property" },
-                  { expression: "1/2 * [168 + 36sqrt(6) + 56sqrt(2) + 24sqrt(3)]", explanation: "Simplify radicals: sqrt(64)=8, sqrt(24)=sqrt(4*6)=2sqrt(6)" },
-                  { expression: "84 + 18sqrt(6) + 28sqrt(2) + 12sqrt(3)", explanation: "Multiply by 1/2" },
+                  { id: "step-1", description: "Set up area formula", expression: "1/2 * [(3sqrt(8)+4)(7sqrt(8)+6sqrt(3))]", explanation: "Set up area formula" },
+                  { id: "step-2", description: "Apply distributive property", expression: "1/2 * [21sqrt(64) + 18sqrt(24) + 28sqrt(8) + 24sqrt(3)]", explanation: "Apply distributive property" },
+                  { id: "step-3", description: "Simplify radicals: sqrt(64)=8, sqrt(24)=sqrt(4*6)=2sqrt(6)", expression: "1/2 * [168 + 36sqrt(6) + 56sqrt(2) + 24sqrt(3)]", explanation: "Simplify radicals: sqrt(64)=8, sqrt(24)=sqrt(4*6)=2sqrt(6)" },
+                  { id: "step-4", description: "Multiply by 1/2", expression: "84 + 18sqrt(6) + 28sqrt(2) + 12sqrt(3)", explanation: "Multiply by 1/2" },
                 ],
               },
             },
@@ -333,11 +333,11 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "cuberoot(250a^6) / cuberoot(7a)",
                 steps: [
-                  { expression: "cuberoot(250a^6) / cuberoot(7a)", explanation: "Start with original expression" },
-                  { expression: "5a^2*cuberoot(2) / cuberoot(7a)", explanation: "Factor 250 = 5^3 * 2, a^6 = (a^2)^3" },
-                  { expression: "Multiply by cuberoot(7^2*a^2)/cuberoot(7^2*a^2)", explanation: "Rationalize denominator" },
-                  { expression: "5a^2*cuberoot(98a^2) / (7a)", explanation: "Simplify denominator: cuberoot(7^3*a^3) = 7a" },
-                  { expression: "5a*cuberoot(98a^2) / 7", explanation: "Cancel a" },
+                  { id: "step-1", description: "Start with original expression", expression: "cuberoot(250a^6) / cuberoot(7a)", explanation: "Start with original expression" },
+                  { id: "step-2", description: "Factor 250 = 5^3 * 2, a^6 = (a^2)^3", expression: "5a^2*cuberoot(2) / cuberoot(7a)", explanation: "Factor 250 = 5^3 * 2, a^6 = (a^2)^3" },
+                  { id: "step-3", description: "Rationalize denominator", expression: "Multiply by cuberoot(7^2*a^2)/cuberoot(7^2*a^2)", explanation: "Rationalize denominator" },
+                  { id: "step-4", description: "Simplify denominator: cuberoot(7^3*a^3) = 7a", expression: "5a^2*cuberoot(98a^2) / (7a)", explanation: "Simplify denominator: cuberoot(7^3*a^3) = 7a" },
+                  { id: "step-5", description: "Cancel a", expression: "5a*cuberoot(98a^2) / 7", explanation: "Cancel a" },
                 ],
               },
             },
@@ -367,10 +367,10 @@ export const seedLesson4_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "4x / (2*sqrt(7) - 5)",
                 steps: [
-                  { expression: "(4x / (2sqrt(7) - 5)) * ((2sqrt(7) + 5) / (2sqrt(7) + 5))", explanation: "Multiply by conjugate" },
-                  { expression: "(8x*sqrt(7) + 20x) / ((2sqrt(7))^2 - 5^2)", explanation: "FOIL denominator: (a-b)(a+b)=a^2-b^2" },
-                  { expression: "(8x*sqrt(7) + 20x) / (28 - 25)", explanation: "Calculate squares: (2sqrt(7))^2=4*7=28, 5^2=25" },
-                  { expression: "(8x*sqrt(7) + 20x) / 3", explanation: "Simplify denominator" },
+                  { id: "step-1", description: "Multiply by conjugate", expression: "(4x / (2sqrt(7) - 5)) * ((2sqrt(7) + 5) / (2sqrt(7) + 5))", explanation: "Multiply by conjugate" },
+                  { id: "step-2", description: "FOIL denominator: (a-b)(a+b)=a^2-b^2", expression: "(8x*sqrt(7) + 20x) / ((2sqrt(7))^2 - 5^2)", explanation: "FOIL denominator: (a-b)(a+b)=a^2-b^2" },
+                  { id: "step-3", description: "Calculate squares: (2sqrt(7))^2=4*7=28, 5^2=25", expression: "(8x*sqrt(7) + 20x) / (28 - 25)", explanation: "Calculate squares: (2sqrt(7))^2=4*7=28, 5^2=25" },
+                  { id: "step-4", description: "Simplify denominator", expression: "(8x*sqrt(7) + 20x) / 3", explanation: "Simplify denominator" },
                 ],
               },
             },
@@ -398,24 +398,16 @@ export const seedLesson4_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Which pair of expressions are like radicals?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "Which pair of expressions are like radicals?", options: [
                       "sqrt(12) and sqrt(18)",
                       "2*sqrt(5) and 3*sqrt(7)",
                       "sqrt(8) and 2*sqrt(2)",
-                    ],
-                    correctIndex: 2,
-                  },
-                  {
-                    question: "To rationalize 1/(sqrt(3) - 1), by what would you multiply?",
-                    options: [
+                    ], correctAnswer: "sqrt(8) and 2*sqrt(2)" },
+                  { id: "question-2", type: "multiple_choice", prompt: "To rationalize 1/(sqrt(3) - 1), by what would you multiply?", options: [
                       "sqrt(3) + 1",
                       "sqrt(3) - 1",
                       "1 - sqrt(3)",
-                    ],
-                    correctIndex: 0,
-                  },
+                    ], correctAnswer: "sqrt(3) + 1" },
                 ],
               },
             },
@@ -470,7 +462,7 @@ export const seedLesson4_5 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -485,8 +477,8 @@ export const seedLesson4_5 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

@@ -76,11 +76,7 @@ export const seedLesson8_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "A population has values {2, 4, 6, 8, 10}. What is the mean of this population?",
-                    options: ["5", "6", "7", "8"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "A population has values {2, 4, 6, 8, 10}. What is the mean of this population?", options: ["5", "6", "7", "8"], correctAnswer: "6" },
                 ],
               },
             },
@@ -140,16 +136,8 @@ export const seedLesson8_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the mean of the race times?",
-                    options: ["53.5", "55.1", "57.1", "50.3"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What is the standard deviation of the race times?",
-                    options: ["6.02", "48.18", "2.45", "8"],
-                    correctIndex: 2,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the mean of the race times?", options: ["53.5", "55.1", "57.1", "50.3"], correctAnswer: "55.1" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What is the standard deviation of the race times?", options: ["6.02", "48.18", "2.45", "8"], correctAnswer: "2.45" },
                 ],
               },
             },
@@ -177,16 +165,8 @@ export const seedLesson8_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the approximate mean of the data set?",
-                    options: ["17.0", "18.1", "19.2", "20.0"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What is the approximate standard deviation?",
-                    options: ["2.5", "3.7", "4.1", "5.0"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the approximate mean of the data set?", options: ["17.0", "18.1", "19.2", "20.0"], correctAnswer: "18.1" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What is the approximate standard deviation?", options: ["2.5", "3.7", "4.1", "5.0"], correctAnswer: "3.7" },
                 ],
               },
             },
@@ -214,16 +194,8 @@ export const seedLesson8_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Which class scored higher on average?",
-                    options: ["Mr. Jackson's class", "Ms. Hettrick's class", "They scored the same", "Not enough information"],
-                    correctIndex: 0,
-                  },
-                  {
-                    question: "Which class has scores that are more spread out?",
-                    options: ["Mr. Jackson's class", "Ms. Hettrick's class", "They have the same spread", "Not enough information"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "Which class scored higher on average?", options: ["Mr. Jackson's class", "Ms. Hettrick's class", "They scored the same", "Not enough information"], correctAnswer: "Mr. Jackson's class" },
+                  { id: "question-2", type: "multiple_choice", prompt: "Which class has scores that are more spread out?", options: ["Mr. Jackson's class", "Ms. Hettrick's class", "They have the same spread", "Not enough information"], correctAnswer: "Ms. Hettrick's class" },
                 ],
               },
             },
@@ -251,16 +223,8 @@ export const seedLesson8_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "For symmetric distributions, which measure describes the center well?",
-                    options: ["Median only", "Mean", "Mode only", "Range"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What describes the spread of a symmetric distribution?",
-                    options: ["Mean and median", "Variance and standard deviation", "Mode and range", "Outliers only"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "For symmetric distributions, which measure describes the center well?", options: ["Median only", "Mean", "Mode only", "Range"], correctAnswer: "Mean" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What describes the spread of a symmetric distribution?", options: ["Mean and median", "Variance and standard deviation", "Mode and range", "Outliers only"], correctAnswer: "Variance and standard deviation" },
                 ],
               },
             },
@@ -315,7 +279,7 @@ export const seedLesson8_3 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -330,8 +294,8 @@ export const seedLesson8_3 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

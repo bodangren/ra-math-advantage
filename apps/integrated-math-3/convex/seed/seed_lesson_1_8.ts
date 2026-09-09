@@ -72,7 +72,9 @@ export const seedLesson8 = internalMutation({
             content: {
               componentKey: "graphing-explorer",
               props: {
-                equations: ["y = x^2", "y = x + 2"],
+                variant: "graph_system",
+                equation: "y = x^2",
+                linearEquation: "y = x + 2",
               },
             },
           },
@@ -130,11 +132,11 @@ export const seedLesson8 = internalMutation({
                 problemType: "system",
                 equations: ["x = 2y^2 + 3y + 1", "-x + y = -1"],
                 steps: [
-                  { expression: "x = y + 1", explanation: "Solve linear for x" },
-                  { expression: "y + 1 = 2y^2 + 3y + 1", explanation: "Substitute" },
-                  { expression: "0 = 2y(y + 1)", explanation: "Simplify" },
-                  { expression: "y = 0 or y = -1", explanation: "Solve for y" },
-                  { expression: "(1, 0) and (0, -1)", explanation: "Solutions" },
+                  { id: "step-1", description: "Solve linear for x", expression: "x = y + 1", explanation: "Solve linear for x" },
+                  { id: "step-2", description: "Substitute", expression: "y + 1 = 2y^2 + 3y + 1", explanation: "Substitute" },
+                  { id: "step-3", description: "Simplify", expression: "0 = 2y(y + 1)", explanation: "Simplify" },
+                  { id: "step-4", description: "Solve for y", expression: "y = 0 or y = -1", explanation: "Solve for y" },
+                  { id: "step-5", description: "Solutions", expression: "(1, 0) and (0, -1)", explanation: "Solutions" },
                 ],
               },
             },
@@ -163,11 +165,11 @@ export const seedLesson8 = internalMutation({
                 problemType: "system",
                 equations: ["x^2 = y + 5", "-x + y = 7"],
                 steps: [
-                  { expression: "y = x + 7", explanation: "Solve linear for y" },
-                  { expression: "x^2 = x + 12", explanation: "Substitute" },
-                  { expression: "(x-4)(x+3) = 0", explanation: "Factor" },
-                  { expression: "x = 4 or x = -3", explanation: "Solve for x" },
-                  { expression: "(4, 11) and (-3, 4)", explanation: "Solutions" },
+                  { id: "step-1", description: "Solve linear for y", expression: "y = x + 7", explanation: "Solve linear for y" },
+                  { id: "step-2", description: "Substitute", expression: "x^2 = x + 12", explanation: "Substitute" },
+                  { id: "step-3", description: "Factor", expression: "(x-4)(x+3) = 0", explanation: "Factor" },
+                  { id: "step-4", description: "Solve for x", expression: "x = 4 or x = -3", explanation: "Solve for x" },
+                  { id: "step-5", description: "Solutions", expression: "(4, 11) and (-3, 4)", explanation: "Solutions" },
                 ],
               },
             },
@@ -196,10 +198,10 @@ export const seedLesson8 = internalMutation({
                 problemType: "system",
                 equations: ["y = x^2 - 2x + 6", "y = 4x + 1"],
                 steps: [
-                  { expression: "x^2 - 2x + 6 = 4x + 1", explanation: "Set equal" },
-                  { expression: "x^2 - 6x + 5 = 0", explanation: "Simplify" },
-                  { expression: "(x-1)(x-5) = 0", explanation: "Factor" },
-                  { expression: "x = 1 or x = 5", explanation: "Solutions" },
+                  { id: "step-1", description: "Set equal", expression: "x^2 - 2x + 6 = 4x + 1", explanation: "Set equal" },
+                  { id: "step-2", description: "Simplify", expression: "x^2 - 6x + 5 = 0", explanation: "Simplify" },
+                  { id: "step-3", description: "Factor", expression: "(x-1)(x-5) = 0", explanation: "Factor" },
+                  { id: "step-4", description: "Solutions", expression: "x = 1 or x = 5", explanation: "Solutions" },
                 ],
               },
             },
@@ -228,10 +230,10 @@ export const seedLesson8 = internalMutation({
                 problemType: "system",
                 equations: ["R = -0.1x^2 + 4x", "R = 42"],
                 steps: [
-                  { expression: "-0.1x^2 + 4x = 42", explanation: "Set equal" },
-                  { expression: "x^2 - 40x + 420 = 0", explanation: "Multiply by -10" },
-                  { expression: "D = -80 < 0", explanation: "Discriminant" },
-                  { expression: "No real solutions", explanation: "0 intersections" },
+                  { id: "step-1", description: "Set equal", expression: "-0.1x^2 + 4x = 42", explanation: "Set equal" },
+                  { id: "step-2", description: "Multiply by -10", expression: "x^2 - 40x + 420 = 0", explanation: "Multiply by -10" },
+                  { id: "step-3", description: "Discriminant", expression: "D = -80 < 0", explanation: "Discriminant" },
+                  { id: "step-4", description: "0 intersections", expression: "No real solutions", explanation: "0 intersections" },
                 ],
               },
             },
@@ -275,9 +277,9 @@ export const seedLesson8 = internalMutation({
                 problemType: "system",
                 equations: ["y = x^2 + 2x", "y = -x^2 + 4x + 6"],
                 steps: [
-                  { expression: "x^2 + 2x = -x^2 + 4x + 6", explanation: "Set equations equal" },
-                  { expression: "x^2 - x - 3 = 0", explanation: "Move terms and simplify" },
-                  { expression: "x = (1 ± √13)/2", explanation: "Solve the quadratic" },
+                  { id: "step-1", description: "Set equations equal", expression: "x^2 + 2x = -x^2 + 4x + 6", explanation: "Set equations equal" },
+                  { id: "step-2", description: "Move terms and simplify", expression: "x^2 - x - 3 = 0", explanation: "Move terms and simplify" },
+                  { id: "step-3", description: "Solve the quadratic", expression: "x = (1 ± √13)/2", explanation: "Solve the quadratic" },
                 ],
               },
             },
@@ -303,8 +305,9 @@ export const seedLesson8 = internalMutation({
             content: {
               componentKey: "graphing-explorer",
               props: {
-                functions: ["x^2 - 4x + 7", "x^2 - 2x + 3"],
-                features: ["intersection"],
+                variant: "compare_functions",
+                equation: "x^2 - 4x + 7",
+                comparisonEquation: "x^2 - 2x + 3",
               },
             },
           },
@@ -329,8 +332,9 @@ export const seedLesson8 = internalMutation({
             content: {
               componentKey: "graphing-explorer",
               props: {
-                functions: ["x^2 + 1", "x^2 - 5"],
-                features: ["no intersection", "vertical shift"],
+                variant: "compare_functions",
+                equation: "x^2 + 1",
+                comparisonEquation: "x^2 - 5",
               },
             },
           },
@@ -356,16 +360,8 @@ export const seedLesson8 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the maximum number of solutions for a linear-quadratic system?",
-                    options: ["1", "2", "3", "Infinitely many"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "When a line is tangent to a parabola, how many solutions are there?",
-                    options: ["0", "1", "2", "Cannot determine"],
-                    correctIndex: 1,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the maximum number of solutions for a linear-quadratic system?", options: ["1", "2", "3", "Infinitely many"], correctAnswer: "2" },
+                  { id: "question-2", type: "multiple_choice", prompt: "When a line is tangent to a parabola, how many solutions are there?", options: ["0", "1", "2", "Cannot determine"], correctAnswer: "1" },
                 ],
               },
             },
@@ -419,7 +415,7 @@ export const seedLesson8 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -434,8 +430,8 @@ export const seedLesson8 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

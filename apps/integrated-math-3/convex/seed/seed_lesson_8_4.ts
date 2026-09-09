@@ -124,26 +124,18 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Which of these is a continuous random variable?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "Which of these is a continuous random variable?", options: [
                       "Number of cars in a parking lot",
                       "Height of students in a class",
                       "Number of books on a shelf",
                       "Number of emails received"
-                    ],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "Which of these is a discrete random variable?",
-                    options: [
+                    ], correctAnswer: "Height of students in a class" },
+                  { id: "question-2", type: "multiple_choice", prompt: "Which of these is a discrete random variable?", options: [
                       "Weight of a laptop",
                       "Time to complete a race",
                       "Temperature",
                       "Number of siblings"
-                    ],
-                    correctIndex: 3,
-                  },
+                    ], correctAnswer: "Number of siblings" },
                 ],
               },
             },
@@ -171,21 +163,13 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the probability of winning $10 if there are 1000 $10 winners out of 4000 total?",
-                    options: ["0.10", "0.25", "0.50", "0.75"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "Why are the bars separated in the graph?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the probability of winning $10 if there are 1000 $10 winners out of 4000 total?", options: ["0.10", "0.25", "0.50", "0.75"], correctAnswer: "0.25" },
+                  { id: "question-2", type: "multiple_choice", prompt: "Why are the bars separated in the graph?", options: [
                       "The company prefers that style",
                       "Because the outcomes are discrete values",
                       "To make the graph look longer",
                       "Because the probabilities are small"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "Because the outcomes are discrete values" },
                 ],
               },
             },
@@ -213,26 +197,18 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What makes the salary distribution graph misleading?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What makes the salary distribution graph misleading?", options: [
                       "It uses too many colors",
                       "Uneven x-axis bins and exaggerated y-axis scale",
                       "It shows all employees earn $40,000",
                       "The probabilities add to more than 1"
-                    ],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "When interpreting a distribution graph, what should you check for?",
-                    options: [
+                    ], correctAnswer: "Uneven x-axis bins and exaggerated y-axis scale" },
+                  { id: "question-2", type: "multiple_choice", prompt: "When interpreting a distribution graph, what should you check for?", options: [
                       "Whether it has a title",
                       "Whether axes are evenly scaled and bins are consistent",
                       "How many colors are used",
                       "The company's logo"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "Whether axes are evenly scaled and bins are consistent" },
                 ],
               },
             },
@@ -276,26 +252,18 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "Why can't the soccer player data be approximated by a normal distribution?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "Why can't the soccer player data be approximated by a normal distribution?", options: [
                       "There are too many players",
                       "The data is skewed (not symmetric)",
                       "The mean is too high",
                       "There are not enough goals"
-                    ],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What shape must data have to be modeled by a normal distribution?",
-                    options: [
+                    ], correctAnswer: "The data is skewed (not symmetric)" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What shape must data have to be modeled by a normal distribution?", options: [
                       "Bell-shaped and symmetric",
                       "Skewed to the right",
                       "Skewed to the left",
                       "Uniform"
-                    ],
-                    correctIndex: 0,
-                  },
+                    ], correctAnswer: "Bell-shaped and symmetric" },
                 ],
               },
             },
@@ -323,16 +291,8 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "For a normal distribution with mean 42 and standard deviation 6, what is the range for the middle 95%?",
-                    options: ["24 to 60", "30 to 54", "36 to 48", "18 to 66"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "What percent of data falls between 36 and 42 in this distribution?",
-                    options: ["34%", "50%", "68%", "95%"],
-                    correctIndex: 0,
-                  },
+                  { id: "question-1", type: "multiple_choice", prompt: "For a normal distribution with mean 42 and standard deviation 6, what is the range for the middle 95%?", options: ["24 to 60", "30 to 54", "36 to 48", "18 to 66"], correctAnswer: "30 to 54" },
+                  { id: "question-2", type: "multiple_choice", prompt: "What percent of data falls between 36 and 42 in this distribution?", options: ["34%", "50%", "68%", "95%"], correctAnswer: "34%" },
                 ],
               },
             },
@@ -376,21 +336,13 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "If X = 24, mu = 19, and sigma = 3.8, what is the z-value?",
-                    options: ["0.76", "1.32", "2.63", "5.00"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "A z-value of 1.316 means the value is...",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "If X = 24, mu = 19, and sigma = 3.8, what is the z-value?", options: ["0.76", "1.32", "2.63", "5.00"], correctAnswer: "1.32" },
+                  { id: "question-2", type: "multiple_choice", prompt: "A z-value of 1.316 means the value is...", options: [
                       "1.316 below the mean",
                       "1.316 above the mean",
                       "Equal to the mean",
                       "Too far from the mean to calculate"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "1.316 above the mean" },
                 ],
               },
             },
@@ -418,21 +370,13 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What does P(z < -1.18) represent?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What does P(z < -1.18) represent?", options: [
                       "The area to the right of z = -1.18",
                       "The area to the left of z = -1.18",
                       "The area between z = -1.18 and z = 1.18",
                       "The z-value at the 1.18th percentile"
-                    ],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "If P(z < -1.18) = 0.1190, what percent of data falls below z = -1.18?",
-                    options: ["1.19%", "11.90%", "50%", "88.10%"],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "The area to the left of z = -1.18" },
+                  { id: "question-2", type: "multiple_choice", prompt: "If P(z < -1.18) = 0.1190, what percent of data falls below z = -1.18?", options: ["1.19%", "11.90%", "50%", "88.10%"], correctAnswer: "11.90%" },
                 ],
               },
             },
@@ -460,21 +404,13 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What is the z-value for X = 100,000?",
-                    options: ["0.015", "0.150", "1.500", "15.00"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "If P(X > 100,000) ≈ 0.44, what does this mean?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What is the z-value for X = 100,000?", options: ["0.015", "0.150", "1.500", "15.00"], correctAnswer: "0.150" },
+                  { id: "question-2", type: "multiple_choice", prompt: "If P(X > 100,000) ≈ 0.44, what does this mean?", options: [
                       "44% of days have exactly 100,000 hits",
                       "44% of days have more than 100,000 hits",
                       "The average hits is 44,000",
                       "44 days have more than 100,000 hits"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "44% of days have more than 100,000 hits" },
                 ],
               },
             },
@@ -502,26 +438,18 @@ export const seedLesson8_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  {
-                    question: "What does it mean when a z-value is negative?",
-                    options: [
+                  { id: "question-1", type: "multiple_choice", prompt: "What does it mean when a z-value is negative?", options: [
                       "The value is below the mean",
                       "The value is above the mean",
                       "The value is impossible",
                       "The standard deviation is negative"
-                    ],
-                    correctIndex: 0,
-                  },
-                  {
-                    question: "Why might we prefer z-scores over raw values for comparison?",
-                    options: [
+                    ], correctAnswer: "The value is below the mean" },
+                  { id: "question-2", type: "multiple_choice", prompt: "Why might we prefer z-scores over raw values for comparison?", options: [
                       "Z-scores are always positive",
                       "Z-scores standardize different scales to a common scale",
                       "Z-scores are easier to calculate",
                       "Raw values cannot be compared"
-                    ],
-                    correctIndex: 1,
-                  },
+                    ], correctAnswer: "Z-scores standardize different scales to a common scale" },
                 ],
               },
             },
@@ -576,7 +504,7 @@ export const seedLesson8_4 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
+            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
             props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
@@ -591,8 +519,8 @@ export const seedLesson8_4 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
-              ...activityContent,
               activityId: insertedActivityId,
+              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });
