@@ -148,6 +148,7 @@ vi.mock('@/lib/convex/server', () => ({
   internal: {
     auth: {
       getCredentialByUsername: 'auth:getCredentialByUsername',
+      getCredentialByUsernameIncludingInactive: 'auth:getCredentialByUsernameIncludingInactive',
     },
   },
 }));

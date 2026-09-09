@@ -161,7 +161,7 @@ export async function requireDeveloperRequestClaims(
  * receives a stable verifier reference for the lifetime of the process.
  */
 const verifyActiveCredential: ActiveCredentialVerifier = async (claims) => {
-  const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
+  const credential = await fetchInternalQuery(internal.auth.getCredentialByUsernameIncludingInactive, {
     username: claims.username,
   });
   return credential !== null && credential.isActive === true;
