@@ -9,7 +9,7 @@
     "binding": "ASSETS"
   },
   "vars": {
-    "NEXT_PUBLIC_CONVEX_URL": "https://chatty-weasel-888.convex.cloud"
+    "NEXT_PUBLIC_CONVEX_URL": "https://accurate-labrador-817.convex.cloud"
   }
   // Required secrets via `wrangler secret put`:
   // - CONVEX_DEPLOY_KEY
