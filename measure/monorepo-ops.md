@@ -127,6 +127,8 @@ Both apps auto-generate types during `npx convex dev`. The generated files are:
 
 > **Verified 2026-07-01** against Cloudflare (account `bodangren@gmail.com` / `0f8cef50…42da20`) and Convex bindings in each `wrangler.jsonc` / `.env.local`. Timestamps go stale — **re-verify with the command below, don't trust the dates blind.**
 
+**IM3 update, 2026-09-09:** The user deleted the entire IM3 test project before rollout. The replacement project is `bodangren/integrated-math-3` (project ID `2960816`). Its development deployment is `accurate-labrador-817`. The current Wrangler URL is `https://accurate-labrador-817.convex.cloud`. Committed backend source is deployed. The first seed loaded all 44 standards and Lesson 1.6; 51 lesson seeds require contract repairs. No frontend deployment ran during this rebuild. The IM3 row below is a historical snapshot, not the current backend. The main `.env.local` still selects the separate local anonymous deployment.
+
 | App | CF Worker live? | Last CF deploy | Convex (prod URL in wrangler) | In CI deploy? |
 |-----|-----------------|----------------|-------------------------------|---------------|
 | integrated-math-3 | ✅ yes | 2026-04-11 | `chatty-weasel-888.convex.cloud` | ✅ (`ci.yml` Phase 6) |
