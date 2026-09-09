@@ -1,8 +1,54 @@
 import { describe, it, expect } from 'vitest';
+import { getFunctionName } from 'convex/server';
+import { seedAll } from '@/convex/seed';
 import type { SeedLesson, SeedCompetencyStandard, SeedDemoEnvironment } from '@/convex/seed/types';
 
 describe('seed main entry point', () => {
   describe('seed orchestration', () => {
+    it('calls every registered seed mutation in order', async () => {
+      const mutationNames: string[] = [];
+      const lessonCounts = [8, 5, 5, 6, 5, 5, 6, 5, 7];
+      const expectedNames = [
+        'seed/seed_standards:seedStandards',
+        ...lessonCounts.flatMap((count, moduleIndex) =>
+          Array.from({ length: count }, (_, lessonIndex) => {
+            const moduleNumber = moduleIndex + 1;
+            const lessonNumber = lessonIndex + 1;
+            const functionName = moduleNumber === 1 ? `seedLesson${lessonNumber}` : `seedLesson${moduleNumber}_${lessonNumber}`;
+            return `seed/seed_lesson_${moduleNumber}_${lessonNumber}:${functionName}`;
+          }),
+        ),
+        ...Array.from(
+          { length: 9 },
+          (_, index) => `seed/seed_lesson_standards:seedModule${index + 1}LessonStandards`,
+        ),
+        'seed/seed_objective_policies:seedObjectivePolicies',
+        'seed/seed_problem_families:seedProblemFamilies',
+        'seed/seed_practice_items:seedPracticeItems',
+        'seed/seed_demo_env:seedDemoEnv',
+        'seed/seed_demo_progress:seedDemoProgress',
+      ];
+      const handler = seedAll as unknown as {
+        _handler(ctx: {
+          runMutation(reference: unknown, args: Record<string, never>): Promise<unknown>;
+        }): Promise<unknown>;
+      };
+
+      await handler._handler({
+        runMutation: async (reference) => {
+          const name = getFunctionName(reference as Parameters<typeof getFunctionName>[0]);
+          mutationNames.push(name);
+          if (name === 'seed/seed_standards:seedStandards' || name.startsWith('seed/seed_lesson_standards:')) {
+            return [];
+          }
+          return undefined;
+        },
+      });
+
+      expect(mutationNames).toHaveLength(67);
+      expect(mutationNames).toEqual(expectedNames);
+    });
+
     it('seeds lessons in order from 1-1 to 1-8', () => {
       const lessonOrder = [
         'module-1-lesson-1',
