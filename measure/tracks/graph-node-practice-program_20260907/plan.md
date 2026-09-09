@@ -993,3 +993,6 @@ A fresh read-only IM3 local snapshot confirms two complete QF activity documents
 
 
 Parent review found that the first equation repair test built its own saved-state object. That assertion is rejected. The accepted scope now adds the existing LessonRenderer activity-submission test. It must exercise the real receipt-to-saved-view transition and final-details retry. Full activity-document preservation must also be asserted. The source implementation remains uncommitted until review passes.
+
+
+The five-path QF complete-equation source repair is committed as `acb6ff19d`. Parent and independent review accepted the exact patch. Parent 140 tests, final 57 writer tests, lint, build, and separate post-build TypeScript passed. Independent tests passed 140 IM3 cases and 21 shared renderer cases. The real client saved-details failure and retry are covered. Both upserts preserve all eight item, variant, and submission documents. Two clean main files now match the commit. Three mixed files remain intact. Native local reconciliation, display verification, and runtime cleanup remain open under the same task.
