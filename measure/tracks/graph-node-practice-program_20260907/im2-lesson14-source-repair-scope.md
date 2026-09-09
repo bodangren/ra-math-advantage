@@ -4,7 +4,7 @@ Date: 2026-09-09
 
 ## Decision
 
-Restore Lesson 1-4 from the committed `Int2_0104_practice.docx` student worksheet. Use a three-path source batch. Do not change the graph in this batch.
+Restore Lesson 1-4 from the committed `Int2_0104_practice.docx` student worksheet. Use a six-path source batch. Do not change the graph in this batch.
 
 The current lesson is not a transcription of the worksheet. It replaces the worksheet with four new problems and four supplied solutions. It also adds Triangle Inequality Theorem vocabulary. The worksheet does not teach or assess the sum-of-two-sides Triangle Inequality Theorem.
 
@@ -89,11 +89,14 @@ The rendered page bottoms crop parts of Problems 15 and 16 on page 2 and Problem
 
 ## Allowed paths
 
-Change only these three paths:
+Change only these six paths:
 
 1. `apps/integrated-math-2/curriculum/modules/module-1-lesson-4`
 2. `apps/integrated-math-2/__tests__/curriculum/module-1-source-mappings.test.ts`
 3. `apps/integrated-math-2/curriculum/lessons.json`
+4. `apps/integrated-math-2/curriculum/calendar.json`
+5. `apps/integrated-math-2/curriculum/implementation/class-period-packages/unit-1.json`
+6. `apps/integrated-math-2/curriculum/module-1-class-period-plan.md`
 
 Preserve all unrelated bytes in the test file. Add one bounded Lesson 1-4 source regression section.
 
@@ -144,3 +147,11 @@ Preserve the existing Lesson 1-1 perpendicular-bisector pilot authority and all 
 ## Required generated lesson update
 
 The parent build found that the existing prebuild contract rejects a stale `curriculum/lessons.json`. Run `node scripts/build-curriculum.mjs` after source restoration. Compare the result with committed HEAD. Only the Lesson 1.4 record may change. Preserve every other lesson record and its order. The script also writes `curriculum/implementation/practice-v1/activity-map.json`; verify that file remains byte-identical and do not include it in the patch. Do not edit the generator or add a new generation layer. The original two-path freeze is not accepted without the required lesson bundle update.
+
+## Required calendar update
+
+The second prebuild check also validates the generated calendar. Its existing generator reads the first entry in Today’s Goals as the instruction objective. Preserve the original `## Today's Goals` section with its three supported entries. Remove only the unsupported entry about triangle inequality relationships. The retained entries ask for angle comparisons, angle and side order, and real-world side-angle relationships. These are lesson goals, not extra worksheet prompts or answers.
+
+Run the existing curriculum and calendar generators after this correction. The required additional outputs are `calendar.json`, `implementation/class-period-packages/unit-1.json`, and `module-1-class-period-plan.md`. Preserve the 180-period course budget, all period identities and order, and all unrelated period values. The changed Lesson 1.4 instruction must cite the actual combined Examples 2 and 3 heading. No new scheduling rule is added. Verify every other unit package and module plan is byte-identical. Do not edit a generator. If regeneration changes an unrelated record, stop and report it.
+
+The final source regression must check retained goals, the restored prompt sequence, and the corresponding generated Lesson 1.4 and calendar entry. Existing generation checks remain the authority for output freshness. The three-path freeze is superseded by this complete existing dependency scope.
