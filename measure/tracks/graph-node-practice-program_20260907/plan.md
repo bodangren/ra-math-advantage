@@ -1034,3 +1034,6 @@ Native preparation found a separate triangle activation gap. The shared evaluato
 
 
 The corrected native verification scope passes independent review. See `im2-lesson14-native-verification-scope.md` and `im2-lesson14-native-scope-independent-review.md`. It resolves the exact lesson/version pair, assigns the lesson before student work, and distinguishes conditional evidence tests from production introduction. Execute only after the Worked repair is integrated. No backend has started. The separate teacher-led introduction scope is now under investigation.
+
+
+The first Worked recovery patch needs correction before integration. Parent review found missing same-key malformed-history tests, weak canonical lesson assertions, no combined Worked/graded reload proof, and a manually inserted teacher row instead of a writer-to-teacher flow. The canonical lesson lookup also sits outside the query unavailable-result boundary. The implementation agent must correct these within the accepted three paths and rerun required gates. The native backend remains stopped.
