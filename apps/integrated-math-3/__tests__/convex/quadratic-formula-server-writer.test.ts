@@ -18,6 +18,7 @@ import {
 import {
   IM3_QF_DRAFT_MAPPINGS,
   IM3_QF_NODE,
+  IM3_QF_VARIANT_SCHEDULES,
   quadraticFormulaPublicProps,
 } from "@/lib/activities/server-grading";
 import { getLessonProgress } from "@/convex/student";
@@ -482,18 +483,73 @@ describe("draft quadratic-formula server writer", () => {
     await expect(createServerOwnedSubmissionHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, idempotencyKey: 'k', submissionData: f.submissionData } as never, badPublication)).rejects.toThrow(/draft graph state/);
   });
 
-  it('executes draft upserts, replays coherently, and rejects changed public content', async () => {
+  it('publishes complete equations and reconciles only exact legacy drafts', async () => {
     const f = memoryContext();
     await upsertIm3QuadraticFormulaDrafts(f.ctx as never, 10);
-    expect(f.table('activities')).toHaveLength(2); expect(f.table('practice_variants')).toHaveLength(2); expect(f.table('practice_items')).toHaveLength(2);
+    expect(f.table('activities').map(row => row.props.equation)).toEqual([
+      `${generateQuadraticFormula({ seed: 1 }).quadratic} = 0`,
+      `${generateQuadraticFormula({ seed: 2 }).quadratic} = 0`,
+    ]);
+    const userId = 'profiles:reconcile';
+    f.table('profiles').push({ _id: userId, username: 'reconcile', role: 'student', organizationId: 'org' });
+    f.table('auth_credentials').push({ _id: 'auth:reconcile', profileId: userId, username: 'reconcile', role: 'student', organizationId: 'org', isActive: true });
+    for (const mode of ['guided_practice', 'independent_practice'] as const) {
+      const activityId = f.table('activities').find(row => row.stableActivityId === IM3_QF_DRAFT_MAPPINGS[mode].stableActivityId)!._id;
+      for (let index = 0; index < IM3_QF_VARIANT_SCHEDULES[mode].length; index++) {
+        const pending = await startQuadraticFormulaAttemptHandler(f.ctx as never, { userId, activityId, mode } as never, publication);
+        if (pending.state !== 'pending') throw new Error('Expected a pending reconciliation fixture');
+        const problem = generateQuadraticFormula({ seed: IM3_QF_VARIANT_SCHEDULES[mode][index] });
+        const [x1, x2 = ''] = problem.roots.map(root => root.value);
+        await rawCreateServerOwnedSubmissionHandler(f.ctx as never, {
+          userId, activityId, pendingSubmissionId: pending.pendingSubmissionId, idempotencyKey: pending.idempotencyKey,
+          submissionData: {
+            contractVersion: 'practice.v1', activityId, mode, status: 'submitted', attemptNumber: index + 1,
+            submittedAt: `2026-09-09T00:0${index}:00.000Z`, answers: { discriminant: problem.discriminant, x1, x2 },
+            parts: [{ partId: 'discriminant', rawAnswer: problem.discriminant }, { partId: 'x1', rawAnswer: x1 }, { partId: 'x2', rawAnswer: x2 }],
+          },
+        } as never, publication);
+      }
+    }
+    expect(f.table('practice_variants')).toHaveLength(8);
+    expect(f.table('practice_items')).toHaveLength(8);
+    expect(f.table('activity_submissions')).toHaveLength(8);
+    for (const activity of f.table('activities')) activity.props.equation = activity.props.equation.replace(/ = 0$/, '');
+    const legacyActivities = structuredClone(f.table('activities'));
+    const relationsBefore = structuredClone({ variants: f.table('practice_variants'), items: f.table('practice_items'), submissions: f.table('activity_submissions') });
     await upsertIm3QuadraticFormulaDrafts(f.ctx as never, 20);
-    expect(f.table('activities')).toHaveLength(2); expect(f.table('practice_variants')).toHaveLength(2); expect(f.table('practice_items')).toHaveLength(2);
-    const before = structuredClone(f.table('activities')[0]);
-    f.table('activities')[0].props.equation = 'changed = 0';
-    await expect(upsertIm3QuadraticFormulaDrafts(f.ctx as never, 30)).rejects.toThrow(/content changed/);
-    expect(f.table('activities')[0].props.equation).toBe('changed = 0');
-    expect(f.table('practice_variants')).toHaveLength(2);
-    expect(before._id).toBe(f.table('activities')[0]._id);
+    expect(f.table('activities')).toEqual(legacyActivities.map(activity => ({
+      ...activity,
+      props: { ...activity.props, equation: `${activity.props.equation} = 0` },
+      updatedAt: 20,
+    })));
+    expect({ variants: f.table('practice_variants'), items: f.table('practice_items'), submissions: f.table('activity_submissions') }).toEqual(relationsBefore);
+    const after = structuredClone(f.table('activities'));
+    await upsertIm3QuadraticFormulaDrafts(f.ctx as never, 30);
+    expect(f.table('activities')).toEqual(after);
+    expect({ variants: f.table('practice_variants'), items: f.table('practice_items'), submissions: f.table('activity_submissions') }).toEqual(relationsBefore);
+  });
+
+  it.each(['equation', 'content', 'approval', 'identity'] as const)('rejects a non-legacy %s change', async cause => {
+    const f = memoryContext();
+    await upsertIm3QuadraticFormulaDrafts(f.ctx as never, 10);
+    const row = f.table('activities')[0];
+    if (cause === 'equation') row.props.equation = 'changed';
+    if (cause === 'content') row.description = 'changed';
+    if (cause === 'approval') row.approval = { status: 'approved' };
+    if (cause === 'identity') row.masteryNodeId = 'foreign';
+    const before = structuredClone(f.table('activities'));
+    await expect(upsertIm3QuadraticFormulaDrafts(f.ctx as never, 20)).rejects.toThrow(/exact unreviewed draft|content changed/);
+    expect(f.table('activities')).toEqual(before);
+  });
+
+  it('rejects a mixed legacy and invalid pair before it patches either draft', async () => {
+    const f = memoryContext();
+    await upsertIm3QuadraticFormulaDrafts(f.ctx as never, 10);
+    f.table('activities')[0].props.equation = f.table('activities')[0].props.equation.replace(/ = 0$/, '');
+    f.table('activities')[1].props.equation = 'changed';
+    const before = structuredClone(f.table('activities'));
+    await expect(upsertIm3QuadraticFormulaDrafts(f.ctx as never, 20)).rejects.toThrow(/content changed/);
+    expect(f.table('activities')).toEqual(before);
   });
 
   it('keeps private QF variant metadata out of all named read consumers', async () => {

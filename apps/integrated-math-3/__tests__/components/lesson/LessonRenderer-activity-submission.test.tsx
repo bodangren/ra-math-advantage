@@ -60,7 +60,7 @@ vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
     sections: Array<{ id: string; content: { activityId?: string; componentKey?: string; learningEvidenceMode?: string; payloadActivityId?: string; payloadOverrides?: Record<string, unknown>; capturePayload?: (payload: Record<string, unknown>) => void } }>;
     onActivitySubmit?: (activityId: string, payload: unknown) => void;
     onActivityComplete?: (activityId: string) => void;
-    quadraticFormulaAttempt?: { state: string; pendingSubmissionId?: string };
+    quadraticFormulaAttempt?: { state: string; pendingSubmissionId?: string; submissionId?: string; idempotencyKey?: string; props?: { equation?: string }; answers?: Record<string, unknown>; score?: number; maxScore?: number };
   }) => (
     <div
       data-testid="phase-renderer"
@@ -70,6 +70,12 @@ vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
       data-has-on-complete={onActivityComplete ? 'true' : 'false'}
       data-quadratic-state={quadraticFormulaAttempt?.state}
       data-quadratic-pending-id={quadraticFormulaAttempt?.pendingSubmissionId}
+      data-quadratic-submission-id={quadraticFormulaAttempt?.submissionId}
+      data-quadratic-key={quadraticFormulaAttempt?.idempotencyKey}
+      data-quadratic-equation={quadraticFormulaAttempt?.props?.equation}
+      data-quadratic-answers={quadraticFormulaAttempt?.answers ? JSON.stringify(quadraticFormulaAttempt.answers) : undefined}
+      data-quadratic-score={quadraticFormulaAttempt?.score}
+      data-quadratic-max-score={quadraticFormulaAttempt?.maxScore}
     >
       {sections.map((s) => (
         <button
@@ -547,6 +553,37 @@ describe('LessonRenderer strict quadratic-formula receipts', () => {
       await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
     },
   );
+
+  it('keeps the complete equation and exact receipt while final details are unavailable', async () => {
+    const pending = { state: 'pending' as const, pendingSubmissionId: 'qf:complete', activityId: 'activities:independent_practice', mode: 'independent_practice' as const, attemptOrdinal: 1, idempotencyKey: 'qf:key:complete', props: { presentationMode: 'independent' as const, prompt: 'Solve the equation.', equation: 'x^2 - 4 = 0' } };
+    const final = { state: 'final' as const, activityId: pending.activityId, mode: pending.mode, attemptOrdinal: 1, props: pending.props, submissionId: pending.pendingSubmissionId, score: 3, maxScore: 3, answers: { discriminant: '16', x1: '2', x2: '-2' }, parts: [{ partId: 'discriminant' as const, rawAnswer: '16', isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x1' as const, rawAnswer: '2', isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x2' as const, rawAnswer: '-2', isCorrect: true, score: 1, maxScore: 1 }] };
+    mockGetQuadraticFormulaAttempt
+      .mockResolvedValueOnce(pending)
+      .mockRejectedValueOnce(new Error('final details unavailable'))
+      .mockResolvedValueOnce(final);
+    mockCreateServerOwnedActivitySubmission.mockResolvedValueOnce({ success: true, submissionId: pending.pendingSubmissionId, score: 3, maxScore: 3 });
+    render(<LessonRenderer {...propsFor(qfSection('independent_practice'))} />);
+    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', pending.pendingSubmissionId));
+    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
+    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-state', 'saved-awaiting-details'));
+    const saved = screen.getByTestId('phase-renderer');
+    expect(saved).toHaveAttribute('data-quadratic-pending-id', pending.pendingSubmissionId);
+    expect(saved).toHaveAttribute('data-quadratic-submission-id', pending.pendingSubmissionId);
+    expect(saved).toHaveAttribute('data-quadratic-key', pending.idempotencyKey);
+    expect(saved).toHaveAttribute('data-quadratic-equation', pending.props.equation);
+    expect(saved).toHaveAttribute('data-quadratic-answers', JSON.stringify(final.answers));
+    expect(saved).toHaveAttribute('data-quadratic-score', '3');
+    expect(saved).toHaveAttribute('data-quadratic-max-score', '3');
+    expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledWith(expect.objectContaining({
+      pendingSubmissionId: pending.pendingSubmissionId,
+      idempotencyKey: pending.idempotencyKey,
+      timing: expect.objectContaining({ activeMs: 60000 }),
+    }));
+    fireEvent.click(screen.getByRole('button', { name: 'Retry result details' }));
+    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-state', 'final'));
+    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-equation', pending.props.equation);
+    expect(mockGetQuadraticFormulaAttempt).toHaveBeenCalledTimes(3);
+  });
 
   it('retries an ambiguous strict failure with the exact body and key', async () => {
     mockCreateServerOwnedActivitySubmission

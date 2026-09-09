@@ -48,6 +48,7 @@ function qfActivityContent(value: Record<string, unknown>) {
 }
 
 export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: number): Promise<void> {
+  const drafts = [];
   for (const mode of ["guided_practice", "independent_practice"] as const) {
     const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
     const existing = await ctx.db.query("activities").withIndex("by_stable_activity_id", q => q.eq("stableActivityId", mapping.stableActivityId)).unique();
@@ -60,9 +61,22 @@ export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: num
       throw new Error("Existing quadratic-formula activity is not the exact unreviewed draft");
     }
     const provisional = buildIm3QuadraticFormulaDraftDocuments(mode, (existing?._id ?? "activities:pending") as Id<"activities">, now);
-    if (existing && JSON.stringify(qfActivityContent(existing)) !== JSON.stringify(qfActivityContent(provisional.activity))) {
+    const expectedContent = JSON.stringify(qfActivityContent(provisional.activity));
+    const legacyEquation = provisional.activity.props.equation.replace(/ = 0$/, "");
+    const legacyContent = JSON.stringify(qfActivityContent({
+      ...provisional.activity,
+      props: { ...provisional.activity.props, equation: legacyEquation },
+    }));
+    const existingContent = existing
+      ? JSON.stringify(qfActivityContent(existing))
+      : undefined;
+    if (existing && existingContent !== expectedContent && existingContent !== legacyContent)
       throw new Error("Existing quadratic-formula activity content changed");
-    }
+    drafts.push({ mode, existing, provisional, reconcileLegacy: existingContent === legacyContent });
+  }
+  for (const { mode, existing, provisional, reconcileLegacy } of drafts) {
+    if (existing && reconcileLegacy)
+      await ctx.db.patch(existing._id, { props: provisional.activity.props, updatedAt: now });
     const activityId =
       existing?._id ??
       (await ctx.db.insert("activities", provisional.activity));

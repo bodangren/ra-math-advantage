@@ -51,7 +51,7 @@ export function quadraticFormulaPublicProps(
   const generated = generateQuadraticFormula({ seed });
   return quadraticFormulaActivitySchema.parse({
     prompt: "Use the Quadratic Formula to solve the equation.",
-    equation: generated.quadratic,
+    equation: `${generated.quadratic} = 0`,
     presentationMode: IM3_QF_DRAFT_MAPPINGS[mode].presentationMode,
     ...(mode === "guided_practice"
       ? {
@@ -196,7 +196,7 @@ function regenerateQuadraticFormula(activity: ServerOwnedActivity) {
   }
   const props = quadraticFormulaActivitySchema.parse(activity.props);
   const problem = generateQuadraticFormula({ seed: identity.seed });
-  if (props.equation !== problem.quadratic) throw new Error('Quadratic-formula equation does not match its private seed');
+  if (props.equation !== `${problem.quadratic} = 0`) throw new Error('Quadratic-formula equation does not match its private seed');
   return problem;
 }
 

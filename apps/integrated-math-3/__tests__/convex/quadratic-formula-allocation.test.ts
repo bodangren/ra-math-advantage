@@ -225,6 +225,7 @@ describe("quadratic-formula immutable allocation", () => {
         expect(pending).toMatchObject({
           state: "pending",
           attemptOrdinal: index + 1,
+          props: { equation: `${generateQuadraticFormula({ seed: IM3_QF_VARIANT_SCHEDULES[mode][index] }).quadratic} = 0` },
         });
         expect(JSON.stringify(pending)).not.toContain("allocatedVariantKey");
         expect(
@@ -234,17 +235,21 @@ describe("quadratic-formula immutable allocation", () => {
             publication,
           ),
         ).toEqual(pending);
+        const timing = { startedAt: "2026-09-09T00:00:00.000Z", submittedAt: "2026-09-09T00:01:00.000Z", wallClockMs: 60000, activeMs: 50000, idleMs: 10000, pauseCount: 0, focusLossCount: 0, visibilityHiddenCount: 0, confidence: "high" as const };
         const submitArgs = {
           userId: f.userId,
           activityId: f.activityId,
           pendingSubmissionId: pending.pendingSubmissionId,
           idempotencyKey: pending.idempotencyKey,
-          submissionData: envelope(
-            f.activityId,
-            mode,
-            IM3_QF_VARIANT_SCHEDULES[mode][index],
-            index + 1,
-          ),
+          submissionData: {
+            ...envelope(
+              f.activityId,
+              mode,
+              IM3_QF_VARIANT_SCHEDULES[mode][index],
+              index + 1,
+            ),
+            timing,
+          },
         };
         const result = await createServerOwnedSubmissionHandler(
           f.ctx as never,
@@ -278,7 +283,9 @@ describe("quadratic-formula immutable allocation", () => {
           state: "final",
           submissionId: pending.pendingSubmissionId,
           attemptOrdinal: index + 1,
+          props: { equation: pending.props.equation },
         });
+        expect(f.table("activity_submissions").find((row: any) => row._id === result.submissionId).submissionData.timing).toEqual(timing);
         expect(JSON.stringify(final)).not.toMatch(
           /allocatedVariantKey|generatorKey|canonicalRoots|"seed"/,
         );
