@@ -1,0 +1,16 @@
+{
+  "counts": {
+    "activities": 2,
+    "items": 8,
+    "variants": 8,
+    "submissions": 8
+  },
+  "zeroEffects": {
+    "learningEvidence": 0,
+    "learningEvidenceReceipts": 0,
+    "scheduledWork": 0,
+    "srsCards": 0,
+    "srsReviews": 0
+  },
+  "boundary": "Disposable local seed/test database. Full internal documents remain outside the repository."
+}
