@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { getFunctionName } from 'convex/server';
 import { seedAll } from '@/convex/seed';
+import { stepByStepSolverSchema } from '@/lib/activities/schemas/step-by-step-solver.schema';
 import type { SeedLesson, SeedCompetencyStandard, SeedDemoEnvironment } from '@/convex/seed/types';
 
 const lessonSeedModules = (import.meta as ImportMeta & {
@@ -58,10 +59,11 @@ function makeSeedContext() {
 }
 
 describe('seed main entry point', () => {
-  it('writes repaired shapes and preserves unresolved solver contracts for all lessons', async () => {
+  it('writes valid activity contracts for all lessons', async () => {
     const modules = Object.entries(lessonSeedModules);
-    const unresolvedTypes: string[] = [];
-    const unresolvedSystems: string[][] = [];
+    const domainTypes: string[] = [];
+    const solverTypes: string[] = [];
+    const systems: Array<{ first: string; second: string }> = [];
 
     expect(modules).toHaveLength(52);
     for (const [, module] of modules) {
@@ -83,11 +85,16 @@ describe('seed main entry point', () => {
           expect(props).not.toHaveProperty('equations');
           expect(typeof props.equation).toBe('string');
         } else if (activity.componentKey === 'step-by-step-solver') {
+          expect(stepByStepSolverSchema.safeParse(props).success).toBe(true);
           const problemType = props.problemType as string;
+          solverTypes.push(problemType);
           if (['simplify_imaginary', 'complex_operations', 'vertex-form', 'inequality', 'system'].includes(problemType)) {
-            unresolvedTypes.push(problemType);
+            domainTypes.push(problemType);
           }
-          if (problemType === 'system') unresolvedSystems.push(props.equations as string[]);
+          if (problemType === 'system') {
+            expect(props).not.toHaveProperty('equation');
+            systems.push(props.equations as { first: string; second: string });
+          }
           for (const step of (props.steps as Array<Record<string, unknown>> | undefined) ?? []) {
             expect(typeof step.id).toBe('string');
             expect(step.description).toBe(step.explanation);
@@ -102,19 +109,22 @@ describe('seed main entry point', () => {
         }
       }
     }
-    expect(unresolvedTypes.sort()).toEqual([
+    expect(domainTypes.sort()).toEqual([
       ...Array(5).fill('complex_operations'),
       ...Array(4).fill('inequality'),
       ...Array(3).fill('simplify_imaginary'),
       ...Array(5).fill('system'),
       'vertex-form',
     ].sort());
-    expect(unresolvedSystems).toEqual([
-      ['x = 2y^2 + 3y + 1', '-x + y = -1'],
-      ['x^2 = y + 5', '-x + y = 7'],
-      ['y = x^2 - 2x + 6', 'y = 4x + 1'],
-      ['R = -0.1x^2 + 4x', 'R = 42'],
-      ['y = x^2 + 2x', 'y = -x^2 + 4x + 6'],
+    expect(solverTypes).toEqual(expect.arrayContaining([
+      'completing_the_square', 'polynomial', 'rate_of_change',
+    ]));
+    expect(systems).toEqual([
+      { first: 'x = 2y^2 + 3y + 1', second: '-x + y = -1' },
+      { first: 'x^2 = y + 5', second: '-x + y = 7' },
+      { first: 'y = x^2 - 2x + 6', second: 'y = 4x + 1' },
+      { first: 'R = -0.1x^2 + 4x', second: 'R = 42' },
+      { first: 'y = x^2 + 2x', second: 'y = -x^2 + 4x + 6' },
     ]);
   });
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useRef } from 'react';
+import InlineMath from '@matejmazur/react-katex';
 import { StepByStepper } from '@math-platform/activity-components/algebraic';
 import type { AlgebraicStep, StepAttempt } from '@math-platform/activity-components/algebraic';
 import type { ProblemType } from '@/lib/activities/schemas/step-by-step-solver.schema';
@@ -14,11 +15,13 @@ export interface ActivityComponentProps {
   onComplete?: () => void;
 }
 
-export interface StepByStepSolverActivityProps extends ActivityComponentProps {
+type SolverEquationProps =
+  | { problemType: 'system'; equations: { first: string; second: string }; equation?: never }
+  | { problemType?: Exclude<ProblemType, 'system'>; equation?: string; equations?: never };
+
+export type StepByStepSolverActivityProps = ActivityComponentProps & SolverEquationProps & {
   steps?: AlgebraicStep[];
-  problemType?: ProblemType;
-  equation?: string;
-}
+};
 
 const defaultSteps: AlgebraicStep[] = [
   {
@@ -45,15 +48,9 @@ const defaultSteps: AlgebraicStep[] = [
  * @param {StepByStepSolverActivityProps} props - Activity configuration with steps, problem type, and callbacks.
  * @returns {JSX.Element} An interactive algebraic solver activity.
  */
-export function StepByStepSolverActivity({
-  activityId,
-  mode,
-  steps = defaultSteps,
-  problemType = 'factoring',
-  equation = 'x^2 + 5x + 6 = 0',
-  onSubmit,
-  onComplete,
-}: StepByStepSolverActivityProps) {
+export function StepByStepSolverActivity(props: StepByStepSolverActivityProps) {
+  const { activityId, mode, steps = defaultSteps, onSubmit, onComplete } = props;
+  const problemType = props.problemType ?? 'factoring';
   const interactionHistoryRef = useRef<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
 
   const handlePracticeComplete = useCallback((attempts: StepAttempt[]) => {
@@ -63,19 +60,21 @@ export function StepByStepSolverActivity({
       isCorrect: attempt.isCorrect,
     }));
 
+    const equationInput = props.problemType === 'system'
+      ? { problemType: 'system' as const, equations: props.equations }
+      : { problemType: props.problemType ?? 'factoring', equation: props.equation ?? 'x^2 + 5x + 6 = 0' };
     const submission = buildAlgebraicSubmission({
       activityId,
       mode,
       steps: stepsAttemptData,
       hintsUsed: 0,
       interactionHistory: interactionHistoryRef.current,
-      problemType,
-      equation,
+      ...equationInput,
     });
 
     onSubmit?.(submission);
     onComplete?.();
-  }, [activityId, mode, problemType, equation, onSubmit, onComplete]);
+  }, [activityId, mode, props, onSubmit, onComplete]);
 
   const handleGenerateDistractors = useCallback(
     (expression: string, problemType: string) =>
@@ -85,11 +84,18 @@ export function StepByStepSolverActivity({
 
   return (
     <div data-testid="step-by-step-solver">
+      {props.problemType === 'system' && (
+        <div role="group" aria-label="System of equations" className="space-y-2">
+          <div><InlineMath math={props.equations.first} /></div>
+          <div><InlineMath math={props.equations.second} /></div>
+        </div>
+      )}
       <StepByStepper
         mode={mode}
         steps={steps}
         problemType={problemType}
         generateDistractors={handleGenerateDistractors}
+        showInitialProblem={props.problemType !== 'system'}
         onPracticeComplete={mode === 'practice' ? handlePracticeComplete : undefined}
       />
     </div>

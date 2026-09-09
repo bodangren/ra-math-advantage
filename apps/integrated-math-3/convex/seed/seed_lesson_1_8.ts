@@ -130,7 +130,7 @@ export const seedLesson8 = internalMutation({
               componentKey: "step-by-step-solver",
               props: {
                 problemType: "system",
-                equations: ["x = 2y^2 + 3y + 1", "-x + y = -1"],
+                equations: { first: "x = 2y^2 + 3y + 1", second: "-x + y = -1" },
                 steps: [
                   { id: "step-1", description: "Solve linear for x", expression: "x = y + 1", explanation: "Solve linear for x" },
                   { id: "step-2", description: "Substitute", expression: "y + 1 = 2y^2 + 3y + 1", explanation: "Substitute" },
@@ -163,7 +163,7 @@ export const seedLesson8 = internalMutation({
               componentKey: "step-by-step-solver",
               props: {
                 problemType: "system",
-                equations: ["x^2 = y + 5", "-x + y = 7"],
+                equations: { first: "x^2 = y + 5", second: "-x + y = 7" },
                 steps: [
                   { id: "step-1", description: "Solve linear for y", expression: "y = x + 7", explanation: "Solve linear for y" },
                   { id: "step-2", description: "Substitute", expression: "x^2 = x + 12", explanation: "Substitute" },
@@ -196,7 +196,7 @@ export const seedLesson8 = internalMutation({
               componentKey: "step-by-step-solver",
               props: {
                 problemType: "system",
-                equations: ["y = x^2 - 2x + 6", "y = 4x + 1"],
+                equations: { first: "y = x^2 - 2x + 6", second: "y = 4x + 1" },
                 steps: [
                   { id: "step-1", description: "Set equal", expression: "x^2 - 2x + 6 = 4x + 1", explanation: "Set equal" },
                   { id: "step-2", description: "Simplify", expression: "x^2 - 6x + 5 = 0", explanation: "Simplify" },
@@ -228,7 +228,7 @@ export const seedLesson8 = internalMutation({
               componentKey: "step-by-step-solver",
               props: {
                 problemType: "system",
-                equations: ["R = -0.1x^2 + 4x", "R = 42"],
+                equations: { first: "R = -0.1x^2 + 4x", second: "R = 42" },
                 steps: [
                   { id: "step-1", description: "Set equal", expression: "-0.1x^2 + 4x = 42", explanation: "Set equal" },
                   { id: "step-2", description: "Multiply by -10", expression: "x^2 - 40x + 420 = 0", explanation: "Multiply by -10" },
@@ -275,7 +275,7 @@ export const seedLesson8 = internalMutation({
               componentKey: "step-by-step-solver",
               props: {
                 problemType: "system",
-                equations: ["y = x^2 + 2x", "y = -x^2 + 4x + 6"],
+                equations: { first: "y = x^2 + 2x", second: "y = -x^2 + 4x + 6" },
                 steps: [
                   { id: "step-1", description: "Set equations equal", expression: "x^2 + 2x = -x^2 + 4x + 6", explanation: "Set equations equal" },
                   { id: "step-2", description: "Move terms and simplify", expression: "x^2 - x - 3 = 0", explanation: "Move terms and simplify" },

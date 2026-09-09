@@ -72,19 +72,32 @@ const graphingExplorerPropsValidator = v.object({
   responseVariant: v.optional(v.literal("table_graph")),
 });
 
-const stepByStepSolverPropsValidator = v.object({
-  problemType: v.union(
-    v.literal("quadratic_formula"), v.literal("factoring"),
-    v.literal("completing_the_square"), v.literal("square_root_property"),
-    v.literal("graphing"), v.literal("polynomial"), v.literal("rate_of_change"),
-  ),
-  equation: v.string(),
+const stepByStepSolverSharedProps = {
   steps: v.optional(v.array(v.object({
     id: v.string(), description: v.string(), expression: v.string(),
     explanation: v.optional(v.string()),
   }))),
   hints: v.optional(v.array(v.string())),
-});
+};
+
+const stepByStepSolverPropsValidator = v.union(
+  v.object({
+    problemType: v.union(
+    v.literal("quadratic_formula"), v.literal("factoring"),
+    v.literal("completing_the_square"), v.literal("square_root_property"),
+    v.literal("graphing"), v.literal("simplify_imaginary"),
+    v.literal("complex_operations"), v.literal("vertex-form"),
+    v.literal("inequality"), v.literal("polynomial"), v.literal("rate_of_change"),
+  ),
+    equation: v.string(),
+    ...stepByStepSolverSharedProps,
+  }),
+  v.object({
+    problemType: v.literal("system"),
+    equations: v.object({ first: v.string(), second: v.string() }),
+    ...stepByStepSolverSharedProps,
+  }),
+);
 
 const comprehensionQuizPropsValidator = v.object({
   activityId: v.optional(v.string()),

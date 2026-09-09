@@ -28,6 +28,7 @@ export interface StepByStepperProps {
   problemType?: string;
   generateDistractors?: (expression: string, problemType: string) => string[];
   onPracticeComplete?: (attempts: StepAttempt[]) => void;
+  showInitialProblem?: boolean;
 }
 
 /**
@@ -70,7 +71,7 @@ function SimpleStepReveal({ steps }: { steps: Array<{ content: React.ReactNode }
  * @param {StepByStepperProps} props - The stepper configuration including mode, steps, and scaffold level
  * @returns {React.JSX.Element | undefined} The stepper component JSX
  */
-export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, generateDistractors, onPracticeComplete }: StepByStepperProps) {
+export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, generateDistractors, onPracticeComplete, showInitialProblem = true }: StepByStepperProps) {
   if (steps.length === 0) {
     return <SimpleStepReveal steps={[]} />;
   }
@@ -95,11 +96,11 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, gen
   }
 
   if (mode === 'guided') {
-    return <GuidedMode steps={steps} problemType={problemType} generateDistractors={generateDistractors} />;
+    return <GuidedMode steps={steps} problemType={problemType} generateDistractors={generateDistractors} showInitialProblem={showInitialProblem} />;
   }
 
   if (mode === 'practice') {
-    return <PracticeMode steps={steps} scaffoldLevel={scaffoldLevel} onComplete={onPracticeComplete} />;
+    return <PracticeMode steps={steps} scaffoldLevel={scaffoldLevel} onComplete={onPracticeComplete} showInitialProblem={showInitialProblem} />;
   }
 }
 
@@ -108,7 +109,7 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, gen
  * @param {{ steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[] }} props - The steps, problem type, and optional distractor generator
  * @returns {React.JSX.Element} The guided mode component JSX
  */
-function GuidedMode({ steps, problemType, generateDistractors }: { steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[] }) {
+function GuidedMode({ steps, problemType, generateDistractors, showInitialProblem }: { steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[]; showInitialProblem: boolean }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [, setHintUsed] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -172,7 +173,7 @@ function GuidedMode({ steps, problemType, generateDistractors }: { steps: Algebr
             aria-current={isActive ? 'step' : undefined}
             className="space-y-3"
           >
-            {isActive && currentStepIndex === 0 && !showExplanation && (
+            {showInitialProblem && isActive && currentStepIndex === 0 && !showExplanation && (
               <div className="p-4 bg-muted/30 rounded-lg">
                 <div className="text-sm font-medium text-muted-foreground mb-2">
                   Problem:
@@ -262,7 +263,7 @@ function GuidedMode({ steps, problemType, generateDistractors }: { steps: Algebr
  * @param {{ steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void }} props - The steps, scaffold level, and completion callback
  * @returns {React.JSX.Element} The practice mode component JSX
  */
-function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void }) {
+function PracticeMode({ steps, scaffoldLevel, onComplete, showInitialProblem }: { steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void; showInitialProblem: boolean }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
   const [showSolution, setShowSolution] = useState<Record<number, boolean>>({});
@@ -317,14 +318,14 @@ function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicSt
 
   return (
     <div className="space-y-4">
-      <div className="p-4 bg-muted/30 rounded-lg">
+      {showInitialProblem && <div className="p-4 bg-muted/30 rounded-lg">
         <div className="text-sm font-medium text-muted-foreground mb-2">
           Problem:
         </div>
         <div className="text-lg">
           <InlineMath math={steps[0].expression} />
         </div>
-      </div>
+      </div>}
 
       {scaffoldLevel > 0 && currentStepIndex >= scaffoldLevel && (
         <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">

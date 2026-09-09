@@ -9,6 +9,7 @@ import {
   rateOfChangeCalculatorSchema,
   discriminantAnalyzerSchema,
 } from '../index';
+import { buildAlgebraicSubmission } from '../schemas/step-by-step-solver.schema';
 import type {
   ActivityComponentKey,
   ComprehensionQuizProps,
@@ -250,5 +251,48 @@ describe('SCHEMA_REGISTRY dispatch', () => {
 
   it('SCHEMA_REGISTRY has exactly seven entries', () => {
     expect(Object.keys(SCHEMA_REGISTRY)).toHaveLength(7);
+  });
+});
+
+describe('step-by-step solver equation contract', () => {
+  const problemTypes = [
+    'quadratic_formula', 'factoring', 'completing_the_square', 'square_root_property',
+    'graphing', 'simplify_imaginary', 'complex_operations', 'vertex-form',
+    'inequality', 'system', 'polynomial', 'rate_of_change',
+  ] as const;
+
+  it('accepts every stored problem type and rejects unknown types', () => {
+    for (const problemType of problemTypes) {
+      const props = problemType === 'system'
+        ? { problemType, equations: { first: 'y=x^2', second: 'y=x+1' } }
+        : { problemType, equation: 'x^2=1' };
+      expect(stepByStepSolverSchema.safeParse(props).success).toBe(true);
+    }
+    expect(stepByStepSolverSchema.safeParse({ problemType: 'linear', equation: 'x=1' }).success).toBe(false);
+  });
+
+  it('keeps single-equation and system shapes exclusive and strict', () => {
+    const system = { problemType: 'system', equations: { first: 'y=x^2', second: 'y=x+1' } };
+    expect(stepByStepSolverSchema.parse(system)).toEqual(system);
+    expect(stepByStepSolverSchema.safeParse({ ...system, equation: 'x=1' }).success).toBe(false);
+    expect(stepByStepSolverSchema.safeParse({ problemType: 'system', equations: { first: 'x=1' } }).success).toBe(false);
+    expect(stepByStepSolverSchema.safeParse({ problemType: 'system', equations: { first: '', second: 'x=1' } }).success).toBe(false);
+    expect(stepByStepSolverSchema.safeParse({ problemType: 'system', equations: { first: 'x=1', second: 'y=2', third: 'z=3' } }).success).toBe(false);
+    expect(stepByStepSolverSchema.safeParse({ problemType: 'factoring', equations: system.equations }).success).toBe(false);
+    expect(stepByStepSolverSchema.safeParse({ problemType: 'factoring', equation: 'x=1', equations: system.equations }).success).toBe(false);
+  });
+
+  it('preserves the matching equation shape in submission artifacts', () => {
+    const common = {
+      activityId: 'solver', mode: 'practice' as const, steps: [], hintsUsed: 0, interactionHistory: [],
+    };
+    const system = buildAlgebraicSubmission({
+      ...common, problemType: 'system', equations: { first: 'y=x^2', second: 'y=x+1' },
+    });
+    expect(system.artifact).toMatchObject({ problemType: 'system', equations: { first: 'y=x^2', second: 'y=x+1' } });
+    expect(system.artifact).not.toHaveProperty('equation');
+    const single = buildAlgebraicSubmission({ ...common, problemType: 'polynomial', equation: 'x^3=1' });
+    expect(single.artifact).toMatchObject({ problemType: 'polynomial', equation: 'x^3=1' });
+    expect(single.artifact).not.toHaveProperty('equations');
   });
 });
