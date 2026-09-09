@@ -4603,6 +4603,48 @@
         "sourceReviewRequired": true,
         "independentPracticeReady": false
       }
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
     }
   ]
 }

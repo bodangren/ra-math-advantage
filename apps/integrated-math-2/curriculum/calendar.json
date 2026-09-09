@@ -228,23 +228,16 @@
         "Order angles and sides of a triangle from smallest to largest.",
         "Use angle and side relationships in real-world contexts."
       ],
-      "workedExamples": [
-        "Example 1",
-        "Examples 2 and 3"
-      ],
+      "workedExamples": [],
       "dailyPhases": {
         "warmUp": "G is the centroid of triangle ABC. M is the midpoint of BC. If median AM has length 18 cm, find AG in centimeters.",
         "conceptDevelopment": {
           "sourceLesson": "module-1-lesson-4",
-          "workedExamples": [
-            "Example 1"
-          ]
+          "workedExamples": []
         },
         "guidedPractice": {
           "sourceLesson": "module-1-lesson-4",
-          "workedExamples": [
-            "Examples 2 and 3"
-          ]
+          "workedExamples": []
         },
         "independentPractice": {
           "questionId": "module-1-lesson-4",

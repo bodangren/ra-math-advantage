@@ -26,6 +26,12 @@ const equalAngleId =
   "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle";
 const inradiusId =
   "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances";
+const lesson14Source =
+  "apps/integrated-math-2/curriculum/modules/module-1-lesson-4";
+const anglesFromSidesId =
+  "math.im2.skill.1.4.order-triangle-angles-from-side-lengths";
+const sidesFromAnglesId =
+  "math.im2.skill.1.4.order-triangle-sides-from-angle-measures";
 
 function getNode<T extends { id: string }>(nodes: T[], id: string) {
   return nodes.find((node) => node.id === id);
@@ -365,7 +371,11 @@ describe("IM2 Module 1 source mappings", () => {
     expect(calendarEntry).toMatchObject({
       objective: supportedGoals[0],
       embeddedObjectives: supportedGoals.slice(1),
-      workedExamples: ["Example 1", "Examples 2 and 3"],
+      workedExamples: [],
+      dailyPhases: {
+        conceptDevelopment: { workedExamples: [] },
+        guidedPractice: { workedExamples: [] },
+      },
     });
 
     for (let problem = 1; problem <= 39; problem += 1)
@@ -524,6 +534,176 @@ describe("IM2 Module 1 source mappings", () => {
     ).toEqual(sourceSections);
   });
 
+  it("maps the combined Lesson 1-4 ordering prompts to two inactive atomic skills", () => {
+    const source = readFileSync(
+      resolve("curriculum/modules/module-1-lesson-4"),
+      "utf8",
+    );
+    expect([...source.matchAll(/^## Examples?[^\n]*$/gm)].map((match) => match[0])).toEqual([
+      "## Example 1",
+      "## Examples 2 and 3",
+      "## Example 4",
+    ]);
+    expect(source).not.toMatch(/^## Example [23]$/m);
+    const combined = source.slice(
+      source.indexOf("## Examples 2 and 3"),
+      source.indexOf("## Example 4"),
+    );
+    expect(combined).toContain(
+      "List the angles and sides of each triangle in order from smallest to largest.",
+    );
+    for (const problem of [6, 7, 8, 9, 10, 11])
+      expect(combined.match(new RegExp(`^### Problem ${problem}$`, "gm"))).toHaveLength(1);
+    for (const input of [
+      "TR 48 centimeters, TS 35 centimeters, and RS 23.7 centimeters",
+      "AB 3.8, AC 4.0, and BC 4.3",
+      "PR 12, RQ 18, and PQ 20",
+    ])
+      expect(combined).toContain(input);
+    for (const input of [
+      "R 60 degrees, S 80 degrees, and T 40 degrees",
+      "C 35 degrees, D 120 degrees, and E 25 degrees",
+      "S 60 degrees and T 54 degrees",
+    ])
+      expect(combined).toContain(input);
+
+    for (const [id, title, description, rationale] of [
+      [
+        anglesFromSidesId,
+        "Order triangle angles from side lengths",
+        "Use the side-angle relationship to order the angles of a triangle when three side lengths are given.",
+        "Lesson 1-4 Problems 6, 8, and 11 give three side lengths and ask the learner to order the opposite angles.",
+      ],
+      [
+        sidesFromAnglesId,
+        "Order triangle sides from angle measures",
+        "Use the side-angle relationship to order the sides of a triangle when angle measures are given.",
+        "Lesson 1-4 Problems 7, 9, and 10 give angle measures and ask the learner to order the opposite sides.",
+      ],
+    ] as const) {
+      const copies = [inventory.nodes, draft.nodes, graph.nodes].map((nodes) =>
+        nodes.filter((node) => node.id === id),
+      );
+      expect(copies.every((matches) => matches.length === 1)).toBe(true);
+      expect(copies[0][0]).toMatchObject({
+        id,
+        kind: "skill",
+        title,
+        description,
+        sourceRefs: [lesson14Source],
+        reviewStatus: "draft",
+        metadata: { course: "im2", module: "1", lesson: "4" },
+      });
+      expect(copies[1][0]).toEqual(copies[0][0]);
+      expect(copies[2][0]).toEqual(copies[0][0]);
+
+      const blueprint = blueprints.blueprints.find((item) => item.nodeId === id);
+      expect(blueprint).toMatchObject({
+        sourceNodeIds: [],
+        alignmentNodeIds: [],
+        rendererKey: "",
+        rendererModeMap: {},
+        reviewStatus: "draft",
+        metadata: {
+          implementationStatus: "unavailable",
+          independentPracticeReady: false,
+        },
+      });
+      expect(blueprint).not.toHaveProperty("generatorKey");
+      expect(blueprint?.exceptions).toEqual([{
+        type: "generator",
+        reason: "Generator not yet implemented for this source capability",
+      }]);
+
+      const incident = graph.edges.filter(
+        (edge) => edge.sourceId === id || edge.targetId === id,
+      );
+      expect(incident).toHaveLength(1);
+      expect(incident[0]).toMatchObject({
+        type: "contains",
+        sourceId: "math.im2.lesson.1.4",
+        targetId: id,
+        reviewStatus: "draft",
+        derived: false,
+        rationale,
+        sourceRefs: [lesson14Source],
+      });
+      expect(JSON.stringify(incident)).not.toMatch(/math\.im2\.example\.1\.4\.01[45]/);
+
+      expect(teacher.skills.find((item) => item.nodeId === id)).toMatchObject({
+        standardsCoverage: { alignedStandards: [], hasStandardsGap: true },
+        prerequisites: [],
+        generatorStatus: "not_implemented",
+        rendererKey: "",
+        independentPracticeReady: false,
+      });
+      expect(srs.skills.find((item) => item.nodeId === id)).toMatchObject({
+        prerequisiteNodeIds: [],
+        generatorReady: false,
+        independentPracticeReady: false,
+        srsEligible: false,
+        objectiveDomain: "math.im2",
+      });
+      expect(
+        activityMap.activities.some((item: { nodeId: string }) => item.nodeId === id),
+      ).toBe(false);
+    }
+
+    const legacy1g =
+      "math.im2.skill.1.4.order-angles-and-sides-of-a-triangle-from-smallest-to-larges";
+    const supplementary1h =
+      "math.im2.skill.1.4.apply-triangle-inequality-relationships-in-proofs-and-real-w";
+    for (const nodes of [inventory.nodes, draft.nodes, graph.nodes]) {
+      expect(getNode(nodes as { id: string }[], legacy1g)).toMatchObject({
+        kind: "skill",
+        reviewStatus: "draft",
+        metadata: { taxonomyRole: "legacy_objective_aggregator" },
+      });
+      expect(getNode(nodes as { id: string }[], supplementary1h)).toMatchObject({
+        kind: "skill",
+        reviewStatus: "draft",
+      });
+    }
+    const exampleIds = ["013", "014", "015", "016"].map(
+      (suffix) => `math.im2.example.1.4.${suffix}`,
+    );
+    for (const exampleId of exampleIds)
+      for (const nodes of [inventory.nodes, draft.nodes, graph.nodes])
+        expect(nodes.filter((node) => node.id === exampleId)).toEqual([
+          expect.objectContaining({
+            id: exampleId,
+            kind: "worked_example",
+            reviewStatus: "draft",
+          }),
+        ]);
+
+    const preservedIds = new Set([...exampleIds, legacy1g, supplementary1h]);
+    expect(
+      graph.edges
+        .filter((edge) => preservedIds.has(edge.sourceId) || preservedIds.has(edge.targetId))
+        .map((edge) => edge.id),
+    ).toEqual([
+      "math.alignment.im2-example-1-4-013-to-ccss-g-co-b-7",
+      "math.alignment.im2-example-1-4-014-to-ccss-g-co-b-7",
+      "math.alignment.im2-example-1-4-015-to-ccss-g-co-b-7",
+      "math.alignment.im2-example-1-4-016-to-ccss-g-co-b-7",
+      "math.alignment.im2-skill-1-4-apply-triangle-inequality-relationships-in-proofs-and-real-w-to-ccss-g-co-b-7",
+      "math.alignment.im2-skill-1-4-order-angles-and-sides-of-a-triangle-from-smallest-to-larges-to-ccss-g-co-b-7",
+      "math.im2.edge.0013",
+      "math.im2.edge.0014",
+      "math.im2.edge.0015",
+      "math.im2.edge.0016",
+      "math.im2.edge.0407",
+      "math.im2.edge.0408",
+      "math.im2.edge.0581",
+      "math.im2.edge.0582",
+      "math.im2.edge.0583",
+      "math.im2.edge.0584",
+      "math.im2.edge.0585",
+      "math.im2.edge.0586",
+    ]);
+  });
+
   it("keeps projection metadata equal to the canonical skill inventory", () => {
     const canonicalSkillIds = inventory.nodes
       .filter((node) => node.kind === "skill")
@@ -547,5 +727,7 @@ describe("IM2 Module 1 source mappings", () => {
     expect(srs.metadata.srsEligibleCount).toBe(
       srs.skills.filter((row) => row.srsEligible).length,
     );
+    expect(graph.meta.totalNodes).toBe(graph.nodes.length);
+    expect(graph.meta.totalEdges).toBe(graph.edges.length);
   });
 });

@@ -2,7 +2,7 @@
   "metadata": {
     "course": "im2",
     "description": "Graph practice is not connected to the runtime. All skills remain ineligible for spaced review.",
-    "totalSkills": 207,
+    "totalSkills": 209,
     "srsEligibleCount": 0
   },
   "skills": [
@@ -2493,6 +2493,34 @@
       "lesson": "9",
       "srsEligible": false,
       "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths.independent_practice",
+      "nodeId": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      "title": "Order triangle angles from side lengths",
+      "course": "im2",
+      "module": "1",
+      "lesson": "4",
+      "srsEligible": false,
+      "generatorReady": false,
+      "independentPracticeReady": false,
+      "rationale": "Source-only draft capability has no generator",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures.independent_practice",
+      "nodeId": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures",
+      "title": "Order triangle sides from angle measures",
+      "course": "im2",
+      "module": "1",
+      "lesson": "4",
+      "srsEligible": false,
+      "generatorReady": false,
+      "independentPracticeReady": false,
+      "rationale": "Source-only draft capability has no generator",
       "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     }

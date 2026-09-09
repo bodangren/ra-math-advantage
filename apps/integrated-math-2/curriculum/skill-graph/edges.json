@@ -1,8 +1,8 @@
 {
   "meta": {
     "course": "IM2",
-    "totalNodes": 789,
-    "totalEdges": 2015
+    "totalNodes": 795,
+    "totalEdges": 2028
   },
   "nodes": [
     {
@@ -7771,7 +7771,7 @@
     {
       "id": "math.im2.lesson.1.4",
       "kind": "instructional_unit",
-      "title": "Inequalities in One Triangle",
+      "title": "Inequalities in One Triangle — Practice",
       "domain": "math.im2",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
@@ -9550,7 +9550,8 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "4"
+        "lesson": "4",
+        "taxonomyRole": "legacy_objective_aggregator"
       }
     },
     {
@@ -14748,6 +14749,38 @@
         "lesson": "9",
         "implementationStatus": "unavailable",
         "sourceReviewRequired": true
+      }
+    },
+    {
+      "id": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      "kind": "skill",
+      "title": "Order triangle angles from side lengths",
+      "domain": "math.im2",
+      "description": "Use the side-angle relationship to order the angles of a triangle when three side lengths are given.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures",
+      "kind": "skill",
+      "title": "Order triangle sides from angle measures",
+      "domain": "math.im2",
+      "description": "Use the side-angle relationship to order the sides of a triangle when angle measures are given.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4"
       }
     }
   ],
@@ -53508,6 +53541,34 @@
       "rationale": "Lesson 1-2 Example 1 demonstrates an equal-angle equation and asks for the whole angle.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
+      ]
+    },
+    {
+      "id": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths.contains",
+      "type": "contains",
+      "sourceId": "math.im2.lesson.1.4",
+      "targetId": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 1-4 Problems 6, 8, and 11 give three side lengths and ask the learner to order the opposite angles.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
+      ]
+    },
+    {
+      "id": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures.contains",
+      "type": "contains",
+      "sourceId": "math.im2.lesson.1.4",
+      "targetId": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 1-4 Problems 7, 9, and 10 give angle measures and ask the learner to order the opposite sides.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
       ]
     }
   ]

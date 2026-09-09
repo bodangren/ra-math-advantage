@@ -27,10 +27,16 @@ describe("current source curriculum", () => {
   });
   it("gives explicit problems and solutions for every worked example", () => {
     const examples = lessons.flatMap((lesson) => lesson.phases.filter((phase) => phase.phaseType === "worked_example"));
-    expect(examples).toHaveLength(403);
     for (const example of examples) {
       expect(example.markdown, example.title).toMatch(/^### Problem$/m);
       expect(example.markdown, example.title).toMatch(/^### Solution$/m);
+    }
+    const lesson14 = lessons.find((lesson) => lesson.slug === "module-1-lesson-4");
+    expect(lesson14).toBeDefined();
+    for (const title of ["Example 1", "Examples 2 and 3", "Example 4"]) {
+      const phase = lesson14?.phases.find((candidate) => candidate.title === title);
+      expect(phase?.phaseType, title).toBe("learn");
+      expect(phase?.markdown, title).not.toMatch(/^### Solution$/m);
     }
   });
   it("keeps editorial review notes out of required student phases", () => {

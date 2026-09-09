@@ -7766,7 +7766,7 @@
     {
       "id": "math.im2.lesson.1.4",
       "kind": "instructional_unit",
-      "title": "Inequalities in One Triangle",
+      "title": "Inequalities in One Triangle — Practice",
       "domain": "math.im2",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
@@ -9545,7 +9545,8 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "4"
+        "lesson": "4",
+        "taxonomyRole": "legacy_objective_aggregator"
       }
     },
     {
@@ -13375,6 +13376,38 @@
         "lesson": "9",
         "implementationStatus": "unavailable",
         "sourceReviewRequired": true
+      }
+    },
+    {
+      "id": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      "kind": "skill",
+      "title": "Order triangle angles from side lengths",
+      "domain": "math.im2",
+      "description": "Use the side-angle relationship to order the angles of a triangle when three side lengths are given.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures",
+      "kind": "skill",
+      "title": "Order triangle sides from angle measures",
+      "domain": "math.im2",
+      "description": "Use the side-angle relationship to order the sides of a triangle when angle measures are given.",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4"
       }
     }
   ]

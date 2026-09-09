@@ -200,19 +200,19 @@
       {
         "phaseNumber": 2,
         "title": "Example 1",
-        "phaseType": "worked_example",
+        "phaseType": "learn",
         "markdown": "List all the angles that satisfy the stated condition.\n\n![Angles 1 through 7 in adjoining triangles and on an extended baseline.](/curriculum/module-1-lesson-4/image1.png)\n\n### Problem 1\n\nmeasures are greater than m∠3\n\n### Problem 2\n\nmeasures are less than m∠1\n\n### Problem 3\n\nmeasures are greater than m∠1\n\n### Problem 4\n\nmeasures are less than m∠7\n\n### Problem 5\n\nmeasures are greater than m∠2"
       },
       {
         "phaseNumber": 3,
         "title": "Examples 2 and 3",
-        "phaseType": "worked_example",
+        "phaseType": "learn",
         "markdown": "List the angles and sides of each triangle in order from smallest to largest.\n\n### Problem 6\n\n![Triangle TRS with side lengths TR 48 centimeters, TS 35 centimeters, and RS 23.7 centimeters.](/curriculum/module-1-lesson-4/image3.png)\n\n### Problem 7\n\n![Triangle RST with angle measures R 60 degrees, S 80 degrees, and T 40 degrees.](/curriculum/module-1-lesson-4/image2.png)\n\n### Problem 8\n\n![Triangle ABC with side lengths AB 3.8, AC 4.0, and BC 4.3.](/curriculum/module-1-lesson-4/image4.png)\n\n### Problem 9\n\n![Triangle CDE with angle measures C 35 degrees, D 120 degrees, and E 25 degrees.](/curriculum/module-1-lesson-4/image7.png)\n\n### Problem 10\n\n![Triangle RST with angle measures S 60 degrees and T 54 degrees.](/curriculum/module-1-lesson-4/image6.png)\n\n### Problem 11\n\n![Triangle PQR with side lengths PR 12, RQ 18, and PQ 20.](/curriculum/module-1-lesson-4/image5.png)"
       },
       {
         "phaseNumber": 4,
         "title": "Example 4",
-        "phaseType": "worked_example",
+        "phaseType": "learn",
         "markdown": "### Problem 12\n\n**SPORTS** The figure shows the position of three trees on one part of a disc golf course. At which tree position is the angle between the trees the greatest?\n\n![Tree positions 1, 2, and 3 form a triangle. Positions 2 and 3 are 40 feet apart. Positions 1 and 2 are 37.5 feet apart. Positions 1 and 3 are 53 feet apart.](/curriculum/module-1-lesson-4/image8.png)\n\n### Problem 13\n\n**NEIGHBORHOOD** Cain and Remy live on the same straight road. From their balconies, they can see a flagpole in the distance. The angle that each person’s line of sight to the flagpole makes with the road is the same. How do their distances from the flagpole compare?"
       },
       {

@@ -55,7 +55,9 @@ it("uses canonical standards with real definitions and valid trigonometry cluste
 it("maps each source worked example to one graph node with its actual title", () => {
   const expected = lessons.flatMap((lesson) =>
     lesson.phases
-      .filter((phase) => phase.phaseType === "worked_example")
+      .filter((phase) => phase.phaseType === "worked_example"
+        && /^### Problem$/m.test(phase.markdown)
+        && /^### Solution$/m.test(phase.markdown))
       .map((phase) => ({
         key: `${lesson.unitNumber}.${lesson.orderIndex}.${phase.phaseNumber}`,
         title: phase.title,
@@ -68,7 +70,8 @@ it("maps each source worked example to one graph node with its actual title", ()
     draft.nodes,
     standardGraph.nodes,
   ]) {
-    const examples = nodes.filter((node) => node.kind === "worked_example");
+    const legacyIds = Array.from({ length: 4 }, (_, index) => `math.im2.example.1.4.0${13 + index}`);
+    const examples = nodes.filter((node) => node.kind === "worked_example" && !legacyIds.includes(node.id));
     expect(examples).toHaveLength(expected.length);
     for (const example of expected) {
       const node = examples.find(
@@ -78,6 +81,18 @@ it("maps each source worked example to one graph node with its actual title", ()
       );
       expect(node?.title, example.key).toBe(example.title);
       expect(node?.sourceRefs, example.key).toContain(example.source);
+    }
+  }
+});
+it("preserves the four Lesson 1.4 legacy draft worked-example identities", () => {
+  const ids = Array.from({ length: 4 }, (_, index) => `math.im2.example.1.4.0${13 + index}`);
+  const source = "apps/integrated-math-2/curriculum/modules/module-1-lesson-4";
+  for (const nodes of [graph.nodes, inventory.nodes, draft.nodes, standardGraph.nodes]) {
+    for (const id of ids) {
+      const matches = nodes.filter((node) => node.id === id);
+      expect(matches, id).toHaveLength(1);
+      expect(matches[0]).toMatchObject({ kind: "worked_example", reviewStatus: "draft" });
+      expect(matches[0].sourceRefs, id).toContain(source);
     }
   }
 });

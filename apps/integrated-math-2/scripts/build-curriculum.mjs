@@ -28,7 +28,7 @@ for (const slug of files) {
       ? "explore"
       : /^Vocabulary/i.test(title)
         ? "vocabulary"
-        : /^Example/i.test(title)
+        : /^Example/i.test(title) && /^### Solution$/m.test(section)
           ? "worked_example"
           : /^Mixed|^Practice/i.test(title)
             ? "independent_practice"

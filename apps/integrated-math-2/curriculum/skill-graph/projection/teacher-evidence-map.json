@@ -2,8 +2,8 @@
   "metadata": {
     "course": "im2",
     "description": "Generator availability and definition coverage. These counts do not certify reviewed standards alignment or runtime practice readiness.",
-    "totalSkills": 207,
-    "standardsGapCount": 57,
+    "totalSkills": 209,
+    "standardsGapCount": 59,
     "generatorReadyCount": 1
   },
   "skills": [
@@ -3511,6 +3511,36 @@
       "title": "Analyze how function operations affect domain restrictions.",
       "module": "12",
       "lesson": "9",
+      "standardsCoverage": {
+        "alignedStandards": [],
+        "hasStandardsGap": true,
+        "placeholderCount": 0
+      },
+      "prerequisites": [],
+      "generatorStatus": "not_implemented",
+      "rendererKey": "",
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      "title": "Order triangle angles from side lengths",
+      "module": "1",
+      "lesson": "4",
+      "standardsCoverage": {
+        "alignedStandards": [],
+        "hasStandardsGap": true,
+        "placeholderCount": 0
+      },
+      "prerequisites": [],
+      "generatorStatus": "not_implemented",
+      "rendererKey": "",
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures",
+      "title": "Order triangle sides from angle measures",
+      "module": "1",
+      "lesson": "4",
       "standardsCoverage": {
         "alignedStandards": [],
         "hasStandardsGap": true,
