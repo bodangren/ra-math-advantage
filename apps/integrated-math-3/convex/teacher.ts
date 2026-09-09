@@ -1064,6 +1064,7 @@ export async function getSubmissionDetailHandler(
 
     const latestPracticeByActivity = new Map<string, (typeof practiceRows)[number]>();
     for (const row of practiceRows) {
+      if (row.submissionData.status === 'draft') continue;
       const current = latestPracticeByActivity.get(row.activityId);
       if (!current) {
         latestPracticeByActivity.set(row.activityId, row);
@@ -1265,7 +1266,7 @@ export const getLessonErrorSummary = internalQuery({
     const flatSubmissions = allSubmissions.flat();
 
     const studentSubmissions = flatSubmissions.filter((row) =>
-      orgStudentIds.includes(row.userId),
+      orgStudentIds.includes(row.userId) && row.submissionData.status !== 'draft',
     );
 
     if (studentSubmissions.length === 0) return null;

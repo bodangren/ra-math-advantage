@@ -462,6 +462,7 @@ export async function getSubmissionExportHandler(
     );
 
     for (const sub of submissions) {
+      if (sub.submissionData.status === "draft") continue;
       const activity = activityMap.get(sub.activityId);
       allRows.push({
         submissionId: sub._id,

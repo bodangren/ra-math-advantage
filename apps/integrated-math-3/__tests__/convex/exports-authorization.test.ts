@@ -134,6 +134,8 @@ function makeExportsMockCtx(options: {
   lessons?: LessonRow[];
   lessonVersions?: LessonVersionRow[];
   phaseVersions?: PhaseVersionRow[];
+  submissions?: Array<Record<string, unknown>>;
+  activities?: Array<Record<string, unknown>>;
 } = {}) {
   const {
     profiles = [],
@@ -142,6 +144,8 @@ function makeExportsMockCtx(options: {
     lessons = [],
     lessonVersions = [],
     phaseVersions = [],
+    submissions = [],
+    activities = [],
   } = options;
 
   const classEnrollmentCallLog: Array<{
@@ -158,6 +162,7 @@ function makeExportsMockCtx(options: {
     lessons: new Map(lessons.map((l) => [l._id, l])),
     lesson_versions: new Map(lessonVersions.map((lv) => [lv._id, lv])),
     phase_versions: new Map(phaseVersions.map((pv) => [pv._id, pv])),
+    activities: new Map(activities.map((row) => [row._id as string, row])),
   };
 
   const mockGet = vi.fn().mockImplementation((...args: unknown[]) => {
@@ -221,8 +226,18 @@ function makeExportsMockCtx(options: {
     }
     if (table === 'activity_submissions') {
       return {
-        withIndex: vi.fn().mockReturnValue({
-          collect: vi.fn().mockResolvedValue([]),
+        withIndex: vi.fn().mockImplementation((_indexName: string, fn?: (q: {
+          eq: (field: string, value: unknown) => unknown;
+        }) => void) => {
+          let userId: unknown;
+          const q = { eq: (field: string, value: unknown) => {
+            if (field === 'userId') userId = value;
+            return q;
+          } };
+          fn?.(q);
+          return { collect: vi.fn().mockResolvedValue(
+            submissions.filter((row) => userId === undefined || row.userId === userId),
+          ) };
         }),
       };
     }
@@ -444,6 +459,31 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
   });
 
   describe('getSubmissionExport — submissions dataset', () => {
+    it('excludes a newer pending allocation before sorting and limiting finalized rows', async () => {
+      const finalized = { _id: 'sub:final', userId: STUDENT_A1_ID, activityId: 'activity:qf',
+        submissionData: { contractVersion: 'practice.v1', activityId: 'activity:qf', mode: 'guided_practice',
+          status: 'graded', attemptNumber: 1, submittedAt: '2026-01-01T00:00:00.000Z',
+          answers: { discriminant: '16', x1: '2', x2: '-2' }, parts: [
+            { partId: 'discriminant', rawAnswer: '16', isCorrect: true, score: 1, maxScore: 1 },
+            { partId: 'x1', rawAnswer: '2', isCorrect: true, score: 1, maxScore: 1 },
+            { partId: 'x2', rawAnswer: '-2', isCorrect: true, score: 1, maxScore: 1 },
+          ] }, score: 3, maxScore: 3, submittedAt: 100, updatedAt: 100 };
+      const pending = { _id: 'sub:pending', userId: STUDENT_A1_ID, activityId: 'activity:qf',
+        submissionData: { contractVersion: 'practice.v1', activityId: 'activity:qf', mode: 'guided_practice',
+          status: 'draft', attemptNumber: 2, submittedAt: '2026-01-01T00:01:00.000Z', answers: {}, parts: [] },
+        submittedAt: 200, updatedAt: 200, allocatedVariantKey: 'PRIVATE_VARIANT' };
+      const { mockCtx } = makeExportsMockCtx({ profiles: baseProfiles, classes: baseClasses,
+        enrollments: baseEnrollments, submissions: [pending, finalized],
+        activities: [{ _id: 'activity:qf', componentKey: 'quadratic-formula' }] });
+      for (const limit of [1, 10]) {
+        const result = await callGetSubmissionExport(mockCtx, {
+          userId: TEACHER_A_ID, classId: CLASS_A_ID, endDate: 300, limit,
+        }) as { rows: Array<{ submissionId: string; score: number | null }>; hasMore: boolean };
+        expect(result.rows).toEqual([expect.objectContaining({ submissionId: 'sub:final', score: 3 })]);
+        expect(result.hasMore).toBe(false);
+        expect(JSON.stringify(result)).not.toContain('PRIVATE_VARIANT');
+      }
+    });
     it('allows a teacher who owns the class', async () => {
       const { mockCtx } = makeExportsMockCtx({
         profiles: baseProfiles,
