@@ -982,7 +982,7 @@ The first IM2 fifteen-path practice patch is rejected. Its 49 focused tests do n
 - [x] Task IM3-QF equation presentation scope: Trace the minimum change that publishes a complete equation in pending, editable, and saved views. Check stored draft compatibility. Preserve grading authority and existing browser evidence. Define exact paths before implementation.
 
 
-- [~] Task IM3-QF complete equation presentation: Implement the accepted four-path scope. Publish complete equations. Reconcile only exact legacy unreviewed drafts. Preserve all eight verified submissions and their relations. Verify pending, saved-awaiting-details, and final responses. Run focused tests, renderer compatibility tests, lint, build, standalone types, independent review, and bounded native display checks.
+- [~] Task IM3-QF complete equation presentation: Implement the accepted five-path scope. Publish complete equations. Reconcile only exact legacy unreviewed drafts. Preserve all eight verified submissions and their relations. Verify pending, saved-awaiting-details, and final responses. Run focused tests, renderer compatibility tests, lint, build, standalone types, independent review, and bounded native display checks.
 
 The equation presentation scope passed parent and independent review. The temporary frontend is stopped. Its worker credentials are outside the candidate. The saved development environment is restored. Keep the original local backend and database for the bounded reconciliation and display proof.
 
@@ -990,3 +990,6 @@ The equation presentation scope passed parent and independent review. The tempor
 The one-file IM2 calendar source gate is committed as `3eb28fd80`. Parent isolated verification passed all 291 tests, lint, build, and separate post-build TypeScript. Independent review accepted the patch. The main scoped file was clean and now matches the commit. The temporary archive was removed. The separate fifteen-path practice rework remains open.
 
 A fresh read-only IM3 local snapshot confirms two complete QF activity documents, eight item documents, eight variant documents, and eight final submission documents. The second active demo learner has no QF attempts. All effect tables are empty. Retain this private snapshot for exact before-and-after reconciliation checks. No database write ran.
+
+
+Parent review found that the first equation repair test built its own saved-state object. That assertion is rejected. The accepted scope now adds the existing LessonRenderer activity-submission test. It must exercise the real receipt-to-saved-view transition and final-details retry. Full activity-document preservation must also be asserted. The source implementation remains uncommitted until review passes.

@@ -83,3 +83,11 @@ This repair corrects the equation presentation and the exact legacy draft transi
 ## Independent scope review
 
 Parent and independent review accept this four-path scope. Compare full canonical content with the existing Convex JSON semantics. Remove exactly one terminal ` = 0` to derive the legacy form. Reject approved, foreign, arbitrary changed, and mixed invalid rows. Require transaction rollback if either draft is invalid. Preserve all existing relation and submission documents. A local-only wrapper may call the upsert helper. It must not call the complete lesson seed or reset data.
+
+## Behavioral test dependency correction
+
+The first four-path implementation review rejected the saved-state test. The test constructed a local object and checked that same object. It did not execute the application transition.
+
+Extend the accepted scope to one existing fifth path: `apps/integrated-math-3/__tests__/components/lesson/LessonRenderer-activity-submission.test.tsx`. Exercise the real LessonRenderer with a pending complete equation, a successful submission receipt, and a failed final-details query. Inspect the saved-awaiting-details view passed to PhaseRenderer. Require the same equation, activity, pending identity, attempt, key, answers, and score. Then use Retry result details and require the authoritative final view. Verify the submitted timing and exact request identity. Keep renderer compatibility tests for visible text.
+
+Saved-awaiting-details is a client view. It is not a backend response state. Allocation tests cover real pending and final responses. Remove the locally constructed saved-state assertion. Compare complete activity documents in the reconciliation test. Permit only the equation and updatedAt changes. No additional production path is required.
