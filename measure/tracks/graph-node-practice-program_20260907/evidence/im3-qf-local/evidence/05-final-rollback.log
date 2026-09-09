@@ -1,0 +1,4 @@
+✖ Failed to run function "qfLocalVerification:rollbackFinal":
+Error: [Request ID: be927f3e4df201e7] Server Error
+Uncaught Error: qf_local_final_then_rollback
+    at handler (../convex/qfLocalVerification.ts:178:11)

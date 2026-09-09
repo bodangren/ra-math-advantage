@@ -1,0 +1,13 @@
+{
+  "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+  "attemptOrdinal": 2,
+  "idempotencyKey": "qf:jd723s098s6cy7c6b22vz8tad58e25hs",
+  "mode": "independent_practice",
+  "pendingSubmissionId": "jd723s098s6cy7c6b22vz8tad58e25hs",
+  "props": {
+    "equation": "2x^2 - 6x + 4",
+    "presentationMode": "independent",
+    "prompt": "Use the Quadratic Formula to solve the equation."
+  },
+  "state": "pending"
+}

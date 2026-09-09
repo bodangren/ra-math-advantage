@@ -1,0 +1,47 @@
+{
+  "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+  "answers": {
+    "discriminant": 45,
+    "x1": "(-5 + √45)/2",
+    "x2": "(-5 - √45)/2"
+  },
+  "attemptOrdinal": 1,
+  "maxScore": 3,
+  "mode": "guided_practice",
+  "parts": [
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "discriminant",
+      "rawAnswer": 45,
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "x1",
+      "rawAnswer": "(-5 + √45)/2",
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "x2",
+      "rawAnswer": "(-5 - √45)/2",
+      "score": 1
+    }
+  ],
+  "props": {
+    "equation": "x^2 + 5x - 5",
+    "fieldHelp": {
+      "discriminant": "Calculate b² - 4ac.",
+      "x1": "Enter one root.",
+      "x2": "Enter the other root. Leave this blank for a repeated root."
+    },
+    "presentationMode": "guided",
+    "prompt": "Use the Quadratic Formula to solve the equation."
+  },
+  "score": 3,
+  "state": "final",
+  "submissionId": "jd758w02e67sjzj1rhps0nwp3x8e3z8d"
+}

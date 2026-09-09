@@ -1,0 +1,47 @@
+{
+  "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+  "answers": {
+    "discriminant": 9,
+    "x1": 5,
+    "x2": 2
+  },
+  "attemptOrdinal": 2,
+  "maxScore": 3,
+  "mode": "guided_practice",
+  "parts": [
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "discriminant",
+      "rawAnswer": 9,
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "x1",
+      "rawAnswer": 5,
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "x2",
+      "rawAnswer": 2,
+      "score": 1
+    }
+  ],
+  "props": {
+    "equation": "x^2 - 7x + 10",
+    "fieldHelp": {
+      "discriminant": "Calculate b² - 4ac.",
+      "x1": "Enter one root.",
+      "x2": "Enter the other root. Leave this blank for a repeated root."
+    },
+    "presentationMode": "guided",
+    "prompt": "Use the Quadratic Formula to solve the equation."
+  },
+  "score": 3,
+  "state": "final",
+  "submissionId": "jd76wp80cbk3ktxrzrhf22jcmx8e22yj"
+}

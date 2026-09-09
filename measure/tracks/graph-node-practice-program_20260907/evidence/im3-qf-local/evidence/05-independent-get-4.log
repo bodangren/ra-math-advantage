@@ -1,0 +1,42 @@
+{
+  "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+  "answers": {
+    "discriminant": -7,
+    "x1": "(1 + i√7)/4",
+    "x2": "(1 - i√7)/4"
+  },
+  "attemptOrdinal": 4,
+  "maxScore": 3,
+  "mode": "independent_practice",
+  "parts": [
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "discriminant",
+      "rawAnswer": -7,
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "x1",
+      "rawAnswer": "(1 + i√7)/4",
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "x2",
+      "rawAnswer": "(1 - i√7)/4",
+      "score": 1
+    }
+  ],
+  "props": {
+    "equation": "2x^2 - x + 1",
+    "presentationMode": "independent",
+    "prompt": "Use the Quadratic Formula to solve the equation."
+  },
+  "score": 3,
+  "state": "final",
+  "submissionId": "jd7aah3nbzzp6ps030h3fdp9g98e27mx"
+}

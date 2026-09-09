@@ -1,0 +1,47 @@
+{
+  "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+  "answers": {
+    "discriminant": 0,
+    "x1": 1,
+    "x2": ""
+  },
+  "attemptOrdinal": 3,
+  "maxScore": 2,
+  "mode": "guided_practice",
+  "parts": [
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "discriminant",
+      "rawAnswer": 0,
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "x1",
+      "rawAnswer": 1,
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 0,
+      "partId": "x2",
+      "rawAnswer": "",
+      "score": 0
+    }
+  ],
+  "props": {
+    "equation": "x^2 - 2x + 1",
+    "fieldHelp": {
+      "discriminant": "Calculate b² - 4ac.",
+      "x1": "Enter one root.",
+      "x2": "Enter the other root. Leave this blank for a repeated root."
+    },
+    "presentationMode": "guided",
+    "prompt": "Use the Quadratic Formula to solve the equation."
+  },
+  "score": 2,
+  "state": "final",
+  "submissionId": "jd71q864hv1vj3v7hn890v7x2d8e3ymg"
+}

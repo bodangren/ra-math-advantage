@@ -1,0 +1,4 @@
+✖ Failed to run function "qfLocalVerification:rollbackStart":
+Error: [Request ID: 2b2588bf0c8977d9] Server Error
+Uncaught Error: qf_local_start_then_rollback
+    at handler (../convex/qfLocalVerification.ts:155:11)

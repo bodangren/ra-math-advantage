@@ -1,0 +1,42 @@
+{
+  "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+  "answers": {
+    "discriminant": 0,
+    "x1": -2,
+    "x2": ""
+  },
+  "attemptOrdinal": 3,
+  "maxScore": 2,
+  "mode": "independent_practice",
+  "parts": [
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "discriminant",
+      "rawAnswer": 0,
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 1,
+      "partId": "x1",
+      "rawAnswer": -2,
+      "score": 1
+    },
+    {
+      "isCorrect": true,
+      "maxScore": 0,
+      "partId": "x2",
+      "rawAnswer": "",
+      "score": 0
+    }
+  ],
+  "props": {
+    "equation": "x^2 + 4x + 4",
+    "presentationMode": "independent",
+    "prompt": "Use the Quadratic Formula to solve the equation."
+  },
+  "score": 2,
+  "state": "final",
+  "submissionId": "jd7fdfkjq9ha0s5ggk7vk8v7hs8e3b2s"
+}

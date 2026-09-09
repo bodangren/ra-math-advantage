@@ -1,0 +1,54 @@
+{
+  "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+  "idempotencyKey": "qf:jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+  "pendingSubmissionId": "jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+  "submissionData": {
+    "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+    "answers": {
+      "discriminant": 45,
+      "x1": "(-5 + √45)/2",
+      "x2": "(-5 - √45)/2"
+    },
+    "attemptNumber": 1,
+    "contractVersion": "practice.v1",
+    "mode": "guided_practice",
+    "parts": [
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "discriminant",
+        "rawAnswer": 45,
+        "revealStepsSeen": 0
+      },
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "x1",
+        "rawAnswer": "(-5 + √45)/2",
+        "revealStepsSeen": 0
+      },
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "x2",
+        "rawAnswer": "(-5 - √45)/2",
+        "revealStepsSeen": 0
+      }
+    ],
+    "status": "submitted",
+    "submittedAt": "2027-01-15T00:00:00.000Z",
+    "timing": {
+      "activeMs": 4800,
+      "confidence": "high",
+      "confidenceReasons": [],
+      "focusLossCount": 0,
+      "idleMs": 200,
+      "longestIdleMs": 200,
+      "pauseCount": 0,
+      "startedAt": "2027-01-15T00:00:00.000Z",
+      "submittedAt": "2027-01-15T00:00:05.000Z",
+      "visibilityHiddenCount": 0,
+      "wallClockMs": 5000
+    }
+  }
+}

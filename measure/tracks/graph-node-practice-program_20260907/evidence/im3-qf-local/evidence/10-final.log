@@ -1,0 +1,995 @@
+{
+  "activities": [
+    {
+      "_creationTime": 1788917161730.8945,
+      "_id": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "approval": {
+        "status": "unreviewed"
+      },
+      "componentKey": "quadratic-formula",
+      "createdAt": 1800000000010,
+      "description": "Solve a generated quadratic equation by using the Quadratic Formula.",
+      "displayName": "Independent quadratic-formula practice",
+      "gradingConfig": {
+        "autoGrade": true,
+        "partIds": [
+          "discriminant",
+          "x1",
+          "x2"
+        ],
+        "partialCredit": true,
+        "passingScore": 3
+      },
+      "masteryNodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "props": {
+        "equation": "x^2 - 2x - 6",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "srsEligible": false,
+      "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice",
+      "updatedAt": 1800000000010
+    },
+    {
+      "_creationTime": 1788917161730.8938,
+      "_id": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "approval": {
+        "status": "unreviewed"
+      },
+      "componentKey": "quadratic-formula",
+      "createdAt": 1800000000010,
+      "description": "Solve a generated quadratic equation by using the Quadratic Formula.",
+      "displayName": "Guided quadratic-formula practice",
+      "gradingConfig": {
+        "autoGrade": true,
+        "partIds": [
+          "discriminant",
+          "x1",
+          "x2"
+        ],
+        "partialCredit": true,
+        "passingScore": 3
+      },
+      "masteryNodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "srsEligible": false,
+      "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice",
+      "updatedAt": 1800000000010
+    }
+  ],
+  "cards": [],
+  "evidence": [],
+  "items": [
+    {
+      "_creationTime": 1788917168245.4954,
+      "_id": "n971wgbas0h5ry9nah2qmw5p298e2c86",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.1:seed-7",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.1",
+      "variantLabel": "Seed 7"
+    },
+    {
+      "_creationTime": 1788917176515.1543,
+      "_id": "n976cyeaz7wfewr2xjtnya8s098e2wtw",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.3:seed-30",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.3",
+      "variantLabel": "Seed 30"
+    },
+    {
+      "_creationTime": 1788917180414.7021,
+      "_id": "n9788z85tpmz7v4z4hx0sdm3n58e3dyc",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.2:seed-12",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.2",
+      "variantLabel": "Seed 12"
+    },
+    {
+      "_creationTime": 1788917161730.895,
+      "_id": "n978cmyyjtdxr0jfej948bjzr58e3ngg",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice:seed-2",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice",
+      "variantLabel": "Seed 2"
+    },
+    {
+      "_creationTime": 1788917182129.5242,
+      "_id": "n978djb1ky7317hpc147yk72zx8e2qq8",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.3:seed-4",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.3",
+      "variantLabel": "Seed 4"
+    },
+    {
+      "_creationTime": 1788917161730.8943,
+      "_id": "n9799smfxzeb0vdn2d8mcpcm5h8e34pn",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice:seed-1",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice",
+      "variantLabel": "Seed 1"
+    },
+    {
+      "_creationTime": 1788917174766.6812,
+      "_id": "n97c8srs8wmqh97xxtn49jpmex8e3swv",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.2:seed-14",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.2",
+      "variantLabel": "Seed 14"
+    },
+    {
+      "_creationTime": 1788917171713.5332,
+      "_id": "n97da4h46shzxrt5fpwzmqmm518e2f81",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.1:seed-8",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.1",
+      "variantLabel": "Seed 8"
+    }
+  ],
+  "receipts": [],
+  "reviews": [],
+  "scheduled": [],
+  "submissions": [
+    {
+      "_creationTime": 1788917180414.7024,
+      "_id": "jd71q864hv1vj3v7hn890v7x2d8e3ymg",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.2",
+      "attemptOrdinal": 3,
+      "createdAt": 1788917180414,
+      "gradedAt": 1788917181272,
+      "idempotencyKey": "qf:jd71q864hv1vj3v7hn890v7x2d8e3ymg",
+      "maxScore": 2,
+      "score": 2,
+      "submissionData": {
+        "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+        "answers": {
+          "discriminant": 0,
+          "x1": 1,
+          "x2": ""
+        },
+        "attemptNumber": 3,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 0,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": 1,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 0,
+            "partId": "x2",
+            "rawAnswer": "",
+            "revealStepsSeen": 0,
+            "score": 0
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917181272,
+      "updatedAt": 1788917181272,
+      "userId": "nn71btyayq5xsx93thr7yq9jm18e372k"
+    },
+    {
+      "_creationTime": 1788917171713.5334,
+      "_id": "jd723s098s6cy7c6b22vz8tad58e25hs",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.1",
+      "attemptOrdinal": 2,
+      "createdAt": 1788917171713,
+      "gradedAt": 1788917174335,
+      "idempotencyKey": "qf:jd723s098s6cy7c6b22vz8tad58e25hs",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+        "answers": {
+          "discriminant": 4,
+          "x1": 2,
+          "x2": 1
+        },
+        "attemptNumber": 2,
+        "contractVersion": "practice.v1",
+        "mode": "independent_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 4,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": 2,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": 1,
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917174335,
+      "updatedAt": 1788917174335,
+      "userId": "nn71btyayq5xsx93thr7yq9jm18e372k"
+    },
+    {
+      "_creationTime": 1788917233712.952,
+      "_id": "jd730hzqg4y48h71vzzheswnen8e235v",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "attemptOrdinal": 1,
+      "createdAt": 1800000001000,
+      "gradedAt": 1800000001000,
+      "idempotencyKey": "qf-local-legacy",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+        "answers": {
+          "discriminant": 28,
+          "x1": "(2 + √28)/2",
+          "x2": "(2 - √28)/2"
+        },
+        "attemptNumber": 1,
+        "contractVersion": "practice.v1",
+        "mode": "independent_practice",
+        "parts": [
+          {
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 28,
+            "score": 1
+          },
+          {
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": "(2 + √28)/2",
+            "score": 1
+          },
+          {
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": "(2 - √28)/2",
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-14T00:00:00.000Z"
+      },
+      "submittedAt": 1800000001000,
+      "updatedAt": 1800000001000,
+      "userId": "nn745px37y0qj9kbcqv1r53e118e3ds7"
+    },
+    {
+      "_creationTime": 1788917182129.5244,
+      "_id": "jd7589fjb68argped6ffe13vc18e3zxb",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.3",
+      "attemptOrdinal": 4,
+      "createdAt": 1788917182129,
+      "gradedAt": 1788917182984,
+      "idempotencyKey": "qf:jd7589fjb68argped6ffe13vc18e3zxb",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+        "answers": {
+          "discriminant": -3,
+          "x1": "(3 + i√3)/2",
+          "x2": "(3 - i√3)/2"
+        },
+        "attemptNumber": 4,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": -3,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": "(3 + i√3)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": "(3 - i√3)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917182984,
+      "updatedAt": 1788917182984,
+      "userId": "nn71btyayq5xsx93thr7yq9jm18e372k"
+    },
+    {
+      "_creationTime": 1788917162794.375,
+      "_id": "jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice",
+      "attemptOrdinal": 1,
+      "createdAt": 1788917162794,
+      "gradedAt": 1788917164256,
+      "idempotencyKey": "qf:jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+        "answers": {
+          "discriminant": 45,
+          "x1": "(-5 + √45)/2",
+          "x2": "(-5 - √45)/2"
+        },
+        "attemptNumber": 1,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 45,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": "(-5 + √45)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": "(-5 - √45)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z",
+        "timing": {
+          "activeMs": 4800,
+          "confidence": "high",
+          "confidenceReasons": [],
+          "focusLossCount": 0,
+          "idleMs": 200,
+          "longestIdleMs": 200,
+          "pauseCount": 0,
+          "startedAt": "2027-01-15T00:00:00.000Z",
+          "submittedAt": "2027-01-15T00:00:05.000Z",
+          "visibilityHiddenCount": 0,
+          "wallClockMs": 5000
+        }
+      },
+      "submittedAt": 1788917164256,
+      "updatedAt": 1788917164256,
+      "userId": "nn71btyayq5xsx93thr7yq9jm18e372k"
+    },
+    {
+      "_creationTime": 1788917168298.39,
+      "_id": "jd76fh8js2jfpm2945p9pgqmqd8e2t9q",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.1",
+      "attemptOrdinal": 2,
+      "createdAt": 1788917168298,
+      "idempotencyKey": "qf:jd76fh8js2jfpm2945p9pgqmqd8e2t9q",
+      "submissionData": {
+        "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+        "answers": {},
+        "attemptNumber": 2,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [],
+        "status": "draft",
+        "submittedAt": "2026-09-09T01:26:08.298Z"
+      },
+      "submittedAt": 1788917168298,
+      "updatedAt": 1788917168298,
+      "userId": "nn735hkn6x2346v1f5x226nbrh8e2qzf"
+    },
+    {
+      "_creationTime": 1788917178684.151,
+      "_id": "jd76wp80cbk3ktxrzrhf22jcmx8e22yj",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.1",
+      "attemptOrdinal": 2,
+      "createdAt": 1788917178684,
+      "gradedAt": 1788917179553,
+      "idempotencyKey": "qf:jd76wp80cbk3ktxrzrhf22jcmx8e22yj",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+        "answers": {
+          "discriminant": 9,
+          "x1": 5,
+          "x2": 2
+        },
+        "attemptNumber": 2,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 9,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": 5,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": 2,
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917179553,
+      "updatedAt": 1788917179553,
+      "userId": "nn71btyayq5xsx93thr7yq9jm18e372k"
+    },
+    {
+      "_creationTime": 1788917166895.804,
+      "_id": "jd779fn4frzwx13w9d6q2rh3ws8e3str",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice",
+      "attemptOrdinal": 1,
+      "createdAt": 1788917166895,
+      "gradedAt": 1788917167777,
+      "idempotencyKey": "qf:jd779fn4frzwx13w9d6q2rh3ws8e3str",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+        "answers": {
+          "discriminant": 45,
+          "x1": "(-5 + √45)/2",
+          "x2": "(-5 - √45)/2"
+        },
+        "attemptNumber": 1,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 45,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": "(-5 + √45)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": "(-5 - √45)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917167777,
+      "updatedAt": 1788917167777,
+      "userId": "nn735hkn6x2346v1f5x226nbrh8e2qzf"
+    },
+    {
+      "_creationTime": 1788917168245.4956,
+      "_id": "jd79ymn60v7q3drcknwqxh79ds8e2r9k",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.1",
+      "attemptOrdinal": 2,
+      "createdAt": 1788917168245,
+      "idempotencyKey": "qf:jd79ymn60v7q3drcknwqxh79ds8e2r9k",
+      "submissionData": {
+        "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+        "answers": {},
+        "attemptNumber": 2,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [],
+        "status": "draft",
+        "submittedAt": "2026-09-09T01:26:08.245Z"
+      },
+      "submittedAt": 1788917168245,
+      "updatedAt": 1788917168245,
+      "userId": "nn745px37y0qj9kbcqv1r53e118e3ds7"
+    },
+    {
+      "_creationTime": 1788917169163.068,
+      "_id": "jd7a0p35f88113ehj3zha2g0y98e21sf",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice",
+      "attemptOrdinal": 1,
+      "createdAt": 1788917169163,
+      "gradedAt": 1788917170024,
+      "idempotencyKey": "qf:jd7a0p35f88113ehj3zha2g0y98e21sf",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+        "answers": {
+          "discriminant": 28,
+          "x1": "(2 + √28)/2",
+          "x2": "(2 - √28)/2"
+        },
+        "attemptNumber": 1,
+        "contractVersion": "practice.v1",
+        "mode": "independent_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 28,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": "(2 + √28)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": "(2 - √28)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917170024,
+      "updatedAt": 1788917170024,
+      "userId": "nn71btyayq5xsx93thr7yq9jm18e372k"
+    },
+    {
+      "_creationTime": 1788917176515.1545,
+      "_id": "jd7aah3nbzzp6ps030h3fdp9g98e27mx",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.3",
+      "attemptOrdinal": 4,
+      "createdAt": 1788917176515,
+      "gradedAt": 1788917177377,
+      "idempotencyKey": "qf:jd7aah3nbzzp6ps030h3fdp9g98e27mx",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+        "answers": {
+          "discriminant": -7,
+          "x1": "(1 + i√7)/4",
+          "x2": "(1 - i√7)/4"
+        },
+        "attemptNumber": 4,
+        "contractVersion": "practice.v1",
+        "mode": "independent_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": -7,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": "(1 + i√7)/4",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": "(1 - i√7)/4",
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917177377,
+      "updatedAt": 1788917177377,
+      "userId": "nn71btyayq5xsx93thr7yq9jm18e372k"
+    },
+    {
+      "_creationTime": 1788917165624.947,
+      "_id": "jd7e8p8yd5v4xwrjr3rq2narfh8e3thh",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice",
+      "attemptOrdinal": 1,
+      "createdAt": 1788917165624,
+      "gradedAt": 1788917166471,
+      "idempotencyKey": "qf:jd7e8p8yd5v4xwrjr3rq2narfh8e3thh",
+      "maxScore": 3,
+      "score": 3,
+      "submissionData": {
+        "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+        "answers": {
+          "discriminant": 45,
+          "x1": "(-5 + √45)/2",
+          "x2": "(-5 - √45)/2"
+        },
+        "attemptNumber": 1,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 45,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": "(-5 + √45)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x2",
+            "rawAnswer": "(-5 - √45)/2",
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917166471,
+      "updatedAt": 1788917166471,
+      "userId": "nn745px37y0qj9kbcqv1r53e118e3ds7"
+    },
+    {
+      "_creationTime": 1788917174766.6814,
+      "_id": "jd7fdfkjq9ha0s5ggk7vk8v7hs8e3b2s",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "allocatedVariantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.2",
+      "attemptOrdinal": 3,
+      "createdAt": 1788917174766,
+      "gradedAt": 1788917175626,
+      "idempotencyKey": "qf:jd7fdfkjq9ha0s5ggk7vk8v7hs8e3b2s",
+      "maxScore": 2,
+      "score": 2,
+      "submissionData": {
+        "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+        "answers": {
+          "discriminant": 0,
+          "x1": -2,
+          "x2": ""
+        },
+        "attemptNumber": 3,
+        "contractVersion": "practice.v1",
+        "mode": "independent_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "discriminant",
+            "rawAnswer": 0,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "x1",
+            "rawAnswer": -2,
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 0,
+            "partId": "x2",
+            "rawAnswer": "",
+            "revealStepsSeen": 0,
+            "score": 0
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2027-01-15T00:00:00.000Z"
+      },
+      "submittedAt": 1788917175626,
+      "updatedAt": 1788917175626,
+      "userId": "nn71btyayq5xsx93thr7yq9jm18e372k"
+    }
+  ],
+  "variants": [
+    {
+      "_creationTime": 1788917174766.681,
+      "_id": "nh713zrheakhwq81fybd4d4das8e3qw1",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Independent quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "independent_practice",
+        "seed": 14,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.2"
+    },
+    {
+      "_creationTime": 1788917180414.702,
+      "_id": "nh72vkyjakb313ck0g5nbadnwn8e26kr",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Guided quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "guided_practice",
+        "seed": 12,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.2"
+    },
+    {
+      "_creationTime": 1788917161730.894,
+      "_id": "nh73ah5k5cmshtznf75a6mp11s8e2ahk",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Guided quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "guided_practice",
+        "seed": 1,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice"
+    },
+    {
+      "_creationTime": 1788917168245.495,
+      "_id": "nh74tc46n5zxdxh8f0pyxfj9v58e3fbe",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Guided quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "guided_practice",
+        "seed": 7,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.1"
+    },
+    {
+      "_creationTime": 1788917161730.8948,
+      "_id": "nh78600jxwpkxsyda2js8fa2q58e33zp",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Independent quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "independent_practice",
+        "seed": 2,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice"
+    },
+    {
+      "_creationTime": 1788917176515.154,
+      "_id": "nh7c9hmd5x7j85k77ap1fzt25x8e3kgk",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Independent quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "independent_practice",
+        "seed": 30,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.3"
+    },
+    {
+      "_creationTime": 1788917182129.524,
+      "_id": "nh7cy8e3c8bf90b8qywrtp7yp18e2fmn",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Guided quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "guided_practice",
+        "seed": 4,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice.variant.3"
+    },
+    {
+      "_creationTime": 1788917171713.533,
+      "_id": "nh7d95av7p7bz2qd7acs6pvyns8e3qd5",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Independent quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "independent_practice",
+        "seed": 8,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice.variant.1"
+    }
+  ]
+}
