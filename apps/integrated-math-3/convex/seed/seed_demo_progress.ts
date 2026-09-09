@@ -1,5 +1,4 @@
 import { internalMutation } from "../_generated/server";
-import type { Id } from "../_generated/dataModel";
 import type { SeedStudentProgress } from "./types";
 
 interface SeedDemoProgressResult {
@@ -62,9 +61,7 @@ export const seedDemoProgress = internalMutation({
       }
 
       let completionsCreated = 0;
-      const phasesToComplete = progress.status === "not_started" 
-        ? 0 
-        : progress.phaseNumber;
+      const phasesToComplete = progress.status === "not_started" ? 0 : progress.phaseNumber;
 
       for (let phase = 1; phase <= phasesToComplete; phase++) {
         const phaseVersion = await ctx.db
@@ -75,6 +72,33 @@ export const seedDemoProgress = internalMutation({
           .first();
 
         if (!phaseVersion) continue;
+
+        const existingProgress = await ctx.db
+          .query("student_progress")
+          .withIndex("by_user_and_phase", (q) =>
+            q.eq("userId", student._id).eq("phaseId", phaseVersion._id)
+          )
+          .unique();
+
+        if (existingProgress) continue;
+
+        const phaseStatus = progress.status === "in_progress" && phase === progress.phaseNumber
+          ? "in_progress" as const
+          : "completed" as const;
+
+        await ctx.db.insert("student_progress", {
+          userId: student._id,
+          phaseId: phaseVersion._id,
+          status: phaseStatus,
+          startedAt: now,
+          ...(phaseStatus === "completed" ? { completedAt: now } : {}),
+          timeSpentSeconds: 0,
+          idempotencyKey: `${progress.studentUsername}:${lessonSlug}:${phase}`,
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        if (phaseStatus === "in_progress") continue;
 
         const phaseSections = await ctx.db
           .query("phase_sections")
@@ -88,8 +112,11 @@ export const seedDemoProgress = internalMutation({
         );
 
         for (const section of activitySections) {
-          const content = section.content as { activityId?: string };
-          if (!content?.activityId) continue;
+          const content = section.content as { activityId?: unknown };
+          if (typeof content?.activityId !== "string") continue;
+
+          const activityId = ctx.db.normalizeId("activities", content.activityId);
+          if (!activityId || !(await ctx.db.get(activityId))) continue;
 
           const idempotencyKey = `${progress.studentUsername}:${lessonSlug}:${phase}:${content.activityId}`;
           
@@ -100,8 +127,6 @@ export const seedDemoProgress = internalMutation({
 
           if (existing) continue;
 
-          const activityId = content.activityId as Id<"activities">;
-          
           await ctx.db.insert("activity_completions", {
             studentId: student._id,
             activityId,
@@ -117,29 +142,6 @@ export const seedDemoProgress = internalMutation({
           completionsCreated++;
         }
 
-        if (activitySections.length === 0) {
-          const idempotencyKey = `${progress.studentUsername}:${lessonSlug}:${phase}:phase_complete`;
-          
-          const existing = await ctx.db
-            .query("activity_completions")
-            .withIndex("by_idempotency_key", (q) => q.eq("idempotencyKey", idempotencyKey))
-            .unique();
-
-          if (!existing) {
-            await ctx.db.insert("activity_completions", {
-              studentId: student._id,
-              activityId: lessonVersion._id as unknown as Id<"activities">,
-              lessonId: lesson._id,
-              phaseNumber: phase,
-              completedAt: now,
-              idempotencyKey,
-              completionData: { type: "phase_completion", phaseType: phaseVersion.phaseType },
-              createdAt: now,
-              updatedAt: now,
-            });
-            completionsCreated++;
-          }
-        }
       }
 
       results.push({
