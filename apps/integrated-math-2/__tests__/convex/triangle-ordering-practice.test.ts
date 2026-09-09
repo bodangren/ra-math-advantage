@@ -90,6 +90,137 @@ async function setup(
   return { ...store, userId, activityId };
 }
 describe("triangle staged submissions", () => {
+  it.each([
+    [triangleNodeIds.angles, 8],
+    [triangleNodeIds.sides, undefined],
+  ] as const)("omits the %s Worked item after reload and reuses one physical row", async (nodeId, firstProblem) => {
+    const t = await setup();
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toHaveLength(6);
+    const worked = t.tables.activities.find(
+      (row) => row.stableActivityId === `${nodeId}.worked_example`,
+    )!;
+    const args = {
+      userId: t.userId,
+      activityId: worked._id,
+      idempotencyKey: "worked-one",
+      answers: {},
+      hintsUsed: 0,
+      revealStepsSeen: 0,
+    };
+    const first = await submitBoundedPracticeHandler(t.ctx, args as never, approved);
+    expect(first).toMatchObject({ kind: "acknowledged" });
+    expect(t.tables.activity_submissions).toHaveLength(1);
+    const resumed = await getTrianglePracticeHandler(t.ctx, t.userId as never, approved);
+    expect(resumed).toHaveLength(5);
+    expect(resumed.some((item) => item.activityId === worked._id)).toBe(false);
+    if (firstProblem) expect(resumed[0]).toMatchObject({ mode: "guided_practice", problem: firstProblem });
+    const lesson = t.tables.lessons.find((row) => row.slug === "module-1-lesson-4")!;
+    expect(t.tables.activity_submissions[0].lessonId).toBe(lesson._id);
+    expect(await submitBoundedPracticeHandler(t.ctx, args as never, approved)).toEqual(first);
+    const differentKey = await submitBoundedPracticeHandler(
+      t.ctx,
+      { ...args, idempotencyKey: "worked-two" } as never,
+      approved,
+    );
+    expect(differentKey).toEqual(first);
+    expect(t.tables.activity_submissions).toHaveLength(1);
+  });
+
+  it("fails closed for malformed Worked history and changed replay counters", async () => {
+    const t = await setup();
+    const worked = t.tables.activities.find(
+      (row) => row.stableActivityId === `${triangleNodeIds.sides}.worked_example`,
+    )!;
+    const args = { userId: t.userId, activityId: worked._id, idempotencyKey: "worked", answers: {}, hintsUsed: 0, revealStepsSeen: 0 };
+    await submitBoundedPracticeHandler(t.ctx, args as never, approved);
+    const before = structuredClone(t.tables);
+    await expect(submitBoundedPracticeHandler(t.ctx, { ...args, hintsUsed: 1 } as never, approved)).rejects.toThrow(/conflict/);
+    await expect(submitBoundedPracticeHandler(t.ctx, { ...args, idempotencyKey: "changed", revealStepsSeen: 1 } as never, approved)).rejects.toThrow(/conflict/);
+    expect(t.tables).toEqual(before);
+    (t.tables.activity_submissions[0].submissionData as Record<string, unknown>).parts = [{ partId: "private" }];
+    const malformed = structuredClone(t.tables);
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
+    await expect(submitBoundedPracticeHandler(t.ctx, { ...args, idempotencyKey: "new" } as never, approved)).rejects.toThrow(/history/);
+    expect(t.tables).toEqual(malformed);
+  });
+
+  it.each([
+    ["missing lesson", (row: Record<string, unknown>) => { delete row.lessonId; }],
+    ["lesson identity", (row: Record<string, unknown>) => { row.lessonId = "lessons:other"; }],
+    ["empty key", (row: Record<string, unknown>) => { row.idempotencyKey = " "; }],
+    ["ordinal", (row: Record<string, unknown>) => { row.attemptOrdinal = 0; }],
+    ["row time", (row: Record<string, unknown>) => { row.updatedAt = Number.NaN; }],
+    ["grade", (row: Record<string, unknown>) => { row.score = 0; }],
+    ["contract", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).contractVersion = "legacy"; }],
+    ["envelope activity", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).activityId = "activities:other"; }],
+    ["mode", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).mode = "guided_practice"; }],
+    ["status", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).status = "pending"; }],
+    ["envelope ordinal", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).attemptNumber = 2; }],
+    ["envelope time", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).submittedAt = new Date(1).toISOString(); }],
+    ["answers", (row: Record<string, unknown>) => { (row.submissionData as { answers: Record<string, string> }).answers.answer = "x"; }],
+    ["parts", (row: Record<string, unknown>) => { (row.submissionData as Record<string, unknown>).parts = [{ partId: "private" }]; }],
+    ["artifact", (row: Record<string, unknown>) => { ((row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>).privateAnswer = "x"; }],
+    ["request answers", (row: Record<string, unknown>) => { ((((row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>).request as { answers: Record<string, string> }).answers).answer = "x"; }],
+    ["request counter", (row: Record<string, unknown>) => { ((((row.submissionData as Record<string, unknown>).artifact as Record<string, unknown>).request as Record<string, unknown>)).hintsUsed = -1; }],
+  ])("rejects malformed Worked %s history for same and new keys", async (_name, corrupt) => {
+    const t = await setup();
+    const worked = t.tables.activities.find((row) => row.stableActivityId === `${triangleNodeIds.angles}.worked_example`)!;
+    const args = { userId: t.userId, activityId: worked._id, idempotencyKey: "worked", answers: {}, hintsUsed: 0, revealStepsSeen: 0 };
+    await submitBoundedPracticeHandler(t.ctx, args as never, approved);
+    corrupt(t.tables.activity_submissions[0]);
+    const before = structuredClone(t.tables);
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
+    await expect(submitBoundedPracticeHandler(t.ctx, args as never, approved)).rejects.toThrow(/history/);
+    await expect(submitBoundedPracticeHandler(t.ctx, { ...args, idempotencyKey: "new" } as never, approved)).rejects.toThrow(/history/);
+    expect(t.tables).toEqual(before);
+  });
+
+  it.each(["missing", "duplicate"])("fails closed when the canonical lesson is %s", async (state) => {
+    const t = await setup(triangleNodeIds.angles, "worked_example", 6);
+    if (state === "missing") t.tables.lessons.length = 0;
+    else await t.db.insert("lessons", { slug: "module-1-lesson-4" });
+    const before = structuredClone(t.tables);
+    expect(await getTrianglePracticeHandler(t.ctx, t.userId as never, approved)).toEqual([]);
+    await expect(submitBoundedPracticeHandler(t.ctx, {
+      userId: t.userId, activityId: t.activityId, idempotencyKey: "worked",
+      answers: {}, hintsUsed: 0, revealStepsSeen: 0,
+    } as never, approved)).rejects.toThrow("pilot_source_lesson_missing");
+    expect(t.tables).toEqual(before);
+  });
+
+  it("omits both Worked items and restores partial and completed graded state", async () => {
+    const t = await setup();
+    for (const nodeId of Object.values(triangleNodeIds)) {
+      const worked = t.tables.activities.find((row) => row.stableActivityId === `${nodeId}.worked_example`)!;
+      await submitBoundedPracticeHandler(t.ctx, {
+        userId: t.userId, activityId: worked._id, idempotencyKey: `worked-${nodeId}`,
+        answers: {}, hintsUsed: 0, revealStepsSeen: 0,
+      } as never, approved);
+    }
+    const guided = t.tables.activities.find((row) => row.stableActivityId === `${triangleNodeIds.angles}.guided_practice`)!;
+    await submitTriangleHandler(t.ctx, {
+      userId: t.userId, activityId: guided._id, idempotencyKey: "guided-part",
+      answers: { measure_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
+    } as never, approved);
+    const independent = t.tables.activities.find((row) => row.stableActivityId === `${triangleNodeIds.sides}.independent_practice`)!;
+    await submitTriangleHandler(t.ctx, {
+      userId: t.userId, activityId: independent._id, idempotencyKey: "independent-part",
+      answers: { missing_angle: "66" }, hintsUsed: 0, revealStepsSeen: 0,
+    } as never, approved);
+    await submitTriangleHandler(t.ctx, {
+      userId: t.userId, activityId: independent._id, idempotencyKey: "independent-final",
+      answers: { missing_angle: "66", final_order: "choice-1" }, hintsUsed: 0, revealStepsSeen: 0,
+    } as never, approved);
+
+    const resumed = await getTrianglePracticeHandler(t.ctx, t.userId as never, approved);
+    expect(resumed.some((row) => row.mode === "worked_example")).toBe(false);
+    expect(resumed.find((row) => row.activityId === guided._id)).toMatchObject({
+      acceptedAnswers: { measure_order: "choice-1" },
+      currentPart: { id: "opposite_correspondence" },
+    });
+    expect(resumed.some((row) => row.activityId === independent._id)).toBe(false);
+  });
+
   it("saves a guided retry before it advances and replays the exact request", async () => {
     const t = await setup();
     const wrongArgs = {

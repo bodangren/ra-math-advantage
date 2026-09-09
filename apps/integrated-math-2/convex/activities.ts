@@ -261,6 +261,61 @@ const sameAnswers = (
 ) =>
   exactKeys(left, Object.keys(right)) &&
   Object.entries(right).every(([key, value]) => left[key] === value);
+function workedAcknowledgementRequest(
+  row: Record<string, unknown>,
+  userId: string,
+  activityId: string,
+  lessonId: string,
+) {
+  const submission = row.submissionData;
+  if (
+    row.userId !== userId ||
+    row.activityId !== activityId ||
+    row.lessonId !== lessonId ||
+    typeof row.idempotencyKey !== "string" ||
+    !row.idempotencyKey.trim() ||
+    !Number.isSafeInteger(row.attemptOrdinal) ||
+    (row.attemptOrdinal as number) < 1 ||
+    !Number.isFinite(row.submittedAt) ||
+    !Number.isFinite(row.createdAt) ||
+    !Number.isFinite(row.updatedAt) ||
+    row.score !== undefined ||
+    row.maxScore !== undefined ||
+    row.feedback !== undefined ||
+    row.gradedAt !== undefined ||
+    row.masteryContractVersion !== undefined ||
+    !record(submission) ||
+    !exactKeys(submission, [
+      "contractVersion", "activityId", "mode", "status", "submittedAt",
+      "attemptNumber", "answers", "parts", "artifact",
+    ]) ||
+    submission.contractVersion !== "practice.v1" ||
+    submission.activityId !== activityId ||
+    submission.mode !== "worked_example" ||
+    submission.status !== "submitted" ||
+    submission.attemptNumber !== row.attemptOrdinal ||
+    submission.submittedAt !== new Date(row.submittedAt as number).toISOString() ||
+    !record(submission.answers) ||
+    Object.keys(submission.answers).length !== 0 ||
+    !Array.isArray(submission.parts) ||
+    submission.parts.length !== 0 ||
+    !record(submission.artifact) ||
+    !exactKeys(submission.artifact, ["request"]) ||
+    !record(submission.artifact.request) ||
+    !exactKeys(submission.artifact.request, ["answers", "hintsUsed", "revealStepsSeen"]) ||
+    !record(submission.artifact.request.answers) ||
+    Object.keys(submission.artifact.request.answers).length !== 0 ||
+    !Number.isSafeInteger(submission.artifact.request.hintsUsed) ||
+    (submission.artifact.request.hintsUsed as number) < 0 ||
+    !Number.isSafeInteger(submission.artifact.request.revealStepsSeen) ||
+    (submission.artifact.request.revealStepsSeen as number) < 0
+  )
+    throw Error("invalid_triangle_history");
+  return {
+    hintsUsed: submission.artifact.request.hintsUsed as number,
+    revealStepsSeen: submission.artifact.request.revealStepsSeen as number,
+  };
+}
 function publicPart(part: TrianglePart): PublicTrianglePart {
   return {
     id: part.id,
@@ -555,6 +610,14 @@ export async function getTrianglePracticeHandler(
 ) {
   const profile = await activeAccount(ctx, userId);
   if (!profile || profile.role !== "student") return [];
+  const sourceLessons = await ctx.db
+    .query("lessons")
+    .withIndex("by_slug", (query) =>
+      query.eq("slug", "module-1-lesson-4"),
+    )
+    .take(2);
+  if (sourceLessons.length !== 1) return [];
+  const sourceLesson = sourceLessons[0];
   const output: PublicTriangle[] = [];
   for (const nodeId of Object.values(triangleNodeIds)) {
     if (!trianglePublished(nodeId, publication)) continue;
@@ -596,6 +659,22 @@ export async function getTrianglePracticeHandler(
           String(row._id),
         );
         if (mode === "worked_example") {
+          const latest = await ctx.db
+            .query("activity_submissions")
+            .withIndex("by_user_activity_attempt_ordinal", (query) =>
+              query.eq("userId", userId).eq("activityId", row._id),
+            )
+            .order("desc")
+            .first();
+          if (latest) {
+            workedAcknowledgementRequest(
+              latest,
+              String(userId),
+              String(row._id),
+              String(sourceLesson._id),
+            );
+            continue;
+          }
           output.push(base);
           continue;
         }
@@ -1076,6 +1155,15 @@ export async function submitBoundedPracticeHandler(
         args.revealStepsSeen < 0
       )
         throw Error("invalid_submission");
+      const sourceLessons = await ctx.db
+        .query("lessons")
+        .withIndex("by_slug", (query) =>
+          query.eq("slug", "module-1-lesson-4"),
+        )
+        .take(2);
+      if (sourceLessons.length !== 1)
+        throw Error("pilot_source_lesson_missing");
+      const sourceLesson = sourceLessons[0];
       const existing = await ctx.db
         .query("activity_submissions")
         .withIndex("by_user_activity_idempotency_key", (query) =>
@@ -1086,19 +1174,15 @@ export async function submitBoundedPracticeHandler(
         )
         .unique();
       if (existing) {
-        const stored = existing.submissionData;
+        const storedRequest = workedAcknowledgementRequest(
+          existing,
+          String(args.userId),
+          String(args.activityId),
+          String(sourceLesson._id),
+        );
         if (
-          !record(stored) ||
-          stored.activityId !== String(args.activityId) ||
-          stored.mode !== "worked_example" ||
-          stored.status !== "submitted" ||
-          stored.attemptNumber !== existing.attemptOrdinal ||
-          !record(stored.artifact) ||
-          !record(stored.artifact.request) ||
-          !record(stored.artifact.request.answers) ||
-          Object.keys(stored.artifact.request.answers).length !== 0 ||
-          stored.artifact.request.hintsUsed !== args.hintsUsed ||
-          stored.artifact.request.revealStepsSeen !== args.revealStepsSeen
+          storedRequest.hintsUsed !== args.hintsUsed ||
+          storedRequest.revealStepsSeen !== args.revealStepsSeen
         )
           throw Error("idempotency_conflict");
         return {
@@ -1114,13 +1198,30 @@ export async function submitBoundedPracticeHandler(
         )
         .order("desc")
         .first();
-      const attemptOrdinal = (prior?.attemptOrdinal ?? 0) + 1;
-      if (!Number.isSafeInteger(attemptOrdinal))
-        throw Error("invalid_submission");
+      if (prior) {
+        const storedRequest = workedAcknowledgementRequest(
+          prior,
+          String(args.userId),
+          String(args.activityId),
+          String(sourceLesson._id),
+        );
+        if (
+          storedRequest.hintsUsed !== args.hintsUsed ||
+          storedRequest.revealStepsSeen !== args.revealStepsSeen
+        )
+          throw Error("idempotency_conflict");
+        return {
+          kind: "acknowledged" as const,
+          submissionId: prior._id,
+          evidencePersisted: false,
+        };
+      }
+      const attemptOrdinal = 1;
       const now = Date.now();
       const submissionId = await ctx.db.insert("activity_submissions", {
         userId: args.userId,
         activityId: args.activityId,
+        lessonId: sourceLesson._id,
         submissionData: {
           contractVersion: "practice.v1",
           activityId: String(args.activityId),

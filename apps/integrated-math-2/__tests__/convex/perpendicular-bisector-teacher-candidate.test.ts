@@ -1,7 +1,11 @@
 import { expect, it, vi } from "vitest";
 import { database, invoke } from "../helpers/database";
 
-vi.mock("@/convex/activities", () => ({ isPilotPublished: () => true }));
+vi.mock("@/convex/activities", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/convex/activities")>()),
+  isPilotPublished: () => true,
+}));
+import { submitBoundedPracticeHandler } from "@/convex/activities";
 import { getStudentEvidence } from "@/convex/teacher";
 
 const stableActivityId = "math.im2.skill.1.1.perpendicular-bisector-equidistance.guided_practice";
@@ -11,6 +15,7 @@ it("hides the teacher action for a source with an invalid component contract", a
   const teacherId = await db.insert("profiles", { role: "teacher", organizationId: "org", username: "teacher" });
   const studentId = await db.insert("profiles", { role: "student", organizationId: "org", username: "student" });
   await db.insert("auth_credentials", { profileId: teacherId, isActive: true, role: "teacher", organizationId: "org", username: "teacher" });
+  await db.insert("auth_credentials", { profileId: studentId, isActive: true, role: "student", organizationId: "org", username: "student" });
   const classId = await db.insert("classes", { teacherId, archived: false });
   await db.insert("class_enrollments", { classId, studentId, status: "active", enrolledAt: 10 });
   const lessonId = await db.insert("lessons", { slug: "module-1-lesson-1" });
@@ -18,7 +23,7 @@ it("hides the teacher action for a source with an invalid component contract", a
   const activityId = await db.insert("activities", { stableActivityId, componentKey: "wrong-component", masteryNodeId: "wrong-node", learningEvidenceMode: "worked_example", approval: { status: "approved" } });
   const submissionId = await db.insert("activity_submissions", { userId: studentId, activityId, lessonId, submissionData: { rawResponse: "4" }, score: 1, maxScore: 1, gradedAt: 30, submittedAt: 30 });
 
-  const read = () => invoke<unknown, { submissions: Array<{ answer: string; canRecordExposure: boolean }> }>(getStudentEvidence, ctx, { teacherId, classId, studentId });
+  const read = () => invoke<unknown, { submissions: Array<{ id: string; answer: string; score: number; maxScore: number; canRecordExposure: boolean }> }>(getStudentEvidence, ctx, { teacherId, classId, studentId });
   expect((await read()).submissions[0].canRecordExposure).toBe(false);
   expect((await read()).submissions[0].answer).toBe("4");
 
@@ -54,4 +59,34 @@ it("hides the teacher action for a source with an invalid component contract", a
   expect(staged).toMatchObject({ answer: "final_order: wrong", score: 0, maxScore: 1 });
   expect(staged?.canRecordExposure).toBe(false);
   expect(stagedId).toBeTruthy();
+
+  const workedActivityId = await db.insert("activities", {
+    stableActivityId: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths.worked_example",
+    componentKey: "im2-question",
+    masteryNodeId: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+    learningEvidenceMode: "worked_example",
+    generatorSeed: 6,
+    generatorDifficulty: 1,
+    approval: { status: "approved" },
+  });
+  const receipt = await submitBoundedPracticeHandler(ctx, {
+    userId: studentId,
+    activityId: workedActivityId,
+    idempotencyKey: "worked",
+    answers: {},
+    hintsUsed: 0,
+    revealStepsSeen: 0,
+  } as never, {
+    nodes: [{
+      id: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      kind: "skill",
+      reviewStatus: "approved",
+    }],
+    blueprints: [{
+      nodeId: "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      reviewStatus: "approved",
+    }],
+  });
+  const worked = (await read()).submissions.find((row) => row.id === receipt.submissionId);
+  expect(worked).toMatchObject({ id: receipt.submissionId, answer: "", score: 0, maxScore: 1, canRecordExposure: false });
 });
