@@ -1045,3 +1045,6 @@ Parent review accepts the six-path teacher-led introduction scope in `im2-lesson
 
 
 Worked recovery is committed as `1afc2b7b5`. Parent verification passed 357 tests and all build checks. Independent review passed 44 focused tests and exact reconstruction. The exact three staged files matched the candidate, and the previously clean main files now match the commit. See `im2-worked-recovery-parent-review.md` and `im2-worked-recovery-final-independent-review.md`. The accepted teacher-led introduction implementation now starts from this source. Native execution remains pending both repairs.
+
+
+The accepted Worked repair review reconstruction directory was removed after its three scoped files were checked. Reports and patches remain. IM3 quiz preliminary lifecycle findings are recorded in `im3-lesson16-quiz-parent-lifecycle-preliminary-review.md`. The latest focused run passes 181 tests, but its rapid-switch regression resolves the failed POST before leaving. It does not cover re-entry while that POST is still live. Parent review requires the deferred-request case because an old promise can give the wrapper a receipt while the parent revision guard leaves the phase incomplete. Correct this behavior before freezing the quiz patch.
