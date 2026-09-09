@@ -4,7 +4,7 @@ Date: 2026-09-09
 
 ## Decision
 
-Restore Lesson 1-4 from the committed `Int2_0104_practice.docx` student worksheet. Use a two-path source batch. Do not change the graph in this batch.
+Restore Lesson 1-4 from the committed `Int2_0104_practice.docx` student worksheet. Use a three-path source batch. Do not change the graph in this batch.
 
 The current lesson is not a transcription of the worksheet. It replaces the worksheet with four new problems and four supplied solutions. It also adds Triangle Inequality Theorem vocabulary. The worksheet does not teach or assess the sum-of-two-sides Triangle Inequality Theorem.
 
@@ -89,10 +89,11 @@ The rendered page bottoms crop parts of Problems 15 and 16 on page 2 and Problem
 
 ## Allowed paths
 
-Change only these two paths:
+Change only these three paths:
 
 1. `apps/integrated-math-2/curriculum/modules/module-1-lesson-4`
 2. `apps/integrated-math-2/__tests__/curriculum/module-1-source-mappings.test.ts`
+3. `apps/integrated-math-2/curriculum/lessons.json`
 
 Preserve all unrelated bytes in the test file. Add one bounded Lesson 1-4 source regression section.
 
@@ -139,3 +140,7 @@ Keep both occupied Lesson 1-4 skill IDs unchanged. Do not repurpose the incorrec
 Add no node, edge, blueprint, standard alignment, prerequisite, generator, activity, approval, readiness claim, learner evidence, or spaced repetition system eligibility.
 
 Preserve the existing Lesson 1-1 perpendicular-bisector pilot authority and all of its evidence.
+
+## Required generated lesson update
+
+The parent build found that the existing prebuild contract rejects a stale `curriculum/lessons.json`. Run `node scripts/build-curriculum.mjs` after source restoration. Compare the result with committed HEAD. Only the Lesson 1.4 record may change. Preserve every other lesson record and its order. The script also writes `curriculum/implementation/practice-v1/activity-map.json`; verify that file remains byte-identical and do not include it in the patch. Do not edit the generator or add a new generation layer. The original two-path freeze is not accepted without the required lesson bundle update.
