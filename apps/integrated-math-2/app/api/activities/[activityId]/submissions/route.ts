@@ -4,7 +4,9 @@ import { requireRequestSessionClaims } from "@/lib/auth/server";
 import { fetchInternalMutation, internal } from "@/lib/convex/server";
 import type { Id } from "@/convex/_generated/dataModel";
 
-const bodySchema = z.object({ rawResponse: z.string().max(128), hintsUsed: z.number().int().nonnegative(), revealStepsSeen: z.number().int().nonnegative() }).strict();
+const legacyBodySchema = z.object({ rawResponse: z.string().max(128), hintsUsed: z.number().int().nonnegative(), revealStepsSeen: z.number().int().nonnegative() }).strict();
+const triangleBodySchema = z.object({ answers: z.record(z.string().min(1), z.string().max(128)), hintsUsed: z.number().int().nonnegative(), revealStepsSeen: z.number().int().nonnegative() }).strict();
+const bodySchema = z.union([legacyBodySchema, triangleBodySchema]);
 export async function POST(request: Request, context: { params: Promise<{ activityId: string }> }) {
   const claims = await requireRequestSessionClaims(request);
   if (claims instanceof Response) return claims;
@@ -14,7 +16,7 @@ export async function POST(request: Request, context: { params: Promise<{ activi
   if (!key || key.length > 80 || !parsed.success) return NextResponse.json({ error: "Check the submitted answer." }, { status: 400 });
   const { activityId } = await context.params;
   try {
-    return NextResponse.json(await fetchInternalMutation(internal.activities.submitPerpendicularBisectorPilot, { userId: claims.sub as Id<"profiles">, activityId: activityId as Id<"activities">, idempotencyKey: key, ...parsed.data }));
+    return NextResponse.json(await fetchInternalMutation(internal.activities.submitBoundedPractice, { userId: claims.sub as Id<"profiles">, activityId: activityId as Id<"activities">, idempotencyKey: key, ...parsed.data }));
   } catch (error) {
     const message = error instanceof Error ? error.message : "";
     if (message.includes("idempotency_conflict")) return NextResponse.json({ error: "This attempt conflicts with the saved response." }, { status: 409 });

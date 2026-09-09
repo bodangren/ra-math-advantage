@@ -11,6 +11,9 @@ function runtime(mode = "independent_practice") {
   return { ctx: { db }, tables, args: { userId, activityId, idempotencyKey: "key", rawResponse: String(generatePerpendicularBisector({ nodeId, seed: 303, difficulty: 1 }).expectedAnswer.response), hintsUsed: 0, revealStepsSeen: 0 } };
 }
 describe("IM2 perpendicular-bisector pilot", () => {
+  it("preserves the perpendicular-bisector node identity", () => {
+    expect(nodeId).toBe("math.im2.skill.1.1.perpendicular-bisector-equidistance");
+  });
   it("records an authorized exact-source teacher exposure once", async () => {
     const t = runtime("guided_practice");
     t.tables.profiles.push({ _id: "teacher", role: "teacher", organizationId: "school" }, { _id: "other", role: "teacher", organizationId: "school" });

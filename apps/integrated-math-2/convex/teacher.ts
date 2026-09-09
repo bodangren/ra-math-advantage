@@ -89,14 +89,26 @@ export const getStudentEvidence = internalQuery({
         return ({
         id: row._id,
         activity: activity?.displayName ?? "Practice",
-        answer:
-          typeof row.submissionData?.rawResponse === "string"
-            ? row.submissionData.rawResponse
-            : typeof row.submissionData?.answers?.response === "string"
-            ? row.submissionData.answers.response
-            : "",
-        score: row.score ?? 0,
-        maxScore: row.maxScore ?? 1,
+        answer: (() => {
+          if (typeof row.submissionData?.rawResponse === "string") return row.submissionData.rawResponse;
+          if (typeof row.submissionData?.answers?.response === "string") return row.submissionData.answers.response;
+          const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
+          const currentPartId = row.submissionData?.artifact?.currentPartId;
+          const currentPart = parts.find((part: { partId?: unknown; rawAnswer?: unknown }) => part?.partId === currentPartId);
+          return typeof currentPart?.rawAnswer === "string" ? `${currentPart.partId}: ${currentPart.rawAnswer}` : "";
+        })(),
+        score: (() => {
+          const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
+          const complete = row.submissionData?.artifact?.finalPart === true && parts.every((part: { isCorrect?: unknown }) => part?.isCorrect === true);
+          const current = parts.find((part: { partId?: unknown; score?: unknown; maxScore?: unknown }) => part?.partId === row.submissionData?.artifact?.currentPartId);
+          return complete ? row.score ?? 0 : typeof current?.score === "number" ? current.score : row.score ?? 0;
+        })(),
+        maxScore: (() => {
+          const parts = Array.isArray(row.submissionData?.parts) ? row.submissionData.parts : [];
+          const complete = row.submissionData?.artifact?.finalPart === true && parts.every((part: { isCorrect?: unknown }) => part?.isCorrect === true);
+          const current = parts.find((part: { partId?: unknown; score?: unknown; maxScore?: unknown }) => part?.partId === row.submissionData?.artifact?.currentPartId);
+          return complete ? row.maxScore ?? 1 : typeof current?.maxScore === "number" ? current.maxScore : row.maxScore ?? 1;
+        })(),
         feedback: row.feedback ?? "",
         submittedAt: row.submittedAt,
         canRecordExposure: isPilotPublished()

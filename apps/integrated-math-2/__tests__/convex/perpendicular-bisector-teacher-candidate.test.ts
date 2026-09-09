@@ -30,4 +30,28 @@ it("hides the teacher action for a source with an invalid component contract", a
 
   await db.patch(submissionId, { submissionData: { answers: { response: "legacy answer" } } });
   expect((await read()).submissions[0].answer).toBe("legacy answer");
+
+  const otherLessonId = await db.insert("lessons", { slug: "module-1-lesson-4" });
+  await db.insert("class_lessons", { classId, lessonId: otherLessonId, assignedAt: 20 });
+  const stagedId = await db.insert("activity_submissions", {
+    userId: studentId,
+    activityId,
+    lessonId: otherLessonId,
+    submissionData: {
+      artifact: { currentPartId: "final_order", finalPart: true },
+      parts: [
+        { partId: "missing_angle", rawAnswer: "66", isCorrect: true, score: 1, maxScore: 1 },
+        { partId: "final_order", rawAnswer: "wrong", isCorrect: false, score: 0, maxScore: 1 },
+      ],
+    },
+    score: 0,
+    maxScore: 1,
+    feedback: "Try again.",
+    gradedAt: 40,
+    submittedAt: 40,
+  });
+  const staged = (await read()).submissions.find((row) => row.answer.startsWith("final_order"));
+  expect(staged).toMatchObject({ answer: "final_order: wrong", score: 0, maxScore: 1 });
+  expect(staged?.canRecordExposure).toBe(false);
+  expect(stagedId).toBeTruthy();
 });
