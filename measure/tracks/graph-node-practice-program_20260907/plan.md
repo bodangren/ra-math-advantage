@@ -795,3 +795,5 @@ The allocation implementation scope now defines the minimum private variant refe
 Pending consumer correction is committed as `f3f17b4be`. Three filters preserve finalized teacher evidence and exclude pending export rows. All four paths passed parent and independent review. See `im3-quadratic-formula-pending-consumer-final-review.md`.
 
 - [~] Task IM3-L16 discriminant practice scope: Inspect the existing discriminant component, schema, generator, and grading paths. Define source-based Guided and Independent responses for the separate classification skill. Keep source Worked examples distinct from unanswered checks. Prefer existing contracts and components. This is read-only scope work while QF allocation proceeds.
+
+Discriminant scope review confirms four-case source authority on native page 45 and two-part unanswered demands on page 48. It identifies missing classification grading, unsafe client completion, and a stale ALEKS readiness flag. Source references can use existing capability identities. No new provenance node is required. See `im3-discriminant-practice-contract-scope.md`.
