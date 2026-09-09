@@ -7,15 +7,17 @@ export async function GET(request: Request) {
   const claims = await requireStudentRequestClaims(request);
   if (claims instanceof Response) return claims;
   const activityId = new URL(request.url).searchParams.get("activityId")?.trim();
+  const receipt = new URL(request.url).searchParams.get("receipt");
   if (!activityId) {
     return NextResponse.json({ error: "activityId is required" }, {
       status: 400,
       headers: { "Cache-Control": "private, no-store" },
     });
   }
+  if (receipt !== null && receipt !== "lesson-1-6-quiz") return NextResponse.json({ error: "Unknown receipt selector" }, { status: 400, headers: { "Cache-Control": "private, no-store" } });
   try {
     const result = await fetchInternalQuery(
-      internal.activities.getSelectedWorkedAcknowledgement,
+      receipt === "lesson-1-6-quiz" ? internal.activities.getLesson16QuizReceipt : internal.activities.getSelectedWorkedAcknowledgement,
       {
         userId: claims.sub as `profiles:${string}`,
         activityId: activityId as `activities:${string}`,
@@ -69,6 +71,16 @@ function validSelectedEnvelope(
   )
     return false;
   const qfIds = ["discriminant", "x1", "x2"];
+  const quizIds = ["discriminant-purpose", "zero-discriminant-real-solution-count"];
+  const quizOptions: Record<string, string[]> = { "discriminant-purpose": ["The sum of the roots", "The number and type of solutions", "The product of the roots", "The axis of symmetry"], "zero-discriminant-real-solution-count": ["0", "1", "2", "Cannot determine"] };
+  if (Object.keys(value.answers).sort().join("|") === quizIds.slice().sort().join("|")) {
+    if (value.mode !== "independent_practice" || value.parts.length !== 2 || new Set(value.parts.map(part => part.partId)).size !== 2) return false;
+    return quizIds.every(key => {
+      const answer = value.answers[key];
+      const part = value.parts.find(candidate => candidate.partId === key);
+      return typeof answer === "string" && quizOptions[key].includes(answer) && part !== undefined && part.rawAnswer === answer && part.isCorrect === undefined && part.score === undefined && part.maxScore === undefined;
+    });
+  }
   if (Object.keys(value.answers).sort().join("|") === qfIds.slice().sort().join("|")) {
     if (value.parts.length !== 3 || new Set(value.parts.map((part) => part.partId)).size !== 3)
       return false;
@@ -121,6 +133,7 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   const isQf = Object.keys(parsed.data.answers).includes("discriminant");
+  const isQuiz = Object.keys(parsed.data.answers).includes("discriminant-purpose");
   if (pendingSubmissionId && !isQf)
     return NextResponse.json({ error: "A pending handle is only valid for a quadratic-formula submission" }, { status: 400 });
   try {
@@ -134,6 +147,7 @@ export async function POST(request: Request) {
         ...(pendingSubmissionId ? { pendingSubmissionId: pendingSubmissionId as `activity_submissions:${string}` } : {}),
       },
     );
+    if (isQuiz && (Object.keys(result).sort().join("|") !== "id|maxScore|score|submissionId" || typeof result.submissionId !== "string" || !Number.isInteger(result.score) || result.score < 0 || result.score > 2 || result.maxScore !== 2)) throw new Error("Invalid Lesson 1.6 quiz receipt");
     return NextResponse.json("acknowledged" in result
       ? { submissionId: result.submissionId, acknowledged: true }
       : { submissionId: result.submissionId, score: result.score, maxScore: result.maxScore });

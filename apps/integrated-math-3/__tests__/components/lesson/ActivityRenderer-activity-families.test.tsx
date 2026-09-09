@@ -5,6 +5,7 @@ import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
 import { FillInTheBlank } from '@math-platform/activity-components/blanks';
 import { registerActivity } from '@math-platform/activity-components/registry';
 import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from '@math-platform/practice-core/contract';
+import { convexToJson, jsonToConvex } from 'convex/values';
 
 const mockTiming: PracticeTimingSummary = {
   startedAt: '2026-01-01T00:00:01.000Z',
@@ -47,16 +48,13 @@ describe('ActivityRenderer - Representative Activity Families with Timing', () =
       );
 
       const user = userEvent.setup();
-      const buttons = screen.getAllByRole('button');
-      const zeroZeroBtn = buttons.find(b => b.textContent?.includes('(0, 0)'));
-      const trueBtn = buttons.find(b => b.textContent === 'True');
-      await user.click(zeroZeroBtn!);
-      await user.click(trueBtn!);
+      await user.click(screen.getByRole('radio', { name: '(0, 0)' }));
+      await user.click(screen.getByRole('radio', { name: 'True' }));
 
       const mathInput = screen.getByLabelText(/your answer/i);
       await user.type(mathInput, '7');
 
-      const q4Buttons = buttons.filter(b => b.textContent?.includes('☐'));
+      const q4Buttons = screen.getAllByRole('button').filter(b => b.textContent?.includes('☐'));
       await user.click(q4Buttons[0]!); // (x-2)(x+2)
       await user.click(q4Buttons[3]!); // (x+2)(x-2)
 
@@ -180,7 +178,7 @@ describe('ActivityRenderer - Representative Activity Families with Timing', () =
       );
 
       const user = userEvent.setup();
-      const mathInput = screen.getByLabelText(/your answer/i);
+      const mathInput = screen.getByLabelText(/blank 1 of 1/i);
       await user.type(mathInput, 'x = (-b ± √(b²-4ac)) / 2a');
 
       fireEvent.click(screen.getByRole('button', { name: /submit all answers/i }));
@@ -194,5 +192,27 @@ describe('ActivityRenderer - Representative Activity Families with Timing', () =
         expect(envelope.answers.formula).toBeDefined();
       });
     });
+  });
+});
+
+describe('Lesson 1.6 public quiz wrapper', () => {
+  it('sends two ungraded answers and waits for the authoritative receipt', async () => {
+    const handleSubmit = vi.fn().mockResolvedValue({ submissionId: 'sub:quiz', score: 2, maxScore: 2 });
+    const { ComprehensionQuizActivity } = await import('@/components/activities/quiz/ComprehensionQuizActivity');
+    const transported = jsonToConvex(convexToJson([
+      { id: 'discriminant-purpose', type: 'multiple_choice', prompt: 'What does the discriminant tell you?', options: ['The sum of the roots', 'The number and type of solutions', 'The product of the roots', 'The axis of symmetry'] },
+      { id: 'zero-discriminant-real-solution-count', type: 'multiple_choice', prompt: 'If D = 0, how many real solutions are there?', options: ['0', '1', '2', 'Cannot determine'] },
+    ] as never)) as Parameters<typeof ComprehensionQuizActivity>[0]['questions'];
+    render(<ComprehensionQuizActivity activityId="activities:quiz" mode="practice" onSubmit={handleSubmit} questions={transported} />);
+    const user = userEvent.setup();
+    await user.click(screen.getByLabelText('The number and type of solutions'));
+    await user.click(screen.getByLabelText('1'));
+    await user.click(screen.getByRole('button', { name: 'Submit quiz' }));
+    await waitFor(() => expect(screen.getByText('Score: 2 / 2')).toBeInTheDocument());
+    const envelope = handleSubmit.mock.calls[0][0] as PracticeSubmissionEnvelope;
+    expect(envelope.parts).toEqual([
+      { partId: 'discriminant-purpose', rawAnswer: 'The number and type of solutions' },
+      { partId: 'zero-discriminant-real-solution-count', rawAnswer: '1' },
+    ]);
   });
 });

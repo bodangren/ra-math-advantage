@@ -22,7 +22,9 @@ import {
 import {
   getSelectedWorkedAcknowledgementHandler,
   isSelectedWorkedActivity,
+  loadLesson16QuizAuthority,
 } from "./activities";
+import { lesson16QuizPublicProps, LESSON_1_6_QUIZ_PHASE, LESSON_1_6_QUIZ_SEQUENCE, LESSON_1_6_QUIZ_SLUG } from "./lib/lesson_1_6_quiz";
 import {
   IM3_PILOT_NODE,
   IM3_TEACHER_LED_ACTIVITY_ID,
@@ -41,7 +43,7 @@ async function projectActivitySection(ctx: QueryCtx, section: {
   sequenceOrder: number;
   sectionType: string;
   content: unknown;
-}, selectedSourceSection: boolean) {
+}, selectedSourceSection: boolean, selectedLesson16Quiz = false) {
   if (section.sectionType !== "activity") return section;
   const content = section.content as { activityId?: Id<"activities">; componentKey?: string; stableActivityId?: string };
   const withoutProjectedIdentity = () => {
@@ -74,6 +76,11 @@ async function projectActivitySection(ctx: QueryCtx, section: {
         activityProps: activity.props,
       },
     };
+  }
+
+  if (selectedLesson16Quiz) {
+    if (!activityId || content.componentKey !== "comprehension-quiz" || !(await loadLesson16QuizAuthority(ctx, activityId))) return withoutProjectedIdentity();
+    return { ...section, content: { activityId: content.activityId, componentKey: "comprehension-quiz", activityProps: lesson16QuizPublicProps() } };
   }
 
   const mappings = Object.entries(IM3_QF_DRAFT_MAPPINGS).filter(([, mapping]) => (
@@ -213,7 +220,11 @@ export const getLessonProgress = internalQuery({
         }, lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
           && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER
           && section.sectionType === "activity"
-          && section.sequenceOrder === 2)));
+          && section.sequenceOrder === 2,
+          lesson.slug === LESSON_1_6_QUIZ_SLUG
+            && phase.phaseNumber === LESSON_1_6_QUIZ_PHASE
+            && section.sectionType === "activity"
+            && section.sequenceOrder === LESSON_1_6_QUIZ_SEQUENCE)));
       })
     );
     const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();

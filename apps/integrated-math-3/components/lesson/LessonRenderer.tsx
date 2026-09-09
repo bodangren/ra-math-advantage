@@ -8,7 +8,7 @@ import { PhaseCompleteButton } from './PhaseCompleteButton';
 import { LessonSkeleton } from './LessonSkeleton';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
 import { LessonChatbot } from '@/components/student/LessonChatbot';
-import { createServerOwnedActivitySubmission, getQuadraticFormulaAttempt, getSelectedWorkedAcknowledgement, startQuadraticFormulaAttempt, submitActivity, type PracticeMode, type QuadraticFormulaMode, type SubmitActivityInput } from '@/lib/activities/submission';
+import { createServerOwnedActivitySubmission, getLesson16QuizReceipt, getQuadraticFormulaAttempt, getSelectedWorkedAcknowledgement, isLesson16QuizSubmitReceipt, startQuadraticFormulaAttempt, submitActivity, type Lesson16QuizReceipt, type PracticeMode, type QuadraticFormulaMode, type SubmitActivityInput } from '@/lib/activities/submission';
 import { toConvexActivityId } from '@math-platform/practice-core';
 import { isPracticeSubmissionEnvelope, type PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
@@ -35,6 +35,20 @@ export interface LessonRendererProps {
   isLoading?: boolean;
   onLessonComplete?: (lessonId: string) => void;
   showTeacherPreviewBadge?: boolean;
+}
+
+const LESSON16_QUIZ_PUBLIC = { questions: [
+  { id: 'discriminant-purpose', type: 'multiple_choice', prompt: 'What does the discriminant tell you?', options: ['The sum of the roots', 'The number and type of solutions', 'The product of the roots', 'The axis of symmetry'] },
+  { id: 'zero-discriminant-real-solution-count', type: 'multiple_choice', prompt: 'If D = 0, how many real solutions are there?', options: ['0', '1', '2', 'Cannot determine'] },
+] };
+function isLesson16QuizPublicProps(value: unknown): boolean {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).join('|') !== 'questions') return false;
+  const questions = (value as { questions?: unknown }).questions;
+  return Array.isArray(questions) && questions.length === LESSON16_QUIZ_PUBLIC.questions.length && questions.every((question, index) => {
+    if (!question || typeof question !== 'object' || Array.isArray(question) || Object.keys(question).sort().join('|') !== 'id|options|prompt|type') return false;
+    const expected = LESSON16_QUIZ_PUBLIC.questions[index]; const candidate = question as Record<string, unknown>;
+    return candidate.id === expected.id && candidate.type === expected.type && candidate.prompt === expected.prompt && Array.isArray(candidate.options) && JSON.stringify(candidate.options) === JSON.stringify(expected.options);
+  });
 }
 
 /**
@@ -75,6 +89,12 @@ export function LessonRenderer({
   const quadraticRequestRevision = useRef(0);
   const quadraticStartInFlight = useRef(new Map<string, Promise<void>>());
   const [quadraticStartMessage, setQuadraticStartMessage] = useState<{ identity: string; message: string }>();
+  const [lesson16QuizReceiptState, setLesson16QuizReceiptState] = useState<{ identity: string; receipt: Lesson16QuizReceipt }>();
+  const [lesson16QuizPendingState, setLesson16QuizPendingState] = useState<{ identity: string; answers: Lesson16QuizReceipt['answers'] }>();
+  const quizRequests = useRef(new Map<string, { input: SubmitActivityInput; answers: Lesson16QuizReceipt['answers'] }>());
+  const quizInFlight = useRef(new Map<string, Promise<Lesson16QuizReceipt>>());
+  const quizIdentity = useRef('');
+  const quizRevision = useRef(0);
 
   const requiredActivityIds = useMemo(() => {
     if (!activePhase) return [];
@@ -92,6 +112,29 @@ export function LessonRenderer({
   const selectedQfActivityId = selectedQuadraticFormula?.activityId;
   const selectedQfMode = selectedQuadraticFormula?.mode;
   const selectedQfIdentity = selectedQfActivityId && selectedQfMode ? `${selectedQfActivityId}:${selectedQfMode}` : '';
+  const selectedLesson16Quiz = useMemo(() => {
+    if (lessonId !== 'module-1-lesson-6' || activePhase?.phaseNumber !== 10) return null;
+    const section = activePhase.sections.find((candidate): candidate is Extract<PhaseSection, { sectionType: 'activity' }> => candidate.sectionType === 'activity' && candidate.sequenceOrder === 2);
+    if (!section || section.content.componentKey !== 'comprehension-quiz' || !isLesson16QuizPublicProps(section.content.activityProps)) return null;
+    return section.content.activityId;
+  }, [activePhase, lessonId]);
+  const lesson16QuizReceipt = lesson16QuizReceiptState?.identity === selectedLesson16Quiz ? lesson16QuizReceiptState.receipt : undefined;
+  const lesson16QuizPendingAnswers = lesson16QuizPendingState?.identity === selectedLesson16Quiz ? lesson16QuizPendingState.answers : undefined;
+
+  useEffect(() => {
+    const activityId = selectedLesson16Quiz;
+    const identity = activityId ?? '';
+    quizIdentity.current = identity;
+    const revision = ++quizRevision.current;
+    if (!activityId) return;
+    let active = true;
+    void getLesson16QuizReceipt(activityId).then(receipt => {
+      if (!active || quizIdentity.current !== identity || quizRevision.current !== revision || !receipt) return;
+      setLesson16QuizReceiptState({ identity, receipt });
+      setCompletedActivities(previous => new Set([...previous, activityId]));
+    });
+    return () => { active = false; };
+  }, [selectedLesson16Quiz]);
   const quadraticFormulaAttempt = quadraticFormulaAttemptState?.identity === selectedQfIdentity
     ? quadraticFormulaAttemptState.attempt
     : undefined;
@@ -154,8 +197,8 @@ export function LessonRenderer({
 
   const allActivitiesComplete = useMemo(() => {
     if (requiredActivityIds.length === 0) return true;
-    return requiredActivityIds.every(id => completedActivities.has(id));
-  }, [requiredActivityIds, completedActivities]);
+    return requiredActivityIds.every(id => completedActivities.has(id) || (id === selectedLesson16Quiz && lesson16QuizReceipt !== undefined));
+  }, [requiredActivityIds, completedActivities, lesson16QuizReceipt, selectedLesson16Quiz]);
 
   const isPhaseGated = requiredActivityIds.length > 0 && !allActivitiesComplete && !activePhase?.completed;
 
@@ -248,6 +291,43 @@ export function LessonRenderer({
         status: 'submitted',
       };
     }
+    if (selectedLesson16Quiz === activityId) {
+      if (!isPracticeSubmissionEnvelope(payload) || payload.mode !== 'independent_practice' || payload.status !== 'submitted') throw new Error('Invalid Lesson 1.6 quiz submission');
+      const ids = ['discriminant-purpose', 'zero-discriminant-real-solution-count'];
+      if (Object.keys(payload.answers).sort().join('|') !== ids.slice().sort().join('|') || payload.parts.length !== 2 || new Set(payload.parts.map(part => part.partId)).size !== 2 || ids.some(id => {
+        const answer = payload.answers[id]; const part = payload.parts.find(candidate => candidate.partId === id);
+        return typeof answer !== 'string' || !part || part.rawAnswer !== answer || part.isCorrect !== undefined || part.score !== undefined || part.maxScore !== undefined;
+      })) throw new Error('Invalid Lesson 1.6 quiz submission');
+      const identity = activityId;
+      const requestKey = identity;
+      const stored = quizRequests.current.get(requestKey);
+      const answers = payload.answers as Lesson16QuizReceipt['answers'];
+      const frozen = stored ?? { input: structuredClone({ ...input, idempotencyKey: `lesson-1-6-quiz:${activityId}` }), answers: structuredClone(answers) };
+      quizRequests.current.set(requestKey, frozen);
+      setLesson16QuizPendingState({ identity, answers: frozen.answers });
+      const requestRevision = ++quizRevision.current;
+      const existing = quizInFlight.current.get(requestKey);
+      const request = existing ?? (async () => {
+        const result = await createServerOwnedActivitySubmission(frozen.input);
+        if (!result.success) throw new Error(result.error);
+        const candidate = { submissionId: result.submissionId, score: result.score, maxScore: result.maxScore };
+        if (!isLesson16QuizSubmitReceipt(candidate)) throw new Error('Quiz returned an invalid receipt');
+        return { ...candidate, answers: structuredClone(frozen.answers) };
+      })();
+      if (!existing) quizInFlight.current.set(requestKey, request);
+      try {
+        const receipt = await request;
+        if (quizIdentity.current === identity && quizRevision.current === requestRevision && quizRequests.current.get(requestKey) === frozen) {
+          setLesson16QuizReceiptState({ identity, receipt });
+          setCompletedActivities(previous => new Set([...previous, activityId]));
+          quizRequests.current.delete(requestKey);
+          setLesson16QuizPendingState(undefined);
+        }
+        return receipt;
+      } finally {
+        if (quizInFlight.current.get(requestKey) === request) quizInFlight.current.delete(requestKey);
+      }
+    }
     if (quadraticFormulaMode) {
       if (quadraticFormulaAttempt?.state !== 'pending') throw new Error('Quadratic Formula attempt is not pending');
       if (input.attemptNumber !== quadraticFormulaAttempt.attemptOrdinal) throw new Error('Submission attempt does not match the pending attempt');
@@ -286,7 +366,7 @@ export function LessonRenderer({
       throw new Error('Submission did not return a submission ID');
     }
     setCompletedActivities(prev => new Set([...prev, activityId]));
-  }, [activePhase, mode, quadraticFormulaAttempt, selectedWorkedSource, setQuadraticFormulaAttempt]);
+  }, [activePhase, mode, quadraticFormulaAttempt, selectedLesson16Quiz, selectedWorkedSource, setQuadraticFormulaAttempt]);
 
   const deliverSelectedWorked = useCallback(async () => {
     if (!selectedWorkedSource) return;
@@ -427,6 +507,8 @@ export function LessonRenderer({
               mode={mode}
               onActivitySubmit={handleActivitySubmit}
               quadraticFormulaAttempt={quadraticFormulaAttempt}
+              lesson16QuizReceipt={selectedLesson16Quiz ? lesson16QuizReceipt : undefined}
+              lesson16QuizPendingAnswers={lesson16QuizPendingAnswers}
             />
           )}
 

@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { seedLesson6 } from '@/convex/seed/seed_lesson_1_6';
 import type { SeedLesson, SeedPhase } from '@/convex/seed/types';
+import { lesson16QuizPrivateProps, lesson16QuizPublicProps } from '@/convex/lib/lesson_1_6_quiz';
 
 describe('seed-lesson-1-6', () => {
   describe('Lesson 1-6: Using the Quadratic Formula and the Discriminant', () => {
@@ -106,6 +107,13 @@ describe('seed-lesson-1-6', () => {
       expect(discriminantSection.content.componentKey).toBe('discriminant-analyzer');
       expect(validComponentKeys).toContain(discriminantSection.content.componentKey);
     });
+  });
+});
+
+describe('Lesson 1.6 quiz content', () => {
+  it('keeps the exact answer key private from the public projection', () => {
+    expect(lesson16QuizPrivateProps().questions.map(question => question.correctAnswer)).toEqual(['The number and type of solutions', '1']);
+    expect(JSON.stringify(lesson16QuizPublicProps())).not.toContain('correctAnswer');
   });
 });
 

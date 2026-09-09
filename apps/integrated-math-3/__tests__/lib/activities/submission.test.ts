@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { createServerOwnedActivitySubmission, getQuadraticFormulaAttempt, startQuadraticFormulaAttempt, submitActivity } from '@/lib/activities/submission';
+import { createServerOwnedActivitySubmission, getLesson16QuizReceipt, getQuadraticFormulaAttempt, startQuadraticFormulaAttempt, submitActivity } from '@/lib/activities/submission';
 import { practiceSubmissionEnvelopeSchema } from '@math-platform/practice-core/contract';
 
 global.fetch = vi.fn() as unknown as typeof fetch;
@@ -267,5 +267,25 @@ describe('quadratic-formula attempt helpers', () => {
     expect(JSON.parse(String(options.body))).not.toHaveProperty('pendingSubmissionId');
     vi.mocked(fetch).mockResolvedValueOnce({ ok: true, json: async () => ({ submissionId: 'other' }) } as Response);
     await expect(createServerOwnedActivitySubmission(input)).resolves.toMatchObject({ success: false, error: expect.stringMatching(/does not match/) });
+  });
+});
+
+describe('Lesson 1.6 quiz receipt helper', () => {
+  beforeEach(() => vi.clearAllMocks());
+
+  it('uses the explicit selector and accepts only the exact public receipt', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({ submissionId: 'sub:quiz', score: 2, maxScore: 2, answers: { 'discriminant-purpose': 'The number and type of solutions', 'zero-discriminant-real-solution-count': '1' } }) } as Response);
+    await expect(getLesson16QuizReceipt('activities:quiz')).resolves.toMatchObject({ submissionId: 'sub:quiz', score: 2 });
+    expect(fetch).toHaveBeenCalledWith('/api/activities/submissions?activityId=activities%3Aquiz&receipt=lesson-1-6-quiz');
+  });
+
+  it('fails closed for malformed or private receipt fields', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({ submissionId: 'sub:quiz', score: 2, maxScore: 2, answers: { 'discriminant-purpose': 'The number and type of solutions', 'zero-discriminant-real-solution-count': '1' }, correctAnswer: 'private' }) } as Response);
+    await expect(getLesson16QuizReceipt('activities:quiz')).resolves.toBeNull();
+  });
+
+  it('rejects an extra field in the POST receipt and preserves the retry key', async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({ submissionId: 'sub:quiz', score: 2, maxScore: 2, privateAnswer: 'secret' }) } as Response);
+    await expect(createServerOwnedActivitySubmission({ activityId: 'activities:quiz', mode: 'independent_practice', attemptNumber: 1, idempotencyKey: 'quiz-key', answers: { 'discriminant-purpose': 'x', 'zero-discriminant-real-solution-count': '1' }, parts: [{ partId: 'discriminant-purpose', rawAnswer: 'x' }, { partId: 'zero-discriminant-real-solution-count', rawAnswer: '1' }] })).resolves.toEqual({ success: false, error: 'Submission creation returned an invalid quiz receipt', idempotencyKey: 'quiz-key' });
   });
 });

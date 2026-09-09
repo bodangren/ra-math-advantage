@@ -3,7 +3,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { LessonRenderer, type LessonRendererProps } from '@/components/lesson/LessonRenderer';
 import type { PhaseSection } from '@/components/lesson/PhaseRenderer';
-import { createServerOwnedActivitySubmission, getQuadraticFormulaAttempt, startQuadraticFormulaAttempt, submitActivity } from '@/lib/activities/submission';
+import { createServerOwnedActivitySubmission, getLesson16QuizReceipt, getQuadraticFormulaAttempt, startQuadraticFormulaAttempt, submitActivity } from '@/lib/activities/submission';
+import { convexToJson, jsonToConvex } from 'convex/values';
 
 vi.mock('@/lib/activities/submission', () => ({
   submitActivity: vi.fn(),
@@ -11,12 +12,15 @@ vi.mock('@/lib/activities/submission', () => ({
   getSelectedWorkedAcknowledgement: vi.fn().mockResolvedValue(false),
   getQuadraticFormulaAttempt: vi.fn(),
   startQuadraticFormulaAttempt: vi.fn(),
+  getLesson16QuizReceipt: vi.fn().mockResolvedValue(null),
+  isLesson16QuizSubmitReceipt: (value: Record<string, unknown>) => typeof value.submissionId === 'string' && Number.isInteger(value.score) && value.maxScore === 2 && Object.keys(value).sort().join('|') === 'maxScore|score|submissionId',
 }));
 
 const mockSubmitActivity = vi.mocked(submitActivity);
 const mockCreateServerOwnedActivitySubmission = vi.mocked(createServerOwnedActivitySubmission);
 const mockGetQuadraticFormulaAttempt = vi.mocked(getQuadraticFormulaAttempt);
 const mockStartQuadraticFormulaAttempt = vi.mocked(startQuadraticFormulaAttempt);
+const mockGetLesson16QuizReceipt = vi.mocked(getLesson16QuizReceipt);
 vi.stubGlobal('crypto', { randomUUID: vi.fn(() => 'strict-receipt-key') });
 
 // Mock heavy sub-components
@@ -55,12 +59,14 @@ vi.mock('@/components/lesson/LessonStepper', () => ({
 
 vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/components/lesson/PhaseRenderer')>()),
-  PhaseRenderer: ({ phaseType, sections, onActivitySubmit, onActivityComplete, quadraticFormulaAttempt }: {
+  PhaseRenderer: ({ phaseType, sections, onActivitySubmit, onActivityComplete, quadraticFormulaAttempt, lesson16QuizReceipt, lesson16QuizPendingAnswers }: {
     phaseType: string;
     sections: Array<{ id: string; content: { activityId?: string; componentKey?: string; learningEvidenceMode?: string; payloadActivityId?: string; payloadOverrides?: Record<string, unknown>; capturePayload?: (payload: Record<string, unknown>) => void } }>;
     onActivitySubmit?: (activityId: string, payload: unknown) => void;
     onActivityComplete?: (activityId: string) => void;
     quadraticFormulaAttempt?: { state: string; pendingSubmissionId?: string; submissionId?: string; idempotencyKey?: string; props?: { equation?: string }; answers?: Record<string, unknown>; score?: number; maxScore?: number };
+    lesson16QuizReceipt?: { submissionId: string; score: number; maxScore: number };
+    lesson16QuizPendingAnswers?: Record<string, string>;
   }) => (
     <div
       data-testid="phase-renderer"
@@ -76,6 +82,9 @@ vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
       data-quadratic-answers={quadraticFormulaAttempt?.answers ? JSON.stringify(quadraticFormulaAttempt.answers) : undefined}
       data-quadratic-score={quadraticFormulaAttempt?.score}
       data-quadratic-max-score={quadraticFormulaAttempt?.maxScore}
+      data-quiz-submission-id={lesson16QuizReceipt?.submissionId}
+      data-quiz-score={lesson16QuizReceipt?.score}
+      data-quiz-pending-answers={lesson16QuizPendingAnswers ? JSON.stringify(lesson16QuizPendingAnswers) : undefined}
     >
       {sections.map((s) => (
         <button
@@ -93,14 +102,14 @@ vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
                 status: 'submitted',
                 attemptNumber: 1,
                 submittedAt: '2026-01-01T00:00:00.000Z',
-                answers: isQuadraticFormula ? { discriminant: '16', x1: '2', x2: '-2' } : { q1: 'A' },
+                answers: isQuadraticFormula ? { discriminant: '16', x1: '2', x2: '-2' } : s.content.componentKey === 'comprehension-quiz' ? { 'discriminant-purpose': 'The number and type of solutions', 'zero-discriminant-real-solution-count': '1' } : { q1: 'A' },
                 parts: isQuadraticFormula
                   ? [
                       { partId: 'discriminant', rawAnswer: '16' },
                       { partId: 'x1', rawAnswer: '2' },
                       { partId: 'x2', rawAnswer: '-2' },
                     ]
-                  : [{ partId: 'q1', rawAnswer: 'A', isCorrect: true, score: 1, maxScore: 1 }],
+                  : s.content.componentKey === 'comprehension-quiz' ? [{ partId: 'discriminant-purpose', rawAnswer: 'The number and type of solutions' }, { partId: 'zero-discriminant-real-solution-count', rawAnswer: '1' }] : [{ partId: 'q1', rawAnswer: 'A', isCorrect: true, score: 1, maxScore: 1 }],
                 timing: {
                   startedAt: '2026-01-01T00:00:00.000Z',
                   submittedAt: '2026-01-01T00:01:00.000Z',
@@ -194,6 +203,7 @@ describe('LessonRenderer - Activity Submission Flow', () => {
     mockSubmitActivity.mockResolvedValue({ success: true, submissionId: 'sub-123' });
     mockCreateServerOwnedActivitySubmission.mockReset();
     mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'qf-123', score: 3, maxScore: 3 });
+    mockGetLesson16QuizReceipt.mockReset().mockResolvedValue(null);
   });
 
   describe('activity submission wiring', () => {
@@ -829,4 +839,75 @@ describe('LessonRenderer strict quadratic-formula receipts', () => {
     expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
   });
 
+});
+
+describe('Lesson 1.6 quiz phase gate', () => {
+  const quizSection: PhaseSection = { id: 'quiz-section', sequenceOrder: 2, sectionType: 'activity', content: { componentKey: 'comprehension-quiz', activityId: 'activities:quiz', activityProps: jsonToConvex(convexToJson({ questions: [
+    { id: 'discriminant-purpose', type: 'multiple_choice', prompt: 'What does the discriminant tell you?', options: ['The sum of the roots', 'The number and type of solutions', 'The product of the roots', 'The axis of symmetry'] },
+    { id: 'zero-discriminant-real-solution-count', type: 'multiple_choice', prompt: 'If D = 0, how many real solutions are there?', options: ['0', '1', '2', 'Cannot determine'] },
+  ] } as never)) } };
+  beforeEach(() => {
+    mockCreateServerOwnedActivitySubmission.mockReset().mockResolvedValue({ success: true, submissionId: 'sub:quiz', score: 2, maxScore: 2 });
+    mockGetLesson16QuizReceipt.mockReset().mockResolvedValue(null);
+  });
+  it('keeps the phase gated until a valid server receipt returns', async () => {
+    mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'sub:quiz', score: 2, maxScore: 2 });
+    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }]} />);
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
+    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+    expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledOnce();
+  });
+  it('rejects a mismatched quiz payload activity before a network request', async () => {
+    const changed = { ...quizSection, content: { ...quizSection.content, payloadActivityId: 'activities:clone' } } as PhaseSection;
+    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [changed], status: 'current', completed: false }]} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
+    await act(async () => { await Promise.resolve(); });
+    expect(mockCreateServerOwnedActivitySubmission).not.toHaveBeenCalled();
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+  });
+  it('restores a valid GET receipt and unlocks the phase after reload', async () => {
+    mockGetLesson16QuizReceipt.mockResolvedValue({ submissionId: 'sub:saved', score: 1, maxScore: 2, answers: { 'discriminant-purpose': 'The sum of the roots', 'zero-discriminant-real-solution-count': '1' } });
+    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }]} />);
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-submission-id', 'sub:saved');
+  });
+  it('does not let a late GET overwrite a newer POST receipt', async () => {
+    let resolveGet!: (value: Awaited<ReturnType<typeof getLesson16QuizReceipt>>) => void;
+    mockGetLesson16QuizReceipt.mockReturnValue(new Promise(resolve => { resolveGet = resolve; }));
+    mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'sub:new', score: 2, maxScore: 2 });
+    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }]} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
+    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-submission-id', 'sub:new'));
+    await act(async () => resolveGet({ submissionId: 'sub:old', score: 0, maxScore: 2, answers: { 'discriminant-purpose': 'x', 'zero-discriminant-real-solution-count': '0' } }));
+    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-submission-id', 'sub:new');
+  });
+  it('keeps the frozen quiz request after a malformed receipt and retries it', async () => {
+    mockCreateServerOwnedActivitySubmission.mockResolvedValueOnce({ success: true, submissionId: 'sub:bad', score: 3, maxScore: 3 }).mockResolvedValueOnce({ success: true, submissionId: 'sub:good', score: 2, maxScore: 2 });
+    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }]} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
+    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
+    await act(async () => { await Promise.resolve(); });
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
+    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0]).toEqual(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]);
+  });
+  it('restores frozen pending answers after leaving and returning to the quiz phase', async () => {
+    let resolvePost!: (value: Awaited<ReturnType<typeof createServerOwnedActivitySubmission>>) => void;
+    mockCreateServerOwnedActivitySubmission.mockReturnValue(new Promise(resolve => { resolvePost = resolve; }));
+    const phases: LessonRendererProps['phases'] = [{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }, { phaseId: 'p11', phaseNumber: 11, phaseType: 'reflection', title: 'Reflection', sections: [textSection], status: 'available', completed: false }];
+    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={phases} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
+    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
+    fireEvent.click(screen.getByTestId('stepper-phase-11'));
+    fireEvent.click(screen.getByTestId('stepper-phase-10'));
+    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-pending-answers', JSON.stringify({ 'discriminant-purpose': 'The number and type of solutions', 'zero-discriminant-real-solution-count': '1' })));
+    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
+    expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1);
+    await act(async () => resolvePost({ success: true, submissionId: 'sub:good', score: 2, maxScore: 2 }));
+    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-submission-id', 'sub:good');
+  });
 });

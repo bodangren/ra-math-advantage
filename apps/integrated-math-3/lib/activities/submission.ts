@@ -91,6 +91,31 @@ export interface SubmitActivityResultError {
 
 export type SubmitActivityResult = SubmitActivityResultSuccess | SubmitActivityResultError;
 
+const lesson16QuizReceiptSchema = z.object({
+  submissionId: z.string().min(1),
+  score: z.number().int().min(0).max(2),
+  maxScore: z.literal(2),
+  answers: z.object({
+    'discriminant-purpose': z.string(),
+    'zero-discriminant-real-solution-count': z.string(),
+  }).strict(),
+}).strict();
+export type Lesson16QuizReceipt = z.infer<typeof lesson16QuizReceiptSchema>;
+
+/** Reads the newest authoritative Lesson 1.6 quiz receipt. */
+export async function getLesson16QuizReceipt(activityId: string): Promise<Lesson16QuizReceipt | null> {
+  try {
+    const response = await fetch(`/api/activities/submissions?activityId=${encodeURIComponent(activityId)}&receipt=lesson-1-6-quiz`);
+    if (!response.ok) return null;
+    const parsed = lesson16QuizReceiptSchema.safeParse(await response.json());
+    return parsed.success ? parsed.data : null;
+  } catch { return null; }
+}
+
+export function isLesson16QuizSubmitReceipt(value: unknown): value is Pick<Lesson16QuizReceipt, 'submissionId' | 'score' | 'maxScore'> {
+  return z.object({ submissionId: z.string().min(1), score: z.number().int().min(0).max(2), maxScore: z.literal(2) }).strict().safeParse(value).success;
+}
+
 /** Checks one Guided discriminant without exposing the generated answer. */
 export async function checkQuadraticFormulaDiscriminant(input: {
   activityId: string;
@@ -163,6 +188,10 @@ export async function createServerOwnedActivitySubmission(
         error: 'Submission creation did not return a server-owned submission ID',
         ...(idempotencyKey ? { idempotencyKey } : {}),
       };
+    }
+    const lesson16Quiz = Object.keys(input.answers).sort().join('|') === 'discriminant-purpose|zero-discriminant-real-solution-count';
+    if (lesson16Quiz && !isLesson16QuizSubmitReceipt(data)) {
+      return { success: false, error: 'Submission creation returned an invalid quiz receipt', ...(idempotencyKey ? { idempotencyKey } : {}) };
     }
     if (input.pendingSubmissionId && data.submissionId !== input.pendingSubmissionId) {
       return { success: false, error: 'Submission receipt does not match the pending attempt', ...(idempotencyKey ? { idempotencyKey } : {}) };

@@ -29,6 +29,8 @@ import {
 } from "@/convex/objectiveProficiency";
 import { getStudentKnowledgeStateHandler } from "@/convex/student/knowledge_state";
 import { submitIm3PublishedEvidenceHandler } from "@/convex/learningEvidence";
+import { gradeLesson16Quiz, isLesson16QuizRequest } from "@/convex/lib/lesson_1_6_quiz";
+import { getLesson16QuizReceiptHandler } from "@/convex/activities";
 
 function memoryContext() {
   const rows: Record<string, Array<Record<string, any>>> = {};
@@ -587,6 +589,55 @@ describe("draft quadratic-formula server writer", () => {
     await expect(submitIm3PublishedEvidenceHandler(f.ctx as never, { learnerId: f.userId as never, submissionId: stored.submissionId as never })).resolves.toEqual({ accepted: false, reason: 'submission_not_found' });
     for (const table of ['learning_evidence', 'learning_evidence_receipts', 'student_competency', 'srs_cards', 'srs_review_log']) expect(f.table(table)).toHaveLength(0);
     expect(f.scheduled).toHaveLength(0);
+  });
+});
+
+describe("Lesson 1.6 quiz request authority", () => {
+  const quizEnvelope = () => ({ contractVersion: "practice.v1", activityId: "activities:quiz", mode: "independent_practice", status: "submitted", attemptNumber: 1, submittedAt: "2026-09-09T00:00:00.000Z", answers: { "discriminant-purpose": "The number and type of solutions", "zero-discriminant-real-solution-count": "1" }, parts: [{ partId: "discriminant-purpose", rawAnswer: "The number and type of solutions" }, { partId: "zero-discriminant-real-solution-count", rawAnswer: "1" }] } as any);
+  it("rejects changed, duplicate, extra, and client-graded parts before grading", () => {
+    expect(isLesson16QuizRequest(quizEnvelope())).toBe(true);
+    for (const parts of [quizEnvelope().parts.slice(0, 1), [quizEnvelope().parts[0], quizEnvelope().parts[0]], [...quizEnvelope().parts, { partId: "extra", rawAnswer: "x" }], [{ ...quizEnvelope().parts[0], score: 1 }, quizEnvelope().parts[1]]]) {
+      const value = { ...quizEnvelope(), parts };
+      expect(isLesson16QuizRequest(value)).toBe(false);
+      expect(() => gradeLesson16Quiz(value)).toThrow();
+    }
+  });
+  it("writes one server grade, replays it, and reads the newest public receipt", async () => {
+    const f = memoryContext();
+    const userId = "profiles:quiz"; const activityId = "activities:quiz";
+    f.table("profiles").push({ _id: userId, username: "quiz", role: "student", organizationId: "org" });
+    f.table("auth_credentials").push({ _id: "auth:quiz", profileId: userId, username: "quiz", role: "student", organizationId: "org", isActive: true });
+    f.table("lessons").push({ _id: "lessons:quiz", slug: "module-1-lesson-6" });
+    f.table("lesson_versions").push({ _id: "lesson_versions:quiz", lessonId: "lessons:quiz", version: 1, status: "published" });
+    f.table("phase_versions").push({ _id: "phase_versions:quiz", lessonVersionId: "lesson_versions:quiz", phaseNumber: 10 });
+    f.table("activities").push({ _id: activityId, componentKey: "comprehension-quiz", props: { questions: [{ id: "discriminant-purpose", type: "multiple_choice", prompt: "What does the discriminant tell you?", options: ["The sum of the roots", "The number and type of solutions", "The product of the roots", "The axis of symmetry"], correctAnswer: "The number and type of solutions" }, { id: "zero-discriminant-real-solution-count", type: "multiple_choice", prompt: "If D = 0, how many real solutions are there?", options: ["0", "1", "2", "Cannot determine"], correctAnswer: "1" }] }, gradingConfig: { autoGrade: true, partialCredit: true } });
+    f.table("phase_sections").push({ _id: "phase_sections:quiz", phaseVersionId: "phase_versions:quiz", sequenceOrder: 2, sectionType: "activity", content: { activityId, componentKey: "comprehension-quiz" } });
+    const projected = await (getLessonProgress as unknown as { _handler(ctx: unknown, args: unknown): Promise<any> })._handler(f.ctx, { userId, lessonIdentifier: "module-1-lesson-6" });
+    const publicContent = projected.phases[0].sections[0].content;
+    expect(publicContent).toEqual({ activityId, componentKey: "comprehension-quiz", activityProps: { questions: [{ id: "discriminant-purpose", type: "multiple_choice", prompt: "What does the discriminant tell you?", options: ["The sum of the roots", "The number and type of solutions", "The product of the roots", "The axis of symmetry"] }, { id: "zero-discriminant-real-solution-count", type: "multiple_choice", prompt: "If D = 0, how many real solutions are there?", options: ["0", "1", "2", "Cannot determine"] }] } });
+    expect(JSON.stringify(projected)).not.toContain("correctAnswer");
+    f.table("phase_sections").push({ _id: "phase_sections:quiz-duplicate", phaseVersionId: "phase_versions:quiz", sequenceOrder: 3, sectionType: "activity", content: { activityId, componentKey: "comprehension-quiz" } });
+    const withDuplicate = await (getLessonProgress as unknown as { _handler(ctx: unknown, args: unknown): Promise<any> })._handler(f.ctx, { userId, lessonIdentifier: "module-1-lesson-6" });
+    expect(withDuplicate.phases[0].sections.filter((section: any) => section.content.activityProps)).toHaveLength(1);
+    const args = { userId, activityId, idempotencyKey: "quiz-key", submissionData: quizEnvelope() } as never;
+    const first = await rawCreateServerOwnedSubmissionHandler(f.ctx as never, args);
+    const replay = await rawCreateServerOwnedSubmissionHandler(f.ctx as never, args);
+    expect(replay).toEqual(first);
+    expect(f.table("activity_submissions")).toHaveLength(1);
+    expect(f.table("activity_submissions")[0].submissionData.parts.map((part: any) => part.isCorrect)).toEqual([true, true]);
+    await expect(getLesson16QuizReceiptHandler(f.ctx as never, { userId, activityId } as never)).resolves.toMatchObject({ submissionId: first.submissionId, score: 2, maxScore: 2 });
+    f.table("activity_submissions").push({ _id: "activity_submissions:malformed", userId, activityId, createdAt: 99, submissionData: {} });
+    await expect(getLesson16QuizReceiptHandler(f.ctx as never, { userId, activityId } as never)).resolves.toBeNull();
+    for (const table of ["learning_evidence", "srs_cards", "srs_review_logs", "student_competency", "scheduled_practice"]) expect(f.table(table)).toHaveLength(0);
+  });
+  it("rejects numeric quiz answers before a write", async () => {
+    const value = quizEnvelope();
+    value.answers["zero-discriminant-real-solution-count"] = 1;
+    value.parts[1].rawAnswer = 1;
+    expect(isLesson16QuizRequest(value)).toBe(false);
+    value.answers["zero-discriminant-real-solution-count"] = "unknown";
+    value.parts[1].rawAnswer = "unknown";
+    expect(isLesson16QuizRequest(value)).toBe(false);
   });
 });
 

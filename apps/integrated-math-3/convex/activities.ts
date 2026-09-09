@@ -9,6 +9,8 @@ import { checkServerOwnedQuadraticDiscriminant, gradeServerOwnedSubmission, IM3_
 import nodesDocument from "../curriculum/skill-graph/nodes.json";
 import blueprintsDocument from "../curriculum/skill-graph/blueprints.json";
 import { IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, IM3_PILOT_NODE, IM3_TEACHER_LED_ACTIVITY_ID } from "../lib/practice/learning-evidence-pilot";
+import { resolveLatestPublishedLessonVersion } from "../lib/progress/published-curriculum";
+import { canonicalLesson16QuizRequest, gradeLesson16Quiz, isExactLesson16QuizProps, isLesson16QuizRequest, LESSON_1_6_QUIZ_PHASE, LESSON_1_6_QUIZ_SEQUENCE, LESSON_1_6_QUIZ_SLUG, validLesson16QuizRow } from "./lib/lesson_1_6_quiz";
 
 /**
  * Internal query that returns the in-progress spreadsheet draft for a
@@ -510,6 +512,23 @@ type ServerOwnedSubmissionArgs = {
   idempotencyKey: string;
   pendingSubmissionId?: Id<"activity_submissions">;
 };
+
+export async function loadLesson16QuizAuthority(ctx: QueryCtx, activityId: Id<"activities">) {
+  const lesson = await ctx.db.query("lessons").withIndex("by_slug", q => q.eq("slug", LESSON_1_6_QUIZ_SLUG)).unique();
+  if (!lesson) return null;
+  const versions = await ctx.db.query("lesson_versions").withIndex("by_lesson", q => q.eq("lessonId", lesson._id)).collect();
+  const selected = resolveLatestPublishedLessonVersion(versions);
+  if (!selected) return null;
+  const phase = await ctx.db.query("phase_versions").withIndex("by_lesson_version_and_phase", q => q.eq("lessonVersionId", selected._id).eq("phaseNumber", LESSON_1_6_QUIZ_PHASE)).unique();
+  if (!phase) return null;
+  const sections = await ctx.db.query("phase_sections").withIndex("by_phase_version", q => q.eq("phaseVersionId", phase._id)).collect();
+  const sequenceSections = sections.filter(section => section.sequenceOrder === LESSON_1_6_QUIZ_SEQUENCE && section.sectionType === "activity");
+  const matches = sequenceSections.filter(section => (section.content as { activityId?: unknown; componentKey?: unknown }).activityId === activityId && (section.content as { componentKey?: unknown }).componentKey === "comprehension-quiz");
+  const activity = await ctx.db.get(activityId);
+  const grading = activity?.gradingConfig as Record<string, unknown> | undefined;
+  if (sequenceSections.length !== 1 || matches.length !== 1 || !activity || activity.componentKey !== "comprehension-quiz" || !isExactLesson16QuizProps(activity.props) || Object.keys(grading ?? {}).sort().join("|") !== "autoGrade|partialCredit" || grading?.autoGrade !== true || grading.partialCredit !== true || activity.stableActivityId !== undefined || activity.masteryNodeId !== undefined || activity.learningEvidenceMode !== undefined || activity.approval !== undefined || activity.srsEligible !== undefined) return null;
+  return activity;
+}
 function canonicalPayload(value: PracticeSubmissionEnvelope): string {
   const parts = [...value.parts].sort((a, b) => a.partId.localeCompare(b.partId)).map(({ partId, rawAnswer, hintsUsed, revealStepsSeen, changedCount, firstInteractionAt, answeredAt, wallClockMs, activeMs }) => ({ partId, rawAnswer, hintsUsed, revealStepsSeen, changedCount, firstInteractionAt, answeredAt, wallClockMs, activeMs }));
   return JSON.stringify({ contractVersion: value.contractVersion, activityId: value.activityId, mode: value.mode, answers: value.answers, parts });
@@ -1125,10 +1144,13 @@ export async function createServerOwnedSubmissionHandler(
   const isQf = Boolean(activity && qfMapping && (activity.stableActivityId === qfMapping.stableActivityId
     || (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula")));
   const isWorked = args.submissionData.mode === "worked_example";
+  const isQuiz = activity?.componentKey === "comprehension-quiz";
   let qfPrivateGenerator: { generatorKey: "quadratic-formula"; seed: number } | undefined;
   if (isQf && activity && qfMapping) {
     validateQfEnvelope(args.submissionData);
     qfPrivateGenerator = await loadQuadraticFormulaAuthority(ctx, activity, args.submissionData.mode as keyof typeof IM3_QF_DRAFT_MAPPINGS, publication);
+  } else if (isQuiz) {
+    if (args.pendingSubmissionId || !isLesson16QuizRequest(args.submissionData) || !(await loadLesson16QuizAuthority(ctx, args.activityId))) throw new Error("Invalid Lesson 1.6 quiz submission");
   } else if (isWorked) {
     if (!isSelectedWorkedAcknowledgement(args.submissionData))
       throw new Error("Invalid selected IM3 Worked acknowledgement");
@@ -1143,7 +1165,7 @@ export async function createServerOwnedSubmissionHandler(
     args.submissionData.mode === "guided_practice"
       ? IM3_GUIDED_PRACTICE_ACTIVITY_ID
       : IM3_MASTERY_ADVANTAGE_ACTIVITY_ID;
-  if (isQf) {
+  if (isQf || isQuiz) {
     // The draft authority was validated above. It does not use the approved pilot gate.
   } else if (isWorked) {
     if (!activity || !isIm3GraphPilotPublished(publication) || !isSelectedWorkedActivity(activity))
@@ -1203,14 +1225,15 @@ export async function createServerOwnedSubmissionHandler(
       );
     }
     if (
-      (isQf ? canonicalQfPayload : isWorked ? canonicalWorkedPayload : canonicalPayload)(
+      (isQf ? canonicalQfPayload : isQuiz ? canonicalLesson16QuizRequest : isWorked ? canonicalWorkedPayload : canonicalPayload)(
         existing.submissionData as PracticeSubmissionEnvelope,
-      ) !== (isQf ? canonicalQfPayload : isWorked ? canonicalWorkedPayload : canonicalPayload)(args.submissionData)
+      ) !== (isQf ? canonicalQfPayload : isQuiz ? canonicalLesson16QuizRequest : isWorked ? canonicalWorkedPayload : canonicalPayload)(args.submissionData)
     )
       throw new Error("idempotency_conflict");
     if (existing.attemptOrdinal === undefined
       || (!isWorked && (existing.score === undefined || existing.maxScore === undefined)))
       throw new Error("Stored IM3 submission is incomplete");
+    if (isQuiz && !validLesson16QuizRow(existing, String(args.userId), String(args.activityId))) throw new Error("Stored Lesson 1.6 quiz submission is incomplete");
     if (isWorked) {
       if (existing.score !== undefined || existing.maxScore !== undefined || existing.gradedAt !== undefined)
         throw new Error("Stored IM3 Worked acknowledgement is graded");
@@ -1283,7 +1306,7 @@ export async function createServerOwnedSubmissionHandler(
       "Pending handle is only valid for quadratic-formula submissions",
     );
   }
-  const graded = gradeServerOwnedSubmission(
+  const graded = isQuiz ? (() => { const submissionData = gradeLesson16Quiz(args.submissionData); return { submissionData, score: submissionData.parts.reduce((sum, part) => sum + (part.score ?? 0), 0), maxScore: 2, masteryContractVersion: undefined }; })() : gradeServerOwnedSubmission(
     {
       id: String(activity!._id),
       stableActivityId: activity!.stableActivityId,
@@ -1478,4 +1501,31 @@ export const getSelectedWorkedAcknowledgement = internalQuery({
     acknowledged: v.literal(true),
   })),
   handler: getSelectedWorkedAcknowledgementHandler,
+});
+
+export async function getLesson16QuizReceiptHandler(
+  ctx: QueryCtx,
+  args: { userId: Id<"profiles">; activityId: Id<"activities"> },
+) {
+  try { await requireActiveSubmissionStudent(ctx, args.userId); } catch { return null; }
+  if (!(await loadLesson16QuizAuthority(ctx, args.activityId))) return null;
+  const row = await ctx.db.query("activity_submissions")
+    .withIndex("by_user_and_activity", query => query.eq("userId", args.userId).eq("activityId", args.activityId))
+    .order("desc").first();
+  if (!row || !validLesson16QuizRow(row, String(args.userId), String(args.activityId))) return null;
+  return {
+    submissionId: row._id,
+    score: row.score!,
+    maxScore: 2 as const,
+    answers: {
+      "discriminant-purpose": row.submissionData.answers["discriminant-purpose"] as string,
+      "zero-discriminant-real-solution-count": row.submissionData.answers["zero-discriminant-real-solution-count"] as string,
+    },
+  };
+}
+
+export const getLesson16QuizReceipt = internalQuery({
+  args: { userId: v.id("profiles"), activityId: v.id("activities") },
+  returns: v.union(v.null(), v.object({ submissionId: v.id("activity_submissions"), score: v.number(), maxScore: v.literal(2), answers: v.object({ "discriminant-purpose": v.string(), "zero-discriminant-real-solution-count": v.string() }) })),
+  handler: getLesson16QuizReceiptHandler,
 });

@@ -7,6 +7,7 @@ import { VideoPlayer } from './VideoPlayer';
 import { ActivityRenderer } from './ActivityRenderer';
 import { checkQuadraticFormulaDiscriminant } from '@/lib/activities/submission';
 import type { QuadraticFormulaAttempt, QuadraticFormulaPendingAttempt } from '@/lib/activities/submission';
+import type { Lesson16QuizReceipt } from '@/lib/activities/submission';
 export type QuadraticFormulaAttemptView = QuadraticFormulaAttempt | (Omit<QuadraticFormulaPendingAttempt, 'state'> & { state: 'saved-awaiting-details'; answers: Record<string, unknown>; score?: number; maxScore?: number; submissionId: string });
 import { ContentBlockErrorBoundary } from './ContentBlockErrorBoundary';
 import { IM3_TEACHER_LED_ACTIVITY_ID } from '@/lib/practice/learning-evidence-pilot';
@@ -96,9 +97,11 @@ export interface PhaseRendererProps {
   lessonId?: string;
   phaseNumber?: number;
   mode?: 'teaching' | 'guided' | 'practice';
-  onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
+  onActivitySubmit?: (activityId: string, payload: unknown) => unknown | Promise<unknown>;
   onActivityComplete?: (activityId: string) => void;
   quadraticFormulaAttempt?: QuadraticFormulaAttemptView;
+  lesson16QuizReceipt?: Lesson16QuizReceipt;
+  lesson16QuizPendingAnswers?: Lesson16QuizReceipt['answers'];
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -118,6 +121,8 @@ export function PhaseRenderer({
   onActivitySubmit,
   onActivityComplete,
   quadraticFormulaAttempt,
+  lesson16QuizReceipt,
+  lesson16QuizPendingAnswers,
 }: PhaseRendererProps) {
   if (sections.length === 0) {
     return (
@@ -140,6 +145,8 @@ export function PhaseRenderer({
               onActivitySubmit={onActivitySubmit}
               onActivityComplete={onActivityComplete}
               quadraticFormulaAttempt={quadraticFormulaAttempt}
+              lesson16QuizReceipt={lesson16QuizReceipt}
+              lesson16QuizPendingAnswers={lesson16QuizPendingAnswers}
             />
           </ContentBlockErrorBoundary>
         ))}
@@ -164,14 +171,18 @@ function SectionBlock({
   onActivitySubmit,
   onActivityComplete,
   quadraticFormulaAttempt,
+  lesson16QuizReceipt,
+  lesson16QuizPendingAnswers,
 }: {
   section: PhaseSection;
   lessonId?: string;
   phaseNumber?: number;
   mode: 'teaching' | 'guided' | 'practice';
-  onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
+  onActivitySubmit?: (activityId: string, payload: unknown) => unknown | Promise<unknown>;
   onActivityComplete?: (activityId: string) => void;
   quadraticFormulaAttempt?: PhaseRendererProps['quadraticFormulaAttempt'];
+  lesson16QuizReceipt?: Lesson16QuizReceipt;
+  lesson16QuizPendingAnswers?: Lesson16QuizReceipt['answers'];
 }) {
   switch (section.sectionType) {
     case 'text':
@@ -231,6 +242,8 @@ function SectionBlock({
           activityProps={selectedProps}
           pendingSubmissionId={pending?.pendingSubmissionId}
           attemptOrdinal={pending?.attemptOrdinal}
+          quizReceipt={section.content.componentKey === 'comprehension-quiz' ? lesson16QuizReceipt : undefined}
+          quizPendingAnswers={section.content.componentKey === 'comprehension-quiz' ? lesson16QuizPendingAnswers : undefined}
           onSubmit={onActivitySubmit ? handleSubmit : undefined}
           onComplete={handleComplete}
           onCheckDiscriminant={quadraticFormulaMode === 'guided'

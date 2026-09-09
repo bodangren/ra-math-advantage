@@ -7,6 +7,7 @@ import {
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
 } from '@math-platform/practice-core/contract';
+import type { Lesson16QuizReceipt } from '@/lib/activities/submission';
 
 export interface ActivityRendererProps {
   componentKey: string;
@@ -14,11 +15,13 @@ export interface ActivityRendererProps {
   lessonId?: string;
   phaseNumber?: number;
   mode?: 'teaching' | 'guided' | 'practice';
-  onSubmit?: (payload: unknown) => void | Promise<void>;
+  onSubmit?: (payload: unknown) => unknown | Promise<unknown>;
   onComplete?: () => void;
   onCheckDiscriminant?: (rawAnswer: string) => Promise<boolean>;
   pendingSubmissionId?: string;
   attemptOrdinal?: number;
+  quizReceipt?: Lesson16QuizReceipt;
+  quizPendingAnswers?: Lesson16QuizReceipt['answers'];
   /** Optional activity-specific configuration props (e.g. equation, questions,
    *  template). Forwarded to the registered activity component via spread, so
    *  authored/previewed content reaches the same rendering path a student sees. */
@@ -40,6 +43,8 @@ export function ActivityRenderer({
   onCheckDiscriminant,
   pendingSubmissionId,
   attemptOrdinal,
+  quizReceipt,
+  quizPendingAnswers,
   activityProps,
 }: ActivityRendererProps) {
   const isStudentContext = mode !== 'teaching';
@@ -52,7 +57,7 @@ export function ActivityRenderer({
   const quadraticIdentity = `${activityId}:${mode}:${pendingSubmissionId ?? ''}`;
 
   const handleSubmit = useCallback(
-    (payload: unknown): void | Promise<void> => {
+    (payload: unknown): unknown | Promise<unknown> => {
       if (!onSubmit) return;
       const parsed = practiceSubmissionEnvelopeSchema.safeParse(payload);
       if (isStudentContext && parsed.success) {
@@ -94,11 +99,13 @@ export function ActivityRenderer({
       <Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Loading activity…</div>}>
         {React.createElement(ActivityComponent, {
           ...(activityProps ?? {}),
-          key: componentKey === 'quadratic-formula' ? quadraticIdentity : undefined,
+          key: componentKey === 'quadratic-formula' ? quadraticIdentity : componentKey === 'comprehension-quiz' ? quizReceipt?.submissionId : undefined,
           activityId,
           mode,
           pendingSubmissionId,
           attemptOrdinal,
+          quizReceipt,
+          quizPendingAnswers,
           onSubmit: onSubmit ? handleSubmit : undefined,
           onComplete,
           onCheckDiscriminant,

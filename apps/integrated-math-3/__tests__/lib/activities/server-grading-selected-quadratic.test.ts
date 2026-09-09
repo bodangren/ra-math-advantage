@@ -9,6 +9,7 @@ import {
   IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
   IM3_PILOT_NODE,
 } from "@/lib/practice/learning-evidence-pilot";
+import { gradeLesson16Quiz } from "@/convex/lib/lesson_1_6_quiz";
 
 const POINTS = [
   { x: -2, y: -5 },
@@ -333,5 +334,20 @@ describe("selected IM3 quadratic server grader", () => {
     expect(() =>
       gradeServerOwnedSubmission({ ...ACTIVITY, gradingConfig }, envelope()),
     ).toThrow("IM3 pilot activity is missing canonical server grading data");
+  });
+});
+
+describe("Lesson 1.6 private quiz grader", () => {
+  it("grades all 16 ordered answer pairs with the required totals", () => {
+    const first = ["The sum of the roots", "The number and type of solutions", "The product of the roots", "The axis of symmetry"];
+    const second = ["0", "1", "2", "Cannot determine"];
+    const scores = first.flatMap(left => second.map(right => {
+      const answers = { "discriminant-purpose": left, "zero-discriminant-real-solution-count": right };
+      const envelope = { contractVersion: "practice.v1", activityId: "activities:quiz", mode: "independent_practice", status: "submitted", attemptNumber: 1, submittedAt: "2026-09-09T00:00:00.000Z", answers, parts: Object.entries(answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer })) } as unknown as PracticeSubmissionEnvelope;
+      return gradeLesson16Quiz(envelope).parts.reduce((sum, part) => sum + (part.score ?? 0), 0);
+    }));
+    expect(scores.filter(score => score === 0)).toHaveLength(9);
+    expect(scores.filter(score => score === 1)).toHaveLength(6);
+    expect(scores.filter(score => score === 2)).toHaveLength(1);
   });
 });

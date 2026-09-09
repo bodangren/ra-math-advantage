@@ -1,13 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-const mocks = vi.hoisted(() => ({ auth: vi.fn(), mutate: vi.fn() }));
+const mocks = vi.hoisted(() => ({ auth: vi.fn(), mutate: vi.fn(), query: vi.fn() }));
 vi.mock("@/lib/auth/server", () => ({
   requireStudentRequestClaims: mocks.auth,
 }));
 vi.mock("@/lib/convex/server", () => ({
-  internal: { activities: { createServerOwnedSubmission: "selected-writer" } },
+  internal: { activities: { createServerOwnedSubmission: "selected-writer", getSelectedWorkedAcknowledgement: "worked-reader", getLesson16QuizReceipt: "quiz-reader" } },
   fetchInternalMutation: mocks.mutate,
+  fetchInternalQuery: mocks.query,
 }));
-import { POST } from "@/app/api/activities/submissions/route";
+import { GET, POST } from "@/app/api/activities/submissions/route";
 const points = [
   { x: -2, y: -5 },
   { x: -1, y: -2 },
@@ -43,9 +44,29 @@ beforeEach(() => {
     .mockReset()
     .mockResolvedValue({ sub: "profiles:student", role: "student" });
   mocks.mutate.mockReset().mockResolvedValue({
+    id: "activity_submissions:physical",
     submissionId: "activity_submissions:physical",
     score: 2,
     maxScore: 2,
+  });
+  mocks.query.mockReset().mockResolvedValue(null);
+});
+
+describe("Lesson 1.6 quiz route", () => {
+  it("uses the explicit receipt selector and rejects unknown selectors", async () => {
+    mocks.query.mockResolvedValue({ submissionId: "activity_submissions:quiz", score: 1, maxScore: 2, answers: { "discriminant-purpose": "x", "zero-discriminant-real-solution-count": "1" } });
+    const response = await GET(new Request("http://local/api/activities/submissions?activityId=activities%3Aquiz&receipt=lesson-1-6-quiz"));
+    expect(response.status).toBe(200);
+    expect(mocks.query).toHaveBeenCalledWith("quiz-reader", expect.objectContaining({ activityId: "activities:quiz" }));
+    expect((await GET(new Request("http://local/api/activities/submissions?activityId=activities%3Aquiz&receipt=unknown"))).status).toBe(400);
+  });
+
+  it("accepts the exact ungraded quiz request and rejects a client grade", async () => {
+    const quiz = envelope({ activityId: "activities:quiz", answers: { "discriminant-purpose": "The sum of the roots", "zero-discriminant-real-solution-count": "1" }, parts: [{ partId: "discriminant-purpose", rawAnswer: "The sum of the roots" }, { partId: "zero-discriminant-real-solution-count", rawAnswer: "1" }] });
+    expect((await POST(request(quiz))).status).toBe(200);
+    expect((await POST(request({ ...quiz, parts: [{ ...quiz.parts[0], score: 1 }, quiz.parts[1]] }))).status).toBe(400);
+    const unknown = { ...quiz, answers: { ...quiz.answers, "discriminant-purpose": "Unknown choice" }, parts: [{ partId: "discriminant-purpose", rawAnswer: "Unknown choice" }, quiz.parts[1]] };
+    expect((await POST(request(unknown))).status).toBe(400);
   });
 });
 describe("selected quadratic submission route", () => {

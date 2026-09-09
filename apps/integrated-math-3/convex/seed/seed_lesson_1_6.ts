@@ -10,6 +10,7 @@ import { internalMutation } from "../_generated/server";
 import type { MutationCtx } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
+import { lesson16QuizPrivateProps } from "../lib/lesson_1_6_quiz";
 
 interface SeedLesson6Result {
   lessonId: Id<"lessons">;
@@ -413,24 +414,7 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
             sectionType: "activity" as const,
             content: {
               componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    id: "discriminant-purpose",
-                    type: "multiple_choice" as const,
-                    prompt: "What does the discriminant tell you?",
-                    options: ["The sum of the roots", "The number and type of solutions", "The product of the roots", "The axis of symmetry"],
-                    correctAnswer: "The number and type of solutions",
-                  },
-                  {
-                    id: "zero-discriminant-real-solution-count",
-                    type: "multiple_choice" as const,
-                    prompt: "If D = 0, how many real solutions are there?",
-                    options: ["0", "1", "2", "Cannot determine"],
-                    correctAnswer: "1",
-                  },
-                ],
-              },
+              props: lesson16QuizPrivateProps(),
             },
           },
         ],
