@@ -1,6 +1,9 @@
 'use client';
 
-import { FFT_COMPONENT_SUMMARIES } from '@/lib/proficiency/component-summaries';
+import {
+  FFT_2022_RATING_LEVELS,
+  FFT_2022_RUBRIC_DESCRIPTORS,
+} from '@/lib/proficiency/fft-rubric-descriptors';
 import type { DanielsonComponentId } from '@/lib/proficiency/graph';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
@@ -195,7 +198,7 @@ export function ObservationForm({
         <p><a href="https://danielsongroup.org/the-framework-for-teaching/" target="_blank" rel="noopener noreferrer">Framework for Teaching reference</a></p>
       </details>
       {items.map((item, index) => {
-        const componentSummary = FFT_COMPONENT_SUMMARIES[item.componentId.replace('danielson.framework.component.', '') as DanielsonComponentId];
+        const componentRubric = FFT_2022_RUBRIC_DESCRIPTORS[item.componentId.replace('danielson.framework.component.', '') as DanielsonComponentId];
         const title = item.skillTitle ?? item.skillId ?? item.componentTitle;
         const groupId = `observation-item-${item.itemId}`;
         const errorId = `${groupId}-error`;
@@ -217,10 +220,15 @@ export function ObservationForm({
               <p><span className="status attention">{reasonLabel(item.priorityReason)}</span></p>
             ) : null}
             {item.skillId ? <p><Link href={learnHref(item.skillId)} target="_blank" rel="noopener noreferrer">Learn {title}</Link></p> : null}
-            {componentSummary ? <details>
-              <summary>FFT 2022 component summary</summary>
-              <p>{componentSummary}</p>
-              <p>This summary is not a rating descriptor. Compare the evidence with the full FFT 2022 rubric before you rate.</p>
+            {componentRubric ? <details>
+              <summary>FFT 2022 rating descriptors</summary>
+              <p>Compare the observed evidence with each descriptor before you select a rating.</p>
+              <dl className="rubric-descriptors">
+                {FFT_2022_RATING_LEVELS.map((level) => <div key={level.id}>
+                  <dt>{level.score} — {level.label}</dt>
+                  <dd>{componentRubric.descriptors[level.id]}</dd>
+                </div>)}
+              </dl>
               <a href="https://danielsongroup.org/the-framework-for-teaching/" target="_blank" rel="noopener noreferrer">Open the official FFT reference</a>
             </details> : null}
             <div className="rating-options" aria-label={`Outcome for ${title}`}>

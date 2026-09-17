@@ -35,7 +35,7 @@ export type DanielsonComponentId = (typeof DANIELSON_COMPONENT_IDS)[number];
 
 const FRAMEWORK_SOURCE = {
   source: 'Danielson Framework for Teaching 2022',
-  location: 'src/data/danielson.ts',
+  location: 'lib/proficiency/fft-rubric-descriptors.ts',
 };
 const TLAC_SOURCE = {
   source: 'Teach Like a Champion 3.0',

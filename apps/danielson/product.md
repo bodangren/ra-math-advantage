@@ -39,8 +39,10 @@ The technique library covers 14 of 22 framework components. It does not provide
 complete Danielson training. Components 1b, 1d, and 4a–4f need separate instruction.
 The technique mapping is school-defined. It is not an official equivalence.
 
-Observers must use the school's approved component descriptors. The app's rating
-labels and technique guidance do not replace that rubric. The supplied GBF source
+Observers must use the school's approved component descriptors. The observation
+form shows the school-supplied FFT 2022 descriptors for all 22 components and four
+rating levels. The technique guidance does not replace that rubric. The supplied
+GBF source
 does not state its edition. Changing to another edition requires a curriculum
 decision. Mapped skill evidence does not prove direct observation of every step.
 
@@ -82,7 +84,6 @@ The portfolio supports at most 2,000 active coaching cycles per organization.
 Coaching history uses pages of 20 records.
 
 The user selected Danielson Framework for Teaching (FFT). The app retains its 2022 edition.
-Observation targets show the existing source-app component summaries.
-These summaries do not replace the full official performance-level descriptors.
-The full descriptor text is not included in the project.
+Observation targets show the school-supplied descriptors for Unsatisfactory, Basic,
+Proficient, and Distinguished. The app stores descriptors for all 22 components.
 The AI coaching brief is a possible feature only. See `possible-features.md`.

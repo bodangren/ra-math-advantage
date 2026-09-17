@@ -105,6 +105,10 @@ code { overflow-wrap: anywhere; }
 details { border: 1px solid var(--line); border-radius: .75rem; padding: .8rem 1rem; }
 summary { cursor: pointer; font-weight: 700; }
 details[open] > summary { margin-bottom: 1rem; }
+.rubric-descriptors { display: grid; gap: .75rem; margin: 1rem 0; }
+.rubric-descriptors div { border-left: 3px solid var(--brand-accent); padding-left: .75rem; }
+.rubric-descriptors dt { font-weight: 700; }
+.rubric-descriptors dd { margin: .25rem 0 0; }
 .report-component + .report-component { border-top: 1px solid var(--line); padding-top: 1rem; }
 .teacher-proficiency-graph { display: grid; gap: 1rem; }
 .teacher-proficiency-graph-heading { display: flex; gap: 1rem; align-items: flex-start; justify-content: space-between; }
