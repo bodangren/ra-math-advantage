@@ -22,34 +22,6 @@ const catalogs = vi.hoisted(() => ({
           guidedPractice: "interval-classification",
           independentPractice: "interval-classification",
         },
-        workedExampleSpec: {
-          prompt: "The graph of f is shown on 0 <= x <= 9. Find all intervals where f is increasing, decreasing, and constant.",
-          givens: ["Domain: 0 <= x <= 9", "Change points: x=3 and x=7"],
-          target: { increasingIntervals: "[0,3] and [7,9].", decreasingIntervals: "[3,7].", constantIntervals: "none." },
-          steps: [
-            { description: "Read the graph from left to right.", expression: "x = 0 to x = 9" },
-            { description: "The graph rises from x=0 to x=3.", expression: "0 < x < 3" },
-            { description: "The graph falls from x=3 to x=7.", expression: "3 < x < 7" },
-            { description: "The graph rises from x=7 to x=9.", expression: "7 < x < 9" },
-            { description: "State all interval classifications.", expression: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none." },
-          ],
-          explanation: "Read the graph from left to right. It rises on [0,3] and [7,9]. It falls on [3,7]. It has no constant interval.",
-          rendererProps: {
-            title: "Worked Example: Classify Graph Intervals",
-            prompt: "The graph of f is shown on 0 <= x <= 9. Find all intervals where f is increasing, decreasing, and constant.",
-            domain: [0, 9], changePoints: [3, 7],
-            points: [{ x: 0, y: 1 }, { x: 3, y: 7 }, { x: 7, y: 2 }, { x: 9, y: 6 }],
-            presentationMode: "worked_example",
-            steps: [
-              { description: "Read the graph from left to right.", expression: "x = 0 to x = 9" },
-              { description: "The graph rises from x=0 to x=3.", expression: "0 < x < 3" },
-              { description: "The graph falls from x=3 to x=7.", expression: "3 < x < 7" },
-              { description: "The graph rises from x=7 to x=9.", expression: "7 < x < 9" },
-              { description: "State all interval classifications.", expression: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none." },
-            ],
-            finalAnswer: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none.",
-          },
-        },
         guidedPracticeSpec: {
           scaffoldedPrompt:
             "Identify the intervals where the graph increases, decreases, and stays constant.",
@@ -176,13 +148,11 @@ const NODE =
   "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
 const GUIDED = `${NODE}.guided_practice`;
 const INDEPENDENT = `${NODE}.independent_practice`;
-const SOURCE = `${NODE}.worked_example`;
 type Row = Record<string, any> & { _id: string };
 
 function harness(
   stableActivityId = GUIDED,
   overrides: Record<string, unknown> = {},
-  deliveryState: "ready" | "no_acknowledgement" | "no_confirmation" | "stale_source" = "ready",
 ) {
   const mode =
     stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
@@ -207,17 +177,6 @@ function harness(
     ],
     activities: [
       {
-        _id: "activities:worked",
-        stableActivityId: SOURCE,
-        componentKey: "precalculus-topic-1-1-daily-curriculum",
-        displayName: "Topic 1.1: Identify Graph Intervals with Your Teacher",
-        description: "Worked-example source activity for classifying increasing, decreasing, and constant intervals.",
-        props: { nodeId: NODE, mode: "worked_example", source: "teacher_led" },
-        gradingConfig: { variantSeed: 0 },
-        approval: { status: "approved", reviewedAt: 1 },
-        createdAt: 1,
-      },
-      {
         _id: `activities:${mode}`,
         stableActivityId,
         componentKey: "precalculus-mastery-advantage-pilot",
@@ -235,34 +194,12 @@ function harness(
         ...overrides,
       },
     ],
-    lessons: [{ _id: "lessons:1", unitNumber: 1, orderIndex: 1 }],
-    lesson_versions: [{ _id: "lesson_versions:1", lessonId: "lessons:1", version: 1, status: "published", createdAt: 1 }],
-    phase_versions: [{ _id: "phase_versions:1", lessonVersionId: "lesson_versions:1", phaseNumber: 4, phaseType: "worked_example", createdAt: 1 }],
-    phase_sections: [{
-      _id: "phase_sections:1", phaseVersionId: "phase_versions:1", sequenceOrder: 2,
-      sectionType: "activity", createdAt: 1,
-      content: { activityId: deliveryState === "stale_source" ? "activities:old" : "activities:worked", componentKey: "precalculus-topic-1-1-daily-curriculum" },
-    }],
     activity_submissions: [],
-    learning_evidence: [],
-  };
-  rows.activities.reverse();
-  const authorityRows: Record<string, Row[]> = {
-    activity_submissions: deliveryState === "no_acknowledgement" ? [] : [{
-      _id: "activity_submissions:ack", userId: "profiles:student", activityId: "activities:worked",
-      stableActivityId: SOURCE, masteryContractVersion: "learning-evidence.v1",
-      submissionData: { contractVersion: "practice.v1", activityId: SOURCE, mode: "worked_example", status: "submitted", answers: {}, parts: [] },
-      attemptOrdinal: 1, submittedAt: 2, createdAt: 2, updatedAt: 2,
-    }],
-    learning_evidence: deliveryState === "ready" || deliveryState === "stale_source" ? [{
-      _id: "learning_evidence:teacher", learnerId: "profiles:student", nodeId: NODE,
-      activityId: SOURCE, attemptOrdinal: 1, origin: "teacher_led", mode: "teaching",
-      occurredAt: 2, idempotencyKey: "precalc:teacher-led:submission:activity_submissions:ack", createdAt: 2,
-    }] : [],
   };
   const db = {
     get: async (_table: string, id: string) =>
-      [...Object.values(rows).flat(), ...Object.values(authorityRows).flat()]
+      Object.values(rows)
+        .flat()
         .find((row) => row._id === id) ?? null,
     insert: async (table: string, value: Record<string, unknown>) => {
       const row = { _id: `${table}:${rows[table].length + 1}`, ...value };
@@ -280,11 +217,10 @@ function harness(
         };
         configure(q);
         const selected = () =>
-          [...rows[table], ...(authorityRows[table] ?? [])].filter((row) =>
+          rows[table].filter((row) =>
             [...conditions].every(([key, value]) => row[key] === value),
           );
         return {
-          collect: async () => selected(),
           unique: async () => {
             const found = selected();
             if (found.length > 1) throw new Error("duplicate");
@@ -444,57 +380,6 @@ describe("selected Topic 1.1 physical submission writer", () => {
         idempotencyKey: "independent-1",
       }),
     ).resolves.toMatchObject({ score: 3, maxScore: 3 });
-  });
-
-  it.each([
-    ["no acknowledgement", "no_acknowledgement"],
-    ["no teacher confirmation", "no_confirmation"],
-    ["a stale Worked source", "stale_source"],
-  ] as const)("rejects a new Guided submission with %s", async (_label, state) => {
-    const h = harness(GUIDED, {}, state);
-    await expect((await handler())(h.ctx, {
-      userId: "profiles:student",
-      activityId: GUIDED,
-      submissionData: envelope(),
-      idempotencyKey: `unavailable-${state}`,
-    })).rejects.toThrow("practice_unavailable");
-    expect(h.rows.activity_submissions).toHaveLength(0);
-  });
-
-  it.each([
-    [GUIDED, "guided_practice"],
-    [INDEPENDENT, "independent_practice"],
-  ])("requires ready_for_practice before a new %s insert", async (activityId, mode) => {
-    const h = harness(activityId);
-    const body = envelope(activityId, mode);
-    if (activityId === INDEPENDENT) {
-      const generated = (await import("@/lib/practice/topic11-interval-graph")).generateTopic11IntervalGraph(2);
-      const answer = (value: readonly (readonly [number, number])[]) => value.length
-        ? value.map(([a, b]) => `[${a},${b}]`).join("U") : "none";
-      body.answers = {
-        increasingIntervals: answer(generated.increasingIntervals),
-        decreasingIntervals: answer(generated.decreasingIntervals),
-        constantIntervals: answer(generated.constantIntervals),
-      };
-      body.parts = Object.entries(body.answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer }));
-    }
-    await expect((await handler())(h.ctx, {
-      userId: "profiles:student", activityId, submissionData: body,
-      idempotencyKey: `ready-${mode}`,
-    })).resolves.toMatchObject({ score: 3, maxScore: 3 });
-    expect(h.rows.activity_submissions).toHaveLength(1);
-  });
-
-  it("replays an accepted tuple after the Worked source becomes stale", async () => {
-    const h = harness();
-    const args = {
-      userId: "profiles:student", activityId: GUIDED,
-      submissionData: envelope(), idempotencyKey: "accepted-before-stale",
-    };
-    const first = await (await handler())(h.ctx, args);
-    h.rows.phase_sections[0].content.activityId = "activities:old";
-    await expect((await handler())(h.ctx, args)).resolves.toEqual(first);
-    expect(h.rows.activity_submissions).toHaveLength(1);
   });
 
   it.each([

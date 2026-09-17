@@ -43,7 +43,7 @@ These PDFs should drive topic introduction, scaffolding, guided practice, indepe
 | 3 | Trigonometric and Polar Functions | 15 | Assessed | 30-35% |
 | 4 | Functions Involving Parameters, Vectors, and Matrices | 14 | Not assessed on the AP Exam | Not assessed |
 
-The local product and overview documents currently describe `~54 lessons`, but the listed AP topic sequence contains 58 topics. Until this is reconciled, implementation should treat 58 CED topics as the canonical topic count and document the mismatch in `implementation/exceptions.json`.
+The product, overview, and CED topic index use 58 lessons. Keep these counts aligned.
 
 ## Unit and Topic Map
 

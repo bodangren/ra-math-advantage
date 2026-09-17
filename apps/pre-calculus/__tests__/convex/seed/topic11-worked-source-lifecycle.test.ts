@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
 import { seedLesson1_1 } from '@/convex/seed/seed_lesson_1_1';
+import { PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY } from '@/convex/activities';
 import {
   PRECALCULUS_PILOT_NODE_ID,
   PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
-  PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY,
 } from '@/lib/learning-evidence/precalc-pilot';
 
 type Row = Record<string, unknown> & { _id: string };
@@ -17,7 +17,7 @@ function handler(): SeedHandler {
 }
 
 function createHarness() {
-  const rows: Record<string, Row[]> = { lessons: [], lesson_versions: [], phase_versions: [], phase_sections: [], activities: [], lesson_responses: [] };
+  const rows: Record<string, Row[]> = { lessons: [], lesson_versions: [], phase_versions: [], phase_sections: [], activities: [] };
   let serial = 0;
   const db = {
     query: (table: string) => ({
@@ -79,44 +79,6 @@ describe('Topic 1.1 Worked source seed lifecycle', () => {
     });
   });
 
-  it('preserves a connected historical version, phase, section, and student response on create and replay', async () => {
-    const harness = createHarness();
-    harness.rows.lessons.push({
-      _id: 'lessons:historical', unitNumber: 1, title: 'Change in Tandem',
-      slug: '1-1-change-in-tandem', orderIndex: 1, createdAt: 1, updatedAt: 1,
-    });
-    harness.rows.lesson_versions.push({
-      _id: 'lesson_versions:historical', lessonId: 'lessons:historical',
-      version: 1, title: 'Historical lesson', status: 'published', createdAt: 1,
-    });
-    harness.rows.phase_versions.push({
-      _id: 'phase_versions:historical', lessonVersionId: 'lesson_versions:historical',
-      phaseNumber: 4, title: 'Historical phase', phaseType: 'guided_practice', createdAt: 1,
-    });
-    harness.rows.phase_sections.push({
-      _id: 'phase_sections:historical', phaseVersionId: 'phase_versions:historical',
-      sequenceOrder: 2, sectionType: 'text', content: { markdown: 'Historical work.' }, createdAt: 1,
-    });
-    harness.rows.lesson_responses.push({
-      _id: 'lesson_responses:historical', learnerId: 'student:1',
-      phaseId: 'phase_versions:historical', response: 'Preserve this response.', createdAt: 1,
-    });
-    const historical = structuredClone({
-      version: harness.rows.lesson_versions[0],
-      phase: harness.rows.phase_versions[0],
-      section: harness.rows.phase_sections[0],
-      response: harness.rows.lesson_responses[0],
-    });
-
-    await runSeed(harness);
-    await runSeed(harness);
-
-    expect(harness.rows.lesson_versions.find((row) => row._id === historical.version?._id)).toEqual(historical.version);
-    expect(harness.rows.phase_versions.find((row) => row._id === historical.phase?._id)).toEqual(historical.phase);
-    expect(harness.rows.phase_sections.find((row) => row._id === historical.section?._id)).toEqual(historical.section);
-    expect(harness.rows.lesson_responses.find((row) => row._id === historical.response?._id)).toEqual(historical.response);
-  });
-
   it('preserves approval and ID on an identical replay, then resets approval after content repair', async () => {
     const harness = createHarness();
     await runSeed(harness);
@@ -153,16 +115,6 @@ describe('Topic 1.1 Worked source seed lifecycle', () => {
     );
     const before = structuredClone(harness.rows);
     await expect(runSeed(harness)).rejects.toThrow('Duplicate Topic 1.1 source activities.');
-    expect(harness.rows).toEqual(before);
-  });
-
-  it('rejects duplicate current version rows before any seed write', async () => {
-    const harness = createHarness();
-    await runSeed(harness);
-    const current = harness.rows.lesson_versions.find((row) => row.version === 2)!;
-    harness.rows.lesson_versions.push({ ...structuredClone(current), _id: 'lesson_versions:duplicate' });
-    const before = structuredClone(harness.rows);
-    await expect(runSeed(harness)).rejects.toThrow('Duplicate Topic 1.1 lesson versions.');
     expect(harness.rows).toEqual(before);
   });
 

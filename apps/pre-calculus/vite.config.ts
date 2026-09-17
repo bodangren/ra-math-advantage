@@ -2,21 +2,19 @@ import "dotenv/config";
 import vinext from "vinext";
 import { defineConfig } from "vite";
 
-async function loadPlugins() {
+async function loadPlugins(command: string) {
   const plugins = [vinext()];
-  try {
+  if (command === "build") {
     const { cloudflare } = await import("@cloudflare/vite-plugin");
     plugins.push(cloudflare({
       viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
     }));
-  } catch {
-    // @cloudflare/vite-plugin not installed — skip for local builds
   }
   return plugins;
 }
 
-export default defineConfig(async () => ({
-  plugins: await loadPlugins(),
+export default defineConfig(async ({ command }) => ({
+  plugins: await loadPlugins(command),
   build: {
     rollupOptions: {
       output: {

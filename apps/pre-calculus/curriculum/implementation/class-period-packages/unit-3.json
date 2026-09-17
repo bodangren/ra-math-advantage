@@ -38,11 +38,11 @@
       "problemFamily": "apc_3_1",
       "dailyPhases": {
         "warmUp": "Display a repeating pattern graph (e.g., a wave over 3 cycles). Ask: 'Does this pattern repeat? How do you know? How long is one complete cycle?'",
-        "topicIntroduction": "Passwater notes pp. 1\u20132: A periodic relationship: output values repeat over successive equal-length intervals. Period P = least positive value where f(x) = f(x + P). Key equation: if period is 5, then h(x) = h(x \u2212 5) for all x. Vocabulary: periodic, period, cycle.",
-        "scaffoldedExamples": "Example 1: Function g periodic, graph shown on [0, 6] rising from min 2 at x = 0 to max 8 at x = 3 and back. Find least period. Example 2: Using g with period 6, find g(14), g(72), g(\u221217) by shifting inputs by multiples of the period.",
-        "guidedPractice": "Students draw two additional periods of a periodic function given one cycle on [0, 4]. Evaluate g(18), g(\u22126), g(g(10)) for g with period 8 and table values g(2) = 5, g(5) = \u22123, g(7) = 1.",
-        "independentPractice": "Passwater Worksheet A: Period identification from graphs. Evaluate q(25), q(\u22125), q(33) for periodic function q with one cycle on [0, 10] having min 0 and max 12.",
-        "exitEvidence": "Function f is periodic with period 6 and f(2) = 5. Find f(14) and f(\u22124). Show the shift calculation.",
+        "topicIntroduction": "Passwater notes pp. 1–2: A periodic relationship: output values repeat over successive equal-length intervals. Period P = least positive value where f(x) = f(x + P). Key equation: if period is 5, then h(x) = h(x − 5) for all x. Vocabulary: periodic, period, cycle.",
+        "scaffoldedExamples": "Example 1: Function g periodic, graph shown on [0, 6] rising from min 2 at x = 0 to max 8 at x = 3 and back. Find least period. Example 2: Using g with period 6, find g(14), g(72), g(−17) by shifting inputs by multiples of the period.",
+        "guidedPractice": "Students draw two additional periods of a periodic function given one cycle on [0, 4]. Evaluate g(18), g(−6), g(g(10)) for g with period 8 and table values g(2) = 5, g(5) = −3, g(7) = 1.",
+        "independentPractice": "Passwater Worksheet A: Period identification from graphs. Evaluate q(25), q(−5), q(33) for periodic function q with one cycle on [0, 10] having min 0 and max 12.",
+        "exitEvidence": "Function f is periodic with period 6 and f(2) = 5. Find f(14) and f(−4). Show the shift calculation.",
         "capReflection": "What persistence move did you make when the period was not obvious from the graph?"
       }
     },
@@ -75,12 +75,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_1",
       "dailyPhases": {
-        "warmUp": "Function h is periodic with period 5. Table: h(1) = \u22122, h(3) = 0, h(4) = 3, h(7) = 2. Find h(\u22122) and h(6). 'How did you use the period to reduce the input?'",
-        "topicIntroduction": "Passwater notes pp. 3\u20134: Evaluating periodic functions from tables \u2014 reduce input by adding/subtracting multiples of P. Composition: find inner value first, then reduce again. General form: f(kP + x) = f(x) for any integer k.",
-        "scaffoldedExamples": "Example 3: h periodic with period 5, find h(h(9)). First h(9) = h(4) = 3, then h(3) = 0. Example 4: Table x = \u22123, 0, 1, 10; f(x) = 4, 2, \u22121, 7. Period = 7. Find f(8), f(\u22126), f(f(10)), f(7k + 4).",
-        "guidedPractice": "Students work: w periodic with period 7, w(1) = 4, w(3) = \u22122, w(5) = 6, w(6) = 1. Find w(15), w(\u22123), w(w(8)), w(7k + 3).",
-        "independentPractice": "Passwater Worksheet A problems 9\u201310: Table-based evaluation with composition and general form. Problem 9: f with period 7, find f(8), f(\u22126), f(f(10)), f(7k + 4). Problem 10: g(x + 10) = g(x), find g(27), g(\u22127), g(g(10)).",
-        "exitEvidence": "Function p is periodic with period 6 and p(3) = 11. Find p(21) and p(\u22129). Explain your reduction steps.",
+        "warmUp": "Function h is periodic with period 5. Table: h(1) = −2, h(3) = 0, h(4) = 3, h(7) = 2. Find h(−2) and h(6). 'How did you use the period to reduce the input?'",
+        "topicIntroduction": "Passwater notes pp. 3–4: Evaluating periodic functions from tables — reduce input by adding/subtracting multiples of P. Composition: find inner value first, then reduce again. General form: f(kP + x) = f(x) for any integer k.",
+        "scaffoldedExamples": "Example 3: h periodic with period 5, find h(h(9)). First h(9) = h(4) = 3, then h(3) = 0. Example 4: Table x = −3, 0, 1, 10; f(x) = 4, 2, −1, 7. Period = 7. Find f(8), f(−6), f(f(10)), f(7k + 4).",
+        "guidedPractice": "Students work: w periodic with period 7, w(1) = 4, w(3) = −2, w(5) = 6, w(6) = 1. Find w(15), w(−3), w(w(8)), w(7k + 3).",
+        "independentPractice": "Passwater Worksheet A problems 9–10: Table-based evaluation with composition and general form. Problem 9: f with period 7, find f(8), f(−6), f(f(10)), f(7k + 4). Problem 10: g(x + 10) = g(x), find g(27), g(−7), g(g(10)).",
+        "exitEvidence": "Function p is periodic with period 6 and p(3) = 11. Find p(21) and p(−9). Explain your reduction steps.",
         "capReflection": "What courage move did you make when evaluating a composition of periodic functions?"
       }
     },
@@ -114,10 +114,10 @@
       "problemFamily": "apc_3_1",
       "dailyPhases": {
         "warmUp": "FRQ 3 context preview: 'A toy car travels on a circular track. The center is 20 inches from a wall. At t = 0, the car is closest to the wall. It completes one lap every 8 seconds. What is the maximum distance?'",
-        "topicIntroduction": "Passwater notes pp. 5\u20136: FRQ 3 task model. Physical contexts with periodic motion \u2014 rotating objects. Five labeled points on the graph (F, G, J, K, P). Part (A): determine coordinates. Part (B)(i): multiple choice on behavior. Part (B)(ii): describe how the rate of change is changing.",
-        "scaffoldedExamples": "Model problem: Clock on wall, 8-inch minute hand, center 120 inches above floor, double speed (30-min rotation). Determine coordinates for F, G, J, K, P. Describe rate of change on interval (t\u2081, t\u2082) \u2014 is it increasing or decreasing? Concave up or down?",
-        "guidedPractice": "Students work Passwater Worksheet B: Steve on seesaw \u2014 24 inches at t = 0, highest 60 inches, cycle every 3 seconds. Determine 5 labeled point coordinates and describe rate of change on one interval.",
-        "independentPractice": "Passwater Worksheets C\u2013G: Prize wheel (center 30 inches, 4 rotations/sec), Boat motor D (50 rot/sec, 8 inches from center, 18 below water), Merry-go-round E (3-sec rotation, 4 ft from center), Ferris wheel F (30-sec rotation, 40 ft from center), Box O' Fun G.",
+        "topicIntroduction": "Passwater notes pp. 5–6: FRQ 3 task model. Physical contexts with periodic motion — rotating objects. Five labeled points on the graph (F, G, J, K, P). Part (A): determine coordinates. Part (B)(i): multiple choice on behavior. Part (B)(ii): describe how the rate of change is changing.",
+        "scaffoldedExamples": "Model problem: Clock on wall, 8-inch minute hand, center 120 inches above floor, double speed (30-min rotation). Determine coordinates for F, G, J, K, P. Describe rate of change on interval (t₁, t₂) — is it increasing or decreasing? Concave up or down?",
+        "guidedPractice": "Students work Passwater Worksheet B: Steve on seesaw — 24 inches at t = 0, highest 60 inches, cycle every 3 seconds. Determine 5 labeled point coordinates and describe rate of change on one interval.",
+        "independentPractice": "Passwater Worksheets C–G: Prize wheel (center 30 inches, 4 rotations/sec), Boat motor D (50 rot/sec, 8 inches from center, 18 below water), Merry-go-round E (3-sec rotation, 4 ft from center), Ferris wheel F (30-sec rotation, 40 ft from center), Box O' Fun G.",
         "exitEvidence": "In the toy car problem, if the car completes a lap every 8 seconds and the maximum distance is 40 inches, what are the coordinates of the point at t = 2 seconds? Explain your reasoning.",
         "capReflection": "What adaptability move did you make when translating a physical context into coordinates on a periodic graph?"
       }
@@ -152,11 +152,11 @@
       "problemFamily": "apc_3_2",
       "dailyPhases": {
         "warmUp": "A point P on a circle of radius 5 has coordinates (3, 4). 'Can you express the vertical position as a ratio involving the radius? What about the horizontal position?'",
-        "topicIntroduction": "Passwater notes Part I: Standard position (vertex at origin, one ray on positive x-axis). Terminal ray is the rotated ray. Definitions: sin \u03b8 = y/r, cos \u03b8 = x/r, tan \u03b8 = y/x. On unit circle (r = 1): sin \u03b8 = y, cos \u03b8 = x. SOH-CAH-TOA review.",
-        "scaffoldedExamples": "Example 1: Point P(3, 4) on circle radius 5. sin \u03b8 = 4/5, cos \u03b8 = 3/5, tan \u03b8 = 4/3. Example 2: Reflections of P(x, y) \u2014 Q(\u2212x, y) across y-axis, R(\u2212x, \u2212y) across origin, S(x, \u2212y) across x-axis.",
-        "guidedPractice": "Students: circle radius 7, point P(\u22125, y) in QII. Find y using x\u00b2 + y\u00b2 = r\u00b2, then compute sin \u03b8 and tan \u03b8. Sketch angle 3\u03c0/4 in standard position.",
-        "independentPractice": "Passwater Worksheet A: Unit circle fill-in with sin, cos, tan values at standard angles. Circle radius 10, P(6, 8), find cos \u03b8 at Q (reflection across y-axis), sin \u03b8 at S, tan \u03b8 at R.",
-        "exitEvidence": "Point P is on the terminal ray of angle \u03b8 with coordinates (\u22125, 12). Find sin \u03b8, cos \u03b8, and tan \u03b8.",
+        "topicIntroduction": "Passwater notes Part I: Standard position (vertex at origin, one ray on positive x-axis). Terminal ray is the rotated ray. Definitions: sin θ = y/r, cos θ = x/r, tan θ = y/x. On unit circle (r = 1): sin θ = y, cos θ = x. SOH-CAH-TOA review.",
+        "scaffoldedExamples": "Example 1: Point P(3, 4) on circle radius 5. sin θ = 4/5, cos θ = 3/5, tan θ = 4/3. Example 2: Reflections of P(x, y) — Q(−x, y) across y-axis, R(−x, −y) across origin, S(x, −y) across x-axis.",
+        "guidedPractice": "Students: circle radius 7, point P(−5, y) in QII. Find y using x² + y² = r², then compute sin θ and tan θ. Sketch angle 3π/4 in standard position.",
+        "independentPractice": "Passwater Worksheet A: Unit circle fill-in with sin, cos, tan values at standard angles. Circle radius 10, P(6, 8), find cos θ at Q (reflection across y-axis), sin θ at S, tan θ at R.",
+        "exitEvidence": "Point P is on the terminal ray of angle θ with coordinates (−5, 12). Find sin θ, cos θ, and tan θ.",
         "capReflection": "What persistence move did you make when setting up the ratio definitions for the first time?"
       }
     },
@@ -190,11 +190,11 @@
       "problemFamily": "apc_3_2",
       "dailyPhases": {
         "warmUp": "Convert to radians: 1/6 of a full rotation counterclockwise, two full rotations clockwise. 'How do you convert between fraction of rotation and radians?'",
-        "topicIntroduction": "Passwater notes Part II: Radian measure = arc length / radius. Full rotation = 2\u03c0, half = \u03c0, quarter = \u03c0/2. Positive angles counterclockwise, negative clockwise. Standard angles: multiples of \u03c0/6, \u03c0/4, \u03c0/3, \u03c0/2. Reflection pattern determines signs in each quadrant.",
-        "scaffoldedExamples": "Example 4: Convert 1/6 rotation \u2192 \u03c0/3, two rotations clockwise \u2192 \u22124\u03c0. Terminal ray of \u03b8 on line y = \u22123x in QII: choose P(\u22121, 3), r = \u221a10, sin \u03b8 = 3/\u221a10, cos \u03b8 = \u22121/\u221a10, tan \u03b8 = \u22123.",
-        "guidedPractice": "Students convert 3/4 rotation and 7/8 rotation to radians. Sketch angles 2\u03c0/3, 5\u03c0/4, 11\u03c0/6, \u2212\u03c0/3 in standard position and identify quadrant.",
-        "independentPractice": "Passwater Worksheet A (cont.): Evaluation at standard angles. Terminal ray on y = \u22125x/7 in QII \u2014 find exact sin, cos, tan values. Convert rotations to radians.",
-        "exitEvidence": "The terminal ray of \u03b8 lies on y = \u2212(5/7)x in quadrant II. Find exact values of sin \u03b8, cos \u03b8, and tan \u03b8.",
+        "topicIntroduction": "Passwater notes Part II: Radian measure = arc length / radius. Full rotation = 2π, half = π, quarter = π/2. Positive angles counterclockwise, negative clockwise. Standard angles: multiples of π/6, π/4, π/3, π/2. Reflection pattern determines signs in each quadrant.",
+        "scaffoldedExamples": "Example 4: Convert 1/6 rotation → π/3, two rotations clockwise → −4π. Terminal ray of θ on line y = −3x in QII: choose P(−1, 3), r = √10, sin θ = 3/√10, cos θ = −1/√10, tan θ = −3.",
+        "guidedPractice": "Students convert 3/4 rotation and 7/8 rotation to radians. Sketch angles 2π/3, 5π/4, 11π/6, −π/3 in standard position and identify quadrant.",
+        "independentPractice": "Passwater Worksheet A (cont.): Evaluation at standard angles. Terminal ray on y = −5x/7 in QII — find exact sin, cos, tan values. Convert rotations to radians.",
+        "exitEvidence": "The terminal ray of θ lies on y = −(5/7)x in quadrant II. Find exact values of sin θ, cos θ, and tan θ.",
         "capReflection": "What courage move did you make when choosing a point on the terminal ray?"
       }
     },
@@ -227,12 +227,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_2",
       "dailyPhases": {
-        "warmUp": "Point P on unit circle at (1/2, \u221a3/2). Find sin \u03b8, cos \u03b8, and tan \u03b8. 'What angle corresponds to these coordinates?'",
-        "topicIntroduction": "Passwater notes Part III: Tangent = sin \u03b8 / cos \u03b8 = y/x. Tangent is the slope of the terminal ray. tan(\u03c0/6) = \u221a3/3, tan(\u03c0/4) = 1, tan(\u03c0/3) = \u221a3. Tangent undefined when cos \u03b8 = 0 (at \u03c0/2, 3\u03c0/2).",
-        "scaffoldedExamples": "Evaluate tan at standard angles using sin/cos division. tan(\u03c0/6) = (1/2)/(\u221a3/2) = \u221a3/3. tan(\u03c0/2) = 1/0 = undefined. Terminal ray on line y = mx gives tan \u03b8 = m directly.",
-        "guidedPractice": "Students evaluate tan at 6 standard angles. Given tan \u03b8 = \u22123 and \u03b8 in QII, verify by finding sin and cos. Sketch angles and confirm tangent equals slope.",
+        "warmUp": "Point P on unit circle at (1/2, √3/2). Find sin θ, cos θ, and tan θ. 'What angle corresponds to these coordinates?'",
+        "topicIntroduction": "Passwater notes Part III: Tangent = sin θ / cos θ = y/x. Tangent is the slope of the terminal ray. tan(π/6) = √3/3, tan(π/4) = 1, tan(π/3) = √3. Tangent undefined when cos θ = 0 (at π/2, 3π/2).",
+        "scaffoldedExamples": "Evaluate tan at standard angles using sin/cos division. tan(π/6) = (1/2)/(√3/2) = √3/3. tan(π/2) = 1/0 = undefined. Terminal ray on line y = mx gives tan θ = m directly.",
+        "guidedPractice": "Students evaluate tan at 6 standard angles. Given tan θ = −3 and θ in QII, verify by finding sin and cos. Sketch angles and confirm tangent equals slope.",
         "independentPractice": "Passwater Worksheet B: Tangent evaluation at standard and non-standard angles. Angle sketching problems. Terminal ray on various lines y = mx.",
-        "exitEvidence": "Evaluate tan(5\u03c0/4) without a calculator. Show which quadrant the angle is in and explain why tangent is positive or negative there.",
+        "exitEvidence": "Evaluate tan(5π/4) without a calculator. Show which quadrant the angle is in and explain why tangent is positive or negative there.",
         "capReflection": "What adaptability move did you make when tangent was undefined?"
       }
     },
@@ -265,12 +265,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_3",
       "dailyPhases": {
-        "warmUp": "An equilateral triangle with side length 1 is inscribed in the unit circle. 'Can you find the exact coordinates of the vertex at angle \u03c0/6? What about \u03c0/4?'",
-        "topicIntroduction": "Passwater notes: Geometric derivation of special values. For \u03c0/6: vertex at height y = 1/2, x = \u221a(1 \u2212 1/4) = \u221a3/2. For \u03c0/4: isosceles right triangle, x = y = \u221a2/2. For \u03c0/3: symmetry gives cos(\u03c0/3) = 1/2, sin(\u03c0/3) = \u221a3/2. These three QI pairs are the foundation.",
-        "scaffoldedExamples": "Example 1: sin(2\u03c0/3) \u2014 QII, reference angle \u03c0/3, sine positive \u2192 \u221a3/2. Example 2: cos(5\u03c0/4) \u2014 QIII, reference angle \u03c0/4, cosine negative \u2192 \u2212\u221a2/2. Example 3: sin(7\u03c0/6) = \u22121/2, cos(11\u03c0/6) = \u221a3/2, sin(3\u03c0/2) = \u22121.",
-        "guidedPractice": "Students find sin(5\u03c0/6) and cos(5\u03c0/6) \u2014 QII, ref \u03c0/6. Find cos(4\u03c0/3) \u2014 QIII, ref \u03c0/3. If cos \u03b8 = 3/5 in QIV, find sin \u03b8 using Pythagorean identity.",
-        "independentPractice": "Passwater Worksheets A\u2013B: Find exact values sin(5\u03c0/3), cos(3\u03c0/4), sin(\u03c0/3), cos(7\u03c0/6), tan(11\u03c0/6), cos(2\u03c0/3), sin(7\u03c0/4), cos(\u03c0/6). Circle radius 9, isosceles right triangle at \u03c0/4, find coordinates.",
-        "exitEvidence": "Find the exact values of sin(5\u03c0/3), cos(2\u03c0/3), and sin(7\u03c0/6). Show reference angle and quadrant sign for each.",
+        "warmUp": "An equilateral triangle with side length 1 is inscribed in the unit circle. 'Can you find the exact coordinates of the vertex at angle π/6? What about π/4?'",
+        "topicIntroduction": "Passwater notes: Geometric derivation of special values. For π/6: vertex at height y = 1/2, x = √(1 − 1/4) = √3/2. For π/4: isosceles right triangle, x = y = √2/2. For π/3: symmetry gives cos(π/3) = 1/2, sin(π/3) = √3/2. These three QI pairs are the foundation.",
+        "scaffoldedExamples": "Example 1: sin(2π/3) — QII, reference angle π/3, sine positive → √3/2. Example 2: cos(5π/4) — QIII, reference angle π/4, cosine negative → −√2/2. Example 3: sin(7π/6) = −1/2, cos(11π/6) = √3/2, sin(3π/2) = −1.",
+        "guidedPractice": "Students find sin(5π/6) and cos(5π/6) — QII, ref π/6. Find cos(4π/3) — QIII, ref π/3. If cos θ = 3/5 in QIV, find sin θ using Pythagorean identity.",
+        "independentPractice": "Passwater Worksheets A–B: Find exact values sin(5π/3), cos(3π/4), sin(π/3), cos(7π/6), tan(11π/6), cos(2π/3), sin(7π/4), cos(π/6). Circle radius 9, isosceles right triangle at π/4, find coordinates.",
+        "exitEvidence": "Find the exact values of sin(5π/3), cos(2π/3), and sin(7π/6). Show reference angle and quadrant sign for each.",
         "capReflection": "What persistence move did you make when deriving the exact coordinates from the geometric construction?"
       }
     },
@@ -303,12 +303,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_3",
       "dailyPhases": {
-        "warmUp": "Evaluate sin(\u03c0/6), cos(\u03c0/4), tan(\u03c0/3) from memory. 'How did you remember these? What pattern connects them?'",
-        "topicIntroduction": "Passwater notes: Reference angle method for any quadrant. Reference angle = acute angle between terminal ray and x-axis. All Students Take Calculus (A-S-T-C): QI all positive, QII sin positive, QIII tan positive, QIV cos positive. Pythagorean identity: sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1 for all \u03b8.",
-        "scaffoldedExamples": "Example 4: Point P on circle radius 4, equilateral triangle, angle 2\u03c0/3. P = (4cos(2\u03c0/3), 4sin(2\u03c0/3)) = (4 \u00b7 (\u22121/2), 4 \u00b7 (\u221a3/2)) = (\u22122, 2\u221a3). If sin \u03b8 = \u2212\u221a3/2 in QIII, find cos \u03b8: cos\u00b2 = 1 \u2212 3/4 = 1/4, cos is negative in QIII \u2192 \u22121/2.",
-        "guidedPractice": "Students evaluate 8 trig expressions using reference angles and quadrant signs. If cos \u03b8 = 3/5 in QIV, find sin \u03b8. Find all angles in [0, 2\u03c0) where sin \u03b8 = 1/2.",
-        "independentPractice": "Passwater Worksheet C: Evaluating in all quadrants. sin \u03b8 = \u2212\u221a3/2 in QIII, find cos \u03b8. Circle radius 9, point at angle \u03c0/3, find coordinates.",
-        "exitEvidence": "Find all angles in [0, 2\u03c0) where sin \u03b8 = 1/2. Explain why there are two solutions.",
+        "warmUp": "Evaluate sin(π/6), cos(π/4), tan(π/3) from memory. 'How did you remember these? What pattern connects them?'",
+        "topicIntroduction": "Passwater notes: Reference angle method for any quadrant. Reference angle = acute angle between terminal ray and x-axis. All Students Take Calculus (A-S-T-C): QI all positive, QII sin positive, QIII tan positive, QIV cos positive. Pythagorean identity: sin²θ + cos²θ = 1 for all θ.",
+        "scaffoldedExamples": "Example 4: Point P on circle radius 4, equilateral triangle, angle 2π/3. P = (4cos(2π/3), 4sin(2π/3)) = (4 · (−1/2), 4 · (√3/2)) = (−2, 2√3). If sin θ = −√3/2 in QIII, find cos θ: cos² = 1 − 3/4 = 1/4, cos is negative in QIII → −1/2.",
+        "guidedPractice": "Students evaluate 8 trig expressions using reference angles and quadrant signs. If cos θ = 3/5 in QIV, find sin θ. Find all angles in [0, 2π) where sin θ = 1/2.",
+        "independentPractice": "Passwater Worksheet C: Evaluating in all quadrants. sin θ = −√3/2 in QIII, find cos θ. Circle radius 9, point at angle π/3, find coordinates.",
+        "exitEvidence": "Find all angles in [0, 2π) where sin θ = 1/2. Explain why there are two solutions.",
         "capReflection": "What adaptability move did you make when the reference angle was in QIII or QIV?"
       }
     },
@@ -341,11 +341,11 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_4",
       "dailyPhases": {
-        "warmUp": "Plot sin \u03b8 for \u03b8 from 0 to 2\u03c0 using known values: sin 0 = 0, sin(\u03c0/6) = 1/2, sin(\u03c0/2) = 1, sin(\u03c0) = 0, sin(3\u03c0/2) = \u22121, sin(2\u03c0) = 0. 'What shape emerges?'",
-        "topicIntroduction": "Passwater lesson 3-4: y = sin(x): starts at origin, rises to 1 at \u03c0/2, crosses zero at \u03c0, falls to \u22121 at 3\u03c0/2, returns to 0 at 2\u03c0. y = cos(x): starts at 1, crosses zero at \u03c0/2, reaches \u22121 at \u03c0. Key vocabulary: midline = (max + min)/2, amplitude = (max \u2212 min)/2, period = horizontal length of one cycle, frequency = 1/period.",
-        "scaffoldedExamples": "Example 1: Sinusoidal function h with max 8, min \u22122. Midline y = 3, amplitude = 5. Max at \u03c0 and next min at 3\u03c0: period = 2(3\u03c0 \u2212 \u03c0) = 4\u03c0, frequency = 1/(4\u03c0).",
-        "guidedPractice": "Students: sinusoidal graph has max 12 at \u03b8 = 0 and min 4 at \u03b8 = \u03c0. Find midline, amplitude, period, frequency. A function g has min at (\u03c0/2, 0) and max at (\u03c0, 1). Find midline and amplitude.",
-        "independentPractice": "Passwater independent practice: Find period, frequency, amplitude, midline for graphs with (a) max 6, min \u22124, cycle [0, 2\u03c0]; (b) max 3, min 1, cycle [0, \u03c0]. k(\u03b8) has min at (\u03c0, \u221210) and max at (4\u03c0, 0). Find all four parameters.",
+        "warmUp": "Plot sin θ for θ from 0 to 2π using known values: sin 0 = 0, sin(π/6) = 1/2, sin(π/2) = 1, sin(π) = 0, sin(3π/2) = −1, sin(2π) = 0. 'What shape emerges?'",
+        "topicIntroduction": "Passwater lesson 3-4: y = sin(x): starts at origin, rises to 1 at π/2, crosses zero at π, falls to −1 at 3π/2, returns to 0 at 2π. y = cos(x): starts at 1, crosses zero at π/2, reaches −1 at π. Key vocabulary: midline = (max + min)/2, amplitude = (max − min)/2, period = horizontal length of one cycle, frequency = 1/period.",
+        "scaffoldedExamples": "Example 1: Sinusoidal function h with max 8, min −2. Midline y = 3, amplitude = 5. Max at π and next min at 3π: period = 2(3π − π) = 4π, frequency = 1/(4π).",
+        "guidedPractice": "Students: sinusoidal graph has max 12 at θ = 0 and min 4 at θ = π. Find midline, amplitude, period, frequency. A function g has min at (π/2, 0) and max at (π, 1). Find midline and amplitude.",
+        "independentPractice": "Passwater independent practice: Find period, frequency, amplitude, midline for graphs with (a) max 6, min −4, cycle [0, 2π]; (b) max 3, min 1, cycle [0, π]. k(θ) has min at (π, −10) and max at (4π, 0). Find all four parameters.",
         "exitEvidence": "A sinusoidal function has a maximum at (2, 10) and the next minimum at (6, 2). Find the amplitude and midline.",
         "capReflection": "What persistence move did you make when computing the period from max-to-min distance?"
       }
@@ -379,12 +379,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_4",
       "dailyPhases": {
-        "warmUp": "On the interval (\u03c0, 3\u03c0/2), is sin \u03b8 increasing or decreasing? Is it concave up or concave down? 'How do you tell from the shape of the wave?'",
-        "topicIntroduction": "Passwater lesson 3-4 (continued): Concavity pattern \u2014 sinusoidal graph is concave down above the midline, concave up below the midline. cos \u03b8 = sin(\u03b8 + \u03c0/2): cosine is a horizontal shift of sine. Frequency = 1/P describes cycles per unit of input.",
-        "scaffoldedExamples": "Example 2: f(\u03b8) = sin \u03b8 on (0, \u03c0/2) \u2014 increasing and concave down (bending toward maximum). Example 3: f on (\u03c0/2, \u03c0) \u2014 decreasing and concave down (above midline, curving away from peak). Describe cos \u03b8 on (0, \u03c0/2): decreasing, concave down, positive.",
-        "guidedPractice": "Students describe behavior of sin \u03b8 on (\u03c0, 3\u03c0/2): decreasing, concave up (below midline heading toward minimum). Describe cos \u03b8 on (\u03c0/2, \u03c0): decreasing, concave up, negative.",
-        "independentPractice": "Passwater independent practice: Describe behavior of f(\u03b8) = sin \u03b8 on each interval: (a) (0, \u03c0/2), (b) (\u03c0/2, \u03c0), (c) (\u03c0, 3\u03c0/2), (d) (3\u03c0/2, 2\u03c0). Verify cos has period 2\u03c0, amplitude 1, midline y = 0.",
-        "exitEvidence": "Describe the behavior of sin \u03b8 on (3\u03c0/2, 2\u03c0). Use direction (increasing/decreasing) and concavity to give a complete description.",
+        "warmUp": "On the interval (π, 3π/2), is sin θ increasing or decreasing? Is it concave up or concave down? 'How do you tell from the shape of the wave?'",
+        "topicIntroduction": "Passwater lesson 3-4 (continued): Concavity pattern — sinusoidal graph is concave down above the midline, concave up below the midline. cos θ = sin(θ + π/2): cosine is a horizontal shift of sine. Frequency = 1/P describes cycles per unit of input.",
+        "scaffoldedExamples": "Example 2: f(θ) = sin θ on (0, π/2) — increasing and concave down (bending toward maximum). Example 3: f on (π/2, π) — decreasing and concave down (above midline, curving away from peak). Describe cos θ on (0, π/2): decreasing, concave down, positive.",
+        "guidedPractice": "Students describe behavior of sin θ on (π, 3π/2): decreasing, concave up (below midline heading toward minimum). Describe cos θ on (π/2, π): decreasing, concave up, negative.",
+        "independentPractice": "Passwater independent practice: Describe behavior of f(θ) = sin θ on each interval: (a) (0, π/2), (b) (π/2, π), (c) (π, 3π/2), (d) (3π/2, 2π). Verify cos has period 2π, amplitude 1, midline y = 0.",
+        "exitEvidence": "Describe the behavior of sin θ on (3π/2, 2π). Use direction (increasing/decreasing) and concavity to give a complete description.",
         "capReflection": "What adaptability move did you make when combining direction and concavity into a single phrase?"
       }
     },
@@ -417,12 +417,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_5",
       "dailyPhases": {
-        "warmUp": "Is every repeating pattern sinusoidal? Consider a square wave that alternates between 1 and \u22121. 'Is this sinusoidal? Why or why not?'",
-        "topicIntroduction": "Passwater lesson 3-5: Sinusoidal function = transformation of sin \u03b8. cos \u03b8 = sin(\u03b8 + \u03c0/2) \u2014 cosine qualifies. Four defining characteristics: midline, amplitude, period, frequency. Not all periodic functions are sinusoidal \u2014 square waves and sawtooth waves are periodic but not smooth transformations of sine. Four-phrase behavior: increasing at increasing rate (concave up + increasing), increasing at decreasing rate (concave down + increasing), decreasing at increasing rate (concave down + decreasing), decreasing at decreasing rate (concave up + decreasing).",
-        "scaffoldedExamples": "Example 1: h has max at (\u03c0, 14) and min at (3\u03c0/2, 6). Midline = 10, amplitude = 4, period = 2(\u03c0/2) = \u03c0, frequency = 1/\u03c0. Example 3: Square wave is periodic but not sinusoidal \u2014 sharp corners, not smooth.",
-        "guidedPractice": "Students: g has max at (\u03c0/3, 9) and min at (2\u03c0/3, 1). Find midline and amplitude. Describe sin \u03b8 on (\u03c0/2, \u03c0): decreasing (1 to 0), concave down (above midline) \u2192 'decreasing at a decreasing rate.' Explain why cos \u03b8 is sinusoidal but sin(\u03b8\u00b2) is not.",
-        "independentPractice": "Passwater independent practice: Describe f(\u03b8) = sin \u03b8 on (0, \u03c0/2), (\u03c0/2, \u03c0), (\u03c0, 3\u03c0/2), (3\u03c0/2, 2\u03c0). p has min at (0, 2) and max at (\u03c0, 8). Find midline, amplitude, period, frequency. 'Decreasing at a decreasing rate' \u2014 is the function above or below the midline?",
-        "exitEvidence": "A function has max at (\u03c0, 14) and min at (3\u03c0/2, 6). Find the midline and amplitude. Is this function necessarily sinusoidal?",
+        "warmUp": "Is every repeating pattern sinusoidal? Consider a square wave that alternates between 1 and −1. 'Is this sinusoidal? Why or why not?'",
+        "topicIntroduction": "Passwater lesson 3-5: Sinusoidal function = transformation of sin θ. cos θ = sin(θ + π/2) — cosine qualifies. Four defining characteristics: midline, amplitude, period, frequency. Not all periodic functions are sinusoidal — square waves and sawtooth waves are periodic but not smooth transformations of sine. Four-phrase behavior: increasing at increasing rate (concave up + increasing), increasing at decreasing rate (concave down + increasing), decreasing at increasing rate (concave down + decreasing), decreasing at decreasing rate (concave up + decreasing).",
+        "scaffoldedExamples": "Example 1: h has max at (π, 14) and min at (3π/2, 6). Midline = 10, amplitude = 4, period = 2(π/2) = π, frequency = 1/π. Example 3: Square wave is periodic but not sinusoidal — sharp corners, not smooth.",
+        "guidedPractice": "Students: g has max at (π/3, 9) and min at (2π/3, 1). Find midline and amplitude. Describe sin θ on (π/2, π): decreasing (1 to 0), concave down (above midline) → 'decreasing at a decreasing rate.' Explain why cos θ is sinusoidal but sin(θ²) is not.",
+        "independentPractice": "Passwater independent practice: Describe f(θ) = sin θ on (0, π/2), (π/2, π), (π, 3π/2), (3π/2, 2π). p has min at (0, 2) and max at (π, 8). Find midline, amplitude, period, frequency. 'Decreasing at a decreasing rate' — is the function above or below the midline?",
+        "exitEvidence": "A function has max at (π, 14) and min at (3π/2, 6). Find the midline and amplitude. Is this function necessarily sinusoidal?",
         "capReflection": "What persistence move did you make when distinguishing between periodic and sinusoidal?"
       }
     },
@@ -431,12 +431,12 @@
       "unit": 3,
       "period": 12,
       "dayType": "quiz",
-      "notes": "Quiz on Topics 3.1\u20133.3: periodic phenomena, sine/cosine/tangent definitions, and sine/cosine function values",
+      "notes": "Quiz on Topics 3.1–3.3: periodic phenomena, sine/cosine/tangent definitions, and sine/cosine function values",
       "nonInstructionArtifact": {
         "artifactType": "quiz",
         "source": "curriculum/source/passwater/unit-3.md",
-        "cedScope": "3.1\u20133.3",
-        "evidence": "Local quiz aligned to CED competencies 3.1.A, 3.2.A, 3.3.A and Passwater Worksheets A\u2013C"
+        "cedScope": "3.1–3.3",
+        "evidence": "Local quiz aligned to CED competencies 3.1.A, 3.2.A, 3.3.A and Passwater Worksheets A–C"
       }
     },
     {
@@ -445,15 +445,15 @@
       "period": 13,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.1\u20133.5",
+        "id": "3.1–3.5",
         "title": "Cumulative Review: Periodic Phenomena through Sinusoidal Functions",
         "source": "curriculum/source/college-board/ced-topic-index.json",
         "errata": "curriculum/source/college-board/clarification-guidance.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.1.A\u20133.5.A",
-        "essentialKnowledgeFamily": "3.1.A.*\u20133.5.A.*",
+        "learningObjectiveFamily": "3.1.A–3.5.A",
+        "essentialKnowledgeFamily": "3.1.A.*–3.5.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -468,11 +468,11 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_1",
       "dailyPhases": {
-        "warmUp": "Quick-fire review: (1) f periodic with period 8, f(3) = 5, find f(19). (2) Find sin(5\u03c0/4). (3) A sinusoidal function has max 10 at x = 0 and min 2 at x = \u03c0. Find the midline.",
-        "topicIntroduction": "Cumulative review connecting Topics 3.1\u20133.5. Periodic phenomena \u2192 unit circle trig values \u2192 reference angles \u2192 sinusoidal graphs \u2192 sinusoidal functions. Each builds on the previous: periodic patterns motivate trig, trig values create graphs, graphs define sinusoidal characteristics.",
-        "scaffoldedExamples": "Mixed example set: (1) Periodic table evaluation with composition. (2) Evaluate cos(11\u03c0/6) using reference angle. (3) Find sinusoidal parameters from max/min: max 7 at x = 1, min \u22123 at x = 4 \u2192 midline 2, amplitude 5, period 6, B = \u03c0/3.",
+        "warmUp": "Quick-fire review: (1) f periodic with period 8, f(3) = 5, find f(19). (2) Find sin(5π/4). (3) A sinusoidal function has max 10 at x = 0 and min 2 at x = π. Find the midline.",
+        "topicIntroduction": "Cumulative review connecting Topics 3.1–3.5. Periodic phenomena → unit circle trig values → reference angles → sinusoidal graphs → sinusoidal functions. Each builds on the previous: periodic patterns motivate trig, trig values create graphs, graphs define sinusoidal characteristics.",
+        "scaffoldedExamples": "Mixed example set: (1) Periodic table evaluation with composition. (2) Evaluate cos(11π/6) using reference angle. (3) Find sinusoidal parameters from max/min: max 7 at x = 1, min −3 at x = 4 → midline 2, amplitude 5, period 6, B = π/3.",
         "guidedPractice": "Students work mixed problem set: periodic evaluation, trig value finding, graph behavior description, sinusoidal parameter identification. Rotate through stations or work as a class.",
-        "independentPractice": "Mixed AP-style problems: Periodic function w with period 7, w(2) = 4, w(5) = \u22121, find w(30). Evaluate sin(7\u03c0/6). Describe sin \u03b8 on (\u03c0, 3\u03c0/2). A sinusoidal function has max at (\u03c0/4, 8) and min at (3\u03c0/4, 2). Find midline, amplitude, period.",
+        "independentPractice": "Mixed AP-style problems: Periodic function w with period 7, w(2) = 4, w(5) = −1, find w(30). Evaluate sin(7π/6). Describe sin θ on (π, 3π/2). A sinusoidal function has max at (π/4, 8) and min at (3π/4, 2). Find midline, amplitude, period.",
         "exitEvidence": "A periodic function has period 6 and f(1) = 3. Evaluate f(25) and explain how the periodic property connects to the unit circle values you used this week.",
         "capReflection": "What persistence move did you make when switching between periodic evaluation and trig function evaluation?"
       }
@@ -506,11 +506,11 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_6",
       "dailyPhases": {
-        "warmUp": "Start with f(\u03b8) = sin \u03b8. Change to g(\u03b8) = 3 sin(2\u03b8) + 1. 'What do the numbers 3, 2, and 1 do to the graph?'",
-        "topicIntroduction": "Passwater lesson 3-6: General sinusoidal form h(t) = a sin(bt + c) + d. Parameter table: |a| = amplitude, 2\u03c0/|b| = period, \u2212c/b = phase shift, d = midline. To determine from graph: a = (max \u2212 min)/2, d = (max + min)/2, b = 2\u03c0/P, c from maximum location: sin(bt\u2080 + c) = 1 at maximum t\u2080.",
-        "scaffoldedExamples": "Example 1: h has max at (\u03c0, 6) and min at (3\u03c0/2, \u22124). a = 5, d = 1, period = \u03c0, b = 2. Max at t = \u03c0: sin(2\u03c0 + c) = 1 \u2192 c = \u03c0/2 \u2212 2\u03c0 = \u22123\u03c0/2. h(t) = 5 sin(2t \u2212 3\u03c0/2) + 1.",
-        "guidedPractice": "Students: k(x) = 5 cos(2x) + 1 \u2014 find amplitude (5), period (\u03c0), midline (y = 1). Verify max = 6, min = \u22124. Given min at t = 0 with value 2 and max at t = \u03c0 with value 10, write equation using cosine.",
-        "independentPractice": "Passwater Worksheet A: Find equation from max/min points. Identify a, b, c, d from given sinusoidal graphs. San Diego daylight hours model D(t) = 2.715 cos(0.017(t \u2212 c)) + 12.250 \u2014 interpret the parameters.",
+        "warmUp": "Start with f(θ) = sin θ. Change to g(θ) = 3 sin(2θ) + 1. 'What do the numbers 3, 2, and 1 do to the graph?'",
+        "topicIntroduction": "Passwater lesson 3-6: General sinusoidal form h(t) = a sin(bt + c) + d. Parameter table: |a| = amplitude, 2π/|b| = period, −c/b = phase shift, d = midline. To determine from graph: a = (max − min)/2, d = (max + min)/2, b = 2π/P, c from maximum location: sin(bt₀ + c) = 1 at maximum t₀.",
+        "scaffoldedExamples": "Example 1: h has max at (π, 6) and min at (3π/2, −4). a = 5, d = 1, period = π, b = 2. Max at t = π: sin(2π + c) = 1 → c = π/2 − 2π = −3π/2. h(t) = 5 sin(2t − 3π/2) + 1.",
+        "guidedPractice": "Students: k(x) = 5 cos(2x) + 1 — find amplitude (5), period (π), midline (y = 1). Verify max = 6, min = −4. Given min at t = 0 with value 2 and max at t = π with value 10, write equation using cosine.",
+        "independentPractice": "Passwater Worksheet A: Find equation from max/min points. Identify a, b, c, d from given sinusoidal graphs. San Diego daylight hours model D(t) = 2.715 cos(0.017(t − c)) + 12.250 — interpret the parameters.",
         "exitEvidence": "Five points: F(0, 10), G(3, 5), J(6, 0), K(9, 5), P(12, 10). Find h(t) = a sin(bt + c) + d. Show a, d, b, and c.",
         "capReflection": "What persistence move did you make when solving for c from the maximum location?"
       }
@@ -546,10 +546,10 @@
       "dailyPhases": {
         "warmUp": "Five labeled points: F(2, 16), G(5, 11), J(8, 6), K(11, 11), P(14, 16). 'What is the amplitude? The midline? How do you find the period from these points?'",
         "topicIntroduction": "Passwater lesson 3-6 (continued): Writing equations from five labeled points (FRQ 3 skill). Strategy: extract a and d from max/min, b from period (distance between consecutive maxima or minima), c from first max/min location. Choosing sine vs cosine: use cosine if graph starts at max or min at t = 0; use sine if it starts on the midline going up.",
-        "scaffoldedExamples": "Example 2: F(2, 16), G(5, 11), J(8, 6), K(11, 11), P(14, 16). a = 5, d = 11. F to P spans 12 units = 2/3 period \u2192 full period = 18, b = \u03c0/9. F at t = 2 is max: sin(\u03c0/9 \u00b7 2 + c) = 1 \u2192 c = 5\u03c0/18. h(t) = 5 sin(\u03c0t/9 + 5\u03c0/18) + 11.",
-        "guidedPractice": "Students: F(0, 10), G(3, 5), J(6, 0), K(9, 5), P(12, 10). a = 5, d = 5, period = 12, b = \u03c0/6. Starts at max \u2014 consider cosine or find c for sine. Write the equation both ways.",
-        "independentPractice": "Passwater Worksheet B: Two five-point sets \u2014 (a) F(0, 12), G(5, 9), J(10, 6), K(15, 9), P(20, 12); (b) F(\u03c0/2, 6), G(3\u03c0/4, 1), J(\u03c0, \u22124), K(5\u03c0/4, 1), P(3\u03c0/2, 6). Write h(t) = a sin(bt + c) + d for each.",
-        "exitEvidence": "A sinusoidal function has amplitude 4, period 6\u03c0, midline y = \u22123, and starts at a maximum at t = 0. Write the equation.",
+        "scaffoldedExamples": "Example 2: F(2, 16), G(5, 11), J(8, 6), K(11, 11), P(14, 16). a = 5, d = 11. F to P spans 12 units = 2/3 period → full period = 18, b = π/9. F at t = 2 is max: sin(π/9 · 2 + c) = 1 → c = 5π/18. h(t) = 5 sin(πt/9 + 5π/18) + 11.",
+        "guidedPractice": "Students: F(0, 10), G(3, 5), J(6, 0), K(9, 5), P(12, 10). a = 5, d = 5, period = 12, b = π/6. Starts at max — consider cosine or find c for sine. Write the equation both ways.",
+        "independentPractice": "Passwater Worksheet B: Two five-point sets — (a) F(0, 12), G(5, 9), J(10, 6), K(15, 9), P(20, 12); (b) F(π/2, 6), G(3π/4, 1), J(π, −4), K(5π/4, 1), P(3π/2, 6). Write h(t) = a sin(bt + c) + d for each.",
+        "exitEvidence": "A sinusoidal function has amplitude 4, period 6π, midline y = −3, and starts at a maximum at t = 0. Write the equation.",
         "capReflection": "What courage move did you make when choosing between sine and cosine?"
       }
     },
@@ -582,12 +582,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_6",
       "dailyPhases": {
-        "warmUp": "Describe all transformations from y = cos(x) to y = 0.5 cos(2x + \u03c0) \u2212 3. 'How many transformations are there and in what order do you apply them?'",
-        "topicIntroduction": "Passwater lesson 3-6 (continued): Step-by-step graphing of transformed sinusoidal functions. Order of transformations: horizontal shift (c), horizontal stretch/compression (b), vertical stretch (|a|), vertical shift (d). Graph y = \u22122 sin(3(x \u2212 \u03c0/6)) + 1 from y = sin(x): reflect, stretch by 2, compress by factor 3, shift right \u03c0/6, shift up 1.",
-        "scaffoldedExamples": "Example 3: Which graph matches f(\u03b8) = 3 sin(2\u03b8) \u2212 1? Amplitude 3, period \u03c0, midline y = \u22121. Oscillates between 2 and \u22124. Trace key points: max at \u03b8 = \u03c0/4 (value 2), min at \u03b8 = 3\u03c0/4 (value \u22124).",
-        "guidedPractice": "Students graph two transformed sinusoidal functions using key points. Graph y = 2 cos(x/2 + \u03c0/4) step by step. Identify each transformation applied to y = cos(x).",
-        "independentPractice": "Passwater Worksheet C: Graphing transformed sinusoidal functions. Describe transformations from parent function. Match equations to graphs. Graph y = \u2212sin(2x \u2212 \u03c0) + 3 step by step.",
-        "exitEvidence": "Graph y = 2 sin(3x \u2212 \u03c0/2) + 1 by listing each transformation step from y = sin(x). Mark the key points (max, min, midline crossings) on one period.",
+        "warmUp": "Describe all transformations from y = cos(x) to y = 0.5 cos(2x + π) − 3. 'How many transformations are there and in what order do you apply them?'",
+        "topicIntroduction": "Passwater lesson 3-6 (continued): Step-by-step graphing of transformed sinusoidal functions. Order of transformations: horizontal shift (c), horizontal stretch/compression (b), vertical stretch (|a|), vertical shift (d). Graph y = −2 sin(3(x − π/6)) + 1 from y = sin(x): reflect, stretch by 2, compress by factor 3, shift right π/6, shift up 1.",
+        "scaffoldedExamples": "Example 3: Which graph matches f(θ) = 3 sin(2θ) − 1? Amplitude 3, period π, midline y = −1. Oscillates between 2 and −4. Trace key points: max at θ = π/4 (value 2), min at θ = 3π/4 (value −4).",
+        "guidedPractice": "Students graph two transformed sinusoidal functions using key points. Graph y = 2 cos(x/2 + π/4) step by step. Identify each transformation applied to y = cos(x).",
+        "independentPractice": "Passwater Worksheet C: Graphing transformed sinusoidal functions. Describe transformations from parent function. Match equations to graphs. Graph y = −sin(2x − π) + 3 step by step.",
+        "exitEvidence": "Graph y = 2 sin(3x − π/2) + 1 by listing each transformation step from y = sin(x). Mark the key points (max, min, midline crossings) on one period.",
         "capReflection": "What adaptability move did you make when the negative sign reflected the graph?"
       }
     },
@@ -620,11 +620,11 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_7",
       "dailyPhases": {
-        "warmUp": "A gear has a point P that is 6 inches from center, starts directly below at t = 0, center is 4 inches above surface, turns clockwise, one revolution in 2 seconds. 'What is the amplitude? The period? What kind of function \u2014 sine or cosine?'",
-        "topicIntroduction": "Passwater lesson 3-7: Building sinusoidal models from verbal descriptions. Translate context into a, b, c, d: amplitude = radius, period = rotation time, midline = center height \u00b1 radius, phase shift determined by starting position. 'Directly below' = minimum \u2192 use \u2212a cos(bt) + d. 'Directly above' = maximum \u2192 use a cos(bt) + d.",
-        "scaffoldedExamples": "Example 1: Gear \u2014 amplitude 6, period 2, b = \u03c0. Center 4 inches above surface \u2192 midline = 4 + 6 = 10. Starts directly below = minimum: h(t) = \u22126 cos(\u03c0t) + 10. Yo-yo on 30-inch string, 20 rotations in 5 seconds: amplitude 30, period 5/20 = 1/4, b = 8\u03c0.",
-        "guidedPractice": "Students: Point on rotating wheel, radius 10 feet, 4 rotations in 8 seconds, starts at rightmost position. Period = 2, b = \u03c0, amplitude 10, use cosine (starts at max). Write h(t) = 10 cos(\u03c0t) + d. Clock minute hand: max at (0, 70), min at (30, 52). Find a = 9, d = 61.",
-        "independentPractice": "Passwater Worksheet A: Pencil sharpener handle \u2014 2 inches from center, 2 rotations/sec, starts directly below, center 3 inches above surface. Write h(t). Spinner: radius 10 feet, 4 rotations in 8 seconds, center 15 feet up, starts at highest point.",
+        "warmUp": "A gear has a point P that is 6 inches from center, starts directly below at t = 0, center is 4 inches above surface, turns clockwise, one revolution in 2 seconds. 'What is the amplitude? The period? What kind of function — sine or cosine?'",
+        "topicIntroduction": "Passwater lesson 3-7: Building sinusoidal models from verbal descriptions. Translate context into a, b, c, d: amplitude = radius, period = rotation time, midline = center height ± radius, phase shift determined by starting position. 'Directly below' = minimum → use −a cos(bt) + d. 'Directly above' = maximum → use a cos(bt) + d.",
+        "scaffoldedExamples": "Example 1: Gear — amplitude 6, period 2, b = π. Center 4 inches above surface → midline = 4 + 6 = 10. Starts directly below = minimum: h(t) = −6 cos(πt) + 10. Yo-yo on 30-inch string, 20 rotations in 5 seconds: amplitude 30, period 5/20 = 1/4, b = 8π.",
+        "guidedPractice": "Students: Point on rotating wheel, radius 10 feet, 4 rotations in 8 seconds, starts at rightmost position. Period = 2, b = π, amplitude 10, use cosine (starts at max). Write h(t) = 10 cos(πt) + d. Clock minute hand: max at (0, 70), min at (30, 52). Find a = 9, d = 61.",
+        "independentPractice": "Passwater Worksheet A: Pencil sharpener handle — 2 inches from center, 2 rotations/sec, starts directly below, center 3 inches above surface. Write h(t). Spinner: radius 10 feet, 4 rotations in 8 seconds, center 15 feet up, starts at highest point.",
         "exitEvidence": "A spinner has radius 10 feet and completes 4 rotations in 8 seconds. Write a sinusoidal function for the height above ground if the center is 15 feet up and t = 0 is the highest point.",
         "capReflection": "What persistence move did you make when deciding between sine and cosine for a physical context?"
       }
@@ -658,12 +658,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_7",
       "dailyPhases": {
-        "warmUp": "Average monthly temperatures: Month 1\u219238\u00b0F, 3\u219248\u00b0F, 5\u219265\u00b0F, 7\u219278\u00b0F, 9\u219272\u00b0F, 11\u219252\u00b0F. 'Estimate the amplitude, period, and midline from this data.'",
-        "topicIntroduction": "Passwater lesson 3-7 (continued): Building models from data and interpreting existing equations. From data: sinusoidal regression (calculator, 16 iterations). From equation: T(m) = 25.7 sin(\u03c0(m \u2212 4)/6) + 61.2 \u2014 max = 61.2 + 25.7 = 86.9\u00b0F in month 7 (July), min = 61.2 \u2212 25.7 = 35.5\u00b0F. Contextual parameters: amplitude = variation size, period = cycle time, midline = average, phase shift = where cycle begins.",
-        "scaffoldedExamples": "Example 2: T(m) = 25.7 sin(\u03c0(m \u2212 4)/6) + 61.2. Maximum when argument = \u03c0/2: \u03c0(m \u2212 4)/6 = \u03c0/2 \u2192 m \u2212 4 = 3 \u2192 m = 7 (July). Example 3: Nighttime hours table, sinusoidal regression gives F(t) \u2248 3.2 sin(0.52(t \u2212 4)) + 8.3. Values 3.2 = amplitude, 0.52 \u2248 2\u03c0/12 (yearly cycle), 8.3 = average hours.",
-        "guidedPractice": "Students: In T(m) = 25.7 sin(\u03c0(m \u2212 4)/6) + 61.2, find minimum temperature and the month it occurs. Minimum when argument = \u2212\u03c0/2: m \u2212 4 = \u22123 \u2192 m = 1 (January). Min = 35.5\u00b0F.",
-        "independentPractice": "Passwater Worksheet B: San Diego daylight D(t) = 2.715 cos(0.017(t \u2212 172)) + 12.250 \u2014 find max and min daylight hours and approximate days. Data table with F(1) = 11.4, F(3) = 9.7, F(6) = 5.2, F(8) = 6.2, F(11) = 10.5 \u2014 regression gives F(t) \u2248 3.2 sin(0.52(t \u2212 4)) + 8.3. Interpret the parameters.",
-        "exitEvidence": "Given T(t) = 15 sin(\u03c0/6(t \u2212 4)) + 50, find the temperature in month 10. Show your work.",
+        "warmUp": "Average monthly temperatures: Month 1→38°F, 3→48°F, 5→65°F, 7→78°F, 9→72°F, 11→52°F. 'Estimate the amplitude, period, and midline from this data.'",
+        "topicIntroduction": "Passwater lesson 3-7 (continued): Building models from data and interpreting existing equations. From data: sinusoidal regression (calculator, 16 iterations). From equation: T(m) = 25.7 sin(π(m − 4)/6) + 61.2 — max = 61.2 + 25.7 = 86.9°F in month 7 (July), min = 61.2 − 25.7 = 35.5°F. Contextual parameters: amplitude = variation size, period = cycle time, midline = average, phase shift = where cycle begins.",
+        "scaffoldedExamples": "Example 2: T(m) = 25.7 sin(π(m − 4)/6) + 61.2. Maximum when argument = π/2: π(m − 4)/6 = π/2 → m − 4 = 3 → m = 7 (July). Example 3: Nighttime hours table, sinusoidal regression gives F(t) ≈ 3.2 sin(0.52(t − 4)) + 8.3. Values 3.2 = amplitude, 0.52 ≈ 2π/12 (yearly cycle), 8.3 = average hours.",
+        "guidedPractice": "Students: In T(m) = 25.7 sin(π(m − 4)/6) + 61.2, find minimum temperature and the month it occurs. Minimum when argument = −π/2: m − 4 = −3 → m = 1 (January). Min = 35.5°F.",
+        "independentPractice": "Passwater Worksheet B: San Diego daylight D(t) = 2.715 cos(0.017(t − 172)) + 12.250 — find max and min daylight hours and approximate days. Data table with F(1) = 11.4, F(3) = 9.7, F(6) = 5.2, F(8) = 6.2, F(11) = 10.5 — regression gives F(t) ≈ 3.2 sin(0.52(t − 4)) + 8.3. Interpret the parameters.",
+        "exitEvidence": "Given T(t) = 15 sin(π/6(t − 4)) + 50, find the temperature in month 10. Show your work.",
         "capReflection": "What adaptability move did you make when interpreting parameters in a real-world context?"
       }
     },
@@ -673,14 +673,14 @@
       "period": 19,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.1\u20133.7",
+        "id": "3.1–3.7",
         "title": "FRQ 3 Practice: Periodic Context Modeling",
         "source": "curriculum/source/passwater/unit-3.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.1.A\u20133.7.A",
-        "essentialKnowledgeFamily": "3.1.A.*\u20133.7.A.*",
+        "learningObjectiveFamily": "3.1.A–3.7.A",
+        "essentialKnowledgeFamily": "3.1.A.*–3.7.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -696,8 +696,8 @@
       "problemFamily": "apc_3_1",
       "dailyPhases": {
         "warmUp": "Review FRQ 3 format: Part (A) determine 5 labeled point coordinates, Part (B)(i) multiple choice, Part (B)(ii) describe rate of change. 'What information do you need from the context to set up the function?'",
-        "topicIntroduction": "FRQ 3 practice day \u2014 no calculator. Boat motor D2: 60 rotations/sec, B is 6 inches from center, center 20 inches below water line. Boat motor D3: 80 rotations/sec, B is 9 inches from center, center 22 inches below. Students build sinusoidal models and answer FRQ-style parts.",
-        "scaffoldedExamples": "Model one complete FRQ 3 problem: Merry-go-round E \u2014 counterclockwise, one rotation every 3 seconds, B on edge 4 feet from center, center 10 feet from fence. Amplitude = 4, period = 3, b = 2\u03c0/3. Set up h(t), determine 5 labeled points, describe rate of change on one interval.",
+        "topicIntroduction": "FRQ 3 practice day — no calculator. Boat motor D2: 60 rotations/sec, B is 6 inches from center, center 20 inches below water line. Boat motor D3: 80 rotations/sec, B is 9 inches from center, center 22 inches below. Students build sinusoidal models and answer FRQ-style parts.",
+        "scaffoldedExamples": "Model one complete FRQ 3 problem: Merry-go-round E — counterclockwise, one rotation every 3 seconds, B on edge 4 feet from center, center 10 feet from fence. Amplitude = 4, period = 3, b = 2π/3. Set up h(t), determine 5 labeled points, describe rate of change on one interval.",
         "guidedPractice": "Students work in pairs on Boat motor D2 and D3. Each pair builds the sinusoidal model, determines 5 labeled points, and describes rate of change on a specified interval. Teacher circulates to check setup.",
         "independentPractice": "Passwater Worksheets E and F independently: Merry-go-round (E) and Ferris wheel (F). Complete Part (A) coordinates, Part (B)(i) multiple choice, Part (B)(ii) rate of change description.",
         "exitEvidence": "For the Ferris wheel (clockwise, 30-second rotation, B is 40 feet from center, center 50 feet above ground), state the amplitude and period. Write the midline equation.",
@@ -710,14 +710,14 @@
       "period": 20,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.1\u20133.7",
+        "id": "3.1–3.7",
         "title": "FRQ 3 Practice: Periodic Context Modeling",
         "source": "curriculum/source/passwater/unit-3.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.1.A\u20133.7.A",
-        "essentialKnowledgeFamily": "3.1.A.*\u20133.7.A.*",
+        "learningObjectiveFamily": "3.1.A–3.7.A",
+        "essentialKnowledgeFamily": "3.1.A.*–3.7.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -734,7 +734,7 @@
       "dailyPhases": {
         "warmUp": "A context says: 'At t = 0, the object is at its lowest point. One full cycle takes 4 seconds.' 'Should you use sine or cosine? Why?'",
         "topicIntroduction": "Continued FRQ 3 practice. Prize wheel C: center 30 inches from point A, 4 rotations per second, at t = 0 point A at lowest. Box O' Fun G: table 36 inches above ground, crank center 9 inches above table, at t = 0 highest point is 50 inches from ground, one rotation every 4 seconds. Connect sinusoidal equation writing to FRQ 3 Part (A).",
-        "scaffoldedExamples": "Model Box O' Fun G: Amplitude = ? Highest = 50 inches from ground. Center of crank = 36 + 9 = 45 inches from ground. Amplitude = 50 \u2212 45 = 5. Period = 4, b = \u03c0/2. Starts at highest = maximum \u2192 use cosine: h(t) = 5 cos(\u03c0t/2) + 45.",
+        "scaffoldedExamples": "Model Box O' Fun G: Amplitude = ? Highest = 50 inches from ground. Center of crank = 36 + 9 = 45 inches from ground. Amplitude = 50 − 45 = 5. Period = 4, b = π/2. Starts at highest = maximum → use cosine: h(t) = 5 cos(πt/2) + 45.",
         "guidedPractice": "Students work Prize wheel C with teacher support. Center 30 inches from point A, 4 rotations/sec, starts at lowest. Determine amplitude (radius needed), period (1/4 sec), set up equation.",
         "independentPractice": "Complete Box O' Fun G independently: determine 5 labeled points, Part (B)(i) multiple choice on interval behavior, Part (B)(ii) rate of change description. Then review any FRQ 3 problems from previous day that need correction.",
         "exitEvidence": "In the Box O' Fun problem, what is the distance from the ground when t = 1 second? Show your substitution.",
@@ -747,15 +747,15 @@
       "period": 21,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.4\u20133.7",
+        "id": "3.4–3.7",
         "title": "Synthesis: Graphs, Sinusoidal, Transformations, Modeling",
         "source": "curriculum/source/college-board/ced-topic-index.json",
         "errata": "curriculum/source/college-board/clarification-guidance.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.4.A\u20133.7.A",
-        "essentialKnowledgeFamily": "3.4.A.*\u20133.7.A.*",
+        "learningObjectiveFamily": "3.4.A–3.7.A",
+        "essentialKnowledgeFamily": "3.4.A.*–3.7.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -771,11 +771,11 @@
       "problemFamily": "apc_3_4",
       "dailyPhases": {
         "warmUp": "Given a graph of a sinusoidal function with max at (1, 8) and min at (4, 2): 'Write the equation. Then describe the behavior on the interval (1, 2.5).'",
-        "topicIntroduction": "Synthesis day connecting 3.4\u20133.7. Multi-step problem: read parameters from graph (3.4), identify sinusoidal characteristics (3.5), write equation with transformations (3.6), interpret in context (3.7). This is the core FRQ 3 skill chain.",
-        "scaffoldedExamples": "Synthesis problem: Temperature data for a city shows max 85\u00b0F in July (month 7) and min 35\u00b0F in January (month 1). (1) Find amplitude 25, midline 60, period 12. (2) Write T(m) = 25 sin(\u03c0(m \u2212 4)/6) + 60. (3) Predict temperature in March (month 3). (4) Describe how the rate of change of temperature behaves from January to July.",
-        "guidedPractice": "Students work synthesis problems: Given a sinusoidal graph with 5 labeled points \u2192 write equation \u2192 describe behavior on sub-interval \u2192 interpret parameters if placed in a physical context (daylight hours, tide height).",
-        "independentPractice": "AP-style mixed problems: Graph-to-equation, equation-to-context interpretation, interval behavior description, parameter meaning in context. Focus on multi-step reasoning connecting 3.4\u20133.7.",
-        "exitEvidence": "A sinusoidal function models tide height. The equation is h(t) = 6 sin(\u03c0t/6) + 10 where t is in hours. What is the amplitude? When does the first maximum occur? What is the tide height at t = 3?",
+        "topicIntroduction": "Synthesis day connecting 3.4–3.7. Multi-step problem: read parameters from graph (3.4), identify sinusoidal characteristics (3.5), write equation with transformations (3.6), interpret in context (3.7). This is the core FRQ 3 skill chain.",
+        "scaffoldedExamples": "Synthesis problem: Temperature data for a city shows max 85°F in July (month 7) and min 35°F in January (month 1). (1) Find amplitude 25, midline 60, period 12. (2) Write T(m) = 25 sin(π(m − 4)/6) + 60. (3) Predict temperature in March (month 3). (4) Describe how the rate of change of temperature behaves from January to July.",
+        "guidedPractice": "Students work synthesis problems: Given a sinusoidal graph with 5 labeled points → write equation → describe behavior on sub-interval → interpret parameters if placed in a physical context (daylight hours, tide height).",
+        "independentPractice": "AP-style mixed problems: Graph-to-equation, equation-to-context interpretation, interval behavior description, parameter meaning in context. Focus on multi-step reasoning connecting 3.4–3.7.",
+        "exitEvidence": "A sinusoidal function models tide height. The equation is h(t) = 6 sin(πt/6) + 10 where t is in hours. What is the amplitude? When does the first maximum occur? What is the tide height at t = 3?",
         "capReflection": "What adaptability move did you make when connecting graph features to contextual meaning?"
       }
     },
@@ -784,12 +784,12 @@
       "unit": 3,
       "period": 22,
       "dayType": "test",
-      "notes": "Test 1: Topics 3.4\u20133.7 \u2014 sinusoidal graphs, functions, transformations, and context/data modeling",
+      "notes": "Test 1: Topics 3.4–3.7 — sinusoidal graphs, functions, transformations, and context/data modeling",
       "nonInstructionArtifact": {
         "artifactType": "test",
         "source": "curriculum/source/passwater/unit-3.md",
-        "cedScope": "3.4\u20133.7",
-        "evidence": "Local test aligned to CED competencies 3.4.A, 3.5.A, 3.6.A, 3.7.A and Passwater Worksheets A\u2013C"
+        "cedScope": "3.4–3.7",
+        "evidence": "Local test aligned to CED competencies 3.4.A, 3.5.A, 3.6.A, 3.7.A and Passwater Worksheets A–C"
       }
     },
     {
@@ -821,12 +821,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_8",
       "dailyPhases": {
-        "warmUp": "Graph y = tan(x) from \u2212\u03c0 to \u03c0. 'Where are the asymptotes? What is the period? How is this different from sine and cosine?'",
-        "topicIntroduction": "Passwater lesson 3-8: tan(x) = sin(x)/cos(x). Three key differences from sin/cos: period is \u03c0 (not 2\u03c0), vertical asymptotes at x = \u03c0/2 + k\u03c0 (where cos = 0), range is all reals (no amplitude). Odd function: tan(\u2212x) = \u2212tan(x). Between consecutive asymptotes, tan increases from \u2212\u221e to +\u221e.",
-        "scaffoldedExamples": "Example 1: Graph y = tan(x), label asymptotes at \u00b1\u03c0/2. Example 2: Evaluate tan(5\u03c0/4) = sin(5\u03c0/4)/cos(5\u03c0/4) = (\u2212\u221a2/2)/(\u2212\u221a2/2) = 1. tan(4\u03c0/3) = \u221a3, tan(7\u03c0/4) = \u22121. Exact values: tan(\u03c0/6) = \u221a3/3, tan(\u03c0/4) = 1, tan(\u03c0/3) = \u221a3.",
-        "guidedPractice": "Students graph y = tan(x) on [\u2212\u03c0, \u03c0] and evaluate at 6 standard angles. Explain why tan(3\u03c0/2) is undefined: sin(3\u03c0/2)/cos(3\u03c0/2) = (\u22121)/0 = undefined.",
-        "independentPractice": "Passwater Worksheet A: Graphing tangent, evaluating at standard and non-standard angles. Find periods: f(\u03b8) = tan(3\u03b8), g(\u03b8) = 5 tan(\u03b8/4) \u2212 2. Find exact values: tan(17\u03c0/6), tan(3\u03c0/4), tan(2\u03c0/3), tan(5\u03c0/3), tan(11\u03c0/6), tan(\u03c0).",
-        "exitEvidence": "Find all vertical asymptotes of y = tan(x) on [\u22122\u03c0, 2\u03c0]. List them explicitly.",
+        "warmUp": "Graph y = tan(x) from −π to π. 'Where are the asymptotes? What is the period? How is this different from sine and cosine?'",
+        "topicIntroduction": "Passwater lesson 3-8: tan(x) = sin(x)/cos(x). Three key differences from sin/cos: period is π (not 2π), vertical asymptotes at x = π/2 + kπ (where cos = 0), range is all reals (no amplitude). Odd function: tan(−x) = −tan(x). Between consecutive asymptotes, tan increases from −∞ to +∞.",
+        "scaffoldedExamples": "Example 1: Graph y = tan(x), label asymptotes at ±π/2. Example 2: Evaluate tan(5π/4) = sin(5π/4)/cos(5π/4) = (−√2/2)/(−√2/2) = 1. tan(4π/3) = √3, tan(7π/4) = −1. Exact values: tan(π/6) = √3/3, tan(π/4) = 1, tan(π/3) = √3.",
+        "guidedPractice": "Students graph y = tan(x) on [−π, π] and evaluate at 6 standard angles. Explain why tan(3π/2) is undefined: sin(3π/2)/cos(3π/2) = (−1)/0 = undefined.",
+        "independentPractice": "Passwater Worksheet A: Graphing tangent, evaluating at standard and non-standard angles. Find periods: f(θ) = tan(3θ), g(θ) = 5 tan(θ/4) − 2. Find exact values: tan(17π/6), tan(3π/4), tan(2π/3), tan(5π/3), tan(11π/6), tan(π).",
+        "exitEvidence": "Find all vertical asymptotes of y = tan(x) on [−2π, 2π]. List them explicitly.",
         "capReflection": "What persistence move did you make when the tangent went to infinity?"
       }
     },
@@ -859,12 +859,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_8",
       "dailyPhases": {
-        "warmUp": "Find the period and vertical asymptotes of f(\u03b8) = 3 tan(2\u03b8 \u2212 \u03c0). 'How do you handle the horizontal transformation?'",
-        "topicIntroduction": "Passwater lesson 3-8 (continued): Transformed tangent f(\u03b8) = a tan(b(\u03b8 \u2212 c)) + d. Period = \u03c0/|b| (not 2\u03c0/|b|). Vertical asymptotes shift by c. Midline at y = d. No amplitude \u2014 range is still all reals. Find asymptotes: set b(\u03b8 \u2212 c) = \u03c0/2 + k\u03c0 and solve for \u03b8.",
-        "scaffoldedExamples": "Example 3: g(\u03b8) = 2 tan(\u03b8 \u2212 1/3). Asymptotes at \u03b8 = \u03c0/2 + k\u03c0 + 1/3. Example 4: f(\u03b8) = 3 tan(2\u03b8 \u2212 \u03c0). Period = \u03c0/2. Asymptotes: 2\u03b8 \u2212 \u03c0 = \u03c0/2 + k\u03c0 \u2192 \u03b8 = 3\u03c0/4 + k\u03c0/2.",
-        "guidedPractice": "Students: Find vertical asymptotes of f(\u03b8) = tan(2\u03b8) on [0, 2\u03c0]. Asymptotes at 2\u03b8 = \u03c0/2 + k\u03c0 \u2192 \u03b8 = \u03c0/4 + k\u03c0/2: \u03b8 = \u03c0/4, 3\u03c0/4, 5\u03c0/4, 7\u03c0/4. Find asymptotes of f(\u03b8) = tan(\u03b8/2).",
+        "warmUp": "Find the period and vertical asymptotes of f(θ) = 3 tan(2θ − π). 'How do you handle the horizontal transformation?'",
+        "topicIntroduction": "Passwater lesson 3-8 (continued): Transformed tangent f(θ) = a tan(b(θ − c)) + d. Period = π/|b| (not 2π/|b|). Vertical asymptotes shift by c. Midline at y = d. No amplitude — range is still all reals. Find asymptotes: set b(θ − c) = π/2 + kπ and solve for θ.",
+        "scaffoldedExamples": "Example 3: g(θ) = 2 tan(θ − 1/3). Asymptotes at θ = π/2 + kπ + 1/3. Example 4: f(θ) = 3 tan(2θ − π). Period = π/2. Asymptotes: 2θ − π = π/2 + kπ → θ = 3π/4 + kπ/2.",
+        "guidedPractice": "Students: Find vertical asymptotes of f(θ) = tan(2θ) on [0, 2π]. Asymptotes at 2θ = π/2 + kπ → θ = π/4 + kπ/2: θ = π/4, 3π/4, 5π/4, 7π/4. Find asymptotes of f(θ) = tan(θ/2).",
         "independentPractice": "Passwater Worksheet B: Finding asymptotes of transformed tangent functions. Finding periods of complex tangent functions. Evaluating tangent at non-standard angles using sin/cos division.",
-        "exitEvidence": "Find the period and all vertical asymptotes on [0, 2\u03c0] for f(\u03b8) = tan(\u03b8/2).",
+        "exitEvidence": "Find the period and all vertical asymptotes on [0, 2π] for f(θ) = tan(θ/2).",
         "capReflection": "What adaptability move did you make when solving for the asymptote locations of a transformed tangent?"
       }
     },
@@ -897,12 +897,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_9",
       "dailyPhases": {
-        "warmUp": "Evaluate arcsin(1/2). 'What angle has a sine of 1/2? But there are two such angles on [0, 2\u03c0) \u2014 which one does arcsin return?'",
-        "topicIntroduction": "Passwater lesson 3-9: Inverse trig with restricted domains. arcsin: domain [\u22121, 1], range [\u2212\u03c0/2, \u03c0/2]. arccos: domain [\u22121, 1], range [0, \u03c0]. arctan: domain all reals, range (\u2212\u03c0/2, \u03c0/2). Critical: sin\u207b\u00b9(x) \u2260 1/sin(x). Output is always an angle. sin\u207b\u00b9(1/2) = \u03c0/6 (only one value). Common error: sin\u207b\u00b9(\u2212\u221a3/2) \u2260 4\u03c0/3 (outside range), correct answer is \u2212\u03c0/3.",
-        "scaffoldedExamples": "Example 1: cos\u207b\u00b9(\u2212\u221a2/2) \u2014 need angle in [0, \u03c0] with cosine = \u2212\u221a2/2. Unit circle gives 3\u03c0/4 and 5\u03c0/4, only 3\u03c0/4 is in [0, \u03c0]. Answer: 3\u03c0/4. Example 2: sin\u207b\u00b9(\u2212\u221a3/2) = \u2212\u03c0/3 (check: \u2212\u03c0/3 is in [\u2212\u03c0/2, \u03c0/2]). Example 3: tan\u207b\u00b9(\u221a3) = \u03c0/3. Composition: sin(arccos(3/5)) \u2014 draw reference triangle, adjacent = 3, hypotenuse = 5, opposite = 4, so sin = 4/5.",
-        "guidedPractice": "Students evaluate 6 inverse trig expressions: cos\u207b\u00b9(1/2), sin\u207b\u00b9(\u2212\u221a2/2), tan\u207b\u00b9(1), cos\u207b\u00b9(\u2212\u221a3/2), sin\u207b\u00b9(\u22121/2), tan\u207b\u00b9(\u22121/\u221a3). Check each answer is in the restricted range. Evaluate sin\u207b\u00b9(1/2) \u2212 cos\u207b\u00b9(\u22121/2).",
-        "independentPractice": "Passwater Worksheet A: Evaluation and composition problems. Evaluate cos(arcsin(2/3)) \u2014 reference triangle with opposite 2, hypotenuse 3, adjacent = \u221a5, so cos = \u221a5/3.",
-        "exitEvidence": "Evaluate cos(arcsin(2/3)). Show the reference triangle. Explain why sin\u207b\u00b9(2) is undefined.",
+        "warmUp": "Evaluate arcsin(1/2). 'What angle has a sine of 1/2? But there are two such angles on [0, 2π) — which one does arcsin return?'",
+        "topicIntroduction": "Passwater lesson 3-9: Inverse trig with restricted domains. arcsin: domain [−1, 1], range [−π/2, π/2]. arccos: domain [−1, 1], range [0, π]. arctan: domain all reals, range (−π/2, π/2). Critical: sin⁻¹(x) ≠ 1/sin(x). Output is always an angle. sin⁻¹(1/2) = π/6 (only one value). Common error: sin⁻¹(−√3/2) ≠ 4π/3 (outside range), correct answer is −π/3.",
+        "scaffoldedExamples": "Example 1: cos⁻¹(−√2/2) — need angle in [0, π] with cosine = −√2/2. Unit circle gives 3π/4 and 5π/4, only 3π/4 is in [0, π]. Answer: 3π/4. Example 2: sin⁻¹(−√3/2) = −π/3 (check: −π/3 is in [−π/2, π/2]). Example 3: tan⁻¹(√3) = π/3. Composition: sin(arccos(3/5)) — draw reference triangle, adjacent = 3, hypotenuse = 5, opposite = 4, so sin = 4/5.",
+        "guidedPractice": "Students evaluate 6 inverse trig expressions: cos⁻¹(1/2), sin⁻¹(−√2/2), tan⁻¹(1), cos⁻¹(−√3/2), sin⁻¹(−1/2), tan⁻¹(−1/√3). Check each answer is in the restricted range. Evaluate sin⁻¹(1/2) − cos⁻¹(−1/2).",
+        "independentPractice": "Passwater Worksheet A: Evaluation and composition problems. Evaluate cos(arcsin(2/3)) — reference triangle with opposite 2, hypotenuse 3, adjacent = √5, so cos = √5/3.",
+        "exitEvidence": "Evaluate cos(arcsin(2/3)). Show the reference triangle. Explain why sin⁻¹(2) is undefined.",
         "capReflection": "What courage move did you make when the output was not a standard angle?"
       }
     },
@@ -935,12 +935,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_10",
       "dailyPhases": {
-        "warmUp": "Solve 2 cos(x) + 1 = 0 for x in [0, 2\u03c0). 'Is this the same as cos\u207b\u00b9(\u22121/2)? How many solutions does the equation have vs. the inverse function?'",
-        "topicIntroduction": "Passwater lesson 3-10: Solving trig equations \u2014 4 steps: (1) isolate trig function, (2) find angles on unit circle, (3) consider domain restrictions, (4) write general solutions using period. Key distinction: sin\u207b\u00b9(1/2) = \u03c0/6 (one value) vs sin(x) = 1/2 has infinitely many solutions: x = \u03c0/6 + 2k\u03c0 or x = 5\u03c0/6 + 2k\u03c0. No-solution cases: cos(x) = \u22124/3 has no solution since |\u22124/3| > 1.",
-        "scaffoldedExamples": "Example 1: 2 cos(x) = \u2212\u221a2 \u2192 cos(x) = \u2212\u221a2/2. Unit circle: x = 3\u03c0/4, 5\u03c0/4 on [0, 2\u03c0). General: x = 3\u03c0/4 + 2k\u03c0 or x = 5\u03c0/4 + 2k\u03c0. Does 3 cos(x) + 2 = \u22122 have a solution? cos(x) = \u22124/3 \u2014 no, |\u22124/3| > 1.",
-        "guidedPractice": "Students solve sin(x) = \u22121/2 on [0, 2\u03c0). QIII and QIV: x = 7\u03c0/6, 11\u03c0/6. Check: Does 3cos(x) + 2 = \u22122 have a solution? Isolate: cos(x) = \u22124/3. No solution.",
-        "independentPractice": "Passwater Worksheet A: Solve 2sin(x) = \u221a2, cos(x) = 1/2, tan(x) = \u22121 on [0, 2\u03c0). Find all solutions of sin(x) = \u22121/2 on [0, 2\u03c0). Write general solution for cos(x) = 0.",
-        "exitEvidence": "Find all solutions of 2 sin(x) = \u221a3 on [0, 2\u03c0). How many solutions are there and why?",
+        "warmUp": "Solve 2 cos(x) + 1 = 0 for x in [0, 2π). 'Is this the same as cos⁻¹(−1/2)? How many solutions does the equation have vs. the inverse function?'",
+        "topicIntroduction": "Passwater lesson 3-10: Solving trig equations — 4 steps: (1) isolate trig function, (2) find angles on unit circle, (3) consider domain restrictions, (4) write general solutions using period. Key distinction: sin⁻¹(1/2) = π/6 (one value) vs sin(x) = 1/2 has infinitely many solutions: x = π/6 + 2kπ or x = 5π/6 + 2kπ. No-solution cases: cos(x) = −4/3 has no solution since |−4/3| > 1.",
+        "scaffoldedExamples": "Example 1: 2 cos(x) = −√2 → cos(x) = −√2/2. Unit circle: x = 3π/4, 5π/4 on [0, 2π). General: x = 3π/4 + 2kπ or x = 5π/4 + 2kπ. Does 3 cos(x) + 2 = −2 have a solution? cos(x) = −4/3 — no, |−4/3| > 1.",
+        "guidedPractice": "Students solve sin(x) = −1/2 on [0, 2π). QIII and QIV: x = 7π/6, 11π/6. Check: Does 3cos(x) + 2 = −2 have a solution? Isolate: cos(x) = −4/3. No solution.",
+        "independentPractice": "Passwater Worksheet A: Solve 2sin(x) = √2, cos(x) = 1/2, tan(x) = −1 on [0, 2π). Find all solutions of sin(x) = −1/2 on [0, 2π). Write general solution for cos(x) = 0.",
+        "exitEvidence": "Find all solutions of 2 sin(x) = √3 on [0, 2π). How many solutions are there and why?",
         "capReflection": "What persistence move did you make when checking for no-solution cases?"
       }
     },
@@ -973,12 +973,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_10",
       "dailyPhases": {
-        "warmUp": "Solve cos(2x) = \u22121/2 for x in [0, 2\u03c0). 'How does the 2x inside the function change the number of solutions?'",
-        "topicIntroduction": "Passwater lesson 3-10 (continued): General solutions with +2k\u03c0 (sin/cos) or +k\u03c0 (tan). Compound angle equations: when the argument is 2x or 3x, solve for the argument first, then divide. sin(2x) = \u221a3/2 \u2192 2x = \u03c0/3, 2\u03c0/3, 7\u03c0/3, 8\u03c0/3 \u2192 x = \u03c0/6, \u03c0/3, 7\u03c0/6, 4\u03c0/3.",
-        "scaffoldedExamples": "Example 2: sin(\u03b8) \u2265 \u221a2/2 on [0, 2\u03c0). sin(\u03b8) = \u221a2/2 at \u03b8 = \u03c0/4, 3\u03c0/4. Sine is above \u221a2/2 between these: \u03c0/4 \u2264 \u03b8 \u2264 3\u03c0/4.",
-        "guidedPractice": "Students solve cos(2x) = \u22121/2: 2x = 2\u03c0/3, 4\u03c0/3, 8\u03c0/3, 10\u03c0/3 \u2192 x = \u03c0/3, 2\u03c0/3, 4\u03c0/3, 5\u03c0/3. Solve sin(3x) = 1/2 on [0, 2\u03c0). Write general solution for tan(x) = \u221a3.",
-        "independentPractice": "Passwater Worksheets B\u2013C: Compound angle equations on [0, 2\u03c0). sin(2x) = \u221a3/2. cos(x/2) = \u22121/2. General solution writing for various trig equations.",
-        "exitEvidence": "Solve sin(2x) = \u221a3/2 for x in [0, 2\u03c0). List all four solutions.",
+        "warmUp": "Solve cos(2x) = −1/2 for x in [0, 2π). 'How does the 2x inside the function change the number of solutions?'",
+        "topicIntroduction": "Passwater lesson 3-10 (continued): General solutions with +2kπ (sin/cos) or +kπ (tan). Compound angle equations: when the argument is 2x or 3x, solve for the argument first, then divide. sin(2x) = √3/2 → 2x = π/3, 2π/3, 7π/3, 8π/3 → x = π/6, π/3, 7π/6, 4π/3.",
+        "scaffoldedExamples": "Example 2: sin(θ) ≥ √2/2 on [0, 2π). sin(θ) = √2/2 at θ = π/4, 3π/4. Sine is above √2/2 between these: π/4 ≤ θ ≤ 3π/4.",
+        "guidedPractice": "Students solve cos(2x) = −1/2: 2x = 2π/3, 4π/3, 8π/3, 10π/3 → x = π/3, 2π/3, 4π/3, 5π/3. Solve sin(3x) = 1/2 on [0, 2π). Write general solution for tan(x) = √3.",
+        "independentPractice": "Passwater Worksheets B–C: Compound angle equations on [0, 2π). sin(2x) = √3/2. cos(x/2) = −1/2. General solution writing for various trig equations.",
+        "exitEvidence": "Solve sin(2x) = √3/2 for x in [0, 2π). List all four solutions.",
         "capReflection": "What adaptability move did you make when the argument was 2x instead of x?"
       }
     },
@@ -1011,12 +1011,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_10",
       "dailyPhases": {
-        "warmUp": "Solve cos\u00b2\u03b8 = cos \u03b8 + 2. 'This looks like a quadratic \u2014 can you substitute u = cos \u03b8?'",
-        "topicIntroduction": "Passwater lesson 3-10 (continued): Quadratic-in-trig equations \u2014 let u = trig function, solve quadratic, discard out-of-range solutions. Inequalities with sign charts: (1) set f(x) = 0 and solve, (2) create sign chart with solutions as boundaries, (3) test values in each interval, (4) label positive/negative, (5) interpret. 2sin\u00b2\u03b8 + sin(\u03b8) < 0 \u2192 sin(\u03b8)(2sin(\u03b8) + 1) < 0.",
-        "scaffoldedExamples": "Example 3: 2sin\u00b2\u03b8 + sin(\u03b8) < 0 on [0, 2\u03c0). Factor: sin(\u03b8)(2sin(\u03b8) + 1) < 0. Zeros: sin(\u03b8) = 0 \u2192 \u03b8 = 0, \u03c0. sin(\u03b8) = \u22121/2 \u2192 \u03b8 = 7\u03c0/6, 11\u03c0/6. Sign chart with four intervals. Product is negative where factors have opposite signs: 7\u03c0/6 < \u03b8 < \u03c0 or 11\u03c0/6 < \u03b8 < 2\u03c0.",
-        "guidedPractice": "Students: Solve cos\u00b2\u03b8 = cos \u03b8 + 2. u\u00b2 \u2212 u \u2212 2 = 0 \u2192 (u \u2212 2)(u + 1) = 0 \u2192 u = 2 (discard, |2| > 1) or u = \u22121. cos(\u03b8) = \u22121 \u2192 \u03b8 = \u03c0. Build sign chart for (2cos(\u03b8) \u2212 1)(sin(\u03b8) + 1) < 0.",
-        "independentPractice": "Passwater Worksheet D: (2cos \u03b8 \u2212 1)(sin \u03b8 + 1) < 0 on [0, 2\u03c0). Find zeros of each factor, build sign chart, determine where product is negative. Additional quadratic-in-trig and inequality problems.",
-        "exitEvidence": "Find all \u03b8 in [0, 2\u03c0) where (2cos \u03b8 \u2212 1)(sin \u03b8 + 1) < 0. Show your sign chart.",
+        "warmUp": "Solve cos²θ = cos θ + 2. 'This looks like a quadratic — can you substitute u = cos θ?'",
+        "topicIntroduction": "Passwater lesson 3-10 (continued): Quadratic-in-trig equations — let u = trig function, solve quadratic, discard out-of-range solutions. Inequalities with sign charts: (1) set f(x) = 0 and solve, (2) create sign chart with solutions as boundaries, (3) test values in each interval, (4) label positive/negative, (5) interpret. 2sin²θ + sin(θ) < 0 → sin(θ)(2sin(θ) + 1) < 0.",
+        "scaffoldedExamples": "Example 3: 2sin²θ + sin(θ) < 0 on [0, 2π). Factor: sin(θ)(2sin(θ) + 1) < 0. Zeros: sin(θ) = 0 → θ = 0, π. sin(θ) = −1/2 → θ = 7π/6, 11π/6. Sign chart with four intervals. Product is negative where factors have opposite signs: 7π/6 < θ < π or 11π/6 < θ < 2π.",
+        "guidedPractice": "Students: Solve cos²θ = cos θ + 2. u² − u − 2 = 0 → (u − 2)(u + 1) = 0 → u = 2 (discard, |2| > 1) or u = −1. cos(θ) = −1 → θ = π. Build sign chart for (2cos(θ) − 1)(sin(θ) + 1) < 0.",
+        "independentPractice": "Passwater Worksheet D: (2cos θ − 1)(sin θ + 1) < 0 on [0, 2π). Find zeros of each factor, build sign chart, determine where product is negative. Additional quadratic-in-trig and inequality problems.",
+        "exitEvidence": "Find all θ in [0, 2π) where (2cos θ − 1)(sin θ + 1) < 0. Show your sign chart.",
         "capReflection": "What persistence move did you make when setting up the sign chart with trig zeros?"
       }
     },
@@ -1026,14 +1026,14 @@
       "period": 29,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.8\u20133.10",
+        "id": "3.8–3.10",
         "title": "FRQ 4 Practice: Symbolic Trigonometric Manipulations",
         "source": "curriculum/source/passwater/unit-3.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.8.A\u20133.10.A",
-        "essentialKnowledgeFamily": "3.8.A.*\u20133.10.A.*",
+        "learningObjectiveFamily": "3.8.A–3.10.A",
+        "essentialKnowledgeFamily": "3.8.A.*–3.10.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -1048,12 +1048,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_8",
       "dailyPhases": {
-        "warmUp": "FRQ 4 preview: 'Solve sin(2x) = \u221a3/2 on [0, 2\u03c0). Then evaluate tan\u207b\u00b9(1). Then find the vertical asymptotes of f(x) = 2 tan(3x).' 'Which topics does this connect?'",
-        "topicIntroduction": "FRQ 4 practice \u2014 no calculator. Symbolic manipulations with tangent, inverse trig, and equation solving. Problems combine skills from 3.8\u20133.10: tangent evaluation and asymptotes, inverse trig with range checking, solving equations with compound arguments, quadratic-in-trig.",
-        "scaffoldedExamples": "Mixed FRQ 4 style: (1) Find all solutions of 2cos(3x) \u2212 1 = 0 on [0, 2\u03c0). (2) Evaluate sin\u207b\u00b9(\u2212\u221a3/2) + cos\u207b\u00b9(\u22121/2). (3) Find vertical asymptotes of f(x) = 3 tan(2x \u2212 \u03c0/3) on [0, 2\u03c0).",
-        "guidedPractice": "Students work mixed FRQ 4 problems in pairs. Each problem combines 2\u20133 skills from tangent, inverse trig, and equation solving. Teacher provides feedback on setup and solution completeness.",
-        "independentPractice": "Mixed AP-style problems: Solve tan(2x) = \u221a3 on [0, 2\u03c0). Evaluate cos(arcsin(3/5)). Find all solutions to 4sin\u00b2x \u2212 3 = 0 on [0, 2\u03c0). Find asymptotes of f(x) = tan(x/2 + \u03c0/4).",
-        "exitEvidence": "Evaluate sin\u207b\u00b9(1/2) \u2212 cos\u207b\u00b9(\u22121/2). Show range checking for each inverse trig value.",
+        "warmUp": "FRQ 4 preview: 'Solve sin(2x) = √3/2 on [0, 2π). Then evaluate tan⁻¹(1). Then find the vertical asymptotes of f(x) = 2 tan(3x).' 'Which topics does this connect?'",
+        "topicIntroduction": "FRQ 4 practice — no calculator. Symbolic manipulations with tangent, inverse trig, and equation solving. Problems combine skills from 3.8–3.10: tangent evaluation and asymptotes, inverse trig with range checking, solving equations with compound arguments, quadratic-in-trig.",
+        "scaffoldedExamples": "Mixed FRQ 4 style: (1) Find all solutions of 2cos(3x) − 1 = 0 on [0, 2π). (2) Evaluate sin⁻¹(−√3/2) + cos⁻¹(−1/2). (3) Find vertical asymptotes of f(x) = 3 tan(2x − π/3) on [0, 2π).",
+        "guidedPractice": "Students work mixed FRQ 4 problems in pairs. Each problem combines 2–3 skills from tangent, inverse trig, and equation solving. Teacher provides feedback on setup and solution completeness.",
+        "independentPractice": "Mixed AP-style problems: Solve tan(2x) = √3 on [0, 2π). Evaluate cos(arcsin(3/5)). Find all solutions to 4sin²x − 3 = 0 on [0, 2π). Find asymptotes of f(x) = tan(x/2 + π/4).",
+        "exitEvidence": "Evaluate sin⁻¹(1/2) − cos⁻¹(−1/2). Show range checking for each inverse trig value.",
         "capReflection": "What courage move did you make when a problem combined multiple topics?"
       }
     },
@@ -1062,12 +1062,12 @@
       "unit": 3,
       "period": 30,
       "dayType": "test",
-      "notes": "Test 2: Topics 3.8\u20133.10 \u2014 tangent function, inverse trig, trig equations and inequalities",
+      "notes": "Test 2: Topics 3.8–3.10 — tangent function, inverse trig, trig equations and inequalities",
       "nonInstructionArtifact": {
         "artifactType": "test",
         "source": "curriculum/source/passwater/unit-3.md",
-        "cedScope": "3.8\u20133.10",
-        "evidence": "Local test aligned to CED competencies 3.8.A, 3.9.A, 3.10.A and Passwater Worksheets A\u2013D"
+        "cedScope": "3.8–3.10",
+        "evidence": "Local test aligned to CED competencies 3.8.A, 3.9.A, 3.10.A and Passwater Worksheets A–D"
       }
     },
     {
@@ -1099,12 +1099,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_11",
       "dailyPhases": {
-        "warmUp": "cos(\u03c0/3) = 1/2. What is 1/cos(\u03c0/3)? 'Is this a value that cosine itself can produce? What does the reciprocal do to the range?'",
-        "topicIntroduction": "Passwater lesson 3-11: Reciprocal definitions: sec(x) = 1/cos(x), csc(x) = 1/sin(x), cot(x) = cos(x)/sin(x) = 1/tan(x). Vertical asymptotes where denominator = 0: sec has asymptotes at x = \u03c0/2 + k\u03c0, csc at x = k\u03c0, cot at x = k\u03c0. Ranges of sec and csc: (\u2212\u221e, \u22121] \u222a [1, \u221e). Graphs have U-shaped branches between asymptotes \u2014 use sin/cos as guide curves.",
-        "scaffoldedExamples": "Example 1: f(x) = 3 sec(2x). Asymptote when cos(2x) = 0: 2x = \u03c0/2 + k\u03c0 \u2192 x = \u03c0/4 + k\u03c0/2. Example 2: h(\u03b8) = 3 csc(\u03b8/2). Range: csc(\u03b8/2) has range (\u2212\u221e, \u22121] \u222a [1, \u221e), multiplying by 3 gives (\u2212\u221e, \u22123] \u222a [3, \u221e).",
-        "guidedPractice": "Students: Where does g(x) = cot(2x) have vertical asymptotes? cot(2x) asymptotes where sin(2x) = 0: 2x = k\u03c0 \u2192 x = k\u03c0/2. Find range of h(x) = 5 sec(x/2). Graph y = sec(x) using y = cos(x) as guide.",
-        "independentPractice": "Passwater Worksheet A: Graphing sec(x) and csc(x) using sin/cos guide curves. Finding vertical asymptotes of sec(x/2) on [0, 4\u03c0). Range identification.",
-        "exitEvidence": "Evaluate sec(\u03c0/3) and state where sec(x) is undefined on [0, 2\u03c0].",
+        "warmUp": "cos(π/3) = 1/2. What is 1/cos(π/3)? 'Is this a value that cosine itself can produce? What does the reciprocal do to the range?'",
+        "topicIntroduction": "Passwater lesson 3-11: Reciprocal definitions: sec(x) = 1/cos(x), csc(x) = 1/sin(x), cot(x) = cos(x)/sin(x) = 1/tan(x). Vertical asymptotes where denominator = 0: sec has asymptotes at x = π/2 + kπ, csc at x = kπ, cot at x = kπ. Ranges of sec and csc: (−∞, −1] ∪ [1, ∞). Graphs have U-shaped branches between asymptotes — use sin/cos as guide curves.",
+        "scaffoldedExamples": "Example 1: f(x) = 3 sec(2x). Asymptote when cos(2x) = 0: 2x = π/2 + kπ → x = π/4 + kπ/2. Example 2: h(θ) = 3 csc(θ/2). Range: csc(θ/2) has range (−∞, −1] ∪ [1, ∞), multiplying by 3 gives (−∞, −3] ∪ [3, ∞).",
+        "guidedPractice": "Students: Where does g(x) = cot(2x) have vertical asymptotes? cot(2x) asymptotes where sin(2x) = 0: 2x = kπ → x = kπ/2. Find range of h(x) = 5 sec(x/2). Graph y = sec(x) using y = cos(x) as guide.",
+        "independentPractice": "Passwater Worksheet A: Graphing sec(x) and csc(x) using sin/cos guide curves. Finding vertical asymptotes of sec(x/2) on [0, 4π). Range identification.",
+        "exitEvidence": "Evaluate sec(π/3) and state where sec(x) is undefined on [0, 2π].",
         "capReflection": "What adaptability move did you make when sec(x) looked like 1/cos(x)?"
       }
     },
@@ -1138,11 +1138,11 @@
       "problemFamily": "apc_3_11",
       "dailyPhases": {
         "warmUp": "Solve 4 csc(3x) + 1 = 11. 'How do you convert this into a familiar equation?'",
-        "topicIntroduction": "Passwater lesson 3-11 (continued): Solving reciprocal trig equations. Strategy: isolate the reciprocal function, convert to sin/cos/tan, solve the resulting equation. 4 csc(3x) + 1 = 11 \u2192 csc(3x) = 5/2 \u2192 sin(3x) = 2/5. 5 \u2212 2 csc(x) = 7 \u2192 csc(x) = \u22121 \u2192 sin(x) = \u22121. Intersection: 2 sec(x) \u2212 5 = \u22121 \u2192 sec(x) = 2 \u2192 cos(x) = 1/2.",
-        "scaffoldedExamples": "Example 3: 4 csc(3x) + 1 = 11 on [0, 2\u03c0). csc(3x) = 5/2 \u2192 sin(3x) = 2/5. 3x = arcsin(2/5) or 3x = \u03c0 \u2212 arcsin(2/5) plus multiples of 2\u03c0. Solve for x and restrict to [0, 2\u03c0).",
-        "guidedPractice": "Students: Solve 5 \u2212 2 csc(x) = 7 on [0, 2\u03c0). csc(x) = \u22121 \u2192 sin(x) = \u22121 \u2192 x = 3\u03c0/2. Solve 2 + 3 cot(x) = 1: cot(x) = \u22121/3 \u2192 tan(x) = \u22123.",
-        "independentPractice": "Passwater Worksheet B: Solve 5 \u2212 2 csc(x) = 7 on [0, 2\u03c0). Solve 2 + 3 cot(x) = 1 on [0, 2\u03c0). Find where 2 sec(x) \u2212 5 = \u22121 on [0, 2\u03c0) \u2014 set sec(x) = 2, convert to cos(x) = 1/2.",
-        "exitEvidence": "Find the vertical asymptotes of f(x) = 2 csc(3x) on [0, 2\u03c0). How do you convert a csc equation into a sin equation?",
+        "topicIntroduction": "Passwater lesson 3-11 (continued): Solving reciprocal trig equations. Strategy: isolate the reciprocal function, convert to sin/cos/tan, solve the resulting equation. 4 csc(3x) + 1 = 11 → csc(3x) = 5/2 → sin(3x) = 2/5. 5 − 2 csc(x) = 7 → csc(x) = −1 → sin(x) = −1. Intersection: 2 sec(x) − 5 = −1 → sec(x) = 2 → cos(x) = 1/2.",
+        "scaffoldedExamples": "Example 3: 4 csc(3x) + 1 = 11 on [0, 2π). csc(3x) = 5/2 → sin(3x) = 2/5. 3x = arcsin(2/5) or 3x = π − arcsin(2/5) plus multiples of 2π. Solve for x and restrict to [0, 2π).",
+        "guidedPractice": "Students: Solve 5 − 2 csc(x) = 7 on [0, 2π). csc(x) = −1 → sin(x) = −1 → x = 3π/2. Solve 2 + 3 cot(x) = 1: cot(x) = −1/3 → tan(x) = −3.",
+        "independentPractice": "Passwater Worksheet B: Solve 5 − 2 csc(x) = 7 on [0, 2π). Solve 2 + 3 cot(x) = 1 on [0, 2π). Find where 2 sec(x) − 5 = −1 on [0, 2π) — set sec(x) = 2, convert to cos(x) = 1/2.",
+        "exitEvidence": "Find the vertical asymptotes of f(x) = 2 csc(3x) on [0, 2π). How do you convert a csc equation into a sin equation?",
         "capReflection": "What persistence move did you make when converting reciprocal equations?"
       }
     },
@@ -1175,12 +1175,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_12",
       "dailyPhases": {
-        "warmUp": "Is tan\u00b2\u03b8 \u2212 sec\u00b2\u03b8 always equal to \u22121? Try \u03b8 = \u03c0/4: 1 \u2212 2 = \u22121. Try \u03b8 = \u03c0/3: 3 \u2212 4 = \u22121. 'Why does this always work?'",
-        "topicIntroduction": "Passwater lesson 3-12: Pythagorean identities \u2014 sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1 (from unit circle, Pythagorean theorem). Divide by cos\u00b2\u03b8: 1 + tan\u00b2\u03b8 = sec\u00b2\u03b8. Divide by sin\u00b2\u03b8: 1 + cot\u00b2\u03b8 = csc\u00b2\u03b8. Reciprocal identities: 1/sin = csc, 1/cos = sec, 1/tan = cot. Rewriting strategy: convert to sin and cos, simplify, express in target function.",
-        "scaffoldedExamples": "Example 1: Rewrite tan(x) \u00b7 csc(x) as a fraction in cos(x): sin(x)/cos(x) \u00b7 1/sin(x) = 1/cos(x) = sec(x). Example 4: Simplify tan\u00b2\u03b8 \u2212 sec\u00b2\u03b8. From 1 + tan\u00b2\u03b8 = sec\u00b2\u03b8, rearrange: tan\u00b2\u03b8 \u2212 sec\u00b2\u03b8 = \u22121. Expand (sin(x) + cos(x))\u00b2: sin\u00b2 + 2sin\u00b7cos + cos\u00b2 = 1 + 2sin(x)cos(x).",
-        "guidedPractice": "Students: If sin(\u03b8) = 3/5, find cos\u00b2\u03b8 using sin\u00b2 + cos\u00b2 = 1. Rewrite (1 \u2212 cos\u00b2x)/cos\u00b2x in terms of tan(x): sin\u00b2x/cos\u00b2x = tan\u00b2x. Expand (sin \u03b8 + cos \u03b8)\u00b2 and simplify.",
-        "independentPractice": "Passwater Worksheet A: Simplify tan\u00b2\u03b8 \u2212 sec\u00b2\u03b8. Simplify (sin \u03b8 \u2212 cos \u03b8)\u00b2 + (sin \u03b8 + cos \u03b8)\u00b2. Simplify tan\u00b2\u03b8/(1 + tan\u00b2\u03b8) = tan\u00b2\u03b8/sec\u00b2\u03b8 = sin\u00b2\u03b8.",
-        "exitEvidence": "Simplify tan\u00b2\u03b8 \u2212 sec\u00b2\u03b8. Rewrite 2 sin(\u03c0/10) cos(\u03c0/10) using a double angle identity.",
+        "warmUp": "Is tan²θ − sec²θ always equal to −1? Try θ = π/4: 1 − 2 = −1. Try θ = π/3: 3 − 4 = −1. 'Why does this always work?'",
+        "topicIntroduction": "Passwater lesson 3-12: Pythagorean identities — sin²θ + cos²θ = 1 (from unit circle, Pythagorean theorem). Divide by cos²θ: 1 + tan²θ = sec²θ. Divide by sin²θ: 1 + cot²θ = csc²θ. Reciprocal identities: 1/sin = csc, 1/cos = sec, 1/tan = cot. Rewriting strategy: convert to sin and cos, simplify, express in target function.",
+        "scaffoldedExamples": "Example 1: Rewrite tan(x) · csc(x) as a fraction in cos(x): sin(x)/cos(x) · 1/sin(x) = 1/cos(x) = sec(x). Example 4: Simplify tan²θ − sec²θ. From 1 + tan²θ = sec²θ, rearrange: tan²θ − sec²θ = −1. Expand (sin(x) + cos(x))²: sin² + 2sin·cos + cos² = 1 + 2sin(x)cos(x).",
+        "guidedPractice": "Students: If sin(θ) = 3/5, find cos²θ using sin² + cos² = 1. Rewrite (1 − cos²x)/cos²x in terms of tan(x): sin²x/cos²x = tan²x. Expand (sin θ + cos θ)² and simplify.",
+        "independentPractice": "Passwater Worksheet A: Simplify tan²θ − sec²θ. Simplify (sin θ − cos θ)² + (sin θ + cos θ)². Simplify tan²θ/(1 + tan²θ) = tan²θ/sec²θ = sin²θ.",
+        "exitEvidence": "Simplify tan²θ − sec²θ. Rewrite 2 sin(π/10) cos(π/10) using a double angle identity.",
         "capReflection": "What persistence move did you make when multiple identities applied?"
       }
     },
@@ -1213,13 +1213,13 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_12",
       "dailyPhases": {
-        "warmUp": "Which is equivalent to 2 sin(\u03c0/14) cos(\u03c0/14)? 'What identity connects a product of sin and cos to a single trig function?'",
-        "topicIntroduction": "Passwater lesson 3-12 (continued): Double angle identities \u2014 sin(2\u03b8) = 2 sin \u03b8 cos \u03b8. cos(2\u03b8) has three forms: cos\u00b2\u03b8 \u2212 sin\u00b2\u03b8 (both present), 1 \u2212 2sin\u00b2\u03b8 (only sin), 2cos\u00b2\u03b8 \u2212 1 (only cos). Sum/difference: sin(\u03b1 \u00b1 \u03b2) = sin \u03b1 cos \u03b2 \u00b1 cos \u03b1 sin \u03b2, cos(\u03b1 \u00b1 \u03b2) = cos \u03b1 cos \u03b2 \u2213 sin \u03b1 sin \u03b2. Choose strategically based on the expression.",
-        "scaffoldedExamples": "Example 2: 2 sin(\u03c0/14) cos(\u03c0/14) = sin(2 \u00b7 \u03c0/14) = sin(\u03c0/7). Example 3: Rewrite 4 cos(2x) using double angle. Using cos\u00b2 \u2212 sin\u00b2: 4(cos\u00b2x \u2212 sin\u00b2x). Using 1 \u2212 2sin\u00b2: 4 \u2212 8sin\u00b2x. Using 2cos\u00b2 \u2212 1: 8cos\u00b2x \u2212 4. All equivalent.",
-        "guidedPractice": "Students: Rewrite g(x) = tan(x) \u00b7 sec(x) using sin(x): sin(x)/cos(x) \u00b7 1/cos(x) = sin(x)/cos\u00b2(x). Simplify (sec\u00b2x \u2212 1)/sin\u00b2x = tan\u00b2x/sin\u00b2x = 1/cos\u00b2x = sec\u00b2x. cos(\u03c0/8)cos(\u03c0/16) \u2212 sin(\u03c0/8)sin(\u03c0/16) = cos(\u03c0/8 + \u03c0/16) = cos(3\u03c0/16).",
-        "independentPractice": "Passwater Worksheet B: Rewrite expressions using double angle. Simplify using sum/difference identities. Rewrite g(x) = tan(x) \u00b7 sec(x) using powers of sin(x). Verify identities step by step.",
-        "exitEvidence": "Simplify (sin\u00b2x \u2212 cos\u00b2x)/sin(x) using identities. Show which identity you used and why.",
-        "capReflection": "What adaptability move did you make when choosing which form of cos(2\u03b8) to use?"
+        "warmUp": "Which is equivalent to 2 sin(π/14) cos(π/14)? 'What identity connects a product of sin and cos to a single trig function?'",
+        "topicIntroduction": "Passwater lesson 3-12 (continued): Double angle identities — sin(2θ) = 2 sin θ cos θ. cos(2θ) has three forms: cos²θ − sin²θ (both present), 1 − 2sin²θ (only sin), 2cos²θ − 1 (only cos). Sum/difference: sin(α ± β) = sin α cos β ± cos α sin β, cos(α ± β) = cos α cos β ∓ sin α sin β. Choose strategically based on the expression.",
+        "scaffoldedExamples": "Example 2: 2 sin(π/14) cos(π/14) = sin(2 · π/14) = sin(π/7). Example 3: Rewrite 4 cos(2x) using double angle. Using cos² − sin²: 4(cos²x − sin²x). Using 1 − 2sin²: 4 − 8sin²x. Using 2cos² − 1: 8cos²x − 4. All equivalent.",
+        "guidedPractice": "Students: Rewrite g(x) = tan(x) · sec(x) using sin(x): sin(x)/cos(x) · 1/cos(x) = sin(x)/cos²(x). Simplify (sec²x − 1)/sin²x = tan²x/sin²x = 1/cos²x = sec²x. cos(π/8)cos(π/16) − sin(π/8)sin(π/16) = cos(π/8 + π/16) = cos(3π/16).",
+        "independentPractice": "Passwater Worksheet B: Rewrite expressions using double angle. Simplify using sum/difference identities. Rewrite g(x) = tan(x) · sec(x) using powers of sin(x). Verify identities step by step.",
+        "exitEvidence": "Simplify (sin²x − cos²x)/sin(x) using identities. Show which identity you used and why.",
+        "capReflection": "What adaptability move did you make when choosing which form of cos(2θ) to use?"
       }
     },
     {
@@ -1228,14 +1228,14 @@
       "period": 35,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.8\u20133.12",
+        "id": "3.8–3.12",
         "title": "FRQ 4 Practice: Identity Verification and Expression Rewriting",
         "source": "curriculum/source/passwater/unit-3.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.8.A\u20133.12.A",
-        "essentialKnowledgeFamily": "3.8.A.*\u20133.12.A.*",
+        "learningObjectiveFamily": "3.8.A–3.12.A",
+        "essentialKnowledgeFamily": "3.8.A.*–3.12.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -1250,12 +1250,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_12",
       "dailyPhases": {
-        "warmUp": "Verify sin\u00b2(x) + cos\u00b2(x) = 1 for x = \u03c0/4. 'Does this work for all x? How do you verify an identity vs. solve an equation?'",
-        "topicIntroduction": "FRQ 4 synthesis practice \u2014 no calculator. Identity verification, expression simplification, equation solving across reciprocal functions, Pythagorean identities, double angle, and sum/difference. Connect to FRQ 4 task model: symbolic manipulations without context.",
-        "scaffoldedExamples": "Synthesis problems: (1) Verify (sin x + cos x)\u00b2 = 1 + 2 sin x cos x. Expand left: sin\u00b2 + 2 sin\u00b7cos + cos\u00b2 = 1 + 2 sin\u00b7cos. (2) Simplify tan(x) \u00b7 csc(x) \u2212 cot(x). (3) Solve 2 sin\u00b2x \u2212 sin x \u2212 1 = 0 on [0, 2\u03c0). Factor: (2sin x + 1)(sin x \u2212 1) = 0.",
+        "warmUp": "Verify sin²(x) + cos²(x) = 1 for x = π/4. 'Does this work for all x? How do you verify an identity vs. solve an equation?'",
+        "topicIntroduction": "FRQ 4 synthesis practice — no calculator. Identity verification, expression simplification, equation solving across reciprocal functions, Pythagorean identities, double angle, and sum/difference. Connect to FRQ 4 task model: symbolic manipulations without context.",
+        "scaffoldedExamples": "Synthesis problems: (1) Verify (sin x + cos x)² = 1 + 2 sin x cos x. Expand left: sin² + 2 sin·cos + cos² = 1 + 2 sin·cos. (2) Simplify tan(x) · csc(x) − cot(x). (3) Solve 2 sin²x − sin x − 1 = 0 on [0, 2π). Factor: (2sin x + 1)(sin x − 1) = 0.",
         "guidedPractice": "Students work FRQ 4 synthesis in pairs: verify 2 identities, simplify 3 expressions, solve 2 equations. Problems mix sec/csc/cot, Pythagorean identities, and double angle.",
-        "independentPractice": "Mixed FRQ 4 problems: Verify (1 \u2212 cos\u00b2x)/sin\u00b2x = 1. Simplify sec\u00b2x \u2212 tan\u00b2x. Solve 2cos(2x) + 1 = 0 on [0, 2\u03c0). Rewrite 4sin(x)cos(x) using double angle.",
-        "exitEvidence": "Verify that (sin(x) + cos(x))\u00b2 \u2212 1 = 2 sin(x) cos(x). Show each algebraic step.",
+        "independentPractice": "Mixed FRQ 4 problems: Verify (1 − cos²x)/sin²x = 1. Simplify sec²x − tan²x. Solve 2cos(2x) + 1 = 0 on [0, 2π). Rewrite 4sin(x)cos(x) using double angle.",
+        "exitEvidence": "Verify that (sin(x) + cos(x))² − 1 = 2 sin(x) cos(x). Show each algebraic step.",
         "capReflection": "What courage move did you make when an identity verification required expanding first?"
       }
     },
@@ -1264,12 +1264,12 @@
       "unit": 3,
       "period": 36,
       "dayType": "test",
-      "notes": "Test 3: Topics 3.8\u20133.12 \u2014 tangent, inverse trig, equations, reciprocal functions, and equivalent representations",
+      "notes": "Test 3: Topics 3.8–3.12 — tangent, inverse trig, equations, reciprocal functions, and equivalent representations",
       "nonInstructionArtifact": {
         "artifactType": "test",
         "source": "curriculum/source/passwater/unit-3.md",
-        "cedScope": "3.8\u20133.12",
-        "evidence": "Local test aligned to CED competencies 3.8.A\u20133.12.A and Passwater Worksheets A\u2013D"
+        "cedScope": "3.8–3.12",
+        "evidence": "Local test aligned to CED competencies 3.8.A–3.12.A and Passwater Worksheets A–D"
       }
     },
     {
@@ -1301,12 +1301,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_13",
       "dailyPhases": {
-        "warmUp": "A ship is 5 miles from a harbor at angle \u03c0/3 from due east. 'You could say the rectangular point is (2.5, 4.33), but what is the more natural description?'",
-        "topicIntroduction": "Passwater lesson 3-13: Polar coordinates (r, \u03b8) describe points by distance r and angle \u03b8. Conversion formulas: polar to rectangular \u2014 x = r cos \u03b8, y = r sin \u03b8. Rectangular to polar \u2014 r\u00b2 = x\u00b2 + y\u00b2, tan \u03b8 = y/x. Tip: always sketch first and check quadrant. When computing \u03b8 from tan \u03b8 = y/x, check quadrant \u2014 arctan only gives angles in (\u2212\u03c0/2, \u03c0/2).",
-        "scaffoldedExamples": "Example 1: (5, 4\u03c0/3) \u2192 x = 5 cos(4\u03c0/3) = 5 \u00b7 (\u22121/2) = \u22125/2, y = 5 sin(4\u03c0/3) = 5 \u00b7 (\u2212\u221a3/2) = \u22125\u221a3/2. Rectangular: (\u22125/2, \u22125\u221a3/2). Example 2: (2, \u22122) \u2192 r = \u221a8 = 2\u221a2, tan \u03b8 = \u22121, QIV \u2192 \u03b8 = \u2212\u03c0/4 (or 7\u03c0/4). Polar: (2\u221a2, \u2212\u03c0/4).",
-        "guidedPractice": "Students: Convert (2, \u03c0) to rectangular: (\u22122, 0). Convert (7, \u2212\u03c0/2) to rectangular: (0, \u22127). Convert (0, \u22125) to polar: r = 5, \u03b8 = 3\u03c0/2. Sketch each point.",
-        "independentPractice": "Passwater Worksheet A: Convert (2, \u03c0) and (7, \u2212\u03c0/2) to rectangular. Convert (2, \u22122) and (\u22121, \u221a3) to polar with r > 0 and 0 \u2264 \u03b8 < 2\u03c0. Write complex number 3 + 2i in polar form.",
-        "exitEvidence": "Convert (5, \u03c0/3) to rectangular coordinates. Convert (\u22123, 3) to polar coordinates.",
+        "warmUp": "A ship is 5 miles from a harbor at angle π/3 from due east. 'You could say the rectangular point is (2.5, 4.33), but what is the more natural description?'",
+        "topicIntroduction": "Passwater lesson 3-13: Polar coordinates (r, θ) describe points by distance r and angle θ. Conversion formulas: polar to rectangular — x = r cos θ, y = r sin θ. Rectangular to polar — r² = x² + y², tan θ = y/x. Tip: always sketch first and check quadrant. When computing θ from tan θ = y/x, check quadrant — arctan only gives angles in (−π/2, π/2).",
+        "scaffoldedExamples": "Example 1: (5, 4π/3) → x = 5 cos(4π/3) = 5 · (−1/2) = −5/2, y = 5 sin(4π/3) = 5 · (−√3/2) = −5√3/2. Rectangular: (−5/2, −5√3/2). Example 2: (2, −2) → r = √8 = 2√2, tan θ = −1, QIV → θ = −π/4 (or 7π/4). Polar: (2√2, −π/4).",
+        "guidedPractice": "Students: Convert (2, π) to rectangular: (−2, 0). Convert (7, −π/2) to rectangular: (0, −7). Convert (0, −5) to polar: r = 5, θ = 3π/2. Sketch each point.",
+        "independentPractice": "Passwater Worksheet A: Convert (2, π) and (7, −π/2) to rectangular. Convert (2, −2) and (−1, √3) to polar with r > 0 and 0 ≤ θ < 2π. Write complex number 3 + 2i in polar form.",
+        "exitEvidence": "Convert (5, π/3) to rectangular coordinates. Convert (−3, 3) to polar coordinates.",
         "capReflection": "What persistence move did you make when the rectangular point was in QII and arctan gave a negative angle?"
       }
     },
@@ -1339,12 +1339,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_13",
       "dailyPhases": {
-        "warmUp": "The point (5, \u03c0/2) can also be written as (5, 5\u03c0/2) or (\u22125, 3\u03c0/2). 'Why does the same point have infinitely many representations?'",
-        "topicIntroduction": "Passwater lesson 3-13 (continued): Multiple representations \u2014 (r, \u03b8) = (r, \u03b8 + 2n\u03c0) = (\u2212r, \u03b8 + \u03c0). Adding 2\u03c0 rotates the angle by a full turn. Negating r and adding \u03c0 flips to the opposite direction. Complex number polar form: a + bi \u2192 r(cos \u03b8 + i sin \u03b8) where r = \u221a(a\u00b2 + b\u00b2), \u03b8 from the point (a, b). Example: \u22122 \u2212 2i has r = 2\u221a2, \u03b8 = 5\u03c0/4, giving 2\u221a2(cos(5\u03c0/4) + i sin(5\u03c0/4)).",
-        "scaffoldedExamples": "Example 3: (\u22121, \u221a3) \u2192 r = 2, tan \u03b8 = \u2212\u221a3/1 = \u2212\u221a3, point is in QII \u2192 \u03b8 = 2\u03c0/3. Polar: (2, 2\u03c0/3). Example 4: Write two representations for (5, \u03c0/2): original (5, \u03c0/2), add 2\u03c0 \u2192 (5, 5\u03c0/2), negate r \u2192 (\u22125, 3\u03c0/2). Convert 7(cos(7\u03c0/6) + i sin(7\u03c0/6)) to rectangular: x = 7 cos(7\u03c0/6) = \u22127\u221a3/2, y = 7 sin(7\u03c0/6) = \u22127/2, so \u22127\u221a3/2 \u2212 7i/2.",
-        "guidedPractice": "Students: Write 3 different polar representations for (3, \u03c0/4). Convert 3 + 2i to polar form: r = \u221a13, \u03b8 = arctan(2/3). Convert 7(cos(7\u03c0/6) + i sin(7\u03c0/6)) to a + bi.",
-        "independentPractice": "Passwater Worksheet A (cont.): Negative r representations. Complex number conversions. Write (5, \u03c0/2) three different ways. Convert \u22124 + 4i to polar form.",
-        "exitEvidence": "Write three different polar representations of the point (4, \u03c0/6). Include one with r < 0.",
+        "warmUp": "The point (5, π/2) can also be written as (5, 5π/2) or (−5, 3π/2). 'Why does the same point have infinitely many representations?'",
+        "topicIntroduction": "Passwater lesson 3-13 (continued): Multiple representations — (r, θ) = (r, θ + 2nπ) = (−r, θ + π). Adding 2π rotates the angle by a full turn. Negating r and adding π flips to the opposite direction. Complex number polar form: a + bi → r(cos θ + i sin θ) where r = √(a² + b²), θ from the point (a, b). Example: −2 − 2i has r = 2√2, θ = 5π/4, giving 2√2(cos(5π/4) + i sin(5π/4)).",
+        "scaffoldedExamples": "Example 3: (−1, √3) → r = 2, tan θ = −√3/1 = −√3, point is in QII → θ = 2π/3. Polar: (2, 2π/3). Example 4: Write two representations for (5, π/2): original (5, π/2), add 2π → (5, 5π/2), negate r → (−5, 3π/2). Convert 7(cos(7π/6) + i sin(7π/6)) to rectangular: x = 7 cos(7π/6) = −7√3/2, y = 7 sin(7π/6) = −7/2, so −7√3/2 − 7i/2.",
+        "guidedPractice": "Students: Write 3 different polar representations for (3, π/4). Convert 3 + 2i to polar form: r = √13, θ = arctan(2/3). Convert 7(cos(7π/6) + i sin(7π/6)) to a + bi.",
+        "independentPractice": "Passwater Worksheet A (cont.): Negative r representations. Complex number conversions. Write (5, π/2) three different ways. Convert −4 + 4i to polar form.",
+        "exitEvidence": "Write three different polar representations of the point (4, π/6). Include one with r < 0.",
         "capReflection": "What adaptability move did you make when r was negative?"
       }
     },
@@ -1377,13 +1377,13 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_14",
       "dailyPhases": {
-        "warmUp": "In rectangular coordinates, y = 3 sin(3x) is a wave. In polar coordinates, r = 3 sin(3\u03b8) traces a rose curve with 3 petals. 'How does the same trig function produce a completely different shape?'",
-        "topicIntroduction": "Passwater lesson 3-14: Polar functions map \u03b8 to r. AP exam fact: polar appears only in multiple choice \u2014 never sketch from scratch. Strategy: evaluate at key angles and match to a graph. Rose curves: r = a sin(n\u03b8) or a cos(n\u03b8) \u2014 n petals if n is odd, 2n petals if n is even. Negative r plots in the opposite direction (\u03b8 + \u03c0).",
-        "scaffoldedExamples": "Example 1: f(\u03b8) = 3 sin(3\u03b8) for 0 \u2264 \u03b8 \u2264 2\u03c0. n = 3 is odd \u2192 3 petals. Maximum r = 3 when sin(3\u03b8) = 1: 3\u03b8 = \u03c0/2 \u2192 \u03b8 = \u03c0/6. Example 2: Graph shows 8 petals. 2n = 8 \u2192 n = 4 (even). Equation: r = a sin(4\u03b8) or r = a cos(4\u03b8). Evaluate at \u03b8 = 0: a cos(0) = a (nonzero) vs a sin(0) = 0 to distinguish.",
-        "guidedPractice": "Students: If r = 3 cos(2\u03b8), find r at \u03b8 = 0 (r = 3), \u03b8 = \u03c0/4 (r = 0), \u03b8 = \u03c0/2 (r = \u22123). How many petals does r = 6 sin(4\u03b8) have? n = 4 is even \u2192 8 petals.",
-        "independentPractice": "Passwater Worksheet A: Match equations to graph types \u2014 r = \u22123 sin(3\u03b8) (rose, 3 petals), r = 1 + 2 sin(\u03b8) (lima\u00e7on), r = 6 cos(4\u03b8) (rose, 8 petals), r = \u03b8 (spiral). Count petals on various rose curves.",
-        "exitEvidence": "The graph of r = a cos(3\u03b8) for 0 \u2264 \u03b8 \u2264 2\u03c0 is a rose with how many petals? How does changing to a sin(3\u03b8) affect the graph?",
-        "capReflection": "What persistence move did you make when evaluating at several \u03b8 values to match a graph?"
+        "warmUp": "In rectangular coordinates, y = 3 sin(3x) is a wave. In polar coordinates, r = 3 sin(3θ) traces a rose curve with 3 petals. 'How does the same trig function produce a completely different shape?'",
+        "topicIntroduction": "Passwater lesson 3-14: Polar functions map θ to r. AP exam fact: polar appears only in multiple choice — never sketch from scratch. Strategy: evaluate at key angles and match to a graph. Rose curves: r = a sin(nθ) or a cos(nθ) — n petals if n is odd, 2n petals if n is even. Negative r plots in the opposite direction (θ + π).",
+        "scaffoldedExamples": "Example 1: f(θ) = 3 sin(3θ) for 0 ≤ θ ≤ 2π. n = 3 is odd → 3 petals. Maximum r = 3 when sin(3θ) = 1: 3θ = π/2 → θ = π/6. Example 2: Graph shows 8 petals. 2n = 8 → n = 4 (even). Equation: r = a sin(4θ) or r = a cos(4θ). Evaluate at θ = 0: a cos(0) = a (nonzero) vs a sin(0) = 0 to distinguish.",
+        "guidedPractice": "Students: If r = 3 cos(2θ), find r at θ = 0 (r = 3), θ = π/4 (r = 0), θ = π/2 (r = −3). How many petals does r = 6 sin(4θ) have? n = 4 is even → 8 petals.",
+        "independentPractice": "Passwater Worksheet A: Match equations to graph types — r = −3 sin(3θ) (rose, 3 petals), r = 1 + 2 sin(θ) (limaçon), r = 6 cos(4θ) (rose, 8 petals), r = θ (spiral). Count petals on various rose curves.",
+        "exitEvidence": "The graph of r = a cos(3θ) for 0 ≤ θ ≤ 2π is a rose with how many petals? How does changing to a sin(3θ) affect the graph?",
+        "capReflection": "What persistence move did you make when evaluating at several θ values to match a graph?"
       }
     },
     {
@@ -1415,13 +1415,13 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_14",
       "dailyPhases": {
-        "warmUp": "A graph shows a lima\u00e7on with an inner loop. 'Which equation fits: 2 + 4 sin(\u03b8) or 4 + 2 sin(\u03b8)? How do you tell?'",
-        "topicIntroduction": "Passwater lesson 3-14 (continued): Lima\u00e7ons r = a + b sin(\u03b8) or a + b cos(\u03b8). Inner loop if |b| > |a|, dimple if |b| = |a|, convex if |b| < |a|. Circles: r = a (constant radius). Spirals: r = \u03b8 (radius grows with angle). Evaluate at \u03b8 = 0 and \u03b8 = \u03c0 to distinguish sin vs cos and positive vs negative.",
-        "scaffoldedExamples": "Example 3: Graph is a lima\u00e7on with inner loop \u2014 |b| > |a|. Options: 2 + 4 sin(\u03b8) (|4| > |2|, has loop) vs 4 + 2 sin(\u03b8) (|2| < |4|, no loop). Check \u03b8 = \u03c0/2 to determine if loop is on positive or negative axis. Cardioid (dimpled to nothing): r = 2 + 2 cos(\u03b8) \u2014 |b| = |a|.",
-        "guidedPractice": "Students: A graph shows a cardioid on the positive x-axis. Which fits: 2 + 4 cos(\u03b8) or 2 \u2212 4 cos(\u03b8)? Evaluate both at \u03b8 = 0 and \u03b8 = \u03c0. Identify curve type for r = 3 + 5 sin(\u03b8) (inner loop), r = 4 + 2 cos(\u03b8) (convex).",
-        "independentPractice": "Passwater Worksheet A (cont.): Identify lima\u00e7on type from equation. Graph r = 1 + sin(\u03b8) (cardioid) and label key points at \u03b8 = 0, \u03c0/2, \u03c0, 3\u03c0/2. Match r = 3 + 5 sin(\u03b8) to its graph type.",
-        "exitEvidence": "Is r = 3 + 5 sin(\u03b8) a lima\u00e7on with an inner loop, a dimple, or convex? Explain using |a| vs |b|.",
-        "capReflection": "What adaptability move did you make when the lima\u00e7on classification was not obvious?"
+        "warmUp": "A graph shows a limaçon with an inner loop. 'Which equation fits: 2 + 4 sin(θ) or 4 + 2 sin(θ)? How do you tell?'",
+        "topicIntroduction": "Passwater lesson 3-14 (continued): Limaçons r = a + b sin(θ) or a + b cos(θ). Inner loop if |b| > |a|, dimple if |b| = |a|, convex if |b| < |a|. Circles: r = a (constant radius). Spirals: r = θ (radius grows with angle). Evaluate at θ = 0 and θ = π to distinguish sin vs cos and positive vs negative.",
+        "scaffoldedExamples": "Example 3: Graph is a limaçon with inner loop — |b| > |a|. Options: 2 + 4 sin(θ) (|4| > |2|, has loop) vs 4 + 2 sin(θ) (|2| < |4|, no loop). Check θ = π/2 to determine if loop is on positive or negative axis. Cardioid (dimpled to nothing): r = 2 + 2 cos(θ) — |b| = |a|.",
+        "guidedPractice": "Students: A graph shows a cardioid on the positive x-axis. Which fits: 2 + 4 cos(θ) or 2 − 4 cos(θ)? Evaluate both at θ = 0 and θ = π. Identify curve type for r = 3 + 5 sin(θ) (inner loop), r = 4 + 2 cos(θ) (convex).",
+        "independentPractice": "Passwater Worksheet A (cont.): Identify limaçon type from equation. Graph r = 1 + sin(θ) (cardioid) and label key points at θ = 0, π/2, π, 3π/2. Match r = 3 + 5 sin(θ) to its graph type.",
+        "exitEvidence": "Is r = 3 + 5 sin(θ) a limaçon with an inner loop, a dimple, or convex? Explain using |a| vs |b|.",
+        "capReflection": "What adaptability move did you make when the limaçon classification was not obvious?"
       }
     },
     {
@@ -1453,12 +1453,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_14",
       "dailyPhases": {
-        "warmUp": "f(\u03b8) = 6 cos(3\u03b8) on [2\u03c0/3, \u03c0]. 'This domain restriction means only part of the 3-petal rose appears. Which portion remains?'",
-        "topicIntroduction": "Passwater lesson 3-14 (continued): Domain restrictions on polar graphs \u2014 limiting \u03b8 to a sub-interval shows only a portion of the full curve. Matching requires evaluating at endpoints and key interior points. Symmetry: polar functions commonly display symmetry about the polar axis, the line \u03b8 = \u03c0/2, or the origin.",
-        "scaffoldedExamples": "Example 4: f(\u03b8) = 6 cos(3\u03b8) on [2\u03c0/3, \u03c0]. Full rose: 3 petals. Evaluate at endpoints: f(2\u03c0/3) = 6 cos(2\u03c0) = 6, f(\u03c0) = 6 cos(3\u03c0) = \u22126. Trace the curve between these values to identify which petal portion appears. f(\u03b8) = 6 sin(2\u03b8) on [3\u03c0/4, \u03c0]: evaluate at 3\u03c0/4 (r = 0), 7\u03c0/8 (r \u2248 4.2), \u03c0 (r = 0).",
-        "guidedPractice": "Students: f(\u03b8) = 6 cos(2\u03b8) on [0, 2\u03c0]. Domain restricted to [\u03c0/2, \u03c0]: evaluate at \u03c0/2 (r = \u22126 cos(\u03c0) = 6), 3\u03c0/4 (r = 0), \u03c0 (r = \u22126). Which portion of the 4-petal rose remains? f(\u03b8) = 6 sin(2\u03b8) on [3\u03c0/4, \u03c0] \u2014 describe which petal portion is drawn.",
-        "independentPractice": "Passwater Worksheet B: Restricted domain tracing on rose curves. Matching partial polar graphs to equations. Domain restriction problems with lima\u00e7ons.",
-        "exitEvidence": "For f(\u03b8) = 4 cos(2\u03b8), if the domain is restricted to [\u03c0/4, \u03c0/2], evaluate at both endpoints and describe what portion of the rose curve appears.",
+        "warmUp": "f(θ) = 6 cos(3θ) on [2π/3, π]. 'This domain restriction means only part of the 3-petal rose appears. Which portion remains?'",
+        "topicIntroduction": "Passwater lesson 3-14 (continued): Domain restrictions on polar graphs — limiting θ to a sub-interval shows only a portion of the full curve. Matching requires evaluating at endpoints and key interior points. Symmetry: polar functions commonly display symmetry about the polar axis, the line θ = π/2, or the origin.",
+        "scaffoldedExamples": "Example 4: f(θ) = 6 cos(3θ) on [2π/3, π]. Full rose: 3 petals. Evaluate at endpoints: f(2π/3) = 6 cos(2π) = 6, f(π) = 6 cos(3π) = −6. Trace the curve between these values to identify which petal portion appears. f(θ) = 6 sin(2θ) on [3π/4, π]: evaluate at 3π/4 (r = 0), 7π/8 (r ≈ 4.2), π (r = 0).",
+        "guidedPractice": "Students: f(θ) = 6 cos(2θ) on [0, 2π]. Domain restricted to [π/2, π]: evaluate at π/2 (r = −6 cos(π) = 6), 3π/4 (r = 0), π (r = −6). Which portion of the 4-petal rose remains? f(θ) = 6 sin(2θ) on [3π/4, π] — describe which petal portion is drawn.",
+        "independentPractice": "Passwater Worksheet B: Restricted domain tracing on rose curves. Matching partial polar graphs to equations. Domain restriction problems with limaçons.",
+        "exitEvidence": "For f(θ) = 4 cos(2θ), if the domain is restricted to [π/4, π/2], evaluate at both endpoints and describe what portion of the rose curve appears.",
         "capReflection": "What persistence move did you make when tracing a restricted polar graph?"
       }
     },
@@ -1491,12 +1491,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_15",
       "dailyPhases": {
-        "warmUp": "For r = 3 cos(\u03b8), r goes from 3 (at \u03b8 = 0) to 0 (at \u03b8 = \u03c0/2). 'The radius decreased. But what if r were negative? If r = \u22122 increases to r = \u22121, does the distance from the origin increase or decrease?'",
-        "topicIntroduction": "Passwater lesson 3-15: Signed radius r can be positive or negative. Distance from origin is |r|. Key insight: when r is negative, increasing r (toward zero) means distance is decreasing, and decreasing r (away from zero) means distance is increasing. Distance behavior table: r positive + increasing \u2192 distance increasing; r positive + decreasing \u2192 distance decreasing; r negative + increasing \u2192 distance decreasing; r negative + decreasing \u2192 distance increasing. Average rate of change: (f(b) \u2212 f(a))/(b \u2212 a) \u2014 rate at which radius changes per radian. Use point-slope for estimation: r \u2212 r\u2081 = (avg rate)(\u03b8 \u2212 \u03b8\u2081). AP tip: sketch r = f(\u03b8) in rectangular coordinates (\u03b8 on horizontal, r on vertical) to visualize sign and monotonicity.",
-        "scaffoldedExamples": "Example 1: r positive and increasing on [0, \u03c0/2] \u2192 distance increasing (point moves away from origin). Example 2: r negative and increasing on [\u03c0, 3\u03c0/2] \u2192 r becoming less negative, \u2212r decreasing \u2192 distance decreasing (point moves closer to origin). Example 3: f(\u03c0/6) = 2, f(\u03c0/3) = 5. Average rate = (5 \u2212 2)/(\u03c0/3 \u2212 \u03c0/6) = 3/(\u03c0/6) = 18/\u03c0. Example 4: Estimate f(\u03c0/4) using point-slope from \u03b8\u2081 = \u03c0/6, r\u2081 = 2: r \u2212 2 = (18/\u03c0)(\u03c0/4 \u2212 \u03c0/6) = (18/\u03c0)(\u03c0/12) = 3/2. r \u2248 2 + 1.5 = 3.5.",
-        "guidedPractice": "Students: r is negative and decreasing on [\u03c0, 3\u03c0/2]. Is distance increasing or decreasing? (Decreasing r = more negative, so \u2212r = distance is increasing.) f(0) = 3, f(\u03c0/2) = 0. Find average rate of change on [0, \u03c0/2]. On which interval is average rate of change zero: given f(0) = 2, f(\u03c0/4) = 4, f(\u03c0/2) = 4, f(3\u03c0/4) = 2 \u2014 zero on [\u03c0/4, \u03c0/2] since f = 4 at both ends.",
-        "independentPractice": "Passwater Worksheet A: Complete distance behavior table for intervals where r is positive/negative and increasing/decreasing. Estimate f(3\u03c0/16) given f(\u03c0/8) = 4, f(\u03c0/4) = 7 using average rate of change. Compare average rate of change across three intervals: [0, \u03c0/3], [\u03c0/3, 2\u03c0/3], [2\u03c0/3, \u03c0] given f(0) = 6, f(\u03c0/3) = 3, f(2\u03c0/3) = \u22121, f(\u03c0) = \u22124.",
-        "exitEvidence": "For a polar function, r = 2 when \u03b8 = 0 and r = 5 when \u03b8 = \u03c0/4. What is the average rate of change? Estimate r when \u03b8 = \u03c0/8.",
+        "warmUp": "For r = 3 cos(θ), r goes from 3 (at θ = 0) to 0 (at θ = π/2). 'The radius decreased. But what if r were negative? If r = −2 increases to r = −1, does the distance from the origin increase or decrease?'",
+        "topicIntroduction": "Passwater lesson 3-15: Signed radius r can be positive or negative. Distance from origin is |r|. Key insight: when r is negative, increasing r (toward zero) means distance is decreasing, and decreasing r (away from zero) means distance is increasing. Distance behavior table: r positive + increasing → distance increasing; r positive + decreasing → distance decreasing; r negative + increasing → distance decreasing; r negative + decreasing → distance increasing. Average rate of change: (f(b) − f(a))/(b − a) — rate at which radius changes per radian. Use point-slope for estimation: r − r₁ = (avg rate)(θ − θ₁). AP tip: sketch r = f(θ) in rectangular coordinates (θ on horizontal, r on vertical) to visualize sign and monotonicity.",
+        "scaffoldedExamples": "Example 1: r positive and increasing on [0, π/2] → distance increasing (point moves away from origin). Example 2: r negative and increasing on [π, 3π/2] → r becoming less negative, −r decreasing → distance decreasing (point moves closer to origin). Example 3: f(π/6) = 2, f(π/3) = 5. Average rate = (5 − 2)/(π/3 − π/6) = 3/(π/6) = 18/π. Example 4: Estimate f(π/4) using point-slope from θ₁ = π/6, r₁ = 2: r − 2 = (18/π)(π/4 − π/6) = (18/π)(π/12) = 3/2. r ≈ 2 + 1.5 = 3.5.",
+        "guidedPractice": "Students: r is negative and decreasing on [π, 3π/2]. Is distance increasing or decreasing? (Decreasing r = more negative, so −r = distance is increasing.) f(0) = 3, f(π/2) = 0. Find average rate of change on [0, π/2]. On which interval is average rate of change zero: given f(0) = 2, f(π/4) = 4, f(π/2) = 4, f(3π/4) = 2 — zero on [π/4, π/2] since f = 4 at both ends.",
+        "independentPractice": "Passwater Worksheet A: Complete distance behavior table for intervals where r is positive/negative and increasing/decreasing. Estimate f(3π/16) given f(π/8) = 4, f(π/4) = 7 using average rate of change. Compare average rate of change across three intervals: [0, π/3], [π/3, 2π/3], [2π/3, π] given f(0) = 6, f(π/3) = 3, f(2π/3) = −1, f(π) = −4.",
+        "exitEvidence": "For a polar function, r = 2 when θ = 0 and r = 5 when θ = π/4. What is the average rate of change? Estimate r when θ = π/8.",
         "capReflection": "What persistence move did you make when the sign of r reversed the distance interpretation?"
       }
     },
@@ -1506,15 +1506,15 @@
       "period": 43,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.13\u20133.15",
+        "id": "3.13–3.15",
         "title": "Polar Synthesis: Coordinates, Graphs, Rates of Change",
         "source": "curriculum/source/college-board/ced-topic-index.json",
         "errata": "curriculum/source/college-board/clarification-guidance.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.13.A\u20133.15.A",
-        "essentialKnowledgeFamily": "3.13.A.*\u20133.15.A.*",
+        "learningObjectiveFamily": "3.13.A–3.15.A",
+        "essentialKnowledgeFamily": "3.13.A.*–3.15.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -1529,12 +1529,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_13",
       "dailyPhases": {
-        "warmUp": "Quick-fire polar review: (1) Convert (3, 2\u03c0/3) to rectangular. (2) How many petals does r = 5 cos(4\u03b8) have? (3) If r is negative and increasing, what happens to the distance from the origin?",
-        "topicIntroduction": "Polar synthesis day connecting 3.13\u20133.15. Multi-step problem: convert coordinates, identify polar graph type, interpret rate of change. Connect rectangular and polar representations. Practice AP-style matching and estimation.",
-        "scaffoldedExamples": "Synthesis: (1) Convert (\u22122, \u221a3) to polar: r = \u221a7, \u03b8 from QII. (2) Match r = 2 + 4 cos(\u03b8) to graph type: lima\u00e7on with inner loop (|b| > |a|). (3) For r = f(\u03b8), f(\u03c0/6) = 3 and f(\u03c0/3) = 7. Average rate of change = (7 \u2212 3)/(\u03c0/3 \u2212 \u03c0/6) = 4/(\u03c0/6) = 24/\u03c0. Estimate f(\u03c0/4).",
-        "guidedPractice": "Students work mixed polar synthesis: coordinate conversion, graph matching, rate estimation. Each problem connects 2\u20133 polar skills. Teacher circulates to check conversion accuracy and graph identification.",
-        "independentPractice": "AP-style mixed polar problems: Convert (4, 5\u03c0/6) to rectangular. How many petals does r = 3 sin(5\u03b8) have? Is r = 1 + 3 cos(\u03b8) a lima\u00e7on with an inner loop? Average rate of change on [0, \u03c0/2] given f(0) = 2, f(\u03c0/2) = 6.",
-        "exitEvidence": "Convert (\u22121, \u221a3) to polar. Identify the curve type for r = 4 \u2212 2 sin(\u03b8). If f(\u03c0/4) = 3 and f(\u03c0/2) = 1, find the average rate of change on [\u03c0/4, \u03c0/2].",
+        "warmUp": "Quick-fire polar review: (1) Convert (3, 2π/3) to rectangular. (2) How many petals does r = 5 cos(4θ) have? (3) If r is negative and increasing, what happens to the distance from the origin?",
+        "topicIntroduction": "Polar synthesis day connecting 3.13–3.15. Multi-step problem: convert coordinates, identify polar graph type, interpret rate of change. Connect rectangular and polar representations. Practice AP-style matching and estimation.",
+        "scaffoldedExamples": "Synthesis: (1) Convert (−2, √3) to polar: r = √7, θ from QII. (2) Match r = 2 + 4 cos(θ) to graph type: limaçon with inner loop (|b| > |a|). (3) For r = f(θ), f(π/6) = 3 and f(π/3) = 7. Average rate of change = (7 − 3)/(π/3 − π/6) = 4/(π/6) = 24/π. Estimate f(π/4).",
+        "guidedPractice": "Students work mixed polar synthesis: coordinate conversion, graph matching, rate estimation. Each problem connects 2–3 polar skills. Teacher circulates to check conversion accuracy and graph identification.",
+        "independentPractice": "AP-style mixed polar problems: Convert (4, 5π/6) to rectangular. How many petals does r = 3 sin(5θ) have? Is r = 1 + 3 cos(θ) a limaçon with an inner loop? Average rate of change on [0, π/2] given f(0) = 2, f(π/2) = 6.",
+        "exitEvidence": "Convert (−1, √3) to polar. Identify the curve type for r = 4 − 2 sin(θ). If f(π/4) = 3 and f(π/2) = 1, find the average rate of change on [π/4, π/2].",
         "capReflection": "What adaptability move did you make when switching between coordinate systems and graph types?"
       }
     },
@@ -1544,14 +1544,14 @@
       "period": 44,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.13\u20133.15",
+        "id": "3.13–3.15",
         "title": "Cumulative Polar Practice",
         "source": "curriculum/source/passwater/unit-3.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.13.A\u20133.15.A",
-        "essentialKnowledgeFamily": "3.13.A.*\u20133.15.A.*",
+        "learningObjectiveFamily": "3.13.A–3.15.A",
+        "essentialKnowledgeFamily": "3.13.A.*–3.15.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -1566,12 +1566,12 @@
       "passwaterSource": "curriculum/source/passwater/unit-3.md",
       "problemFamily": "apc_3_13",
       "dailyPhases": {
-        "warmUp": "Write two different polar representations of the point (4, \u03c0/6) \u2014 one with r > 0 and one with r < 0. 'How does negating r change the angle?'",
-        "topicIntroduction": "Cumulative polar practice \u2014 timed AP-style problem set. Coordinate conversion fluency, graph identification speed, rate of change estimation accuracy. Prepare for final unit test.",
-        "scaffoldedExamples": "Timed review: (1) Convert 3 + 4i to polar form. (2) Match r = 5 cos(3\u03b8) \u2014 rose, 3 petals. (3) f(\u03c0/8) = 2, f(\u03c0/4) = 5 \u2014 estimate f(3\u03c0/16). (4) Write (\u22123, \u03c0/2) three ways. (5) Is r = 6 sin(2\u03b8) symmetric about the polar axis?",
+        "warmUp": "Write two different polar representations of the point (4, π/6) — one with r > 0 and one with r < 0. 'How does negating r change the angle?'",
+        "topicIntroduction": "Cumulative polar practice — timed AP-style problem set. Coordinate conversion fluency, graph identification speed, rate of change estimation accuracy. Prepare for final unit test.",
+        "scaffoldedExamples": "Timed review: (1) Convert 3 + 4i to polar form. (2) Match r = 5 cos(3θ) — rose, 3 petals. (3) f(π/8) = 2, f(π/4) = 5 — estimate f(3π/16). (4) Write (−3, π/2) three ways. (5) Is r = 6 sin(2θ) symmetric about the polar axis?",
         "guidedPractice": "Students complete 10-problem AP-style polar problem set in 20 minutes. Problems cover all three polar topics. Peer-check answers.",
         "independentPractice": "Mixed AP-style practice: coordinate conversions (4 problems), graph matching (3 problems), rate of change estimation (3 problems). Self-check with answer key.",
-        "exitEvidence": "For r = 2 + 5 sin(\u03b8), identify the curve type. If f(0) = 4 and f(\u03c0/3) = 1, find the average rate of change on [0, \u03c0/3].",
+        "exitEvidence": "For r = 2 + 5 sin(θ), identify the curve type. If f(0) = 4 and f(π/3) = 1, find the average rate of change on [0, π/3].",
         "capReflection": "What courage move did you make when the timed practice felt rushed?"
       }
     },
@@ -1581,15 +1581,15 @@
       "period": 45,
       "dayType": "instruction",
       "cedTopic": {
-        "id": "3.1\u20133.15",
+        "id": "3.1–3.15",
         "title": "Full Unit Synthesis: Periodic through Polar",
         "source": "curriculum/source/college-board/ced-topic-index.json",
         "errata": "curriculum/source/college-board/clarification-guidance.md",
         "examStatus": "assessed-on-ap-exam"
       },
       "competencyTarget": {
-        "learningObjectiveFamily": "3.1.A\u20133.15.A",
-        "essentialKnowledgeFamily": "3.1.A.*\u20133.15.A.*",
+        "learningObjectiveFamily": "3.1.A–3.15.A",
+        "essentialKnowledgeFamily": "3.1.A.*–3.15.A.*",
         "mathematicalPractices": [
           "1.A",
           "1.B",
@@ -1605,8 +1605,8 @@
       "problemFamily": "apc_3_1",
       "dailyPhases": {
         "warmUp": "Unit 3 big picture: 'What are the three major blocks of this unit? How do periodic phenomena connect to trig functions, and how do trig functions connect to polar coordinates?'",
-        "topicIntroduction": "Full unit synthesis. Three blocks: (1) Periodic phenomena and sinusoidal modeling (3.1\u20133.7) \u2192 FRQ 3. (2) Trig functions, equations, identities (3.8\u20133.12) \u2192 FRQ 4. (3) Polar coordinates and graphs (3.13\u20133.15) \u2192 multiple choice. Students work mixed problems spanning all blocks.",
-        "scaffoldedExamples": "Cross-block synthesis: (1) Periodic table evaluation \u2192 find trig value \u2192 write sinusoidal equation. (2) Solve trig equation \u2192 verify using identity \u2192 graph the polar form. (3) FRQ 3 context \u2192 FRQ 4 identity verification \u2192 polar graph matching.",
+        "topicIntroduction": "Full unit synthesis. Three blocks: (1) Periodic phenomena and sinusoidal modeling (3.1–3.7) → FRQ 3. (2) Trig functions, equations, identities (3.8–3.12) → FRQ 4. (3) Polar coordinates and graphs (3.13–3.15) → multiple choice. Students work mixed problems spanning all blocks.",
+        "scaffoldedExamples": "Cross-block synthesis: (1) Periodic table evaluation → find trig value → write sinusoidal equation. (2) Solve trig equation → verify using identity → graph the polar form. (3) FRQ 3 context → FRQ 4 identity verification → polar graph matching.",
         "guidedPractice": "Students work in groups on mixed problem sets that require skills from multiple blocks. Each group presents one synthesis problem solution to the class.",
         "independentPractice": "Mixed AP-style problems spanning all 15 topics: periodic evaluation, trig values, sinusoidal equation writing, transformations, context modeling, tangent/inverse trig, equations, identities, polar conversion, polar graphs, rate of change.",
         "exitEvidence": "Name one skill from each of the three major blocks of Unit 3. Which block do you feel most confident about? Which needs more review?",
@@ -1618,12 +1618,12 @@
       "unit": 3,
       "period": 46,
       "dayType": "ap_task_model",
-      "notes": "FRQ task-model transfer day \u2014 FRQ 3 (periodic modeling, no calculator) and FRQ 4 (symbolic manipulations, no calculator)",
+      "notes": "FRQ task-model transfer day — FRQ 3 (periodic modeling, no calculator) and FRQ 4 (symbolic manipulations, no calculator)",
       "nonInstructionArtifact": {
         "artifactType": "ap_task_model",
         "source": "curriculum/source/passwater/unit-3.md",
         "cedScope": "Unit 3",
-        "evidence": "FRQ task-model transfer: periodic context modeling (3.1\u20133.7) and symbolic trig reasoning (3.8\u20133.12)"
+        "evidence": "FRQ task-model transfer: periodic context modeling (3.1–3.7) and symbolic trig reasoning (3.8–3.12)"
       }
     },
     {
@@ -1635,7 +1635,7 @@
       "nonInstructionArtifact": {
         "artifactType": "test",
         "source": "curriculum/source/passwater/unit-3.md",
-        "cedScope": "3.1\u20133.15",
+        "cedScope": "3.1–3.15",
         "evidence": "Comprehensive Unit 3 assessment aligned to all CED competencies and Passwater instructional evidence"
       }
     }

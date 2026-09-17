@@ -48,12 +48,12 @@ AP Precalculus is a web-based learning management system for high school AP Prec
 
 ## Curriculum Structure
 
-**Summary**: 4 units, ~54 lessons covering polynomial/rational functions, exponential/logarithmic functions, trigonometric/polar functions, and parametric/vectors/matrices.
+**Summary**: 4 units, 58 lessons covering polynomial/rational functions, exponential/logarithmic functions, trigonometric/polar functions, and parametric/vectors/matrices.
 
 ```
 Course (AP Precalculus)
 └── Units (1–4)
-    └── Lessons (~54 total)
+    └── Lessons (58 total)
         └── Lesson Versions (draft/review/published/archived)
             └── Phases (1–N, variable count)
                 └── Phase Sections (text | callout | activity | video | image)

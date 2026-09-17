@@ -39,7 +39,7 @@ In Topic 1.13, you learned to select a model type. Now you'll build the model an
 
 ### Extrapolation Warnings
 
-- **Cubic models:** End behavior goes to [±∞]. Unrealistic for bounded quantities like population, stock prices, or weight.
+- **Cubic models:** End behavior goes to $±∞$. Unrealistic for bounded quantities like population, stock prices, or weight.
 - **Linear models:** Extrapolation is safer when the trend is stable and the prediction is close to the data range.
 - **Always ask:** Does the prediction make sense in context?
 
@@ -47,34 +47,34 @@ In Topic 1.13, you learned to select a model type. Now you'll build the model an
 
 ### Section: text
 
-**Example 1:** Baby weight: [W(t) = 0.186t + 3.487]. Predict weight at [t = 10] weeks.
+**Example 1:** Baby weight: $W(t) = 0.185t + 3.545$. Predict weight at $t = 10$ weeks.
 
-[W(10) = 0.186(10) + 3.487 = 5.347] kg.
+$W(10) = 0.185(10) + 3.545 = 5.395$ kg.
 
-This is **interpolation** because 10 falls within the data range [4 ≤ t ≤ 12].
+This is **interpolation** because 10 falls within the data range $4 ≤ t ≤ 12$.
 
-**Example 2:** Federal Funds Rate data: [t]: 0, 1, 2, 3, 5 → [R(t)]: 1.5, 2.5, 1.9, 0.5, 4.5.
+**Example 2:** Federal Funds Rate data: $t$: 0, 1, 2, 3, 5 → $R(t)$: 1.5, 2.5, 1.9, 0.5, 4.5.
 
-Cubic regression: [R(t) = at³ + bt² + ct + d].
+Cubic regression: $R(t) = at³ + bt² + ct + d$.
 
-Predicted rate at [t = 8] (year 2026): extrapolation.
+Predicted rate at $t = 8$ (year 2026): extrapolation.
 
-**Is this useful for long-term prediction?** No — cubic end behavior goes to [±∞], but interest rates cannot realistically become arbitrarily large or negative.
+**Is this useful for long-term prediction?** No — cubic end behavior goes to $±∞$, but interest rates cannot realistically become arbitrarily large or negative.
 
-**Example 3:** UK female doctors: [F(t) = 1.06t + 23.8]. Predicted percentage for 2021 ([t = 33]):
+**Example 3:** UK female doctors: $F(t) = 1.06t + 23.8$. Predicted percentage for 2021 ($t = 33$):
 
-[F(33) = 1.06(33) + 23.8 = 58.78]%.
+$F(33) = 1.06(33) + 23.8 = 58.78$%.
 
-This is **extrapolation**, but it's reasonable because the linear trend is stable and the prediction isn't far beyond the data range. Actual value was 55%. Residual = [55 - 58.78 = -3.78]%. The model slightly overestimates.
+This is **extrapolation**, but it's reasonable because the linear trend is stable and the prediction isn't far beyond the data range. Actual value was 55%. Residual = $55 - 58.78 = -3.78$%. The model slightly overestimates.
 
 ## Guided Practice
 
 ### Section: text
 
-**Problem 1:** Natural gas consumption: [t]: 0, 10, 22, 30, 37 → [N(t)]: 12.4, 21.8, 20.4, 19.3, 22.6. Cubic regression gives [N(t)]. Predict consumption for 1967 ([t = 7]). Is this interpolation or extrapolation?
-*Hint:* Check whether [t = 7] falls within the data range.
+**Problem 1:** Natural gas consumption: $t$: 0, 10, 22, 30, 37 → $N(t)$: 12.4, 21.8, 20.4, 19.3, 22.6. Cubic regression gives $N(t)$. Predict consumption for 1967 ($t = 7$). Is this interpolation or extrapolation?
+*Hint:* Check whether $t = 7$ falls within the data range.
 
-**Problem 2:** Amazon stock at [t = 16] (April 6, 2021). The data range is [0 ≤ t ≤ 35]. Is this interpolation or extrapolation? The actual price was $168.61. If the model predicts $159.40, compute the residual.
+**Problem 2:** Amazon stock at $t = 16$ (April 6, 2021). The data range is $0 ≤ t ≤ 35$. Is this interpolation or extrapolation? The actual price was $168.61. If the model predicts$159.40, compute the residual.
 *Hint:* Residual = Actual − Predicted.
 
 **Problem 3:** A cubic model predicts a population will be negative in the year 2080. What does this tell you about the model's appropriateness for long-term prediction?
@@ -84,11 +84,11 @@ This is **extrapolation**, but it's reasonable because the linear trend is stabl
 
 ### Section: text
 
-**Problem 1:** Using the linear regression [W(t) = 0.186t + 3.487] from the baby weight data, predict the weight at [t = 3] weeks. Is this interpolation or extrapolation? Discuss reliability.
+**Problem 1:** Using the linear regression $W(t) = 0.185t + 3.545$ from the baby weight data, predict the weight at $t = 3$ weeks. Is this interpolation or extrapolation? Discuss reliability.
 
 **Problem 2:** A model predicts the number of registered voters will be 95,000 in 2035. The original data spans 2000–2020. The model is quadratic. Evaluate whether this extrapolation is reasonable, considering that quadratic functions have unbounded end behavior.
 
-**Problem 3:** For the UK doctors model [F(t) = 1.06t + 23.8], the actual percentage in 2021 was 55%. Compute the residual, interpret it in context, and discuss whether the linear model remains appropriate.
+**Problem 3:** For the UK doctors model $F(t) = 1.06t + 23.8$, the actual percentage in 2021 was 55%. Compute the residual, interpret it in context, and discuss whether the linear model remains appropriate.
 
 ## Reflection
 

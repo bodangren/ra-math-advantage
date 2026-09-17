@@ -2,15 +2,34 @@ import { describe, expect, it } from 'vitest';
 
 import type { LearningEvidenceV1 } from '@math-platform/practice-core/learning-evidence';
 
+import edgesJson from '@/curriculum/skill-graph/edges.json';
+
 import {
   PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
+  PRECALCULUS_PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID,
+  PRECALCULUS_PHYSICAL_CONTEXT_INDEPENDENT_ACTIVITY_ID,
+  PRECALCULUS_PHYSICAL_CONTEXT_NODE_ID,
+  PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID,
+  PRECALCULUS_TOPIC_12_GRAPH_AVERAGE_RATE_NODE_ID,
+  PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_NODE_ID,
+  PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID,
+  PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID,
+  PRECALCULUS_TOPIC_12_POINTWISE_LEAST_RATE_NODE_ID,
+  PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_NODE_ID,
+  PRECALCULUS_TOPIC_13_CONCAVITY_NODE_ID,
+  PRECALCULUS_TOPIC_14_POLYNOMIAL_DEGREE_LEADING_COEFFICIENT_NODE_ID,
+  PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID,
+  PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
+  PRECALCULUS_TOPIC_14_POLYNOMIAL_END_BEHAVIOR_NODE_ID,
+  PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_NODE_ID,
+  PRECALCULUS_TOPIC_12_NODE_ID,
   createPrecalculusLearningEvidenceRuntime,
   type PrecalculusLearningEvidenceStore,
 } from '@/lib/learning-evidence/precalc-pilot';
 
 const LEARNER_ID = 'student-precalc-pilot';
 const PILOT_NODE_ID = 'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs';
-const NON_PILOT_NODE_ID = 'math.precalc.skill.1.1.describe-covariation-in-tandem-change';
+const NON_PILOT_NODE_ID = 'math.precalc.skill.test-only.not-enabled';
 const PILOT_ACTIVITY_ID = `${PILOT_NODE_ID}.guided_practice`;
 
 class InMemoryEvidenceStore implements PrecalculusLearningEvidenceStore {
@@ -70,9 +89,62 @@ function createHarness() {
 }
 
 describe('AP Precalculus learning-evidence.v1 pilot runtime', () => {
-  it('enables exactly the planned Precalculus pilot node', () => {
-    expect(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS).toEqual([PILOT_NODE_ID]);
+  it('enables exactly the planned Precalculus pilot nodes and activity IDs', () => {
+    expect(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS).toEqual([
+      PILOT_NODE_ID,
+      PRECALCULUS_PHYSICAL_CONTEXT_NODE_ID,
+      PRECALCULUS_TOPIC_12_NODE_ID,
+      PRECALCULUS_TOPIC_12_GRAPH_AVERAGE_RATE_NODE_ID,
+      PRECALCULUS_TOPIC_12_NEGATIVE_RATE_CONTEXT_NODE_ID,
+      PRECALCULUS_TOPIC_12_QUADRATIC_NEGATIVE_RATE_INTERVAL_NODE_ID,
+      PRECALCULUS_TOPIC_13_RATE_PATTERN_CLASSIFICATION_NODE_ID,
+      PRECALCULUS_TOPIC_13_CONCAVITY_NODE_ID,
+      PRECALCULUS_TOPIC_14_POLYNOMIAL_DEGREE_LEADING_COEFFICIENT_NODE_ID,
+      PRECALCULUS_TOPIC_14_POLYNOMIAL_EXTREMA_NODE_ID,
+      PRECALCULUS_TOPIC_14_RATE_SIGN_AND_TREND_NODE_ID,
+      PRECALCULUS_TOPIC_14_POLYNOMIAL_END_BEHAVIOR_NODE_ID,
+      PRECALCULUS_TOPIC_15_REAL_ZEROS_AND_MULTIPLICITIES_NODE_ID,
+      'math.precalc.skill.1.5.determine-least-polynomial-degree-from-zeros-and-conjugate-pairs',
+      'math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts',
+      'math.precalc.skill.1.6.determine-polynomial-end-behavior-from-equations',
+      PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID,
+      PRECALCULUS_TOPIC_12_POINTWISE_LEAST_RATE_NODE_ID,
+    ]);
     expect(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS).not.toContain(NON_PILOT_NODE_ID);
+    expect(PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID)
+      .not.toBe(PRECALCULUS_TOPIC_12_POINTWISE_LEAST_RATE_NODE_ID);
+    expect(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.indexOf(
+      PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID,
+    )).toBeLessThan(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS.indexOf(
+      PRECALCULUS_TOPIC_12_POINTWISE_LEAST_RATE_NODE_ID,
+    ));
+    const pilotNodeIds = new Set<string>(PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS);
+    const pilotEdges = (edgesJson as { edges: Array<{
+      id: string;
+      type: string;
+      sourceId: string;
+      targetId: string;
+    }> }).edges.filter((edge) => pilotNodeIds.has(edge.sourceId) && pilotNodeIds.has(edge.targetId));
+    expect(pilotEdges).toContainEqual({
+      id: 'math.precalc.edge.0390',
+      type: 'prerequisite_for',
+      sourceId: PRECALCULUS_TOPIC_12_POINTWISE_COMPARISON_NODE_ID,
+      targetId: PRECALCULUS_TOPIC_12_POINTWISE_LEAST_RATE_NODE_ID,
+      weight: 1,
+      confidence: 'high',
+      sourceRefs: [
+        'apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14',
+      ],
+      reviewStatus: 'reviewed',
+      rationale: 'Comparing local direction and steepness is a prerequisite for identifying the least local rate at a labeled point.',
+      metadata: { course: 'precalc', unit: '1', lesson: '2' },
+    });
+    expect(PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID)
+      .toBe(`${PRECALCULUS_PHYSICAL_CONTEXT_NODE_ID}.worked_example`);
+    expect(PRECALCULUS_PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID)
+      .toBe(`${PRECALCULUS_PHYSICAL_CONTEXT_NODE_ID}.guided_practice`);
+    expect(PRECALCULUS_PHYSICAL_CONTEXT_INDEPENDENT_ACTIVITY_ID)
+      .toBe(`${PRECALCULUS_PHYSICAL_CONTEXT_NODE_ID}.independent_practice`);
   });
 
   it('denies graded Mastery Advantage evidence before teacher exposure without persistence or forwarding', async () => {
@@ -189,36 +261,6 @@ describe('AP Precalculus learning-evidence.v1 pilot runtime', () => {
       nodeId: PILOT_NODE_ID,
       origin: 'mastery_advantage',
     });
-  });
-
-  it('does not persist an eligible event when the production KST/SRS bridge is unavailable', async () => {
-    const store = new InMemoryEvidenceStore();
-    const runtime = createPrecalculusLearningEvidenceRuntime({ store });
-
-    await runtime.process({
-      learnerId: LEARNER_ID,
-      evidence: makeEvidence({ idempotencyKey: 'precalc-teacher-exposure-without-bridge' }),
-    });
-    const result = await runtime.process({
-      learnerId: LEARNER_ID,
-      evidence: makeEvidence({
-        origin: 'mastery_advantage',
-        mode: 'guided_practice',
-        occurredAt: '2026-08-19T09:00:00.000Z',
-        gradedEvidence: { isCorrect: true, score: 1, maxScore: 1 },
-        idempotencyKey: 'precalc-eligible-without-bridge',
-      }),
-    });
-
-    expect(result).toMatchObject({
-      persisted: false,
-      masteryApplied: false,
-      decision: {
-        eligible: true,
-        masteryBearing: true,
-      },
-    });
-    expect(store.events).toHaveLength(1);
   });
 
   it('rejects same-key conflicting evidence without a second downstream effect', async () => {

@@ -21,17 +21,17 @@
     },
     {
       "id": "topic-count-language-mismatch",
-      "status": "open",
+      "status": "resolved",
       "severity": "documentation-mismatch",
-      "sourceStatus": "documented-mismatch",
-      "summary": "Local product and overview language says approximately 54 lessons, while the listed AP topic sequence contains 58 topics.",
+      "sourceStatus": "labels-reconciled",
+      "summary": "The product, overview, and CED topic index use 58 lessons.",
       "values": {
-        "productApproxLessons": "~54",
-        "overviewApproxLessons": "~54",
+        "productApproxLessons": "58",
+        "overviewApproxLessons": "58",
         "listedTopics": 58,
         "cedTopics": 58
       },
-      "plannedHandling": "Use 58 CED topics as the canonical planning count for curriculum-definition artifacts. Update product/runtime wording in a later app-facing cleanup if the team decides to present AP topics as lessons."
+      "plannedHandling": "Keep lesson labels aligned with the CED topic index."
     },
     {
       "id": "ced-extraction-not-yet-normalized",

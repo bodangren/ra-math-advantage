@@ -68,7 +68,1102 @@
       ],
       "reviewStatus": "draft",
       "metadata": {
-        "course": "precalc"
+        "course": "precalc",
+        "skillCount": 73,
+        "workedExampleCount": 158
+      }
+    },
+    {
+      "id": "math.precalc.module.1",
+      "kind": "content_group",
+      "title": "Module 1: Polynomial and Rational Functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Module 1: Polynomial and Rational Functions",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1"
+      }
+    },
+    {
+      "id": "math.precalc.module.2",
+      "kind": "content_group",
+      "title": "Module 2: Exponential and Logarithmic Functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Module 2: Exponential and Logarithmic Functions",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2"
+      }
+    },
+    {
+      "id": "math.precalc.module.3",
+      "kind": "content_group",
+      "title": "Module 3: Trigonometric and Polar Functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Module 3: Trigonometric and Polar Functions",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3"
+      }
+    },
+    {
+      "id": "math.precalc.module.4",
+      "kind": "content_group",
+      "title": "Module 4: Functions Involving Parameters, Vectors, and Matrices",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Module 4: Functions Involving Parameters, Vectors, and Matrices",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.1",
+      "kind": "instructional_unit",
+      "title": "Describe covariation and tandem change of functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 1",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-1/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.2",
+      "kind": "instructional_unit",
+      "title": "Compute and interpret the average rate of change",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 2",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-2/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.3",
+      "kind": "instructional_unit",
+      "title": "Classify linear vs quadratic functions from rate-of-change patterns",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 3",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-3/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.4",
+      "kind": "instructional_unit",
+      "title": "Polynomial Functions and Rates of Change",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 4",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.5",
+      "kind": "instructional_unit",
+      "title": "Find polynomial zeros with multiplicity and determine graph behavior",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 5",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-5/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.6",
+      "kind": "instructional_unit",
+      "title": "Write limit statements for polynomial end behavior",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 6",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-6/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.7",
+      "kind": "instructional_unit",
+      "title": "Classify rational function end behavior using the three cases",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 7",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-7/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.8",
+      "kind": "instructional_unit",
+      "title": "Find rational function zeros with domain restrictions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 8",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-8/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.9",
+      "kind": "instructional_unit",
+      "title": "Identify vertical asymptotes by factoring and canceling",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 9",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-9/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.10",
+      "kind": "instructional_unit",
+      "title": "Distinguish holes from vertical asymptotes in rational functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 10",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-10/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.11",
+      "kind": "instructional_unit",
+      "title": "Convert between equivalent representations of rational functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 11",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-11/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.12",
+      "kind": "instructional_unit",
+      "title": "Apply function transformations to polynomial and rational functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 12",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-12/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.13",
+      "kind": "instructional_unit",
+      "title": "Select function models using successive differences",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 13",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-13/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.14",
+      "kind": "instructional_unit",
+      "title": "Construct regression models and evaluate appropriateness",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 1 Lesson 14",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-14/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.15",
+      "kind": "instructional_unit",
+      "title": "Unit 1 Review / Assessment",
+      "domain": "math.precalc",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.1",
+      "kind": "instructional_unit",
+      "title": "Construct arithmetic and geometric sequences from given terms",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 1",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-1/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.2",
+      "kind": "instructional_unit",
+      "title": "Classify sequences as arithmetic, geometric, or neither",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 2",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-2/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.3",
+      "kind": "instructional_unit",
+      "title": "Analyze exponential function growth, decay, and end behavior",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 3",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-3/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.4",
+      "kind": "instructional_unit",
+      "title": "Manipulate exponential expressions into a·b^x standard form",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 4",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-4/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.5",
+      "kind": "instructional_unit",
+      "title": "Model with exponential functions including hidden proportionality",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 5",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-5/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.6",
+      "kind": "instructional_unit",
+      "title": "Validate competing function models with residual analysis",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 6",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-6/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.7",
+      "kind": "instructional_unit",
+      "title": "Compute and analyze function compositions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 7",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-7/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.8",
+      "kind": "instructional_unit",
+      "title": "Find and verify inverse functions analytically and graphically",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 8",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-8/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.9",
+      "kind": "instructional_unit",
+      "title": "Evaluate logarithmic expressions and convert between forms",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 9",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-9/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.10",
+      "kind": "instructional_unit",
+      "title": "Identify inverses of exponential functions from tables and graphs",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 10",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-10/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.11",
+      "kind": "instructional_unit",
+      "title": "Analyze logarithmic function properties and end behavior",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 11",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-11/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.12",
+      "kind": "instructional_unit",
+      "title": "Expand and condense logarithmic expressions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 12",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-12/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.13",
+      "kind": "instructional_unit",
+      "title": "Solve exponential and logarithmic equations",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 13",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-13/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.14",
+      "kind": "instructional_unit",
+      "title": "Construct logarithmic models from two points and regression",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 14",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-14/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.2.15",
+      "kind": "instructional_unit",
+      "title": "Use semi-log plots to linearize exponential data",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 2 Lesson 15",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-02-*/lesson-2-15/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.1",
+      "kind": "instructional_unit",
+      "title": "Analyze periodic phenomena and evaluate periodic functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 1",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-1/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.2",
+      "kind": "instructional_unit",
+      "title": "Evaluate sine, cosine, and tangent using the unit circle",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 2",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-2/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.3",
+      "kind": "instructional_unit",
+      "title": "Find exact trigonometric values at special angles",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 3",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-3/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.4",
+      "kind": "instructional_unit",
+      "title": "Graph sine and cosine parent functions and identify key features",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 4",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-4/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.5",
+      "kind": "instructional_unit",
+      "title": "Identify sinusoidal function parameters from graphs and max-min data",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 5",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-5/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.6",
+      "kind": "instructional_unit",
+      "title": "Write and graph sinusoidal function transformations",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 6",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-6/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.7",
+      "kind": "instructional_unit",
+      "title": "Model periodic contexts with sinusoidal functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 7",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-7/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.8",
+      "kind": "instructional_unit",
+      "title": "Analyze the tangent function and its transformations",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 8",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-8/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.9",
+      "kind": "instructional_unit",
+      "title": "Evaluate inverse trigonometric functions and compositions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 9",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-9/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.10",
+      "kind": "instructional_unit",
+      "title": "Solve trigonometric equations on specified intervals",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 10",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-10/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.11",
+      "kind": "instructional_unit",
+      "title": "Analyze secant, cosecant, and cotangent functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 11",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-11/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.12",
+      "kind": "instructional_unit",
+      "title": "Apply Pythagorean, double-angle, and sum/difference identities",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 12",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-12/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.13",
+      "kind": "instructional_unit",
+      "title": "Convert between polar and rectangular coordinate forms",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 13",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-13/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.14",
+      "kind": "instructional_unit",
+      "title": "Classify and graph rose curves, limaçons, and other polar functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 14",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-14/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.3.15",
+      "kind": "instructional_unit",
+      "title": "Analyze rates of change in polar functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 3 Lesson 15",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-03-*/lesson-3-15/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.1",
+      "kind": "instructional_unit",
+      "title": "Represent curves using parametric functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 1",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-1/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.2",
+      "kind": "instructional_unit",
+      "title": "Model planar motion with parametric functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 2",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-2/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.3",
+      "kind": "instructional_unit",
+      "title": "Compute rates of change for parametric functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 3",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-3/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.4",
+      "kind": "instructional_unit",
+      "title": "Parametrize lines and circles",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 4",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-4/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.5",
+      "kind": "instructional_unit",
+      "title": "Work with implicitly defined functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 5",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-5/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.6",
+      "kind": "instructional_unit",
+      "title": "Classify and analyze conic sections",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 6",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-6/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.7",
+      "kind": "instructional_unit",
+      "title": "Parametrize implicitly defined conics using trigonometric functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 7",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-7/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.8",
+      "kind": "instructional_unit",
+      "title": "Perform vector operations including magnitude and direction",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 8",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-8/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.9",
+      "kind": "instructional_unit",
+      "title": "Analyze vector-valued functions",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 9",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-9/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.10",
+      "kind": "instructional_unit",
+      "title": "Perform matrix operations including multiplication",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 10",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-10/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.11",
+      "kind": "instructional_unit",
+      "title": "Compute determinant and inverse of 2×2 matrices",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 11",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-11/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.12",
+      "kind": "instructional_unit",
+      "title": "Apply linear transformations using matrices",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 12",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-12/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.13",
+      "kind": "instructional_unit",
+      "title": "Interpret matrices as functions and compose transformations",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 13",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-13/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.4.14",
+      "kind": "instructional_unit",
+      "title": "Model real-world contexts with matrices",
+      "domain": "math.precalc",
+      "description": "AP Precalculus Unit 4 Lesson 14",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md",
+        "apps/pre-calculus/curriculum/modules/unit-04-*/lesson-4-14/lesson.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.001",
+      "kind": "worked_example",
+      "title": "Example 1: Select the graph for a filling vase",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 1,
+        "sourceLesson": "1-1",
+        "rawText": "An empty vase has a flat narrow base, a wide rounded body, and a short narrow neck. Water enters at a constant volume rate. Option A is linear increasing. Option B changes from gentle to steep to gentle. Option C rises, falls, and rises. Option D always rises and changes from steep to gentle to steep. Select graph D."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.002",
+      "kind": "worked_example",
+      "title": "Example 2: Find increasing intervals from a graph",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 2,
+        "sourceLesson": "1-1",
+        "rawText": "The graph of f on 0 <= x <= 9 uses straight segments from (0, -2) to (3, 4), from (3, 4) to (7, 1), and from (7, 1) to (9, 3). It increases from 0 to 3 and from 7 to 9."
       }
     },
     {
@@ -326,10 +1421,10 @@
     {
       "id": "math.precalc.example.1.2.001",
       "kind": "worked_example",
-      "title": "Example 1: Find the average rate of change of [f(x) = x^2] on [[1, 4]].",
+      "title": "Example 1: Order rates of change at labeled points",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-2/lesson.md (1-2, Example 1)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -338,16 +1433,16 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "1-2",
-        "rawText": "Find the average rate of change of [f(x) = x^2] on [[1, 4]].\n**Solution:**\n- [f(1) = 1^2 = 1]\n- [f(4) = 4^2 = 16]\n- AROC = [frac{16 - 1}{4 - 1} = frac{15}{3} = 5]\n- Interpretation: \"The function increases by an average of 5 units for each 1-unit increase in [x] on the interval [[1, 4]].\""
+        "rawText": "The figure shows the graph of a function f in the xy-plane with three labeled points. Order the rates of change of f at the three labeled points from least to greatest. Labeled points: A, B, C. Verified result: B < C < A. Reasoning: Compare the local direction and steepness at A, B, and C. Point B has the least rate, point C is next, and point A has the greatest rate."
       }
     },
     {
       "id": "math.precalc.example.1.2.002",
       "kind": "worked_example",
-      "title": "Example 2: A population table shows town population at 5-year intervals:",
+      "title": "Example 2: Find the least rate of change",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-2/lesson.md (1-2, Example 2)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -356,16 +1451,16 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "1-2",
-        "rawText": "A population table shows town population at 5-year intervals:\n| t (years) | 0 | 5 | 10 | 15 |\n|---|---|---|---|---|\n| P(t) | 12,400 | 15,800 | 18,600 | 20,200 |\n**Solution:**\n- AROC on [[0, 5]]: [frac{15800 - 12400}{5} = frac{3400}{5} = 680] people/year\n- AROC on [[5, 10]]: [frac{18600 - 15800}{5} = frac{2800}{5} = 560] people/year\n- AROC on [[10, 15]]: [frac{20200 - 18600}{5} = frac{1600}{5} = 320] people/year\n- The growth rate is slowing — the town is adding fewer people per year each interval."
+        "rawText": "The figure shows the graph of a function g in the xy-plane with four labeled points. Of the following points, at which is the rate of change of g the least? Options: (A) A; (B) B; (C) C; (D) D. Verified result: option D. Reasoning: Compare the local direction and steepness at the labeled points. Point D has the steepest downward local behavior, so its rate of change is least."
       }
     },
     {
       "id": "math.precalc.example.1.2.003",
       "kind": "worked_example",
-      "title": "Example 3: Find the average rate of change of [C(t) = 500(1.08)^t] from [t = 2] to [t = 5].",
+      "title": "Example 3: Find the greatest average rate of change",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-2/lesson.md (1-2, Example 3)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=15"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -374,7 +1469,61 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "1-2",
-        "rawText": "Find the average rate of change of [C(t) = 500(1.08)^t] from [t = 2] to [t = 5].\n**Solution:**\n- [C(2) = 500(1.08)^2 approx 583.20]\n- [C(5) = 500(1.08)^5 approx 734.66]\n- AROC = [frac{734.66 - 583.20}{3} approx 50.55] dollars per year\n- Interpretation: \"The cost increases by an average of approximately $50.55 per year from year 2 to year 5.\""
+        "rawText": "The figure shows the graph of the function y = h(x). Of the following, on which interval is the average rate of change of h greatest? Options: (A) 2 <= x <= 3; (B) 3 <= x <= 5; (C) 5 <= x <= 7; (D) 7 <= x <= 8. Verified result: [5,7], option C. Reasoning: Compare (change in output)/(change in input) for each listed interval. The interval [5,7] has the greatest average rate of change."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.2.004",
+      "kind": "worked_example",
+      "title": "Example 4: Model a function with negative rate of change",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 4,
+        "sourceLesson": "1-2",
+        "rawText": "The graph of the function y = f(x) in the xy-plane always has a negative rate of change. Which definitions for x and y would best model f? Options: (A) x is the age in years of a young child and y is the height in inches; (B) x is the total number of points scored in a basketball game and y is the time remaining in seconds; (C) x is the time in seconds since a ball was thrown straight up and y is the height in feet; (D) x is the radius in meters of a circle and y is the area in square inches. Verified result: option B. Reasoning: As points scored increase, time remaining decreases, so the rate of change is negative."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.2.005",
+      "kind": "worked_example",
+      "title": "Example 5: Identify a negative rate interval",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 5,
+        "sourceLesson": "1-2",
+        "rawText": "The function k is defined by k(x) = 3.16 + 4.2x - 0.85x^2 for -10 <= x <= 10. Which statement about k is correct? Options: (A) k has a positive rate of change on -10 <= x <= 8.348; (B) k has a positive rate of change on -0.663 <= x <= 5.605; (C) k has a negative rate of change on -10 <= x <= 2.470; (D) k has a negative rate of change on 2.470 <= x <= 10. Verified result: [2.470,10], option D. Reasoning: The vertex is at x = 2.470, and the downward-opening quadratic decreases to the right of the vertex."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.2.006",
+      "kind": "worked_example",
+      "title": "Example 6: Find the greatest average rate interval",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 6,
+        "sourceLesson": "1-2",
+        "rawText": "The table gives the life expectancy of US females born in a given year over successive 50-year intervals. Over which interval is the average rate of change in life expectancy greatest? Table values: Birthyear 1800/41.24, 1850/46.10, 1900/53.63, 1950/70.65, 2000/81.83. Options: (A) 1800 to 1850; (B) 1850 to 1900; (C) 1900 to 1950; (D) 1950 to 2000. Verified result: 1900-1950, option C. Reasoning: The intervals have equal width, so compare life-expectancy increases. The largest increase is from 1900 to 1950."
       }
     },
     {
@@ -392,7 +1541,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "1-3",
-        "rawText": "Could each function be linear, quadratic, or neither?\na) [x: 1, 2, 3, 4] → [f(x): 0, 1, 4, 9]\n**Solution:** Successive differences: 1, 3, 5. These increase by 2 (constant second differences). Since input intervals are equal (width 1), [f] could be **quadratic** (concave up).\nb) [x: 1, 2, 5, 10] → [g(x): 0, 1, 4, 9]\n**Solution:** Successive differences: 1, 3, 5 (same values as part a). But input intervals are unequal (widths 1, 3, 5). **Cannot determine** — we cannot conclude anything about function type from unequal intervals.\nc) [x: 1, 1.1, 1.2, 1.3] → [p(x): 1, 7, 11, 13]\n**Solution:** Successive differences: 6, 4, 2. These decrease by 2 (constant second differences of [-2]). Input intervals are equal (width 0.1). [p] could be **quadratic** (concave down)."
+        "rawText": "Could each function be linear, quadratic, or neither?\na) [x: 1, 2, 3, 4] → [f(x): 0, 1, 4, 9]\n**Solution:** Successive differences: 1, 3, 5. These increase by 2 (constant second differences). Since input intervals are equal (width 1), [f] could be **quadratic** (concave up).\nb) [x: 1, 2, 5, 10] → [g(x): 0, 1, 4, 9]\n**Solution:** The input widths are 1, 3, and 5. The output changes are also 1, 3, and 5. Each average rate is 1, so g could be linear: g(x) = x - 1.\nc) [x: 1, 1.1, 1.2, 1.3] → [p(x): 1, 7, 11, 13]\n**Solution:** Successive differences: 6, 4, 2. These decrease by 2 (constant second differences of [-2]). Input intervals are equal (width 0.1). [p] could be **quadratic** (concave down)."
       }
     },
     {
@@ -446,7 +1595,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "1-4",
-        "rawText": "A graph of polynomial [g] is shown with features at labeled points. At [x = 1], the graph switches from decreasing to increasing: this is a **relative minimum**. At [x = 4], the graph switches from increasing to decreasing: this is a **relative maximum**. The lowest value overall is at [x = 1], so [g(1)] is the **absolute minimum**."
+        "rawText": "On $[0,5]$, let $g(x)=-2x^3+15x^2-24x$. Its graph has a minimum at $(1,-11)$ and a maximum at $(4,16)$ on this restricted domain. At $x = 1$, the graph switches from decreasing to increasing: this is a **relative minimum**. At $x = 4$, the graph switches from increasing to decreasing: this is a **relative maximum**. The lowest value overall is at $x = 1$, so $g(1)$ is the **absolute minimum**."
       }
     },
     {
@@ -464,7 +1613,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "1-4",
-        "rawText": "For the graph of [h] on the interval [(3, 4)]: the graph is rising (positive rate of change) but the curve is flattening (rate of change is decreasing). So the rate of change is **positive and decreasing** on [(3, 4)]."
+        "rawText": "Let $h(x)=-(x-4)^2+8$. On the interval $(3,4)$: the graph is rising (positive rate of change) but the curve is flattening (rate of change is decreasing). So the rate of change is **positive and decreasing** on $(3, 4)$."
       }
     },
     {
@@ -482,7 +1631,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "1-4",
-        "rawText": "[f(x) = -3x^4]. Leading term is [-3x^4]. Since degree 4 is even and LC is negative: lim(x to -infty) f(x) = -infty and lim(x to infty) f(x) = -infty."
+        "rawText": "$f(x) = -3x^4$. Leading term is $-3x^4$. Since degree 4 is even and LC is negative: lim(x to -infty) f(x) = -infty and lim(x to infty) f(x) = -infty."
       }
     },
     {
@@ -542,10 +1691,10 @@
     {
       "id": "math.precalc.example.1.6.001",
       "kind": "worked_example",
-      "title": "Example 1: Determine end behavior and write limit statements.",
+      "title": "Example 1: Describe polynomial end behavior from graphs",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-6/lesson.md (1-6, Example 1)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=77"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -554,16 +1703,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "1-6",
-        "rawText": "Determine end behavior and write limit statements.\na) [f(x) = 4x^5] → Leading term: [4x^5]. Odd degree, positive LC.\n- Right: up. lim(x to infty) f(x) = infty.\n- Left: down (opposite). lim(x to -infty) f(x) = -infty.\nb) [g(x) = frac{1}{2}x^4] → Even degree, positive LC.\n- Right: up. lim(x to infty) g(x) = infty.\n- Left: up (same direction). lim(x to -infty) g(x) = infty.\nc) [y = -2(x+3)^6] → Leading term: [-2x^6]. Even degree, negative LC.\n- Right: down. lim(x to infty) y = -infty.\n- Left: down (same). lim(x to -infty) y = -infty."
+        "rawText": "Describe the end behavior of the following polynomials verbally and using limit notation.\na) The graph of f has a rising left end and a falling right end. As x decreases without bound, f(x) increases without bound. lim(x to -infinity) f(x) = infinity. As x increases without bound, f(x) decreases without bound. lim(x to infinity) f(x) = -infinity.\nb) The graph of g has a rising left end and a rising right end. As x decreases without bound, g(x) increases without bound. lim(x to -infinity) g(x) = infinity. As x increases without bound, g(x) increases without bound. lim(x to infinity) g(x) = infinity."
       }
     },
     {
       "id": "math.precalc.example.1.6.002",
       "kind": "worked_example",
-      "title": "Example 2: The leading term may be hidden.",
+      "title": "Example 2: Sketch polynomial functions from end behavior",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-6/lesson.md (1-6, Example 2)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -572,16 +1721,16 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "1-6",
-        "rawText": "The leading term may be hidden.\na) [h(x) = 3 - x^5 = -x^5 + 3] → Leading term: [-x^5]. Odd, negative.\n- Right: down. Left: up.\n- lim(x to infty) h(x) = -infty, lim(x to -infty) h(x) = infty.\nb) [k(x) = 8x^2 + 4 - x^5] → Leading term: [-x^5]. Odd, negative.\n- Right: down. Left: up.\nc) [m(x) = 2x(x - 1)(6 - x)] → Multiply leading terms: [2x cdot x cdot (-x) = -2x^3]. Odd, negative.\n- Right: down. Left: up."
+        "rawText": "Sketch a polynomial function with the following end behaviors.\na) lim(x to -infinity) f(x) = -infinity and lim(x to infinity) f(x) = -infinity. One valid sketch has both ends falling, such as a downward-opening even-degree polynomial.\nb) lim(x to -infinity) g(x) = -infinity and lim(x to infinity) g(x) = infinity. One valid sketch has a falling left end and a rising right end, such as a positive-leading-coefficient odd-degree polynomial."
       }
     },
     {
       "id": "math.precalc.example.1.6.003",
       "kind": "worked_example",
-      "title": "Example 3: Write limit statements for [f(x) = -3x^4 + x - 7].",
+      "title": "Example 3: Determine polynomial end behavior from equations",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-6/lesson.md (1-6, Example 3)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -590,7 +1739,43 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "1-6",
-        "rawText": "Write limit statements for [f(x) = -3x^4 + x - 7].\n- Even degree, negative LC → both ends down.\n- lim(x to -infty) f(x) = -infty, lim(x to infty) f(x) = -infty."
+        "rawText": "Determine the end behavior for the following polynomials. Limit notation is not necessary.\na) f(x) = 4x^5. Left: down. Right: up.\nb) g(x) = (1/2)x^4. Left: up. Right: up.\nc) y = -2(x + 3)^6. Left: down. Right: down.\nd) h(x) = 3 - x^5. Left: up. Right: down.\ne) k(x) = 8x^2 + 4 - x^5. The leading term is -x^5. Left: up. Right: down.\nf) m(x) = 2x(x - 1)(6 - x). The leading term is -2x^3. Left: up. Right: down."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.6.004",
+      "kind": "worked_example",
+      "title": "Example 4: Write polynomial end behavior in limit notation",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=79"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 4,
+        "sourceLesson": "1-6",
+        "rawText": "Write limit statements for the end behavior of the following polynomials.\na) f(x) = -3x^4. lim(x to -infinity) f(x) = -infinity. lim(x to infinity) f(x) = -infinity.\nb) g(x) = 5x^3 + 2x^2 - 7. lim(x to -infinity) g(x) = -infinity. lim(x to infinity) g(x) = infinity."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.6.005",
+      "kind": "worked_example",
+      "title": "Example 5: Use a graphing calculator to observe end behavior",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=79"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 5,
+        "sourceLesson": "1-6",
+        "rawText": "Use a graphing calculator to determine the end behavior for the following functions.\na) f(x) = x^2 - 3x + 1. Both ends rise: lim(x to -infinity) f(x) = infinity and lim(x to infinity) f(x) = infinity.\nb) g(x) = (2x - 3)/(x + 1). The graph approaches y = 2 on both ends: lim(x to -infinity) g(x) = 2 and lim(x to infinity) g(x) = 2.\nc) h(x) = -10/x^2. The graph approaches 0 from below on both ends: lim(x to -infinity) h(x) = 0 and lim(x to infinity) h(x) = 0."
       }
     },
     {
@@ -609,6 +1794,91 @@
         "exampleNumber": 1,
         "sourceLesson": "1-7",
         "rawText": "Determine asymptote type.\na) [f(x) = frac{3x^2 + 4x - 7}{5x^2 - 3}] → [n = 2], [d = 2]. **Case I**: HA at [y = frac{3}{5}].\nb) [y = frac{2x - 5}{x^2 + 3x + 2}] → [n = 1], [d = 2]. **Case II**: HA at [y = 0].\nc) [g(x) = frac{2x^2 - 4}{5x + 9}] → [n = 2], [d = 1]. **Case III**: slant asymptote ([n = d + 1]).\nd) [k(x) = frac{3}{x^2 + 3x - 7}] → [n = 0], [d = 2]. **Case II**: HA at [y = 0]."
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.6.describe-polynomial-end-behavior-from-graphs",
+      "kind": "skill",
+      "title": "Describe polynomial end behavior from graphs",
+      "domain": "math.precalc",
+      "description": "Given a polynomial graph, describe the left and right end behavior verbally and write both limit statements.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=77"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.6.sketch-polynomial-functions-from-end-behavior",
+      "kind": "skill",
+      "title": "Sketch polynomial functions from end behavior",
+      "domain": "math.precalc",
+      "description": "Given two end-behavior limit statements for a polynomial function, sketch a polynomial graph whose left and right ends match the statements.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.6.determine-polynomial-end-behavior-from-equations",
+      "kind": "skill",
+      "title": "Determine polynomial end behavior from equations",
+      "domain": "math.precalc",
+      "description": "Given a polynomial equation, use degree parity and the leading coefficient to state the left and right end behavior verbally.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      },
+      "rendererKey": "polynomial-equation-end-behavior",
+      "generatorKey": "topic16-equation-end-behavior",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.6.write-polynomial-end-behavior-in-limit-notation",
+      "kind": "skill",
+      "title": "Write polynomial end behavior in limit notation",
+      "domain": "math.precalc",
+      "description": "Given a polynomial equation, use its leading term to write both end-behavior limit statements.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=79"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      },
+      "rendererKey": "polynomial-limit-notation-end-behavior",
+      "generatorKey": "topic16-limit-notation-end-behavior"
+    },
+    {
+      "id": "math.precalc.skill.1.6.observe-function-end-behavior-with-a-graphing-calculator",
+      "kind": "skill",
+      "title": "Observe function end behavior with a graphing calculator",
+      "domain": "math.precalc",
+      "description": "Use a graphing calculator to observe both ends of polynomial and rational function graphs and state the corresponding limits.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=79"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
       }
     },
     {
@@ -2880,1035 +4150,6 @@
       }
     },
     {
-      "id": "math.precalc.lesson.1.1",
-      "kind": "instructional_unit",
-      "title": "Change in Tandem",
-      "domain": "math.precalc",
-      "description": "Topic 1.1",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-1/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-1/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-1/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-1/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.10",
-      "kind": "instructional_unit",
-      "title": "Rational Functions and Holes",
-      "domain": "math.precalc",
-      "description": "Topic 1.10",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-10/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-10/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-10/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-10/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "10"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.11",
-      "kind": "instructional_unit",
-      "title": "Equivalent Representations of Polynomial and Rational Expressions",
-      "domain": "math.precalc",
-      "description": "Topic 1.11",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-11/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-11/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-11/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-11/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "11"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.12",
-      "kind": "instructional_unit",
-      "title": "Transformations of Functions",
-      "domain": "math.precalc",
-      "description": "Topic 1.12",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-12/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-12/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-12/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-12/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "12"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.13",
-      "kind": "instructional_unit",
-      "title": "Function Model Selection and Assumption Articulation",
-      "domain": "math.precalc",
-      "description": "Topic 1.13",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-13/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-13/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-13/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-13/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "13"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.14",
-      "kind": "instructional_unit",
-      "title": "Function Model Construction and Application",
-      "domain": "math.precalc",
-      "description": "Topic 1.14",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-14/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-14/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-14/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "14"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.15",
-      "kind": "instructional_unit",
-      "title": "Semi-log Plots",
-      "domain": "math.precalc",
-      "description": "Topic 2.15",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-15/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-15/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "15"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.2",
-      "kind": "instructional_unit",
-      "title": "Rates of Change",
-      "domain": "math.precalc",
-      "description": "Topic 1.2",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-2/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-2/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-2/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "2"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.3",
-      "kind": "instructional_unit",
-      "title": "Rates of Change in Linear and Quadratic Functions",
-      "domain": "math.precalc",
-      "description": "Topic 1.3",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-3/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-3/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-3/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.4",
-      "kind": "instructional_unit",
-      "title": "Polynomial Functions and Rates of Change",
-      "domain": "math.precalc",
-      "description": "Topic 1.4",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-4/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-4/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-4/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "4"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.5",
-      "kind": "instructional_unit",
-      "title": "Polynomial Functions and Complex Zeros",
-      "domain": "math.precalc",
-      "description": "Topic 1.5",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-5/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-5/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-5/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-5/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "5"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.6",
-      "kind": "instructional_unit",
-      "title": "Polynomial Functions and End Behavior",
-      "domain": "math.precalc",
-      "description": "Topic 1.6",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-6/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-6/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-6/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-6/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.7",
-      "kind": "instructional_unit",
-      "title": "Rational Functions and End Behavior",
-      "domain": "math.precalc",
-      "description": "Topic 1.7",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-7/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-7/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-7/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-7/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.8",
-      "kind": "instructional_unit",
-      "title": "Rational Functions and Zeros",
-      "domain": "math.precalc",
-      "description": "Topic 1.8",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-8/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-8/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-8/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-8/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "8"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.1.9",
-      "kind": "instructional_unit",
-      "title": "Rational Functions and Vertical Asymptotes",
-      "domain": "math.precalc",
-      "description": "Topic 1.9",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-9/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-9/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-9/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "9"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.1",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-1",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-1/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.10",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-10",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-10/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "10"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.11",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-11",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-11/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "11"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.12",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-12",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-12/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "12"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.13",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-13",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-13/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "13"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.14",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-14",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-14/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "14"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.15",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-15",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-15/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "15"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.2",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-2",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-2/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "2"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.3",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-3",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-3/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.4",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-4",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-4/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "4"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.5",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-5",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-5/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "5"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.6",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-6",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-6/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.7",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-7",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-7/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.8",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-8",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-8/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "8"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.2.9",
-      "kind": "instructional_unit",
-      "title": "Lesson 2-9",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-9/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2",
-        "lesson": "9"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.1",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-1",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-1/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.10",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-10",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-10/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "10"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.11",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-11",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-11/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "11"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.12",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-12",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-12/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "12"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.13",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-13",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-13/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "13"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.14",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-14",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-14/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "14"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.15",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-15",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-15/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "15"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.2",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-2",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-2/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "2"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.3",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-3",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-3/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.4",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-4",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-4/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "4"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.5",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-5",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-5/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "5"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.6",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-6",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-6/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.7",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-7",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-7/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.8",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-8",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-8/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "8"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.3.9",
-      "kind": "instructional_unit",
-      "title": "Lesson 3-9",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-9/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3",
-        "lesson": "9"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.1",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-1",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-1/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.10",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-10",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-10/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "10"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.11",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-11",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-11/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "11"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.12",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-12",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-12/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "12"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.13",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-13",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-13/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "13"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.4",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-4",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-4/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "4"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.5",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-5",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-5/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "5"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.6",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-6",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-6/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.7",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-7",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-7/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.precalc.lesson.4.8",
-      "kind": "instructional_unit",
-      "title": "Lesson 4-8",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-8/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4",
-        "lesson": "8"
-      }
-    },
-    {
-      "id": "math.precalc.module.1",
-      "kind": "content_group",
-      "title": "Unit 1",
-      "domain": "math.precalc",
-      "description": "",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-1/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-10/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-11/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-12/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-13/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-14/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-2/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-3/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-5/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-6/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-7/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-8/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-9/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-1/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-10/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-11/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-12/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-13/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-14/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-15/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-2/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-3/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-4/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-5/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-6/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-7/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-8/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-02-exponential-logarithmic/lesson-2-9/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-1/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-10/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-11/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-12/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-13/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-14/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-15/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-2/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-3/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-4/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-5/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-6/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-7/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-8/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-03-trigonometric-polar/lesson-3-9/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-1/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-10/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-11/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-12/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-13/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-4/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-5/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-6/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-7/lesson.md",
-        "apps/pre-calculus/curriculum/modules/unit-04-parameters-vectors-matrices/lesson-4-8/lesson.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1"
-      }
-    },
-    {
-      "id": "math.precalc.module.2",
-      "kind": "content_group",
-      "title": "Unit 2",
-      "domain": "math.precalc",
-      "description": "",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "2"
-      }
-    },
-    {
-      "id": "math.precalc.module.3",
-      "kind": "content_group",
-      "title": "Unit 3",
-      "domain": "math.precalc",
-      "description": "",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "3"
-      }
-    },
-    {
-      "id": "math.precalc.module.4",
-      "kind": "content_group",
-      "title": "Unit 4",
-      "domain": "math.precalc",
-      "description": "",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "4"
-      }
-    },
-    {
-      "id": "math.precalc.example.1.1.001",
-      "kind": "worked_example",
-      "title": "Example 1: Select the graph for a filling vase",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=4"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "1",
-        "exampleNumber": 1,
-        "sourceLesson": "1-1",
-        "rawText": "An empty vase has a flat narrow base, a wide rounded body, and a short narrow neck. Water enters at a constant volume rate. Option A is linear increasing. Option B changes from gentle to steep to gentle. Option C rises, falls, and rises. Option D always rises and changes from steep to gentle to steep. Select graph D."
-      }
-    },
-    {
-      "id": "math.precalc.example.1.1.002",
-      "kind": "worked_example",
-      "title": "Example 2: Find increasing intervals from a graph",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=5"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "1",
-        "exampleNumber": 2,
-        "sourceLesson": "1-1",
-        "rawText": "The graph of f on 0 <= x <= 9 uses straight segments from (0, -2) to (3, 4), from (3, 4) to (7, 1), and from (7, 1) to (9, 3). It increases from 0 to 3 and from 7 to 9."
-      }
-    },
-    {
       "id": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
       "kind": "skill",
       "title": "Identify intervals of increase, decrease, and constant behavior from graphs",
@@ -3943,6 +4184,2149 @@
       },
       "rendererKey": "physical-context-graph-choice",
       "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
+      "kind": "skill",
+      "title": "Compute and interpret the average rate of change",
+      "domain": "math.precalc",
+      "description": "Compute average rate of change as (change in output)/(change in input) using endpoint values, and interpret the result in context.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=15"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "graph-average-rate-choice",
+      "generatorKey": "topic12-graph-average-rate-choice",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.compare-rates-of-change-across-intervals",
+      "kind": "skill",
+      "title": "Compare average rates of change across intervals",
+      "domain": "math.precalc",
+      "description": "Compare average rates of change across intervals by comparing (change in output)/(change in input).",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=15",
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "table-average-rate-choice",
+      "generatorKey": "topic12-table-average-rate-choice",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.compare-pointwise-rates-of-change-from-graphs",
+      "kind": "skill",
+      "title": "Compare pointwise rates of change from graphs",
+      "domain": "math.precalc",
+      "description": "Compare pointwise rates of change from graphs by using local direction and steepness at labeled points.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=13",
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "pointwise-rate-ordering",
+      "generatorKey": "topic12-pointwise-rate-ordering",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.identify-least-pointwise-rate-of-change-from-graphs",
+      "kind": "skill",
+      "title": "Identify the least pointwise rate of change from a graph",
+      "domain": "math.precalc",
+      "description": "Identify the labeled point with the least local rate from a graph by comparing local direction and steepness.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "pointwise-least-rate-choice",
+      "generatorKey": "topic12-pointwise-least-rate-choice",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.model-negative-rate-contexts",
+      "kind": "skill",
+      "title": "Model negative-rate contexts",
+      "domain": "math.precalc",
+      "description": "Model a negative rate of change by matching increasing input and decreasing output variables in context.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "negative-rate-context-choice",
+      "generatorKey": "topic12-negative-rate-context-choice",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.determine-negative-rate-intervals-for-quadratics",
+      "kind": "skill",
+      "title": "Determine negative-rate intervals for quadratics",
+      "domain": "math.precalc",
+      "description": "Determine intervals where a quadratic has a negative rate of change by using its vertex and graph behavior.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "quadratic-negative-rate-interval-choice",
+      "generatorKey": "topic12-quadratic-negative-rate-interval-choice",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.3.classify-linear-vs-quadratic-from-rate-patterns",
+      "kind": "skill",
+      "title": "Classify linear vs quadratic functions from rate-of-change patterns",
+      "domain": "math.precalc",
+      "description": "Use constant first differences → linear, constant second differences → quadratic. Requires equal-length input intervals.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "3"
+      },
+      "rendererKey": "rate-pattern-classification",
+      "generatorKey": "topic13-rate-pattern-classification",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.3.determine-concavity-from-rate-of-change",
+      "kind": "skill",
+      "title": "Determine concavity from rate-of-change behavior",
+      "domain": "math.precalc",
+      "description": "Concave up ↔ AROCs increasing. Concave down ↔ AROCs decreasing. Connect second differences to concavity.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "3"
+      },
+      "rendererKey": "concavity-from-rate-change",
+      "generatorKey": "topic13-concavity-from-rate-change",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.4.identify-polynomial-degree-and-leading-coefficient",
+      "kind": "skill",
+      "title": "Identify polynomial degree and leading coefficient",
+      "domain": "math.precalc",
+      "description": "Given a polynomial expression, identify the degree and leading coefficient, including reordered polynomials and nonzero constants.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md (1-4, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "4"
+      },
+      "rendererKey": "polynomial-degree-leading-coefficient",
+      "generatorKey": "topic14-polynomial-degree-leading-coefficient",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs",
+      "kind": "skill",
+      "title": "Identify relative and absolute extrema from graphs",
+      "domain": "math.precalc",
+      "description": "Given a polynomial graph, identify relative minima, relative maxima, and absolute extrema from changes in monotonicity and global values.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md (1-4, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "4"
+      },
+      "rendererKey": "polynomial-extrema-from-graph",
+      "generatorKey": "topic14-polynomial-extrema-from-graph",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.4.describe-rate-of-change-behavior-on-intervals",
+      "kind": "skill",
+      "title": "Describe rate-of-change behavior on intervals using precise language",
+      "domain": "math.precalc",
+      "description": "Classify ROC as positive/negative and increasing/decreasing on specific intervals. Distinguish \"f is increasing\" from \"f is positive.\"",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md (1-4, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "4"
+      },
+      "rendererKey": "rate-sign-and-trend-from-graph",
+      "generatorKey": "topic14-rate-sign-and-trend",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.4.determine-end-behavior-from-leading-term",
+      "kind": "skill",
+      "title": "Determine polynomial end behavior from the leading term",
+      "domain": "math.precalc",
+      "description": "Use degree (even/odd) and leading coefficient (positive/negative) to determine the four end-behavior patterns. Write limit statements.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md (1-4, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "4"
+      },
+      "rendererKey": "polynomial-end-behavior",
+      "generatorKey": "topic14-polynomial-end-behavior",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.5.find-zeros-with-multiplicity-and-graph-behavior",
+      "kind": "skill",
+      "title": "Find polynomial zeros with multiplicity and determine graph behavior",
+      "domain": "math.precalc",
+      "description": "Identify real zeros, their multiplicities (odd = cross, even = tangent). Apply Fundamental Theorem of Algebra.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "5"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.1.5.apply-complex-conjugate-zeros-theorem",
+      "kind": "skill",
+      "title": "Apply the Complex Conjugate Zeros Theorem",
+      "domain": "math.precalc",
+      "description": "Given one complex zero, determine all conjugate pair zeros. Factor polynomials completely using known complex zeros.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "5"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts",
+      "kind": "skill",
+      "title": "Solve polynomial inequalities using sign charts",
+      "domain": "math.precalc",
+      "description": "Find the real zeros, test the sign on each interval, and write the solution to a polynomial inequality in interval notation.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-5/lesson.md (1-5, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "5"
+      },
+      "rendererKey": "polynomial-inequality-sign-chart",
+      "generatorKey": "topic15-polynomial-inequality-sign-chart",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.5.find-real-zeros-and-multiplicities-from-factored-form",
+      "kind": "skill",
+      "title": "Find real zeros and multiplicities from factored form",
+      "domain": "math.precalc",
+      "description": "Find the real zeros and their multiplicities from a factored polynomial expression.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-5/lesson.md (1-5, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "5"
+      },
+      "rendererKey": "real-zeros-and-multiplicities",
+      "generatorKey": "topic15-real-zeros-and-multiplicities-from-factored-form",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.5.determine-least-polynomial-degree-from-zeros-and-conjugate-pairs",
+      "kind": "skill",
+      "title": "Determine least polynomial degree from zeros and conjugate pairs",
+      "domain": "math.precalc",
+      "description": "Determine the least possible degree of a real-coefficient polynomial by counting given zeros, multiplicities, and required conjugate zeros.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-5/lesson.md (1-5, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "5"
+      },
+      "rendererKey": "least-polynomial-degree",
+      "generatorKey": "topic15-least-polynomial-degree-from-zeros-and-conjugate-pairs",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.7.classify-rational-end-behavior-three-cases",
+      "kind": "skill",
+      "title": "Classify rational function end behavior using the three cases",
+      "domain": "math.precalc",
+      "description": "Case I (n=d): HA y=a/b. Case II (n<d): HA y=0. Case III (n=d+1): slant asymptote. Write limit statements for each case.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "7"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.1.7.find-slant-asymptotes-by-long-division",
+      "kind": "skill",
+      "title": "Find slant asymptotes using polynomial long division",
+      "domain": "math.precalc",
+      "description": "When n = d+1, divide to find quotient q(x); slant asymptote is y = q(x).",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "7"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.1.8.find-rational-function-zeros-with-domain-restrictions",
+      "kind": "skill",
+      "title": "Find rational function zeros with domain restrictions",
+      "domain": "math.precalc",
+      "description": "Zeros = numerator zero AND denominator ≠ 0. Apply Passwater 7-step method for rational inequalities.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "8"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.1.8.solve-rational-inequalities-by-sign-chart",
+      "kind": "skill",
+      "title": "Solve rational inequalities using sign charts",
+      "domain": "math.precalc",
+      "description": "Build sign chart with numerator and denominator critical values. Exclude denominator zeros from solution sets.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "8"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.1.9.identify-vertical-asymptotes-by-factoring",
+      "kind": "skill",
+      "title": "Identify vertical asymptotes by factoring and canceling",
+      "domain": "math.precalc",
+      "description": "VA = denominator zero where factor does NOT cancel. Four-step process: factor, cancel, remaining denominator zeros = VAs.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "9"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.1.9.write-one-sided-limit-statements-at-vertical-asymptotes",
+      "kind": "skill",
+      "title": "Write one-sided limit statements at vertical asymptotes",
+      "domain": "math.precalc",
+      "description": "Test values on either side to determine ±∞ direction at each VA. Understand partial cancellation still leaves VA.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "9"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.1.10.distinguish-holes-from-vertical-asymptotes",
+      "kind": "skill",
+      "title": "Distinguish holes from vertical asymptotes in rational functions",
+      "domain": "math.precalc",
+      "description": "Hole = factor cancels completely. Find x-coordinate (canceled zero) and y-coordinate (evaluate simplified form).",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "10"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.1.10.construct-rational-functions-with-specified-discontinuities",
+      "kind": "skill",
+      "title": "Construct rational functions with specified holes and asymptotes",
+      "domain": "math.precalc",
+      "description": "Given desired holes and VAs, place factors accordingly in numerator and denominator.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "10"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.1.11.convert-between-equivalent-representations-of-rational-functions",
+      "kind": "skill",
+      "title": "Convert between equivalent representations of rational functions",
+      "domain": "math.precalc",
+      "description": "Move between factored, expanded, and graphical forms. Each reveals different features: zeros/holes/VAs vs coefficients/degree.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "11"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.1.11.apply-binomial-theorem-and-pascal-triangle",
+      "kind": "skill",
+      "title": "Apply the Binomial Theorem and Pascal Triangle",
+      "domain": "math.precalc",
+      "description": "Expand binomials using Pascal Triangle coefficients. Connect to polynomial identities.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "11"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.1.12.apply-function-transformations-to-polynomial-functions",
+      "kind": "skill",
+      "title": "Apply function transformations to polynomial and rational functions",
+      "domain": "math.precalc",
+      "description": "General form a·f(b(x-h))+k. Translation, dilation, reflection. Horizontal transformations first, then vertical.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "12"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.1.12.determine-domain-and-range-under-transformations",
+      "kind": "skill",
+      "title": "Determine domain and range under transformations",
+      "domain": "math.precalc",
+      "description": "Map domain/range through translations, dilations, and reflections. Point mapping: (p,q) → (p/b + h, aq + k).",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "12"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.1.13.select-function-models-using-successive-differences",
+      "kind": "skill",
+      "title": "Select function models using successive differences",
+      "domain": "math.precalc",
+      "description": "Constant differences → linear. Constant second differences → quadratic. Evaluate residuals (y−ŷ). Interpret residual plots.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "13"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.1.13.distinguish-interpolation-from-extrapolation",
+      "kind": "skill",
+      "title": "Distinguish interpolation from extrapolation",
+      "domain": "math.precalc",
+      "description": "Interpolation (within data range, reliable) vs extrapolation (beyond data range, risky). FRQ 2 task model alignment.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "13"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.1.14.construct-regression-models-and-evaluate-appropriateness",
+      "kind": "skill",
+      "title": "Construct regression models and evaluate appropriateness",
+      "domain": "math.precalc",
+      "description": "Four components: select, write, predict, evaluate. Run regression on TI-84. Evaluate extrapolation reliability given function end behavior.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "14"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.1.construct-arithmetic-and-geometric-sequences",
+      "kind": "skill",
+      "title": "Construct arithmetic and geometric sequences from given terms",
+      "domain": "math.precalc",
+      "description": "Arithmetic: a_n = a_k + d(n−k). Geometric: g_n = g_k · r^(n−k). Two-term procedure to find d or r.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "1"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.2.classify-sequences-as-arithmetic-or-geometric",
+      "kind": "skill",
+      "title": "Classify sequences as arithmetic, geometric, or neither",
+      "domain": "math.precalc",
+      "description": "Arithmetic ↔ constant additive change. Geometric ↔ constant multiplicative change. Build models from data points.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "2"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.3.analyze-exponential-function-growth-and-decay",
+      "kind": "skill",
+      "title": "Analyze exponential function growth, decay, and end behavior",
+      "domain": "math.precalc",
+      "description": "Growth (b>1) vs decay (0<b<1). Domain all reals, range (0,∞). Write limit statements. Negative a reflects over x-axis.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "3"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.4.manipulate-exponential-expressions-into-standard-form",
+      "kind": "skill",
+      "title": "Manipulate exponential expressions into a·b^x standard form",
+      "domain": "math.precalc",
+      "description": "b^(x+h) = b^h·b^x (translation ↔ dilation). b^(cx) = (b^c)^x. Convert to and from base e.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "4"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.5.model-with-exponential-functions-and-handle-hidden-proportionality",
+      "kind": "skill",
+      "title": "Model with exponential functions including hidden proportionality",
+      "domain": "math.precalc",
+      "description": "Detect proportional growth hidden by vertical translations. Construct exponential models from two points. Run ExpReg, interpret parameters.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "5"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.6.validate-function-models-with-residual-analysis",
+      "kind": "skill",
+      "title": "Validate competing function models with residual analysis",
+      "domain": "math.precalc",
+      "description": "Compute residuals = actual − predicted. Interpret residual plots. U-shaped residual → quadratic needed. Justify model choice in context.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "6"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.7.compute-and-analyze-function-compositions",
+      "kind": "skill",
+      "title": "Compute and analyze function compositions",
+      "domain": "math.precalc",
+      "description": "(f∘g)(x) = f(g(x)). Inside-out rule. Order matters. Find domain of composite: output of inner must be in domain of outer.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "7"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.8.find-and-verify-inverse-functions",
+      "kind": "skill",
+      "title": "Find and verify inverse functions analytically and graphically",
+      "domain": "math.precalc",
+      "description": "Three-step procedure. Verify f(f⁻¹(x))=x and f⁻¹(f(x))=x. Graph as reflection over y=x. Domain and range swap.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "8"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.9.evaluate-and-convert-logarithmic-expressions",
+      "kind": "skill",
+      "title": "Evaluate logarithmic expressions and convert between forms",
+      "domain": "math.precalc",
+      "description": "log_b(x)=y ↔ b^y=x. Evaluate logs mentally. Apply change of base: log_b(x) = log(x)/log(b).",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "9"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.2.10.identify-inverses-of-exponential-functions",
+      "kind": "skill",
+      "title": "Identify inverses of exponential functions from tables and graphs",
+      "domain": "math.precalc",
+      "description": "Inverse of b^x is log_b(x). Table classification: inputs multiply, outputs add → logarithmic. Verify by composition.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "10"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.11.analyze-logarithmic-function-properties",
+      "kind": "skill",
+      "title": "Analyze logarithmic function properties and end behavior",
+      "domain": "math.precalc",
+      "description": "Domain (0,∞), range all reals. VA at x=0. End behavior as x→0⁺ and x→∞. Monotonicity and concavity based on base and coefficients.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "11"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.12.expand-and-condense-logarithmic-expressions",
+      "kind": "skill",
+      "title": "Expand and condense logarithmic expressions",
+      "domain": "math.precalc",
+      "description": "Apply Product, Quotient, and Power properties. Condense to single logarithm. Key error: log(a+b) ≠ log(a)+log(b).",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "12"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.2.13.solve-exponential-and-logarithmic-equations",
+      "kind": "skill",
+      "title": "Solve exponential and logarithmic equations",
+      "domain": "math.precalc",
+      "description": "Exponential: isolate, convert, solve. Log: isolate log, convert to exponential, check extraneous. Combine multiple logs first.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "13"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.2.13.find-inverses-of-exponential-and-logarithmic-functions",
+      "kind": "skill",
+      "title": "Find inverses of exponential and logarithmic functions",
+      "domain": "math.precalc",
+      "description": "Swap x and y, isolate exponential/log, convert to other form. Domain/range swap for inverse.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "13"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.14.construct-logarithmic-models-from-data",
+      "kind": "skill",
+      "title": "Construct logarithmic models from two points and regression",
+      "domain": "math.precalc",
+      "description": "L(x) = a + b ln(x). Two-point: write system, subtract to eliminate a. LnReg on TI-84. Interpret a and b in context.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "14"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.2.15.use-semi-log-plots-to-linearize-exponential-data",
+      "kind": "skill",
+      "title": "Use semi-log plots to linearize exponential data",
+      "domain": "math.precalc",
+      "description": "log(a·b^x) = log(a) + x·log(b) is linear. Slope = log(b), intercept = log(a). Convert to exponential form.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-2-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-2.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "2",
+        "lesson": "15"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.3.1.analyze-periodic-phenomena-and-periodic-functions",
+      "kind": "skill",
+      "title": "Analyze periodic phenomena and evaluate periodic functions",
+      "domain": "math.precalc",
+      "description": "Identify period from graph. Extend periodic graphs. Evaluate f(kP + x) from table. FRQ 3 task model: contextual periodic modeling.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "1"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.3.2.evaluate-sine-cosine-and-tangent-using-the-unit-circle",
+      "kind": "skill",
+      "title": "Evaluate sine, cosine, and tangent using the unit circle",
+      "domain": "math.precalc",
+      "description": "sin = y/r, cos = x/r, tan = y/x. Radian measure. Standard angles: π/6, π/4, π/3, π/2. Quadrant signs.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "2"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.3.3.find-exact-trigonometric-values-at-special-angles",
+      "kind": "skill",
+      "title": "Find exact trigonometric values at special angles",
+      "domain": "math.precalc",
+      "description": "Geometric derivation from inscribed triangles. Reference angle method for any quadrant. A-S-T-C sign rule. Pythagorean identity.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "3"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.3.4.graph-sine-and-cosine-parent-functions",
+      "kind": "skill",
+      "title": "Graph sine and cosine parent functions and identify key features",
+      "domain": "math.precalc",
+      "description": "Amplitude, period, midline, frequency. Key points. cos θ = sin(θ + π/2). Describe behavior on sub-intervals.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "4"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.3.5.identify-sinusoidal-function-parameters",
+      "kind": "skill",
+      "title": "Identify sinusoidal function parameters from graphs and max-min data",
+      "domain": "math.precalc",
+      "description": "Midline, amplitude, period, frequency from max/min points. Not all periodic functions are sinusoidal.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "5"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.3.6.write-and-graph-sinusoidal-function-transformations",
+      "kind": "skill",
+      "title": "Write and graph sinusoidal function transformations",
+      "domain": "math.precalc",
+      "description": "General form h = a sin(bt + c) + d. Extract a, d from max/min, b from period. Five-point equation writing. Choose sin vs cos based on starting position.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "6"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.3.7.model-periodic-contexts-with-sinusoidal-functions",
+      "kind": "skill",
+      "title": "Model periodic contexts with sinusoidal functions",
+      "domain": "math.precalc",
+      "description": "Build models from verbal descriptions (rotating objects, gear/yo-yo). Regression from data. Interpret parameters in context.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "7"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.3.8.analyze-the-tangent-function-and-its-transformations",
+      "kind": "skill",
+      "title": "Analyze the tangent function and its transformations",
+      "domain": "math.precalc",
+      "description": "tan(x)=sin(x)/cos(x). Period π. VAs at π/2 + kπ. Transformed tan: period = π/|b|. Odd function symmetry.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "8"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.3.9.evaluate-inverse-trigonometric-functions",
+      "kind": "skill",
+      "title": "Evaluate inverse trigonometric functions and compositions",
+      "domain": "math.precalc",
+      "description": "arcsin [-π/2, π/2], arccos [0, π], arctan (-π/2, π/2). Use reference triangles for compositions like cos(arcsin(2/3)).",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "9"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.3.10.solve-trigonometric-equations-on-specified-intervals",
+      "kind": "skill",
+      "title": "Solve trigonometric equations on specified intervals",
+      "domain": "math.precalc",
+      "description": "Isolate trig function, use unit circle. General solutions with +2kπ or +kπ. Quadratic-in-trig equations. Inequality solving with sign charts.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "10"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.3.11.analyze-reciprocal-trigonometric-functions",
+      "kind": "skill",
+      "title": "Analyze secant, cosecant, and cotangent functions",
+      "domain": "math.precalc",
+      "description": "sec=1/cos, csc=1/sin, cot=cos/sin. Asymptote locations and ranges. Solve reciprocal equations by converting to sin/cos.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "11"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.3.12.apply-trigonometric-identities-and-equivalent-representations",
+      "kind": "skill",
+      "title": "Apply Pythagorean, double-angle, and sum/difference identities",
+      "domain": "math.precalc",
+      "description": "sin²+cos²=1, 1+tan²=sec², 1+cot²=csc². sin(2θ)=2sinθcosθ. Three forms of cos(2θ). Sum/difference identities.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "12"
+      },
+      "rendererKey": "comprehension-quiz"
+    },
+    {
+      "id": "math.precalc.skill.3.13.convert-between-polar-and-rectangular-coordinates",
+      "kind": "skill",
+      "title": "Convert between polar and rectangular coordinate forms",
+      "domain": "math.precalc",
+      "description": "Polar→rect: x=r cosθ, y=r sinθ. Rect→polar: r²=x²+y², tanθ=y/x. Multiple representations: (r,θ) ≡ (r,θ+2nπ) ≡ (-r,θ+π).",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "13"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.precalc.skill.3.14.classify-and-graph-polar-functions",
+      "kind": "skill",
+      "title": "Classify and graph rose curves, limaçons, and other polar functions",
+      "domain": "math.precalc",
+      "description": "Rose: r = a sin(nθ). n odd → n petals, n even → 2n petals. Limaçon: r = a + b sinθ. Domain restriction effects.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "14"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.precalc.skill.3.15.analyze-rates-of-change-in-polar-functions",
+      "kind": "skill",
+      "title": "Analyze rates of change in polar functions",
+      "domain": "math.precalc",
+      "description": "Signed radius interpretation. Average rate of change = (f(b)-f(a))/(b-a) on polar function. Estimate function values from given points.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-3-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-3.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "3",
+        "lesson": "15"
+      },
+      "rendererKey": "rate-of-change-calculator"
+    },
+    {
+      "id": "math.precalc.skill.4.1.represent-curves-using-parametric-functions",
+      "kind": "skill",
+      "title": "Represent curves using parametric functions",
+      "domain": "math.precalc",
+      "description": "Create parametric tables. Eliminate the parameter to find Cartesian form. Determine if parametric curve is a function. [SOURCE-LIMITED: CED-only, no Passwater] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "1",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.2.model-planar-motion-with-parametric-functions",
+      "kind": "skill",
+      "title": "Model planar motion with parametric functions",
+      "domain": "math.precalc",
+      "description": "Projectile model with x(t) and y(t). Find position at given time, landing position, max height, intersection of two objects. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "2",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.3.compute-rates-of-change-for-parametric-functions",
+      "kind": "skill",
+      "title": "Compute rates of change for parametric functions",
+      "domain": "math.precalc",
+      "description": "Average rate of change per coordinate (Δx/Δt, Δy/Δt). Slope dy/dx = (Δy/Δt)/(Δx/Δt). Interpret direction from signs. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "3",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "rate-of-change-calculator",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.4.parametrize-lines-and-circles",
+      "kind": "skill",
+      "title": "Parametrize lines and circles",
+      "domain": "math.precalc",
+      "description": "Parametric lines via point + direction vector. Parametric circles via center + r·cos(t), r·sin(t). Verify by eliminating parameter. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "4",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "graphing-explorer",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.5.work-with-implicitly-defined-functions",
+      "kind": "skill",
+      "title": "Work with implicitly defined functions",
+      "domain": "math.precalc",
+      "description": "Convert implicit equations to explicit branches. Estimate slope using nearby points on implicit curves. Identify domain restrictions. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "5",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.6.classify-and-analyze-conic-sections",
+      "kind": "skill",
+      "title": "Classify and analyze conic sections",
+      "domain": "math.precalc",
+      "description": "Identify conic type from standard form: circle, ellipse, parabola, hyperbola. Complete the square to convert general form to standard. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "6",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.7.parametrize-implicitly-defined-conics",
+      "kind": "skill",
+      "title": "Parametrize implicitly defined conics using trigonometric functions",
+      "domain": "math.precalc",
+      "description": "Parametrize ellipses with x=a·cos(t), y=b·sin(t). Parametrize shifted conics by completing the square first. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "7",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "graphing-explorer",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.8.perform-vector-operations",
+      "kind": "skill",
+      "title": "Perform vector operations including magnitude and direction",
+      "domain": "math.precalc",
+      "description": "Vector notation, components, magnitude, addition, scalar multiplication. Unit vectors. Direction angle. Component form from magnitude and angle. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "8",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.9.analyze-vector-valued-functions",
+      "kind": "skill",
+      "title": "Analyze vector-valued functions",
+      "domain": "math.precalc",
+      "description": "Evaluate r(t) at specific t. Displacement vector = r(t₂)−r(t₁). Average velocity vector = (r(t₂)−r(t₁))/(t₂−t₁). [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "9",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.10.perform-matrix-operations",
+      "kind": "skill",
+      "title": "Perform matrix operations including multiplication",
+      "domain": "math.precalc",
+      "description": "Matrix notation, dimensions, addition, scalar multiplication. Matrix multiplication via dot products. Non-commutativity of multiplication. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "10",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "step-by-step-solver",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.11.compute-determinant-and-inverse-of-matrices",
+      "kind": "skill",
+      "title": "Compute determinant and inverse of 2×2 matrices",
+      "domain": "math.precalc",
+      "description": "det(A) = ad−bc. Singular vs non-singular. Inverse formula: A⁻¹ = (1/det)(d,-b;-c,a). Verify AA⁻¹ = I. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "11",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "step-by-step-solver",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.12.apply-linear-transformations-using-matrices",
+      "kind": "skill",
+      "title": "Apply linear transformations using matrices",
+      "domain": "math.precalc",
+      "description": "Reflection, stretch, rotation matrices. Apply to points and polygons. Determinant as area scaling factor. Zero determinant collapses area. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "12",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.13.interpret-matrices-as-functions",
+      "kind": "skill",
+      "title": "Interpret matrices as functions and compose transformations",
+      "domain": "math.precalc",
+      "description": "T(v)=Av as a function. Domain/range. One-to-one iff det(A)≠0. Composition via BA. Inverse transformation. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "13",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.precalc.skill.4.14.model-contexts-with-matrices",
+      "kind": "skill",
+      "title": "Model real-world contexts with matrices",
+      "domain": "math.precalc",
+      "description": "Revenue model SP. Solve Ax=b using x=A⁻¹b. Systems of equations via matrix inverse. [SOURCE-LIMITED: CED-only] [SOURCE-LIMITED: CED-only, no Passwater source available]",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-4-class-period-plan.md (CED-only)",
+        "apps/pre-calculus/curriculum/source/college-board/ced-topic-index.json"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "4",
+        "lesson": "14",
+        "sourceNotes": "source-limited"
+      },
+      "rendererKey": "comprehension-quiz",
+      "exceptions": [
+        {
+          "type": "source-limited",
+          "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source available. Skill derived from CED topic descriptions and lesson.md files only.",
+          "reviewer": "t12-rollout",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-b-4",
+      "kind": "standard",
+      "title": "HSF-IF.B.4: For a function that models a relationship between two quantities, interpret key features of graphs and tables in terms of the quantities",
+      "domain": "math",
+      "description": "For a function that models a relationship between two quantities, interpret key features of graphs and tables in terms of the quantities",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.B.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-a-1",
+      "kind": "standard",
+      "title": "HSF-BF.A.1: Write a function that describes a relationship between two quantities",
+      "domain": "math",
+      "description": "Write a function that describes a relationship between two quantities",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7d",
+      "kind": "standard",
+      "title": "HSF-IF.C.7d: Graph rational functions, identifying zeros and asymptotes when suitable factorizations are available, and showing end behavior",
+      "domain": "math",
+      "description": "Graph rational functions, identifying zeros and asymptotes when suitable factorizations are available, and showing end behavior",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7d"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7d"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-a-1",
+      "kind": "standard",
+      "title": "HSA-APR.A.1: Understand that polynomials form a system analogous to the integers; add, subtract, and multiply polynomials",
+      "domain": "math",
+      "description": "Understand that polynomials form a system analogous to the integers; add, subtract, and multiply polynomials",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-d-6",
+      "kind": "standard",
+      "title": "HSA-APR.D.6: Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x)",
+      "domain": "math",
+      "description": "Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x)",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.D.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.D.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-3",
+      "kind": "standard",
+      "title": "HSF-BF.B.3: Identify the effect on the graph of replacing f(x) by f(x) + k, k f(x), f(kx), and f(x + k) for specific values of k",
+      "domain": "math",
+      "description": "Identify the effect on the graph of replacing f(x) by f(x) + k, k f(x), f(kx), and f(x + k) for specific values of k",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7c",
+      "kind": "standard",
+      "title": "HSF-IF.C.7c: Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
+      "domain": "math",
+      "description": "Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7c"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7c"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-b-2",
+      "kind": "standard",
+      "title": "HSA-APR.B.2: Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x − a is p(a)",
+      "domain": "math",
+      "description": "Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x − a is p(a)",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.B.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.B.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-b-3",
+      "kind": "standard",
+      "title": "HSA-APR.B.3: Identify zeros of polynomials when suitable factorizations are available, and use the zeros to construct a rough graph of the function",
+      "domain": "math",
+      "description": "Identify zeros of polynomials when suitable factorizations are available, and use the zeros to construct a rough graph of the function",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.B.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.B.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-a-2",
+      "kind": "standard",
+      "title": "HSA-REI.A.2: Solve simple rational and radical equations in one variable, and give examples showing how extraneous solutions may arise",
+      "domain": "math",
+      "description": "Solve simple rational and radical equations in one variable, and give examples showing how extraneous solutions may arise",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-2",
+      "kind": "standard",
+      "title": "HSF-LE.A.2: Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description, or two input-output pairs",
+      "domain": "math",
+      "description": "Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description, or two input-output pairs",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-1",
+      "kind": "standard",
+      "title": "HSF-LE.A.1: Distinguish between situations that can be modeled with linear functions and with exponential functions",
+      "domain": "math",
+      "description": "Distinguish between situations that can be modeled with linear functions and with exponential functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7e",
+      "kind": "standard",
+      "title": "HSF-IF.C.7e: Graph exponential and logarithmic functions, showing intercepts and end behavior",
+      "domain": "math",
+      "description": "Graph exponential and logarithmic functions, showing intercepts and end behavior",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7e"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7e"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-4",
+      "kind": "standard",
+      "title": "HSF-BF.B.4: Find inverse functions",
+      "domain": "math",
+      "description": "Find inverse functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-5",
+      "kind": "standard",
+      "title": "HSF-BF.B.5: Understand the inverse relationship between exponents and logarithms and use this relationship to solve problems",
+      "domain": "math",
+      "description": "Understand the inverse relationship between exponents and logarithms and use this relationship to solve problems",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-4",
+      "kind": "standard",
+      "title": "HSF-LE.A.4: For exponential models, express as a logarithm the solution to a b^(ct) = d where a, c, and d are numbers and the base b is 2, 10, or e",
+      "domain": "math",
+      "description": "For exponential models, express as a logarithm the solution to a b^(ct) = d where a, c, and d are numbers and the base b is 2, 10, or e",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-b-5",
+      "kind": "standard",
+      "title": "HSF-LE.B.5: Interpret the parameters in an exponential function in terms of a context",
+      "domain": "math",
+      "description": "Interpret the parameters in an exponential function in terms of a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-a-1a",
+      "kind": "standard",
+      "title": "HSF-BF.A.1a: Determine an explicit expression, a recursive process, or steps for calculation from a context",
+      "domain": "math",
+      "description": "Determine an explicit expression, a recursive process, or steps for calculation from a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.A.1a"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.A.1a"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-a-2",
+      "kind": "standard",
+      "title": "HSF-IF.A.2: Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
+      "domain": "math",
+      "description": "Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-b-5",
+      "kind": "standard",
+      "title": "HSF-TF.B.5: Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
+      "domain": "math",
+      "description": "Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-4",
+      "kind": "standard",
+      "title": "HSF-TF.A.4: Use the unit circle to explain symmetry (odd and even) and periodicity of trigonometric functions",
+      "domain": "math",
+      "description": "Use the unit circle to explain symmetry (odd and even) and periodicity of trigonometric functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-1",
+      "kind": "standard",
+      "title": "HSF-TF.A.1: Understand radian measure of an angle as the length of the arc on the unit circle subtended by the angle",
+      "domain": "math",
+      "description": "Understand radian measure of an angle as the length of the arc on the unit circle subtended by the angle",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-2",
+      "kind": "standard",
+      "title": "HSF-TF.A.2: Explain how the unit circle enables the extension of trigonometric functions to all real numbers",
+      "domain": "math",
+      "description": "Explain how the unit circle enables the extension of trigonometric functions to all real numbers",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-6",
+      "kind": "standard",
+      "title": "HSN-VM.C.6: Use matrices to represent and manipulate data, e.g., to represent payoffs or incidence relationships in a network",
+      "domain": "math",
+      "description": "Use matrices to represent and manipulate data, e.g., to represent payoffs or incidence relationships in a network",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-7",
+      "kind": "standard",
+      "title": "HSN-VM.C.7: Multiply matrices by scalars to produce new matrices, e.g., as when all of the payoffs in a game are doubled",
+      "domain": "math",
+      "description": "Multiply matrices by scalars to produce new matrices, e.g., as when all of the payoffs in a game are doubled",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.7"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.7"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-8",
+      "kind": "standard",
+      "title": "HSN-VM.C.8: Add, subtract, and multiply matrices of appropriate dimensions",
+      "domain": "math",
+      "description": "Add, subtract, and multiply matrices of appropriate dimensions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.8"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.8"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-11",
+      "kind": "standard",
+      "title": "HSN-VM.C.11: Multiply a vector (regarded as a matrix with one column) by a matrix of suitable dimensions to produce another vector; work with matrices as transformations of vectors",
+      "domain": "math",
+      "description": "Multiply a vector (regarded as a matrix with one column) by a matrix of suitable dimensions to produce another vector; work with matrices as transformations of vectors",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.11"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.11"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-9",
+      "kind": "standard",
+      "title": "HSN-VM.C.9: Understand that, unlike multiplication of numbers, matrix multiplication for square matrices is not a commutative operation, but still satisfies the associative and distributive properties",
+      "domain": "math",
+      "description": "Understand that, unlike multiplication of numbers, matrix multiplication for square matrices is not a commutative operation, but still satisfies the associative and distributive properties",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.9"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.9"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-c-8",
+      "kind": "standard",
+      "title": "HSA-REI.C.8: Represent a system of linear equations as a single matrix equation in a vector variable",
+      "domain": "math",
+      "description": "Represent a system of linear equations as a single matrix equation in a vector variable",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.C.8"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.C.8"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-10",
+      "kind": "standard",
+      "title": "HSN-VM.C.10: Understand that the zero and identity matrices play a role in matrix addition and multiplication similar to the role of 0 and 1 in the real numbers; the determinant of a square matrix is nonzero if and only if the matrix has a multiplicative inverse",
+      "domain": "math",
+      "description": "Understand that the zero and identity matrices play a role in matrix addition and multiplication similar to the role of 0 and 1 in the real numbers; the determinant of a square matrix is nonzero if and only if the matrix has a multiplicative inverse",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.10"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.10"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-c-9",
+      "kind": "standard",
+      "title": "HSA-REI.C.9: Find the inverse of a matrix if it exists and use it to solve systems of linear equations (using technology for matrices of dimension 3 × 3 or greater)",
+      "domain": "math",
+      "description": "Find the inverse of a matrix if it exists and use it to solve systems of linear equations (using technology for matrices of dimension 3 × 3 or greater)",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.C.9"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.C.9"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-a-1",
+      "kind": "standard",
+      "title": "HSN-VM.A.1: Recognize vector quantities as having both magnitude and direction; represent vector quantities by directed line segments",
+      "domain": "math",
+      "description": "Recognize vector quantities as having both magnitude and direction; represent vector quantities by directed line segments",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-a-2",
+      "kind": "standard",
+      "title": "HSN-VM.A.2: Find the components of a vector by subtracting the coordinates of an initial point from the coordinates of a terminal point",
+      "domain": "math",
+      "description": "Find the components of a vector by subtracting the coordinates of an initial point from the coordinates of a terminal point",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-b-4",
+      "kind": "standard",
+      "title": "HSN-VM.B.4: Add and subtract vectors; multiply a vector by a scalar",
+      "domain": "math",
+      "description": "Add and subtract vectors; multiply a vector by a scalar",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.B.4"
+      }
     },
     {
       "id": "math.precalc.example.1.1.003",

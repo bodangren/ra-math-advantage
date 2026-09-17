@@ -14,7 +14,7 @@ You fit a linear model to world population data from 1950 to 2020. The model pre
 
 ### Section: text
 
-- **Residual**: The difference between the actual output and the predicted output: [e_i = y_i - \hat{y}_i]. Positive residuals mean the model underestimates; negative residuals mean it overestimates.
+- **Residual**: The difference between the actual output and the predicted output: $e_i = y_i - \hat{y}_i$. Positive residuals mean the model underestimates; negative residuals mean it overestimates.
 - **Residual plot**: A scatterplot of input values versus residuals. If the model is appropriate, the plot shows no pattern — points are scattered randomly around zero.
 - **Constant rate of change**: Data whose successive differences are approximately equal — a signature of a **linear** model.
 - **Constant proportional change**: Data whose successive ratios are approximately equal — a signature of an **exponential** model.
@@ -28,13 +28,13 @@ Choosing the right model type is essential for accurate predictions. Three model
 
 | Model | Formula | Data signature |
 |---|---|---|
-| Linear | [f(x) = mx + b] | Constant differences in [y] over equal [x]-intervals |
-| Quadratic | [f(x) = ax^2 + bx + c] | Rates of change increase or decrease at a constant rate |
-| Exponential | [f(x) = a \cdot b^x] | Successive outputs are roughly proportional |
+| Linear | $f(x) = mx + b$ | Constant differences in $y$ over equal $x$-intervals |
+| Quadratic | $f(x) = ax^2 + bx + c$ | Rates of change increase or decrease at a constant rate |
+| Exponential | $f(x) = a \cdot b^x$ | Successive outputs are roughly proportional |
 
 **Residual analysis** is the primary validation tool. Steps:
 1. Fit a model to the data.
-2. Compute the residual at each point: [e_i = y_i - \hat{y}_i].
+2. Compute the residual at each point: $e_i = y_i - \hat{y}_i$.
 3. Plot residuals versus input values.
 4. If the residual plot shows no pattern (random scatter), the model is appropriate.
 5. If there is a clear pattern (U-shape, trend, fan shape), the model is inappropriate.
@@ -47,19 +47,19 @@ Choosing the right model type is essential for accurate predictions. Three model
 
 **Example 1:** Determine the best model type from a scatterplot.
 
-a) [x]: 0, 2, 4, 6, 8 \quad [f(x)]: 11, 8.2, 5, 2.3, -1
-**Linear** — differences are approximately -1.5 per 2 units.
+a) $x$: 0, 2, 4, 6, 8 \quad $f(x)$: 11, 8.2, 5, 2.3, -1
+**Linear** — differences are approximately -3 per 2 input units (a rate of -1.5 per input unit).
 
-b) [x]: -1, 1.5, 4, 6.5, 9 \quad [g(x)]: 2, 5.5, 10.5, 5.75, 2.25
+b) $x$: -1, 1.5, 4, 6.5, 9 \quad $g(x)$: 2, 5.5, 10.5, 5.75, 2.25
 **Quadratic** — values rise then fall in a U-shape.
 
-c) [x]: 1, 3, 5, 7, 9 \quad [h(x)]: 10, 5.2, 2.4, 1.3, 0.7
+c) $x$: 1, 3, 5, 7, 9 \quad $h(x)$: 10, 5.2, 2.4, 1.3, 0.7
 **Exponential** — ratios are approximately 0.5.
 
-**Example 2:** A linear model for baby weight gives [\hat{W}(2.5) = 5.6] kg. The actual weight is 5.5 kg.
+**Example 2:** A linear model for baby weight gives $\hat{W}(2.5) = 5.6$ kg. The actual weight is 5.5 kg.
 
 **Solution:**
-Residual = [5.5 - 5.6 = -0.1] kg. The model overestimates by 0.1 kg.
+Residual = $5.5 - 5.6 = -0.1$ kg. The model overestimates by 0.1 kg.
 
 ## Guided Practice
 
@@ -71,7 +71,7 @@ Residual = [5.5 - 5.6 = -0.1] kg. The model overestimates by 0.1 kg.
 
 **Problem 2:** Classify each as linear, quadratic, exponential, or neither:
 
-a) [x]: 1, 3, 5, 7, 9 \quad [h(x)]: 9, 7.1, 1, 7.2, 9.1
+a) $x$: 1, 3, 5, 7, 9 \quad $h(x)$: 9, 7.1, 1, 7.2, 9.1
 
 b) A mutual fund grows approximately 10.4% per year.
 
@@ -83,7 +83,7 @@ b) A mutual fund grows approximately 10.4% per year.
 
 **Problem 1:** World population data (1950–2020) is fit with a linear model. At year 1990, the model predicts 5.2 billion but the actual population is 5.3 billion. Compute the residual and interpret its meaning.
 
-**Problem 2:** A scatterplot shows residuals that are all positive for low [x]-values and all negative for high [x]-values, with a smooth transition. What does this pattern suggest about the linear model that was used?
+**Problem 2:** A scatterplot shows residuals that are all positive for low $x$-values and all negative for high $x$-values, with a smooth transition. What does this pattern suggest about the linear model that was used?
 
 **Problem 3:** After creating an exponential model for a data set, what should the residual plot look like if the model is appropriate?
 

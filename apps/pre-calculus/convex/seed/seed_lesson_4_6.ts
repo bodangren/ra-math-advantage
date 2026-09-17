@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -25,7 +26,7 @@ export const seedLesson4_6 = internalMutation({
           unitNumber: 4,
           title: "Conic Sections",
           slug: lessonSlug,
-          description: "Students identify, graph, and write equations for parabolas, ellipses, and hyperbolas in standard form.",
+          description: "AP Precalculus Topic 4.6: Conic Sections",
           orderIndex: 6,
           createdAt: now,
           updatedAt: now,
@@ -33,202 +34,131 @@ export const seedLesson4_6 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
+          version: 2,
           title: "Conic Sections",
-          description: "Students identify, graph, and write equations for parabolas, ellipses, and hyperbolas in standard form.",
+          description: "AP Precalculus Topic 4.6: Conic Sections",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                prompt: "Graph these conics and identify each type: y = x²/4, x²/9 + y²/4 = 1, x²/4 - y²/9 = 1",
-                defaultExpressions: ["y = x^2/4", "x^2/9 + y^2/4 = 1", "x^2/4 - y^2/9 = 1"],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Conic Sections\n\n### Parabola\n\n$$(x - h)^2 = 4p(y - k) \\quad \\text{or} \\quad (y - k)^2 = 4p(x - h)$$\n\n- Vertex: $(h, k)$\n- Focus: $p$ units from vertex along axis\n- Directrix: $p$ units opposite from focus\n\n### Ellipse\n\n$$\\frac{(x-h)^2}{a^2} + \\frac{(y-k)^2}{b^2} = 1$$\n\n- Center: $(h, k)$\n- Major axis: $2a$ (along larger denominator)\n- Minor axis: $2b$\n- Foci: $c^2 = |a^2 - b^2|$\n\n### Hyperbola\n\n$$\\frac{(x-h)^2}{a^2} - \\frac{(y-k)^2}{b^2} = 1 \\quad \\text{(opens left/right)}$$\n$$\\frac{(y-k)^2}{a^2} - \\frac{(x-h)^2}{b^2} = 1 \\quad \\text{(opens up/down)}$$\n\n- Asymptotes: $y - k = \\pm \\frac{b}{a}(x - h)$\n- Foci: $c^2 = a^2 + b^2$\n\n### Discriminant Test\n\nFor $Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0$:\n- $B^2 - 4AC < 0$: ellipse (or circle)\n- $B^2 - 4AC = 0$: parabola\n- $B^2 - 4AC > 0$: hyperbola",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Identify and Graph\n\nIdentify the conic $9x^2 + 4y^2 - 36 = 0$ and find key features.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "9x² + 4y² - 36 = 0",
-                steps: [
-                  { expression: "9x² + 4y² = 36", explanation: "Move constant" },
-                  { expression: "x²/4 + y²/9 = 1", explanation: "Divide by 36" },
-                  { expression: "a² = 9, b² = 4, center at origin", explanation: "Ellipse — a² under y, so vertical major axis" },
-                  { expression: "c² = 9 - 4 = 5, c = √5", explanation: "Foci at (0, ±√5)" },
-                  { expression: "Vertices: (0, ±3), co-vertices: (±2, 0)", explanation: "Key points" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "The equation $x^2/16 - y^2/9 = 1$ represents a:",
-                    options: ["Circle", "Ellipse", "Hyperbola", "Parabola"],
-                    correctIndex: 2,
-                  },
-                  {
-                    question: "For the ellipse $x^2/25 + y^2/16 = 1$, the foci are at:",
-                    options: ["(±3, 0)", "(±4, 0)", "(±5, 0)", "(0, ±3)"],
-                    correctIndex: 0,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                prompt: "Graph (x-1)²/9 + (y+2)²/4 = 1. Identify the center, vertices, and foci.",
-                defaultExpressions: ["(x-1)^2/9 + (y+2)^2/4 = 1"],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Slice a cone with a flat plane. Depending on the angle, you get a circle, ellipse, parabola, or hyperbola. These four curves — **conic sections** — arise in orbits, optics, architecture, and navigation. Each has a standard implicit equation, and each reveals different geometric properties."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Conic section**: A curve formed by the intersection of a plane with a double cone.\n- **Circle**: $(x - h)^2 + (y - k)^2 = r^2$ — center $(h, k)$, radius $r$.\n- **Ellipse**: $\\frac{(x - h)^2}{a^2} + \\frac{(y - k)^2}{b^2} = 1$ — center $(h, k)$, semi-axes $a$ and $b$.\n- **Parabola**: $y = a(x - h)^2 + k$ (vertical) — vertex $(h, k)$.\n- **Hyperbola**: $\\frac{(x - h)^2}{a^2} - \\frac{(y - k)^2}{b^2} = 1$ — center $(h, k)$, opens left-right.\n- **Standard form**: The canonical equation that reveals the conic's center, axes, and shape."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "The four conic sections, in standard form centered at the origin:\n\n| Conic | Standard Form | Key Feature |\n|-------|---------------|-------------|\n| Circle | $x^2 + y^2 = r^2$ | Equal coefficients for $x^2$ and $y^2$ |\n| Ellipse | $\\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1$ | Both terms positive, different denominators |\n| Parabola | $y = ax^2$ (or $x = ay^2$) | Only one squared term |\n| Hyperbola | $\\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1$ | Subtraction between squared terms |\n\n**Identifying from a general equation** $Ax^2 + By^2 + Cx + Dy + E = 0$:\n- $A = B \\neq 0$: circle\n- $A \\neq B$, same sign: ellipse\n- One of $A, B$ is 0: parabola\n- $A$ and $B$ have opposite signs: hyperbola\n\n**Graphing strategy**: Rewrite in standard form by completing the square, then identify center, axes, and vertices."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** Identify and graph $4x^2 + 9y^2 = 36$.\n\n**Solution:** Divide by 36:\n$$\\frac{x^2}{9} + \\frac{y^2}{4} = 1$$\nThis is an **ellipse** centered at the origin with $a = 3$ (x-intercepts at $\\pm 3$) and $b = 2$ (y-intercepts at $\\pm 2$).\n\n**Example 2:** Identify $x^2 - 4y^2 + 6x + 8y + 5 = 0$.\n\n**Solution:** Completing the square gives $(x + 3)^2 - 4(y - 1)^2 = 0$, a **degenerate hyperbola** (two intersecting lines: $x + 3 = \\pm 2(y - 1)$)."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Classify $9x^2 + 16y^2 = 144$ as a conic section and find its intercepts.\n\n**Hint:** Divide by 144 to get standard form.\n\n**Problem 2:** Classify $x^2 + y^2 - 4x + 6y - 12 = 0$ and find the center and radius.\n\n**Hint:** Complete the square for both $x$ and $y$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Write the equation $\\frac{x^2}{25} + \\frac{y^2}{16} = 1$. Identify the conic and find all intercepts.\n\n**Problem 2:** Classify $y^2 - 9x^2 = 81$. What type of conic is this?\n\n**Problem 3:** Complete the square to convert $x^2 + y^2 + 8x - 10y + 5 = 0$ to standard form. Identify the center and radius."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** Classify $25x^2 + 4y^2 = 100$ as a conic section and state its center.\n\n**Lesson Summary:** Conic sections are classified by their standard forms: circles (equal squared coefficients), ellipses (addition, different denominators), parabolas (one squared term), and hyperbolas (subtraction). Completing the square converts general equations to standard form."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

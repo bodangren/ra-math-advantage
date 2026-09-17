@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -25,7 +26,7 @@ export const seedLesson1_13 = internalMutation({
           unitNumber: 1,
           title: "Function Model Selection and Assumption Articulation",
           slug: lessonSlug,
-          description: "Students select appropriate function types to model real-world data and articulate modeling assumptions.",
+          description: "AP Precalculus Topic 1.13: Function Model Selection and Assumption Articulation",
           orderIndex: 13,
           createdAt: now,
           updatedAt: now,
@@ -33,217 +34,131 @@ export const seedLesson1_13 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
+          version: 2,
           title: "Function Model Selection and Assumption Articulation",
-          description: "Students select appropriate function types to model real-world data and articulate modeling assumptions.",
+          description: "AP Precalculus Topic 1.13: Function Model Selection and Assumption Articulation",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "A ball is thrown upward. Which function type best models its height over time?",
-                    options: ["Linear", "Quadratic", "Exponential", "Rational"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "A population doubles every year. Which model fits best?",
-                    options: ["Linear", "Quadratic", "Exponential", "Polynomial"],
-                    correctIndex: 2,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Function Model Selection\n\n### Choosing the Right Model\n\n| Situation | Best Model | Why |\n|-----------|-----------|-----|\n| Constant rate of change | Linear | Constant slope |\n| Projectile motion, area | Quadratic | Degree 2 behavior |\n| Growth/decay by percentage | Exponential | Multiplicative change |\n| Population limits | Logistic/Sigmoid | Carrying capacity |\n| Rates approaching a limit | Rational | Asymptotic behavior |\n\n### Articulating Assumptions\n\nEvery model requires assumptions:\n- **Domain restrictions**: What values of the input are valid?\n- **Idealizations**: What real-world factors are ignored?\n- **Time horizon**: Over what range is the model reliable?\n- **Measurement units**: What units are used for input and output?",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Selecting a Model\n\nA company's revenue data shows:\n\n| Year | Revenue (\\$1000s) |\n|------|--------|\n| 2018 | 120 |\n| 2019 | 135 |\n| 2020 | 152 |\n| 2021 | 171 |\n| 2022 | 192 |\n\nWhat type of function best models this data?",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Revenue(t)",
-                steps: [
-                  { expression: "Differences: 15, 17, 19, 21", explanation: "First differences are not constant" },
-                  { expression: "Second differences: 2, 2, 2", explanation: "Second differences are constant" },
-                  { expression: "Constant second differences → quadratic model", explanation: "Pattern matches degree 2" },
-                  { expression: "Ratio: 135/120 ≈ 1.125, 152/135 ≈ 1.126", explanation: "Check if exponential (ratios ≈ constant)" },
-                  { expression: "Ratios are close but second differences confirm quadratic", explanation: "Quadratic is the best fit" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "If first differences of data are approximately constant, the best model is:",
-                    options: ["Quadratic", "Linear", "Exponential", "Rational"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "An important assumption when modeling with polynomials is:",
-                    options: ["Data must be integers", "The pattern continues beyond the data", "The model works for all real numbers", "The function must be even"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "A car depreciates by 15% each year. Best model:",
-                    options: ["Linear: V(t) = V₀ - 0.15t", "Exponential: V(t) = V₀(0.85)^t", "Quadratic: V(t) = V₀ - 0.15t²", "Rational: V(t) = V₀/(1 + 0.15t)"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "You're given a table of data showing the weight of a baby at various ages. How do you decide whether to fit a linear, quadratic, or cubic model? Look at the **successive differences** in the data: if the first differences are roughly constant, the data is linear. If the second differences are roughly constant, it's quadratic. Today we learn how to select the right model and check our choice using residuals."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Regression** — A statistical method for fitting a function to a set of data points.\n- **Residual** — The difference between an actual value and the predicted value: $Residual = y - ŷ$. Positive means the model underestimates; negative means it overestimates.\n- **Residual plot** — A scatter plot of x-values vs. residuals. No pattern suggests a good fit; a pattern suggests a poor fit.\n- **Interpolation** — Using the model to predict within the data's range.\n- **Extrapolation** — Using the model to predict beyond the data's range (less reliable)."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**EK 1.13.A.1:** Model selection depends on data behavior:\n- **Linear** models fit data with approximately constant rates of change.\n- **Quadratic** models fit data with linearly changing rates of change.\n- **Cubic and higher** models fit data with more complex curvature.\n\n**EK 1.13.A.2:** Residuals measure model fit. A residual plot with **no pattern** suggests a good fit; a **pattern** suggests the model is inappropriate.\n\n**EK 1.13.A.3:** All models have domain restrictions and assumptions. You must articulate what the model assumes and identify where it breaks down.\n\n### Model Selection Framework\n\nBefore computing a regression, answer these questions:\n1. What pattern does the scatter plot show? (Rising, falling, curving?)\n2. What do the successive differences reveal?\n3. Which function type matches this pattern?\n4. **Justify your choice in writing.**"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** Baby weight data: $t$ (weeks): 4, 5, 6, 8, 12 → $W(t)$ (kg): 4.2, 4.4, 4.8, 5.1, 5.7.\n\nThe input gaps are 1, 1, 2, and 4 weeks. Divide each output change by its input gap. The average rates are 0.2, 0.4, 0.15, and 0.15 kg per week. These rates vary. A linear regression is a candidate model for the overall trend. Inspect its residuals before you accept it.\n\n**(a)** Linear regression: $W(t) = 0.185t + 3.545$.\n\n**(b)** Predicted weight at 10 weeks: $W(10) = 0.185(10) + 3.545 = 5.395$ kg.\n\n**(c)** Residual for the 5-week-old baby (actual weight 4.4 kg): $ŷ = 0.185(5) + 3.545 = 4.470$. Residual = $4.4 - 4.470 = -0.070$ kg. \"The model slightly overestimates.\"\n\n**Example 2:** Data: $x$: 0, 0.4, 0.9, 1.2, 1.7, 2.2, 2.9, 3.4 → $y$: 5, 10.6, 15.4, 17.1, 18.0, 16.5, 10.2, 2.8.\n\nThe data rises then falls. First differences go positive then negative → **quadratic or cubic model** is appropriate. A quadratic model captures the single turning point well."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** A baby that was 7.5 weeks old had a residual of -0.7 kg. The model is $W(t) = 0.185t + 3.545$. What was the actual weight?\n*Hint:* Actual = Predicted + Residual. First compute $W(7.5)$.\n\n**Problem 2:** Justin Kickoff data: $t$: 0.1, 0.5, 0.9, 1.5, 1.9, 2.3, 2.6 → $H(t)$: 1.4, 5.7, 8.4, 9.6, 8.4, 5.6, 2.5. Is linear, quadratic, or cubic most appropriate? Explain using the shape of the data.\n*Hint:* The data rises to a peak then falls symmetrically.\n\n**Problem 3:** UK female doctors: $t$: 0, 4, 7, 13, 17, 22, 25 → $F(t)$: 23, 28, 30.5, 36, 42, 47, 50. Why is linear regression appropriate here?\n*Hint:* Compute first differences and check if they're approximately constant."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Amazon stock: $t$: 0, 1, 13.5, 19, 26.5, 31.5, 35 → $A(t)$: 87.58, 124.15, 164.61, 185.97, 152.60, 122.42, 90.98. Is linear, quadratic, or cubic most appropriate? Justify by examining the rate of change pattern.\n\n**Problem 2:** A residual plot shows points curving upward then downward. What does this suggest about the model type?\n\n**Problem 3:** A model predicts a value of 42.5 for a data point where the actual value is 39.8. Compute the residual and interpret: does the model overestimate or underestimate?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** Given a data table, which model type is most appropriate? Justify in one sentence using evidence from the data pattern.\n\n**Lesson Summary:** Model selection starts with examining the data's pattern through successive differences and scatter shape. Linear fits constant rates, quadratic fits linearly changing rates, and cubic fits more complex curves. Residuals — the gap between actual and predicted — tell you how well the model fits. Always justify your model choice before computing the regression."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

@@ -13,7 +13,7 @@ vi.mock('@/lib/convex/server', () => ({
   fetchInternalMutation: mocks.fetchInternalMutation,
   internal: {
     selectedLearningEvidence: {
-      submitSelected: 'selectedLearningEvidence:submitSelected',
+      submitRouted: 'selectedLearningEvidence:submitRouted',
     },
   },
 }));
@@ -82,7 +82,7 @@ describe('AP Precalculus production learning-evidence route', () => {
     expect(JSON.stringify(body)).not.toContain('do-not-return');
     expect(mocks.requireStudentRequestClaims).toHaveBeenCalledTimes(1);
     expect(mocks.fetchInternalMutation).toHaveBeenCalledWith(
-      'selectedLearningEvidence:submitSelected',
+      'selectedLearningEvidence:submitRouted',
       { learnerId: SERVER_LEARNER_ID, submissionId: SERVER_SUBMISSION_ID },
     );
     expect(mocks.fetchInternalMutation.mock.calls[0]?.[1]).not.toHaveProperty('evidence');
@@ -147,7 +147,7 @@ describe('AP Precalculus production learning-evidence route', () => {
     expect(response.status).toBe(404);
     await expect(response.json()).resolves.toEqual({ error: 'Submission not found' });
     expect(mocks.fetchInternalMutation).toHaveBeenCalledWith(
-      'selectedLearningEvidence:submitSelected',
+      'selectedLearningEvidence:submitRouted',
       { learnerId: SERVER_LEARNER_ID, submissionId },
     );
   });
@@ -205,12 +205,12 @@ describe('AP Precalculus production learning-evidence route', () => {
     await expect(replay.json()).resolves.toEqual(REPLAY_RESULT);
     expect(mocks.fetchInternalMutation).toHaveBeenNthCalledWith(
       1,
-      'selectedLearningEvidence:submitSelected',
+      'selectedLearningEvidence:submitRouted',
       { learnerId: SERVER_LEARNER_ID, submissionId: SERVER_SUBMISSION_ID },
     );
     expect(mocks.fetchInternalMutation).toHaveBeenNthCalledWith(
       2,
-      'selectedLearningEvidence:submitSelected',
+      'selectedLearningEvidence:submitRouted',
       { learnerId: SERVER_LEARNER_ID, submissionId: SERVER_SUBMISSION_ID },
     );
   });

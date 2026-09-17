@@ -107,8 +107,6 @@ describe("selected Precalculus create route", () => {
 it.each([
   ["idempotency_conflict", 409],
   ["[Request ID: test] Server Error\nUncaught Error: idempotency_conflict\n    at handler (activities.ts:1:1)", 409],
-  ["practice_unavailable", 409],
-  ["[Request ID: test] Server Error\nUncaught Error: practice_unavailable\n    at handler (activities.ts:1:1)", 409],
   ["Server Error: database unavailable", 500],
 ])("maps create error to a controlled response: %s", async (message, status) => {
   const route = createPrecalculusPilotSubmissionRoute({
@@ -118,9 +116,7 @@ it.each([
   const response = await route.POST(request(body));
   expect(response.status).toBe(status);
   await expect(response.json()).resolves.toEqual({
-    error: message.includes("practice_unavailable")
-      ? "Practice is not available"
-      : status === 409
+    error: status === 409
       ? "Idempotency key was already used for a different submission"
       : "Unable to create submission",
   });

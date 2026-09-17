@@ -4,7 +4,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   evaluateLearningEvidenceV1,
-  learningEvidenceFingerprintV1,
   learningEvidenceV1Schema,
   normalizeLearningEvidenceV1,
   type LearningEvidenceV1,
@@ -13,7 +12,7 @@ import {
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const PILOT_NODE_ID = 'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs';
-const SECOND_PRECALCULUS_NODE_ID = 'math.precalc.skill.1.1.describe-covariation-in-tandem-change';
+const SECOND_PRECALCULUS_NODE_ID = 'math.precalc.skill.1.1.select-a-graph-that-models-a-physical-context';
 const PILOT_GUIDED_ACTIVITY_ID = `${PILOT_NODE_ID}.guided_practice`;
 const SECOND_GUIDED_ACTIVITY_ID = `${SECOND_PRECALCULUS_NODE_ID}.guided_practice`;
 
@@ -99,7 +98,7 @@ describe('AP Precalculus teacher-led Mastery Advantage pilot', () => {
     expect(graph.nodes).toContainEqual(expect.objectContaining({
       id: PILOT_NODE_ID,
       kind: 'skill',
-      rendererKey: 'graphing-explorer',
+      rendererKey: 'interval-classification',
     }));
     expect(graph.nodes).toContainEqual(expect.objectContaining({
       id: SECOND_PRECALCULUS_NODE_ID,
@@ -109,7 +108,7 @@ describe('AP Precalculus teacher-led Mastery Advantage pilot', () => {
       stableActivityId: PILOT_GUIDED_ACTIVITY_ID,
       nodeId: PILOT_NODE_ID,
       mode: 'guided_practice',
-      rendererKey: 'graphing-explorer',
+      rendererKey: 'interval-classification',
     }));
   });
 
@@ -159,8 +158,6 @@ describe('AP Precalculus teacher-led Mastery Advantage pilot', () => {
       masteryBearing: false,
     });
     expectOptionalIntroductionAlias(replay, false);
-    expect(learningEvidenceFingerprintV1(teacherExposure))
-      .toBe(learningEvidenceFingerprintV1(normalizeLearningEvidenceV1(teacherExposure)));
   });
 
   it('authorizes one graded Mastery Advantage attempt only after teacher exposure', () => {

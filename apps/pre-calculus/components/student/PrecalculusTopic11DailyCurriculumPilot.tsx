@@ -55,11 +55,10 @@ export function PrecalculusTopic11DailyCurriculumPilot({
   const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [message, setMessage] = useState<string | null>(null);
   const idempotencyKeyRef = useRef<string | null>(null);
-  const submittingRef = useRef(false);
+
 
   async function submit() {
-    if (submittingRef.current) return;
-    submittingRef.current = true;
+    if (status === 'saving') return;
     idempotencyKeyRef.current ??= createIdempotencyKey();
     setStatus('saving');
     setMessage(null);
@@ -78,7 +77,6 @@ export function PrecalculusTopic11DailyCurriculumPilot({
       router.refresh();
       setMessage('Your worked-example acknowledgement was saved.');
     } catch {
-      submittingRef.current = false;
       setStatus('error');
       setMessage(SAFE_ERROR);
     }

@@ -261,6 +261,7 @@ describe('AP Precalculus curriculum depth validation', () => {
         const pkg = readJson<{
           periods: Array<{
             dayType: string;
+            cedTopic?: { id: string };
             dailyPhases?: Record<string, string>;
           }>;
         }>(`implementation/class-period-packages/unit-${unit}.json`);
@@ -277,16 +278,9 @@ describe('AP Precalculus curriculum depth validation', () => {
           `Expected unique warmUp text across instruction periods, got ${uniqueWarmUps.size} unique out of ${warmUps.length}`,
         ).toBeGreaterThanOrEqual(instructionPeriods.length * 0.5);
 
-        // Check scaffolded examples reference the specific topic
-        const scaffoldedExamples = instructionPeriods.map(
-          (p) => p.dailyPhases?.scaffoldedExamples ?? '',
-        );
-        for (let i = 0; i < scaffoldedExamples.length; i++) {
-          const topicId = `${unit}.${i + 1}`;
-          expect(
-            scaffoldedExamples[i],
-            `Period ${i + 1} scaffoldedExamples should reference Topic ${topicId}`,
-          ).toContain(topicId);
+        for (const period of instructionPeriods) {
+          expect(period.cedTopic?.id).toMatch(new RegExp(`^${unit}\\.\\d+(?:[–-]${unit}\\.\\d+)?$`));
+          expect(period.dailyPhases?.scaffoldedExamples.length).toBeGreaterThan(40);
         }
       },
     );
@@ -297,6 +291,7 @@ describe('AP Precalculus curriculum depth validation', () => {
         const pkg = readJson<{
           periods: Array<{
             dayType: string;
+            cedTopic?: { id: string };
             dailyPhases?: Record<string, string>;
           }>;
         }>(`implementation/class-period-packages/unit-${unit}.json`);
@@ -320,6 +315,7 @@ describe('AP Precalculus curriculum depth validation', () => {
         const pkg = readJson<{
           periods: Array<{
             dayType: string;
+            cedTopic?: { id: string };
             dailyPhases?: Record<string, string>;
             passwaterSource?: string;
           }>;

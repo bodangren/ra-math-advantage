@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -25,7 +26,7 @@ export const seedLesson4_9 = internalMutation({
           unitNumber: 4,
           title: "Vector-Valued Functions",
           slug: lessonSlug,
-          description: "Students work with vector-valued functions, computing derivatives, velocity, acceleration, and analyzing motion in the plane.",
+          description: "AP Precalculus Topic 4.9: Vector-Valued Functions",
           orderIndex: 9,
           createdAt: now,
           updatedAt: now,
@@ -33,207 +34,131 @@ export const seedLesson4_9 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
+          version: 2,
           title: "Vector-Valued Functions",
-          description: "Students work with vector-valued functions, computing derivatives, velocity, acceleration, and analyzing motion in the plane.",
+          description: "AP Precalculus Topic 4.9: Vector-Valued Functions",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                prompt: "Graph r(t) = ⟨cos t, sin t⟩ for 0 ≤ t ≤ 2π. What path does the tip of the vector trace?",
-                defaultExpressions: ["r(t) = (cos(t), sin(t))"],
-                parameterRange: [0, 6.28],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Vector-Valued Functions\n\n### Definition\n\n$$\\vec{r}(t) = \\langle f(t), g(t) \\rangle = f(t)\\hat{i} + g(t)\\hat{j}$$\n\n### Velocity and Acceleration\n\n$$\\vec{v}(t) = \\vec{r}'(t) = \\langle f'(t), g'(t) \\rangle$$\n$$\\vec{a}(t) = \\vec{v}'(t) = \\vec{r}''(t) = \\langle f''(t), g''(t) \\rangle$$\n\n### Speed\n\n$$|\\vec{v}(t)| = \\sqrt{[f'(t)]^2 + [g'(t)]^2}$$\n\n### Displacement and Distance\n\n- **Displacement**: $\\vec{r}(b) - \\vec{r}(a)$\n- **Total distance**: $\\int_a^b |\\vec{v}(t)| \\, dt$\n\n### Tangent and Normal Vectors\n\n- Unit tangent: $\\vec{T}(t) = \\frac{\\vec{v}(t)}{|\\vec{v}(t)|}$\n- The acceleration decomposes into tangential and normal components",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Velocity and Speed\n\nFor $\\vec{r}(t) = \\langle t^2, 3t \\rangle$, find $\\vec{v}(t)$, speed at $t = 1$, and total distance from $t = 0$ to $t = 2$.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "r(t) = ⟨t², 3t⟩",
-                steps: [
-                  { expression: "v(t) = r'(t) = ⟨2t, 3⟩", explanation: "Differentiate each component" },
-                  { expression: "Speed at t=1: |v(1)| = |⟨2,3⟩| = √(4+9) = √13", explanation: "Magnitude of velocity" },
-                  { expression: "a(t) = v'(t) = ⟨2, 0⟩", explanation: "Acceleration — constant horizontal" },
-                  { expression: "Distance = ∫₀² √(4t²+9) dt", explanation: "Arc length integral" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "For $\\vec{r}(t) = \\langle 3\\cos t, 3\\sin t \\rangle$, the speed is:",
-                    options: ["3", "3t", "√(9cos²t + 9sin²t) = 3", "Variable"],
-                    correctIndex: 2,
-                  },
-                  {
-                    question: "The velocity vector is always ______ to the position curve at the point of evaluation:",
-                    options: ["Parallel", "Tangent", "Perpendicular", "Unrelated"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "For r(t) = ⟨e^t, e^(-t)⟩, find v(t) and |v(0)|",
-                steps: [
-                  { expression: "v(t) = ⟨e^t, -e^(-t)⟩", explanation: "Differentiate" },
-                  { expression: "v(0) = ⟨1, -1⟩", explanation: "Evaluate at t = 0" },
-                  { expression: "|v(0)| = √(1 + 1) = √2", explanation: "Speed at t = 0" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "A drone's position at time $t$ is given by $\\mathbf{r}(t) = langle 4t, -16t^2 + 32trangle$. Instead of separate equations for $x$ and $y$, we write a single function that outputs a **vector**. This is a vector-valued function — it packages a parametric path into one compact object."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Vector-valued function**: A function $\\mathbf{r}(t)$ whose output is a vector, typically $\\mathbf{r}(t) = langle x(t), y(t)rangle$.\n- **Component functions**: The individual functions $x(t)$ and $y(t)$ inside $\\mathbf{r}(t)$.\n- **Position vector**: A vector-valued function $\\mathbf{r}(t)$ that represents the position of an object at time $t$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "A **vector-valued function** $\\mathbf{r}(t) = langle f(t), g(t)rangle$ maps a scalar $t$ to a vector. This is equivalent to a parametric function $(x(t), y(t))$ but uses vector notation.\n\n**Evaluating**: Substitute $t$ into both component functions:\n$$\\mathbf{r}(2) = langle f(2), g(2)rangle$$\n\n**Velocity and displacement**: The vector $\\mathbf{r}(t_2) - \\mathbf{r}(t_1)$ gives the **displacement** from time $t_1$ to $t_2$.\n\n**Average rate of change**: $\\frac{\\mathbf{r}(t_2) - \\mathbf{r}(t_1)}{t_2 - t_1}$ is a vector whose components are $\\frac{\\Delta x}{\\Delta t}$ and $\\frac{\\Delta y}{\\Delta t}$ — the average velocity vector.\n\n**Graphing**: Plot $\\mathbf{r}(t)$ for several values of $t$. Each output is a point in the plane. Connecting them traces the path."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example:** Let $\\mathbf{r}(t) = langle t^2, 2t - 1rangle$.\n\n**(a)** Evaluate $\\mathbf{r}(0)$, $\\mathbf{r}(1)$, $\\mathbf{r}(3)$:\n- $\\mathbf{r}(0) = langle 0, -1rangle$\n- $\\mathbf{r}(1) = langle 1, 1rangle$\n- $\\mathbf{r}(3) = langle 9, 5rangle$\n\n**(b)** Find the displacement from $t = 1$ to $t = 3$:\n$$\\mathbf{r}(3) - \\mathbf{r}(1) = langle 9 - 1, 5 - 1rangle = langle 8, 4rangle$$\n\n**(c)** Find the average rate of change on $[1, 3]$:\n$$\\frac{\\mathbf{r}(3) - \\mathbf{r}(1)}{3 - 1} = \\frac{langle 8, 4rangle}{2} = langle 4, 2rangle$$\n\nInterpretation: On average, the object moves 4 units right and 2 units up per unit of $t$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Let $\\mathbf{r}(t) = langle 3t + 1, t^2rangle$. Find $\\mathbf{r}(2)$ and $\\mathbf{r}(5)$.\n\n**Hint:** Substitute each value of $t$ into both components.\n\n**Problem 2:** For $\\mathbf{r}(t) = langle 3t + 1, t^2rangle$, find the average rate of change on $[2, 5]$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Let $\\mathbf{r}(t) = langle \\cos(t), \\sin(t)rangle$. Evaluate $\\mathbf{r}(0)$, $\\mathbf{r}(\\frac{\\pi}{2})$, $\\mathbf{r}(\\pi)$. What curve do these points lie on?\n\n**Problem 2:** For $\\mathbf{r}(t) = langle t^3 - t, 2t + 1rangle$, find the displacement from $t = -1$ to $t = 2$.\n\n**Problem 3:** Explain how a vector-valued function relates to a parametric function. What is the advantage of vector notation?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** Let $\\mathbf{r}(t) = langle 5 - t, t^2 - 4rangle$. Find $\\mathbf{r}(1)$ and the average rate of change on $[1, 3]$.\n\n**Lesson Summary:** Vector-valued functions package parametric paths into vector outputs. The average rate of change produces a velocity vector. Displacement is the difference of position vectors."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

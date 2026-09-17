@@ -177,7 +177,7 @@ export async function POST(request: Request): Promise<Response> {
   const route = createPrecalculusPilotRoute({
     getServerSession: async () => ({ user: { id: claimsOrResponse.sub, role: 'student' } }),
     submitLearningEvidence: ({ learnerId, submissionId }) => fetchInternalMutation(
-      internal.selectedLearningEvidence.submitSelected,
+      internal.selectedLearningEvidence.submitRouted,
       { learnerId, submissionId },
     ),
   });

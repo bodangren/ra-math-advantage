@@ -219,18 +219,10 @@ export default defineSchema({
     .index("by_phase", ["phaseId"]),
 
   lesson_responses: defineTable({
-    learnerId: v.id('profiles'),
-    phaseId: v.id('phase_versions'),
-    response: v.string(),
-    createdAt: v.number(),
-    score: v.optional(v.number()),
-    maxScore: v.optional(v.number()),
-    feedback: v.optional(v.string()),
-    gradedBy: v.optional(v.id('profiles')),
-    gradedAt: v.optional(v.number()),
-  })
-    .index('by_learner', ['learnerId'])
-    .index('by_learner_and_phase', ['learnerId', 'phaseId']),
+    learnerId: v.id('profiles'), phaseId: v.id('phase_versions'), response: v.string(), createdAt: v.number(),
+    score: v.optional(v.number()), maxScore: v.optional(v.number()), feedback: v.optional(v.string()),
+    gradedBy: v.optional(v.id('profiles')), gradedAt: v.optional(v.number()),
+  }).index('by_learner', ['learnerId']).index('by_learner_and_phase', ['learnerId', 'phaseId']),
 
   student_progress: defineTable({
     userId: v.id("profiles"),
@@ -267,15 +259,8 @@ export default defineSchema({
     .index("by_user", ["userId"])
     .index("by_activity", ["activityId"])
     .index("by_user_and_activity", ["userId", "activityId"])
-    .index("by_user_and_create_idempotency_key", [
-      "userId",
-      "createIdempotencyKey",
-    ])
-    .index("by_user_and_activity_and_attempt_ordinal", [
-      "userId",
-      "activityId",
-      "attemptOrdinal",
-    ]),
+    .index("by_user_and_create_idempotency_key", ["userId", "createIdempotencyKey"])
+    .index("by_user_and_activity_and_attempt_ordinal", ["userId", "activityId", "attemptOrdinal"]),
 
   learning_evidence: defineTable({
     learnerId: v.id("profiles"),
@@ -298,12 +283,16 @@ export default defineSchema({
       maxScore: v.optional(v.number()),
     })),
     idempotencyKey: v.string(),
-    fingerprint: v.string(),
     createdAt: v.number(),
   })
     .index("by_learner", ["learnerId"])
     .index("by_learner_and_node", ["learnerId", "nodeId"])
     .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"])
+    .index(
+      "by_learner_node_origin_occurred_at",
+      ["learnerId", "nodeId", "origin", "occurredAt"],
+    )
+    .index("by_learner_node_activity_origin_attempt", ["learnerId", "nodeId", "activityId", "origin", "attemptOrdinal"])
     .index("by_learner_and_submission_id", ["learnerId", "submissionId"]),
 
   learning_evidence_receipts: defineTable({
@@ -311,15 +300,10 @@ export default defineSchema({
     submissionId: v.id("activity_submissions"),
     persisted: v.boolean(),
     masteryApplied: v.boolean(),
-    kstApplied: v.literal(false),
-    decision: v.object({
-      idempotency: v.union(v.literal("new"), v.literal("replay"), v.literal("conflict")),
-      exposureState: v.union(v.literal("awaiting_teacher_exposure"), v.literal("introduced")),
-      eligible: v.boolean(),
-      reason: v.union(v.literal("node_not_enabled"), v.literal("idempotency_conflict"), v.literal("teacher_led"), v.literal("awaiting_teacher_exposure"), v.literal("ungraded_evidence"), v.literal("eligible")),
-      masteryBearing: v.boolean(),
-    }),
+    kstApplied: v.boolean(),
+    decision: v.any(),
     createdAt: v.number(),
+    updatedAt: v.number(),
   }).index("by_learner_and_submission_id", ["learnerId", "submissionId"]),
 
   student_spreadsheet_responses: defineTable({
@@ -472,7 +456,8 @@ export default defineSchema({
     .index("by_objective", ["objectiveId"])
     .index("by_student_and_objective", ["studentId", "objectiveId"])
     .index("by_problem_family", ["problemFamilyId"])
-    .index("by_student_and_problem_family", ["studentId", "problemFamilyId"]),
+    .index("by_student_and_problem_family", ["studentId", "problemFamilyId"])
+    .index("by_student_objective_and_problem_family", ["studentId", "objectiveId", "problemFamilyId"]),
 
   srs_review_log: defineTable({
     cardId: v.id("srs_cards"),

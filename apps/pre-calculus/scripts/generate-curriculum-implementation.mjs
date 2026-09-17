@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const checkOnly = process.argv.includes('--check');
 const curriculumRoot = path.join(appRoot, 'curriculum');
 const topicIndex = JSON.parse(fs.readFileSync(path.join(curriculumRoot, 'source/college-board/ced-topic-index.json'), 'utf8'));
 const exceptions = JSON.parse(fs.readFileSync(path.join(curriculumRoot, 'implementation/exceptions.json'), 'utf8'));
@@ -12,6 +13,7 @@ function ensureDir(directory) {
 }
 
 function write(relativePath, content) {
+  if (checkOnly) return;
   const fullPath = path.join(curriculumRoot, relativePath);
   ensureDir(path.dirname(fullPath));
   fs.writeFileSync(fullPath, `${content.trim()}\n`);
@@ -21,131 +23,14 @@ function writeJson(relativePath, value) {
   write(relativePath, JSON.stringify(value, null, 2));
 }
 
-function familyKey(topicId) {
-  return `apc_${topicId.replace('.', '_')}`;
-}
-
-function periodId(unit, period) {
-  return `u${String(unit).padStart(2, '0')}-p${String(period).padStart(2, '0')}`;
-}
-
-function topicPackage(unit, topic, period) {
-  return {
-    periodId: periodId(unit.unit, period),
-    unit: unit.unit,
-    period,
-    dayType: 'instruction',
-    cedTopic: {
-      id: topic.id,
-      title: topic.title,
-      source: 'curriculum/source/college-board/ced-topic-index.json',
-      errata: 'curriculum/source/college-board/clarification-guidance.md',
-      examStatus: unit.examStatus,
-    },
-    competencyTarget: {
-      learningObjectiveFamily: `${topic.id}.A`,
-      essentialKnowledgeFamily: `${topic.id}.A.*`,
-      mathematicalPractices: ['1.A', '1.B', '1.C', '2.A', '2.B', '3.A', '3.B', '3.C'],
-    },
-    passwaterSource: `curriculum/source/passwater/unit-${unit.unit}.md`,
-    problemFamily: familyKey(topic.id),
-    dailyPhases: {
-      warmUp: `Retrieve prerequisite representations connected to Topic ${topic.id}.`,
-      topicIntroduction: `Use Passwater notes to introduce ${topic.title}.`,
-      scaffoldedExamples: `Model worked examples from the Unit ${unit.unit} Passwater source.`,
-      guidedPractice: `Students complete scaffolded examples aligned to CED Topic ${topic.id}.`,
-      independentPractice: `Students complete AP-style practice mapped to ${familyKey(topic.id)}.`,
-      exitEvidence: `Short competency evidence for ${topic.id}.A and ${topic.id}.A.*.`,
-      capReflection: 'Students identify a courage, adaptability, or persistence move from the period.',
-    },
-  };
-}
-
-function nonInstructionPackage(unit, period, dayType) {
-  const labels = {
-    ap_task_model: 'FRQ task-model transfer day',
-    review: 'Unit review across CED topic families',
-    test: 'Local unit assessment aligned to CED competency evidence',
-  };
-
-  return {
-    periodId: periodId(unit.unit, period),
-    unit: unit.unit,
-    period,
-    dayType,
-    notes: labels[dayType],
-    nonInstructionArtifact: {
-      artifactType: dayType,
-      source: `curriculum/source/passwater/unit-${unit.unit}.md`,
-      cedScope: `Unit ${unit.unit}`,
-      evidence: labels[dayType],
-    },
-  };
-}
-
-function classPeriodPackage(unit) {
-  const periods = [];
-  let period = 1;
-
-  for (const topic of unit.topics) {
-    periods.push(topicPackage(unit, topic, period));
-    period += 1;
-  }
-
-  periods.push(nonInstructionPackage(unit, period, 'ap_task_model'));
-  period += 1;
-  periods.push(nonInstructionPackage(unit, period, 'review'));
-  period += 1;
-  periods.push(nonInstructionPackage(unit, period, 'test'));
-
-  return {
-    schemaVersion: 'class-period-package.v1',
-    unit: unit.unit,
-    generatedFrom: `curriculum/unit-${unit.unit}-class-period-plan.md`,
-    sourcePriority: [
-      'curriculum/source/college-board/ced-topic-index.json',
-      'curriculum/source/college-board/clarification-guidance.md',
-      `curriculum/source/passwater/unit-${unit.unit}.md`,
-    ],
-    periods,
-  };
-}
-
-function activityCandidates() {
-  const activities = [];
-
-  for (const unit of topicIndex.units.filter((candidate) => candidate.unit <= 3)) {
-    for (const topic of unit.topics) {
-      activities.push({
-        activityId: `apc-${topic.id.replace('.', '-')}-independent-practice`,
-        familyKey: familyKey(topic.id),
-        cedTopicId: topic.id,
-        unit: unit.unit,
-        title: `${topic.title} independent practice`,
-        componentKey: 'comprehension-quiz',
-        mode: 'practice',
-        sourceReferences: [
-          'curriculum/source/college-board/ced-topic-index.json',
-          `curriculum/source/passwater/unit-${unit.unit}.md`,
-        ],
-        gradingConfig: {
-          evidenceType: 'competency-check',
-          learningObjectiveFamily: `${topic.id}.A`,
-          essentialKnowledgeFamily: `${topic.id}.A.*`,
-        },
-        srsEligible: true,
-      });
-    }
-  }
-
-  return activities;
-}
-
-const sourceBackedUnits = topicIndex.units.filter((unit) => unit.unit <= 3);
-const activities = activityCandidates();
-
-for (const unit of sourceBackedUnits) {
-  writeJson(`implementation/class-period-packages/unit-${unit.unit}.json`, classPeriodPackage(unit));
+const sourceBackedUnits = topicIndex.units.filter(unit => unit.unit <= 3);
+const authoredPath = path.join(curriculumRoot, 'implementation/practice-v1/activity-map.json');
+const authored = JSON.parse(fs.readFileSync(authoredPath, 'utf8'));
+const activities = authored.activities;
+const unitPackages = topicIndex.units.map(unit => JSON.parse(fs.readFileSync(
+  path.join(curriculumRoot, `implementation/class-period-packages/unit-${unit.unit}.json`), 'utf8')));
+for (const unitPackage of unitPackages) {
+  writeJson(`implementation/class-period-packages/unit-${unitPackage.unit}.json`, unitPackage);
 }
 
 write(
@@ -162,20 +47,11 @@ Generated by \`npm run curriculum:implementation\`.
 | \`audit/latest.json\` | Current machine-readable curriculum audit summary |
 | \`exceptions.json\` | Source gaps and deferred-detail records consumed by the audit |
 
-Unit 4 is intentionally excluded from class-period packages until local instructional source evidence exists.
+Unit 4 uses locally authored lesson content. It has no local Passwater PDF and is not assessed on the AP Exam.
 `,
 );
 
-writeJson('implementation/practice-v1/activity-map.json', {
-  schemaVersion: 'curriculum-activity-map.v1',
-  generatedFrom: [
-    'curriculum/source/college-board/ced-topic-index.json',
-    'curriculum/source/college-board/clarification-guidance.md',
-    'curriculum/source/passwater/unit-*.md',
-    'curriculum/unit-*-class-period-plan.md',
-  ],
-  activities,
-});
+writeJson('implementation/practice-v1/activity-map.json', authored);
 
 write(
   'practice/README.md',
@@ -206,12 +82,22 @@ write(
 
 | Period | Day Type | CED Topic | familyKey | Source |
 |--------|----------|-----------|-----------|--------|
-${sourceBackedUnits.flatMap((unit) => unit.topics.map((topic, index) => `| \`${periodId(unit.unit, index + 1)}\` | \`instruction\` | \`${topic.id}\` | \`${familyKey(topic.id)}\` | \`curriculum/source/passwater/unit-${unit.unit}.md\` |`)).join('\n')}
+${unitPackages.flatMap(pkg => pkg.periods.filter(period => period.cedTopic).map(period => `| \`${period.periodId}\` | \`${period.dayType}\` | \`${period.cedTopic.id}\` | \`${period.problemFamily ?? 'teacher-review'}\` | \`${period.passwaterSource ?? pkg.sourcePriority.at(-1)}\` |`)).join('\n')}
 `,
 );
 
 const exceptionsConsumed = exceptions.exceptions.map((exception) => exception.id);
 
+const topicIds = topicIndex.units.flatMap(unit => unit.topics.map(topic => topic.id));
+const expectedTopicIds = [[1,14],[2,15],[3,15],[4,14]].flatMap(([unit,count]) => Array.from({length:count}, (_,i) => `${unit}.${i+1}`));
+const uniqueFamilies = new Set(activities.map(activity => activity.familyKey));
+const checks = [
+  { id: 'ced-topic-count', valid: topicIds.length === 58 && new Set(topicIds).size === 58 && expectedTopicIds.every(id => topicIds.includes(id)) },
+  { id: 'source-backed-package-count', valid: sourceBackedUnits.length === 3 && sourceBackedUnits.every(unit => fs.existsSync(path.join(curriculumRoot, `source/passwater/unit-${unit.unit}.md`)) && unitPackages.find(entry => entry.unit === unit.unit)?.periods.length > unit.topics.length && unit.topics.every(topic => unitPackages.find(entry => entry.unit === unit.unit).periods.some(period => period.cedTopic?.id === topic.id))) },
+  { id: 'unit-4-local-content', valid: topicIndex.units.find(unit => unit.unit === 4)?.examStatus === 'not-assessed-on-ap-exam' && unitPackages.some(pkg => pkg.unit === 4 && pkg.periods.length >= 14 && pkg.sourcePriority.every(source => !source.includes('passwater'))) },
+  { id: 'practice-map-coverage', valid: activities.length === 44 && uniqueFamilies.size === 44 && activities.every(activity => topicIds.includes(activity.cedTopicId) && activity.componentKey && activity.gradingConfig) },
+  { id: 'exceptions-consumed', valid: exceptionsConsumed.length > 0 && new Set(exceptionsConsumed).size === exceptionsConsumed.length },
+].map(({id,valid}) => ({id,status:valid ? 'pass' : 'fail'}));
 writeJson('implementation/audit/latest.json', {
   schemaVersion: 'precalculus-curriculum-audit.v1',
   generatedBy: 'scripts/generate-curriculum-implementation.mjs',
@@ -222,9 +108,9 @@ writeJson('implementation/audit/latest.json', {
     unit4ExamStatus: topicIndex.units.find((unit) => unit.unit === 4)?.examStatus,
   },
   packageCoverage: {
-    classPeriodPackageUnits: sourceBackedUnits.length,
-    unit4PackageDeferred: 1,
-    classPeriods: sourceBackedUnits.reduce((total, unit) => total + unit.topics.length + 3, 0),
+    classPeriodPackageUnits: unitPackages.length,
+    unit4PackageDeferred: 0,
+    classPeriods: unitPackages.reduce((total, unit) => total + unit.periods.length, 0),
   },
   practiceCoverage: {
     activityCandidates: activities.length,
@@ -232,11 +118,9 @@ writeJson('implementation/audit/latest.json', {
     srsEligibleCandidates: activities.filter((activity) => activity.srsEligible).length,
   },
   exceptionsConsumed,
-  checks: [
-    { id: 'ced-topic-count', status: 'pass' },
-    { id: 'source-backed-package-count', status: 'pass' },
-    { id: 'unit-4-deferred', status: 'pass' },
-    { id: 'practice-map-coverage', status: 'pass' },
-    { id: 'exceptions-consumed', status: 'pass' },
-  ],
+  checks,
 });
+
+const failed = checks.filter(check => check.status === 'fail');
+if (failed.length) throw new Error(`Curriculum checks failed: ${failed.map(check => check.id).join(', ')}`);
+console.log(`Validated ${checks.length} curriculum checks. Authored activity definitions are preserved.`);

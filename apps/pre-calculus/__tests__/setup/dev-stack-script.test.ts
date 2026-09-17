@@ -12,7 +12,7 @@ describe('dev-stack script', () => {
       {
         name: 'convex',
         command: 'npx',
-        args: ['convex', 'dev', '--local'],
+        args: ['convex', 'dev'],
         cwd: process.cwd(),
       },
       {

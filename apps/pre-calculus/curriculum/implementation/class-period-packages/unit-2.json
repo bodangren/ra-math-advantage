@@ -23,7 +23,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -52,7 +61,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -81,7 +99,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.2.A",
         "essentialKnowledgeFamily": "2.2.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_2",
@@ -110,7 +137,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.2.A",
         "essentialKnowledgeFamily": "2.2.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_2",
@@ -139,7 +175,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.3.A",
         "essentialKnowledgeFamily": "2.3.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_3",
@@ -168,7 +213,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.3.A",
         "essentialKnowledgeFamily": "2.3.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_3",
@@ -197,7 +251,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.4.A",
         "essentialKnowledgeFamily": "2.4.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_4",
@@ -226,7 +289,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -255,7 +327,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.2.A",
         "essentialKnowledgeFamily": "2.2.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_2",
@@ -284,7 +365,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -310,7 +400,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.5.A",
         "essentialKnowledgeFamily": "2.5.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_5",
@@ -339,7 +438,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.5.A",
         "essentialKnowledgeFamily": "2.5.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_5",
@@ -368,7 +476,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.6.A",
         "essentialKnowledgeFamily": "2.6.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_6",
@@ -397,7 +514,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.6.A",
         "essentialKnowledgeFamily": "2.6.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_6",
@@ -426,7 +552,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.7.A",
         "essentialKnowledgeFamily": "2.7.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_7",
@@ -455,7 +590,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.7.A",
         "essentialKnowledgeFamily": "2.7.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_7",
@@ -484,7 +628,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.8.A",
         "essentialKnowledgeFamily": "2.8.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_8",
@@ -513,7 +666,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.8.A",
         "essentialKnowledgeFamily": "2.8.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_8",
@@ -542,7 +704,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.8.A",
         "essentialKnowledgeFamily": "2.8.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_8",
@@ -571,7 +742,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.5.A",
         "essentialKnowledgeFamily": "2.5.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_5",
@@ -597,7 +777,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.9.A",
         "essentialKnowledgeFamily": "2.9.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_9",
@@ -626,7 +815,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.9.A",
         "essentialKnowledgeFamily": "2.9.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_9",
@@ -655,7 +853,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.9.A",
         "essentialKnowledgeFamily": "2.9.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_9",
@@ -684,7 +891,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.10.A",
         "essentialKnowledgeFamily": "2.10.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_10",
@@ -713,7 +929,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.11.A",
         "essentialKnowledgeFamily": "2.11.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_11",
@@ -742,7 +967,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.12.A",
         "essentialKnowledgeFamily": "2.12.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_12",
@@ -771,7 +1005,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.12.A",
         "essentialKnowledgeFamily": "2.12.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_12",
@@ -800,7 +1043,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.13.A",
         "essentialKnowledgeFamily": "2.13.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_13",
@@ -829,7 +1081,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.13.A",
         "essentialKnowledgeFamily": "2.13.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_13",
@@ -858,7 +1119,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.13.A",
         "essentialKnowledgeFamily": "2.13.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_13",
@@ -887,7 +1157,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.13.A",
         "essentialKnowledgeFamily": "2.13.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_13",
@@ -916,7 +1195,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.9.A",
         "essentialKnowledgeFamily": "2.9.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_9",
@@ -945,7 +1233,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.10.A",
         "essentialKnowledgeFamily": "2.10.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_10",
@@ -974,7 +1271,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.9.A",
         "essentialKnowledgeFamily": "2.9.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_9",
@@ -1000,7 +1306,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.14.A",
         "essentialKnowledgeFamily": "2.14.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_14",
@@ -1029,7 +1344,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.14.A",
         "essentialKnowledgeFamily": "2.14.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_14",
@@ -1058,7 +1382,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.14.A",
         "essentialKnowledgeFamily": "2.14.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_14",
@@ -1087,7 +1420,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.14.A",
         "essentialKnowledgeFamily": "2.14.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_14",
@@ -1116,7 +1458,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.15.A",
         "essentialKnowledgeFamily": "2.15.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_15",
@@ -1145,7 +1496,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.15.A",
         "essentialKnowledgeFamily": "2.15.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_15",
@@ -1174,7 +1534,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.15.A",
         "essentialKnowledgeFamily": "2.15.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_15",
@@ -1203,7 +1572,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -1232,7 +1610,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -1261,7 +1648,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -1290,7 +1686,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -1316,7 +1721,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",
@@ -1342,7 +1756,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "2.1.A",
         "essentialKnowledgeFamily": "2.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "curriculum/source/passwater/unit-2.md",
       "problemFamily": "apc_2_1",

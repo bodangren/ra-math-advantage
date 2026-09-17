@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -23,9 +24,9 @@ export const seedLesson4_2 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 4,
-          title: "Parametric Motion Modeling",
+          title: "Parametric Functions Modeling Planar Motion",
           slug: lessonSlug,
-          description: "Students model real-world motion using parametric equations, interpreting position, speed, and direction from parametric representations.",
+          description: "AP Precalculus Topic 4.2: Parametric Functions Modeling Planar Motion",
           orderIndex: 2,
           createdAt: now,
           updatedAt: now,
@@ -33,204 +34,131 @@ export const seedLesson4_2 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
-          title: "Parametric Motion Modeling",
-          description: "Students model real-world motion using parametric equations, interpreting position, speed, and direction from parametric representations.",
+          version: 2,
+          title: "Parametric Functions Modeling Planar Motion",
+          description: "AP Precalculus Topic 4.2: Parametric Functions Modeling Planar Motion",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                prompt: "Graph x(t) = t, y(t) = −16t² + 30t to model projectile motion. What is the maximum height?",
-                defaultExpressions: ["x(t) = t", "y(t) = -16t^2 + 30t"],
-                parameterRange: [0, 2],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Parametric Motion Modeling\n\n### Position Functions\n\nFor an object moving in a plane:\n- $x(t)$ = horizontal position at time $t$\n- $y(t)$ = vertical position at time $t$\n\n### Projectile Motion\n\nA ball launched at angle $\\alpha$ with initial speed $v_0$:\n$$x(t) = v_0 \\cos\\alpha \\cdot t$$\n$$y(t) = v_0 \\sin\\alpha \\cdot t - \\frac{1}{2}gt^2$$\n\nwhere $g \\approx 32$ ft/s² (or $9.8$ m/s²).\n\n### Interpreting Motion\n\n- **Initial position**: evaluate at $t = 0$\n- **Landing time**: solve $y(t) = 0$ for $t > 0$\n- **Maximum height**: occurs when $\\frac{dy}{dt} = 0$\n- **Range**: $x$-value when the object lands\n\n### Speed\n\n$$v(t) = \\sqrt{\\left(\\frac{dx}{dt}\\right)^2 + \\left(\\frac{dy}{dt}\\right)^2}$$",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Projectile Motion\n\nA ball is thrown with $x(t) = 20t$, $y(t) = -16t^2 + 32t$. Find the max height and landing point.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Projectile: x(t)=20t, y(t)=-16t²+32t",
-                steps: [
-                  { expression: "dy/dt = -32t + 32", explanation: "Differentiate y(t)" },
-                  { expression: "-32t + 32 = 0 → t = 1", explanation: "Set derivative to zero for max height" },
-                  { expression: "y(1) = -16 + 32 = 16 ft", explanation: "Maximum height is 16 feet" },
-                  { expression: "y(t) = 0 → -16t² + 32t = 0 → t(t-2) = 0", explanation: "Find landing time" },
-                  { expression: "t = 2, x(2) = 40 ft", explanation: "Lands 40 feet away at t = 2s" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "For $x(t) = 10t$, $y(t) = -16t^2 + 24t$, the projectile lands when:",
-                    options: ["t = 1", "t = 1.5", "t = 2", "t = 2.5"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "The horizontal component of projectile motion (no wind) is:",
-                    options: ["Accelerating", "Constant velocity", "Decelerating", "Parabolic"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                prompt: "Graph x(t) = 15cos(π/6)t, y(t) = 15sin(π/6)t − 16t². Find the range.",
-                defaultExpressions: ["x(t) = 15cos(pi/6)t", "y(t) = 15sin(pi/6)t - 16t^2"],
-                parameterRange: [0, 3],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "A soccer ball is kicked across a field. At time $t$ seconds, its position is $x(t) = 20t$ horizontally and $y(t) = -16t^2 + 30t$ vertically. Where is the ball after 1 second? When does it land? Parametric equations let us model two-dimensional motion by tracking horizontal and vertical components independently."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Planar motion**: Movement in a two-dimensional plane, described by separate horizontal and vertical components.\n- **Position function**: A parametric function $(x(t), y(t))$ that gives the location of an object at time $t$.\n- **Domain restriction on the parameter**: Limiting $t$ to a meaningful interval (e.g., $t \\geq 0$ or $0 \\leq t \\leq T$) to reflect physical constraints.\n- **Projectile motion**: A special case where horizontal velocity is constant and vertical motion is governed by gravity."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Parametric functions are natural tools for modeling **planar motion** because they separate horizontal and vertical behavior:\n\n$$x(t) = x_0 + v_x t, \\quad y(t) = y_0 + v_y t + \\frac{1}{2}at^2$$\n\n- $x_0, y_0$ = initial position\n- $v_x, v_y$ = initial velocities\n- $a$ = acceleration (for gravity, $a = -32$ ft/s² or $a = -9.8$ m/s²)\n\n**Horizontal motion** is typically linear (no air resistance). **Vertical motion** is typically quadratic (gravity acts downward).\n\n**Finding when the object lands**: Set $y(t) = 0$ and solve for $t$ (taking the positive solution). Then substitute into $x(t)$ to find the landing position.\n\n**Key constraint**: The domain of $t$ should reflect reality — time starts at $t = 0$ and ends when the object lands or the motion stops."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example:** A ball is launched from the origin with $x(t) = 12t$ and $y(t) = -16t^2 + 20t$.\n\n**(a)** Where is the ball at $t = 1$?\n- $x(1) = 12(1) = 12$\n- $y(1) = -16(1)^2 + 20(1) = 4$\n- Position: $(12, 4)$\n\n**(b)** When does the ball land?\nSet $y(t) = 0$:\n$$-16t^2 + 20t = 0 \\implies t(-16t + 20) = 0 \\implies t = 0 \\text{ or } t = \\frac{20}{16} = 1.25 \\text{ seconds}$$\n\n**(c)** Where does it land?\n$x(1.25) = 12(1.25) = 15$. The ball lands at $(15, 0)$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** A projectile has $x(t) = 8t$ and $y(t) = -16t^2 + 24t$. Find its position at $t = 0.5$.\n\n**Hint:** Substitute $t = 0.5$ into both equations.\n\n**Problem 2:** For the projectile in Problem 1, when does it land and where?\n\n**Hint:** Set $y(t) = 0$ and solve. Then evaluate $x$ at that time."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** A model rocket has $x(t) = 6t$ and $y(t) = -16t^2 + 48t$. Find its maximum height and the time at which it occurs.\n\n**Problem 2:** A ball is thrown from position $(2, 5)$ with $x(t) = 2 + 10t$ and $y(t) = 5 - 16t^2 + 8t$. When does the ball hit the ground ($y = 0$)?\n\n**Problem 3:** Two objects move with $x_1(t) = 3t, y_1(t) = 4t$ and $x_2(t) = 12 - 3t, y_2(t) = 8t$. At what time and position do they meet?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** For $x(t) = 15t$ and $y(t) = -16t^2 + 30t$, find the landing position of the projectile.\n\n**Lesson Summary:** Parametric equations model planar motion by treating horizontal and vertical components separately. Horizontal motion is typically linear; vertical motion is quadratic when gravity is involved. Landing occurs when $y(t) = 0$."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

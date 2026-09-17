@@ -14,12 +14,8 @@ export default defineConfig({
     reporters: 'default'
   },
   resolve: {
-    alias: [
-      { find: '@', replacement: path.resolve(__dirname, './') },
-      {
-        find: /^@math-platform\/practice-core$/,
-        replacement: path.resolve(__dirname, '../../packages/practice-core/src/index.ts'),
-      },
-    ],
+    alias: {
+      '@': path.resolve(__dirname, './')
+    }
   }
 });

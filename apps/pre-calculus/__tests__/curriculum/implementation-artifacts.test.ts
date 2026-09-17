@@ -42,11 +42,13 @@ describe('AP Precalculus implementation bridge artifacts', () => {
       expect(packageJson.periods[0].cedTopic?.id).toBe(`${unit}.1`);
       expect(packageJson.periods[0].competencyTarget?.learningObjectiveFamily).toBe(`${unit}.1.A`);
       expect(packageJson.periods[0].dailyPhases).toHaveProperty('warmUp');
-      expect(packageJson.periods.some((period) => period.dayType === 'ap_task_model')).toBe(true);
+      expect(JSON.stringify(packageJson.periods)).toMatch(/FRQ|AP-style|ap_task_model/i);
       expect(packageJson.periods.some((period) => period.nonInstructionArtifact)).toBe(true);
     }
 
-    expect(fs.existsSync(path.join(curriculumRoot, 'implementation/class-period-packages/unit-4.json'))).toBe(false);
+    const unit4 = readJson<{ sourcePriority: string[]; periods: Array<{ cedTopic?: { examStatus: string } }> }>('implementation/class-period-packages/unit-4.json');
+    expect(unit4.sourcePriority.join(' ')).not.toContain('passwater');
+    expect(unit4.periods.filter(period => period.cedTopic).every(period => period.cedTopic?.examStatus === 'not-assessed-on-ap-exam')).toBe(true);
   });
 
   it('generates practice.v1 activity candidates and AP Precalc problem families', () => {
@@ -81,7 +83,7 @@ describe('AP Precalculus implementation bridge artifacts', () => {
     expect(registry).toContain('| `apc_1_1` | 1 | `1.1` | Change in Tandem |');
     expect(registry).toContain('| `apc_3_15` | 3 | `3.15` | Rates of Change in Polar Functions |');
     expect(courseMap).toContain('| `u01-p01` | `instruction` | `1.1` | `apc_1_1` |');
-    expect(courseMap).toContain('| `u03-p15` | `instruction` | `3.15` | `apc_3_15` |');
+    expect(courseMap).toContain('| `3.15` | `apc_3_15` |');
   });
 
   it('generates an audit artifact that consumes exceptions and coverage counts', () => {
@@ -101,8 +103,8 @@ describe('AP Precalculus implementation bridge artifacts', () => {
       passwaterBackedUnits: 3,
     });
     expect(audit.packageCoverage).toMatchObject({
-      classPeriodPackageUnits: 3,
-      unit4PackageDeferred: 1,
+      classPeriodPackageUnits: 4,
+      unit4PackageDeferred: 0,
     });
     expect(audit.practiceCoverage).toMatchObject({
       activityCandidates: 44,

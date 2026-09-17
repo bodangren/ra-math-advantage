@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -23,9 +24,9 @@ export const seedLesson4_10 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 4,
-          title: "Matrix Operations",
+          title: "Matrices",
           slug: lessonSlug,
-          description: "Students perform matrix addition, subtraction, scalar multiplication, and matrix multiplication.",
+          description: "AP Precalculus Topic 4.10: Matrices",
           orderIndex: 10,
           createdAt: now,
           updatedAt: now,
@@ -33,208 +34,131 @@ export const seedLesson4_10 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
-          title: "Matrix Operations",
-          description: "Students perform matrix addition, subtraction, scalar multiplication, and matrix multiplication.",
+          version: 2,
+          title: "Matrices",
+          description: "AP Precalculus Topic 4.10: Matrices",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "To add two matrices, they must have:",
-                    options: ["The same number of rows only", "The same dimensions", "Square dimensions", "At least one zero entry"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Matrix Operations\n\n### Matrix Addition/Subtraction\n\nSame dimensions required. Add/subtract corresponding entries.\n\n$$\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} + \\begin{pmatrix} e & f \\\\ g & h \\end{pmatrix} = \\begin{pmatrix} a+e & b+f \\\\ c+g & d+h \\end{pmatrix}$$\n\n### Scalar Multiplication\n\nMultiply every entry by the scalar:\n$$k \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = \\begin{pmatrix} ka & kb \\\\ kc & kd \\end{pmatrix}$$\n\n### Matrix Multiplication\n\n$A_{m \\times n} \\cdot B_{n \\times p} = C_{m \\times p}$\n\nEntry $c_{ij}$ = row $i$ of $A$ dotted with column $j$ of $B$.\n\n$$c_{ij} = \\sum_{k=1}^{n} a_{ik} b_{kj}$$\n\n**Important**: $AB \\ne BA$ in general (not commutative).\n\n### Identity Matrix\n\n$I_n$: 1s on diagonal, 0s elsewhere. $AI = IA = A$.\n\n### Zero Matrix\n\nAll entries are 0. $A + 0 = A$.",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Matrix Multiplication\n\nCompute $AB$ where $A = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix}$ and $B = \\begin{pmatrix} 5 & 6 \\\\ 7 & 8 \\end{pmatrix}$.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Multiply A = [[1,2],[3,4]] × B = [[5,6],[7,8]]",
-                steps: [
-                  { expression: "c₁₁ = 1(5) + 2(7) = 5 + 14 = 19", explanation: "Row 1 · Column 1" },
-                  { expression: "c₁₂ = 1(6) + 2(8) = 6 + 16 = 22", explanation: "Row 1 · Column 2" },
-                  { expression: "c₂₁ = 3(5) + 4(7) = 15 + 28 = 43", explanation: "Row 2 · Column 1" },
-                  { expression: "c₂₂ = 3(6) + 4(8) = 18 + 32 = 50", explanation: "Row 2 · Column 2" },
-                  { expression: "AB = [[19, 22], [43, 50]]", explanation: "Result matrix" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Compute [[2,0],[1,3]] × [[4],[5]]",
-                steps: [
-                  { expression: "c₁₁ = 2(4) + 0(5) = 8", explanation: "Row 1 · Column 1" },
-                  { expression: "c₂₁ = 1(4) + 3(5) = 4 + 15 = 19", explanation: "Row 2 · Column 1" },
-                  { expression: "Result: [[8], [19]]", explanation: "2×1 matrix" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Compute 3·[[1,-2],[0,4]] - [[2,1],[-3,5]]",
-                steps: [
-                  { expression: "3·[[1,-2],[0,4]] = [[3,-6],[0,12]]", explanation: "Scalar multiply" },
-                  { expression: "[[3,-6],[0,12]] - [[2,1],[-3,5]]", explanation: "Subtract" },
-                  { expression: "= [[3-2, -6-1], [0-(-3), 12-5]]", explanation: "Entry-wise" },
-                  { expression: "= [[1, -7], [3, 7]]", explanation: "Simplify" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "A school offers three sports, and enrollment data is organized in a grid:\n\n| | Freshmen | Sophomores |\n|---|---|---|\n| Soccer | 24 | 31 |\n| Track | 18 | 27 |\n| Swim | 12 | 15 |\n\nThis rectangular array of numbers is a **matrix**. Matrices organize data and enable systematic calculations — adding enrollments, scaling budgets, and transforming coordinates."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Matrix**: A rectangular array of numbers arranged in rows and columns, written in brackets.\n- **Dimensions**: An $m \\times n$ matrix has $m$ rows and $n$ columns.\n- **Element (entry)**: The number in row $i$ and column $j$, denoted $a_{ij}$.\n- **Row matrix**: A $1 \\times n$ matrix (also called a row vector).\n- **Column matrix**: An $m \\times 1$ matrix (also called a column vector)."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "A **matrix** $A$ of size $m \\times n$ is written:\n\n$$A = \\begin{bmatrix} a_{11} & a_{12} & \\cdots & a_{1n} \\\\ a_{21} & a_{22} & \\cdots & a_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_{m1} & a_{m2} & \\cdots & a_{mn} \\end{bmatrix}$$\n\n**Matrix addition and subtraction**: Add or subtract corresponding entries (matrices must have the same dimensions).\n\n$$\\begin{bmatrix} 1 & 3 \\\\ 2 & 4 \\end{bmatrix} + \\begin{bmatrix} 5 & 1 \\\\ 0 & 2 \\end{bmatrix} = \\begin{bmatrix} 6 & 4 \\\\ 2 & 6 \\end{bmatrix}$$\n\n**Scalar multiplication**: Multiply every entry by the scalar.\n\n$$3 \\begin{bmatrix} 2 & -1 \\\\ 0 & 4 \\end{bmatrix} = \\begin{bmatrix} 6 & -3 \\\\ 0 & 12 \\end{bmatrix}$$\n\n**Matrix multiplication**: $A \\times B$ is defined when columns of $A$ = rows of $B$. Entry $(i, j)$ is the dot product of row $i$ of $A$ and column $j$ of $B$. Multiplication is **not** commutative — $AB \\neq BA$ in general."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** Let $A = \\begin{bmatrix} 2 & -1 \\\\ 0 & 3 \\end{bmatrix}$ and $B = \\begin{bmatrix} 4 & 1 \\\\ -2 & 5 \\end{bmatrix}$.\n\n$$A + B = \\begin{bmatrix} 6 & 0 \\\\ -2 & 8 \\end{bmatrix}, \\quad 2A - B = \\begin{bmatrix} 0 & -3 \\\\ 2 & 1 \\end{bmatrix}$$\n\n**Example 2:** Multiply $A = \\begin{bmatrix} 1 & 3 \\\\ 2 & -1 \\end{bmatrix}$ by $B = \\begin{bmatrix} 4 \\\\ 5 \\end{bmatrix}$.\n\n$$AB = \\begin{bmatrix} 1(4) + 3(5) \\\\ 2(4) + (-1)(5) \\end{bmatrix} = \\begin{bmatrix} 19 \\\\ 3 \\end{bmatrix}$$"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Compute $\\begin{bmatrix} 3 & 0 \\\\ -1 & 2 \\end{bmatrix} + \\begin{bmatrix} -1 & 5 \\\\ 4 & -3 \\end{bmatrix}$.\n\n**Hint:** Add corresponding entries.\n\n**Problem 2:** Compute $\\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix} \\begin{bmatrix} 0 & 1 \\\\ -1 & 2 \\end{bmatrix}$.\n\n**Hint:** Row 1 of the result = $1(0) + 2(-1)$ and $1(1) + 2(2)$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Let $A = \\begin{bmatrix} 1 & -2 \\\\ 3 & 0 \\end{bmatrix}$. Find $3A$.\n\n**Problem 2:** Let $A = \\begin{bmatrix} 2 & 1 \\\\ 0 & -1 \\end{bmatrix}$ and $B = \\begin{bmatrix} 3 \\\\ 4 \\end{bmatrix}$. Find $AB$.\n\n**Problem 3:** Explain why $\\begin{bmatrix} 1 & 2 & 3 \\end{bmatrix} \\begin{bmatrix} 4 & 5 \\\\ 6 & 7 \\end{bmatrix}$ is undefined."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** Compute $\\begin{bmatrix} 2 & -3 \\\\ 1 & 4 \\end{bmatrix} \\begin{bmatrix} 5 \\\\ -2 \\end{bmatrix}$.\n\n**Lesson Summary:** Matrices are rectangular arrays that organize and transform data. Addition requires matching dimensions. Multiplication requires matching inner dimensions and uses dot products. Matrix multiplication is not commutative."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

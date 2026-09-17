@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -23,9 +24,9 @@ export const seedLesson3_7 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 3,
-          title: "Sinusoidal Modeling",
+          title: "Sinusoidal Function Context and Data Modeling",
           slug: lessonSlug,
-          description: "Students fit sinusoidal models to data sets and use them for prediction.",
+          description: "AP Precalculus Topic 3.7: Sinusoidal Function Context and Data Modeling",
           orderIndex: 7,
           createdAt: now,
           updatedAt: now,
@@ -33,210 +34,131 @@ export const seedLesson3_7 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
-          title: "Sinusoidal Modeling",
-          description: "Students fit sinusoidal models to data sets and use them for prediction.",
+          version: 2,
+          title: "Sinusoidal Function Context and Data Modeling",
+          description: "AP Precalculus Topic 3.7: Sinusoidal Function Context and Data Modeling",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                variant: "plot_from_table",
-                data: { x: [0, 3, 6, 9, 12], y: [50, 75, 50, 25, 50] },
-                title: "Explore Sinusoidal Data",
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Sinusoidal Modeling from Data\n\n### Approach\n\n1. **Identify max and min** from the data\n2. **Calculate**: Amplitude $A = \\frac{\\max - \\min}{2}$, Midline $D = \\frac{\\max + \\min}{2}$\n3. **Find the period** from consecutive peaks or troughs\n4. **Determine phase shift** from where the cycle starts\n5. **Write the equation** and verify against data\n\n### Tips\n\n- Use cosine when data starts at a max or min\n- Use sine when data starts at the midline\n- Convert time units as needed (hours → radians, etc.)",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Fit a Sinusoidal Model\n\n| Month | Temp (°F) |\n|-------|----------|\n| Jan (1) | 30 |\n| Apr (4) | 55 |\n| Jul (7) | 80 |\n| Oct (10) | 55 |\n| Jan (13) | 30 |",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "T(t) = A cos(B(t - C)) + D",
-                steps: [
-                  { expression: "Max = 80, Min = 30", explanation: "From data" },
-                  { expression: "A = (80 - 30)/2 = 25, D = (80 + 30)/2 = 55", explanation: "Compute parameters" },
-                  { expression: "Period = 12 months, B = 2π/12 = π/6", explanation: "Annual cycle" },
-                  { expression: "Max at t = 7 (July), so C = 7", explanation: "Phase shift" },
-                  { expression: "T(t) = 25cos(π/6(t - 7)) + 55", explanation: "Final model" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "Given max = 100, min = 20, the amplitude is:",
-                    options: ["80", "60", "40", "120"],
-                    correctIndex: 2,
-                  },
-                  {
-                    question: "To find the period from data, look for:",
-                    options: ["Slope changes", "Consecutive maxima", "Y-intercept", "The derivative"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Fit sinusoidal model",
-                steps: [
-                  { expression: "Data: t=0→50, t=6→10, t=12→50, t=18→90", explanation: "Given data points" },
-                  { expression: "Max = 90, Min = 10, A = 40, D = 50", explanation: "Amplitude and midline" },
-                  { expression: "Period = 24, B = 2π/24 = π/12", explanation: "From cycle length" },
-                  { expression: "Max at t = 18, C = 18", explanation: "Phase shift" },
-                  { expression: "f(t) = 40cos(π/12(t - 18)) + 50", explanation: "Final equation" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Average monthly temperatures in a city are given:\n\n| Month | 1 | 3 | 5 | 7 | 9 | 11 |\n|---|---|---|---|---|---|---|\n| Temp (°F) | 38 | 48 | 65 | 78 | 72 | 52 |\n\nThe data clearly rises and falls in a yearly cycle. Can you fit a sinusoidal function to this data? What would the amplitude, period, and midline tell you about the climate?"
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Four Representations Framework**: Constructing models by connecting information given verbally, graphically, numerically, and algebraically to the properties of a sinusoidal graph.\n- **Sinusoidal regression**: A calculator or computational method that fits a sinusoidal function to a data set by adjusting amplitude, period, phase shift, and midline.\n- **Contextual parameters**: In a real-world model, each parameter has a physical meaning — amplitude describes the size of variation, period describes the cycle time, midline describes the average value, and phase shift describes where the cycle begins."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "To build a sinusoidal model from context, translate the given information into the four parameters of $h(t) = a\\sin(bt + c) + d$:\n\n1. **Amplitude $a$**: Half the total variation. If the maximum is $M$ and minimum is $m$, then $a = (M - m)/2$.\n2. **Period $P$**: The time for one full cycle. Then $b = 2\\pi/P$.\n3. **Midline $d$**: The average value. $d = (M + m)/2$.\n4. **Phase shift $c$**: Determined by the starting position. If $t = 0$ corresponds to a maximum, use cosine; if it corresponds to the midline going up, use sine.\n\n**From verbal descriptions:** Extract the rotation rate, radius, center height, and starting position. For example: \"A yo-yo on a 30-inch string completes 20 rotations in 5 seconds\" gives amplitude $30$, period $5/20 = 1/4$ second, and $b = 2\\pi/(1/4) = 8\\pi$.\n\n**From numerical data:** Use sinusoidal regression on a calculator (typically with 16 iterations) to fit the curve. Read the parameters from the regression equation.\n\n**From analytical descriptions:** Interpret existing equations. For $T(m) = 25.7\\sin(\\pi(m - 4)/6) + 61.2$, the maximum temperature is $61.2 + 25.7 = 86.9°F$ and the minimum is $61.2 - 25.7 = 35.5°F$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** A gear has a point $P$ that is 6 inches from the center, starts directly below at $t = 0$, the lowest point is 4 inches above a surface, the gear turns clockwise, and completes one revolution in 2 seconds. Write $h(t)$.\n\n**Solution:** Amplitude $a = 6$. Period $P = 2$, so $b = \\pi$. Midline: center is $4 + 6 = 10$ inches above the surface (bottom clearance plus radius). Starting directly below means the initial value is a minimum: $h(t) = -6\\cos(\\pi t) + 10$.\n\n**Example 2:** The model $T(m) = 25.7\\sin(\\pi(m - 4)/6) + 61.2$ gives monthly temperature. Find the maximum temperature and the month it occurs.\n\n**Solution:** Maximum = $61.2 + 25.7 = 86.9°F$. The maximum of sine occurs when the argument equals $\\pi/2$: $\\pi(m - 4)/6 = \\pi/2$ → $m - 4 = 3$ → $m = 7$ (July).\n\n**Example 3:** A table gives nighttime hours $N(t)$ at $t = 1, 3, 4, 6, 7, 8, 11, 12$ with values $11.4, 9.7, 8.2, 5.2, 5.0, 6.2, 10.5, 11.3$. Use sinusoidal regression to predict $N(6)$.\n\n**Solution:** After regression with 16 iterations, the fitted curve predicts approximately $N(6) \\approx 5.5$ hours."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** A point on a rotating wheel has radius 10 feet and the wheel completes 4 rotations in 8 seconds. Write a sinusoidal function for the $x$-coordinate if $t = 0$ corresponds to the point being at its rightmost position.\n\n**Hint:** Period = $8/4 = 2$ seconds, $b = \\pi$, amplitude = $10$. Rightmost at $t = 0$ means maximum — use cosine.\n\n**Problem 2:** A clock's minute hand is modeled by $h(t) = a\\sin(bt + c) + d$ with a maximum at $(0, 70)$ and minimum at $(30, 52)$. Find $a$ and $d$.\n\n**Hint:** $a = (70 - 52)/2 = 9$, $d = (70 + 52)/2 = 61$.\n\n**Problem 3:** In the temperature model $T(m) = 25.7\\sin(\\pi(m - 4)/6) + 61.2$, what is the minimum temperature and in which month does it occur?\n\n**Hint:** Minimum = $61.2 - 25.7$. The minimum of sine occurs when the argument equals $-\\pi/2$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** A pencil sharpener handle is 2 inches from the center, completes 2 rotations per second, starts directly below at $t = 0$, and the center is 3 inches above the surface. Write $h(t) = a\\sin(bt + c) + d$.\n\n**Problem 2:** San Diego daylight hours follow $D(t) = 2.715\\cos(0.017(t - 172)) + 12.250$ where $t$ is the day of the year. Find the maximum and minimum daylight hours and the approximate days they occur.\n\n**Problem 3:** A data table gives values $F(1) = 11.4$, $F(3) = 9.7$, $F(6) = 5.2$, $F(8) = 6.2$, $F(11) = 10.5$. After sinusoidal regression, the equation is $F(t) \\approx 3.2\\sin(0.52(t - 4)) + 8.3$. What do the values $3.2$, $0.52$, and $8.3$ represent?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** A spinner has radius 10 feet and completes 4 rotations in 8 seconds. Write a sinusoidal function for the height above ground if the center is 15 feet up and $t = 0$ is the highest point.\n\n**Lesson Summary:** Sinusoidal modeling requires connecting four representations — verbal, graphical, numerical, and algebraic — to the four parameters $a$, $b$, $c$, $d$. In context, amplitude describes variation size, period describes cycle time, midline describes the average, and phase shift describes where the cycle begins. Whether the starting position is a maximum, minimum, or midline crossing determines whether to use sine or cosine."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

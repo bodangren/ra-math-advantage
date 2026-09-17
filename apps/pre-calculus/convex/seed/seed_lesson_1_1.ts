@@ -4,17 +4,27 @@ import type { Id } from "../_generated/dataModel";
 import { v } from "convex/values";
 import {
   PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID,
+  PRECALCULUS_PILOT_INDEPENDENT_GRADING_CONFIG,
   PRECALCULUS_PILOT_ACTIVITY_ID,
   PRECALCULUS_PILOT_COMPONENT_KEY,
+  PRECALCULUS_PILOT_GRADING_CONFIG,
+  PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY,
+  PRECALCULUS_PHYSICAL_CONTEXT_COMPONENT_KEY,
+  PRECALCULUS_PHYSICAL_CONTEXT_WORKED_GRADING_CONFIG,
+  PRECALCULUS_PHYSICAL_CONTEXT_GUIDED_GRADING_CONFIG,
+  PRECALCULUS_PHYSICAL_CONTEXT_INDEPENDENT_GRADING_CONFIG,
 } from "../activities";
 import {
   PRECALCULUS_PILOT_NODE_ID,
   PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
-  PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY,
+  PRECALCULUS_PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID as PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID,
+  PRECALCULUS_PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID as PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID,
+  PRECALCULUS_PHYSICAL_CONTEXT_INDEPENDENT_ACTIVITY_ID as PHYSICAL_CONTEXT_INDEPENDENT_ACTIVITY_ID,
 } from "../../lib/learning-evidence/precalc-pilot";
-
-const PRECALCULUS_PILOT_GRADING_CONFIG = { variantSeed: 0 } as const;
-const PRECALCULUS_PILOT_INDEPENDENT_GRADING_CONFIG = { variantSeed: 2 } as const;
+import {
+  generateTopic11PhysicalContextGraphChoice,
+  generateTopic11PhysicalContextGraphChoiceOutput,
+} from "@math-platform/math-content/knowledge-space";
 
 interface SeedLesson1_1Result {
   lessonId: Id<"lessons">;
@@ -377,6 +387,112 @@ export const seedLesson1_1 = internalMutation({
       topic11SourceActivityId = await ctx.db.insert("activities", {
         ...topic11SourceFields,
         approval: { status: "unreviewed" },
+        createdAt: now,
+      });
+      activitiesCreated++;
+    }
+
+    const workedVariant = generateTopic11PhysicalContextGraphChoice(0);
+    const existingPhysicalWorkedActivity = await ctx.db
+      .query("activities")
+      .withIndex("by_stable_activity_id", (query) => (
+        query.eq("stableActivityId", PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID)
+      ))
+      .unique();
+    const physicalWorkedActivityFields = {
+      stableActivityId: PHYSICAL_CONTEXT_WORKED_ACTIVITY_ID,
+      componentKey: PRECALCULUS_PHYSICAL_CONTEXT_COMPONENT_KEY,
+      displayName: "Worked Example: Select a Possible Graph",
+      description: "Select the graph that can model water filling a vase.",
+      props: {
+        prompt: workedVariant.prompt,
+        contextDescription: workedVariant.contextDescription,
+        xLabel: workedVariant.xLabel,
+        yLabel: workedVariant.yLabel,
+        containerProfile: workedVariant.containerProfile,
+        options: workedVariant.options,
+        presentationMode: "worked_example" as const,
+        correctOptionId: workedVariant.correctOptionId,
+        steps: [...workedVariant.reasoning],
+        finalAnswer: "Graph D is possible because the vase is narrow, then wide, then narrow, so the height changes steeply, gently, then steeply.",
+      },
+      gradingConfig: PRECALCULUS_PHYSICAL_CONTEXT_WORKED_GRADING_CONFIG,
+      updatedAt: now,
+    };
+    if (existingPhysicalWorkedActivity) {
+      await ctx.db.patch(existingPhysicalWorkedActivity._id, physicalWorkedActivityFields);
+    } else {
+      await ctx.db.insert("activities", {
+        ...physicalWorkedActivityFields,
+        createdAt: now,
+      });
+      activitiesCreated++;
+    }
+
+    const guidedVariant = generateTopic11PhysicalContextGraphChoice(1);
+    const existingPhysicalGuidedActivity = await ctx.db
+      .query("activities")
+      .withIndex("by_stable_activity_id", (query) => (
+        query.eq("stableActivityId", PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID)
+      ))
+      .unique();
+    const physicalGuidedActivityFields = {
+      stableActivityId: PHYSICAL_CONTEXT_GUIDED_ACTIVITY_ID,
+      componentKey: PRECALCULUS_PHYSICAL_CONTEXT_COMPONENT_KEY,
+      displayName: "Guided Practice: Select a Possible Graph",
+      description: "Use the vessel shape to select a possible water-height graph.",
+      props: {
+        prompt: guidedVariant.prompt,
+        contextDescription: guidedVariant.contextDescription,
+        xLabel: guidedVariant.xLabel,
+        yLabel: guidedVariant.yLabel,
+        containerProfile: guidedVariant.containerProfile,
+        options: guidedVariant.options,
+        presentationMode: "guided_practice" as const,
+        guidedSteps: [
+          "Identify the independent and dependent variables.",
+          "Compare how the vessel width affects the water-height rate.",
+          "Select the graph whose height increases with the matching rate changes.",
+        ],
+        fieldHelp: "Use the vessel width and the water-flow rate to compare the graph shapes.",
+      },
+      gradingConfig: PRECALCULUS_PHYSICAL_CONTEXT_GUIDED_GRADING_CONFIG,
+      updatedAt: now,
+    };
+    if (existingPhysicalGuidedActivity) {
+      await ctx.db.patch(existingPhysicalGuidedActivity._id, physicalGuidedActivityFields);
+    } else {
+      await ctx.db.insert("activities", {
+        ...physicalGuidedActivityFields,
+        createdAt: now,
+      });
+      activitiesCreated++;
+    }
+
+    const independentOutput = generateTopic11PhysicalContextGraphChoiceOutput(2);
+    const independentProps = (independentOutput.data as {
+      rendererProps: Record<string, unknown>;
+    }).rendererProps;
+    const existingPhysicalIndependentActivity = await ctx.db
+      .query("activities")
+      .withIndex("by_stable_activity_id", (query) => (
+        query.eq("stableActivityId", PHYSICAL_CONTEXT_INDEPENDENT_ACTIVITY_ID)
+      ))
+      .unique();
+    const physicalIndependentActivityFields = {
+      stableActivityId: PHYSICAL_CONTEXT_INDEPENDENT_ACTIVITY_ID,
+      componentKey: PRECALCULUS_PHYSICAL_CONTEXT_COMPONENT_KEY,
+      displayName: "Independent Practice: Select a Possible Graph",
+      description: "Select a possible water-height graph for the vessel context.",
+      props: independentProps,
+      gradingConfig: PRECALCULUS_PHYSICAL_CONTEXT_INDEPENDENT_GRADING_CONFIG,
+      updatedAt: now,
+    };
+    if (existingPhysicalIndependentActivity) {
+      await ctx.db.patch(existingPhysicalIndependentActivity._id, physicalIndependentActivityFields);
+    } else {
+      await ctx.db.insert("activities", {
+        ...physicalIndependentActivityFields,
         createdAt: now,
       });
       activitiesCreated++;

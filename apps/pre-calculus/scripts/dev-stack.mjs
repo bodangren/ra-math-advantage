@@ -13,7 +13,7 @@ export function createProcesses(appRoot = APP_ROOT) {
     {
       name: 'convex',
       command: 'npx',
-      args: ['convex', 'dev', '--local'],
+      args: ['convex', 'dev'],
       cwd: appRoot,
     },
     {

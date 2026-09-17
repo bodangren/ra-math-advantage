@@ -23,7 +23,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.1.A",
         "essentialKnowledgeFamily": "4.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_1",
@@ -52,7 +61,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.1.A",
         "essentialKnowledgeFamily": "4.1.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_1",
@@ -81,7 +99,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.2.A",
         "essentialKnowledgeFamily": "4.2.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_2",
@@ -110,7 +137,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.2.A",
         "essentialKnowledgeFamily": "4.2.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_2",
@@ -139,7 +175,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.3.A",
         "essentialKnowledgeFamily": "4.3.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_3",
@@ -168,7 +213,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.3.A",
         "essentialKnowledgeFamily": "4.3.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_3",
@@ -197,7 +251,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.4.A",
         "essentialKnowledgeFamily": "4.4.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_4",
@@ -226,7 +289,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.4.A",
         "essentialKnowledgeFamily": "4.4.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_4",
@@ -268,7 +340,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.5.A",
         "essentialKnowledgeFamily": "4.5.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_5",
@@ -297,7 +378,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.5.A",
         "essentialKnowledgeFamily": "4.5.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_5",
@@ -326,7 +416,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.6.A",
         "essentialKnowledgeFamily": "4.6.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_6",
@@ -355,7 +454,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.6.A",
         "essentialKnowledgeFamily": "4.6.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_6",
@@ -384,7 +492,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.6.A",
         "essentialKnowledgeFamily": "4.6.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_6",
@@ -413,7 +530,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.7.A",
         "essentialKnowledgeFamily": "4.7.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_7",
@@ -442,7 +568,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.7.A",
         "essentialKnowledgeFamily": "4.7.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_7",
@@ -484,7 +619,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.8.A",
         "essentialKnowledgeFamily": "4.8.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_8",
@@ -513,7 +657,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.8.A",
         "essentialKnowledgeFamily": "4.8.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_8",
@@ -542,7 +695,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.9.A",
         "essentialKnowledgeFamily": "4.9.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_9",
@@ -571,7 +733,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.9.A",
         "essentialKnowledgeFamily": "4.9.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_9",
@@ -600,7 +771,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.8.A",
         "essentialKnowledgeFamily": "4.8.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_8",
@@ -629,7 +809,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.10.A",
         "essentialKnowledgeFamily": "4.10.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_10",
@@ -658,7 +847,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.10.A",
         "essentialKnowledgeFamily": "4.10.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_10",
@@ -687,7 +885,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.11.A",
         "essentialKnowledgeFamily": "4.11.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_11",
@@ -716,7 +923,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.11.A",
         "essentialKnowledgeFamily": "4.11.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_11",
@@ -745,7 +961,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.12.A",
         "essentialKnowledgeFamily": "4.12.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_12",
@@ -774,7 +999,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.12.A",
         "essentialKnowledgeFamily": "4.12.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_12",
@@ -803,7 +1037,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.13.A",
         "essentialKnowledgeFamily": "4.13.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_13",
@@ -832,7 +1075,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.13.A",
         "essentialKnowledgeFamily": "4.13.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_13",
@@ -874,7 +1126,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.14.A",
         "essentialKnowledgeFamily": "4.14.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_14",
@@ -903,7 +1164,16 @@
       "competencyTarget": {
         "learningObjectiveFamily": "4.14.A",
         "essentialKnowledgeFamily": "4.14.A.*",
-        "mathematicalPractices": ["1.A", "1.B", "1.C", "2.A", "2.B", "3.A", "3.B", "3.C"]
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
       },
       "passwaterSource": "CED-only",
       "problemFamily": "u04_4_14",

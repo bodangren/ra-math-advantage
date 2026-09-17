@@ -1,5 +1,7 @@
-import { internalAction, internalMutation } from "./_generated/server";
-import { internal } from "./_generated/api";
+import { internalAction, internalMutation, type ActionCtx } from "./_generated/server";
+import { v } from "convex/values";
+import { makeFunctionReference } from "convex/server";
+import topicIndex from "../curriculum/source/college-board/ced-topic-index.json";
 
 export const seedUnits = internalMutation({
   args: {},
@@ -144,17 +146,21 @@ export const seedUnits = internalMutation({
       const lessons = lessonSlugs[unit.number] ?? [];
       for (let i = 0; i < lessons.length; i++) {
         const lesson = lessons[i];
+        const title = topicIndex.units.find(entry => entry.unit === unit.number)!.topics[i]!.title;
         const existing = await ctx.db
           .query("lessons")
           .withIndex("by_slug", (q) => q.eq("slug", lesson.slug))
           .unique();
 
+        if (existing) {
+          await ctx.db.patch(existing._id, { title, updatedAt: now });
+        }
         if (!existing) {
           await ctx.db.insert("lessons", {
             unitNumber: unit.number,
-            title: lesson.title,
+            title,
             slug: lesson.slug,
-            description: `${lesson.title} — Unit ${unit.number}: ${unit.title}`,
+            description: `${title} — Unit ${unit.number}: ${unit.title}`,
             orderIndex: i + 1,
             metadata: {},
             createdAt: now,
@@ -169,145 +175,77 @@ export const seedUnits = internalMutation({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const seedInternal = (internal as any).seed;
-
 export const seedAll = internalAction({
   args: {},
-  handler: async (ctx) => {
-    const results: {
-      lessons: { slug: string; success: boolean; error?: string }[];
-      standards: { code: string; success: boolean; error?: string }[];
-      lessonStandards: { lessonSlug: string; standardCode: string; success: boolean; error?: string }[];
-    } = {
-      lessons: [],
-      standards: [],
-      lessonStandards: [],
-    };
-
-    // 1. Seed units and lesson records
-    await ctx.runMutation(seedInternal.seedUnits, {});
-
-    // 2. Seed standards
-    try {
-      const standardResults = await ctx.runMutation(seedInternal.seedStandards, {});
-      for (const result of standardResults) {
-        results.standards.push({ code: result.code, success: true });
-      }
-    } catch (error) {
-      results.standards.push({
-        code: "ALL",
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
+  returns: v.object({ ok: v.literal(true), lessons: v.number() }),
+  handler: async (ctx: ActionCtx): Promise<{ ok: true; lessons: number }> => {
+    const units = await ctx.runMutation(makeFunctionReference<"mutation", Record<string, never>, { ok: boolean }>("seed:seedUnits"), {});
+    if (!units.ok) throw new Error('Could not seed lesson records');
+    await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_standards:seedStandards"), {});
+    const lessons = [];
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_1:seedLesson1_1"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_2:seedLesson1_2"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_3:seedLesson1_3"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_4:seedLesson1_4"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_5:seedLesson1_5"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_6:seedLesson1_6"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_7:seedLesson1_7"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_8:seedLesson1_8"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_9:seedLesson1_9"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_10:seedLesson1_10"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_11:seedLesson1_11"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_12:seedLesson1_12"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_13:seedLesson1_13"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_1_14:seedLesson1_14"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_1:seedLesson2_1"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_2:seedLesson2_2"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_3:seedLesson2_3"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_4:seedLesson2_4"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_5:seedLesson2_5"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_6:seedLesson2_6"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_7:seedLesson2_7"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_8:seedLesson2_8"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_9:seedLesson2_9"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_10:seedLesson2_10"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_11:seedLesson2_11"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_12:seedLesson2_12"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_13:seedLesson2_13"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_14:seedLesson2_14"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_2_15:seedLesson2_15"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_1:seedLesson3_1"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_2:seedLesson3_2"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_3:seedLesson3_3"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_4:seedLesson3_4"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_5:seedLesson3_5"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_6:seedLesson3_6"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_7:seedLesson3_7"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_8:seedLesson3_8"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_9:seedLesson3_9"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_10:seedLesson3_10"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_11:seedLesson3_11"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_12:seedLesson3_12"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_13:seedLesson3_13"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_14:seedLesson3_14"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_3_15:seedLesson3_15"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_1:seedLesson4_1"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_2:seedLesson4_2"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_3:seedLesson4_3"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_4:seedLesson4_4"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_5:seedLesson4_5"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_6:seedLesson4_6"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_7:seedLesson4_7"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_8:seedLesson4_8"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_9:seedLesson4_9"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_10:seedLesson4_10"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_11:seedLesson4_11"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_12:seedLesson4_12"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_13:seedLesson4_13"), {}));
+    lessons.push(await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_4_14:seedLesson4_14"), {}));
+    const lessonStandards = await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_lesson_standards:seedLessonStandards"), {});
+    const policies = await ctx.runMutation(makeFunctionReference<"mutation">("seed/seed_objective_policies:seedObjectivePolicies"), {});
+    for (const result of [...lessonStandards, ...policies]) {
+      if (!result.success) throw new Error(result.error ?? 'A required seed step failed');
     }
-
-    // 3. Seed all lesson content
-    const lessonSeedFunctions = [
-      // Unit 1 — Polynomial and Rational Functions (14 lessons)
-      { slug: "1-1-change-in-tandem", fn: "seedLesson1_1" },
-      { slug: "1-2-rates-of-change", fn: "seedLesson1_2" },
-      { slug: "1-3-rates-of-change-linear-quadratic", fn: "seedLesson1_3" },
-      { slug: "1-4-polynomial-functions-rates", fn: "seedLesson1_4" },
-      { slug: "1-5-polynomial-functions-complex-zeros", fn: "seedLesson1_5" },
-      { slug: "1-6-polynomial-functions-end-behavior", fn: "seedLesson1_6" },
-      { slug: "1-7-rational-functions-end-behavior", fn: "seedLesson1_7" },
-      { slug: "1-8-rational-functions-zeros", fn: "seedLesson1_8" },
-      { slug: "1-9-rational-functions-vertical-asymptotes", fn: "seedLesson1_9" },
-      { slug: "1-10-rational-functions-holes", fn: "seedLesson1_10" },
-      { slug: "1-11-equivalent-representations", fn: "seedLesson1_11" },
-      { slug: "1-12-transformations-of-functions", fn: "seedLesson1_12" },
-      { slug: "1-13-function-model-selection", fn: "seedLesson1_13" },
-      { slug: "1-14-function-model-construction", fn: "seedLesson1_14" },
-      // Unit 2 — Exponential and Logarithmic Functions (15 lessons)
-      { slug: "2-1-arithmetic-geometric-sequences", fn: "seedLesson2_1" },
-      { slug: "2-2-linear-exponential-change", fn: "seedLesson2_2" },
-      { slug: "2-3-exponential-functions", fn: "seedLesson2_3" },
-      { slug: "2-4-exponential-manipulation", fn: "seedLesson2_4" },
-      { slug: "2-5-exponential-modeling", fn: "seedLesson2_5" },
-      { slug: "2-6-model-validation", fn: "seedLesson2_6" },
-      { slug: "2-7-composition-of-functions", fn: "seedLesson2_7" },
-      { slug: "2-8-inverse-functions", fn: "seedLesson2_8" },
-      { slug: "2-9-logarithmic-expressions", fn: "seedLesson2_9" },
-      { slug: "2-10-logarithmic-functions", fn: "seedLesson2_10" },
-      { slug: "2-11-logarithmic-properties", fn: "seedLesson2_11" },
-      { slug: "2-12-logarithmic-equations", fn: "seedLesson2_12" },
-      { slug: "2-13-exp-log-equations-inequalities", fn: "seedLesson2_13" },
-      { slug: "2-14-logarithmic-modeling", fn: "seedLesson2_14" },
-      { slug: "2-15-semi-log-plots", fn: "seedLesson2_15" },
-      // Unit 3 — Trigonometric and Polar Functions (15 lessons)
-      { slug: "3-1-periodic-phenomena", fn: "seedLesson3_1" },
-      { slug: "3-2-basic-trig-functions", fn: "seedLesson3_2" },
-      { slug: "3-3-trig-functions-unit-circle", fn: "seedLesson3_3" },
-      { slug: "3-4-graphs-transformations", fn: "seedLesson3_4" },
-      { slug: "3-5-sinusoidal-transformations", fn: "seedLesson3_5" },
-      { slug: "3-6-sinusoidal-applications", fn: "seedLesson3_6" },
-      { slug: "3-7-sinusoidal-modeling", fn: "seedLesson3_7" },
-      { slug: "3-8-tangent-function", fn: "seedLesson3_8" },
-      { slug: "3-9-inverse-trig-functions", fn: "seedLesson3_9" },
-      { slug: "3-10-trig-equations-inequalities", fn: "seedLesson3_10" },
-      { slug: "3-11-other-trig-functions", fn: "seedLesson3_11" },
-      { slug: "3-12-equivalent-trig-representations", fn: "seedLesson3_12" },
-      { slug: "3-13-polar-coordinates", fn: "seedLesson3_13" },
-      { slug: "3-14-polar-functions", fn: "seedLesson3_14" },
-      { slug: "3-15-polar-representations", fn: "seedLesson3_15" },
-      // Unit 4 — Functions with Parameters, Vectors, and Matrices (14 lessons)
-      { slug: "4-1-parametric-functions", fn: "seedLesson4_1" },
-      { slug: "4-2-parametric-motion-modeling", fn: "seedLesson4_2" },
-      { slug: "4-3-rates-of-change-parametric", fn: "seedLesson4_3" },
-      { slug: "4-4-parametric-circles-lines", fn: "seedLesson4_4" },
-      { slug: "4-5-implicit-functions", fn: "seedLesson4_5" },
-      { slug: "4-6-conic-sections", fn: "seedLesson4_6" },
-      { slug: "4-7-parametrization", fn: "seedLesson4_7" },
-      { slug: "4-8-vectors", fn: "seedLesson4_8" },
-      { slug: "4-9-vector-valued-functions", fn: "seedLesson4_9" },
-      { slug: "4-10-matrix-operations", fn: "seedLesson4_10" },
-      { slug: "4-11-matrix-transformations", fn: "seedLesson4_11" },
-      { slug: "4-12-matrix-systems", fn: "seedLesson4_12" },
-      { slug: "4-13-matrix-applications", fn: "seedLesson4_13" },
-      { slug: "4-14-matrix-inverses", fn: "seedLesson4_14" },
-    ];
-
-    for (const lesson of lessonSeedFunctions) {
-      try {
-        await ctx.runMutation(seedInternal[lesson.fn], {});
-        results.lessons.push({ slug: lesson.slug, success: true });
-      } catch (error) {
-        results.lessons.push({
-          slug: lesson.slug,
-          success: false,
-          error: error instanceof Error ? error.message : "Unknown error",
-        });
-      }
-    }
-
-    // 4. Seed lesson-standard links
-    try {
-      const lessonStandardResults = await ctx.runMutation(seedInternal.seedLessonStandards, {});
-      for (const result of lessonStandardResults) {
-        results.lessonStandards.push({
-          lessonSlug: result.lessonSlug,
-          standardCode: result.standardCode,
-          success: result.success,
-          error: result.error,
-        });
-      }
-    } catch (error) {
-      results.lessonStandards.push({
-        lessonSlug: "ALL",
-        standardCode: "ALL",
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
-    }
-
-    // 5. Seed objective policies
-    try {
-      await ctx.runMutation(seedInternal.seedObjectivePolicies, {});
-    } catch {
-      // Objective policies seeding failure is non-fatal
-    }
-
-    return results;
+    return { ok: true, lessons: lessons.length };
   },
 });

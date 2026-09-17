@@ -24,7 +24,7 @@
 
 - EK 13.A.1: Converting between forms: b^c = a ↔ log_b(a) = c. Steps: (1) isolate the exponential or log, (2) convert to the alternate form, (3) solve for the variable, (4) simplify.
 - EK 13.A.2: Equations with multiple logarithms use log properties to simplify to one of two forms: log_a(x) = b (convert to exponential) or log_a(x) = log_a(y) (set x = y). Always check for extraneous solutions — log properties can create solutions outside the domain.
-- EK 13.A.3: Equations with multiple exponentials can be solved by finding common bases using exponent properties, then setting exponents equal. Inequalities follow the same conversion process with inequality signs preserved.
+- EK 13.A.3: Equations with multiple exponentials can be solved by finding common bases using exponent properties, then setting exponents equal. For inequalities, preserve the comparison when the common base is greater than 1. Reverse it when the base is between 0 and 1. Check the logarithm domains.
 
 ## Passwater Scaffolding Notes
 
