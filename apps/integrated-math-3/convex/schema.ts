@@ -55,49 +55,64 @@ export const mathContentSectionValidators = {
 };
 
 const graphingExplorerPropsValidator = v.object({
+  title: v.optional(v.string()),
   variant: v.optional(v.union(
     v.literal("plot_from_equation"), v.literal("compare_functions"),
     v.literal("find_intercepts"), v.literal("graph_system"),
     v.literal("explore"), v.literal("find_zeros"),
     v.literal("compare"), v.literal("rate_of_change"),
   )),
+  responseVariant: v.optional(v.union(v.literal("quadratic_features"), v.literal("table_graph"), v.literal("domain_range"), v.literal("maximum_value"), v.literal("symmetry_graph"), v.literal("compare_maximums"), v.literal("one_real_solution"), v.literal("two_real_solutions"), v.literal("estimated_root_intervals"))),
   equation: v.string(),
+  originalEquation: v.optional(v.string()),
+  vertex: v.optional(v.array(v.number())),
+  yIntercept: v.optional(v.array(v.number())),
   domain: v.optional(v.array(v.number())),
   range: v.optional(v.array(v.number())),
+  sum: v.optional(v.number()),
+  product: v.optional(v.number()),
   points: v.optional(v.array(v.array(v.number()))),
   comparisonEquation: v.optional(v.string()),
   comparisonQuestion: v.optional(v.string()),
   comparisonAnswer: v.optional(v.union(v.literal("first"), v.literal("second"))),
   linearEquation: v.optional(v.string()),
-  responseVariant: v.optional(v.literal("table_graph")),
+  // The IM3 pilot keeps the variant generator and grading contract in the
+  // server-owned activity document. These fields are optional so existing
+  // authored graphing activities remain valid during schema rollout.
+  variantParameters: v.optional(v.record(v.string(), v.any())),
+  answerSchema: v.optional(v.record(v.string(), v.any())),
+  canonicalAnswers: v.optional(v.record(v.string(), v.any())),
+  gradingRules: v.optional(v.array(v.object({
+    partId: v.string(),
+    ruleType: v.union(
+      v.literal("numeric_tolerance"),
+      v.literal("exact_match"),
+      v.literal("expression_equivalence"),
+    ),
+    tolerance: v.optional(v.number()),
+    maxScore: v.number(),
+  }))),
+  replayPolicy: v.optional(v.string()),
+  canonicalVariant: v.optional(v.object({
+    a: v.number(),
+    b: v.number(),
+    c: v.number(),
+  })),
 });
 
-const stepByStepSolverSharedProps = {
+const stepByStepSolverPropsValidator = v.object({
+  problemType: v.union(
+    v.literal("quadratic_formula"), v.literal("factoring"),
+    v.literal("completing_the_square"), v.literal("square_root_property"),
+    v.literal("graphing"), v.literal("polynomial"), v.literal("rate_of_change"),
+  ),
+  equation: v.string(),
   steps: v.optional(v.array(v.object({
     id: v.string(), description: v.string(), expression: v.string(),
     explanation: v.optional(v.string()),
   }))),
   hints: v.optional(v.array(v.string())),
-};
-
-const stepByStepSolverPropsValidator = v.union(
-  v.object({
-    problemType: v.union(
-    v.literal("quadratic_formula"), v.literal("factoring"),
-    v.literal("completing_the_square"), v.literal("square_root_property"),
-    v.literal("graphing"), v.literal("simplify_imaginary"),
-    v.literal("complex_operations"), v.literal("vertex-form"),
-    v.literal("inequality"), v.literal("polynomial"), v.literal("rate_of_change"),
-  ),
-    equation: v.string(),
-    ...stepByStepSolverSharedProps,
-  }),
-  v.object({
-    problemType: v.literal("system"),
-    equations: v.object({ first: v.string(), second: v.string() }),
-    ...stepByStepSolverSharedProps,
-  }),
-);
+});
 
 const comprehensionQuizPropsValidator = v.object({
   activityId: v.optional(v.string()),
@@ -135,27 +150,6 @@ const discriminantAnalyzerPropsValidator = v.object({
   coefficients: v.optional(v.object({ a: v.number(), b: v.number(), c: v.number() })),
 });
 
-const quadraticFormulaSharedProps = {
-  title: v.optional(v.string()),
-  prompt: v.string(),
-  equation: v.string(),
-};
-const quadraticFormulaPropsValidator = v.union(
-  v.object({
-    ...quadraticFormulaSharedProps,
-    presentationMode: v.literal("worked"),
-    workedSteps: v.array(v.object({ description: v.string(), expression: v.optional(v.string()) })),
-  }),
-  v.object({
-    ...quadraticFormulaSharedProps,
-    presentationMode: v.literal("guided"),
-    fieldHelp: v.optional(v.object({
-      discriminant: v.optional(v.string()), x1: v.optional(v.string()), x2: v.optional(v.string()),
-    })),
-  }),
-  v.object({ ...quadraticFormulaSharedProps, presentationMode: v.literal("independent") }),
-);
-
 const activityPropsValidator = v.union(
   graphingExplorerPropsValidator,
   stepByStepSolverPropsValidator,
@@ -163,7 +157,6 @@ const activityPropsValidator = v.union(
   fillInTheBlankPropsValidator,
   rateOfChangeCalculatorPropsValidator,
   discriminantAnalyzerPropsValidator,
-  quadraticFormulaPropsValidator,
 );
 
 const phaseSectionContentValidator = v.union(
@@ -193,9 +186,9 @@ const gradingConfigValidator = v.object({
   partialCredit: v.boolean(),
   partIds: v.optional(v.array(v.string())),
   rubric: v.optional(v.array(v.object({
-    partId: v.optional(v.string()),
     criteria: v.string(),
     points: v.number(),
+    partId: v.optional(v.string()),
   }))),
 });
 
@@ -259,6 +252,11 @@ const submissionDataValidator = v.object({
 });
 
 export default defineSchema({
+  login_attempts: defineTable({
+    username: v.string(),
+    requestCount: v.number(),
+    windowStart: v.number(),
+  }).index('by_username', ['username']).index('by_window', ['windowStart']),
   organizations: defineTable({
     name: v.string(),
     slug: v.string(),
@@ -536,22 +534,25 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_phase", ["phaseId"])
-    .index("by_user_and_phase", ["userId", "phaseId"]),
+    .index("by_user_and_phase", ["userId", "phaseId"])
+    .index("by_user_and_idempotency_key", ["userId", "idempotencyKey"]),
 
   activity_submissions: defineTable({
     userId: v.id("profiles"),
     activityId: v.id("activities"),
     submissionData: submissionDataValidator,
+    masteryContractVersion: v.optional(v.literal("learning-evidence.v1")),
+    // Server-owned attempt identity. Existing rows remain valid during rollout.
+    attemptOrdinal: v.optional(v.number()),
+    // The create request key makes a lost create response recoverable without
+    // storing client grading claims.
+    idempotencyKey: v.optional(v.string()),
     score: v.optional(v.number()),
     maxScore: v.optional(v.number()),
     feedback: v.optional(v.string()),
     submittedAt: v.number(),
     gradedAt: v.optional(v.number()),
     gradedBy: v.optional(v.id("profiles")),
-    attemptOrdinal: v.optional(v.number()),
-    idempotencyKey: v.optional(v.string()),
-    allocatedVariantKey: v.optional(v.string()),
-    masteryContractVersion: v.optional(v.literal("learning-evidence.v1")),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -583,15 +584,23 @@ export default defineSchema({
       maxScore: v.optional(v.number()),
     })),
     idempotencyKey: v.string(),
-    fingerprint: v.string(),
     createdAt: v.number(),
   })
     .index("by_learner_and_node", ["learnerId", "nodeId"])
+    .index("by_learner_node_origin", ["learnerId", "nodeId", "origin"])
+    .index(
+      "by_learner_node_origin_occurred_at",
+      ["learnerId", "nodeId", "origin", "occurredAt"],
+    )
     .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"])
     .index("by_learner_and_submission_id", ["learnerId", "submissionId"])
-    .index("by_learner_node_origin_occurred_at", ["learnerId", "nodeId", "origin", "occurredAt"])
-    .index("by_learner_node_activity_origin_attempt", ["learnerId", "nodeId", "activityId", "origin", "attemptOrdinal"]),
+    .index(
+      "by_learner_node_activity_origin_attempt",
+      ["learnerId", "nodeId", "activityId", "origin", "attemptOrdinal"],
+    ),
 
+  // A receipt is the durable replay boundary for server-owned submissions.
+  // Negative awaiting-exposure receipts are durable as well.
   learning_evidence_receipts: defineTable({
     learnerId: v.id("profiles"),
     submissionId: v.id("activity_submissions"),
@@ -600,8 +609,15 @@ export default defineSchema({
     masteryApplied: v.boolean(),
     kstApplied: v.boolean(),
     decision: v.object({
-      idempotency: v.union(v.literal("new"), v.literal("replay"), v.literal("conflict")),
-      exposureState: v.union(v.literal("awaiting_teacher_exposure"), v.literal("introduced")),
+      idempotency: v.union(
+        v.literal("new"),
+        v.literal("replay"),
+        v.literal("conflict"),
+      ),
+      exposureState: v.union(
+        v.literal("awaiting_teacher_exposure"),
+        v.literal("introduced"),
+      ),
       eligible: v.boolean(),
       reason: v.union(
         v.literal("node_not_enabled"),
@@ -784,6 +800,7 @@ export default defineSchema({
     .index("by_student_and_objective", ["studentId", "objectiveId"])
     .index("by_variant", ["variantKey"])
     .index("by_student_and_variant", ["studentId", "variantKey"])
+    .index("by_student_objective_and_variant", ["studentId", "objectiveId", "variantKey"])
     .index("by_legacy_problem_family", ["legacyProblemFamilyId"])
     .index("by_historic_problem_family", ["problemFamilyId"])
     .index("by_migration_version", ["migrationVersion"]),
@@ -849,6 +866,7 @@ export default defineSchema({
     .index("by_user_and_started", ["userId", "startedAt"]),
 
   practice_test_results: defineTable({
+    attemptId: v.optional(v.string()),
     userId: v.id("profiles"),
     moduleNumber: v.number(),
     lessonsTested: v.array(v.string()),
@@ -864,6 +882,7 @@ export default defineSchema({
     createdAt: v.number(),
   })
     .index("by_user", ["userId"])
+    .index("by_user_and_attempt", ["userId", "attemptId"])
     .index("by_user_and_module", ["userId", "moduleNumber"])
     .index("by_user_and_completed", ["userId", "completedAt"]),
 

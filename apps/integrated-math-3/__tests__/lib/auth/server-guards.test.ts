@@ -1,5 +1,4 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getCredentialByUsernameIncludingInactive } from '@/convex/auth';
 
 const mockVerifySessionToken = vi.fn();
 const mockGetAuthJwtSecret = vi.fn(() => 'test-secret');
@@ -20,7 +19,6 @@ vi.mock('@/lib/convex/server', () => ({
   internal: {
     auth: {
       getCredentialByUsername: 'auth:getCredentialByUsername',
-      getCredentialByUsernameIncludingInactive: 'auth:getCredentialByUsernameIncludingInactive',
     },
   },
 }));
@@ -30,44 +28,13 @@ const makeRequest = (cookie?: string) =>
     headers: cookie ? { cookie } : {},
   });
 
-const credentialHandler = getCredentialByUsernameIncludingInactive as unknown as {
-  _handler(ctx: unknown, args: { username: string }): Promise<Record<string, unknown> | null>;
-};
-
-async function actualCredentialPayload(isActive?: boolean) {
-  const credential = isActive === undefined ? null : {
-    _id: 'cred1', profileId: 'p1', username: 'alice', role: 'student', organizationId: 'org1',
-    passwordHash: 'test-hash', passwordSalt: 'test-salt', passwordHashIterations: 1, isActive,
-  };
-  const ctx = {
-    db: {
-      query: () => ({
-        withIndex: (_name: string, apply: (q: { eq(field: string, value: unknown): unknown }) => unknown) => {
-          apply({ eq: () => ({}) });
-          return { unique: async () => credential };
-        },
-      }),
-    },
-  };
-  return credentialHandler._handler(ctx, { username: 'alice' });
-}
-
-describe('getCredentialByUsernameIncludingInactive payload', () => {
-  it.each([true, false])('returns the full credential with isActive=%s', async (isActive) => {
-    expect(await actualCredentialPayload(isActive)).toEqual({
-      id: 'cred1', profileId: 'p1', username: 'alice', role: 'student', organizationId: 'org1',
-      passwordHash: 'test-hash', passwordSalt: 'test-salt', passwordHashIterations: 1, isActive,
-    });
-  });
-
-  it('returns null when the credential is missing', async () => {
-    expect(await actualCredentialPayload()).toBeNull();
-  });
-});
-
 describe('requireRequestSessionClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
   it('returns 401 when no cookie is present', async () => {
@@ -102,23 +69,17 @@ describe('requireRequestSessionClaims', () => {
 });
 
 describe('requireStudentRequestClaims', () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     vi.clearAllMocks();
-    mockFetchInternalQuery.mockResolvedValue(await actualCredentialPayload(true));
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
-  it('rejects an inactive credential', async () => {
+  it.each([null, { isActive: false }])('rejects an inactive or missing credential', async (credential) => {
     mockVerifySessionToken.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student', iat: 1, exp: 9999999999 });
-    mockFetchInternalQuery.mockResolvedValue(await actualCredentialPayload(false));
-    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
-    const result = await requireStudentRequestClaims(makeRequest('session=valid-token'));
-    expect(result).toBeInstanceOf(Response);
-    expect((result as Response).status).toBe(401);
-  });
-
-  it('rejects a missing credential', async () => {
-    mockVerifySessionToken.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student', iat: 1, exp: 9999999999 });
-    mockFetchInternalQuery.mockResolvedValue(null);
+    mockFetchInternalQuery.mockResolvedValue(credential);
     const { requireStudentRequestClaims } = await import('@/lib/auth/server');
     const result = await requireStudentRequestClaims(makeRequest('session=valid-token'));
     expect(result).toBeInstanceOf(Response);
@@ -172,6 +133,10 @@ describe('requireStudentRequestClaims', () => {
 describe('requireTeacherRequestClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
   it('returns 401 when unauthenticated', async () => {
@@ -227,6 +192,10 @@ describe('requireTeacherRequestClaims', () => {
 describe('requireDeveloperRequestClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
   it('returns 401 when unauthenticated', async () => {
@@ -268,6 +237,10 @@ describe('requireDeveloperRequestClaims', () => {
 describe('requireActiveRequestSessionClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
   it('returns 401 when no cookie is present', async () => {
@@ -298,7 +271,7 @@ describe('requireActiveRequestSessionClaims', () => {
     const res = await requireActiveRequestSessionClaims(makeRequest('session=valid-token'));
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(401);
-    expect(mockFetchInternalQuery).toHaveBeenCalledWith('auth:getCredentialByUsernameIncludingInactive', { username: 'alice' });
+    expect(mockFetchInternalQuery).toHaveBeenCalledWith('auth:getCredentialByUsername', { username: 'alice' });
   });
 
   it('returns 401 when credential is deactivated', async () => {
@@ -309,7 +282,13 @@ describe('requireActiveRequestSessionClaims', () => {
       iat: 1,
       exp: 9999999999,
     });
-    mockFetchInternalQuery.mockResolvedValue(await actualCredentialPayload(false));
+    mockFetchInternalQuery.mockResolvedValue({
+      id: 'cred1',
+      profileId: 'p1',
+      username: 'alice',
+      role: 'student',
+      isActive: false,
+    });
     const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
     const res = await requireActiveRequestSessionClaims(makeRequest('session=valid-token'));
     expect(res).toBeInstanceOf(Response);
@@ -342,7 +321,13 @@ describe('requireActiveRequestSessionClaims', () => {
       exp: 9999999999,
     };
     mockVerifySessionToken.mockResolvedValue(claims);
-    mockFetchInternalQuery.mockResolvedValue(await actualCredentialPayload(true));
+    mockFetchInternalQuery.mockResolvedValue({
+      id: 'cred1',
+      profileId: 'p1',
+      username: 'alice',
+      role: 'student',
+      isActive: true,
+    });
     const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
     const res = await requireActiveRequestSessionClaims(makeRequest('session=valid-token'));
     expect(res).toEqual(claims);

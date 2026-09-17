@@ -2,14 +2,11 @@
   "blueprints": [
     {
       "nodeId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.example.1.1.001"
+      ],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-7c",
-        "math.standard.ccss.hsa-sse-b-3",
-        "math.standard.ccss.hsa-rei-b-4",
-        "math.standard.ccss.hsf-if-a-2",
-        "math.standard.ccss.n-cn-a-1",
-        "math.standard.ccss.n-cn-c-7"
+        "math.standard.ccss.hsf-if-c-7a"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -18,158 +15,159 @@
         "independentPractice": "graphing-explorer"
       },
       "workedExampleSpec": {
-        "prompt": "Graph the quadratic function f(x) = x^2 - 4 and identify its key features.",
+        "prompt": "Graph f(x) = x^2 + 2x - 3 by using a table. State the domain and range.",
         "givens": [
-          "f(x) = x^2 - 4"
+          "f(x) = x^2 + 2x - 3"
         ],
         "target": {
-          "vertex": "(0, -4)",
-          "axis_of_symmetry": "x = 0",
-          "y_intercept": "(0, -4)",
-          "direction": "upward"
+          "vertex": "(-1, -4)",
+          "axis_of_symmetry": "x = -1",
+          "y_intercept": "(0, -3)",
+          "direction": "upward",
+          "domain": "all real numbers",
+          "range": "{y | y >= -4}"
         },
         "steps": [
           {
-            "description": "Identify the quadratic coefficient",
-            "expression": "a = 1, b = 0, c = -4",
-            "explanation": "The coefficient a = 1 > 0, so the parabola opens upward."
+            "description": "Analyze the function",
+            "expression": "a = 1, b = 2, c = -3; x = -b/(2a) = -1",
+            "result": "The y-intercept is -3. The vertex is (-1, -4) and is a minimum."
           },
           {
-            "description": "Find the vertex",
-            "expression": "h = -b/(2a) = 0, k = f(0) = -4",
-            "result": "Vertex: (0, -4)"
+            "description": "Graph the function by using a table",
+            "expression": "(-3, 0), (-2, -3), (-1, -4), (0, -3), (1, 0)",
+            "result": "Plot the five points and draw the parabola."
           },
           {
-            "description": "Find the y-intercept",
-            "expression": "f(0) = -4",
-            "result": "Y-intercept: (0, -4)"
-          },
-          {
-            "description": "Find the x-intercepts",
-            "expression": "0 = x^2 - 4, x = \u00b12",
-            "result": "X-intercepts: (-2, 0) and (2, 0)"
+            "description": "Analyze the graph",
+            "expression": "domain: all real numbers; range: {y | y >= -4}",
+            "result": "The parabola extends without bound to the left and right and has minimum value -4."
           }
         ],
-        "explanation": "The function f(x) = x^2 - 4 is a parabola opening upward with vertex at (0, -4), passing through the origin translated 4 units down."
+        "explanation": "The axis of symmetry is x = -1. The completed table is symmetric about x = -1. The graph has domain all real numbers and range {y | y >= -4}.",
+        "rendererProps": {
+          "equation": "f(x) = x^2 + 2x - 3",
+          "variant": "plot_from_equation"
+        }
       },
       "guidedPracticeSpec": {
-        "scaffoldedPrompt": "Graph f(x) = x^2 - 2x - 3 by finding key features step by step.",
+        "scaffoldedPrompt": "Complete the table for y = x^2 - x - 2 using x = -2, -1, 0, 1, 2, then plot all five points.",
         "stepPrompts": [
-          "Find the direction of opening and the axis of symmetry",
-          "Calculate the vertex coordinates",
-          "Find the y-intercept",
-          "Find the x-intercepts (zeros)",
-          "Sketch the parabola"
+          "Substitute each x-value into the equation to complete the five-value table.",
+          "Plot the five ordered pairs from the completed table.",
+          "Draw the quadratic through the plotted points."
         ],
         "hints": [
-          "The coefficient of x^2 determines the direction. If a > 0, it opens up.",
-          "Use h = -b/(2a) for the x-coordinate, then f(h) for the y-coordinate.",
-          "Set x = 0 and evaluate the function.",
-          "Set f(x) = 0 and solve for x."
+          "Substitute each x-value into y = x^2 - x - 2 to find its y-value.",
+          "Use each ordered pair (x, y) from the table as one graph point.",
+          "A quadratic function graphs as a parabola through the plotted points."
         ],
         "checksPerStep": [
           {
-            "check": "a > 0, opens upward; axis of symmetry x = 1"
+            "check": "The five table y-values are 4, 0, -2, -2, and 0."
           },
           {
-            "check": "vertex at (1, -4)"
+            "check": "The plotted points are (-2, 4), (-1, 0), (0, -2), (1, -2), and (2, 0)."
           },
           {
-            "check": "y-intercept at (0, -3)"
-          },
-          {
-            "check": "x-intercepts at (-1, 0) and (3, 0)"
+            "check": "The points form the parabola y = x^2 - x - 2."
           }
         ],
-        "revealPolicy": "one_at_a_time"
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "y = x^2 - x - 2",
+          "variant": "plot_from_equation",
+          "responseVariant": "table_graph",
+          "domain": [
+            -5,
+            5
+          ],
+          "range": [
+            -10,
+            10
+          ]
+        }
       },
       "independentPracticeSpec": {
         "variantParameters": {
           "a": {
-            "type": "integer",
-            "min": 1,
-            "max": 3,
-            "step": 1,
-            "description": "Coefficient of x^2"
+            "type": "enum",
+            "options": [
+              "-1",
+              "1"
+            ],
+            "description": "Leading coefficient for the quadratic."
           },
           "b": {
             "type": "integer",
-            "min": -4,
-            "max": 4,
+            "min": -1,
+            "max": 1,
             "step": 1,
-            "description": "Coefficient of x"
+            "description": "Linear coefficient for the quadratic."
           },
           "c": {
             "type": "integer",
-            "min": -6,
-            "max": 6,
+            "min": -2,
+            "max": 2,
             "step": 1,
-            "description": "Constant term"
+            "description": "Constant term for the quadratic."
           }
         },
         "answerSchema": {
-          "vertex_x": "number",
-          "vertex_y": "number",
-          "direction": "string",
-          "y_intercept": "number"
+          "table_values": {
+            "type": "array",
+            "description": "Five numeric table points with x and y coordinates."
+          },
+          "placed_points": {
+            "type": "array",
+            "description": "Five plotted points with x and y coordinates."
+          }
         },
         "gradingRules": [
           {
-            "partId": "vertex_x",
-            "ruleType": "numeric_tolerance",
-            "tolerance": 0.01,
-            "maxScore": 2
-          },
-          {
-            "partId": "vertex_y",
-            "ruleType": "numeric_tolerance",
-            "tolerance": 0.01,
-            "maxScore": 2
-          },
-          {
-            "partId": "direction",
-            "ruleType": "exact_match",
+            "partId": "table_values",
+            "ruleType": "custom",
             "maxScore": 1
           },
           {
-            "partId": "y_intercept",
-            "ruleType": "numeric_tolerance",
-            "tolerance": 0.01,
+            "partId": "placed_points",
+            "ruleType": "custom",
             "maxScore": 1
           }
         ],
-        "replayPolicy": "unique_seeds"
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "equation": "y = -x^2 - 1",
+          "variant": "plot_from_equation",
+          "responseVariant": "table_graph",
+          "domain": [
+            -5,
+            5
+          ],
+          "range": [
+            -10,
+            10
+          ]
+        }
       },
       "generatorKey": "quadratic-graph-analysis",
       "gradingSpec": {
         "partIds": [
-          "vertex_x",
-          "vertex_y",
-          "direction",
-          "y_intercept"
+          "table_values",
+          "placed_points"
         ],
-        "passingScore": 6,
+        "passingScore": 2,
         "partialCredit": true,
         "rubric": [
           {
-            "criteria": "Correct vertex x-coordinate",
-            "points": 2,
-            "partId": "vertex_x"
-          },
-          {
-            "criteria": "Correct vertex y-coordinate",
-            "points": 2,
-            "partId": "vertex_y"
-          },
-          {
-            "criteria": "Correct opening direction",
+            "criteria": "Complete the five-value table for the quadratic.",
             "points": 1,
-            "partId": "direction"
+            "partId": "table_values"
           },
           {
-            "criteria": "Correct y-intercept",
+            "criteria": "Plot all five points for the quadratic.",
             "points": 1,
-            "partId": "y_intercept"
+            "partId": "placed_points"
           }
         ]
       },
@@ -182,15 +180,331 @@
       }
     },
     {
-      "nodeId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-      "sourceNodeIds": [],
+      "nodeId": "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph",
+      "sourceNodeIds": [
+        "math.im3.example.1.1.001"
+      ],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-7c",
-        "math.standard.ccss.hsa-sse-b-3",
-        "math.standard.ccss.hsa-rei-b-4",
-        "math.standard.ccss.hsf-if-a-2",
-        "math.standard.ccss.n-cn-a-1",
-        "math.standard.ccss.n-cn-c-7"
+        "math.standard.ccss.hsf-if-b-5",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Graph f(x) = x^2 + 2x - 3 by using a table. State the domain and range.",
+        "givens": [
+          "f(x) = x^2 + 2x - 3"
+        ],
+        "target": {
+          "equation": "f(x) = x^2 + 2x - 3",
+          "domain": "all real numbers",
+          "vertex": "(-1, -4)",
+          "range": "y >= -4"
+        },
+        "steps": [
+          {
+            "description": "Build a table of values for the quadratic.",
+            "expression": "(-3, 0), (-2, -3), (-1, -4), (0, -3), (1, 0)",
+            "result": "Plot the five ordered pairs to graph the parabola."
+          },
+          {
+            "description": "Identify the vertex of the parabola.",
+            "expression": "(-1, -4)",
+            "result": "The vertex is (-1, -4), the minimum point."
+          },
+          {
+            "description": "State the domain.",
+            "expression": "x can be any real number.",
+            "result": "The domain is all real numbers."
+          },
+          {
+            "description": "State the range.",
+            "expression": "y >= -4",
+            "result": "The range is y >= -4."
+          }
+        ],
+        "explanation": "The table shows a parabola with vertex (-1, -4). It extends left and right without bound, so the domain is all real numbers. Its minimum value is -4, so the range is y >= -4.",
+        "rendererProps": {
+          "equation": "f(x) = x^2 + 2x - 3",
+          "variant": "plot_from_equation",
+          "responseVariant": "domain_range",
+          "domain": [
+            -5,
+            5
+          ],
+          "range": [
+            -10,
+            10
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Use the displayed graph of y = x^2 - x - 2 to state the domain and range.",
+        "stepPrompts": [
+          "State the domain of the quadratic from its graph.",
+          "Identify the vertex and its y-value.",
+          "Use the opening direction and vertex to state the range."
+        ],
+        "hints": [
+          "A quadratic graph extends left and right without bound.",
+          "The vertex is the turning point of the parabola.",
+          "This parabola opens upward, so the vertex gives the lower range boundary."
+        ],
+        "checksPerStep": [
+          {
+            "check": "The domain is all real numbers.",
+            "answerPattern": "all_real_numbers"
+          },
+          {
+            "check": "The vertex y-value is -2.25.",
+            "answerPattern": "-2.25"
+          },
+          {
+            "check": "The range is y >= -2.25.",
+            "answerPattern": "y >= -2.25"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "y = x^2 - x - 2",
+          "variant": "plot_from_equation",
+          "responseVariant": "domain_range",
+          "domain": [
+            -5,
+            5
+          ],
+          "range": [
+            -10,
+            10
+          ]
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "a": {
+            "type": "enum",
+            "options": [
+              "-1",
+              "1"
+            ]
+          },
+          "b": {
+            "type": "integer",
+            "min": -1,
+            "max": 1,
+            "step": 1
+          },
+          "c": {
+            "type": "integer",
+            "min": -2,
+            "max": 2,
+            "step": 1
+          }
+        },
+        "answerSchema": {
+          "domain": {
+            "type": "string",
+            "description": "The domain of the quadratic."
+          },
+          "range": {
+            "type": "object",
+            "description": "The relation and boundary for the range."
+          }
+        },
+        "gradingRules": [
+          {
+            "partId": "domain",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "range",
+            "ruleType": "custom",
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "equation": "y = -x^2 - 1",
+          "variant": "plot_from_equation",
+          "responseVariant": "domain_range",
+          "domain": [
+            -5,
+            5
+          ],
+          "range": [
+            -10,
+            10
+          ]
+        }
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "gradingSpec": {
+        "partIds": [
+          "domain",
+          "range"
+        ],
+        "passingScore": 2,
+        "partialCredit": true,
+        "rubric": [
+          {
+            "criteria": "State the domain of the quadratic.",
+            "points": 1,
+            "partId": "domain"
+          },
+          {
+            "criteria": "State the range of the quadratic.",
+            "points": 1,
+            "partId": "range"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "sourceNodeIds": [
+        "math.im3.example.1.1.004",
+        "math.im3.example.1.1.005",
+        "math.im3.example.1.1.006"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-b-6"
+      ],
+      "rendererKey": "rate-of-change-calculator",
+      "rendererModeMap": {
+        "worked": "rate-of-change-calculator",
+        "guidedPractice": "rate-of-change-calculator"
+      },
+      "workedExampleSpec": {
+        "prompt": "Determine the average rate of change of f(x) over the interval [-3, 3].",
+        "givens": [
+          "x: [-3, -2, -1, 0, 1, 2, 3]",
+          "f(x): [48, 21, 0, -15, -24, -27, -24]",
+          "Interval: [-3, 3]"
+        ],
+        "target": {
+          "rate": "-12"
+        },
+        "steps": [
+          {
+            "description": "Read f(-3) and f(3) from the table",
+            "expression": "f(-3) = 48; f(3) = -24",
+            "result": "f(-3) = 48 and f(3) = -24"
+          },
+          {
+            "description": "Apply the average rate of change formula",
+            "expression": "(f(3) - f(-3)) / (3 - (-3)) = (-24 - 48) / 6",
+            "result": "-12"
+          },
+          {
+            "description": "Interpret the result",
+            "expression": "The function changes by -12 units per x-unit on average over [-3, 3].",
+            "result": "The average rate of change is -12."
+          }
+        ],
+        "explanation": "The average rate of change is the change in the function values divided by the change in the x-values.",
+        "rendererProps": {
+          "sourceType": "table",
+          "data": {
+            "x": [
+              -3,
+              -2,
+              -1,
+              0,
+              1,
+              2,
+              3
+            ],
+            "y": [
+              48,
+              21,
+              0,
+              -15,
+              -24,
+              -27,
+              -24
+            ]
+          },
+          "interval": {
+            "start": -3,
+            "end": 3
+          }
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Part A Use the graph to estimate the average rate of change of spending on sports footwear from 2005 to 2015. Then check your results algebraically.",
+        "stepPrompts": [
+          "Read the spending value at 2005 from the graph",
+          "Read the spending value at 2015 from the graph",
+          "Compute the change in spending and the change in time",
+          "Estimate the rate and check the result algebraically"
+        ],
+        "hints": [
+          "Use the endpoint (0, 15.72) for 2005.",
+          "Use the endpoint (10, 20.99) for 2015.",
+          "Average rate of change = (y2 - y1) / (x2 - x1).",
+          "The algebraic check is about 0.527 billion dollars per year."
+        ],
+        "checksPerStep": [
+          {
+            "check": "The 2005 spending value is 15.72 billion dollars."
+          },
+          {
+            "check": "The 2015 spending value is 20.99 billion dollars."
+          },
+          {
+            "check": "The change in spending is 5.27 and the change in time is 10."
+          },
+          {
+            "check": "The exact average rate is 0.527 billion dollars per year."
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "sourceType": "graph",
+          "data": {
+            "points": [
+              [
+                0,
+                15.72
+              ],
+              [
+                10,
+                20.99
+              ]
+            ]
+          },
+          "interval": {
+            "start": 0,
+            "end": 10
+          }
+        }
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "pilotSequence": 2
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.calculate-average-rate-of-change-from-an-equation",
+      "sourceNodeIds": [
+        "math.im3.example.1.1.004"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-b-6"
       ],
       "rendererKey": "rate-of-change-calculator",
       "rendererModeMap": {
@@ -199,100 +513,139 @@
         "independentPractice": "rate-of-change-calculator"
       },
       "workedExampleSpec": {
-        "prompt": "Find the average rate of change of f(x) = x^2 + 3x - 1 on the interval [1, 4].",
+        "prompt": "Determine the average rate of change of f(x) = -x^2 + 2x - 1 over the interval [-4, 4].",
         "givens": [
-          "f(x) = x^2 + 3x - 1",
-          "Interval: [1, 4]"
+          "f(x) = -x^2 + 2x - 1",
+          "Interval: [-4, 4]"
         ],
         "target": {
-          "rate": "8"
+          "f_a": "-25",
+          "f_b": "-9",
+          "rate": "2"
+        },
+        "rendererProps": {
+          "sourceType": "function",
+          "data": {
+            "expression": "f(x) = -x^2 + 2x - 1"
+          },
+          "interval": {
+            "start": -4,
+            "end": 4
+          }
         },
         "steps": [
           {
-            "description": "Evaluate f at x = 1",
-            "expression": "f(1) = 1 + 3 - 1 = 3",
-            "result": "f(1) = 3"
+            "description": "Evaluate f(-4)",
+            "expression": "f(-4) = -(-4)^2 + 2(-4) - 1",
+            "result": "f(-4) = -25"
           },
           {
-            "description": "Evaluate f at x = 4",
-            "expression": "f(4) = 16 + 12 - 1 = 27",
-            "result": "f(4) = 27"
+            "description": "Evaluate f(4)",
+            "expression": "f(4) = -(4)^2 + 2(4) - 1",
+            "result": "f(4) = -9"
           },
           {
-            "description": "Compute average rate of change",
-            "expression": "(f(4) - f(1)) / (4 - 1) = (27 - 3) / 3 = 8",
-            "result": "8"
+            "description": "Apply the average rate of change formula",
+            "expression": "(f(4) - f(-4)) / (4 - (-4)) = (-9 - (-25)) / 8 = 16 / 8",
+            "result": "2"
           }
         ],
-        "explanation": "The average rate of change is the slope of the secant line between two points on the graph."
+        "explanation": "The average rate of change is the change in the function values divided by the change in the x-values."
       },
       "guidedPracticeSpec": {
-        "scaffoldedPrompt": "Find the average rate of change of f(x) = x^2 - 2x + 5 on [2, 6].",
+        "scaffoldedPrompt": "Find the average rate of change of f(x) = x^2 - 3x - 4 on the interval [-4, -1].",
         "stepPrompts": [
-          "Evaluate f(2)",
-          "Evaluate f(6)",
-          "Apply the average rate of change formula"
+          "Evaluate f(-4) using the equation.",
+          "Evaluate f(-1) using the equation.",
+          "Set up the average-rate quotient using the two function values.",
+          "Compute the average rate of change."
         ],
         "hints": [
-          "Substitute x = 2 into f(x)",
-          "Substitute x = 6 into f(x)",
-          "Average rate of change = (f(b) - f(a)) / (b - a)"
+          "Substitute -4 into the equation to find f(-4).",
+          "Substitute -1 into the equation to find f(-1).",
+          "Use (f(-1) - f(-4)) / (-1 - (-4)).",
+          "Divide the change in function values by the change in x-values."
         ],
         "checksPerStep": [
           {
-            "check": "f(2) = 5"
+            "check": "f(-4) = 24."
           },
           {
-            "check": "f(6) = 29"
+            "check": "f(-1) = 0."
           },
           {
-            "check": "Rate = 6"
+            "check": "(0 - 24) / (-1 - (-4)) = -24 / 3 = -8."
+          },
+          {
+            "check": "The average rate of change is -8."
           }
         ],
-        "revealPolicy": "one_at_a_time"
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "sourceType": "function",
+          "data": {
+            "expression": "f(x) = x^2 - 3x - 4"
+          },
+          "interval": {
+            "start": -4,
+            "end": -1
+          }
+        }
       },
       "independentPracticeSpec": {
         "variantParameters": {
           "a": {
-            "type": "integer",
-            "min": 1,
-            "max": 3,
-            "step": 1,
-            "description": "Coefficient of x^2"
+            "type": "enum",
+            "options": [
+              "-2",
+              "-1",
+              "1",
+              "2"
+            ],
+            "description": "Leading coefficient for the quadratic."
           },
           "b": {
             "type": "integer",
-            "min": -3,
-            "max": 3,
+            "min": -4,
+            "max": 4,
             "step": 1,
-            "description": "Coefficient of x"
+            "description": "Linear coefficient for the quadratic."
           },
           "c": {
             "type": "integer",
             "min": -5,
             "max": 5,
             "step": 1,
-            "description": "Constant term"
+            "description": "Constant term for the quadratic."
           },
-          "interval_start": {
+          "intervalStart": {
             "type": "integer",
-            "min": 0,
-            "max": 3,
+            "min": -4,
+            "max": 0,
             "step": 1,
-            "description": "Start of interval"
+            "description": "Starting x-value for the interval."
           },
-          "interval_end": {
+          "intervalWidth": {
             "type": "integer",
-            "min": 4,
-            "max": 8,
+            "min": 2,
+            "max": 6,
             "step": 1,
-            "description": "End of interval"
+            "description": "Width of the interval."
           }
         },
         "answerSchema": {
-          "f_a": "number",
-          "f_b": "number",
-          "rate": "number"
+          "f_a": {
+            "type": "number",
+            "description": "Value of f at the interval start."
+          },
+          "f_b": {
+            "type": "number",
+            "description": "Value of f at the interval end."
+          },
+          "rate": {
+            "type": "number",
+            "description": "Average rate of change over the interval."
+          }
         },
         "gradingRules": [
           {
@@ -314,7 +667,17 @@
             "maxScore": 3
           }
         ],
-        "replayPolicy": "unique_seeds"
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "sourceType": "function",
+          "data": {
+            "expression": "f(x) = -2x^2 + 2x - 2"
+          },
+          "interval": {
+            "start": 0,
+            "end": 4
+          }
+        }
       },
       "generatorKey": "average-rate-of-change",
       "gradingSpec": {
@@ -323,21 +686,21 @@
           "f_b",
           "rate"
         ],
-        "passingScore": 5,
+        "passingScore": 7,
         "partialCredit": true,
         "rubric": [
           {
-            "criteria": "Correct f(a)",
+            "criteria": "Calculate f(a) at the interval start.",
             "points": 2,
             "partId": "f_a"
           },
           {
-            "criteria": "Correct f(b)",
+            "criteria": "Calculate f(b) at the interval end.",
             "points": 2,
             "partId": "f_b"
           },
           {
-            "criteria": "Correct rate of change",
+            "criteria": "Calculate the average rate of change.",
             "points": 3,
             "partId": "rate"
           }
@@ -347,14 +710,1219 @@
       "metadata": {
         "course": "im3",
         "module": "1",
-        "lesson": "1",
-        "pilotSequence": 2
+        "lesson": "1"
       }
     },
     {
-      "nodeId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "nodeId": "math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph",
       "sourceNodeIds": [
-        "math.im3.skill.1.1.graph-quadratic-functions"
+        "math.im3.example.1.1.002"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "From the graph, f(x) appears to have a maximum of 5.",
+        "givens": [
+          "The displayed graph of f(x)."
+        ],
+        "target": {
+          "vertex": "(3, 5)",
+          "maximum_value": 5
+        },
+        "steps": [
+          {
+            "description": "Locate the highest point on the graph.",
+            "expression": "(3, 5)",
+            "result": "The vertex is (3, 5)."
+          },
+          {
+            "description": "Read the y-coordinate of the highest point.",
+            "expression": "maximum = 5",
+            "result": "The maximum value of f is 5."
+          }
+        ],
+        "explanation": "The maximum value is the y-coordinate of the vertex. The graph of f has vertex (3, 5), so its maximum is 5.",
+        "rendererProps": {
+          "equation": "f(x) = -x^2 + 6x - 4",
+          "variant": "plot_from_equation",
+          "responseVariant": "maximum_value",
+          "domain": [
+            -2,
+            8
+          ],
+          "range": [
+            -3,
+            7
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Use the displayed graph to identify its maximum value.",
+        "stepPrompts": [
+          "Locate the highest point on the displayed graph.",
+          "Read the y-coordinate of that point."
+        ],
+        "hints": [
+          "Find the highest point on the graph. Use its y-coordinate."
+        ],
+        "checksPerStep": [
+          {
+            "check": "The highest point is the vertex (0, -1).",
+            "answerPattern": "(0, -1)"
+          },
+          {
+            "check": "The maximum value is -1.",
+            "answerPattern": "-1"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "y = -x^2 - 1",
+          "variant": "plot_from_equation",
+          "responseVariant": "maximum_value",
+          "domain": [
+            -5,
+            5
+          ],
+          "range": [
+            -10,
+            10
+          ]
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "a": {
+            "type": "enum",
+            "options": [
+              "-1"
+            ],
+            "description": "Leading coefficient. The graph opens downward."
+          },
+          "b": {
+            "type": "integer",
+            "min": -1,
+            "max": 1,
+            "step": 1,
+            "description": "Linear coefficient."
+          },
+          "c": {
+            "type": "integer",
+            "min": -2,
+            "max": 2,
+            "step": 1,
+            "description": "Constant term."
+          }
+        },
+        "answerSchema": {
+          "maximum_value": {
+            "type": "number",
+            "description": "The maximum value read from the displayed graph."
+          }
+        },
+        "gradingRules": [
+          {
+            "partId": "maximum_value",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "equation": "y = -x^2 + 2",
+          "variant": "plot_from_equation",
+          "responseVariant": "maximum_value",
+          "domain": [
+            -5,
+            5
+          ],
+          "range": [
+            -10,
+            10
+          ]
+        }
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "gradingSpec": {
+        "partIds": [
+          "maximum_value"
+        ],
+        "passingScore": 1,
+        "partialCredit": false,
+        "rubric": [
+          {
+            "criteria": "Identify the maximum value from the displayed graph.",
+            "points": 1,
+            "partId": "maximum_value"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry",
+      "sourceNodeIds": [
+        "math.im3.example.1.1.002"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-c-7a"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Function g has a y-intercept of -1 and a vertex at (1, 2). Graph g by using symmetry.",
+        "givens": [
+          "vertex (1, 2)",
+          "y-intercept (0, -1)"
+        ],
+        "target": {
+          "vertex": "(1, 2)",
+          "axis_of_symmetry": "x = 1",
+          "y_intercept": "(0, -1)",
+          "reflected_point": "(2, -1)",
+          "direction": "downward"
+        },
+        "steps": [
+          {
+            "description": "Plot the vertex (1, 2) and identify the axis of symmetry x = 1.",
+            "expression": "(1, 2); x = 1",
+            "result": "The vertex is (1, 2) and the axis of symmetry is x = 1."
+          },
+          {
+            "description": "Plot the y-intercept (0, -1).",
+            "expression": "(0, -1)",
+            "result": "The y-intercept is (0, -1)."
+          },
+          {
+            "description": "Reflect the y-intercept across x = 1 to get (2, -1).",
+            "expression": "(0, -1) → (2, -1)",
+            "result": "The reflected point is (2, -1)."
+          },
+          {
+            "description": "Draw the downward-opening parabola through (1, 2), (0, -1), and (2, -1).",
+            "expression": "(1, 2), (0, -1), (2, -1)",
+            "result": "The parabola opens downward through the three points."
+          }
+        ],
+        "explanation": "The points (0, -1) and (2, -1) are equally far from x = 1, so they reflect across the axis of symmetry. The downward-opening parabola passes through the vertex and both points.",
+        "rendererProps": {
+          "equation": "g(x) = -3x^2 + 6x - 1",
+          "variant": "plot_from_equation",
+          "responseVariant": "symmetry_graph",
+          "vertex": [
+            1,
+            2
+          ],
+          "yIntercept": [
+            0,
+            -1
+          ],
+          "domain": [
+            -3,
+            5
+          ],
+          "range": [
+            -10,
+            5
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "The vertex is (2, 3), and the y-intercept is (0, -1). Graph the quadratic by using symmetry.",
+        "stepPrompts": [
+          "Plot the vertex (2, 3) and identify the axis of symmetry x = 2.",
+          "Plot the y-intercept (0, -1).",
+          "Reflect (0, -1) across x = 2 to get (4, -1).",
+          "Draw the downward-opening parabola through (2, 3), (0, -1), and (4, -1)."
+        ],
+        "hints": [
+          "Plot the vertex at (2, 3) and use x = 2 as the axis of symmetry.",
+          "Plot the y-intercept at (0, -1).",
+          "Reflect (0, -1) across x = 2 to find (4, -1).",
+          "Draw a downward-opening parabola through the three points."
+        ],
+        "checksPerStep": [
+          {
+            "check": "The vertex is (2, 3).",
+            "answerPattern": "(2, 3)"
+          },
+          {
+            "check": "The y-intercept is (0, -1).",
+            "answerPattern": "(0, -1)"
+          },
+          {
+            "check": "The reflected point is (4, -1).",
+            "answerPattern": "(4, -1)"
+          },
+          {
+            "check": "The points form a downward-opening parabola through (2, 3), (0, -1), and (4, -1)."
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "y = -x^2 + 4x - 1",
+          "variant": "plot_from_equation",
+          "responseVariant": "symmetry_graph",
+          "vertex": [
+            2,
+            3
+          ],
+          "yIntercept": [
+            0,
+            -1
+          ],
+          "domain": [
+            -3,
+            7
+          ],
+          "range": [
+            -10,
+            6
+          ]
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "vertexX": {
+            "type": "integer",
+            "min": 1,
+            "max": 2,
+            "step": 1,
+            "description": "The x-coordinate of the vertex."
+          },
+          "vertexY": {
+            "type": "integer",
+            "min": -3,
+            "max": 3,
+            "step": 1,
+            "description": "The y-coordinate of the vertex."
+          },
+          "verticalScale": {
+            "type": "enum",
+            "options": [
+              "-3",
+              "-2",
+              "-1",
+              "1",
+              "2",
+              "3"
+            ],
+            "description": "The nonzero coefficient in vertex form."
+          }
+        },
+        "description": "The y-intercept is derived by substituting x = 0 into vertex form.",
+        "answerSchema": {
+          "placed_points": {
+            "type": "array",
+            "description": "Exactly three numeric points: the vertex, the y-intercept, and its reflection."
+          }
+        },
+        "gradingRules": [
+          {
+            "partId": "placed_points",
+            "ruleType": "custom",
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "equation": "g(x) = -3x^2 + 6x - 1",
+          "variant": "plot_from_equation",
+          "responseVariant": "symmetry_graph",
+          "vertex": [
+            1,
+            2
+          ],
+          "yIntercept": [
+            0,
+            -1
+          ],
+          "domain": [
+            -3,
+            5
+          ],
+          "range": [
+            -10,
+            5
+          ]
+        }
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "gradingSpec": {
+        "partIds": [
+          "placed_points"
+        ],
+        "passingScore": 1,
+        "partialCredit": false,
+        "rubric": [
+          {
+            "criteria": "Place the vertex, the y-intercept, and the reflected point.",
+            "points": 1,
+            "partId": "placed_points"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions",
+      "sourceNodeIds": [
+        "math.im3.example.1.1.002"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-c-9"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "The graph of f(x) is shown. Function g has a y-intercept of -1 and a vertex at (1, 2). Which function has the greater maximum value?",
+        "givens": [
+          "The graph of f(x) is shown.",
+          "The vertex of g is (1, 2).",
+          "The y-intercept of g is (0, -1)."
+        ],
+        "target": {
+          "f_maximum": 5,
+          "g_maximum": 2,
+          "greater_maximum": "first"
+        },
+        "steps": [
+          {
+            "description": "Read the maximum value of f(x) from its graph.",
+            "expression": "f maximum = 5"
+          },
+          {
+            "description": "Use the vertex of g to identify its maximum value of 2.",
+            "expression": "g maximum = 2"
+          },
+          {
+            "description": "Plot the vertex of g and identify the axis of symmetry x = 1.",
+            "expression": "(1, 2); x = 1"
+          },
+          {
+            "description": "Plot the y-intercept (0, -1) and reflect it across x = 1 to get (2, -1).",
+            "expression": "(0, -1) → (2, -1)"
+          },
+          {
+            "description": "Connect the three points with a smooth downward-opening parabola.",
+            "expression": "(1, 2), (0, -1), (2, -1)"
+          },
+          {
+            "description": "Compare 5 and 2, then state which function has the greater maximum value.",
+            "expression": "5 > 2; f(x) has the greater maximum value."
+          }
+        ],
+        "explanation": "The maximum value of f(x) is 5 and the maximum value of g is 2, so f(x) is greater because 5 > 2.",
+        "rendererProps": {
+          "equation": "y = -x^2 + 6x - 4",
+          "variant": "compare_functions",
+          "responseVariant": "compare_maximums",
+          "comparisonEquation": "y = -3x^2 + 6x - 1",
+          "comparisonQuestion": "The graph of f(x) is shown. Function g has a y-intercept of -1 and a vertex at (1, 2). Which function has the greater maximum value?",
+          "comparisonAnswer": "first",
+          "vertex": [
+            1,
+            2
+          ],
+          "yIntercept": [
+            0,
+            -1
+          ],
+          "domain": [
+            -2,
+            6
+          ],
+          "range": [
+            -6,
+            8
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "The graph of f(x) is shown. Function g has a y-intercept of -10 and a vertex at (2, 2). Which function has the greater maximum value?",
+        "stepPrompts": [
+          "Read the maximum value of f(x) from its graph.",
+          "Use the y-coordinate of g's vertex as its maximum value.",
+          "Compare the two maximum values and select the greater function."
+        ],
+        "hints": [
+          "Find the highest point on the graph for f.",
+          "Use the y-coordinate of g's vertex as its maximum.",
+          "Compare the two maximum values before selecting a function."
+        ],
+        "checksPerStep": [
+          {
+            "check": "The maximum value of f(x) is -1."
+          },
+          {
+            "check": "The maximum value of g(x) is 2."
+          },
+          {
+            "check": "Since -1 < 2, g(x) is greater.",
+            "answerPattern": "second"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "y = -3x^2 + 12x - 13",
+          "variant": "compare_functions",
+          "responseVariant": "compare_maximums",
+          "comparisonEquation": "y = -3x^2 + 12x - 10",
+          "comparisonQuestion": "The graph of f(x) is shown. Function g has a y-intercept of -10 and a vertex at (2, 2). Which function has the greater maximum value?",
+          "comparisonAnswer": "second",
+          "vertex": [
+            2,
+            2
+          ],
+          "yIntercept": [
+            0,
+            -10
+          ],
+          "domain": [
+            -2,
+            6
+          ],
+          "range": [
+            -13,
+            5
+          ]
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "firstVertexX": {
+            "type": "integer",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "description": "The x-coordinate of the vertex of f(x)."
+          },
+          "secondVertexX": {
+            "type": "integer",
+            "min": 1,
+            "max": 2,
+            "step": 1,
+            "description": "The x-coordinate of the vertex of g(x)."
+          },
+          "firstScale": {
+            "type": "enum",
+            "options": [
+              "-3",
+              "-2",
+              "-1"
+            ],
+            "description": "The negative vertical scale of f(x)."
+          },
+          "secondScale": {
+            "type": "enum",
+            "options": [
+              "-3",
+              "-2",
+              "-1"
+            ],
+            "description": "The negative vertical scale of g(x)."
+          },
+          "baseMaximum": {
+            "type": "integer",
+            "min": -2,
+            "max": 4,
+            "step": 1,
+            "description": "The lower base maximum value."
+          },
+          "gap": {
+            "type": "integer",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "description": "The positive gap between the two maximum values."
+          },
+          "winner": {
+            "type": "enum",
+            "options": [
+              "first",
+              "second"
+            ],
+            "description": "The function with the greater maximum value."
+          }
+        },
+        "answerSchema": {
+          "greater_maximum": {
+            "type": "enum",
+            "options": [
+              "first",
+              "second"
+            ],
+            "description": "The function with the greater maximum value."
+          }
+        },
+        "gradingRules": [
+          {
+            "partId": "greater_maximum",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "equation": "y = -3x^2 + 6x + 2",
+          "variant": "compare_functions",
+          "responseVariant": "compare_maximums",
+          "comparisonEquation": "y = -x^2 + 2x + 3",
+          "comparisonQuestion": "The graph of f(x) is shown. Function g has a y-intercept of 3 and a vertex at (1, 4). Which function has the greater maximum value?",
+          "comparisonAnswer": "first",
+          "vertex": [
+            1,
+            4
+          ],
+          "yIntercept": [
+            0,
+            3
+          ],
+          "domain": [
+            -2,
+            6
+          ],
+          "range": [
+            0,
+            8
+          ]
+        }
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "gradingSpec": {
+        "partIds": [
+          "greater_maximum"
+        ],
+        "passingScore": 1,
+        "partialCredit": false,
+        "rubric": [
+          {
+            "criteria": "Identify the function with the greater maximum.",
+            "points": 1,
+            "partId": "greater_maximum"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context",
+      "sourceNodeIds": [
+        "math.im3.example.1.1.003"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-bf-a-1a",
+        "math.standard.ccss.hsa-apr-a-1"
+      ],
+      "rendererKey": "fill-in-the-blank",
+      "rendererModeMap": {
+        "worked": "fill-in-the-blank",
+        "guidedPractice": "fill-in-the-blank",
+        "independentPractice": "fill-in-the-blank"
+      },
+      "workedExampleSpec": {
+        "prompt": "A ski resort sells 680 passes at a base price of $120. Each price increase is $5, and 20 fewer passes are sold for each increase. Let x be the number of price increases. Write the price expression p(x), the sales expression s(x), and expand the profit model P(x) = p(x)s(x) into standard form.",
+        "givens": [
+          "680 passes sold at $120 per pass.",
+          "$5 price increase for each increase.",
+          "20 fewer passes for each increase."
+        ],
+        "target": {
+          "priceBase": "120",
+          "priceStep": "5",
+          "salesBase": "680",
+          "salesLoss": "20",
+          "coefficientA": "-100",
+          "coefficientB": "1000",
+          "coefficientC": "81600"
+        },
+        "steps": [
+          {
+            "description": "Write the price expression.",
+            "expression": "p(x) = 120 + 5x",
+            "result": "p(x) = 120 + 5x"
+          },
+          {
+            "description": "Write the sales expression.",
+            "expression": "s(x) = 680 - 20x",
+            "result": "s(x) = 680 - 20x"
+          },
+          {
+            "description": "Form the profit model as a product.",
+            "expression": "P(x) = (120 + 5x)(680 - 20x)",
+            "result": "P(x) = (120 + 5x)(680 - 20x)"
+          },
+          {
+            "description": "Expand the product.",
+            "expression": "P(x) = 120(680) - 120(20x) + 5x(680) - 5x(20x)",
+            "result": "P(x) = 81600 - 2400x + 3400x - 100x²"
+          },
+          {
+            "description": "Collect like terms.",
+            "expression": "P(x) = -100x² + 1000x + 81600",
+            "result": "P(x) = -100x² + 1000x + 81600"
+          },
+          {
+            "description": "State the standard-form coefficients.",
+            "expression": "a = -100, b = 1000, c = 81600",
+            "result": "a = -100, b = 1000, c = 81600"
+          }
+        ],
+        "explanation": "The price expression is p(x) = 120 + 5x and the sales expression is s(x) = 680 - 20x. Their product is P(x) = (120 + 5x)(680 - 20x). Expanding and combining like terms gives P(x) = -100x² + 1000x + 81600.",
+        "rendererProps": {
+          "template": "A ski resort sells 680 passes at a base price of $120. Each price increase is $5, and 20 fewer passes are sold for each increase. Let x be the number of price increases. Worked solution: p(x) = 120 + 5x; s(x) = 680 - 20x; P(x) = (120 + 5x)(680 - 20x) = 120(680) - 120(20x) + 5x(680) - 5x(20x) = -100x^2 + 1000x + 81600. Check the key values: base price {{blank:priceBase}}, price increase {{blank:priceStep}}, base sales {{blank:salesBase}}, sales loss {{blank:salesLoss}}, a {{blank:coefficientA}}, b {{blank:coefficientB}}, and c {{blank:coefficientC}}.",
+          "blanks": [
+            {
+              "id": "priceBase",
+              "correctAnswer": "120",
+              "isMath": true
+            },
+            {
+              "id": "priceStep",
+              "correctAnswer": "5",
+              "isMath": true
+            },
+            {
+              "id": "salesBase",
+              "correctAnswer": "680",
+              "isMath": true
+            },
+            {
+              "id": "salesLoss",
+              "correctAnswer": "20",
+              "isMath": true
+            },
+            {
+              "id": "coefficientA",
+              "correctAnswer": "-100",
+              "isMath": true
+            },
+            {
+              "id": "coefficientB",
+              "correctAnswer": "1000",
+              "isMath": true
+            },
+            {
+              "id": "coefficientC",
+              "correctAnswer": "81600",
+              "isMath": true
+            }
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "A ski resort sells 270 passes at a base price of $230. Each price increase is $10, and 10 fewer passes are sold for each increase. Let x be the number of price increases. Write the price expression p(x), the sales expression s(x), and expand the profit model P(x) = p(x)s(x) into standard form.",
+        "stepPrompts": [
+          "Write p(x) from the base price and the price increase.",
+          "Write s(x) from the base sales and the sales decrease.",
+          "Multiply p(x) and s(x) to form P(x).",
+          "Expand and combine like terms to get standard form."
+        ],
+        "hints": [
+          "The base price is $230. Add $10 for each increase.",
+          "Start with 270 passes and subtract 10x.",
+          "Use P(x) = p(x)s(x).",
+          "Collect the x², x, and constant terms."
+        ],
+        "checksPerStep": [
+          {
+            "check": "The price expression is p(x) = 230 + 10x."
+          },
+          {
+            "check": "The sales expression is s(x) = 270 - 10x."
+          },
+          {
+            "check": "The product is P(x) = (230 + 10x)(270 - 10x)."
+          },
+          {
+            "check": "The standard form is P(x) = -100x² + 400x + 62100."
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "template": "A ski resort sells 270 passes at a base price of $230. Each price increase is $10, and 10 fewer passes are sold for each increase. Let x be the number of price increases. Write p(x) = {{blank:priceBase}} + {{blank:priceStep}}x; write s(x) = {{blank:salesBase}} - {{blank:salesLoss}}x; then expand P(x) = p(x)s(x) = {{blank:coefficientA}}x^2 + {{blank:coefficientB}}x + {{blank:coefficientC}}.",
+          "blanks": [
+            {
+              "id": "priceBase",
+              "correctAnswer": "230",
+              "isMath": true
+            },
+            {
+              "id": "priceStep",
+              "correctAnswer": "10",
+              "isMath": true
+            },
+            {
+              "id": "salesBase",
+              "correctAnswer": "270",
+              "isMath": true
+            },
+            {
+              "id": "salesLoss",
+              "correctAnswer": "10",
+              "isMath": true
+            },
+            {
+              "id": "coefficientA",
+              "correctAnswer": "-100",
+              "isMath": true
+            },
+            {
+              "id": "coefficientB",
+              "correctAnswer": "400",
+              "isMath": true
+            },
+            {
+              "id": "coefficientC",
+              "correctAnswer": "62100",
+              "isMath": true
+            }
+          ]
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "priceIncrease": {
+            "type": "integer",
+            "min": 5,
+            "max": 10,
+            "step": 5
+          },
+          "salesDecrease": {
+            "type": "integer",
+            "min": 10,
+            "max": 30,
+            "step": 10
+          },
+          "priceFactor": {
+            "type": "integer",
+            "min": 22,
+            "max": 28,
+            "step": 1
+          },
+          "optimalIncreases": {
+            "type": "integer",
+            "min": 2,
+            "max": 6,
+            "step": 1
+          }
+        },
+        "answerSchema": {
+          "priceBase": "string",
+          "priceStep": "string",
+          "salesBase": "string",
+          "salesLoss": "string",
+          "coefficientA": "string",
+          "coefficientB": "string",
+          "coefficientC": "string"
+        },
+        "gradingRules": [
+          {
+            "partId": "priceBase",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "priceStep",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "salesBase",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "salesLoss",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "coefficientA",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "coefficientB",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "coefficientC",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "template": "A ski resort sells 1080 passes at a base price of $120. Each price increase is $5, and 30 fewer passes are sold for each increase. Let x be the number of price increases. Write p(x) = {{blank:priceBase}} + {{blank:priceStep}}x; write s(x) = {{blank:salesBase}} - {{blank:salesLoss}}x; then expand P(x) = p(x)s(x) = {{blank:coefficientA}}x^2 + {{blank:coefficientB}}x + {{blank:coefficientC}}.",
+          "blanks": [
+            {
+              "id": "priceBase",
+              "correctAnswer": "120",
+              "isMath": true
+            },
+            {
+              "id": "priceStep",
+              "correctAnswer": "5",
+              "isMath": true
+            },
+            {
+              "id": "salesBase",
+              "correctAnswer": "1080",
+              "isMath": true
+            },
+            {
+              "id": "salesLoss",
+              "correctAnswer": "30",
+              "isMath": true
+            },
+            {
+              "id": "coefficientA",
+              "correctAnswer": "-150",
+              "isMath": true
+            },
+            {
+              "id": "coefficientB",
+              "correctAnswer": "1800",
+              "isMath": true
+            },
+            {
+              "id": "coefficientC",
+              "correctAnswer": "129600",
+              "isMath": true
+            }
+          ]
+        }
+      },
+      "generatorKey": "quadratic-profit-model",
+      "gradingSpec": {
+        "partIds": [
+          "priceBase",
+          "priceStep",
+          "salesBase",
+          "salesLoss",
+          "coefficientA",
+          "coefficientB",
+          "coefficientC"
+        ],
+        "passingScore": 7,
+        "partialCredit": true,
+        "rubric": [
+          {
+            "criteria": "Correct priceBase",
+            "points": 1,
+            "partId": "priceBase"
+          },
+          {
+            "criteria": "Correct priceStep",
+            "points": 1,
+            "partId": "priceStep"
+          },
+          {
+            "criteria": "Correct salesBase",
+            "points": 1,
+            "partId": "salesBase"
+          },
+          {
+            "criteria": "Correct salesLoss",
+            "points": 1,
+            "partId": "salesLoss"
+          },
+          {
+            "criteria": "Correct coefficientA",
+            "points": 1,
+            "partId": "coefficientA"
+          },
+          {
+            "criteria": "Correct coefficientB",
+            "points": 1,
+            "partId": "coefficientB"
+          },
+          {
+            "criteria": "Correct coefficientC",
+            "points": 1,
+            "partId": "coefficientC"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model",
+      "sourceNodeIds": [
+        "math.im3.example.1.1.003"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-if-a-2"
+      ],
+      "rendererKey": "fill-in-the-blank",
+      "rendererModeMap": {
+        "worked": "fill-in-the-blank",
+        "guidedPractice": "fill-in-the-blank",
+        "independentPractice": "fill-in-the-blank"
+      },
+      "generatorKey": "quadratic-profit-model",
+      "workedExampleSpec": {
+        "prompt": "A ski resort sells 680 passes at a base price of $120. For each $5 increase, it sells 20 fewer passes. Given P(x) = -100x^2 + 1000x + 81600, find the maximizing x, the price per pass, and the maximum profit.",
+        "givens": [
+          "A ski resort sells 680 passes at $120 per pass.",
+          "Each $5 price increase results in 20 fewer passes sold.",
+          "P(x) = -100x^2 + 1000x + 81600."
+        ],
+        "target": {
+          "optimalIncreases": "5",
+          "optimalPrice": "145",
+          "maximumProfit": "84100"
+        },
+        "steps": [
+          {
+            "description": "Find the axis of symmetry.",
+            "expression": "x = -b/(2a) = -1000/(2(-100)) = 5",
+            "result": "x = 5 means 5 price increases."
+          },
+          {
+            "description": "Find the price per pass.",
+            "expression": "120 + 5(5) = 145 dollars per pass",
+            "result": "The price is $145 per pass."
+          },
+          {
+            "description": "Evaluate the profit at the maximum.",
+            "expression": "P(5) = -100(5)^2 + 1000(5) + 81600 = 84100 dollars",
+            "result": "The maximum profit is $84,100."
+          }
+        ],
+        "explanation": "The axis of symmetry gives the maximizing number of price increases. Use it to find the price per pass, then evaluate P(x) to find the maximum profit.",
+        "rendererProps": {
+          "template": "A ski resort sells 680 passes at a base price of $120. Each price increase is $5, and 20 fewer passes are sold for each increase. Let x be the number of price increases. Given P(x) = -100x^2 + 1000x + 81600, enter the maximizing x value: {{blank:optimalIncreases}}. Enter the price per pass in dollars: {{blank:optimalPrice}}. Enter the maximum profit in dollars: {{blank:maximumProfit}}.",
+          "blanks": [
+            {
+              "id": "optimalIncreases",
+              "correctAnswer": "5",
+              "isMath": true
+            },
+            {
+              "id": "optimalPrice",
+              "correctAnswer": "145",
+              "isMath": true
+            },
+            {
+              "id": "maximumProfit",
+              "correctAnswer": "84100",
+              "isMath": true
+            }
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "A ski resort sells 270 passes at a base price of $230. Each $10 price increase results in 10 fewer passes sold. Given P(x) = -100x^2 + 400x + 62100, use the axis of symmetry to find the maximizing number of price increases, the resulting price per pass, and the maximum profit.",
+        "stepPrompts": [
+          "Identify a and b, then use x = -b/(2a).",
+          "Use the maximizing x value in 230 + 10x to find the price per pass.",
+          "Evaluate P(x) at the maximizing x value."
+        ],
+        "hints": [
+          "Here, a = -100 and b = 400.",
+          "The maximizing input is x = 2.",
+          "Substitute x = 2 into P(x) = -100x^2 + 400x + 62100."
+        ],
+        "checksPerStep": [
+          {
+            "check": "x = -400/(2(-100)) = 2."
+          },
+          {
+            "check": "230 + 10(2) = 250 dollars per pass."
+          },
+          {
+            "check": "P(2) = -100(2)^2 + 400(2) + 62100 = 62500 dollars."
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "template": "A ski resort sells 270 passes at a base price of $230. Each price increase is $10, and 10 fewer passes are sold for each increase. Let x be the number of price increases. Given P(x) = -100x^2 + 400x + 62100, enter the maximizing x value: {{blank:optimalIncreases}}. Enter the price per pass in dollars: {{blank:optimalPrice}}. Enter the maximum profit in dollars: {{blank:maximumProfit}}.",
+          "blanks": [
+            {
+              "id": "optimalIncreases",
+              "correctAnswer": "2",
+              "isMath": true
+            },
+            {
+              "id": "optimalPrice",
+              "correctAnswer": "250",
+              "isMath": true
+            },
+            {
+              "id": "maximumProfit",
+              "correctAnswer": "62500",
+              "isMath": true
+            }
+          ]
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "priceIncrease": {
+            "type": "integer",
+            "min": 5,
+            "max": 10,
+            "step": 5
+          },
+          "salesDecrease": {
+            "type": "integer",
+            "min": 10,
+            "max": 30,
+            "step": 10
+          },
+          "priceFactor": {
+            "type": "integer",
+            "min": 22,
+            "max": 28,
+            "step": 1
+          },
+          "optimalIncreases": {
+            "type": "integer",
+            "min": 2,
+            "max": 6,
+            "step": 1
+          }
+        },
+        "answerSchema": {
+          "optimalIncreases": "string",
+          "optimalPrice": "string",
+          "maximumProfit": "string"
+        },
+        "gradingRules": [
+          {
+            "partId": "optimalIncreases",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "optimalPrice",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "maximumProfit",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "template": "A ski resort sells 1080 passes at a base price of $120. Each price increase is $5, and 30 fewer passes are sold for each increase. Let x be the number of price increases. Given P(x) = -150x^2 + 1800x + 129600, enter the maximizing x value: {{blank:optimalIncreases}}. Enter the price per pass in dollars: {{blank:optimalPrice}}. Enter the maximum profit in dollars: {{blank:maximumProfit}}.",
+          "blanks": [
+            {
+              "id": "optimalIncreases",
+              "correctAnswer": "6",
+              "isMath": true
+            },
+            {
+              "id": "optimalPrice",
+              "correctAnswer": "150",
+              "isMath": true
+            },
+            {
+              "id": "maximumProfit",
+              "correctAnswer": "135000",
+              "isMath": true
+            }
+          ]
+        }
+      },
+      "gradingSpec": {
+        "partIds": [
+          "optimalIncreases",
+          "optimalPrice",
+          "maximumProfit"
+        ],
+        "passingScore": 3,
+        "partialCredit": true,
+        "rubric": [
+          {
+            "criteria": "Correct optimalIncreases",
+            "points": 1,
+            "partId": "optimalIncreases"
+          },
+          {
+            "criteria": "Correct optimalPrice",
+            "points": 1,
+            "partId": "optimalPrice"
+          },
+          {
+            "criteria": "Correct maximumProfit",
+            "points": 1,
+            "partId": "maximumProfit"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model",
+      "sourceNodeIds": [
+        "math.im3.example.1.1.003"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-b-5",
+        "math.standard.ccss.hsa-ced-a-3",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.solve-a-quadratic-equation-with-one-real-solution-by-graphing",
+      "sourceNodeIds": [
+        "math.im3.example.1.2.007"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.hsa-rei-b-4"
@@ -366,123 +1934,909 @@
         "independentPractice": "graphing-explorer"
       },
       "workedExampleSpec": {
-        "prompt": "Solve x^2 - 5x + 6 = 0 by graphing.",
+        "prompt": "Solve 10 - x^2 = 4x + 14 by graphing.",
         "givens": [
-          "x^2 - 5x + 6 = 0"
+          "10 - x^2 = 4x + 14",
+          "0 = x^2 + 4x + 4",
+          "f(x) = x^2 + 4x + 4"
         ],
         "target": {
+          "related_function": "f(x) = x^2 + 4x + 4",
+          "axis_of_symmetry": "x = -2",
+          "x_values": [
+            -4,
+            -3,
+            -2,
+            -1,
+            0
+          ],
+          "y_values": [
+            4,
+            1,
+            0,
+            1,
+            4
+          ],
+          "solution": "x = -2"
+        },
+        "steps": [
+          {
+            "description": "Rewrite the equation.",
+            "expression": "10 - x^2 = 4x + 14",
+            "result": "0 = x^2 + 4x + 4"
+          },
+          {
+            "description": "Identify the related function and axis of symmetry.",
+            "expression": "f(x) = x^2 + 4x + 4; x = -b/(2a) = -4/(2(1))",
+            "result": "The axis of symmetry is x = -2."
+          },
+          {
+            "description": "Make a table and graph the related function.",
+            "expression": "x: -4, -3, -2, -1, 0; y: 4, 1, 0, 1, 4",
+            "result": "Plot the five points and connect them with a parabola."
+          },
+          {
+            "description": "Read the solution from the graph.",
+            "expression": "f(-2) = 0",
+            "result": "The solution is x = -2."
+          }
+        ],
+        "explanation": "The solution is the x-coordinate where the related function reaches zero.",
+        "rendererProps": {
+          "equation": "f(x) = x^2 + 4x + 4",
+          "variant": "plot_from_equation",
+          "responseVariant": "one_real_solution",
+          "originalEquation": "10 - x^2 = 4x + 14",
+          "domain": [
+            -5,
+            1
+          ],
+          "range": [
+            -1,
+            10
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Solve 8 - x^2 = 6x + 17 by graphing.",
+        "stepPrompts": [
+          "Rewrite the equation as a related function with one side equal to 0.",
+          "Identify the repeated root and axis of symmetry.",
+          "Complete the table for x = -5, -4, -3, -2, -1.",
+          "Plot the five points and state the solution."
+        ],
+        "hints": [
+          "Move all terms to one side to get f(x) = x^2 + 6x + 9.",
+          "The repeated root is at the vertex of the upward-opening parabola.",
+          "Substitute each x-value into f(x) = x^2 + 6x + 9.",
+          "The only x-intercept gives the solution."
+        ],
+        "checksPerStep": [
+          {
+            "check": "f(x) = x^2 + 6x + 9"
+          },
+          {
+            "check": "The repeated root and axis of symmetry are x = -3."
+          },
+          {
+            "check": "The y-values are 4, 1, 0, 1, and 4."
+          },
+          {
+            "check": "The solution is x = -3."
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "f(x) = x^2 + 6x + 9",
+          "variant": "plot_from_equation",
+          "responseVariant": "one_real_solution",
+          "originalEquation": "8 - x^2 = 6x + 17",
+          "domain": [
+            -6,
+            0
+          ],
+          "range": [
+            -1,
+            10
+          ]
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "root": {
+            "type": "integer",
+            "min": -4,
+            "max": 4,
+            "step": 1,
+            "description": "The repeated x-value where the related function touches the x-axis."
+          },
+          "scale": {
+            "type": "integer",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "description": "The positive scale in the related quadratic function."
+          }
+        },
+        "answerSchema": {
+          "table_values": {
+            "type": "array",
+            "description": "Five numeric table points with x and y coordinates."
+          },
+          "placed_points": {
+            "type": "array",
+            "description": "Five plotted points with x and y coordinates."
+          },
+          "solution": {
+            "type": "number",
+            "description": "The repeated x-value solution."
+          }
+        },
+        "gradingRules": [
+          {
+            "partId": "table_values",
+            "ruleType": "custom",
+            "maxScore": 1
+          },
+          {
+            "partId": "placed_points",
+            "ruleType": "custom",
+            "maxScore": 1
+          },
+          {
+            "partId": "solution",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "equation": "f(x) = x^2 + 2x + 1",
+          "variant": "plot_from_equation",
+          "responseVariant": "one_real_solution",
+          "originalEquation": "7 - x^2 = 2x + 8",
+          "domain": [
+            -4,
+            2
+          ],
+          "range": [
+            -1,
+            10
+          ]
+        }
+      },
+      "generatorKey": "one-real-solution-graphing",
+      "gradingSpec": {
+        "partIds": [
+          "table_values",
+          "placed_points",
+          "solution"
+        ],
+        "passingScore": 3,
+        "partialCredit": true,
+        "rubric": [
+          {
+            "criteria": "Complete the five-value table.",
+            "points": 1,
+            "partId": "table_values"
+          },
+          {
+            "criteria": "Plot the five points.",
+            "points": 1,
+            "partId": "placed_points"
+          },
+          {
+            "criteria": "Identify the repeated-root solution.",
+            "points": 1,
+            "partId": "solution"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.find-two-numbers-with-given-sum-and-product-by-graphing",
+      "sourceNodeIds": [
+        "math.im3.example.1.2.008"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Use a quadratic equation to find two real numbers with a sum of 24 and a product of 143.",
+        "givens": [
+          "x(24 - x) = 143",
+          "0 = x^2 - 24x + 143",
+          "f(x) = x^2 - 24x + 143"
+        ],
+        "target": {
+          "related_function": "f(x) = x^2 - 24x + 143",
+          "axis_of_symmetry": "x = 12",
+          "x_values": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "y_values": [
+            3,
+            0,
+            -1,
+            0,
+            3
+          ],
           "solutions": [
-            "x = 2",
-            "x = 3"
+            "x = 11",
+            "x = 13"
           ]
         },
         "steps": [
           {
-            "description": "Identify the quadratic function",
-            "expression": "f(x) = x^2 - 5x + 6",
-            "explanation": "The solutions are the x-intercepts of f(x)."
+            "description": "Represent the two numbers with x and 24 - x",
+            "expression": "x(24 - x) = 143",
+            "result": "Let x represent one number and 24 - x represent the other."
           },
           {
-            "description": "Find the x-intercepts",
-            "expression": "f(x) = 0 when x^2 - 5x + 6 = (x-2)(x-3) = 0",
-            "result": "x = 2 or x = 3"
+            "description": "Rewrite the equation in standard form",
+            "expression": "0 = x^2 - 24x + 143",
+            "result": "Subtract 24x - x^2 from each side."
           },
           {
-            "description": "Verify solutions",
-            "expression": "f(2) = 4 - 10 + 6 = 0 \u2713, f(3) = 9 - 15 + 6 = 0 \u2713"
+            "description": "Find the axis of symmetry",
+            "expression": "x = 12",
+            "result": "x = -b/(2a) = -(-24)/(2(1)) = 12."
+          },
+          {
+            "description": "Make the five-point table and graph",
+            "expression": "(10, 3), (11, 0), (12, -1), (13, 0), (14, 3)",
+            "result": "Plot the five points and connect them with a parabola."
+          },
+          {
+            "description": "Identify the zeros and contextual numbers",
+            "expression": "x = 11 or x = 13; the two numbers are 11 and 13",
+            "result": "The two numbers are 11 and 13."
           }
         ],
-        "explanation": "The solutions of f(x) = 0 are the x-intercepts of the parabola."
+        "explanation": "The zeros of the function are 11 and 13, so the two numbers are 11 and 13.",
+        "rendererProps": {
+          "equation": "f(x) = x^2 - 24x + 143",
+          "variant": "plot_from_equation",
+          "responseVariant": "two_real_solutions",
+          "originalEquation": "x(24 - x) = 143",
+          "points": [
+            [
+              10,
+              3
+            ],
+            [
+              11,
+              0
+            ],
+            [
+              12,
+              -1
+            ],
+            [
+              13,
+              0
+            ],
+            [
+              14,
+              3
+            ]
+          ],
+          "domain": [
+            8,
+            16
+          ],
+          "range": [
+            -2,
+            8
+          ],
+          "sum": 24,
+          "product": 143
+        }
       },
       "guidedPracticeSpec": {
-        "scaffoldedPrompt": "Solve x^2 - 4x + 3 = 0 by finding the x-intercepts.",
+        "scaffoldedPrompt": "Find two real numbers with a sum of 26 and a product of 168 by graphing.",
         "stepPrompts": [
-          "Identify f(x)",
-          "Factor the quadratic",
-          "Set each factor equal to zero"
+          "Represent the two numbers with x and 26 - x.",
+          "Rewrite x(26 - x) = 168 in standard form.",
+          "Find the axis of symmetry and complete the five-value table.",
+          "Graph the five points and state both solutions."
         ],
         "hints": [
-          "f(x) = x^2 - 4x + 3",
-          "Find two numbers that multiply to 3 and add to -4",
-          "Set each factor to 0 and solve"
+          "Let x represent one number. The other number is 26 - x.",
+          "Rewrite the equation as 0 = x^2 - 26x + 168.",
+          "Use x = 13 as the axis of symmetry.",
+          "Read the two x-intercepts from the graph."
         ],
         "checksPerStep": [
           {
-            "check": "f(x) = x^2 - 4x + 3"
+            "check": "x(26 - x) = 168"
           },
           {
-            "check": "(x - 1)(x - 3)"
+            "check": "0 = x^2 - 26x + 168"
           },
           {
-            "check": "x = 1, x = 3"
+            "check": "The axis of symmetry is x = 13."
+          },
+          {
+            "check": "The solutions are x = 12 and x = 14."
           }
         ],
-        "revealPolicy": "one_at_a_time"
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "f(x) = x^2 - 26x + 168",
+          "variant": "plot_from_equation",
+          "responseVariant": "two_real_solutions",
+          "originalEquation": "x(26 - x) = 168",
+          "points": [
+            [
+              11,
+              3
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              13,
+              -1
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              15,
+              3
+            ]
+          ],
+          "domain": [
+            9,
+            17
+          ],
+          "range": [
+            -2,
+            8
+          ],
+          "sum": 26,
+          "product": 168
+        }
       },
       "independentPracticeSpec": {
         "variantParameters": {
-          "a": {
+          "axis": {
+            "type": "integer",
+            "min": 8,
+            "max": 16,
+            "step": 1,
+            "description": "The axis of symmetry of the related quadratic."
+          },
+          "distance": {
             "type": "integer",
             "min": 1,
             "max": 2,
             "step": 1,
-            "description": "Coefficient of x^2"
-          },
-          "b": {
-            "type": "integer",
-            "min": -6,
-            "max": 6,
-            "step": 1,
-            "description": "Coefficient of x"
-          },
-          "c": {
-            "type": "integer",
-            "min": -6,
-            "max": 8,
-            "step": 1,
-            "description": "Constant term"
+            "description": "The distance from the axis to each real solution."
           }
         },
         "answerSchema": {
-          "solution_1": "number",
-          "solution_2": "number"
+          "table_values": {
+            "type": "array",
+            "description": "Five numeric table points with x and y coordinates."
+          },
+          "placed_points": {
+            "type": "array",
+            "description": "Five plotted points with x and y coordinates."
+          },
+          "solutions": {
+            "type": "array",
+            "description": "The two real-number solutions."
+          }
         },
         "gradingRules": [
           {
-            "partId": "solution_1",
-            "ruleType": "numeric_tolerance",
-            "tolerance": 0.01,
-            "maxScore": 3
+            "partId": "table_values",
+            "ruleType": "custom",
+            "maxScore": 1
           },
           {
-            "partId": "solution_2",
-            "ruleType": "numeric_tolerance",
-            "tolerance": 0.01,
-            "maxScore": 3
+            "partId": "placed_points",
+            "ruleType": "custom",
+            "maxScore": 1
+          },
+          {
+            "partId": "solutions",
+            "ruleType": "custom",
+            "maxScore": 1
           }
         ],
-        "replayPolicy": "unique_seeds"
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "equation": "f(x) = x^2 - 16x + 60",
+          "variant": "plot_from_equation",
+          "responseVariant": "two_real_solutions",
+          "originalEquation": "x(16 - x) = 60",
+          "points": [
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              -3
+            ],
+            [
+              8,
+              -4
+            ],
+            [
+              9,
+              -3
+            ],
+            [
+              10,
+              0
+            ]
+          ],
+          "domain": [
+            4,
+            12
+          ],
+          "range": [
+            -5,
+            5
+          ],
+          "sum": 16,
+          "product": 60
+        }
       },
-      "generatorKey": "solve-quadratic-by-graphing",
+      "generatorKey": "two-real-solutions-graphing",
       "gradingSpec": {
         "partIds": [
-          "solution_1",
-          "solution_2"
+          "table_values",
+          "placed_points",
+          "solutions"
         ],
-        "passingScore": 4,
+        "passingScore": 3,
         "partialCredit": true,
         "rubric": [
           {
-            "criteria": "First solution correct",
-            "points": 3,
-            "partId": "solution_1"
+            "criteria": "Complete the five-value table.",
+            "points": 1,
+            "partId": "table_values"
           },
           {
-            "criteria": "Second solution correct",
-            "points": 3,
-            "partId": "solution_2"
+            "criteria": "Plot the five points.",
+            "points": 1,
+            "partId": "placed_points"
+          },
+          {
+            "criteria": "Identify both solutions.",
+            "points": 1,
+            "partId": "solutions"
           }
         ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.estimate-roots-by-graphing",
+      "sourceNodeIds": [
+        "math.im3.example.1.2.009"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Solve -x^2 + 3x + 7 = 0 by graphing. If the exact roots cannot be found, state the consecutive integers between which the roots are located.",
+        "givens": [
+          "-x^2 + 3x + 7 = 0",
+          "f(x) = -x^2 + 3x + 7"
+        ],
+        "target": {
+          "related_function": "f(x) = -x^2 + 3x + 7",
+          "axis_of_symmetry": "x = 1.5",
+          "x_values": [
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "y_values": [
+            -3,
+            3,
+            7,
+            9,
+            9,
+            7,
+            3,
+            -3
+          ],
+          "root_intervals": [
+            [
+              -2,
+              -1
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        "steps": [
+          {
+            "description": "Rewrite the equation as the related function",
+            "expression": "f(x) = -x^2 + 3x + 7"
+          },
+          {
+            "description": "Find the axis of symmetry",
+            "expression": "x = 1.5"
+          },
+          {
+            "description": "Complete the table of values",
+            "expression": "(-2, -3), (-1, 3), (0, 7), (1, 9), (2, 9), (3, 7), (4, 3), (5, -3)"
+          },
+          {
+            "description": "Plot the points and connect the curve",
+            "expression": "(-2, -3), (-1, 3), (0, 7), (1, 9), (2, 9), (3, 7), (4, 3), (5, -3)"
+          },
+          {
+            "description": "State the consecutive-integer root intervals",
+            "expression": "x is between -2 and -1, and x is between 4 and 5"
+          }
+        ],
+        "explanation": "The graph changes sign between -2 and -1 and between 4 and 5, so the roots lie in those consecutive-integer intervals.",
+        "rendererProps": {
+          "equation": "f(x) = -x^2 + 3x + 7",
+          "variant": "plot_from_equation",
+          "responseVariant": "estimated_root_intervals",
+          "originalEquation": "-x^2 + 3x + 7 = 0",
+          "points": [
+            [
+              -2,
+              -3
+            ],
+            [
+              -1,
+              3
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              -3
+            ]
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Solve -x^2 + x + 7 = 0 by graphing. State the consecutive integers between which the roots are located.",
+        "stepPrompts": [
+          "Rewrite the equation as the related function.",
+          "Find the axis of symmetry.",
+          "Complete the table of values for eight consecutive integer x-values.",
+          "Plot the eight points and connect the curve.",
+          "State the two consecutive-integer root intervals."
+        ],
+        "hints": [
+          "Move all terms to one side and write the related function.",
+          "Use x = -b/(2a) to find the axis of symmetry.",
+          "Evaluate the function at eight consecutive integer x-values.",
+          "Plot the points and connect them with a curve.",
+          "Use sign changes in the table and x-intercepts in the graph to identify each interval."
+        ],
+        "checksPerStep": [
+          {
+            "check": "The equation is written as a related function."
+          },
+          {
+            "check": "The axis of symmetry is identified."
+          },
+          {
+            "check": "The eight table values are complete."
+          },
+          {
+            "check": "All eight points are plotted."
+          },
+          {
+            "check": "Two ordered consecutive-integer intervals are stated."
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "f(x) = -x^2 + x + 7",
+          "variant": "plot_from_equation",
+          "responseVariant": "estimated_root_intervals",
+          "originalEquation": "-x^2 + x + 7 = 0",
+          "points": [
+            [
+              -3,
+              -5
+            ],
+            [
+              -2,
+              1
+            ],
+            [
+              -1,
+              5
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              4,
+              -5
+            ]
+          ]
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "axisFloor": {
+            "type": "integer",
+            "min": -3,
+            "max": 3,
+            "step": 1,
+            "description": "The integer at the lower end of the symmetry interval."
+          },
+          "verticalShift": {
+            "type": "integer",
+            "min": 7,
+            "max": 9,
+            "step": 1,
+            "description": "The vertical shift of the quadratic."
+          }
+        },
+        "answerSchema": {
+          "table_values": {
+            "type": "array",
+            "description": "Eight numeric table points with x and y coordinates."
+          },
+          "placed_points": {
+            "type": "array",
+            "description": "Eight plotted points with x and y coordinates."
+          },
+          "root_intervals": {
+            "type": "array",
+            "description": "Two ordered pairs of consecutive integers that bound the roots from left to right."
+          }
+        },
+        "gradingRules": [
+          {
+            "partId": "table_values",
+            "ruleType": "custom",
+            "maxScore": 1
+          },
+          {
+            "partId": "placed_points",
+            "ruleType": "custom",
+            "maxScore": 1
+          },
+          {
+            "partId": "root_intervals",
+            "ruleType": "custom",
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "equation": "f(x) = -x^2 - 5x + 3",
+          "variant": "plot_from_equation",
+          "responseVariant": "estimated_root_intervals",
+          "originalEquation": "-x^2 - 5x + 3 = 0",
+          "points": [
+            [
+              -6,
+              -3
+            ],
+            [
+              -5,
+              3
+            ],
+            [
+              -4,
+              7
+            ],
+            [
+              -3,
+              9
+            ],
+            [
+              -2,
+              9
+            ],
+            [
+              -1,
+              7
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              -3
+            ]
+          ]
+        }
+      },
+      "generatorKey": "estimate-roots-by-graphing",
+      "gradingSpec": {
+        "partIds": [
+          "table_values",
+          "placed_points",
+          "root_intervals"
+        ],
+        "passingScore": 3,
+        "partialCredit": true,
+        "rubric": [
+          {
+            "criteria": "Complete the eight-value table.",
+            "points": 1,
+            "partId": "table_values"
+          },
+          {
+            "criteria": "Plot the eight points.",
+            "points": 1,
+            "partId": "placed_points"
+          },
+          {
+            "criteria": "Identify both root intervals.",
+            "points": 1,
+            "partId": "root_intervals"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "sourceNodeIds": [
+        "math.im3.example.1.2.007",
+        "math.im3.example.1.2.008",
+        "math.im3.example.1.2.009",
+        "math.im3.example.1.2.010",
+        "math.im3.example.1.2.011"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Solve 10 - x^2 = 4x + 14 by graphing.",
+        "givens": [
+          "10 - x^2 = 4x + 14",
+          "0 = x^2 + 4x + 4"
+        ],
+        "target": {
+          "solutions": [
+            "x = -2"
+          ],
+          "axis_of_symmetry": "x = -2"
+        },
+        "steps": [
+          {
+            "description": "Rewrite the equation",
+            "expression": "10 - x^2 = 4x + 14",
+            "result": "0 = x^2 + 4x + 4"
+          },
+          {
+            "description": "Find the axis of symmetry",
+            "expression": "x = -b/(2a) = -4/(2(1))",
+            "result": "x = -2"
+          },
+          {
+            "description": "Read the zero from the graph",
+            "expression": "f(-2) = 0",
+            "result": "The solution is x = -2"
+          }
+        ],
+        "explanation": "The solution of the quadratic equation is the x-coordinate of the graph's zero.",
+        "rendererProps": {
+          "equation": "f(x) = x^2 + 4x + 4",
+          "variant": "plot_from_equation"
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Solve -x^2 + 3x + 7 = 0 by graphing. Estimate roots when exact roots cannot be found.",
+        "stepPrompts": [
+          "Enter f(x) = -x^2 + 3x + 7",
+          "Identify the two x-intercepts",
+          "State the consecutive integers for each root"
+        ],
+        "hints": [
+          "Use f(x) = -x^2 + 3x + 7.",
+          "Look for where the graph crosses the x-axis.",
+          "Read each crossing between adjacent integer marks."
+        ],
+        "checksPerStep": [
+          {
+            "check": "f(x) = -x^2 + 3x + 7"
+          },
+          {
+            "check": "One intercept is between -2 and -1; the other is between 4 and 5"
+          },
+          {
+            "check": "The roots are between -2 and -1 and between 4 and 5"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "f(x) = -x^2 + 3x + 7",
+          "variant": "find_intercepts"
+        }
       },
       "reviewStatus": "draft",
       "metadata": {
@@ -493,9 +2847,99 @@
       }
     },
     {
+      "nodeId": "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+      "sourceNodeIds": [
+        "math.im3.example.1.2.008",
+        "math.im3.example.1.2.011"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "A kicker punts a football. The height of the ball after t seconds is given by h(t) = -16t^2 + 50t + h0. If h0 = 1.5, how long will it take the ball to hit the ground?",
+        "givens": [
+          "h(t) = -16t^2 + 50t + h0",
+          "h0 = 1.5",
+          "h(t) = -16t^2 + 50t + 1.5"
+        ],
+        "target": {
+          "positive_root": "t ≈ 3.15 seconds",
+          "interpretation": "The ball hits the ground approximately 3.15 seconds after the punt."
+        },
+        "steps": [
+          {
+            "description": "Substitute the initial height",
+            "expression": "h(t) = -16t^2 + 50t + 1.5",
+            "result": "Use the height function to find when h(t) = 0."
+          },
+          {
+            "description": "Find the positive zero of the graph",
+            "expression": "h(t) = 0",
+            "result": "t ≈ 3.15"
+          },
+          {
+            "description": "Interpret the positive root in context",
+            "expression": "t ≈ 3.15 seconds",
+            "result": "The ball hits the ground approximately 3.15 seconds after the punt."
+          }
+        ],
+        "explanation": "The positive root is the meaningful time because time after the punt is nonnegative.",
+        "rendererProps": {
+          "equation": "f(x) = -16x^2 + 50x + 1.5",
+          "variant": "plot_from_equation"
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Use the graph of f(x) = -16x^2 + 50x + 1.5 to find the positive root. State what the root means in the football context.",
+        "stepPrompts": [
+          "Identify the height function and its zeros",
+          "Select the zero for a time after the punt",
+          "State what the positive root means"
+        ],
+        "hints": [
+          "The ball reaches the ground when the height is 0.",
+          "Time after the punt cannot be negative.",
+          "Use seconds and describe when the ball hits the ground."
+        ],
+        "checksPerStep": [
+          {
+            "check": "f(x) = -16x^2 + 50x + 1.5"
+          },
+          {
+            "check": "Choose the positive x-intercept, approximately 3.15"
+          },
+          {
+            "check": "The ball hits the ground approximately 3.15 seconds after the punt"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "f(x) = -16x^2 + 50x + 1.5",
+          "variant": "find_intercepts"
+        }
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
       "nodeId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
       "sourceNodeIds": [
-        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing"
+        "math.im3.example.1.4.019",
+        "math.im3.example.1.4.020",
+        "math.im3.example.1.4.021",
+        "math.im3.example.1.4.022",
+        "math.im3.example.1.4.023",
+        "math.im3.example.1.4.024",
+        "math.im3.example.1.4.025"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.hsa-rei-b-4"
@@ -506,66 +2950,128 @@
         "guidedPractice": "step-by-step-solver"
       },
       "workedExampleSpec": {
-        "prompt": "Worked example for 1h: Solve quadratic equations by factoring",
+        "prompt": "Solve x^2 - 6x - 9 = 18 by factoring. Check your solution.",
         "givens": [
-          "See curriculum source"
+          "x^2 - 6x - 9 = 18"
         ],
-        "target": {},
+        "target": {
+          "factoredForm": "(x + 3)(x - 9)",
+          "solutions": [
+            "x = -3",
+            "x = 9"
+          ]
+        },
         "steps": [
           {
-            "description": "Step 1",
-            "expression": "See curriculum"
+            "description": "Move all terms to one side.",
+            "expression": "x^2 - 6x - 27 = 0",
+            "explanation": "Subtract 18 from each side."
+          },
+          {
+            "description": "Factor the trinomial.",
+            "expression": "(x + 3)(x - 9) = 0",
+            "explanation": "The factors 3 and -9 have product -27 and sum -6."
+          },
+          {
+            "description": "Apply the Zero Product Property.",
+            "expression": "x + 3 = 0 or x - 9 = 0",
+            "explanation": "Set each factor equal to zero."
+          },
+          {
+            "description": "Solve each equation.",
+            "expression": "x = -3 or x = 9",
+            "explanation": "Subtract 3 from the first equation and add 9 to the second equation."
           }
         ],
-        "explanation": "See curriculum source material."
+        "explanation": "Move the equation to zero, factor the trinomial, apply the Zero Product Property, and solve both linear equations.",
+        "rendererProps": {
+          "problemType": "factoring",
+          "equation": "x^2 - 6x - 9 = 18",
+          "steps": [
+            {
+              "id": "move-to-zero",
+              "description": "Move all terms to one side.",
+              "expression": "x^2 - 6x - 27 = 0",
+              "explanation": "Subtract 18 from each side."
+            },
+            {
+              "id": "factor-trinomial",
+              "description": "Factor the trinomial.",
+              "expression": "(x + 3)(x - 9) = 0",
+              "explanation": "The factors 3 and -9 have product -27 and sum -6."
+            },
+            {
+              "id": "zero-product-property",
+              "description": "Apply the Zero Product Property.",
+              "expression": "x + 3 = 0 or x - 9 = 0",
+              "explanation": "Set each factor equal to zero."
+            },
+            {
+              "id": "solve-factors",
+              "description": "Solve each equation.",
+              "expression": "x = -3 or x = 9",
+              "explanation": "Solve both linear equations."
+            }
+          ]
+        }
       },
       "guidedPracticeSpec": {
-        "scaffoldedPrompt": "Guided practice for 1h: Solve quadratic equations by factoring",
+        "scaffoldedPrompt": "Solve x^2 - 5x + 6 = 0 by factoring. Use each step in order.",
         "stepPrompts": [
-          "Step 1"
+          "Choose the factorization.",
+          "Apply the Zero Product Property.",
+          "Solve both linear equations."
         ],
         "hints": [
-          "Hint 1"
+          "Find two numbers with product 6 and sum -5.",
+          "Set each factor equal to zero.",
+          "Isolate x in each equation."
         ],
         "checksPerStep": [
           {
-            "check": "See curriculum"
+            "check": "(x - 2)(x - 3) = 0",
+            "answerPattern": "(x - 2)(x - 3) = 0"
+          },
+          {
+            "check": "x - 2 = 0 or x - 3 = 0",
+            "answerPattern": "x - 2 = 0 or x - 3 = 0"
+          },
+          {
+            "check": "x = 2 or x = 3",
+            "answerPattern": "x = 2 or x = 3"
           }
         ],
-        "revealPolicy": "one_at_a_time"
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "problemType": "factoring",
+          "equation": "x^2 - 5x + 6 = 0",
+          "steps": [
+            {
+              "id": "guided-factor",
+              "description": "Choose the factorization.",
+              "expression": "(x - 2)(x - 3) = 0",
+              "explanation": "The factors -2 and -3 have product 6 and sum -5."
+            },
+            {
+              "id": "guided-zero-product",
+              "description": "Apply the Zero Product Property.",
+              "expression": "x - 2 = 0 or x - 3 = 0",
+              "explanation": "Set each factor equal to zero."
+            },
+            {
+              "id": "guided-solutions",
+              "description": "Solve both linear equations.",
+              "expression": "x = 2 or x = 3",
+              "explanation": "Add 2 to the first equation and add 3 to the second equation."
+            }
+          ]
+        }
       },
       "reviewStatus": "draft",
       "metadata": {
         "course": "im3",
         "module": "1",
         "lesson": "4",
-        "pilotSequence": 0
-      },
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for pilot",
-          "reviewer": "pilot",
-          "date": "2026-05-10"
-        }
-      ]
-    },
-    {
-      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
-      "sourceNodeIds": [
-        "math.im3.example.1.6.039",
-        "math.im3.example.1.6.040"
-      ],
-      "alignmentNodeIds": [
-        "math.standard.ccss.hsa-rei-b-4"
-      ],
-      "rendererKey": "discriminant-analyzer",
-      "rendererModeMap": {},
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im3",
-        "module": "1",
-        "lesson": "6",
         "pilotSequence": 0
       }
     },
@@ -579,67 +3085,135 @@
       "alignmentNodeIds": [
         "math.standard.ccss.hsa-rei-b-4"
       ],
-      "rendererKey": "quadratic-formula",
+      "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
-        "guidedPractice": "quadratic-formula",
-        "independentPractice": "quadratic-formula"
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by h = -4.9t^2 + 11.7t + 42, where h is the height and t is the number of seconds after launch. Part A Use the Quadratic Formula to solve 0 = -4.9t^2 + 11.7t + 42. Part B Interpret the roots.",
+        "givens": [
+          "h = -4.9t^2 + 11.7t + 42",
+          "t is the number of seconds after launch."
+        ],
+        "target": {
+          "roots": "approximately 4.4 seconds and -2.0 seconds",
+          "contextualRoot": "The pumpkin lands after 4.4 seconds."
+        },
+        "steps": [
+          {
+            "description": "Identify the coefficients.",
+            "expression": "a = -4.9, b = 11.7, c = 42",
+            "explanation": "Use the coefficients in standard form."
+          },
+          {
+            "description": "Substitute into the Quadratic Formula.",
+            "expression": "t = (-11.7 ± sqrt((11.7)^2 - 4(-4.9)(42))) / (2(-4.9))",
+            "explanation": "Substitute a, b, and c."
+          },
+          {
+            "description": "Evaluate the discriminant.",
+            "expression": "t = (-11.7 ± sqrt(960.09)) / -9.8",
+            "explanation": "Evaluate b^2 - 4ac."
+          },
+          {
+            "description": "Rewrite with a positive denominator.",
+            "expression": "t = (11.7 ± sqrt(960.09)) / 9.8",
+            "explanation": "Multiply the numerator and denominator by -1."
+          },
+          {
+            "description": "Interpret the roots.",
+            "expression": "t ≈ 4.4 or -2.0",
+            "result": "The pumpkin lands after 4.4 seconds.",
+            "explanation": "The negative root is not meaningful in this context."
+          }
+        ],
+        "explanation": "The negative root does not make sense because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds.",
+        "rendererProps": {
+          "problemType": "quadratic_formula",
+          "equation": "-4.9t^2 + 11.7t + 42 = 0",
+          "steps": [
+            {
+              "id": "formula-1",
+              "description": "Identify the coefficients.",
+              "expression": "a = -4.9, b = 11.7, c = 42",
+              "explanation": "Use the coefficients in standard form."
+            },
+            {
+              "id": "formula-2",
+              "description": "Substitute into the Quadratic Formula.",
+              "expression": "t = (-11.7 ± sqrt((11.7)^2 - 4(-4.9)(42))) / (2(-4.9))",
+              "explanation": "Substitute a, b, and c."
+            },
+            {
+              "id": "formula-3",
+              "description": "Evaluate the discriminant.",
+              "expression": "t = (-11.7 ± sqrt(960.09)) / -9.8",
+              "explanation": "Evaluate b^2 - 4ac."
+            },
+            {
+              "id": "formula-4",
+              "description": "Rewrite with a positive denominator.",
+              "expression": "t = (11.7 ± sqrt(960.09)) / 9.8",
+              "explanation": "Multiply the numerator and denominator by -1."
+            },
+            {
+              "id": "formula-5",
+              "description": "Interpret the roots.",
+              "expression": "t ≈ 4.4 or -2.0",
+              "explanation": "The negative root is not meaningful in this context."
+            }
+          ]
+        }
       },
       "guidedPracticeSpec": {
-        "scaffoldedPrompt": "Use the Quadratic Formula to solve the equation.",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "after_attempt",
-        "rendererProps": {
-          "prompt": "Use the Quadratic Formula to solve the equation.",
-          "equation": "x^2 + 5x - 5",
-          "presentationMode": "guided",
-          "fieldHelp": {
-            "discriminant": "Calculate b² - 4ac.",
-            "x1": "Enter one root.",
-            "x2": "Enter the other root. Leave this blank for a repeated root."
-          }
-        }
-      },
-      "independentPracticeSpec": {
-        "variantParameters": {},
-        "answerSchema": {
-          "discriminant": "string",
-          "x1": "string",
-          "x2": "string"
-        },
-        "gradingRules": [
+        "scaffoldedPrompt": "Solve x^2 + 4x - 17 = 0 by using the Quadratic Formula.",
+        "stepPrompts": [
+          "Identify a, b, and c.",
+          "Substitute into the Quadratic Formula.",
+          "Simplify the radical."
+        ],
+        "hints": [
+          "Write the equation in standard form.",
+          "Use a = 1, b = 4, and c = -17.",
+          "Factor 84 as 4 * 21."
+        ],
+        "checksPerStep": [
           {
-            "partId": "discriminant",
-            "ruleType": "custom",
-            "maxScore": 1
+            "check": "a = 1, b = 4, c = -17"
           },
           {
-            "partId": "x1",
-            "ruleType": "custom",
-            "maxScore": 1
+            "check": "x = (-4 ± sqrt(84)) / 2"
           },
           {
-            "partId": "x2",
-            "ruleType": "custom",
-            "maxScore": 1
+            "check": "x = -2 ± sqrt(21)"
           }
         ],
-        "replayPolicy": "any_seed",
+        "revealPolicy": "one_at_a_time",
         "rendererProps": {
-          "prompt": "Use the Quadratic Formula to solve the equation.",
-          "equation": "x^2 - 2x - 6",
-          "presentationMode": "independent"
+          "problemType": "quadratic_formula",
+          "equation": "x^2 + 4x - 17 = 0",
+          "steps": [
+            {
+              "id": "formula-guided-1",
+              "description": "Identify the coefficients.",
+              "expression": "a = 1, b = 4, c = -17",
+              "explanation": "Read the coefficients from standard form."
+            },
+            {
+              "id": "formula-guided-2",
+              "description": "Substitute into the Quadratic Formula.",
+              "expression": "x = (-4 ± sqrt(84)) / 2",
+              "explanation": "Substitute the coefficients."
+            },
+            {
+              "id": "formula-guided-3",
+              "description": "Simplify the radical.",
+              "expression": "x = -2 ± sqrt(21)",
+              "explanation": "Simplify the square root."
+            }
+          ]
         }
-      },
-      "generatorKey": "quadratic-formula",
-      "gradingSpec": {
-        "partIds": [
-          "discriminant",
-          "x1",
-          "x2"
-        ],
-        "partialCredit": true
       },
       "reviewStatus": "draft",
       "metadata": {
@@ -650,53 +3224,262 @@
       }
     },
     {
-      "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "nodeId": "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
       "sourceNodeIds": [
-        "math.im3.skill.1.1.graph-quadratic-functions"
+        "math.im3.example.1.4.019",
+        "math.im3.example.1.4.020",
+        "math.im3.example.1.4.022",
+        "math.im3.example.1.4.023",
+        "math.im3.example.1.4.024",
+        "math.im3.example.1.4.025"
       ],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-ced-a-1",
-        "math.standard.ccss.hsa-ced-a-3"
+        "math.standard.ccss.hsa-rei-b-4"
       ],
-      "rendererKey": "graphing-explorer",
+      "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer"
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver"
       },
       "workedExampleSpec": {
-        "prompt": "Worked example for 1p: Graph quadratic inequalities in two variables",
+        "prompt": "Solve 81 = x^2 by factoring. Check your solution.",
         "givens": [
-          "See curriculum source"
+          "81 = x^2"
         ],
-        "target": {},
+        "target": {
+          "factoredForm": "(9 + x)(9 - x)",
+          "solutions": [
+            "x = -9",
+            "x = 9"
+          ]
+        },
         "steps": [
           {
-            "description": "Step 1",
-            "expression": "See curriculum"
+            "description": "Move all terms to one side.",
+            "expression": "81 - x^2 = 0",
+            "explanation": "Subtract x^2 from each side."
+          },
+          {
+            "description": "Rewrite the expression as a difference of squares.",
+            "expression": "9^2 - x^2 = 0",
+            "explanation": "Write 81 as 9^2."
+          },
+          {
+            "description": "Factor the difference of squares.",
+            "expression": "(9 + x)(9 - x) = 0",
+            "explanation": "Use a^2 - b^2 = (a + b)(a - b)."
+          },
+          {
+            "description": "Apply the Zero Product Property.",
+            "expression": "9 + x = 0 or 9 - x = 0",
+            "explanation": "Set each factor equal to zero."
+          },
+          {
+            "description": "Solve each equation.",
+            "expression": "x = -9 or x = 9",
+            "explanation": "Solve both linear equations."
           }
         ],
-        "explanation": "See curriculum source material."
+        "explanation": "Rewrite 81 as a square, factor the difference of squares, apply the Zero Product Property, and solve both equations.",
+        "rendererProps": {
+          "problemType": "factoring",
+          "equation": "81 = x^2",
+          "steps": [
+            {
+              "id": "special-move-to-zero",
+              "description": "Move all terms to one side.",
+              "expression": "81 - x^2 = 0",
+              "explanation": "Subtract x^2 from each side."
+            },
+            {
+              "id": "special-rewrite-squares",
+              "description": "Rewrite the expression as a difference of squares.",
+              "expression": "9^2 - x^2 = 0",
+              "explanation": "Write 81 as 9^2."
+            },
+            {
+              "id": "special-factor-difference",
+              "description": "Factor the difference of squares.",
+              "expression": "(9 + x)(9 - x) = 0",
+              "explanation": "Use a^2 - b^2 = (a + b)(a - b)."
+            },
+            {
+              "id": "special-zero-product",
+              "description": "Apply the Zero Product Property.",
+              "expression": "9 + x = 0 or 9 - x = 0",
+              "explanation": "Set each factor equal to zero."
+            },
+            {
+              "id": "special-solutions",
+              "description": "Solve each equation.",
+              "expression": "x = -9 or x = 9",
+              "explanation": "Solve both linear equations."
+            }
+          ]
+        }
       },
       "guidedPracticeSpec": {
-        "scaffoldedPrompt": "Guided practice for 1p: Graph quadratic inequalities in two variables",
+        "scaffoldedPrompt": "Solve x^2 - 49 = 0 by recognizing a difference of squares.",
         "stepPrompts": [
-          "Step 1"
+          "Rewrite the equation as a difference of squares.",
+          "Factor the difference of squares.",
+          "Apply the Zero Product Property.",
+          "Solve both linear equations."
         ],
         "hints": [
-          "Hint 1"
+          "49 is 7^2.",
+          "Use a^2 - b^2 = (a + b)(a - b).",
+          "Set each factor equal to zero.",
+          "Isolate x in each equation."
         ],
         "checksPerStep": [
           {
-            "check": "See curriculum"
+            "check": "x^2 - 7^2 = 0",
+            "answerPattern": "x^2 - 7^2 = 0"
+          },
+          {
+            "check": "(x + 7)(x - 7) = 0",
+            "answerPattern": "(x + 7)(x - 7) = 0"
+          },
+          {
+            "check": "x + 7 = 0 or x - 7 = 0",
+            "answerPattern": "x + 7 = 0 or x - 7 = 0"
+          },
+          {
+            "check": "x = -7 or x = 7",
+            "answerPattern": "x = -7 or x = 7"
           }
         ],
-        "revealPolicy": "one_at_a_time"
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "problemType": "factoring",
+          "equation": "x^2 - 49 = 0",
+          "steps": [
+            {
+              "id": "guided-special-rewrite",
+              "description": "Rewrite the equation as a difference of squares.",
+              "expression": "x^2 - 7^2 = 0",
+              "explanation": "Rewrite 49 as 7^2."
+            },
+            {
+              "id": "guided-special-factor",
+              "description": "Factor the difference of squares.",
+              "expression": "(x + 7)(x - 7) = 0",
+              "explanation": "Use a^2 - b^2 = (a + b)(a - b)."
+            },
+            {
+              "id": "guided-special-zero-product",
+              "description": "Apply the Zero Product Property.",
+              "expression": "x + 7 = 0 or x - 7 = 0",
+              "explanation": "Set each factor equal to zero."
+            },
+            {
+              "id": "guided-special-solutions",
+              "description": "Solve both linear equations.",
+              "expression": "x = -7 or x = 7",
+              "explanation": "Solve both linear equations."
+            }
+          ]
+        }
       },
       "reviewStatus": "draft",
       "metadata": {
         "course": "im3",
         "module": "1",
-        "lesson": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "sourceNodeIds": [
+        "math.im3.example.1.6.039",
+        "math.im3.example.1.6.040"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "discriminant-analyzer",
+      "rendererModeMap": {
+        "worked": "discriminant-analyzer",
+        "guidedPractice": "discriminant-analyzer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Examine 2x^2 - 10x + 7 = 0. Part A Find the value of the discriminant for 2x^2 - 10x + 7 = 0. Part B Describe the number and type of roots for the equation.",
+        "givens": [
+          "2x^2 - 10x + 7 = 0",
+          "a = 2, b = -10, c = 7"
+        ],
+        "target": {
+          "discriminant": 44,
+          "rootCount": 2,
+          "rootType": "two real irrational roots"
+        },
+        "steps": [
+          {
+            "description": "Identify the coefficients.",
+            "expression": "a = 2, b = -10, c = 7",
+            "explanation": "Read the coefficients from standard form."
+          },
+          {
+            "description": "Compute the discriminant.",
+            "expression": "b^2 - 4ac = (-10)^2 - 4(2)(7) = 100 - 56 = 44",
+            "explanation": "Substitute the coefficients into b^2 - 4ac."
+          },
+          {
+            "description": "Classify the roots.",
+            "expression": "44 > 0 and 44 is not a perfect square",
+            "result": "Two real irrational roots.",
+            "explanation": "A positive non-perfect-square discriminant gives two real irrational roots."
+          }
+        ],
+        "explanation": "The discriminant is 44. It is positive and not a perfect square, so the equation has two real irrational roots.",
+        "rendererProps": {
+          "equation": "2x^2 - 10x + 7 = 0",
+          "coefficients": {
+            "a": 2,
+            "b": -10,
+            "c": 7
+          }
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Examine -5x^2 + 10x - 15 = 0. Part A Find the value of the discriminant for -5x^2 + 10x - 15 = 0. Part B Describe the number and type of roots for the equation.",
+        "stepPrompts": [
+          "Identify a, b, and c.",
+          "Compute b^2 - 4ac.",
+          "Classify the roots."
+        ],
+        "hints": [
+          "Use a = -5, b = 10, and c = -15.",
+          "Substitute the coefficients into b^2 - 4ac.",
+          "A negative discriminant gives two complex roots."
+        ],
+        "checksPerStep": [
+          {
+            "check": "a = -5, b = 10, c = -15"
+          },
+          {
+            "check": "b^2 - 4ac = 100 - 300 = -200"
+          },
+          {
+            "check": "Two complex roots"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "equation": "-5x^2 + 10x - 15 = 0",
+          "coefficients": {
+            "a": -5,
+            "b": 10,
+            "c": -15
+          }
+        }
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6",
         "pilotSequence": 0
       },
       "exceptions": [
@@ -705,6 +3488,35 @@
           "reason": "Generator not yet implemented for pilot",
           "reviewer": "pilot",
           "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "sourceNodeIds": [
+        "math.im3.example.1.7.041",
+        "math.im3.example.1.7.042"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-ced-a-1",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7"
+      },
+      "exceptions": [
+        {
+          "type": "other",
+          "reason": "The registered graphing-explorer component does not support quadratic-inequality boundary style, test-point checks, or shaded regions."
+        },
+        {
+          "type": "generator",
+          "reason": "No Lesson 1-7 generator or server grader supports this skill. Independent practice is unavailable."
         }
       ]
     },
@@ -745,6 +3557,593 @@
         "course": "im3",
         "module": "1",
         "lesson": "8"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "sourceNodeIds": [
+        "math.im3.example.1.7.043",
+        "math.im3.example.1.7.044"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-ced-a-1",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7"
+      },
+      "exceptions": [
+        {
+          "type": "other",
+          "reason": "The registered graphing-explorer component does not support interval answers, x-axis sign regions, or the algebraic garden context in these source examples."
+        },
+        {
+          "type": "generator",
+          "reason": "No Lesson 1-7 generator or server grader supports this skill. Independent practice is unavailable."
+        }
+      ]
+    },
+    {
+      "nodeId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "sourceNodeIds": [
+        "math.im3.example.1.5.029",
+        "math.im3.example.1.5.030",
+        "math.im3.example.1.5.031",
+        "math.im3.example.1.5.032"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Solve x² + 18x − 4 = 0 by completing the square.",
+        "givens": [
+          "x² + 18x − 4 = 0"
+        ],
+        "target": {
+          "solutions": "x = −9 ± √85"
+        },
+        "steps": [
+          {
+            "description": "Move the constant term to the right side.",
+            "expression": "x² + 18x = 4",
+            "result": "x² + 18x = 4"
+          },
+          {
+            "description": "Add the square of one-half of 18 to both sides.",
+            "expression": "x² + 18x + 81 = 4 + 81",
+            "result": "x² + 18x + 81 = 85"
+          },
+          {
+            "description": "Write the left side as a perfect square.",
+            "expression": "(x + 9)² = 85",
+            "result": "(x + 9)² = 85"
+          },
+          {
+            "description": "Apply the Square Root Property.",
+            "expression": "x + 9 = \\pm\\sqrt{85}",
+            "result": "x + 9 = ±√85"
+          },
+          {
+            "description": "Subtract 9 from both sides.",
+            "expression": "x = -9 \\pm\\sqrt{85}",
+            "result": "x = −9 ± √85"
+          },
+          {
+            "description": "State the two solutions.",
+            "expression": "x = -9 + \\sqrt{85} \\text{ or } x = -9 - \\sqrt{85}",
+            "result": "x = −9 + √85 or x = −9 − √85"
+          }
+        ],
+        "explanation": "Completing the square changes the equation to a perfect-square equation. The Square Root Property then gives two solutions.",
+        "rendererProps": {
+          "problemType": "completing_the_square",
+          "equation": "x^2 + 18x - 4 = 0",
+          "steps": [
+            {
+              "id": "move-constant",
+              "description": "Move the constant term.",
+              "expression": "x^2 + 18x = 4",
+              "explanation": "Add 4 to both sides."
+            },
+            {
+              "id": "add-square",
+              "description": "Add the completing-square value.",
+              "expression": "x^2 + 18x + 81 = 4 + 81",
+              "explanation": "One-half of 18 is 9, and 9 squared is 81."
+            },
+            {
+              "id": "perfect-square",
+              "description": "Write the perfect square.",
+              "expression": "(x + 9)^2 = 85",
+              "explanation": "The left side is (x + 9)^2."
+            },
+            {
+              "id": "square-root-property",
+              "description": "Apply the Square Root Property.",
+              "expression": "x + 9 = \\pm\\sqrt{85}",
+              "explanation": "Take the positive and negative square roots."
+            },
+            {
+              "id": "solve-for-x",
+              "description": "Solve for x.",
+              "expression": "x = -9 \\pm\\sqrt{85}",
+              "explanation": "Subtract 9 from both sides."
+            }
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Solve 4x² − 12x − 27 = 0 by completing the square.",
+        "stepPrompts": [
+          "Make the coefficient of x² equal to 1.",
+          "Move the constant term to the right side.",
+          "Add the completing-square value to both sides.",
+          "Write the left side as a perfect square.",
+          "Apply the Square Root Property.",
+          "Solve for x."
+        ],
+        "hints": [
+          "Divide every term by 4.",
+          "Add 27/4 to both sides.",
+          "One-half of −3 is −3/2. Square it.",
+          "Use (x − 3/2)² for the left side.",
+          "The square root of 9 is 3.",
+          "Add 3/2 to both sides, then state both roots."
+        ],
+        "checksPerStep": [
+          {
+            "check": "x² − 3x − 27/4 = 0"
+          },
+          {
+            "check": "x² − 3x = 27/4"
+          },
+          {
+            "check": "x² − 3x + 9/4 = 27/4 + 9/4"
+          },
+          {
+            "check": "(x − 3/2)² = 9"
+          },
+          {
+            "check": "x − 3/2 = ±3"
+          },
+          {
+            "check": "x = 9/2 or x = −3/2"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "problemType": "completing_the_square",
+          "equation": "4x^2 - 12x - 27 = 0",
+          "steps": [
+            {
+              "id": "normalize-leading-coefficient",
+              "description": "Make the coefficient of x^2 equal to 1.",
+              "expression": "x^2 - 3x - \\frac{27}{4} = 0",
+              "explanation": "Divide every term by 4.",
+              "hint": "Divide every term by 4.",
+              "distractors": [
+                "x^2 - 12x - \\frac{27}{4} = 0",
+                "x^2 - 3x - 27 = 0"
+              ]
+            },
+            {
+              "id": "move-constant-guided",
+              "description": "Move the constant term.",
+              "expression": "x^2 - 3x = \\frac{27}{4}",
+              "explanation": "Add 27/4 to both sides.",
+              "hint": "Add 27/4 to both sides.",
+              "distractors": [
+                "x^2 - 3x = -\\frac{27}{4}",
+                "x^2 - 3x + \\frac{27}{4} = 0"
+              ]
+            },
+            {
+              "id": "add-square-guided",
+              "description": "Add the completing-square value.",
+              "expression": "x^2 - 3x + \\frac{9}{4} = \\frac{27}{4} + \\frac{9}{4}",
+              "explanation": "One-half of −3 is −3/2, and its square is 9/4.",
+              "hint": "Square one-half of the coefficient of x.",
+              "distractors": [
+                "x^2 - 3x + \\frac{3}{2} = \\frac{27}{4} + \\frac{3}{2}",
+                "x^2 - 3x + \\frac{9}{4} = \\frac{27}{4} - \\frac{9}{4}"
+              ]
+            },
+            {
+              "id": "perfect-square-guided",
+              "description": "Write the perfect square.",
+              "expression": "\\left(x - \\frac{3}{2}\\right)^2 = 9",
+              "explanation": "The left side is a perfect square and the right side is 9.",
+              "hint": "Use (x − 3/2)^2.",
+              "distractors": [
+                "(x + \\frac{3}{2})^2 = 9",
+                "(x - \\frac{3}{2})^2 = -9"
+              ]
+            },
+            {
+              "id": "square-root-guided",
+              "description": "Apply the Square Root Property.",
+              "expression": "x - \\frac{3}{2} = \\pm 3",
+              "explanation": "The positive and negative square roots of 9 are 3 and −3.",
+              "hint": "Take both square roots of 9.",
+              "distractors": [
+                "x - \\frac{3}{2} = 3",
+                "x - \\frac{3}{2} = \\pm 9"
+              ]
+            },
+            {
+              "id": "solve-guided",
+              "description": "State the two solutions.",
+              "expression": "x = \\frac{9}{2} \\text{ or } x = -\\frac{3}{2}",
+              "explanation": "Add 3/2 to both sides and state both roots.",
+              "hint": "Add 3/2 to each equation.",
+              "distractors": [
+                "x = \\frac{3}{2} \\text{ or } x = -\\frac{9}{2}",
+                "x = 9 \\text{ or } x = -3"
+              ]
+            }
+          ]
+        }
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+      "sourceNodeIds": [
+        "math.im3.example.1.5.033",
+        "math.im3.example.1.5.034",
+        "math.im3.example.1.5.035"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Consider y = 3x² − 12x + 5. Write the function in vertex form. Then find the axis of symmetry and vertex.",
+        "givens": [
+          "y = 3x² − 12x + 5"
+        ],
+        "target": {
+          "vertex_form": "y = 3(x − 2)² − 7",
+          "axis_of_symmetry": "x = 2",
+          "vertex": "(2, −7)",
+          "extremum": "minimum"
+        },
+        "steps": [
+          {
+            "description": "Group the quadratic and linear terms.",
+            "expression": "y = (3x² − 12x) + 5",
+            "result": "y = (3x² − 12x) + 5"
+          },
+          {
+            "description": "Factor 3 from the grouped terms.",
+            "expression": "y = 3(x² − 4x) + 5",
+            "result": "y = 3(x² − 4x) + 5"
+          },
+          {
+            "description": "Add 4 inside the parentheses and subtract 12 outside.",
+            "expression": "y = 3(x² − 4x + 4) + 5 − 12",
+            "result": "y = 3(x² − 4x + 4) − 7"
+          },
+          {
+            "description": "Write the vertex form.",
+            "expression": "y = 3(x − 2)² − 7",
+            "result": "y = 3(x − 2)² − 7"
+          },
+          {
+            "description": "Read the axis, vertex, and extremum from vertex form.",
+            "expression": "x = 2; (h, k) = (2, −7); a = 3 > 0",
+            "result": "Axis x = 2; vertex (2, −7); minimum"
+          }
+        ],
+        "explanation": "Vertex form y = a(x − h)² + k gives the axis x = h and vertex (h, k). Since a is positive, the vertex is a minimum.",
+        "rendererProps": {
+          "problemType": "completing_the_square",
+          "equation": "y = 3x^2 - 12x + 5",
+          "steps": [
+            {
+              "id": "group-function",
+              "description": "Group the quadratic and linear terms.",
+              "expression": "y = (3x^2 - 12x) + 5",
+              "explanation": "Keep the constant term outside the group."
+            },
+            {
+              "id": "factor-function",
+              "description": "Factor 3 from the group.",
+              "expression": "y = 3(x^2 - 4x) + 5",
+              "explanation": "Factor the leading coefficient from the x terms."
+            },
+            {
+              "id": "complete-function-square",
+              "description": "Complete the square.",
+              "expression": "y = 3(x^2 - 4x + 4) + 5 - 12",
+              "explanation": "Add 4 inside and subtract 3 times 4 outside."
+            },
+            {
+              "id": "vertex-form",
+              "description": "Write vertex form.",
+              "expression": "y = 3(x - 2)^2 - 7",
+              "explanation": "The function is now in vertex form."
+            },
+            {
+              "id": "read-vertex",
+              "description": "Read the graph features.",
+              "expression": "x = 2; (h, k) = (2, -7); a = 3 > 0",
+              "explanation": "The axis is x = 2, the vertex is (2, -7), and the vertex is a minimum."
+            }
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Write y = −x² − 12x − 9 in vertex form.",
+        "stepPrompts": [
+          "Group the quadratic and linear terms.",
+          "Factor the leading coefficient.",
+          "Complete the square inside the parentheses.",
+          "Simplify to vertex form."
+        ],
+        "hints": [
+          "Group the x terms before completing the square.",
+          "Factor −1 from the x terms.",
+          "One-half of 12 is 6, and 6 squared is 36.",
+          "The vertex form is y = a(x − h)² + k."
+        ],
+        "checksPerStep": [
+          {
+            "check": "y = −(x² + 12x) − 9"
+          },
+          {
+            "check": "y = −(x² + 12x) − 9"
+          },
+          {
+            "check": "y = −(x² + 12x + 36) + 27"
+          },
+          {
+            "check": "y = −(x + 6)² + 27"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "problemType": "completing_the_square",
+          "equation": "y = -x^2 - 12x - 9",
+          "steps": [
+            {
+              "id": "group-guided-function",
+              "description": "Group the quadratic and linear terms.",
+              "expression": "y = -(x^2 + 12x) - 9",
+              "explanation": "Factor the negative sign from the x terms.",
+              "hint": "Group x^2 and 12x.",
+              "distractors": [
+                "y = -(x^2 - 12x) - 9",
+                "y = x^2 + 12x - 9"
+              ]
+            },
+            {
+              "id": "factor-guided-function",
+              "description": "Show the factored leading coefficient.",
+              "expression": "y = -(x^2 + 12x) - 9",
+              "explanation": "The leading coefficient is already factored as −1.",
+              "hint": "The factor outside the parentheses is −1.",
+              "distractors": [
+                "y = -2(x^2 + 12x) - 9",
+                "y = -(x^2 + 12x) + 9"
+              ]
+            },
+            {
+              "id": "complete-guided-function",
+              "description": "Complete the square.",
+              "expression": "y = -(x^2 + 12x + 36) + 27",
+              "explanation": "Add 36 inside and add 36 outside because the whole group is multiplied by −1.",
+              "hint": "Half of 12 is 6, and 6^2 is 36.",
+              "distractors": [
+                "y = -(x^2 + 12x + 36) - 45",
+                "y = -(x^2 + 12x + 12) + 27"
+              ]
+            },
+            {
+              "id": "vertex-guided-function",
+              "description": "Write vertex form.",
+              "expression": "y = -(x + 6)^2 + 27",
+              "explanation": "The completed square gives vertex form.",
+              "hint": "Use (x + 6)^2 for x^2 + 12x + 36.",
+              "distractors": [
+                "y = -(x - 6)^2 + 27",
+                "y = -(x + 6)^2 - 27"
+              ]
+            }
+          ]
+        }
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "sourceNodeIds": [
+        "math.im3.example.1.3.012",
+        "math.im3.example.1.3.013",
+        "math.im3.example.1.3.014"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.n-cn-a-1",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Solve x² + 81 = 0.",
+        "givens": [
+          "x² + 81 = 0"
+        ],
+        "target": {
+          "solutions": "x = ±9i"
+        },
+        "steps": [
+          {
+            "description": "Original equation",
+            "expression": "x² + 81 = 0",
+            "result": "x² + 81 = 0"
+          },
+          {
+            "description": "Subtract 81 from each side",
+            "expression": "x² = −81",
+            "result": "x² = −81"
+          },
+          {
+            "description": "Take the square root of each side",
+            "expression": "x = ±√−81",
+            "result": "x = ±√−81"
+          },
+          {
+            "description": "Simplify",
+            "expression": "x = ±9i",
+            "result": "x = ±9i"
+          }
+        ],
+        "explanation": "Subtract 81 from each side, take the square root of each side, and simplify √−81 as 9i.",
+        "rendererProps": {
+          "problemType": "square_root_property",
+          "equation": "x^2 + 81 = 0",
+          "steps": [
+            {
+              "id": "original-equation",
+              "description": "Original equation",
+              "expression": "x^2 + 81 = 0",
+              "explanation": "Original equation."
+            },
+            {
+              "id": "subtract-81",
+              "description": "Subtract 81 from each side",
+              "expression": "x^2 = -81",
+              "explanation": "Subtract 81 from each side."
+            },
+            {
+              "id": "take-square-roots",
+              "description": "Take the square root of each side",
+              "expression": "x = \\pm \\sqrt{-81}",
+              "explanation": "Take the square root of each side."
+            },
+            {
+              "id": "simplify",
+              "description": "Simplify",
+              "expression": "x = \\pm 9i",
+              "explanation": "Use \\sqrt{-1} = i."
+            }
+          ]
+        }
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Solve x² + 81 = 0 by using the Square Root Property.",
+        "stepPrompts": [
+          "Start with x² + 81 = 0.",
+          "Subtract 81 from each side.",
+          "Take the square root of each side.",
+          "Use i = √−1 to simplify the result."
+        ],
+        "hints": [
+          "Subtract 81 from each side to isolate x².",
+          "The square root of −81 is √81 · √−1.",
+          "The principal square root of −1 is i.",
+          "Include both the positive and negative square roots."
+        ],
+        "checksPerStep": [
+          {
+            "check": "x² + 81 = 0"
+          },
+          {
+            "check": "x² = −81"
+          },
+          {
+            "check": "x = ±√−81"
+          },
+          {
+            "check": "x = ±9i"
+          }
+        ],
+        "revealPolicy": "one_at_a_time",
+        "rendererProps": {
+          "problemType": "square_root_property",
+          "equation": "x^2 + 81 = 0",
+          "steps": [
+            {
+              "id": "original-equation",
+              "description": "Original equation",
+              "expression": "x^2 + 81 = 0",
+              "explanation": "Original equation."
+            },
+            {
+              "id": "subtract-81",
+              "description": "Subtract 81 from each side",
+              "expression": "x^2 = -81",
+              "explanation": "Subtract 81 from each side."
+            },
+            {
+              "id": "take-square-roots",
+              "description": "Take the square root of each side",
+              "expression": "x = \\pm \\sqrt{-81}",
+              "explanation": "Take the square root of each side."
+            },
+            {
+              "id": "simplify",
+              "description": "Simplify",
+              "expression": "x = \\pm 9i",
+              "explanation": "Use \\sqrt{-1} = i."
+            }
+          ]
+        }
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "sourceNodeIds": [
+        "math.im3.example.1.3.013",
+        "math.im3.example.1.3.015",
+        "math.im3.example.1.3.016",
+        "math.im3.example.1.3.017",
+        "math.im3.example.1.3.018"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.n-cn-a-1",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3"
       }
     }
   ]

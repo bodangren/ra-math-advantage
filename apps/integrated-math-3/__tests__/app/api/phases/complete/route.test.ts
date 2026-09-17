@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mockRequireStudentRequestClaims = vi.fn();
 const mockFetchInternalMutation = vi.fn();
@@ -15,129 +15,190 @@ vi.mock('@/lib/convex/server', () => ({
   },
 }));
 
-const makeRequest = (body: unknown) =>
-  new Request('http://localhost/api/phases/complete', {
+const STUDENT = {
+  sub: 'profiles:phase-completion-student',
+  username: 'phase-completion-student',
+  role: 'student',
+};
+
+const VALID_BODY = {
+  lessonId: 'module-3-lesson-2',
+  phaseNumber: 2,
+  timeSpent: 75,
+  idempotencyKey: 'phase-completion-key-1',
+  linkedStandardId: 'CCSS.MATH.HSF.IF.C.7',
+};
+
+function makeRequest(body: unknown): Request {
+  return new Request('http://localhost/api/phases/complete', {
     method: 'POST',
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' },
   });
+}
+
+async function post(request: Request) {
+  const { POST } = await import('@/app/api/phases/complete/route');
+  return POST(request);
+}
 
 describe('POST /api/phases/complete', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('returns 401 when not authenticated', async () => {
-    mockRequireStudentRequestClaims.mockResolvedValue(
-      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
-    );
-    const { POST } = await import('@/app/api/phases/complete/route');
-    const res = await POST(makeRequest({ lessonId: 'lesson-1', phaseNumber: 1, timeSpent: 60, idempotencyKey: 'key1' }));
-    expect(res.status).toBe(401);
-  });
-
-  it('returns 403 when user is not a student', async () => {
-    mockRequireStudentRequestClaims.mockResolvedValue(
-      new Response(JSON.stringify({ error: 'Forbidden' }), { status: 403 }),
-    );
-    const { POST } = await import('@/app/api/phases/complete/route');
-    const res = await POST(makeRequest({ lessonId: 'lesson-1', phaseNumber: 1, timeSpent: 60, idempotencyKey: 'key1' }));
-    expect(res.status).toBe(403);
-  });
-
-  it('returns 400 when required fields are missing', async () => {
-    mockRequireStudentRequestClaims.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
-    });
-    const { POST } = await import('@/app/api/phases/complete/route');
-    const res = await POST(makeRequest({ lessonId: 'lesson-1' }));
-    expect(res.status).toBe(400);
-  });
-
-  it('returns 200 with success on valid completion', async () => {
-    mockRequireStudentRequestClaims.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
-    });
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    mockRequireStudentRequestClaims.mockResolvedValue(STUDENT);
     mockFetchInternalMutation.mockResolvedValue({
       success: true,
       nextPhaseUnlocked: true,
     });
-    const { POST } = await import('@/app/api/phases/complete/route');
-    const res = await POST(makeRequest({
-      lessonId: 'lesson-1',
-      phaseNumber: 1,
-      timeSpent: 60,
-      idempotencyKey: 'key1',
-    }));
-    expect(res.status).toBe(200);
-    const body = await res.json();
-    expect(body.success).toBe(true);
   });
 
-  it('returns 200 with alreadyCompleted for idempotent request', async () => {
-    mockRequireStudentRequestClaims.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it.each([
+    ['an unauthenticated request', 401],
+    ['a non-student request', 403],
+  ])('requires student authentication for %s', async (_label, status) => {
+    mockRequireStudentRequestClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Denied' }), { status }),
+    );
+
+    const response = await post(makeRequest(VALID_BODY));
+
+    expect(response.status).toBe(status);
+    expect(mockFetchInternalMutation).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['a missing authenticated subject', { role: 'student' }, 401, { error: 'Unauthorized' }],
+    ['a blank authenticated subject', { sub: '   ', role: 'student' }, 401, { error: 'Unauthorized' }],
+    ['a missing authenticated role', { sub: STUDENT.sub }, 401, { error: 'Unauthorized' }],
+    ['a non-student authenticated role', { sub: STUDENT.sub, role: 'teacher' }, 403, { error: 'Forbidden' }],
+  ])('rejects %s before Convex', async (_label, claims, status, body) => {
+    mockRequireStudentRequestClaims.mockResolvedValue(claims);
+
+    const response = await post(makeRequest(VALID_BODY));
+
+    expect(response.status).toBe(status);
+    await expect(response.json()).resolves.toStrictEqual(body);
+    expect(mockFetchInternalMutation).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['a missing body key', {
+      lessonId: VALID_BODY.lessonId,
+      phaseNumber: VALID_BODY.phaseNumber,
+      timeSpent: VALID_BODY.timeSpent,
+    }],
+    ['an empty body key', { ...VALID_BODY, idempotencyKey: '' }],
+  ])('rejects %s before Convex', async (_label, body) => {
+    const response = await post(makeRequest(body));
+
+    expect(response.status).toBe(400);
+    expect(mockFetchInternalMutation).not.toHaveBeenCalled();
+  });
+
+  it('uses the authenticated student identity instead of a client-supplied learner identity', async () => {
+    const response = await post(makeRequest({
+      ...VALID_BODY,
+      userId: 'profiles:forged',
+    }));
+
+    expect(response.status).toBe(200);
+    expect(mockFetchInternalMutation).toHaveBeenCalledWith('student:completePhase', {
+      userId: STUDENT.sub,
+      ...VALID_BODY,
     });
-    mockFetchInternalMutation.mockResolvedValue({
+  });
+
+  it.each([
+    ['a normal non-pilot completion', VALID_BODY],
+    ['phase four outside the pilot lesson', {
+      ...VALID_BODY,
+      lessonId: 'module-8-lesson-1',
+      phaseNumber: 4,
+    }],
+  ])('keeps the generic route for %s', async (_label, body) => {
+    const response = await post(makeRequest(body));
+
+    expect(response.status).toBe(200);
+    expect(mockFetchInternalMutation).toHaveBeenCalledTimes(1);
+    expect(mockFetchInternalMutation).toHaveBeenCalledWith('student:completePhase', {
+      userId: STUDENT.sub,
+      ...body,
+    });
+    expect(await response.json()).toStrictEqual({
+      success: true,
+      nextPhaseUnlocked: true,
+    });
+  });
+
+  it('returns a safe public replay result', async () => {
+    mockFetchInternalMutation.mockResolvedValueOnce({
       success: true,
       alreadyCompleted: true,
     });
-    const { POST } = await import('@/app/api/phases/complete/route');
-    const res = await POST(makeRequest({
-      lessonId: 'lesson-1',
-      phaseNumber: 1,
-      timeSpent: 60,
-      idempotencyKey: 'key1',
-    }));
-    expect(res.status).toBe(200);
-    const body = await res.json();
-    expect(body.alreadyCompleted).toBe(true);
+
+    const response = await post(makeRequest(VALID_BODY));
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toStrictEqual({
+      success: true,
+      alreadyCompleted: true,
+    });
   });
 
-  it('passes linkedStandardId when provided', async () => {
-    mockRequireStudentRequestClaims.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
+  it.each([
+    'idempotency_conflict',
+    'phase_already_completed',
+  ])('maps the exact %s conflict to a safe 409', async (sentinel) => {
+    mockFetchInternalMutation.mockRejectedValueOnce(new Error(sentinel));
+
+    const response = await post(makeRequest(VALID_BODY));
+
+    expect(response.status).toBe(409);
+    await expect(response.json()).resolves.toStrictEqual({ error: 'Phase completion conflict' });
+  });
+
+  it('does not expose an unexpected mutation error as a conflict', async () => {
+    mockFetchInternalMutation.mockRejectedValueOnce(
+      new Error('database error: idempotency_conflict while checking another record'),
+    );
+
+    const response = await post(makeRequest(VALID_BODY));
+
+    expect(response.status).toBe(500);
+    await expect(response.json()).resolves.toStrictEqual({ error: 'Phase completion failed' });
+  });
+
+  it('projects only public completion result fields', async () => {
+    mockFetchInternalMutation.mockResolvedValueOnce({
+      success: true,
+      nextPhaseUnlocked: true,
+      internalDetail: 'not public',
     });
-    mockFetchInternalMutation.mockResolvedValue({
+
+    const response = await post(makeRequest(VALID_BODY));
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toStrictEqual({
       success: true,
       nextPhaseUnlocked: true,
     });
-    const { POST } = await import('@/app/api/phases/complete/route');
-    await POST(makeRequest({
-      lessonId: 'lesson-1',
-      phaseNumber: 1,
-      timeSpent: 60,
-      idempotencyKey: 'key1',
-      linkedStandardId: 'CCSS.MATH.HSF.IF.C.7',
-    }));
-    expect(mockFetchInternalMutation).toHaveBeenCalledWith(
-      'student:completePhase',
-      expect.objectContaining({ linkedStandardId: 'CCSS.MATH.HSF.IF.C.7' }),
-    );
   });
 
-  it('returns 500 when Convex mutation throws', async () => {
-    mockRequireStudentRequestClaims.mockResolvedValue({
-      sub: 'p1',
-      username: 'alice',
-      role: 'student',
+  it('maps a malformed mutation result to a safe failure', async () => {
+    mockFetchInternalMutation.mockResolvedValueOnce({
+      success: true,
+      alreadyCompleted: true,
+      nextPhaseUnlocked: true,
     });
-    mockFetchInternalMutation.mockRejectedValue(new Error('Convex error'));
-    const { POST } = await import('@/app/api/phases/complete/route');
-    const res = await POST(makeRequest({
-      lessonId: 'lesson-1',
-      phaseNumber: 1,
-      timeSpent: 60,
-      idempotencyKey: 'key1',
-    }));
-    expect(res.status).toBe(500);
+
+    const response = await post(makeRequest(VALID_BODY));
+
+    expect(response.status).toBe(500);
+    await expect(response.json()).resolves.toStrictEqual({ error: 'Phase completion failed' });
   });
 });

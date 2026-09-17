@@ -232,7 +232,7 @@ describe('P3 wire-level link contract', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     const item = screen.getByTestId('recommended-next-item');
@@ -264,7 +264,7 @@ describe('P3 wire-level link contract', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     const items = screen.getAllByTestId('recommended-next-item');
@@ -305,7 +305,7 @@ describe('P3 XSS-safety boundary', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     // The escaped text must be present in the DOM as text content, not
@@ -339,7 +339,7 @@ describe('P3 empty-list / non-zero-count boundary', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();
@@ -391,7 +391,7 @@ describe('P3 difficulty boundary at the rendered layer', () => {
       });
 
       const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-      const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+      const jsx = await DashboardPage();
       render(jsx);
 
       const item = screen.getByTestId('recommended-next-item');
@@ -433,7 +433,7 @@ describe('P3 null visualization payload boundary', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();
@@ -469,7 +469,7 @@ describe('P3 minimal-payload boundary', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     const item = screen.getByTestId('recommended-next-item');

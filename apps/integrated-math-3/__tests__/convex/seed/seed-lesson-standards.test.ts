@@ -1,7 +1,38 @@
+// @vitest-environment node
+import { readFileSync } from 'node:fs';
 import { describe, it, expect } from 'vitest';
 import type { SeedLessonStandard } from '@/convex/seed/types';
 
+const seedLessonStandardsSource = readFileSync(
+  new URL('../../../convex/seed/seed_lesson_standards.ts', import.meta.url),
+  'utf8',
+);
+
+function lessonStandardTriple(lessonSlug: string, standardCode: string): RegExp {
+  return new RegExp(
+    `lessonSlug: "${lessonSlug}",\\s*standardCode: "${standardCode}",\\s*isPrimary: true`,
+  );
+}
+
 describe('seed-lesson-standards', () => {
+  it('uses the source standards for the two corrected primary mappings', () => {
+    const correctedMappings = [
+      ['module-1-lesson-1', 'HSF-IF.C.7a'],
+      ['module-4-lesson-4', 'HSF-IF.C.7b'],
+    ] as const;
+    const obsoleteMappings = [
+      ['module-1-lesson-1', 'HSF-IF.C.7c'],
+      ['module-4-lesson-4', 'HSF-IF.C.7a'],
+    ] as const;
+
+    for (const [lessonSlug, standardCode] of correctedMappings) {
+      expect(seedLessonStandardsSource.match(lessonStandardTriple(lessonSlug, standardCode))).toHaveLength(1);
+    }
+    for (const [lessonSlug, standardCode] of obsoleteMappings) {
+      expect(seedLessonStandardsSource).not.toMatch(lessonStandardTriple(lessonSlug, standardCode));
+    }
+  });
+
   describe('Module 6 lesson-standard links', () => {
     const module6LessonStandards: SeedLessonStandard[] = [
       { lessonSlug: 'module-6-lesson-1', standardCode: 'HSF-BF.B.5', isPrimary: true },

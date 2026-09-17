@@ -159,7 +159,7 @@ describe('FillInTheBlank', () => {
         'guided'
       );
       render(<FillInTheBlank {...props} />);
-      expect(screen.getByText(/Blank 1 of 1/)).toBeInTheDocument();
+      expect(screen.getAllByText(/Blank 1 of 1/).length).toBeGreaterThan(0);
     });
 
     it('has math input for answer entry', () => {

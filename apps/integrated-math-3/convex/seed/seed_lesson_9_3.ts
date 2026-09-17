@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson9_3 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Special Angles Explorer",
               props: {
                 variant: "explore",
                 equation: "y = sin(x)",
+                title: "Special Angles Explorer",
               },
             },
           },
@@ -136,7 +137,11 @@ export const seedLesson9_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "If P(-12/13, 5/13) is on the unit circle, what is cos theta?", options: ["5/13", "-12/13", "12/13"], correctAnswer: "-12/13" },
+                  {
+                    question: "If P(-12/13, 5/13) is on the unit circle, what is cos theta?",
+                    options: ["5/13", "-12/13", "12/13"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -164,7 +169,11 @@ export const seedLesson9_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is tan(5pi/4)?", options: ["-1", "1", "0"], correctAnswer: "1" },
+                  {
+                    question: "What is tan(5pi/4)?",
+                    options: ["-1", "1", "0"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -208,7 +217,11 @@ export const seedLesson9_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "If a graph repeats every 3pi/2, what is the period?", options: ["3pi/2", "2pi", "pi/2"], correctAnswer: "3pi/2" },
+                  {
+                    question: "If a graph repeats every 3pi/2, what is the period?",
+                    options: ["3pi/2", "2pi", "pi/2"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -236,7 +249,11 @@ export const seedLesson9_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "If a carousel completes 10 rotations per minute, what is the period in seconds?", options: ["6 seconds", "10 seconds", "60 seconds"], correctAnswer: "6 seconds" },
+                  {
+                    question: "If a carousel completes 10 rotations per minute, what is the period in seconds?",
+                    options: ["6 seconds", "10 seconds", "60 seconds"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -264,7 +281,11 @@ export const seedLesson9_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is cos(10pi/3)?", options: ["1/2", "-1/2", "sqrt(3)/2"], correctAnswer: "-1/2" },
+                  {
+                    question: "What is cos(10pi/3)?",
+                    options: ["1/2", "-1/2", "sqrt(3)/2"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -292,8 +313,16 @@ export const seedLesson9_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the period of sine and cosine?", options: ["pi", "2pi", "1"], correctAnswer: "2pi" },
-                  { id: "question-2", type: "multiple_choice", prompt: "If P(x, y) is on the unit circle, what is sin theta?", options: ["x", "y", "1"], correctAnswer: "y" },
+                  {
+                    question: "What is the period of sine and cosine?",
+                    options: ["pi", "2pi", "1"],
+                    correctIndex: 1,
+                  },
+                  {
+                    question: "If P(x, y) is on the unit circle, what is sin theta?",
+                    options: ["x", "y", "1"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -348,9 +377,9 @@ export const seedLesson9_3 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -363,8 +392,8 @@ export const seedLesson9_3 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

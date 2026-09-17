@@ -15,7 +15,44 @@ import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
 // IM3 SRS-to-KST path only for an eligible mastery_advantage event.
 import {
   createIm3LearningEvidenceAdapter,
+  IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
+  IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
+  IM3_DOMAIN_RANGE_NODE,
+  IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
+  IM3_EQUATION_RATE_NODE,
+  IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+  IM3_GUIDED_VARIANT_KEY,
+  IM3_LEARNING_EVIDENCE_PILOT,
   IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS,
+  IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+  IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
+  IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
+  IM3_PROFIT_MODEL_NODE,
+  IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID,
+  IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
+  IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+  IM3_PROFIT_MAXIMUM_NODE,
+  IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID,
+  IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
+  IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
+  IM3_ONE_REAL_SOLUTION_NODE,
+  IM3_TWO_REAL_SOLUTIONS_NODE,
+  IM3_ONE_REAL_SOLUTION_WORKED_ACTIVITY_ID,
+  IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID,
+  IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY,
+  IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID,
+  IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY,
+  IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
+  IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
+  IM3_MAXIMUM_READING_NODE,
+  IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID,
+  IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+  IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+  IM3_SYMMETRY_NODE,
+  IM3_SYMMETRY_WORKED_ACTIVITY_ID,
+  IM3_PILOT_NODE,
+  IM3_PILOT_VARIANT_KEY,
+  IM3_TEACHER_LED_ACTIVITY_ID,
   type Im3LearningEvidenceStore,
   type Im3MasteryAdvantageBridge,
 } from '@/lib/practice/learning-evidence-pilot';
@@ -23,6 +60,11 @@ import {
 const LEARNER_ID = 'student-im3-pilot';
 const PILOT_NODE_ID = 'math.im3.skill.1.1.graph-quadratic-functions';
 const NON_PILOT_NODE_ID = 'math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change';
+const COMPARE_MAXIMUM_NODE_ID =
+  'math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions';
+const COMPARE_MAXIMUM_WORKED_ACTIVITY_ID = `${COMPARE_MAXIMUM_NODE_ID}.worked_example`;
+const COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID = `${COMPARE_MAXIMUM_NODE_ID}.guided_practice`;
+const COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID = `${COMPARE_MAXIMUM_NODE_ID}.independent_practice`;
 const PILOT_ACTIVITY_ID = `${PILOT_NODE_ID}.independent_practice`;
 const KST_NOW = Date.parse('2026-08-19T12:00:00.000Z');
 
@@ -148,9 +190,397 @@ function createHarness() {
 }
 
 describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
-  it('freezes exactly one enabled IM3 pilot node', () => {
-    expect(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).toEqual([PILOT_NODE_ID]);
+  it('exports the exact profit-model Independent activity identity', () => {
+    expect(IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID).toBe(
+      'math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context.independent_practice',
+    );
+  });
+
+  it('exports the exact maximum-profit Guided activity identity', () => {
+    expect(IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID).toBe(
+      'math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model.guided_practice',
+    );
+  });
+
+  it('exports the exact maximum-profit Independent activity identity', () => {
+    expect(IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID).toBe(
+      'math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model.independent_practice',
+    );
+  });
+
+  it('exports the exact second graph Guided seed identity', () => {
+    expect(IM3_GRAPH_GUIDED_SEED_2_ACTIVITY_ID).toBe(
+      `${IM3_GUIDED_PRACTICE_ACTIVITY_ID}:seed-2`,
+    );
+    expect(IM3_GRAPH_GUIDED_SEED_2_VARIANT_KEY).toBe(
+      `${IM3_GUIDED_PRACTICE_ACTIVITY_ID}:seed-2`,
+    );
+  });
+
+  it('exports the exact second graph Independent seed identity', () => {
+    expect(IM3_GRAPH_INDEPENDENT_SEED_2_ACTIVITY_ID).toBe(
+      `${IM3_MASTERY_ADVANTAGE_ACTIVITY_ID}:seed-2`,
+    );
+    expect(IM3_GRAPH_INDEPENDENT_SEED_2_VARIANT_KEY).toBe(
+      `${IM3_MASTERY_ADVANTAGE_ACTIVITY_ID}:seed-2`,
+    );
+  });
+
+  it('exports maximum-reading runtime identities with the exact evidence mapping', () => {
+    expect(IM3_MAXIMUM_READING_NODE).toBe(
+      'math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph',
+    );
+    expect(IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID).toBe(
+      `${IM3_MAXIMUM_READING_NODE}.worked_example`,
+    );
+    expect(IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID).toBe(
+      `${IM3_MAXIMUM_READING_NODE}.guided_practice`,
+    );
+    expect(IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID).toBe(
+      `${IM3_MAXIMUM_READING_NODE}.independent_practice`,
+    );
+    expect(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).toEqual([
+      PILOT_NODE_ID,
+      IM3_EQUATION_RATE_NODE,
+      IM3_DOMAIN_RANGE_NODE,
+      IM3_MAXIMUM_READING_NODE,
+      IM3_SYMMETRY_NODE,
+      COMPARE_MAXIMUM_NODE_ID,
+      IM3_PROFIT_MODEL_NODE,
+      IM3_PROFIT_MAXIMUM_NODE,
+      IM3_ONE_REAL_SOLUTION_NODE,
+      IM3_TWO_REAL_SOLUTIONS_NODE,
+    ]);
+    expect(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds).toEqual([
+      IM3_PILOT_NODE,
+      IM3_DOMAIN_RANGE_NODE,
+      IM3_MAXIMUM_READING_NODE,
+      IM3_SYMMETRY_NODE,
+      COMPARE_MAXIMUM_NODE_ID,
+      IM3_PROFIT_MODEL_NODE,
+      IM3_PROFIT_MAXIMUM_NODE,
+      IM3_ONE_REAL_SOLUTION_NODE,
+    ]);
+    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings).toContainEqual({
+      nodeId: IM3_MAXIMUM_READING_NODE,
+      source: {
+        activityId: IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID,
+        mode: 'worked_example',
+      },
+      guided: {
+        activityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
+        mode: 'guided_practice',
+        variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
+      },
+      masteryAdvantage: {
+        activityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
+        mode: 'independent_practice',
+        variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
+      },
+    });
+    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
+      (mapping) => mapping.nodeId === IM3_MAXIMUM_READING_NODE,
+    )).toHaveLength(1);
+  });
+
+  it('exports symmetry runtime identities with the exact evidence mapping', () => {
+    expect(IM3_SYMMETRY_NODE).toBe(
+      'math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry',
+    );
+    expect(IM3_SYMMETRY_WORKED_ACTIVITY_ID).toBe(
+      'math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.worked_example',
+    );
+    expect(IM3_SYMMETRY_GUIDED_ACTIVITY_ID).toBe(
+      'math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.guided_practice',
+    );
+    expect(IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID).toBe(
+      'math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry.independent_practice',
+    );
+    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
+      (mapping) => mapping.nodeId === IM3_SYMMETRY_NODE,
+    )).toEqual([{
+      nodeId: IM3_SYMMETRY_NODE,
+      source: {
+        activityId: IM3_SYMMETRY_WORKED_ACTIVITY_ID,
+        mode: 'worked_example',
+      },
+      guided: {
+        activityId: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+        mode: 'guided_practice',
+        variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+      },
+      masteryAdvantage: {
+        activityId: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+        mode: 'independent_practice',
+        variantKey: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+      },
+    }]);
+  });
+
+  it('exports compare-maximum runtime identities with the exact evidence mapping', () => {
+    expect(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.filter(
+      (nodeId) => String(nodeId) === COMPARE_MAXIMUM_NODE_ID,
+    )).toHaveLength(1);
+    const pilotNodeIndex = IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS
+      .map((nodeId) => String(nodeId))
+      .indexOf(COMPARE_MAXIMUM_NODE_ID);
+    expect(pilotNodeIndex).toBe(
+      IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.indexOf(IM3_SYMMETRY_NODE) + 1,
+    );
+    expect(pilotNodeIndex).toBe(
+      IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.indexOf(IM3_PROFIT_MODEL_NODE) - 1,
+    );
+    expect(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.filter(
+      (nodeId) => String(nodeId) === COMPARE_MAXIMUM_NODE_ID,
+    )).toHaveLength(1);
+    const enabledNodeIndex = IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds
+      .map((nodeId) => String(nodeId))
+      .indexOf(COMPARE_MAXIMUM_NODE_ID);
+    expect(enabledNodeIndex).toBe(
+      IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.indexOf(IM3_SYMMETRY_NODE) + 1,
+    );
+    expect(enabledNodeIndex).toBe(
+      IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.indexOf(IM3_PROFIT_MODEL_NODE) - 1,
+    );
+    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.filter(
+      (mapping) => String(mapping.nodeId) === COMPARE_MAXIMUM_NODE_ID,
+    )).toEqual([{
+      nodeId: COMPARE_MAXIMUM_NODE_ID,
+      source: {
+        activityId: COMPARE_MAXIMUM_WORKED_ACTIVITY_ID,
+        mode: 'worked_example',
+      },
+      guided: {
+        activityId: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
+        mode: 'guided_practice',
+        variantKey: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
+      },
+      masteryAdvantage: {
+        activityId: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+        mode: 'independent_practice',
+        variantKey: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+      },
+    }]);
+  });
+
+  it('freezes the enabled IM3 pilot nodes', () => {
+    expect(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).toEqual([
+      PILOT_NODE_ID,
+      IM3_EQUATION_RATE_NODE,
+      IM3_DOMAIN_RANGE_NODE,
+      IM3_MAXIMUM_READING_NODE,
+      IM3_SYMMETRY_NODE,
+      COMPARE_MAXIMUM_NODE_ID,
+      IM3_PROFIT_MODEL_NODE,
+      IM3_PROFIT_MAXIMUM_NODE,
+      IM3_ONE_REAL_SOLUTION_NODE,
+      IM3_TWO_REAL_SOLUTIONS_NODE,
+    ]);
+    expect(new Set(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).size)
+      .toBe(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS.length);
     expect(IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS).not.toContain(NON_PILOT_NODE_ID);
+  });
+
+  it('maps the enabled IM3 nodes to exact source, Guided, and Independent identities', () => {
+    expect(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds).toEqual([
+      IM3_PILOT_NODE,
+      IM3_DOMAIN_RANGE_NODE,
+      IM3_MAXIMUM_READING_NODE,
+      IM3_SYMMETRY_NODE,
+      COMPARE_MAXIMUM_NODE_ID,
+      IM3_PROFIT_MODEL_NODE,
+      IM3_PROFIT_MAXIMUM_NODE,
+      IM3_ONE_REAL_SOLUTION_NODE,
+    ]);
+    expect(new Set(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds).size)
+      .toBe(IM3_LEARNING_EVIDENCE_PILOT.enabledNodeIds.length);
+    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings).toEqual([
+      {
+        nodeId: IM3_PILOT_NODE,
+        source: {
+          activityId: IM3_TEACHER_LED_ACTIVITY_ID,
+          mode: 'worked_example',
+        },
+        guided: {
+          activityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+          mode: 'guided_practice',
+          variantKey: IM3_GUIDED_VARIANT_KEY,
+        },
+        masteryAdvantage: {
+          activityId: IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+          mode: 'independent_practice',
+          variantKey: IM3_PILOT_VARIANT_KEY,
+        },
+      },
+      {
+        nodeId: IM3_DOMAIN_RANGE_NODE,
+        source: {
+          activityId: IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
+          mode: 'worked_example',
+        },
+        guided: {
+          activityId: IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
+          mode: 'guided_practice',
+          variantKey: IM3_DOMAIN_RANGE_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
+          mode: 'independent_practice',
+          variantKey: IM3_DOMAIN_RANGE_INDEPENDENT_ACTIVITY_ID,
+        },
+      },
+      {
+        nodeId: IM3_MAXIMUM_READING_NODE,
+        source: {
+          activityId: IM3_MAXIMUM_READING_WORKED_ACTIVITY_ID,
+          mode: 'worked_example',
+        },
+        guided: {
+          activityId: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
+          mode: 'guided_practice',
+          variantKey: IM3_MAXIMUM_READING_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
+          mode: 'independent_practice',
+          variantKey: IM3_MAXIMUM_READING_INDEPENDENT_ACTIVITY_ID,
+        },
+      },
+      {
+        nodeId: IM3_SYMMETRY_NODE,
+        source: {
+          activityId: IM3_SYMMETRY_WORKED_ACTIVITY_ID,
+          mode: 'worked_example',
+        },
+        guided: {
+          activityId: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+          mode: 'guided_practice',
+          variantKey: IM3_SYMMETRY_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+          mode: 'independent_practice',
+          variantKey: IM3_SYMMETRY_INDEPENDENT_ACTIVITY_ID,
+        },
+      },
+      {
+        nodeId: COMPARE_MAXIMUM_NODE_ID,
+        source: {
+          activityId: COMPARE_MAXIMUM_WORKED_ACTIVITY_ID,
+          mode: 'worked_example',
+        },
+        guided: {
+          activityId: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
+          mode: 'guided_practice',
+          variantKey: COMPARE_MAXIMUM_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+          mode: 'independent_practice',
+          variantKey: COMPARE_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+        },
+      },
+      {
+        nodeId: IM3_PROFIT_MODEL_NODE,
+        source: {
+          activityId: IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID,
+          mode: 'worked_example',
+        },
+        guided: {
+          activityId: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
+          mode: 'guided_practice',
+          variantKey: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
+          mode: 'independent_practice',
+          variantKey: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
+        },
+      },
+      {
+        nodeId: IM3_PROFIT_MAXIMUM_NODE,
+        source: {
+          activityId: IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID,
+          mode: 'worked_example',
+        },
+        guided: {
+          activityId: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
+          mode: 'guided_practice',
+          variantKey: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+          mode: 'independent_practice',
+          variantKey: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+        },
+      },
+      {
+        nodeId: IM3_ONE_REAL_SOLUTION_NODE,
+        source: {
+          activityId: IM3_ONE_REAL_SOLUTION_WORKED_ACTIVITY_ID,
+          mode: 'worked_example',
+        },
+        guided: {
+          activityId: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
+          mode: 'guided_practice',
+          variantKey: IM3_ONE_REAL_SOLUTION_GUIDED_ACTIVITY_ID,
+        },
+        masteryAdvantage: {
+          activityId: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
+          mode: 'independent_practice',
+          variantKey: IM3_ONE_REAL_SOLUTION_INDEPENDENT_ACTIVITY_ID,
+        },
+      },
+    ]);
+    expect(new Set(IM3_LEARNING_EVIDENCE_PILOT.mappings.map((mapping) => mapping.nodeId)).size)
+      .toBe(IM3_LEARNING_EVIDENCE_PILOT.mappings.length);
+    expect(IM3_LEARNING_EVIDENCE_PILOT.mappings.map((mapping) => mapping.nodeId))
+      .toEqual([
+        IM3_PILOT_NODE,
+        IM3_DOMAIN_RANGE_NODE,
+        IM3_MAXIMUM_READING_NODE,
+        IM3_SYMMETRY_NODE,
+        COMPARE_MAXIMUM_NODE_ID,
+        IM3_PROFIT_MODEL_NODE,
+        IM3_PROFIT_MAXIMUM_NODE,
+        IM3_ONE_REAL_SOLUTION_NODE,
+      ]);
+    const profitMapping = IM3_LEARNING_EVIDENCE_PILOT.mappings[5];
+    expect(profitMapping).toMatchObject({
+      nodeId: IM3_PROFIT_MODEL_NODE,
+      source: {
+        activityId: IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID,
+        mode: 'worked_example',
+      },
+      guided: {
+        activityId: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
+        mode: 'guided_practice',
+        variantKey: IM3_PROFIT_MODEL_GUIDED_ACTIVITY_ID,
+      },
+      masteryAdvantage: {
+        activityId: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
+        mode: 'independent_practice',
+        variantKey: IM3_PROFIT_MODEL_INDEPENDENT_ACTIVITY_ID,
+      },
+    });
+    const maximumMapping = IM3_LEARNING_EVIDENCE_PILOT.mappings[6];
+    expect(maximumMapping).toEqual({
+      nodeId: IM3_PROFIT_MAXIMUM_NODE,
+      source: {
+        activityId: IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID,
+        mode: 'worked_example',
+      },
+      guided: {
+        activityId: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
+        mode: 'guided_practice',
+        variantKey: IM3_PROFIT_MAXIMUM_GUIDED_ACTIVITY_ID,
+      },
+      masteryAdvantage: {
+        activityId: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+        mode: 'independent_practice',
+        variantKey: IM3_PROFIT_MAXIMUM_INDEPENDENT_ACTIVITY_ID,
+      },
+    });
   });
 
   it('introduces a full-score teacher-led pilot exactly once without changing KST or SRS bytes', async () => {

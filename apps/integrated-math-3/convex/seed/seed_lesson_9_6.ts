@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson9_6 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Trigonometric Transformations Explorer",
               props: {
                 variant: "explore",
                 equation: "y = sin(x)",
+                title: "Trigonometric Transformations Explorer",
               },
             },
           },
@@ -136,8 +137,16 @@ export const seedLesson9_6 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the phase shift of y = cos(x - 270°)?", options: ["270° right", "270° left", "135° right"], correctAnswer: "270° right" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the period of y = cos(x - 270°)?", options: ["360°", "180°", "720°"], correctAnswer: "360°" },
+                  {
+                    question: "What is the phase shift of y = cos(x - 270°)?",
+                    options: ["270° right", "270° left", "135° right"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the period of y = cos(x - 270°)?",
+                    options: ["360°", "180°", "720°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -165,8 +174,16 @@ export const seedLesson9_6 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the amplitude of y = 3 sin(x + pi/4)?", options: ["3", "pi/4", "2pi"], correctAnswer: "3" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the phase shift of y = 3 sin(x + pi/4)?", options: ["pi/4 left", "pi/4 right", "3 left"], correctAnswer: "pi/4 left" },
+                  {
+                    question: "What is the amplitude of y = 3 sin(x + pi/4)?",
+                    options: ["3", "pi/4", "2pi"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the phase shift of y = 3 sin(x + pi/4)?",
+                    options: ["pi/4 left", "pi/4 right", "3 left"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -210,8 +227,16 @@ export const seedLesson9_6 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the vertical shift of y = tan(1/2 x) - 1?", options: ["-1", "1", "1/2"], correctAnswer: "-1" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the midline of y = tan(1/2 x) - 1?", options: ["y = -1", "y = 0", "y = 1"], correctAnswer: "y = -1" },
+                  {
+                    question: "What is the vertical shift of y = tan(1/2 x) - 1?",
+                    options: ["-1", "1", "1/2"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the midline of y = tan(1/2 x) - 1?",
+                    options: ["y = -1", "y = 0", "y = 1"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -239,8 +264,16 @@ export const seedLesson9_6 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the amplitude of the jump rope model?", options: ["54", "108", "27"], correctAnswer: "54" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the midline of the jump rope model?", options: ["y = 54", "y = 0", "y = 108"], correctAnswer: "y = 54" },
+                  {
+                    question: "What is the amplitude of the jump rope model?",
+                    options: ["54", "108", "27"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the midline of the jump rope model?",
+                    options: ["y = 54", "y = 0", "y = 108"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -268,8 +301,16 @@ export const seedLesson9_6 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the amplitude of the function?", options: ["3", "2", "5"], correctAnswer: "3" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the midline of the function?", options: ["y = 2", "y = 5", "y = -1"], correctAnswer: "y = 2" },
+                  {
+                    question: "What is the amplitude of the function?",
+                    options: ["3", "2", "5"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the midline of the function?",
+                    options: ["y = 2", "y = 5", "y = -1"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -297,16 +338,24 @@ export const seedLesson9_6 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "How does a phase shift affect the domain?", options: [
+                  {
+                    question: "How does a phase shift affect the domain?",
+                    options: [
                       "It shifts the domain left or right",
                       "It changes the range",
                       "It changes the period",
-                    ], correctAnswer: "It shifts the domain left or right" },
-                  { id: "question-2", type: "multiple_choice", prompt: "How does a vertical shift affect the range?", options: [
+                    ],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "How does a vertical shift affect the range?",
+                    options: [
                       "It moves the range up or down",
                       "It changes the period",
                       "It changes the amplitude",
-                    ], correctAnswer: "It moves the range up or down" },
+                    ],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -361,9 +410,9 @@ export const seedLesson9_6 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -376,8 +425,8 @@ export const seedLesson9_6 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

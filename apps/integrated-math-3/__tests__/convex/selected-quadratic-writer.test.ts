@@ -508,7 +508,7 @@ describe("selected writer identity and replay boundaries", () => {
     expect(await createHandler(t.ctx, retry)).toEqual(saved);
     expect(t.submissions).toHaveLength(1);
   });
-  it.each(["hintsUsed", "revealStepsSeen", "changedCount"])(
+  it.each(["hintsUsed", "changedCount"])(
     "rejects changed %s on replay",
     async (field) => {
       const t = createHarness();
@@ -521,6 +521,16 @@ describe("selected writer identity and replay boundaries", () => {
       expect(t.submissions).toHaveLength(1);
     },
   );
+  it("rejects unsupported reveal telemetry before replay comparison", async () => {
+    const t = createHarness();
+    await createHandler(t.ctx, createInput("assistance-reveal"));
+    const retry = createInput("assistance-reveal");
+    Object.assign(retry.submissionData.parts[0], { revealStepsSeen: 1 });
+    await expect(createHandler(t.ctx, retry)).rejects.toThrow(
+      "Selected graph activities do not support reveal telemetry",
+    );
+    expect(t.submissions).toHaveLength(1);
+  });
 });
 
 

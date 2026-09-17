@@ -1,9 +1,10 @@
+import { normalizeSeedProps } from '../lib/activities/seed-props';
 import {
   internalMutation,
   internalQuery,
   type QueryCtx,
 } from "./_generated/server";
-import { v, ConvexError, convexToJson } from "convex/values";
+import { v, ConvexError } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
 import {
@@ -11,113 +12,27 @@ import {
   buildPublishedUnitProgressRows,
   resolveLatestPublishedLessonVersion,
 } from "../lib/progress/published-curriculum";
-import { loadFullCurriculumGraph } from "../lib/curriculum/skill-graph-loader";
+import {
+  loadFullCurriculumGraph,
+  includeHistoricalEvidenceNodes,
+  projectApprovedReadinessGraph,
+} from "../lib/curriculum/skill-graph-loader";
 import {
   projectStudentVisualization,
   type StudentVisualizationV1,
 } from "@math-platform/knowledge-space-practice";
 import {
-  isIm3GraphPilotPublished,
-} from "./learningEvidence";
-import {
   getSelectedWorkedAcknowledgementHandler,
+  isIm3GraphPilotPublished,
   isSelectedWorkedActivity,
-  loadLesson16QuizAuthority,
 } from "./activities";
-import { lesson16QuizPublicProps, LESSON_1_6_QUIZ_PHASE, LESSON_1_6_QUIZ_SEQUENCE, LESSON_1_6_QUIZ_SLUG } from "./lib/lesson_1_6_quiz";
 import {
   IM3_PILOT_NODE,
   IM3_TEACHER_LED_ACTIVITY_ID,
 } from "../lib/practice/learning-evidence-pilot";
-import {
-  IM3_QF_DRAFT_MAPPINGS,
-  IM3_QF_NODE,
-  quadraticFormulaPublicProps,
-} from "../lib/activities/server-grading";
-
-const IM3_TEACHER_LED_LESSON_SLUG = "module-1-lesson-1";
-const IM3_TEACHER_LED_PHASE_NUMBER = 4;
-
-async function projectActivitySection(ctx: QueryCtx, section: {
-  _id: Id<"phase_sections">;
-  sequenceOrder: number;
-  sectionType: string;
-  content: unknown;
-}, selectedSourceSection: boolean, selectedLesson16Quiz = false) {
-  if (section.sectionType !== "activity") return section;
-  const content = section.content as { activityId?: Id<"activities">; componentKey?: string; stableActivityId?: string };
-  const withoutProjectedIdentity = () => {
-    const { stableActivityId: _stableActivityId, masteryNodeId: _masteryNodeId,
-      learningEvidenceMode: _learningEvidenceMode, srsEligible: _srsEligible,
-      activityProps: _activityProps, ...storedContent } = content as Record<string, unknown>;
-    return { ...section, content: { ...storedContent, componentKey: "unavailable" } };
-  };
-  const activityId = content.activityId
-    ? ctx.db.normalizeId("activities", content.activityId)
-    : null;
-  const activity = activityId ? await ctx.db.get(activityId) : null;
-  const claimsSelectedIdentity = selectedSourceSection
-    || activity?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-    || content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-    || (content as Record<string, unknown>).masteryNodeId === IM3_PILOT_NODE;
-  if (claimsSelectedIdentity) {
-    if (!isIm3GraphPilotPublished() || !activity || !isSelectedWorkedActivity(activity)) {
-      return withoutProjectedIdentity();
-    }
-    return {
-      ...section,
-      content: {
-        ...content,
-        componentKey: activity.componentKey,
-        stableActivityId: activity.stableActivityId,
-        masteryNodeId: activity.masteryNodeId,
-        learningEvidenceMode: activity.learningEvidenceMode,
-        srsEligible: activity.srsEligible,
-        activityProps: activity.props,
-      },
-    };
-  }
-
-  if (selectedLesson16Quiz) {
-    if (!activityId || content.componentKey !== "comprehension-quiz" || !(await loadLesson16QuizAuthority(ctx, activityId))) return withoutProjectedIdentity();
-    return { ...section, content: { activityId: content.activityId, componentKey: "comprehension-quiz", activityProps: lesson16QuizPublicProps() } };
-  }
-
-  const mappings = Object.entries(IM3_QF_DRAFT_MAPPINGS).filter(([, mapping]) => (
-    mapping.stableActivityId === activity?.stableActivityId
-  ));
-  const claimsQfIdentity = content.componentKey === "quadratic-formula"
-    || (content as Record<string, unknown>).masteryNodeId === IM3_QF_NODE
-    || activity?.componentKey === "quadratic-formula"
-    || activity?.masteryNodeId === IM3_QF_NODE
-    || mappings.length > 0
-    || content.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId
-    || content.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId;
-  if (!claimsQfIdentity) return section;
-  if (!activity || mappings.length !== 1) return withoutProjectedIdentity();
-  const [mode, mapping] = mappings[0] as [keyof typeof IM3_QF_DRAFT_MAPPINGS, (typeof IM3_QF_DRAFT_MAPPINGS)[keyof typeof IM3_QF_DRAFT_MAPPINGS]];
-  const expectedProps = quadraticFormulaPublicProps(mode, mapping.seed);
-  const valid = activity.componentKey === "quadratic-formula"
-    && activity.masteryNodeId === IM3_QF_NODE
-    && activity.srsEligible === false
-    && activity.approval?.status === "unreviewed"
-    && (activity.props as { presentationMode?: unknown }).presentationMode === mapping.presentationMode
-    && JSON.stringify(convexToJson(activity.props as never)) === JSON.stringify(convexToJson(expectedProps as never));
-  if (!valid) return withoutProjectedIdentity();
-  return {
-    ...section,
-    content: {
-      activityId: content.activityId,
-      componentKey: activity.componentKey,
-      stableActivityId: activity.stableActivityId,
-      masteryNodeId: activity.masteryNodeId,
-      learningEvidenceMode: mode,
-      srsEligible: activity.srsEligible,
-      activityProps: activity.props,
-    },
-  };
-}
-
+const IM3_SELECTED_LESSON_SLUG = "module-1-lesson-1";
+const IM3_SELECTED_PHASE_NUMBER = 4;
+const IM3_SELECTED_SECTION_SEQUENCE = 2;
 /**
  * Convex internalQuery wrapper: get dashboard data.
  * @returns {Promise<unknown>} The wrapper result.
@@ -206,34 +121,96 @@ export const getLessonProgress = internalQuery({
     // 5. Fetch sections for each phase (batched via Promise.all)
     const phaseIds = phases.map(p => p._id);
     const allSections = await Promise.all(
-      phases.map(async phase => {
-        const phaseId = phase._id;
-        const sections = await ctx.db
+      phaseIds.map(phaseId =>
+        ctx.db
           .query("phase_sections")
           .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
-          .collect();
-        return Promise.all(sections.map((section) => projectActivitySection(ctx, {
-          _id: section._id,
+          .collect()
+      )
+    );
+    const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();
+    for (let i = 0; i < phaseIds.length; i++) {
+      const phaseId = phaseIds[i];
+      const phase = phases[i];
+      const orderedSections = allSections[i].sort((a, b) => a.sequenceOrder - b.sequenceOrder);
+      const sections = await Promise.all(orderedSections.map(async (section) => {
+        const originalSection = {
+          id: section._id,
           sequenceOrder: section.sequenceOrder,
           sectionType: section.sectionType,
           content: section.content,
-        }, lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
-          && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER
+        };
+        const isSelectedSourceSection = lesson.slug === IM3_SELECTED_LESSON_SLUG
+          && phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER
           && section.sectionType === "activity"
-          && section.sequenceOrder === 2,
-          lesson.slug === LESSON_1_6_QUIZ_SLUG
-            && phase.phaseNumber === LESSON_1_6_QUIZ_PHASE
-            && section.sectionType === "activity"
-            && section.sequenceOrder === LESSON_1_6_QUIZ_SEQUENCE)));
-      })
-    );
-    const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();
-    phaseIds.forEach((phaseId, i) => {
-      sectionsByPhaseId.set(phaseId, allSections[i]
-        .sort((a, b) => a.sequenceOrder - b.sequenceOrder)
-        .map(s => ({ id: s._id, sequenceOrder: s.sequenceOrder, sectionType: s.sectionType, content: s.content }))
-      );
-    });
+          && section.sequenceOrder === IM3_SELECTED_SECTION_SEQUENCE;
+        const sectionContent = typeof section.content === "object"
+          && section.content !== null
+          && !Array.isArray(section.content)
+          ? section.content as Record<string, unknown>
+          : null;
+        const hasSelectedClaim = isSelectedSourceSection
+          || sectionContent?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+          || sectionContent?.masteryNodeId === IM3_PILOT_NODE;
+        const unavailableSelectedSection = () => ({
+          ...originalSection,
+          content: {
+            activityId: typeof (section.content as { activityId?: unknown })?.activityId === "string"
+              ? (section.content as { activityId: string }).activityId
+              : "",
+            componentKey: "unavailable",
+          },
+        });
+        if (
+          section.sectionType !== "activity"
+          || typeof section.content !== "object"
+          || section.content === null
+          || Array.isArray(section.content)
+        ) {
+          return originalSection;
+        }
+
+        const activityId = (section.content as { activityId?: unknown }).activityId;
+        if (typeof activityId !== "string") {
+          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+        }
+        const normalizedActivityId = ctx.db.normalizeId("activities", activityId);
+        if (!normalizedActivityId) {
+          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+        }
+        const activity = await ctx.db.get(normalizedActivityId);
+        if (!activity) {
+          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+        }
+        const isSelectedPhysicalActivity = activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID;
+        if ((hasSelectedClaim || isSelectedPhysicalActivity) && (
+          !isIm3GraphPilotPublished()
+          || !isSelectedWorkedActivity(activity)
+        )) return unavailableSelectedSection();
+
+        return {
+          ...originalSection,
+          content: {
+            ...(section.content as Record<string, unknown>),
+            ...(isSelectedSourceSection ? { componentKey: activity.componentKey } : {}),
+            activityProps: normalizeSeedProps(activity.componentKey, activity.props),
+            ...(activity.stableActivityId === undefined
+              ? {}
+              : { stableActivityId: activity.stableActivityId }),
+            ...(activity.masteryNodeId === undefined
+              ? {}
+              : { masteryNodeId: activity.masteryNodeId }),
+            ...(activity.learningEvidenceMode === undefined
+              ? {}
+              : { learningEvidenceMode: activity.learningEvidenceMode }),
+            ...(activity.srsEligible === undefined
+              ? {}
+              : { srsEligible: activity.srsEligible }),
+          },
+        };
+      }));
+      sectionsByPhaseId.set(phaseId, sections);
+    }
 
     const progressRows = buildLessonPhaseProgress({ phases, progressRows: userProgress });
 
@@ -264,7 +241,7 @@ export const completePhase = internalMutation({
     linkedStandardId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    // 1. Find lesson
+    // 1. Find the lesson and its latest published version.
     let lesson = null;
     try {
       lesson = await ctx.db.get(args.lessonId as Id<"lessons">);
@@ -286,7 +263,7 @@ export const completePhase = internalMutation({
     const latestVersion = resolveLatestPublishedLessonVersion(versions);
     if (!latestVersion) throw new ConvexError("Published lesson version not found");
 
-    // 3. Find specific phase
+    // 2. Find the requested phase.
     const phase = await ctx.db
       .query("phase_versions")
       .withIndex("by_lesson_version_and_phase", (q) =>
@@ -295,37 +272,63 @@ export const completePhase = internalMutation({
       .unique();
     if (!phase) throw new ConvexError("Phase not found");
 
-    const isIm3TeacherLedPhase =
-      lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
-      && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER;
+    const existingByKey = await ctx.db
+      .query("student_progress")
+      .withIndex("by_user_and_idempotency_key", (q) => (
+        q.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey)
+      ))
+      .unique();
 
+    if (existingByKey) {
+      if (
+        existingByKey.status === "completed"
+        && existingByKey.phaseId === phase._id
+        && existingByKey.timeSpentSeconds === args.timeSpent
+      ) {
+        return { success: true, alreadyCompleted: true };
+      }
+      throw new ConvexError("idempotency_conflict");
+    }
+
+    // Preserve the ordinary completion behavior for every phase.
     const existing = await ctx.db
       .query("student_progress")
-      .withIndex("by_user_and_phase", (q) =>
+      .withIndex("by_user_and_phase", (q) => (
         q.eq("userId", args.userId).eq("phaseId", phase._id)
-      )
+      ))
       .unique();
 
     if (existing?.status === "completed") {
+      if (existing.idempotencyKey !== args.idempotencyKey) {
+        throw new ConvexError("phase_already_completed");
+      }
       return { success: true, alreadyCompleted: true };
     }
 
-    if (isIm3TeacherLedPhase) {
+    const isSelectedWorkedPhase = lesson.slug === IM3_SELECTED_LESSON_SLUG
+      && phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER;
+    if (isSelectedWorkedPhase) {
       const sections = await ctx.db.query("phase_sections")
-        .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
+        .withIndex("by_phase_version", (query) => query.eq("phaseVersionId", phase._id))
         .collect();
       const activities = await Promise.all(sections
         .filter((section) => section.sectionType === "activity")
-        .map((section) => {
-          const activityId = (section.content as { activityId?: Id<"activities"> }).activityId;
-          return activityId ? ctx.db.get(activityId) : null;
+        .map(async (section) => {
+          const activityId = typeof section.content === "object"
+            && section.content !== null
+            && !Array.isArray(section.content)
+            ? (section.content as { activityId?: unknown }).activityId
+            : null;
+          const normalizedActivityId = typeof activityId === "string"
+            ? ctx.db.normalizeId("activities", activityId)
+            : null;
+          return normalizedActivityId ? ctx.db.get(normalizedActivityId) : null;
         }));
-      const selectedWorked = activities.filter((activity) => (
-        activity?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-        && isSelectedWorkedActivity(activity)
+      const selectedActivities = activities.filter((activity) => (
+        activity && isSelectedWorkedActivity(activity)
       ));
-      const selectedActivity = selectedWorked[0];
-      if (!selectedActivity || selectedWorked.length !== 1) {
+      const selectedActivity = selectedActivities[0];
+      if (!selectedActivity || selectedActivities.length !== 1) {
         throw new ConvexError("Selected Worked activity is not available");
       }
       const acknowledgement = await getSelectedWorkedAcknowledgementHandler(ctx, {
@@ -339,7 +342,6 @@ export const completePhase = internalMutation({
 
     const now = Date.now();
 
-    // 5. Update or create progress
     if (existing) {
       await ctx.db.patch(existing._id, {
         status: "completed",
@@ -362,8 +364,8 @@ export const completePhase = internalMutation({
       });
     }
 
-    // 6. Handle competency if linkedStandardId provided
-    if (args.linkedStandardId && !isIm3TeacherLedPhase) {
+    // Handle competency if linkedStandardId is provided.
+    if (args.linkedStandardId) {
       const standard = await ctx.db
         .query("competency_standards")
         .withIndex("by_code", (q) => q.eq("code", args.linkedStandardId!))
@@ -666,7 +668,7 @@ export async function getStudentVisualizationHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles"> },
 ): Promise<StudentVisualizationV1> {
-  const { nodes, edges } = loadFullCurriculumGraph();
+  const fullGraph = loadFullCurriculumGraph();
 
   const placements = await ctx.db
     .query("placement_results")
@@ -683,6 +685,17 @@ export async function getStudentVisualizationHandler(
       learnerState[p.nodeId] = "blocked";
     }
   }
+
+  const historicalNodeIds = new Set(
+    Object.entries(learnerState)
+      .filter(([, state]) => state === "mastered")
+      .map(([nodeId]) => nodeId),
+  );
+  const { nodes, edges } = includeHistoricalEvidenceNodes(
+    projectApprovedReadinessGraph(fullGraph),
+    fullGraph,
+    historicalNodeIds,
+  );
 
   const misconceptions = await ctx.db
     .query("student_misconception_state")

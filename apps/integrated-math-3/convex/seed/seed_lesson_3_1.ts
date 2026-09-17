@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -71,10 +72,10 @@ export const seedLesson3_1 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Solutions of Polynomial Equations",
               props: {
                 variant: "explore",
                 equation: "y = x^3 - 4x",
+                title: "Solutions of Polynomial Equations",
               },
             },
           },
@@ -139,13 +140,13 @@ export const seedLesson3_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "x^4 + 3x^2 - 5 = -4x^3",
                 steps: [
-                  { id: "step-1", description: "Start with the original equation", expression: "x^4 + 3x^2 - 5 = -4x^3", explanation: "Start with the original equation" },
-                  { id: "step-2", description: "Add 4x^3 to both sides", expression: "x^4 + 4x^3 + 3x^2 - 5 = 0", explanation: "Add 4x^3 to both sides" },
-                  { id: "step-3", description: "Write the related function", expression: "f(x) = x^4 + 4x^3 + 3x^2 - 5", explanation: "Write the related function" },
-                  { id: "step-4", description: "Enter the function in the graphing calculator", expression: "Graph f(x)", explanation: "Enter the function in the graphing calculator" },
-                  { id: "step-5", description: "Find the real zeros of the function", expression: "Use CALC → zero", explanation: "Find the real zeros of the function" },
-                  { id: "step-6", description: "First real zero", expression: "x ≈ -3.22", explanation: "First real zero" },
-                  { id: "step-7", description: "Second real zero", expression: "x ≈ 0.84", explanation: "Second real zero" },
+                  { expression: "x^4 + 3x^2 - 5 = -4x^3", explanation: "Start with the original equation" },
+                  { expression: "x^4 + 4x^3 + 3x^2 - 5 = 0", explanation: "Add 4x^3 to both sides" },
+                  { expression: "f(x) = x^4 + 4x^3 + 3x^2 - 5", explanation: "Write the related function" },
+                  { expression: "Graph f(x)", explanation: "Enter the function in the graphing calculator" },
+                  { expression: "Use CALC → zero", explanation: "Find the real zeros of the function" },
+                  { expression: "x ≈ -3.22", explanation: "First real zero" },
+                  { expression: "x ≈ 0.84", explanation: "Second real zero" },
                 ],
               },
             },
@@ -174,15 +175,15 @@ export const seedLesson3_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "(2x + 3)(5x - 2)(2x) = 1085",
                 steps: [
-                  { id: "step-1", description: "Minimum required volume for 5 penguins", expression: "V = 217 × 5 = 1085 ft³", explanation: "Minimum required volume for 5 penguins" },
-                  { id: "step-2", description: "Volume formula for rectangular prism", expression: "(2x + 3)(5x - 2)(2x) = 1085", explanation: "Volume formula for rectangular prism" },
-                  { id: "step-3", description: "Multiply first two binomials", expression: "(10x² + 11x - 6)(2x) = 1085", explanation: "Multiply first two binomials" },
-                  { id: "step-4", description: "Distribute 2x", expression: "20x³ + 22x² - 12x = 1085", explanation: "Distribute 2x" },
-                  { id: "step-5", description: "Set left side equal to y", expression: "y = 20x³ + 22x² - 12x", explanation: "Set left side equal to y" },
-                  { id: "step-6", description: "Set right side equal to y", expression: "y = 1085", explanation: "Set right side equal to y" },
-                  { id: "step-7", description: "Use the intersect feature", expression: "Graph both equations", explanation: "Use the intersect feature" },
-                  { id: "step-8", description: "Real solution from intersection", expression: "x = 3.5", explanation: "Real solution from intersection" },
-                  { id: "step-9", description: "Substitute x = 3.5", expression: "length = 10 ft, width = 15.5 ft, depth = 7 ft", explanation: "Substitute x = 3.5" },
+                  { expression: "V = 217 × 5 = 1085 ft³", explanation: "Minimum required volume for 5 penguins" },
+                  { expression: "(2x + 3)(5x - 2)(2x) = 1085", explanation: "Volume formula for rectangular prism" },
+                  { expression: "(10x² + 11x - 6)(2x) = 1085", explanation: "Multiply first two binomials" },
+                  { expression: "20x³ + 22x² - 12x = 1085", explanation: "Distribute 2x" },
+                  { expression: "y = 20x³ + 22x² - 12x", explanation: "Set left side equal to y" },
+                  { expression: "y = 1085", explanation: "Set right side equal to y" },
+                  { expression: "Graph both equations", explanation: "Use the intersect feature" },
+                  { expression: "x = 3.5", explanation: "Real solution from intersection" },
+                  { expression: "length = 10 ft, width = 15.5 ft, depth = 7 ft", explanation: "Substitute x = 3.5" },
                 ],
               },
             },
@@ -209,16 +210,24 @@ export const seedLesson3_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "The real zeros of a related function correspond to:", options: [
+                  {
+                    question: "The real zeros of a related function correspond to:",
+                    options: [
                       "The solutions of the polynomial equation",
                       "The y-intercept of the graph",
                       "The maximum value of the function",
-                    ], correctAnswer: "The solutions of the polynomial equation" },
-                  { id: "question-2", type: "multiple_choice", prompt: "To solve a polynomial equation by graphing, you first:", options: [
+                    ],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "To solve a polynomial equation by graphing, you first:",
+                    options: [
                       "Write the equation with 0 on one side",
                       "Find the y-intercept",
                       "Factor the polynomial completely",
-                    ], correctAnswer: "Write the equation with 0 on one side" },
+                    ],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -272,9 +281,9 @@ export const seedLesson3_1 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -287,8 +296,8 @@ export const seedLesson3_1 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

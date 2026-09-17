@@ -215,13 +215,14 @@ describe('buildDailyQueue', () => {
   });
 
   describe('overdue cards ordering', () => {
-    it('should sort overdue cards by days overdue descending', () => {
+    it('orders due reviews by retention within the same objective', () => {
       const slightlyOverdue = createCard({
         objectiveId: 'obj-essential',
         state: 'review',
         dueDate: '2026-04-15T12:00:00.000Z',
       });
       const veryOverdue = createCard({
+        elapsedDays: 10,
         objectiveId: 'obj-essential',
         state: 'review',
         dueDate: '2026-04-10T12:00:00.000Z',
@@ -237,7 +238,7 @@ describe('buildDailyQueue', () => {
   });
 
   describe('due cards ordering', () => {
-    it('should sort due cards by due date ascending', () => {
+    it('excludes reviews whose due date is in the future', () => {
       const laterDue = createCard({
         objectiveId: 'obj-essential',
         state: 'review',
@@ -254,9 +255,7 @@ describe('buildDailyQueue', () => {
         defaultConfig,
         mockNow
       );
-      expect(new Date(queue[0].card.dueDate).getTime()).toBeLessThan(
-        new Date(queue[1].card.dueDate).getTime()
-      );
+      expect(queue.map(item => item.card.cardId)).toEqual([earlierDue.cardId]);
     });
   });
 
@@ -276,7 +275,7 @@ describe('buildDailyQueue', () => {
   });
 
   describe('mixed queue ordering', () => {
-    it('should interleave new, overdue, and due cards in correct priority order', () => {
+    it('presents due reviews before new cards and keeps new-card priority', () => {
       const newEssential = createCard({ objectiveId: 'obj-essential', state: 'new' });
       const newSupporting = createCard({ objectiveId: 'obj-supporting', state: 'new' });
       const overdue = createCard({
@@ -309,9 +308,9 @@ describe('buildDailyQueue', () => {
       );
 
       expect(essentialNewIndex).toBeLessThan(supportingNewIndex);
-      expect(essentialNewIndex).toBeLessThan(overdueIndex);
-      expect(supportingNewIndex).toBeLessThan(overdueIndex);
-      expect(overdueIndex).toBeLessThan(dueIndex);
+      expect(overdueIndex).toBeLessThan(essentialNewIndex);
+      expect(dueIndex).toBeLessThan(essentialNewIndex);
+      expect(queue).toHaveLength(4);
     });
   });
 
@@ -334,7 +333,7 @@ describe('buildDailyQueue', () => {
   });
 
   describe('prioritizeOverdue: false', () => {
-    it('should sort overdue cards by due date ascending when prioritizeOverdue is false', () => {
+    it('uses objective priority for review presentation with the legacy option disabled', () => {
       const laterOverdue = createCard({
         objectiveId: 'obj-essential',
         state: 'review',
@@ -352,9 +351,7 @@ describe('buildDailyQueue', () => {
         config,
         mockNow
       );
-      expect(new Date(queue[0].card.dueDate).getTime()).toBeLessThan(
-        new Date(queue[1].card.dueDate).getTime()
-      );
+      expect(queue.map(item => item.card.objectiveId)).toEqual(['obj-essential', 'obj-supporting']);
     });
   });
 

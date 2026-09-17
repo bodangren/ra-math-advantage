@@ -22,7 +22,6 @@ export interface AuditSummary {
     documentedException: boolean;
   }>;
   phasePackageCount: number;
-  activityMappingCount: number;
 }
 
 export interface CurriculumAuditReport {
@@ -71,20 +70,6 @@ const TRUNCATION_PATTERNS = [
   /\bwith\s*$/i,
 ];
 
-const ALLOWED_COMPONENT_KEYS = new Set([
-  'comprehension-quiz',
-  'fill-in-the-blank',
-  'tiered-assessment',
-  'graphing-explorer',
-  'step-by-step-solver',
-  'equation-solver',
-  'function-analyzer',
-  'drag-drop-categorization',
-  'statistical-explorer',
-  'unit-circle-trainer',
-  'rate-of-change-calculator',
-  'discriminant-analyzer',
-]);
 
 /** Reads a UTF-8 text file and returns its contents as a string. */
 function readText(filePath: string): string {
@@ -313,11 +298,10 @@ function checkLessonSources(rootDir: string, checks: AuditCheck[]) {
   });
 }
 
-/** Validates class-period package artifacts and practice.v1 activity mappings against planned periods. */
+/** Validates class-period plans. Runtime activity validation runs in the seed tests. */
 function checkImplementationArtifacts(rootDir: string, plannedPeriods: PlannedPeriod[], checks: AuditCheck[]) {
   const implementationDir = path.join(rootDir, 'curriculum', 'implementation');
   const packageDir = path.join(implementationDir, 'class-period-packages');
-  const activityMapPath = path.join(implementationDir, 'practice-v1', 'activity-map.json');
 
   const packages: Array<Record<string, unknown>> = [];
   const packageErrors: string[] = [];
@@ -372,49 +356,7 @@ function checkImplementationArtifacts(rootDir: string, plannedPeriods: PlannedPe
     details: { packageErrors, missingPackages, invalidInstructionPackages },
   });
 
-  if (!exists(activityMapPath)) {
-    checks.push({
-      id: 'practice-v1-activity-map',
-      status: 'fail',
-      message: 'Missing practice.v1 activity map.',
-      details: path.relative(rootDir, activityMapPath),
-    });
-    return { phasePackageCount: packages.length, activityMappingCount: 0 };
-  }
-
-  const mapping = JSON.parse(readText(activityMapPath)) as {
-    contractVersion?: string;
-    activities?: Array<Record<string, unknown>>;
-  };
-  const activities = Array.isArray(mapping.activities) ? mapping.activities : [];
-  const activityPeriodIds = new Set(activities.map((activity) => activity.periodId));
-  const missingActivityPeriods = [...packageIds].filter((id) => !activityPeriodIds.has(id));
-  const invalidActivities = activities.filter((activity) => {
-    return !(
-      activity.stableActivityId &&
-      activity.sourceReference &&
-      typeof activity.componentKey === 'string' &&
-      ALLOWED_COMPONENT_KEYS.has(activity.componentKey) &&
-      activity.mode &&
-      activity.gradingConfig &&
-      typeof activity.srsEligible === 'boolean'
-    );
-  });
-
-  checks.push({
-    id: 'practice-v1-activity-map',
-    status:
-      mapping.contractVersion === 'practice.v1' && missingActivityPeriods.length === 0 && invalidActivities.length === 0
-        ? 'pass'
-        : 'fail',
-    message:
-      mapping.contractVersion === 'practice.v1' && missingActivityPeriods.length === 0 && invalidActivities.length === 0
-        ? 'All class-period packages have practice.v1 activity mappings.'
-        : 'Some practice.v1 mappings are missing or invalid.',
-    details: { missingActivityPeriods, invalidActivities },
-  });
-
-  return { phasePackageCount: packages.length, activityMappingCount: activities.length };
+  return { phasePackageCount: packages.length };
 }
 
 /** Runs the full curriculum audit, producing a report with all checks and summary statistics. */
@@ -483,7 +425,6 @@ export function runCurriculumAudit(rootDir = process.cwd()): CurriculumAuditRepo
       plannedPeriods: dayCounts,
       aleks,
       phasePackageCount: implementationCounts.phasePackageCount,
-      activityMappingCount: implementationCounts.activityMappingCount,
     },
     checks,
     pass: checks.every((check) => check.status !== 'fail'),

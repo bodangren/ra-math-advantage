@@ -2,8 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parseAleksPracticeMap, parseClassPeriodPlan } from '../lib/curriculum/audit';
 
-type PracticeMode = 'worked_example' | 'guided_practice' | 'independent_practice' | 'assessment' | 'teaching';
-
 interface PeriodPackage {
   periodId: string;
   module: number;
@@ -28,27 +26,9 @@ interface PeriodPackage {
   nonInstructionArtifact?: Record<string, unknown>;
 }
 
-interface ActivityMapping {
-  stableActivityId: string;
-  periodId: string;
-  sourceReference: string;
-  componentKey: string;
-  mode: PracticeMode;
-  objectiveCodes: string[];
-  props: Record<string, unknown>;
-  gradingConfig: {
-    autoGrade: boolean;
-    partialCredit: boolean;
-    passingScore?: number;
-    rubric?: Array<{ criteria: string; points: number }>;
-  };
-  srsEligible: boolean;
-}
-
 const rootDir = process.cwd();
 const implementationDir = path.join(rootDir, 'curriculum', 'implementation');
 const packageDir = path.join(implementationDir, 'class-period-packages');
-const practiceDir = path.join(implementationDir, 'practice-v1');
 
 /**
  * Reads a UTF-8 text file from disk and returns its content as a string.
@@ -142,23 +122,6 @@ function embeddedObjectives(value: string): string[] {
 }
 
 /**
- * Converts a human-readable string into a URL-safe slug by lowercasing,
- * removing backticks, replacing non-alphanumeric characters with hyphens,
- * and truncating to 80 characters.
- *
- * @param value - The input string to slugify.
- * @returns A lowercase, hyphen-separated slug.
- */
-function slugify(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/`/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-    .slice(0, 80);
-}
-
-/**
  * Expands ALEKS reference strings that may contain ranges (e.g.
  * "ALEKS M1-L2-03.01 through M1-L2-03.05") into individual topic
  * identifiers, deduplicating the result.
@@ -187,26 +150,6 @@ function expandAleksReferences(value: string): string[] {
   }
 
   return [...new Set(refs)];
-}
-
-/**
- * Maps a learning objective and module number to the most appropriate
- * practice component key based on keyword heuristics.
- *
- * @param objective - The objective text to classify.
- * @param module - The module number, used for module-specific overrides.
- * @returns A component key string such as "graphing-explorer" or "comprehension-quiz".
- */
-function componentKeyForObjective(objective: string, module: number): string {
-  const lower = objective.toLowerCase();
-  if (module === 8 || /distribution|sample|probability|z-values|confidence/.test(lower)) return 'statistical-explorer';
-  if (module === 9 && /trigonometric|unit circle|sine|cosine|tangent|angle/.test(lower)) return 'unit-circle-trainer';
-  if (/graph|analyze|model|transform|asymptote|periodic/.test(lower)) return 'graphing-explorer';
-  if (/solve|equation|inequal|factor|simplify|divide|multiply|radical|logarithm|exponential/.test(lower)) {
-    return 'step-by-step-solver';
-  }
-  if (/classify|distinguish|recognize|choose/.test(lower)) return 'drag-drop-categorization';
-  return 'comprehension-quiz';
 }
 
 /**
@@ -322,89 +265,6 @@ function packageForNonInstruction(period: ReturnType<typeof parseClassPeriodPlan
 }
 
 /**
- * Creates a single activity mapping for a class-period package, encoding
- * the stable activity ID, component key, practice mode, and grading config.
- *
- * @param pkg - The class-period package to map.
- * @param suffix - A suffix appended to the period ID to form the stable activity ID.
- * @param mode - The practice mode (e.g. "worked_example", "assessment").
- * @param componentKey - The practice component key to render.
- * @returns An ActivityMapping describing the activity.
- */
-function activityForPackage(pkg: PeriodPackage, suffix: string, mode: PracticeMode, componentKey: string): ActivityMapping {
-  const objectiveCodes = pkg.objectiveCode ? [pkg.objectiveCode, ...(pkg.embeddedObjectives ?? [])] : [];
-  return {
-    stableActivityId: `${pkg.periodId}-${suffix}`,
-    periodId: pkg.periodId,
-    sourceReference: pkg.sourceLesson
-      ? `${pkg.sourceLesson}: ${pkg.workedExamples ?? pkg.objective ?? pkg.notes}`
-      : `${pkg.dayType}: ${pkg.notes}`,
-    componentKey,
-    mode,
-    objectiveCodes,
-    props: {
-      title: `${pkg.periodId} ${suffix.replace(/-/g, ' ')}`,
-      prompt: pkg.objective ?? pkg.notes,
-      sourceLesson: pkg.sourceLesson ?? null,
-      workedExamples: pkg.workedExamples ?? null,
-    },
-    gradingConfig: {
-      autoGrade: componentKey !== 'tiered-assessment',
-      partialCredit: true,
-      passingScore: mode === 'assessment' ? 80 : undefined,
-    },
-    srsEligible: mode !== 'worked_example' && pkg.dayType !== 'test',
-  };
-}
-
-/**
- * Generates the full list of activity mappings for a class-period package,
- * including worked examples, guided practice, independent practice, exit
- * tickets, and SRS-aligned activities.
- *
- * @param pkg - The class-period package to map.
- * @returns An array of ActivityMapping entries for the package.
- */
-function activitiesForPackage(pkg: PeriodPackage): ActivityMapping[] {
-  if (pkg.dayType !== 'instruction') {
-    const key = pkg.dayType === 'test' ? 'tiered-assessment' : 'comprehension-quiz';
-    const mode: PracticeMode = pkg.dayType === 'test' ? 'assessment' : 'independent_practice';
-    return [activityForPackage(pkg, pkg.dayType, mode, key)];
-  }
-
-  const primaryComponent = componentKeyForObjective(pkg.objective ?? '', pkg.module);
-  const activities: ActivityMapping[] = [
-    activityForPackage(pkg, 'worked-example-set', 'worked_example', primaryComponent),
-    activityForPackage(pkg, 'guided-practice', 'guided_practice', primaryComponent),
-    activityForPackage(pkg, 'independent-practice', 'independent_practice', primaryComponent),
-    activityForPackage(pkg, 'exit-ticket', 'assessment', 'comprehension-quiz'),
-  ];
-
-  if ((pkg.aleksSrsPractice ?? []).length > 0) {
-    for (const ref of pkg.aleksSrsPractice ?? []) {
-      activities.push({
-        ...activityForPackage(pkg, `srs-${slugify(ref)}`, 'independent_practice', 'comprehension-quiz'),
-        sourceReference: ref,
-        props: {
-          title: ref,
-          prompt: `Complete ALEKS-aligned SRS practice for ${pkg.objectiveCode}.`,
-          aleksTopicId: ref,
-        },
-        srsEligible: true,
-      });
-    }
-  } else {
-    activities.push({
-      ...activityForPackage(pkg, 'worked-example-derived-srs', 'independent_practice', primaryComponent),
-      sourceReference: pkg.srsSubstitute ?? pkg.workedExamples ?? pkg.periodId,
-      srsEligible: true,
-    });
-  }
-
-  return activities;
-}
-
-/**
  * Reads all 9 module class-period plans, parses them into packages,
  * writes per-module JSON files, and returns the full package list.
  *
@@ -472,7 +332,6 @@ function generateReadme() {
       '## Files',
       '',
       '- `class-period-packages/module-*.json`: one package for each planned class period.',
-      '- `practice-v1/activity-map.json`: activity candidates mapped to the `practice.v1` contract.',
       '- `exceptions.json`: explicit source limitations and replacement plans.',
       '- `audit/latest.json`: latest machine-readable curriculum audit report.',
       '',
@@ -490,42 +349,14 @@ function generateReadme() {
       'npm run curriculum:audit',
       '```',
       '',
-      'The audit verifies curriculum counts, lesson source quality, ALEKS coverage documentation, package coverage, and `practice.v1` mapping coverage.',
+      'The audit verifies curriculum counts, lesson source quality, ALEKS coverage documentation, package coverage, and class-period package coverage. Run `npm test` to validate the seeded runtime activities.',
       '',
     ].join('\n'),
   );
 }
 
 const packages = generatePackages();
-const activities = packages.flatMap(activitiesForPackage);
-
-writeJson(path.join(practiceDir, 'activity-map.json'), {
-  contractVersion: 'practice.v1',
-  schemaVersion: 'curriculum-activity-map.v1',
-  generatedFrom: [
-    'curriculum/module-*-class-period-plan.md',
-    'curriculum/aleks/module-*.md',
-    'measure/practice-component-contract.md',
-  ],
-  activities,
-  proposedComponentKeyGaps: [
-    {
-      componentKey: 'statistical-explorer',
-      reason: 'Needed for Module 8 distribution, z-score, simulation, and confidence interval practice.',
-    },
-    {
-      componentKey: 'unit-circle-trainer',
-      reason: 'Needed for Module 9 unit-circle, exact-value, and trigonometric graph practice.',
-    },
-    {
-      componentKey: 'function-analyzer',
-      reason: 'Needed for cross-module graph-feature analysis beyond coordinate plotting.',
-    },
-  ],
-});
-
 generateExceptions();
 generateReadme();
 
 console.log(`Generated ${packages.length} class-period packages.`);
-console.log(`Generated ${activities.length} practice.v1 activity mappings.`);

@@ -3,16 +3,31 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { LessonPageLayout, type PhaseNavItem } from '@/components/textbook/LessonPageLayout';
 import { LessonStepper, type StepperPhase } from './LessonStepper';
-import { PhaseRenderer, getQuadraticFormulaSectionMode, type PhaseSection, type QuadraticFormulaAttemptView } from './PhaseRenderer';
+import { PhaseRenderer, type PhaseSection } from './PhaseRenderer';
 import { PhaseCompleteButton } from './PhaseCompleteButton';
 import { LessonSkeleton } from './LessonSkeleton';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
 import { LessonChatbot } from '@/components/student/LessonChatbot';
-import { createServerOwnedActivitySubmission, getLesson16QuizReceipt, getQuadraticFormulaAttempt, getSelectedWorkedAcknowledgement, isLesson16QuizSubmitReceipt, startQuadraticFormulaAttempt, submitActivity, type Lesson16QuizReceipt, type PracticeMode, type QuadraticFormulaMode, type SubmitActivityInput } from '@/lib/activities/submission';
+import { createServerOwnedActivitySubmission, getSelectedWorkedAcknowledgement, submitActivity, type PracticeMode, type SubmitActivityInput } from '@/lib/activities/submission';
 import { toConvexActivityId } from '@math-platform/practice-core';
 import { isPracticeSubmissionEnvelope, type PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
-import { IM3_PILOT_NODE, IM3_TEACHER_LED_ACTIVITY_ID } from '@/lib/practice/learning-evidence-pilot';
+import {
+  IM3_DOMAIN_RANGE_NODE,
+  IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
+  IM3_COMPARE_MAXIMUM_NODE,
+  IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID,
+  IM3_EQUATION_RATE_NODE,
+  IM3_EQUATION_RATE_WORKED_ACTIVITY_ID,
+  IM3_PILOT_NODE,
+  IM3_PROFIT_MAXIMUM_NODE,
+  IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID,
+  IM3_PROFIT_MODEL_NODE,
+  IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID,
+  IM3_SYMMETRY_NODE,
+  IM3_SYMMETRY_WORKED_ACTIVITY_ID,
+  IM3_TEACHER_LED_ACTIVITY_ID,
+} from '@/lib/practice/learning-evidence-pilot';
 
 export interface LessonPhase {
   phaseId: string;
@@ -35,20 +50,6 @@ export interface LessonRendererProps {
   isLoading?: boolean;
   onLessonComplete?: (lessonId: string) => void;
   showTeacherPreviewBadge?: boolean;
-}
-
-const LESSON16_QUIZ_PUBLIC = { questions: [
-  { id: 'discriminant-purpose', type: 'multiple_choice', prompt: 'What does the discriminant tell you?', options: ['The sum of the roots', 'The number and type of solutions', 'The product of the roots', 'The axis of symmetry'] },
-  { id: 'zero-discriminant-real-solution-count', type: 'multiple_choice', prompt: 'If D = 0, how many real solutions are there?', options: ['0', '1', '2', 'Cannot determine'] },
-] };
-function isLesson16QuizPublicProps(value: unknown): boolean {
-  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).join('|') !== 'questions') return false;
-  const questions = (value as { questions?: unknown }).questions;
-  return Array.isArray(questions) && questions.length === LESSON16_QUIZ_PUBLIC.questions.length && questions.every((question, index) => {
-    if (!question || typeof question !== 'object' || Array.isArray(question) || Object.keys(question).sort().join('|') !== 'id|options|prompt|type') return false;
-    const expected = LESSON16_QUIZ_PUBLIC.questions[index]; const candidate = question as Record<string, unknown>;
-    return candidate.id === expected.id && candidate.type === expected.type && candidate.prompt === expected.prompt && Array.isArray(candidate.options) && JSON.stringify(candidate.options) === JSON.stringify(expected.options);
-  });
 }
 
 /**
@@ -77,24 +78,11 @@ export function LessonRenderer({
   const [completedActivities, setCompletedActivities] = useState<Set<string>>(new Set());
   const [completedPhases, setCompletedPhases] = useState<Set<number>>(new Set());
   const [showLessonComplete, setShowLessonComplete] = useState(false);
-  const workedPayloads = useRef(new Map<string, PracticeSubmissionEnvelope>());
-  const workedInFlight = useRef(new Set<string>());
-  const [workedErrorActivityId, setWorkedErrorActivityId] = useState<string | null>(null);
+  const submissionKeys = useRef(new Map<string, string>());
+  const autoSubmissionPayloads = useRef(new Map<string, PracticeSubmissionEnvelope>());
+  const autoSubmissionInFlight = useRef(new Set<string>());
+  const [autoSubmissionErrorActivityId, setAutoSubmissionErrorActivityId] = useState<string | null>(null);
   const [savingWorkedActivityId, setSavingWorkedActivityId] = useState<string | null>(null);
-  const quadraticFormulaRequests = useRef(new Map<string, SubmitActivityInput>());
-  const quadraticFormulaInFlight = useRef(new Map<string, Promise<void>>());
-  const [quadraticFormulaAttemptState, setQuadraticFormulaAttemptState] = useState<{ identity: string; attempt: QuadraticFormulaAttemptView }>();
-  const quadraticIdentity = useRef('');
-  const quadraticPendingIdentity = useRef('');
-  const quadraticRequestRevision = useRef(0);
-  const quadraticStartInFlight = useRef(new Map<string, Promise<void>>());
-  const [quadraticStartMessage, setQuadraticStartMessage] = useState<{ identity: string; message: string }>();
-  const [lesson16QuizReceiptState, setLesson16QuizReceiptState] = useState<{ identity: string; receipt: Lesson16QuizReceipt }>();
-  const [lesson16QuizPendingState, setLesson16QuizPendingState] = useState<{ identity: string; answers: Lesson16QuizReceipt['answers'] }>();
-  const quizRequests = useRef(new Map<string, { input: SubmitActivityInput; answers: Lesson16QuizReceipt['answers'] }>());
-  const quizInFlight = useRef(new Map<string, Promise<Lesson16QuizReceipt>>());
-  const quizIdentity = useRef('');
-  const quizRevision = useRef(0);
 
   const requiredActivityIds = useMemo(() => {
     if (!activePhase) return [];
@@ -102,137 +90,96 @@ export function LessonRenderer({
       .filter((s): s is { sectionType: 'activity'; content: { componentKey: string; activityId: string }; id: string; sequenceOrder: number } => s.sectionType === 'activity')
       .map(s => s.content.activityId);
   }, [activePhase]);
-  const selectedQuadraticFormula = useMemo(() => {
-    const section = activePhase?.sections.find((candidate): candidate is Extract<PhaseSection, { sectionType: 'activity' }> => candidate.sectionType === 'activity' && Boolean(getQuadraticFormulaSectionMode(candidate.content)));
-    if (!section) return null;
-    const sectionMode = getQuadraticFormulaSectionMode(section.content);
-    if (sectionMode !== 'guided' && sectionMode !== 'practice') return null;
-    return { activityId: section.content.activityId, mode: (sectionMode === 'guided' ? 'guided_practice' : 'independent_practice') as QuadraticFormulaMode };
-  }, [activePhase]);
-  const selectedQfActivityId = selectedQuadraticFormula?.activityId;
-  const selectedQfMode = selectedQuadraticFormula?.mode;
-  const selectedQfIdentity = selectedQfActivityId && selectedQfMode ? `${selectedQfActivityId}:${selectedQfMode}` : '';
-  const selectedLesson16Quiz = useMemo(() => {
-    if (lessonId !== 'module-1-lesson-6' || activePhase?.phaseNumber !== 10) return null;
-    const section = activePhase.sections.find((candidate): candidate is Extract<PhaseSection, { sectionType: 'activity' }> => candidate.sectionType === 'activity' && candidate.sequenceOrder === 2);
-    if (!section || section.content.componentKey !== 'comprehension-quiz' || !isLesson16QuizPublicProps(section.content.activityProps)) return null;
-    return section.content.activityId;
-  }, [activePhase, lessonId]);
-  const lesson16QuizReceipt = lesson16QuizReceiptState?.identity === selectedLesson16Quiz ? lesson16QuizReceiptState.receipt : undefined;
-  const lesson16QuizPendingAnswers = lesson16QuizPendingState?.identity === selectedLesson16Quiz ? lesson16QuizPendingState.answers : undefined;
-
-  useEffect(() => {
-    const activityId = selectedLesson16Quiz;
-    const identity = activityId ?? '';
-    quizIdentity.current = identity;
-    const revision = ++quizRevision.current;
-    if (!activityId) return;
-    let active = true;
-    void getLesson16QuizReceipt(activityId).then(receipt => {
-      if (!active || quizIdentity.current !== identity || quizRevision.current !== revision || !receipt) return;
-      setLesson16QuizReceiptState({ identity, receipt });
-      setCompletedActivities(previous => new Set([...previous, activityId]));
-    });
-    return () => { active = false; };
-  }, [selectedLesson16Quiz]);
-  const quadraticFormulaAttempt = quadraticFormulaAttemptState?.identity === selectedQfIdentity
-    ? quadraticFormulaAttemptState.attempt
-    : undefined;
-  const setQuadraticFormulaAttempt = useCallback((attempt: QuadraticFormulaAttemptView) => {
-    setQuadraticFormulaAttemptState({ identity: quadraticIdentity.current, attempt });
-  }, []);
-
-  useEffect(() => {
-    if (!selectedQfActivityId || !selectedQfMode) {
-      quadraticRequestRevision.current += 1;
-      quadraticIdentity.current = '';
-      quadraticPendingIdentity.current = '';
-      return;
-    }
-    const identity = selectedQfIdentity;
-    const requestRevision = ++quadraticRequestRevision.current;
-    quadraticIdentity.current = identity;
-    let active = true;
-    void getQuadraticFormulaAttempt(selectedQfActivityId, selectedQfMode).then(result => {
-      if (active && quadraticIdentity.current === identity && quadraticRequestRevision.current === requestRevision) {
-        quadraticPendingIdentity.current = result.state === 'pending' ? result.pendingSubmissionId : '';
-        setQuadraticFormulaAttempt(result);
-        if (result.state === 'final') setCompletedActivities(previous => new Set([...previous, selectedQfActivityId]));
-      }
-    });
-    return () => { active = false; };
-  }, [selectedQfActivityId, selectedQfIdentity, selectedQfMode, setQuadraticFormulaAttempt]);
-
-  const startQuadraticFormula = useCallback(async () => {
-    if (!selectedQuadraticFormula) return;
-    const identity = `${selectedQuadraticFormula.activityId}:${selectedQuadraticFormula.mode}`;
-    const startingPendingId = quadraticPendingIdentity.current;
-    const requestIdentity = `${identity}:${startingPendingId}`;
-    const existingRequest = quadraticStartInFlight.current.get(requestIdentity);
-    if (existingRequest) return existingRequest;
-    const requestRevision = ++quadraticRequestRevision.current;
-    const prior = quadraticFormulaAttempt;
-    const request = (async () => {
-      const result = await startQuadraticFormulaAttempt(selectedQuadraticFormula.activityId, selectedQuadraticFormula.mode);
-      if (quadraticIdentity.current !== identity || quadraticPendingIdentity.current !== startingPendingId || quadraticRequestRevision.current !== requestRevision) return;
-      if ((prior?.state === 'final' || prior?.state === 'saved-awaiting-details') && (result.state === 'exhausted' || result.state === 'unavailable')) {
-        setQuadraticStartMessage({ identity, message: result.state === 'exhausted' ? 'All attempts are complete.' : 'The next attempt is unavailable. Try again.' });
-        return;
-      }
-      if (result.state === 'pending') {
-        quadraticPendingIdentity.current = result.pendingSubmissionId;
-        for (const key of quadraticFormulaRequests.current.keys()) {
-          if (key.startsWith(`${identity}:`)) quadraticFormulaRequests.current.delete(key);
-        }
-        setQuadraticStartMessage(undefined);
-        setQuadraticFormulaAttempt(result);
-        setCompletedActivities(previous => { const next = new Set(previous); next.delete(selectedQuadraticFormula.activityId); return next; });
-      } else if (result.state === 'exhausted' || result.state === 'unavailable') setQuadraticFormulaAttempt(result);
-    })();
-    quadraticStartInFlight.current.set(requestIdentity, request);
-    try { await request; } finally {
-      if (quadraticStartInFlight.current.get(requestIdentity) === request) quadraticStartInFlight.current.delete(requestIdentity);
-    }
-  }, [quadraticFormulaAttempt, selectedQuadraticFormula, setQuadraticFormulaAttempt]);
 
   const allActivitiesComplete = useMemo(() => {
     if (requiredActivityIds.length === 0) return true;
-    return requiredActivityIds.every(id => completedActivities.has(id) || (id === selectedLesson16Quiz && lesson16QuizReceipt !== undefined));
-  }, [requiredActivityIds, completedActivities, lesson16QuizReceipt, selectedLesson16Quiz]);
+    return requiredActivityIds.every(id => completedActivities.has(id));
+  }, [requiredActivityIds, completedActivities]);
 
   const isPhaseGated = requiredActivityIds.length > 0 && !allActivitiesComplete && !activePhase?.completed;
 
-  const selectedWorkedSource = useMemo<Extract<PhaseSection, { sectionType: 'activity' }> | null>(() => {
-    if (!activePhase || activePhase.phaseType !== 'worked_example' || mode === 'teaching') return null;
-    return activePhase.sections.find((section): section is Extract<PhaseSection, { sectionType: 'activity' }> => (
+  const workedSource = useMemo<Extract<PhaseSection, { sectionType: 'activity' }> | null>(() => {
+    if (!activePhase || activePhase.phaseType !== 'worked_example' || mode === 'teaching') {
+      return null;
+    }
+
+    const matches = activePhase.sections.filter((section): section is Extract<PhaseSection, { sectionType: 'activity' }> => (
       section.sectionType === 'activity'
-      && section.content.componentKey === 'graphing-explorer'
-      && section.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-      && section.content.masteryNodeId === IM3_PILOT_NODE
-      && section.content.learningEvidenceMode === 'worked_example'
-      && section.content.srsEligible === false
-      && !completedActivities.has(section.content.activityId)
-    )) ?? null;
+      && (
+        (
+          section.content.componentKey === 'graphing-explorer'
+          && section.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+          && section.content.masteryNodeId === IM3_PILOT_NODE
+          && section.content.learningEvidenceMode === 'worked_example'
+          && section.content.srsEligible === false
+        )
+        || (
+          section.content.componentKey === 'rate-of-change-calculator'
+          && section.content.stableActivityId === IM3_EQUATION_RATE_WORKED_ACTIVITY_ID
+          && section.content.masteryNodeId === IM3_EQUATION_RATE_NODE
+          && section.content.learningEvidenceMode === 'worked_example'
+          && section.content.srsEligible === false
+        )
+        || (
+          section.content.componentKey === 'graphing-explorer'
+          && section.content.stableActivityId === IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID
+          && section.content.masteryNodeId === IM3_DOMAIN_RANGE_NODE
+          && section.content.learningEvidenceMode === 'worked_example'
+          && section.content.srsEligible === false
+        )
+        || (
+          section.content.componentKey === 'graphing-explorer'
+          && section.content.stableActivityId === IM3_SYMMETRY_WORKED_ACTIVITY_ID
+          && section.content.masteryNodeId === IM3_SYMMETRY_NODE
+          && section.content.learningEvidenceMode === 'worked_example'
+          && section.content.srsEligible === false
+        )
+        || (
+          section.content.componentKey === 'graphing-explorer'
+          && section.content.stableActivityId === IM3_COMPARE_MAXIMUM_WORKED_ACTIVITY_ID
+          && section.content.masteryNodeId === IM3_COMPARE_MAXIMUM_NODE
+          && section.content.learningEvidenceMode === 'worked_example'
+          && section.content.srsEligible === false
+        )
+        || (
+          section.content.componentKey === 'fill-in-the-blank'
+          && section.content.stableActivityId === IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID
+          && section.content.masteryNodeId === IM3_PROFIT_MODEL_NODE
+          && section.content.learningEvidenceMode === 'worked_example'
+          && section.content.srsEligible === false
+        )
+        || (
+          section.content.componentKey === 'fill-in-the-blank'
+          && section.content.stableActivityId === IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID
+          && section.content.masteryNodeId === IM3_PROFIT_MAXIMUM_NODE
+          && section.content.learningEvidenceMode === 'worked_example'
+          && section.content.srsEligible === false
+        )
+      )
+    ));
+
+    return matches.find((source) => !completedActivities.has(source.content.activityId)) ?? null;
   }, [activePhase, completedActivities, mode]);
 
   useEffect(() => {
-    if (!selectedWorkedSource) return;
+    if (workedSource?.content.stableActivityId !== IM3_TEACHER_LED_ACTIVITY_ID) return;
     let active = true;
-    void getSelectedWorkedAcknowledgement(selectedWorkedSource.content.activityId).then((acknowledged) => {
+    void getSelectedWorkedAcknowledgement(workedSource.content.activityId).then((acknowledged) => {
       if (active && acknowledged) {
         setCompletedActivities((previous) => new Set([
           ...previous,
-          selectedWorkedSource.content.activityId,
+          workedSource.content.activityId,
         ]));
       }
     });
     return () => { active = false; };
-  }, [selectedWorkedSource]);
+  }, [workedSource]);
 
   useEffect(() => {
-    const phaseNumbers = phases.map(p => p.phaseNumber).sort((a, b) => a - b);
+    const phaseNumbers = phases.filter(p => p.status !== 'locked' || mode === 'teaching').map(p => p.phaseNumber).sort((a, b) => a - b);
 
     function handleKeyDown(e: KeyboardEvent) {
+      if (e.defaultPrevented || (e.target instanceof Element && e.target.closest('input, textarea, select, [contenteditable="true"], [role="slider"], [role="radio"]'))) return;
       if (e.key === 'ArrowRight') {
         const idx = phaseNumbers.indexOf(activePhaseNumber);
         if (idx < phaseNumbers.length - 1) {
@@ -248,24 +195,17 @@ export function LessonRenderer({
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [phases, activePhaseNumber]);
+  }, [phases, activePhaseNumber, mode]);
 
   const handleActivitySubmit = useCallback(async (activityId: string, payload: unknown) => {
-    if (selectedWorkedSource?.content.activityId === activityId) return;
-    const section = activePhase?.sections.find((candidate): candidate is Extract<PhaseSection, { sectionType: 'activity' }> => (
-      candidate.sectionType === 'activity' && candidate.content.activityId === activityId
-    ));
-    if (!section) throw new Error('Activity section is not active');
-    const quadraticFormulaMode = getQuadraticFormulaSectionMode(section.content);
-    if (quadraticFormulaMode === 'invalid') throw new Error('Quadratic Formula activity metadata is invalid');
-
+    if (
+      workedSource?.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+      && workedSource.content.activityId === activityId
+    ) return;
+    const idempotencyKey = submissionKeys.current.get(activityId) ?? crypto.randomUUID();
+    submissionKeys.current.set(activityId, idempotencyKey);
     let input: SubmitActivityInput;
     if (isPracticeSubmissionEnvelope(payload)) {
-      if (payload.activityId !== activityId) throw new Error('Submission activityId does not match the lesson section');
-      if (
-        (quadraticFormulaMode === 'guided' && payload.mode !== 'guided_practice')
-        || (quadraticFormulaMode === 'practice' && payload.mode !== 'independent_practice')
-      ) throw new Error('Submission mode does not match the lesson section');
       input = {
         activityId: payload.activityId,
         mode: payload.mode,
@@ -280,99 +220,34 @@ export function LessonRenderer({
         studentFeedback: payload.studentFeedback,
         teacherSummary: payload.teacherSummary,
         timing: payload.timing,
+        idempotencyKey,
       };
     } else {
-      if (quadraticFormulaMode) throw new Error('Quadratic Formula activity requires a practice.v1 submission');
       input = {
         activityId,
         mode: mode as PracticeMode,
         answers: payload && typeof payload === 'object' ? (payload as Record<string, unknown>) : {},
         attemptNumber: 1,
         status: 'submitted',
+        idempotencyKey,
       };
-    }
-    if (selectedLesson16Quiz === activityId) {
-      if (!isPracticeSubmissionEnvelope(payload) || payload.mode !== 'independent_practice' || payload.status !== 'submitted') throw new Error('Invalid Lesson 1.6 quiz submission');
-      const ids = ['discriminant-purpose', 'zero-discriminant-real-solution-count'];
-      if (Object.keys(payload.answers).sort().join('|') !== ids.slice().sort().join('|') || payload.parts.length !== 2 || new Set(payload.parts.map(part => part.partId)).size !== 2 || ids.some(id => {
-        const answer = payload.answers[id]; const part = payload.parts.find(candidate => candidate.partId === id);
-        return typeof answer !== 'string' || !part || part.rawAnswer !== answer || part.isCorrect !== undefined || part.score !== undefined || part.maxScore !== undefined;
-      })) throw new Error('Invalid Lesson 1.6 quiz submission');
-      const identity = activityId;
-      const requestKey = identity;
-      const stored = quizRequests.current.get(requestKey);
-      const answers = payload.answers as Lesson16QuizReceipt['answers'];
-      const frozen = stored ?? { input: structuredClone({ ...input, idempotencyKey: `lesson-1-6-quiz:${activityId}` }), answers: structuredClone(answers) };
-      quizRequests.current.set(requestKey, frozen);
-      setLesson16QuizPendingState({ identity, answers: frozen.answers });
-      const requestRevision = ++quizRevision.current;
-      const existing = quizInFlight.current.get(requestKey);
-      const request = existing ?? (async () => {
-        const result = await createServerOwnedActivitySubmission(frozen.input);
-        if (!result.success) throw new Error(result.error);
-        const candidate = { submissionId: result.submissionId, score: result.score, maxScore: result.maxScore };
-        if (!isLesson16QuizSubmitReceipt(candidate)) throw new Error('Quiz returned an invalid receipt');
-        return { ...candidate, answers: structuredClone(frozen.answers) };
-      })();
-      if (!existing) quizInFlight.current.set(requestKey, request);
-      try {
-        const receipt = await request;
-        if (quizIdentity.current === identity && quizRevision.current === requestRevision && quizRequests.current.get(requestKey) === frozen) {
-          setLesson16QuizReceiptState({ identity, receipt });
-          setCompletedActivities(previous => new Set([...previous, activityId]));
-          quizRequests.current.delete(requestKey);
-          setLesson16QuizPendingState(undefined);
-        }
-        return receipt;
-      } finally {
-        if (quizInFlight.current.get(requestKey) === request) quizInFlight.current.delete(requestKey);
-      }
-    }
-    if (quadraticFormulaMode) {
-      if (quadraticFormulaAttempt?.state !== 'pending') throw new Error('Quadratic Formula attempt is not pending');
-      if (input.attemptNumber !== quadraticFormulaAttempt.attemptOrdinal) throw new Error('Submission attempt does not match the pending attempt');
-      const pendingId = quadraticFormulaAttempt.pendingSubmissionId;
-      const requestIdentity = `${activityId}:${input.mode}:${pendingId}`;
-      const existingInFlight = quadraticFormulaInFlight.current.get(requestIdentity);
-      if (existingInFlight) return existingInFlight;
-      const frozenInput = quadraticFormulaRequests.current.get(requestIdentity) ?? structuredClone({
-        ...input,
-        idempotencyKey: quadraticFormulaAttempt.idempotencyKey,
-        pendingSubmissionId: pendingId,
-      });
-      quadraticFormulaRequests.current.set(requestIdentity, frozenInput);
-      const request = (async () => {
-        const result = await createServerOwnedActivitySubmission(frozenInput);
-        if (!result.success) throw new Error(result.error);
-        if (result.submissionId !== pendingId) throw new Error('Submission receipt does not match the pending attempt');
-        if (quadraticIdentity.current !== `${activityId}:${input.mode}` || quadraticPendingIdentity.current !== pendingId) return;
-        const saved: QuadraticFormulaAttemptView = { ...quadraticFormulaAttempt, state: 'saved-awaiting-details', submissionId: result.submissionId, answers: structuredClone(frozenInput.answers), score: result.score, maxScore: result.maxScore };
-        setQuadraticFormulaAttempt(saved);
-        setCompletedActivities(prev => new Set([...prev, activityId]));
-        const details = await getQuadraticFormulaAttempt(activityId, input.mode as QuadraticFormulaMode);
-        if (quadraticIdentity.current === `${activityId}:${input.mode}` && quadraticPendingIdentity.current === pendingId && details.state === 'final' && details.submissionId === pendingId) setQuadraticFormulaAttempt(details);
-      })();
-      quadraticFormulaInFlight.current.set(requestIdentity, request);
-      try {
-        await request;
-      } finally {
-        quadraticFormulaInFlight.current.delete(requestIdentity);
-      }
-      return;
     }
     const result = await submitActivity(input);
     if (!result.success) throw new Error(result.error);
-    if (typeof result.submissionId !== 'string' || result.submissionId.trim().length === 0) {
-      throw new Error('Submission did not return a submission ID');
-    }
-    setCompletedActivities(prev => new Set([...prev, activityId]));
-  }, [activePhase, mode, quadraticFormulaAttempt, selectedLesson16Quiz, selectedWorkedSource, setQuadraticFormulaAttempt]);
 
-  const deliverSelectedWorked = useCallback(async () => {
-    if (!selectedWorkedSource) return;
-    const activityId = selectedWorkedSource.content.activityId;
-    if (workedInFlight.current.has(activityId)) return;
-    const payload = workedPayloads.current.get(activityId) ?? {
+    submissionKeys.current.delete(activityId);
+    setCompletedActivities(prev => new Set([...prev, activityId]));
+  }, [mode, workedSource]);
+
+  const deliverEquationWorked = useCallback(async () => {
+    if (!workedSource) return;
+
+    const activityId = workedSource.content.activityId;
+    if (autoSubmissionInFlight.current.has(activityId)) return;
+
+    submissionKeys.current.set(activityId, `worked-example:${activityId}`);
+
+    const payload = autoSubmissionPayloads.current.get(activityId) ?? {
       contractVersion: 'practice.v1',
       activityId: toConvexActivityId(activityId),
       mode: 'worked_example',
@@ -382,36 +257,48 @@ export function LessonRenderer({
       answers: {},
       parts: [],
     } satisfies PracticeSubmissionEnvelope;
-    workedPayloads.current.set(activityId, payload);
-    workedInFlight.current.add(activityId);
+
+    autoSubmissionPayloads.current.set(activityId, payload);
+    autoSubmissionInFlight.current.add(activityId);
     setSavingWorkedActivityId(activityId);
-    setWorkedErrorActivityId(null);
+    setAutoSubmissionErrorActivityId(null);
+
     try {
-      const result = await createServerOwnedActivitySubmission({
-        activityId: payload.activityId,
-        mode: payload.mode,
-        status: payload.status,
-        attemptNumber: payload.attemptNumber,
-        submittedAt: payload.submittedAt,
-        answers: payload.answers,
-        parts: payload.parts,
-        idempotencyKey: `worked-example:${activityId}`,
-      });
+      const result = workedSource.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+        ? await createServerOwnedActivitySubmission({
+            activityId: payload.activityId,
+            mode: payload.mode,
+            status: payload.status,
+            attemptNumber: payload.attemptNumber,
+            submittedAt: payload.submittedAt,
+            answers: payload.answers,
+            parts: payload.parts,
+            idempotencyKey: `worked-example:${activityId}`,
+          })
+        : await handleActivitySubmit(activityId, payload).then(() => ({ success: true as const, submissionId: activityId }));
       if (!result.success) throw new Error(result.error);
-      workedPayloads.current.delete(activityId);
-      setCompletedActivities((previous) => new Set([...previous, activityId]));
+      if (workedSource.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID) {
+        submissionKeys.current.delete(activityId);
+        setCompletedActivities(prev => new Set([...prev, activityId]));
+      }
+      autoSubmissionPayloads.current.delete(activityId);
+      setAutoSubmissionErrorActivityId(null);
     } catch {
-      if (await getSelectedWorkedAcknowledgement(activityId)) {
-        workedPayloads.current.delete(activityId);
-        setCompletedActivities((previous) => new Set([...previous, activityId]));
+      const recovered = workedSource.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+        && await getSelectedWorkedAcknowledgement(activityId);
+      if (recovered) {
+        autoSubmissionPayloads.current.delete(activityId);
+        submissionKeys.current.delete(activityId);
+        setCompletedActivities(prev => new Set([...prev, activityId]));
+        setAutoSubmissionErrorActivityId(null);
       } else {
-        setWorkedErrorActivityId(activityId);
+        setAutoSubmissionErrorActivityId(activityId);
       }
     } finally {
-      workedInFlight.current.delete(activityId);
+      autoSubmissionInFlight.current.delete(activityId);
       setSavingWorkedActivityId(null);
     }
-  }, [selectedWorkedSource]);
+  }, [workedSource, handleActivitySubmit]);
 
   const handlePhaseStatusChange = useCallback((status: 'not_started' | 'in_progress' | 'completed' | 'skipped') => {
     if ((status === 'completed' || status === 'skipped') && activePhase) {
@@ -429,6 +316,8 @@ export function LessonRenderer({
   }, [activePhase, phases, lessonId, onLessonComplete]);
 
   const navPhases: PhaseNavItem[] = phases.map(p => ({
+    phaseNumber: p.phaseNumber,
+    disabled: p.status === 'locked' && mode !== 'teaching',
     phaseType: p.phaseType,
     label: p.title,
     completed: p.completed,
@@ -454,6 +343,7 @@ export function LessonRenderer({
         goals={goals}
         phases={[]}
         showTeacherPreviewBadge={showTeacherPreviewBadge}
+        onPhaseSelect={setActivePhaseNumber}
       >
         <LessonSkeleton phaseCount={phases.length || 4} />
       </LessonPageLayout>
@@ -469,6 +359,7 @@ export function LessonRenderer({
         goals={goals}
         phases={navPhases}
         showTeacherPreviewBadge={showTeacherPreviewBadge}
+        onPhaseSelect={setActivePhaseNumber}
       >
         <LessonCompleteScreen
           lessonTitle={lessonTitle}
@@ -490,6 +381,7 @@ export function LessonRenderer({
         goals={goals}
         phases={navPhases}
         showTeacherPreviewBadge={showTeacherPreviewBadge}
+        onPhaseSelect={setActivePhaseNumber}
       >
         <div className="space-y-6">
           <LessonStepper
@@ -506,46 +398,38 @@ export function LessonRenderer({
               phaseNumber={activePhase.phaseNumber}
               mode={mode}
               onActivitySubmit={handleActivitySubmit}
-              quadraticFormulaAttempt={quadraticFormulaAttempt}
-              lesson16QuizReceipt={selectedLesson16Quiz ? lesson16QuizReceipt : undefined}
-              lesson16QuizPendingAnswers={lesson16QuizPendingAnswers}
             />
           )}
 
-          {selectedQuadraticFormula && quadraticFormulaAttempt?.state === 'no_attempt' && (
-            <button type="button" onClick={() => void startQuadraticFormula()}>Start activity</button>
-          )}
-          {selectedQuadraticFormula && (quadraticFormulaAttempt?.state === 'final' || quadraticFormulaAttempt?.state === 'saved-awaiting-details') && (
-            <button type="button" onClick={() => void startQuadraticFormula()}>Start next attempt</button>
-          )}
-          {selectedQuadraticFormula && quadraticFormulaAttempt?.state === 'saved-awaiting-details' && (
-            <button type="button" onClick={() => void getQuadraticFormulaAttempt(selectedQuadraticFormula.activityId, selectedQuadraticFormula.mode).then(result => {
-              if (quadraticIdentity.current === `${selectedQuadraticFormula.activityId}:${selectedQuadraticFormula.mode}` && quadraticPendingIdentity.current === quadraticFormulaAttempt.pendingSubmissionId && result.state === 'final' && result.submissionId === quadraticFormulaAttempt.submissionId) setQuadraticFormulaAttempt(result);
-            })}>Retry result details</button>
-          )}
-          {quadraticStartMessage?.identity === selectedQfIdentity && <p role="alert">{quadraticStartMessage.message}</p>}
-
-          {selectedWorkedSource && workedErrorActivityId !== selectedWorkedSource.content.activityId && (
+          {workedSource && autoSubmissionErrorActivityId !== workedSource.content.activityId && (
             <button
               type="button"
-              disabled={savingWorkedActivityId === selectedWorkedSource.content.activityId}
-              onClick={() => void deliverSelectedWorked()}
+              className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+              disabled={savingWorkedActivityId === workedSource.content.activityId}
+              onClick={() => void deliverEquationWorked()}
             >
-              {savingWorkedActivityId === selectedWorkedSource.content.activityId
+              {savingWorkedActivityId === workedSource.content.activityId
                 ? 'Saving your review…'
                 : 'I reviewed this worked example'}
             </button>
           )}
 
-          {workedErrorActivityId === selectedWorkedSource?.content.activityId && (
-            <div>
+          {autoSubmissionErrorActivityId === workedSource?.content.activityId && (
+            <div className="flex items-center justify-between gap-3 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm">
               <p role="alert">We could not save your progress.</p>
-              <button type="button" onClick={() => void deliverSelectedWorked()}>Try again</button>
+              <button
+                type="button"
+                className="underline"
+                onClick={() => void deliverEquationWorked()}
+              >
+                Try again
+              </button>
             </div>
           )}
 
           {!isTeachingMode && activePhase && (
             <PhaseCompleteButton
+              key={`${lessonId}-${activePhase.phaseNumber}`}
               lessonId={lessonId}
               phaseNumber={activePhase.phaseNumber}
               phaseType={activePhase.phaseType}

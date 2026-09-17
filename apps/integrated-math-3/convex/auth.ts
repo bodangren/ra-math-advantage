@@ -25,6 +25,7 @@ export const getCredentialByUsername = internalQuery({
     }
 
     return {
+      isActive: credential.isActive,
       id: credential._id,
       profileId: credential.profileId,
       username: credential.username,

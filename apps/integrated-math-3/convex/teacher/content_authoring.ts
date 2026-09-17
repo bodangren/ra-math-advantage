@@ -1063,6 +1063,10 @@ export async function publishAuthoredLessonHandler(
 
   const placements = await listPlacedActivities(ctx, loaded.latest._id);
   for (const placed of placements) {
+    if (placed.componentKind === "activity") {
+      const validation = validateActivityConfig(placed.componentKey, placed.props);
+      if (!validation.success) throw new Error(`Activity ${placed.componentKey} failed schema validation: ${validation.errors[0]?.message}`);
+    }
     const currentHash = await computeComponentContentHash({
       componentKind: placed.componentKind,
       componentKey: placed.componentKey,

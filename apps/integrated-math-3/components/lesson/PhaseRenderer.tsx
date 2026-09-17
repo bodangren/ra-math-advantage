@@ -5,12 +5,7 @@ import { CalloutBox } from '@/components/textbook/CalloutBox';
 import dynamic from 'next/dynamic';
 import { VideoPlayer } from './VideoPlayer';
 import { ActivityRenderer } from './ActivityRenderer';
-import { checkQuadraticFormulaDiscriminant } from '@/lib/activities/submission';
-import type { QuadraticFormulaAttempt, QuadraticFormulaPendingAttempt } from '@/lib/activities/submission';
-import type { Lesson16QuizReceipt } from '@/lib/activities/submission';
-export type QuadraticFormulaAttemptView = QuadraticFormulaAttempt | (Omit<QuadraticFormulaPendingAttempt, 'state'> & { state: 'saved-awaiting-details'; answers: Record<string, unknown>; score?: number; maxScore?: number; submissionId: string });
 import { ContentBlockErrorBoundary } from './ContentBlockErrorBoundary';
-import { IM3_TEACHER_LED_ACTIVITY_ID } from '@/lib/practice/learning-evidence-pilot';
 
 const LessonMarkdownRenderer = dynamic(() => import('./MarkdownRenderer').then(m => ({ default: m.LessonMarkdownRenderer })), {
   ssr: true,
@@ -44,7 +39,12 @@ export interface ActivitySection {
   id: string;
   sequenceOrder: number;
   sectionType: 'activity';
-  content: { componentKey: string; activityId: string; [key: string]: unknown };
+  content: {
+    componentKey: string;
+    activityId: string;
+    activityProps?: Record<string, unknown>;
+    [key: string]: unknown;
+  };
 }
 
 export interface ImageSection {
@@ -61,34 +61,6 @@ export type PhaseSection =
   | ActivitySection
   | ImageSection;
 
-const IM3_QF_NODE = 'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations';
-const IM3_QF_GUIDED_ACTIVITY_ID = `${IM3_QF_NODE}.guided_practice`;
-const IM3_QF_INDEPENDENT_ACTIVITY_ID = `${IM3_QF_NODE}.independent_practice`;
-
-export function getQuadraticFormulaSectionMode(
-  content: ActivitySection['content'],
-): 'guided' | 'practice' | 'invalid' | null {
-  const hasIdentitySignal = content.componentKey === 'quadratic-formula'
-    || content.masteryNodeId === IM3_QF_NODE
-    || content.stableActivityId === IM3_QF_GUIDED_ACTIVITY_ID
-    || content.stableActivityId === IM3_QF_INDEPENDENT_ACTIVITY_ID;
-  if (!hasIdentitySignal) return null;
-  const guided = content.componentKey === 'quadratic-formula'
-    && content.masteryNodeId === IM3_QF_NODE
-    && content.stableActivityId === IM3_QF_GUIDED_ACTIVITY_ID
-    && content.learningEvidenceMode === 'guided_practice'
-    && content.srsEligible === false
-    && (content.activityProps as { presentationMode?: unknown } | undefined)?.presentationMode === 'guided';
-  if (guided) return 'guided';
-  const independent = content.componentKey === 'quadratic-formula'
-    && content.masteryNodeId === IM3_QF_NODE
-    && content.stableActivityId === IM3_QF_INDEPENDENT_ACTIVITY_ID
-    && content.learningEvidenceMode === 'independent_practice'
-    && content.srsEligible === false
-    && (content.activityProps as { presentationMode?: unknown } | undefined)?.presentationMode === 'independent';
-  return independent ? 'practice' : 'invalid';
-}
-
 // ── Props ─────────────────────────────────────────────────────────────────────
 
 export interface PhaseRendererProps {
@@ -97,11 +69,8 @@ export interface PhaseRendererProps {
   lessonId?: string;
   phaseNumber?: number;
   mode?: 'teaching' | 'guided' | 'practice';
-  onActivitySubmit?: (activityId: string, payload: unknown) => unknown | Promise<unknown>;
+  onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
-  quadraticFormulaAttempt?: QuadraticFormulaAttemptView;
-  lesson16QuizReceipt?: Lesson16QuizReceipt;
-  lesson16QuizPendingAnswers?: Lesson16QuizReceipt['answers'];
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -120,9 +89,6 @@ export function PhaseRenderer({
   mode = 'practice',
   onActivitySubmit,
   onActivityComplete,
-  quadraticFormulaAttempt,
-  lesson16QuizReceipt,
-  lesson16QuizPendingAnswers,
 }: PhaseRendererProps) {
   if (sections.length === 0) {
     return (
@@ -139,14 +105,12 @@ export function PhaseRenderer({
           <ContentBlockErrorBoundary key={section.id}>
             <SectionBlock
               section={section}
+              phaseType={phaseType}
               lessonId={lessonId}
               phaseNumber={phaseNumber}
               mode={mode}
               onActivitySubmit={onActivitySubmit}
               onActivityComplete={onActivityComplete}
-              quadraticFormulaAttempt={quadraticFormulaAttempt}
-              lesson16QuizReceipt={lesson16QuizReceipt}
-              lesson16QuizPendingAnswers={lesson16QuizPendingAnswers}
             />
           </ContentBlockErrorBoundary>
         ))}
@@ -165,24 +129,20 @@ export function PhaseRenderer({
  */
 function SectionBlock({
   section,
+  phaseType,
   lessonId,
   phaseNumber,
   mode,
   onActivitySubmit,
   onActivityComplete,
-  quadraticFormulaAttempt,
-  lesson16QuizReceipt,
-  lesson16QuizPendingAnswers,
 }: {
   section: PhaseSection;
+  phaseType: PhaseType;
   lessonId?: string;
   phaseNumber?: number;
   mode: 'teaching' | 'guided' | 'practice';
-  onActivitySubmit?: (activityId: string, payload: unknown) => unknown | Promise<unknown>;
+  onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
-  quadraticFormulaAttempt?: PhaseRendererProps['quadraticFormulaAttempt'];
-  lesson16QuizReceipt?: Lesson16QuizReceipt;
-  lesson16QuizPendingAnswers?: Lesson16QuizReceipt['answers'];
 }) {
   switch (section.sectionType) {
     case 'text':
@@ -207,48 +167,22 @@ function SectionBlock({
 
     case 'activity': {
       const activityId = section.content.activityId as string;
-      const quadraticFormulaMode = getQuadraticFormulaSectionMode(section.content);
       const handleSubmit = (payload: unknown) => {
         return onActivitySubmit?.(activityId, payload);
       };
       const handleComplete = () => {
         onActivityComplete?.(activityId);
       };
-      if (quadraticFormulaMode === 'invalid') return <p role="alert">This activity is unavailable.</p>;
-      if (quadraticFormulaMode && quadraticFormulaAttempt?.state !== 'pending') {
-        if (!quadraticFormulaAttempt) return <p role="status">Loading activity…</p>;
-        if (quadraticFormulaAttempt.state === 'unavailable') return <p role="alert">This activity is unavailable. Try again.</p>;
-        if (quadraticFormulaAttempt.state === 'no_attempt') return <p>Start this activity when you are ready.</p>;
-        if (quadraticFormulaAttempt.state === 'exhausted') return <p>All attempts are complete.</p>;
-        const result = quadraticFormulaAttempt;
-        return <section aria-label="Quadratic Formula saved result" className="space-y-2"><p>{result.props.equation}</p><p>Attempt {result.attemptOrdinal}</p><p>Score: {result.score ?? 'Saved'}{result.maxScore === undefined ? '' : ` / ${result.maxScore}`}</p>{Object.entries(result.answers).map(([field, answer]) => <p key={field}>{field}: {String(answer)}</p>)}{result.state === 'final' && result.parts.map(part => <p key={part.partId}>{part.partId}: {part.isCorrect ? 'Correct' : 'Incorrect'} ({part.score} / {part.maxScore})</p>)}</section>;
-      }
-      const selectedProps = quadraticFormulaMode && quadraticFormulaAttempt?.state === 'pending'
-        ? quadraticFormulaAttempt.props
-        : section.content.activityProps as Record<string, unknown> | undefined;
-      const pending = quadraticFormulaAttempt?.state === 'pending' ? quadraticFormulaAttempt : undefined;
       return (
         <ActivityRenderer
-          key={pending?.pendingSubmissionId}
           componentKey={section.content.componentKey}
           activityId={activityId}
+          activityProps={section.content.activityProps}
           lessonId={lessonId}
           phaseNumber={phaseNumber}
-          mode={section.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
-            ? 'teaching'
-            : quadraticFormulaMode === 'guided' || quadraticFormulaMode === 'practice'
-              ? quadraticFormulaMode
-              : mode}
-          activityProps={selectedProps}
-          pendingSubmissionId={pending?.pendingSubmissionId}
-          attemptOrdinal={pending?.attemptOrdinal}
-          quizReceipt={section.content.componentKey === 'comprehension-quiz' ? lesson16QuizReceipt : undefined}
-          quizPendingAnswers={section.content.componentKey === 'comprehension-quiz' ? lesson16QuizPendingAnswers : undefined}
-          onSubmit={onActivitySubmit ? handleSubmit : undefined}
+          mode={phaseType === 'worked_example' ? 'teaching' : phaseType === 'guided_practice' ? 'guided' : phaseType === 'explore' && section.content.componentKey === 'graphing-explorer' ? 'explore' : mode}
+          onSubmit={handleSubmit}
           onComplete={handleComplete}
-          onCheckDiscriminant={quadraticFormulaMode === 'guided'
-            && pending ? (rawAnswer) => checkQuadraticFormulaDiscriminant({ activityId, pendingSubmissionId: pending.pendingSubmissionId, rawAnswer })
-            : undefined}
         />
       );
     }

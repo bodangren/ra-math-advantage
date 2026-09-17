@@ -2,7 +2,9 @@
   "blueprints": [
     {
       "nodeId": "math.im3.skill.7.1.simplify-rational-expressions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.1"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -55,7 +57,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.1"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -108,7 +112,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.2.simplify-complex-fractions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -161,7 +167,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -214,7 +222,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -267,7 +277,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -320,7 +332,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -373,7 +387,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -426,7 +442,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -479,7 +497,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -532,7 +552,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -585,7 +607,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.7.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -638,7 +662,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.complex-fraction-simplification",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -691,7 +717,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.direct-joint-variation-modeling",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -744,7 +772,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.inverse-combined-variation-modeling",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -797,7 +827,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.rational-equation-applications",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -850,7 +882,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.rational-equation-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -903,7 +937,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.rational-expression-add-subtract",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -956,7 +992,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.rational-expression-multiply-divide",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1009,7 +1047,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.rational-expression-simplification",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1062,7 +1102,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.rational-function-asymptote-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1115,7 +1157,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.rational-function-oblique-asymptote",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1168,7 +1212,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.rational-inequality-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1221,7 +1267,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.reciprocal-function-table-graphing",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -1274,7 +1322,9 @@
     },
     {
       "nodeId": "math.im3.skill.7.aleks.reciprocal-function-transformations",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.7"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {

@@ -171,52 +171,19 @@ describe('StepByStepper - Guided Mode', () => {
   });
 
   describe('completion', () => {
-    it('shows summary after all steps completed', async () => {
-      render(<StepByStepper {...defaultProps} />);
-
-      // Complete first step
-      let options = screen.getAllByRole('button');
-      const correctButton = options.find(btn => btn.textContent?.includes('x^2 + 5x + 6'));
-      if (correctButton) fireEvent.click(correctButton);
-
-      await waitFor(() => {
-        expect(screen.getByText('Write the quadratic in standard form')).toBeInTheDocument();
-      });
-
-      // Click Next
-      const nextButton1 = screen.queryByText('Next');
-      if (nextButton1) fireEvent.click(nextButton1);
-
-      // Complete second step
-      await waitFor(() => {
-        expect(screen.getByText(/what's the next step/i)).toBeInTheDocument();
-      });
-
-      options = screen.getAllByRole('button');
-      const correctButton2 = options.find(btn => btn.textContent?.includes('(x + 2)(x + 3)'));
-      if (correctButton2) fireEvent.click(correctButton2);
-
-      await waitFor(() => {
-        expect(screen.getByText('Factor the trinomial')).toBeInTheDocument();
-      });
-
-      // Click Next
-      const nextButton2 = screen.queryByText('Next');
-      if (nextButton2) fireEvent.click(nextButton2);
-
-      // Complete third step
-      await waitFor(() => {
-        expect(screen.getByText(/what's the next step/i)).toBeInTheDocument();
-      });
-
-      options = screen.getAllByRole('button');
-      const correctButton3 = options.find(btn => btn.textContent?.includes('x = -2, x = -3'));
-      if (correctButton3) fireEvent.click(correctButton3);
-
-      // Should show completion state
-      await waitFor(() => {
-        expect(screen.getByText(/Complete!/i)).toBeInTheDocument();
-      }, { timeout: 5000 });
+    it('shows summary after all steps completed', () => {
+      const onComplete = vi.fn();
+      render(<StepByStepper {...defaultProps} onPracticeComplete={onComplete} />);
+      for (const [index, step] of defaultProps.steps.entries()) {
+        const answer = screen.getAllByRole('button').find(button =>
+          [...button.querySelectorAll('annotation')].some(annotation => annotation.textContent === step.expression));
+        expect(answer).toBeDefined();
+        fireEvent.click(answer!);
+        fireEvent.click(screen.getByRole('button', { name: index === defaultProps.steps.length - 1 ? 'Complete' : 'Next' }));
+      }
+      expect(screen.getByRole('status')).toHaveTextContent('Guided practice complete');
+      expect(onComplete).toHaveBeenCalledTimes(1);
+      expect(onComplete.mock.calls[0][0]).toHaveLength(defaultProps.steps.length);
     });
   });
 

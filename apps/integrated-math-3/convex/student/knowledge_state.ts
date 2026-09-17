@@ -15,21 +15,22 @@
 import { internalQuery, type QueryCtx } from '../_generated/server';
 import { v } from 'convex/values';
 import { Id } from '../_generated/dataModel';
-import { loadFullCurriculumGraph } from '../../lib/curriculum/skill-graph-loader';
+import {
+  loadFullCurriculumGraph,
+  includeHistoricalEvidenceNodes,
+  projectApprovedReadinessGraph,
+} from '../../lib/curriculum/skill-graph-loader';
 import {
   DefaultSrsToKstBridge,
   getOuterFringe,
   type SrsCardState,
-  type ObjectiveProficiencyResult,
 } from '@math-platform/knowledge-space-core';
 import {
   projectStudentVisualization,
   type StudentVisualizationV1,
 } from '@math-platform/knowledge-space-practice';
-import { stabilityToRetention } from '@math-platform/srs-engine';
+import { getKnowledgeProficiencyInputs } from '../objectiveProficiency';
 
-const MAX_KNOWLEDGE_STATE_CARDS = 500;
-const MAX_KNOWLEDGE_STATE_REVIEWS = 2_000;
 
 /**
  * Converts a Convex SRS card document into the bridge's SrsCardState shape.
@@ -55,52 +56,6 @@ function toSrsCardState(
 }
 
 /**
- * Builds simplified ObjectiveProficiencyResult entries from SRS card states.
- * A reviewed card in 'review' state is treated as proficient. Objective live
- * retention is the minimum current retention across reviewed variant cards.
- */
-function buildProficiencyResults(
-  cards: Array<{
-    _id: Id<'srs_cards'>;
-    objectiveId: string;
-    stability: number;
-    state: 'new' | 'learning' | 'review' | 'relearning';
-    reps: number;
-    elapsedDays: number;
-    lastReview?: string;
-  }>,
-  nowMs: number,
-): ObjectiveProficiencyResult[] {
-  const byObjective = new Map<string, {
-    retentions: number[];
-    hasReviewState: boolean;
-  }>();
-  for (const card of cards) {
-    const aggregate = byObjective.get(card.objectiveId) ?? {
-      retentions: [],
-      hasReviewState: false,
-    };
-    if (card.reps >= 1) {
-      const lastReviewMs = card.lastReview ? Date.parse(card.lastReview) : Number.NaN;
-      const elapsedDays = Number.isFinite(lastReviewMs)
-        ? Math.max(0, (nowMs - lastReviewMs) / (24 * 60 * 60 * 1000))
-        : card.elapsedDays;
-      aggregate.retentions.push(stabilityToRetention(card.stability, elapsedDays));
-      aggregate.hasReviewState ||= card.state === 'review';
-    }
-    byObjective.set(card.objectiveId, aggregate);
-  }
-  return Array.from(byObjective, ([objectiveId, aggregate]) => ({
-    objectiveId,
-    retentionStrength: aggregate.retentions.length > 0
-      ? Math.min(...aggregate.retentions)
-      : 0,
-    practiceCoverage: aggregate.retentions.length > 0 ? 1 : 0,
-    isProficient: aggregate.hasReviewState,
-  }));
-}
-
-/**
  * Computes the KST-derived student knowledge state.
  *
  * Batches srs_cards + srs_review_log reads, runs the full SRS→KST pipeline,
@@ -118,17 +73,18 @@ export async function getStudentKnowledgeStateHandler(
 ): Promise<StudentVisualizationV1> {
   // 1. Load the full IM3 knowledge-space graph from rollout artifacts
   const graph = loadFullCurriculumGraph();
+  const readinessGraph = projectApprovedReadinessGraph(graph);
 
   // 2. Batch-read SRS data (no N+1)
   const [srsCards, srsReviewLogs] = await Promise.all([
     ctx.db
       .query('srs_cards')
       .withIndex('by_student', (q) => q.eq('studentId', args.studentId))
-      .take(MAX_KNOWLEDGE_STATE_CARDS),
+      .collect(),
     ctx.db
       .query('srs_review_log')
       .withIndex('by_student', (q) => q.eq('studentId', args.studentId))
-      .take(MAX_KNOWLEDGE_STATE_REVIEWS),
+      .collect(),
   ]);
 
   // 3. Build a map of most recent review timestamp per card from review logs
@@ -154,19 +110,20 @@ export async function getStudentKnowledgeStateHandler(
     return state;
   });
   const now = Date.now();
-  const proficiencyResults: ObjectiveProficiencyResult[] =
-    buildProficiencyResults(srsCards, now);
+  const proficiency = await getKnowledgeProficiencyInputs(ctx, args.studentId, srsCards, srsReviewLogs, now);
 
   // 5. Run the SRS→KST bridge → engine → fringe pipeline
   const bridge = new DefaultSrsToKstBridge();
+  const previousState = bridge.convert({ cards: cardStates, proficiencies: proficiency.assessed, graph, now });
   const state = bridge.convert({
     cards: cardStates,
-    proficiencies: proficiencyResults,
+    proficiencies: proficiency.current,
+    previousState,
     graph,
     now,
   });
 
-  const fringe = getOuterFringe(state, graph);
+  const fringe = getOuterFringe(state, readinessGraph);
 
   // 5. Convert KnowledgeStateEntry map → visualization learnerState record
   const learnerState: Record<
@@ -194,7 +151,16 @@ export async function getStudentKnowledgeStateHandler(
   }
 
   // 6. Project to visualization payload
-  return projectStudentVisualization(graph.nodes, graph.edges, learnerState);
+  const presentationGraph = includeHistoricalEvidenceNodes(
+    readinessGraph,
+    graph,
+    new Set(Object.keys(learnerState)),
+  );
+  return projectStudentVisualization(
+    presentationGraph.nodes,
+    presentationGraph.edges,
+    learnerState,
+  );
 }
 
 /**

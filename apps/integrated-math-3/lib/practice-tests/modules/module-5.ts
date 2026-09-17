@@ -202,10 +202,10 @@ const MODULE_5_QUESTIONS: PracticeTestQuestion[] = [
     id: 'm5-l5-q3',
     lessonId: 'lesson-5-5',
     lessonTitle: 'Modeling Data',
-    prompt: 'Which regression would you use to fit data showing rapid initial growth that slows over time?',
+    prompt: 'Which regression models positive data that increases by the same percentage over equal time intervals?',
     correctAnswer: 'Exponential regression',
     distractors: ['Linear regression', 'Quadratic regression', 'No regression needed'],
-    explanation: 'Exponential regression models data that changes by a constant percentage, showing rapid then slowing growth.',
+    explanation: 'Exponential regression models a constant multiplicative growth factor over equal time intervals.',
     objectiveTags: ['S-ID.6'],
   },
   {

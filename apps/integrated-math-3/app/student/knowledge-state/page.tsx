@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { requireStudentSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery } from '@/lib/convex/server';
 
@@ -23,19 +24,6 @@ interface StudentVisualizationV1 {
 
 const QUERY_REF = 'student/knowledge_state:getStudentKnowledgeState';
 
-function emptyVisualization(): StudentVisualizationV1 {
-  return {
-    schemaVersion: 'v1',
-    mastered: [],
-    ready: [],
-    blocked: [],
-    reviewDue: [],
-    recommendedNext: [],
-    edges: [],
-    activeMisconceptionCount: 0,
-  };
-}
-
 /**
  * Renders the student's knowledge-state dashboard derived from the
  * KST pipeline (SRS cards → bridge → getKnowledgeState → getOuterFringe
@@ -52,15 +40,23 @@ function emptyVisualization(): StudentVisualizationV1 {
 export default async function StudentKnowledgeStatePage() {
   const claims = await requireStudentSessionClaims('/auth/login');
 
-  let visualization: StudentVisualizationV1;
+  let visualization: StudentVisualizationV1 | null = null;
   try {
     const response = (await fetchInternalQuery(
       QUERY_REF,
       { studentId: claims.sub },
     )) as StudentVisualizationV1 | null;
-    visualization = response ?? emptyVisualization();
+    visualization = response;
   } catch {
-    visualization = emptyVisualization();
+    visualization = null;
+  }
+
+  if (!visualization) {
+    return <section role="alert" className="space-y-4 p-8">
+      <h1>Progress is unavailable</h1>
+      <p>We could not load your progress. Try again.</p>
+      <Link href="/student/knowledge-state">Retry</Link>
+    </section>;
   }
 
   return (
@@ -73,8 +69,7 @@ export default async function StudentKnowledgeStatePage() {
           Knowledge State
         </h1>
         <p className="text-sm text-muted-foreground">
-          KST-derived mastery tracking — Phase 4 production wiring
-          verification.
+          See the skills you have learned and the skills that need practice.
         </p>
       </div>
 

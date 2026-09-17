@@ -1,5 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
+import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core';
+import { buildIm3ProfitModelIndependentSeedDocuments } from '@/convex/seed/seed_lesson_1_1';
 import {
+  lookupVariantForScheduling,
   processSubmissionSrsHandler,
 } from '@/convex/srs/submissionSrs';
 import type { Id } from '@/convex/_generated/dataModel';
@@ -12,6 +15,7 @@ function makeMockCtx(overrides: {
     _id: Id<'practice_items'>;
     activityId: Id<'activities'>;
     variantKey: string;
+    legacyProblemFamilyId?: string;
     practiceItemId: string;
     variantLabel: string;
   } | null;
@@ -45,8 +49,27 @@ function makeMockCtx(overrides: {
     timing_baselines: baseline ?? null,
   };
   const mockQuery = vi.fn((table: string) => ({
-    withIndex: vi.fn().mockReturnValue({
-      first: vi.fn().mockResolvedValue(tableRows[table] ?? null),
+    withIndex: vi.fn((indexName: string, buildIndex: (q: {
+      eq: (field: string, value: unknown) => unknown;
+    }) => unknown) => {
+      const indexValues = new Map<string, unknown>();
+      const indexQuery = {
+        eq: (field: string, value: unknown) => {
+          indexValues.set(field, value);
+          return indexQuery;
+        },
+      };
+      buildIndex(indexQuery);
+
+      const row = table === 'practice_variants'
+        && indexName === 'by_variantKey'
+        && indexValues.get('variantKey') !== practiceVariant?.variantKey
+        ? null
+        : tableRows[table] ?? null;
+
+      return {
+        first: vi.fn().mockResolvedValue(row),
+      };
     }),
   }));
 
@@ -91,6 +114,93 @@ function makeSubmissionEnvelope(overrides: Record<string, unknown> = {}) {
 }
 
 describe('processSubmissionSrsHandler', () => {
+  it('resolves the generated profit-model practice item to its exact graph node', async () => {
+    const nodeId = 'math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context';
+    const activityId = 'activities:profit-model-independent' as Id<'activities'>;
+    const documents = buildIm3ProfitModelIndependentSeedDocuments(activityId, 123);
+    const ctx = makeMockCtx({
+      practiceItem: {
+        _id: 'practice_items:profit-model-independent' as Id<'practice_items'>,
+        ...documents.item,
+      },
+      practiceVariant: {
+        _id: 'practice_variants:profit-model-independent' as Id<'practice_variants'>,
+        ...documents.variant,
+      },
+    });
+
+    await expect(
+      lookupVariantForScheduling(ctx as unknown as MutationCtx, activityId),
+    ).resolves.toEqual({
+      variantKey: `${nodeId}.independent_practice`,
+      objectiveId: nodeId,
+      schedulerContext: {
+        objectivePriority: 'essential',
+        config: { requestRetentionByPriority: {} },
+      },
+    });
+  });
+
+  it('persists profit-model SRS evidence for the exact graph node', async () => {
+    const nodeId = 'math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context';
+    const stableActivityId = `${nodeId}.independent_practice`;
+    const activityId = 'activities:profit-model-independent' as Id<'activities'>;
+    const documents = buildIm3ProfitModelIndependentSeedDocuments(activityId, 123);
+    const storedActivity = documents.activity;
+    const ctx = makeMockCtx({
+      practiceItem: {
+        _id: 'practice_items:profit-model-independent' as Id<'practice_items'>,
+        ...documents.item,
+      },
+      practiceVariant: {
+        _id: 'practice_variants:profit-model-independent' as Id<'practice_variants'>,
+        ...documents.variant,
+      },
+    });
+    const answers = Object.fromEntries(storedActivity.props.blanks.map((blank) => [
+      blank.id,
+      blank.correctAnswer,
+    ]));
+    const submission = buildPracticeSubmissionEnvelope({
+      activityId,
+      mode: 'independent_practice',
+      status: 'graded',
+      submittedAt: mockNow,
+      answers,
+      parts: storedActivity.props.blanks.map((blank) => ({
+        partId: blank.id,
+        rawAnswer: blank.correctAnswer,
+        isCorrect: true,
+        score: 1,
+        maxScore: 1,
+      })),
+    });
+
+    const result = await processSubmissionSrsHandler(
+      ctx as unknown as MutationCtx,
+      {
+        studentId: 'student-profit-model',
+        activityId,
+        submission,
+      },
+    );
+
+    expect(result.ok).toBe(true);
+    expect(result).toMatchObject({ cardId: 'card-doc-1' });
+    const cardInserts = ctx.db.insert.mock.calls.filter(([table]) => table === 'srs_cards');
+    expect(cardInserts).toHaveLength(1);
+    expect(cardInserts[0]?.[1]).toMatchObject({
+      objectiveId: nodeId,
+      variantKey: stableActivityId,
+    });
+    const reviewInserts = ctx.db.insert.mock.calls.filter(([table]) => table === 'srs_review_log');
+    expect(reviewInserts).toHaveLength(1);
+    expect(reviewInserts[0]?.[1]).toMatchObject({
+      cardId: 'card-doc-1',
+      studentId: 'student-profit-model',
+    });
+  });
+
   it('returns skipped when no practice item exists for activity', async () => {
     const ctx = makeMockCtx({ practiceItem: null });
 
@@ -128,6 +238,41 @@ describe('processSubmissionSrsHandler', () => {
     );
 
     expect(result).toEqual({ ok: false, skipped: true, reason: 'no_blueprint' });
+  });
+
+  it('uses the canonical legacy key for a composite practice item variant key', async () => {
+    const canonicalVariantKey = 'quadratic.graph.v1';
+    const activityId = 'act-1';
+    const ctx = makeMockCtx({
+      practiceItem: {
+        _id: 'pi-1' as Id<'practice_items'>,
+        activityId: activityId as Id<'activities'>,
+        variantKey: `${canonicalVariantKey}:${activityId}`,
+        legacyProblemFamilyId: canonicalVariantKey,
+        practiceItemId: 'pi-1',
+        variantLabel: 'A',
+      },
+      practiceVariant: {
+        _id: 'pf-doc-1' as Id<'practice_variants'>,
+        variantKey: canonicalVariantKey,
+        componentKey: 'step-by-step-solver',
+        displayName: 'Test Family',
+        description: 'Test description',
+        objectiveIds: ['obj-1'],
+        difficulty: 'standard',
+      },
+    });
+
+    await expect(
+      lookupVariantForScheduling(ctx as unknown as MutationCtx, activityId),
+    ).resolves.toEqual({
+      variantKey: canonicalVariantKey,
+      objectiveId: 'obj-1',
+      schedulerContext: {
+        objectivePriority: 'essential',
+        config: { requestRetentionByPriority: {} },
+      },
+    });
   });
 
   it('processes submission and returns success when blueprint exists', async () => {

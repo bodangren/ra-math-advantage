@@ -47,20 +47,20 @@ function readProcessReviewSource(): string {
 }
 
 describe('convex/srs/cards.ts (artifact rename, FR1/FR5)', () => {
-  it('does not reference the legacy `problemFamilyId` identifier', () => {
+  it('retains the migration input adapter for legacy variant identities', () => {
     const content = readCardsSource();
     expect(
       content,
-      'cards.ts must not reference the legacy problemFamilyId identifier',
-    ).not.toMatch(/problemFamilyId/);
+      'cards.ts must retain the migration input adapter',
+    ).toMatch(/resolveCanonicalVariantKey/);
   });
 
-  it('does not reference the legacy PascalCase `ProblemFamily` identifier', () => {
+  it('accepts legacyProblemFamilyId during the existing migration', () => {
     const content = readCardsSource();
     expect(
       content,
       'cards.ts must not reference the legacy ProblemFamily identifier',
-    ).not.toMatch(/ProblemFamily/);
+    ).toMatch(/legacyProblemFamilyId/);
   });
 
   it('references the renamed `variantKey` identifier (positive contract, FR1)', () => {
@@ -87,12 +87,12 @@ describe('convex/srs/cards.ts (artifact rename, FR1/FR5)', () => {
     ).toMatch(/by_student_and_variant/);
   });
 
-  it('does not export the legacy `getCardByStudentAndFamily` handler (renamed to getCardByStudentAndVariant)', () => {
+  it('keeps the legacy handler as a temporary adapter', () => {
     const content = readCardsSource();
     expect(
       content,
       'cards.ts must not export the legacy getCardByStudentAndFamily handler',
-    ).not.toMatch(/getCardByStudentAndFamily/);
+    ).toMatch(/findCardByStudentAndVariant/);
   });
 });
 

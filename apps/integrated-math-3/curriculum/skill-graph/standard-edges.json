@@ -655,11 +655,10 @@
     {
       "id": "math.im3.example.1.6.036",
       "kind": "worked_example",
-      "title": "Example 1: Real Roots, c Is Positive",
+      "title": "Example 1: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 1)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=43"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -668,21 +667,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "1-6",
-        "pdfPage": 43,
-        "authoredTitle": "Real Roots, c Is Positive",
-        "prompt": "CONTEST At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by h = -4.9t² + 11.7t + 42, where h is the height and t is the number of seconds after launch.",
-        "demonstratedCapability": "Use the Quadratic Formula to solve a contextual quadratic equation, preserve both mathematical roots, and interpret the context-valid root.",
-        "rawText": "Example 1 Real Roots, c Is Positive\nCONTEST At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by h = -4.9t² + 11.7t + 42, where h is the height and t is the number of seconds after launch.\nPart A Use the Quadratic Formula to solve 0 = -4.9t² + 11.7t + 42.\na = -4.9, b = 11.7, c = 42\nt = (-b ± √(b² - 4ac))/(2a)\nt = (-11.7 ± √((11.7)² - 4(-4.9)(42)))/(2(-4.9))\nt = (-11.7 ± √(136.89 + 823.2))/-9.8\nt = (-11.7 ± √960.09)/-9.8\nt = (11.7 + √960.09)/9.8 or t = (11.7 - √960.09)/9.8\nThe approximate solutions are 4.4 seconds and -2.0 seconds.\nPart B Interpret the roots.\nThe negative root does not make sense in this context because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds."
+        "rawText": "1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
       }
     },
     {
       "id": "math.im3.example.1.6.037",
       "kind": "worked_example",
-      "title": "Example 2: Real Roots, c Is Negative",
+      "title": "Example 2: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 2)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=44"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -691,21 +685,16 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "1-6",
-        "pdfPage": 44,
-        "authoredTitle": "Real Roots, c Is Negative",
-        "prompt": "Solve x² + 4x - 17 = 0 by using the Quadratic Formula.",
-        "demonstratedCapability": "Use the Quadratic Formula to solve a quadratic equation with negative c and simplify both real roots exactly.",
-        "rawText": "Example 2 Real Roots, c Is Negative\nSolve x² + 4x - 17 = 0 by using the Quadratic Formula.\na = 1, b = 4, c = -17\nx = (-b ± √(b² - 4ac))/(2a)\nx = (-4 ± √((4)² - 4(1)(-17)))/(2(1))\nx = (-4 ± √84)/2\nx = (-4 ± √4 · √21)/2\nx = (-4 ± 2√21)/2\nx = -2 ± √21"
+        "rawText": "1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
       }
     },
     {
       "id": "math.im3.example.1.6.038",
       "kind": "worked_example",
-      "title": "Example 3: Complex Roots",
+      "title": "Example 3: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 3)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=44"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -714,21 +703,16 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "1-6",
-        "pdfPage": 44,
-        "authoredTitle": "Complex Roots",
-        "prompt": "Solve 5x² + 8x + 11 = 0 by using the Quadratic Formula.",
-        "demonstratedCapability": "Use the Quadratic Formula to solve a quadratic equation with a negative discriminant and simplify both complex conjugate roots exactly.",
-        "rawText": "Example 3 Complex Roots\nSolve 5x² + 8x + 11 = 0 by using the Quadratic Formula.\na = 5, b = 8, c = 11\nx = (-b ± √(b² - 4ac))/(2a)\nx = (-8 ± √(8² - 4(5)(11)))/(2(5))\nx = (-8 ± √-156)/10\nx = (-8 ± √-1 · √4 · √39)/10\nx = (-8 ± 2i√39)/10\nx = (-4 ± i√39)/5"
+        "rawText": "1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
       }
     },
     {
       "id": "math.im3.example.1.6.039",
       "kind": "worked_example",
-      "title": "Example 4 The Discriminant, Real Roots",
+      "title": "Example 4: Use the Discriminant; Determine Without Solving",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 4)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=46"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -737,21 +721,16 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "1-6",
-        "rawText": "Example 4 The Discriminant, Real Roots\nExamine 2x² - 10x + 7 = 0.\nPart A Find the value of the discriminant for 2x² - 10x + 7 = 0.\na = 2, b = -10, c = 7\nb² - 4ac = (-10)² - 4(2)(7)\n= 100 - 56\n= 44\nPart B Describe the number and type of roots for the equation.\nThe discriminant is nonzero, so there are two roots. The discriminant is positive and not a perfect square, so the roots are irrational.",
-        "pdfPage": 46,
-        "authoredTitle": "The Discriminant, Real Roots",
-        "prompt": "Examine 2x² - 10x + 7 = 0. Part A Find the value of the discriminant for 2x² - 10x + 7 = 0. Part B Describe the number and type of roots for the equation.",
-        "demonstratedCapability": "Use the discriminant to calculate its value and classify two real irrational roots."
+        "rawText": "1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving"
       }
     },
     {
       "id": "math.im3.example.1.6.040",
       "kind": "worked_example",
-      "title": "Example 5 The Discriminant, Complex Roots",
+      "title": "Example 5: Use the Discriminant; Determine Without Solving",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 5)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=46"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -760,11 +739,7 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "1-6",
-        "rawText": "Example 5 The Discriminant, Complex Roots\nExamine -5x² + 10x - 15 = 0.\nPart A Find the value of the discriminant for -5x² + 10x - 15 = 0.\na = -5, b = 10, c = -15\nb² - 4ac = (10)² - 4(-5)(-15)\n= 100 - 300\n= -200\nPart B Describe the number and type of roots for the equation.\nThe discriminant is nonzero, so there are two roots. The discriminant is negative, so the roots are complex.",
-        "pdfPage": 46,
-        "authoredTitle": "The Discriminant, Complex Roots",
-        "prompt": "Examine -5x² + 10x - 15 = 0. Part A Find the value of the discriminant for -5x² + 10x - 15 = 0. Part B Describe the number and type of roots for the equation.",
-        "demonstratedCapability": "Use the discriminant to calculate its value and classify two complex roots."
+        "rawText": "1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving"
       }
     },
     {
@@ -860,11 +835,10 @@
     {
       "id": "math.im3.example.1.8.046",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Linear-Quadratic System by Using Substitution",
+      "title": "Example 1: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 1)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=57"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -873,21 +847,16 @@
         "lesson": "8",
         "exampleNumber": 1,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
-        "pdfPage": 57,
-        "authoredTitle": "Solve a Linear-Quadratic System by Using Substitution",
-        "prompt": "Solve the system of equations: x = 2y^2 + 3y + 1; -x + y = -1.",
-        "demonstratedCapability": "Solve a linear-quadratic system by substitution and report both ordered-pair solutions."
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
       "id": "math.im3.example.1.8.047",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Linear-Quadratic System by Using Elimination",
+      "title": "Example 2: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 2)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=58"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -896,21 +865,16 @@
         "lesson": "8",
         "exampleNumber": 2,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
-        "pdfPage": 58,
-        "authoredTitle": "Solve a Linear-Quadratic System by Using Elimination",
-        "prompt": "Solve the system of equations: x^2 = y + 5; -x + y = 7.",
-        "demonstratedCapability": "Solve a linear-quadratic system by elimination and report both ordered-pair solutions."
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
       "id": "math.im3.example.1.8.048",
       "kind": "worked_example",
-      "title": "Example 3: Use a System to Solve a Quadratic Equation",
+      "title": "Example 3: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 3)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=58"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -919,21 +883,16 @@
         "lesson": "8",
         "exampleNumber": 3,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
-        "pdfPage": 58,
-        "authoredTitle": "Use a System to Solve a Quadratic Equation",
-        "prompt": "Use a system of equations to solve x^2 - 2x + 6 = 4x + 1.",
-        "demonstratedCapability": "Rewrite a quadratic equation as a linear-quadratic system and use intersections to find the equation solutions."
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
       "id": "math.im3.example.1.8.049",
       "kind": "worked_example",
-      "title": "Example 4: Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 4: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 4)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=59"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -942,21 +901,16 @@
         "lesson": "8",
         "exampleNumber": 4,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
-        "pdfPage": 59,
-        "authoredTitle": "Solve a Linear-Quadratic System by Graphing",
-        "prompt": "A software developer determines that her company can model their revenue R from a given product in hundreds of thousands of dollars given the unit price of the product x in dollars with the function R = -0.1x^2 + 4x. Create a linear-quadratic system and solve it graphically to determine the price for which the company will earn $4.2 million.",
-        "demonstratedCapability": "Model a revenue condition as a linear-quadratic system, graph it, and interpret zero intersections in context."
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
       "id": "math.im3.example.1.8.050",
       "kind": "worked_example",
-      "title": "Example 5: Solve a Quadratic-Quadratic System Graphically",
+      "title": "Example 5: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 5)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=60"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -965,21 +919,16 @@
         "lesson": "8",
         "exampleNumber": 5,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
-        "pdfPage": 60,
-        "authoredTitle": "Solve a Quadratic-Quadratic System Graphically",
-        "prompt": "Solve the system of equations by graphing: y = x^2; x = 1/5(y - 6)^2 + 6/5.",
-        "demonstratedCapability": "Solve a system of two quadratic relations graphically by constructing a value table and identifying intersections."
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {
       "id": "math.im3.example.1.8.051",
       "kind": "worked_example",
-      "title": "Example 6: Solve a Quadratic-Quadratic System Algebraically",
+      "title": "Example 6: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 6)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=61"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -988,21 +937,16 @@
         "lesson": "8",
         "exampleNumber": 6,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
-        "pdfPage": 61,
-        "authoredTitle": "Solve a Quadratic-Quadratic System Algebraically",
-        "prompt": "Solve the system of equations: 2x^2 - y = 4; y = -1/2x^2 + 6.",
-        "demonstratedCapability": "Solve a system of two quadratic equations algebraically by substitution and verify the ordered-pair solutions."
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {
       "id": "math.im3.example.1.8.052",
       "kind": "worked_example",
-      "title": "Example 7: Use a System to Solve a Quadratic Equation",
+      "title": "Example 7: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 7)",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=62"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 7)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1011,11 +955,7 @@
         "lesson": "8",
         "exampleNumber": 7,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
-        "pdfPage": 62,
-        "authoredTitle": "Use a System to Solve a Quadratic Equation",
-        "prompt": "Use a system of equations to solve 2x^2 - 3x + 8 = 11 - 4x^2.",
-        "demonstratedCapability": "Rewrite an equation as a system of two quadratic functions and use graph intersections to find the equation solutions."
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {
@@ -5746,11 +5686,84 @@
       }
     },
     {
+      "id": "math.im3.skill.1.1.calculate-average-rate-of-change-from-an-equation",
+      "kind": "skill",
+      "title": "Calculate average rate of change from an equation",
+      "domain": "math.im3",
+      "description": "Calculate the average rate of change of a function given by an equation over a specified interval.",
+      "generatorKey": "average-rate-of-change",
+      "rendererKey": "rate-of-change-calculator",
+      "independentPracticeReady": true,
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 4)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.1.calculate-average-rate-of-change-from-a-table",
+      "kind": "skill",
+      "title": "Calculate average rate of change from a table",
+      "domain": "math.im3",
+      "description": "Calculate the average rate of change of a function from table values over a specified interval.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 5)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.1.estimate-and-verify-average-rate-of-change-from-a-graph",
+      "kind": "skill",
+      "title": "Estimate and verify average rate of change from a graph",
+      "domain": "math.im3",
+      "description": "Estimate the average rate of change from a graph over a specified interval and verify the result algebraically.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=7",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.1.interpret-average-rate-of-change-in-context",
+      "kind": "skill",
+      "title": "Interpret average rate of change in context",
+      "domain": "math.im3",
+      "description": "Interpret the average rate of change of a contextual function over a specified interval by stating the direction, amount, and units.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=7",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
       "id": "math.im3.skill.1.1.graph-quadratic-functions",
       "kind": "skill",
-      "title": "1a: Graph quadratic functions",
+      "title": "1a: Graph a quadratic function by using a table",
       "domain": "math.im3",
-      "description": "Graph quadratic functions",
+      "description": "Graph a quadratic function from an equation by using a table.",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
       ],
@@ -5759,7 +5772,144 @@
         "course": "im3",
         "module": "1",
         "lesson": "1"
-      }
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "independentPracticeReady": true,
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph",
+      "kind": "skill",
+      "title": "State the domain and range of a quadratic function from its graph",
+      "domain": "math.im3",
+      "description": "State the domain and range of a quadratic function from its graph.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "independentPracticeReady": true,
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph",
+      "kind": "skill",
+      "title": "Identify a quadratic maximum from its graph",
+      "domain": "math.im3",
+      "description": "Identify the maximum value of a quadratic function from its graph.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "rendererKey": "graphing-explorer",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry",
+      "kind": "skill",
+      "title": "Graph a quadratic from a vertex and y-intercept by using symmetry",
+      "domain": "math.im3",
+      "description": "Graph a quadratic function from its vertex and y-intercept by using symmetry.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "rendererKey": "graphing-explorer",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions",
+      "kind": "skill",
+      "title": "Compare maximum values of quadratic functions",
+      "domain": "math.im3",
+      "description": "Compare the maximum values of two quadratic functions represented in different ways.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "rendererKey": "graphing-explorer",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context",
+      "kind": "skill",
+      "title": "Build and simplify a quadratic profit model from context",
+      "domain": "math.im3",
+      "description": "Define price and sales expressions from a context, form their product, and expand and simplify the quadratic profit model.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model",
+      "kind": "skill",
+      "title": "Find and interpret the maximum of a quadratic profit model",
+      "domain": "math.im3",
+      "description": "Use x = -b/(2a) to find the input that maximizes a quadratic profit model, evaluate the maximum profit, and interpret both values in context.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model",
+      "kind": "skill",
+      "title": "Determine the contextual domain and range of a quadratic model",
+      "domain": "math.im3",
+      "description": "Determine the input values allowed by a quadratic model's context, use extrema and boundary values to determine its output range, and interpret both intervals in context.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im3.skill.1.2.interpret-solutions-roots-in-context",
@@ -5792,6 +5942,60 @@
         "module": "1",
         "lesson": "2"
       }
+    },
+    {
+      "id": "math.im3.skill.1.2.solve-a-quadratic-equation-with-one-real-solution-by-graphing",
+      "kind": "skill",
+      "title": "Solve a quadratic equation with one real solution by graphing",
+      "domain": "math.im3",
+      "description": "Solve a quadratic equation with one real solution by graphing.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=13"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.2.find-two-numbers-with-given-sum-and-product-by-graphing",
+      "kind": "skill",
+      "title": "Find two numbers with a given sum and product by graphing a quadratic equation",
+      "domain": "math.im3",
+      "description": "Find two numbers with a given sum and product by graphing a quadratic equation.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=14"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      },
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.2.estimate-roots-by-graphing",
+      "kind": "skill",
+      "title": "Estimate roots of a quadratic equation by graphing",
+      "domain": "math.im3",
+      "description": "Estimate roots of a quadratic equation by graphing and state the consecutive integers that bound each root.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=15"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "graphing-explorer",
+      "independentPracticeReady": false
     },
     {
       "id": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
@@ -5896,9 +6100,7 @@
       "domain": "math.im3",
       "description": "Use the discriminant to determine the number and type of solutions",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=45",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=48"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5921,8 +6123,7 @@
         "course": "im3",
         "module": "1",
         "lesson": "6"
-      },
-      "rendererKey": "quadratic-formula"
+      }
     },
     {
       "id": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
@@ -10045,9 +10246,9 @@
     {
       "id": "math.standard.ccss.hsf-if-c-7a",
       "kind": "standard",
-      "title": "HSF-IF.C.7a: Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "title": "HSF-IF.C.7a: Graph linear and quadratic functions and show intercepts, maxima, and minima",
       "domain": "math",
-      "description": "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "description": "Graph linear and quadratic functions and show intercepts, maxima, and minima",
       "sourceRefs": [
         {
           "source": "seed-standards:ccss",
@@ -10058,6 +10259,78 @@
       "metadata": {
         "framework": "ccss",
         "code": "HSF-IF.C.7a"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7b",
+      "kind": "standard",
+      "title": "HSF-IF.C.7b: Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "domain": "math",
+      "description": "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7b"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7b"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-b-5",
+      "kind": "standard",
+      "title": "HSF-IF.B.5: Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.",
+      "domain": "math",
+      "description": "Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-b-6",
+      "kind": "standard",
+      "title": "HSF-IF.B.6: Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
+      "domain": "math",
+      "description": "Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.B.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.B.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-9",
+      "kind": "standard",
+      "title": "HSF-IF.C.9: Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
+      "domain": "math",
+      "description": "Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.9"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.9"
       }
     },
     {
@@ -10477,135 +10750,41 @@
   ],
   "edges": [
     {
-      "id": "math.alignment.im3-example-1-1-001-to-ccss-hsf-if-c-7c",
+      "id": "math.alignment.im3-skill-1-1-identify-a-quadratic-maximum-from-its-graph-to-ccss-hsf-if-b-4",
       "type": "aligned_to_standard",
-      "sourceId": "math.im3.example.1.1.001",
-      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "sourceId": "math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
       "weight": 0.8,
       "confidence": "high",
       "sourceRefs": [
         {
-          "source": "lesson-standards",
-          "location": "module-1-lesson-1",
-          "note": "Mapped via lesson standard (primary)"
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4",
+          "note": "Primary alignment for authored Example 2"
         }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1",
+      "rationale": "Primary alignment for the authored Example 2 maximum-reading capability",
       "metadata": {
         "isPrimary": true,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-example-1-1-001-to-ccss-hsa-sse-b-3",
+      "id": "math.alignment.im3-example-1-1-001-to-ccss-hsf-if-c-7a",
       "type": "aligned_to_standard",
       "sourceId": "math.im3.example.1.1.001",
-      "targetId": "math.standard.ccss.hsa-sse-b-3",
-      "weight": 0.5,
+      "targetId": "math.standard.ccss.hsf-if-c-7a",
+      "weight": 0.8,
       "confidence": "high",
       "sourceRefs": [
         {
-          "source": "lesson-standards",
-          "location": "module-1-lesson-1",
-          "note": "Mapped via lesson standard"
-        },
-        "family-objective:step-by-step-solver:graphing-quadratics-from-equation",
-        "family-objective:graphing-explorer:quadratic-vertex-form",
-        "family-objective:graphing-explorer:quadratic-standard-form",
-        "family-objective:graphing-explorer:quadratic-rate-of-change",
-        "family-objective:comprehension-quiz:quadratic-vocabulary"
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4",
+          "note": "Primary alignment for authored Example 1"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1; Aligned via problem family step-by-step-solver:graphing-quadratics-from-equation objective; Aligned via problem family graphing-explorer:quadratic-vertex-form objective; Aligned via problem family graphing-explorer:quadratic-standard-form objective; Aligned via problem family graphing-explorer:quadratic-rate-of-change objective; Aligned via problem family comprehension-quiz:quadratic-vocabulary objective",
       "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-example-1-1-001-to-ccss-hsa-rei-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.example.1.1.001",
-      "targetId": "math.standard.ccss.hsa-rei-b-4",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:step-by-step-solver:graphing-quadratics-from-equation",
-        "family-objective:graphing-explorer:quadratic-vertex-form",
-        "family-objective:graphing-explorer:quadratic-standard-form",
-        "family-objective:step-by-step-solver:solve-quadratic-by-graphing",
-        "family-objective:step-by-step-solver:solve-quadratic-complex-solutions"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:graphing-quadratics-from-equation objective; Aligned via problem family graphing-explorer:quadratic-vertex-form objective; Aligned via problem family graphing-explorer:quadratic-standard-form objective; Aligned via problem family step-by-step-solver:solve-quadratic-by-graphing objective; Aligned via problem family step-by-step-solver:solve-quadratic-complex-solutions objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-example-1-1-001-to-ccss-hsf-if-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.example.1.1.001",
-      "targetId": "math.standard.ccss.hsf-if-a-2",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:graphing-explorer:quadratic-rate-of-change",
-        "family-objective:step-by-step-solver:average-rate-of-change"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family graphing-explorer:quadratic-rate-of-change objective; Aligned via problem family step-by-step-solver:average-rate-of-change objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-example-1-1-001-to-ccss-n-cn-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.example.1.1.001",
-      "targetId": "math.standard.ccss.n-cn-a-1",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:step-by-step-solver:complex-number-operations"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:complex-number-operations objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-example-1-1-001-to-ccss-n-cn-c-7",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.example.1.1.001",
-      "targetId": "math.standard.ccss.n-cn-c-7",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:step-by-step-solver:complex-number-operations",
-        "family-objective:step-by-step-solver:solve-quadratic-complex-solutions"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:complex-number-operations objective; Aligned via problem family step-by-step-solver:solve-quadratic-complex-solutions objective",
-      "metadata": {
-        "isPrimary": false,
+        "isPrimary": true,
         "course": "im3"
       }
     },
@@ -10743,74 +10922,60 @@
       }
     },
     {
-      "id": "math.alignment.im3-example-1-1-003-to-ccss-hsf-if-c-7c",
+      "id": "math.alignment.im3-example-1-1-003-to-ccss-hsf-bf-a-1a",
       "type": "aligned_to_standard",
       "sourceId": "math.im3.example.1.1.003",
-      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "targetId": "math.standard.ccss.hsf-bf-a-1a",
       "weight": 0.8,
       "confidence": "high",
       "sourceRefs": [
         {
-          "source": "lesson-standards",
-          "location": "module-1-lesson-1",
-          "note": "Mapped via lesson standard (primary)"
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Primary alignment for the authored Example 3 profit model"
         }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1",
+      "rationale": "Primary alignment for modeling profit as a product of price and sales",
       "metadata": {
         "isPrimary": true,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-example-1-1-003-to-ccss-hsa-sse-b-3",
+      "id": "math.alignment.im3-example-1-1-003-to-ccss-hsa-apr-a-1",
       "type": "aligned_to_standard",
       "sourceId": "math.im3.example.1.1.003",
-      "targetId": "math.standard.ccss.hsa-sse-b-3",
-      "weight": 0.5,
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.6,
       "confidence": "high",
       "sourceRefs": [
         {
-          "source": "lesson-standards",
-          "location": "module-1-lesson-1",
-          "note": "Mapped via lesson standard"
-        },
-        "family-objective:step-by-step-solver:graphing-quadratics-from-equation",
-        "family-objective:graphing-explorer:quadratic-vertex-form",
-        "family-objective:graphing-explorer:quadratic-standard-form",
-        "family-objective:graphing-explorer:quadratic-rate-of-change",
-        "family-objective:comprehension-quiz:quadratic-vocabulary"
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for expanding the authored Example 3 profit model"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1; Aligned via problem family step-by-step-solver:graphing-quadratics-from-equation objective; Aligned via problem family graphing-explorer:quadratic-vertex-form objective; Aligned via problem family graphing-explorer:quadratic-standard-form objective; Aligned via problem family graphing-explorer:quadratic-rate-of-change objective; Aligned via problem family comprehension-quiz:quadratic-vocabulary objective",
+      "rationale": "Supporting alignment for expanding and simplifying the quadratic profit model",
       "metadata": {
         "isPrimary": false,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-example-1-1-003-to-ccss-hsa-rei-b-4",
+      "id": "math.alignment.im3-example-1-1-003-to-ccss-hsf-if-b-4",
       "type": "aligned_to_standard",
       "sourceId": "math.im3.example.1.1.003",
-      "targetId": "math.standard.ccss.hsa-rei-b-4",
-      "weight": 0.4,
-      "confidence": "medium",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.6,
+      "confidence": "high",
       "sourceRefs": [
-        "family-objective:step-by-step-solver:graphing-quadratics-from-equation",
-        "family-objective:graphing-explorer:quadratic-vertex-form",
-        "family-objective:graphing-explorer:quadratic-standard-form",
-        "family-objective:step-by-step-solver:solve-quadratic-by-graphing",
-        "family-objective:step-by-step-solver:solve-quadratic-complex-solutions"
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for reading the profit model's maximum and range"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:graphing-quadratics-from-equation objective; Aligned via problem family graphing-explorer:quadratic-vertex-form objective; Aligned via problem family graphing-explorer:quadratic-standard-form objective; Aligned via problem family step-by-step-solver:solve-quadratic-by-graphing objective; Aligned via problem family step-by-step-solver:solve-quadratic-complex-solutions objective",
+      "rationale": "Supporting alignment for interpreting the maximum and range of the profit model",
       "metadata": {
         "isPrimary": false,
         "course": "im3"
@@ -10821,55 +10986,56 @@
       "type": "aligned_to_standard",
       "sourceId": "math.im3.example.1.1.003",
       "targetId": "math.standard.ccss.hsf-if-a-2",
-      "weight": 0.4,
-      "confidence": "medium",
+      "weight": 0.6,
+      "confidence": "high",
       "sourceRefs": [
-        "family-objective:graphing-explorer:quadratic-rate-of-change",
-        "family-objective:step-by-step-solver:average-rate-of-change"
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for evaluating the profit function in context"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via problem family graphing-explorer:quadratic-rate-of-change objective; Aligned via problem family step-by-step-solver:average-rate-of-change objective",
+      "rationale": "Supporting alignment for evaluating profit values and interpreting them in context",
       "metadata": {
         "isPrimary": false,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-example-1-1-003-to-ccss-n-cn-a-1",
+      "id": "math.alignment.im3-example-1-1-003-to-ccss-hsf-if-b-5",
       "type": "aligned_to_standard",
       "sourceId": "math.im3.example.1.1.003",
-      "targetId": "math.standard.ccss.n-cn-a-1",
-      "weight": 0.4,
-      "confidence": "medium",
+      "targetId": "math.standard.ccss.hsf-if-b-5",
+      "weight": 0.6,
+      "confidence": "high",
       "sourceRefs": [
-        "family-objective:step-by-step-solver:complex-number-operations"
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for the authored Example 3 contextual domain"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:complex-number-operations objective",
+      "rationale": "Supporting alignment for relating the model domain to its context",
       "metadata": {
         "isPrimary": false,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-example-1-1-003-to-ccss-n-cn-c-7",
+      "id": "math.alignment.im3-example-1-1-003-to-ccss-hsa-ced-a-3",
       "type": "aligned_to_standard",
       "sourceId": "math.im3.example.1.1.003",
-      "targetId": "math.standard.ccss.n-cn-c-7",
-      "weight": 0.4,
-      "confidence": "medium",
+      "targetId": "math.standard.ccss.hsa-ced-a-3",
+      "weight": 0.6,
+      "confidence": "high",
       "sourceRefs": [
-        "family-objective:step-by-step-solver:complex-number-operations",
-        "family-objective:step-by-step-solver:solve-quadratic-complex-solutions"
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for applying the ski-pass constraints"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:complex-number-operations objective; Aligned via problem family step-by-step-solver:solve-quadratic-complex-solutions objective",
+      "rationale": "Supporting alignment for representing viable ski-pass price and sales constraints",
       "metadata": {
         "isPrimary": false,
         "course": "im3"
@@ -23927,268 +24093,129 @@
       }
     },
     {
-      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-average-rate-of-change-to-ccss-hsf-if-c-7c",
+      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-average-rate-of-change-to-ccss-hsf-if-b-6",
       "type": "aligned_to_standard",
       "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "targetId": "math.standard.ccss.hsf-if-b-6",
       "weight": 0.8,
       "confidence": "high",
       "sourceRefs": [
         {
-          "source": "lesson-standards",
-          "location": "module-1-lesson-1",
-          "note": "Mapped via lesson standard (primary)"
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6",
+          "note": "Primary alignment for authored Examples 4 and 5"
+        },
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=7",
+          "note": "Primary alignment for authored Example 6"
         }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1",
+      "rationale": "Primary alignment for the authored average-rate-of-change examples",
       "metadata": {
         "isPrimary": true,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-average-rate-of-change-to-ccss-hsa-sse-b-3",
+      "id": "math.alignment.im3-skill-1-1-calculate-average-rate-of-change-from-an-equation-to-ccss-hsf-if-b-6",
       "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-      "targetId": "math.standard.ccss.hsa-sse-b-3",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-1-lesson-1",
-          "note": "Mapped via lesson standard"
-        },
-        "family-objective:step-by-step-solver:graphing-quadratics-from-equation",
-        "family-objective:graphing-explorer:quadratic-vertex-form",
-        "family-objective:graphing-explorer:quadratic-standard-form",
-        "family-objective:graphing-explorer:quadratic-rate-of-change",
-        "family-objective:comprehension-quiz:quadratic-vocabulary"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1; Aligned via problem family step-by-step-solver:graphing-quadratics-from-equation objective; Aligned via problem family graphing-explorer:quadratic-vertex-form objective; Aligned via problem family graphing-explorer:quadratic-standard-form objective; Aligned via problem family graphing-explorer:quadratic-rate-of-change objective; Aligned via problem family comprehension-quiz:quadratic-vocabulary objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-average-rate-of-change-to-ccss-hsa-rei-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-      "targetId": "math.standard.ccss.hsa-rei-b-4",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:step-by-step-solver:graphing-quadratics-from-equation",
-        "family-objective:graphing-explorer:quadratic-vertex-form",
-        "family-objective:graphing-explorer:quadratic-standard-form",
-        "family-objective:step-by-step-solver:solve-quadratic-by-graphing",
-        "family-objective:step-by-step-solver:solve-quadratic-complex-solutions"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:graphing-quadratics-from-equation objective; Aligned via problem family graphing-explorer:quadratic-vertex-form objective; Aligned via problem family graphing-explorer:quadratic-standard-form objective; Aligned via problem family step-by-step-solver:solve-quadratic-by-graphing objective; Aligned via problem family step-by-step-solver:solve-quadratic-complex-solutions objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-average-rate-of-change-to-ccss-hsf-if-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-      "targetId": "math.standard.ccss.hsf-if-a-2",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:graphing-explorer:quadratic-rate-of-change",
-        "family-objective:step-by-step-solver:average-rate-of-change"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family graphing-explorer:quadratic-rate-of-change objective; Aligned via problem family step-by-step-solver:average-rate-of-change objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-average-rate-of-change-to-ccss-n-cn-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-      "targetId": "math.standard.ccss.n-cn-a-1",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:step-by-step-solver:complex-number-operations"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:complex-number-operations objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-average-rate-of-change-to-ccss-n-cn-c-7",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-      "targetId": "math.standard.ccss.n-cn-c-7",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:step-by-step-solver:complex-number-operations",
-        "family-objective:step-by-step-solver:solve-quadratic-complex-solutions"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:complex-number-operations objective; Aligned via problem family step-by-step-solver:solve-quadratic-complex-solutions objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-skill-1-1-graph-quadratic-functions-to-ccss-hsf-if-c-7c",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "sourceId": "math.im3.skill.1.1.calculate-average-rate-of-change-from-an-equation",
+      "targetId": "math.standard.ccss.hsf-if-b-6",
       "weight": 0.8,
       "confidence": "high",
       "sourceRefs": [
         {
-          "source": "lesson-standards",
-          "location": "module-1-lesson-1",
-          "note": "Mapped via lesson standard (primary)"
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6",
+          "note": "Primary alignment for authored Example 4"
         }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1",
+      "rationale": "Primary alignment for calculating average rate of change from an equation",
       "metadata": {
         "isPrimary": true,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-skill-1-1-graph-quadratic-functions-to-ccss-hsa-sse-b-3",
+      "id": "math.alignment.im3-skill-1-1-calculate-average-rate-of-change-from-a-table-to-ccss-hsf-if-b-6",
       "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "targetId": "math.standard.ccss.hsa-sse-b-3",
-      "weight": 0.5,
+      "sourceId": "math.im3.skill.1.1.calculate-average-rate-of-change-from-a-table",
+      "targetId": "math.standard.ccss.hsf-if-b-6",
+      "weight": 0.8,
       "confidence": "high",
       "sourceRefs": [
         {
-          "source": "lesson-standards",
-          "location": "module-1-lesson-1",
-          "note": "Mapped via lesson standard"
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6",
+          "note": "Primary alignment for authored Example 5"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for calculating average rate of change from a table",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-estimate-and-verify-average-rate-of-change-from-a-graph-to-ccss-hsf-if-b-6",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.estimate-and-verify-average-rate-of-change-from-a-graph",
+      "targetId": "math.standard.ccss.hsf-if-b-6",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=7",
+          "note": "Primary alignment for estimating average rate of change in authored Example 6"
         },
-        "family-objective:step-by-step-solver:graphing-quadratics-from-equation",
-        "family-objective:graphing-explorer:quadratic-vertex-form",
-        "family-objective:graphing-explorer:quadratic-standard-form",
-        "family-objective:graphing-explorer:quadratic-rate-of-change",
-        "family-objective:comprehension-quiz:quadratic-vocabulary"
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=8",
+          "note": "Algebraic verification for authored Example 6"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1; Aligned via problem family step-by-step-solver:graphing-quadratics-from-equation objective; Aligned via problem family graphing-explorer:quadratic-vertex-form objective; Aligned via problem family graphing-explorer:quadratic-standard-form objective; Aligned via problem family graphing-explorer:quadratic-rate-of-change objective; Aligned via problem family comprehension-quiz:quadratic-vocabulary objective",
+      "rationale": "Primary alignment for estimating and verifying average rate of change from a graph",
       "metadata": {
-        "isPrimary": false,
+        "isPrimary": true,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-skill-1-1-graph-quadratic-functions-to-ccss-hsa-rei-b-4",
+      "id": "math.alignment.im3-skill-1-1-interpret-average-rate-of-change-in-context-to-ccss-hsf-if-b-6",
       "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "targetId": "math.standard.ccss.hsa-rei-b-4",
-      "weight": 0.4,
-      "confidence": "medium",
+      "sourceId": "math.im3.skill.1.1.interpret-average-rate-of-change-in-context",
+      "targetId": "math.standard.ccss.hsf-if-b-6",
+      "weight": 0.8,
+      "confidence": "high",
       "sourceRefs": [
-        "family-objective:step-by-step-solver:graphing-quadratics-from-equation",
-        "family-objective:graphing-explorer:quadratic-vertex-form",
-        "family-objective:graphing-explorer:quadratic-standard-form",
-        "family-objective:step-by-step-solver:solve-quadratic-by-graphing",
-        "family-objective:step-by-step-solver:solve-quadratic-complex-solutions"
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=8",
+          "note": "Primary alignment for contextual interpretation in authored Example 6"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:graphing-quadratics-from-equation objective; Aligned via problem family graphing-explorer:quadratic-vertex-form objective; Aligned via problem family graphing-explorer:quadratic-standard-form objective; Aligned via problem family step-by-step-solver:solve-quadratic-by-graphing objective; Aligned via problem family step-by-step-solver:solve-quadratic-complex-solutions objective",
+      "rationale": "Primary alignment for interpreting average rate of change in context",
       "metadata": {
-        "isPrimary": false,
+        "isPrimary": true,
         "course": "im3"
       }
     },
     {
-      "id": "math.alignment.im3-skill-1-1-graph-quadratic-functions-to-ccss-hsf-if-a-2",
+      "id": "math.alignment.im3-skill-1-1-graph-quadratic-functions-to-ccss-hsf-if-c-7a",
       "type": "aligned_to_standard",
       "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "targetId": "math.standard.ccss.hsf-if-a-2",
-      "weight": 0.4,
-      "confidence": "medium",
+      "targetId": "math.standard.ccss.hsf-if-c-7a",
+      "weight": 0.8,
+      "confidence": "high",
       "sourceRefs": [
-        "family-objective:graphing-explorer:quadratic-rate-of-change",
-        "family-objective:step-by-step-solver:average-rate-of-change"
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4",
+          "note": "Primary alignment for the Example 1 graph skill"
+        }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
-      "rationale": "Aligned via problem family graphing-explorer:quadratic-rate-of-change objective; Aligned via problem family step-by-step-solver:average-rate-of-change objective",
       "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-skill-1-1-graph-quadratic-functions-to-ccss-n-cn-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "targetId": "math.standard.ccss.n-cn-a-1",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:step-by-step-solver:complex-number-operations"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:complex-number-operations objective",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im3"
-      }
-    },
-    {
-      "id": "math.alignment.im3-skill-1-1-graph-quadratic-functions-to-ccss-n-cn-c-7",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "targetId": "math.standard.ccss.n-cn-c-7",
-      "weight": 0.4,
-      "confidence": "medium",
-      "sourceRefs": [
-        "family-objective:step-by-step-solver:complex-number-operations",
-        "family-objective:step-by-step-solver:solve-quadratic-complex-solutions"
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via problem family step-by-step-solver:complex-number-operations objective; Aligned via problem family step-by-step-solver:solve-quadratic-complex-solutions objective",
-      "metadata": {
-        "isPrimary": false,
+        "isPrimary": true,
         "course": "im3"
       }
     },
@@ -28693,6 +28720,286 @@
       "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
       "rationale": "Aligned via lesson standard mapping for module-9-lesson-7",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry-to-ccss-hsf-if-c-7a",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry",
+      "targetId": "math.standard.ccss.hsf-if-c-7a",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4",
+          "note": "Primary alignment for authored Example 2 graph-from-key-features skill"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for the authored Example 2 graph-from-key-features capability",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-compare-maximum-values-of-quadratic-functions-to-ccss-hsf-if-c-9",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions",
+      "targetId": "math.standard.ccss.hsf-if-c-9",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4",
+          "note": "Primary alignment for authored Example 2 compare-maximums skill"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for the authored Example 2 compare-maximums capability",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-build-and-simplify-a-quadratic-profit-model-from-context-to-ccss-hsf-bf-a-1a",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context",
+      "targetId": "math.standard.ccss.hsf-bf-a-1a",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Primary alignment for the authored Example 3 quadratic profit-model skill"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for the authored Example 3 quadratic profit-model capability",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-build-and-simplify-a-quadratic-profit-model-from-context-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.6,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for expanding the authored Example 3 profit model"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Supporting alignment for expanding the authored Example 3 profit model",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-maximum-of-a-quadratic-profit-model-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Primary alignment for the authored Example 3 profit-maximum capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for the authored Example 3 profit-maximum capability",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-find-and-interpret-the-maximum-of-a-quadratic-profit-model-to-ccss-hsf-if-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model",
+      "targetId": "math.standard.ccss.hsf-if-a-2",
+      "weight": 0.6,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for interpreting the authored Example 3 profit maximum"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Supporting alignment for interpreting the authored Example 3 profit maximum",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-determine-the-contextual-domain-and-range-of-a-quadratic-model-to-ccss-hsf-if-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model",
+      "targetId": "math.standard.ccss.hsf-if-b-5",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Primary alignment for relating the authored Example 3 domain to its context"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for relating the model domain to its quantitative context",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-determine-the-contextual-domain-and-range-of-a-quadratic-model-to-ccss-hsa-ced-a-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model",
+      "targetId": "math.standard.ccss.hsa-ced-a-3",
+      "weight": 0.6,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for interpreting the authored Example 3 contextual domain and range"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Supporting alignment for interpreting the authored Example 3 contextual domain and range",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-determine-the-contextual-domain-and-range-of-a-quadratic-model-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.6,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5",
+          "note": "Supporting alignment for using extrema and boundary values to interpret the output range"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Supporting alignment for using extrema and boundary values to interpret the output range",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-state-the-domain-and-range-of-a-quadratic-from-its-graph-to-ccss-hsf-if-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph",
+      "targetId": "math.standard.ccss.hsf-if-b-5",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4",
+          "note": "Primary alignment for relating the authored Example 1 domain to its graph"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for relating the domain to the graph",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-1-state-the-domain-and-range-of-a-quadratic-from-its-graph-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.6,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4",
+          "note": "Supporting alignment for using the quadratic minimum to state the output range"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Supporting alignment for using the quadratic minimum to state the output range",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-2-solve-a-quadratic-equation-with-one-real-solution-by-graphing-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.2.solve-a-quadratic-equation-with-one-real-solution-by-graphing",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=13",
+          "note": "Primary alignment for authored Example 1"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for the authored Example 1 one-real-solution graphing capability",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-2-find-two-numbers-with-given-sum-and-product-by-graphing-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.2.find-two-numbers-with-given-sum-and-product-by-graphing",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=14",
+          "note": "Primary alignment for authored Example 2"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for the authored Example 2 given-sum-and-product graphing capability",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-1-2-estimate-roots-by-graphing-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.1.2.estimate-roots-by-graphing",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.8,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=15",
+          "note": "Primary alignment for authored Example 3"
+        }
+      ],
+      "reviewStatus": "draft",
+      "rationale": "Primary alignment for the authored Example 3 root-estimation-by-graphing capability",
       "metadata": {
         "isPrimary": true,
         "course": "im3"

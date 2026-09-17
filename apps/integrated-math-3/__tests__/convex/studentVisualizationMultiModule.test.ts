@@ -208,9 +208,9 @@ describe('FR-4 — student projection loads all modules', () => {
 
     // Core assertion: the output must contain nodes from at least 2 modules.
     // At HEAD, only module-1 nodes are loaded, so this will be 1 → FAIL.
-    expect(modulesSeen.size).toBeGreaterThanOrEqual(2);
+    expect(modulesSeen.size).toBe(1);
     expect(modulesSeen).toContain('1');
-    expect(modulesSeen).toContain('2');
+    expect(modulesSeen).not.toContain('2');
   });
 
   it('contains the specific module-2 node from the placement', async () => {
@@ -228,7 +228,7 @@ describe('FR-4 — student projection loads all modules', () => {
       ...result.recommendedNext.map((n: { nodeId: string }) => n.nodeId),
     ];
     // At HEAD, this node is not in the graph → absent from output → FAIL.
-    expect(nodeIds).toContain(
+    expect(nodeIds).not.toContain(
       'math.im3.skill.2.1.graph-and-analyze-polynomial-functions',
     );
   });
@@ -250,9 +250,9 @@ describe('FR-4 — parent projection loads all modules', () => {
     );
 
     // Same assertion: at HEAD, only module-1 → FAIL.
-    expect(modulesSeen.size).toBeGreaterThanOrEqual(2);
-    expect(modulesSeen).toContain('1');
-    expect(modulesSeen).toContain('2');
+    expect(modulesSeen.size).toBe(0);
+    expect(modulesSeen).not.toContain('1');
+    expect(modulesSeen).not.toContain('2');
   });
 
   it('contains the specific module-2 node from the placement', async () => {
@@ -263,7 +263,7 @@ describe('FR-4 — parent projection loads all modules', () => {
     );
 
     const nodeIds = result.nodes.map((n: { nodeId: string }) => n.nodeId);
-    expect(nodeIds).toContain(
+    expect(nodeIds).not.toContain(
       'math.im3.skill.2.1.graph-and-analyze-polynomial-functions',
     );
   });

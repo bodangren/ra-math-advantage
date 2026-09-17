@@ -224,7 +224,7 @@ STRUCTURE: Athlete training formula [a_n = 20(1.1)^(n-1)]:
 
 a. Starting at 20 miles, increasing 10% each week
 b. Total miles after 10 weeks: [S_10 = 20(1.1^10 - 1)/(1.1 - 1) ≈ 318.87] miles
-c. Will she reach 1000 miles in 20 weeks? [S_20 = 20(1.1^20 - 1)/0.1 ≈ 1270.61] — yes, exceeds 1000
+c. Will she reach 1000 miles in 20 weeks? [S_20 = 20(1.1^20 - 1)/0.1 ≈ 1145.50] — yes, exceeds 1000
 d. Another athlete reached 1000 miles in 15 weeks: find [a_1] from [S_15 = 1000]
 
 USE A MODEL: Mortgage payment formula [PMT = Pr/(1 - (1+r)^(-n))]:
@@ -242,7 +242,7 @@ PROOF: Prove nth term formula for geometric sequence.
 
 PERSEVERE: Fifth term is [1/27] of the eighth term. Ninth term is 702. Find the eighth term.
 
-Let [a_5 = a_1 · r^4]; [a_8 = a_1 · r^7]; given [a_5 = (1/27)a_8], so [a_1 · r^4 = (1/27)a_1 · r^7 → r^3 = 27 → r = 3]. Since [a_9 = a_1 · r^8 = 702], [a_1 = 702/3^8 = 702/6561 = 2/19], approximately. Actually: [a_9 = a_1 · 3^8 = 702 → a_1 = 702/6561 = 2/19]. Wait — [6561 = 3^8], so [a_1 = 702/6561]. Simplify: divide by 3: [234/2187]; divide by 3: [78/729]; divide by 3: [26/243]. So [a_1 = 26/243]. Then [a_8 = (26/243) · 3^7 = (26/243) · 2187 = 26 · 9 = 234].
+From [a_5 = a_8/27], divide the geometric terms to get [r^3 = 27], so [r = 3]. Since [a_9 = 702], the eighth term is [a_8 = 702/3 = 234].
 
 PERSEVERE: In the right triangle with [h] as geometric mean between [x] and [y], find [h^4]. By geometric mean property: [h = √(xy)], so [h^4 = (xy)^2].
 

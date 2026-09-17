@@ -5,7 +5,6 @@ import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
 import { FillInTheBlank } from '@math-platform/activity-components/blanks';
 import { registerActivity } from '@math-platform/activity-components/registry';
 import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from '@math-platform/practice-core/contract';
-import { convexToJson, jsonToConvex } from 'convex/values';
 
 const mockTiming: PracticeTimingSummary = {
   startedAt: '2026-01-01T00:00:01.000Z',
@@ -26,6 +25,53 @@ vi.mock('@/components/practice-timing', () => ({
     isTracking: vi.fn(() => true),
   })),
 }));
+
+type ActivityRendererAuthorityProbeProps = {
+  activityId: string;
+  mode: 'teaching' | 'guided' | 'practice';
+  onSubmit?: (payload: unknown) => void;
+  onComplete?: () => void;
+  authoredMarker?: string;
+};
+
+function ActivityRendererAuthorityProbe({
+  activityId,
+  mode,
+  onSubmit,
+  onComplete,
+  authoredMarker,
+}: ActivityRendererAuthorityProbeProps) {
+  return (
+    <div
+      data-testid="activity-renderer-authority-probe"
+      data-activity-id={activityId}
+      data-mode={mode}
+      data-authored-marker={authoredMarker}
+    >
+      <button
+        onClick={() => onSubmit?.({
+          contractVersion: 'practice.v1',
+          activityId,
+          mode: 'independent_practice',
+          status: 'submitted',
+          attemptNumber: 1,
+          submittedAt: '2026-08-19T10:00:00.000Z',
+          answers: { probe: 'trusted submission' },
+          parts: [{
+            partId: 'probe',
+            rawAnswer: 'trusted submission',
+            isCorrect: true,
+            score: 1,
+            maxScore: 1,
+          }],
+        })}
+      >
+        Submit probe envelope
+      </button>
+      <button onClick={onComplete}>Complete probe activity</button>
+    </div>
+  );
+}
 
 describe('ActivityRenderer - Representative Activity Families with Timing', () => {
   beforeEach(() => {
@@ -54,7 +100,9 @@ describe('ActivityRenderer - Representative Activity Families with Timing', () =
       const mathInput = screen.getByLabelText(/your answer/i);
       await user.type(mathInput, '7');
 
-      const q4Buttons = screen.getAllByRole('button').filter(b => b.textContent?.includes('☐'));
+      const q4Buttons = screen.getAllByRole('button').filter((button) => (
+        button.textContent?.includes('☐')
+      ));
       await user.click(q4Buttons[0]!); // (x-2)(x+2)
       await user.click(q4Buttons[3]!); // (x+2)(x-2)
 
@@ -164,21 +212,25 @@ describe('ActivityRenderer - Representative Activity Families with Timing', () =
   });
 
   describe('fill-in-the-blank', () => {
-    it('produces a valid practice.v1 envelope (tested directly due to ActivityRenderer prop forwarding)', async () => {
+    it('forwards template and blanks through ActivityRenderer, then submits a timed practice.v1 envelope', async () => {
       const handleSubmit = vi.fn();
+      registerActivity('fill-in-the-blank', FillInTheBlank);
 
       render(
-        <FillInTheBlank
+        <ActivityRenderer
+          componentKey="fill-in-the-blank"
           activityId="fitb-1"
           mode="practice"
-          template="The quadratic formula is {{blank:formula}}."
-          blanks={[{ id: 'formula', correctAnswer: 'x = (-b ± √(b²-4ac)) / 2a' }]}
           onSubmit={handleSubmit}
+          activityProps={{
+            template: 'The quadratic formula is {{blank:formula}}.',
+            blanks: [{ id: 'formula', correctAnswer: 'x = (-b ± √(b²-4ac)) / 2a' }],
+          }}
         />
       );
 
       const user = userEvent.setup();
-      const mathInput = screen.getByLabelText(/blank 1 of 1/i);
+      const mathInput = screen.getByRole('textbox');
       await user.type(mathInput, 'x = (-b ± √(b²-4ac)) / 2a');
 
       fireEvent.click(screen.getByRole('button', { name: /submit all answers/i }));
@@ -189,30 +241,57 @@ describe('ActivityRenderer - Representative Activity Families with Timing', () =
         expect(envelope.contractVersion).toBe('practice.v1');
         expect(envelope.activityId).toBe('fitb-1');
         expect(envelope.mode).toBe('independent_practice');
+        expect(envelope.timing).toEqual(mockTiming);
         expect(envelope.answers.formula).toBeDefined();
       });
     });
   });
-});
 
-describe('Lesson 1.6 public quiz wrapper', () => {
-  it('sends two ungraded answers and waits for the authoritative receipt', async () => {
-    const handleSubmit = vi.fn().mockResolvedValue({ submissionId: 'sub:quiz', score: 2, maxScore: 2 });
-    const { ComprehensionQuizActivity } = await import('@/components/activities/quiz/ComprehensionQuizActivity');
-    const transported = jsonToConvex(convexToJson([
-      { id: 'discriminant-purpose', type: 'multiple_choice', prompt: 'What does the discriminant tell you?', options: ['The sum of the roots', 'The number and type of solutions', 'The product of the roots', 'The axis of symmetry'] },
-      { id: 'zero-discriminant-real-solution-count', type: 'multiple_choice', prompt: 'If D = 0, how many real solutions are there?', options: ['0', '1', '2', 'Cannot determine'] },
-    ] as never)) as Parameters<typeof ComprehensionQuizActivity>[0]['questions'];
-    render(<ComprehensionQuizActivity activityId="activities:quiz" mode="practice" onSubmit={handleSubmit} questions={transported} />);
-    const user = userEvent.setup();
-    await user.click(screen.getByLabelText('The number and type of solutions'));
-    await user.click(screen.getByLabelText('1'));
-    await user.click(screen.getByRole('button', { name: 'Submit quiz' }));
-    await waitFor(() => expect(screen.getByText('Score: 2 / 2')).toBeInTheDocument());
-    const envelope = handleSubmit.mock.calls[0][0] as PracticeSubmissionEnvelope;
-    expect(envelope.parts).toEqual([
-      { partId: 'discriminant-purpose', rawAnswer: 'The number and type of solutions' },
-      { partId: 'zero-discriminant-real-solution-count', rawAnswer: '1' },
-    ]);
+  describe('trusted renderer props', () => {
+    it('keeps top-level activity identity and callbacks authoritative while forwarding activity props', async () => {
+      const outerSubmit = vi.fn();
+      const outerComplete = vi.fn();
+      const untrustedSubmit = vi.fn();
+      const untrustedComplete = vi.fn();
+      registerActivity('activity-renderer-authority-probe', ActivityRendererAuthorityProbe);
+
+      render(
+        <ActivityRenderer
+          componentKey="activity-renderer-authority-probe"
+          activityId="trusted-activity-id"
+          mode="practice"
+          onSubmit={outerSubmit}
+          onComplete={outerComplete}
+          activityProps={{
+            activityId: 'untrusted-activity-id',
+            mode: 'teaching',
+            onSubmit: untrustedSubmit,
+            onComplete: untrustedComplete,
+            authoredMarker: 'forwarded-activity-prop',
+          }}
+        />
+      );
+
+      const probe = screen.getByTestId('activity-renderer-authority-probe');
+      expect(probe).toHaveAttribute('data-activity-id', 'trusted-activity-id');
+      expect(probe).toHaveAttribute('data-mode', 'practice');
+      expect(probe).toHaveAttribute('data-authored-marker', 'forwarded-activity-prop');
+
+      fireEvent.click(screen.getByRole('button', { name: 'Submit probe envelope' }));
+
+      await waitFor(() => {
+        expect(outerSubmit).toHaveBeenCalledOnce();
+      });
+      const envelope = outerSubmit.mock.calls[0][0] as PracticeSubmissionEnvelope;
+      expect(envelope.contractVersion).toBe('practice.v1');
+      expect(envelope.activityId).toBe('trusted-activity-id');
+      expect(envelope.mode).toBe('independent_practice');
+      expect(envelope.timing).toEqual(mockTiming);
+      expect(untrustedSubmit).not.toHaveBeenCalled();
+
+      fireEvent.click(screen.getByRole('button', { name: 'Complete probe activity' }));
+      expect(outerComplete).toHaveBeenCalledOnce();
+      expect(untrustedComplete).not.toHaveBeenCalled();
+    });
   });
 });

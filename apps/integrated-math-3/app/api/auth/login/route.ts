@@ -9,12 +9,10 @@ import {
   signSessionToken,
   verifyPassword,
 } from '@math-platform/core-auth';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { z } from 'zod';
+import { fetchInternalMutation, fetchInternalQuery, internal } from '@/lib/convex/server';
 
-interface LoginBody {
-  username?: string;
-  password?: string;
-}
+const loginSchema = z.object({ username: z.string().trim().min(1).max(255), password: z.string().min(1).max(255) });
 
 /**
  * Handles POST requests to authenticate a user. Validates credentials
@@ -26,28 +24,34 @@ interface LoginBody {
  * @returns {JSX.Element} A JSON response with user info or an authentication error.
  */
 export async function POST(request: Request) {
-  let body: LoginBody;
+  let body: unknown;
   try {
-    body = (await request.json()) as LoginBody;
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const username = body.username?.trim();
-  const password = body.password ?? '';
-
-  if (!username || !password) {
-    return NextResponse.json({ error: 'Username and password are required' }, { status: 400 });
+  const parsed = loginSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
+  const { username, password } = parsed.data;
 
   try {
+    const limit = await fetchInternalMutation(internal.rateLimits.checkLoginAttempt, { username });
+    if (!limit.allowed) {
+      return NextResponse.json({ error: 'Too many login attempts. Try again later.' }, {
+        status: 429,
+        headers: { 'Retry-After': String(Math.max(1, Math.ceil((limit.windowExpiresAt - Date.now()) / 1000))) },
+      });
+    }
     const credential = await fetchInternalQuery(internal.auth.getCredentialByUsernameIncludingInactive, { username });
     if (!credential) {
       return NextResponse.json({ error: 'Invalid login credentials' }, { status: 401 });
     }
 
     if (!credential.isActive) {
-      return NextResponse.json({ error: 'Account is deactivated', code: 'deactivated' }, { status: 403 });
+      return NextResponse.json({ error: 'Invalid login credentials' }, { status: 401 });
     }
 
     const isValidPassword = await verifyPassword(password, {

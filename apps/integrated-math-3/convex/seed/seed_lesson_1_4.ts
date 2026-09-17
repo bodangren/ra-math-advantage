@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -28,7 +29,7 @@ export const seedLesson4 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 1,
-          title: "Solve Quadratic Equations by Factoring",
+          title: "Solving Quadratic Equations by Factoring",
           slug: lessonSlug,
           description: "Students factor trinomials and apply the zero product property.",
           orderIndex: 4,
@@ -46,7 +47,7 @@ export const seedLesson4 = internalMutation({
       : await ctx.db.insert("lesson_versions", {
           lessonId,
           version: 1,
-          title: "Solve Quadratic Equations by Factoring",
+          title: "Solving Quadratic Equations by Factoring",
           description: "Students factor trinomials and apply the zero product property.",
           status: "published",
           createdAt: now,
@@ -74,7 +75,7 @@ export const seedLesson4 = internalMutation({
               props: {
                 problemType: "factoring",
                 equation: "x^2 - 5x + 6 = 0",
-                steps: [],
+                steps: [{"expression": "(x-2)(x-3)=0", "explanation": "Factor the quadratic."}, {"expression": "x=2 or x=3", "explanation": "Apply the zero product property."}],
               },
             },
           },
@@ -132,9 +133,9 @@ export const seedLesson4 = internalMutation({
                 problemType: "factoring",
                 equation: "(x+2)(x+3) = 0",
                 steps: [
-                  { id: "step-1", description: "Already factored", expression: "(x+2)(x+3) = 0", explanation: "Already factored" },
-                  { id: "step-2", description: "Zero Product Property", expression: "x + 2 = 0  or  x + 3 = 0", explanation: "Zero Product Property" },
-                  { id: "step-3", description: "Solve each equation", expression: "x = -2  or  x = -3", explanation: "Solve each equation" },
+                  { expression: "(x+2)(x+3) = 0", explanation: "Already factored" },
+                  { expression: "x + 2 = 0  or  x + 3 = 0", explanation: "Zero Product Property" },
+                  { expression: "x = -2  or  x = -3", explanation: "Solve each equation" },
                 ],
               },
             },
@@ -163,10 +164,10 @@ export const seedLesson4 = internalMutation({
                 problemType: "factoring",
                 equation: "x^2 + 5x + 6 = 0",
                 steps: [
-                  { id: "step-1", description: "Original equation", expression: "x^2 + 5x + 6 = 0", explanation: "Original equation" },
-                  { id: "step-2", description: "Factor: 2*3=6, 2+3=5", expression: "(x+2)(x+3) = 0", explanation: "Factor: 2*3=6, 2+3=5" },
-                  { id: "step-3", description: "Zero Product Property", expression: "x + 2 = 0  or  x + 3 = 0", explanation: "Zero Product Property" },
-                  { id: "step-4", description: "Solutions", expression: "x = -2  or  x = -3", explanation: "Solutions" },
+                  { expression: "x^2 + 5x + 6 = 0", explanation: "Original equation" },
+                  { expression: "(x+2)(x+3) = 0", explanation: "Factor: 2*3=6, 2+3=5" },
+                  { expression: "x + 2 = 0  or  x + 3 = 0", explanation: "Zero Product Property" },
+                  { expression: "x = -2  or  x = -3", explanation: "Solutions" },
                 ],
               },
             },
@@ -195,10 +196,10 @@ export const seedLesson4 = internalMutation({
                 problemType: "factoring",
                 equation: "x^2 = 9",
                 steps: [
-                  { id: "step-1", description: "Move terms to one side", expression: "x^2 - 9 = 0", explanation: "Move terms to one side" },
-                  { id: "step-2", description: "Difference of squares", expression: "(x+3)(x-3) = 0", explanation: "Difference of squares" },
-                  { id: "step-3", description: "Zero Product Property", expression: "x + 3 = 0  or  x - 3 = 0", explanation: "Zero Product Property" },
-                  { id: "step-4", description: "Solutions", expression: "x = -3  or  x = 3", explanation: "Solutions" },
+                  { expression: "x^2 - 9 = 0", explanation: "Move terms to one side" },
+                  { expression: "(x+3)(x-3) = 0", explanation: "Difference of squares" },
+                  { expression: "x + 3 = 0  or  x - 3 = 0", explanation: "Zero Product Property" },
+                  { expression: "x = -3  or  x = 3", explanation: "Solutions" },
                 ],
               },
             },
@@ -227,11 +228,11 @@ export const seedLesson4 = internalMutation({
                 problemType: "factoring",
                 equation: "2x^2 + 5x - 3 = 0",
                 steps: [
-                  { id: "step-1", description: "Original equation", expression: "2x^2 + 5x - 3 = 0", explanation: "Original equation" },
-                  { id: "step-2", description: "Split middle term", expression: "2x^2 + 6x - x - 3 = 0", explanation: "Split middle term" },
-                  { id: "step-3", description: "Factor by grouping", expression: "(2x-1)(x+3) = 0", explanation: "Factor by grouping" },
-                  { id: "step-4", description: "Zero Product Property", expression: "2x - 1 = 0  or  x + 3 = 0", explanation: "Zero Product Property" },
-                  { id: "step-5", description: "Solutions", expression: "x = 1/2  or  x = -3", explanation: "Solutions" },
+                  { expression: "2x^2 + 5x - 3 = 0", explanation: "Original equation" },
+                  { expression: "2x^2 + 6x - x - 3 = 0", explanation: "Split middle term" },
+                  { expression: "(2x-1)(x+3) = 0", explanation: "Factor by grouping" },
+                  { expression: "2x - 1 = 0  or  x + 3 = 0", explanation: "Zero Product Property" },
+                  { expression: "x = 1/2  or  x = -3", explanation: "Solutions" },
                 ],
               },
             },
@@ -275,10 +276,10 @@ export const seedLesson4 = internalMutation({
                 problemType: "factoring",
                 equation: "4x^2 - 9 = 0",
                 steps: [
-                  { id: "step-1", description: "Original equation", expression: "4x^2 - 9 = 0", explanation: "Original equation" },
-                  { id: "step-2", description: "Difference of squares", expression: "(2x+3)(2x-3) = 0", explanation: "Difference of squares" },
-                  { id: "step-3", description: "Zero Product Property", expression: "2x + 3 = 0  or  2x - 3 = 0", explanation: "Zero Product Property" },
-                  { id: "step-4", description: "Solutions", expression: "x = -3/2  or  x = 3/2", explanation: "Solutions" },
+                  { expression: "4x^2 - 9 = 0", explanation: "Original equation" },
+                  { expression: "(2x+3)(2x-3) = 0", explanation: "Difference of squares" },
+                  { expression: "2x + 3 = 0  or  2x - 3 = 0", explanation: "Zero Product Property" },
+                  { expression: "x = -3/2  or  x = 3/2", explanation: "Solutions" },
                 ],
               },
             },
@@ -307,9 +308,9 @@ export const seedLesson4 = internalMutation({
                 problemType: "factoring",
                 equation: "x^2 + 10x + 25",
                 steps: [
-                  { id: "step-1", description: "Original trinomial", expression: "x^2 + 10x + 25", explanation: "Original trinomial" },
-                  { id: "step-2", description: "Recognize perfect square pattern", expression: "x^2 + 2(x)(5) + 5^2", explanation: "Recognize perfect square pattern" },
-                  { id: "step-3", description: "Factor as a perfect square trinomial", expression: "(x + 5)^2", explanation: "Factor as a perfect square trinomial" },
+                  { expression: "x^2 + 10x + 25", explanation: "Original trinomial" },
+                  { expression: "x^2 + 2(x)(5) + 5^2", explanation: "Recognize perfect square pattern" },
+                  { expression: "(x + 5)^2", explanation: "Factor as a perfect square trinomial" },
                 ],
               },
             },
@@ -338,10 +339,10 @@ export const seedLesson4 = internalMutation({
                 problemType: "factoring",
                 equation: "x^2 + 4 = 0",
                 steps: [
-                  { id: "step-1", description: "Original equation", expression: "x^2 + 4 = 0", explanation: "Original equation" },
-                  { id: "step-2", description: "Isolate x^2", expression: "x^2 = -4", explanation: "Isolate x^2" },
-                  { id: "step-3", description: "Take square root", expression: "x = +/- sqrt(-4)", explanation: "Take square root" },
-                  { id: "step-4", description: "Complex solutions", expression: "x = +/- 2i", explanation: "Complex solutions" },
+                  { expression: "x^2 + 4 = 0", explanation: "Original equation" },
+                  { expression: "x^2 = -4", explanation: "Isolate x^2" },
+                  { expression: "x = +/- sqrt(-4)", explanation: "Take square root" },
+                  { expression: "x = +/- 2i", explanation: "Complex solutions" },
                 ],
               },
             },
@@ -368,8 +369,16 @@ export const seedLesson4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "If (x-3)(x+5) = 0, what are the solutions?", options: ["x = 3 or x = -5", "x = -3 or x = 5", "x = 3 or x = 3", "x = -5 or x = -5"], correctAnswer: "x = 3 or x = -5" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What comes FIRST when factoring?", options: ["Look for a GCF", "Split the middle term", "Use quadratic formula", "Graph it"], correctAnswer: "Look for a GCF" },
+                  {
+                    question: "If (x-3)(x+5) = 0, what are the solutions?",
+                    options: ["x = 3 or x = -5", "x = -3 or x = 5", "x = 3 or x = 3", "x = -5 or x = -5"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What comes FIRST when factoring?",
+                    options: ["Look for a GCF", "Split the middle term", "Use quadratic formula", "Graph it"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -423,9 +432,9 @@ export const seedLesson4 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -438,8 +447,8 @@ export const seedLesson4 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

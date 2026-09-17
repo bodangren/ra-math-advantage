@@ -25,10 +25,11 @@
     {
       "id": "math.im3.example.1.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Graph Quadratic Functions and State Domain and Range",
+      "title": "Example 1 Graph a Quadratic Function by Using a Table",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 1)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -37,16 +38,19 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+        "rawText": "Graph f(x) = x^2 + 2x - 3. State the domain and range.",
+        "sourcePdfPage": 4,
+        "demonstratedCapability": "Graph a quadratic function by using a table and state its domain and range."
       }
     },
     {
       "id": "math.im3.example.1.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Compare Quadratic Functions Using Graphs and Tables",
+      "title": "Example 2 Compare Quadratic Functions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -55,16 +59,19 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+        "rawText": "Compare the graph of f(x) to a quadratic function g(x) with a y-intercept of -1 and a vertex at (1, 2). Which function has a greater maximum?",
+        "sourcePdfPage": 4,
+        "demonstratedCapability": "Compare the maximum values of quadratic functions from their graphs and key features."
       }
     },
     {
       "id": "math.im3.example.1.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Quadratic Revenue Functions",
+      "title": "Example 3 Use Quadratic Functions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -73,16 +80,19 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+        "rawText": "SKIING A ski resort has extended hours on one holiday weekend per year. Last year, the resort sold 680 ski passes at $120 per holiday weekend pass. This year, the resort is considering a price increase. They estimate that for each $5 increase, they will sell 20 fewer holiday weekend passes. Part A How much should they charge in order to maximize profit? Part B Find the domain and range in the context of the situation.",
+        "sourcePdfPage": 5,
+        "demonstratedCapability": "Model profit with a quadratic function, find its maximum, and interpret contextual domain and range."
       }
     },
     {
       "id": "math.im3.example.1.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Average Rate of Change of Quadratic Functions",
+      "title": "Example 4 Find Average Rate of Change from an Equation",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 4)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 4)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -91,16 +101,19 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+        "rawText": "Determine the average rate of change of f(x) = -x^2 + 2x - 1 over the interval [-4, 4].",
+        "sourcePdfPage": 6,
+        "demonstratedCapability": "Calculate average rate of change from an equation over an interval."
       }
     },
     {
       "id": "math.im3.example.1.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Average Rate of Change from Graphs",
+      "title": "Example 5 Find Average Rate of Change from a Table",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 5)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 5)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -109,16 +122,19 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+        "rawText": "Determine the average rate of change of f(x) over the interval [-3, 3].",
+        "sourcePdfPage": 6,
+        "demonstratedCapability": "Calculate average rate of change from table values over an interval."
       }
     },
     {
       "id": "math.im3.example.1.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Interpret Average Rate of Change in Context",
+      "title": "Example 6 Find Average Rate of Change from a Graph",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=7"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -127,16 +143,19 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+        "rawText": "Part A Use the graph to estimate the average rate of change of spending on sports footwear from 2005 to 2015. Then check your results algebraically.",
+        "sourcePdfPage": 7,
+        "demonstratedCapability": "Estimate average rate of change from a graph and check the result algebraically."
       }
     },
     {
       "id": "math.im3.example.1.2.007",
       "kind": "worked_example",
-      "title": "Example 1: Use Related Graphs to Determine Solutions",
+      "title": "Example 1: One Real Solution",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 1)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=13"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -145,16 +164,17 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots"
+        "rawText": "Example 1: One Real Solution. Solve 10 - x^2 = 4x + 14 by graphing. Rearrange terms so that one side of the equation is 0. 0 = x^2 + 4x + 4. Find the axis of symmetry. x = -b/(2a) = -4/(2(1)) or -2. Make a table of values, plot the points, and connect them with a curve. The zero of the function is -2. Therefore, the solution of the equation is -2 or {x | x = -2}."
       }
     },
     {
       "id": "math.im3.example.1.2.008",
       "kind": "worked_example",
-      "title": "Example 2: Find Two Numbers with Given Sum and Product Using Quadratic Equations",
+      "title": "Example 2: Two Real Solutions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 2)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=14"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -163,16 +183,17 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots"
+        "rawText": "Example 2: Two Real Solutions. Use a quadratic equation to find two real numbers with a sum of 24 and a product of 143. Let x represent one of the numbers. Then 24 - x will represent the other number. So x(24 - x) = 143. Solve the equation for 0, find the axis of symmetry, and make a table of values and graph the function. The zeros of the function are 11 and 13. x = 11 or x = 13, so 24 - x = 13 or 24 - x = 11. Thus, the two numbers with a sum of 24 and a product of 143 are 11 and 13."
       }
     },
     {
       "id": "math.im3.example.1.2.009",
       "kind": "worked_example",
-      "title": "Example 3: Solve by Graphing When Exact Roots Cannot Be Found",
+      "title": "Example 3: Estimate Roots",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 3)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=15"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -181,16 +202,17 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots"
+        "rawText": "Example 3: Estimate Roots. Solve -x^2 + 3x + 7 = 0 by graphing. If the exact roots cannot be found, state the consecutive integers between which the roots are located. Make a table of values, plot the points, and connect them with a curve. The x-intercepts of the graph indicate that one solution is between -2 and -1, and the other solution is between 4 and 5."
       }
     },
     {
       "id": "math.im3.example.1.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Use Tables to Determine Zeros",
+      "title": "Example 4: Solve by Using a Table",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 4)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 4)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=15"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -199,16 +221,17 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator"
+        "rawText": "Example 4: Solve by Using a Table. Use a table to solve -x^2 + 5x - 1 = 0. Enter -x^2 + 5x - 1 in the Y= list and use the TABLE window to find where the sign of Y1 changes. The sign changes between x = 0 and x = 1. Use TBLSET to change delta Tbl to 0.1 and repeat for 0.01 and 0.001. One zero is located at approximately x = 0.209. The zeros of the function are at approximately 0.209 and 4.791, so the solutions to the equation are approximately 0.209 and 4.791."
       }
     },
     {
       "id": "math.im3.example.1.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Solve Using the Height Formula in Physics",
+      "title": "Example 5: Solve by Using a Calculator",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 5)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 5)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=16"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -217,15 +240,16 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator"
+        "rawText": "Example 5: Solve by Using a Calculator. A kicker punts a football. The height of the ball after t seconds is given by h(t) = -16t^2 + 50t + h0, where h0 is the initial height. If the ball is 1.5 feet above the ground when the punter’s foot meets the ball, how long will it take the ball to hit the ground? We know that h0 is the initial height, so h0 = 1.5. We need to find t when h(t) is 0. Use a graphing calculator to graph the related function h(t) = -16t^2 + 50t + 1.5. Use the zero feature to find the positive zero. The zero is approximately 3.15. Thus, the ball hit the ground approximately 3.15 seconds after it was punted."
       }
     },
     {
       "id": "math.im3.example.1.3.012",
       "kind": "worked_example",
-      "title": "Example 1: Simplify Expressions with Imaginary Numbers",
+      "title": "Example 1: Square Roots of Negative Numbers",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=21",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 1)"
       ],
       "reviewStatus": "draft",
@@ -235,15 +259,20 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+        "rawText": "1-3, Example 1 — Square Roots of Negative Numbers",
+        "authoredTitle": "Square Roots of Negative Numbers",
+        "sourcePrompt": "Simplify √−294.",
+        "sourceSolution": "√−294 = √(−1 · 7² · 6) = √−1 · √7² · √6 = i · 7 · √6 or 7i√6.",
+        "demonstratedCapability": "Rewrite a square root of a negative number by using i = √−1 and simplifying the radical."
       }
     },
     {
       "id": "math.im3.example.1.3.013",
       "kind": "worked_example",
-      "title": "Example 2: Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "title": "Example 2: Products of Pure Imaginary Numbers",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=22",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 2)"
       ],
       "reviewStatus": "draft",
@@ -253,15 +282,20 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+        "rawText": "1-3, Example 2 — Products of Pure Imaginary Numbers",
+        "authoredTitle": "Products of Pure Imaginary Numbers",
+        "sourcePrompt": "Simplify √−10 · √−15.",
+        "sourceSolution": "√−10 · √−15 = i√10 · i√15 = i² · √150 = −1 · √25 · √6 = −5√6.",
+        "demonstratedCapability": "Multiply pure imaginary numbers by using i = √−1 and i² = −1."
       }
     },
     {
       "id": "math.im3.example.1.3.014",
       "kind": "worked_example",
-      "title": "Example 3: Solve Quadratic Equations with Complex Solutions",
+      "title": "Example 3: Equation with Pure Imaginary Solutions",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=22",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 3)"
       ],
       "reviewStatus": "draft",
@@ -271,15 +305,20 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+        "rawText": "1-3, Example 3 — Equation with Pure Imaginary Solutions",
+        "authoredTitle": "Equation with Pure Imaginary Solutions",
+        "sourcePrompt": "Solve x² + 81 = 0.",
+        "sourceSolution": "x² + 81 = 0; x² = −81; x = ±√−81; x = ±9i.",
+        "demonstratedCapability": "Solve a quadratic equation with pure imaginary solutions by using i = √−1."
       }
     },
     {
       "id": "math.im3.example.1.3.015",
       "kind": "worked_example",
-      "title": "Example 4: Find Values of x and y in Complex Equations",
+      "title": "Example 4: Equate Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=23",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 4)"
       ],
       "reviewStatus": "draft",
@@ -289,15 +328,20 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+        "rawText": "1-3, Example 4 — Equate Complex Numbers",
+        "authoredTitle": "Equate Complex Numbers",
+        "sourcePrompt": "Find the values of x and y that make 5x − 7 + (y + 4)i = 13 + 11i true. Use equations relating the real and imaginary parts to solve for x and y.",
+        "sourceSolution": "5x − 7 = 13; 5x = 20; x = 4; y + 4 = 11; y = 7.",
+        "demonstratedCapability": "Set the real parts equal and set the imaginary parts equal to solve for x and y."
       }
     },
     {
       "id": "math.im3.example.1.3.016",
       "kind": "worked_example",
-      "title": "Example 5: Add, Subtract, and Multiply Complex Numbers",
+      "title": "Example 5: Add or Subtract Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=24",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 5)"
       ],
       "reviewStatus": "draft",
@@ -307,15 +351,20 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+        "rawText": "1-3, Example 5 — Add or Subtract Complex Numbers",
+        "authoredTitle": "Add or Subtract Complex Numbers",
+        "sourcePrompt": "Simplify (8 + 3i) − (4 − 10i).",
+        "sourceSolution": "(8 + 3i) − (4 − 10i) = (8 − 4) + [3 − (−10)]i = 4 + 13i.",
+        "demonstratedCapability": "Add or subtract complex numbers by combining real parts and imaginary parts."
       }
     },
     {
       "id": "math.im3.example.1.3.017",
       "kind": "worked_example",
-      "title": "Example 6: Add, Subtract, and Multiply Complex Numbers",
+      "title": "Example 6: Multiply Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=24",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 6)"
       ],
       "reviewStatus": "draft",
@@ -325,7 +374,11 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+        "rawText": "1-3, Example 6 — Multiply Complex Numbers",
+        "authoredTitle": "Multiply Complex Numbers",
+        "sourcePrompt": "ELECTRICITY The voltage V of an AC circuit can be found using the formula V = CI, where C is current and I is impedance. If C = 3 + 2j amps and I = 7 − 5j ohms, determine the voltage.",
+        "sourceSolution": "V = CI = (3 + 2j)(7 − 5j) = 21 − 15j + 14j − 10j² = 21 − j − 10(−1) = 31 − j. The voltage is 31 − j volts.",
+        "demonstratedCapability": "Multiply complex numbers by using the distributive (FOIL) method and j² = −1."
       }
     },
     {
@@ -334,6 +387,7 @@
       "title": "Example 7: Divide Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=24",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 7)"
       ],
       "reviewStatus": "draft",
@@ -343,16 +397,21 @@
         "lesson": "3",
         "exampleNumber": 7,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+        "rawText": "1-3, Example 7 — Divide Complex Numbers",
+        "authoredTitle": "Divide Complex Numbers",
+        "sourcePrompt": "Simplify 5i/(3 + 2i). Rationalize the denominator to simplify the fraction.",
+        "sourceSolution": "5i/(3 + 2i) = (5i/(3 + 2i))((3 − 2i)/(3 − 2i)) = (15i − 10i²)/(9 − 4i²) = (15i + 10)/13 = 10/13 + 15/13i.",
+        "demonstratedCapability": "Divide complex numbers by multiplying by a complex conjugate and writing the result in a + bi form."
       }
     },
     {
       "id": "math.im3.example.1.4.019",
       "kind": "worked_example",
-      "title": "Example 1: Solve Equations by Factoring",
+      "title": "Example 1: Factor by Using the Distributive Property",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 1)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=27"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -361,16 +420,17 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+        "rawText": "PDF page 27, Example 1: Factor by Using the Distributive Property. Prompt: Solve 12x^2 - 2x = x by factoring. Check your solution. Solution: 12x^2 - 3x = 0; 3x(4x) - 3x(1) = 0; 3x(4x - 1) = 0; 3x = 0 or 4x - 1 = 0; x = 0 or x = 1/4. Capability: Factor the GCF and apply the Zero Product Property."
       }
     },
     {
       "id": "math.im3.example.1.4.020",
       "kind": "worked_example",
-      "title": "Example 2: Solve Equations by Factoring",
+      "title": "Example 2: Factor a Trinomial",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 2)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=28"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -379,16 +439,17 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+        "rawText": "PDF page 28, Example 2: Factor a Trinomial. Prompt: Solve x^2 - 6x - 9 = 18 by factoring. Check your solution. Solution: x^2 - 6x - 27 = 0; (x + 3)(x - 9) = 0; x + 3 = 0 or x - 9 = 0; x = -3 or x = 9. Capability: Factor a monic trinomial and apply the Zero Product Property."
       }
     },
     {
       "id": "math.im3.example.1.4.021",
       "kind": "worked_example",
-      "title": "Example 3: Geometry and Area Problems",
+      "title": "Example 3: Solve an Equation by Factoring",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 3)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=28"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -397,16 +458,17 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+        "rawText": "PDF page 28, Apply Example 3: Solve an Equation by Factoring. Prompt: ACCELERATION The equation d = vt + 1/2 at^2 represents the displacement d of a car traveling at an initial velocity v where the acceleration a is constant over a given time t. Find how long it takes a car to accelerate from 30 mph to 45 mph if the car moved 605 feet and accelerated slowly at a rate of 2 feet per second squared. Solution: Convert 30 mph to 44 fps; 605 = 44t + t^2; t^2 + 44t - 605 = 0; (t + 55)(t - 11) = 0; t = -55 or t = 11; t = 11 s because time cannot be negative. Capability: Apply factoring to a contextual quadratic and select the viable solution."
       }
     },
     {
       "id": "math.im3.example.1.4.022",
       "kind": "worked_example",
-      "title": "Example 4: Factor Trinomials with [a ≠ 1]",
+      "title": "Example 4: Factor a Trinomial Where a is Not 1",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 4)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 4)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=29"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -415,16 +477,17 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+        "rawText": "PDF page 29, Example 4: Factor a Trinomial Where a is Not 1. Prompt: Solve 3x^2 + 5x + 15 = 17 by factoring. Check your solution. Solution: 3x^2 + 5x - 2 = 0; (3x - 1)(x + 2) = 0; 3x - 1 = 0 or x + 2 = 0; x = 1/3 or x = -2. Capability: Factor a trinomial with a leading coefficient other than 1 and apply the Zero Product Property."
       }
     },
     {
       "id": "math.im3.example.1.4.023",
       "kind": "worked_example",
-      "title": "Example 5: 7 — Difference of Squares and Perfect Squares",
+      "title": "Example 5: Factor a Difference of Squares",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 5)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 5)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=30"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -433,16 +496,17 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+        "rawText": "PDF page 30, Example 5: Factor a Difference of Squares. Prompt: Solve 81 = x^2 by factoring. Check your solution. Solution: 81 - x^2 = 0; 9^2 - x^2 = 0; (9 + x)(9 - x) = 0; x = -9 or x = 9. Capability: Recognize a difference of squares and apply the Zero Product Property."
       }
     },
     {
       "id": "math.im3.example.1.4.024",
       "kind": "worked_example",
-      "title": "Example 6: Example 6",
+      "title": "Example 6: Factor a Perfect Square Trinomial",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 6)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 6)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=30"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -451,16 +515,17 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+        "rawText": "PDF page 30, Example 6: Factor a Perfect Square Trinomial. Prompt: Solve 16y^2 - 22y + 23 = 26y - 13 by factoring. Check your solution. Solution: 16y^2 - 48y + 36 = 0; (4y)^2 + 2(4y)(-6) + (-6)^2 = 0; (4y - 6)^2 = 0; y = 3/2. Capability: Recognize a perfect square trinomial and solve by factoring."
       }
     },
     {
       "id": "math.im3.example.1.4.025",
       "kind": "worked_example",
-      "title": "Example 7: Example 7",
+      "title": "Example 7: Complex Solutions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 7)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 7)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=30"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -469,16 +534,17 @@
         "lesson": "4",
         "exampleNumber": 7,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+        "rawText": "PDF page 30, Example 7: Complex Solutions. Prompt: Solve x^2 = -144 by factoring. Check your solution. Solution: x^2 + 144 = 0; x^2 - (-144) = 0; x^2 - (12i)^2 = 0; (x + 12i)(x - 12i) = 0; x = -12i or x = 12i. Capability: Factor a difference of squares over the complex numbers and apply the Zero Product Property."
       }
     },
     {
       "id": "math.im3.example.1.5.026",
       "kind": "worked_example",
-      "title": "Example 1: 3 — Use the Square Root Property",
+      "title": "Example 1: Solve a Quadratic Equation with Rational Roots",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 1)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=33"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -487,16 +553,17 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "PDF page 33. Prompt: Solve x² − 4x + 4 = 25 by using the Square Root Property. Demonstrated capability: Use the Square Root Property to solve a quadratic equation with rational roots. Solution: (x − 2)² = 25, x − 2 = ±5, so x = 7 or x = −3."
       }
     },
     {
       "id": "math.im3.example.1.5.027",
       "kind": "worked_example",
-      "title": "Example 2: Example 2",
+      "title": "Example 2: Solve a Quadratic Equation with Irrational Roots",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 2)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=34"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -505,16 +572,17 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "PDF page 34. Prompt: Solve x² + 24x + 144 = 192 by using the Square Root Property. Demonstrated capability: Use the Square Root Property to solve a quadratic equation with irrational roots. Solution: (x + 12)² = 192, x = −12 ± 8√3, approximately 1.86 or −25.86."
       }
     },
     {
       "id": "math.im3.example.1.5.028",
       "kind": "worked_example",
-      "title": "Example 3: Example 3",
+      "title": "Example 3: Solve a Quadratic Equation with Complex Solutions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 3)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=34"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -523,16 +591,17 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "PDF page 34. Prompt: Solve 2x² − 92x + 1058 = −72 by using the Square Root Property. Demonstrated capability: Use the Square Root Property to solve a quadratic equation with complex solutions. Solution: (x − 23)² = −36, x = 23 ± 6i."
       }
     },
     {
       "id": "math.im3.example.1.5.029",
       "kind": "worked_example",
-      "title": "Example 4: Find the Value of c That Completes the Square",
+      "title": "Example 4: Complete the Square",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 4)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 4)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=35"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -541,16 +610,17 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "PDF page 35. Prompt: Find the value of c that makes x² − 7x + c a perfect square. Then write the expression as a perfect square trinomial. Demonstrated capability: Find and use one-half of b squared to write a perfect square trinomial. Solution: half of −7 is −3.5; c = 12.25; x² − 7x + 12.25 = (x − 3.5)²."
       }
     },
     {
       "id": "math.im3.example.1.5.030",
       "kind": "worked_example",
-      "title": "Example 5: Solve Equations by Completing the Square",
+      "title": "Example 5: Solve by Completing the Square",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 5)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 5)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=35"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -559,16 +629,17 @@
         "lesson": "5",
         "exampleNumber": 5,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "PDF page 35. Prompt: Solve x² + 18x − 4 = 0 by completing the square. Demonstrated capability: Solve a quadratic equation by completing the square and applying the Square Root Property. Solution: x² + 18x = 4; add 81; (x + 9)² = 85; x = −9 ± √85, approximately 0.22 or −18.22."
       }
     },
     {
       "id": "math.im3.example.1.5.031",
       "kind": "worked_example",
-      "title": "Example 7: Solve Equations with [a ≠ 1] by Completing the Square",
+      "title": "Example 7: Solve When a Is Not 1",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 7)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 7)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=36"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -577,16 +648,17 @@
         "lesson": "5",
         "exampleNumber": 7,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "PDF page 36. Prompt: Solve 4x² − 12x − 27 = 0 by completing the square. Demonstrated capability: Solve a quadratic equation by first making the coefficient of x² equal to 1. Solution: divide by 4; (x − 3/2)² = 9; x = 9/2 or −3/2."
       }
     },
     {
       "id": "math.im3.example.1.5.032",
       "kind": "worked_example",
-      "title": "Example 8: Solve Equations with [a ≠ 1] by Completing the Square",
+      "title": "Example 8: Solve Equations with Imaginary Solutions",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 8)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 8)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=36"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -595,7 +667,7 @@
         "lesson": "5",
         "exampleNumber": 8,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "PDF page 36. Prompt: Solve 3x² − 72x + 465 = 0 by completing the square. Demonstrated capability: Solve a quadratic equation with imaginary solutions by completing the square. Solution: divide by 3; (x − 12)² = −11; x = 12 ± i√11."
       }
     },
     {
@@ -604,7 +676,8 @@
       "title": "Example 9: Write Functions in Vertex Form",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 9)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 9)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=37"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -613,16 +686,17 @@
         "lesson": "5",
         "exampleNumber": 9,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "PDF page 37. Prompt: Write y = −x² − 12x − 9 in vertex form. Demonstrated capability: Rewrite a quadratic function in vertex form by completing the square. Solution: y = −(x² + 12x) − 9 = −(x² + 12x + 36) + 27 = −(x + 6)² + 27."
       }
     },
     {
       "id": "math.im3.example.1.5.034",
       "kind": "worked_example",
-      "title": "Example 10: Write Functions in Vertex Form",
+      "title": "Example 10: Determine the Vertex and Axis of Symmetry",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 10)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 10)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=37"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -631,16 +705,17 @@
         "lesson": "5",
         "exampleNumber": 10,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "PDF page 37. Prompt: Consider y = 3x² − 12x + 5. Part A: Write the function in vertex form. Part B: Find the axis of symmetry. Part C: Find the vertex and state whether the vertex is a maximum or minimum. Demonstrated capability: Use vertex form to determine the axis of symmetry, vertex, and minimum value. Solution: y = 3(x − 2)² − 7; axis x = 2; vertex (2, −7); minimum."
       }
     },
     {
       "id": "math.im3.example.1.5.035",
       "kind": "worked_example",
-      "title": "Example 11: Apply to Projectile Motion",
+      "title": "Example 11: Model with a Quadratic Function",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 11)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 11)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=38"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -649,7 +724,7 @@
         "lesson": "5",
         "exampleNumber": 11,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "PDF page 38. Prompt: FIREWORKS If a firework is launched 1 foot off the ground at a velocity of 128 feet per second, write a function for the situation. Then find and interpret the axis of symmetry and vertex. Demonstrated capability: Model a projectile with a quadratic function and interpret its vertex and axis of symmetry. Solution: h(t) = −16t² + 128t + 1 = −16(t − 4)² + 257; axis t = 4; vertex (4, 257), maximum."
       }
     },
     {
@@ -668,11 +743,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "1-6",
-        "pdfPage": 43,
-        "authoredTitle": "Real Roots, c Is Positive",
-        "prompt": "CONTEST At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by h = -4.9t² + 11.7t + 42, where h is the height and t is the number of seconds after launch.",
-        "demonstratedCapability": "Use the Quadratic Formula to solve a contextual quadratic equation, preserve both mathematical roots, and interpret the context-valid root.",
-        "rawText": "Example 1 Real Roots, c Is Positive\nCONTEST At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by h = -4.9t² + 11.7t + 42, where h is the height and t is the number of seconds after launch.\nPart A Use the Quadratic Formula to solve 0 = -4.9t² + 11.7t + 42.\na = -4.9, b = 11.7, c = 42\nt = (-b ± √(b² - 4ac))/(2a)\nt = (-11.7 ± √((11.7)² - 4(-4.9)(42)))/(2(-4.9))\nt = (-11.7 ± √(136.89 + 823.2))/-9.8\nt = (-11.7 ± √960.09)/-9.8\nt = (11.7 + √960.09)/9.8 or t = (11.7 - √960.09)/9.8\nThe approximate solutions are 4.4 seconds and -2.0 seconds.\nPart B Interpret the roots.\nThe negative root does not make sense in this context because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds."
+        "rawText": "Prompt: At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by h = -4.9t^2 + 11.7t + 42, where h is the height and t is the number of seconds after launch. Part A Use the Quadratic Formula to solve 0 = -4.9t^2 + 11.7t + 42. Part B Interpret the roots. Solution: The approximate solutions are 4.4 seconds and -2.0 seconds. The negative root does not make sense in this context because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds. Demonstrated capability: Use the Quadratic Formula to solve a quadratic equation and interpret roots in context."
       }
     },
     {
@@ -691,11 +762,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "1-6",
-        "pdfPage": 44,
-        "authoredTitle": "Real Roots, c Is Negative",
-        "prompt": "Solve x² + 4x - 17 = 0 by using the Quadratic Formula.",
-        "demonstratedCapability": "Use the Quadratic Formula to solve a quadratic equation with negative c and simplify both real roots exactly.",
-        "rawText": "Example 2 Real Roots, c Is Negative\nSolve x² + 4x - 17 = 0 by using the Quadratic Formula.\na = 1, b = 4, c = -17\nx = (-b ± √(b² - 4ac))/(2a)\nx = (-4 ± √((4)² - 4(1)(-17)))/(2(1))\nx = (-4 ± √84)/2\nx = (-4 ± √4 · √21)/2\nx = (-4 ± 2√21)/2\nx = -2 ± √21"
+        "rawText": "Prompt: Solve x^2 + 4x - 17 = 0 by using the Quadratic Formula. Solution: x = -2 ± sqrt(21). Demonstrated capability: Use the Quadratic Formula to solve a quadratic equation with two real irrational roots."
       }
     },
     {
@@ -714,17 +781,13 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "1-6",
-        "pdfPage": 44,
-        "authoredTitle": "Complex Roots",
-        "prompt": "Solve 5x² + 8x + 11 = 0 by using the Quadratic Formula.",
-        "demonstratedCapability": "Use the Quadratic Formula to solve a quadratic equation with a negative discriminant and simplify both complex conjugate roots exactly.",
-        "rawText": "Example 3 Complex Roots\nSolve 5x² + 8x + 11 = 0 by using the Quadratic Formula.\na = 5, b = 8, c = 11\nx = (-b ± √(b² - 4ac))/(2a)\nx = (-8 ± √(8² - 4(5)(11)))/(2(5))\nx = (-8 ± √-156)/10\nx = (-8 ± √-1 · √4 · √39)/10\nx = (-8 ± 2i√39)/10\nx = (-4 ± i√39)/5"
+        "rawText": "Prompt: Solve 5x^2 + 8x + 11 = 0 by using the Quadratic Formula. Solution: x = (-4 ± i sqrt(39))/5. Demonstrated capability: Use the Quadratic Formula to solve a quadratic equation with two complex roots."
       }
     },
     {
       "id": "math.im3.example.1.6.039",
       "kind": "worked_example",
-      "title": "Example 4 The Discriminant, Real Roots",
+      "title": "Example 4: The Discriminant, Real Roots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 4)",
@@ -737,17 +800,13 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "1-6",
-        "rawText": "Example 4 The Discriminant, Real Roots\nExamine 2x² - 10x + 7 = 0.\nPart A Find the value of the discriminant for 2x² - 10x + 7 = 0.\na = 2, b = -10, c = 7\nb² - 4ac = (-10)² - 4(2)(7)\n= 100 - 56\n= 44\nPart B Describe the number and type of roots for the equation.\nThe discriminant is nonzero, so there are two roots. The discriminant is positive and not a perfect square, so the roots are irrational.",
-        "pdfPage": 46,
-        "authoredTitle": "The Discriminant, Real Roots",
-        "prompt": "Examine 2x² - 10x + 7 = 0. Part A Find the value of the discriminant for 2x² - 10x + 7 = 0. Part B Describe the number and type of roots for the equation.",
-        "demonstratedCapability": "Use the discriminant to calculate its value and classify two real irrational roots."
+        "rawText": "Prompt: Examine 2x^2 - 10x + 7 = 0. Part A Find the value of the discriminant for 2x^2 - 10x + 7 = 0. Part B Describe the number and type of roots for the equation. Solution: The discriminant is 44. There are two real irrational roots. Demonstrated capability: Use the discriminant to find its value and determine that the equation has two real irrational roots."
       }
     },
     {
       "id": "math.im3.example.1.6.040",
       "kind": "worked_example",
-      "title": "Example 5 The Discriminant, Complex Roots",
+      "title": "Example 5: The Discriminant, Complex Roots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 5)",
@@ -760,19 +819,16 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "1-6",
-        "rawText": "Example 5 The Discriminant, Complex Roots\nExamine -5x² + 10x - 15 = 0.\nPart A Find the value of the discriminant for -5x² + 10x - 15 = 0.\na = -5, b = 10, c = -15\nb² - 4ac = (10)² - 4(-5)(-15)\n= 100 - 300\n= -200\nPart B Describe the number and type of roots for the equation.\nThe discriminant is nonzero, so there are two roots. The discriminant is negative, so the roots are complex.",
-        "pdfPage": 46,
-        "authoredTitle": "The Discriminant, Complex Roots",
-        "prompt": "Examine -5x² + 10x - 15 = 0. Part A Find the value of the discriminant for -5x² + 10x - 15 = 0. Part B Describe the number and type of roots for the equation.",
-        "demonstratedCapability": "Use the discriminant to calculate its value and classify two complex roots."
+        "rawText": "Prompt: Examine -5x^2 + 10x - 15 = 0. Part A Find the value of the discriminant for -5x^2 + 10x - 15 = 0. Part B Describe the number and type of roots for the equation. Solution: The discriminant is -200. There are two complex roots. Demonstrated capability: Use the discriminant to find its value and determine that the equation has two complex roots."
       }
     },
     {
       "id": "math.im3.example.1.7.041",
       "kind": "worked_example",
-      "title": "Example 1: Graph Quadratic Inequalities",
+      "title": "Example 1: Graph a Quadratic Inequality (< or ≤)",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=51",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 1)"
       ],
       "reviewStatus": "draft",
@@ -782,15 +838,19 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>)"
+        "authoredPrompt": "Graph $y \\leq x^2 - 2x + 8$.",
+        "demonstratedCapability": "Graph the related quadratic function. Use a solid boundary for a less-than-or-equal-to inequality. Test (0,0). Shade the region that contains the test point.",
+        "solutionText": "The boundary is y = x^2 - 2x + 8. The point (0,0) satisfies 0 <= 8, so shade the region that contains (0,0).",
+        "rawText": "PDF page 51, Example 1 — Graph a Quadratic Inequality (< or ≤): Graph y ≤ x^2 - 2x + 8."
       }
     },
     {
       "id": "math.im3.example.1.7.042",
       "kind": "worked_example",
-      "title": "Example 2: Example 2",
+      "title": "Example 2: Graph a Quadratic Inequality (> or ≥)",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=52",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 2)"
       ],
       "reviewStatus": "draft",
@@ -800,15 +860,19 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>)"
+        "authoredPrompt": "Graph $y > -5x^2 + 10x$.",
+        "demonstratedCapability": "Graph the related quadratic function. Use a dashed boundary for a greater-than inequality. Since (0,0) lies on the boundary, test (1,0). Shade the opposite region when the test point fails.",
+        "solutionText": "The boundary is y = -5x^2 + 10x. The point (0,0) lies on the boundary, so test (1,0). The statement 0 > 5 is false, so shade the region that does not contain (1,0).",
+        "rawText": "PDF page 52, Example 2 — Graph a Quadratic Inequality (> or ≥): Graph y > -5x^2 + 10x."
       }
     },
     {
       "id": "math.im3.example.1.7.043",
       "kind": "worked_example",
-      "title": "Example 3: Solve Inequalities by Graphing",
+      "title": "Example 3: Solve a Quadratic Inequality (< or ≤) by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=53",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 3)"
       ],
       "reviewStatus": "draft",
@@ -818,15 +882,19 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context"
+        "authoredPrompt": "Solve $x^2 + x - 6 < 0$ by graphing.",
+        "demonstratedCapability": "Graph the related equation. Find the zeros. Identify where the graph is below the x-axis. State the open interval because the inequality is strict.",
+        "solutionText": "The zeros are x = -3 and x = 2 because x^2 + x - 6 = (x - 2)(x + 3). The graph is below the x-axis on (-3, 2).",
+        "rawText": "PDF page 53, Example 3 — Solve x^2 + x - 6 < 0 by graphing."
       }
     },
     {
       "id": "math.im3.example.1.7.044",
       "kind": "worked_example",
-      "title": "Example 4: Solve Inequalities by Graphing",
+      "title": "Example 4: Solve a Quadratic Inequality (> or ≥) by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=53",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 4)"
       ],
       "reviewStatus": "draft",
@@ -836,15 +904,19 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context"
+        "authoredPrompt": "Solve $x^2 - 3x - 4 \\geq 0$ by graphing.",
+        "demonstratedCapability": "Graph the related equation. Find the zeros. Identify where the graph is on or above the x-axis. Include the zeros because the inequality is inclusive.",
+        "solutionText": "The zeros are x = -1 and x = 4 because x^2 - 3x - 4 = (x - 4)(x + 1). The graph is on or above the x-axis on (-∞, -1] U [4, ∞).",
+        "rawText": "PDF page 53, Example 4 — Solve x^2 - 3x - 4 ≥ 0 by graphing."
       }
     },
     {
       "id": "math.im3.example.1.7.045",
       "kind": "worked_example",
-      "title": "Example 5: Real-World Quadratic Inequalities",
+      "title": "Example 5: Solve a Quadratic Inequality Algebraically",
       "domain": "math.im3",
       "sourceRefs": [
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=54",
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 5)"
       ],
       "reviewStatus": "draft",
@@ -854,7 +926,10 @@
         "lesson": "7",
         "exampleNumber": 5,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context"
+        "authoredPrompt": "GARDENING Marcus is planning a garden. He has enough soil to cover 104 square feet, and wants the dimensions of the garden to be at least 5 feet by 10 feet. If he wants to increase the length and width by the same number of feet, by what value can he increase the dimensions of the garden without needing to buy more soil? Create a quadratic inequality and solve it algebraically.",
+        "demonstratedCapability": "Model the garden area with a quadratic inequality. Solve the related quadratic equation. Use the practical domain to select the increase that does not exceed the soil limit.",
+        "solutionText": "The area inequality is (x + 10)(x + 5) <= 104. The related equation has roots x = -18 and x = 3. The practical solution is [0, 3], so Marcus can increase each dimension by up to 3 feet.",
+        "rawText": "PDF page 54, Example 5 — Solve a Quadratic Inequality Algebraically."
       }
     },
     {
@@ -872,12 +947,12 @@
         "module": "1",
         "lesson": "8",
         "exampleNumber": 1,
-        "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
         "pdfPage": 57,
+        "sourceLesson": "1-8",
         "authoredTitle": "Solve a Linear-Quadratic System by Using Substitution",
         "prompt": "Solve the system of equations: x = 2y^2 + 3y + 1; -x + y = -1.",
-        "demonstratedCapability": "Solve a linear-quadratic system by substitution and report both ordered-pair solutions."
+        "demonstratedCapability": "Solve a linear-quadratic system by substitution and report both ordered-pair solutions.",
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
@@ -895,12 +970,12 @@
         "module": "1",
         "lesson": "8",
         "exampleNumber": 2,
-        "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
         "pdfPage": 58,
+        "sourceLesson": "1-8",
         "authoredTitle": "Solve a Linear-Quadratic System by Using Elimination",
         "prompt": "Solve the system of equations: x^2 = y + 5; -x + y = 7.",
-        "demonstratedCapability": "Solve a linear-quadratic system by elimination and report both ordered-pair solutions."
+        "demonstratedCapability": "Solve a linear-quadratic system by elimination and report both ordered-pair solutions.",
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
@@ -919,11 +994,11 @@
         "lesson": "8",
         "exampleNumber": 3,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
         "pdfPage": 58,
         "authoredTitle": "Use a System to Solve a Quadratic Equation",
         "prompt": "Use a system of equations to solve x^2 - 2x + 6 = 4x + 1.",
-        "demonstratedCapability": "Rewrite a quadratic equation as a linear-quadratic system and use intersections to find the equation solutions."
+        "demonstratedCapability": "Rewrite a quadratic equation as a linear-quadratic system and use intersections to find the equation solutions.",
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
@@ -942,11 +1017,11 @@
         "lesson": "8",
         "exampleNumber": 4,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
         "pdfPage": 59,
         "authoredTitle": "Solve a Linear-Quadratic System by Graphing",
         "prompt": "A software developer determines that her company can model their revenue R from a given product in hundreds of thousands of dollars given the unit price of the product x in dollars with the function R = -0.1x^2 + 4x. Create a linear-quadratic system and solve it graphically to determine the price for which the company will earn $4.2 million.",
-        "demonstratedCapability": "Model a revenue condition as a linear-quadratic system, graph it, and interpret zero intersections in context."
+        "demonstratedCapability": "Model a revenue condition as a linear-quadratic system, graph it, and interpret zero intersections in context.",
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
@@ -965,11 +1040,11 @@
         "lesson": "8",
         "exampleNumber": 5,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
         "pdfPage": 60,
         "authoredTitle": "Solve a Quadratic-Quadratic System Graphically",
         "prompt": "Solve the system of equations by graphing: y = x^2; x = 1/5(y - 6)^2 + 6/5.",
-        "demonstratedCapability": "Solve a system of two quadratic relations graphically by constructing a value table and identifying intersections."
+        "demonstratedCapability": "Solve a system of two quadratic relations graphically by constructing a value table and identifying intersections.",
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {
@@ -988,11 +1063,11 @@
         "lesson": "8",
         "exampleNumber": 6,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
         "pdfPage": 61,
         "authoredTitle": "Solve a Quadratic-Quadratic System Algebraically",
         "prompt": "Solve the system of equations: 2x^2 - y = 4; y = -1/2x^2 + 6.",
-        "demonstratedCapability": "Solve a system of two quadratic equations algebraically by substitution and verify the ordered-pair solutions."
+        "demonstratedCapability": "Solve a system of two quadratic equations algebraically by substitution and verify the ordered-pair solutions.",
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {
@@ -1011,11 +1086,11 @@
         "lesson": "8",
         "exampleNumber": 7,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
         "pdfPage": 62,
         "authoredTitle": "Use a System to Solve a Quadratic Equation",
         "prompt": "Use a system of equations to solve 2x^2 - 3x + 8 = 11 - 4x^2.",
-        "demonstratedCapability": "Rewrite an equation as a system of two quadratic functions and use graph intersections to find the equation solutions."
+        "demonstratedCapability": "Rewrite an equation as a system of two quadratic functions and use graph intersections to find the equation solutions.",
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {
@@ -1176,18 +1251,109 @@
         "module": "1",
         "lesson": "1"
       },
-      "generatorKey": "average-rate-of-change",
-      "independentPracticeReady": true,
       "rendererKey": "rate-of-change-calculator"
+    },
+    {
+      "id": "math.im3.skill.1.1.calculate-average-rate-of-change-from-an-equation",
+      "kind": "skill",
+      "title": "Calculate average rate of change from an equation",
+      "domain": "math.im3",
+      "description": "Calculate the average rate of change of a function given by an equation over a specified interval.",
+      "generatorKey": "average-rate-of-change",
+      "rendererKey": "rate-of-change-calculator",
+      "independentPracticeReady": true,
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 4)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.1.calculate-average-rate-of-change-from-a-table",
+      "kind": "skill",
+      "title": "Calculate average rate of change from a table",
+      "domain": "math.im3",
+      "description": "Calculate the average rate of change of a function from table values over a specified interval.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 5)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.1.estimate-and-verify-average-rate-of-change-from-a-graph",
+      "kind": "skill",
+      "title": "Estimate and verify average rate of change from a graph",
+      "domain": "math.im3",
+      "description": "Estimate the average rate of change from a graph over a specified interval and verify the result algebraically.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=7",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.1.interpret-average-rate-of-change-in-context",
+      "kind": "skill",
+      "title": "Interpret average rate of change in context",
+      "domain": "math.im3",
+      "description": "Interpret the average rate of change of a contextual function over a specified interval by stating the direction, amount, and units.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=7",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
     },
     {
       "id": "math.im3.skill.1.1.graph-quadratic-functions",
       "kind": "skill",
-      "title": "1a: Graph quadratic functions",
+      "title": "1a: Graph a quadratic function by using a table",
       "domain": "math.im3",
-      "description": "Graph quadratic functions",
+      "description": "Graph a quadratic function from an equation by using a table.",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "independentPracticeReady": true,
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph",
+      "kind": "skill",
+      "title": "State the domain and range of a quadratic function from its graph",
+      "domain": "math.im3",
+      "description": "State the domain and range of a quadratic function from its graph.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1217,6 +1383,120 @@
       "rendererKey": "graphing-explorer"
     },
     {
+      "id": "math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph",
+      "kind": "skill",
+      "title": "Identify a quadratic maximum from its graph",
+      "domain": "math.im3",
+      "description": "Identify the maximum value of a quadratic function from its graph.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "rendererKey": "graphing-explorer",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry",
+      "kind": "skill",
+      "title": "Graph a quadratic from a vertex and y-intercept by using symmetry",
+      "domain": "math.im3",
+      "description": "Graph a quadratic function from its vertex and y-intercept by using symmetry.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "rendererKey": "graphing-explorer",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions",
+      "kind": "skill",
+      "title": "Compare maximum values of quadratic functions",
+      "domain": "math.im3",
+      "description": "Compare the maximum values of two quadratic functions represented in different ways.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "rendererKey": "graphing-explorer",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context",
+      "kind": "skill",
+      "title": "Build and simplify a quadratic profit model from context",
+      "domain": "math.im3",
+      "description": "Define price and sales expressions from a context, form their product, and expand and simplify the quadratic profit model.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model",
+      "kind": "skill",
+      "title": "Find and interpret the maximum of a quadratic profit model",
+      "domain": "math.im3",
+      "description": "Use x = -b/(2a) to find the input that maximizes a quadratic profit model, evaluate the maximum profit, and interpret both values in context.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model",
+      "kind": "skill",
+      "title": "Determine the contextual domain and range of a quadratic model",
+      "domain": "math.im3",
+      "description": "Determine the input values allowed by a quadratic model's context, use extrema and boundary values to determine its output range, and interpret both intervals in context.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
       "id": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
       "kind": "skill",
       "title": "1c: Solve quadratic equations by graphing",
@@ -1231,9 +1511,61 @@
         "module": "1",
         "lesson": "2"
       },
-      "generatorKey": "solve-quadratic-by-graphing",
-      "independentPracticeReady": true,
       "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.2.solve-a-quadratic-equation-with-one-real-solution-by-graphing",
+      "kind": "skill",
+      "title": "Solve a quadratic equation with one real solution by graphing",
+      "domain": "math.im3",
+      "description": "Solve a quadratic equation with one real solution by graphing.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=13"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.2.find-two-numbers-with-given-sum-and-product-by-graphing",
+      "kind": "skill",
+      "title": "Find two numbers with a given sum and product by graphing a quadratic equation",
+      "domain": "math.im3",
+      "description": "Find two numbers with a given sum and product by graphing a quadratic equation.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=14"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      },
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.im3.skill.1.2.estimate-roots-by-graphing",
+      "kind": "skill",
+      "title": "Estimate roots of a quadratic equation by graphing",
+      "domain": "math.im3",
+      "description": "Estimate roots of a quadratic equation by graphing and state the consecutive integers that bound each root.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=15"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "graphing-explorer",
+      "independentPracticeReady": false
     },
     {
       "id": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
@@ -1344,9 +1676,7 @@
       "domain": "math.im3",
       "description": "Use the discriminant to determine the number and type of solutions",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=45",
-        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=48"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1371,7 +1701,7 @@
         "module": "1",
         "lesson": "6"
       },
-      "rendererKey": "quadratic-formula"
+      "rendererKey": "step-by-step-solver"
     },
     {
       "id": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
@@ -1543,7 +1873,7 @@
         "status": "component-planned"
       },
       "generatorKey": "algebraic-step-solver",
-      "independentPracticeReady": false,
+      "independentPracticeReady": true,
       "rendererKey": "discriminant-analyzer"
     },
     {
@@ -2192,9 +2522,9 @@
     {
       "id": "math.standard.ccss.hsf-if-c-7a",
       "kind": "standard",
-      "title": "HSF-IF.C.7a: Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "title": "HSF-IF.C.7a: Graph linear and quadratic functions and show intercepts, maxima, and minima",
       "domain": "math",
-      "description": "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "description": "Graph linear and quadratic functions and show intercepts, maxima, and minima",
       "sourceRefs": [
         {
           "source": "seed-standards:ccss",
@@ -2205,6 +2535,78 @@
       "metadata": {
         "framework": "ccss",
         "code": "HSF-IF.C.7a"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7b",
+      "kind": "standard",
+      "title": "HSF-IF.C.7b: Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "domain": "math",
+      "description": "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7b"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7b"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-b-5",
+      "kind": "standard",
+      "title": "HSF-IF.B.5: Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.",
+      "domain": "math",
+      "description": "Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-b-6",
+      "kind": "standard",
+      "title": "HSF-IF.B.6: Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
+      "domain": "math",
+      "description": "Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.B.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.B.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-9",
+      "kind": "standard",
+      "title": "HSF-IF.C.9: Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
+      "domain": "math",
+      "description": "Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.9"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.9"
       }
     },
     {
@@ -2642,6 +3044,26 @@
       }
     },
     {
+      "id": "math.im3.generator.m1.quadratic-profit-model",
+      "kind": "generator",
+      "title": "Quadratic Profit Model Generator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-generator",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "generatorKey": "quadratic-profit-model"
+      }
+    },
+    {
       "id": "math.im3.generator.m1.average-rate-of-change",
       "kind": "generator",
       "title": "Average Rate of Change Generator",
@@ -2679,6 +3101,46 @@
         "course": "im3",
         "module": "1",
         "generatorKey": "solve-quadratic-by-graphing"
+      }
+    },
+    {
+      "id": "math.im3.generator.m1.two-real-solutions-graphing",
+      "kind": "generator",
+      "title": "Two Real Solutions Graphing Generator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-generator",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "generatorKey": "two-real-solutions-graphing"
+      }
+    },
+    {
+      "id": "math.im3.generator.m1.estimate-roots-by-graphing",
+      "kind": "generator",
+      "title": "Estimate Roots by Graphing Generator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-generator",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "generatorKey": "estimate-roots-by-graphing"
       }
     },
     {
@@ -2751,24 +3213,6 @@
       "reviewStatus": "approved",
       "metadata": {
         "rendererKey": "discriminant-analyzer"
-      }
-    },
-    {
-      "id": "math.im3.renderer.quadratic-formula",
-      "kind": "renderer",
-      "title": "Quadratic Formula Renderer",
-      "domain": "math.im3",
-      "sourceRefs": [
-        {
-          "source": "component-registry",
-          "note": "Existing React component"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "registered-renderer",
-      "reviewStatus": "approved",
-      "metadata": {
-        "rendererKey": "quadratic-formula"
       }
     },
     {

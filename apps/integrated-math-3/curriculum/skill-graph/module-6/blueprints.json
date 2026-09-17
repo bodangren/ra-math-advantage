@@ -2,7 +2,9 @@
   "blueprints": [
     {
       "nodeId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.6.1"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -55,7 +57,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.6.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -108,7 +112,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.6.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -161,7 +167,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.6.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -214,7 +222,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.6.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -267,7 +277,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.6.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -320,7 +332,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.6.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -373,7 +387,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.change-of-base-evaluation",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -426,7 +442,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.common-log-exponential-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -479,7 +497,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -532,7 +552,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -585,7 +607,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.log-exp-form-conversion",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -638,7 +662,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.logarithm-property-simplification",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -691,7 +717,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -744,7 +772,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -797,7 +827,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.natural-log-equation-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -850,7 +882,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.natural-log-model-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -903,7 +937,9 @@
     },
     {
       "nodeId": "math.im3.skill.6.aleks.natural-log-simplification",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {

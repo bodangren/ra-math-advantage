@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -72,10 +73,10 @@ export const seedLesson5_5 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Exponential Modeling",
               props: {
                 variant: "explore",
                 equation: "y = a * b^x",
+                title: "Exponential Modeling",
               },
             },
           },
@@ -144,11 +145,11 @@ export const seedLesson5_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "Examine scatter plot to determine model type",
                 steps: [
-                  { id: "step-1", description: "Create scatter plot", expression: "Plot data on graphing calculator", explanation: "Create scatter plot" },
-                  { id: "step-2", description: "Identify horizontal asymptote", expression: "Observe asymptote at y = -3", explanation: "Identify horizontal asymptote" },
-                  { id: "step-3", description: "Note end behavior", expression: "Observe rapid increase as x increases", explanation: "Note end behavior" },
-                  { id: "step-4", description: "Consider growth patterns", expression: "Compare function types: linear, quadratic, exponential", explanation: "Consider growth patterns" },
-                  { id: "step-5", description: "Based on asymptote and growth pattern", expression: "Exponential function best fits the data", explanation: "Based on asymptote and growth pattern" },
+                  { expression: "Plot data on graphing calculator", explanation: "Create scatter plot" },
+                  { expression: "Observe asymptote at y = -3", explanation: "Identify horizontal asymptote" },
+                  { expression: "Observe rapid increase as x increases", explanation: "Note end behavior" },
+                  { expression: "Compare function types: linear, quadratic, exponential", explanation: "Consider growth patterns" },
+                  { expression: "Exponential function best fits the data", explanation: "Based on asymptote and growth pattern" },
                 ],
               },
             },
@@ -178,12 +179,12 @@ export const seedLesson5_5 = internalMutation({
                 problemType: "polynomial",
                 equation: "y ≈ 0.655 * 1.317^x",
                 steps: [
-                  { id: "step-1", description: "Years since opening vs. number of shops", expression: "Enter data points into calculator", explanation: "Years since opening vs. number of shops" },
-                  { id: "step-2", description: "Test linear, quadratic, and exponential", expression: "Compare regression models", explanation: "Test linear, quadratic, and exponential" },
-                  { id: "step-3", description: "Strongest fit among models tested", expression: "Exponential: r^2 ≈ 0.964", explanation: "Strongest fit among models tested" },
-                  { id: "step-4", description: "Best-fit exponential model", expression: "Regression equation: y ≈ 0.655(1.317)^x", explanation: "Best-fit exponential model" },
-                  { id: "step-5", description: "Evaluate model at x = 10", expression: "After 10 years: y ≈ 0.655(1.317)^10 ≈ 10 shops", explanation: "Evaluate model at x = 10" },
-                  { id: "step-6", description: "Evaluate model at x = 42", expression: "After 42 years: y ≈ 0.655(1.317)^42 ≈ 70,116 shops", explanation: "Evaluate model at x = 42" },
+                  { expression: "Enter data points into calculator", explanation: "Years since opening vs. number of shops" },
+                  { expression: "Compare regression models", explanation: "Test linear, quadratic, and exponential" },
+                  { expression: "Exponential: r^2 ≈ 0.964", explanation: "Strongest fit among models tested" },
+                  { expression: "Regression equation: y ≈ 0.655(1.317)^x", explanation: "Best-fit exponential model" },
+                  { expression: "After 10 years: y ≈ 0.655(1.317)^10 ≈ 10 shops", explanation: "Evaluate model at x = 10" },
+                  { expression: "After 42 years: y ≈ 0.655(1.317)^42 ≈ 70,116 shops", explanation: "Evaluate model at x = 42" },
                 ],
               },
             },
@@ -211,8 +212,16 @@ export const seedLesson5_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What does an r^2 value close to 1 indicate about a regression model?", options: ["A strong fit", "A weak fit", "A linear relationship only"], correctAnswer: "A strong fit" },
-                  { id: "question-2", type: "multiple_choice", prompt: "Which type of function grows the fastest for large values of x?", options: ["Linear", "Quadratic", "Exponential"], correctAnswer: "Exponential" },
+                  {
+                    question: "What does an r^2 value close to 1 indicate about a regression model?",
+                    options: ["A strong fit", "A weak fit", "A linear relationship only"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Which type of function grows the fastest for large values of x?",
+                    options: ["Linear", "Quadratic", "Exponential"],
+                    correctIndex: 2,
+                  },
                 ],
               },
             },
@@ -267,9 +276,9 @@ export const seedLesson5_5 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -282,8 +291,8 @@ export const seedLesson5_5 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

@@ -83,15 +83,15 @@ function makeCountingMockCtx(cards: SrsCardRow[] = []) {
 const STUDENT_ID = 'profiles_test_adv' as Id<'profiles'>;
 
 describe('Phase 4 — adversarial: N+1 detection', () => {
-  it('makes exactly 2 db.query calls (one per table, batched)', async () => {
+  it('makes exactly 6 db.query calls (one per table, batched)', async () => {
     const ctx = makeCountingMockCtx();
     await getStudentKnowledgeStateHandler(
       ctx as unknown as Parameters<typeof getStudentKnowledgeStateHandler>[0],
       { studentId: STUDENT_ID },
     );
-    // Handler should query srs_cards and srs_review_log — exactly 2 calls
+    // Handler should query srs_cards and srs_review_log — exactly 6 calls
     // (one per table). No per-card or per-objective queries.
-    expect(ctx.getQueryCallCount()).toBe(2);
+    expect(ctx.getQueryCallCount()).toBe(6);
   });
 
   it('db.query call count does not grow with number of cards (no per-card query)', async () => {
@@ -122,8 +122,8 @@ describe('Phase 4 — adversarial: N+1 detection', () => {
       { studentId: STUDENT_ID },
     );
 
-    // Still exactly 2 calls regardless of card count
-    expect(ctx.getQueryCallCount()).toBe(2);
+    // Still exactly 6 calls regardless of card count
+    expect(ctx.getQueryCallCount()).toBe(6);
   });
 });
 

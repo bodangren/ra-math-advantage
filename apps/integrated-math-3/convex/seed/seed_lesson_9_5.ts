@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson9_5 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Tangent and Reciprocal Graphing Explorer",
               props: {
                 variant: "explore",
                 equation: "y = tan(x)",
+                title: "Tangent and Reciprocal Graphing Explorer",
               },
             },
           },
@@ -136,8 +137,16 @@ export const seedLesson9_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the period of y = tan 3x?", options: ["60°", "180°", "90°"], correctAnswer: "60°" },
-                  { id: "question-2", type: "multiple_choice", prompt: "Where are the asymptotes of y = tan 3x?", options: ["30° + 60n°", "90° + 180n°", "60° + 180n°"], correctAnswer: "30° + 60n°" },
+                  {
+                    question: "What is the period of y = tan 3x?",
+                    options: ["60°", "180°", "90°"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Where are the asymptotes of y = tan 3x?",
+                    options: ["30° + 60n°", "90° + 180n°", "60° + 180n°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -165,12 +174,20 @@ export const seedLesson9_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the period of y = -(1/3) tan 2x?", options: ["pi/2", "pi", "2pi"], correctAnswer: "pi/2" },
-                  { id: "question-2", type: "multiple_choice", prompt: "Which transformation is applied to y = -(1/3) tan 2x?", options: [
+                  {
+                    question: "What is the period of y = -(1/3) tan 2x?",
+                    options: ["pi/2", "pi", "2pi"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Which transformation is applied to y = -(1/3) tan 2x?",
+                    options: [
                       "Reflected across the x-axis",
                       "Reflected across the y-axis",
                       "Shifted up by 1/3",
-                    ], correctAnswer: "Reflected across the x-axis" },
+                    ],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -214,8 +231,16 @@ export const seedLesson9_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the period of y = csc 0.5x?", options: ["4pi", "2pi", "pi"], correctAnswer: "4pi" },
-                  { id: "question-2", type: "multiple_choice", prompt: "Where do the asymptotes of y = csc 0.5x occur?", options: ["x = 2pi n", "x = pi n", "x = pi/2 n"], correctAnswer: "x = 2pi n" },
+                  {
+                    question: "What is the period of y = csc 0.5x?",
+                    options: ["4pi", "2pi", "pi"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Where do the asymptotes of y = csc 0.5x occur?",
+                    options: ["x = 2pi n", "x = pi n", "x = pi/2 n"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -243,8 +268,16 @@ export const seedLesson9_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the period of y = -4 cot 2x?", options: ["90°", "180°", "45°"], correctAnswer: "90°" },
-                  { id: "question-2", type: "multiple_choice", prompt: "Where are the asymptotes of y = -4 cot 2x?", options: ["x = 90n°", "x = 45n°", "x = 180n°"], correctAnswer: "x = 90n°" },
+                  {
+                    question: "What is the period of y = -4 cot 2x?",
+                    options: ["90°", "180°", "45°"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Where are the asymptotes of y = -4 cot 2x?",
+                    options: ["x = 90n°", "x = 45n°", "x = 180n°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -272,8 +305,16 @@ export const seedLesson9_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What function models the distance d from the crowd to the banner?", options: ["d = 1200 csc x", "d = 1200 sin x", "d = 1200 sec x"], correctAnswer: "d = 1200 csc x" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the range of d for 0° < x < 180°?", options: ["d >= 1200", "d <= 1200", "d > 0"], correctAnswer: "d >= 1200" },
+                  {
+                    question: "What function models the distance d from the crowd to the banner?",
+                    options: ["d = 1200 csc x", "d = 1200 sin x", "d = 1200 sec x"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the range of d for 0° < x < 180°?",
+                    options: ["d >= 1200", "d <= 1200", "d > 0"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -301,13 +342,25 @@ export const seedLesson9_5 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "Where do the vertical asymptotes of y = tan x occur?", options: [
+                  {
+                    question: "Where do the vertical asymptotes of y = tan x occur?",
+                    options: [
                       "Where cos x = 0",
                       "Where sin x = 0",
                       "Where tan x = 0",
-                    ], correctAnswer: "Where cos x = 0" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the period of y = cot x?", options: ["180°", "360°", "90°"], correctAnswer: "180°" },
-                  { id: "question-3", type: "multiple_choice", prompt: "Which function is the reciprocal of sin x?", options: ["csc x", "sec x", "cot x"], correctAnswer: "csc x" },
+                    ],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the period of y = cot x?",
+                    options: ["180°", "360°", "90°"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Which function is the reciprocal of sin x?",
+                    options: ["csc x", "sec x", "cot x"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -362,9 +415,9 @@ export const seedLesson9_5 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -377,8 +430,8 @@ export const seedLesson9_5 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

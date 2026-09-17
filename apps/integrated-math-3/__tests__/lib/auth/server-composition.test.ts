@@ -33,9 +33,9 @@ describe('IM3 auth server composition (FR-14) — arch-lint', () => {
     );
   });
 
-  it('imports requireRoleRequestClaims from @math-platform/core-auth', () => {
+  it('uses the active credential guard for protected roles', () => {
     expect(serverSrc).toMatch(
-      /import\s*\{[^}]*\brequireRoleRequestClaims\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
+      /requireActiveRoleRequestClaims/,
     );
   });
 
@@ -148,7 +148,6 @@ vi.mock('@/lib/convex/server', () => ({
   internal: {
     auth: {
       getCredentialByUsername: 'auth:getCredentialByUsername',
-      getCredentialByUsernameIncludingInactive: 'auth:getCredentialByUsernameIncludingInactive',
     },
   },
 }));
@@ -193,7 +192,7 @@ describe('IM3 auth server composition (FR-14) — delegation to core-auth', () =
     expect(result).toEqual(claims);
   });
 
-  it('requireTeacherRequestClaims delegates to requireRoleRequestClaims for [teacher, admin]', async () => {
+  it('requireTeacherRequestClaims delegates to requireActiveRoleRequestClaims for [teacher, admin]', async () => {
     const claims = {
       sub: 'p1',
       username: 'alice',
@@ -201,12 +200,12 @@ describe('IM3 auth server composition (FR-14) — delegation to core-auth', () =
       iat: 1,
       exp: 9999999999,
     };
-    mockRequireRoleRequestClaims.mockResolvedValue(claims);
+    mockRequireActiveRoleRequestClaims.mockResolvedValue(claims);
 
     const { requireTeacherRequestClaims } = await import('@/lib/auth/server');
     const result = await requireTeacherRequestClaims(makeRequest('session=tok'));
 
-    expect(mockRequireRoleRequestClaims).toHaveBeenCalledTimes(1);
+    expect(mockRequireActiveRoleRequestClaims).toHaveBeenCalledTimes(1);
     expect(result).toEqual(claims);
   });
 

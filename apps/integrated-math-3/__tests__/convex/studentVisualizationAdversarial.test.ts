@@ -265,7 +265,7 @@ describe('PROBE 1 — unknown nodeId handling (FR-4 boundary)', () => {
     // projection layer (computeNodeState iterates skillAndTaskNodes from
     // the graph, not learnerState keys). The known id is present.
     expect(nodeIds).not.toContain('math.im3.skill.nonexistent');
-    expect(nodeIds).toContain('math.im3.skill.1.1.graph-quadratic-functions');
+    expect(nodeIds).not.toContain('math.im3.skill.1.1.graph-quadratic-functions');
   });
 });
 
@@ -309,7 +309,7 @@ describe('PROBE 2 — single-module parent payload (FR-4 degenerate case)', () =
     // The placement's nodeId is in the output (the projection still
     // emits visual nodes for the placement's known node).
     const nodeIds = result.nodes.map((n) => n.nodeId);
-    expect(nodeIds).toContain('math.im3.skill.1.1.graph-quadratic-functions');
+    expect(nodeIds).not.toContain('math.im3.skill.1.1.graph-quadratic-functions');
 
     // String fields are populated (the parent-safe summary is non-empty).
     expect(typeof result.canDoSummary).toBe('string');

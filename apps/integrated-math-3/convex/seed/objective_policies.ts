@@ -22,6 +22,10 @@ export const OBJECTIVE_POLICIES: SeedObjectivePolicy[] = [
   { standardId: "HSA-CED.A.1", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
   { standardId: "N-CN.A.1", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
   { standardId: "N-CN.C.7", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
+  { standardId: "HSF-IF.C.7a", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
+  { standardId: "HSF-IF.B.5", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
+  { standardId: "HSF-IF.B.6", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
+  { standardId: "HSF-IF.C.9", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
 
   // Module 2 — Polynomial Functions
   { standardId: "HSA-APR.A.1", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
@@ -40,7 +44,7 @@ export const OBJECTIVE_POLICIES: SeedObjectivePolicy[] = [
   { standardId: "HSF-IF.B.4", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
   { standardId: "HSF-BF.B.3", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
   { standardId: "HSF-BF.B.4", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
-  { standardId: "HSF-IF.C.7a", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
+  { standardId: "HSF-IF.C.7b", policy: "essential", courseKey: "integrated-math-3", priority: 1 },
 
   // Module 5 — Exponential Functions and Geometric Series
   { standardId: "HSF-LE.A.4", policy: "essential", courseKey: "integrated-math-3", priority: 1 },

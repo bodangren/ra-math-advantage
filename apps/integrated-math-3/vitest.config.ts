@@ -13,6 +13,9 @@ export default defineConfig({
     globals: true,
     include: [
       '__tests__/**/*.test.{ts,tsx}',
+      'curriculum/skill-graph/**/__tests__/**/*.test.{ts,tsx}',
+      'convex/migrations/**/*.test.{ts,tsx}',
+      'lib/srs/**/*.test.{ts,tsx}',
     ],
     reporters: 'default'
   },

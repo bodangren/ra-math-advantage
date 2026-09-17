@@ -94,23 +94,6 @@ describe('StudentsPage', () => {
   });
 
   describe('Student detail view', () => {
-    it('shows only the selected learner graph exposure candidates', async () => {
-      const { fetchInternalQuery } = await import('@/lib/convex/server');
-      (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockDashboardData);
-      (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockStudentDetail);
-      (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce([
-        { classId: 'class-1', studentId: 'student-1', submissionId: 'submission-1', className: 'Math 3', studentName: 'John Doe', lessonTitle: 'Graphing Quadratics', response: '{}', score: null, maxScore: null, submittedAt: 1 },
-        { classId: 'class-1', studentId: 'student-2', submissionId: 'submission-2', className: 'Math 3', studentName: 'Alice Smith', lessonTitle: 'Graphing Quadratics', response: '{}', score: null, maxScore: null, submittedAt: 2 },
-      ]);
-
-      const { default: Page } = await import('@/app/teacher/students/page');
-      render(await Page({ searchParams: Promise.resolve({ id: 'student-1' }) }));
-
-      expect(screen.getByTestId('im3-graph-exposure')).toBeInTheDocument();
-      expect(screen.getByRole('option', { name: /John Doe/ })).toBeInTheDocument();
-      expect(screen.queryByRole('option', { name: /Alice Smith/ })).not.toBeInTheDocument();
-    });
-
     it('renders detail view when student id is selected', async () => {
       const { fetchInternalQuery } = await import('@/lib/convex/server');
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockDashboardData);

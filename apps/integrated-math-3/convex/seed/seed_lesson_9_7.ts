@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson9_7 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Inverse Trigonometric Functions Explorer",
               props: {
                 variant: "explore",
                 equation: "y = sin(x)",
+                title: "Inverse Trigonometric Functions Explorer",
               },
             },
           },
@@ -136,8 +137,16 @@ export const seedLesson9_7 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is Tan^-1(sqrt(3))?", options: ["60° = pi/3", "30° = pi/6", "45° = pi/4"], correctAnswer: "60° = pi/3" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the principal range for tangent?", options: ["-90° to 90°", "0° to 180°", "-180° to 180°"], correctAnswer: "-90° to 90°" },
+                  {
+                    question: "What is Tan^-1(sqrt(3))?",
+                    options: ["60° = pi/3", "30° = pi/6", "45° = pi/4"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the principal range for tangent?",
+                    options: ["-90° to 90°", "0° to 180°", "-180° to 180°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -165,8 +174,16 @@ export const seedLesson9_7 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is sin(Cos^-1(0.36)) approximately?", options: ["0.93", "0.36", "0.64"], correctAnswer: "0.93" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the domain of Cos^-1 x?", options: ["-1 <= x <= 1", "all real numbers", "x > 0"], correctAnswer: "-1 <= x <= 1" },
+                  {
+                    question: "What is sin(Cos^-1(0.36)) approximately?",
+                    options: ["0.93", "0.36", "0.64"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the domain of Cos^-1 x?",
+                    options: ["-1 <= x <= 1", "all real numbers", "x > 0"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -194,8 +211,16 @@ export const seedLesson9_7 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "If Sin theta = -0.17, what is theta approximately?", options: ["-9.79°", "9.79°", "-0.17°"], correctAnswer: "-9.79°" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the range of Arcsin x?", options: ["-pi/2 <= y <= pi/2", "0 <= y <= pi", "all real numbers"], correctAnswer: "-pi/2 <= y <= pi/2" },
+                  {
+                    question: "If Sin theta = -0.17, what is theta approximately?",
+                    options: ["-9.79°", "9.79°", "-0.17°"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the range of Arcsin x?",
+                    options: ["-pi/2 <= y <= pi/2", "0 <= y <= pi", "all real numbers"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -223,8 +248,16 @@ export const seedLesson9_7 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "How many feet are in 30 miles?", options: ["158,400", "15,000", "5280"], correctAnswer: "158,400" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the angle of descent approximately?", options: ["5.4°", "15,000°", "30°"], correctAnswer: "5.4°" },
+                  {
+                    question: "How many feet are in 30 miles?",
+                    options: ["158,400", "15,000", "5280"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the angle of descent approximately?",
+                    options: ["5.4°", "15,000°", "30°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -252,12 +285,20 @@ export const seedLesson9_7 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "Why must domains be restricted for inverse trig functions?", options: [
+                  {
+                    question: "Why must domains be restricted for inverse trig functions?",
+                    options: [
                       "Sine, cosine, and tangent are not one-to-one over all real numbers",
                       "Their values are always positive",
                       "They have no inverses",
-                    ], correctAnswer: "Sine, cosine, and tangent are not one-to-one over all real numbers" },
-                  { id: "question-2", type: "multiple_choice", prompt: "Which inverse trig function has all real numbers as its domain?", options: ["Arctan", "Arcsin", "Arccos"], correctAnswer: "Arctan" },
+                    ],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Which inverse trig function has all real numbers as its domain?",
+                    options: ["Arctan", "Arcsin", "Arccos"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -312,9 +353,9 @@ export const seedLesson9_7 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -327,8 +368,8 @@ export const seedLesson9_7 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

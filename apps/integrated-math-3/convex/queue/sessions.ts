@@ -186,9 +186,11 @@ export async function completeDailySessionHandler(
 ): Promise<string> {
   const active = await ctx.db.get(args.sessionId as Id<"srs_sessions">);
 
-  if (!active || active.completedAt !== undefined || active.studentId !== args.studentId) {
+  if (!active || active.studentId !== args.studentId) {
     throw new Error(`No active session found for student ${args.studentId}`);
   }
+
+  if (active.completedAt !== undefined) return active._id;
 
   const reviews = await ctx.db
     .query("srs_review_log")

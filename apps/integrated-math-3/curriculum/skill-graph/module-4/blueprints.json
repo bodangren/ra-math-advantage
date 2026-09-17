@@ -2,7 +2,9 @@
   "blueprints": [
     {
       "nodeId": "math.im3.skill.4.1.find-compositions-of-functions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.1"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -55,7 +57,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.1"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -108,7 +112,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.2.find-inverses-of-relations",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -161,7 +167,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -214,7 +222,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -267,7 +277,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -320,7 +332,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -373,7 +387,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -426,7 +442,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -479,7 +497,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -532,7 +552,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.5.simplify-radical-expressions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -585,7 +607,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -638,7 +662,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.4.6"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -691,7 +717,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.cube-root-function-graph-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -744,7 +772,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.function-composition",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -797,7 +827,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.function-operations",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -850,7 +882,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.inverse-relation-function",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -903,7 +937,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.inverse-verification-by-composition",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -956,7 +992,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.radical-equation-graphing-systems",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -1009,7 +1047,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.radical-equation-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -1062,7 +1102,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.radical-operations",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1115,7 +1157,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.radical-rational-exponent-conversion",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1168,7 +1212,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.radical-simplification",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1221,7 +1267,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.rational-exponent-simplification",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1274,7 +1322,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.rationalize-denominator",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -1327,7 +1377,9 @@
     },
     {
       "nodeId": "math.im3.skill.4.aleks.square-root-function-graph-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {

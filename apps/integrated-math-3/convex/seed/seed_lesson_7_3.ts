@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson7_3 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Reciprocal Functions",
               props: {
                 variant: "explore",
                 equation: "y = 1/x",
+                title: "Reciprocal Functions",
               },
             },
           },
@@ -138,8 +139,8 @@ export const seedLesson7_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "2/(x - 7)",
                 steps: [
-                  { id: "step-1", description: "Set the denominator equal to 0", expression: "x - 7 = 0", explanation: "Set the denominator equal to 0" },
-                  { id: "step-2", description: "Solve for x to find the excluded value", expression: "x = 7", explanation: "Solve for x to find the excluded value" },
+                  { expression: "x - 7 = 0", explanation: "Set the denominator equal to 0" },
+                  { expression: "x = 7", explanation: "Solve for x to find the excluded value" },
                 ],
               },
             },
@@ -169,11 +170,11 @@ export const seedLesson7_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "1/(2x - 5) + 2",
                 steps: [
-                  { id: "step-1", description: "Set the denominator equal to 0", expression: "2x - 5 = 0", explanation: "Set the denominator equal to 0" },
-                  { id: "step-2", description: "Find the vertical asymptote (excluded value)", expression: "x = 5/2", explanation: "Find the vertical asymptote (excluded value)" },
-                  { id: "step-3", description: "Find the x-intercept by solving g(x) = 0", expression: "x-intercept: 0 = 1/(2x - 5) + 2, solve for x", explanation: "Find the x-intercept by solving g(x) = 0" },
-                  { id: "step-4", description: "Calculate the x-intercept", expression: "x = 2.25", explanation: "Calculate the x-intercept" },
-                  { id: "step-5", description: "Find the y-intercept by substituting x = 0", expression: "y-intercept: g(0) = 1/(-5) + 2 = 1.8", explanation: "Find the y-intercept by substituting x = 0" },
+                  { expression: "2x - 5 = 0", explanation: "Set the denominator equal to 0" },
+                  { expression: "x = 5/2", explanation: "Find the vertical asymptote (excluded value)" },
+                  { expression: "x-intercept: 0 = 1/(2x - 5) + 2, solve for x", explanation: "Find the x-intercept by solving g(x) = 0" },
+                  { expression: "x = 2.25", explanation: "Calculate the x-intercept" },
+                  { expression: "y-intercept: g(0) = 1/(-5) + 2 = 1.8", explanation: "Find the y-intercept by substituting x = 0" },
                 ],
               },
             },
@@ -203,11 +204,11 @@ export const seedLesson7_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "110/R",
                 steps: [
-                  { id: "step-1", description: "Set up the function from Ohm's law", expression: "I = 110/R", explanation: "Set up the function from Ohm's law" },
-                  { id: "step-2", description: "Identify the excluded value", expression: "vertical asymptote: R = 0", explanation: "Identify the excluded value" },
-                  { id: "step-3", description: "Identify the end behavior asymptote", expression: "horizontal asymptote: I = 0", explanation: "Identify the end behavior asymptote" },
-                  { id: "step-4", description: "State the domain excluding the asymptote", expression: "domain: {R | R != 0}", explanation: "State the domain excluding the asymptote" },
-                  { id: "step-5", description: "State the range excluding the asymptote", expression: "range: {I | I != 0}", explanation: "State the range excluding the asymptote" },
+                  { expression: "I = 110/R", explanation: "Set up the function from Ohm's law" },
+                  { expression: "vertical asymptote: R = 0", explanation: "Identify the excluded value" },
+                  { expression: "horizontal asymptote: I = 0", explanation: "Identify the end behavior asymptote" },
+                  { expression: "domain: {R | R != 0}", explanation: "State the domain excluding the asymptote" },
+                  { expression: "range: {I | I != 0}", explanation: "State the range excluding the asymptote" },
                 ],
               },
             },
@@ -235,8 +236,16 @@ export const seedLesson7_3 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the vertical asymptote of g(x) = 1/(x - 3)?", options: ["x = 3", "y = 3", "x = -3"], correctAnswer: "x = 3" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What type of graph does the parent reciprocal function f(x) = 1/x produce?", options: ["Parabola", "Hyperbola", "Line"], correctAnswer: "Hyperbola" },
+                  {
+                    question: "What is the vertical asymptote of g(x) = 1/(x - 3)?",
+                    options: ["x = 3", "y = 3", "x = -3"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What type of graph does the parent reciprocal function f(x) = 1/x produce?",
+                    options: ["Parabola", "Hyperbola", "Line"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -282,11 +291,11 @@ export const seedLesson7_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "-4/(x + 1) - 2",
                 steps: [
-                  { id: "step-1", description: "Identify transformation parameters", expression: "a = -4, h = -1, k = -2", explanation: "Identify transformation parameters" },
-                  { id: "step-2", description: "h determines the vertical asymptote", expression: "vertical asymptote: x = -1", explanation: "h determines the vertical asymptote" },
-                  { id: "step-3", description: "k determines the horizontal asymptote", expression: "horizontal asymptote: y = -2", explanation: "k determines the horizontal asymptote" },
-                  { id: "step-4", description: "Domain excludes the vertical asymptote", expression: "domain: {x | x != -1}", explanation: "Domain excludes the vertical asymptote" },
-                  { id: "step-5", description: "Range excludes the horizontal asymptote", expression: "range: {g(x) | g(x) != -2}", explanation: "Range excludes the horizontal asymptote" },
+                  { expression: "a = -4, h = -1, k = -2", explanation: "Identify transformation parameters" },
+                  { expression: "vertical asymptote: x = -1", explanation: "h determines the vertical asymptote" },
+                  { expression: "horizontal asymptote: y = -2", explanation: "k determines the horizontal asymptote" },
+                  { expression: "domain: {x | x != -1}", explanation: "Domain excludes the vertical asymptote" },
+                  { expression: "range: {g(x) | g(x) != -2}", explanation: "Range excludes the horizontal asymptote" },
                 ],
               },
             },
@@ -316,11 +325,11 @@ export const seedLesson7_3 = internalMutation({
                 problemType: "polynomial",
                 equation: "g(x) = 5/(x + 4) - 2",
                 steps: [
-                  { id: "step-1", description: "Identify h and k from the asymptotes", expression: "h = -4, k = -2 from asymptotes", explanation: "Identify h and k from the asymptotes" },
-                  { id: "step-2", description: "Substitute the point (-3, 3) into the general form", expression: "3 = a/((-3) - (-4)) - 2", explanation: "Substitute the point (-3, 3) into the general form" },
-                  { id: "step-3", description: "Simplify the equation", expression: "3 = a - 2", explanation: "Simplify the equation" },
-                  { id: "step-4", description: "Solve for a", expression: "a = 5", explanation: "Solve for a" },
-                  { id: "step-5", description: "Write the final function", expression: "g(x) = 5/(x + 4) - 2", explanation: "Write the final function" },
+                  { expression: "h = -4, k = -2 from asymptotes", explanation: "Identify h and k from the asymptotes" },
+                  { expression: "3 = a/((-3) - (-4)) - 2", explanation: "Substitute the point (-3, 3) into the general form" },
+                  { expression: "3 = a - 2", explanation: "Simplify the equation" },
+                  { expression: "a = 5", explanation: "Solve for a" },
+                  { expression: "g(x) = 5/(x + 4) - 2", explanation: "Write the final function" },
                 ],
               },
             },
@@ -375,9 +384,9 @@ export const seedLesson7_3 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -390,8 +399,8 @@ export const seedLesson7_3 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

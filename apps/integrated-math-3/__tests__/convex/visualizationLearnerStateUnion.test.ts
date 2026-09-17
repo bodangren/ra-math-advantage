@@ -126,10 +126,11 @@ describe('FR-6 — handler learner-state union does not include review_due', () 
     expect(src).not.toContain("'review_due'");
   });
 
-  it('parent/visualization.ts handler-local union does not contain review_due', () => {
+  it('parent projection accepts review_due from canonical proficiency', () => {
     const src = readSource('../../convex/parent/visualization.ts');
     // At HEAD, lines 56, 67, 126: union includes 'review_due'
     // This assertion FAILS at HEAD.
-    expect(src).not.toContain("'review_due'");
+    expect(src).toContain("'review_due'");
+    expect(src).toContain("getStudentKnowledgeStateHandler");
   });
 });

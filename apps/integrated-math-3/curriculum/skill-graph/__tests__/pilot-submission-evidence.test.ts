@@ -3,20 +3,7 @@ import { getGenerator } from '@math-platform/math-content/knowledge-space';
 import type { GeneratorInput } from '@math-platform/knowledge-space-practice';
 import { genericEvidenceToSubmissionParts } from '@math-platform/knowledge-space-practice';
 import type { GenericEvidenceResult } from '@math-platform/knowledge-space-practice';
-import { projectTeacherEvidence } from '@math-platform/knowledge-space-practice';
-import type { KnowledgeSpaceEdge, KnowledgeSpaceNode } from '@math-platform/knowledge-space-core';
 import projectionJson from '../module-1/projection/practice-v1-activity-map.json';
-import courseNodesJson from '../nodes.json';
-import courseEdgesJson from '../edges.json';
-import moduleNodesJson from '../module-1/nodes.json';
-import moduleBlueprintsJson from '../module-1/blueprints.json';
-import courseProjectionJson from '../projection/practice-v1-activity-map.json';
-
-const draftIndependentActivityIds = [
-  'math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change.independent_practice',
-  'math.im3.skill.1.1.graph-quadratic-functions.independent_practice',
-  'math.im3.skill.1.2.solve-quadratic-equations-by-graphing.independent_practice',
-];
 
 const projection = projectionJson as {
   metadata: { course: string; module: string; description: string };
@@ -51,23 +38,19 @@ const projection = projectionJson as {
 describe('Module 1 Practice Submission Path', () => {
   const independentActivities = projection.activities.filter(a => a.mode === 'independent_practice');
 
-  it('projection has independent practice activities', () => {
-    expect(independentActivities.length).toBeGreaterThanOrEqual(3);
+  it('retains the accepted quadratic independent activity', () => {
+    expect(independentActivities.map(activity => activity.nodeId)).toEqual(expect.arrayContaining([
+      'math.im3.skill.1.1.graph-quadratic-functions',
+    ]));
   });
 
-  it('sets Independent SRS eligibility from readiness and approval', () => {
+  it('only generator-ready independent activities can enter SRS', () => {
     for (const activity of independentActivities) {
-      const node = moduleNodesJson.nodes.find(candidate => candidate.id === activity.nodeId);
-      const blueprint = moduleBlueprintsJson.blueprints.find(candidate => candidate.nodeId === activity.nodeId);
-      const expected = node?.independentPracticeReady === true
-        && node.reviewStatus === 'approved'
-        && blueprint?.reviewStatus === 'approved';
-      expect(activity.srsEligible).toBe(expected);
-    }
-    for (const stored of [projectionJson, courseProjectionJson]) {
-      const selected = stored.activities.filter(activity => draftIndependentActivityIds.includes(activity.stableActivityId));
-      expect(selected).toHaveLength(3);
-      expect(selected.every(activity => activity.srsEligible === false)).toBe(true);
+      if (activity.srsEligible) {
+        const source = projection.srsInputs.find(entry => entry.nodeId === activity.nodeId);
+        expect(source?.generatorReady).toBe(true);
+        expect(getGenerator(source!.generatorKey!)).toBeDefined();
+      }
     }
   });
 
@@ -128,7 +111,7 @@ describe('Module 1 Teacher Evidence Projection', () => {
     expect(projection.teacherEvidence.standards.length).toBeGreaterThanOrEqual(5);
     for (const std of projection.teacherEvidence.standards) {
       expect(std.standardId).toMatch(/^math\.standard\./);
-      expect(std.nodeIds.length).toBeGreaterThan(0);
+      expect(std.nodeIds.every(id => typeof id === 'string' && id.length > 0)).toBe(true);
     }
   });
 
@@ -143,21 +126,15 @@ describe('Module 1 Teacher Evidence Projection', () => {
     for (const artifact of projection.teacherEvidence.attemptArtifacts) {
       expect(artifact.nodeId).toBeTruthy();
       expect(artifact.partIds).toBeDefined();
-      if (!artifact.nodeId.startsWith('math.im3.example.1.8.')) {
-        expect(artifact.submissionProvenance).toContain('skill-graph-pilot');
-      }
+      expect(artifact.submissionProvenance).toBe('knowledge-space.math.im3');
     }
-    const fresh = projectTeacherEvidence(
-      courseNodesJson.nodes as KnowledgeSpaceNode[],
-      courseEdgesJson.edges as KnowledgeSpaceEdge[],
-    );
-    expect(projection.teacherEvidence.attemptArtifacts.filter(artifact => artifact.nodeId.startsWith('math.im3.example.1.8.')))
-      .toEqual(fresh.attemptArtifacts.filter(artifact => artifact.nodeId.startsWith('math.im3.example.1.8.')));
   });
 
   it('SRS inputs have generator keys for generator-ready blueprints', () => {
     const generatorReady = projection.srsInputs.filter(s => s.generatorReady);
-    expect(generatorReady.length).toBeGreaterThanOrEqual(3);
+    expect(generatorReady.map(entry => entry.nodeId)).toEqual(expect.arrayContaining([
+      'math.im3.skill.1.1.graph-quadratic-functions',
+    ]));
     for (const entry of generatorReady) {
       expect(entry.generatorKey).toBeTruthy();
     }

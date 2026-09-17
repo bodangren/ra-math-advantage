@@ -136,24 +136,30 @@ function makeFakeCtx(opts: FakeCtxOptions = {}) {
         if (tableName === 'class_enrollments') {
           return {
             collect: async () => enrollments,
+              take: async (limit: number) => enrollments.slice(0, limit),
             filter: () => ({
               collect: async () => enrollments,
+              take: async (limit: number) => enrollments.slice(0, limit),
             }),
           };
         }
         if (tableName === 'srs_cards') {
           return {
             collect: async () => cards,
+              take: async (limit: number) => cards.slice(0, limit),
             filter: () => ({
               collect: async () => cards,
+              take: async (limit: number) => cards.slice(0, limit),
             }),
           };
         }
         if (tableName === 'srs_review_log') {
           return {
             collect: async () => reviews,
+              take: async (limit: number) => reviews.slice(0, limit),
             filter: () => ({
               collect: async () => reviews,
+              take: async (limit: number) => reviews.slice(0, limit),
             }),
           };
         }

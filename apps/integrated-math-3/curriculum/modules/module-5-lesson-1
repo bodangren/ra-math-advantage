@@ -63,7 +63,7 @@ Similar analysis with different bases. For [f(x) = (5/2)^x], since [5/2 > 1], th
 
 ### Step 3: Analyze [f(x) = (5/2)^x]
 
-When the base is a fraction [5/2 > 1] but the function still grows because [5/2 > 1]. Wait — [5/2 = 2.5 > 1], so this is growth. Actually [f(x) = (5/2)^x] with base [5/2 > 1] means growth.
+The base [5/2 = 2.5] is greater than 1. Thus, [f(x) = (5/2)^x] shows exponential growth.
 
 ## Example 2 — Graph Transformed Exponential Functions
 

@@ -4,10 +4,15 @@ import { projectSrsInputs } from '@math-platform/knowledge-space-practice';
 import { projectTeacherEvidence } from '@math-platform/knowledge-space-practice';
 import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
 import type { KnowledgeBlueprint } from '@math-platform/knowledge-space-practice';
+import { getPropsSchema } from '@math-platform/activity-components/schemas';
 import nodesJson from '../module-1/nodes.json';
 import edgesJson from '../module-1/edges.json';
 import standardEdgesJson from '../module-1/standard-edges.json';
 import blueprintsJson from '../module-1/blueprints.json';
+
+const blueprintDocument =
+  blueprintsJson as unknown as { blueprints: KnowledgeBlueprint[] };
+const module1Blueprints = blueprintDocument.blueprints;
 
 function loadModule1Graph(): { nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] } {
   const module1Nodes = (nodesJson as { nodes: KnowledgeSpaceNode[] }).nodes
@@ -32,7 +37,7 @@ function loadModule1Graph(): { nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpac
 }
 
 function loadModule1Blueprints(): KnowledgeBlueprint[] {
-  return (blueprintsJson as { blueprints: KnowledgeBlueprint[] }).blueprints;
+  return module1Blueprints;
 }
 
 describe('Module 1 Runtime Projection', () => {
@@ -70,6 +75,14 @@ describe('Module 1 Runtime Projection', () => {
   it('projects SRS inputs for Module 1 skills', () => {
     const srsEntries = projectSrsInputs(graph.nodes, graph.edges, blueprints);
     expect(srsEntries.length).toBeGreaterThan(0);
+    const profitEntries = srsEntries.filter(
+      entry => entry.nodeId === 'math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context',
+    );
+    expect(profitEntries).toHaveLength(1);
+    expect(profitEntries[0]).toMatchObject({
+      generatorReady: true,
+      generatorKey: 'quadratic-profit-model',
+    });
   });
 
   it('SRS entries reference Module 1 skill IDs', () => {
@@ -94,26 +107,83 @@ describe('Module 1 Runtime Projection', () => {
     expect(modes.has('independent_practice')).toBe(true);
   });
 
-  it('independent practice eligibility follows the approval gate', () => {
+  it('matches fresh Guided and Independent activity eligibility to exact node readiness', () => {
     const activities = projectActivityMap(graph.nodes, graph.edges, blueprints);
-    const independentActivities = activities.filter(a => a.mode === 'independent_practice');
-    for (const act of independentActivities) {
-      const node = graph.nodes.find(candidate => candidate.id === act.nodeId);
-      const blueprint = blueprints.find(candidate => candidate.nodeId === act.nodeId);
-      const expected = node?.independentPracticeReady === true
-        && node.reviewStatus === 'approved'
-        && blueprint?.reviewStatus === 'approved';
-      expect(act.srsEligible).toBe(expected);
+    const practiceActivities = activities.filter(
+      activity => activity.mode === 'guided_practice' || activity.mode === 'independent_practice',
+    );
+    for (const activity of practiceActivities) {
+      const node = graph.nodes.find(candidate => candidate.id === activity.nodeId);
+      expect(node).toBeDefined();
+      expect(activity.srsEligible).toBe(node?.independentPracticeReady === true);
     }
-    const draftPilotIds = [
-      'math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change',
-      'math.im3.skill.1.1.graph-quadratic-functions',
-      'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
-    ];
-    expect(independentActivities.filter(activity => draftPilotIds.includes(activity.nodeId)))
-      .toHaveLength(3);
-    expect(independentActivities.filter(activity => draftPilotIds.includes(activity.nodeId))
-      .every(activity => activity.srsEligible === false)).toBe(true);
+    const profitActivities = practiceActivities.filter(
+      activity => activity.nodeId ===
+        'math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context',
+    );
+    expect(profitActivities).toHaveLength(2);
+    expect(profitActivities.map(activity => activity.mode)).toEqual([
+      'guided_practice',
+      'independent_practice',
+    ]);
+    expect(profitActivities.map(activity => activity.srsEligible)).toEqual([true, true]);
+    const profitWorked = activities.find(
+      activity => activity.nodeId ===
+        'math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context' &&
+        activity.mode === 'worked_example',
+    );
+    expect(profitWorked?.srsEligible).toBe(false);
+  });
+
+  it('projects renderer-ready props for the graph-quadratic Worked, Guided, and Independent modalities', () => {
+    const activities = projectActivityMap(graph.nodes, graph.edges, blueprints)
+      .filter((activity) => (
+        activity.nodeId === 'math.im3.skill.1.1.graph-quadratic-functions'
+      ));
+
+    expect(activities).toHaveLength(3);
+    expect(activities[0]?.sourceNodeIds).toContain('math.im3.example.1.1.001');
+    expect(activities.map((activity) => activity.props)).toEqual([
+      { equation: 'f(x) = x^2 + 2x - 3', variant: 'plot_from_equation' },
+      {
+        equation: 'y = x^2 - x - 2',
+        variant: 'plot_from_equation',
+        responseVariant: 'table_graph',
+        domain: [-5, 5],
+        range: [-10, 10],
+      },
+      {
+        equation: 'y = -x^2 - 1',
+        variant: 'plot_from_equation',
+        responseVariant: 'table_graph',
+        domain: [-5, 5],
+        range: [-10, 10],
+      },
+    ]);
+
+    const expectedGradingConfig = {
+      partIds: ['table_values', 'placed_points'],
+      passingScore: 2,
+      partialCredit: true,
+      rubric: [
+        {
+          criteria: 'Complete the five-value table for the quadratic.',
+          points: 1,
+          partId: 'table_values',
+        },
+        {
+          criteria: 'Plot all five points for the quadratic.',
+          points: 1,
+          partId: 'placed_points',
+        },
+      ],
+    };
+    expect(activities.map((activity) => activity.srsEligible)).toEqual([false, true, true]);
+    for (const activity of activities) {
+      const propsSchema = getPropsSchema(activity.rendererKey);
+      expect(propsSchema?.safeParse(activity.props).success).toBe(true);
+      expect(activity.gradingConfig).toEqual(expectedGradingConfig);
+    }
   });
 
   it('every blueprint has at least one alignment through edges or blueprint alignmentNodeIds', () => {

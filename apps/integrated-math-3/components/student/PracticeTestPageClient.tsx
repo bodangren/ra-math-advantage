@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import PracticeTestEngine from '@/components/student/PracticeTestEngine';
@@ -17,13 +17,13 @@ interface PracticeTestPageClientProps {
  * @returns {JSX.Element} A practice test page client.
  */
 export function PracticeTestPageClient({ moduleConfig }: PracticeTestPageClientProps) {
-  const startedAtRef = useRef<number>(0);
-
-  useEffect(() => {
-    startedAtRef.current = Date.now();
-  }, []);
+  const [saveError, setSaveError] = useState(false);
+  const retrySave = useRef<(() => Promise<void>) | null>(null);
 
   const handleTestComplete = async (result: {
+    attemptId: string;
+    answers: Array<{ questionId: string; answer: string }>;
+    durationSeconds: number;
     moduleNumber: number;
     lessonsTested: string[];
     questionCount: number;
@@ -35,27 +35,23 @@ export function PracticeTestPageClient({ moduleConfig }: PracticeTestPageClientP
       total: number;
     }>;
   }) => {
-    const durationSeconds = Math.floor((Date.now() - startedAtRef.current) / 1000);
+    retrySave.current = () => handleTestComplete(result);
+    setSaveError(false);
 
     try {
       const response = await fetch('/api/practice-tests/complete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          moduleNumber: result.moduleNumber,
-          lessonsTested: result.lessonsTested,
-          questionCount: result.questionCount,
-          score: result.score,
-          perLessonBreakdown: result.perLessonBreakdown,
-          durationSeconds,
-        }),
+        body: JSON.stringify({ attemptId: result.attemptId, moduleNumber: result.moduleNumber,
+          answers: result.answers, durationSeconds: result.durationSeconds }),
       });
 
       if (!response.ok) {
-        console.error('Failed to save practice test result:', await response.text());
+        throw new Error('The test result was not saved.');
       }
     } catch (error) {
       console.error('Failed to save practice test result:', error);
+      setSaveError(true);
     }
   };
 
@@ -66,6 +62,7 @@ export function PracticeTestPageClient({ moduleConfig }: PracticeTestPageClientP
           <Link href="/student/study/practice-tests">Back to Practice Tests</Link>
         </Button>
       </div>
+      {saveError && <div role="alert">The test result was not saved. <Button onClick={() => void retrySave.current?.()}>Retry save</Button></div>}
       <PracticeTestEngine moduleConfig={moduleConfig} onComplete={handleTestComplete} />
     </div>
   );

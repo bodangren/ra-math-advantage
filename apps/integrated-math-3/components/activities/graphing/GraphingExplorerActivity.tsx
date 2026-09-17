@@ -1,55 +1,69 @@
 'use client';
 
-import { GraphingExplorer } from '@math-platform/activity-components/graphing';
+import {
+  GraphingExplorerActivity as SharedGraphingExplorerActivity,
+  type GraphingExplorerActivityProps as SharedGraphingExplorerActivityProps,
+} from '@math-platform/activity-components/graphing';
+import { IM3_MASTERY_ADVANTAGE_ACTIVITY_ID } from '../../../lib/practice/learning-evidence-pilot';
 
-export interface ActivityComponentProps {
-  activityId: string;
-  mode: 'teaching' | 'guided' | 'practice';
-  onSubmit?: (payload: unknown) => void;
-  onComplete?: () => void;
-  /** Optional equation override from authored/previewed configuration. */
-  equation?: string;
-  /** Optional variant override from authored/previewed configuration. */
-  variant?: 'plot_from_equation' | 'compare_functions' | 'find_intercepts' | 'graph_system';
-  domain?: [number, number];
-  range?: [number, number];
-  responseVariant?: 'table_graph';
+export interface ActivityComponentProps extends SharedGraphingExplorerActivityProps {
+  /** Stable activity identity supplied by the server-owned queue. */
+  stableActivityId?: string;
+  masteryNodeId?: string;
+  srsEligible?: boolean;
+  answerSchema?: Record<string, string>;
 }
 
 /**
- * Renders a graphing explorer activity wrapping the shared GraphingExplorer component.
- *
- * @param {ActivityComponentProps} props - Activity configuration with mode and callbacks.
- * @returns {JSX.Element} A graphing explorer activity.
+ * Bind the exact IM3 pilot identity to the shared table-and-graph response.
  */
 export function GraphingExplorerActivity({
   activityId,
   mode,
   onSubmit,
   onComplete,
-  equation = 'y = x^2',
-  variant = 'plot_from_equation',
+  equation,
+  originalEquation,
+  variant,
   domain,
   range,
+  points,
+  comparisonEquation,
+  comparisonQuestion,
+  comparisonAnswer,
+  linearEquation,
   responseVariant,
+  vertex,
+  yIntercept,
+  sum,
+  product,
+  stableActivityId,
 }: ActivityComponentProps) {
-  const handleSubmit = (payload: unknown) => {
-    onSubmit?.(payload);
-    onComplete?.();
-  };
-
   return (
-    <div data-testid="graphing-explorer">
-      <GraphingExplorer
-        activityId={activityId}
-        mode={mode}
-        variant={variant}
-        equation={equation}
-        domain={domain}
-        range={range}
-        responseVariant={responseVariant}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <SharedGraphingExplorerActivity
+      activityId={activityId}
+      mode={mode}
+      onSubmit={onSubmit}
+      onComplete={onComplete}
+      equation={equation}
+      originalEquation={originalEquation}
+      variant={variant}
+      domain={domain}
+      range={range}
+      points={points}
+      comparisonEquation={comparisonEquation}
+      comparisonQuestion={comparisonQuestion}
+      comparisonAnswer={comparisonAnswer}
+      linearEquation={linearEquation}
+      responseVariant={responseVariant ?? (
+        stableActivityId === IM3_MASTERY_ADVANTAGE_ACTIVITY_ID
+          ? 'table_graph'
+          : undefined
+      )}
+      vertex={vertex}
+      yIntercept={yIntercept}
+      sum={sum}
+      product={product}
+    />
   );
 }

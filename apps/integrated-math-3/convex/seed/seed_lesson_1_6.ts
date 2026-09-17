@@ -1,153 +1,13 @@
-import { convexToJson } from "convex/values";
-import {
-  IM3_QF_DRAFT_MAPPINGS,
-  IM3_QF_NODE,
-  IM3_QF_VARIANT_SCHEDULES,
-  quadraticFormulaPublicProps,
-  quadraticFormulaVariantKey,
-} from "../../lib/activities/server-grading";
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
-import type { MutationCtx } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
-import { lesson16QuizPrivateProps } from "../lib/lesson_1_6_quiz";
 
 interface SeedLesson6Result {
   lessonId: Id<"lessons">;
   lessonVersionId: Id<"lesson_versions">;
   phasesCreated: number;
   activitiesCreated: number;
-}
-
-export function buildIm3QuadraticFormulaDraftDocuments(
-  mode: keyof typeof IM3_QF_DRAFT_MAPPINGS,
-  activityId: Id<"activities">,
-  now: number,
-) {
-  const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
-  const props = quadraticFormulaPublicProps(mode, mapping.seed);
-  const variantKey = mapping.stableActivityId;
-  return {
-    activity: {
-      componentKey: "quadratic-formula", displayName: mode === "guided_practice" ? "Guided quadratic-formula practice" : "Independent quadratic-formula practice",
-      description: "Solve a generated quadratic equation by using the Quadratic Formula.", props,
-      gradingConfig: { autoGrade: true, partialCredit: true, passingScore: 3, partIds: ["discriminant", "x1", "x2"] },
-      stableActivityId: mapping.stableActivityId, masteryNodeId: IM3_QF_NODE,
-      approval: { status: "unreviewed" as const }, srsEligible: false, createdAt: now, updatedAt: now,
-    },
-    variant: { variantKey, componentKey: "quadratic-formula", displayName: mode === "guided_practice" ? "Guided quadratic-formula practice" : "Independent quadratic-formula practice", description: "A draft generated quadratic-formula variant.", objectiveIds: [IM3_QF_NODE], difficulty: "standard", metadata: { generatorKey: "quadratic-formula", seed: mapping.seed, stableActivityId: mapping.stableActivityId, mode } },
-    item: { practiceItemId: `${variantKey}:seed-${mapping.seed}`, activityId, variantKey, variantLabel: `Seed ${mapping.seed}` },
-  };
-}
-
-function qfActivityContent(value: Record<string, unknown>) {
-  return convexToJson({
-    componentKey: value.componentKey, displayName: value.displayName, description: value.description,
-    props: value.props, gradingConfig: value.gradingConfig, stableActivityId: value.stableActivityId,
-    masteryNodeId: value.masteryNodeId, approval: value.approval, srsEligible: value.srsEligible,
-  } as never);
-}
-
-export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: number): Promise<void> {
-  const drafts = [];
-  for (const mode of ["guided_practice", "independent_practice"] as const) {
-    const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
-    const existing = await ctx.db.query("activities").withIndex("by_stable_activity_id", q => q.eq("stableActivityId", mapping.stableActivityId)).unique();
-    if (existing && (existing.approval?.status !== "unreviewed"
-      || existing.stableActivityId !== mapping.stableActivityId
-      || existing.masteryNodeId !== IM3_QF_NODE
-      || existing.componentKey !== "quadratic-formula"
-      || existing.srsEligible !== false
-      || (existing.props as { presentationMode?: unknown }).presentationMode !== mapping.presentationMode)) {
-      throw new Error("Existing quadratic-formula activity is not the exact unreviewed draft");
-    }
-    const provisional = buildIm3QuadraticFormulaDraftDocuments(mode, (existing?._id ?? "activities:pending") as Id<"activities">, now);
-    const expectedContent = JSON.stringify(qfActivityContent(provisional.activity));
-    const legacyEquation = provisional.activity.props.equation.replace(/ = 0$/, "");
-    const legacyContent = JSON.stringify(qfActivityContent({
-      ...provisional.activity,
-      props: { ...provisional.activity.props, equation: legacyEquation },
-    }));
-    const existingContent = existing
-      ? JSON.stringify(qfActivityContent(existing))
-      : undefined;
-    if (existing && existingContent !== expectedContent && existingContent !== legacyContent)
-      throw new Error("Existing quadratic-formula activity content changed");
-    drafts.push({ mode, existing, provisional, reconcileLegacy: existingContent === legacyContent });
-  }
-  for (const { mode, existing, provisional, reconcileLegacy } of drafts) {
-    if (existing && reconcileLegacy)
-      await ctx.db.patch(existing._id, { props: provisional.activity.props, updatedAt: now });
-    const activityId =
-      existing?._id ??
-      (await ctx.db.insert("activities", provisional.activity));
-    const docs = buildIm3QuadraticFormulaDraftDocuments(mode, activityId, now);
-    const activityItems = await ctx.db
-      .query("practice_items")
-      .withIndex("by_activityId", (q) => q.eq("activityId", activityId))
-      .take(5);
-    if (
-      activityItems.some(
-        (item) =>
-          !Array.from({ length: 4 }, (_, index) =>
-            quadraticFormulaVariantKey(mode, index),
-          ).includes(item.variantKey),
-      )
-    )
-      throw new Error(
-        "Existing quadratic-formula storage relation is inconsistent",
-      );
-    for (
-      let index = 0;
-      index < IM3_QF_VARIANT_SCHEDULES[mode].length;
-      index++
-    ) {
-      const seed = IM3_QF_VARIANT_SCHEDULES[mode][index];
-      const variantKey = quadraticFormulaVariantKey(mode, index);
-      const expectedVariant = {
-        ...docs.variant,
-        variantKey,
-        metadata: { ...docs.variant.metadata, seed },
-      };
-      const expectedItem = {
-        ...docs.item,
-        variantKey,
-        practiceItemId: `${variantKey}:seed-${seed}`,
-        variantLabel: `Seed ${seed}`,
-      };
-      const variants = await ctx.db
-        .query("practice_variants")
-        .withIndex("by_variantKey", (q) => q.eq("variantKey", variantKey))
-        .take(2);
-      const items = activityItems.filter(
-        (item) => item.variantKey === variantKey,
-      );
-      const reverseItems = await ctx.db
-        .query("practice_items")
-        .withIndex("by_variantKey", (q) => q.eq("variantKey", variantKey))
-        .take(2);
-      if (variants[0] || items[0]) {
-        const coherent =
-          variants.length === 1 &&
-          items.length === 1 &&
-          reverseItems.length === 1 &&
-          reverseItems[0]._id === items[0]._id &&
-          variants[0].componentKey === expectedVariant.componentKey &&
-          JSON.stringify(variants[0].objectiveIds) ===
-            JSON.stringify(expectedVariant.objectiveIds) &&
-          JSON.stringify(convexToJson(variants[0].metadata as never)) ===
-            JSON.stringify(convexToJson(expectedVariant.metadata as never)) &&
-          items[0].practiceItemId === expectedItem.practiceItemId;
-        if (!coherent)
-          throw new Error(
-            "Existing quadratic-formula storage relation is inconsistent",
-          );
-      } else if (index === 0) {
-        await ctx.db.insert("practice_variants", expectedVariant);
-        await ctx.db.insert("practice_items", expectedItem);
-      }
-    }
-  }
 }
 
 /**
@@ -239,87 +99,101 @@ export const seedLesson6 = internalMutation({
           },
         ],
       },
-      // math.im3.example.1.6.036 — curriculum/IM3-reveal-module-1.pdf, page 43.
       {
         phaseNumber: 4,
         title: "Worked Example 1",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 1 Real Roots, $c$ Is Positive
-
-**CONTEST** At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by $h = -4.9t^2 + 11.7t + 42$, where $h$ is the height and $t$ is the number of seconds after launch.
-
-### Part A
-
-Use the Quadratic Formula to solve $0 = -4.9t^2 + 11.7t + 42$.
-
-Identify the coefficients: $a = -4.9$, $b = 11.7$, and $c = 42$.
-
-$$t = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$
-
-$$t = \\frac{-11.7 \\pm \\sqrt{(11.7)^2 - 4(-4.9)(42)}}{2(-4.9)}$$
-
-$$t = \\frac{-11.7 \\pm \\sqrt{136.89 + 823.2}}{-9.8}$$
-
-$$t = \\frac{-11.7 \\pm \\sqrt{960.09}}{-9.8}$$
-
-$$t = \\frac{11.7 + \\sqrt{960.09}}{9.8} \\text{ or } t = \\frac{11.7 - \\sqrt{960.09}}{9.8}$$
-
-The approximate solutions are $4.4$ seconds and $-2.0$ seconds.
-
-### Part B
-
-Interpret the roots.
-
-The negative root does not make sense in this context because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds.` } }],
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 1: Use the Quadratic Formula\n\nSolve $x^2 + 5x + 6 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = 5$, $c = 6$\n\n**Step 2**: Substitute into the formula:\n$$x = \\frac{-5 \\pm \\sqrt{5^2 - 4(1)(6)}}{2(1)}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{-5 \\pm \\sqrt{25 - 24}}{2} = \\frac{-5 \\pm 1}{2}$$\n\n**Solutions**: $x = -2$ or $x = -3$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "quadratic-formula",
+                equation: "x^2 + 5x + 6 = 0",
+                steps: [
+                  { expression: "a=1, b=5, c=6", explanation: "Identify coefficients" },
+                  { expression: "x = (-5 ± √(25-24))/2", explanation: "Substitute into formula" },
+                  { expression: "x = (-5 ± 1)/2", explanation: "Simplify" },
+                  { expression: "x = -2 or x = -3", explanation: "Solutions" },
+                ],
+              },
+            },
+          },
+        ],
       },
-      // math.im3.example.1.6.037 — curriculum/IM3-reveal-module-1.pdf, page 44.
       {
         phaseNumber: 5,
         title: "Worked Example 2",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 2 Real Roots, $c$ Is Negative
-
-Solve $x^2 + 4x - 17 = 0$ by using the Quadratic Formula.
-
-Identify the coefficients: $a = 1$, $b = 4$, and $c = -17$.
-
-$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$
-
-$$x = \\frac{-4 \\pm \\sqrt{(4)^2 - 4(1)(-17)}}{2(1)}$$
-
-$$x = \\frac{-4 \\pm \\sqrt{84}}{2}$$
-
-$$x = \\frac{-4 \\pm \\sqrt{4} \\cdot \\sqrt{21}}{2}$$
-
-$$x = \\frac{-4 \\pm 2\\sqrt{21}}{2}$$
-
-$$x = -2 \\pm \\sqrt{21}$$` } }],
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 2: Non-Factorable Equation\n\nSolve $x^2 - 4x - 1 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = -4$, $c = -1$\n\n**Step 2**: Substitute:\n$$x = \\frac{4 \\pm \\sqrt{(-4)^2 - 4(1)(-1)}}{2}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{4 \\pm \\sqrt{16 + 4}}{2} = \\frac{4 \\pm \\sqrt{20}}{2}$$\n\n**Step 4**: Simplify radical:\n$$x = \\frac{4 \\pm 2\\sqrt{5}}{2} = 2 \\pm \\sqrt{5}$$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "quadratic-formula",
+                equation: "x^2 - 4x - 1 = 0",
+                steps: [
+                  { expression: "a=1, b=-4, c=-1", explanation: "Identify coefficients" },
+                  { expression: "x = (4 ± √(16+4))/2", explanation: "Substitute into formula" },
+                  { expression: "x = (4 ± √20)/2", explanation: "Simplify radicand" },
+                  { expression: "x = 2 ± √5", explanation: "Solutions" },
+                ],
+              },
+            },
+          },
+        ],
       },
-      // math.im3.example.1.6.038 — curriculum/IM3-reveal-module-1.pdf, page 44.
       {
         phaseNumber: 6,
         title: "Worked Example 3",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 3 Complex Roots
-
-Solve $5x^2 + 8x + 11 = 0$ by using the Quadratic Formula.
-
-Identify the coefficients: $a = 5$, $b = 8$, and $c = 11$.
-
-$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$
-
-$$x = \\frac{-8 \\pm \\sqrt{8^2 - 4(5)(11)}}{2(5)}$$
-
-$$x = \\frac{-8 \\pm \\sqrt{-156}}{10}$$
-
-$$x = \\frac{-8 \\pm \\sqrt{-1} \\cdot \\sqrt{4} \\cdot \\sqrt{39}}{10}$$
-
-$$x = \\frac{-8 \\pm 2i\\sqrt{39}}{10}$$
-
-$$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$$` } }],
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 3: Imaginary Solutions\n\nSolve $x^2 + 2x + 5 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = 2$, $c = 5$\n\n**Step 2**: Substitute:\n$$x = \\frac{-2 \\pm \\sqrt{2^2 - 4(1)(5)}}{2}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{-2 \\pm \\sqrt{4 - 20}}{2} = \\frac{-2 \\pm \\sqrt{-16}}{2}$$\n\n**Step 4**: Simplify imaginary:\n$$x = \\frac{-2 \\pm 4i}{2} = -1 \\pm 2i$$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "quadratic-formula",
+                equation: "x^2 + 2x + 5 = 0",
+                steps: [
+                  { expression: "a=1, b=2, c=5", explanation: "Identify coefficients" },
+                  { expression: "x = (-2 ± √(4-20))/2", explanation: "Substitute into formula" },
+                  { expression: "x = (-2 ± √(-16))/2", explanation: "Negative discriminant" },
+                  { expression: "x = -1 ± 2i", explanation: "Complex solutions" },
+                ],
+              },
+            },
+          },
+        ],
       },
       {
         phaseNumber: 7,
@@ -345,23 +219,18 @@ $$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$$` } }],
           {
             sequenceOrder: 1,
             sectionType: "text" as const,
-            // math.im3.example.1.6.039; IM3-reveal-module-1.pdf, page 46.
             content: {
-              markdown: `## Example 4 The Discriminant, Real Roots
-
-Examine $2x^2 - 10x + 7 = 0$.
-
-**Part A** Find the value of the discriminant for $2x^2 - 10x + 7 = 0$.
-
-$a = 2, b = -10, c = 7$
-
-$$b^2 - 4ac = (-10)^2 - 4(2)(7)$$
-$$= 100 - 56$$
-$$= 44$$
-
-**Part B** Describe the number and type of roots for the equation.
-
-The discriminant is nonzero, so there are two roots. The discriminant is positive and not a perfect square, so the roots are irrational.`,
+              markdown: "## Example 4: Use the Discriminant\n\nDetermine the number and type of solutions for $2x^2 - 3x + 5 = 0$\n\n**Calculate the discriminant**:\n$$D = (-3)^2 - 4(2)(5) = 9 - 40 = -31$$\n\n**Since $D < 0$**, there are **two complex solutions** (no real roots).",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "discriminant-analyzer",
+              props: {
+                equation: "2x^2 - 3x + 5 = 0",
+              },
             },
           },
         ],
@@ -375,23 +244,18 @@ The discriminant is nonzero, so there are two roots. The discriminant is positiv
           {
             sequenceOrder: 1,
             sectionType: "text" as const,
-            // math.im3.example.1.6.040; IM3-reveal-module-1.pdf, page 46.
             content: {
-              markdown: `## Example 5 The Discriminant, Complex Roots
-
-Examine $-5x^2 + 10x - 15 = 0$.
-
-**Part A** Find the value of the discriminant for $-5x^2 + 10x - 15 = 0$.
-
-$a = -5, b = 10, c = -15$
-
-$$b^2 - 4ac = (10)^2 - 4(-5)(-15)$$
-$$= 100 - 300$$
-$$= -200$$
-
-**Part B** Describe the number and type of roots for the equation.
-
-The discriminant is nonzero, so there are two roots. The discriminant is negative, so the roots are complex.`,
+              markdown: "## Example 5: Perfect Square Trinomial\n\nDetermine the number and type of solutions for $x^2 - 6x + 9 = 0$\n\n**Calculate the discriminant**:\n$$D = (-6)^2 - 4(1)(9) = 36 - 36 = 0$$\n\n**Since $D = 0$**, there is **exactly one real solution** (a repeated root).\n\nNote: This trinomial is $(x - 3)^2$, so the solution is $x = 3$.",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "discriminant-analyzer",
+              props: {
+                equation: "x^2 - 6x + 9 = 0",
+              },
             },
           },
         ],
@@ -414,7 +278,20 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
             sectionType: "activity" as const,
             content: {
               componentKey: "comprehension-quiz",
-              props: lesson16QuizPrivateProps(),
+              props: {
+                questions: [
+                  {
+                    question: "What does the discriminant tell you?",
+                    options: ["The sum of the roots", "The number and type of solutions", "The product of the roots", "The axis of symmetry"],
+                    correctIndex: 1,
+                  },
+                  {
+                    question: "If D = 0, how many real solutions are there?",
+                    options: ["0", "1", "2", "Cannot determine"],
+                    correctIndex: 1,
+                  },
+                ],
+              },
             },
           },
         ],
@@ -468,7 +345,7 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
             componentKey: activityContent.componentKey,
             displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -481,8 +358,8 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });
@@ -497,8 +374,6 @@ The discriminant is nonzero, so there are two roots. The discriminant is negativ
         }
       }
     }
-
-    await upsertIm3QuadraticFormulaDrafts(ctx, now);
 
     return {
       lessonId,

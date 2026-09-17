@@ -14,12 +14,15 @@ const ALL_STANDARD_CODES = [
   'N-RN.A.1',
   'N-RN.A.2',
   'HSF-IF.B.4',
+  'HSF-IF.B.5',
+  'HSF-IF.B.6',
   'HSF-BF.A.1',
   'HSF-BF.B.3',
   'HSF-BF.B.4',
   'HSF-BF.B.5',
   'HSF-LE.A.4',
   'HSF-IF.C.7e',
+  'HSF-IF.C.9',
   'HSF-LE.A.1',
   'HSA-CED.A.2',
   'HSA-APR.D.6',
@@ -44,12 +47,50 @@ const ALL_STANDARD_CODES = [
   'HSF-IF.A.2',
   'HSA-APR.C.4',
   'HSF-IF.C.7a',
+  'HSF-IF.C.7b',
   'HSF-BF.A.1a',
   'HSF-LE.A.2',
   'HSF-LE.B.5',
 ];
 
 describe('objective-policies seed data', () => {
+  it('assigns the two Lesson 1 standards as essential priority-1 policies exactly once', () => {
+    for (const standardId of ['HSF-IF.B.6', 'HSF-IF.C.9']) {
+      const matches = OBJECTIVE_POLICIES.filter((policy) => policy.standardId === standardId);
+      expect(matches).toHaveLength(1);
+      expect(matches[0]).toMatchObject({
+        standardId,
+        policy: 'essential',
+        courseKey: 'integrated-math-3',
+        priority: 1,
+      });
+    }
+  });
+
+  it('assigns the two graphing standards as essential priority-1 policies exactly once', () => {
+    for (const standardId of ['HSF-IF.C.7a', 'HSF-IF.C.7b']) {
+      const matches = OBJECTIVE_POLICIES.filter((policy) => policy.standardId === standardId);
+      expect(matches).toHaveLength(1);
+      expect(matches[0]).toMatchObject({
+        standardId,
+        policy: 'essential',
+        courseKey: 'integrated-math-3',
+        priority: 1,
+      });
+    }
+  });
+
+  it('assigns HSF-IF.B.5 as an essential priority-1 policy exactly once', () => {
+    const matches = OBJECTIVE_POLICIES.filter((policy) => policy.standardId === 'HSF-IF.B.5');
+    expect(matches).toHaveLength(1);
+    expect(matches[0]).toEqual({
+      standardId: 'HSF-IF.B.5',
+      policy: 'essential',
+      courseKey: 'integrated-math-3',
+      priority: 1,
+    });
+  });
+
   it('has an assignment for every competency standard', () => {
     const assignedCodes = OBJECTIVE_POLICIES.map((p) => p.standardId);
     for (const code of ALL_STANDARD_CODES) {
@@ -109,7 +150,7 @@ describe('objective-policies seed data', () => {
     }
   });
 
-  it('counts 44 total policy assignments', () => {
-    expect(OBJECTIVE_POLICIES).toHaveLength(44);
+  it('counts 48 total policy assignments', () => {
+    expect(OBJECTIVE_POLICIES).toHaveLength(48);
   });
 });

@@ -1,4 +1,4 @@
-import { query, type QueryCtx } from "./_generated/server";
+import { internalQuery, type QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
 import type { Id } from "./_generated/dataModel";
 
@@ -194,7 +194,7 @@ export async function getStudentExportHandler(
  * @returns {Promise<unknown>} The wrapper result.
  * @throws {Error} Thrown when the operation fails.
  */
-export const getStudentExport = query({
+export const getStudentExport = internalQuery({
   args: {
     userId: v.id("profiles"),
     studentId: v.id("profiles"),
@@ -357,7 +357,7 @@ export async function getClassExportHandler(
  * @returns {Promise<unknown>} The wrapper result.
  * @throws {Error} Thrown when the operation fails.
  */
-export const getClassExport = query({
+export const getClassExport = internalQuery({
   args: {
     userId: v.id("profiles"),
     classId: v.id("classes"),
@@ -462,7 +462,6 @@ export async function getSubmissionExportHandler(
     );
 
     for (const sub of submissions) {
-      if (sub.submissionData.status === "draft") continue;
       const activity = activityMap.get(sub.activityId);
       allRows.push({
         submissionId: sub._id,
@@ -489,7 +488,7 @@ export async function getSubmissionExportHandler(
  * @returns {Promise<unknown>} The wrapper result.
  * @throws {Error} Thrown when the operation fails.
  */
-export const getSubmissionExport = query({
+export const getSubmissionExport = internalQuery({
   args: {
     userId: v.id("profiles"),
     classId: v.id("classes"),

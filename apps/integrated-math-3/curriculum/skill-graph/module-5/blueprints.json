@@ -2,7 +2,9 @@
   "blueprints": [
     {
       "nodeId": "math.im3.skill.5.1.graph-exponential-decay-functions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.5.1"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -55,7 +57,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.1.graph-exponential-growth-functions",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.5.1"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -108,7 +112,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.5.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -161,7 +167,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.5.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -214,7 +222,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.5.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -267,7 +277,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.4.find-sums-of-geometric-series",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.5.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -320,7 +332,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.4.generate-geometric-sequences",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.5.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -373,7 +387,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.5.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -426,7 +442,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.aleks.data-model-family-selection",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -479,7 +497,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -532,7 +552,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.aleks.exponential-equation-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -585,7 +607,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -638,7 +662,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.aleks.exponential-inequality-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -691,7 +717,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.aleks.geometric-sequence-generation",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -744,7 +772,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.aleks.geometric-series-summation",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -797,7 +827,9 @@
     },
     {
       "nodeId": "math.im3.skill.5.aleks.natural-base-e-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {

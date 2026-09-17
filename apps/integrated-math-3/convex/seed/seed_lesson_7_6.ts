@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson7_6 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Solving Rational Equations",
               props: {
                 variant: "explore",
                 equation: "y = 1/x",
+                title: "Solving Rational Equations",
               },
             },
           },
@@ -138,11 +139,11 @@ export const seedLesson7_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "7/12 + 9/(x - 4) = 55/48",
                 steps: [
-                  { id: "step-1", description: "Identify the LCD as 48(x - 4)", expression: "7/12 + 9/(x - 4) = 55/48", explanation: "Identify the LCD as 48(x - 4)" },
-                  { id: "step-2", description: "Multiply both sides by the LCD and distribute", expression: "28x - 112 + 432 = 55x - 220", explanation: "Multiply both sides by the LCD and distribute" },
-                  { id: "step-3", description: "Combine like terms on the left side", expression: "28x + 320 = 55x - 220", explanation: "Combine like terms on the left side" },
-                  { id: "step-4", description: "Subtract 28x and add 220 to both sides", expression: "540 = 27x", explanation: "Subtract 28x and add 220 to both sides" },
-                  { id: "step-5", description: "Divide both sides by 27", expression: "x = 20", explanation: "Divide both sides by 27" },
+                  { expression: "7/12 + 9/(x - 4) = 55/48", explanation: "Identify the LCD as 48(x - 4)" },
+                  { expression: "28x - 112 + 432 = 55x - 220", explanation: "Multiply both sides by the LCD and distribute" },
+                  { expression: "28x + 320 = 55x - 220", explanation: "Combine like terms on the left side" },
+                  { expression: "540 = 27x", explanation: "Subtract 28x and add 220 to both sides" },
+                  { expression: "x = 20", explanation: "Divide both sides by 27" },
                 ],
               },
             },
@@ -172,11 +173,11 @@ export const seedLesson7_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "2m/(m - 4) - (m^2 + 7m + 4)/(3m^2 - 18m + 24) = 4m/(3m - 6)",
                 steps: [
-                  { id: "step-1", description: "Factor denominators to find the LCD", expression: "LCD = (m - 4)(3m - 6)", explanation: "Factor denominators to find the LCD" },
-                  { id: "step-2", description: "Multiply through by the LCD and simplify", expression: "m^2 - 3m - 4 = 0", explanation: "Multiply through by the LCD and simplify" },
-                  { id: "step-3", description: "Factor the quadratic equation", expression: "(m - 4)(m + 1) = 0", explanation: "Factor the quadratic equation" },
-                  { id: "step-4", description: "Apply the Zero Product Property", expression: "m = 4 or m = -1", explanation: "Apply the Zero Product Property" },
-                  { id: "step-5", description: "Check denominators: m = 4 is extraneous", expression: "m = -1", explanation: "Check denominators: m = 4 is extraneous" },
+                  { expression: "LCD = (m - 4)(3m - 6)", explanation: "Factor denominators to find the LCD" },
+                  { expression: "m^2 - 3m - 4 = 0", explanation: "Multiply through by the LCD and simplify" },
+                  { expression: "(m - 4)(m + 1) = 0", explanation: "Factor the quadratic equation" },
+                  { expression: "m = 4 or m = -1", explanation: "Apply the Zero Product Property" },
+                  { expression: "m = -1", explanation: "Check denominators: m = 4 is extraneous" },
                 ],
               },
             },
@@ -206,10 +207,10 @@ export const seedLesson7_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "0.70 = (182 + 0.5x) / (200 + x)",
                 steps: [
-                  { id: "step-1", description: "Set up the mixture equation", expression: "0.70 = (182 + 0.5x) / (200 + x)", explanation: "Set up the mixture equation" },
-                  { id: "step-2", description: "Multiply both sides by 100(200 + x)", expression: "14,000 + 70x = 18,200 + 50x", explanation: "Multiply both sides by 100(200 + x)" },
-                  { id: "step-3", description: "Subtract 50x and 14,000 from both sides", expression: "20x = 4,200", explanation: "Subtract 50x and 14,000 from both sides" },
-                  { id: "step-4", description: "Divide both sides by 20", expression: "x = 210", explanation: "Divide both sides by 20" },
+                  { expression: "0.70 = (182 + 0.5x) / (200 + x)", explanation: "Set up the mixture equation" },
+                  { expression: "14,000 + 70x = 18,200 + 50x", explanation: "Multiply both sides by 100(200 + x)" },
+                  { expression: "20x = 4,200", explanation: "Subtract 50x and 14,000 from both sides" },
+                  { expression: "x = 210", explanation: "Divide both sides by 20" },
                 ],
               },
             },
@@ -239,11 +240,11 @@ export const seedLesson7_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "60.9/(25 + w) + 60.9/(25 - w) = 5",
                 steps: [
-                  { id: "step-1", description: "Set up the distance equation", expression: "60.9/(25 + w) + 60.9/(25 - w) = 5", explanation: "Set up the distance equation" },
-                  { id: "step-2", description: "Multiply by the LCD (25 + w)(25 - w)", expression: "60.9(25 - w) + 60.9(25 + w) = 5(25 + w)(25 - w)", explanation: "Multiply by the LCD (25 + w)(25 - w)" },
-                  { id: "step-3", description: "Simplify and distribute", expression: "3,045 = 5(625 - w^2)", explanation: "Simplify and distribute" },
-                  { id: "step-4", description: "Solve for w squared", expression: "w^2 = 16", explanation: "Solve for w squared" },
-                  { id: "step-5", description: "Take the positive solution for wind speed", expression: "w = 4", explanation: "Take the positive solution for wind speed" },
+                  { expression: "60.9/(25 + w) + 60.9/(25 - w) = 5", explanation: "Set up the distance equation" },
+                  { expression: "60.9(25 - w) + 60.9(25 + w) = 5(25 + w)(25 - w)", explanation: "Multiply by the LCD (25 + w)(25 - w)" },
+                  { expression: "3,045 = 5(625 - w^2)", explanation: "Simplify and distribute" },
+                  { expression: "w^2 = 16", explanation: "Solve for w squared" },
+                  { expression: "w = 4", explanation: "Take the positive solution for wind speed" },
                 ],
               },
             },
@@ -273,10 +274,10 @@ export const seedLesson7_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "1/10 + 1/p = 1/6",
                 steps: [
-                  { id: "step-1", description: "Set up the work equation", expression: "1/10 + 1/p = 1/6", explanation: "Set up the work equation" },
-                  { id: "step-2", description: "Multiply both sides by the LCD 30p", expression: "3p + 30 = 5p", explanation: "Multiply both sides by the LCD 30p" },
-                  { id: "step-3", description: "Subtract 3p from both sides", expression: "30 = 2p", explanation: "Subtract 3p from both sides" },
-                  { id: "step-4", description: "Divide both sides by 2", expression: "p = 15", explanation: "Divide both sides by 2" },
+                  { expression: "1/10 + 1/p = 1/6", explanation: "Set up the work equation" },
+                  { expression: "3p + 30 = 5p", explanation: "Multiply both sides by the LCD 30p" },
+                  { expression: "30 = 2p", explanation: "Subtract 3p from both sides" },
+                  { expression: "p = 15", explanation: "Divide both sides by 2" },
                 ],
               },
             },
@@ -322,11 +323,11 @@ export const seedLesson7_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "x/2 - 5/(x + 1) > (x - 4)/3",
                 steps: [
-                  { id: "step-1", description: "Find values that make the denominator zero", expression: "x = -1 is excluded", explanation: "Find values that make the denominator zero" },
-                  { id: "step-2", description: "Solve the related equation by clearing denominators", expression: "x^2 + 9x - 22 = 0", explanation: "Solve the related equation by clearing denominators" },
-                  { id: "step-3", description: "Factor the quadratic", expression: "(x - 2)(x + 11) = 0", explanation: "Factor the quadratic" },
-                  { id: "step-4", description: "Identify all critical values including the excluded value", expression: "x = -11, x = -1, x = 2 are critical values", explanation: "Identify all critical values including the excluded value" },
-                  { id: "step-5", description: "Test intervals and write the solution", expression: "-11 < x < -1 or x > 2", explanation: "Test intervals and write the solution" },
+                  { expression: "x = -1 is excluded", explanation: "Find values that make the denominator zero" },
+                  { expression: "x^2 + 9x - 22 = 0", explanation: "Solve the related equation by clearing denominators" },
+                  { expression: "(x - 2)(x + 11) = 0", explanation: "Factor the quadratic" },
+                  { expression: "x = -11, x = -1, x = 2 are critical values", explanation: "Identify all critical values including the excluded value" },
+                  { expression: "-11 < x < -1 or x > 2", explanation: "Test intervals and write the solution" },
                 ],
               },
             },
@@ -356,11 +357,11 @@ export const seedLesson7_6 = internalMutation({
                 problemType: "polynomial",
                 equation: "(1.85h + 378) / h <= 5",
                 steps: [
-                  { id: "step-1", description: "Set up the average cost inequality", expression: "(1.85h + 378) / h <= 5", explanation: "Set up the average cost inequality" },
-                  { id: "step-2", description: "Identify the excluded value", expression: "h = 0 is excluded", explanation: "Identify the excluded value" },
-                  { id: "step-3", description: "Solve the related equation", expression: "1.85h + 378 = 5h", explanation: "Solve the related equation" },
-                  { id: "step-4", description: "Solve for h", expression: "h = 120", explanation: "Solve for h" },
-                  { id: "step-5", description: "Only positive values make sense in this context", expression: "h >= 120", explanation: "Only positive values make sense in this context" },
+                  { expression: "(1.85h + 378) / h <= 5", explanation: "Set up the average cost inequality" },
+                  { expression: "h = 0 is excluded", explanation: "Identify the excluded value" },
+                  { expression: "1.85h + 378 = 5h", explanation: "Solve the related equation" },
+                  { expression: "h = 120", explanation: "Solve for h" },
+                  { expression: "h >= 120", explanation: "Only positive values make sense in this context" },
                 ],
               },
             },
@@ -388,13 +389,21 @@ export const seedLesson7_6 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the first step in solving a rational equation?", options: [
+                  {
+                    question: "What is the first step in solving a rational equation?",
+                    options: [
                       "Find the LCD",
                       "Cross multiply immediately",
                       "Divide by the variable",
                       "Add all numerators",
-                    ], correctAnswer: "Find the LCD" },
-                  { id: "question-2", type: "multiple_choice", prompt: "Which value must be excluded when solving x/(x - 3) = 2?", options: ["x = 0", "x = 2", "x = 3", "x = 6"], correctAnswer: "x = 3" },
+                    ],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Which value must be excluded when solving x/(x - 3) = 2?",
+                    options: ["x = 0", "x = 2", "x = 3", "x = 6"],
+                    correctIndex: 2,
+                  },
                 ],
               },
             },
@@ -449,9 +458,9 @@ export const seedLesson7_6 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -464,8 +473,8 @@ export const seedLesson7_6 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

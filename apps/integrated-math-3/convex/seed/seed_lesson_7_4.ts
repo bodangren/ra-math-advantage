@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson7_4 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Rational Functions",
               props: {
                 variant: "explore",
                 equation: "y = 1/x",
+                title: "Rational Functions",
               },
             },
           },
@@ -138,11 +139,11 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = x^3 / (x + 2/3)",
                 steps: [
-                  { id: "step-1", description: "Set the numerator equal to 0 to find zeros", expression: "x^3 = 0", explanation: "Set the numerator equal to 0 to find zeros" },
-                  { id: "step-2", description: "Solve for the zero of the function", expression: "x = 0", explanation: "Solve for the zero of the function" },
-                  { id: "step-3", description: "Set the denominator equal to 0", expression: "x + 2/3 = 0", explanation: "Set the denominator equal to 0" },
-                  { id: "step-4", description: "Find the vertical asymptote", expression: "x = -2/3", explanation: "Find the vertical asymptote" },
-                  { id: "step-5", description: "Degree of numerator > degree of denominator", expression: "no horizontal asymptote", explanation: "Degree of numerator > degree of denominator" },
+                  { expression: "x^3 = 0", explanation: "Set the numerator equal to 0 to find zeros" },
+                  { expression: "x = 0", explanation: "Solve for the zero of the function" },
+                  { expression: "x + 2/3 = 0", explanation: "Set the denominator equal to 0" },
+                  { expression: "x = -2/3", explanation: "Find the vertical asymptote" },
+                  { expression: "no horizontal asymptote", explanation: "Degree of numerator > degree of denominator" },
                 ],
               },
             },
@@ -172,10 +173,10 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "y = 200x/(x + 12)",
                 steps: [
-                  { id: "step-1", description: "Set denominator x + 12 = 0", expression: "vertical asymptote: x = -12", explanation: "Set denominator x + 12 = 0" },
-                  { id: "step-2", description: "Ratio of leading coefficients (equal degrees)", expression: "horizontal asymptote: y = 200", explanation: "Ratio of leading coefficients (equal degrees)" },
-                  { id: "step-3", description: "Find where the graph crosses the axes", expression: "x-intercept: 0, y-intercept: 0", explanation: "Find where the graph crosses the axes" },
-                  { id: "step-4", description: "Calculate dosage for a 12-year-old", expression: "y = 200(12)/(12 + 12) = 100", explanation: "Calculate dosage for a 12-year-old" },
+                  { expression: "vertical asymptote: x = -12", explanation: "Set denominator x + 12 = 0" },
+                  { expression: "horizontal asymptote: y = 200", explanation: "Ratio of leading coefficients (equal degrees)" },
+                  { expression: "x-intercept: 0, y-intercept: 0", explanation: "Find where the graph crosses the axes" },
+                  { expression: "y = 200(12)/(12 + 12) = 100", explanation: "Calculate dosage for a 12-year-old" },
                 ],
               },
             },
@@ -205,10 +206,10 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "g(x) = (x - 2)/(2x + 2)",
                 steps: [
-                  { id: "step-1", description: "Find the zero by setting the numerator equal to 0", expression: "x - 2 = 0, x = 2", explanation: "Find the zero by setting the numerator equal to 0" },
-                  { id: "step-2", description: "Find the vertical asymptote", expression: "2x + 2 = 0, x = -1", explanation: "Find the vertical asymptote" },
-                  { id: "step-3", description: "Horizontal asymptote is the ratio of leading coefficients", expression: "y = 1/2", explanation: "Horizontal asymptote is the ratio of leading coefficients" },
-                  { id: "step-4", description: "Substitute x = 0 to find the y-intercept", expression: "g(x) y-intercept = -1", explanation: "Substitute x = 0 to find the y-intercept" },
+                  { expression: "x - 2 = 0, x = 2", explanation: "Find the zero by setting the numerator equal to 0" },
+                  { expression: "2x + 2 = 0, x = -1", explanation: "Find the vertical asymptote" },
+                  { expression: "y = 1/2", explanation: "Horizontal asymptote is the ratio of leading coefficients" },
+                  { expression: "g(x) y-intercept = -1", explanation: "Substitute x = 0 to find the y-intercept" },
                 ],
               },
             },
@@ -254,9 +255,9 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = (x^2 + 2x + 1)/(x + 4)",
                 steps: [
-                  { id: "step-1", description: "Find the zero by factoring the numerator", expression: "(x + 1)^2 = 0, x = -1", explanation: "Find the zero by factoring the numerator" },
-                  { id: "step-2", description: "Find the vertical asymptote", expression: "x + 4 = 0, x = -4", explanation: "Find the vertical asymptote" },
-                  { id: "step-3", description: "Quotient from polynomial division", expression: "oblique asymptote: y = x - 2", explanation: "Quotient from polynomial division" },
+                  { expression: "(x + 1)^2 = 0, x = -1", explanation: "Find the zero by factoring the numerator" },
+                  { expression: "x + 4 = 0, x = -4", explanation: "Find the vertical asymptote" },
+                  { expression: "oblique asymptote: y = x - 2", explanation: "Quotient from polynomial division" },
                 ],
               },
             },
@@ -286,10 +287,10 @@ export const seedLesson7_4 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = (x^2 - 4)/(x + 2)",
                 steps: [
-                  { id: "step-1", description: "Factor the numerator", expression: "(x^2 - 4)/(x + 2) = ((x + 2)(x - 2))/(x + 2)", explanation: "Factor the numerator" },
-                  { id: "step-2", description: "Cancel the common factor", expression: "= x - 2", explanation: "Cancel the common factor" },
-                  { id: "step-3", description: "Original denominator is 0 at x = -2", expression: "x + 2 = 0, x = -2", explanation: "Original denominator is 0 at x = -2" },
-                  { id: "step-4", description: "The line y = x - 2 has a point discontinuity at x = -2", expression: "hole at (-2, -4)", explanation: "The line y = x - 2 has a point discontinuity at x = -2" },
+                  { expression: "(x^2 - 4)/(x + 2) = ((x + 2)(x - 2))/(x + 2)", explanation: "Factor the numerator" },
+                  { expression: "= x - 2", explanation: "Cancel the common factor" },
+                  { expression: "x + 2 = 0, x = -2", explanation: "Original denominator is 0 at x = -2" },
+                  { expression: "hole at (-2, -4)", explanation: "The line y = x - 2 has a point discontinuity at x = -2" },
                 ],
               },
             },
@@ -317,8 +318,16 @@ export const seedLesson7_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "Where do vertical asymptotes of a rational function occur?", options: ["Where the numerator equals zero", "Where the denominator equals zero (with no common factors)", "Where the function crosses the x-axis"], correctAnswer: "Where the denominator equals zero (with no common factors)" },
-                  { id: "question-2", type: "multiple_choice", prompt: "A rational function has an oblique asymptote when the degree of the numerator is how much greater than the denominator?", options: ["0", "1", "2"], correctAnswer: "1" },
+                  {
+                    question: "Where do vertical asymptotes of a rational function occur?",
+                    options: ["Where the numerator equals zero", "Where the denominator equals zero (with no common factors)", "Where the function crosses the x-axis"],
+                    correctIndex: 1,
+                  },
+                  {
+                    question: "A rational function has an oblique asymptote when the degree of the numerator is how much greater than the denominator?",
+                    options: ["0", "1", "2"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -373,9 +382,9 @@ export const seedLesson7_4 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -388,8 +397,8 @@ export const seedLesson7_4 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

@@ -7,6 +7,7 @@ const seedInternal = {
   seedObjectivePolicies: internal.seed.seed_objective_policies.seedObjectivePolicies,
   seedProblemFamilies: internal.seed.seed_problem_families.seedProblemFamilies,
   seedPracticeItems: internal.seed.seed_practice_items.seedPracticeItems,
+  seedIm3Pilot: internal.seed.seed_im3_pilot.seedIm3Pilot,
   seedDemoEnv: internal.seed.seed_demo_env.seedDemoEnv,
   seedDemoProgress: internal.seed.seed_demo_progress.seedDemoProgress,
   seedModule1LessonStandards: internal.seed.seed_lesson_standards.seedModule1LessonStandards,
@@ -467,6 +468,8 @@ export const seedAll = internalAction({
     } catch {
       // Practice items seeding failure is non-fatal
     }
+
+    await ctx.runMutation(seedInternal.seedIm3Pilot, {});
 
     const demo = getDemoEnvironment();
     if (demo) {

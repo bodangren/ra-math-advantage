@@ -80,6 +80,24 @@ describe('IM3 trusted v3.1 scheduling policy resolution', () => {
     await expect(lookupVariantForScheduling(ctx, 'activity-1')).resolves.toBeNull();
   });
 
+  it('uses the legacy practice-item identity when resolving an existing row', async () => {
+    const { ctx } = makeLookupCtx({
+      practice_items: {
+        variantKey: 'quadratic.graph.v1:legacy-activity-id',
+        legacyProblemFamilyId: 'quadratic.graph.v1',
+      },
+      practice_variants: {
+        variantKey: 'quadratic.graph.v1',
+        objectiveIds: ['A-REI.1'],
+      },
+    });
+
+    await expect(lookupVariantForScheduling(ctx, 'legacy-activity-id')).resolves.toMatchObject({
+      variantKey: 'quadratic.graph.v1',
+      objectiveId: 'A-REI.1',
+    });
+  });
+
   it('opts the production adapter into atomic persistence', () => {
     const source = fs.readFileSync(
       path.resolve(__dirname, '../../../convex/srs/submissionSrs.ts'),

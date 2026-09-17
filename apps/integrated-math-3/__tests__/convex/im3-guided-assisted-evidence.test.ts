@@ -236,25 +236,21 @@ async function runGuidedEvidence(options: {
   vi.spyOn(Date, "now").mockReturnValue(10);
   const { ctx, tables } = memoryContext();
   options.inspectTables?.(tables);
-  const worked = await createServerOwnedSubmissionHandler(
-    ctx,
-    {
-      userId: "student",
+  const worked = await createServerOwnedSubmissionHandler(ctx, {
+    userId: "student",
+    activityId: "worked",
+    idempotencyKey: "worked-key",
+    submissionData: {
+      contractVersion: "practice.v1",
       activityId: "worked",
-      idempotencyKey: "worked-key",
-      submissionData: {
-        contractVersion: "practice.v1",
-        activityId: "worked",
-        mode: "worked_example",
-        status: "submitted",
-        attemptNumber: 1,
-        submittedAt: new Date(10).toISOString(),
-        answers: {},
-        parts: [],
-      },
-    } as never,
-    publication,
-  );
+      mode: "worked_example",
+      status: "submitted",
+      attemptNumber: 1,
+      submittedAt: new Date(10).toISOString(),
+      answers: {},
+      parts: [],
+    },
+  } as never, publication);
   await recordIm3GraphTeacherExposureHandler(
     ctx,
     {
@@ -367,20 +363,15 @@ describe("IM3 assisted Guided evidence", () => {
     },
   );
 
-  it("rejects unsupported stored reveal telemetry without an SRS write", async () => {
+  it("rejects unsupported selected graph reveal telemetry before persistence", async () => {
     let tables: Record<string, Array<Record<string, any>>> | undefined;
-    const attempt = runGuidedEvidence({
+    await expect(runGuidedEvidence({
       hintsUsed: 0,
-      mutateStoredGuided: ({ submission }) => {
-        submission.submissionData.parts[1].revealStepsSeen = 1;
-      },
-      inspectTables: (value) => {
-        tables = value;
-      },
-    });
-    await expect(attempt).rejects.toThrow();
-    expect(tables?.srs_cards).toEqual([]);
-    expect(tables?.srs_review_log).toEqual([]);
+      revealStepsSeen: 1,
+      inspectTables: (value) => { tables = value; },
+    }))
+      .rejects.toThrow("Selected graph activities do not support reveal telemetry");
+    expect(tables?.activity_submissions).toHaveLength(1);
   });
 
   it("does not let untrusted timing telemetry change the rating", async () => {
@@ -411,11 +402,7 @@ describe("IM3 assisted Guided evidence", () => {
     {
       label: "node identity",
       options: {
-        mutateStoredGuided: ({
-          activity,
-        }: {
-          activity: Record<string, any>;
-        }) => {
+        mutateStoredGuided: ({ activity }: { activity: Record<string, any> }) => {
           activity.masteryNodeId = "math.im3.skill.other";
         },
       },
@@ -423,29 +410,20 @@ describe("IM3 assisted Guided evidence", () => {
     {
       label: "aggregate grade parity",
       options: {
-        mutateStoredGuided: ({
-          submission,
-        }: {
-          submission: Record<string, any>;
-        }) => {
+        mutateStoredGuided: ({ submission }: { submission: Record<string, any> }) => {
           submission.score = 1;
         },
       },
     },
-  ])(
-    "rejects invalid stored $label without an SRS write",
-    async ({ options }) => {
-      let tables: Record<string, Array<Record<string, any>>> | undefined;
-      const attempt = runGuidedEvidence({
-        hintsUsed: 0,
-        ...options,
-        inspectTables: (value) => {
-          tables = value;
-        },
-      });
-      await expect(attempt).rejects.toThrow();
-      expect(tables?.srs_cards).toEqual([]);
-      expect(tables?.srs_review_log).toEqual([]);
-    },
-  );
+  ])("rejects invalid stored $label without an SRS write", async ({ options }) => {
+    let tables: Record<string, Array<Record<string, any>>> | undefined;
+    const attempt = runGuidedEvidence({
+      hintsUsed: 0,
+      ...options,
+      inspectTables: (value) => { tables = value; },
+    });
+    await expect(attempt).rejects.toThrow();
+    expect(tables?.srs_cards).toEqual([]);
+    expect(tables?.srs_review_log).toEqual([]);
+  });
 });

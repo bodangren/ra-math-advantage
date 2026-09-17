@@ -38,21 +38,21 @@ vi.mock('@/lib/convex/server', () => ({
 describe('StudentDashboardPage', () => {
   it('renders dashboard heading', async () => {
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/dashboard/i);
   });
 
   it('renders unit section', async () => {
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
     expect(screen.getByText(/quadratic functions/i)).toBeInTheDocument();
   });
 
   it('renders daily practice card', async () => {
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
     expect(screen.getByText('Daily Practice')).toBeInTheDocument();
     expect(screen.getByTestId('practice-link')).toHaveAttribute('href', '/student/practice');
@@ -63,7 +63,7 @@ describe('StudentDashboardPage', () => {
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
 
-    await DashboardPage({ searchParams: Promise.resolve({}) });
+    await DashboardPage();
 
     expect(mockedFetchInternalQuery).toHaveBeenCalledWith(
       'student/knowledge_state:getStudentKnowledgeState',
@@ -96,7 +96,7 @@ describe('StudentDashboardPage', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
     expect(screen.getByText('No practice due today. Come back tomorrow!')).toBeInTheDocument();
     expect(screen.getByText('Start your streak today')).toBeInTheDocument();

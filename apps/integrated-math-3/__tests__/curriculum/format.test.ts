@@ -167,7 +167,7 @@ describe('curriculum markdown formatting', () => {
       expect(content, `${relativePath} goals section`).toMatch(/^## Today['’]s Goals?$/m);
       expect(content, `${relativePath} vocabulary section`).toMatch(/^## Vocabulary$/m);
       expect(content, `${relativePath} objective alignment section`).toMatch(/^## Objective Alignment$/m);
-      expect(content, `${relativePath} example headings`).toMatch(/^## (Apply )?Example \d+/m);
+      expect(content, `${relativePath} example headings`).toMatch(/^## (Apply )?Examples? \d+/m);
       expect(invalidSubstructureHeadings, `${relativePath} substructure should use ### headings`).toEqual([]);
     }
   });
@@ -188,7 +188,7 @@ describe('curriculum markdown formatting', () => {
       expect(h1s[0], `${relativePath} H1`).toMatch(new RegExp(`^# Module ${moduleNumber}: `));
       expect(content).toContain('## Overview');
       expect(content).toContain('## Lessons');
-      expect(content).toContain('## Skills Developed');
+      expect(content).toMatch(/^## Skills (?:Developed|\(What Will You Learn\?\))$/m);
       expect(lessonHeadings.length, `${relativePath} lesson headings`).toBeGreaterThan(0);
     }
   });

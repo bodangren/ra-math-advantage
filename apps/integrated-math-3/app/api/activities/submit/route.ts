@@ -18,9 +18,16 @@ export async function POST(request: Request) {
     return authResult;
   }
 
+  const idempotencyKey = request.headers.get('Idempotency-Key')?.trim();
+  if (!idempotencyKey) {
+    return NextResponse.json(
+      { error: 'A non-empty Idempotency-Key is required' },
+      { status: 400 },
+    );
+  }
+
   try {
     const body = await request.json();
-
     const validation = practiceSubmissionEnvelopeSchema.safeParse(body);
 
     if (!validation.success) {
@@ -43,6 +50,7 @@ export async function POST(request: Request) {
       userId: authResult.sub as `profiles:${string}`,
       activityId: envelope.activityId as `activities:${string}`,
       submissionData: envelope,
+      idempotencyKey,
     });
 
     return NextResponse.json({
@@ -52,6 +60,12 @@ export async function POST(request: Request) {
       maxScore: result.maxScore,
     });
   } catch (error) {
+    if (error instanceof Error && error.message === 'idempotency_conflict') {
+      return NextResponse.json(
+        { error: 'Idempotency key was already used for a different submission' },
+        { status: 409 },
+      );
+    }
     console.error('Error submitting activity:', error);
     return NextResponse.json(
       { error: 'Failed to submit activity' },

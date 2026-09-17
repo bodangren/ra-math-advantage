@@ -3,8 +3,8 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const FINDINGS_PATHS = [
-  resolve(process.cwd(), 'measure/tracks/wcag-aa-remediation_20260605/findings.md'),
-  resolve(process.cwd(), 'measure/archive/wcag-aa-remediation_20260704/findings.md'),
+  resolve(process.cwd(), '../../measure/tracks/wcag-aa-remediation_20260605/findings.md'),
+  resolve(process.cwd(), '../../measure/archive/wcag-aa-remediation_20260704/findings.md'),
 ];
 
 function findFindingsPath(): string {
@@ -17,7 +17,7 @@ function findFindingsPath(): string {
 
 const FINDINGS_PATH = findFindingsPath();
 
-const REPO_ROOT = resolve(process.cwd());
+const REPO_ROOT = resolve(process.cwd(), '../..');
 
 function readFindings(): string {
   return readFileSync(FINDINGS_PATH, 'utf-8');

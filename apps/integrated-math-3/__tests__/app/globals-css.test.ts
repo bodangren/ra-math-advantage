@@ -11,9 +11,7 @@ describe('app/globals.css', () => {
 
   it('contains Tailwind directives', () => {
     const content = readFileSync(cssPath, 'utf-8');
-    expect(content).toContain('@tailwind base');
-    expect(content).toContain('@tailwind components');
-    expect(content).toContain('@tailwind utilities');
+    expect(content).toContain('@import "tailwindcss"');
   });
 
   it('defines oklch CSS custom properties for light and dark modes', () => {
@@ -36,4 +34,16 @@ describe('app/globals.css', () => {
     expect(content).toContain('animate-fade-up');
     expect(content).toContain('@keyframes fadeUp');
   });
+});
+
+it('scans the shared UI packages used by IM3', () => {
+  const css = readFileSync(cssPath, 'utf8');
+  for (const name of ['app-shell', 'activity-components', 'graphing-core', 'knowledge-space-practice', 'lesson-renderer', 'practice-test-engine']) {
+    expect(css).toContain(`@source "../../../packages/${name}/src";`);
+  }
+});
+
+it('imports KaTeX through the bundler so relative font URLs resolve', () => {
+  expect(readFileSync(path.resolve(__dirname, '../../app/layout.tsx'), 'utf8')).toContain('import "katex/dist/katex.min.css"');
+  expect(readFileSync(cssPath, 'utf8')).not.toContain("@import 'katex/dist/katex.min.css'");
 });

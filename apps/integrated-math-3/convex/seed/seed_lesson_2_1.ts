@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -64,10 +65,10 @@ export const seedLesson2_1 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Explore Power Functions",
               props: {
                 variant: "explore",
                 equation: "y = x^3",
+                title: "Explore Power Functions",
               },
             },
           },
@@ -125,14 +126,14 @@ export const seedLesson2_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = -2x^3",
                 steps: [
-                  { id: "step-1", description: "Identify the function", expression: "f(x) = -2x^3", explanation: "Identify the function" },
-                  { id: "step-2", description: "The coefficient a = -2", expression: "Leading coefficient = -2 (negative)", explanation: "The coefficient a = -2" },
-                  { id: "step-3", description: "The exponent n = 3", expression: "Degree = 3 (odd)", explanation: "The exponent n = 3" },
-                  { id: "step-4", description: "Determine end behavior pattern", expression: "Odd degree + negative coefficient", explanation: "Determine end behavior pattern" },
-                  { id: "step-5", description: "Left end behavior", expression: "as x → -∞, f(x) → +∞", explanation: "Left end behavior" },
-                  { id: "step-6", description: "Right end behavior", expression: "as x → +∞, f(x) → -∞", explanation: "Right end behavior" },
-                  { id: "step-7", description: "Polynomial has no restrictions", expression: "Domain: all real numbers", explanation: "Polynomial has no restrictions" },
-                  { id: "step-8", description: "Cubic function covers all y-values", expression: "Range: all real numbers", explanation: "Cubic function covers all y-values" },
+                  { expression: "f(x) = -2x^3", explanation: "Identify the function" },
+                  { expression: "Leading coefficient = -2 (negative)", explanation: "The coefficient a = -2" },
+                  { expression: "Degree = 3 (odd)", explanation: "The exponent n = 3" },
+                  { expression: "Odd degree + negative coefficient", explanation: "Determine end behavior pattern" },
+                  { expression: "as x → -∞, f(x) → +∞", explanation: "Left end behavior" },
+                  { expression: "as x → +∞, f(x) → -∞", explanation: "Right end behavior" },
+                  { expression: "Domain: all real numbers", explanation: "Polynomial has no restrictions" },
+                  { expression: "Range: all real numbers", explanation: "Cubic function covers all y-values" },
                 ],
               },
             },
@@ -161,14 +162,14 @@ export const seedLesson2_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "P(F) = (3/2)F^2",
                 steps: [
-                  { id: "step-1", description: "Identify the function", expression: "P(F) = (3/2)F^2", explanation: "Identify the function" },
-                  { id: "step-2", description: "Determine coefficients", expression: "a = 3/2 (positive), n = 2 (even)", explanation: "Determine coefficients" },
-                  { id: "step-3", description: "Both ends go up", expression: "Even degree, positive coefficient", explanation: "Both ends go up" },
-                  { id: "step-4", description: "No restrictions on F", expression: "Domain: all real numbers", explanation: "No restrictions on F" },
-                  { id: "step-5", description: "Output is always nonnegative", expression: "Range: y ≥ 0", explanation: "Output is always nonnegative" },
-                  { id: "step-6", description: "Choose x-values", expression: "Table: F = -2, -1, 0, 1, 2", explanation: "Choose x-values" },
-                  { id: "step-7", description: "Calculate values", expression: "P(-2) = 6, P(-1) = 1.5, P(0) = 0, P(1) = 1.5, P(2) = 6", explanation: "Calculate values" },
-                  { id: "step-8", description: "Visualize the result", expression: "Graph is a parabola opening upward", explanation: "Visualize the result" },
+                  { expression: "P(F) = (3/2)F^2", explanation: "Identify the function" },
+                  { expression: "a = 3/2 (positive), n = 2 (even)", explanation: "Determine coefficients" },
+                  { expression: "Even degree, positive coefficient", explanation: "Both ends go up" },
+                  { expression: "Domain: all real numbers", explanation: "No restrictions on F" },
+                  { expression: "Range: y ≥ 0", explanation: "Output is always nonnegative" },
+                  { expression: "Table: F = -2, -1, 0, 1, 2", explanation: "Choose x-values" },
+                  { expression: "P(-2) = 6, P(-1) = 1.5, P(0) = 0, P(1) = 1.5, P(2) = 6", explanation: "Calculate values" },
+                  { expression: "Graph is a parabola opening upward", explanation: "Visualize the result" },
                 ],
               },
             },
@@ -212,10 +213,10 @@ export const seedLesson2_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "2x^4 - 3x^3 - 4x^2 - 5x + 6",
                 steps: [
-                  { id: "step-1", description: "Identify the polynomial", expression: "2x^4 - 3x^3 - 4x^2 - 5x + 6", explanation: "Identify the polynomial" },
-                  { id: "step-2", description: "Highest exponent is 4", expression: "Degree: 4", explanation: "Highest exponent is 4" },
-                  { id: "step-3", description: "Coefficient of x^4", expression: "Leading coefficient: 2", explanation: "Coefficient of x^4" },
-                  { id: "step-4", description: "Only x appears", expression: "This IS a polynomial in one variable", explanation: "Only x appears" },
+                  { expression: "2x^4 - 3x^3 - 4x^2 - 5x + 6", explanation: "Identify the polynomial" },
+                  { expression: "Degree: 4", explanation: "Highest exponent is 4" },
+                  { expression: "Leading coefficient: 2", explanation: "Coefficient of x^4" },
+                  { expression: "This IS a polynomial in one variable", explanation: "Only x appears" },
                 ],
               },
             },
@@ -244,11 +245,11 @@ export const seedLesson2_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = 519x^4 - 1630x^3 + 1844x^2 - 889x + 155",
                 steps: [
-                  { id: "step-1", description: "Convert percent to decimal", expression: "x = 0.6 (60%)", explanation: "Convert percent to decimal" },
-                  { id: "step-2", description: "Substitute into function", expression: "f(0.6) = 519(0.6)^4 - 1630(0.6)^3 + 1844(0.6)^2 - 889(0.6) + 155", explanation: "Substitute into function" },
-                  { id: "step-3", description: "Calculate each term", expression: "f(0.6) = 67.2624 - 352.08 + 663.84 - 533.4 + 155", explanation: "Calculate each term" },
-                  { id: "step-4", description: "Simplify", expression: "f(0.6) = 0.6224", explanation: "Simplify" },
-                  { id: "step-5", description: "Interpret the result", expression: "Density ≈ 0.6224 g/cm³", explanation: "Interpret the result" },
+                  { expression: "x = 0.6 (60%)", explanation: "Convert percent to decimal" },
+                  { expression: "f(0.6) = 519(0.6)^4 - 1630(0.6)^3 + 1844(0.6)^2 - 889(0.6) + 155", explanation: "Substitute into function" },
+                  { expression: "f(0.6) = 67.2624 - 352.08 + 663.84 - 533.4 + 155", explanation: "Calculate each term" },
+                  { expression: "f(0.6) = 0.6224", explanation: "Simplify" },
+                  { expression: "Density ≈ 0.6224 g/cm³", explanation: "Interpret the result" },
                 ],
               },
             },
@@ -277,11 +278,11 @@ export const seedLesson2_1 = internalMutation({
                 problemType: "polynomial",
                 equation: "f(x) = x^3 + 2x^2 - 3x",
                 steps: [
-                  { id: "step-1", description: "Definition of zeros", expression: "Real zeros occur where f(x) = 0", explanation: "Definition of zeros" },
-                  { id: "step-2", description: "Factor out x", expression: "Factor: f(x) = x(x^2 + 2x - 3)", explanation: "Factor out x" },
-                  { id: "step-3", description: "Factor quadratic", expression: "f(x) = x(x + 3)(x - 1)", explanation: "Factor quadratic" },
-                  { id: "step-4", description: "Set each factor to zero", expression: "x = 0, x = -3, x = 1", explanation: "Set each factor to zero" },
-                  { id: "step-5", description: "Count the solutions", expression: "There are 3 real zeros", explanation: "Count the solutions" },
+                  { expression: "Real zeros occur where f(x) = 0", explanation: "Definition of zeros" },
+                  { expression: "Factor: f(x) = x(x^2 + 2x - 3)", explanation: "Factor out x" },
+                  { expression: "f(x) = x(x + 3)(x - 1)", explanation: "Factor quadratic" },
+                  { expression: "x = 0, x = -3, x = 1", explanation: "Set each factor to zero" },
+                  { expression: "There are 3 real zeros", explanation: "Count the solutions" },
                 ],
               },
             },
@@ -306,11 +307,10 @@ export const seedLesson2_1 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Compare Polynomial Functions",
               props: {
-                variant: "compare_functions",
-                equation: "f(x) = x^3 + 2x^2 - 3x",
-                comparisonEquation: "g(x)",
+                variant: "compare",
+                equations: ["f(x) = x^3 + 2x^2 - 3x", "g(x)"],
+                title: "Compare Polynomial Functions",
               },
             },
           },
@@ -336,12 +336,20 @@ export const seedLesson2_1 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "The degree of a polynomial tells you:", options: [
+                  {
+                    question: "The degree of a polynomial tells you:",
+                    options: [
                       "The number of times the graph intersects the x-axis at maximum",
                       "The exact number of x-intercepts",
                       "The y-intercept value",
-                    ], correctAnswer: "The number of times the graph intersects the x-axis at maximum" },
-                  { id: "question-2", type: "multiple_choice", prompt: "A polynomial function is always:", options: ["Linear", "Continuous", "Parabolic", "Increasing"], correctAnswer: "Continuous" },
+                    ],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "A polynomial function is always:",
+                    options: ["Linear", "Continuous", "Parabolic", "Increasing"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -395,9 +403,9 @@ export const seedLesson2_1 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -410,8 +418,8 @@ export const seedLesson2_1 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

@@ -15,7 +15,7 @@ Students interpret x-intercepts as solutions and connect graphical solutions to 
 ### 1-3 Complex Numbers
 Introduction to imaginary unit i, operations with complex numbers, and understanding why non-real solutions occur.
 
-### 1-4 Solve Quadratic Equations by Factoring
+### 1-4 Solving Quadratic Equations by Factoring
 Students factor trinomials and apply the zero product property.
 
 ### 1-5 Solving Quadratic Equations by Completing the Square

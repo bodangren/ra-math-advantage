@@ -3,11 +3,15 @@ import {
   buildIm3GuidedPilotSeedDocuments,
   buildIm3PilotSeedDocuments,
   buildIm3WorkedPilotSeedDocument,
+  IM3_PHASE_FOUR_WORKED_PROPS,
   seedLesson1,
   upsertIm3SelectedPilotSeed,
 } from "@/convex/seed/seed_lesson_1_1";
+import { normalizeSeedProps } from "@/lib/activities/seed-props";
 import {
+  IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
   IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+  IM3_GUIDED_VARIANT_KEY,
   IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
   IM3_PILOT_VARIANT_KEY,
   IM3_PILOT_NODE,
@@ -82,22 +86,10 @@ describe("selected IM3 quadratic seed documents", () => {
         {
           _id: "activities:source",
           componentKey: "step-by-step-solver",
-          props: {
-  problemType: "graphing",
-  equation: "f(x) = x^2",
-  steps: [
-    { expression: "x = -2", explanation: "Evaluate at x = -2" },
-    { expression: "f(-2) = (-2)^2 = 4", explanation: "Calculate f(-2)" },
-    { expression: "x = -1", explanation: "Evaluate at x = -1" },
-    { expression: "f(-1) = (-1)^2 = 1", explanation: "Calculate f(-1)" },
-    { expression: "x = 0", explanation: "Evaluate at x = 0" },
-    { expression: "f(0) = 0^2 = 0", explanation: "Calculate f(0) — the vertex" },
-    { expression: "x = 1", explanation: "Evaluate at x = 1" },
-    { expression: "f(1) = 1^2 = 1", explanation: "Calculate f(1)" },
-    { expression: "x = 2", explanation: "Evaluate at x = 2" },
-    { expression: "f(2) = 2^2 = 4", explanation: "Calculate f(2)" },
-  ],
-},
+          props: normalizeSeedProps(
+            "step-by-step-solver",
+            IM3_PHASE_FOUR_WORKED_PROPS,
+          ),
         },
       ],
       practice_variants: [],
@@ -126,7 +118,8 @@ describe("selected IM3 quadratic seed documents", () => {
           sequenceOrder: 1,
           sectionType: "text",
           content: {
-            markdown: "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
+            markdown:
+              "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
           },
         },
         {
@@ -198,21 +191,34 @@ describe("selected IM3 quadratic seed documents", () => {
       },
     };
 
-    const originalSourceContent = structuredClone(rows.phase_sections[0].content);
+    const originalSourceContent = structuredClone(
+      rows.phase_sections[0].content,
+    );
     rows.phase_sections[0].content = {
-      markdown: "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nInstead graph f(x) = x^2 + 9.",
+      markdown:
+        "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nInstead graph f(x) = x^2 + 9.",
     };
     const beforeWrongSource = structuredClone(rows);
-    await expect(upsertIm3SelectedPilotSeed({ db } as never, "lesson-version:1" as never, 9))
-      .rejects.toThrow("source sections must be unique");
+    await expect(
+      upsertIm3SelectedPilotSeed(
+        { db } as never,
+        "lesson-version:1" as never,
+        9,
+      ),
+    ).rejects.toThrow("source sections must be unique");
     expect(rows).toEqual(beforeWrongSource);
     rows.phase_sections[0].content = originalSourceContent;
 
     const originalProps = structuredClone(rows.activities[0].props);
     rows.activities[0].props = { equation: "f(x) = x^2 + 9" };
     const beforeWrongActivity = structuredClone(rows);
-    await expect(upsertIm3SelectedPilotSeed({ db } as never, "lesson-version:1" as never, 9))
-      .rejects.toThrow("Worked activity source is invalid");
+    await expect(
+      upsertIm3SelectedPilotSeed(
+        { db } as never,
+        "lesson-version:1" as never,
+        9,
+      ),
+    ).rejects.toThrow("Worked activity source is invalid");
     expect(rows).toEqual(beforeWrongActivity);
     rows.activities[0].props = originalProps;
 
@@ -228,14 +234,33 @@ describe("selected IM3 quadratic seed documents", () => {
     );
 
     expect(second).toEqual(first);
+    const selectedActivityIds = new Set([
+      IM3_TEACHER_LED_ACTIVITY_ID,
+      IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+      IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+    ]);
     expect(
-      rows.activities.filter((row) => row.masteryNodeId === IM3_PILOT_NODE),
+      rows.activities.filter((row) =>
+        selectedActivityIds.has(row.stableActivityId as never),
+      ),
     ).toHaveLength(3);
-    expect(rows.practice_variants).toHaveLength(2);
-    expect(rows.practice_items).toHaveLength(2);
+    const selectedVariantKeys = new Set([
+      IM3_GUIDED_VARIANT_KEY,
+      IM3_PILOT_VARIANT_KEY,
+    ]);
+    expect(
+      rows.practice_variants.filter((row) =>
+        selectedVariantKeys.has(row.variantKey as never),
+      ),
+    ).toHaveLength(2);
+    expect(
+      rows.practice_items.filter((row) =>
+        selectedVariantKeys.has(row.variantKey as never),
+      ),
+    ).toHaveLength(2);
     expect(
       rows.activities
-        .filter((row) => row.masteryNodeId === IM3_PILOT_NODE)
+        .filter((row) => selectedActivityIds.has(row.stableActivityId as never))
         .every((row) => row.approval && row.srsEligible === false),
     ).toBe(true);
     expect(rows.phase_sections[1].content).toEqual({
@@ -246,7 +271,11 @@ describe("selected IM3 quadratic seed documents", () => {
     const independent = rows.activities.find(
       (row) => row._id === first.independentActivityId,
     )!;
-    independent.approval = { status: "approved", reviewedBy: "profiles:reviewer", reviewedAt: 24 };
+    independent.approval = {
+      status: "approved",
+      reviewedBy: "profiles:reviewer",
+      reviewedAt: 24,
+    };
     independent.srsEligible = true;
     independent.props = Object.fromEntries(
       Object.entries(independent.props as Record<string, unknown>).reverse(),
@@ -259,7 +288,11 @@ describe("selected IM3 quadratic seed documents", () => {
       ),
     ).resolves.toEqual(first);
 
-    expect(independent.approval).toEqual({ status: "approved", reviewedBy: "profiles:reviewer", reviewedAt: 24 });
+    expect(independent.approval).toEqual({
+      status: "approved",
+      reviewedBy: "profiles:reviewer",
+      reviewedAt: 24,
+    });
     expect(independent.srsEligible).toBe(true);
 
     const guided = rows.activities.find(
@@ -375,14 +408,112 @@ describe("selected IM3 quadratic seed documents", () => {
       _handler(ctx: unknown): Promise<unknown>;
     };
     await handler._handler({ db });
-    await handler._handler({ db });
 
-    const selectedActivities = tableRows("activities").filter(
-      (row) => row.masteryNodeId === IM3_PILOT_NODE,
+    const phaseFour = tableRows("phase_versions").find(
+      (row) => row.phaseNumber === 4,
+    );
+    const phaseFourSections = () =>
+      tableRows("phase_sections")
+        .filter((row) => row.phaseVersionId === phaseFour?._id)
+        .sort(
+          (left, right) =>
+            (left.sequenceOrder as number) - (right.sequenceOrder as number),
+        );
+    const selectedWorked = tableRows("activities").find(
+      (row) => row.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID,
+    );
+    const domainRangeWorked = tableRows("activities").find(
+      (row) => row.stableActivityId === IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
+    );
+    const firstPhaseFourSections = structuredClone(phaseFourSections());
+    const preservedSequenceThree = firstPhaseFourSections.find(
+      (row) => row.sequenceOrder === 3,
+    );
+    const preservedSequenceThreeActivity = tableRows("activities").find(
+      (row) =>
+        row._id ===
+        (preservedSequenceThree?.content as { activityId?: unknown })
+          ?.activityId,
+    );
+    expect(preservedSequenceThreeActivity?.props).toMatchObject({
+      variant: "plot_from_equation",
+      equation: "y = x^2",
+    });
+    expect(firstPhaseFourSections).toEqual([
+      expect.objectContaining({
+        sequenceOrder: 1,
+        sectionType: "text",
+        content: {
+          markdown:
+            "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
+        },
+      }),
+      expect.objectContaining({
+        sequenceOrder: 2,
+        sectionType: "activity",
+        content: {
+          componentKey: "graphing-explorer",
+          activityId: selectedWorked?._id,
+        },
+      }),
+      expect.objectContaining({
+        sequenceOrder: 3,
+        sectionType: "activity",
+        content: preservedSequenceThree?.content,
+      }),
+      expect.objectContaining({
+        sequenceOrder: 4,
+        sectionType: "text",
+        content: {
+          markdown:
+            "## State the Domain and Range\n\nGraph $f(x) = x^2 + 2x - 3$. State the domain and range.",
+        },
+      }),
+      expect.objectContaining({
+        sequenceOrder: 5,
+        sectionType: "activity",
+        content: {
+          componentKey: "graphing-explorer",
+          activityId: domainRangeWorked?._id,
+        },
+      }),
+    ]);
+
+    await handler._handler({ db });
+    expect(phaseFourSections()).toEqual(firstPhaseFourSections);
+    for (const activityId of [selectedWorked?._id, domainRangeWorked?._id]) {
+      expect(
+        tableRows("phase_sections").filter(
+          (row) =>
+            (row.content as { activityId?: unknown })?.activityId ===
+            activityId,
+        ),
+      ).toHaveLength(1);
+    }
+
+    const selectedActivityIds = new Set([
+      IM3_TEACHER_LED_ACTIVITY_ID,
+      IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+      IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+    ]);
+    const selectedVariantKeys = new Set([
+      IM3_GUIDED_VARIANT_KEY,
+      IM3_PILOT_VARIANT_KEY,
+    ]);
+    const selectedActivities = tableRows("activities").filter((row) =>
+      selectedActivityIds.has(row.stableActivityId as never),
     );
     expect(selectedActivities).toHaveLength(3);
-    expect(tableRows("practice_variants")).toHaveLength(2);
-    expect(tableRows("practice_items")).toHaveLength(2);
+    expect(
+      tableRows("practice_variants").filter((row) =>
+        selectedVariantKeys.has(row.variantKey as never),
+      ),
+    ).toHaveLength(2);
+    expect(
+      tableRows("practice_items").filter((row) =>
+        selectedVariantKeys.has(row.variantKey as never),
+      ),
+    ).toHaveLength(2);
 
     const version = tableRows("lesson_versions")[0];
     version.status = "draft";
@@ -507,7 +638,8 @@ describe("selected IM3 quadratic seed documents", () => {
             sequenceOrder: 1,
             sectionType: "text",
             content: {
-              markdown: "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
+              markdown:
+                "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
             },
           },
           {

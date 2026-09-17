@@ -9,7 +9,7 @@ interface LessonStandardLink {
 const module1LessonStandards: LessonStandardLink[] = [
   {
     lessonSlug: "module-1-lesson-1",
-    standardCode: "HSF-IF.C.7c",
+    standardCode: "HSF-IF.C.7a",
     isPrimary: true,
   },
   {
@@ -168,7 +168,7 @@ const module4LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-4-lesson-4",
-    standardCode: "HSF-IF.C.7a",
+    standardCode: "HSF-IF.C.7b",
     isPrimary: true,
   },
   {

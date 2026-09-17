@@ -5,6 +5,8 @@ import { Menu, X, CheckCircle2, Circle } from 'lucide-react';
 import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
 
 export interface PhaseNavItem {
+  phaseNumber?: number;
+  disabled?: boolean;
   phaseType: PhaseType;
   label: string;
   completed: boolean;
@@ -19,6 +21,7 @@ export interface LessonPageLayoutProps {
   phases: PhaseNavItem[];
   children: React.ReactNode;
   showTeacherPreviewBadge?: boolean;
+  onPhaseSelect?: (phaseNumber: number) => void;
 }
 
 /**
@@ -35,6 +38,7 @@ export function LessonPageLayout({
   phases,
   children,
   showTeacherPreviewBadge = false,
+  onPhaseSelect,
 }: LessonPageLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -121,12 +125,14 @@ export function LessonPageLayout({
             <button
               key={`${phase.phaseType}-${idx}`}
               type="button"
+              disabled={phase.disabled}
+              onClick={() => { onPhaseSelect?.(phase.phaseNumber ?? idx + 1); setSidebarOpen(false); }}
               data-current={phase.isCurrent ? 'true' : undefined}
               data-completed={phase.completed ? 'true' : undefined}
               aria-current={phase.isCurrent ? 'step' : undefined}
               aria-label={`Phase ${idx + 1}: ${phase.label}${phase.isCurrent ? ' (current)' : ''}${phase.completed ? ' (completed)' : ''}`}
               className={[
-                'flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors w-full text-left',
+                'flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50',
                 phase.isCurrent
                   ? 'bg-primary/10 text-primary font-medium'
                   : phase.completed

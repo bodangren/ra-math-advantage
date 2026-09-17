@@ -29,6 +29,26 @@ describe('PhaseContainer', () => {
       expect(wrapper.className).toMatch(/bg-/);
     });
 
+    it('uses the IM3 light foreground on the phase section', () => {
+      const { container } = render(
+        <PhaseContainer phaseType="explore">
+          <p>content</p>
+        </PhaseContainer>
+      );
+      const section = container.querySelector('section');
+      expect(section).toHaveClass('[--foreground:0.13_0.016_45]', 'text-foreground', '[--card:1_0_0]');
+    });
+
+    it('keeps KaTeX on the IM3 foreground in the phase section', () => {
+      const { container } = render(
+        <PhaseContainer phaseType="explore">
+          <p>content</p>
+        </PhaseContainer>
+      );
+      const section = container.querySelector('section');
+      expect(section).toHaveClass('[&_.katex]:!text-foreground');
+    });
+
     it('applies different background for different phaseTypes', () => {
       const { container: c1 } = render(
         <PhaseContainer phaseType="explore"><p>a</p></PhaseContainer>

@@ -60,7 +60,6 @@ describe('curriculum audit', () => {
     const report = runCurriculumAudit(root);
     const expectedFiles = [
       path.join(root, 'curriculum', 'implementation', 'class-period-packages', 'module-1.json'),
-      path.join(root, 'curriculum', 'implementation', 'practice-v1', 'activity-map.json'),
     ];
 
     expect(report.summary.moduleCount).toBe(9);

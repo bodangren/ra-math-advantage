@@ -19,6 +19,9 @@ const LESSON_ID = 'lesson-1' as Id<'lessons'>;
 const LESSON_VERSION_ID = 'lesson-version-1' as Id<'lesson_versions'>;
 const PHASE_ID = 'phase-1' as Id<'phase_versions'>;
 const STANDARD_ID = 'standard-1' as Id<'competency_standards'>;
+const TEACHER_SOURCE_ACTIVITY_ID = 'activities:phase-four-teacher-source';
+const TEACHER_SOURCE_STABLE_ACTIVITY_ID =
+  'math.im3.skill.1.1.graph-quadratic-functions.worked_example';
 
 type CompletePhaseArgs = {
   userId: Id<'profiles'>;
@@ -50,9 +53,31 @@ const completePhaseHandler = (
 function createContextHarness({
   lessonSlug,
   phaseNumber,
+  phaseType = 'worked_example',
+  phaseSections = [{
+    _id: 'phase-sections:phase-four-teacher-source',
+    phaseVersionId: PHASE_ID,
+    sequenceOrder: 3,
+    sectionType: 'activity',
+    content: {
+      componentKey: 'graphing-explorer',
+      activityId: TEACHER_SOURCE_ACTIVITY_ID,
+    },
+  }],
+  sourceActivity = {
+    _id: TEACHER_SOURCE_ACTIVITY_ID,
+    stableActivityId: TEACHER_SOURCE_STABLE_ACTIVITY_ID,
+    masteryNodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+    componentKey: 'graphing-explorer',
+    learningEvidenceMode: 'worked_example',
+    srsEligible: false,
+  },
 }: {
   lessonSlug: string;
   phaseNumber: number;
+  phaseType?: string;
+  phaseSections?: Array<Record<string, unknown>>;
+  sourceActivity?: Record<string, unknown>;
 }): ContextHarness {
   const queryCalls: QueryCall[] = [];
   const inserts: ContextHarness['inserts'] = [];
@@ -75,7 +100,7 @@ function createContextHarness({
     _id: PHASE_ID,
     lessonVersionId: LESSON_VERSION_ID,
     phaseNumber,
-    phaseType: 'worked_example',
+    phaseType,
     createdAt: 1,
   };
   const standard = {
@@ -90,7 +115,7 @@ function createContextHarness({
     withIndex: vi.fn((index: string, _configure: (query: unknown) => unknown) => {
       queryCalls.push({ table, index });
 
-      return {
+      const result = {
         unique: vi.fn(async () => {
           if (table === 'lessons' && index === 'by_slug') return lesson;
           if (table === 'phase_versions' && index === 'by_lesson_version_and_phase') {
@@ -101,14 +126,25 @@ function createContextHarness({
         }),
         collect: vi.fn(async () => {
           if (table === 'lesson_versions') return [lessonVersion];
+          if (table === 'phase_sections') return phaseSections;
           return [];
         }),
+        first: vi.fn(async () => {
+          if (table === 'phase_sections') return phaseSections[0] ?? null;
+          return null;
+        }),
+        order: vi.fn(() => result),
       };
+      return result;
     }),
   }));
 
   const db = {
-    get: vi.fn(async () => null),
+    normalizeId: vi.fn((_table: string, id: string) => id),
+    get: vi.fn(async (id: string) => {
+      if (id === TEACHER_SOURCE_ACTIVITY_ID) return sourceActivity;
+      return null;
+    }),
     query,
     insert: vi.fn(async (table: string, document: Record<string, unknown>) => {
       inserts.push({ table, document });
@@ -167,9 +203,6 @@ describe('student completePhase linked-standard handling', () => {
       index: 'by_lesson_version_and_phase',
     });
     expect(harness.inserts).toHaveLength(0);
-    expect(harness.inserts).not.toContainEqual(expect.objectContaining({
-      table: 'student_competency',
-    }));
     expect(harness.patches).toHaveLength(0);
     expect(createHandlerMock).not.toHaveBeenCalled();
     expect(processMock).not.toHaveBeenCalled();
@@ -192,5 +225,25 @@ describe('student completePhase linked-standard handling', () => {
     });
     expect(harness.inserts.map(({ table }) => table)).toEqual(['student_progress', 'student_competency']);
     expect(createHandlerMock).not.toHaveBeenCalled();
+  });
+
+  it('treats phase 4 in another lesson as nonpilot and preserves linked-standard competency behavior', async () => {
+    const harness = createContextHarness({
+      lessonSlug: 'module-5-lesson-3',
+      phaseNumber: 4,
+    });
+
+    await expect(runCompletion(harness, 'module-5-lesson-3', 4)).resolves.toEqual({
+      success: true,
+      nextPhaseUnlocked: true,
+    });
+
+    expect(harness.queryCalls).toContainEqual({
+      table: 'competency_standards',
+      index: 'by_code',
+    });
+    expect(harness.inserts.map(({ table }) => table)).toEqual(['student_progress', 'student_competency']);
+    expect(createHandlerMock).not.toHaveBeenCalled();
+    expect(processMock).not.toHaveBeenCalled();
   });
 });

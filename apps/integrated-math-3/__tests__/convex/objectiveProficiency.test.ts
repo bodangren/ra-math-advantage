@@ -92,6 +92,7 @@ function makeMockCtx(overrides: {
   const cardQueryMock = {
     withIndex: vi.fn().mockReturnValue({
       collect: vi.fn().mockResolvedValue(cards),
+      take: vi.fn().mockImplementation((limit: number) => Promise.resolve(cards.slice(0, limit))),
     }),
   };
 
@@ -682,6 +683,7 @@ describe('getStudentProficiencySummaryHandler', () => {
           }
           return {
             collect: () => Promise.resolve(cards.filter((c) => !capturedStudentId || c.studentId === capturedStudentId)),
+            take: (limit: number) => Promise.resolve(cards.filter((c) => !capturedStudentId || c.studentId === capturedStudentId).slice(0, limit)),
           };
         },
       };
@@ -1194,6 +1196,7 @@ describe('getTeacherClassProficiencyHandler', () => {
       let capturedStudentId: Id<'profiles'> | null = null;
       return {
         collect: vi.fn().mockResolvedValue(cards),
+      take: vi.fn().mockImplementation((limit: number) => Promise.resolve(cards.slice(0, limit))),
         withIndex: (_indexName: string, fn?: (q: { eq: (field: string, value: unknown) => unknown }) => void) => {
           if (fn) {
             const mockQ: { eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown } } = {
@@ -1208,6 +1211,7 @@ describe('getTeacherClassProficiencyHandler', () => {
           }
           return {
             collect: () => Promise.resolve(cards.filter((c) => !capturedStudentId || c.studentId === capturedStudentId)),
+            take: (limit: number) => Promise.resolve(cards.filter((c) => !capturedStudentId || c.studentId === capturedStudentId).slice(0, limit)),
           };
         },
       };

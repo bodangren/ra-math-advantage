@@ -67,13 +67,13 @@ const MODULE_2_QUESTIONS: PracticeTestQuestion[] = [
     lessonId: 'lesson-2-2',
     lessonTitle: 'Analyzing Graphs of Polynomial Functions',
     prompt: 'What does multiplicity of a root tell you about the graph?',
-    correctAnswer: 'How many times the graph crosses or touches the x-axis at that root',
+    correctAnswer: 'The number of times its factor occurs',
     distractors: [
       'The exact y-value at the root',
       'Whether the root is real or complex',
       'The degree of the polynomial',
     ],
-    explanation: 'Multiplicity affects behavior: odd multiplicity crosses, even multiplicity touches and turns around.',
+    explanation: 'Multiplicity counts repeated factors. A root with odd multiplicity crosses the x-axis. A root with even multiplicity touches the axis and turns.',
     objectiveTags: ['A-APR.3'],
   },
   {
@@ -169,9 +169,9 @@ const MODULE_2_QUESTIONS: PracticeTestQuestion[] = [
     lessonId: 'lesson-2-4',
     lessonTitle: 'Dividing Polynomials',
     prompt: 'Divide: (2x^3 + 5x^2 - 4x - 10) ÷ (x + 3) using synthetic division. What is the remainder?',
-    correctAnswer: '-1',
-    distractors: ['1', '-7', '0'],
-    explanation: 'Use -3 (since divisor is x + 3): coefficients 2, 5, -4, -10. Bring down 2, multiply: -6, add: -1, multiply: 3, add: -1, multiply: 3, add: -7. Remainder is -7? Wait... Let me recalculate: 2 → 2(-3) = -6 → -1(-3) = 3 → -1(-3) = 3 → -7. Remainder is -7. Actually the remainder when dividing by x+3 is f(-3). f(-3) = 2(-27) + 5(9) -4(-3) - 10 = -54 + 45 + 12 - 10 = -7.',
+    correctAnswer: '-7',
+    distractors: ['1', '-1', '0'],
+    explanation: 'The Remainder Theorem gives f(-3) = -54 + 45 + 12 - 10 = -7.',
     objectiveTags: ['A-APR.2'],
   },
   {

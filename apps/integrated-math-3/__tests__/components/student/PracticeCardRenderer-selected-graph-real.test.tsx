@@ -55,6 +55,14 @@ function selectedQueueContext() {
       },
     ],
     practice_items: [{ _id: "practice-item", ...generated.item }],
+    learning_evidence: [
+      {
+        _id: "teacher-exposure",
+        learnerId: "student",
+        nodeId: IM3_PILOT_NODE,
+        origin: "teacher_led",
+      },
+    ],
   };
   const documents: Record<string, unknown> = {
     standard: { _id: "standard", code: IM3_PILOT_NODE },
@@ -70,18 +78,20 @@ function selectedQueueContext() {
             eq: (field: string, value: string) => unknown;
           }) => void,
         ) => {
-          let field: string | undefined;
-          let value: string | undefined;
-          apply?.({
-            eq: (nextField, nextValue) => {
-              field = nextField;
-              value = nextValue;
-              return undefined;
+          const filters: Array<[string, string]> = [];
+          const query = {
+            eq: (nextField: string, nextValue: string) => {
+              filters.push([nextField, nextValue]);
+              return query;
             },
+          };
+          apply?.({
+            eq: query.eq,
           });
           const selected = rows[table].filter(
-            (row) =>
-              !field || (row as Record<string, unknown>)[field] === value,
+            (row) => filters.every(
+              ([field, value]) => (row as Record<string, unknown>)[field] === value,
+            ),
           );
           return {
             collect: async () => selected,

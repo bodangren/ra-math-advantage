@@ -22,7 +22,7 @@
 
 import { internalQuery, type QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
-import { Id } from "./_generated/dataModel";
+import { type Doc, Id } from "./_generated/dataModel";
 import {
   aggregateCardsToEvidence,
   computeObjectiveProficiency,
@@ -952,3 +952,32 @@ export const getTeacherClassProficiency = internalQuery({
   args: { classId: v.string() },
   handler: getTeacherClassProficiencyHandler,
 });
+
+/** Use the objective policy for both current retention and the latest assessment. */
+export async function getKnowledgeProficiencyInputs(
+  ctx: QueryCtx,
+  studentId: Id<"profiles">,
+  cards: Doc<"srs_cards">[],
+  reviews: Parameters<typeof computeProficiencyForObjective>[4],
+  now: number,
+) {
+  const canonicalCards = withCanonicalVariants(cards);
+  const prefetched = await preFetchTeacherClassData(ctx, [studentId], new Map([[studentId, canonicalCards]]));
+  const objectiveIds = [...new Set(cards.map(card => card.objectiveId))];
+  const results = await Promise.all(objectiveIds.map(async objectiveId => {
+    const objectiveCards = canonicalCards.filter(card => card.objectiveId === objectiveId);
+    const latestAssessment = Math.max(0, ...objectiveCards.map(card => {
+      const timestamp = card.lastReview ? Date.parse(card.lastReview) : NaN;
+      return Number.isFinite(timestamp) ? Math.min(now, timestamp) : 0;
+    }));
+    const atTime = (timestamp: number) => objectiveCards.map(card => {
+      const lastReview = card.lastReview ? Date.parse(card.lastReview) : NaN;
+      return { ...card, elapsedDays: Number.isFinite(lastReview)
+        ? Math.max(0, (timestamp - lastReview) / 86_400_000) : card.elapsedDays };
+    });
+    const assessed = await computeProficiencyForObjective(ctx, studentId, objectiveId, atTime(latestAssessment), reviews, prefetched);
+    const current = await computeProficiencyForObjective(ctx, studentId, objectiveId, atTime(now), reviews, prefetched);
+    return { assessed, current: { ...current, isProficient: assessed.isProficient } };
+  }));
+  return { assessed: results.map(result => result.assessed), current: results.map(result => result.current) };
+}

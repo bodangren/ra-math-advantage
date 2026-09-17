@@ -1,27 +1,40 @@
 import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { getGenerator } from '@math-platform/math-content/knowledge-space';
 import { LessonRenderer, type LessonRendererProps } from '@/components/lesson/LessonRenderer';
 import type { PhaseSection } from '@/components/lesson/PhaseRenderer';
-import { createServerOwnedActivitySubmission, getLesson16QuizReceipt, getQuadraticFormulaAttempt, startQuadraticFormulaAttempt, submitActivity } from '@/lib/activities/submission';
-import { convexToJson, jsonToConvex } from 'convex/values';
-
-vi.mock('@/lib/activities/submission', () => ({
+import { buildIm3CompareMaximumWorkedSeedDocument } from '@/convex/seed/seed_lesson_1_1';
+import {
+  IM3_DOMAIN_RANGE_NODE,
+  IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
+  IM3_EQUATION_RATE_NODE,
+  IM3_EQUATION_RATE_WORKED_ACTIVITY_ID,
+  IM3_PILOT_NODE,
+  IM3_PROFIT_MAXIMUM_NODE,
+  IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID,
+  IM3_PROFIT_MODEL_NODE,
+  IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID,
+  IM3_SYMMETRY_NODE,
+  IM3_SYMMETRY_WORKED_ACTIVITY_ID,
+  IM3_TEACHER_LED_ACTIVITY_ID,
+} from '@/lib/practice/learning-evidence-pilot';
+const mocks = vi.hoisted(() => ({
   submitActivity: vi.fn(),
-  createServerOwnedActivitySubmission: vi.fn(),
+  submitIm3PilotActivity: vi.fn(),
+  createServerOwnedActivitySubmission: vi.fn((input) => mocks.submitActivity(input)),
   getSelectedWorkedAcknowledgement: vi.fn().mockResolvedValue(false),
-  getQuadraticFormulaAttempt: vi.fn(),
-  startQuadraticFormulaAttempt: vi.fn(),
-  getLesson16QuizReceipt: vi.fn().mockResolvedValue(null),
-  isLesson16QuizSubmitReceipt: (value: Record<string, unknown>) => typeof value.submissionId === 'string' && Number.isInteger(value.score) && value.maxScore === 2 && Object.keys(value).sort().join('|') === 'maxScore|score|submissionId',
 }));
 
-const mockSubmitActivity = vi.mocked(submitActivity);
-const mockCreateServerOwnedActivitySubmission = vi.mocked(createServerOwnedActivitySubmission);
-const mockGetQuadraticFormulaAttempt = vi.mocked(getQuadraticFormulaAttempt);
-const mockStartQuadraticFormulaAttempt = vi.mocked(startQuadraticFormulaAttempt);
-const mockGetLesson16QuizReceipt = vi.mocked(getLesson16QuizReceipt);
-vi.stubGlobal('crypto', { randomUUID: vi.fn(() => 'strict-receipt-key') });
+vi.mock('@/lib/activities/submission', () => ({
+  submitActivity: mocks.submitActivity,
+  submitIm3PilotActivity: mocks.submitIm3PilotActivity,
+  createServerOwnedActivitySubmission: mocks.createServerOwnedActivitySubmission,
+  getSelectedWorkedAcknowledgement: mocks.getSelectedWorkedAcknowledgement,
+}));
+
+const mockSubmitActivity = mocks.submitActivity;
+const mockSubmitIm3PilotActivity = mocks.submitIm3PilotActivity;
 
 // Mock heavy sub-components
 vi.mock('@/components/textbook/LessonPageLayout', () => ({
@@ -57,16 +70,12 @@ vi.mock('@/components/lesson/LessonStepper', () => ({
   ),
 }));
 
-vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/components/lesson/PhaseRenderer')>()),
-  PhaseRenderer: ({ phaseType, sections, onActivitySubmit, onActivityComplete, quadraticFormulaAttempt, lesson16QuizReceipt, lesson16QuizPendingAnswers }: {
+vi.mock('@/components/lesson/PhaseRenderer', () => ({
+  PhaseRenderer: ({ phaseType, sections, onActivitySubmit, onActivityComplete }: {
     phaseType: string;
-    sections: Array<{ id: string; content: { activityId?: string; componentKey?: string; learningEvidenceMode?: string; payloadActivityId?: string; payloadOverrides?: Record<string, unknown>; capturePayload?: (payload: Record<string, unknown>) => void } }>;
-    onActivitySubmit?: (activityId: string, payload: unknown) => void;
+    sections: Array<{ id: string; content: { activityId?: string } }>;
+    onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
     onActivityComplete?: (activityId: string) => void;
-    quadraticFormulaAttempt?: { state: string; pendingSubmissionId?: string; submissionId?: string; idempotencyKey?: string; props?: { equation?: string }; answers?: Record<string, unknown>; score?: number; maxScore?: number };
-    lesson16QuizReceipt?: { submissionId: string; score: number; maxScore: number };
-    lesson16QuizPendingAnswers?: Record<string, string>;
   }) => (
     <div
       data-testid="phase-renderer"
@@ -74,17 +83,6 @@ vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
       data-section-count={sections.length}
       data-has-on-submit={onActivitySubmit ? 'true' : 'false'}
       data-has-on-complete={onActivityComplete ? 'true' : 'false'}
-      data-quadratic-state={quadraticFormulaAttempt?.state}
-      data-quadratic-pending-id={quadraticFormulaAttempt?.pendingSubmissionId}
-      data-quadratic-submission-id={quadraticFormulaAttempt?.submissionId}
-      data-quadratic-key={quadraticFormulaAttempt?.idempotencyKey}
-      data-quadratic-equation={quadraticFormulaAttempt?.props?.equation}
-      data-quadratic-answers={quadraticFormulaAttempt?.answers ? JSON.stringify(quadraticFormulaAttempt.answers) : undefined}
-      data-quadratic-score={quadraticFormulaAttempt?.score}
-      data-quadratic-max-score={quadraticFormulaAttempt?.maxScore}
-      data-quiz-submission-id={lesson16QuizReceipt?.submissionId}
-      data-quiz-score={lesson16QuizReceipt?.score}
-      data-quiz-pending-answers={lesson16QuizPendingAnswers ? JSON.stringify(lesson16QuizPendingAnswers) : undefined}
     >
       {sections.map((s) => (
         <button
@@ -94,22 +92,15 @@ vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
           onClick={() => {
             const activityId = s.content?.activityId;
             if (activityId) {
-              const isQuadraticFormula = s.content.componentKey === 'quadratic-formula';
               const payload = {
                 contractVersion: 'practice.v1',
-                activityId: s.content.payloadActivityId ?? activityId,
-                mode: s.content.learningEvidenceMode ?? 'independent_practice',
+                activityId,
+                mode: 'independent_practice',
                 status: 'submitted',
                 attemptNumber: 1,
                 submittedAt: '2026-01-01T00:00:00.000Z',
-                answers: isQuadraticFormula ? { discriminant: '16', x1: '2', x2: '-2' } : s.content.componentKey === 'comprehension-quiz' ? { 'discriminant-purpose': 'The number and type of solutions', 'zero-discriminant-real-solution-count': '1' } : { q1: 'A' },
-                parts: isQuadraticFormula
-                  ? [
-                      { partId: 'discriminant', rawAnswer: '16' },
-                      { partId: 'x1', rawAnswer: '2' },
-                      { partId: 'x2', rawAnswer: '-2' },
-                    ]
-                  : s.content.componentKey === 'comprehension-quiz' ? [{ partId: 'discriminant-purpose', rawAnswer: 'The number and type of solutions' }, { partId: 'zero-discriminant-real-solution-count', rawAnswer: '1' }] : [{ partId: 'q1', rawAnswer: 'A', isCorrect: true, score: 1, maxScore: 1 }],
+                answers: { q1: 'A' },
+                parts: [{ partId: 'q1', rawAnswer: 'A', isCorrect: true, score: 1, maxScore: 1 }],
                 timing: {
                   startedAt: '2026-01-01T00:00:00.000Z',
                   submittedAt: '2026-01-01T00:01:00.000Z',
@@ -121,14 +112,11 @@ vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
                   visibilityHiddenCount: 0,
                   confidence: 'high',
                 },
-                ...s.content.payloadOverrides,
               };
-              s.content.capturePayload?.(payload);
               const result = onActivitySubmit?.(activityId, payload);
-              if (result && typeof (result as Promise<unknown>).catch === 'function') {
-                (result as Promise<unknown>).catch(() => {});
-              }
-              onActivityComplete?.(activityId);
+              void Promise.resolve(result)
+                .then(() => onActivityComplete?.(activityId))
+                .catch(() => undefined);
             }
           }}
         >
@@ -179,6 +167,336 @@ const activitySection = (id: string, activityId: string): PhaseSection => ({
   content: { componentKey: 'test-activity', activityId },
 });
 
+const equationWorkedActivitySection: PhaseSection = {
+  id: 'equation-worked-activity',
+  sequenceOrder: 2,
+  sectionType: 'activity',
+  content: {
+    componentKey: 'rate-of-change-calculator',
+    activityId: 'activities:equation-worked',
+    stableActivityId: IM3_EQUATION_RATE_WORKED_ACTIVITY_ID,
+    masteryNodeId: IM3_EQUATION_RATE_NODE,
+    learningEvidenceMode: 'worked_example',
+    srsEligible: false,
+  },
+};
+
+const domainRangeWorkedActivitySection: PhaseSection = {
+  id: 'domain-range-worked-activity',
+  sequenceOrder: 2,
+  sectionType: 'activity',
+  content: {
+    componentKey: 'graphing-explorer',
+    activityId: 'activities:domain-range-worked',
+    stableActivityId: IM3_DOMAIN_RANGE_WORKED_ACTIVITY_ID,
+    masteryNodeId: IM3_DOMAIN_RANGE_NODE,
+    learningEvidenceMode: 'worked_example',
+    srsEligible: false,
+  },
+};
+
+const profitModelWorkedActivitySection: PhaseSection = {
+  id: 'profit-model-worked-activity',
+  sequenceOrder: 2,
+  sectionType: 'activity',
+  content: {
+    componentKey: 'fill-in-the-blank',
+    activityId: 'activities:profit-model-worked',
+    stableActivityId: IM3_PROFIT_MODEL_WORKED_ACTIVITY_ID,
+    masteryNodeId: IM3_PROFIT_MODEL_NODE,
+    learningEvidenceMode: 'worked_example',
+    srsEligible: false,
+  },
+};
+
+const profitMaximumWorkedActivitySection: PhaseSection = {
+  id: 'profit-maximum-worked-activity',
+  sequenceOrder: 3,
+  sectionType: 'activity',
+  content: {
+    componentKey: 'fill-in-the-blank',
+    activityId: 'activities:profit-maximum-worked',
+    stableActivityId: IM3_PROFIT_MAXIMUM_WORKED_ACTIVITY_ID,
+    masteryNodeId: IM3_PROFIT_MAXIMUM_NODE,
+    learningEvidenceMode: 'worked_example',
+    srsEligible: false,
+  },
+};
+
+const graphWorkedActivitySection: PhaseSection = {
+  id: 'graph-worked-activity',
+  sequenceOrder: 2,
+  sectionType: 'activity',
+  content: {
+    componentKey: 'graphing-explorer',
+    activityId: 'activities:graph-worked',
+    stableActivityId: IM3_TEACHER_LED_ACTIVITY_ID,
+    masteryNodeId: IM3_PILOT_NODE,
+    learningEvidenceMode: 'worked_example',
+    srsEligible: false,
+  },
+};
+
+const symmetryWorkedOutput = getGenerator('quadratic-graph-analysis').generate({
+  nodeId: IM3_SYMMETRY_NODE,
+  seed: 0,
+  difficulty: 0.5,
+});
+
+const symmetryWorkedActivitySection: PhaseSection = {
+  id: 'symmetry-worked-activity',
+  sequenceOrder: 2,
+  sectionType: 'activity',
+  content: {
+    componentKey: 'graphing-explorer',
+    activityId: 'activities:symmetry-worked',
+    stableActivityId: IM3_SYMMETRY_WORKED_ACTIVITY_ID,
+    masteryNodeId: IM3_SYMMETRY_NODE,
+    learningEvidenceMode: 'worked_example',
+    srsEligible: false,
+    activityProps: symmetryWorkedOutput.data.rendererProps as Record<string, unknown>,
+  },
+};
+
+const compareMaximumWorkedDocument = buildIm3CompareMaximumWorkedSeedDocument(
+  Date.parse('2026-08-20T14:30:00.000Z'),
+);
+
+const compareMaximumWorkedActivitySection: PhaseSection = {
+  id: 'compare-maximum-worked-activity',
+  sequenceOrder: 3,
+  sectionType: 'activity',
+  content: {
+    componentKey: compareMaximumWorkedDocument.componentKey,
+    activityId: 'activities:compare-maximum-worked',
+    stableActivityId: compareMaximumWorkedDocument.stableActivityId,
+    masteryNodeId: compareMaximumWorkedDocument.masteryNodeId,
+    learningEvidenceMode: compareMaximumWorkedDocument.learningEvidenceMode,
+    srsEligible: compareMaximumWorkedDocument.srsEligible,
+    activityProps: compareMaximumWorkedDocument.props as Record<string, unknown>,
+  },
+};
+
+const symmetryWorkedNonMatchCases = [
+  ['wrong stableActivityId', {
+    phaseType: 'worked_example',
+    section: {
+      ...symmetryWorkedActivitySection,
+      content: { ...symmetryWorkedActivitySection.content, stableActivityId: 'other-symmetry-worked' },
+    },
+  }],
+  ['wrong masteryNodeId', {
+    phaseType: 'worked_example',
+    section: {
+      ...symmetryWorkedActivitySection,
+      content: { ...symmetryWorkedActivitySection.content, masteryNodeId: 'other-node' },
+    },
+  }],
+  ['wrong componentKey', {
+    phaseType: 'worked_example',
+    section: {
+      ...symmetryWorkedActivitySection,
+      content: { ...symmetryWorkedActivitySection.content, componentKey: 'other-component' },
+    },
+  }],
+  ['wrong learningEvidenceMode', {
+    phaseType: 'worked_example',
+    section: {
+      ...symmetryWorkedActivitySection,
+      content: { ...symmetryWorkedActivitySection.content, learningEvidenceMode: 'guided_practice' },
+    },
+  }],
+  ['srsEligible true', {
+    phaseType: 'worked_example',
+    section: {
+      ...symmetryWorkedActivitySection,
+      content: { ...symmetryWorkedActivitySection.content, srsEligible: true },
+    },
+  }],
+  ['non-worked phase type', {
+    phaseType: 'learn',
+    section: symmetryWorkedActivitySection,
+  }],
+] as const;
+
+const compareMaximumWorkedNonMatchCases = [
+  ['wrong stableActivityId', {
+    phaseType: 'worked_example',
+    section: {
+      ...compareMaximumWorkedActivitySection,
+      content: {
+        ...compareMaximumWorkedActivitySection.content,
+        stableActivityId: 'other-compare-maximum-worked',
+      },
+    },
+  }],
+  ['wrong masteryNodeId', {
+    phaseType: 'worked_example',
+    section: {
+      ...compareMaximumWorkedActivitySection,
+      content: { ...compareMaximumWorkedActivitySection.content, masteryNodeId: 'other-node' },
+    },
+  }],
+  ['wrong componentKey', {
+    phaseType: 'worked_example',
+    section: {
+      ...compareMaximumWorkedActivitySection,
+      content: { ...compareMaximumWorkedActivitySection.content, componentKey: 'other-component' },
+    },
+  }],
+  ['wrong learningEvidenceMode', {
+    phaseType: 'worked_example',
+    section: {
+      ...compareMaximumWorkedActivitySection,
+      content: {
+        ...compareMaximumWorkedActivitySection.content,
+        learningEvidenceMode: 'guided_practice',
+      },
+    },
+  }],
+  ['srsEligible true', {
+    phaseType: 'worked_example',
+    section: {
+      ...compareMaximumWorkedActivitySection,
+      content: { ...compareMaximumWorkedActivitySection.content, srsEligible: true },
+    },
+  }],
+  ['non-worked phase type', {
+    phaseType: 'learn',
+    section: compareMaximumWorkedActivitySection,
+  }],
+] as const;
+
+const equationWorkedNonMatchCases = [
+  ['wrong stableActivityId', {
+    phaseType: 'worked_example',
+    section: {
+      ...equationWorkedActivitySection,
+      content: { ...equationWorkedActivitySection.content, stableActivityId: 'other-worked-activity' },
+    },
+  }],
+  ['wrong masteryNodeId', {
+    phaseType: 'worked_example',
+    section: {
+      ...equationWorkedActivitySection,
+      content: { ...equationWorkedActivitySection.content, masteryNodeId: 'other-node' },
+    },
+  }],
+  ['wrong componentKey', {
+    phaseType: 'worked_example',
+    section: {
+      ...equationWorkedActivitySection,
+      content: { ...equationWorkedActivitySection.content, componentKey: 'other-component' },
+    },
+  }],
+  ['wrong learningEvidenceMode', {
+    phaseType: 'worked_example',
+    section: {
+      ...equationWorkedActivitySection,
+      content: { ...equationWorkedActivitySection.content, learningEvidenceMode: 'guided_practice' },
+    },
+  }],
+  ['srsEligible true', {
+    phaseType: 'worked_example',
+    section: {
+      ...equationWorkedActivitySection,
+      content: { ...equationWorkedActivitySection.content, srsEligible: true },
+    },
+  }],
+  ['non-worked phase type', {
+    phaseType: 'learn',
+    section: equationWorkedActivitySection,
+  }],
+] as const;
+
+const domainRangeWorkedNonMatchCases = [
+  ['wrong stableActivityId', {
+    ...domainRangeWorkedActivitySection,
+    content: { ...domainRangeWorkedActivitySection.content, stableActivityId: 'other-domain-range-worked' },
+  }],
+  ['wrong masteryNodeId', {
+    ...domainRangeWorkedActivitySection,
+    content: { ...domainRangeWorkedActivitySection.content, masteryNodeId: 'other-node' },
+  }],
+  ['wrong componentKey', {
+    ...domainRangeWorkedActivitySection,
+    content: { ...domainRangeWorkedActivitySection.content, componentKey: 'other-component' },
+  }],
+  ['wrong learningEvidenceMode', {
+    ...domainRangeWorkedActivitySection,
+    content: { ...domainRangeWorkedActivitySection.content, learningEvidenceMode: 'guided_practice' },
+  }],
+  ['srsEligible true', {
+    ...domainRangeWorkedActivitySection,
+    content: { ...domainRangeWorkedActivitySection.content, srsEligible: true },
+  }],
+] as const;
+
+const profitModelWorkedNonMatchCases = [
+  ['wrong stableActivityId', {
+    phaseType: 'worked_example',
+    section: {
+      ...profitModelWorkedActivitySection,
+      content: { ...profitModelWorkedActivitySection.content, stableActivityId: 'other-profit-worked' },
+    },
+  }],
+  ['wrong masteryNodeId', {
+    phaseType: 'worked_example',
+    section: {
+      ...profitModelWorkedActivitySection,
+      content: { ...profitModelWorkedActivitySection.content, masteryNodeId: 'other-node' },
+    },
+  }],
+  ['wrong componentKey', {
+    phaseType: 'worked_example',
+    section: {
+      ...profitModelWorkedActivitySection,
+      content: { ...profitModelWorkedActivitySection.content, componentKey: 'other-component' },
+    },
+  }],
+  ['wrong learningEvidenceMode', {
+    phaseType: 'worked_example',
+    section: {
+      ...profitModelWorkedActivitySection,
+      content: { ...profitModelWorkedActivitySection.content, learningEvidenceMode: 'guided_practice' },
+    },
+  }],
+  ['srsEligible true', {
+    phaseType: 'worked_example',
+    section: {
+      ...profitModelWorkedActivitySection,
+      content: { ...profitModelWorkedActivitySection.content, srsEligible: true },
+    },
+  }],
+  ['non-worked phase type', {
+    phaseType: 'learn',
+    section: profitModelWorkedActivitySection,
+  }],
+] as const;
+
+const graphWorkedNonMatchCases = [
+  ['wrong stableActivityId', {
+    ...graphWorkedActivitySection,
+    content: { ...graphWorkedActivitySection.content, stableActivityId: 'other-graph-worked-activity' },
+  }],
+  ['wrong masteryNodeId', {
+    ...graphWorkedActivitySection,
+    content: { ...graphWorkedActivitySection.content, masteryNodeId: 'other-node' },
+  }],
+  ['wrong componentKey', {
+    ...graphWorkedActivitySection,
+    content: { ...graphWorkedActivitySection.content, componentKey: 'other-component' },
+  }],
+  ['wrong learningEvidenceMode', {
+    ...graphWorkedActivitySection,
+    content: { ...graphWorkedActivitySection.content, learningEvidenceMode: 'guided_practice' },
+  }],
+  ['srsEligible true', {
+    ...graphWorkedActivitySection,
+    content: { ...graphWorkedActivitySection.content, srsEligible: true },
+  }],
+] as const;
+
 const defaultProps: LessonRendererProps = {
   lessonId: 'lesson-1',
   lessonTitle: 'Introduction to Linear Functions',
@@ -200,10 +518,8 @@ const defaultProps: LessonRendererProps = {
 describe('LessonRenderer - Activity Submission Flow', () => {
   beforeEach(() => {
     mockSubmitActivity.mockReset();
+    mockSubmitIm3PilotActivity.mockReset();
     mockSubmitActivity.mockResolvedValue({ success: true, submissionId: 'sub-123' });
-    mockCreateServerOwnedActivitySubmission.mockReset();
-    mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'qf-123', score: 3, maxScore: 3 });
-    mockGetLesson16QuizReceipt.mockReset().mockResolvedValue(null);
   });
 
   describe('activity submission wiring', () => {
@@ -212,7 +528,7 @@ describe('LessonRenderer - Activity Submission Flow', () => {
       expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-has-on-submit', 'true');
     });
 
-    it('does not pass an untrusted completion callback to PhaseRenderer', () => {
+    it('does not let a child completion callback bypass stored submission success', () => {
       render(<LessonRenderer {...defaultProps} />);
       expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-has-on-complete', 'false');
     });
@@ -233,6 +549,7 @@ describe('LessonRenderer - Activity Submission Flow', () => {
       await waitFor(() => {
         expect(mockSubmitActivity).toHaveBeenCalledOnce();
       });
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
     });
 
     it('forwards practice.v1 payload including timing to submitActivity', async () => {
@@ -253,14 +570,716 @@ describe('LessonRenderer - Activity Submission Flow', () => {
         const input = mockSubmitActivity.mock.calls[0][0];
         expect(input.activityId).toBe('act-1');
         expect(input.mode).toBe('independent_practice');
+        expect(input.status).toBe('submitted');
+        expect(input.attemptNumber).toBe(1);
+        expect(input.submittedAt).toBe('2026-01-01T00:00:00.000Z');
         expect(input.answers).toEqual({ q1: 'A' });
+        expect(input.parts).toEqual([
+          expect.objectContaining({ partId: 'q1', rawAnswer: 'A', isCorrect: true }),
+        ]);
         expect(input.timing).toBeDefined();
         expect(input.timing?.confidence).toBe('high');
+        expect(input.idempotencyKey).toEqual(expect.any(String));
+        expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
       });
     });
+
+    it('submits after explicit review the exact equation-rate Worked source before phase completion', async () => {
+      let resolveSubmission: ((value: { success: true; submissionId: string }) => void) | undefined;
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveSubmission = resolve;
+      }));
+
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'p8',
+          phaseNumber: 8,
+          phaseType: 'worked_example',
+          title: 'Example 4',
+          sections: [equationWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+
+      const input = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      expect(input).toEqual({
+        activityId: 'activities:equation-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: expect.any(String),
+      });
+      expect(new Date(input.submittedAt as string).toISOString()).toBe(input.submittedAt);
+      expect(input.idempotencyKey).toEqual(expect.any(String));
+      expect((input.idempotencyKey as string).trim()).not.toBe('');
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+
+      resolveSubmission?.({ success: true, submissionId: 'equation-worked-submission' });
+
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+      expect(mockSubmitActivity).toHaveBeenCalledTimes(1);
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('submits after explicit review the exact compare-maximum Worked source before phase completion', async () => {
+      let resolveSubmission: ((value: { success: true; submissionId: string }) => void) | undefined;
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveSubmission = resolve;
+      }));
+
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'compare-maximum-worked',
+          phaseNumber: 8,
+          phaseType: 'worked_example',
+          title: 'Example 2',
+          sections: [compareMaximumWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+
+      const input = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      expect(input).toEqual({
+        activityId: 'activities:compare-maximum-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: 'worked-example:activities:compare-maximum-worked',
+      });
+      expect(new Date(input.submittedAt as string).toISOString()).toBe(input.submittedAt);
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+
+      resolveSubmission?.({ success: true, submissionId: 'compare-maximum-worked-submission' });
+
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+      expect(mockSubmitActivity).toHaveBeenCalledTimes(1);
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('submits after explicit review the exact symmetry Worked source before phase completion', async () => {
+      let resolveSubmission: ((value: { success: true; submissionId: string }) => void) | undefined;
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveSubmission = resolve;
+      }));
+
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'symmetry-worked',
+          phaseNumber: 8,
+          phaseType: 'worked_example',
+          title: 'Example 2',
+          sections: [symmetryWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+
+      const input = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      expect(input).toEqual({
+        activityId: 'activities:symmetry-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: 'worked-example:activities:symmetry-worked',
+      });
+      expect(new Date(input.submittedAt as string).toISOString()).toBe(input.submittedAt);
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+
+      resolveSubmission?.({ success: true, submissionId: 'symmetry-worked-submission' });
+
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+      expect(mockSubmitActivity).toHaveBeenCalledTimes(1);
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it.each(symmetryWorkedNonMatchCases)(
+      'does not automatically submit the symmetry Worked source for %s',
+      async (_label, testCase) => {
+        render(<LessonRenderer
+          {...defaultProps}
+          phases={[{
+            phaseId: 'symmetry-worked-guard',
+            phaseNumber: 8,
+            phaseType: testCase.phaseType,
+            title: 'Example 2',
+            sections: [testCase.section],
+            status: 'current',
+            completed: false,
+          }]}
+        />);
+
+        expect(mockSubmitActivity).not.toHaveBeenCalled();
+        expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+        expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      },
+    );
+
+    it.each(compareMaximumWorkedNonMatchCases)(
+      'does not automatically submit the compare-maximum Worked source for %s',
+      async (_label, testCase) => {
+        render(<LessonRenderer
+          {...defaultProps}
+          phases={[{
+            phaseId: 'compare-maximum-worked-guard',
+            phaseNumber: 8,
+            phaseType: testCase.phaseType,
+            title: 'Example 2',
+            sections: [testCase.section],
+            status: 'current',
+            completed: false,
+          }]}
+        />);
+
+        expect(mockSubmitActivity).not.toHaveBeenCalled();
+        expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+        expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      },
+    );
+
+    it('submits after explicit review the exact domain-range Worked source before phase completion', async () => {
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'domain-range-worked',
+          phaseNumber: 4,
+          phaseType: 'worked_example',
+          title: 'Example 1',
+          sections: [domainRangeWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+      const input = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      expect(input).toEqual({
+        activityId: 'activities:domain-range-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: expect.any(String),
+      });
+      expect(new Date(input.submittedAt as string).toISOString()).toBe(input.submittedAt);
+      expect(input.idempotencyKey).toBe('worked-example:activities:domain-range-worked');
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('submits after explicit review the exact profit-model Worked source before phase completion', async () => {
+      let resolveSubmission: ((value: { success: true; submissionId: string }) => void) | undefined;
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveSubmission = resolve;
+      }));
+
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'profit-model-worked',
+          phaseNumber: 6,
+          phaseType: 'worked_example',
+          title: 'Example 3',
+          sections: [profitModelWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+
+      const input = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      expect(input).toEqual({
+        activityId: 'activities:profit-model-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: 'worked-example:activities:profit-model-worked',
+      });
+      expect(new Date(input.submittedAt as string).toISOString()).toBe(input.submittedAt);
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+
+      resolveSubmission?.({ success: true, submissionId: 'profit-model-worked-submission' });
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+      expect(mockSubmitActivity).toHaveBeenCalledTimes(1);
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('submits after separate review actions for profit-model and maximum-profit Worked sources before phase completion', async () => {
+      let resolveFirst: ((value: { success: true; submissionId: string }) => void) | undefined;
+      let resolveSecond: ((value: { success: true; submissionId: string }) => void) | undefined;
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveFirst = resolve;
+      }));
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveSecond = resolve;
+      }));
+
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'profit-model-and-maximum-worked',
+          phaseNumber: 6,
+          phaseType: 'worked_example',
+          title: 'Example 3',
+          sections: [profitModelWorkedActivitySection, profitMaximumWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+      expect(mockSubmitActivity.mock.calls[0]?.[0]).toEqual({
+        activityId: 'activities:profit-model-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: 'worked-example:activities:profit-model-worked',
+      });
+      expect(new Date(mockSubmitActivity.mock.calls[0]?.[0].submittedAt as string).toISOString())
+        .toBe(mockSubmitActivity.mock.calls[0]?.[0].submittedAt);
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+
+      resolveFirst?.({ success: true, submissionId: 'profit-model-worked-submission' });
+      await waitFor(() => expect(screen.getByRole('button', { name: 'I reviewed this worked example' })).toBeEnabled());
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(2));
+      expect(mockSubmitActivity.mock.calls[1]?.[0]).toEqual({
+        activityId: 'activities:profit-maximum-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: 'worked-example:activities:profit-maximum-worked',
+      });
+      expect(new Date(mockSubmitActivity.mock.calls[1]?.[0].submittedAt as string).toISOString())
+        .toBe(mockSubmitActivity.mock.calls[1]?.[0].submittedAt);
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+
+      resolveSecond?.({ success: true, submissionId: 'profit-maximum-worked-submission' });
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+      expect(mockSubmitActivity).toHaveBeenCalledTimes(2);
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('submits after separate review actions for both exact Worked sources before phase completion', async () => {
+      let resolveFirst: ((value: { success: true; submissionId: string }) => void) | undefined;
+      let resolveSecond: ((value: { success: true; submissionId: string }) => void) | undefined;
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveFirst = resolve;
+      }));
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveSecond = resolve;
+      }));
+
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'two-worked-sources',
+          phaseNumber: 4,
+          phaseType: 'worked_example',
+          title: 'Example 1',
+          sections: [graphWorkedActivitySection, domainRangeWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+      expect(mockSubmitActivity.mock.calls[0]?.[0]).toEqual({
+        activityId: 'activities:graph-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: 'worked-example:activities:graph-worked',
+      });
+      expect(mockSubmitActivity.mock.calls[0]?.[0].idempotencyKey)
+        .not.toBe('worked-example:activities:domain-range-worked');
+
+      resolveFirst?.({ success: true, submissionId: 'graph-worked-submission' });
+      await waitFor(() => expect(screen.getByRole('button', { name: 'I reviewed this worked example' })).toBeEnabled());
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(2));
+      expect(mockSubmitActivity.mock.calls[1]?.[0]).toEqual({
+        activityId: 'activities:domain-range-worked',
+        mode: 'worked_example',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: expect.any(String),
+        answers: {},
+        parts: [],
+        idempotencyKey: 'worked-example:activities:domain-range-worked',
+      });
+      expect(mockSubmitActivity.mock.calls[0]?.[0].idempotencyKey)
+        .not.toBe(mockSubmitActivity.mock.calls[1]?.[0].idempotencyKey);
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+
+      resolveSecond?.({ success: true, submissionId: 'domain-range-worked-submission' });
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+      expect(mockSubmitActivity).toHaveBeenCalledTimes(2);
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('does not duplicate exact Worked submissions after both sources succeed and rerender', async () => {
+      const phaseProps = {
+        ...defaultProps,
+        phases: [{
+          phaseId: 'two-worked-sources-rerender',
+          phaseNumber: 4,
+          phaseType: 'worked_example' as const,
+          title: 'Example 1',
+          sections: [graphWorkedActivitySection, domainRangeWorkedActivitySection],
+          status: 'current' as const,
+          completed: false,
+        }],
+      } satisfies LessonRendererProps;
+      const view = render(<LessonRenderer {...phaseProps} />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      await waitFor(() => expect(screen.getByRole('button', { name: 'I reviewed this worked example' })).toBeEnabled());
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(2));
+      view.rerender(<LessonRenderer {...phaseProps} />);
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(2));
+      expect(mockSubmitActivity.mock.calls.map(([input]) => input.activityId)).toEqual([
+        'activities:graph-worked',
+        'activities:domain-range-worked',
+      ]);
+      expect(mockSubmitActivity.mock.calls[0]?.[0].idempotencyKey)
+        .not.toBe(mockSubmitActivity.mock.calls[1]?.[0].idempotencyKey);
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('retries only the failed Worked source with the same payload and key', async () => {
+      mockSubmitActivity.mockResolvedValueOnce({ success: true, submissionId: 'graph-worked-success' });
+      mockSubmitActivity.mockResolvedValueOnce({ success: false, error: 'Network error' });
+
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'two-worked-sources-retry',
+          phaseNumber: 4,
+          phaseType: 'worked_example',
+          title: 'Example 1',
+          sections: [graphWorkedActivitySection, domainRangeWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      await waitFor(() => expect(screen.getByRole('button', { name: 'I reviewed this worked example' })).toBeEnabled());
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(2));
+      const successfulInput = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      const failedInput = mockSubmitActivity.mock.calls[1]?.[0] as Record<string, unknown>;
+      expect(successfulInput.activityId).toBe('activities:graph-worked');
+      expect(failedInput.activityId).toBe('activities:domain-range-worked');
+      expect(screen.getByRole('alert')).toHaveTextContent('We could not save your progress.');
+      expect(screen.getByRole('button', { name: 'Try again' })).toBeInTheDocument();
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+
+      mockSubmitActivity.mockResolvedValueOnce({ success: true, submissionId: 'domain-range-retry' });
+      fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(3));
+      const retryInput = mockSubmitActivity.mock.calls[2]?.[0] as Record<string, unknown>;
+      expect(retryInput).toEqual(failedInput);
+      expect(mockSubmitActivity.mock.calls.filter(([input]) => (
+        input.activityId === 'activities:graph-worked'
+      ))).toHaveLength(1);
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: 'Try again' })).not.toBeInTheDocument();
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('shows failure feedback and retries the exact equation-rate Worked submission', async () => {
+      mockSubmitActivity.mockResolvedValueOnce({ success: false, error: 'Network error' });
+
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'p8-retry',
+          phaseNumber: 8,
+          phaseType: 'worked_example',
+          title: 'Example 4',
+          sections: [equationWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+      const firstInput = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      const alert = await screen.findByRole('alert');
+      expect(alert).toHaveTextContent('We could not save your progress.');
+      expect(screen.getByRole('button', { name: 'Try again' })).toBeInTheDocument();
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+
+      mockSubmitActivity.mockResolvedValueOnce({ success: true, submissionId: 'equation-worked-retry' });
+      fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
+
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(2));
+      const secondInput = mockSubmitActivity.mock.calls[1]?.[0] as Record<string, unknown>;
+      expect(secondInput).toEqual(firstInput);
+      expect(secondInput.idempotencyKey).toEqual(firstInput.idempotencyKey);
+      expect(secondInput.submittedAt).toEqual(firstInput.submittedAt);
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: 'Try again' })).not.toBeInTheDocument();
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+    });
+
+    it('does not auto-submit an exact Worked source in teaching mode', () => {
+      render(<LessonRenderer
+        {...defaultProps}
+        mode="teaching"
+        phases={[{
+          phaseId: 'equation-teaching',
+          phaseNumber: 8,
+          phaseType: 'worked_example',
+          title: 'Example 4',
+          sections: [equationWorkedActivitySection],
+          status: 'current',
+          completed: false,
+        }]}
+      />);
+
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+      expect(screen.queryByTestId('phase-complete-btn')).not.toBeInTheDocument();
+    });
+
+    it('submits after explicit review an exact Worked source when phase is already completed', async () => {
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'equation-completed',
+          phaseNumber: 8,
+          phaseType: 'worked_example',
+          title: 'Example 4',
+          sections: [equationWorkedActivitySection],
+          status: 'completed',
+          completed: true,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+      const input = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      expect(input.activityId).toBe('activities:equation-worked');
+      expect(input.idempotencyKey).toBe('worked-example:activities:equation-worked');
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+      expect(screen.getByTestId('phase-complete-btn')).toHaveTextContent('Completed');
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+    });
+
+    it('submits after explicit review the exact graph Worked source when phase is already completed', async () => {
+      render(<LessonRenderer
+        {...defaultProps}
+        phases={[{
+          phaseId: 'graph-completed',
+          phaseNumber: 4,
+          phaseType: 'worked_example',
+          title: 'Graph Example',
+          sections: [graphWorkedActivitySection],
+          status: 'completed',
+          completed: true,
+        }]}
+      />);
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole('button', { name: 'I reviewed this worked example' }));
+
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+      const input = mockSubmitActivity.mock.calls[0]?.[0] as Record<string, unknown>;
+      expect(input.activityId).toBe('activities:graph-worked');
+      expect(input.mode).toBe('worked_example');
+      expect(input.idempotencyKey).toBe('worked-example:activities:graph-worked');
+      expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+      expect(screen.getByTestId('phase-complete-btn')).toHaveTextContent('Completed');
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+    });
+
+    it.each(equationWorkedNonMatchCases)(
+      'does not automatically submit the equation-rate Worked source for %s',
+      async (_label, testCase) => {
+        render(<LessonRenderer
+          {...defaultProps}
+          phases={[{
+            phaseId: 'equation-guard',
+            phaseNumber: 8,
+            phaseType: testCase.phaseType,
+            title: 'Example 4',
+            sections: [testCase.section],
+            status: 'current',
+            completed: false,
+          }]}
+        />);
+
+        expect(mockSubmitActivity).not.toHaveBeenCalled();
+        expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+        expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      },
+    );
+
+    it.each(domainRangeWorkedNonMatchCases)(
+      'does not automatically submit the domain-range Worked source for %s',
+      async (_label, section) => {
+        render(<LessonRenderer
+          {...defaultProps}
+          phases={[{
+            phaseId: 'domain-range-guard',
+            phaseNumber: 4,
+            phaseType: 'worked_example',
+            title: 'Example 1',
+            sections: [section],
+            status: 'current',
+            completed: false,
+          }]}
+        />);
+
+        expect(mockSubmitActivity).not.toHaveBeenCalled();
+        expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+        expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      },
+    );
+
+    it.each(profitModelWorkedNonMatchCases)(
+      'does not automatically submit the profit-model Worked source for %s',
+      async (_label, testCase) => {
+        render(<LessonRenderer
+          {...defaultProps}
+          phases={[{
+            phaseId: 'profit-model-worked-guard',
+            phaseNumber: 6,
+            phaseType: testCase.phaseType,
+            title: 'Example 3',
+            sections: [testCase.section],
+            status: 'current',
+            completed: false,
+          }]}
+        />);
+
+        expect(mockSubmitActivity).not.toHaveBeenCalled();
+        expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+        expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      },
+    );
+
+    it.each(graphWorkedNonMatchCases)(
+      'does not automatically submit the graph Worked source for %s',
+      async (_label, section) => {
+        render(<LessonRenderer
+          {...defaultProps}
+          phases={[{
+            phaseId: 'graph-guard',
+            phaseNumber: 4,
+            phaseType: 'worked_example',
+            title: 'Graph Example',
+            sections: [section],
+            status: 'completed',
+            completed: true,
+          }]}
+        />);
+
+        expect(mockSubmitActivity).not.toHaveBeenCalled();
+        expect(mockSubmitIm3PilotActivity).not.toHaveBeenCalled();
+        expect(screen.getByTestId('phase-complete-btn')).toHaveTextContent('Completed');
+      },
+    );
   });
 
   describe('phase completion gating', () => {
+    it('changes the completion control when navigating from completed phase 1 to incomplete phase 8', () => {
+      const twoPhaseProps: LessonRendererProps = {
+        ...defaultProps,
+        phases: [
+          {
+            phaseId: 'p1', phaseNumber: 1, phaseType: 'explore', title: 'Explore',
+            sections: [textSection], status: 'current', completed: true,
+          },
+          {
+            phaseId: 'p8', phaseNumber: 8, phaseType: 'learn', title: 'Example 4',
+            sections: [], status: 'available', completed: false,
+          },
+        ],
+      };
+
+      render(<LessonRenderer {...twoPhaseProps} />);
+
+      const phaseOneButton = screen.getByTestId('phase-complete-btn');
+      expect(phaseOneButton).toHaveTextContent('Completed');
+      expect(phaseOneButton).toBeDisabled();
+      expect(phaseOneButton).toHaveAttribute('data-phase', '1');
+
+      fireEvent.click(screen.getByTestId('stepper-phase-8'));
+
+      const phaseEightButton = screen.getByTestId('phase-complete-btn');
+      expect(phaseEightButton).toHaveTextContent('Mark Complete');
+      expect(phaseEightButton).not.toBeDisabled();
+      expect(phaseEightButton).toHaveAttribute('data-phase', '8');
+    });
+
     it('PhaseCompleteButton is disabled before any activity is submitted', () => {
       const phaseWithActivity: LessonRendererProps = {
         ...defaultProps,
@@ -356,8 +1375,8 @@ describe('LessonRenderer - Activity Submission Flow', () => {
     });
   });
 
-  describe('optimistic UI and error handling', () => {
-    it('shows optimistic completion immediately on activity submit', async () => {
+  describe('storage before completion', () => {
+    it('keeps the phase locked until submission storage succeeds', async () => {
       const phaseWithActivity: LessonRendererProps = {
         ...defaultProps,
         phases: [{
@@ -366,9 +1385,18 @@ describe('LessonRenderer - Activity Submission Flow', () => {
         }],
       };
 
+      let resolveSubmission: ((value: { success: true; submissionId: string }) => void) | undefined;
+      mockSubmitActivity.mockReturnValueOnce(new Promise((resolve) => {
+        resolveSubmission = resolve;
+      }));
+
       render(<LessonRenderer {...phaseWithActivity} />);
 
       fireEvent.click(screen.getByTestId('activity-submit-act-1'));
+
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+
+      resolveSubmission?.({ success: true, submissionId: 'stored-submission' });
 
       await waitFor(() => {
         const btn = screen.getByTestId('phase-complete-btn');
@@ -376,7 +1404,7 @@ describe('LessonRenderer - Activity Submission Flow', () => {
       });
     });
 
-    it('reverts optimistic update on submission error', async () => {
+    it('keeps the phase locked when storage returns a failure result', async () => {
       const phaseWithActivity: LessonRendererProps = {
         ...defaultProps,
         phases: [{
@@ -385,16 +1413,42 @@ describe('LessonRenderer - Activity Submission Flow', () => {
         }],
       };
 
-      mockSubmitActivity.mockRejectedValueOnce(new Error('Network error'));
+      mockSubmitActivity.mockResolvedValueOnce({ success: false, error: 'Network error' });
 
       render(<LessonRenderer {...phaseWithActivity} />);
 
       fireEvent.click(screen.getByTestId('activity-submit-act-1'));
 
       await waitFor(() => {
+        expect(mockSubmitActivity).toHaveBeenCalledOnce();
         const btn = screen.getByTestId('phase-complete-btn');
         expect(btn).toBeDisabled();
       });
+    });
+
+    it('reuses the same create key after a failed storage attempt', async () => {
+      const phaseWithActivity: LessonRendererProps = {
+        ...defaultProps,
+        phases: [{
+          phaseId: 'p1', phaseNumber: 1, phaseType: 'explore', title: 'Explore',
+          sections: [activitySection('act-s1', 'act-1')], status: 'current', completed: false,
+        }],
+      };
+      mockSubmitActivity
+        .mockResolvedValueOnce({ success: false, error: 'Network error' })
+        .mockResolvedValueOnce({ success: true, submissionId: 'stored-submission' });
+
+      render(<LessonRenderer {...phaseWithActivity} />);
+
+      fireEvent.click(screen.getByTestId('activity-submit-act-1'));
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+      fireEvent.click(screen.getByTestId('activity-submit-act-1'));
+      await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(2));
+
+      expect(mockSubmitActivity.mock.calls[0]?.[0].idempotencyKey).toBe(
+        mockSubmitActivity.mock.calls[1]?.[0].idempotencyKey,
+      );
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
     });
   });
 
@@ -467,447 +1521,9 @@ describe('LessonRenderer - Activity Submission Flow', () => {
         const stepper = screen.getByTestId('lesson-stepper');
         expect(stepper).toHaveAttribute('data-current', '3');
         const btn = screen.getByTestId('phase-complete-btn');
-        expect(btn).toBeDisabled();
-        expect(btn).toHaveTextContent(/completed/i);
+        expect(btn).not.toBeDisabled();
+        expect(btn).toHaveTextContent(/mark complete/i);
       });
     });
-  });
-});
-
-describe('LessonRenderer strict quadratic-formula receipts', () => {
-  const nodeId = 'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations';
-  const qfSection = (mode: 'guided_practice' | 'independent_practice', extra: Record<string, unknown> = {}): PhaseSection => ({
-    id: `qf-${mode}`,
-    sequenceOrder: 1,
-    sectionType: 'activity',
-    content: {
-      activityId: `activities:${mode}`,
-      componentKey: 'quadratic-formula',
-      stableActivityId: `${nodeId}.${mode}`,
-      masteryNodeId: nodeId,
-      learningEvidenceMode: mode,
-      srsEligible: false,
-      activityProps: { presentationMode: mode === 'guided_practice' ? 'guided' : 'independent' },
-      ...extra,
-    },
-  });
-  const propsFor = (section: PhaseSection): LessonRendererProps => ({
-    ...defaultProps,
-    phases: [{
-      phaseId: 'qf-phase', phaseNumber: 1, phaseType: 'independent_practice', title: 'Practice',
-      sections: [section], status: 'current', completed: false,
-    }],
-  });
-
-  beforeEach(() => {
-    mockSubmitActivity.mockReset();
-    mockSubmitActivity.mockResolvedValue({ success: true, submissionId: 'generic' });
-    mockCreateServerOwnedActivitySubmission.mockReset();
-    mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
-    mockGetQuadraticFormulaAttempt.mockReset();
-    mockGetQuadraticFormulaAttempt.mockImplementation(async (activityId, selectedMode) => ({ state: 'pending', pendingSubmissionId: 'qf', activityId, mode: selectedMode, attemptOrdinal: 1, idempotencyKey: 'qf:qf', props: selectedMode === 'guided_practice' ? { presentationMode: 'guided', prompt: 'Solve.', equation: 'x=0', fieldHelp: { discriminant: 'd', x1: 'x1', x2: 'x2' } } : { presentationMode: 'independent', prompt: 'Solve.', equation: 'x=0' } }));
-    mockStartQuadraticFormulaAttempt.mockResolvedValue({ state: 'exhausted' });
-  });
-
-  it('reads with GET semantics and requires an explicit Start action', async () => {
-    mockGetQuadraticFormulaAttempt.mockResolvedValueOnce({ state: 'no_attempt' });
-    mockStartQuadraticFormulaAttempt.mockResolvedValueOnce({ state: 'pending', pendingSubmissionId: 'qf:2', activityId: 'activities:independent_practice', mode: 'independent_practice', attemptOrdinal: 2, idempotencyKey: 'qf:qf:2', props: { presentationMode: 'independent', prompt: 'Selected.', equation: 'selected = 0' } });
-    render(<LessonRenderer {...propsFor(qfSection('independent_practice'))} />);
-    expect(await screen.findByRole('button', { name: 'Start activity' })).toBeInTheDocument();
-    expect(mockStartQuadraticFormulaAttempt).not.toHaveBeenCalled();
-    fireEvent.click(screen.getByRole('button', { name: 'Start activity' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Start activity' }));
-    await waitFor(() => expect(mockStartQuadraticFormulaAttempt).toHaveBeenCalledTimes(1));
-  });
-
-  it('restores a final receipt as complete and preserves it when next Start is exhausted', async () => {
-    mockGetQuadraticFormulaAttempt.mockResolvedValueOnce({ state: 'final', activityId: 'activities:independent_practice', mode: 'independent_practice', attemptOrdinal: 4, props: { presentationMode: 'independent', prompt: 'Selected.', equation: 'selected = 0' }, submissionId: 'qf:4', score: 2, maxScore: 2, answers: { discriminant: 0, x1: 0, x2: '' }, parts: [{ partId: 'discriminant', rawAnswer: 0, isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x1', rawAnswer: 0, isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x2', rawAnswer: '', isCorrect: true, score: 0, maxScore: 0 }] });
-    mockStartQuadraticFormulaAttempt.mockResolvedValueOnce({ state: 'exhausted' });
-    render(<LessonRenderer {...propsFor(qfSection('independent_practice'))} />);
-    expect(await screen.findByRole('button', { name: 'Start next attempt' })).toBeInTheDocument();
-    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
-    fireEvent.click(screen.getByRole('button', { name: 'Start next attempt' }));
-    expect(await screen.findByRole('alert')).toHaveTextContent('All attempts are complete');
-    expect(screen.getByRole('button', { name: 'Start next attempt' })).toBeInTheDocument();
-  });
-
-  it.each(['guided_practice', 'independent_practice'] as const)(
-    'uses the strict writer for exact %s metadata and waits for its receipt',
-    async (selectedMode) => {
-      let resolve!: (value: { success: true; submissionId: string; score: number; maxScore: number }) => void;
-      mockCreateServerOwnedActivitySubmission.mockReturnValue(new Promise((done) => { resolve = done; }));
-      const section = qfSection(selectedMode);
-      render(<LessonRenderer {...propsFor(section)} />);
-      await waitFor(() => expect(mockGetQuadraticFormulaAttempt).toHaveBeenCalled());
-      fireEvent.click(screen.getByTestId(`activity-submit-activities:${selectedMode}`));
-
-      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-      await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
-      expect(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]).toMatchObject({
-        activityId: `activities:${selectedMode}`,
-        mode: selectedMode,
-        status: 'submitted',
-        attemptNumber: 1,
-        submittedAt: '2026-01-01T00:00:00.000Z',
-        answers: { discriminant: '16', x1: '2', x2: '-2' },
-        parts: [
-          { partId: 'discriminant', rawAnswer: '16' },
-          { partId: 'x1', rawAnswer: '2' },
-          { partId: 'x2', rawAnswer: '-2' },
-        ],
-        timing: expect.objectContaining({ activeMs: 60000 }),
-        idempotencyKey: expect.any(String),
-      });
-      expect(mockSubmitActivity).not.toHaveBeenCalled();
-      resolve({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
-      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
-    },
-  );
-
-  it('keeps the complete equation and exact receipt while final details are unavailable', async () => {
-    const pending = { state: 'pending' as const, pendingSubmissionId: 'qf:complete', activityId: 'activities:independent_practice', mode: 'independent_practice' as const, attemptOrdinal: 1, idempotencyKey: 'qf:key:complete', props: { presentationMode: 'independent' as const, prompt: 'Solve the equation.', equation: 'x^2 - 4 = 0' } };
-    const final = { state: 'final' as const, activityId: pending.activityId, mode: pending.mode, attemptOrdinal: 1, props: pending.props, submissionId: pending.pendingSubmissionId, score: 3, maxScore: 3, answers: { discriminant: '16', x1: '2', x2: '-2' }, parts: [{ partId: 'discriminant' as const, rawAnswer: '16', isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x1' as const, rawAnswer: '2', isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x2' as const, rawAnswer: '-2', isCorrect: true, score: 1, maxScore: 1 }] };
-    mockGetQuadraticFormulaAttempt
-      .mockResolvedValueOnce(pending)
-      .mockRejectedValueOnce(new Error('final details unavailable'))
-      .mockResolvedValueOnce(final);
-    mockCreateServerOwnedActivitySubmission.mockResolvedValueOnce({ success: true, submissionId: pending.pendingSubmissionId, score: 3, maxScore: 3 });
-    render(<LessonRenderer {...propsFor(qfSection('independent_practice'))} />);
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', pending.pendingSubmissionId));
-    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-state', 'saved-awaiting-details'));
-    const saved = screen.getByTestId('phase-renderer');
-    expect(saved).toHaveAttribute('data-quadratic-pending-id', pending.pendingSubmissionId);
-    expect(saved).toHaveAttribute('data-quadratic-submission-id', pending.pendingSubmissionId);
-    expect(saved).toHaveAttribute('data-quadratic-key', pending.idempotencyKey);
-    expect(saved).toHaveAttribute('data-quadratic-equation', pending.props.equation);
-    expect(saved).toHaveAttribute('data-quadratic-answers', JSON.stringify(final.answers));
-    expect(saved).toHaveAttribute('data-quadratic-score', '3');
-    expect(saved).toHaveAttribute('data-quadratic-max-score', '3');
-    expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledWith(expect.objectContaining({
-      pendingSubmissionId: pending.pendingSubmissionId,
-      idempotencyKey: pending.idempotencyKey,
-      timing: expect.objectContaining({ activeMs: 60000 }),
-    }));
-    fireEvent.click(screen.getByRole('button', { name: 'Retry result details' }));
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-state', 'final'));
-    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-equation', pending.props.equation);
-    expect(mockGetQuadraticFormulaAttempt).toHaveBeenCalledTimes(3);
-  });
-
-  it('retries an ambiguous strict failure with the exact body and key', async () => {
-    mockCreateServerOwnedActivitySubmission
-      .mockRejectedValueOnce(new Error('response lost'))
-      .mockResolvedValueOnce({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
-    const section = qfSection('independent_practice');
-    render(<LessonRenderer {...propsFor(section)} />);
-    await waitFor(() => expect(mockGetQuadraticFormulaAttempt).toHaveBeenCalled());
-    const submit = screen.getByTestId('activity-submit-activities:independent_practice');
-    fireEvent.click(submit);
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
-    fireEvent.click(submit);
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(2));
-    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0])
-      .toEqual(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]);
-    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0].answers)
-      .toEqual({ discriminant: '16', x1: '2', x2: '-2' });
-    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0].parts)
-      .toEqual([
-        { partId: 'discriminant', rawAnswer: '16' },
-        { partId: 'x1', rawAnswer: '2' },
-        { partId: 'x2', rawAnswer: '-2' },
-      ]);
-  });
-
-  it.each([
-    ['component', { componentKey: 'fill-in-the-blank' }],
-    ['stable ID', { stableActivityId: `${nodeId}.wrong` }],
-    ['node', { masteryNodeId: `${nodeId}.wrong` }],
-    ['mode', { learningEvidenceMode: 'worked_example' }],
-    ['SRS', { srsEligible: true }],
-    ['presentation', { activityProps: { presentationMode: 'guided' } }],
-  ])('rejects a partial QF identity with invalid %s before a write', async (_label, change) => {
-    const section = qfSection('independent_practice', change);
-    render(<LessonRenderer {...propsFor(section)} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
-    await new Promise(resolve => setTimeout(resolve, 0));
-    expect(mockCreateServerOwnedActivitySubmission).not.toHaveBeenCalled();
-    expect(mockSubmitActivity).not.toHaveBeenCalled();
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-  });
-
-  it('rejects mismatched outer and payload activity IDs before a write', async () => {
-    const section = qfSection('independent_practice', { payloadActivityId: 'activities:other' });
-    render(<LessonRenderer {...propsFor(section)} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
-    await new Promise(resolve => setTimeout(resolve, 0));
-    expect(mockCreateServerOwnedActivitySubmission).not.toHaveBeenCalled();
-    expect(mockSubmitActivity).not.toHaveBeenCalled();
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-  });
-
-  it.each([
-    { success: false as const, error: 'not saved' },
-    { success: true as const, submissionId: '   ' },
-  ])('keeps a generic activity incomplete without a valid positive receipt', async (receipt) => {
-    mockSubmitActivity.mockResolvedValue(receipt);
-    const section = activitySection('generic', 'activities:generic');
-    render(<LessonRenderer {...propsFor(section)} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:generic'));
-    await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-  });
-
-  it.each([
-    { success: false as const, error: 'not saved' },
-    { success: true as const, submissionId: '   ', score: 3, maxScore: 3 },
-  ])('keeps strict activity incomplete without a valid positive receipt', async (receipt) => {
-    mockCreateServerOwnedActivitySubmission.mockResolvedValue(receipt);
-    const section = qfSection('independent_practice');
-    render(<LessonRenderer {...propsFor(section)} />);
-    await waitFor(() => expect(mockGetQuadraticFormulaAttempt).toHaveBeenCalled());
-    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-  });
-
-  it('uses one request for a strict double submit while the receipt is pending', async () => {
-    let resolve!: (value: { success: true; submissionId: string; score: number; maxScore: number }) => void;
-    mockCreateServerOwnedActivitySubmission.mockReturnValue(new Promise((done) => { resolve = done; }));
-    const section = qfSection('independent_practice');
-    render(<LessonRenderer {...propsFor(section)} />);
-    await waitFor(() => expect(mockGetQuadraticFormulaAttempt).toHaveBeenCalled());
-    const submit = screen.getByTestId('activity-submit-activities:independent_practice');
-    fireEvent.click(submit);
-    fireEvent.click(submit);
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
-    resolve({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
-    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
-  });
-
-  it('reuses the first frozen strict body when a retry supplies changed answers', async () => {
-    mockCreateServerOwnedActivitySubmission
-      .mockResolvedValueOnce({ success: false, error: 'response lost' })
-      .mockResolvedValueOnce({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
-    let firstPayload: Record<string, unknown> | undefined;
-    const section = qfSection('independent_practice', {
-      capturePayload: (payload: Record<string, unknown>) => { firstPayload = payload; },
-    });
-    const { rerender } = render(<LessonRenderer {...propsFor(section)} />);
-    await waitFor(() => expect(mockGetQuadraticFormulaAttempt).toHaveBeenCalled());
-    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
-    (firstPayload?.answers as Record<string, unknown>).x1 = 'changed after delivery';
-    const changed = qfSection('independent_practice', {
-      payloadOverrides: { answers: { discriminant: '0', x1: '0', x2: '' } },
-    });
-    rerender(<LessonRenderer {...propsFor(changed)} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(2));
-    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0])
-      .toEqual(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]);
-    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0].answers)
-      .toEqual({ discriminant: '16', x1: '2', x2: '-2' });
-    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0].parts)
-      .toEqual([
-        { partId: 'discriminant', rawAnswer: '16' },
-        { partId: 'x1', rawAnswer: '2' },
-        { partId: 'x2', rawAnswer: '-2' },
-      ]);
-  });
-
-  it('starts a new activity while a Start request for another identity is pending', async () => {
-    let resolveFirstStart!: (value: { state: 'pending'; pendingSubmissionId: string; activityId: string; mode: 'independent_practice'; attemptOrdinal: number; idempotencyKey: string; props: { presentationMode: 'independent'; prompt: string; equation: string } }) => void;
-    mockGetQuadraticFormulaAttempt.mockResolvedValue({ state: 'no_attempt' });
-    const firstStart = new Promise<Parameters<typeof resolveFirstStart>[0]>((resolve) => { resolveFirstStart = resolve; });
-    mockStartQuadraticFormulaAttempt.mockImplementation(async (activityId) => activityId === 'activities:a'
-      ? firstStart
-      : { state: 'pending', pendingSubmissionId: 'qf:b', activityId: 'activities:b', mode: 'independent_practice', attemptOrdinal: 1, idempotencyKey: 'qf:b', props: { presentationMode: 'independent', prompt: 'B.', equation: 'b=0' } });
-    const phases: LessonRendererProps['phases'] = [
-      { phaseId: 'a', phaseNumber: 1, phaseType: 'independent_practice', title: 'A', sections: [qfSection('independent_practice', { activityId: 'activities:a' })], status: 'current', completed: false },
-      { phaseId: 'b', phaseNumber: 2, phaseType: 'independent_practice', title: 'B', sections: [qfSection('independent_practice', { activityId: 'activities:b' })], status: 'available', completed: false },
-    ];
-    render(<LessonRenderer {...defaultProps} phases={phases} />);
-    fireEvent.click(await screen.findByRole('button', { name: 'Start activity' }));
-    await waitFor(() => expect(mockStartQuadraticFormulaAttempt.mock.calls.filter(([activityId]) => activityId === 'activities:a')).toHaveLength(1));
-    fireEvent.click(screen.getByTestId('stepper-phase-2'));
-    fireEvent.click(await screen.findByRole('button', { name: 'Start activity' }));
-    await waitFor(() => expect(mockStartQuadraticFormulaAttempt.mock.calls.filter(([activityId]) => activityId === 'activities:b')).toHaveLength(1));
-    resolveFirstStart({ state: 'pending', pendingSubmissionId: 'qf:a', activityId: 'activities:a', mode: 'independent_practice', attemptOrdinal: 1, idempotencyKey: 'qf:a', props: { presentationMode: 'independent', prompt: 'A.', equation: 'a=0' } });
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', 'qf:b'));
-  });
-
-  it('keeps the frozen failed body for another pending activity', async () => {
-    mockCreateServerOwnedActivitySubmission
-      .mockResolvedValueOnce({ success: false, error: 'response lost' })
-      .mockResolvedValueOnce({ success: true, submissionId: 'qf:a', score: 3, maxScore: 3 });
-    mockGetQuadraticFormulaAttempt.mockImplementation(async (activityId, selectedMode) => activityId === 'activities:b'
-      ? { state: 'no_attempt' }
-      : { state: 'pending', pendingSubmissionId: 'qf:a', activityId, mode: selectedMode, attemptOrdinal: 1, idempotencyKey: `key:${activityId}`, props: { presentationMode: 'independent', prompt: activityId, equation: 'x=0' } });
-    mockStartQuadraticFormulaAttempt.mockResolvedValue({ state: 'pending', pendingSubmissionId: 'qf:b', activityId: 'activities:b', mode: 'independent_practice', attemptOrdinal: 1, idempotencyKey: 'key:activities:b', props: { presentationMode: 'independent', prompt: 'B.', equation: 'b=0' } });
-    const aSection = qfSection('independent_practice', { activityId: 'activities:a' });
-    const phases: LessonRendererProps['phases'] = [
-      { phaseId: 'a', phaseNumber: 1, phaseType: 'independent_practice', title: 'A', sections: [aSection], status: 'current', completed: false },
-      { phaseId: 'b', phaseNumber: 2, phaseType: 'independent_practice', title: 'B', sections: [qfSection('independent_practice', { activityId: 'activities:b' })], status: 'available', completed: false },
-    ];
-    render(<LessonRenderer {...defaultProps} phases={phases} />);
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', 'qf:a'));
-    fireEvent.click(screen.getByTestId('activity-submit-activities:a'));
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
-    fireEvent.click(screen.getByTestId('stepper-phase-2'));
-    fireEvent.click(await screen.findByRole('button', { name: 'Start activity' }));
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', 'qf:b'));
-    if (aSection.sectionType !== 'activity') throw new Error('Expected activity section');
-    aSection.content.payloadOverrides = { submittedAt: '2026-01-01T00:02:00.000Z', answers: { discriminant: '0', x1: 'changed', x2: '' } };
-    fireEvent.click(screen.getByTestId('stepper-phase-1'));
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', 'qf:a'));
-    fireEvent.click(screen.getByTestId('activity-submit-activities:a'));
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(2));
-    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0]).toEqual(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]);
-  });
-
-  it('does not let a queued empty selection reset clear a new pending identity', async () => {
-    const pending = { state: 'pending' as const, pendingSubmissionId: 'qf', activityId: 'activities:independent_practice', mode: 'independent_practice' as const, attemptOrdinal: 1, idempotencyKey: 'qf:qf', props: { presentationMode: 'independent' as const, prompt: 'Solve.', equation: 'x=0' } };
-    mockGetQuadraticFormulaAttempt.mockReturnValue({
-      then(onFulfilled: (value: typeof pending) => unknown) {
-        onFulfilled(pending);
-        return Promise.resolve();
-      },
-    } as Promise<typeof pending>);
-    const generic = activitySection('generic', 'activities:generic');
-    const phases: LessonRendererProps['phases'] = [
-      { phaseId: 'generic', phaseNumber: 1, phaseType: 'explore', title: 'Explore', sections: [generic], status: 'current', completed: false },
-      { phaseId: 'qf', phaseNumber: 2, phaseType: 'independent_practice', title: 'Practice', sections: [qfSection('independent_practice')], status: 'available', completed: false },
-    ];
-    render(<LessonRenderer {...defaultProps} phases={phases} />);
-    fireEvent.click(screen.getByTestId('stepper-phase-2'));
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', 'qf'));
-    await Promise.resolve();
-    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-state', 'pending');
-  });
-
-  it('keeps a newer Start result when a re-entry GET for the same activity finishes later', async () => {
-    const final = { state: 'final' as const, activityId: 'activities:a', mode: 'independent_practice' as const, attemptOrdinal: 1, props: { presentationMode: 'independent' as const, prompt: 'A.', equation: 'a=0' }, submissionId: 'qf:a:1', score: 3, maxScore: 3, answers: { discriminant: 1, x1: 1, x2: -1 }, parts: [{ partId: 'discriminant' as const, rawAnswer: 1, isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x1' as const, rawAnswer: 1, isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x2' as const, rawAnswer: -1, isCorrect: true, score: 1, maxScore: 1 }] };
-    let resolveReentry!: (value: typeof final) => void;
-    const reentry = new Promise<typeof final>((resolve) => { resolveReentry = resolve; });
-    mockGetQuadraticFormulaAttempt
-      .mockResolvedValueOnce(final)
-      .mockReturnValueOnce(reentry);
-    mockStartQuadraticFormulaAttempt.mockResolvedValue({ state: 'pending', pendingSubmissionId: 'qf:a:2', activityId: 'activities:a', mode: 'independent_practice', attemptOrdinal: 2, idempotencyKey: 'key:a:2', props: { presentationMode: 'independent', prompt: 'New.', equation: 'new=0' } });
-    const phases: LessonRendererProps['phases'] = [
-      { phaseId: 'a', phaseNumber: 1, phaseType: 'independent_practice', title: 'A', sections: [qfSection('independent_practice', { activityId: 'activities:a' })], status: 'current', completed: false },
-      { phaseId: 'other', phaseNumber: 2, phaseType: 'explore', title: 'Other', sections: [activitySection('generic', 'activities:other')], status: 'available', completed: false },
-    ];
-    render(<LessonRenderer {...defaultProps} phases={phases} />);
-    expect(await screen.findByRole('button', { name: 'Start next attempt' })).toBeInTheDocument();
-    fireEvent.click(screen.getByTestId('stepper-phase-2'));
-    fireEvent.click(screen.getByTestId('stepper-phase-1'));
-    fireEvent.click(await screen.findByRole('button', { name: 'Start next attempt' }));
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', 'qf:a:2'));
-    await act(async () => {
-      resolveReentry(final);
-      await reentry;
-    });
-    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quadratic-pending-id', 'qf:a:2');
-  });
-
-  it('does not show a Start result message for another activity', async () => {
-    const final = { state: 'final' as const, activityId: 'activities:a', mode: 'independent_practice' as const, attemptOrdinal: 1, props: { presentationMode: 'independent' as const, prompt: 'A.', equation: 'a=0' }, submissionId: 'qf:a:1', score: 2, maxScore: 2, answers: { discriminant: 0, x1: 0, x2: '' }, parts: [{ partId: 'discriminant' as const, rawAnswer: 0, isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x1' as const, rawAnswer: 0, isCorrect: true, score: 1, maxScore: 1 }, { partId: 'x2' as const, rawAnswer: '', isCorrect: true, score: 0, maxScore: 0 }] };
-    mockGetQuadraticFormulaAttempt.mockImplementation(async (activityId) => activityId === 'activities:a' ? final : { state: 'no_attempt' });
-    mockStartQuadraticFormulaAttempt.mockResolvedValue({ state: 'exhausted' });
-    const phases: LessonRendererProps['phases'] = [
-      { phaseId: 'a', phaseNumber: 1, phaseType: 'independent_practice', title: 'A', sections: [qfSection('independent_practice', { activityId: 'activities:a' })], status: 'current', completed: false },
-      { phaseId: 'b', phaseNumber: 2, phaseType: 'independent_practice', title: 'B', sections: [qfSection('independent_practice', { activityId: 'activities:b' })], status: 'available', completed: false },
-    ];
-    render(<LessonRenderer {...defaultProps} phases={phases} />);
-    fireEvent.click(await screen.findByRole('button', { name: 'Start next attempt' }));
-    expect(await screen.findByRole('alert')).toHaveTextContent('All attempts are complete');
-    fireEvent.click(screen.getByTestId('stepper-phase-2'));
-    expect(await screen.findByRole('button', { name: 'Start activity' })).toBeInTheDocument();
-    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-  });
-
-  it('rejects a payload mode that differs from the exact selected mode', async () => {
-    const section = qfSection('guided_practice', {
-      payloadOverrides: { mode: 'independent_practice' },
-    });
-    render(<LessonRenderer {...propsFor(section)} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:guided_practice'));
-    await new Promise(resolve => setTimeout(resolve, 0));
-    expect(mockCreateServerOwnedActivitySubmission).not.toHaveBeenCalled();
-    expect(mockSubmitActivity).not.toHaveBeenCalled();
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-  });
-
-});
-
-describe('Lesson 1.6 quiz phase gate', () => {
-  const quizSection: PhaseSection = { id: 'quiz-section', sequenceOrder: 2, sectionType: 'activity', content: { componentKey: 'comprehension-quiz', activityId: 'activities:quiz', activityProps: jsonToConvex(convexToJson({ questions: [
-    { id: 'discriminant-purpose', type: 'multiple_choice', prompt: 'What does the discriminant tell you?', options: ['The sum of the roots', 'The number and type of solutions', 'The product of the roots', 'The axis of symmetry'] },
-    { id: 'zero-discriminant-real-solution-count', type: 'multiple_choice', prompt: 'If D = 0, how many real solutions are there?', options: ['0', '1', '2', 'Cannot determine'] },
-  ] } as never)) } };
-  beforeEach(() => {
-    mockCreateServerOwnedActivitySubmission.mockReset().mockResolvedValue({ success: true, submissionId: 'sub:quiz', score: 2, maxScore: 2 });
-    mockGetLesson16QuizReceipt.mockReset().mockResolvedValue(null);
-  });
-  it('keeps the phase gated until a valid server receipt returns', async () => {
-    mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'sub:quiz', score: 2, maxScore: 2 });
-    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }]} />);
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
-    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
-    expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledOnce();
-  });
-  it('rejects a mismatched quiz payload activity before a network request', async () => {
-    const changed = { ...quizSection, content: { ...quizSection.content, payloadActivityId: 'activities:clone' } } as PhaseSection;
-    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [changed], status: 'current', completed: false }]} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
-    await act(async () => { await Promise.resolve(); });
-    expect(mockCreateServerOwnedActivitySubmission).not.toHaveBeenCalled();
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-  });
-  it('restores a valid GET receipt and unlocks the phase after reload', async () => {
-    mockGetLesson16QuizReceipt.mockResolvedValue({ submissionId: 'sub:saved', score: 1, maxScore: 2, answers: { 'discriminant-purpose': 'The sum of the roots', 'zero-discriminant-real-solution-count': '1' } });
-    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }]} />);
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
-    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-submission-id', 'sub:saved');
-  });
-  it('does not let a late GET overwrite a newer POST receipt', async () => {
-    let resolveGet!: (value: Awaited<ReturnType<typeof getLesson16QuizReceipt>>) => void;
-    mockGetLesson16QuizReceipt.mockReturnValue(new Promise(resolve => { resolveGet = resolve; }));
-    mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'sub:new', score: 2, maxScore: 2 });
-    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }]} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-submission-id', 'sub:new'));
-    await act(async () => resolveGet({ submissionId: 'sub:old', score: 0, maxScore: 2, answers: { 'discriminant-purpose': 'x', 'zero-discriminant-real-solution-count': '0' } }));
-    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-submission-id', 'sub:new');
-  });
-  it('keeps the frozen quiz request after a malformed receipt and retries it', async () => {
-    mockCreateServerOwnedActivitySubmission.mockResolvedValueOnce({ success: true, submissionId: 'sub:bad', score: 3, maxScore: 3 }).mockResolvedValueOnce({ success: true, submissionId: 'sub:good', score: 2, maxScore: 2 });
-    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={[{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }]} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
-    await act(async () => { await Promise.resolve(); });
-    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
-    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
-    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
-    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0]).toEqual(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]);
-  });
-  it('restores frozen pending answers after leaving and returning to the quiz phase', async () => {
-    let resolvePost!: (value: Awaited<ReturnType<typeof createServerOwnedActivitySubmission>>) => void;
-    mockCreateServerOwnedActivitySubmission.mockReturnValue(new Promise(resolve => { resolvePost = resolve; }));
-    const phases: LessonRendererProps['phases'] = [{ phaseId: 'p10', phaseNumber: 10, phaseType: 'discourse', title: 'Discourse', sections: [quizSection], status: 'current', completed: false }, { phaseId: 'p11', phaseNumber: 11, phaseType: 'reflection', title: 'Reflection', sections: [textSection], status: 'available', completed: false }];
-    render(<LessonRenderer {...defaultProps} lessonId="module-1-lesson-6" phases={phases} />);
-    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
-    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
-    fireEvent.click(screen.getByTestId('stepper-phase-11'));
-    fireEvent.click(screen.getByTestId('stepper-phase-10'));
-    await waitFor(() => expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-pending-answers', JSON.stringify({ 'discriminant-purpose': 'The number and type of solutions', 'zero-discriminant-real-solution-count': '1' })));
-    fireEvent.click(screen.getByTestId('activity-submit-activities:quiz'));
-    expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1);
-    await act(async () => resolvePost({ success: true, submissionId: 'sub:good', score: 2, maxScore: 2 }));
-    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
-    expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-quiz-submission-id', 'sub:good');
   });
 });

@@ -149,14 +149,14 @@ describe('LessonRenderer', () => {
       ],
     };
 
-    it('navigates to the next phase on ArrowRight', () => {
+    it('does not enter a locked phase on ArrowRight', () => {
       render(<LessonRenderer {...multiPhaseProps} />);
       // Starts on phase 2 (current)
       expect(screen.getByTestId('lesson-stepper')).toHaveAttribute('data-current', '2');
 
       fireEvent.keyDown(document.body, { key: 'ArrowRight' });
 
-      expect(screen.getByTestId('lesson-stepper')).toHaveAttribute('data-current', '3');
+      expect(screen.getByTestId('lesson-stepper')).toHaveAttribute('data-current', '2');
     });
 
     it('navigates to the previous phase on ArrowLeft', () => {

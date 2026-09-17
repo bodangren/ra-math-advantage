@@ -61,10 +61,11 @@ export async function lookupVariantForScheduling(
 
   if (!item) return null;
 
+  const canonicalVariantKey = item.legacyProblemFamilyId ?? item.variantKey;
   const family = await ctx.db
     .query("practice_variants")
     .withIndex("by_variantKey", (q) =>
-      q.eq("variantKey", item.variantKey)
+      q.eq("variantKey", canonicalVariantKey)
     )
     .first();
 
@@ -75,7 +76,7 @@ export async function lookupVariantForScheduling(
   const objectivePriority = await resolveObjectivePriority(ctx, objectiveId);
 
   return {
-    variantKey: item.variantKey,
+    variantKey: canonicalVariantKey,
     objectiveId,
     schedulerContext: {
       objectivePriority,

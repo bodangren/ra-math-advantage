@@ -2,7 +2,9 @@
   "blueprints": [
     {
       "nodeId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.3.1"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -55,7 +57,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.3.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -108,7 +112,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.3.2"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -161,7 +167,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.3.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -214,7 +222,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.3.4"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -267,7 +277,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.3.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -320,7 +332,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.lesson.3.5"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -373,7 +387,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -426,7 +442,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -479,7 +497,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -532,7 +552,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.aleks.polynomial-identity-proof",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -585,7 +607,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -638,7 +662,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.aleks.root-type-analysis",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -691,7 +717,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -744,7 +772,9 @@
     },
     {
       "nodeId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im3.module.3"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {

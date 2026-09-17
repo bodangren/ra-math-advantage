@@ -1,27 +1,21 @@
 'use client';
 
-import React, { useCallback, Suspense, useMemo, useState } from 'react';
+import React, { useCallback, Suspense, useMemo } from 'react';
 import { getActivityComponent } from '@/lib/activities/registry';
 import { usePracticeTiming } from '@/components/practice-timing';
 import {
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
 } from '@math-platform/practice-core/contract';
-import type { Lesson16QuizReceipt } from '@/lib/activities/submission';
 
 export interface ActivityRendererProps {
   componentKey: string;
   activityId: string;
   lessonId?: string;
   phaseNumber?: number;
-  mode?: 'teaching' | 'guided' | 'practice';
-  onSubmit?: (payload: unknown) => unknown | Promise<unknown>;
+  mode?: 'teaching' | 'guided' | 'practice' | 'explore';
+  onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
-  onCheckDiscriminant?: (rawAnswer: string) => Promise<boolean>;
-  pendingSubmissionId?: string;
-  attemptOrdinal?: number;
-  quizReceipt?: Lesson16QuizReceipt;
-  quizPendingAnswers?: Lesson16QuizReceipt['answers'];
   /** Optional activity-specific configuration props (e.g. equation, questions,
    *  template). Forwarded to the registered activity component via spread, so
    *  authored/previewed content reaches the same rendering path a student sees. */
@@ -40,48 +34,27 @@ export function ActivityRenderer({
   mode = 'practice',
   onSubmit,
   onComplete,
-  onCheckDiscriminant,
-  pendingSubmissionId,
-  attemptOrdinal,
-  quizReceipt,
-  quizPendingAnswers,
   activityProps,
 }: ActivityRendererProps) {
   const isStudentContext = mode !== 'teaching';
   const { getTiming } = usePracticeTiming();
-  const [quadraticAttempt, setQuadraticAttempt] = useState<{
-    identity: string;
-    input: object;
-    envelope: PracticeSubmissionEnvelope;
-  }>();
-  const quadraticIdentity = `${activityId}:${mode}:${pendingSubmissionId ?? ''}`;
 
   const handleSubmit = useCallback(
-    (payload: unknown): unknown | Promise<unknown> => {
-      if (!onSubmit) return;
+    (payload: unknown) => {
       const parsed = practiceSubmissionEnvelopeSchema.safeParse(payload);
-      if (isStudentContext && parsed.success) {
-        const payloadObject = typeof payload === 'object' && payload !== null ? payload : undefined;
-        if (
-          componentKey === 'quadratic-formula'
-          && payloadObject
-          && quadraticAttempt?.identity === quadraticIdentity
-          && quadraticAttempt.input === payloadObject
-        ) return onSubmit(quadraticAttempt.envelope);
-        if (!parsed.data.timing) {
-          const timing = getTiming();
-          const envelope: PracticeSubmissionEnvelope = timing
-            ? { ...parsed.data, timing }
-            : parsed.data;
-          if (componentKey === 'quadratic-formula' && payloadObject) {
-            setQuadraticAttempt({ identity: quadraticIdentity, input: payloadObject, envelope });
-          }
-          return onSubmit(envelope);
+      if (isStudentContext && parsed.success && !parsed.data.timing) {
+        const timing = getTiming();
+        if (timing) {
+          const timedPayload: PracticeSubmissionEnvelope = {
+            ...parsed.data,
+            timing,
+          };
+          return onSubmit?.(timedPayload);
         }
       }
-      return onSubmit(payload);
+      return onSubmit?.(payload);
     },
-    [componentKey, getTiming, isStudentContext, onSubmit, quadraticAttempt, quadraticIdentity],
+    [isStudentContext, getTiming, onSubmit],
   );
 
   const ActivityComponent = useMemo(() => getActivityComponent(componentKey), [componentKey]);
@@ -99,16 +72,10 @@ export function ActivityRenderer({
       <Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Loading activity…</div>}>
         {React.createElement(ActivityComponent, {
           ...(activityProps ?? {}),
-          key: componentKey === 'quadratic-formula' ? quadraticIdentity : componentKey === 'comprehension-quiz' ? quizReceipt?.submissionId : undefined,
           activityId,
           mode,
-          pendingSubmissionId,
-          attemptOrdinal,
-          quizReceipt,
-          quizPendingAnswers,
-          onSubmit: onSubmit ? handleSubmit : undefined,
+          onSubmit: handleSubmit,
           onComplete,
-          onCheckDiscriminant,
         })}
       </Suspense>
     </div>

@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson9_2 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Trig Function Explorer",
               props: {
                 variant: "explore",
                 equation: "y = sin(x)",
+                title: "Trig Function Explorer",
               },
             },
           },
@@ -136,7 +137,11 @@ export const seedLesson9_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is sin theta given opp=28, hyp=53?", options: ["28/53", "45/53", "28/45"], correctAnswer: "28/53" },
+                  {
+                    question: "What is sin theta given opp=28, hyp=53?",
+                    options: ["28/53", "45/53", "28/45"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -164,7 +169,11 @@ export const seedLesson9_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "If cos A = 9/13, what is sin A?", options: ["9/13", "2sqrt(22)/13", "13/9"], correctAnswer: "2sqrt(22)/13" },
+                  {
+                    question: "If cos A = 9/13, what is sin A?",
+                    options: ["9/13", "2sqrt(22)/13", "13/9"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -208,7 +217,11 @@ export const seedLesson9_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "For terminal side through (-6, 4), what is tan theta?", options: ["4/(-6)", "-3/2", "-2/3"], correctAnswer: "-2/3" },
+                  {
+                    question: "For terminal side through (-6, 4), what is tan theta?",
+                    options: ["4/(-6)", "-3/2", "-2/3"],
+                    correctIndex: 2,
+                  },
                 ],
               },
             },
@@ -236,8 +249,16 @@ export const seedLesson9_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "For theta = 180°, what is cos theta?", options: ["0", "-1", "1"], correctAnswer: "-1" },
-                  { id: "question-2", type: "multiple_choice", prompt: "For theta = 180°, what is csc theta?", options: ["0", "1", "undefined"], correctAnswer: "undefined" },
+                  {
+                    question: "For theta = 180°, what is cos theta?",
+                    options: ["0", "-1", "1"],
+                    correctIndex: 1,
+                  },
+                  {
+                    question: "For theta = 180°, what is csc theta?",
+                    options: ["0", "1", "undefined"],
+                    correctIndex: 2,
+                  },
                 ],
               },
             },
@@ -281,7 +302,11 @@ export const seedLesson9_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the reference angle for 155°?", options: ["25°", "35°", "155°"], correctAnswer: "25°" },
+                  {
+                    question: "What is the reference angle for 155°?",
+                    options: ["25°", "35°", "155°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -309,7 +334,11 @@ export const seedLesson9_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is tan(7pi/4)?", options: ["1", "-1", "0"], correctAnswer: "-1" },
+                  {
+                    question: "What is tan(7pi/4)?",
+                    options: ["1", "-1", "0"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -337,7 +366,11 @@ export const seedLesson9_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "If arm length is 28 inches and sin 42° ≈ 0.669, what is y?", options: ["18.7 inches", "28 inches", "57 inches"], correctAnswer: "18.7 inches" },
+                  {
+                    question: "If arm length is 28 inches and sin 42° ≈ 0.669, what is y?",
+                    options: ["18.7 inches", "28 inches", "57 inches"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -365,8 +398,16 @@ export const seedLesson9_2 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the reference angle for an angle in Quadrant II?", options: ["180° minus the angle", "90° minus the angle", "the angle"], correctAnswer: "180° minus the angle" },
-                  { id: "question-2", type: "multiple_choice", prompt: "Which trigonometric functions are positive in Quadrant III?", options: ["sine only", "tangent only", "cosine and sine"], correctAnswer: "tangent only" },
+                  {
+                    question: "What is the reference angle for an angle in Quadrant II?",
+                    options: ["180° minus the angle", "90° minus the angle", "the angle"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "Which trigonometric functions are positive in Quadrant III?",
+                    options: ["sine only", "tangent only", "cosine and sine"],
+                    correctIndex: 1,
+                  },
                 ],
               },
             },
@@ -421,9 +462,9 @@ export const seedLesson9_2 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -436,8 +477,8 @@ export const seedLesson9_2 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });

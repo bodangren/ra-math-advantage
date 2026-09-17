@@ -2707,3 +2707,18 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
     expect(remainingIds.includes(initialActivityIds[2])).toBe(false);
   });
 });
+
+it('revalidates stored activity props before publication', async () => {
+  const { saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler, publishAuthoredLessonHandler } = await import('../../../convex/teacher/content_authoring');
+  const teacher = makeTeacher('teacher_1', 'org_1');
+  const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
+  const saved = await saveTeacherDraftHandler(ctx, { userId: teacher._id as Id<'profiles'>, draft: buildAuthoredDraft(), idempotencyKey: 'publish-props-check' });
+  expect(saved.success).toBe(true);
+  if (!saved.success) throw new Error('Draft save failed');
+  const args = { userId: teacher._id as Id<'profiles'>, lessonId: saved.lessonId };
+  await submitDraftForReviewHandler(ctx, args);
+  await reviewAuthoredLessonHandler(ctx, { ...args, decision: 'approved' });
+  stores.activities[0].props = {};
+  await expect(publishAuthoredLessonHandler(ctx, args)).rejects.toThrow('schema validation');
+  expect(stores.lesson_versions[0].status).toBe('approved');
+});

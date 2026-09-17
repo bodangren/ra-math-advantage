@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-15T13:46:51.375Z",
-  "rootDir": "/home/daniel-bo/Desktop/ra-math-advantage/apps/integrated-math-3",
+  "generatedAt": "2026-09-07T03:30:35.776Z",
+  "rootDir": "/Users/daniel.bodanske/Desktop/ra-math-advantage/apps/integrated-math-3",
   "summary": {
     "moduleCount": 9,
     "lessonCount": 52,
@@ -68,8 +68,7 @@
         "documentedException": true
       }
     ],
-    "phasePackageCount": 180,
-    "activityMappingCount": 919
+    "phasePackageCount": 180
   },
   "checks": [
     {
@@ -219,15 +218,6 @@
         "packageErrors": [],
         "missingPackages": [],
         "invalidInstructionPackages": []
-      }
-    },
-    {
-      "id": "practice-v1-activity-map",
-      "status": "pass",
-      "message": "All class-period packages have practice.v1 activity mappings.",
-      "details": {
-        "missingActivityPeriods": [],
-        "invalidActivities": []
       }
     }
   ],

@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,10 +75,10 @@ export const seedLesson9_4 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "graphing-explorer",
-              displayName: "Sine and Cosine Graphing Explorer",
               props: {
                 variant: "explore",
                 equation: "y = sin(x)",
+                title: "Sine and Cosine Graphing Explorer",
               },
             },
           },
@@ -136,8 +137,16 @@ export const seedLesson9_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "If a graph has maximum = 4 and minimum = -4, what is the amplitude?", options: ["2", "4", "8"], correctAnswer: "4" },
-                  { id: "question-2", type: "multiple_choice", prompt: "If the graph repeats every pi, what is the period?", options: ["pi", "2pi", "360"], correctAnswer: "pi" },
+                  {
+                    question: "If a graph has maximum = 4 and minimum = -4, what is the amplitude?",
+                    options: ["2", "4", "8"],
+                    correctIndex: 1,
+                  },
+                  {
+                    question: "If the graph repeats every pi, what is the period?",
+                    options: ["pi", "2pi", "360"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -165,8 +174,16 @@ export const seedLesson9_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the amplitude of f(x) = 3 cos 5x?", options: ["3", "5", "15"], correctAnswer: "3" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the period of f(x) = 3 cos 5x in degrees?", options: ["72°", "360°", "5°"], correctAnswer: "72°" },
+                  {
+                    question: "What is the amplitude of f(x) = 3 cos 5x?",
+                    options: ["3", "5", "15"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the period of f(x) = 3 cos 5x in degrees?",
+                    options: ["72°", "360°", "5°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -194,8 +211,16 @@ export const seedLesson9_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the amplitude of y = 0.5 sin 4x?", options: ["0.5", "4", "0.125"], correctAnswer: "0.5" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the period of y = 0.5 sin 4x in degrees?", options: ["90°", "360°", "45°"], correctAnswer: "90°" },
+                  {
+                    question: "What is the amplitude of y = 0.5 sin 4x?",
+                    options: ["0.5", "4", "0.125"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the period of y = 0.5 sin 4x in degrees?",
+                    options: ["90°", "360°", "45°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -223,8 +248,16 @@ export const seedLesson9_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the amplitude of y = 2 cos 3x?", options: ["2", "3", "6"], correctAnswer: "2" },
-                  { id: "question-2", type: "multiple_choice", prompt: "At what x-value does y = 2 cos 3x first reach its maximum?", options: ["0", "30°", "60°"], correctAnswer: "0" },
+                  {
+                    question: "What is the amplitude of y = 2 cos 3x?",
+                    options: ["2", "3", "6"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "At what x-value does y = 2 cos 3x first reach its maximum?",
+                    options: ["0", "30°", "60°"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -268,9 +301,21 @@ export const seedLesson9_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the period of y = 40 cos(pi t)?", options: ["2", "pi", "40"], correctAnswer: "2" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What is the frequency of y = 40 cos(pi t)?", options: ["1/2", "2", "pi"], correctAnswer: "1/2" },
-                  { id: "question-3", type: "multiple_choice", prompt: "What is the range of y = 40 cos(pi t)?", options: ["[-40, 40]", "[0, 40]", "[-40, 0]"], correctAnswer: "[-40, 40]" },
+                  {
+                    question: "What is the period of y = 40 cos(pi t)?",
+                    options: ["2", "pi", "40"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the frequency of y = 40 cos(pi t)?",
+                    options: ["1/2", "2", "pi"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What is the range of y = 40 cos(pi t)?",
+                    options: ["[-40, 40]", "[0, 40]", "[-40, 0]"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -298,8 +343,16 @@ export const seedLesson9_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What is the amplitude of the voltage function?", options: ["120", "50", "100"], correctAnswer: "120" },
-                  { id: "question-2", type: "multiple_choice", prompt: "If frequency is 50 cycles per second, what is b in v = a sin(bt)?", options: ["100pi", "50", "2pi"], correctAnswer: "100pi" },
+                  {
+                    question: "What is the amplitude of the voltage function?",
+                    options: ["120", "50", "100"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "If frequency is 50 cycles per second, what is b in v = a sin(bt)?",
+                    options: ["100pi", "50", "2pi"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -327,17 +380,29 @@ export const seedLesson9_4 = internalMutation({
               componentKey: "comprehension-quiz",
               props: {
                 questions: [
-                  { id: "question-1", type: "multiple_choice", prompt: "What does amplitude measure?", options: [
+                  {
+                    question: "What does amplitude measure?",
+                    options: [
                       "Half the distance between max and min",
                       "The number of cycles per unit time",
                       "The horizontal length of one cycle",
-                    ], correctAnswer: "Half the distance between max and min" },
-                  { id: "question-2", type: "multiple_choice", prompt: "What does frequency measure?", options: [
+                    ],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "What does frequency measure?",
+                    options: [
                       "Half the distance between max and min",
                       "The number of cycles per unit time",
                       "The horizontal length of one cycle",
-                    ], correctAnswer: "The number of cycles per unit time" },
-                  { id: "question-3", type: "multiple_choice", prompt: "For y = sin(x), what is the amplitude?", options: ["1", "2pi", "0"], correctAnswer: "1" },
+                    ],
+                    correctIndex: 1,
+                  },
+                  {
+                    question: "For y = sin(x), what is the amplitude?",
+                    options: ["1", "2pi", "0"],
+                    correctIndex: 0,
+                  },
                 ],
               },
             },
@@ -392,9 +457,9 @@ export const seedLesson9_4 = internalMutation({
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
-            displayName: (section.content as { displayName?: string }).displayName ?? `${phase.title} - ${activityContent.componentKey}`,
+            displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,
@@ -407,8 +472,8 @@ export const seedLesson9_4 = internalMutation({
             sequenceOrder: section.sequenceOrder,
             sectionType: section.sectionType,
             content: {
+              ...activityContent,
               activityId: insertedActivityId,
-              componentKey: activityContent.componentKey,
             },
             createdAt: now,
           });
