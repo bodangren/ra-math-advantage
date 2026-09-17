@@ -15,6 +15,8 @@ interface MathInputFieldProps {
   placeholder?: string;
   showValidation?: boolean;
   required?: boolean;
+  inputId?: string;
+  describedBy?: string;
 }
 
 /**
@@ -32,7 +34,11 @@ export function MathInputField({
   placeholder,
   showValidation = false,
   required = false,
+  inputId,
+  describedBy,
 }: MathInputFieldProps) {
+  const resolvedInputId = inputId ?? `math-input-${label}`;
+  const errorId = `${resolvedInputId}-error`;
   const checkEquivalence = (input: string, answer: string): boolean => {
     const normalizedInput = normalizeSolverAnswer(input);
     const normalizedAnswer = normalizeSolverAnswer(answer);
@@ -45,13 +51,13 @@ export function MathInputField({
 
   return (
     <div className="space-y-2">
-      <label htmlFor={`math-input-${label}`} className="block text-sm font-medium text-foreground">
+      <label htmlFor={resolvedInputId} className="block text-sm font-medium text-foreground">
         {label}
       </label>
       
       <div className="space-y-2">
         <input
-          id={`math-input-${label}`}
+          id={resolvedInputId}
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -65,6 +71,7 @@ export function MathInputField({
             ${disabled ? 'bg-muted disabled:cursor-not-allowed' : 'bg-background'}
           `}
           aria-label={label}
+          aria-describedby={describedBy}
         />
 
         <div data-testid="katex-preview" className="min-h-[2rem] p-2 bg-muted/30 rounded-md border border-border">
@@ -72,7 +79,7 @@ export function MathInputField({
         </div>
 
         {error && (
-          <p className="text-sm text-destructive" role="alert">
+          <p id={errorId} className="text-sm text-destructive" role="alert">
             {error}
           </p>
         )}

@@ -71,6 +71,8 @@ export type {
 } from './components/algebraic/StepByStepper';
 export { MathInputField } from './components/algebraic/MathInputField';
 export type { StepByStepSolverActivityProps } from './components/algebraic/StepByStepSolverActivity';
+export { QuadraticFormulaActivity } from './components/algebraic/QuadraticFormulaActivity';
+export type { QuadraticFormulaActivityProps } from './components/algebraic/QuadraticFormulaActivity';
 
 // GraphingExplorer
 export { GraphingExplorer } from './components/graphing/GraphingExplorer';
