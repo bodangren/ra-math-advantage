@@ -1,5 +1,9 @@
 # Review plan
 
+## Integration record (2026-09-17)
+
+The current Precalculus source and test changes are committed in `67065a9e1`. The commit is also owned by the graph-node-practice-program, teacher-led-mastery-advantage, and mastery-advantage-graph-remediation tracks because the worktree contained overlapping graph and pilot changes. Production deployment and complete course acceptance remain open.
+
 - [x] Inventory contracts, routes, data, and current changes.
 - [x] Run app quality checks and inspect failures.
 - [x] Trace authentication, submissions, grading, progress, and UI behavior.

@@ -1,5 +1,9 @@
 # Review Plan
 
+## Integration record (2026-09-17)
+
+The current IM3 source and test changes are committed in `8142bd70d`. The commit is also owned by the graph-node-practice-program, teacher-led-mastery-advantage, and KST plus SRS runtime migration tracks because the worktree contained overlapping runtime and graph changes. Production deployment and complete course acceptance remain open.
+
 Review status: complete as an assessment. The results below record the original review. Runtime remediation is tracked in `fix-plan.md` and `fixes.md`.
 
 - [x] Record scope and current workspace state.

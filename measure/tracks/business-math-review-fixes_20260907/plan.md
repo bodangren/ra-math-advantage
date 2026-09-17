@@ -1,5 +1,9 @@
 # Implementation plan
 
+## Integration record (2026-09-17)
+
+The current Business Math source and test changes are committed in `991fe1212`. The commit is also owned by the graph-node-practice-program and teacher-led-mastery-advantage tracks because the worktree contained overlapping pilot and graph changes. Dependency approval and production deployment remain open.
+
 ## Phase 1: Review corrections
 
 - [~] Protect phase identity, completion evidence, competency credit, and atomic retries (BM2-01, 04, 05, 20).
