@@ -8,7 +8,7 @@
 
 ## Phase 2: Atomic integration
 
-- [~] Stage one reviewed group at a time.
+- [x] Stage one reviewed group at a time.
 - [x] Commit each group with an owner track in the message.
 - [x] Add a Git note to each integration commit.
 - [x] Record each commit in the owning plan.
@@ -22,11 +22,16 @@
 - `991fe1212` — Business Math review and practice corrections. Owners: business-math-review-fixes, graph-node-practice-program, and teacher-led-mastery-advantage.
 - `8fed657a7` — Measure review and graph integration facts. Owners: the review and graph tracks listed above.
 - `480b3f9f0` — repository architecture and workspace tooling. Owners: app-platform-consolidation, monorepo-architecture-contracts, and this track.
+- `25f28638c` — restore quadratic-formula shared exports and input accessibility support after the first package quality run. Owners: graph-node-practice-program, teacher-led-mastery-advantage, and this track.
 
 Residual state is limited to generated `.next`, `.vinext`, and coverage output, temporary review captures, the local `opencode.json`, an empty `=` file, two tracked generated route declarations, and one tracked Danielson output deletion. No residual source path lacks an owner.
 
 ## Phase 3: Final verification
 
-- [ ] Run `git diff --check` and the relevant quality gates.
-- [ ] Confirm that no committed path lacks an owner.
-- [ ] Record residual generated output and unresolved overlap.
+- [x] Run `git diff --check` and the relevant quality gates.
+- [x] Confirm that no committed path lacks an owner.
+- [x] Record residual generated output and unresolved overlap.
+
+Quality gates passed after the shared export fix: focused quadratic-formula tests (21/21), package lint, package typecheck, repository lint, repository typecheck, and package build.
+
+Residual state remains limited to generated `.next`, `.vinext`, and coverage output, temporary review captures, the local `opencode.json`, an empty `=` file, two tracked generated route declarations, and one tracked Danielson output deletion. These paths remain outside the atomic source commits for explicit review.
