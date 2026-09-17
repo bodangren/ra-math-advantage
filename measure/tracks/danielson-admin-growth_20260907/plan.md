@@ -12,7 +12,7 @@
 
 - [x] T03: `83db7af0` Implement portfolio urgency, search, filters, and direct actions.
 - [x] T04: `83db7af0` Implement coaching persistence, forms, teacher reflection, and evidence progress.
-- [~] T05: `83db7af0` implements the available changes. Connect feedback and responses. Improve evidence prompts and rating labels. Add calibration guidance and exercise. `a4668221` adds FFT 2022 component summaries. Full official performance-level descriptors remain pending.
+- [x] T05: `83db7af0` connects feedback and responses and adds evidence prompts, rating labels, and calibration. `a4668221` adds interim component summaries. `4543d9192` replaces the summaries with all 88 school-supplied FFT 2022 performance-level descriptors.
 - [x] T06: `83db7af0` Implement account search, selected-account actions, and assignment detail.
 
 ## Generate docs and Doctor
@@ -24,7 +24,7 @@
 
 Initial full run: 420 tests passed. App and Convex TypeScript checks passed. Build passed. Local Convex schema push passed. Expanded behavior tests and browser checks are in progress.
 
-Full official rubric text remains pending. Numeric labels and evidence prompts are implemented. No replacement rubric was authored.
+The school supplied the FFT 2022 rubric text on 2026-09-17. Numeric labels and evidence prompts are implemented. The app uses the supplied text without authoring a replacement rubric.
 
 ## Repository check findings
 
@@ -34,10 +34,14 @@ Measure generation completed. Doctor found five undeclared dependency imports in
 
 Implementation commit: `83db7af0`. All 432 app tests, lint, both TypeScript checks, build, local Convex push, and targeted browser checks passed. The verification cycle was removed. The local app remains on port 3014 for review.
 
-The user selected FFT. Full official performance-level text remains unavailable in the project. T08 remains the user manual review checkpoint. The track remains open for these items.
+The user selected FFT. T08 remains the user manual review checkpoint.
 
 ## FFT source follow-up
 
-The user selected Danielson FFT on 2026-09-07. Retain the existing 2022 edition. Add the existing source-app component summaries beside ratings. Label summaries clearly. The full official rating descriptors are not available in the project.
+The user selected Danielson FFT on 2026-09-07. Retain the existing 2022 edition. The school supplied the full rating descriptors on 2026-09-17.
 
 FFT reference update: `a4668221`. All 434 tests, lint, TypeScript, and build pass. Manual review remains open.
+
+FFT descriptor update: `4543d9192`. All 436 tests, lint, app and Convex
+TypeScript checks, build, and presentation checks pass. Coverage is 85.47%
+statements and 90.57% lines. Manual review remains open.

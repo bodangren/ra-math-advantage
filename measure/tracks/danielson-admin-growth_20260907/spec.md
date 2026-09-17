@@ -21,7 +21,10 @@ No dependency changes. No hosted deployment. No AI implementation.
 
 ## Policy dependency
 
-The user selected Danielson FFT. Retain the existing 2022 edition. Show the existing source-app component summaries and an official reference link. Label these as summaries. Full official performance-level descriptors are not available in the project. Do not claim full descriptor completion.
+The user selected Danielson FFT. Retain the existing 2022 edition. The school
+supplied descriptors for all 22 components and four rating levels on 2026-09-17.
+Show the component-specific descriptors with the observation rating controls.
+Keep the official reference link.
 
 ## Coaching contract details
 

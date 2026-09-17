@@ -17,6 +17,10 @@ Every final slide was rendered and inspected. Screenshot crops were revised for 
 Content checks confirm FFT, coaching, follow-up, library coverage, and deferred AI wording.
 The deck was not inspected in Microsoft PowerPoint.
 
+The 2026-09-17 refresh states that the app includes all 88 school-supplied FFT
+2022 rating descriptors. The finalization checks pass with 16 slides, 16 speaker
+note parts, three native tables, Arial text, and no package or layout findings.
+
 ## Repository checks
 
 Measure generation passed. Doctor reports the same five external dependency violations in Integrated Math 1 and AP Precalculus. None are in Danielson.

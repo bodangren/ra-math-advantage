@@ -32,7 +32,7 @@
 ## School decisions still open
 
 - [ ] Supply or approve instruction for components 1b, 1d, and 4a–4f.
-- [ ] Supply the approved component rubric and calibration examples.
+- [x] Supply the approved component rubric. Calibration examples remain a school decision.
 - [ ] Decide whether new formal evaluations require all 22 components.
 - [ ] Define correction of published subject, date, and school-year metadata.
 - [ ] Decide whether to change the supplied GBF edition or assignment lifecycle.
@@ -47,3 +47,11 @@ The local browser draft was discarded. The review-owned local stack was stopped.
 
 - [x] V01: Include the eight TLAC 3.0 videos from the source CSV. Show the overview in Learn. Connect seven tutorials to their technique pages. Preserve source titles and explain the Replace Self-Report number error. Test links, embeds, and lesson mapping. Commit: `e8ca6ad6`.
 - [ ] V02: Include Get Better Faster videos when their source location is identified. The supplied directory has no matching files or text links. A source-location question is pending.
+
+## Admin effectiveness assessment (2026-09-07)
+
+- [x] A01: Review current leadership and administration flows. Recommend priorities, coaching methods, and pilot measures in `admin-effectiveness.md`. This is an assessment only.
+
+## FFT 2022 rubric descriptors (2026-09-17)
+
+- [x] R01: Add the supplied FFT 2022 descriptors for all 22 components and four rating levels. Show the component-specific descriptors in the observation form. Test source completeness and user-visible guidance. `4543d9192`

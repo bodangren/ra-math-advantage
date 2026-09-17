@@ -12,6 +12,7 @@
 ## Generate docs and Doctor
 - [x] T04: Render every slide. Inspect and repair. Run presentation validation and applicable Measure checks. Record the final path.
 - [~] T05: Deliver the presentation for user review. The manual checkpoint remains open.
+- [x] T06: Refresh the FFT guidance slide after the school supplied the 2022 rating descriptors. Rebuild and verify the final presentation. `4543d9192`
 
 No application code changes. Presentation content and package checks replace app unit tests for this document task.
 
