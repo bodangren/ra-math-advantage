@@ -70,10 +70,13 @@ Dependencies:
 
 ## Active Tracks
 
+- [~] **Track: Worktree Atomic Integration (2026-09-17)** — Reconcile the existing mixed worktree with Measure ownership. Commit reviewed source groups atomically. Keep generated output outside commits until the owning workflow requires it.
+  *Link: [./tracks/worktree-atomic-integration_20260917/](./tracks/worktree-atomic-integration_20260917/)*
+
 - [~] **Business Math Review Fixes (2026-09-07)** — 41 local corrections verified. Dependency approval and integration of overlapping changes remain open. See `fixes.md`.
   *Link: [./tracks/business-math-review-fixes_20260907/](./tracks/business-math-review-fixes_20260907/)*
 
-- [~] **IM2 Complete Review (2026-09-07)** — Corrections in progress. Runtime, 96-lesson inventory, and 180-period calendar verified. Graph teaching coverage and full practice remain open. The dependency plan now includes both audit scopes and all three PostCSS copies. See `fix-plan.md`.
+- [~] **IM2 Complete Review (2026-09-07)** — Corrections in progress. Runtime, 96 lessons, 403 worked examples, and 180 periods verified. Full practice, remaining worksheet review, and dependency updates remain open. The dependency plan now includes both audit scopes and all three PostCSS copies. See `fix-plan.md`.
   *Link: [./tracks/im2-complete-review_20260907/](./tracks/im2-complete-review_20260907/)*
 
 - [x] **Business Math Complete Review (2026-09-07)** — Review complete. The correction track verifies 41 local fixes. One dependency finding remains open. See the correction report for release limits.
@@ -85,7 +88,7 @@ Dependencies:
 - [~] **IM3 Complete Review (2026-09-07)** — All 38 local corrections verified. Integration commits remain pending because concurrent work overlaps the same files. See `fixes.md`.
   *Link: [./tracks/im3-complete-review_20260907/](./tracks/im3-complete-review_20260907/)*
 
-- [~] **Danielson Review (2026-09-07)** — Confirmed app and curriculum defects corrected. Eight source TLAC videos added. Get Better Faster source location is pending. School-policy decisions remain open. See `fixes.md`.
+- [~] **Danielson Review (2026-09-07)** — Confirmed app and curriculum defects corrected. Eight source TLAC videos added. Admin effectiveness assessment is complete; see `admin-effectiveness.md`. Get Better Faster source location is pending. School-policy decisions remain open. See `fixes.md`.
   *Link: [./tracks/danielson-review_20260907/](./tracks/danielson-review_20260907/)*
 
 - [x] **Monorepo Review (2026-09-07)** — Five findings fixed. See the track report for checks and commit scope.
@@ -148,17 +151,45 @@ Dependency order:
    *Install `dmmulroy/anti-slop` and configure its 15 generic Oxlint rules in the monorepo while preserving the existing ESLint workspace commands.*
    *Link: [./tracks/anti-slop-oxlint_20260820/](./tracks/anti-slop-oxlint_20260820/)*
 
-- [ ] **Track: ESLint to Oxlint Migration**
+- [~] **Track: ESLint to Oxlint Migration**
    *Replace ESLint execution with Oxlint across all 26 workspaces. Preserve the blocking lint policy. Keep anti-slop separate and non-blocking.*
    *Link: [./tracks/eslint-to-oxlint-migration_20260820/](./tracks/eslint-to-oxlint-migration_20260820/)*
    *Evidence: [baseline](./tracks/eslint-to-oxlint-migration_20260820/baseline.md) and [parity report](./tracks/eslint-to-oxlint-migration_20260820/parity-report.md).*
 
 ### Teacher-Led Mastery Advantage Progression
 
+Execution order: keep the one-node pilot contract as evidence. Freeze the three
+proxy-based rollout tracks. Approve the graph inventory and removal plan in the
+remediation track before production work resumes.
+
 - [~] **Track: Teacher-Led First Exposure and Mastery Advantage Pilots**
-   *Define the shared `learning-evidence.v1` contract and require teacher-led first exposure before supplementary Mastery Advantage KST+SRS progression. Prove the policy with exactly one mastery-bearing node each in IM3, AP Precalculus, and BM2; teacher-led evidence can introduce a node but can never award mastery or schedule SRS.*
-   *The IM3 durable teacher-led phase-4 slice is complete in `a833e06`; graded submission wiring remains blocked by the resolver mapping recorded in the active plan.*
+   *Define the shared `learning-evidence.v1` contract and require teacher-led first exposure before supplementary Mastery Advantage progression. Prove the policy with exactly one mastery-bearing node each in IM3, AP Precalculus, and Business Math. This is a pilot. It is not a course rollout.*
+   *Current verified status (2026-08-21): The correction-focused gate passes 72 tests. Full-suite results (pass/fail/skip) are IM3 4,861/65/5, Business Math 2,404/9/0, and AP Precalculus 528/6/0. The corrected authority and product-flow paths add no current failure. Sixty-four IM3 failures and all AP Precalculus and Business Math failures match their standing sets. One additional IM3 SRS queue ordering failure is outside the changed path and reproduces in the untouched queue suite.*
+   *Last recorded coverage before the removal-first correction (statements/branches/functions/lines) is Business Math 77.54%/77.72%/67.85%/79.37%, AP Precalculus 86.51%/86.12%/87.16%/88.70%, and IM3 70.72%/70.75%/62.17%/72.81%. Do not treat these values as current closeout evidence.*
+   *Capability limit: Supplementary pilot evidence uses SRS and durable KST in all three apps. Teacher-led evidence has no KST or SRS effect. The route generator uses `repo-graph`. IM3 has an internal local Convex proof. The authenticated public local flow has not been rerun after the corrections.*
    *Link: [./tracks/teacher-led-mastery-advantage_20260819/](./tracks/teacher-led-mastery-advantage_20260819/)*
+
+- [ ] **Track: Math-Series Graph Semantic Repair**
+   *Specification and plan drafted: 13 requirements, 13 acceptance criteria, and 42 top-level tasks in nine phases. Covers the eight graph findings, complete four-course source review, and cross-course prerequisite structure. Implementation and curriculum approval remain pending.*
+   *Link: [./tracks/math-series-graph-semantic-repair_20260905/](./tracks/math-series-graph-semantic-repair_20260905/)*
+
+- [~] **Track: Mastery Advantage Graph Remediation**
+   *Graph construction review completed 2026-09-05 for IM1, IM2, IM3, and AP Precalculus. Eight findings remain open. See [review](./tracks/mastery-advantage-graph-remediation_20260821/graph-construction-review-2026-09-05.md). No graph repair or row approval is claimed.*
+   *Remove proxy-derived rollout work. Approve the real IM1 to IM2 to IM3 to AP Precalculus graph inventory. Replace the fabricated Business Math family graph. Restore IM3 phase completion. Prove one corrected vertical slice per app before broad rollout resumes.*
+   *Current status (2026-08-28): The previous Module 1 pass claim is rejected historical evidence. The current artifacts map 52 authored examples to 16 candidate skill blueprints and produce 23 schema-valid activity rows. These are structural facts only. They do not prove student viability, generated-example alignment, server grading, or exact-node evidence. The prior `1-1-1` live claim is rejected as acceptance evidence. Keep all rows unapproved until direct verification in the real QA or student component proves Worked, Guided, and Independent use, server grading, and exact-node evidence. The workbench gate passes 38 tests, the Module 1 lesson and integration gate passes 39 tests, and the IM3 curriculum graph gate passes 94 tests. These gates support review but do not complete it. Affected TypeScript, lint, build, Measure Doctor, boundary, quality-parity, and diff gates pass.*
+   *Link: [./tracks/mastery-advantage-graph-remediation_20260821/](./tracks/mastery-advantage-graph-remediation_20260821/)*
+
+- [x] **Track: IM3 Mastery Advantage Rollout** — **SUPERSEDED** (2026-08-21)
+   *The plan treated 96 `kind: skill` rows as the mastery inventory. It excluded concept rows that already participate in runtime projections. The 96-skill and 83-gap claims are withdrawn.*
+   *Link: [./tracks/im3-mastery-advantage-rollout_20260821/](./tracks/im3-mastery-advantage-rollout_20260821/)*
+
+- [x] **Track: APPC Mastery Advantage Rollout** — **SUPERSEDED** (2026-08-21)
+   *The plan treated a mixed topic and subskill graph as a final 73-skill inventory. The 73-skill claim and its generated edge rollout are withdrawn pending graph review.*
+   *Link: [./tracks/appc-mastery-advantage-rollout_20260821/](./tracks/appc-mastery-advantage-rollout_20260821/)*
+
+- [x] **Track: BC Mastery Advantage Rollout** — **SUPERSEDED** (2026-08-21)
+   *The plan treated 19 deterministic problem families as 19 curriculum skills. The family-derived graph and the 19-skill claim are withdrawn.*
+   *Link: [./tracks/bc-mastery-advantage-rollout_20260821/](./tracks/bc-mastery-advantage-rollout_20260821/)*
 
 ### KST+SRS v3.2 Migration Program
 
@@ -177,6 +208,7 @@ production adopter because it owns the repository's complete KST runtime chain.
 
 - [~] **Track: KST+SRS v3.2 IM3 Runtime and Data Migration**
    *Depends on the v3.2 engine and monorepo architecture-contract tracks. Adopt v3.2 in IM3 through widen-migrate-narrow Convex changes, resumable dry-run backfills, comparison/cutover controls, BM2 queue reconciliation, and all-app compatibility gates.*
+   *Remaining work is the separately approved post-cutover narrowing and closeout. Narrowing cannot start until the server-owned cutover timestamp proves the 14-day rollback window has ended, verification reports zero unmigrated rows and zero blocking comparison events, and the user gives explicit approval.*
    *Link: [./tracks/kst-srs-v3-2-im3-runtime-migration_20260710/](./tracks/kst-srs-v3-2-im3-runtime-migration_20260710/)*
 
 ### LMS Monorepo Modularity Program
@@ -281,10 +313,10 @@ own #2/#6, #3, and #5.
        *Apply the approved pipeline to IM2, reconciling current worksheet catalogs against stale unit-based artifacts. 645 nodes (149 skills); 149 STUB blueprints; 447 projected activities; 4 review queues (incl. geometry-renderer gaps); audit at measure/skill-graph-im2-rollout-audit.md.*
        *Link: [./measure/archive/skill-rollout-im2_20260509/](./measure/archive/skill-rollout-im2_20260509/)*
     - [x] **Track 11: Skill Graph Program — Integrated Math 3 Rollout** — **COMPLETED**
-       *Expand the accepted IM3 Module 1 pilot across Modules 2-9. 574 course-level nodes (96 skills); 174 blueprints (6 M1 pilot + 168 M2-9 stubs); 351 projected activities; M1 pilot preserved; per-module artifacts for M2-9; 3 review queues; audit at measure/skill-graph-im3-rollout-audit.md.*
+       *Historical artifact result: 574 course-level nodes, including 96 rows labeled `skill` and 103 rows labeled `concept`; 174 blueprints; and 351 projected activities. These node-kind counts are not an approved mastery inventory. See `mastery-advantage-graph-remediation_20260821`.*
        *Link: [./measure/archive/skill-rollout-im3_20260509/](./measure/archive/skill-rollout-im3_20260509/)*
     - [x] **Track 12: Skill Graph Program — AP Precalculus Rollout** — **COMPLETED**
-       *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions. 294 nodes (73 skills generated from 158 worked_examples); 73 STUB blueprints; 146 projected activities; 4 review queues; audit at measure/skill-graph-precalc-rollout-audit.md.*
+       *Historical artifact result: 73 rows labeled `skill`, 158 worked examples, 73 STUB blueprints, and 146 projected activities. The 73-row graph mixes topic and subskill granularity. It is not an approved mastery inventory. See `mastery-advantage-graph-remediation_20260821`.*
        *Link: [./measure/archive/skill-rollout-precalc_20260509/](./measure/archive/skill-rollout-precalc_20260509/)*
    - [x] **Track 13: Skill Graph Program — Cross-Course Equivalence** — **COMPLETED**
       *Author equivalent_to edges across IM1/IM2/IM3/PreCalc knowledge spaces after all four rollouts complete. Wires SRS and teacher evidence projections to treat equivalence components as single learner-state targets.*
@@ -1139,8 +1171,8 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Property-based / golden-answer verification harness for deterministic generators. All 4 phases complete: contract & harness API (15 tests), core properties (134 tests), registry sweep (206 math-content + 134 practice-core tests), CI gate & verification. 163 practice-core tests pass. CI gate wired. Zero boundary violations.*
    *Link: [./archive/generated-math-correctness-qa_20260605/](./archive/generated-math-correctness-qa_20260605/)*
 
-- [ ] **Track: Vertical Slice Value Proof** — **PLANNED**
-   *Take one module (IM3 M1) end-to-end to a student route: minimal KST Track 1 wiring + real generators for M1 skills + live KST-derived state. Directly attacks the "built-but-not-wired" gap (graph asset has zero production routes). Size: L. Depends on: wire-kst-pipeline (KST T1), core-algebra-generators (T17). Readiness: blocked on KST T1 start.*
+- [x] **Track: Vertical Slice Value Proof** — **SUPERSEDED** (2026-08-21)
+   *Do not implement this duplicate track. IM3 now has the canonical graph loader, SRS-to-KST query, and production student knowledge-state route. The Teacher-Led First Exposure and Mastery Advantage track owns the bounded student practice proof. The remaining 13 Module 1 generator gaps stay in `measure/tech-debt.md` until a product-prioritized content track is approved.*
    *Link: [./tracks/vertical-slice-value-proof_20260605/](./tracks/vertical-slice-value-proof_20260605/)*
 
 - [x] **Track: Load / Scale Testing** — **COMPLETED**
