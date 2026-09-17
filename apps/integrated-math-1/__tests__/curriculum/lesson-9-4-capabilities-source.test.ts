@@ -77,14 +77,14 @@ describe("Lesson 9-4 capability inventory", () => {
       metadata: { course: "im1", module: "9", lesson: "4" },
     });
     expect(
-      graph.edges.filter((edge: any) => (edge.sourceId === id || edge.targetId === id) && !edge.id.startsWith("math.im1.g48.") && !edge.id.startsWith("math.im1.g49.")),
+      graph.edges.filter((edge: any) => (edge.sourceId === id || edge.targetId === id) && !edge.id.startsWith("math.im1.g48.")),
     ).toEqual([
       expect.objectContaining({ sourceId: lesson, targetId: id, type: "contains" }),
       ...(slug === "determine-the-five-number-summary-of-a-data-set"
         ? [expect.objectContaining({
             sourceId: "math.im1.skill.9.1.determine-the-median-of-a-data-set",
             targetId: id,
-            type: "prerequisite_for",
+            type: "prerequisite",
           })]
         : []),
     ]);

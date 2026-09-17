@@ -155,6 +155,12 @@ export default defineSchema({
     .index("by_lesson_version_and_standard", ["lessonVersionId", "standardId"]),
 
   activities: defineTable({
+    stableActivityId: v.optional(v.string()),
+    masteryNodeId: v.optional(v.string()),
+    learningEvidenceMode: v.optional(v.union(v.literal("worked_example"), v.literal("guided_practice"), v.literal("independent_practice"))),
+    srsEligible: v.optional(v.boolean()),
+    generatorSeed: v.optional(v.number()),
+    generatorDifficulty: v.optional(v.number()),
     componentKey: v.string(),
     displayName: v.string(),
     description: v.optional(v.string()),
@@ -175,7 +181,8 @@ export default defineSchema({
     })),
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_standard", ["standardId"]),
+  }).index("by_standard", ["standardId"])
+    .index("by_stable_activity_id", ["stableActivityId"]),
 
   student_competency: defineTable({
     studentId: v.id("profiles"),
@@ -238,10 +245,33 @@ export default defineSchema({
     gradedBy: v.optional(v.id("profiles")),
     createdAt: v.number(),
     updatedAt: v.number(),
+    attemptOrdinal: v.optional(v.number()),
+    idempotencyKey: v.optional(v.string()),
+    masteryContractVersion: v.optional(v.string()),
   })
     .index("by_user", ["userId"])
     .index("by_activity", ["activityId"])
-    .index("by_user_and_activity", ["userId", "activityId"]),
+    .index("by_user_and_activity", ["userId", "activityId"])
+    .index("by_user_activity_idempotency_key", ["userId", "activityId", "idempotencyKey"])
+    .index("by_user_activity_attempt_ordinal", ["userId", "activityId", "attemptOrdinal"]),
+
+  learning_evidence: defineTable({
+    learnerId: v.id("profiles"),
+    nodeId: v.string(),
+    submissionId: v.id("activity_submissions"),
+    activityId: v.string(),
+    attemptOrdinal: v.number(),
+    origin: v.union(v.literal("teacher_led"), v.literal("mastery_advantage")),
+    mode: v.union(v.literal("worked_example"), v.literal("guided_practice"), v.literal("independent_practice"), v.literal("assessment"), v.literal("teaching")),
+    occurredAt: v.string(),
+    gradedEvidence: v.optional(v.object({ isCorrect: v.optional(v.boolean()), score: v.optional(v.number()), maxScore: v.optional(v.number()) })),
+    idempotencyKey: v.string(),
+    masteryBearing: v.optional(v.boolean()),
+    createdAt: v.number(),
+  })
+    .index("by_learner_and_node", ["learnerId", "nodeId"])
+    .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"])
+    .index("by_learner_and_submission_id", ["learnerId", "submissionId"]),
 
   student_spreadsheet_responses: defineTable({
     studentId: v.id("profiles"),

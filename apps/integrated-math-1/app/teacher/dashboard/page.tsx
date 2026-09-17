@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { TranslationExposureForm } from "@/components/teacher/TranslationExposureForm";
+import { fetchInternalQuery, internal } from "@/lib/convex/server";
+import type { Id } from "@/convex/_generated/dataModel";
+import { requireTeacherSessionClaims } from "@/lib/auth/server";
 
-export default function TeacherDashboard() {
+export default async function TeacherDashboard() {
+  const claims = await requireTeacherSessionClaims("/teacher/dashboard");
+  const candidates = await fetchInternalQuery(internal.activities.getTeacherTranslationExposureCandidates, { teacherId: claims.sub as Id<"profiles"> });
   return (
     <div className="max-w-content mx-auto px-6 py-16">
       <div className="text-center py-20">
@@ -28,6 +34,7 @@ export default function TeacherDashboard() {
             Back to Home
           </Link>
         </div>
+        <TranslationExposureForm candidates={candidates} />
       </div>
     </div>
   );

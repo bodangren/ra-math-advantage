@@ -46,14 +46,14 @@ describe('Lesson 9-1 capability inventory', () => {
     expect(graph.edges.filter((edge: any) => edge.sourceId === 'math.im1.lesson.9.1' && edge.targetId === id && edge.type === 'contains')).toHaveLength(1);
     const incident = graph.edges.filter((edge: any) => edge.sourceId === id || edge.targetId === id);
     const expectedLessons = sourceNodeIds[0] === 'math.im1.example.9.1.001'
-      ? ['math.im1.lesson.9.1', 'math.im1.lesson.9.3', 'math.im1.lesson.9.6', ...(['calculate-the-arithmetic-mean-of-a-data-set', 'determine-the-median-of-a-data-set'].includes(suffix) ? ['math.im1.lesson.9.5'] : [])]
+      ? ['math.im1.lesson.9.1', 'math.im1.lesson.9.3', ...(['calculate-the-arithmetic-mean-of-a-data-set', 'determine-the-median-of-a-data-set'].includes(suffix) ? ['math.im1.lesson.9.5'] : [])]
       : ['math.im1.lesson.9.1'];
     const expectedPrerequisite = suffix === 'determine-the-median-of-a-data-set'
       ? ['math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set']
       : [];
     expect(incident.filter((edge: any) => edge.type === 'contains').every((edge: any) => edge.targetId === id && expectedLessons.includes(edge.sourceId))).toBe(true);
     expect(incident.filter((edge: any) => edge.type === 'contains').map((edge: any) => edge.sourceId).sort()).toEqual(expectedLessons.sort());
-    expect(incident.filter((edge: any) => edge.type === 'prerequisite_for').map((edge: any) => edge.targetId)).toEqual(expectedPrerequisite);
+    expect(incident.filter((edge: any) => edge.type === 'prerequisite').map((edge: any) => edge.targetId)).toEqual(expectedPrerequisite);
   });
 
   it('keeps 9a source-only and removes unsupported lesson-sequence prerequisites', () => {

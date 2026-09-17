@@ -78,7 +78,7 @@ describe("Lesson 9-5 capability inventory", () => {
       reviewStatus: "draft",
       metadata: { course: "im1", module: "9", lesson: "5" },
     });
-    expect(graph.edges.filter((edge: any) => (edge.sourceId === id || edge.targetId === id) && !edge.id.startsWith("math.im1.g49.")))
+    expect(graph.edges.filter((edge: any) => edge.sourceId === id || edge.targetId === id))
       .toEqual([expect.objectContaining({ sourceId: lesson, targetId: id, type: "contains" })]);
   });
 

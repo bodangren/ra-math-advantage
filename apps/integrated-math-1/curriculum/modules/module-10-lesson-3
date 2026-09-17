@@ -1,277 +1,271 @@
-# Line Segments ⸱ Practice
+# Lesson 10-3 — Line Segments
 
-Source: Module 10, Lesson 10-3, `Int1_1003_practice.docx`
+Source: (Module 10, Lesson 10-3, Int1_1003_practice.docx)
 
-## Examples 1 and 2
+## Today's Goals
 
-Find the measure of each segment.
+* Find the length of a segment by reading coordinates from a number line.
+* Apply the Segment Addition Postulate to find missing segment lengths.
+* Set up and solve linear equations involving segment measures.
+* Use segment addition to model and solve real-world distance problems.
+* Find segment measures when coordinates involve variables or midpoints.
 
-### Problem 1
+## Vocabulary
 
-PR
+* **Line Segment** — A part of a line consisting of two endpoints and all points between them.
+* **Endpoint** — A point at either end of a segment.
+* **Measure of a Segment** — The distance between the endpoints of a segment.
+* **Segment Addition Postulate** — If point B is between points A and C, then AB + BC = AC.
+* **Between** — A point is between two other points if it lies on the segment connecting them.
+* **Collinear** — Points that lie on the same line.
+* **Midpoint** — A point that divides a segment into two congruent segments.
+* **Congruent Segments** — Segments that have the same measure.
 
-![Points P, R, and S in order. PS is 5.8 millimeters. RS is 3.7 millimeters.](/curriculum/module-10-lesson-3/image1.png)
+## Explore: How Can You Find a Distance Without Measuring Directly?
 
-### Problem 2
+Students consider situations where the total distance between two points is known, but only part of the distance is directly measurable. They explore how subtraction or algebraic reasoning can reveal an unknown portion of a path.
 
-EF
+Inquiry Question:
+If you know the total length of a path and the length of one section, how can you determine the length of the remaining section?
 
-![Points E, G, and F in order. EG is 2.5 inches. GF is 2.8 inches.](/curriculum/module-10-lesson-3/image2.png)
+## Learn: Measuring and Applying Line Segments
 
-### Problem 3
+Line segments are measured by finding the distance between their endpoints. On a number line, this is done by subtracting the lesser coordinate from the greater coordinate. The Segment Addition Postulate connects the parts of a segment to the whole, allowing us to solve for unknown lengths using algebra.
 
-JL
+### Key Concept: Measuring a Segment on a Number Line
 
-![Points J, K, and L in order. JK is 0.75 centimeter. KL is 0.35 centimeter.](/curriculum/module-10-lesson-3/image3.png)
+* The length of a segment with endpoints at coordinates a and b is found by computing the absolute difference of the coordinates.
+* If the coordinates are positive and ordered, subtract the left coordinate from the right coordinate.
 
-### Problem 4
+[
+\overline{AB} = |b - a|
+]
 
-HJ
+### Key Concept: Segment Addition Postulate
 
-![Points H, J, and K in order. HK is 12.2 feet. JK is 3.1 feet.](/curriculum/module-10-lesson-3/image4.png)
+* If point B lies between points A and C on a segment, then the sum of the two parts equals the whole segment.
 
-### Problem 5
+[
+AB + BC = AC
+]
 
-AC
+* This relationship can be used to write an equation when some measures are known and others are expressed as variables.
 
-![Points A, B, and C in order. AB is 0.4 meter. BC is 1.6 meters.](/curriculum/module-10-lesson-3/image5.png)
+## Examples 1 and 2 — Find Segment Lengths from Number Lines
 
-### Problem 6
+Read the coordinates of the endpoints from each number line diagram and subtract to find the segment length.
 
-SV
+### Step 1: Identify the Coordinates
 
-![Points S, V, and T in order. ST is 4.1 inches. VT is 2.6 inches.](/curriculum/module-10-lesson-3/image6.png)
+Locate the two endpoints on the number line and record their coordinates.
 
-### Problem 7
+For a segment with endpoints at 3 and 10:
+[
+\overline{AB} = 10 - 3
+]
 
-NQ
+### Step 2: Compute the Length
 
-![Points Q, P, and N in order. QP is 1 inch. PN is 1 1/4 inches.](/curriculum/module-10-lesson-3/image7.png)
+Subtract the lesser coordinate from the greater coordinate to find the measure.
 
-### Problem 8
+[
+10 - 3 = 7
+]
 
-AC
+### Step 3: Apply to Additional Diagrams
 
-![Points A, B, and C in order. AB is 4.9 centimeters. BC is 5.2 centimeters.](/curriculum/module-10-lesson-3/image8.png)
+Repeat the process for each number line. When one or both coordinates are negative, use the same subtraction method. The result is always a positive measure.
 
-### Problem 9
+For a segment from [-2] to [5]:
+[
+5 - (-2) = 7
+]
 
-GH
+## Example 3 — Apply the Segment Addition Postulate Algebraically
 
-![Points F, G, and H in order. FG is 9.7 millimeters. FH is 15 millimeters.](/curriculum/module-10-lesson-3/image9.png)
+Given that a point Y is between points X and Z, use the Segment Addition Postulate to write an equation and solve for an unknown variable. Then find the length of the requested segment.
 
-## Example 3
+### Step 1: Write the Equation
 
-Find the value of the variable and YZ if Y is between X and Z.
+Express the relationship XY + YZ = XZ using the given algebraic expressions.
 
-### Problem 10
+If XY = 11, YZ = 4c, and XZ = 83:
+[
+11 + 4c = 83
+]
 
-XY = 11, YZ = 4c, XZ = 83
+If XY = 6b, YZ = 8b, and XZ = 175:
+[
+6b + 8b = 175
+]
 
-### Problem 11
+If XY = 7a, YZ = 5a, and XZ = 6a + 24:
+[
+7a + 5a = 6a + 24
+]
+
+### Step 2: Solve for the Variable
 
-XY = 6b, YZ = 8b, XZ = 175
+Combine like terms and isolate the variable.
 
-### Problem 12
+For [6b + 8b = 175]:
+[
+14b = 175
+]
+[
+b = 12.5
+]
 
-XY = 7a, YZ = 5a, XZ = 6a + 24
+For [7a + 5a = 6a + 24]:
+[
+12a = 6a + 24
+]
+[
+6a = 24
+]
+[
+a = 4
+]
 
-### Problem 13
+### Step 3: Find the Requested Segment Length
 
-XY = 5.5, YZ = 2c, XZ = 8.9
+Substitute the value of the variable back into the expression for the segment asked for in the problem.
 
-### Problem 14
+If YZ = 4c and c = 18:
+[
+YZ = 4 \times 18 = 72
+]
+
+If YZ = 8b and b = 12.5:
+[
+YZ = 8 \times 12.5 = 100
+]
 
-XY = 5n, YZ = 2n, XZ = 91
+## Example 4 — Solve Real-World Problems Using Segment Addition
 
-### Problem 15
+Apply the Segment Addition Postulate to practical situations involving distances, lengths, and locations along a straight path.
 
-XY = 4w, YZ = 6w, XZ = 12w – 8
+### Step 1: Identify the Total and the Known Part
 
-### Problem 16
-
-XY = 11d, YZ = 9d – 2, XZ = 5d + 28
-
-### Problem 17
-
-XY = 4n + 3, YZ = 2n – 7, XZ = 20
-
-### Problem 18
-
-XY = 3a – 4, YZ = 6a + 2, XZ = 5a + 22
-
-### Problem 19
-
-XY = 3k – 2, YZ = 7k + 4, XZ = 4k + 38
-
-### Problem 20
-
-XY = 4x, YZ = x, and XZ = 25
-
-### Problem 21
-
-XY = 4x, YZ = 3x, and XZ = 42
-
-### Problem 22
-
-XY = 12, YZ = 2x, and XZ = 28
-
-### Problem 23
-
-XY = 2x + 1, YZ = 6x, and XZ = 81
-
-## Example 4
-
-### Problem 24
-
-**RAILROADS** A straight railroad track is being built to connect two cities. The measured distance of the track between the two cities is 160.5 miles. A mail stop is 28.5 miles from the first city. How far is the mail stop from the second city?
-
-### Problem 25
-
-**CARPENTRY** A carpenter has a piece of wood that is 78 inches long. He wants to cut it so that one piece is five times as long as the other piece. What are the lengths of the two pieces?
-
-### Problem 26
-
-**WALKING** Marshall lives 2300 yards from school and 1500 yards from the pharmacy. The school, pharmacy, and his home are all collinear, as shown in the figure. What is the distance from the pharmacy to the school?
-
-![School, Pharmacy, and Home in order. School to Home is 2300 yards. Pharmacy to Home is 1500 yards.](/curriculum/module-10-lesson-3/image10.png)
-
-### Problem 27
-
-**COFFEE SHOP** Chenoa wants to stop for coffee on her way to school. The distance from Chenoa’s house to the coffee shop is 3 miles more than twice the distance from the coffee shop to Chenoa’s school. The total distance from Chenoa’s house to her school is 5 times the distance from the coffee shop to her school.
-
-#### Part a
-
-What is the distance from Chenoa’s house to the coffee shop? Write your answer as a decimal, if necessary.
-
-#### Part b
-
-What assumptions did you make when solving this problem?
-
-## Example 5
-
-Find the measure of each segment.
-
-### Problem 28
-
-MO
-
-![Points M, N, and O in order. MN is 4.6 centimeters. Matching tick marks show MN congruent to NO.](/curriculum/module-10-lesson-3/image11.png)
-
-### Problem 29
-
-WY
-
-![Points W, Y, and X in order. WX is 8.8 millimeters. Matching tick marks show WY congruent to YX.](/curriculum/module-10-lesson-3/image12.png)
-
-### Problem 30
-
-FG
-
-![Points F, G, H, J, and K in order. FK is 16.8 centimeters. Matching tick marks show the four subsegments congruent.](/curriculum/module-10-lesson-3/image13.png)
-
-### Problem 31
-
-QT
-
-![Points P, Q, R, S, and T in order. PT is 14.4 inches. Matching tick marks show the four subsegments congruent.](/curriculum/module-10-lesson-3/image14.png)
-
-### Problem 32
-
-DE
-
-![Points C, D, and E in order. Matching tick marks show CD congruent to DE. CD is 2x + 7. DE is 4(x – 3).](/curriculum/module-10-lesson-3/image15.png)
-
-### Problem 33
-
-UX
-
-![Points U, V, W, and X in order. Matching tick marks show UV, VW, and WX congruent. Their measures are 3x + 1, 4x – 6, and 2x + 8.](/curriculum/module-10-lesson-3/image16.png)
+Determine which distance represents the total segment and which represents a part.
+
+**Railroad Track:** A straight track between two cities measures 160.5 miles total. A mail stop is 28.5 miles from the first city. The remaining distance is:
+[
+160.5 - 28.5 = 132
+]
+
+**Carpentry:** A board 78 inches long is cut so one piece is five times the other. Let the shorter piece be x. The total length gives:
+[
+x + 5x = 78
+]
+[
+6x = 78
+]
+[
+x = 13
+]
+
+The two pieces are 13 inches and 65 inches.
+
+### Step 2: Use Collinear Points to Find a Distance
+
+When three locations are collinear, the total distance equals the sum of the two parts.
+
+**Walking:** A home is 2300 yards from school and 1500 yards from a pharmacy, with all three locations collinear. The pharmacy lies between the home and the school. The distance from pharmacy to school is:
+[
+2300 - 1500 = 800
+]
+
+### Step 3: Set Up Multi-Step Equations
+
+When relationships are described with comparisons, define a variable and write an equation for the total.
+
+**Coffee Shop:** Let the distance from the coffee shop to school be x. The distance from home to the coffee shop is 3 miles more than twice that distance, so it is 2x + 3. The total distance from home to school is 5 times the coffee-shop-to-school distance, so:
+[
+(2x + 3) + x = 5x
+]
+[
+3x + 3 = 5x
+]
+[
+3 = 2x
+]
+[
+x = 1.5
+]
+
+The distance from home to the coffee shop is:
+[
+2(1.5) + 3 = 6
+]
+
+## Example 5 — Find Segment Measures with Variables and Midpoints
+
+Find the measure of segments when number line coordinates involve variables, fractions, or midpoint relationships.
+
+### Step 1: Read Coordinates Involving Variables
+
+Identify the coordinates of the endpoints from the diagram. Some coordinates may be given as algebraic expressions.
+
+For a segment from [2x] to [8] with midpoint-related information, use the relationship between the parts.
+
+### Step 2: Use the Midpoint Relationship
+
+If a point is the midpoint, the two resulting segments are congruent. Set their expressions equal and solve.
+
+If the segments to the left and right of a midpoint measure [3y + 2] and [5y - 4]:
+[
+3y + 2 = 5y - 4
+]
+[
+6 = 2y
+]
+[
+y = 3
+]
+
+### Step 3: Find the Total Segment Length
+
+Substitute back to find each part, then add to find the whole segment.
+
+[
+3(3) + 2 = 11
+]
+[
+5(3) - 4 = 11
+]
+[
+\text{Total} = 11 + 11 = 22
+]
+
+### Step 4: Solve with Fractional Coordinates
+
+When coordinates are fractions, subtract them carefully using common denominators.
+
+For endpoints at [
+\frac{3}{4}
+] and [
+\frac{5}{2}
+]:
+[
+\frac{5}{2} - \frac{3}{4} = \frac{10}{4} - \frac{3}{4} = \frac{7}{4}
+]
 
 ## Mixed Exercises
 
-### Problem 34
+The mixed exercises provide practice with all skills from the lesson: reading segment lengths from number lines, applying the Segment Addition Postulate with numerical values, setting up and solving algebraic equations for segment measures, working with congruent segments, and solving real-world distance problems. Problems include:
 
-Find the length of UW if W is between U and V, UV = 16.8 centimeters, and VW = 7.9 centimeters.
+* Finding a missing segment length when the total and one part are known numerically.
+* Finding the value of a variable when a segment is expressed algebraically.
+* Using congruent segments to write an equation and solve for a variable.
+* Working with midpoints to determine segment measures.
+* Solving real-world problems involving distances along straight paths, including field trips, hiking trails, race routes, and everyday locations.
+* Using precision and reasoning to write true statements about betweenness and segment relationships.
+* Analyzing whether statements about betweenness are sometimes, always, or never true.
+* Writing and solving equations with quadratic expressions for segment lengths.
+* Solving systems of equations involving two variables in a segment addition context.
+* Explaining the process for finding segment lengths and creating original segment diagrams.
 
-### Problem 35
+## Review Notes
 
-Find the value of x if RS = 24 centimeters.
-
-![Points R, T, and S in order. RT is 6x – 4. TS is 10 centimeters.](/curriculum/module-10-lesson-3/image17.png)
-
-### Problem 36
-
-Find the length of LO if M is between L and O, LM = 7x – 9, MO = 14 inches, and LO = 10x – 7.
-
-### Problem 37
-
-Find the value of x if $\overline{PQ} \cong \overline{RS}$, PQ = 9x – 7, and RS = 29.
-
-### Problem 38
-
-Find the measure of NL.
-
-![Points M, N, and L in order. ML is 5.8 centimeters. MN is 2.1 centimeters.](/curriculum/module-10-lesson-3/image18.png)
-
-### Problem 39
-
-**PRECISION** If point P is between A and M, write a true statement.
-
-### Problem 40
-
-**HIKING** A hiking trail is 20 kilometers long. Park organizers want to build 5 rest stops for hikers with one on each end of the trail and the other 3 spaced evenly between. How much distance will separate successive rest stops?
-
-### Problem 41
-
-**RACE** The map shows the route of a race. You are at Y, 6000 feet from the first checkpoint A. The second checkpoint B is located at the midpoint between A and the end of the race Z. The total race is 3.1 miles. How far apart are the two checkpoints?
-
-![Race route with points Y, A, B, and Z in order.](/curriculum/module-10-lesson-3/image19.png)
-
-### Problem 42
-
-**FIELD TRIP** The marching band at Jefferson High School is taking a field trip from Lansing, Michigan to Detroit, Michigan. The bus driver was told to stop 53 miles into the trip. If the rest of the trip is 41 miles and the entire journey can be represented by the expression 3x + 16, find the value of x.
-
-![Route map from Lansing to Detroit. The scale is 10 miles to 1 centimeter.](/curriculum/module-10-lesson-3/image20.png)
-
-### Problem 43
-
-**DISTANCE** Madison lives between Anoa and Jamie as depicted on the line segment. The distance between Anoa’s house and Madison’s house is represented by 3x + 2 miles, the distance between Madison’s house and Jamie’s house is represented by 3x + 4 miles, and the distance between Anoa’s house and Jamie’s house is represented by 9x – 3 miles. Find the value of x. Then find the distance between Madison’s house and Jamie’s house.
-
-![Points A, M, and J in order for the Madison distance problem.](/curriculum/module-10-lesson-3/image21.png)
-
-### Problem 44
-
-**FIREFIGHTING** A firefighter training course is taking place in a high-rise building. The high-rise building where they practice is 48 stories high. If the emergency happens on the top floor and the firefighters have already gone 29 stories, how many stories do they still need to go?
-
-![A 48-story building graphic with a marker after 29 stories.](/curriculum/module-10-lesson-3/image22.png)
-
-### Problem 45
-
-**CAFE** You are waiting at the end of a long straight line at Coffee Express. Your friend Denzel is r + 12 feet in front of you. Denzel is 2r + 4 feet away from the front of the line. If Denzel is in the exact middle of the line, how many feet away are you from the front of the line?
-
-### Problem 46
-
-**REASONING** For $\overline{AC}$, write and solve an equation to find AB.
-
-![Points A, B, and C in order. AC is 3.7 centimeters. BC is 1.5 centimeters.](/curriculum/module-10-lesson-3/image23.png)
-
-### Problem 47
-
-**PERSEVERE** Point K is between points J and L. If JK = x² – 4x, KL = 3x – 2, and JL = 28, find the lengths of JK and KL.
-
-### Problem 48
-
-**ANALYZE** Determine whether the statement If point M is between points C and D, then CD is greater than either CM and MD is sometimes, always, or never true. Justify your argument.
-
-### Problem 49
-
-**PERSEVERE** Point C is located between points B and D. Also, BC = 5x + 7, CD = 3y + 4, BD = 38, and BD = 2x + 8y. Find the values of x and y.
-
-### Problem 50
-
-**WRITE** If point B is between points A and C, explain how you can find AC if you know AB and BC. Explain how you can find BC if you know AB and AC.
-
-### Problem 51
-
-**CREATE** Sketch line segment AC. Plot point B between A and C. Use a ruler to find AC and AB. Then write and solve an equation to find BC.
+* Images referenced in the worksheet (number line diagrams for Examples 1, 2, and 5; walking route diagram; race route diagram; field trip bus diagram; distance line segment diagram; cafe line diagram) could not be fully described without visual reference. Teachers should consult the original worksheet for exact coordinate values and diagrams.

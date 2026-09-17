@@ -735,8 +735,7 @@
       "title": "Example 1: Find Segment Lengths from Number Lines",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Examples 1 and 2, Problems 1–9)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Examples 1 and 2, Problems 1–9)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-3, Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -754,8 +753,7 @@
       "title": "Example 2: Find Segment Lengths from Number Lines",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Examples 1 and 2, Problems 1–9)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Examples 1 and 2, Problems 1–9)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-3, Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -773,8 +771,7 @@
       "title": "Example 3: Apply the Segment Addition Postulate Algebraically; Solve Real-World Problems Using Segment Addition",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Example 3, Problems 10–23)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Example 3, Problems 10–23)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-3, Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -792,8 +789,7 @@
       "title": "Example 4: Apply the Segment Addition Postulate Algebraically; Solve Real-World Problems Using Segment Addition",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Example 4, Problems 24–27)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Example 4, Problems 24–27)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-3, Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -811,8 +807,7 @@
       "title": "Example 1: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 1, Problems 1–14)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 1, Problems 1–14)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -830,8 +825,7 @@
       "title": "Example 2: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 2, Problems 15–20)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 2, Problems 15–20)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -849,8 +843,7 @@
       "title": "Example 3: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 3, Problems 21–26)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 3, Problems 21–26)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -868,8 +861,7 @@
       "title": "Example 4: Apply the Distance Formula to Real-World Problems",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 4, Problems 27–30)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 4, Problems 27–30)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7150,11 +7142,10 @@
     {
       "id": "math.im1.example.9.6.019",
       "kind": "worked_example",
-      "title": "Example 1",
+      "title": "Example 1: Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Example 1, Problems 1-4)"
+        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-6, Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7162,18 +7153,17 @@
         "module": "9",
         "lesson": "6",
         "exampleNumber": 1,
-        "sourceLesson": "9-6"
-      },
-      "independentPracticeReady": false
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 1-2 — Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics"
+      }
     },
     {
       "id": "math.im1.example.9.6.020",
       "kind": "worked_example",
-      "title": "Example 2",
+      "title": "Example 2: Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Example 2, Problems 5-8)"
+        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-6, Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7181,18 +7171,17 @@
         "module": "9",
         "lesson": "6",
         "exampleNumber": 2,
-        "sourceLesson": "9-6"
-      },
-      "independentPracticeReady": false
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 1-2 — Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics"
+      }
     },
     {
       "id": "math.im1.example.9.6.021",
       "kind": "worked_example",
-      "title": "Examples 3 and 4",
+      "title": "Example 3: Compare Data Sets with Graphs and Statistics",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Examples 3 and 4, Problems 9-10)"
+        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-6, Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7200,37 +7189,35 @@
         "module": "9",
         "lesson": "6",
         "exampleNumber": 3,
-        "sourceLesson": "9-6"
-      },
-      "independentPracticeReady": false
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 3-4 — Compare Data Sets with Graphs and Statistics"
+      }
     },
     {
       "id": "math.im1.example.9.6.022",
       "kind": "worked_example",
-      "title": "Examples 3 and 4 duplicate",
+      "title": "Example 4: Compare Data Sets with Graphs and Statistics",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Rejected duplicate of the combined Examples 3 and 4 heading)"
+        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-6, Example 4)"
       ],
-      "reviewStatus": "rejected",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "6",
         "exampleNumber": 4,
-        "sourceLesson": "9-6"
-      },
-      "independentPracticeReady": false
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 3-4 — Compare Data Sets with Graphs and Statistics"
+      }
     },
     {
       "id": "math.im1.example.9.7.023",
       "kind": "worked_example",
-      "title": "Example 1",
+      "title": "Example 1: Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Example 1, Problems 1-4)"
+        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-7, Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7238,18 +7225,17 @@
         "module": "9",
         "lesson": "7",
         "exampleNumber": 1,
-        "sourceLesson": "9-7"
-      },
-      "independentPracticeReady": false
+        "sourceLesson": "9-7",
+        "rawText": "9-7, Examples 1-2 — Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table"
+      }
     },
     {
       "id": "math.im1.example.9.7.024",
       "kind": "worked_example",
-      "title": "Example 2",
+      "title": "Example 2: Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Example 2, Problems 5-7)"
+        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-7, Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7257,9 +7243,9 @@
         "module": "9",
         "lesson": "7",
         "exampleNumber": 2,
-        "sourceLesson": "9-7"
-      },
-      "independentPracticeReady": false
+        "sourceLesson": "9-7",
+        "rawText": "9-7, Examples 1-2 — Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table"
+      }
     },
     {
       "id": "math.im1.lesson.1.1",
@@ -9196,9 +9182,7 @@
       "domain": "math.im1",
       "description": "Draw and label figures that accurately represent given geometric relationships",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problems 20–24, 32–34, 39–42, 45, and 50)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9214,9 +9198,7 @@
       "domain": "math.im1",
       "description": "Identify and name points, lines, and planes from geometric figures",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problems 1–19, 25–31, 35–38, and 43–44)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9232,9 +9214,7 @@
       "domain": "math.im1",
       "description": "Apply the Segment Addition Postulate to find missing segment lengths",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 1–28, 31, 33–36, 38, and 41–47)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 1–28, 31, 33–36, 38, and 41–47)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9250,9 +9230,7 @@
       "domain": "math.im1",
       "description": "Find the length of a segment by reading coordinates from a number line",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 1, Problems 1–14; each requested number-line segment measure)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 1, Problems 1–14; each requested number-line segment measure)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9268,9 +9246,7 @@
       "domain": "math.im1",
       "description": "Apply the Distance Formula to solve real-world problems",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 4 and Mixed Exercises, Problems 28–30 and 47–48; Problem 29 also observes a manually reviewed justification)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 4 and Mixed Exercises, Problems 28–30 and 47–48; Problem 29 also observes a manually reviewed justification)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9286,9 +9262,7 @@
       "domain": "math.im1",
       "description": "Use the Distance Formula to find the distance between two points in the coordinate plane",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 3 Problems 21–26; Example 4 Problem 27 only; Mixed Exercises Problems 31–42, 52, and 54; Problem 52 observes learner-supplied points and a consistent distance; Problem 54 observes a manually reviewed general symbolic method)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 3 Problems 21–26; Example 4 Problem 27 only; Mixed Exercises Problems 31–42, 52, and 54; Problem 52 observes learner-supplied points and a consistent distance; Problem 54 observes a manually reviewed general symbolic method)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9336,9 +9310,7 @@
       "domain": "math.im1",
       "description": "Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Mixed Exercises, Problem 51 only; observe the requested coordinate pair)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Mixed Exercises, Problem 51 only; observe the requested coordinate pair)"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9722,9 +9694,7 @@
       "domain": "math.im1",
       "description": "Apply geometric postulates about points, lines, and planes to justify statements",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-12-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problem 46 only)"
+        "apps/integrated-math-1/curriculum/module-12-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -10332,9 +10302,7 @@
       "domain": "math.im1",
       "description": "Solve multi-step linear equations using properties of equality and check solutions by substitution",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 10, 13, 17, 22, 23, 35, 37, and 42; accepted equation stage must be observed separately from the final segment length)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 10, 13, 17, 22, 23, 35, 37, and 42; accepted equation stage must be observed separately from the final segment length)"
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -10350,9 +10318,7 @@
       "domain": "math.im1",
       "description": "Solve linear equations that have the variable on both sides of the equation, including those with fractions and grouping symbols",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 12, 15, 16, 18, 19, 27a, 32, 33, 36, 43, and 45; accepted equation stage must be observed separately from the final segment length)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 12, 15, 16, 18, 19, 27a, 32, 33, 36, 43, and 45; accepted equation stage must be observed separately from the final segment length)"
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -11641,8 +11607,7 @@
         "course": "im1",
         "module": "9",
         "lesson": "6"
-      },
-      "independentPracticeReady": false
+      }
     },
     {
       "id": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
@@ -11658,8 +11623,7 @@
         "course": "im1",
         "module": "9",
         "lesson": "6"
-      },
-      "independentPracticeReady": false
+      }
     },
     {
       "id": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
@@ -15277,9 +15241,7 @@
       "description": "Solve a one-solution linear system by scaling equations and elimination",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)",
-        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problem 49 only after both segment constraints are supplied or accepted)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problem 49 only after both segment constraints are supplied or accepted)"
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17143,801 +17105,6 @@
         "course": "im1",
         "module": "9",
         "lesson": "5"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
-      "kind": "skill",
-      "title": "Determine a named center statistic after adding a constant",
-      "domain": "math.im1",
-      "description": "Apply +c to one named mean, median, or mode.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 1-4, 11, 14, 15, 18, and 21(b), center responses)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
-      "kind": "skill",
-      "title": "Determine a named spread statistic after adding a constant",
-      "domain": "math.im1",
-      "description": "Determine that one named range or standard deviation is unchanged after +c.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 1-4, 11, 14, 15, 18, and 21(b), spread responses; Problem 32 separately observed addition-invariance explanation)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
-      "kind": "skill",
-      "title": "Determine a named center statistic after multiplying by a constant",
-      "domain": "math.im1",
-      "description": "Multiply one named mean, median, or mode by a signed nonzero constant k.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 5-8, 12, 13, 17, 22(b), and Problem 30 general rule and reason; manual review)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
-      "kind": "skill",
-      "title": "Determine a named spread statistic after multiplying by a constant",
-      "domain": "math.im1",
-      "description": "Multiply one named range or standard deviation by |k|.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 5-8, 12, 13, 16, 17, 19, 20, 22(b), 23(b), and Problem 30 general rule and reason; Problem 32 separately observed multiplication-scaling explanation; manual review)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
-      "kind": "skill",
-      "title": "Determine a named center statistic after an ordered affine transformation",
-      "domain": "math.im1",
-      "description": "Compose the stated operations in source order for one named mean, median, or mode. Keep the sign of each nonzero multiplier.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 16, 19, 20, 23(b), and Problem 32 source-order general rule and reason; manual review)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
-      "kind": "skill",
-      "title": "Construct a data table with a specified mean",
-      "domain": "math.im1",
-      "description": "Construct a table that satisfies a stated mean and explain the constraint.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 25(a); multiple valid tables; manual or constraint review)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
-      "kind": "skill",
-      "title": "Evaluate which sample appears more representative using sample evidence",
-      "domain": "math.im1",
-      "description": "Make a qualified judgment and cite evidence from two samples without claiming population truth.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 26(b); manual claim-and-evidence rubric)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
-      "kind": "skill",
-      "title": "Make a contextual choice from compared distributions",
-      "domain": "math.im1",
-      "description": "Choose a stated option and justify it with relevant distribution evidence.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 28(b); manual claim-and-evidence rubric)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
-      "kind": "skill",
-      "title": "Compare the information shown by histograms and box plots",
-      "domain": "math.im1",
-      "description": "Compare shape detail, grouped frequencies, median, quartiles, and compact comparison.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 29; manual bounded rubric)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
-      "kind": "skill",
-      "title": "Update an overall mean after equal changes to a subgroup",
-      "domain": "math.im1",
-      "description": "Update a total or overall mean when each member of a known-size subgroup changes equally.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 31)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "6"
-      }
-    },
-    {
-      "id": "math.im1.example.9.7.025",
-      "kind": "worked_example",
-      "title": "Example 3",
-      "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Example 3, Problems 8-10)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7",
-        "exampleNumber": 3,
-        "sourceLesson": "9-7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
-      "kind": "skill",
-      "title": "Read a joint frequency from a two-way frequency table",
-      "domain": "math.im1",
-      "description": "Read the cell at a stated row and column.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 2 and 15 after an accepted Problem 1 or Problem 13 table; Problems 11, 24, and 25 from supplied tables; Problem 15 has two separate cells)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
-      "kind": "skill",
-      "title": "Read a marginal frequency from a two-way frequency table",
-      "domain": "math.im1",
-      "description": "Read a stated row or column total.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 3 after an accepted Problem 1 table; Problems 21-23 from supplied tables)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
-      "kind": "skill",
-      "title": "Calculate a difference between named frequencies",
-      "domain": "math.im1",
-      "description": "Subtract two supplied or accepted named frequencies.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 4, 12, 14, and 16 after the two named counts are supplied or accepted; Problems 4, 14, and 16 use accepted prior tables)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
-      "kind": "skill",
-      "title": "Construct an overall two-way relative frequency table",
-      "domain": "math.im1",
-      "description": "Divide table frequencies by the grand total under a stated rounding rule.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 5 and 17 from supplied tables; Problem 29 after an accepted completed table)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
-      "kind": "skill",
-      "title": "Calculate an overall joint relative frequency",
-      "domain": "math.im1",
-      "description": "Divide a stated joint frequency by the grand total.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 6, 18, and 30; Problem 30 preserves the representativeness assumption)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
-      "kind": "skill",
-      "title": "Calculate an overall marginal relative frequency",
-      "domain": "math.im1",
-      "description": "Divide a stated marginal frequency by the grand total.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 26-28)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
-      "kind": "skill",
-      "title": "Calculate a conditional relative frequency in a stated direction",
-      "domain": "math.im1",
-      "description": "Use the explicitly stated condition and denominator category.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 10, 19, 20, 31, and 38; condition and denominator must be explicit)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
-      "kind": "skill",
-      "title": "Construct a conditional relative frequency table for a stated conditioning variable",
-      "domain": "math.im1",
-      "description": "Construct a table with row or column denominators as stated.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 8 and 31; state denominator direction)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
-      "kind": "skill",
-      "title": "Interpret a joint or marginal relative frequency in context",
-      "domain": "math.im1",
-      "description": "State category, reference group, and magnitude for the response type supplied.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 7 only for the interpretation type the learner states; manual bounded rubric)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
-      "kind": "skill",
-      "title": "Interpret a conditional relative frequency in context",
-      "domain": "math.im1",
-      "description": "State the conditioning group, outcome group, and magnitude.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 9, 31, 32, and 38; manual review where open)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
-      "kind": "skill",
-      "title": "Distinguish reversed conditional questions",
-      "domain": "math.im1",
-      "description": "Identify both denominators and explain why reversed conditional probabilities differ.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 10, two probabilities and explanation)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
-      "kind": "skill",
-      "title": "Estimate joint and marginal counts from rounded relative frequencies and a grand total",
-      "domain": "math.im1",
-      "description": "Convert rounded percentages under an explicit reconciliation rule and accept all compatible integer tables.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 33; 215 and whole percentages give no unique exact integer table; method must be separately observed)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
-      "kind": "skill",
-      "title": "Compare overall and conditional relative-frequency scaling",
-      "domain": "math.im1",
-      "description": "Give the common scale factor and explain the denominator change.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 34 AWD responses; no individual-frequency calculation required)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
-      "kind": "skill",
-      "title": "Evaluate association between two categorical variables from a two-way table",
-      "domain": "math.im1",
-      "description": "Compare conditional distributions or equivalent evidence and explain the judgment.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 35; raw-count difference alone is insufficient)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
-      "kind": "skill",
-      "title": "Create a related question and consistent solution from an accepted two-way table",
-      "domain": "math.im1",
-      "description": "Create a question and solution that are consistent with an accepted table.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 36 after an accepted two-way table; manual review; no duplicate table-construction evidence)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
-      "kind": "skill",
-      "title": "Compare overall and conditional two-way relative-frequency tables",
-      "domain": "math.im1",
-      "description": "Explain denominator and interpretation differences.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 37; manual bounded rubric)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
-      "kind": "skill",
-      "title": "Evaluate categorical-data claims with conditional evidence",
-      "domain": "math.im1",
-      "description": "Decide a stated claim and cite correct conditional evidence.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 38; Magdalena and Ben scored separately; manual claim-and-evidence rubric)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "9",
-        "lesson": "7"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.1.author-axioms-from-observed-categorical-data",
-      "kind": "skill",
-      "title": "Author axioms from observed categorical data",
-      "domain": "math.im1",
-      "description": "Author statements that observed categorical data supports and use them as axioms.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx (Problem 14; score each of the three authored axioms separately from the later conclusion)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.1.construct-a-model-that-satisfies-stated-incidence-constraints",
-      "kind": "skill",
-      "title": "Construct a model that satisfies stated incidence constraints",
-      "domain": "math.im1",
-      "description": "Construct a model and check it against each stated point-and-line incidence constraint.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx (Problem 20; five points, two lines, at least two points on each line, no points outside the five specified points, and no requirement that all points lie on lines)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.1.derive-a-supported-conclusion-from-stated-axioms-and-facts",
-      "kind": "skill",
-      "title": "Derive a supported conclusion from stated axioms and facts",
-      "domain": "math.im1",
-      "description": "Derive a conclusion that follows from the complete set of stated axioms and facts.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx (Problems 1-4, 11, 14, 18, and 19; score each requested conclusion separately; use all stated premises and require a uniqueness check before a converse inference)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.1.evaluate-whether-a-supplied-candidate-model-satisfies-every-stated-axiom",
-      "kind": "skill",
-      "title": "Evaluate whether a supplied candidate model satisfies every stated axiom",
-      "domain": "math.im1",
-      "description": "Evaluate one supplied candidate model against every stated axiom and cite a failed axiom when the model fails.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx (Problems 17 and 21; Problem 17 is the full three-route system; Problem 21 requires only the selected failing diagram and cited axiom; curved lines are allowed because the stated axioms do not define a line as straight)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
-      "kind": "skill",
-      "title": "Evaluate whether stated conclusions follow from axioms and diagnose an invalid inference",
-      "domain": "math.im1",
-      "description": "Judge stated conclusions from axioms and explain why an invalid inference does not follow.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1001_practice.docx (Problem 22; score all three judgments, including two valid and one invalid conclusion, and require the invalid-inference explanation)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "1"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
-      "kind": "skill",
-      "title": "Determine the maximum number of distinct lines or planes formed by point subsets",
-      "domain": "math.im1",
-      "description": "Determine the maximum number of distinct lines or planes formed by point subsets.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problem 47: line count and required double-counting explanation; Problem 48: maximum plane count only; keep the two evidence variants separate)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "2"
-      }
-    },
-    {
-      "id": "math.im1.example.10.3.028",
-      "kind": "worked_example",
-      "title": "Example 5: Find the measure of each segment",
-      "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Example 5, Problems 28–33)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Example 5, Problems 28–33)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "3",
-        "exampleNumber": 5,
-        "sourceLesson": "10-3",
-        "rawText": "10-3, Example 5 — Find the measure of each segment"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
-      "kind": "skill",
-      "title": "Use congruent subsegments, equal spacing, or a midpoint to determine segment measures",
-      "domain": "math.im1",
-      "description": "Use congruent subsegments, equal spacing, or a midpoint to determine segment measures.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 28–33, 37, 40, 41, and 45)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 28–33, 37, 40, 41, and 45)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
-      "kind": "skill",
-      "title": "Write a segment-addition equation or statement from betweenness",
-      "domain": "math.im1",
-      "description": "Write a segment-addition equation or statement from betweenness.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problems 39, 46, 50, and 51)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problems 39, 46, 50, and 51)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
-      "kind": "skill",
-      "title": "Solve a segment-addition equation with quadratic expressions and reject a root that gives a negative segment length",
-      "domain": "math.im1",
-      "description": "Solve a segment-addition equation with quadratic expressions and reject a root that gives a negative segment length.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problem 47 only)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problem 47 only)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
-      "kind": "skill",
-      "title": "Classify and justify a part-whole segment inequality from betweenness",
-      "domain": "math.im1",
-      "description": "Classify and justify a part-whole segment inequality from betweenness.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problem 48 only)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problem 48 only)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
-      "kind": "skill",
-      "title": "Model two segment constraints as a linear system",
-      "domain": "math.im1",
-      "description": "Model two segment constraints as a linear system.",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1003_practice.docx (Problem 49 only)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-3 (Problem 49 only)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
-      "kind": "skill",
-      "title": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
-      "domain": "math.im1",
-      "description": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problems 15–20, 43, and 46. Observe each final congruence decision; length calculations are task stages.)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problems 15–20, 43, and 46. Observe each final congruence decision; length calculations are task stages.)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
-      "kind": "skill",
-      "title": "Find possible values of one coordinate from a fixed coordinate and distance",
-      "domain": "math.im1",
-      "description": "Find possible values of one coordinate from a fixed coordinate and distance",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problems 44, 45, and 53. Problems 44–45 require an unordered pair of possible points. Problem 53 requires the explanatory method and no separate coordinate answer.)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problems 44, 45, and 53. Problems 44–45 require an unordered pair of possible points. Problem 53 requires the explanatory method and no separate coordinate answer.)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
-      "kind": "skill",
-      "title": "Determine and justify segment congruence from rectangle side lengths and midpoints",
-      "domain": "math.im1",
-      "description": "Determine and justify segment congruence from rectangle side lengths and midpoints",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problem 49 only. Manually review the decision and reason from the stated lengths and midpoint conditions.)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problem 49 only. Manually review the decision and reason from the stated lengths and midpoint conditions.)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4"
-      }
-    },
-    {
-      "id": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
-      "kind": "skill",
-      "title": "Explain how the Pythagorean Theorem produces the Distance Formula",
-      "domain": "math.im1",
-      "description": "Explain how the Pythagorean Theorem produces the Distance Formula",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problem 50 only. Manually review the coordinate differences, right triangle, and hypotenuse relationship.)",
-        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problem 50 only. Manually review the coordinate differences, right triangle, and hypotenuse relationship.)"
-      ],
-      "reviewStatus": "draft",
-      "independentPracticeReady": false,
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4"
       }
     }
   ]

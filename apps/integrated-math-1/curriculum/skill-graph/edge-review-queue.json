@@ -48,6 +48,13 @@
       "reviewAction": "confirm, upgrade-to-medium, or remove"
     },
     {
+      "edgeId": "math.im1.edge.1192",
+      "sourceId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+      "targetId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 10",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
       "edgeId": "math.im1.edge.1193",
       "sourceId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
       "targetId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
@@ -606,6 +613,20 @@
       "targetId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
       "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 9",
       "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im1.edge.1276",
+      "sourceId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "targetId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "rationale": "Lesson-sequence prerequisite: lesson 6 precedes lesson 7 in module 9",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im1.edge.1277",
+      "sourceId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "targetId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 9 precedes first lesson of module 10",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
     }
   ],
   "skillsMissingRenderer": [
@@ -886,7 +907,7 @@
     },
     {
       "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
+      "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
       "reviewAction": "assign renderer node when component registry is extended"
     },
     {
@@ -1578,7 +1599,7 @@
     },
     {
       "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
+      "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
       "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
     },
     {
@@ -1993,7 +2014,7 @@
     }
   ],
   "counts": {
-    "lowConfidencePrerequisites": 86,
+    "lowConfidencePrerequisites": 89,
     "skillsMissingRenderer": 138,
     "skillsMissingMisconceptionTaxonomy": 138
   }

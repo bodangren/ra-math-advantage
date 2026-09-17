@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 499,
+  "totalSkills": 457,
   "counts": {
     "served": 6,
-    "gap": 493,
+    "gap": 451,
     "newComponent": 0
   },
   "byModule": [
@@ -66,16 +66,16 @@
     },
     {
       "module": "9",
-      "totalSkills": 107,
+      "totalSkills": 80,
       "served": 0,
-      "gap": 107,
+      "gap": 80,
       "newComponent": 0
     },
     {
       "module": "10",
-      "totalSkills": 28,
+      "totalSkills": 13,
       "served": 0,
-      "gap": 28,
+      "gap": 13,
       "newComponent": 0
     },
     {
@@ -3181,22 +3181,6 @@
       "priority": "high"
     },
     {
-      "skillId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
       "skillId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
       "module": "9",
       "status": "gap",
@@ -3213,232 +3197,8 @@
       "priority": "high"
     },
     {
-      "skillId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
       "skillId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
       "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
-      "module": "9",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.author-axioms-from-observed-categorical-data",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.construct-a-model-that-satisfies-stated-incidence-constraints",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.derive-a-supported-conclusion-from-stated-axioms-and-facts",
-      "module": "10",
       "status": "gap",
       "tier": "none",
       "rendererKey": "comprehension-quiz",
@@ -3453,36 +3213,12 @@
       "priority": "standard"
     },
     {
-      "skillId": "math.im1.skill.10.1.evaluate-whether-a-supplied-candidate-model-satisfies-every-stated-axiom",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
       "skillId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
       "module": "10",
       "status": "gap",
       "tier": "none",
       "rendererKey": "fill-in-the-blank",
       "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
     },
     {
       "skillId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
@@ -3509,52 +3245,12 @@
       "priority": "standard"
     },
     {
-      "skillId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
       "skillId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
       "module": "10",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
       "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
     },
     {
       "skillId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
@@ -3564,38 +3260,6 @@
       "rendererKey": "step-by-step-solver",
       "priority": "standard"
     },
-    {
-          "skillId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
-          "module": "10",
-          "status": "gap",
-          "tier": "none",
-          "rendererKey": "unknown",
-          "priority": "standard"
-        },
-    {
-          "skillId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
-          "module": "10",
-          "status": "gap",
-          "tier": "none",
-          "rendererKey": "unknown",
-          "priority": "standard"
-        },
-    {
-          "skillId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
-          "module": "10",
-          "status": "gap",
-          "tier": "none",
-          "rendererKey": "unknown",
-          "priority": "standard"
-        },
-    {
-          "skillId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
-          "module": "10",
-          "status": "gap",
-          "tier": "none",
-          "rendererKey": "unknown",
-          "priority": "standard"
-        },
     {
       "skillId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
       "module": "10",

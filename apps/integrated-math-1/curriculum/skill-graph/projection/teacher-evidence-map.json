@@ -205,6 +205,11 @@
       "standardId": "math.standard.ccss.g-co-a-2",
       "standardTitle": "math.standard.ccss.g-co-a-2",
       "nodeIds": [
+        "math.im1.example.10.2.003",
+        "math.im1.example.10.2.004",
+        "math.im1.example.10.2.005",
+        "math.im1.example.10.2.006",
+        "math.im1.example.10.2.007",
         "math.im1.example.10.3.008",
         "math.im1.example.10.3.009",
         "math.im1.example.10.3.010",
@@ -234,6 +239,8 @@
         "math.im1.example.13.4.016",
         "math.im1.example.13.4.017",
         "math.im1.example.13.4.018",
+        "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+        "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
         "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
         "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
         "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
@@ -249,14 +256,22 @@
         "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
         "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
       ],
-      "workedExampleCount": 29,
-      "guidedPracticeCount": 14,
+      "workedExampleCount": 34,
+      "guidedPracticeCount": 16,
       "independentPracticeCount": 0
     },
     {
       "standardId": "math.standard.ccss.g-gpe-b-4",
-      "standardTitle": "G-GPE.B.4 (placeholder)",
+      "standardTitle": "math.standard.ccss.g-gpe-b-4",
       "nodeIds": [
+        "math.im1.example.10.3.008",
+        "math.im1.example.10.3.009",
+        "math.im1.example.10.3.010",
+        "math.im1.example.10.3.011",
+        "math.im1.example.10.4.012",
+        "math.im1.example.10.4.013",
+        "math.im1.example.10.4.014",
+        "math.im1.example.10.4.015",
         "math.im1.example.10.5.016",
         "math.im1.example.10.5.017",
         "math.im1.example.10.5.018",
@@ -276,6 +291,10 @@
         "math.im1.example.14.7.024",
         "math.im1.example.14.7.025",
         "math.im1.example.14.7.026",
+        "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+        "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+        "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+        "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
         "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
         "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
         "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
@@ -286,14 +305,17 @@
         "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
         "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian"
       ],
-      "workedExampleCount": 19,
-      "guidedPracticeCount": 0,
+      "workedExampleCount": 27,
+      "guidedPracticeCount": 13,
       "independentPracticeCount": 0
     },
     {
       "standardId": "math.standard.ccss.g-mg-a-1",
-      "standardTitle": "G-MG.A.1 (placeholder)",
+      "standardTitle": "math.standard.ccss.g-mg-a-1",
       "nodeIds": [
+        "math.im1.example.10.4.012",
+        "math.im1.example.10.4.013",
+        "math.im1.example.10.4.014",
         "math.im1.example.10.4.015",
         "math.im1.example.11.6.019",
         "math.im1.example.11.6.020",
@@ -301,11 +323,12 @@
         "math.im1.example.11.6.022",
         "math.im1.example.11.6.023",
         "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+        "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
         "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
         "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct"
       ],
-      "workedExampleCount": 6,
-      "guidedPracticeCount": 0,
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 4,
       "independentPracticeCount": 0
     },
     {
@@ -557,6 +580,7 @@
         "math.im1.example.13.4.016",
         "math.im1.example.13.4.017",
         "math.im1.example.13.4.018",
+        "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
         "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
         "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
         "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
@@ -564,7 +588,7 @@
         "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
       ],
       "workedExampleCount": 12,
-      "guidedPracticeCount": 5,
+      "guidedPracticeCount": 6,
       "independentPracticeCount": 0
     },
     {
@@ -1692,7 +1716,9 @@
       "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
       "title": "10d: Draw and label figures that accurately represent given geometric relationships",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2"
+      ],
       "prerequisitesMet": true,
       "independentPracticeReady": false
     },
@@ -1700,7 +1726,9 @@
       "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
       "title": "10c: Identify and name points, lines, and planes from geometric figures",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2"
+      ],
       "prerequisitesMet": false,
       "independentPracticeReady": false
     },
@@ -1708,75 +1736,45 @@
       "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
       "title": "10f: Apply the Segment Addition Postulate to find missing segment lengths",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
+      "independentPracticeReady": false
     },
     {
       "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
       "title": "10e: Find the length of a segment by reading coordinates from a number line",
       "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
     },
     {
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
       "title": "10h: Apply the Distance Formula to solve real-world problems",
       "kind": "skill",
       "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4",
         "math.standard.ccss.g-mg-a-1"
       ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
+      "independentPracticeReady": false
     },
     {
       "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
       "title": "10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
       "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
-      "title": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
-      "title": "Find possible values of one coordinate from a fixed coordinate and distance",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
-      "title": "Determine and justify segment congruence from rectangle side lengths and midpoints",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
-      "title": "Explain how the Pythagorean Theorem produces the Distance Formula",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
     },
     {
       "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
@@ -1808,9 +1806,8 @@
         "math.standard.ccss.g-gpe-b-5",
         "math.standard.ccss.g-gpe-b-6"
       ],
-      "prerequisitesMet": false,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
     },
     {
       "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
@@ -2060,7 +2057,9 @@
       "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
       "title": "12g: Apply geometric postulates about points, lines, and planes to justify statements",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-4"
+      ],
       "prerequisitesMet": true,
       "independentPracticeReady": false
     },
@@ -2211,7 +2210,7 @@
     },
     {
       "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
+      "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
       "kind": "skill",
       "standardsCovered": [
         "math.standard.ccss.8-g-a-1",
@@ -2456,9 +2455,8 @@
         "math.standard.ccss.a-ced-a-4",
         "math.standard.ccss.a-rei-b-3"
       ],
-      "prerequisitesMet": false,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
     },
     {
       "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
@@ -2468,9 +2466,8 @@
         "math.standard.ccss.a-rei-a-1",
         "math.standard.ccss.a-rei-b-3"
       ],
-      "prerequisitesMet": false,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
     },
     {
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
@@ -3384,69 +3381,6 @@
       "prerequisitesMet": true,
       "independentPracticeReady": false,
       "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
-      "title": "Determine the maximum number of distinct lines or planes formed by point subsets",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
-      "title": "Classify and justify a part-whole segment inequality from betweenness",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
-      "title": "Model two segment constraints as a linear system",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
-      "title": "Solve a segment-addition equation with quadratic expressions and reject a root that gives a negative segment length",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
-      "title": "Use congruent subsegments, equal spacing, or a midpoint to determine segment measures",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
-      "title": "Write a segment-addition equation or statement from betweenness",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
-      "title": "Solve a one-solution linear system by scaling equations and elimination",
-      "kind": "skill",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false,
-      "equivalentNodeIds": []
     }
   ],
   "prerequisiteGaps": [
@@ -3677,11 +3611,6 @@
     },
     {
       "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
-      "gap": "no_prerequisite_skills_assigned",
-      "description": "Skill has no prerequisite skills in the graph"
-    },
-    {
-      "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
       "gap": "no_prerequisite_skills_assigned",
       "description": "Skill has no prerequisite skills in the graph"
     }

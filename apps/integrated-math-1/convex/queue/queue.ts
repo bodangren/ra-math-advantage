@@ -5,8 +5,14 @@ import { buildDailyQueue, type QueueItem } from "@math-platform/srs-engine";
 import type { ObjectivePracticePolicy, SrsCardState } from "@math-platform/srs-engine";
 
 const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
+import { IM1_TRANSLATION_NODE_ID, isTranslationPilotReady } from '../activities';
+import { projectIM1VerbalToNumerical } from '@math-platform/math-content/knowledge-space';
 
 export type ResolvedQueueItem = QueueItem & {
+  activityId?: string;
+  stableActivityId?: string;
+  masteryNodeId?: string;
+  mode?: "guided_practice" | "independent_practice";
   componentKey: string;
   props: Record<string, unknown>;
 };
@@ -103,11 +109,36 @@ async function resolveQueueItems(
 
     const activity = activityMap.get(practiceItem.activityId);
     if (!activity) continue;
+    const isIdentityAware = activity.stableActivityId !== undefined || activity.masteryNodeId !== undefined;
+    if (isIdentityAware && (
+      !isTranslationPilotReady()
+      || activity.componentKey !== "fill-in-the-blank"
+      || activity.generatorSeed === undefined
+      || activity.generatorDifficulty === undefined
+      || activity.approval?.status !== "approved"
+      || activity.srsEligible !== true
+      || activity.masteryNodeId !== item.card.objectiveId
+      || activity.masteryNodeId !== IM1_TRANSLATION_NODE_ID
+      || activity.stableActivityId !== `${IM1_TRANSLATION_NODE_ID}.${activity.learningEvidenceMode}`
+      || !activity.stableActivityId
+      || (activity.learningEvidenceMode !== "guided_practice" && activity.learningEvidenceMode !== "independent_practice")
+    )) continue;
 
     resolvedItems.push({
       ...item,
+      activityId: String(activity._id),
+      ...(isIdentityAware ? {
+        stableActivityId: activity.stableActivityId!,
+        masteryNodeId: activity.masteryNodeId!,
+        mode: activity.learningEvidenceMode as "guided_practice" | "independent_practice",
+      } : {}),
       componentKey: activity.componentKey,
-      props: activity.props as Record<string, unknown>,
+      props: isIdentityAware
+        ? projectIM1VerbalToNumerical(
+            { nodeId: IM1_TRANSLATION_NODE_ID, seed: activity.generatorSeed!, difficulty: activity.generatorDifficulty! },
+            activity.learningEvidenceMode!, activity.stableActivityId!,
+          ).props
+        : activity.props as Record<string, unknown>,
     });
   }
 

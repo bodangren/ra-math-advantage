@@ -96,7 +96,9 @@
       "standards": [
         "math.standard.ccss.g-co-a-1"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal"
+      ],
       "difficulty": 0.5,
       "rendererKey": "fill-in-the-blank",
       "generatorKey": null,
@@ -117,8 +119,12 @@
     {
       "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
       "blueprintId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
-      "standards": [],
-      "prerequisites": [],
+      "standards": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu"
+      ],
       "difficulty": 0.5,
       "rendererKey": "fill-in-the-blank",
       "generatorKey": null,
@@ -127,7 +133,9 @@
     {
       "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
       "blueprintId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
-      "standards": [],
+      "standards": [
+        "math.standard.ccss.g-co-a-2"
+      ],
       "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "fill-in-the-blank",
@@ -136,77 +144,59 @@
     },
     {
       "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-      "blueprintId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment.blueprint",
-      "standards": [],
-      "prerequisites": [],
+      "blueprintId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+      "standards": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig"
+      ],
       "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
     },
     {
       "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "blueprintId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n.blueprint",
-      "standards": [],
+      "blueprintId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+      "standards": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
     },
     {
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "blueprintId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems.blueprint",
+      "blueprintId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
       "standards": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "blueprintId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4",
         "math.standard.ccss.g-mg-a-1"
       ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "blueprintId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
-      "blueprintId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
-      "blueprintId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
-      "blueprintId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
-      "blueprintId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
     },
     {
       "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
@@ -238,7 +228,7 @@
     },
     {
       "nodeId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
-      "blueprintId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a.blueprint",
+      "blueprintId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
       "standards": [
         "math.standard.ccss.g-gpe-b-5",
         "math.standard.ccss.g-gpe-b-6"
@@ -247,8 +237,9 @@
         "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a"
       ],
       "difficulty": 0.5,
-      "generatorReady": true,
-      "equivalentNodeIds": []
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
     },
     {
       "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
@@ -569,7 +560,9 @@
     {
       "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
       "blueprintId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
-      "standards": [],
+      "standards": [
+        "math.standard.ccss.g-co-a-4"
+      ],
       "prerequisites": [
         "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv"
       ],
@@ -1078,7 +1071,7 @@
     },
     {
       "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
-      "blueprintId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali.blueprint",
+      "blueprintId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
       "standards": [
         "math.standard.ccss.a-ced-a-4",
         "math.standard.ccss.a-rei-b-3"
@@ -1087,12 +1080,13 @@
         "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult"
       ],
       "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
     },
     {
       "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
-      "blueprintId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides.blueprint",
+      "blueprintId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
       "standards": [
         "math.standard.ccss.a-rei-a-1",
         "math.standard.ccss.a-rei-b-3"
@@ -1101,8 +1095,9 @@
         "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali"
       ],
       "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
     },
     {
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
@@ -1169,7 +1164,9 @@
         "math.standard.ccss.f-if-a-1",
         "math.standard.ccss.f-if-a-2"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl"
+      ],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -1182,7 +1179,9 @@
         "math.standard.ccss.8-f-a-1",
         "math.standard.ccss.8-f-a-2"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of"
+      ],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -1195,7 +1194,9 @@
         "math.standard.ccss.8-f-b-4",
         "math.standard.ccss.f-if-c-7"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma"
+      ],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -1208,7 +1209,9 @@
         "math.standard.ccss.f-if-b-4",
         "math.standard.ccss.f-if-b-5"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation"
+      ],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -1221,7 +1224,9 @@
         "math.standard.ccss.f-if-c-7",
         "math.standard.ccss.f-if-c-9"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function"
+      ],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -1234,7 +1239,9 @@
         "math.standard.ccss.f-bf-a-1",
         "math.standard.ccss.f-if-c-8"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ"
+      ],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -1247,7 +1254,9 @@
         "math.standard.ccss.8-f-a-1",
         "math.standard.ccss.8-f-b-4"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio"
+      ],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -1839,7 +1848,9 @@
       "standards": [
         "math.standard.ccss.s-id-a-2"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive"
+      ],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -1852,7 +1863,9 @@
         "math.standard.ccss.6-sp-b-4",
         "math.standard.ccss.s-id-a-1"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set"
+      ],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -1877,7 +1890,9 @@
       "standards": [
         "math.standard.ccss.s-ic-a-1"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d"
+      ],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -1902,7 +1917,9 @@
         "math.standard.ccss.6-sp-b-5d",
         "math.standard.ccss.s-id-a-2"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes"
+      ],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -2030,7 +2047,9 @@
         "math.standard.ccss.6-sp-b-5",
         "math.standard.ccss.s-id-a-3"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f"
+      ],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -2056,7 +2075,9 @@
         "math.standard.ccss.s-id-a-2",
         "math.standard.ccss.s-id-a-3"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz"
+      ],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -2082,7 +2103,9 @@
         "math.standard.ccss.s-id-b-5",
         "math.standard.ccss.s-id-b-6"
       ],
-      "prerequisites": [],
+      "prerequisites": [
+        "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set"
+      ],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -2304,6 +2327,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
     },
@@ -3367,381 +3391,6 @@
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
-      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
-      "blueprintId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
-      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
-      "blueprintId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
-      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
-      "blueprintId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
-      "blueprintId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
-      "blueprintId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
-      "blueprintId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
-      "blueprintId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
-      "blueprintId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
-      "blueprintId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
-      "blueprintId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
-      "blueprintId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
-      "blueprintId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
-      "blueprintId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
-      "blueprintId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
-      "blueprintId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
-      "blueprintId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
-      "blueprintId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
-      "blueprintId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
-      "blueprintId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
-      "blueprintId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
-      "blueprintId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
-      "blueprintId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
-      "blueprintId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
-      "blueprintId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.1.author-axioms-from-observed-categorical-data",
-      "blueprintId": "math.im1.skill.10.1.author-axioms-from-observed-categorical-data",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.1.construct-a-model-that-satisfies-stated-incidence-constraints",
-      "blueprintId": "math.im1.skill.10.1.construct-a-model-that-satisfies-stated-incidence-constraints",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.1.derive-a-supported-conclusion-from-stated-axioms-and-facts",
-      "blueprintId": "math.im1.skill.10.1.derive-a-supported-conclusion-from-stated-axioms-and-facts",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.1.evaluate-whether-a-supplied-candidate-model-satisfies-every-stated-axiom",
-      "blueprintId": "math.im1.skill.10.1.evaluate-whether-a-supplied-candidate-model-satisfies-every-stated-axiom",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
-      "blueprintId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
-      "blueprintId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
-      "blueprintId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
-      "blueprintId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
-      "blueprintId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
-      "blueprintId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
-    },
-    {
-      "nodeId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
-      "blueprintId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness.blueprint",
-      "standards": [],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "equivalentNodeIds": []
     }
   ]
 }

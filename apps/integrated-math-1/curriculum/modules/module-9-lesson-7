@@ -1,263 +1,205 @@
 # Lesson 9-7 — Summarizing Categorical Data
 
-Source: Module 9, Lesson 9-7, `Int1_0907_practice.docx`.
+Source: (Module 9, Lesson 9-7, Int1_0907_practice.docx)
 
-## Example 1
+## Today's Goals
 
-TREATS The owner of a snow cone stand keeps track of the sizes and flavors sold one afternoon. He sold 125 snow cones in all. Of these, 40% were large snow cones, 32% were grape, and 12% were small watermelon snow cones. The stand sold 15 more cherry snow cones than grape. The most popular snow cone of day was small cherry, with a total of 35 sales.
+* Construct and complete two-way frequency tables from verbal descriptions or given data.
+* Convert two-way frequency tables into relative frequency tables and conditional relative frequency tables.
+* Calculate and interpret joint, marginal, and conditional relative frequencies in context.
+* Distinguish between relative frequencies based on the overall total and conditional relative frequencies based on a subset total.
 
-### Problem 1
+## Vocabulary
 
-Construct a two-way frequency table to organize the data.
+* **Categorical Data** — Data that can be sorted into groups or categories rather than measured numerically.
+* **Two-Way Frequency Table** — A table that displays the frequencies of data classified according to two different categories.
+* **Joint Frequency** — The number of responses that belong to both a specific row category and a specific column category.
+* **Marginal Frequency** — The total frequency for a single row or column, found in the margins of a two-way table.
+* **Relative Frequency** — A ratio of a frequency to the total number of observations, often expressed as a percentage.
+* **Joint Relative Frequency** — The ratio of a joint frequency to the total number of observations.
+* **Conditional Relative Frequency** — The ratio of a joint frequency to the marginal total of a specific row or column.
+* **Association** — A relationship between two categorical variables where the distribution of one variable changes depending on the category of the other.
 
-### Problem 2
+## Explore: How Can We Organize Data with Two Categories?
 
-How many large grape snow cones were sold?
+Students consider a collection of survey responses that each have two attributes — for example, a favorite snack and a grade level. They discuss how listing the raw responses makes it difficult to see patterns, and they explore ways to arrange the counts in a rectangular grid.
 
-### Problem 3
+Inquiry Question:
+How does organizing paired categorical data into a two-way table make it easier to compare groups and spot relationships?
 
-How many watermelon snow cones were sold in all?
+## Learn: Two-Way Tables and Relative Frequencies
 
-### Problem 4
+Two-way tables organize paired categorical data so that joint counts, marginal totals, and derived relative frequencies can be read systematically.
 
-How many more small snow cones were sold than large snow cones?
+### Key Concept: Two-Way Frequency Table
 
-## Example 2
+* Rows represent one categorical variable and columns represent another.
+* The cell where a row and column intersect shows the joint frequency for that pair of categories.
+* The rightmost column and bottom row contain the marginal frequencies (row totals and column totals).
+* The bottom-right corner contains the grand total.
 
-FOREIGN LANGUAGE Christy surveyed several students at her school and asked each person what foreign language he or she is studying. The results are shown in the table.
+### Key Concept: Relative Frequency Table
 
-![A two-way table of foreign language study by gender.](/curriculum/module-9-lesson-7/image1.png)
+* Each cell value is divided by the grand total to produce a joint relative frequency.
+* Marginal relative frequencies are row or column totals divided by the grand total.
+* All joint relative frequencies sum to [ 1 ] (or [ 100\% ]).
 
-| Language | Male | Female | Total |
-| --- | --- | --- | --- |
-| Spanish | 18 | 20 | 38 |
-| French | 16 | 12 | 28 |
-| German | 6 | 8 | 14 |
-| Total | 40 | 40 | 80 |
+### Key Concept: Conditional Relative Frequency Table
 
-### Problem 5
+* Each joint frequency is divided by the marginal total of a chosen row or column.
+* A table conditioned on rows expresses each cell as a percentage of its row total.
+* A table conditioned on columns expresses each cell as a percentage of its column total.
+* Conditional relative frequencies help compare groups of different sizes.
 
-Construct a relative frequency table by converting the data in the table to percentages. Round to the nearest tenth, if necessary.
+## Example 1 — Construct a Two-Way Frequency Table
 
-### Problem 6
+Use verbal clues about totals and relationships to build a complete two-way frequency table with row and column categories.
 
-Find the joint relative frequency of a female student who is studying French.
+### Step 1: Identify the Categories and Grand Total
 
-### Problem 7
+Determine the two variables, their categories, and the overall total number of observations.
 
-Interpret the data.
+Representative totals:
+[
+\text{Total snow cones} = 125
+]
+[
+\text{Large} = 40\% \text{ of } 125 = 50
+]
+[
+\text{Small} = 125 - 50 = 75
+]
 
-## Example 3
+### Step 2: Use Percentages to Find Category Totals
 
-CLASS PRESIDENT In a poll for senior class president, 68 of the 145 male students said they planned to vote for Santiago. Out of 139 female students, 89 planned to vote for his opponent, Measha.
+Apply the given percentages to the grand total to find marginal frequencies for one variable.
 
-### Problem 8
+[
+\text{Grape} = 32\% \text{ of } 125 = 40
+]
+[
+\text{Small watermelon} = 12\% \text{ of } 125 = 15
+]
 
-Construct a conditional relative frequency table based on voter preference. Show your calculations.
+### Step 3: Use Differences and Relationships to Fill Remaining Cells
 
-### Problem 9
+Use clues such as "15 more than" or "most popular" to find missing joint frequencies, then subtract to find the remaining values.
 
-What does each conditional relative frequency represent?
+[
+\text{Cherry} = \text{Grape} + 15 = 40 + 15 = 55
+]
+[
+\text{Watermelon total} = 125 - 40 - 55 = 30
+]
+[
+\text{Large watermelon} = 30 - 15 = 15
+]
 
-### Problem 10
+### Step 4: Verify the Table
 
-What is the probability that a vote for Measha will come from a female student? How is this different from the probability that a female student intends to vote for Measha?
+Check that all row totals and column totals match the given constraints and that the grand total is correct.
+
+## Example 2 — Construct and Interpret a Relative Frequency Table
+
+Convert a two-way frequency table into a relative frequency table by dividing each frequency by the grand total, then interpret a joint relative frequency in context.
+
+### Step 1: Read the Two-Way Frequency Table
+
+Extract the joint and marginal frequencies from the given table. (The source table is provided as an image; values must be read from the original worksheet.)
+
+### Step 2: Compute Joint Relative Frequencies
+
+Divide each joint frequency by the grand total and express the result as a percentage rounded to the nearest tenth.
+
+[
+\text{Joint relative frequency} = \frac{\text{joint frequency}}{\text{grand total}} \times 100
+]
+
+### Step 3: Compute Marginal Relative Frequencies
+
+Divide each row total and column total by the grand total.
+
+### Step 4: Interpret the Data
+
+Use the relative frequency table to describe what percentage of the surveyed group falls into a specific combined category or into a single category overall.
+
+## Example 3 — Construct a Conditional Relative Frequency Table
+
+Build a conditional relative frequency table by conditioning on one variable, then interpret conditional probabilities and compare them to joint probabilities.
+
+### Step 1: Organize the Raw Counts
+
+Place the given counts into a two-way frequency table and compute all marginal totals.
+
+Representative structure:
+[
+\text{Male voters} = 145
+]
+[
+\text{Female voters} = 139
+]
+[
+\text{Male for Santiago} = 68
+]
+[
+\text{Male for Measha} = 145 - 68 = 77
+]
+[
+\text{Female for Measha} = 89
+]
+[
+\text{Female for Santiago} = 139 - 89 = 50
+]
+
+### Step 2: Condition on the Column Variable
+
+Divide each joint frequency by its column total to produce conditional relative frequencies based on voter preference.
+
+[
+\text{Conditional relative frequency} = \frac{\text{joint frequency}}{\text{column total}}
+]
+
+For example, the conditional relative frequency of male voters given a vote for Santiago is:
+[
+\frac{68}{68 + 50} = \frac{68}{118}
+]
+
+### Step 3: Interpret the Conditional Probabilities
+
+Explain what each conditional relative frequency represents. For instance, a value in the Santiago column shows what fraction of all Santiago voters are male or female.
+
+### Step 4: Compare Conditional and Joint Probabilities
+
+Distinguish between:
+* The probability that a vote for Measha comes from a female student (conditional on Measha).
+* The probability that a female student intends to vote for Measha (conditional on female).
+
+These two probabilities have different denominators and answer different questions.
 
 ## Mixed Exercises
 
-VETERINARIAN The two-way frequency table shows the number of dogs and cats that were seen at a veterinarian’s office and the primary purpose of their visit.
-
-![A two-way table of veterinarian visits by animal and purpose.](/curriculum/module-9-lesson-7/image2.png)
-
-| Purpose | Dog | Cat | Total |
-| --- | --- | --- | --- |
-| Exam | 12 | 5 | 17 |
-| Shots | 6 | 3 | 9 |
-| Grooming | 7 | 2 | 9 |
-| Total | 25 | 10 | 35 |
-
-### Problem 11
-
-How many dogs were seen for an exam today?
-
-### Problem 12
-
-How many more dogs than cats were seen at the veterinarian’s office?
-
-BIRD WATCHING A group of bird watchers has been tracking the number of tree swallows, cardinals, and goldfinches in a region. Over the weekend, a total of 40 birds were observed. Of those, 45% were male, 37.5% were cardinals, and 12.5% were male tree swallows. Twice as many female cardinals were observed as male cardinals. There were 5 female goldfinches spotted.
-
-### Problem 13
-
-Construct a two-way frequency table to organize the data.
-
-### Problem 14
-
-How many more female tree swallows were seen than male cardinals?
-
-### Problem 15
-
-How many male goldfinches and female cardinals were seen?
-
-### Problem 16
-
-How many more female birds were seen than male birds?
-
-SCHOOL ACTIVITIES The two-way frequency table shows the number of students who participate in school sports or clubs at Monroe High School.
-
-![A two-way table of school activity participation by grade.](/curriculum/module-9-lesson-7/image3.png)
-
-| Grade | Sports or Clubs | No Sports or Clubs | Total |
-| --- | --- | --- | --- |
-| Freshmen | 48 | 60 | 108 |
-| Sophomores | 60 | 72 | 132 |
-| Juniors | 51 | 69 | 120 |
-| Seniors | 57 | 63 | 120 |
-| Total | 216 | 264 | 480 |
-
-### Problem 17
-
-Construct a relative frequency table by converting the data in the table to percentages. Round to the nearest tenth, if necessary.
-
-### Problem 18
-
-Find the joint relative frequency of a sophomore who participates in school sports or clubs.
-
-### Problem 19
-
-What percentage of freshmen do not participate in school sports or clubs? Round to the nearest tenth percent, if necessary.
-
-### Problem 20
-
-What percentage of seniors participate in school sports or clubs? Round to the nearest tenth percent, if necessary.
-
-SCHOOL MASCOT The freshmen and sophomores at Lakeview High School are tasked with adopting a new school mascot next school year. The district asked a representative group of students to vote for one of the three mascot finalists and to indicate to which grade they belong. The results are shown in the table.
-
-![School Mascot Vote Results, with votes by mascot and grade.](/curriculum/module-9-lesson-7/image4.png)
-
-**School Mascot Vote Results**
-
-| Mascot | Freshmen | Sophomores | Total |
-| --- | --- | --- | --- |
-| Panthers | 30 | 36 | 66 |
-| Hornets | 17 | 33 | 50 |
-| Lions | 28 | 31 | 59 |
-| Total | 75 | 100 | 175 |
-
-### Problem 21
-
-How many students voted for Panthers?
-
-### Problem 22
-
-How many students voted for Lions?
-
-### Problem 23
-
-How many sophomores were in the representative group?
-
-### Problem 24
-
-Of the students who voted for Hornets, how many of them are freshmen?
-
-### Problem 25
-
-Of the students who voted for Lions, how many of them are sophomores?
-
-### Problem 26
-
-To the nearest whole, what percent of all the students voted for Lions?
-
-### Problem 27
-
-To the nearest whole, what percent of all the students voted for Panthers?
-
-### Problem 28
-
-To the nearest whole, what percent of all the students who voted were freshmen?
-
-THANKSGIVING PIE An online poll collected a sample of Thanksgiving pie preferences for different U.S. regions.
-
-![A partial two-way table of Thanksgiving pie preferences by region. Blank cells are source inputs.](/curriculum/module-9-lesson-7/image5.png)
-
-| Region | Apple | Sweet Potato | Pumpkin | Totals |
-| --- | --- | --- | --- | --- |
-| West | 77 | 4 | 13 |  |
-| Midwest | 32 |  | 54 |  |
-| South |  | 63 | 24 |  |
-| Northeast | 92 | 2 |  |  |
-| Total | 213 | 75 | 117 |  |
-
-### Problem 29
-
-PRECISION Complete the table. Then find each relative frequency to the nearest tenth of a percent.
-
-### Problem 30
-
-USE A MODEL Assuming the poll is representative of the whole population, what is a reasonable estimate of the probability that a family will be from the northeast and will be eating pumpkin pie on Thanksgiving?
-
-### Problem 31
-
-STRUCTURE Construct a table of conditional relative frequencies based on pie preference. Round each percent to the nearest tenth. Interpret the meaning of the probabilities in the context of the problem.
-
-### Problem 32
-
-REGULARITY If we had found the conditional relative frequencies by dividing by the total replies from each region, what would be the meaning of the probability in each cell?
-
-VEHICLES The table shows the relative frequencies of drive systems for different vehicle types in a school parking lot. There are 215 vehicles in the lot.
-
-![A relative-frequency table of vehicle type and drive system. Marginal cells are blank source inputs.](/curriculum/module-9-lesson-7/image6.png)
-
-| Vehicle Type | 2WD | AWD | Totals |
-| --- | --- | --- | --- |
-| Hatchbacks | 42% | 4% |  |
-| Sedans | 28% | 6% |  |
-| SUVs | 1% | 19% |  |
-| Total |  |  | 215 |
-
-### Problem 33
-
-USE TOOLS Construct a table to show the joint and marginal frequencies.
-
-### Problem 34
-
-REASONING Without calculating individual frequencies, how many times greater will the conditional relative frequencies based on drive systems for AWD be than the relative frequencies for AWD, and why?
-
-### Problem 35
-
-PERSEVERE Len conducted a survey among a random group of 1000 families in his home state of California. He wanted to determine whether there is an association between gasoline prices and distances traveled on family vacations. He collected the following information. According to Len’s two-way frequency table, does there appear to be an association between gasoline prices and vacation distances traveled? Explain.
-
-![A two-way table of gasoline price and vacation distance for 1,000 California families.](/curriculum/module-9-lesson-7/image7.png)
-
-| Vacation Distance | $1.75–$3.24 per gallon | $3.25–$4.74 per gallon | Total |
-| --- | --- | --- | --- |
-| Less than 250 miles | 109 | 255 | 364 |
-| More than 250 miles | 329 | 86 | 415 |
-| No vacation travel | 34 | 187 | 221 |
-| Total | 472 | 528 | 1000 |
-
-### Problem 36
-
-CREATE Select your own data for a two-way frequency table, write a question related to the data in the table, and provide the solution.
-
-### Problem 37
-
-WRITE Compare two-way relative frequency tables and two-way conditional relative frequency tables.
-
-### Problem 38
-
-FIND THE ERROR Magdalena took a survey of students in her school to find out what snack was most popular.
-
-![Favorite Snack Vote Results, with votes by snack and grade.](/curriculum/module-9-lesson-7/image8.png)
-
-**Favorite Snack Vote Results**
-
-| Snack | Freshmen | Sophomores | Total |
-| --- | --- | --- | --- |
-| Fruit Snack | 65 | 61 | 126 |
-| Granola | 27 | 21 | 48 |
-| Yogurt | 21 | 18 | 39 |
-| Total | 113 | 100 | 213 |
-
-Interpret the data based on the conditional relative frequency related to age groups.
-
-Magdalena claims that fruit snack is the most popular snack for freshmen and sophomores, and Ben claims that a higher percentage of sophomores prefer fruit snack than do freshmen. Is either correct? Explain your reasoning.
+The mixed exercises provide practice with all skills from the lesson:
+
+* Read values from a two-way frequency table and answer questions about specific joint or marginal counts (veterinarian visit data).
+* Construct a two-way frequency table from verbal percentages and relationships, then use it to answer comparison questions (bird watching data).
+* Convert a two-way frequency table into a relative frequency table, find joint relative frequencies, and determine what percentage of a subgroup does or does not belong to a category (school activities data).
+* Read a two-way frequency table and compute totals, subtotals, and overall percentages for a voting survey (school mascot data).
+* Complete a two-way frequency table from partial data, compute relative frequencies, and construct a conditional relative frequency table conditioned on one variable; interpret the resulting probabilities (Thanksgiving pie preferences by region).
+* Convert relative frequencies back to joint and marginal frequencies given a total count, then reason about conditional relative frequencies without calculating every value individually (vehicle drive systems).
+* Analyze a two-way frequency table to determine whether there appears to be an association between two categorical variables and explain the reasoning (gasoline prices and vacation distance).
+* Create an original two-way frequency table, write a related question, and provide the solution.
+* Compare and contrast two-way relative frequency tables and two-way conditional relative frequency tables in writing.
+* Interpret a conditional relative frequency table related to age groups, evaluate competing claims about the data, and determine which claim is supported by the percentages (snack survey data).
+
+## Review Notes
+
+* **Image references (media/image1.png through media/image8.png)** — The worksheet contains images and tables whose content could not be fully extracted as text. Key images include:
+  * Image1 — Foreign language survey two-way frequency table for Example 2 (problems 5–7).
+  * Image2 — Veterinarian visit two-way frequency table for problems 11–12.
+  * Image3 — School activities participation two-way frequency table for problems 17–20.
+  * Image4 — School mascot voting two-way frequency table for problems 21–28.
+  * Image5 — Thanksgiving pie preferences by region two-way frequency table for problems 29–32.
+  * Image6 — Vehicle drive systems relative frequency table for problems 33–34.
+  * Image7 — Gasoline prices versus vacation distance two-way frequency table for problem 35.
+  * Image8 — Snack survey conditional relative frequency table for problem 38.
+  A human reviewer should verify that all tables are correctly represented or transcribed into the digital curriculum from the original `.docx`.
