@@ -1,6 +1,6 @@
 'use client';
 
-import { createElement, useCallback, useEffect, useState } from 'react';
+import { Suspense, createElement, useCallback, useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 
 import { getActivityComponent } from '@/lib/activities/registry';
@@ -52,6 +52,7 @@ function isWorkedEventAcknowledgement(
 }
 
 interface AssessmentResponse {
+  attemptOrdinal?: number;
   score: number;
   maxScore: number;
   percentage: number;
@@ -71,6 +72,7 @@ export function ActivityRenderer({
   onStatusChange,
   linkedStandardId,
 }: ActivityRendererProps) {
+  const [pendingSubmission, setPendingSubmission] = useState<ActivitySubmissionPayload | null>(null);
   const [activity, setActivity] = useState<Activity | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -151,10 +153,6 @@ export function ActivityRenderer({
       if (!activity) {
         return false;
       }
-      const isAccountingEquationEvent = activity.componentKey === ACCOUNTING_EQUATION_EVENT_KEY;
-      if (!isAccountingEquationEvent && !activity.gradingConfig?.autoGrade) {
-        return false;
-      }
 
       if (!isPracticeSubmissionEnvelope(payload)) {
         return false;
@@ -162,6 +160,7 @@ export function ActivityRenderer({
 
       const canonicalSubmission = payload;
       const answers = canonicalSubmission.answers;
+      const isAccountingEquationEvent = activity.componentKey === ACCOUNTING_EQUATION_EVENT_KEY;
       const isWorkedAcknowledgement = isAccountingEquationEvent
         && isWorkedEventAcknowledgement(canonicalSubmission, activityId);
       if (
@@ -185,9 +184,7 @@ export function ActivityRenderer({
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            ...(isAccountingEquationEvent
-              ? { 'Idempotency-Key': canonicalSubmission.submittedAt }
-              : {}),
+            'Idempotency-Key': canonicalSubmission.submittedAt,
           },
           body: JSON.stringify(canonicalSubmission),
         });
@@ -210,6 +207,7 @@ export function ActivityRenderer({
             throw new Error('The saved assessment result is invalid.');
           }
           setSubmissionResult({
+            attemptOrdinal: data.attemptOrdinal,
             score: data.score,
             maxScore: data.maxScore,
             percentage: data.percentage,
@@ -230,16 +228,6 @@ export function ActivityRenderer({
       }
     },
     [activity, activityId],
-  );
-
-  const handleAccountingEquationEventSubmit = useCallback(
-    async (payload: ActivitySubmissionPayload): Promise<void> => {
-      const assessmentWasRecorded = await handleAssessmentSubmit(payload);
-      if (!assessmentWasRecorded) {
-        throw new Error('The event response was not saved.');
-      }
-    },
-    [handleAssessmentSubmit],
   );
 
   /**
@@ -264,20 +252,28 @@ export function ActivityRenderer({
 
   const handleActivitySubmit = useCallback(
     async (payload: ActivitySubmissionPayload) => {
-      if (activity?.gradingConfig?.autoGrade) {
-        const assessmentWasRecorded = await handleAssessmentSubmit(payload);
-        if (!assessmentWasRecorded) {
-          return;
-        }
-      }
+      setPendingSubmission(payload);
+      const assessmentWasRecorded = await handleAssessmentSubmit(payload);
+      if (!assessmentWasRecorded) return false;
 
       if (!didPayloadCompleteActivity(payload)) {
-        return;
+        return true;
       }
 
       await handleActivityComplete();
+      return true;
     },
-    [activity, didPayloadCompleteActivity, handleActivityComplete, handleAssessmentSubmit],
+    [didPayloadCompleteActivity, handleActivityComplete, handleAssessmentSubmit],
+  );
+
+  const handleAccountingEquationEventSubmit = useCallback(
+    async (payload: ActivitySubmissionPayload): Promise<void> => {
+      const assessmentWasRecorded = await handleAssessmentSubmit(payload);
+      if (!assessmentWasRecorded) {
+        throw new Error('The event response was not saved.');
+      }
+    },
+    [handleAssessmentSubmit],
   );
 
   if (loading) {
@@ -331,16 +327,19 @@ export function ActivityRenderer({
         )}
       </CardHeader>
       <CardContent className="space-y-4">
+        <Suspense fallback={<p role="status">Loading activity...</p>}>
         {createElement(activityComponent, isAccountingEquationEvent ? {
           ...(activity.props as Record<string, unknown>),
           key: activityId,
           onSubmit: handleAccountingEquationEventSubmit,
           onComplete: handleActivityComplete,
         } : {
+          key: activityId,
           activity,
-          onSubmit: handleActivitySubmit,
+          onSubmit: activity.componentKey === 'spreadsheet-evaluator' ? undefined : handleActivitySubmit,
           onComplete: handleActivityComplete,
         })}
+        </Suspense>
         {submitting && (
           <Alert>
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -361,11 +360,12 @@ export function ActivityRenderer({
         )}
         {submissionResult && (
           <Alert>
-            <AlertTitle>Assessment submitted</AlertTitle>
+            <AlertTitle>Work saved</AlertTitle>
             <AlertDescription>
-              <p>
+              {submissionResult.maxScore > 0 && <p>
                 Score: {submissionResult.score}/{submissionResult.maxScore} ({submissionResult.percentage}%)
-              </p>
+              </p>}
+              {submissionResult.attemptOrdinal && <p>Attempt {submissionResult.attemptOrdinal}</p>}
               {submissionResult.feedback && <p>{submissionResult.feedback}</p>}
             </AlertDescription>
           </Alert>
@@ -387,7 +387,7 @@ export function ActivityRenderer({
             <AlertDescription>
               <p>{submissionError}</p>
               <button
-                onClick={() => handleActivityComplete()}
+                onClick={() => pendingSubmission ? handleActivitySubmit(pendingSubmission) : handleActivityComplete()}
                 className="mt-2 text-sm underline hover:no-underline"
               >
                 Try again

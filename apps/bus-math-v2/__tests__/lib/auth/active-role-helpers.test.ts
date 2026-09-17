@@ -51,7 +51,7 @@ describe('requireActiveRequestSessionClaims', () => {
   });
 
   it('returns claims when credential is active', async () => {
-    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', username: 'test_user', role: 'student' });
+    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', profileId: 'profile_123', username: 'test_user', role: 'student' });
 
     const token = await makeToken({ role: 'student', username: 'test_user' });
     const request = buildRequestWithCookie(token);
@@ -97,7 +97,7 @@ describe('requireActiveStudentRequestClaims', () => {
   });
 
   it('returns claims when credential is active and role is student', async () => {
-    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', username: 'test_student', role: 'student' });
+    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', profileId: 'profile_123', username: 'test_student', role: 'student' });
 
     const token = await makeToken({ role: 'student', username: 'test_student' });
     const request = buildRequestWithCookie(token);
@@ -124,7 +124,7 @@ describe('requireActiveStudentRequestClaims', () => {
   });
 
   it('returns 403 when credential is active but role is teacher', async () => {
-    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', username: 'test_teacher', role: 'teacher' });
+    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', profileId: 'profile_123', username: 'test_teacher', role: 'teacher' });
 
     const token = await makeToken({ role: 'teacher', username: 'test_teacher' });
     const request = buildRequestWithCookie(token);
@@ -137,7 +137,7 @@ describe('requireActiveStudentRequestClaims', () => {
   });
 
   it('returns 403 when credential is active but role is admin', async () => {
-    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', username: 'test_admin', role: 'admin' });
+    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', profileId: 'profile_123', username: 'test_admin', role: 'admin' });
 
     const token = await makeToken({ role: 'admin', username: 'test_admin' });
     const request = buildRequestWithCookie(token);
@@ -169,7 +169,7 @@ describe('requireActiveTeacherRequestClaims', () => {
   });
 
   it('returns claims when credential is active and role is teacher', async () => {
-    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', username: 'test_teacher', role: 'teacher' });
+    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', profileId: 'profile_123', username: 'test_teacher', role: 'teacher' });
 
     const token = await makeToken({ role: 'teacher', username: 'test_teacher' });
     const request = buildRequestWithCookie(token);
@@ -183,7 +183,7 @@ describe('requireActiveTeacherRequestClaims', () => {
   });
 
   it('returns claims when credential is active and role is admin', async () => {
-    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', username: 'test_admin', role: 'admin' });
+    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', profileId: 'profile_123', username: 'test_admin', role: 'admin' });
 
     const token = await makeToken({ role: 'admin', username: 'test_admin' });
     const request = buildRequestWithCookie(token);
@@ -210,7 +210,7 @@ describe('requireActiveTeacherRequestClaims', () => {
   });
 
   it('returns 403 when credential is active but role is student', async () => {
-    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', username: 'test_student', role: 'student' });
+    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', profileId: 'profile_123', username: 'test_student', role: 'student' });
 
     const token = await makeToken({ role: 'student', username: 'test_student' });
     const request = buildRequestWithCookie(token);

@@ -1,9 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { BM2_PILOT_SOURCE_ACTIVITY_ID } from '@/lib/learning-evidence/bm2-pilot';
+
 const mockGetRequestSessionClaims = vi.fn();
 const mockRequireActiveStudentRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 const mockFetchInternalMutation = vi.fn();
+const SERVER_SUBMISSION_ID = 'server-owned-bm2-assessment-submission';
 
 vi.mock('@/lib/auth/server', () => ({
   getRequestSessionClaims: mockGetRequestSessionClaims,
@@ -103,12 +106,14 @@ describe('POST /api/progress/assessment', () => {
         return { allowed: true, remaining: 59, windowExpiresAt: Date.now() + 60000 };
       }
       if (name === 'internal.activities.submitAssessment') {
-        return undefined;
+        return { id: SERVER_SUBMISSION_ID };
       }
       if (name === 'internal.learningEvidence.submit') {
         return {
           persisted: true,
           masteryApplied: false,
+          kstApplied: false,
+          delivery: 'new',
           decision: {
             idempotency: 'new',
             exposureState: 'introduced',
@@ -120,6 +125,12 @@ describe('POST /api/progress/assessment', () => {
       }
       return null;
     });
+  });
+
+  it('accepts omitted optional fields from Convex', async () => {
+    mockFetchInternalQuery.mockResolvedValue({ ...baseActivity, description: undefined, standardId: undefined });
+    const response = await POST(buildRequest({ activityId: baseActivity.id, answers: { q1: 'Yes', q2: 'Ledger' } }));
+    expect(response.status).toBe(200);
   });
 
   it('returns 401 when user is not authenticated', async () => {
@@ -214,6 +225,37 @@ describe('POST /api/progress/assessment', () => {
     expect(payload.error).toMatch(/not found/i);
   });
 
+  it.each([
+    BM2_PILOT_SOURCE_ACTIVITY_ID,
+    'accounting-equation',
+  ])('uses the physical activity lookup for %s and rejects a missing row', async (activityId) => {
+    mockFetchInternalQuery.mockImplementation(async (name: string) => (
+      name === 'internal.activities.getActivityById' ? null : baseActivity
+    ));
+
+    const response = await POST(
+      buildRequest({
+        activityId,
+        answers: { q1: 'Yes' },
+      }),
+    );
+
+    expect(response.status).toBe(404);
+    await expect(response.json()).resolves.toEqual({ error: 'Activity not found' });
+    expect(mockFetchInternalQuery).toHaveBeenCalledWith(
+      'internal.activities.getActivityById',
+      { activityId },
+    );
+    expect(mockFetchInternalMutation).not.toHaveBeenCalledWith(
+      'internal.activities.submitAssessment',
+      expect.anything(),
+    );
+    expect(mockFetchInternalMutation).not.toHaveBeenCalledWith(
+      'internal.learningEvidence.submit',
+      expect.anything(),
+    );
+  });
+
   it('scores and persists submission with claims-based user id', async () => {
     const response = await POST(
       buildRequest({
@@ -259,42 +301,79 @@ describe('POST /api/progress/assessment', () => {
     );
   });
 
-  it('records the reviewed BM2 source as teacher-led exposure only', async () => {
-    const sourceActivityId = 'd6b57545-65f6-4c39-80d5-000100001002';
-    mockFetchInternalQuery.mockResolvedValue({ ...baseActivity, id: sourceActivityId });
-
+  it('derives trusted aggregate grades from the rubric instead of browser top-level grade fields', async () => {
     const response = await POST(
       buildRequest({
         contractVersion: 'practice.v1',
-        activityId: sourceActivityId,
-        mode: 'guided_practice',
+        activityId: baseActivity.id,
+        mode: 'assessment',
         status: 'submitted',
         attemptNumber: 1,
-        submittedAt: '2026-08-19T08:00:00.000Z',
-        answers: { q1: 'Yes', q2: 'ledger' },
+        submittedAt: '1999-01-01T00:00:00.000Z',
+        answers: {
+          q1: 'No',
+          q2: 'wrong',
+        },
         parts: [
-          { partId: 'q1', rawAnswer: 'Yes', isCorrect: true, score: 1, maxScore: 1 },
-          { partId: 'q2', rawAnswer: 'ledger', isCorrect: true, score: 1, maxScore: 1 },
+          { partId: 'q1', rawAnswer: 'No' },
+          { partId: 'q2', rawAnswer: 'wrong' },
         ],
+        score: 999,
+        maxScore: 999,
+        feedback: 'Forged browser feedback.',
       }),
     );
 
     expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toMatchObject({
+      score: 0,
+      maxScore: 2,
+    });
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
-      'internal.learningEvidence.submit',
-      {
-        learnerId: 'profile_123',
-        evidence: expect.objectContaining({
-          nodeId: 'math.bm2.skill.1.1.apply-accounting-equation',
-          activityId: sourceActivityId,
-          origin: 'teacher_led',
-          mode: 'guided_practice',
-          idempotencyKey: `bm2:teacher-led:${sourceActivityId}:1`,
-        }),
-      },
+      'internal.activities.submitAssessment',
+      expect.objectContaining({
+        score: 0,
+        maxScore: 2,
+        feedback: expect.not.stringContaining('Forged browser feedback.'),
+      }),
+    );
+  });
+
+  it('stores the Guided source response without recording teacher exposure', async () => {
+    const sourceActivityDocumentId = 'activities:bm2-daily-source-row';
+    const submittedAt = '2026-08-19T10:00:00.000Z';
+    mockFetchInternalQuery.mockResolvedValue({
+      ...baseActivity,
+      id: sourceActivityDocumentId,
+      stableActivityId: BM2_PILOT_SOURCE_ACTIVITY_ID,
+    });
+
+    const request = buildRequest({
+      contractVersion: 'practice.v1',
+      activityId: sourceActivityDocumentId,
+      mode: 'guided_practice',
+      status: 'submitted',
+      attemptNumber: 1,
+      submittedAt,
+      answers: { q1: 'Yes', q2: 'ledger' },
+      parts: [
+        { partId: 'q1', rawAnswer: 'Yes' },
+        { partId: 'q2', rawAnswer: 'ledger' },
+      ],
+    });
+    request.headers.set('Idempotency-Key', submittedAt);
+    const response = await POST(request);
+
+    expect(response.status).toBe(200);
+    expect(mockFetchInternalMutation).toHaveBeenCalledWith(
+      'internal.activities.submitAssessment',
+      expect.objectContaining({
+        userId: 'profile_123',
+        activityId: sourceActivityDocumentId,
+      }),
     );
     expect(mockFetchInternalMutation).not.toHaveBeenCalledWith(
-      'internal.srs.recordSrsReview',
+      'internal.learningEvidence.submit',
       expect.anything(),
     );
   });
@@ -326,7 +405,7 @@ describe('POST /api/progress/assessment', () => {
     expect(payload.percentage).toBe(0);
   });
 
-  it('returns 422 when activity grading config is not auto-gradable', async () => {
+  it('saves work for teacher review when automatic grading is disabled', async () => {
     mockFetchInternalQuery.mockResolvedValue({
       ...baseActivity,
       gradingConfig: {
@@ -342,8 +421,9 @@ describe('POST /api/progress/assessment', () => {
       }),
     );
 
-    expect(response.status).toBe(422);
+    expect(response.status).toBe(200);
     const payload = await response.json();
-    expect(payload.error).toMatch(/Unable to score submission/i);
+    expect(payload.feedback).toBe('Your work is saved for teacher review.');
+    expect(mockFetchInternalMutation).toHaveBeenCalledWith(expect.anything(), expect.objectContaining({ submissionData: expect.objectContaining({ answers: { q1: 'Yes' } }) }));
   });
 });

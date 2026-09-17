@@ -1,7 +1,6 @@
 import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
 import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
-import * as fs from 'fs';
+import { getPdfAsset } from '@/lib/server/lesson-assets';
 
 /**
  * Serves a PDF file by name from the public/pdfs directory.
@@ -27,18 +26,11 @@ export async function GET(
     return NextResponse.json({ error: 'Invalid PDF name' }, { status: 400 });
   }
 
-  const pdfsDir = path.join(process.cwd(), 'public', 'pdfs');
-  const publicPath = path.join(pdfsDir, pdfName);
-
-  if (!publicPath.startsWith(pdfsDir)) {
-    return NextResponse.json({ error: 'Invalid path' }, { status: 400 });
-  }
-
-  if (!fs.existsSync(publicPath)) {
+  const fileBuffer = getPdfAsset(pdfName);
+  if (fileBuffer === null) {
     return NextResponse.json({ error: 'File not found' }, { status: 404 });
   }
 
-  const fileBuffer = fs.readFileSync(publicPath);
   return new NextResponse(fileBuffer, {
     headers: {
       'Content-Type': 'application/pdf',

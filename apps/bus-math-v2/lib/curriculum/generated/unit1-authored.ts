@@ -184,6 +184,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
         "displayName": "The Notebook Organizer",
         "description": "Help Sarah sort her messy desk into 'What she has' vs 'What she owes'.",
         "props": {
+          "mode": "guided_practice",
           "title": "The Notebook Organizer",
           "description": "Sort Sarah's scraps of paper into the correct accounting buckets.",
           "problemTemplate": {
@@ -268,6 +269,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
         "displayName": "Independent Notebook Sort",
         "description": "Sort a larger set of accounts into A, L, and E categories without hints.",
         "props": {
+          "mode": "independent_practice",
           "title": "Independent Notebook Sort",
           "description": "Classify each account into the correct accounting bucket — no hints this time.",
           "problemTemplate": {
@@ -1459,7 +1461,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Mapping Exercise\n\nTake TechStart's account list from Lesson 2 (all classified as A, L, or E) and map each account to the correct Balance Sheet section.\n\n**Fill in the mapping table below:**\n\n| Account | Balance | A/L/E | BS Section |\n|---------|---------|-------|------------|\n| Cash | $6,000 | A | Current Assets |\n| Accounts Receivable | $2,000 | A | ? |\n| Office Supplies | $310 | A | ? |\n| Prepaid Insurance | $350 | A | ? |\n| Office Equipment | $3,600 | A | ? |\n| Accounts Payable | $450 | L | ? |\n| Accrued Wages | $0 | L | ? |\n| Deferred Revenue | $3,000 | L | ? |\n| Bank Loan | $2,800 | L | ? |\n| Sarah's Capital | $5,000 | E | Equity |\n| Retained Earnings | $960 | E | ? |\n| Current Net Income | $540 | E | ? |\n\n**After mapping, calculate section subtotals:**\n- Total Current Assets = ?\n- Total Non-Current Assets = ?\n- Total Assets = ?\n- Total Current Liabilities = ?\n- Total Non-Current Liabilities = ?\n- Total Liabilities = ?\n- Total Equity = ?\n- Total Liabilities + Equity = ?"
+              "markdown": "## Mapping Exercise\n\nTake TechStart's account list from Lesson 2 (all classified as A, L, or E) and map each account to the correct Balance Sheet section.\n\n**Fill in the mapping table below:**\n\n| Account | Balance | A/L/E | BS Section |\n|---------|---------|-------|------------|\n| Cash | $6,000 | A | Current Assets |\n| Accounts Receivable | $2,000 | A | ? |\n| Office Supplies | $310 | A | ? |\n| Prepaid Insurance | $350 | A | ? |\n| Office Equipment | $3,600 | A | ? |\n| Accounts Payable | $450 | L | ? |\n| Accrued Wages | $0 | L | ? |\n| Deferred Revenue | $3,000 | L | ? |\n| Bank Loan | $2,800 | L | ? |\n| Sarah's Capital | $5,000 | E | Equity |\n| Retained Earnings | $960 | E | ? |\n| Current Net Income | $50 | E | ? |\n\n**After mapping, calculate section subtotals:**\n- Total Current Assets = ?\n- Total Non-Current Assets = ?\n- Total Assets = ?\n- Total Current Liabilities = ?\n- Total Non-Current Liabilities = ?\n- Total Liabilities = ?\n- Total Equity = ?\n- Total Liabilities + Equity = ?"
             }
           },
           {
@@ -1493,7 +1495,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Build It From Scratch\n\nTime to build TechStart's complete Balance Sheet independently. Use the spreadsheet tool below to organize at least **6 accounts** from TechStart's records into the proper Balance Sheet structure.\n\n**Requirements for your draft:**\n- [ ] At least 3 Asset accounts (include both Current and Non-Current)\n- [ ] At least 2 Liability accounts\n- [ ] At least 2 Equity accounts\n- [ ] Subtotals for each section\n- [ ] Grand total check: Total Assets = Total Liabilities + Equity\n\n**Use TechStart's post-Lesson-3 balances:**\n\n| Account | Balance |\n|---------|---------|\n| Cash | $6,000 |\n| Accounts Receivable | $2,000 |\n| Office Supplies | $310 |\n| Prepaid Insurance | $350 |\n| Office Equipment | $3,600 |\n| Accounts Payable | $450 |\n| Deferred Revenue | $3,000 |\n| Bank Loan | $2,800 |\n| Sarah's Capital | $5,000 |\n| Retained Earnings | $960 |\n| Current Net Income | $540 |\n\nUse the spreadsheet to draft your Balance Sheet. Your goal: Total Assets should equal Total Liabilities + Equity (both should be **$12,260**)."
+              "markdown": "## Build It From Scratch\n\nTime to build TechStart's complete Balance Sheet independently. Use the spreadsheet tool below to organize all **11 accounts** from TechStart's records into the proper Balance Sheet structure.\n\n**Requirements for your draft:**\n- [ ] At least 3 Asset accounts (include both Current and Non-Current)\n- [ ] At least 2 Liability accounts\n- [ ] At least 2 Equity accounts\n- [ ] Subtotals for each section\n- [ ] Grand total check: Total Assets = Total Liabilities + Equity\n\n**Use TechStart's post-Lesson-3 balances:**\n\n| Account | Balance |\n|---------|---------|\n| Cash | $6,000 |\n| Accounts Receivable | $2,000 |\n| Office Supplies | $310 |\n| Prepaid Insurance | $350 |\n| Office Equipment | $3,600 |\n| Accounts Payable | $450 |\n| Deferred Revenue | $3,000 |\n| Bank Loan | $2,800 |\n| Sarah's Capital | $5,000 |\n| Retained Earnings | $960 |\n| Current Net Income | $50 |\n\nUse the spreadsheet to draft your Balance Sheet. Your goal: Total Assets should equal Total Liabilities + Equity (both should be **$12,260**)."
             }
           },
           {
@@ -1827,7 +1829,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Apply the Rules to TechStart's Buggy Ledger\n\nSarah's ledger below contains errors. Your job:\n1. Set up the three Conditional Formatting rules from the Introduction\n2. Run the rules against this dataset — some cells should turn red or orange\n3. Identify each error and write the correction\n\n**TechStart's Error-Filled Ledger:**\n\n| Account | Balance | Category | Flag? |\n|---------|---------|----------|-------|\n| Cash | $3,800 | A | |\n| Accounts Receivable | $2,000 | A | |\n| Office Supplies | $310 | **L** | ← Error? |\n| Prepaid Insurance | $350 | A | |\n| Office Equipment | $3,600 | A | |\n| Accounts Payable | $450 | L | |\n| Accrued Wages | *(missing)* | *(missing)* | ← Error? |\n| Deferred Revenue | $3,000 | L | |\n| Bank Loan | $2,800 | L | |\n| Sarah's Capital | $5,000 | E | |\n| Retained Earnings | **-$180** | E | ← Error? |\n| Current Net Income | $540 | E | |\n\n**Step 1:** Set up the three Conditional Formatting rules on a copy of this data.\n**Step 2:** Note which cells your rules flagged.\n**Step 3:** Identify the error type for each flagged item (Misclassification / Missing Entry / Negative Balance).\n**Step 4:** Write the corrected version of each row."
+              "markdown": "## Apply the Rules to TechStart's Buggy Ledger\n\nSarah's ledger below contains errors. Your job:\n1. Set up the three Conditional Formatting rules from the Introduction\n2. Run the rules against this dataset — some cells should turn red or orange\n3. Identify each error and write the correction\n\n**TechStart's Error-Filled Ledger:**\n\n| Account | Balance | Category | Flag? |\n|---------|---------|----------|-------|\n| Cash | $3,800 | A | |\n| Accounts Receivable | $2,000 | A | |\n| Office Supplies | $310 | **L** | ← Error? |\n| Prepaid Insurance | $350 | A | |\n| Office Equipment | $3,600 | A | |\n| Accounts Payable | $450 | L | |\n| Accrued Wages | *(missing)* | *(missing)* | ← Error? |\n| Deferred Revenue | $3,000 | L | |\n| Bank Loan | $2,800 | L | |\n| Sarah's Capital | $3,730 | E | |\n| Retained Earnings | **-$180** | E | ← Error? |\n| Current Net Income | $540 | E | |\n\n**Step 1:** Set up the three Conditional Formatting rules on a copy of this data.\n**Step 2:** Note which cells your rules flagged.\n**Step 3:** Identify the error type for each flagged item (Misclassification / Missing Entry / Negative Balance).\n**Step 4:** Write the corrected version of each row."
             }
           },
           {
@@ -1861,7 +1863,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Your Turn: Find Every Error\n\nTechStart's Month 3 ledger has been submitted for your review. It contains multiple errors of different types. Work independently to find and fix all of them.\n\n**Month 3 Ledger (contains errors — find them all):**\n\n| Account | Balance | Category |\n|---------|---------|----------|\n| Cash | $5,100 | A |\n| Accounts Receivable | $1,800 | A |\n| Office Supplies | $220 | *(blank)* |\n| Prepaid Rent | $600 | L |\n| Office Equipment | $3,600 | A |\n| Accumulated Depreciation | -$300 | A |\n| Accounts Payable | $380 | L |\n| Accrued Wages | $750 | L |\n| Deferred Revenue | $1,500 | L |\n| Bank Loan | $2,600 | L |\n| Sarah's Capital | $5,000 | E |\n| Retained Earnings | $1,140 | E |\n| Current Net Income | $750 | E |\n\n**Instructions:**\n1. Copy this data into Excel\n2. Apply all three Conditional Formatting rules\n3. Identify every error (there are at least three)\n4. Write the corrected row for each error\n5. Verify: after corrections, do Total Assets = Total Liabilities + Equity?\n\n**Hint about Accumulated Depreciation:** This is a real accounting account. It has a negative balance by design — it represents the portion of Office Equipment that has been \"used up\" over time. However, it should be listed under Assets (as a negative contra-asset), not as a standalone asset with a positive balance. Think about whether this entry is correct or needs correction."
+              "markdown": "## Your Turn: Find Every Error\n\nTechStart's Month 3 ledger has been submitted for your review. It contains multiple errors of different types. Work independently to find and fix all of them.\n\n**Month 3 Ledger (contains errors — find them all):**\n\n| Account | Balance | Category |\n|---------|---------|----------|\n| Cash | $5,100 | A |\n| Accounts Receivable | $1,800 | A |\n| Office Supplies | $220 | *(blank)* |\n| Prepaid Rent | $600 | L |\n| Office Equipment | $3,600 | A |\n| Accumulated Depreciation | -$300 | A |\n| Accounts Payable | $380 | L |\n| Accrued Wages | $750 | L |\n| Deferred Revenue | $1,500 | L |\n| Bank Loan | $2,600 | L |\n| Sarah's Capital | $3,730 | E |\n| Retained Earnings | $1,140 | E |\n| Current Net Income | $920 | E |\n\n**Instructions:**\n1. Copy this data into Excel\n2. Apply all three Conditional Formatting rules\n3. Identify every error (there are at least three)\n4. Write the corrected row for each error\n5. Verify: after corrections, do Total Assets = Total Liabilities + Equity?\n\n**Hint about Accumulated Depreciation:** This is a real accounting account. It has a negative balance by design — it represents the portion of Office Equipment that has been \"used up\" over time. However, it should be listed under Assets (as a negative contra-asset), not as a standalone asset with a positive balance. Think about whether this entry is correct or needs correction."
             }
           },
           {
@@ -1873,7 +1875,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Partner Check: Swap and Compare\n\nAfter completing your corrections independently:\n\n1. **Swap your corrected ledger** with a partner\n2. **Verify their equation:** Does their Total Assets = Total Liabilities + Equity?\n3. **Compare your lists of errors.** Did you catch the same ones? Did one of you find something the other missed?\n4. **Resolve any differences.** If you disagree on whether something is an error, walk through the three-question classification test together.\n\nFor each corrected ledger, the equation-check total should be exactly **$0**.\n\nExpected totals after corrections:\n- Total Assets: ~$13,060\n- Total Liabilities: ~$6,230\n- Total Equity: ~$6,890"
+              "markdown": "## Partner Check: Swap and Compare\n\nAfter completing your corrections independently:\n\n1. **Swap your corrected ledger** with a partner\n2. **Verify their equation:** Does their Total Assets = Total Liabilities + Equity?\n3. **Compare your lists of errors.** Did you catch the same ones? Did one of you find something the other missed?\n4. **Resolve any differences.** If you disagree on whether something is an error, walk through the three-question classification test together.\n\nFor each corrected ledger, the equation-check total should be exactly **$0**.\n\nExpected totals after corrections:\n- Total Assets: ~$13,060\n- Total Liabilities: ~$5,230\n- Total Equity: ~$6,890"
             }
           }
         ]
@@ -2208,7 +2210,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Apply Validation to TechStart's Current Ledger\n\nUse TechStart's corrected Month 3 ledger from Lesson 5. Set up all three validation rules on the existing data.\n\n**Before setting up rules — check for existing data issues:**\n\nReview each row in the Category column. Look for any values that aren't exactly \"A\", \"L\", or \"E\". If you find inconsistencies, fix them now before activating the dropdown rule.\n\n| Account | Balance | Category |\n|---------|---------|----------|\n| Cash | $5,100 | A |\n| Accounts Receivable | $1,800 | A |\n| Office Supplies | $220 | A |\n| Prepaid Rent | $600 | A |\n| Office Equipment | $3,600 | A |\n| Accumulated Depreciation | -$300 | A |\n| Accounts Payable | $380 | L |\n| Accrued Wages | $750 | L |\n| Deferred Revenue | $1,500 | L |\n| Bank Loan | $2,600 | L |\n| Sarah's Capital | $5,000 | E |\n| Retained Earnings | $1,140 | E |\n| Current Net Income | $750 | E |\n\n**Note on Accumulated Depreciation:** This account has a negative balance by design. It's a contra-asset — it reduces the reported value of Office Equipment. For this exercise, you'll need to either exclude it from the non-negative balance rule OR set a separate exception for this row."
+              "markdown": "## Apply Validation to TechStart's Current Ledger\n\nUse TechStart's corrected Month 3 ledger from Lesson 5. Set up all three validation rules on the existing data.\n\n**Before setting up rules — check for existing data issues:**\n\nReview each row in the Category column. Look for any values that aren't exactly \"A\", \"L\", or \"E\". If you find inconsistencies, fix them now before activating the dropdown rule.\n\n| Account | Balance | Category |\n|---------|---------|----------|\n| Cash | $5,100 | A |\n| Accounts Receivable | $1,800 | A |\n| Office Supplies | $220 | A |\n| Prepaid Rent | $600 | A |\n| Office Equipment | $3,600 | A |\n| Accumulated Depreciation | -$300 | A |\n| Accounts Payable | $380 | L |\n| Accrued Wages | $750 | L |\n| Deferred Revenue | $1,500 | L |\n| Bank Loan | $2,600 | L |\n| Sarah's Capital | $3,730 | E |\n| Retained Earnings | $1,140 | E |\n| Current Net Income | $920 | E |\n\n**Note on Accumulated Depreciation:** This account has a negative balance by design. It's a contra-asset — it reduces the reported value of Office Equipment. For this exercise, you'll need to either exclude it from the non-negative balance rule OR set a separate exception for this row."
             }
           },
           {
@@ -2242,7 +2244,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Your Validation Challenge\n\nSarah received a ledger from her part-time bookkeeper. It has multiple data quality issues — inconsistent category entries, blank fields, and invalid balances. Your job: clean it so it passes all three validation rules.\n\n**Dirty Ledger (from the bookkeeper):**\n\n| Account | Balance | Category |\n|---------|---------|----------|\n| Cash | $4,200 | Asset |\n| Office Equipment | | A |\n| Accounts Receivable | $1,500 | a |\n| Office Supplies | $300 | A |\n| Prepaid Insurance | $400 | asset |\n| Bank Loan | $2,500 | Liability |\n| Accounts Payable | -$200 | L |\n| Deferred Revenue | $800 | L |\n| Sarah's Capital | $5,000 | E |\n| Current Net Income | $1,100 | EQUITY |\n\n**Instructions:**\n1. Copy this data into Excel\n2. Identify every data quality issue\n3. Fix each issue so the data would pass all three validation rules\n4. Set up the validation rules on your cleaned data\n5. Verify: no cells are rejected, no blanks remain, all categories are A/L/E\n\n**Track your corrections:**\n\n| Row | Issue Type | What You Changed |\n|-----|-----------|-----------------|\n| 1 | ? | ? |\n| ... | | |"
+              "markdown": "## Your Validation Challenge\n\nSarah received a ledger from her part-time bookkeeper. It has multiple data quality issues — inconsistent category entries, blank fields, and invalid balances. Your job: clean it so it passes all three validation rules.\n\n**Dirty Ledger (from the bookkeeper):**\n\n| Account | Balance | Category |\n|---------|---------|----------|\n| Cash | $4,200 | Asset |\n| Office Equipment | | A |\n| Accounts Receivable | $1,500 | a |\n| Office Supplies | $300 | A |\n| Prepaid Insurance | $400 | asset |\n| Bank Loan | $2,500 | Liability |\n| Accounts Payable | -$200 | L |\n| Deferred Revenue | $800 | L |\n| Sarah's Capital | $3,730 | E |\n| Current Net Income | $1,100 | EQUITY |\n\n**Instructions:**\n1. Copy this data into Excel\n2. Identify every data quality issue\n3. Fix each issue so the data would pass all three validation rules\n4. Set up the validation rules on your cleaned data\n5. Verify: no cells are rejected, no blanks remain, all categories are A/L/E\n\n**Track your corrections:**\n\n| Row | Issue Type | What You Changed |\n|-----|-----------|-----------------|\n| 1 | ? | ? |\n| ... | | |"
             }
           },
           {
@@ -2576,7 +2578,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
             "sectionType": "callout",
             "content": {
               "variant": "example",
-              "content": "**Worked Example: Reading the Gap**\n\nIf TechStart's chart shows Total Assets of **$11,960** and Total Liabilities of **$6,230**, the difference is **$5,730**.\n\nThat gap is **Equity**. It tells the reader how much of the business Sarah truly owns after creditors are accounted for."
+              "content": "**Worked Example: Reading the Gap**\n\nIf TechStart's chart shows Total Assets of **$11,020** and Total Liabilities of **$5,230**, the difference is **$5,790**.\n\nThat gap is **Equity**. It tells the reader how much of the business Sarah truly owns after creditors are accounted for."
             }
           }
         ]
@@ -2590,7 +2592,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Class Build: Chart on TechStart Month 3 Data\n\nUse TechStart's Month 3 validated ledger from Lesson 6. Work through the chart-building steps together.\n\n**TechStart Month 3 Summary (for chart input):**\n\n| Account Section | Total |\n|----------------|-------|\n| Total Current Assets | $8,660 |\n| Total Non-Current Assets | $3,300 (Equipment $3,600 − Depreciation $300) |\n| **Total Assets** | **$11,960** |\n| Total Current Liabilities | $3,630 |\n| Total Non-Current Liabilities | $2,600 |\n| **Total Liabilities** | **$6,230** |\n| **Total Equity** | **$5,730** |\n\n**Verification check:** $11,960 = $6,230 + $5,730 ✅\n\nUse these totals to build your chart. Your two bars should be:\n- Total Assets: **$11,960** (taller bar)\n- Total Liabilities: **$6,230** (shorter bar)\n\nThe gap of $5,730 is TechStart's equity — the owner's stake."
+              "markdown": "## Class Build: Chart on TechStart Month 3 Data\n\nUse TechStart's Month 3 validated ledger from Lesson 6. Work through the chart-building steps together.\n\n**TechStart Month 3 Summary (for chart input):**\n\n| Account Section | Total |\n|----------------|-------|\n| Total Current Assets | $7,720 |\n| Total Non-Current Assets | $3,300 (Equipment $3,600 − Depreciation $300) |\n| **Total Assets** | **$11,020** |\n| Total Current Liabilities | $2,630 |\n| Total Non-Current Liabilities | $2,600 |\n| **Total Liabilities** | **$5,230** |\n| **Total Equity** | **$5,790** |\n\n**Verification check:** $11,020 = $5,230 + $5,790 ✅\n\nUse these totals to build your chart. Your two bars should be:\n- Total Assets: **$11,020** (taller bar)\n- Total Liabilities: **$5,230** (shorter bar)\n\nThe gap of $5,790 is TechStart's equity — the owner's stake."
             }
           },
           {
@@ -2624,7 +2626,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           {
             "sectionType": "text",
             "content": {
-              "markdown": "## Finish the Shared Balance Snapshot\n\nNow complete the class workbook build using `unit_01_balance_snapshot_guided.xlsx` and `unit_01_class_snapshot_dataset.csv`. Your goal is a clean, print-ready document with a structured Balance Sheet and a bar chart.\n\n**Requirements for Balance Snapshot v0.9:**\n- [ ] Balance Sheet header: TechStart Solutions | Balance Sheet | As of [Date]\n- [ ] Three sections: Assets (Current + Non-Current), Liabilities (Current + Non-Current), Equity\n- [ ] At least 6 accounts from TechStart's Month 3 data\n- [ ] Section subtotals and grand totals in proper order\n- [ ] Grand total check: Total Assets = Total Liabilities + Equity ($11,960)\n- [ ] Bar chart comparing Total Assets ($11,960) vs Total Liabilities ($6,230)\n- [ ] Equity note showing $5,730\n- [ ] Print-ready layout: fits on one landscape page\n\n**Use these TechStart Month 3 balances:**\n\n| Account | Balance |\n|---------|---------|\n| Cash | $5,100 |\n| Accounts Receivable | $1,800 |\n| Office Supplies | $220 |\n| Prepaid Rent | $600 |\n| Office Equipment | $3,600 |\n| Accumulated Depreciation | -$300 |\n| Accounts Payable | $380 |\n| Accrued Wages | $750 |\n| Deferred Revenue | $1,500 |\n| Bank Loan | $2,600 |\n| Sarah's Capital | $5,000 |\n| Retained Earnings | $1,140 |\n| Current Net Income | $750 |\n\nBuild your Balance Snapshot using the template below. First complete the foundational moves from `unit_01_foundational_build_guide.pdf`, then apply at least one improvement from `unit_01_polish_guide.pdf` before you submit Milestone ①."
+              "markdown": "## Finish the Shared Balance Snapshot\n\nNow complete the class workbook build using `unit_01_balance_snapshot_guided.xlsx` and `unit_01_class_snapshot_dataset.csv`. Your goal is a clean, print-ready document with a structured Balance Sheet and a bar chart.\n\n**Requirements for Balance Snapshot v0.9:**\n- [ ] Balance Sheet header: TechStart Solutions | Balance Sheet | As of [Date]\n- [ ] Three sections: Assets (Current + Non-Current), Liabilities (Current + Non-Current), Equity\n- [ ] All 13 accounts from TechStart's Month 3 data\n- [ ] Section subtotals and grand totals in proper order\n- [ ] Grand total check: Total Assets = Total Liabilities + Equity ($11,020)\n- [ ] Bar chart comparing Total Assets ($11,020) vs Total Liabilities ($5,230)\n- [ ] Equity note showing $5,790\n- [ ] Print-ready layout: fits on one landscape page\n\n**Use these TechStart Month 3 balances:**\n\n| Account | Balance |\n|---------|---------|\n| Cash | $5,100 |\n| Accounts Receivable | $1,800 |\n| Office Supplies | $220 |\n| Prepaid Rent | $600 |\n| Office Equipment | $3,600 |\n| Accumulated Depreciation | -$300 |\n| Accounts Payable | $380 |\n| Accrued Wages | $750 |\n| Deferred Revenue | $1,500 |\n| Bank Loan | $2,600 |\n| Sarah's Capital | $3,730 |\n| Retained Earnings | $1,140 |\n| Current Net Income | $920 |\n\nBuild your Balance Snapshot using the template below. First complete the foundational moves from `unit_01_foundational_build_guide.pdf`, then apply at least one improvement from `unit_01_polish_guide.pdf` before you submit Milestone ①."
             }
           },
           {
@@ -2825,7 +2827,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
           "questions": [
             {
               "id": "q1",
-              "text": "TechStart's bar chart shows Total Assets = $11,960 and Total Liabilities = $6,230. What does the gap between these two bars represent?",
+              "text": "TechStart's bar chart shows Total Assets = $11,020 and Total Liabilities = $5,230. What does the gap between these two bars represent?",
               "type": "multiple-choice",
               "options": [
                 "TechStart's revenue for the month",
@@ -2834,7 +2836,7 @@ export const AUTHORED_UNIT_1_LESSONS = [
                 "The amount TechStart borrowed this month"
               ],
               "correctAnswer": "TechStart's equity — the owner's stake in the business",
-              "explanation": "Using A = L + E: Equity = Assets - Liabilities = $11,960 - $6,230 = $5,730. The gap between the two bars equals Total Equity — the portion of TechStart that belongs to Sarah after all debts are paid."
+              "explanation": "Using A = L + E: Equity = Assets - Liabilities = $11,020 - $5,230 = $5,790. The gap between the two bars equals Total Equity — the portion of TechStart that belongs to Sarah after all debts are paid."
             },
             {
               "id": "q2",
@@ -2877,10 +2879,10 @@ export const AUTHORED_UNIT_1_LESSONS = [
             },
             {
               "id": "q5",
-              "text": "Sarah's Balance Snapshot shows Total Assets = $11,960 and Total Liabilities + Equity = $11,960. What does this confirm?",
+              "text": "Sarah's Balance Snapshot shows Total Assets = $11,020 and Total Liabilities + Equity = $11,020. What does this confirm?",
               "type": "multiple-choice",
               "options": [
-                "TechStart made a $11,960 profit this month",
+                "TechStart made a $11,020 profit this month",
                 "The accounting equation balances — the data is internally consistent",
                 "TechStart has no debt",
                 "TechStart's equity equals its assets"

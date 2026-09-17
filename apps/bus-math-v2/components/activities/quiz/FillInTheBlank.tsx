@@ -67,6 +67,8 @@ function createDeterministicOrder(words: string[], seed: string): string[] {
  */
 export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
   const { sentences, showWordList, randomizeWordOrder, showHints } = activity.props;
+  const hasAnswerKeys = sentences.every((sentence) => typeof sentence.answer === 'string');
+  const safeWordBank = (activity.props as FillInTheBlankActivityProps & { wordBank?: string[] }).wordBank;
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [sentenceStates, setSentenceStates] = useState<SentenceState[]>([]);
@@ -82,7 +84,7 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
 
   const wordBank = useMemo(() => {
     if (!showWordList) return [];
-    const baseWords = sentences.flatMap((sentence) => [sentence.answer, ...(sentence.alternativeAnswers ?? [])]);
+    const baseWords = safeWordBank ?? (hasAnswerKeys ? sentences.flatMap((sentence) => [sentence.answer, ...(sentence.alternativeAnswers ?? [])]) : []);
     const uniqueWords = Array.from(new Set(baseWords));
     if (!randomizeWordOrder) {
       return uniqueWords;
@@ -90,7 +92,7 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
 
     // Avoid hydration mismatches by using deterministic order for SSR+CSR.
     return createDeterministicOrder(uniqueWords, activity.id);
-  }, [activity.id, sentences, showWordList, randomizeWordOrder]);
+  }, [activity.id, sentences, showWordList, randomizeWordOrder, hasAnswerKeys, safeWordBank]);
 
 
   /**
@@ -198,7 +200,7 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
               Show hints
             </label>
           </div>
-          {submitted && (
+          {submitted && hasAnswerKeys && (
             <Badge variant="outline">
               Score: {sentenceStates.filter((state) => state.isCorrect).length}/{sentences.length}
             </Badge>
@@ -237,12 +239,12 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
                   }}
                   placeholder="Type your answer"
                   disabled={submitted && isCorrect}
-                  className={submitted ? (isCorrect ? 'border-green-500' : 'border-destructive') : undefined}
+                  className={submitted && hasAnswerKeys ? (isCorrect ? 'border-green-500' : 'border-destructive') : undefined}
                 />
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
                   <span>{(answers[sentence.id] ?? '').length} characters</span>
-                  {submitted && isCorrect && <span className="text-green-600">Correct</span>}
-                  {submitted && hasAnswer && !isCorrect && <span className="text-destructive">Try again</span>}
+                  {submitted && hasAnswerKeys && isCorrect && <span className="text-green-600">Correct</span>}
+                  {submitted && hasAnswerKeys && hasAnswer && !isCorrect && <span className="text-destructive">Try again</span>}
                 </div>
                 {hintsEnabled && sentence.hint && (
                   <p className="text-sm text-muted-foreground">Hint: {sentence.hint}</p>

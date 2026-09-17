@@ -88,6 +88,7 @@ function sortOptionsDeterministically(questionId: string, options: string[]) {
 export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const hasAnswerKeys = activity.props.questions.every((question) => question.correctAnswer !== undefined);
 
   const questions = activity.props.questions;
 
@@ -161,7 +162,7 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
       onSubmit?.(
         buildPracticeSubmissionEnvelope({
           activityId: activity.id,
-          mode: COMPREHENSION_CHECK_DEFAULT_MODE,
+          mode: activity.props.mode ?? COMPREHENSION_CHECK_DEFAULT_MODE,
           status: 'submitted',
           attemptNumber: 1,
           submittedAt: new Date(),
@@ -195,9 +196,9 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
         <CardTitle className="flex items-center gap-3 text-2xl">
           {activity.props.title}
           <Badge variant="outline" className="uppercase">
-            {COMPREHENSION_CHECK_DEFAULT_MODE.replace('_', ' ')}
+            {(activity.props.mode ?? COMPREHENSION_CHECK_DEFAULT_MODE).replace('_', ' ')}
           </Badge>
-          {submitted && (
+          {submitted && hasAnswerKeys && (
             <Badge variant={percentage >= 70 ? 'default' : 'destructive'}>
               {score}/{totalQuestions} correct ({percentage}%)
             </Badge>
@@ -215,7 +216,7 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
           </div>
           <div className="flex items-center gap-2">
             <span className="font-medium">Save Progress:</span>
-            <span>Auto-saved locally</span>
+            <span>Saved when you submit</span>
           </div>
         </div>
       </CardHeader>
@@ -233,7 +234,7 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
                 <div className="grid gap-2">
                   {question.options.map((option, optionIndex) => {
                     const isSelected = selected === option;
-                    const showCorrect = submitted && option === selected;
+                    const showCorrect = submitted && hasAnswerKeys && option === selected;
                     const optionIsCorrect =
                       normalizePracticeValue(option) === normalizePracticeValue(question.correctAnswer);
 

@@ -1,14 +1,7 @@
-Account,Account Type,Balance
-Cash,Asset,8060
-Accounts Receivable,Asset,6586
-Office Supplies,Asset,5169
-Prepaid Rent,Asset,5085
-Office Equipment,Asset,7662
-Accumulated Depreciation,Asset,-295
-Accounts Payable,Liability,7275
-Accrued Wages,Liability,5229
-Deferred Revenue,Liability,877
-Bank Loan,Liability,1461
-Owner's Capital,Equity,10455
-Retained Earnings,Equity,5227
-Net Income,Equity,1743
+Input,Value
+Project funding need,15750.0
+Owner equity contribution,5250.0
+Annual loan rate,0.12
+Payments per year,12
+Loan term in years,1
+Monthly cash available for debt,1260.0

@@ -8,8 +8,6 @@ import { WeakFamiliesPanel, type FamilyPerformance } from "./WeakFamiliesPanel";
 import { StrugglingStudentsPanel, type StudentStruggleMetrics } from "./StrugglingStudentsPanel";
 import { ResetCardModal } from "./ResetCardModal";
 import { BumpPriorityModal } from "./BumpPriorityModal";
-import { fetchInternalMutation, fetchInternalQuery, api } from "@/lib/convex/server";
-import type { Id } from "@/convex/_generated/dataModel";
 
 
 
@@ -49,6 +47,7 @@ export function TeacherSRSDashboardClient({
   const [classHealth, setClassHealth] = useState<ClassHealthSummary | null>(null);
   const [weakFamilies, setWeakFamilies] = useState<FamilyPerformance[] | null>(null);
   const [strugglingStudents, setStrugglingStudents] = useState<StudentStruggleMetrics[] | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(classes.length > 0);
 
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
@@ -66,16 +65,16 @@ export function TeacherSRSDashboardClient({
   const loadClassData = useCallback(async (classId: string) => {
     setIsLoadingData(true);
     try {
-      const [health, families, students] = await Promise.all([
-        fetchInternalQuery(api.srs.getClassSrsHealth, { classId: classId as Id<"classes"> }),
-        fetchInternalQuery(api.srs.getWeakFamilies, { classId: classId as Id<"classes"> }),
-        fetchInternalQuery(api.srs.getStrugglingStudents, { classId: classId as Id<"classes"> }),
-      ]);
-      setClassHealth(health);
-      setWeakFamilies(families);
-      setStrugglingStudents(students?.students ?? null);
+      setLoadError(null);
+      const response = await fetch(`/api/teacher/srs?classId=${encodeURIComponent(classId)}`, { cache: 'no-store' });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? 'Unable to load practice data.');
+      setClassHealth(result.health);
+      setWeakFamilies(result.families);
+      setStrugglingStudents(result.students);
+
     } catch (err) {
-      console.error("Failed to load SRS data:", err);
+      setLoadError(err instanceof Error ? err.message : "Unable to load practice data.");
       setClassHealth(null);
       setWeakFamilies(null);
       setStrugglingStudents(null);
@@ -108,10 +107,8 @@ export function TeacherSRSDashboardClient({
    */
   const handleResetCard = async (problemFamilyId: string) => {
     try {
-      await fetchInternalMutation(api.srs.resetStudentCard, {
-        studentId: resetStudentId as Id<"profiles">,
-        problemFamilyId,
-      });
+      const response = await fetch('/api/teacher/srs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'reset', studentId: resetStudentId, problemFamilyId }) });
+      if (!response.ok) throw new Error('Unable to reset this card.');
       await loadClassData(selectedClassId);
     } catch (err) {
       console.error("Failed to reset card:", err);
@@ -127,10 +124,8 @@ export function TeacherSRSDashboardClient({
    */
   const handleBumpPriority = async (problemFamilyId: string) => {
     try {
-      await fetchInternalMutation(api.srs.bumpFamilyPriority, {
-        classId: selectedClassId as Id<"classes">,
-        problemFamilyId,
-      });
+      const response = await fetch('/api/teacher/srs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'bump', classId: selectedClassId, problemFamilyId }) });
+      if (!response.ok) throw new Error('Unable to change this family priority.');
       await loadClassData(selectedClassId);
     } catch (err) {
       console.error("Failed to bump priority:", err);
@@ -204,6 +199,7 @@ export function TeacherSRSDashboardClient({
           </div>
           <div className="flex items-center gap-2">
             <select
+              aria-label="Class"
               value={selectedClassId}
               onChange={(e) => handleClassChange(e.target.value)}
               className="rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
@@ -218,6 +214,7 @@ export function TeacherSRSDashboardClient({
           </div>
         </header>
 
+        {loadError && <p role="alert">{loadError}</p>}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <ClassHealthCard health={isLoadingData ? null : classHealth} />
         </div>

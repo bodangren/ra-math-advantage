@@ -8,9 +8,8 @@ vi.mock('@/lib/auth/server', () => ({
   requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
 }));
 
-vi.mock('fs', () => ({
-  existsSync: mockFsExistsSync,
-  readFileSync: mockFsReadFileSync,
+vi.mock('@/lib/server/lesson-assets', () => ({
+  getPdfAsset: () => mockFsExistsSync() ? mockFsReadFileSync() : null,
 }));
 
 const { GET } = await import('../../../../../app/api/pdfs/[pdfName]/route');

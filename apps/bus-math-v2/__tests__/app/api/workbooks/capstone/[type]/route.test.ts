@@ -10,14 +10,9 @@ vi.mock('@/lib/auth/server', () => ({
 const mockExistsSync = vi.fn();
 const mockReadFileSync = vi.fn();
 
-vi.mock('fs', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('fs')>();
-  return {
-    ...actual,
-    existsSync: mockExistsSync,
-    readFileSync: mockReadFileSync,
-  };
-});
+vi.mock('@/lib/server/lesson-assets', () => ({
+  getWorkbookAsset: (name: string, type: string) => mockExistsSync() ? mockReadFileSync(name, type) : null,
+}));
 
 const { GET } = await import(
   '@/app/api/workbooks/capstone/[type]/route'

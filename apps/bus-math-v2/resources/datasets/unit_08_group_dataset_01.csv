@@ -1,14 +1,13 @@
-Account,Account Type,Balance
-Cash,Asset,8625
-Accounts Receivable,Asset,7047
-Office Supplies,Asset,5478
-Prepaid Rent,Asset,5976
-Office Equipment,Asset,8432
-Accumulated Depreciation,Asset,-272
-Accounts Payable,Liability,8427
-Accrued Wages,Liability,2908
-Deferred Revenue,Liability,2848
-Bank Loan,Liability,2048
-Owner's Capital,Equity,11433
-Retained Earnings,Equity,5716
-Net Income,Equity,1906
+Input,Value
+Unit price,84.0
+Variable cost per unit,52.5
+Sales volume,200
+Fixed cash costs,4095.0
+Depreciation,630.0
+Increase in receivables,420.0
+Increase in inventory,210.0
+Increase in payables,105.0
+Capital expenditure,1575.0
+New financing,735.0
+Beginning Cash,2625.0
+Target profit,1260.0

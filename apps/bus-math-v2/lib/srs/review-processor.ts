@@ -53,7 +53,7 @@ export function processPracticeSubmission(
     const reviewedCard = reviewCard(newCard, ratingResult.rating, now);
 
     const reviewLog: SrsReviewLog = {
-      problemFamilyId: reviewedCard.problemFamilyId,
+      problemFamilyId: reviewedCard.variantKey,
       studentId: reviewedCard.studentId,
       rating: ratingResult.rating,
       scheduledAt: Date.now(),
@@ -65,7 +65,7 @@ export function processPracticeSubmission(
     };
 
     return {
-      card: reviewedCard,
+      card: { ...reviewedCard, problemFamilyId: reviewedCard.variantKey },
       reviewLog,
       rating: ratingResult.rating,
     };
@@ -80,7 +80,7 @@ export function processPracticeSubmission(
   const scheduledDays = Math.floor((new Date(reviewedCard.dueDate).getTime() - reviewedAtMs) / (24 * 60 * 60 * 1000));
 
   const reviewLog: SrsReviewLog = {
-    problemFamilyId: reviewedCard.problemFamilyId,
+    problemFamilyId: reviewedCard.variantKey,
     studentId: reviewedCard.studentId,
     rating: ratingResult.rating,
     scheduledAt: Date.now(),
@@ -92,7 +92,7 @@ export function processPracticeSubmission(
   };
 
   return {
-    card: reviewedCard,
+    card: { ...reviewedCard, problemFamilyId: reviewedCard.variantKey },
     reviewLog,
     rating: ratingResult.rating,
   };

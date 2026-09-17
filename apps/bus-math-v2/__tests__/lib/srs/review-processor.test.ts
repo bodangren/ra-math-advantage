@@ -106,7 +106,7 @@ it('timing data with fast speed band can upgrade Good to Easy', () => {
       const timing = makeTiming('high');
       timing.activeMs = 5000;
       const baseline: import('../../../lib/practice/timing-baseline').PracticeTimingBaseline = {
-        problemFamilyId: 'transaction-effects',
+        variantKey: 'transaction-effects',
         sampleCount: 15,
         medianActiveMs: 30000,
         minSamplesMet: true,
@@ -121,7 +121,7 @@ it('timing data with fast speed band can upgrade Good to Easy', () => {
       const timing = makeTiming('high');
       timing.activeMs = 120000;
       const baseline: import('../../../lib/practice/timing-baseline').PracticeTimingBaseline = {
-        problemFamilyId: 'transaction-effects',
+        variantKey: 'transaction-effects',
         sampleCount: 15,
         medianActiveMs: 30000,
         minSamplesMet: true,

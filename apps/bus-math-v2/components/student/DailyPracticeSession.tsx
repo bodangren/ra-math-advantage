@@ -1,20 +1,17 @@
 'use client';
 
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useQuery, useMutation } from 'convex/react';
-import { api } from '@/lib/convex/server';
-import { practiceFamilyRegistry } from '@/lib/practice/engine/family-registry';
-import { buildPracticeSubmissionEnvelope } from '@/lib/practice/contract';
-import { processPracticeSubmission } from '@/lib/srs/review-processor';
-import { dailyPracticeInputRegistry } from '@/lib/srs/answer-inputs/registry';
-import type { SrsCardState } from '@/lib/srs/contract';
+import { getPracticeFamily } from '@/lib/practice/engine/family-registry';
+import * as answerInputRegistry from '@/lib/srs/answer-inputs/registry';
 import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import type { AccountingEquationDefinition } from '@/lib/practice/engine/families/accounting-equation';
 import {
+  BM2_PILOT_MODES,
   BM2_PILOT_PROBLEM_FAMILY_ID,
-  buildBm2MasteryAdvantageEvidence,
+  isBm2PilotPublished,
 } from '@/lib/learning-evidence/bm2-pilot';
 
 interface FlatSrsCard {
@@ -34,11 +31,9 @@ interface FlatSrsCard {
   createdAt: string;
   updatedAt: string;
 }
-
 interface DailyPracticeSessionProps {
   studentId: string;
 }
-
 
 /**
  * Renders a daily SRS practice session that presents due cards one at a time
@@ -53,24 +48,39 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
   const [sessionCompleted, setSessionCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showNext, setShowNext] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [cachedSubmissionId, setCachedSubmissionId] = useState<string | null>(null);
+  const [pilotModeIndex, setPilotModeIndex] = useState(0);
   const submittedRef = useRef(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const submissionIdRef = useRef<string | null>(null);
+  const createIdempotencyKeyRef = useRef<string | null>(null);
+  const submissionEnvelopeRef = useRef<PracticeSubmissionEnvelope | null>(null);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const dueCards = useQuery(api.srs.getDueCards, { studentId: studentId as any });
-  const recordReview = useMutation(api.srs.recordSrsReview);
+  const [dueCards, setDueCards] = useState<FlatSrsCard[]>();
+  const [queueError, setQueueError] = useState(false);
+  useEffect(() => {
+    let active = true;
+    void fetch('/api/srs', { cache: 'no-store' }).then(async (response) => {
+      if (!response.ok) throw new Error('queue_unavailable');
+      const cards = await response.json();
+      if (active) setDueCards(cards);
+    }).catch(() => { if (active) setQueueError(true); });
+    return () => { active = false; };
+  }, [studentId]);
 
-  const sessionCards = useMemo(() => {
-    if (!dueCards) return [];
-    return (dueCards as FlatSrsCard[]).slice(0, 10);
-  }, [dueCards]);
+  const [sessionCards, setSessionCards] = useState<FlatSrsCard[] | null>(null);
+  if (sessionCards === null && dueCards !== undefined) {
+    setSessionCards((dueCards as FlatSrsCard[]).filter((card) => Boolean(answerInputRegistry.dailyPracticeInputRegistry[card.problemFamilyId])).slice(0, 10));
+  }
+  const excludedCount = dueCards?.filter(card => !answerInputRegistry.dailyPracticeInputRegistry[card.problemFamilyId]).length ?? 0;
+  const excludedMessage = excludedCount > 0 ? <p role="status" className="text-muted-foreground mb-4">{excludedCount} due practice {excludedCount === 1 ? 'item has' : 'items have'} no supported input. Ask your teacher for the corresponding lesson task.</p> : null;
+  const completed = sessionCompleted;
 
-  const isEmpty = dueCards !== undefined && dueCards.length === 0;
-  const completed = sessionCompleted || isEmpty;
+  const currentCard = sessionCards?.[currentIndex];
 
-  const currentCard = sessionCards[currentIndex];
-
-  if (!dueCards) {
+  if (queueError) return <p role="alert">Unable to load daily practice. Reload this page to try again.</p>;
+  if (sessionCards === null) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-muted-foreground">Loading your practice queue...</div>
@@ -78,18 +88,19 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
     );
   }
 
-  if (completed || sessionCards.length === 0) {
+  if (completed || !currentCard) {
     return (
       <div className="max-w-2xl mx-auto py-8">
         <Card>
           <CardHeader>
-            <CardTitle className="text-center text-2xl">No Problems Due</CardTitle>
+            <CardTitle className="text-center text-2xl">{excludedCount > 0 && sessionCards.length === 0 ? 'Practice inputs unavailable' : 'No Problems Due'}</CardTitle>
           </CardHeader>
           <CardContent className="text-center">
-            <p className="text-muted-foreground mb-4">
+            {excludedMessage}
+            {sessionCards.length > 0 || excludedCount === 0 ? <p className="text-muted-foreground mb-4">
               Great work! You have no practice problems due right now.
               Check back later for more review.
-            </p>
+            </p> : null}
             <Button variant="outline" onClick={() => window.location.reload()}>
               Refresh
             </Button>
@@ -99,10 +110,11 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
     );
   }
 
-  const isBm2MasteryAdvantage = currentCard.problemFamilyId === BM2_PILOT_PROBLEM_FAMILY_ID;
+  const isBm2PilotCard = currentCard.problemFamilyId === BM2_PILOT_PROBLEM_FAMILY_ID;
+  const isBm2MasteryAdvantage = isBm2PilotCard && isBm2PilotPublished();
+  const pilotMode = BM2_PILOT_MODES[pilotModeIndex] ?? 'independent_practice';
   const familyKey = currentCard.problemFamilyId;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const family = (practiceFamilyRegistry as any)[familyKey];
+  const family = getPracticeFamily(familyKey);
 
   if (!family) {
     return (
@@ -118,6 +130,17 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
     );
   }
 
+  const deliverBm2Evidence = async (submissionId: string) => {
+    const progressionResponse = await fetch('/api/learning-evidence/bm2-pilot', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ submissionId }),
+    });
+    if (!progressionResponse.ok) {
+      throw new Error('Unable to record BM2 learning evidence');
+    }
+  };
+
 
   /**
    * Processes a practice submission envelope, grades the answer, records
@@ -127,58 +150,74 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
    */
   const handleSubmit = async (envelope: PracticeSubmissionEnvelope) => {
     if (submittedRef.current) return;
+    if (isBm2MasteryAdvantage && envelope.mode === 'guided_practice') {
+      setPilotModeIndex(2);
+      return;
+    }
     submittedRef.current = true;
     setIsSubmitting(true);
-
-    const timing = envelope.timing ? {
-      startedAt: envelope.timing.startedAt,
-      submittedAt: envelope.timing.submittedAt,
-      wallClockMs: envelope.timing.wallClockMs,
-      activeMs: envelope.timing.activeMs,
-      idleMs: envelope.timing.idleMs,
-      pauseCount: envelope.timing.pauseCount,
-      focusLossCount: envelope.timing.focusLossCount,
-      visibilityHiddenCount: envelope.timing.visibilityHiddenCount,
-      confidence: envelope.timing.confidence,
-      confidenceReasons: envelope.timing.confidenceReasons,
-    } : undefined;
+    setSubmissionError(null);
+    submissionEnvelopeRef.current = envelope;
 
     try {
       if (isBm2MasteryAdvantage) {
-        const response = await fetch('/api/learning-evidence/bm2-pilot', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({
-            evidence: buildBm2MasteryAdvantageEvidence(envelope),
-          }),
-        });
-        if (!response.ok) {
-          throw new Error('Unable to record BM2 learning evidence');
+        const idempotencyKey = createIdempotencyKeyRef.current ?? crypto.randomUUID();
+        createIdempotencyKeyRef.current = idempotencyKey;
+        let submissionId = submissionIdRef.current;
+
+        if (!submissionId) {
+          const createResponse = await fetch('/api/progress/assessment', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              'Idempotency-Key': idempotencyKey,
+            },
+            body: JSON.stringify(envelope),
+          });
+          const created = await createResponse.json() as { submissionId?: unknown };
+          if (!createResponse.ok || typeof created.submissionId !== 'string') {
+            throw new Error('Unable to create BM2 activity submission');
+          }
+          submissionId = created.submissionId;
+          submissionIdRef.current = submissionId;
+          setCachedSubmissionId(submissionId);
         }
+
+        await deliverBm2Evidence(submissionId);
       } else {
-        const result = processPracticeSubmission(
-          envelope,
-          currentCard as unknown as SrsCardState,
-          timing,
-          undefined,
-          studentId,
-        );
-        await recordReview({
-          studentId: studentId as Parameters<typeof recordReview>[0]['studentId'],
-          problemFamilyId: result.card.problemFamilyId,
-          rating: result.rating,
-          scheduledAt: result.reviewLog.scheduledAt,
-          reviewedAt: result.reviewLog.reviewedAt,
-          elapsedDays: result.reviewLog.elapsedDays,
-          scheduledDays: result.reviewLog.scheduledDays,
-          reviewDurationMs: result.reviewLog.reviewDurationMs,
-          timingConfidence: result.reviewLog.timingConfidence,
-          card: result.card as unknown as Parameters<typeof recordReview>[0]['card'],
-        });
+        const idempotencyKey = createIdempotencyKeyRef.current ?? crypto.randomUUID();
+        createIdempotencyKeyRef.current = idempotencyKey;
+        const response = await fetch('/api/srs', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cardId: currentCard.cardId, activityId: envelope.activityId, answers: envelope.answers, idempotencyKey }) });
+        if (!response.ok) throw new Error('Unable to save this review.');
       }
       setShowNext(true);
-    } catch {
+    } catch (error) {
       submittedRef.current = false;
+      setSubmissionError(error instanceof Error ? error.message : 'Unable to save this submission');
+      throw error;
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleRetry = async () => {
+    const submissionId = submissionIdRef.current;
+    if (!submissionId) {
+      const pendingEnvelope = submissionEnvelopeRef.current;
+      if (pendingEnvelope) await handleSubmit(pendingEnvelope);
+      return;
+    }
+
+    submittedRef.current = true;
+    setIsSubmitting(true);
+    setSubmissionError(null);
+    try {
+      await deliverBm2Evidence(submissionId);
+      setShowNext(true);
+    } catch (error) {
+      submittedRef.current = false;
+      setSubmissionError(error instanceof Error ? error.message : 'Unable to record BM2 learning evidence');
     } finally {
       setIsSubmitting(false);
     }
@@ -191,6 +230,12 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
   const handleAdvance = () => {
     setShowNext(false);
     submittedRef.current = false;
+    setSubmissionError(null);
+    setCachedSubmissionId(null);
+    setPilotModeIndex(0);
+    submissionIdRef.current = null;
+    createIdempotencyKeyRef.current = null;
+    submissionEnvelopeRef.current = null;
     if (currentIndex < sessionCards.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
@@ -201,15 +246,21 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
     }, 0);
   };
 
-  const seed = currentCard.reps + 1;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const problemDef = (family as any).generate(seed, undefined);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const problemResponse = (family as any).solve(problemDef);
-  const AnswerInputComponent = dailyPracticeInputRegistry[familyKey];
+  const seed = currentCard.reps + 1 + (isBm2MasteryAdvantage ? pilotModeIndex : 0);
+  const AnswerInputComponent = answerInputRegistry.dailyPracticeInputRegistry[familyKey];
+  const problemDef = AnswerInputComponent
+    ? family.generate(
+        seed,
+        isBm2MasteryAdvantage ? { mode: pilotMode } : undefined,
+      )
+    : null;
+  const accountingDefinition = isBm2MasteryAdvantage
+    ? problemDef as AccountingEquationDefinition
+    : null;
 
   return (
     <div className="max-w-4xl mx-auto py-8">
+      {excludedMessage}
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Daily Practice</h1>
@@ -234,20 +285,57 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
               <div className="text-muted-foreground font-medium">Saving result...</div>
             </div>
           )}
-          {AnswerInputComponent ? (
+          {isBm2PilotCard && !isBm2MasteryAdvantage ? (
+            <p className="text-muted-foreground" role="status">
+              This practice item is not available. Ask your teacher for the lesson activity.
+            </p>
+          ) : pilotMode === 'worked_example' && accountingDefinition ? (
+            <div className="space-y-6" data-testid="bm2-worked-example">
+              <div className="rounded-lg bg-muted/50 p-4">
+                <h3 className="font-medium">Worked example</h3>
+                <p className="mt-2 text-sm">{accountingDefinition.scaffolding.formula}</p>
+                {accountingDefinition.facts.map((fact) => (
+                  <p className="mt-2 text-sm" key={fact.id}>
+                    {fact.label}: {fact.value.toLocaleString('en-US')}
+                  </p>
+                ))}
+                <p className="mt-2 text-sm">
+                  {accountingDefinition.terms[accountingDefinition.equation.hiddenTermId].label}: {' '}
+                  {accountingDefinition.equation[accountingDefinition.equation.hiddenTermId].toLocaleString('en-US')}
+                </p>
+                <p className="mt-2 text-sm">
+                  Check: {accountingDefinition.equation.assets.toLocaleString('en-US')} = {' '}
+                  {accountingDefinition.equation.liabilities.toLocaleString('en-US')} + {' '}
+                  {accountingDefinition.equation.equity.toLocaleString('en-US')}
+                </p>
+              </div>
+              <Button type="button" onClick={() => setPilotModeIndex(1)}>Continue to guided practice</Button>
+            </div>
+          ) : AnswerInputComponent ? (
             <AnswerInputComponent
+              key={`${currentCard.cardId}:${currentCard.reps}:${pilotMode}`}
               family={family}
               definition={problemDef}
               onSubmit={handleSubmit}
             />
           ) : (
-            <ProblemRenderer
-              familyKey={familyKey}
-              family={family}
-              definition={problemDef}
-              response={problemResponse}
-              onSubmit={handleSubmit}
-            />
+            <p className="text-muted-foreground" role="status">
+              Daily practice is not available for this problem family.
+            </p>
+          )}
+          {submissionError && (
+            <div className="mt-6 rounded border border-destructive/50 bg-destructive/10 p-4" role="alert">
+              <p className="text-sm text-destructive">{submissionError}</p>
+              <Button
+                type="button"
+                variant="outline"
+                className="mt-3"
+                onClick={handleRetry}
+                disabled={isSubmitting}
+              >
+                {cachedSubmissionId ? 'Retry evidence delivery' : 'Retry submission'}
+              </Button>
+            </div>
           )}
           {showNext && (
             <div className="mt-6 pt-4 border-t">
@@ -258,133 +346,6 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
           )}
         </CardContent>
       </Card>
-    </div>
-  );
-}
-
-
-/**
- * Renders a fallback problem display with grading when no registered answer
- * input component exists for the practice family.
- *
- * @param props - Component props.
- * @param props.familyKey - The problem family key string.
- * @param props.family - The practice family definition object.
- * @param props.definition - The generated problem definition.
- * @param props.response - The expected response from the family solver.
- * @param props.onSubmit - Callback to submit the graded practice envelope.
- * @returns A problem display with submit button and grade results.
- */
-function ProblemRenderer({
-  familyKey,
-  family,
-  definition,
-  response,
-  onSubmit,
-}: {
-  familyKey: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  family: any;
-  definition: unknown;
-  response: unknown;
-  onSubmit: (envelope: PracticeSubmissionEnvelope) => void;
-}) {
-  const submittedRef = useRef(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [gradeResult, setGradeResult] = useState<{ parts: Array<{ partId: string; rawAnswer?: unknown; isCorrect?: boolean }> } | null>(null);
-
-
-  /**
-   * Grades the current problem and submits the result envelope.
-   */
-  const handleGrade = () => {
-    if (submittedRef.current) return;
-    submittedRef.current = true;
-    setSubmitted(true);
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const result = (family as any).grade(definition, response);
-    setGradeResult(result);
-    const envelope = buildPracticeSubmissionEnvelope({
-      activityId: familyKey,
-      mode: 'independent_practice',
-      status: 'submitted',
-      attemptNumber: 1,
-      answers: {},
-      parts: result.parts.map((p: { partId: string; rawAnswer?: unknown; isCorrect?: boolean }) => ({
-        partId: p.partId,
-        rawAnswer: p.rawAnswer ?? null,
-        isCorrect: p.isCorrect,
-      })),
-    });
-    onSubmit(envelope);
-  };
-
-
-  /**
-   * Recursively renders a problem definition as nested JSX elements.
-   *
-   * @param def - The definition value to render.
-   * @param path - Unique key path for React reconciliation.
-   * @returns A React node representing the definition.
-   */
-  const renderDef = (def: unknown, path: string = ''): React.ReactNode => {
-    if (def === null || def === undefined) return null;
-    if (typeof def === 'string' || typeof def === 'number' || typeof def === 'boolean') {
-      return <span key={path} className="font-mono bg-muted px-1 rounded">{String(def)}</span>;
-    }
-    if (Array.isArray(def)) {
-      return (
-        <ul key={path} className="list-disc pl-6 space-y-1">
-          {def.map((item, i) => (
-            <li key={`${path}-${i}`}>{renderDef(item, `${path}-${i}`)}</li>
-          ))}
-        </ul>
-      );
-    }
-    if (typeof def === 'object') {
-      return (
-        <div key={path} className="space-y-2">
-          {Object.entries(def as Record<string, unknown>).map(([key, value]) => (
-            <div key={`${path}-${key}`} className="flex gap-2">
-              <span className="font-medium text-muted-foreground">{key}:</span>
-              <div>{renderDef(value, `${path}-${key}`)}</div>
-            </div>
-          ))}
-        </div>
-      );
-    }
-    return <span key={path}>{String(def)}</span>;
-  };
-
-  return (
-    <div className="space-y-6">
-      <div className="bg-muted/50 p-4 rounded-lg">
-        <h3 className="font-medium mb-2 text-sm text-muted-foreground">Problem</h3>
-        {renderDef(definition)}
-      </div>
-
-      {submitted && gradeResult ? (
-        <div className="bg-muted/50 p-4 rounded-lg">
-          <h3 className="font-medium mb-2 text-sm text-muted-foreground">Result</h3>
-          <div className="space-y-1">
-            {gradeResult.parts.map((p, i) => (
-              <div key={i} className={`text-sm ${p.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                {p.partId}: {p.isCorrect ? 'Correct' : 'Incorrect'}
-              </div>
-            ))}
-          </div>
-          <pre className="text-sm whitespace-pre-wrap font-mono bg-background p-3 rounded border mt-2">
-            {JSON.stringify(response, null, 2)}
-          </pre>
-        </div>
-      ) : (
-        <div className="flex gap-3">
-          <Button onClick={handleGrade} className="flex-1">
-            Submit Answer
-          </Button>
-        </div>
-      )}
     </div>
   );
 }

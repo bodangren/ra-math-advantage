@@ -7,28 +7,6 @@ import type { SubmissionDetail } from '@/lib/teacher/submission-detail';
 // Mock Convex server module
 // ---------------------------------------------------------------------------
 
-vi.mock('@/lib/convex/server', () => ({
-  fetchInternalQuery: vi.fn(async (_ref: unknown, args: Record<string, unknown>) => {
-    const params = new URLSearchParams();
-    for (const [key, value] of Object.entries(args)) {
-      params.set(key, String(value));
-    }
-    const response = await global.fetch(`/api/submission-detail?${params.toString()}`);
-    if (!response.ok) {
-      const body = await response.json();
-      throw new Error(body.error ?? 'Request failed');
-    }
-    const detail = await response.json();
-    return { detail };
-  }),
-  internal: {
-    teacher: {
-      getTeacherLessonMonitoringData: 'getTeacherLessonMonitoringData',
-      getSubmissionDetail: 'getSubmissionDetail',
-    },
-  },
-}));
-
 // ---------------------------------------------------------------------------
 // Mock fetch
 // ---------------------------------------------------------------------------
@@ -317,17 +295,13 @@ describe('SubmissionDetailModal', () => {
   });
 
   it('fetches with correct studentId and lessonId from selected prop', async () => {
-    const { fetchInternalQuery } = await import('@/lib/convex/server');
     global.fetch = vi.fn().mockReturnValue(new Promise(() => {}));
     render(<SubmissionDetailModal selected={SELECTED} onClose={onClose} />);
 
     await waitFor(() => {
-      expect(fetchInternalQuery).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({
-          userId: SELECTED.studentId,
-          lessonId: SELECTED.lessonId,
-        }),
+      expect(global.fetch).toHaveBeenCalledWith(
+        `/api/teacher/submission-detail?studentId=${SELECTED.studentId}&lessonId=${SELECTED.lessonId}`,
+        { cache: 'no-store' },
       );
     });
   });

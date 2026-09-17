@@ -1,36 +1,27 @@
-import { describe, expect, it } from 'vitest';
-
-import { TieredAssessment } from '@/components/activities/quiz/TieredAssessment';
-import { ComprehensionCheck } from '@/components/activities/quiz/ComprehensionCheck';
-import { JournalEntryActivity } from '@/components/activities/accounting/JournalEntryActivity';
-import { DataCleaningActivity } from '@/components/activities/spreadsheet/DataCleaningActivity';
-import { SpreadsheetActivityAdapter } from '@/components/activities/spreadsheet/SpreadsheetActivityAdapter';
-import { GraphingExplorer } from '@/components/activities/graphing/GraphingExplorer';
+import { describe, expect, it, vi } from 'vitest';
+import { createElement, Suspense } from 'react';
+import { render, screen } from '@testing-library/react';
 import { getActivityComponent } from '@/lib/activities/registry';
-
+vi.mock('@/components/activities/quiz/ComprehensionCheck', () => ({ ComprehensionCheck: () => 'ComprehensionCheck' }));
+vi.mock('@/components/activities/quiz/TieredAssessment', () => ({ TieredAssessment: () => 'TieredAssessment' }));
+vi.mock('@/components/activities/accounting/JournalEntryActivity', () => ({ JournalEntryActivity: () => 'JournalEntryActivity' }));
+vi.mock('@/components/activities/spreadsheet/DataCleaningActivity', () => ({ DataCleaningActivity: () => 'DataCleaningActivity' }));
+vi.mock('@/components/activities/spreadsheet/SpreadsheetActivityAdapter', () => ({ SpreadsheetActivityAdapter: () => 'SpreadsheetActivityAdapter' }));
+vi.mock('@/components/activities/graphing/GraphingExplorer', () => ({ GraphingExplorer: () => 'GraphingExplorer' }));
 describe('activityRegistry', () => {
-  it('maps comprehension-quiz to ComprehensionCheck', () => {
-    expect(getActivityComponent('comprehension-quiz')).toBe(ComprehensionCheck);
+  it.each([
+    ['comprehension-quiz', 'ComprehensionCheck'], ['tiered-assessment', 'TieredAssessment'],
+    ['journal-entry-building', 'JournalEntryActivity'], ['spreadsheet', 'SpreadsheetActivityAdapter'],
+    ['data-cleaning', 'DataCleaningActivity'], ['graphing-explorer', 'GraphingExplorer'],
+  ])('loads the correct component for %s', async (key, name) => {
+    const component = getActivityComponent(key);
+    expect(component).not.toBeNull();
+    render(createElement(Suspense, { fallback: 'Loading' }, createElement(component!)));
+    expect(await screen.findByText(name)).toBeInTheDocument();
   });
-
-  it('maps tiered-assessment to TieredAssessment', () => {
-    expect(getActivityComponent('tiered-assessment')).toBe(TieredAssessment);
-  });
-
-  it('maps canonical journal-entry and data-cleaning keys', () => {
-    expect(getActivityComponent('journal-entry-building')).toBe(JournalEntryActivity);
-    expect(getActivityComponent('spreadsheet')).toBe(SpreadsheetActivityAdapter);
-    expect(getActivityComponent('data-cleaning')).toBe(DataCleaningActivity);
-  });
-
-  it('maps graphing-explorer to GraphingExplorer', () => {
-    expect(getActivityComponent('graphing-explorer')).toBe(GraphingExplorer);
-  });
-
-  it('no longer resolves legacy compatibility aliases', () => {
-    expect(getActivityComponent('general-drag-and-drop')).toBeNull();
-    expect(getActivityComponent('journal-entry-activity')).toBeNull();
-    expect(getActivityComponent('spreadsheet-activity')).toBeNull();
-    expect(getActivityComponent('data-cleaning-activity')).toBeNull();
+  it('does not resolve removed aliases', () => {
+    for (const key of ['general-drag-and-drop', 'journal-entry-activity', 'spreadsheet-activity', 'data-cleaning-activity']) {
+      expect(getActivityComponent(key)).toBeNull();
+    }
   });
 });

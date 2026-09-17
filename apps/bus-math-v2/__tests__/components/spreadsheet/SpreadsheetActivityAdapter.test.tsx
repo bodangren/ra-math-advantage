@@ -120,7 +120,7 @@ describe('SpreadsheetActivityAdapter', () => {
       title: 'TechStart Balance Sheet',
       template: 'balance-sheet',
     });
-    expect(handleComplete).toHaveBeenCalledTimes(1);
+    expect(handleComplete).not.toHaveBeenCalled();
   });
 
   it('includes spreadsheet data in envelope artifact', async () => {
@@ -158,7 +158,7 @@ describe('SpreadsheetActivityAdapter', () => {
     await user.click(button);
 
     expect(handleSubmit).toHaveBeenCalledTimes(1);
-    expect(handleComplete).toHaveBeenCalledTimes(1);
+    expect(handleComplete).not.toHaveBeenCalled();
   });
 
   it('falls back to activity id when activity.id is missing', async () => {

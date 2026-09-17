@@ -12,8 +12,6 @@ import { SpreadsheetWrapper, type SpreadsheetData } from '@/components/activitie
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { Id } from '@/convex/_generated/dataModel';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import {
   PhaseDetail,
   PhaseStatus,
@@ -437,11 +435,16 @@ function PartRow({
  */
 function PracticeEvidenceCard({
   evidence,
+  learnerId,
 }: {
   evidence: SubmissionEvidence;
+  learnerId: string;
 }) {
   const [showAllParts, setShowAllParts] = useState(false);
   const [showRaw, setShowRaw] = useState(false);
+  const [verifying, setVerifying] = useState(false);
+  const [verificationError, setVerificationError] = useState<string | null>(null);
+  const [verified, setVerified] = useState(evidence.kind === 'practice' && evidence.teacherVerified === true);
   const isPractice = evidence.kind === 'practice';
   const isSpreadsheet = evidence.kind === 'spreadsheet';
   const submissionData = isPractice ? (evidence.submissionData as Record<string, unknown>) : null;
@@ -453,6 +456,30 @@ function PracticeEvidenceCard({
     : {};
   const spreadsheetData = isSpreadsheet ? evidence.spreadsheetData : null;
   const artifactLabel = getArtifactLabel(evidence);
+  const canVerifyBm2 = isPractice
+    && evidence.stableActivityId === 'd6b57545-65f6-4c39-80d5-000100001002'
+    && evidence.submissionId
+    && submissionData?.mode === 'guided_practice';
+
+  const verifyBm2Exposure = async () => {
+    if (!isPractice || !evidence.submissionId) return;
+    setVerifying(true);
+    setVerificationError(null);
+    try {
+      const response = await fetch('/api/teacher/learning-evidence/bm2-pilot', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ learnerId, submissionId: evidence.submissionId }),
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? 'Unable to verify teacher exposure');
+      setVerified(true);
+    } catch (error) {
+      setVerificationError(error instanceof Error ? error.message : 'Unable to verify teacher exposure');
+    } finally {
+      setVerifying(false);
+    }
+  };
 
   const misconceptionTags = new Set<string>();
   let score = isPractice && typeof evidence.score === 'number' ? evidence.score : null;
@@ -502,6 +529,22 @@ function PracticeEvidenceCard({
       </CardHeader>
 
       <CardContent className="space-y-4 px-4 py-4">
+        {canVerifyBm2 ? (
+          <div className="rounded-md border p-3">
+            <p className="text-sm font-medium">Accounting equation lesson review</p>
+            <p className="text-xs text-muted-foreground">
+              {verified
+                ? 'Teacher exposure verified.'
+                : 'Verify that you reviewed this Guided lesson submission. This records lesson exposure. It does not record mastery.'}
+            </p>
+            {!verified ? (
+              <Button className="mt-2" onClick={verifyBm2Exposure} disabled={verifying}>
+                {verifying ? 'Verifying…' : 'Verify teacher exposure'}
+              </Button>
+            ) : null}
+            {verificationError ? <p className="mt-2 text-sm text-destructive" role="alert">{verificationError}</p> : null}
+          </div>
+        ) : null}
         {isSpreadsheet ? (
           <div className="space-y-3">
             <div className="overflow-x-auto rounded-md border border-border">
@@ -699,17 +742,12 @@ export function SubmissionDetailModal({
     setError(null);
 
     try {
-      const result = await fetchInternalQuery(
-        internal.teacher.getTeacherLessonMonitoringData,
-        {
-          userId: selected.studentId as Id<'profiles'>,
-          unitNumber: 1,
-          lessonId: selected.lessonId as Id<'lessons'>,
-        },
-      );
-
-      if (result && typeof result === 'object' && 'detail' in result && result.detail) {
-        setDetail(result.detail as SubmissionDetail);
+      const params = new URLSearchParams({ studentId: selected.studentId, lessonId: selected.lessonId });
+      const response = await fetch(`/api/teacher/submission-detail?${params}`, { cache: 'no-store' });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? 'Failed to load submission data');
+      if (result) {
+        setDetail(result as SubmissionDetail);
       } else {
         setError('No submission data found for this student');
       }
@@ -961,7 +999,7 @@ export function SubmissionDetailModal({
                   </p>
                   {filteredDetail?.phases.flatMap((phase) =>
                     (phase.evidence || []).map((evidence) => (
-                      <PracticeEvidenceCard key={`${phase.phaseId}-${evidence.activityId}`} evidence={evidence} />
+                      <PracticeEvidenceCard key={`${phase.phaseId}-${evidence.activityId}`} evidence={evidence} learnerId={selected.studentId} />
                     )),
                   ) || (
                     <div className="text-sm text-muted-foreground">No submissions found</div>
@@ -971,7 +1009,7 @@ export function SubmissionDetailModal({
             )}
           </div>
           <div className="border-t border-border p-3 text-center text-xs text-muted-foreground">
-            Read-only evidence review — student submissions are view-only
+            Student evidence is read-only. Teacher verification records lesson exposure.
           </div>
         </div>
       </div>

@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { SlidersHorizontal, Code2, AlertTriangle } from 'lucide-react';
 import { getGenerator } from '@math-platform/math-content/knowledge-space';
-import type { HarnessState, SkillNode } from '../types';
-import type { KnowledgeBlueprint, GeneratorOutput } from '@math-platform/knowledge-space-practice';
+import type { HarnessState, ReviewBlueprint, SkillNode } from '../types';
+import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
 
 interface GeneratorPanelProps {
   state: HarnessState;
   selectedNode: SkillNode | null;
-  selectedBlueprint: KnowledgeBlueprint | null;
+  selectedBlueprint: ReviewBlueprint | null;
   onUpdateState: (patch: Partial<HarnessState>) => void;
 }
 

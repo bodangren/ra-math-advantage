@@ -35,7 +35,7 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
   /**
    * Grades the submitted value and submits the practice envelope.
    */
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (submitted) return;
     setSubmitted(true);
 
@@ -48,15 +48,18 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
     const result = (family as any).grade(def, response);
     const partResult = result.parts[0];
 
-    setGradeResult({
-      isCorrect: partResult?.isCorrect ?? false,
-      expectedValue: def.equation[hiddenTermId],
-      submittedValue: parsedValue,
-    });
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const envelope = (family as any).toEnvelope(def, response, result);
-    onSubmit(envelope);
+    try {
+      await onSubmit(envelope);
+      setGradeResult({
+        isCorrect: partResult?.isCorrect ?? false,
+        expectedValue: def.equation[hiddenTermId],
+        submittedValue: parsedValue,
+      });
+    } catch {
+      setSubmitted(false);
+    }
   };
 
   return (
@@ -74,6 +77,9 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
       </div>
 
       <div className="space-y-2">
+        {def.mode === 'guided_practice' ? (
+          <p className="text-sm text-muted-foreground">{def.scaffolding.helperText}</p>
+        ) : null}
         <label htmlFor="accounting-equation-input" className="text-sm font-medium">
           Enter {hiddenTermLabel}
         </label>

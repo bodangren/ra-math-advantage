@@ -32,9 +32,9 @@ describe('SpreadsheetHelpers', () => {
     });
 
     it('rejects unsupported functions', () => {
-      expect(validateFormula('=VLOOKUP(A1,B1:C10,2,FALSE)')).toEqual({
+      expect(validateFormula('=WEBSERVICE(A1)')).toEqual({
         isValid: false,
-        error: 'Function VLOOKUP is not allowed or supported'
+        error: 'Formula function "WEBSERVICE" is not allowed'
       });
     });
 
@@ -227,7 +227,7 @@ describe('SpreadsheetHelpers', () => {
       const result = validateSpreadsheetData(data);
       
       expect(result.isValid).toBe(false);
-      expect(result.errors[0]).toContain('INVALID is not allowed');
+      expect(result.errors[0]).toContain('"INVALID" is not allowed');
     });
   });
 

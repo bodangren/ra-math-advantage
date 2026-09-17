@@ -1,0 +1,2686 @@
+{
+  "blueprints": [
+    {
+      "nodeId": "math.bm2.skill.1.1.apply-accounting-equation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-1.1"
+      ],
+      "rendererKey": "notebook-organizer",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Apply the accounting equation to a business event",
+        "explanation": "## The Three Building Blocks\n\nEvery dollar in a business belongs to one of three categories:\n\n**Assets (A)** \u2014 Things the business *owns* or controls that have value.\n- TechStart examples: Cash in the bank, laptops, accounts receivable (money clients owe you)\n\n**Liabilities (L)** \u2014 Things the business *owes* to others.\n- TechStart examples: Bank loan, unpaid internet bill, credit card balance\n\n**Equity (E)** \u2014 The owner's stake in the business. What's left over after paying all debts.\n- TechStart examples: Sarah's original investment, profits kept in the business\n\n**The rule that never breaks:**\n\n> **Assets = Liabilities + Equity**\n> (What you own) = (What you owe) + (Owner's share)\n\nThink of it this way: everything TechStart owns was paid for either by borrowing money (Liabilities) or by Sarah's own contributions (Equity). There is no third option. This is why the equation *always* balances."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-1",
+        "activityIds": [],
+        "lessonVersion": 1
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-1.2"
+      ],
+      "rendererKey": "notebook-organizer",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Classify accounts as assets, liabilities, or equity",
+        "explanation": "## Introduction: The Three-Question Classification Test\n\nEvery account in TechStart's ledger belongs to exactly one of three categories. Apply these three questions in order \u2014 the first \"yes\" determines the category:\n\n1. Does TechStart **own or control it** with future economic value? \u2192 **Asset**\n2. Does TechStart **owe it** to someone else? \u2192 **Liability**\n3. Is it the **owner's stake** \u2014 original investment or accumulated profit? \u2192 **Equity**\n\nThe trickiest accounts are \"gray zone\" accounts that seem to fit two categories. **Prepaid Insurance** is an Asset because TechStart still owns unused coverage. **Deferred Revenue** is a Liability because TechStart owes the client a future service. The rule: ask *who has a claim* \u2014 if TechStart can use it freely, it's an Asset; if someone else can demand it back or demand delivery, it's a Liability.\n\n## The Classification Test\n\nBefore you can sort accounts, you need a reliable test. Use these three questions in order:\n\n**1. Does TechStart own or control it, and does it have future value?**\n\u2192 If yes \u2192 **Asset**\n\n**2. Does TechStart owe it to someone else?**\n\u2192 If yes \u2192 **Liability**\n\n**3. Is it the owner's stake (investment or accumulated profit)?**\n\u2192 If yes \u2192 **Equity**\n\nEvery account passes exactly one of these tests. If you're unsure, work through all three before deciding.\n\n---\n\n### Assets \u2014 What TechStart Owns\n\n| Account | Why It's an Asset |\n|---------|------------------|\n| Cash | TechStart controls it; can spend it anytime |\n| Laptops | Equipment TechStart owns and uses |\n| Accounts Receivable | Money clients owe TechStart \u2014 TechStart controls the future payment |\n| Prepaid Insurance | TechStart paid for 6 months of coverage; it has future value |\n| Office Supplies | TechStart owns them; they'll be used in operations |\n\n### Liabilities \u2014 What TechStart Owes\n\n| Account | Why It's a Liability |\n|---------|---------------------|\n| Bank Loan | TechStart must repay the principal |\n| Accounts Payable | Vendor invoices TechStart hasn't paid yet |\n| Credit Card Balance | TechStart charged it; must pay it off |\n| Deferred Revenue | Client paid in advance; TechStart owes the service |\n| Accrued Wages | Employees earned it; TechStart must pay |\n\n### Equity \u2014 What's Left for the Owner\n\n| Account | Why It's Equity |\n|---------|----------------|\n| Sarah's Capital | Her original investment in TechStart |\n| Retained Earnings | Profits kept in the business from prior periods |\n| Current Month Net Income | This period's profit (before closing to retained earnings) |\n\n**Worked Example: Prepaid Insurance vs. Deferred Revenue**\n\nIf TechStart has already paid for six months of insurance, that future coverage is still an **Asset** because the business can use it later.\n\nIf a client has paid TechStart in advance for work that has not been delivered yet, that obligation is a **Liability** because the service is still owed.\n\nThe account name alone is not enough. Ask who still has the claim.\n\n## The Gray Zone: Tricky Accounts\n\nSome accounts look like they could go two ways. Here's how to handle the most common ones:\n\n**Prepaid Expenses** (e.g., Prepaid Insurance, Prepaid Rent)\n\u2192 **Asset.** TechStart paid cash but hasn't used the benefit yet. The future benefit is the asset.\n\n**Deferred Revenue** (e.g., a client pays for 3 months of consulting upfront)\n\u2192 **Liability.** TechStart received the cash but hasn't done the work. The obligation to deliver is the liability.\n\n**Accrued Wages**\n\u2192 **Liability.** Employees worked; TechStart owes the payroll but hasn't paid yet.\n\n**Owner Drawings / Withdrawals**\n\u2192 **Reduces Equity.** When Sarah takes money out for personal use, it lowers her equity stake.\n\n**Memory trick:** If someone else can knock on TechStart's door and demand something, it's probably a Liability. If TechStart can walk in the door and use it, it's probably an Asset."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-2",
+        "activityIds": [
+          "unit-1-lesson-2-activity-1",
+          "unit-1-lesson-2-activity-2",
+          "unit-1-lesson-2-activity-3"
+        ],
+        "lessonVersion": 1
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-1.4"
+      ],
+      "rendererKey": "fill-in-the-blank",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Record both effects of a business transaction",
+        "explanation": "## Introduction: The Dual-Impact Principle\n\nEvery business transaction changes at least two accounts in the accounting equation \u2014 this is the dual-impact principle, and it's why **A = L + E** always stays balanced.\n\nFour patterns cover nearly every transaction you'll see: (1) one asset trades for another (rearranges A), (2) both A and L grow together (borrowing), (3) both A and L shrink together (paying off debt), (4) A and E grow together (earning revenue). The trickiest pattern: receiving an unpaid bill \u2014 L increases and E decreases, but A is unchanged. This is the **accrual principle**: expenses are recognized when incurred, not when cash is paid.\n\nToday you'll trace five of TechStart's Week-2 transactions and verify that the equation stays balanced after every single one.\n\n## How Events Move the Equation\n\nWhen analyzing any business event, ask two questions:\n1. **What did TechStart get or give up?** (This tells you which account changes)\n2. **Where did it come from or go to?** (This tells you the other account)\n\nEvery answer maps to A, L, or E. And when you're done, both sides of **A = L + E** must still be equal.\n\n---\n\n### Event Analysis: TechStart's Five Week-2 Transactions\n\n| # | Event | What Changes | Direction | Equation Check |\n|---|-------|-------------|-----------|----------------|\n| 1 | Client pays $3,000 retainer upfront | Cash (Asset) \u2191, Deferred Revenue (Liability) \u2191 | +3,000 / +3,000 | \u2705 Both sides \u2191 equally |\n| 2 | Buy $1,200 equipment with cash | Equipment (Asset) \u2191, Cash (Asset) \u2193 | +1,200 / -1,200 | \u2705 Assets rearrange, no net change |\n| 3 | Receive $500 electricity bill (unpaid) | Electricity Expense \u2192 reduces Equity \u2193, Accounts Payable (Liability) \u2191 | -500 / +500 | \u2705 E \u2193 balanced by L \u2191 |\n| 4 | Client pays $1,500 AR balance | Cash (Asset) \u2191, Accounts Receivable (Asset) \u2193 | +1,500 / -1,500 | \u2705 Assets rearrange |\n| 5 | Pay $200 on bank loan principal | Cash (Asset) \u2193, Bank Loan (Liability) \u2193 | -200 / -200 | \u2705 Both sides \u2193 equally |\n\n**Key observation:** The equation balanced after every single event \u2014 even though each event moved money in completely different ways.\n\n## Why Expenses Reduce Equity\n\nEvent 3 is the trickiest. When TechStart gets the electricity bill, no cash leaves yet. But the equation still changes:\n\n- Accounts Payable \u2191 $500 (Liability \u2014 TechStart now owes the utility company)\n- Equity \u2193 $500 (Expenses reduce the owner's stake \u2014 the cost came out of TechStart's \"worth\")\n\nThis is confusing at first because nothing seems to happen visibly. But the obligation to pay is real, and it reduces what belongs to Sarah. This is why recognizing expenses when they're *incurred* (not when they're *paid*) is a core accounting principle.\n\n**Accrual concept in plain language:** If TechStart used the electricity this month, the cost belongs to this month \u2014 even if the bill arrives next week."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-3",
+        "activityIds": [
+          "unit-1-lesson-3-activity-1",
+          "unit-1-lesson-3-activity-2"
+        ],
+        "lessonVersion": 1
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-1.3"
+      ],
+      "rendererKey": "spreadsheet",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a classified balance sheet",
+        "explanation": "## The Three Sections of a Balance Sheet\n\nEvery Balance Sheet has the same three sections, always in this order:\n\n### Section 1: Assets (What TechStart Owns)\n\nAssets are split into two subsections based on how quickly they convert to cash:\n\n**Current Assets** \u2014 Convert to cash within one year (or one business cycle)\n- Cash \u2190 most liquid; always listed first\n- Accounts Receivable \u2190 expected to be collected within 30\u201390 days\n- Office Supplies \u2190 will be used up this year\n- Prepaid Insurance \u2190 the unused coverage will expire this year\n\n**Non-Current Assets** \u2014 Long-lived resources, not expected to convert to cash within a year\n- Office Equipment \u2190 TechStart expects to use these laptops for 3\u20135 years\n\n*Rule of thumb: List Current Assets from most liquid to least liquid.*\n\n---\n\n### Section 2: Liabilities (What TechStart Owes)\n\nLike Assets, Liabilities split into Current and Non-Current:\n\n**Current Liabilities** \u2014 Due within one year\n- Accounts Payable \u2190 typically due within 30 days\n- Accrued Wages \u2190 due on next payday\n- Deferred Revenue \u2190 service owed to client within the contract period\n\n**Non-Current Liabilities** \u2014 Due beyond one year\n- Bank Loan \u2190 repaid over 3 years\n\n---\n\n### Section 3: Equity (Sarah's Stake)\n\nEquity doesn't split into \"current\" and \"non-current.\" It shows:\n- Owner's original contributions (Sarah's Capital)\n- Accumulated profits left in the business (Retained Earnings)\n- Current period profit (Net Income) \u2014 before closing to Retained Earnings\n\n## Reading a Balance Sheet Like a Story\n\nA Balance Sheet tells a story in three sentences:\n\n1. **\"Here's what we have.\"** (Total Assets = the resources available to run the business)\n2. **\"Here's what we owe.\"** (Total Liabilities = the obligations that must be honored)\n3. **\"Here's what's ours.\"** (Total Equity = what remains after all debts are paid)\n\nA healthy Balance Sheet has **Equity > 0** \u2014 meaning the business owns more than it owes. A Balance Sheet where Liabilities > Assets signals financial stress: creditors technically have a claim on more than TechStart owns.\n\n**TechStart's story right now:**\nAfter Lesson 3's seven events, TechStart has approximately $13,260 in Assets and $7,850 in Liabilities. That means Sarah's equity is about $5,410 \u2014 the business owns more than it owes. A good sign for any investor."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-4",
+        "activityIds": [
+          "unit-1-lesson-4-activity-1",
+          "unit-1-lesson-4-activity-2",
+          "unit-1-lesson-4-activity-3"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-1.5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Find and correct errors in account balances",
+        "explanation": "## Introduction: Three Types of Ledger Errors\n\nLedger errors fall into three categories, each with a clear signature:\n\n- **Misclassification errors** \u2014 the account exists and the balance is right, but it's in the wrong category (e.g., Office Supplies filed under Liabilities). The equation may still balance while telling the wrong story.\n- **Missing entry errors** \u2014 a real transaction was never recorded, so the equation breaks. Identify it when A \u2260 L + E.\n- **Negative balance errors** \u2014 almost always signal a sign error in a prior entry (a debit where a credit belongs, or vice versa).\n\nExcel's **Conditional Formatting** lets you build automatic red-flag rules that highlight these problems instantly. Today you'll build three rules on TechStart's ledger and use them to find and fix every error in the dataset.\n\n## Building Red-Flag Rules in Excel\n\n**Conditional Formatting** highlights cells automatically based on rules you set. Here's how to create the three most useful error-detection rules for a ledger:\n\n### Rule 1: Blank Category = Error\n**Trigger:** Any row in the Category column that's empty\n**Action:** Fill cell with red\n\n1. Select the Category column range (e.g., C2:C20)\n2. Home \u2192 Conditional Formatting \u2192 New Rule\n3. \"Format only cells that contain\" \u2192 \"Blanks\"\n4. Format \u2192 Fill \u2192 Red \u2192 OK\n\n**What it catches:** Accounts that were added to the ledger but never classified.\n\n---\n\n### Rule 2: Negative Asset Balance = Warning\n**Trigger:** Row has Category = \"A\" AND balance < 0\n**Action:** Fill cell with orange\n\n1. Select the Balance column range (e.g., B2:B20)\n2. New Rule \u2192 \"Use a formula\"\n3. Formula: `=AND($C2=\"A\",$B2<0)`\n4. Format \u2192 Fill \u2192 Orange \u2192 OK\n\n**What it catches:** Asset accounts with impossible negative values (e.g., Cash = -$200).\n\n---\n\n### Rule 3: Liability with Suspiciously High Balance\n**Trigger:** Row has Category = \"L\" AND balance > a threshold (e.g., $10,000)\n**Action:** Fill cell with yellow\n\n1. Select Balance column range\n2. New Rule \u2192 \"Use a formula\"\n3. Formula: `=AND($C2=\"L\",$B2>10000)`\n4. Format \u2192 Fill \u2192 Yellow \u2192 OK\n\n**What it catches:** Liabilities that seem disproportionately large relative to TechStart's scale."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-5",
+        "activityIds": [
+          "unit-1-lesson-5-activity-1",
+          "unit-1-lesson-5-activity-2"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.6",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-1.6"
+      ],
+      "rendererKey": "fill-in-the-blank",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Validate account data with spreadsheet rules",
+        "explanation": "## Introduction: Preventing Errors Before They Happen\n\nIn Lesson 5 you learned to **detect** errors after the fact. In this lesson you'll **prevent** them at the source using Excel's Data Validation tool.\n\nData Validation restricts what can be entered into any cell. With a **Stop** error alert, Excel rejects any value that breaks your rule \u2014 no saving, no workarounds. Today you'll build three rules on TechStart's ledger: (1) a Category dropdown limited to A, L, or E; (2) no-blank rules for required fields; and (3) a positive-balance constraint. You'll verify each rule by trying to enter invalid data \u2014 if Excel stops you, it works.\n\n## Setting Up the Rules: Step by Step\n\n### Rule 1: Category Dropdown List\n\n1. Select the Category column range (e.g., C2:C30)\n2. Data tab \u2192 Data Validation \u2192 Data Validation\n3. Under \"Allow\" \u2192 select **List**\n4. Under \"Source\" \u2192 type: `A,L,E`\n5. Check \"In-cell dropdown\"\n6. Click the **Error Alert** tab \u2192 set Style to **Stop**, write a message: *\"Category must be A, L, or E.\"*\n7. Click OK\n\n**Test it:** Try typing \"Asset\" into a Category cell. Excel should reject it.\n\n---\n\n### Rule 2: No Blank Account Names\n\n1. Select the Account Name column range (e.g., A2:A30)\n2. Data Validation \u2192 Allow: **Custom**\n3. Formula: `=NOT(ISBLANK(A2))`\n4. Error Alert \u2192 Stop: *\"Account Name cannot be blank.\"*\n5. Click OK\n\n**Test it:** Try to leave an Account Name cell empty and move to the next cell.\n\n---\n\n### Rule 3: Non-Negative Balance\n\n1. Select the Balance column range (e.g., B2:B30)\n2. Data Validation \u2192 Allow: **Decimal** \u2192 Data: **greater than or equal to** \u2192 Minimum: **0**\n3. Error Alert \u2192 Stop: *\"Balance must be a non-negative number.\"*\n4. Click OK\n\n**Test it:** Try typing -500 into a Balance cell."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-6",
+        "activityIds": [
+          "unit-1-lesson-6-activity-1",
+          "unit-1-lesson-6-activity-2"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.7",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-1.7"
+      ],
+      "rendererKey": "spreadsheet",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Explain financial position with a linked chart",
+        "explanation": "## Introduction: Shared Workbook, Shared Sequence\n\nIn this lesson every student completes the same guided workbook so the class can rehearse the full Unit 1 process together. The **foundational build guide** in `unit_01_foundational_build_guide.pdf` covers the required steps. The **polish guide** in `unit_01_polish_guide.pdf` shows what advanced-quality communication looks like once the workbook is correct.\n\nYou'll still build the two-bar chart comparing Total Assets to Total Liabilities, but the bigger point is to internalize the common project sequence before Lesson 8 gives each group a new dataset.\n\n## The Guided Build Walkthrough\n\n### Step 1: Create a Summary Table\n\nSomewhere below your Balance Sheet data, create a small table:\n\n| Label | Value |\n|-------|-------|\n| Total Assets | =[cell with Total Assets formula] |\n| Total Liabilities | =[cell with Total Liabilities formula] |\n\nUse cell references \u2014 don't type the numbers. This way the chart updates automatically if your data changes.\n\n### Step 2: Insert the Column Chart\n\n1. Select the two value cells (not the labels)\n2. Insert tab \u2192 Charts \u2192 2-D Column Chart\n3. Excel creates a two-bar chart\n\n### Step 3: Format the Chart\n\n1. Click the chart title \u2192 rename to: **TechStart Financial Position \u2014 [Date]**\n2. Click a bar \u2192 right-click \u2192 Add Data Labels\n3. Click the Legend \u2192 Delete (the bars are self-explanatory)\n4. Resize the chart to fit neatly next to your Balance Sheet\n\n### Step 4: Foundational Completion\n\nUse `unit_01_foundational_build_guide.pdf` to verify the non-negotiables:\n- the Balance Sheet sections are complete\n- totals reconcile to the accounting equation\n- the chart uses linked values rather than typed numbers\n\n### Step 5: Print Layout\n\n1. Page Layout tab \u2192 Orientation: **Landscape**\n2. Margins: **Narrow**\n3. Scale: Fit to **1 page**\n4. Add a header: *TechStart Solutions | Balance Snapshot v0.9*\n5. File \u2192 Print Preview \u2014 confirm the layout looks professional\n\n### Step 6: Advanced Polish\n\nUse `unit_01_polish_guide.pdf` to add chart labels, layout hierarchy, and audience-facing notes.\n\nBelow the chart (or in a text box), add:\n\n> *TechStart Equity: $[amount] \u2014 [Date]*\n\nThis contextualizes the gap between the bars for anyone who reads the document.\n\n**Worked Example: Reading the Gap**\n\nIf TechStart's chart shows Total Assets of **$11,020** and Total Liabilities of **$5,230**, the difference is **$5,790**.\n\nThat gap is **Equity**. It tells the reader how much of the business Sarah truly owns after creditors are accounted for."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-7",
+        "activityIds": [
+          "unit-1-lesson-7-activity-1",
+          "unit-1-lesson-7-activity-2",
+          "unit-1-lesson-7-activity-3"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.8",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "peer-critique-form",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a balance sheet model from assigned data",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-8",
+        "activityIds": [],
+        "lessonVersion": 1
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.9",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Revise a balance sheet model after evidence-based review",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-9",
+        "activityIds": [],
+        "lessonVersion": 1
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.10",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Present and defend a balance sheet result",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-10",
+        "activityIds": [],
+        "lessonVersion": 1
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.1.11",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-1.1",
+        "ACC-1.2",
+        "ACC-1.3",
+        "ACC-1.4",
+        "ACC-1.5",
+        "ACC-1.6",
+        "ACC-1.7"
+      ],
+      "rendererKey": "tiered-assessment",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Demonstrate the calculations and checks in a balance sheet model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-1-lesson-11",
+        "activityIds": [],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Record debit and credit effects",
+        "explanation": "Worked Example: A debit is the left side of an account. A credit is the right side. Assets and expenses normally increase with debits. Liabilities, equity, and revenue normally increase with credits. A cash investment of 2,000 creates a 2,000 debit to Cash and a 2,000 credit to Capital. The two entries preserve A = L + E.\n\n## Record debit and credit effects\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-1",
+        "activityIds": [
+          "unit-2-lesson-1-practice",
+          "unit-2-lesson-1-check",
+          "unit-2-lesson-1-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Use source documents to identify transactions",
+        "explanation": "Worked Example: A supplier invoice for 600 of supplies on credit records Supplies debit 600 and Accounts Payable credit 600. The invoice date identifies the event. The payment date identifies a different event. Payment of the invoice records Accounts Payable debit 600 and Cash credit 600. Do not record the supplies expense twice.\n\n## Use source documents to identify transactions\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-2",
+        "activityIds": [
+          "unit-2-lesson-2-practice",
+          "unit-2-lesson-2-check",
+          "unit-2-lesson-2-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.3"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Prepare balanced journal entries",
+        "explanation": "Worked Example: A customer pays 1,200 for services already delivered. Debit Cash 1,200 and credit Service Revenue 1,200. A payment before delivery is different: credit Deferred Revenue until the service is delivered. Each journal entry must have equal debit and credit totals.\n\n## Prepare balanced journal entries\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-3",
+        "activityIds": [
+          "unit-2-lesson-3-practice",
+          "unit-2-lesson-3-check",
+          "unit-2-lesson-3-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Post journal entries to ledger accounts",
+        "explanation": "Worked Example: Start Cash with a debit balance of 2,000. Post a 700 debit for receipts and a 400 credit for payments. The ending debit balance is 2,000 + 700 - 400 = 2,300. Retain the journal reference beside each ledger entry so a reviewer can find its source.\n\n## Post journal entries to ledger accounts\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-4",
+        "activityIds": [
+          "unit-2-lesson-4-practice",
+          "unit-2-lesson-4-check",
+          "unit-2-lesson-4-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Prepare and interpret a trial balance",
+        "explanation": "Worked Example: A trial balance lists each ending debit or credit balance once. Cash debit 1,000 and Equipment debit 2,000 equal Payables credit 800 and Capital credit 2,200. Both columns total 3,000. Equal columns do not prove that every transaction was recorded or correctly classified.\n\n## Prepare and interpret a trial balance\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-5",
+        "activityIds": [
+          "unit-2-lesson-5-practice",
+          "unit-2-lesson-5-check",
+          "unit-2-lesson-5-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.6",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.6"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Locate posting errors",
+        "explanation": "Worked Example: A 90 receipt is posted to Cash as 900. Cash is overstated by 900 - 90 = 810. Trace the entry to its source document before changing it. Correct the erroneous posting. Do not add an unsupported balancing entry. Use SUMIFS to total journal amounts for each account.\n\n## Locate posting errors\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-6",
+        "activityIds": [
+          "unit-2-lesson-6-practice",
+          "unit-2-lesson-6-check",
+          "unit-2-lesson-6-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.7",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Explain how transactions affect profit",
+        "explanation": "Worked Example: Service Revenue is 4,000. Rent Expense is 900 and Wages Expense is 1,600. Net income is 4,000 - 900 - 1,600 = 1,500. A loan receipt increases cash and liabilities. It does not increase revenue. Link the statement total to the ledger instead of typing it again.\n\n## Explain how transactions affect profit\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-7",
+        "activityIds": [
+          "unit-2-lesson-7-practice",
+          "unit-2-lesson-7-check",
+          "unit-2-lesson-7-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.8",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.8"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a journal and ledger model from assigned data",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-8",
+        "activityIds": [
+          "unit-2-lesson-8-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.9",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.9"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Revise a journal and ledger model after evidence-based review",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-9",
+        "activityIds": [
+          "unit-2-lesson-9-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.10",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.10"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Present and defend a journal and ledger result",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-10",
+        "activityIds": [
+          "unit-2-lesson-10-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.2.11",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-2.11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Demonstrate the calculations and checks in a journal and ledger model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-2-lesson-11",
+        "activityIds": [],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Connect profit to the balance sheet",
+        "explanation": "Worked Example: Revenue of 6,000 less expenses of 4,200 gives net income of 1,800. With no distributions, retained earnings increases by 1,800. The income statement covers a period. The balance sheet reports balances at a date. Keep those dates consistent.\n\n## Connect profit to the balance sheet\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-1",
+        "activityIds": [
+          "unit-3-lesson-1-practice",
+          "unit-3-lesson-1-check",
+          "unit-3-lesson-1-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build an income statement from account balances",
+        "explanation": "Worked Example: Sales of 10,000 less cost of goods sold of 6,000 gives gross profit of 4,000. Operating expenses of 2,500 leave net income of 1,500. A purchase of equipment is an asset acquisition. Do not deduct its entire cost as an operating expense in this example.\n\n## Build an income statement from account balances\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-2",
+        "activityIds": [
+          "unit-3-lesson-2-practice",
+          "unit-3-lesson-2-check",
+          "unit-3-lesson-2-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.3"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Link net income and distributions to equity",
+        "explanation": "Worked Example: Beginning retained earnings is 5,000. Net income is 1,400 and distributions are 600. Ending retained earnings is 5,000 + 1,400 - 600 = 5,800. Use a link to the net income cell. A typed copy will not update when revenue changes.\n\n## Link net income and distributions to equity\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-3",
+        "activityIds": [
+          "unit-3-lesson-3-practice",
+          "unit-3-lesson-3-check",
+          "unit-3-lesson-3-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Reconcile operating profit with operating cash",
+        "explanation": "Worked Example: Start with net income of 2,000. Add non-cash depreciation of 300. Subtract a 500 increase in Accounts Receivable. Add a 200 increase in Accounts Payable. Operating cash is 2,000 + 300 - 500 + 200 = 2,000. An increase in receivables means some recognized revenue has not yet produced cash.\n\n## Reconcile operating profit with operating cash\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-4",
+        "activityIds": [
+          "unit-3-lesson-4-practice",
+          "unit-3-lesson-4-check",
+          "unit-3-lesson-4-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Check that the statements use consistent balances",
+        "explanation": "Worked Example: The cash flow statement starts with 1,200 cash and reports a net cash increase of 800. Ending Cash must be 2,000. The balance sheet Cash cell must show the same 2,000. A difference indicates a missing flow, a sign error, or a broken link.\n\n## Check that the statements use consistent balances\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-5",
+        "activityIds": [
+          "unit-3-lesson-5-practice",
+          "unit-3-lesson-5-check",
+          "unit-3-lesson-5-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.6",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.6"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Repair a broken statement link",
+        "explanation": "Worked Example: A revenue cell changes from 8,000 to 8,500. Expenses stay at 6,000. Net income must change from 2,000 to 2,500. If the equity statement still uses 2,000, replace its typed value with a reference to the income statement result. Check the output again after changing an input.\n\n## Repair a broken statement link\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-6",
+        "activityIds": [
+          "unit-3-lesson-6-practice",
+          "unit-3-lesson-6-check",
+          "unit-3-lesson-6-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.7",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Support a financial explanation with statement evidence",
+        "explanation": "Worked Example: A business has net income of 3,000 but operating cash of 1,800. An increase in receivables of 1,200 explains the gap when there are no other adjustments. Profit and cash measure different things. Identify the relevant account movement before recommending action.\n\n## Support a financial explanation with statement evidence\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-7",
+        "activityIds": [
+          "unit-3-lesson-7-practice",
+          "unit-3-lesson-7-check",
+          "unit-3-lesson-7-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.8",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.8"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a linked financial statements model from assigned data",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-8",
+        "activityIds": [
+          "unit-3-lesson-8-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.9",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.9"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Revise a linked financial statements model after evidence-based review",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-9",
+        "activityIds": [
+          "unit-3-lesson-9-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.10",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.10"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Present and defend a linked financial statements result",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-10",
+        "activityIds": [
+          "unit-3-lesson-10-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.3.11",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-3.11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Demonstrate the calculations and checks in a linked financial statements model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-3-lesson-11",
+        "activityIds": [
+          "unit-3-lesson-11-mastery",
+          "unit-3-lesson-11-model-proof"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Identify gross pay, deductions, and net pay",
+        "explanation": "Worked Example: Gross pay is pay before employee deductions. Net pay is gross pay less employee deductions. Gross pay of 800 less deductions of 120 gives net pay of 680. Employer contributions are additional employer costs. They are not deducted from the employee again. All rates in this unit are classroom assumptions, not payroll rules for a jurisdiction.\n\n## Identify gross pay, deductions, and net pay\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-1",
+        "activityIds": [
+          "unit-4-lesson-1-practice",
+          "unit-4-lesson-1-check",
+          "unit-4-lesson-1-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Calculate hourly, salary, and commission pay",
+        "explanation": "Worked Example: At 20 per hour for 35 hours, hourly gross pay is 700. A salary of 31,200 paid in 26 equal periods gives 1,200 per period. A 4% commission on 5,000 sales gives 200. Match the pay formula to the stated employment arrangement.\n\n## Calculate hourly, salary, and commission pay\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-2",
+        "activityIds": [
+          "unit-4-lesson-2-practice",
+          "unit-4-lesson-2-check",
+          "unit-4-lesson-2-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.3"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Calculate overtime and classroom deductions",
+        "explanation": "Worked Example: Assume overtime starts after 40 hours and pays 1.5 times the hourly rate. For 44 hours at 20, regular pay is 800 and overtime pay is 4 \u00d7 30 = 120. Gross pay is 920. A classroom deduction rate of 10% gives 92. Use the stated rates only.\n\n## Calculate overtime and classroom deductions\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-3",
+        "activityIds": [
+          "unit-4-lesson-3-practice",
+          "unit-4-lesson-3-check",
+          "unit-4-lesson-3-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Calculate net pay with rounding",
+        "explanation": "Worked Example: Gross pay is 1,000. A classroom withholding rate of 12% gives 120. A benefit deduction is 35. Net pay is 1,000 - 120 - 35 = 845. Round each monetary deduction to two decimal places according to the stated task policy before you total it.\n\n## Calculate net pay with rounding\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-4",
+        "activityIds": [
+          "unit-4-lesson-4-practice",
+          "unit-4-lesson-4-check",
+          "unit-4-lesson-4-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Distinguish employee deductions from employer cost",
+        "explanation": "Worked Example: Gross wages are 2,000. Employee deductions are 300. Employer contributions are 160. The employee receives 1,700. Total employer expense is 2,160. The 300 withheld is a liability until it is remitted. It is not extra wage expense.\n\n## Distinguish employee deductions from employer cost\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-5",
+        "activityIds": [
+          "unit-4-lesson-5-practice",
+          "unit-4-lesson-5-check",
+          "unit-4-lesson-5-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.6",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.6"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Validate payroll inputs and control totals",
+        "explanation": "Worked Example: A payroll register must use a unique employee ID, valid hours, and the rate for the correct pay type. A rate lookup must match the employee code. If two employees have gross pay of 700 and 900, the register gross total is 1,600. Reconcile the sum of net pay and deductions to gross pay.\n\n## Validate payroll inputs and control totals\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-6",
+        "activityIds": [
+          "unit-4-lesson-6-practice",
+          "unit-4-lesson-6-check",
+          "unit-4-lesson-6-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.7",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Explain payroll expense and payroll liabilities",
+        "explanation": "Worked Example: A payroll run has gross wages of 4,000, employee deductions of 600, and employer contributions of 320. Net-pay cash is 3,400. Withholding and contribution liabilities total 920 before remittance. Payroll expense is 4,320. Link these amounts to the correct statement accounts.\n\n## Explain payroll expense and payroll liabilities\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-7",
+        "activityIds": [
+          "unit-4-lesson-7-practice",
+          "unit-4-lesson-7-check",
+          "unit-4-lesson-7-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.8",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.8"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a payroll model from assigned data",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-8",
+        "activityIds": [
+          "unit-4-lesson-8-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.9",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.9"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Revise a payroll model after evidence-based review",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-9",
+        "activityIds": [
+          "unit-4-lesson-9-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.10",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.10"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Present and defend a payroll result",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-10",
+        "activityIds": [
+          "unit-4-lesson-10-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.4.11",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-4.11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Demonstrate the calculations and checks in a payroll model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-4-lesson-11",
+        "activityIds": [
+          "unit-4-lesson-11-mastery",
+          "unit-4-lesson-11-model-proof"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Explain depreciation as cost allocation",
+        "explanation": "Worked Example: Depreciation allocates depreciable cost over useful life. It does not measure the resale price. An asset costs 12,000 and has estimated salvage value of 2,000. Its depreciable amount is 10,000. Useful life and salvage value are estimates that must be stated.\n\n## Explain depreciation as cost allocation\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-1",
+        "activityIds": [
+          "unit-5-lesson-1-practice",
+          "unit-5-lesson-1-check",
+          "unit-5-lesson-1-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Determine the recorded cost of an acquired asset",
+        "explanation": "Worked Example: Equipment costs 8,000. Delivery costs 300 and installation costs 700 are needed to prepare it for use. Recorded cost is 9,000. A separate annual maintenance service of 400 is not part of this acquisition cost in the example. Keep invoices for each amount.\n\n## Determine the recorded cost of an acquired asset\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-2",
+        "activityIds": [
+          "unit-5-lesson-2-practice",
+          "unit-5-lesson-2-check",
+          "unit-5-lesson-2-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.3"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Calculate straight-line depreciation",
+        "explanation": "Worked Example: Cost is 12,000, salvage is 2,000, and useful life is five years. Annual straight-line depreciation is (12,000 - 2,000) / 5 = 2,000. In Excel, use SLN(cost, salvage, life). After two full years, book value is 12,000 - 4,000 = 8,000.\n\n## Calculate straight-line depreciation\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-3",
+        "activityIds": [
+          "unit-5-lesson-3-practice",
+          "unit-5-lesson-3-check",
+          "unit-5-lesson-3-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Calculate units-of-production depreciation",
+        "explanation": "Worked Example: Cost is 22,000 and salvage is 2,000. Expected lifetime output is 100,000 units. The depreciation rate is (22,000 - 2,000) / 100,000 = 0.20 per unit. Output of 15,000 units gives depreciation of 3,000. Do not depreciate below salvage.\n\n## Calculate units-of-production depreciation\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-4",
+        "activityIds": [
+          "unit-5-lesson-4-practice",
+          "unit-5-lesson-4-check",
+          "unit-5-lesson-4-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Compare straight-line and double-declining balance",
+        "explanation": "Worked Example: For cost 10,000 and life five years, the double-declining rate is 2 / 5 = 40%. Year 1 expense is 4,000. Year 2 expense is 6,000 \u00d7 40% = 2,400. Apply a salvage floor. This schedule does not switch to straight-line; it can end above salvage.\n\n## Compare straight-line and double-declining balance\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-5",
+        "activityIds": [
+          "unit-5-lesson-5-practice",
+          "unit-5-lesson-5-check",
+          "unit-5-lesson-5-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.6",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.6"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Validate depreciation schedules and statement links",
+        "explanation": "Worked Example: An asset costs 15,000. Accumulated depreciation is 6,000. Net carrying value is 9,000. Current-year depreciation expense must equal the increase in accumulated depreciation when there are no disposals or adjustments. Check that the schedule does not reduce book value below salvage.\n\n## Validate depreciation schedules and statement links\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-6",
+        "activityIds": [
+          "unit-5-lesson-6-practice",
+          "unit-5-lesson-6-check",
+          "unit-5-lesson-6-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.7",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Explain the non-cash effect of depreciation",
+        "explanation": "Worked Example: Net income is 5,000 after depreciation expense of 1,200. With no other operating adjustments, operating cash is 6,200. Add depreciation back because it reduced income without a current cash payment. The original equipment purchase is an investing cash flow.\n\n## Explain the non-cash effect of depreciation\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-7",
+        "activityIds": [
+          "unit-5-lesson-7-practice",
+          "unit-5-lesson-7-check",
+          "unit-5-lesson-7-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.8",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.8"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a depreciation model from assigned data",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-8",
+        "activityIds": [
+          "unit-5-lesson-8-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.9",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.9"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Revise a depreciation model after evidence-based review",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-9",
+        "activityIds": [
+          "unit-5-lesson-9-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.10",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.10"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Present and defend a depreciation result",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-10",
+        "activityIds": [
+          "unit-5-lesson-10-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.5.11",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-5.11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Demonstrate the calculations and checks in a depreciation model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-5-lesson-11",
+        "activityIds": [
+          "unit-5-lesson-11-mastery",
+          "unit-5-lesson-11-model-proof"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Reconcile inventory units",
+        "explanation": "Worked Example: Beginning inventory is 20 units. Purchases add 50 and sales remove 45. Ending inventory is 20 + 50 - 45 = 25 units. Cost flow determines the value assigned to units sold and units remaining. It does not change the physical unit count.\n\n## Reconcile inventory units\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-1",
+        "activityIds": [
+          "unit-6-lesson-1-practice",
+          "unit-6-lesson-1-check",
+          "unit-6-lesson-1-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Calculate first-in, first-out cost flow",
+        "explanation": "Worked Example: Inventory has 10 units at 8 and then 10 units at 10. Sell 12 units. Under first-in, first-out (FIFO), cost of goods sold is 10 \u00d7 8 + 2 \u00d7 10 = 100. Eight units at 10 remain, valued at 80.\n\n## Calculate first-in, first-out cost flow\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-2",
+        "activityIds": [
+          "unit-6-lesson-2-practice",
+          "unit-6-lesson-2-check",
+          "unit-6-lesson-2-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.3"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Compare inventory cost-flow methods",
+        "explanation": "Worked Example: There are 10 units at 8 and then 10 at 10. Sell 12. FIFO cost is 100. Last-in, first-out (LIFO) cost is 10 \u00d7 10 + 2 \u00d7 8 = 116. The physical sale is unchanged. This exercise compares arithmetic; a real reporting policy must use an allowed accounting method.\n\n## Compare inventory cost-flow methods\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-3",
+        "activityIds": [
+          "unit-6-lesson-3-practice",
+          "unit-6-lesson-3-check",
+          "unit-6-lesson-3-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Assign materials, labor, and overhead to a project",
+        "explanation": "Worked Example: A project uses materials of 600 and ten labor hours at 30. Overhead is applied at 20 per labor hour. Total project cost is 600 + 300 + 200 = 1,100. Use one documented allocation basis. Do not add the same labor cost twice.\n\n## Assign materials, labor, and overhead to a project\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-4",
+        "activityIds": [
+          "unit-6-lesson-4-practice",
+          "unit-6-lesson-4-check",
+          "unit-6-lesson-4-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Distinguish margin from markup",
+        "explanation": "Worked Example: Cost is 80 and selling price is 100. Profit is 20. Margin is 20 / 100 = 20%. Markup is 20 / 80 = 25%. The denominator differs. Label percentage outputs so a reader knows which measure is shown.\n\n## Distinguish margin from markup\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-5",
+        "activityIds": [
+          "unit-6-lesson-5-practice",
+          "unit-6-lesson-5-check",
+          "unit-6-lesson-5-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.6",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.6"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Reconcile work in progress",
+        "explanation": "Worked Example: Beginning work in progress is 2,000. New project costs add 5,000. Completed work transfers out at cost of 4,000. Ending work in progress is 3,000. Reconcile each transfer to a completed job. Do not include the sales price in this cost reconciliation.\n\n## Reconcile work in progress\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-6",
+        "activityIds": [
+          "unit-6-lesson-6-practice",
+          "unit-6-lesson-6-check",
+          "unit-6-lesson-6-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.7",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Use contribution to explain a price decision",
+        "explanation": "Worked Example: Price is 50 and variable cost is 30 per unit. Contribution is 20 per unit. With fixed costs of 2,000, break-even volume is 2,000 / 20 = 100 units. A higher price can change demand, so the arithmetic alone does not prove that a price change will work.\n\n## Use contribution to explain a price decision\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-7",
+        "activityIds": [
+          "unit-6-lesson-7-practice",
+          "unit-6-lesson-7-check",
+          "unit-6-lesson-7-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.8",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.8"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a inventory and project cost model from assigned data",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-8",
+        "activityIds": [
+          "unit-6-lesson-8-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.9",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.9"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Revise a inventory and project cost model after evidence-based review",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-9",
+        "activityIds": [
+          "unit-6-lesson-9-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.10",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.10"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Present and defend a inventory and project cost result",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-10",
+        "activityIds": [
+          "unit-6-lesson-10-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.6.11",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-6.11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Demonstrate the calculations and checks in a inventory and project cost model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-6-lesson-11",
+        "activityIds": [
+          "unit-6-lesson-11-mastery",
+          "unit-6-lesson-11-model-proof"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Distinguish financing receipts from revenue",
+        "explanation": "Worked Example: A loan of 10,000 increases Cash and Loan Payable by 10,000. An owner contribution of 4,000 increases Cash and Equity by 4,000. Neither receipt is sales revenue. The funding choice changes repayment obligations and ownership claims.\n\n## Distinguish financing receipts from revenue\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-1",
+        "activityIds": [
+          "unit-7-lesson-1-practice",
+          "unit-7-lesson-1-check",
+          "unit-7-lesson-1-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Compare debt and equity amounts",
+        "explanation": "Worked Example: A project needs 20,000. The owner contributes 8,000 and borrows 12,000. Debt provides 60% of the funding. Loan principal must be repaid under the agreement. An equity contribution does not create a scheduled loan payment.\n\n## Compare debt and equity amounts\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-2",
+        "activityIds": [
+          "unit-7-lesson-2-practice",
+          "unit-7-lesson-2-check",
+          "unit-7-lesson-2-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.3"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a loan payment schedule",
+        "explanation": "Worked Example: A 1,200 loan has a monthly interest rate of 1% and a first payment of 110. Interest is 1,200 \u00d7 1% = 12. Principal repayment is 110 - 12 = 98. Ending principal is 1,102. Use the periodic rate, not the annual rate, in each monthly row.\n\n## Build a loan payment schedule\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-3",
+        "activityIds": [
+          "unit-7-lesson-3-practice",
+          "unit-7-lesson-3-check",
+          "unit-7-lesson-3-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Separate investment return from loan principal",
+        "explanation": "Worked Example: An investor contributes 5,000. During the period, the investor receives a 300 distribution. The ending ownership value is 5,200. Total gain is 300 + 5,200 - 5,000 = 500. The simple period return is 500 / 5,000 = 10%. This is not an annualized return unless the period is one year.\n\n## Separate investment return from loan principal\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-4",
+        "activityIds": [
+          "unit-7-lesson-4-practice",
+          "unit-7-lesson-4-check",
+          "unit-7-lesson-4-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Measure payment coverage under stress",
+        "explanation": "Worked Example: Cash available for debt service is 1,500 per month and required payments are 1,000. Coverage is 1.5. If available cash falls to 900, the shortfall is 100. State which cash flows are included. A coverage ratio is a scenario result, not a guarantee.\n\n## Measure payment coverage under stress\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-5",
+        "activityIds": [
+          "unit-7-lesson-5-practice",
+          "unit-7-lesson-5-check",
+          "unit-7-lesson-5-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.6",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.6"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Validate financing scenario inputs",
+        "explanation": "Worked Example: An annual nominal rate of 12% with monthly periods gives 1% per month in this model. A three-year loan has 36 monthly payments. In Excel, PMT uses a periodic rate and the matching number of periods. Use a negative present value to display a positive payment.\n\n## Validate financing scenario inputs\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-6",
+        "activityIds": [
+          "unit-7-lesson-6-practice",
+          "unit-7-lesson-6-check",
+          "unit-7-lesson-6-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.7",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Reconcile financing cash flows and loan balances",
+        "explanation": "Worked Example: Beginning debt is 10,000. New borrowing is 3,000 and principal repayments are 2,000. Ending debt is 11,000. Interest expense of 800 does not reduce loan principal. Owner contributions and distributions also belong in the financing explanation.\n\n## Reconcile financing cash flows and loan balances\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-7",
+        "activityIds": [
+          "unit-7-lesson-7-practice",
+          "unit-7-lesson-7-check",
+          "unit-7-lesson-7-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.8",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.8"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a funding model from assigned data",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-8",
+        "activityIds": [
+          "unit-7-lesson-8-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.9",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.9"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Revise a funding model after evidence-based review",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-9",
+        "activityIds": [
+          "unit-7-lesson-9-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.10",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.10"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Present and defend a funding result",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-10",
+        "activityIds": [
+          "unit-7-lesson-10-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.7.11",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-7.11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Demonstrate the calculations and checks in a funding model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-7-lesson-11",
+        "activityIds": [
+          "unit-7-lesson-11-mastery",
+          "unit-7-lesson-11-model-proof"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Define model inputs, calculations, and outputs",
+        "explanation": "Worked Example: Keep price and volume in an input table. Revenue is price \u00d7 volume in the calculation sheet. Link the dashboard to that calculated result. With price 40 and volume 250, revenue is 10,000. A dashboard value typed as 10,000 will not update when an input changes.\n\n## Define model inputs, calculations, and outputs\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-1",
+        "activityIds": [
+          "unit-8-lesson-1-practice",
+          "unit-8-lesson-1-check",
+          "unit-8-lesson-1-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Review a complete operating model",
+        "explanation": "Worked Example: Revenue is 20,000. Variable costs are 12,000 and fixed costs are 5,000. Operating profit is 3,000. Check that every output uses the same scenario. A chart from a different scenario can contradict the statement even when each formula is correct.\n\n## Review a complete operating model\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-2",
+        "activityIds": [
+          "unit-8-lesson-2-practice",
+          "unit-8-lesson-2-check",
+          "unit-8-lesson-2-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.3"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Stress-test model assumptions",
+        "explanation": "Worked Example: Price is 50, unit variable cost is 30, volume is 400, and fixed cost is 6,000. Profit is (50 - 30) \u00d7 400 - 6,000 = 2,000. At volume 300, profit is zero. Change one assumption at a time before you test combined changes.\n\n## Stress-test model assumptions\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-3",
+        "activityIds": [
+          "unit-8-lesson-3-practice",
+          "unit-8-lesson-3-check",
+          "unit-8-lesson-3-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build an indirect cash flow reconciliation",
+        "explanation": "Worked Example: Net income is 4,000. Add depreciation of 800. Subtract increases in receivables of 500 and inventory of 300. Add a payable increase of 200. Operating cash is 4,200. Then report investing and financing flows to reconcile the total cash change.\n\n## Build an indirect cash flow reconciliation\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-4",
+        "activityIds": [
+          "unit-8-lesson-4-practice",
+          "unit-8-lesson-4-check",
+          "unit-8-lesson-4-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Align scenario outputs with statement cash",
+        "explanation": "Worked Example: Beginning Cash is 2,000 and the cash flow statement reports an increase of 1,300. Ending Cash is 3,300. Link this result to the balance sheet. The balance sheet check is Assets - Liabilities - Equity. A correct integrated model has a zero difference.\n\n## Align scenario outputs with statement cash\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-5",
+        "activityIds": [
+          "unit-8-lesson-5-practice",
+          "unit-8-lesson-5-check",
+          "unit-8-lesson-5-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.6",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.6"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Validate a target result with an independent calculation",
+        "explanation": "Worked Example: Price is 70, unit variable cost is 40, and fixed cost is 6,000. To earn target profit of 3,000, required volume is (6,000 + 3,000) / 30 = 300 units. A Goal Seek result should agree with this independent calculation. Check that required volume is feasible.\n\n## Validate a target result with an independent calculation\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-6",
+        "activityIds": [
+          "unit-8-lesson-6-practice",
+          "unit-8-lesson-6-check",
+          "unit-8-lesson-6-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.7",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Explain a recommendation with a tested dashboard",
+        "explanation": "Worked Example: A dashboard reports revenue of 30,000 and profit of 3,000. Profit margin is 10%. Show the same scenario name and period as the statements. State one downside case and its effect. Use the supporting calculation instead of a chart color as evidence.\n\n## Explain a recommendation with a tested dashboard\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-7",
+        "activityIds": [
+          "unit-8-lesson-7-practice",
+          "unit-8-lesson-7-check",
+          "unit-8-lesson-7-workbook"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.8",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.8"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Build a operating model model from assigned data",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-8",
+        "activityIds": [
+          "unit-8-lesson-8-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.9",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.9"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Revise a operating model model after evidence-based review",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-9",
+        "activityIds": [
+          "unit-8-lesson-9-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.10",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.10"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Present and defend a operating model result",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-10",
+        "activityIds": [
+          "unit-8-lesson-10-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.8.11",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "ACC-8.11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Demonstrate the calculations and checks in a operating model model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "unit-8-lesson-11",
+        "activityIds": [
+          "unit-8-lesson-11-mastery",
+          "unit-8-lesson-11-model-proof"
+        ],
+        "lessonVersion": 2
+      }
+    },
+    {
+      "nodeId": "math.bm2.skill.9.1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "CAP-9.1"
+      ],
+      "rendererKey": "reflection-journal",
+      "rendererModeMap": {},
+      "workedExampleSpec": {
+        "prompt": "Defend a business recommendation with a reconciled financial model",
+        "explanation": "Use the published project directions and linked model guide. Submit the listed workbook evidence."
+      },
+      "independentPracticeSpec": {
+        "replayPolicy": "Use published activity IDs. Do not convert document review into a generated problem family.",
+        "gradingRules": [
+          "Grade each authored numerical item on the server.",
+          "Require teacher review for model, classification, correction, and explanation evidence."
+        ]
+      },
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "lessonSlug": "capstone-investor-ready-plan",
+        "activityIds": [
+          "capstone-investor-ready-plan-project-evidence"
+        ],
+        "lessonVersion": 2
+      }
+    }
+  ]
+}

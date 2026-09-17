@@ -66,7 +66,7 @@ function buildContext(activityId = 'activity_123') {
 function buildPostRequest(body: unknown) {
   return new Request('http://localhost/api/activities/spreadsheet/activity_123/submit', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Idempotency-Key': 'sheet-attempt-1' },
     body: JSON.stringify(body),
   });
 }
@@ -156,6 +156,12 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
     });
   });
 
+  it.each(['idempotency_conflict', 'Maximum attempts (3) reached for this activity.'])('returns 409 for %s', async (message) => {
+    mockFetchInternalMutation.mockRejectedValue(new Error(message));
+    const response = await POST(buildPostRequest({ spreadsheetData: [[{ value: 0 }]] }), buildContext());
+    expect(response.status).toBe(409);
+  });
+
   it('returns 401 when unauthenticated or deactivated', async () => {
     mockRequireActiveStudentRequestClaims.mockResolvedValue(
       Response.json({ error: 'Unauthorized' }, { status: 401 }),
@@ -226,7 +232,7 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
     );
 
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
-      'internal.activities.submitAssessment',
+      'internal.activities.submitSpreadsheet',
       expect.objectContaining({
         userId: 'profile_student',
         activityId: 'activity_123',

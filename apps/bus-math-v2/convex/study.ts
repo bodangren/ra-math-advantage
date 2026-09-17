@@ -1,18 +1,12 @@
-import { mutation, query } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import { scheduleNewTerm, processReview as processFsrsReview, proficiencyBand, updateMastery } from "../lib/study/srs";
 import { getGlossaryTermsByUnit } from "../lib/study/glossary";
 
-export const getStudyPreferences = query({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+export const getStudyPreferences = internalQuery({
+  args: { userId: v.id("profiles"),},
+  handler: async (ctx, args) => {
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const preferences = await ctx.db
@@ -26,8 +20,8 @@ export const getStudyPreferences = query({
   },
 });
 
-export const updatePreferences = mutation({
-  args: {
+export const updatePreferences = internalMutation({
+  args: { userId: v.id("profiles"),
     languageMode: v.union(
       v.literal("en_to_en"),
       v.literal("en_to_zh"),
@@ -36,13 +30,7 @@ export const updatePreferences = mutation({
     ),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
@@ -70,16 +58,10 @@ export const updatePreferences = mutation({
   },
 });
 
-export const getTermMasteryByUnit = query({
-  args: { unitNumber: v.optional(v.number()) },
+export const getTermMasteryByUnit = internalQuery({
+  args: { userId: v.id("profiles"), unitNumber: v.optional(v.number()) },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const mastery = await ctx.db
@@ -95,16 +77,10 @@ export const getTermMasteryByUnit = query({
   },
 });
 
-export const getDueTerms = query({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+export const getDueTerms = internalQuery({
+  args: { userId: v.id("profiles"),},
+  handler: async (ctx, args) => {
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
@@ -120,16 +96,10 @@ export const getDueTerms = query({
   },
 });
 
-export const getRecentSessions = query({
-  args: { limit: v.optional(v.number()) },
+export const getRecentSessions = internalQuery({
+  args: { userId: v.id("profiles"), limit: v.optional(v.number()) },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const sessions = await ctx.db
@@ -142,8 +112,8 @@ export const getRecentSessions = query({
   },
 });
 
-export const processReview = mutation({
-  args: {
+export const processReview = internalMutation({
+  args: { userId: v.id("profiles"),
     termSlug: v.string(),
     rating: v.union(
       v.literal("again"),
@@ -153,13 +123,7 @@ export const processReview = mutation({
     ),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
@@ -249,8 +213,8 @@ export const processReview = mutation({
   },
 });
 
-export const recordSession = mutation({
-  args: {
+export const recordSession = internalMutation({
+  args: { userId: v.id("profiles"),
     activityType: v.union(
       v.literal("flashcards"),
       v.literal("matching"),
@@ -277,13 +241,7 @@ export const recordSession = mutation({
     endedAt: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
@@ -306,16 +264,10 @@ export const recordSession = mutation({
   },
 });
 
-export const getExportData = query({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+export const getExportData = internalQuery({
+  args: { userId: v.id("profiles"),},
+  handler: async (ctx, args) => {
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const [preferences, termMastery, dueReviews, studySessions, practiceTestResults] = await Promise.all([
@@ -337,16 +289,10 @@ export const getExportData = query({
   },
 });
 
-export const getPracticeTestResults = query({
-  args: { unitNumber: v.optional(v.number()) },
+export const getPracticeTestResults = internalQuery({
+  args: { userId: v.id("profiles"), unitNumber: v.optional(v.number()) },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     let resultsQuery = ctx.db
@@ -367,8 +313,8 @@ export const getPracticeTestResults = query({
   },
 });
 
-export const savePracticeTestResult = mutation({
-  args: {
+export const savePracticeTestResult = internalMutation({
+  args: { userId: v.id("profiles"),
     unitNumber: v.number(),
     lessonsTested: v.array(v.string()),
     questionCount: v.number(),
@@ -382,13 +328,7 @@ export const savePracticeTestResult = mutation({
     ),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();

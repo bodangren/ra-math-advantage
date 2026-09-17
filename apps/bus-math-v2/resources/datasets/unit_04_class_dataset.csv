@@ -1,14 +1,8 @@
-Account,Account Type,Balance
-Cash,Asset,7143
-Accounts Receivable,Asset,5216
-Office Supplies,Asset,3891
-Prepaid Rent,Asset,4679
-Office Equipment,Asset,7185
-Accumulated Depreciation,Asset,-273
-Accounts Payable,Liability,5612
-Accrued Wages,Liability,3690
-Deferred Revenue,Liability,3137
-Bank Loan,Liability,1481
-Owner's Capital,Equity,8352
-Retained Earnings,Equity,4176
-Net Income,Equity,1393
+Input,Value
+Regular hours,40
+Overtime hours,5
+Hourly rate,20
+Overtime multiplier,1.5
+Classroom withholding rate,0.1
+Employee benefit deduction,30
+Classroom employer tax rate,0.08

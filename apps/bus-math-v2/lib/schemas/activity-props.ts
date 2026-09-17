@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import { accountingEquationEventPropsSchema } from './accounting-equation-event.schema';
 import { categorizationActivityPropsSchemas } from './activities-categorization';
 import { exerciseActivityPropsSchemas } from './activities-exercises';
 import { quizActivityPropsSchemas } from './activities-quiz';
 import { simulationActivityPropsSchemas } from './activities-simulation';
 import { spreadsheetActivityPropsSchemas } from './activities-spreadsheet';
+import { accountingEquationEventPropsSchema } from './accounting-equation-event.schema';
 
 const chartSeriesSchema = z.object({
   key: z.string(),

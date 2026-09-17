@@ -18,7 +18,7 @@ describe('Footer', () => {
   it('renders footer text and quick links', () => {
     render(<Footer />);
 
-    expect(screen.getByText(/Math for Business Operations/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Math for Business Operations/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Getting Started/i })).toBeInTheDocument();
   });
 });

@@ -1,427 +1,76 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { useState } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-const mockUseQuery = vi.fn();
-const mockUseMutation = vi.fn();
-const mockProcessPracticeSubmission = vi.fn();
-const mockBuildPracticeSubmissionEnvelope = vi.fn();
-const mockFetch = vi.fn();
-
-vi.mock('convex/react', () => ({
-  useQuery: mockUseQuery,
-  useMutation: mockUseMutation,
-}));
-
-vi.mock('@/lib/convex/server', () => ({
-  api: {
-    srs: {
-      getDueCards: 'api.srs.getDueCards',
-      recordSrsReview: 'api.srs.recordSrsReview',
-    },
+import { DailyPracticeSession } from '@/components/student/DailyPracticeSession';
+const fetchMock = vi.fn();
+vi.mock('@/lib/practice/engine/family-registry', () => ({ getPracticeFamily: () => ({ generate: () => ({}) }) }));
+vi.mock('@/lib/srs/answer-inputs/registry', () => ({ dailyPracticeInputRegistry: {
+  'normal-balance': function Input({ onSubmit }: { onSubmit: (value: unknown) => void }) {
+    const [submitted, setSubmitted] = useState(false);
+    return <button disabled={submitted} onClick={() => { setSubmitted(true); onSubmit({ activityId: 'normal-balance-1', answers: { account: 'debit' }, parts: [] }); }}>Submit answer</button>;
   },
-}));
-
-vi.mock('@/lib/practice/engine/family-registry', () => ({
-  practiceFamilyRegistry: {
-    'test-family': {
-      generate: vi.fn(() => ({ value: 42 })),
-      solve: vi.fn(() => ({ answer: 42 })),
-      grade: vi.fn(() => ({
-        parts: [{ partId: 'p1', isCorrect: true }],
-      })),
-    },
-    'registered-family': {
-      generate: vi.fn(() => ({ value: 99 })),
-      solve: vi.fn(() => ({ answer: 99 })),
-      grade: vi.fn(() => ({
-        parts: [{ partId: 'p1', isCorrect: true }],
-      })),
-    },
-    'accounting-equation': {
-      generate: vi.fn(() => ({ value: 12 })),
-      solve: vi.fn(() => ({ answer: 12 })),
-      grade: vi.fn(() => ({
-        parts: [{ partId: 'p1', isCorrect: true }],
-      })),
-    },
-  },
-}));
-
-vi.mock('@/lib/practice/contract', () => ({
-  buildPracticeSubmissionEnvelope: mockBuildPracticeSubmissionEnvelope,
-}));
-
-vi.mock('@/lib/srs/review-processor', () => ({
-  processPracticeSubmission: mockProcessPracticeSubmission,
-}));
-
-const MockInputComponent = vi.fn(() => <div data-testid="mock-answer-input">Mock Answer Input</div>);
-
-vi.mock('@/lib/srs/answer-inputs/registry', () => ({
-  dailyPracticeInputRegistry: {
-    'registered-family': MockInputComponent,
-  },
-}));
-
-const { DailyPracticeSession } = await import('../../../components/student/DailyPracticeSession');
-
-describe('DailyPracticeSession', () => {
-  const mockRecordReview = vi.fn();
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-    vi.stubGlobal('fetch', mockFetch);
-    mockUseMutation.mockReturnValue(mockRecordReview);
-    mockBuildPracticeSubmissionEnvelope.mockReturnValue({
-      activityId: 'test-family',
-      mode: 'independent_practice',
-      status: 'submitted',
-      attemptNumber: 1,
-      answers: {},
-      parts: [{ partId: 'p1', isCorrect: true }],
-    });
-    mockProcessPracticeSubmission.mockReturnValue({
-      card: {
-        problemFamilyId: 'test-family',
-        studentId: 'student_1',
-        card: {},
-        due: Date.now() + 86400000,
-        lastReview: Date.now(),
-        reviewCount: 1,
-        createdAt: Date.now(),
-      },
-      reviewLog: {
-        problemFamilyId: 'test-family',
-        studentId: 'student_1',
-        rating: 'Good',
-        scheduledAt: Date.now(),
-        reviewedAt: Date.now(),
-        elapsedDays: 0,
-        scheduledDays: 1,
-        reviewDurationMs: 5000,
-        timingConfidence: 'high',
-      },
-      rating: 'Good',
-    });
-    mockFetch.mockResolvedValue(new Response(JSON.stringify({
-      persisted: true,
-      masteryApplied: true,
-    }), { status: 200, headers: { 'content-type': 'application/json' } }));
-  });
-
-  it('shows loading state while fetching due cards', () => {
-    mockUseQuery.mockReturnValue(undefined);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    expect(screen.getByText(/loading your practice queue/i)).toBeInTheDocument();
-  });
-
-  it('shows completion state when no cards are due', () => {
-    mockUseQuery.mockReturnValue([]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    expect(screen.getByText(/no problems due/i)).toBeInTheDocument();
-    expect(screen.getByText(/great work! you have no practice problems due right now/i)).toBeInTheDocument();
-  });
-
-  it('renders a practice problem from the queue', () => {
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'test-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    expect(screen.getByRole('heading', { name: /daily practice/i })).toBeInTheDocument();
-    expect(screen.getByText(/problem 1 of 1/i)).toBeInTheDocument();
-    expect(screen.getByText(/test family/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /submit answer/i })).toBeInTheDocument();
-    expect(screen.queryByText(/your answer/i)).not.toBeInTheDocument();
-  });
-
-  it('records a review and shows next problem button after submit', async () => {
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'test-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-      {
-        _id: 'card_2',
-        studentId: 'student_1',
-        problemFamilyId: 'test-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
-    await userEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(mockRecordReview).toHaveBeenCalledTimes(1);
-    });
-
-    expect(mockRecordReview).toHaveBeenCalledWith(
-      expect.objectContaining({
-        studentId: 'student_1',
-        problemFamilyId: 'test-family',
-        rating: 'Good',
-      }),
-    );
-
-    expect(screen.getByTestId('next-problem-button')).toBeInTheDocument();
-    expect(screen.getByText(/problem 1 of 2/i)).toBeInTheDocument();
-
-    await userEvent.click(screen.getByTestId('next-problem-button'));
-    expect(screen.getByText(/problem 2 of 2/i)).toBeInTheDocument();
-  });
-
-  it('uses the authenticated BM2 learning-evidence route once and skips the old SRS mutation', async () => {
-    mockBuildPracticeSubmissionEnvelope.mockReturnValue({
-      contractVersion: 'practice.v1',
-      activityId: 'accounting-equation-generated-7',
-      mode: 'independent_practice',
-      status: 'submitted',
-      attemptNumber: 1,
-      submittedAt: '2026-08-19T08:02:00.000Z',
-      answers: { assets: 10 },
-      parts: [{ partId: 'assets', rawAnswer: 10, isCorrect: true, score: 1, maxScore: 1 }],
-    });
-
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        cardId: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'accounting-equation',
-        card: {},
-        due: Date.now(),
-        dueDate: new Date().toISOString(),
-        reviewCount: 0,
-        reps: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    await userEvent.click(screen.getByRole('button', { name: /submit answer/i }));
-
-    await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledTimes(1);
-    });
-
-    expect(mockFetch).toHaveBeenCalledWith(
-      '/api/learning-evidence/bm2-pilot',
-      expect.objectContaining({ method: 'POST' }),
-    );
-    expect(mockRecordReview).not.toHaveBeenCalled();
-    expect(screen.getByTestId('next-problem-button')).toBeInTheDocument();
-  });
-
-  it('shows completion state after clicking next problem on the last card', async () => {
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'test-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
-    await userEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(mockRecordReview).toHaveBeenCalledTimes(1);
-    });
-
-    await userEvent.click(screen.getByTestId('next-problem-button'));
-    expect(screen.getByText(/no problems due/i)).toBeInTheDocument();
-  });
-
-  it('shows loading overlay while recording review', async () => {
-    let resolveReview: (() => void) | undefined;
-    mockRecordReview.mockImplementationOnce(() => new Promise<void>((resolve) => {
-      resolveReview = resolve;
-    }));
-
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'test-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
-    await userEvent.click(submitButton);
-
-    expect(screen.getByText(/saving result/i)).toBeInTheDocument();
-
-    resolveReview!();
-
-    await waitFor(() => {
-      expect(screen.queryByText(/saving result/i)).not.toBeInTheDocument();
-    });
-
-    expect(screen.getByTestId('next-problem-button')).toBeInTheDocument();
-  });
-
-  it('moves focus to the card when advancing to the next problem', async () => {
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'test-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-      {
-        _id: 'card_2',
-        studentId: 'student_1',
-        problemFamilyId: 'registered-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    const submitButton = screen.getByRole('button', { name: /submit answer/i });
-    await userEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(mockRecordReview).toHaveBeenCalledTimes(1);
-    });
-
-    await waitFor(() => {
-      expect(screen.getByTestId('next-problem-button')).toBeInTheDocument();
-    });
-
-    const nextButton = screen.getByTestId('next-problem-button');
-    await userEvent.click(nextButton);
-
-    await waitFor(() => {
-      expect(screen.getByText(/problem 2 of 2/i)).toBeInTheDocument();
-    });
-
-    const card = screen.getByTestId('practice-card');
-    expect(card).toHaveFocus();
-  });
-
-  it('shows unknown family error for unregistered problem family', () => {
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'unknown-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    expect(screen.getByText(/unknown practice family: unknown-family/i)).toBeInTheDocument();
-  });
-
-  it('calls useQuery with studentId', () => {
-    mockUseQuery.mockReturnValue([]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    expect(mockUseQuery).toHaveBeenCalledWith('api.srs.getDueCards', { studentId: 'student_1' });
-  });
-
-  it('renders the registered answer input component when family has one', () => {
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'registered-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    expect(screen.getByTestId('mock-answer-input')).toBeInTheDocument();
-    expect(MockInputComponent).toHaveBeenCalledWith(
-      expect.objectContaining({
-        family: expect.any(Object),
-        definition: expect.objectContaining({ value: 99 }),
-        onSubmit: expect.any(Function),
-      }),
-      undefined,
-    );
-  });
-
-  it('falls back to auto-solve renderer when family has no registered input', () => {
-    mockUseQuery.mockReturnValue([
-      {
-        _id: 'card_1',
-        studentId: 'student_1',
-        problemFamilyId: 'test-family',
-        card: {},
-        due: Date.now(),
-        lastReview: Date.now(),
-        reviewCount: 0,
-        createdAt: Date.now(),
-      },
-    ]);
-
-    render(<DailyPracticeSession studentId="student_1" />);
-
-    expect(screen.queryByTestId('mock-answer-input')).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /submit answer/i })).toBeInTheDocument();
-  });
+} }));
+const card = (id: string, family = 'normal-balance') => ({ cardId: id, studentId: 'student', problemFamilyId: family, reps: 0 });
+const response = (value: unknown, ok = true) => ({ ok, json: async () => value });
+const start = async (cards = [card('one')]) => {
+  fetchMock.mockResolvedValueOnce(response(cards));
+  render(<DailyPracticeSession studentId="student" />);
+  await screen.findByRole('button', { name: 'Submit answer' });
+};
+describe('DailyPracticeSession server boundary', () => {
+ beforeEach(() => { fetchMock.mockReset(); vi.stubGlobal('fetch', fetchMock); });
+ it('shows loading while the queue request is pending', () => {
+  fetchMock.mockReturnValue(new Promise(() => {})); render(<DailyPracticeSession studentId="student" />);
+  expect(screen.getByText(/Loading your practice queue/)).toBeInTheDocument();
+ });
+ it('shows an empty session', async () => {
+  fetchMock.mockResolvedValue(response([])); render(<DailyPracticeSession studentId="student" />);
+  expect(await screen.findByText('No Problems Due')).toBeInTheDocument();
+ });
+ it('reports a queue failure', async () => {
+  fetchMock.mockResolvedValue(response(null,false)); render(<DailyPracticeSession studentId="student" />);
+  expect(await screen.findByRole('alert')).toHaveTextContent('Unable to load daily practice');
+ });
+ it('loads the current account queue without sending a client-selected user ID', async () => {
+  await start(); expect(fetchMock.mock.calls[0]).toEqual(['/api/srs', { cache: 'no-store' }]);
+  expect(screen.getByText('Problem 1 of 1')).toBeInTheDocument();
+ });
+ it('sends answers without a client grade or schedule', async () => {
+  await start(); fetchMock.mockResolvedValue(response({success:true}));
+  await userEvent.click(screen.getByText('Submit answer')); await screen.findByTestId('next-problem-button');
+  const [url, options] = fetchMock.mock.calls[1]; const body = JSON.parse(options.body);
+  expect(url).toBe('/api/srs'); expect(body).toEqual({cardId:'one',activityId:'normal-balance-1',answers:{account:'debit'},idempotencyKey:expect.any(String)});
+ });
+ it('resets the answer input and moves focus on the next card', async () => {
+  await start([card('one'),card('two')]); fetchMock.mockResolvedValue(response({success:true}));
+  await userEvent.click(screen.getByText('Submit answer')); await userEvent.click(await screen.findByTestId('next-problem-button'));
+  expect(screen.getByText('Problem 2 of 2')).toBeInTheDocument(); expect(screen.getByText('Submit answer')).toBeEnabled();
+  await waitFor(() => expect(screen.getByTestId('practice-card')).toHaveFocus());
+ });
+ it('finishes after the last saved card', async () => {
+  await start(); fetchMock.mockResolvedValue(response({success:true}));
+  await userEvent.click(screen.getByText('Submit answer')); await userEvent.click(await screen.findByTestId('next-problem-button'));
+  expect(await screen.findByText('No Problems Due')).toBeInTheDocument();
+ });
+ it('explains a queue with no supported inputs', async () => {
+  fetchMock.mockResolvedValue(response([card('unsupported', 'missing')]));
+  render(<DailyPracticeSession studentId="student" />);
+  expect(await screen.findByText('Practice inputs unavailable')).toBeInTheDocument();
+  expect(screen.queryByText('No Problems Due')).not.toBeInTheDocument();
+ });
+ it('filters unsupported cards without blocking later supported cards', async () => {
+  await start([card('unsupported','missing'),card('one')]); expect(screen.getByText('Problem 1 of 1')).toBeInTheDocument();
+ });
+ it('keeps the same request identity when a save fails', async () => {
+  await start(); fetchMock.mockResolvedValueOnce(response(null,false)).mockResolvedValueOnce(response({success:true}));
+  await userEvent.click(screen.getByText('Submit answer')); await userEvent.click(await screen.findByText('Retry submission'));
+  await screen.findByTestId('next-problem-button'); expect(fetchMock.mock.calls[2]).toEqual(fetchMock.mock.calls[1]);
+ });
+ it('shows saving state until the server confirms the review', async () => {
+  await start(); let finish: (value: unknown) => void = () => {};
+  fetchMock.mockReturnValueOnce(new Promise((resolve) => { finish = resolve; }));
+  await userEvent.click(screen.getByText('Submit answer')); expect(screen.getByText('Saving result...')).toBeInTheDocument();
+  finish(response({success:true})); await screen.findByTestId('next-problem-button');
+ });
 });

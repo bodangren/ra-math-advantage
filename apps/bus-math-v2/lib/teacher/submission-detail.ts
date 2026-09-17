@@ -50,6 +50,9 @@ export interface SpreadsheetEvidence {
 
 export interface PracticeEvidence {
   kind: 'practice';
+  submissionId?: string;
+  stableActivityId?: string;
+  teacherVerified?: boolean;
   activityId: string;
   activityTitle: string;
   componentKey: string;
@@ -140,4 +143,3 @@ export function assembleSubmissionDetail(
 
   return { studentName, lessonTitle, phases };
 }
-

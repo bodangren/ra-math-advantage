@@ -697,6 +697,7 @@ export const simulationActivityPropsSchemas = {
     }),
   }),
   'notebook-organizer': z.object({
+    mode: z.enum(['guided_practice', 'independent_practice']).default('guided_practice'),
     title: z.string().default('The Notebook Organizer'),
     description: z.string().default("Help Sarah sort her messy desk into 'What she has' vs 'What she owes'."),
     items: z.array(z.object({

@@ -2,14 +2,14 @@ import { describe, it, expect } from 'vitest';
 import { buildDailyQueue, getQueueSummary } from '../../../lib/srs/queue';
 import type { SrsCardState } from '@math-platform/srs-engine';
 
-function makeCard(problemFamilyId: string, studentId: string, dueOffsetMs: number): SrsCardState {
+function makeCard(variantKey: string, studentId: string, dueOffsetMs: number): SrsCardState {
   const now = new Date();
   const dueDate = new Date(now.getTime() + dueOffsetMs).toISOString();
   return {
-    cardId: `card_${problemFamilyId}_${studentId}`,
+    cardId: `card_${variantKey}_${studentId}`,
     studentId,
-    objectiveId: problemFamilyId,
-    problemFamilyId,
+    objectiveId: variantKey,
+    variantKey,
     stability: 0,
     difficulty: 0,
     state: 'review',

@@ -13,14 +13,14 @@ import path from 'path';
  * a missing-file error — confirming the Red phase.
  */
 
-const REPO_ROOT = process.cwd();
+const REPO_ROOT = path.resolve(process.cwd(), '../..');
 const BM2_SERVER_PATH = path.join(
   REPO_ROOT,
   'apps/bus-math-v2/lib/auth/server.ts',
 );
 const DECISION_DOC_PATH = path.join(
   REPO_ROOT,
-  'measure/tracks/unified-auth-monorepo_20260609/decisions/auth-export-classification.md',
+  'measure/archive/unified-auth-monorepo_20260609/decisions/auth-export-classification.md',
 );
 
 const EXPECTED_BM2_EXPORTS = [

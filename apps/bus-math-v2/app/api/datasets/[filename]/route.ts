@@ -1,7 +1,6 @@
 import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
 import { NextRequest, NextResponse } from 'next/server';
-import path from 'path';
-import * as fs from 'fs';
+import { getDatasetAsset } from '@/lib/server/lesson-assets';
 
 /**
  * Serves a dataset CSV file by filename for authenticated users.
@@ -23,22 +22,15 @@ export async function GET(
   const params = await context.params;
   const { filename } = params;
 
-  if (!/^unit_0[1-8]_(class_snapshot|group_dataset_0[1-6])\.csv$/.test(filename)) {
+  if (!/^unit_0[1-8]_(class_snapshot_dataset|class_dataset|group_dataset_0[1-6])\.csv$/.test(filename)) {
     return NextResponse.json({ error: 'Invalid filename' }, { status: 400 });
   }
 
-  const datasetsDir = path.join(process.cwd(), 'resources', 'datasets');
-  const publicPath = path.join(datasetsDir, filename);
-
-  if (!publicPath.startsWith(datasetsDir)) {
-    return NextResponse.json({ error: 'Invalid path' }, { status: 400 });
-  }
-
-  if (!fs.existsSync(publicPath)) {
+  const fileBuffer = getDatasetAsset(filename);
+  if (fileBuffer === null) {
     return NextResponse.json({ error: 'File not found' }, { status: 404 });
   }
 
-  const fileBuffer = fs.readFileSync(publicPath);
   return new NextResponse(fileBuffer, {
     headers: {
       'Content-Type': 'text/csv',

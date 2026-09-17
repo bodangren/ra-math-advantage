@@ -15,7 +15,7 @@ describe('curriculum/phase-guidance', () => {
       phaseNumber: 2,
       phaseLabel: 'Concept Intro',
     });
-    expect(guidance?.goal).toMatch(/explicit A\/L\/E reasoning/i);
+    expect(guidance?.goal).toMatch(/assets, liabilities, and equity/i);
     expect(guidance?.successCriteria).toEqual(
       expect.arrayContaining([
         expect.stringMatching(/guided/i),

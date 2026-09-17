@@ -24,7 +24,7 @@ const PHASE_GUIDANCE_BY_TYPE: Record<LessonType, Record<number, Omit<PhaseGuidan
   accounting: {
     1: {
       phaseLabel: 'Hook',
-      goal: 'Open with a business decision tension in Sarah Chen’s story.',
+      goal: 'Identify the business decision in Sarah Chen’s story.',
       successCriteria: [
         'Explain why the accounting decision matters to the business.',
         'Identify the main tension you will solve in this lesson.',
@@ -32,7 +32,7 @@ const PHASE_GUIDANCE_BY_TYPE: Record<LessonType, Record<number, Omit<PhaseGuidan
     },
     2: {
       phaseLabel: 'Concept Intro',
-      goal: 'Teach the concept with explicit A/L/E reasoning.',
+      goal: 'Explain the example with assets, liabilities, and equity.',
       successCriteria: [
         'Use assets, liabilities, and equity language accurately.',
         'Name what success looks like in the guided and independent phases.',
@@ -48,10 +48,10 @@ const PHASE_GUIDANCE_BY_TYPE: Record<LessonType, Record<number, Omit<PhaseGuidan
     },
     4: {
       phaseLabel: 'Independent Practice',
-      goal: 'Complete a graded accounting task independently.',
+      goal: 'Complete the accounting task and save your evidence.',
       successCriteria: [
         'Submit a fully completed task without teacher intervention.',
-        'Meet the passing-score target of at least 60%.',
+        'Show your calculations and checks for teacher review.',
       ],
     },
     5: {
@@ -82,7 +82,7 @@ const PHASE_GUIDANCE_BY_TYPE: Record<LessonType, Record<number, Omit<PhaseGuidan
     },
     2: {
       phaseLabel: 'Intro',
-      goal: 'Demonstrate the Excel workflow and quality criteria.',
+      goal: 'Follow the Excel example and identify its checks.',
       successCriteria: [
         'Name the workflow steps before practice begins.',
         'Describe the quality checks that keep the workbook reliable.',

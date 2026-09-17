@@ -1,8 +1,7 @@
 import {
   evaluateLearningEvidenceV1,
-  learningEvidenceFingerprintV1,
-  learningEvidenceV1Schema,
   normalizeLearningEvidenceV1,
+  type LearningEvidenceDecisionV1,
   type LearningEvidenceV1,
 } from '@math-platform/practice-core';
 import {
@@ -19,40 +18,18 @@ import type { CardStore, ReviewLogStore } from '@math-platform/srs-engine/adapte
 
 import { internalMutation, type MutationCtx } from './_generated/server';
 import type { Doc, Id } from './_generated/dataModel';
-import { v } from 'convex/values';
+import { v, type Infer } from 'convex/values';
 
 import {
   BM2_LEARNING_EVIDENCE_PILOT,
   BM2_PILOT_NODE,
   BM2_PILOT_PROBLEM_FAMILY_ID,
+  BM2_PILOT_SOURCE_ACTIVITY_ID,
   bm2ProblemFamilyIdToVariantKey,
   bm2VariantKeyToProblemFamilyId,
-  validateBm2LearningEvidencePilotManifest,
+  isBm2PilotPublished,
+  isBm2PilotSourcePublished,
 } from '../lib/learning-evidence/bm2-pilot';
-
-const gradedEvidenceValidator = v.optional(v.object({
-  isCorrect: v.optional(v.boolean()),
-  score: v.optional(v.number()),
-  maxScore: v.optional(v.number()),
-}));
-
-const learningEvidenceValidator = v.object({
-  contractVersion: v.literal('learning-evidence.v1'),
-  nodeId: v.string(),
-  activityId: v.string(),
-  attemptOrdinal: v.number(),
-  origin: v.union(v.literal('teacher_led'), v.literal('mastery_advantage')),
-  mode: v.union(
-    v.literal('worked_example'),
-    v.literal('guided_practice'),
-    v.literal('independent_practice'),
-    v.literal('assessment'),
-    v.literal('teaching'),
-  ),
-  occurredAt: v.string(),
-  gradedEvidence: gradedEvidenceValidator,
-  idempotencyKey: v.string(),
-});
 
 const learningEvidenceDecisionValidator = v.object({
   idempotency: v.union(
@@ -76,217 +53,380 @@ const learningEvidenceDecisionValidator = v.object({
   masteryBearing: v.boolean(),
 });
 
-const learningEvidenceResultValidator = v.object({
-  persisted: v.boolean(),
-  masteryApplied: v.boolean(),
-  decision: learningEvidenceDecisionValidator,
-});
+const learningEvidenceResultValidator = v.union(
+  v.object({
+    persisted: v.boolean(),
+    masteryApplied: v.boolean(),
+    kstApplied: v.boolean(),
+    delivery: v.union(v.literal('new'), v.literal('replay')),
+    decision: learningEvidenceDecisionValidator,
+  }),
+  v.object({
+    accepted: v.literal(false),
+    reason: v.literal('submission_not_found'),
+  }),
+  v.object({
+    accepted: v.literal(false),
+    reason: v.literal('attempt_ordinal_conflict'),
+    latestAttemptOrdinal: v.number(),
+    receivedAttemptOrdinal: v.number(),
+  }),
+);
 
-/** Persistence for normalized BM2 learning-evidence records. */
 export interface Bm2LearningEvidenceStore {
-  findByIdempotencyKey(
-    learnerId: string,
-    idempotencyKey: string,
-  ): Promise<LearningEvidenceV1 | null>;
   listByLearnerAndNode(
     learnerId: string,
     nodeId: string,
+    options: Pick<LearningEvidenceV1, 'activityId' | 'origin' | 'occurredAt'>,
   ): Promise<readonly LearningEvidenceV1[]>;
-  append(learnerId: string, evidence: LearningEvidenceV1): Promise<void>;
+  append(
+    learnerId: string,
+    evidence: LearningEvidenceV1,
+    submissionId: string,
+  ): Promise<void>;
 }
 
-/** The existing BM2 KST/SRS bridge for eligible Mastery Advantage evidence. */
-export type Bm2MasteryAdvantageBridge = (input: {
-  evidence: LearningEvidenceV1;
-}) => Promise<void>;
+/** Minimal server-owned activity submission projection used by the pilot. */
+export interface Bm2ActivitySubmission {
+  submissionId: string;
+  userId: string;
+  activityId: string;
+  /** Stable identity of the physical activity foreign key, when projected. */
+  activityStableActivityId?: string;
+  /** Stable identity and ordinal written by the server on the submission row. */
+  stableActivityId?: string;
+  attemptOrdinal?: number;
+  masteryContractVersion?: string;
+  /** True only after an authorized teacher verifies this learner submission. */
+  trustedTeacherExposure?: boolean;
+  submissionData: {
+    contractVersion?: string;
+    activityId?: string;
+    mode?: LearningEvidenceV1['mode'];
+    status?: string;
+    [key: string]: unknown;
+  };
+  score?: number;
+  maxScore?: number;
+  gradedAt?: number | string;
+  submittedAt?: number | string;
+}
 
-export type Bm2LearningEvidenceDecision = ReturnType<typeof evaluateLearningEvidenceV1>;
-
-export interface Bm2LearningEvidenceProcessResult {
+export interface Bm2SubmissionReceipt {
   persisted: boolean;
   masteryApplied: boolean;
-  decision: Bm2LearningEvidenceDecision;
+  kstApplied: boolean;
+  decision: LearningEvidenceDecisionV1;
 }
 
-export interface Bm2LearningEvidenceHandlerDependencies {
-  store: Bm2LearningEvidenceStore;
-  masteryBridge: Bm2MasteryAdvantageBridge;
+export interface Bm2SubmissionReceiptStore {
+  findBySubmissionId(
+    learnerId: string,
+    submissionId: string,
+  ): Promise<Bm2SubmissionReceipt | null>;
+  append(
+    learnerId: string,
+    submissionId: string,
+    receipt: Bm2SubmissionReceipt,
+  ): Promise<void>;
 }
 
-export interface Bm2LearningEvidenceHandler {
-  process(input: {
-    learnerId: string;
-    evidence: LearningEvidenceV1;
-  }): Promise<Bm2LearningEvidenceProcessResult>;
-}
-
-function canonicalizeEvidence(evidence: LearningEvidenceV1): LearningEvidenceV1 {
-  return normalizeLearningEvidenceV1(learningEvidenceV1Schema.parse(evidence));
-}
-
-function validateTeacherLedSource(evidence: LearningEvidenceV1): void {
-  if (evidence.origin !== 'teacher_led') return;
-
-  const source = BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source;
-  if (evidence.activityId !== source.activityId || evidence.mode !== source.mode) {
-    throw new TypeError('BM2 teacher-led evidence must use the frozen source activity and mode');
-  }
-}
-
-function addExistingEvidence(
+function highestAttemptOrdinal(
+  evidence: LearningEvidenceV1,
   acceptedEvidence: readonly LearningEvidenceV1[],
-  existingEvidence: LearningEvidenceV1 | null,
-): readonly LearningEvidenceV1[] {
-  if (existingEvidence === null) return acceptedEvidence;
-  if (acceptedEvidence.some((item) => item.idempotencyKey === existingEvidence.idempotencyKey)) {
-    return acceptedEvidence;
+): number | null {
+  let highest: number | null = null;
+  for (const accepted of acceptedEvidence) {
+    if (
+      accepted.nodeId !== evidence.nodeId
+      || accepted.activityId !== evidence.activityId
+      || accepted.origin !== evidence.origin
+    ) {
+      continue;
+    }
+    if (highest === null || accepted.attemptOrdinal > highest) {
+      highest = accepted.attemptOrdinal;
+    }
   }
-  return [...acceptedEvidence, existingEvidence];
+  return highest;
 }
 
-function operationKey(learnerId: string, idempotencyKey: string): string {
-  return JSON.stringify([learnerId, idempotencyKey]);
+function storedTimestampToIso(value: number | string | undefined): string | null {
+  if (value === undefined) return null;
+  const timestamp = typeof value === 'number' ? value : Date.parse(value);
+  return Number.isFinite(timestamp) ? new Date(timestamp).toISOString() : null;
 }
 
-function isPersistableDecision(
-  decision: ReturnType<typeof evaluateLearningEvidenceV1>,
-): boolean {
-  return decision.reason === 'teacher_led'
-    || decision.reason === 'ungraded_evidence'
-    || decision.reason === 'eligible';
-}
+const GENERATED_BM2_STABLE_ACTIVITY_ID = /^accounting-equation-\d+-(assets|liabilities|equity)$/;
 
-/**
- * Creates the app-owned Convex boundary for the exact BM2 pilot manifest.
- *
- * The injected store owns evidence persistence. The injected bridge owns the
- * existing KST/SRS effect. Teacher-led and pre-exposure events never reach it.
- */
-export function createBm2LearningEvidenceHandler({
-  store,
-  masteryBridge,
-}: Bm2LearningEvidenceHandlerDependencies): Bm2LearningEvidenceHandler {
-  validateBm2LearningEvidencePilotManifest();
+function buildBm2StoredEvidence(
+  submission: Bm2ActivitySubmission,
+  learnerId: string,
+  submissionId: string,
+): { evidence: LearningEvidenceV1; masteryBearing: boolean } | null {
+  if (submission.userId !== learnerId) return null;
 
-  const inFlight = new Map<string, Promise<Bm2LearningEvidenceProcessResult>>();
+  const data = submission.submissionData;
+  if (typeof data !== 'object' || data === null) return null;
+  if (data.contractVersion !== 'practice.v1') return null;
 
-  async function processInternal({
-    learnerId,
-    evidence,
-  }: {
-    learnerId: string;
-    evidence: LearningEvidenceV1;
-  }): Promise<Bm2LearningEvidenceProcessResult> {
-    const normalizedEvidence = canonicalizeEvidence(evidence);
-    const [existingEvidence, acceptedByNode] = await Promise.all([
-      store.findByIdempotencyKey(learnerId, normalizedEvidence.idempotencyKey),
-      store.listByLearnerAndNode(learnerId, normalizedEvidence.nodeId),
-    ]);
-    const acceptedEvidence = addExistingEvidence(
-      acceptedByNode.map(canonicalizeEvidence),
-      existingEvidence === null ? null : canonicalizeEvidence(existingEvidence),
-    );
-    const decision = evaluateLearningEvidenceV1({
-      evidence: normalizedEvidence,
-      acceptedEvidence,
-      enabledNodeIds: BM2_LEARNING_EVIDENCE_PILOT.enabledNodeIds,
-    });
+  const stableActivityId = submission.stableActivityId;
+  const serverAttemptOrdinal = submission.attemptOrdinal;
+  if (
+    typeof stableActivityId !== 'string'
+    || stableActivityId.trim().length === 0
+    || typeof serverAttemptOrdinal !== 'number'
+    || !Number.isInteger(serverAttemptOrdinal)
+    || serverAttemptOrdinal < 1
+  ) {
+    return null;
+  }
 
-    if (decision.idempotency !== 'new' || !isPersistableDecision(decision)) {
-      return {
-        persisted: false,
-        masteryApplied: false,
-        decision,
-      };
-    }
+  if (submission.masteryContractVersion !== 'learning-evidence.v1') return null;
 
-    if (decision.masteryBearing) {
-      await masteryBridge({ evidence: normalizedEvidence });
-    }
+  const activityId = data.activityId;
+  const mode = data.mode;
+  if (typeof activityId !== 'string' || typeof mode !== 'string') return null;
 
-    await store.append(learnerId, normalizedEvidence);
+  const mapping = BM2_LEARNING_EVIDENCE_PILOT.mappings[0];
+  const source = mapping.source;
+  const mastery = mapping.masteryAdvantage;
+  const isTeacherLed = stableActivityId === source.activityId
+    && submission.trustedTeacherExposure === true
+    && submission.activityStableActivityId === source.activityId
+    && submission.activityId === activityId
+    && activityId !== source.activityId
+    && mode === source.mode;
+  const isMasteryAdvantage = (
+    stableActivityId === mastery.activityId
+    || GENERATED_BM2_STABLE_ACTIVITY_ID.test(stableActivityId)
+  )
+    && submission.activityStableActivityId === source.activityId
+    && activityId === mastery.activityId
+    && mode === 'independent_practice'
+    && data.status === 'graded';
+  if (!isTeacherLed && !isMasteryAdvantage) return null;
+
+  if (isTeacherLed && data.status !== 'graded') return null;
+
+  const occurredAt = storedTimestampToIso(submission.submittedAt);
+  if (!occurredAt) return null;
+
+  if (isTeacherLed) {
     return {
-      persisted: true,
-      masteryApplied: decision.masteryBearing,
-      decision,
+      masteryBearing: false,
+      evidence: normalizeLearningEvidenceV1({
+        contractVersion: 'learning-evidence.v1',
+        nodeId: BM2_PILOT_NODE,
+        activityId: source.activityId,
+        attemptOrdinal: serverAttemptOrdinal,
+        origin: 'teacher_led',
+        mode: source.mode,
+        occurredAt,
+        idempotencyKey: `bm2:teacher-led:submission:${submissionId}`,
+      }),
     };
   }
 
-  async function process({
-    learnerId,
-    evidence,
-  }: {
-    learnerId: string;
-    evidence: LearningEvidenceV1;
-  }): Promise<Bm2LearningEvidenceProcessResult> {
-    if (typeof learnerId !== 'string' || learnerId.trim().length === 0) {
-      throw new TypeError('learnerId must be a non-empty authenticated identity');
-    }
-
-    const normalizedEvidence = canonicalizeEvidence(evidence);
-    validateTeacherLedSource(normalizedEvidence);
-    const key = operationKey(learnerId, normalizedEvidence.idempotencyKey);
-    const previous = inFlight.get(key);
-    const operation = (previous ?? Promise.resolve())
-      .catch(() => undefined)
-      .then(() => processInternal({
-        learnerId,
-        evidence: normalizedEvidence,
-      }));
-    inFlight.set(key, operation);
-
-    try {
-      return await operation;
-    } finally {
-      if (inFlight.get(key) === operation) inFlight.delete(key);
-    }
+  const score = submission.score;
+  const maxScore = submission.maxScore;
+  const gradedAt = storedTimestampToIso(submission.gradedAt);
+  if (
+    typeof score !== 'number'
+    || !Number.isFinite(score)
+    || typeof maxScore !== 'number'
+    || !Number.isFinite(maxScore)
+    || maxScore <= 0
+    || score < 0
+    || score > maxScore
+    || gradedAt === null
+  ) {
+    return null;
   }
 
-  return { process };
+  return {
+    masteryBearing: true,
+    evidence: normalizeLearningEvidenceV1({
+      contractVersion: 'learning-evidence.v1',
+      nodeId: BM2_PILOT_NODE,
+      activityId: mastery.activityId,
+      attemptOrdinal: serverAttemptOrdinal,
+      origin: 'mastery_advantage',
+      mode: mode as LearningEvidenceV1['mode'],
+      occurredAt,
+      gradedEvidence: {
+        isCorrect: score === maxScore,
+        score,
+        maxScore,
+      },
+      idempotencyKey: `bm2:mastery-advantage:submission:${submissionId}`,
+    }),
+  };
 }
 
-function toContractEvidence(document: Doc<'learning_evidence'>): LearningEvidenceV1 {
-  return normalizeLearningEvidenceV1(learningEvidenceV1Schema.parse({
-    contractVersion: document.contractVersion,
-    nodeId: document.nodeId,
-    activityId: document.activityId,
-    attemptOrdinal: document.attemptOrdinal,
-    origin: document.origin,
-    mode: document.mode,
-    occurredAt: new Date(document.occurredAt).toISOString(),
-    gradedEvidence: document.gradedEvidence,
-    idempotencyKey: document.idempotencyKey,
-  }));
+/**
+ * Creates the server-owned BM2 submission boundary. The submission document
+ * is the only source for pilot mapping, timing, attempt, and grade fields.
+ */
+export function createBm2SubmissionLearningEvidenceHandler({
+  evidenceStore,
+  loadActivitySubmission,
+  masteryBridge,
+  receiptStore,
+}: {
+  evidenceStore: Bm2LearningEvidenceStore;
+  loadActivitySubmission: (submissionId: string) => Promise<Bm2ActivitySubmission | null>;
+  masteryBridge: (input: {
+    learnerId: string;
+    submissionId: string;
+    evidence: LearningEvidenceV1;
+  }) => Promise<void>;
+  receiptStore: Bm2SubmissionReceiptStore;
+}): {
+  process(input: {
+    learnerId: string;
+    submissionId: string;
+  }): Promise<Infer<typeof learningEvidenceResultValidator>>;
+} {
+  return {
+    process: async ({ learnerId, submissionId }) => {
+      const existingReceipt = await receiptStore.findBySubmissionId(learnerId, submissionId);
+      if (existingReceipt) return { ...existingReceipt, delivery: 'replay' as const };
+
+      const submission = await loadActivitySubmission(submissionId);
+      if (!submission) return { accepted: false, reason: 'submission_not_found' };
+
+      const stored = buildBm2StoredEvidence(
+        submission,
+        learnerId,
+        submissionId,
+      );
+      if (!stored) return { accepted: false, reason: 'submission_not_found' };
+
+      const acceptedEvidence = await evidenceStore.listByLearnerAndNode(
+        learnerId,
+        stored.evidence.nodeId,
+        {
+          activityId: stored.evidence.activityId,
+          origin: stored.evidence.origin,
+          occurredAt: stored.evidence.occurredAt,
+        },
+      );
+      const latestAttemptOrdinal = highestAttemptOrdinal(
+        stored.evidence,
+        acceptedEvidence,
+      );
+      if (
+        latestAttemptOrdinal !== null
+        && stored.evidence.attemptOrdinal <= latestAttemptOrdinal
+      ) {
+        return {
+          accepted: false,
+          reason: 'attempt_ordinal_conflict',
+          latestAttemptOrdinal,
+          receivedAttemptOrdinal: stored.evidence.attemptOrdinal,
+        };
+      }
+      const decision = evaluateLearningEvidenceV1({
+        evidence: stored.evidence,
+        acceptedEvidence,
+        enabledNodeIds: BM2_LEARNING_EVIDENCE_PILOT.enabledNodeIds,
+      });
+
+      if (
+        decision.idempotency !== 'new'
+        || (
+          decision.reason !== 'teacher_led'
+          && decision.reason !== 'ungraded_evidence'
+          && decision.reason !== 'eligible'
+        )
+      ) {
+        return {
+          persisted: false,
+          masteryApplied: false,
+          kstApplied: false,
+          delivery: 'new' as const,
+          decision,
+        };
+      }
+
+      if (stored.masteryBearing) {
+        await masteryBridge({
+          learnerId,
+          submissionId,
+          evidence: stored.evidence,
+        });
+      }
+
+      await evidenceStore.append(learnerId, stored.evidence, submissionId);
+      const receipt: Bm2SubmissionReceipt = {
+        persisted: true,
+        masteryApplied: stored.masteryBearing,
+        kstApplied: false,
+        decision,
+      };
+      await receiptStore.append(learnerId, submissionId, receipt);
+      return { ...receipt, delivery: 'new' as const };
+    },
+  };
 }
 
 function createEvidenceStore(ctx: MutationCtx): Bm2LearningEvidenceStore {
   return {
-    findByIdempotencyKey: async (learnerId, idempotencyKey) => {
-      const document = await ctx.db
+    listByLearnerAndNode: async (learnerId, nodeId, options) => {
+      const documents: Doc<'learning_evidence'>[] = [];
+      const seen = new Set<string>();
+      const addDocument = (document: Doc<'learning_evidence'> | null) => {
+        if (document && !seen.has(String(document._id))) {
+          seen.add(String(document._id));
+          documents.push(document);
+        }
+      };
+      const occurredAt = Date.parse(options.occurredAt);
+      const latestTeacherQuery = ctx.db
         .query('learning_evidence')
-        .withIndex('by_student_and_idempotency_key', (query) => (
-          query.eq('studentId', learnerId as Id<'profiles'>).eq('idempotencyKey', idempotencyKey)
-        ))
-        .unique();
-      return document ? toContractEvidence(document) : null;
-    },
-    listByLearnerAndNode: async (learnerId, nodeId) => {
-      const documents = await ctx.db
+        .withIndex('by_student_node_origin_occurred_at', (query) => (
+          query
+            .eq('studentId', learnerId as Id<'profiles'>)
+            .eq('nodeId', nodeId)
+            .eq('origin', 'teacher_led')
+            .lte('occurredAt', occurredAt)
+        ));
+      const orderedLatestTeacherQuery = latestTeacherQuery.order('desc');
+      addDocument(await orderedLatestTeacherQuery.first());
+
+      const latestAttemptQuery = ctx.db
         .query('learning_evidence')
-        .withIndex('by_student_and_node', (query) => (
-          query.eq('studentId', learnerId as Id<'profiles'>).eq('nodeId', nodeId)
-        ))
-        .collect();
-      return documents.map(toContractEvidence);
+        .withIndex('by_student_node_activity_origin_attempt', (query) => (
+          query
+            .eq('studentId', learnerId as Id<'profiles'>)
+            .eq('nodeId', nodeId)
+            .eq('activityId', options.activityId)
+            .eq('origin', options.origin)
+        ));
+      const orderedLatestAttemptQuery = latestAttemptQuery.order('desc');
+      addDocument(await orderedLatestAttemptQuery.first());
+
+      return documents.map((document) => normalizeLearningEvidenceV1({
+        contractVersion: document.contractVersion,
+        nodeId: document.nodeId,
+        activityId: document.activityId,
+        attemptOrdinal: document.attemptOrdinal,
+        origin: document.origin,
+        mode: document.mode,
+        occurredAt: new Date(document.occurredAt).toISOString(),
+        gradedEvidence: document.gradedEvidence,
+        idempotencyKey: document.idempotencyKey,
+      }));
     },
-    append: async (learnerId, evidence) => {
+    append: async (learnerId, evidence, submissionId) => {
       const occurredAt = Date.parse(evidence.occurredAt);
       if (!Number.isFinite(occurredAt)) {
         throw new TypeError('occurredAt must be a valid ISO timestamp');
       }
-
       await ctx.db.insert('learning_evidence', {
         studentId: learnerId as Id<'profiles'>,
+        submissionId: submissionId as Id<'activity_submissions'>,
         contractVersion: 'learning-evidence.v1',
         nodeId: evidence.nodeId,
         activityId: evidence.activityId,
@@ -296,8 +436,41 @@ function createEvidenceStore(ctx: MutationCtx): Bm2LearningEvidenceStore {
         occurredAt,
         gradedEvidence: evidence.gradedEvidence,
         idempotencyKey: evidence.idempotencyKey,
-        fingerprint: learningEvidenceFingerprintV1(evidence),
         createdAt: Date.now(),
+      });
+    },
+  };
+}
+
+function createBm2ReceiptStore(ctx: MutationCtx, now: number): Bm2SubmissionReceiptStore {
+  return {
+    findBySubmissionId: async (learnerId, submissionId) => {
+      const document = await ctx.db
+        .query('learning_evidence_receipts')
+        .withIndex('by_student_and_submission_id', (query) => (
+          query
+            .eq('studentId', learnerId as Id<'profiles'>)
+            .eq('submissionId', submissionId as Id<'activity_submissions'>)
+      ))
+        .unique();
+      if (!document) return null;
+      return {
+        persisted: document.persisted,
+        masteryApplied: document.masteryApplied,
+        kstApplied: document.kstApplied,
+        decision: document.decision as LearningEvidenceDecisionV1,
+      };
+    },
+    append: async (learnerId, submissionId, receipt) => {
+      await ctx.db.insert('learning_evidence_receipts', {
+        studentId: learnerId as Id<'profiles'>,
+        submissionId: submissionId as Id<'activity_submissions'>,
+        persisted: receipt.persisted,
+        masteryApplied: receipt.masteryApplied,
+        kstApplied: receipt.kstApplied,
+        decision: receipt.decision,
+        createdAt: now,
+        updatedAt: now,
       });
     },
   };
@@ -385,6 +558,7 @@ function createSrsStores(ctx: MutationCtx): {
       studentId: card.studentId as Id<'profiles'>,
       problemFamilyId: bm2VariantKeyToProblemFamilyId(card.variantKey),
       rating: reviewLog.rating,
+      submissionId: reviewLog.submissionId,
       scheduledAt: Number.isFinite(scheduledAt) ? scheduledAt : reviewedAt,
       reviewedAt,
       elapsedDays: card.elapsedDays,
@@ -393,7 +567,6 @@ function createSrsStores(ctx: MutationCtx): {
       stateAfter: reviewLog.stateAfter,
     });
 
-    return { cardId: card.cardId, reviewId: reviewLog.reviewId };
   };
 
   const cardStore: CardStore = {
@@ -488,6 +661,7 @@ async function applyBm2SrsReview(
   ctx: MutationCtx,
   learnerId: Id<'profiles'>,
   evidence: LearningEvidenceV1,
+  options: { now: number; submissionId: string },
 ): Promise<void> {
   const masteryMapping = BM2_LEARNING_EVIDENCE_PILOT.mappings[0].masteryAdvantage;
   const { cardStore, reviewLogStore } = createSrsStores(ctx);
@@ -512,32 +686,192 @@ async function applyBm2SrsReview(
     submission: createSrsSubmission(evidence),
     studentId: learnerId,
     activityId: masteryMapping.activityId,
+    now: new Date(options.now).toISOString(),
+    submissionId: options.submissionId,
   });
   if (!result.ok || result.skipped) {
     throw new Error('The BM2 learning-evidence SRS boundary rejected eligible evidence');
   }
 }
 
-/**
- * Authenticated route callers invoke this internal transaction. The
- * transaction persists evidence and, only for eligible post-exposure graded
- * evidence, applies the canonical BM2 SRS boundary in the same transaction.
- */
+async function processBm2Submission(
+  ctx: MutationCtx,
+  learnerId: Id<'profiles'>,
+  submissionId: Id<'activity_submissions'>,
+) {
+    const sourceSubmission = await ctx.db.get('activity_submissions', submissionId);
+    if (!sourceSubmission) {
+      return { accepted: false as const, reason: 'submission_not_found' as const };
+    }
+    const isGuidedSource = sourceSubmission.stableActivityId === BM2_PILOT_SOURCE_ACTIVITY_ID
+      && sourceSubmission.submissionData.mode === 'guided_practice';
+    if (
+      (isGuidedSource && !isBm2PilotSourcePublished())
+      || (!isGuidedSource && !isBm2PilotPublished())
+    ) {
+      return { accepted: false as const, reason: 'submission_not_found' as const };
+    }
+    const serverNow = Date.now();
+    const handler = createBm2SubmissionLearningEvidenceHandler({
+      evidenceStore: createEvidenceStore(ctx),
+      receiptStore: createBm2ReceiptStore(ctx, serverNow),
+      loadActivitySubmission: async (submissionId) => {
+        const submission = await ctx.db.get(
+          'activity_submissions',
+          submissionId as Id<'activity_submissions'>,
+        );
+        if (!submission) return null;
+        const activity = await ctx.db.get('activities', submission.activityId);
+        if (!activity) return null;
+
+        return {
+          submissionId: String(submission._id),
+          userId: String(submission.userId),
+          activityId: String(submission.activityId),
+          activityStableActivityId: activity.stableActivityId,
+          stableActivityId: submission.stableActivityId,
+          attemptOrdinal: submission.attemptOrdinal,
+          masteryContractVersion: submission.masteryContractVersion,
+          trustedTeacherExposure: submission.gradedBy !== undefined,
+          submissionData: submission.submissionData,
+          score: submission.score,
+          maxScore: submission.maxScore,
+          submittedAt: submission.submittedAt,
+          gradedAt: submission.gradedAt,
+        };
+      },
+      masteryBridge: ({ evidence, submissionId }) => applyBm2SrsReview(
+        ctx,
+        learnerId,
+        evidence,
+        { now: serverNow, submissionId },
+      ),
+    });
+
+    return handler.process({ learnerId, submissionId: String(submissionId) });
+}
+
+/** Process a server-owned learner submission. */
 export const submit = internalMutation({
   args: {
     learnerId: v.id('profiles'),
-    evidence: learningEvidenceValidator,
+    submissionId: v.id('activity_submissions'),
+  },
+  returns: learningEvidenceResultValidator,
+  handler: async (ctx, args) => processBm2Submission(ctx, args.learnerId, args.submissionId),
+});
+
+/** Record teacher-verified exposure for an actively enrolled learner. */
+export const verifyTeacherExposure = internalMutation({
+  args: {
+    teacherId: v.id('profiles'),
+    learnerId: v.id('profiles'),
+    submissionId: v.id('activity_submissions'),
   },
   returns: learningEvidenceResultValidator,
   handler: async (ctx, args) => {
-    const handler = createBm2LearningEvidenceHandler({
-      store: createEvidenceStore(ctx),
-      masteryBridge: ({ evidence }) => applyBm2SrsReview(ctx, args.learnerId, evidence),
+    const teacher = await ctx.db.get('profiles', args.teacherId);
+    const learner = await ctx.db.get('profiles', args.learnerId);
+    const enrollments = await ctx.db
+      .query('class_enrollments')
+      .withIndex('by_student', (query) => query.eq('studentId', args.learnerId))
+      .collect();
+    const submission = await ctx.db.get('activity_submissions', args.submissionId);
+    const activity = submission
+      ? await ctx.db.get('activities', submission.activityId)
+      : null;
+    let enrollmentIsAuthorized = false;
+    for (const enrollment of enrollments) {
+      if (
+        enrollment.status !== 'active'
+        || !submission
+        || enrollment.enrolledAt > submission.submittedAt
+      ) continue;
+      const cls = await ctx.db.get('classes', enrollment.classId);
+      if (cls && !cls.archived && (teacher?.role === 'admin' || cls.teacherId === teacher?._id)) {
+        enrollmentIsAuthorized = true;
+        break;
+      }
+    }
+    const pilotLesson = await ctx.db
+      .query('lessons')
+      .withIndex('by_slug', (query) => query.eq(
+        'slug',
+        BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source.lessonSlug,
+      ))
+      .unique();
+    let sourceAccessIsAuthorized = false;
+    if (pilotLesson && submission && activity && learner) {
+      const versions = await ctx.db
+        .query('lesson_versions')
+        .withIndex('by_lesson', (query) => query.eq('lessonId', pilotLesson._id))
+        .take(20);
+      for (const version of versions) {
+        if (version.status !== 'published') continue;
+        const phases = await ctx.db
+          .query('phase_versions')
+          .withIndex('by_lesson_version', (query) => query.eq('lessonVersionId', version._id))
+          .take(20);
+        for (const phase of phases) {
+          const sections = await ctx.db
+            .query('phase_sections')
+            .withIndex('by_phase_version', (query) => query.eq('phaseVersionId', phase._id))
+            .take(20);
+          const hasSource = sections.some((section) => (
+            section.sectionType === 'activity'
+            && (section.content.activityId === String(activity._id)
+              || section.content.activityId === activity.stableActivityId)
+          ));
+          if (!hasSource) continue;
+          const progress = await ctx.db
+            .query('student_progress')
+            .withIndex('by_user_and_phase', (query) => (
+              query.eq('userId', learner._id).eq('phaseId', phase._id)
+            ))
+            .unique();
+          const assignedAt = progress?.startedAt ?? progress?.createdAt;
+          if (assignedAt !== undefined && assignedAt <= submission.submittedAt) {
+            sourceAccessIsAuthorized = true;
+            break;
+          }
+        }
+        if (sourceAccessIsAuthorized) break;
+      }
+    }
+    if (
+      !isBm2PilotSourcePublished()
+      ||
+      !teacher
+      || (teacher.role !== 'teacher' && teacher.role !== 'admin')
+      || !learner
+      || learner.role !== 'student'
+      || teacher.organizationId !== learner.organizationId
+      || !enrollmentIsAuthorized
+      || !sourceAccessIsAuthorized
+      || submission?.userId !== learner._id
+      || activity?.stableActivityId !== BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source.activityId
+      || submission.stableActivityId !== BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source.activityId
+      || submission.submissionData.mode !== BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source.mode
+    ) {
+      return { accepted: false as const, reason: 'submission_not_found' as const };
+    }
+    if (submission.gradedBy !== undefined) {
+      const receipt = await ctx.db
+        .query('learning_evidence_receipts')
+        .withIndex('by_student_and_submission_id', (query) => (
+          query.eq('studentId', learner._id).eq('submissionId', submission._id)
+        ))
+        .unique();
+      if (!receipt || submission.gradedBy !== teacher._id) {
+        return { accepted: false as const, reason: 'submission_not_found' as const };
+      }
+      return processBm2Submission(ctx, learner._id, submission._id);
+    }
+    await ctx.db.patch('activity_submissions', submission._id, {
+      gradedBy: teacher._id,
+      gradedAt: Date.now(),
+      updatedAt: Date.now(),
     });
-
-    return handler.process({
-      learnerId: args.learnerId,
-      evidence: args.evidence,
-    });
+    return processBm2Submission(ctx, learner._id, submission._id);
   },
 });

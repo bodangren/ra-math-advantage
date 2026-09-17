@@ -9,6 +9,8 @@
  * must be validated on the server using these utilities.
  */
 
+import FormulaParser from 'fast-formula-parser';
+import { COURSE_FORMULA_FUNCTIONS } from './spreadsheet-functions';
 import type { SpreadsheetData } from '@/components/activities/spreadsheet';
 
 /**
@@ -25,7 +27,8 @@ export const ALLOWED_FORMULA_FUNCTIONS = [
   'ROUND',
   'ABS',
   'SQRT',
-  'POWER',
+  'POWER', 'SUMIF', 'SUMIFS', 'COUNTIF', 'COUNTIFS', 'IFERROR', 'AND', 'OR',
+  'INDEX', 'MATCH', 'IPMT', 'PPMT', 'CHOOSE', 'SWITCH', 'SLN', 'DDB', 'PMT', 'PV', 'FV', 'NPV', 'IRR', 'VLOOKUP', 'XLOOKUP', 'ROUNDUP', 'ROUNDDOWN', 'LOG', 'EXP',
 ] as const;
 
 /**
@@ -119,12 +122,12 @@ export function sanitizeFormula(formula: string): SanitizationResult {
   }
 
   // Validate formula functions against whitelist
-  const functionPattern = /([A-Z]+)\(/g;
-  const matches = formula.match(functionPattern);
+  const functionPattern = /([A-Z_][A-Z0-9_.]*)\s*\(/gi;
+  const matches = formula.replace(/"(?:[^"]|"")*"/g, '""').match(functionPattern);
 
   if (matches) {
     for (const match of matches) {
-      const functionName = match.slice(0, -1);
+      const functionName = match.slice(0, -1).trim().toUpperCase();
       if (!ALLOWED_FORMULA_FUNCTIONS.includes(functionName as typeof ALLOWED_FORMULA_FUNCTIONS[number])) {
         return {
           isValid: false,
@@ -242,6 +245,54 @@ export function normalizeValue(value: string | number): string {
   return value.toString().toLowerCase().trim();
 }
 
+/** Evaluate cell references without importing the browser spreadsheet component. */
+function evaluateSheet(data: SpreadsheetData): SpreadsheetData {
+  const values = new Map<string, string | number>();
+  const visiting = new Set<string>();
+  const columns = Math.max(0, ...data.map(row => row.length));
+  const read = (row: number, col: number): string | number => {
+    const key = `${row}:${col}`;
+    if (values.has(key)) return values.get(key)!;
+    if (visiting.has(key)) throw new Error('circular_reference');
+    const raw = data[row - 1]?.[col - 1]?.value ?? '';
+    if (typeof raw !== 'string' || !raw.trim().startsWith('=')) {
+      return raw !== '' && Number.isFinite(Number(raw)) ? Number(raw) : raw;
+    }
+    visiting.add(key);
+    try {
+      // Each parser owns its parse state. Dependencies can contain other formulas.
+      const parser = new FormulaParser({
+        functions: COURSE_FORMULA_FUNCTIONS,
+        onCell: ref => {
+          if (ref.sheet) throw new Error('external_sheet_reference');
+          return read(ref.row, ref.col);
+        },
+        onRange: ref => {
+          if (ref.sheet) throw new Error('external_sheet_reference');
+          const result: unknown[][] = [];
+          for (let r = ref.from.row; r <= Math.min(ref.to.row, data.length); r++) {
+            const cells: unknown[] = [];
+            for (let c = ref.from.col; c <= Math.min(ref.to.col, columns); c++) cells.push(read(r, c));
+            result.push(cells);
+          }
+          return result;
+        },
+      });
+      const output = parser.parse(raw.trim().slice(1), { row, col });
+      const value = typeof output === 'number' || typeof output === 'string' ? output : '#VALUE!';
+      values.set(key, value);
+      return value;
+    } finally {
+      visiting.delete(key);
+    }
+  };
+  return data.map((row, r) => row.map((cell, c) => {
+    if (!cell) return cell;
+    try { return { ...cell, value: read(r + 1, c + 1) }; }
+    catch { return { ...cell, value: '#VALUE!' }; }
+  }));
+}
+
 /**
  * Validate student submission against target cells.
  *
@@ -257,13 +308,20 @@ export function validateSubmission(
   targetCells: TargetCell[]
 ): ValidationResult {
   const feedback: CellFeedback[] = [];
+  const sanitized = validateSpreadsheetData(data);
+  const evaluated = sanitized.isValid ? evaluateSheet(data) : [];
 
   for (const target of targetCells) {
-    const actualValue = getCellValue(data, target.cell);
+    const rawValue = getCellValue(data, target.cell);
+    const actualValue = getCellValue(evaluated, target.cell);
     const normalizedActual = normalizeValue(actualValue);
     const normalizedExpected = normalizeValue(target.expectedValue);
 
-    const isCorrect = normalizedActual === normalizedExpected;
+    const formulaRequired = target.expectedFormula !== undefined;
+    const hasFormula = typeof rawValue === 'string' && rawValue.trim().startsWith('=');
+    const isCorrect = sanitized.isValid && (!formulaRequired || hasFormula) && (typeof target.expectedValue === 'number'
+      ? normalizedActual !== '' && Number.isFinite(Number(normalizedActual)) && Math.abs(Number(normalizedActual) - target.expectedValue) <= 0.000001
+      : normalizedActual === normalizedExpected);
 
     feedback.push({
       cell: target.cell,

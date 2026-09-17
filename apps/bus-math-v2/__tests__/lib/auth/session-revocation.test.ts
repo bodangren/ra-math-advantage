@@ -49,6 +49,7 @@ describe('requireActiveRequestSessionClaims', () => {
   it('returns claims when credential is active', async () => {
     mockFetchInternalQuery.mockResolvedValue({
       id: 'cred_123',
+      profileId: 'profile_123',
       username: 'test_student',
       role: 'student',
     });
@@ -61,6 +62,13 @@ describe('requireActiveRequestSessionClaims', () => {
     if (!(result instanceof Response)) {
       expect(result.username).toBe('test_student');
     }
+  });
+
+  it.each([{ profileId: 'different-profile', role: 'student' }, { profileId: 'profile_123', role: 'teacher' }])('rejects a changed account identity or role: %j', async (credential) => {
+    mockFetchInternalQuery.mockResolvedValue({ username: 'test_student', ...credential });
+    const result = await requireActiveRequestSessionClaims(buildRequestWithCookie(await makeToken()));
+    expect(result).toBeInstanceOf(Response);
+    expect((result as Response).status).toBe(401);
   });
 
   it('returns 401 when credential is deactivated', async () => {

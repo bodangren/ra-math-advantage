@@ -21,7 +21,9 @@ import {
   type PublishedCurriculumLesson,
   type PublishedSection,
 } from "../lib/curriculum/published-manifest";
+import { BM2_LEARNING_EVIDENCE_PILOT } from "../lib/learning-evidence/bm2-pilot";
 import { resolveLatestPublishedLessonVersion } from "../lib/progress/published-curriculum";
+import capabilityGraph from "../curriculum/skill-graph/nodes.json";
 
 /** Encodes a byte array to a base64url string without padding. */
 function base64UrlEncodeBytes(bytes: Uint8Array): string {
@@ -69,6 +71,15 @@ function activitySignature(activity: Pick<PublishedActivity, "componentKey" | "d
   ].join("::");
 }
 
+/** Compare stored JSON values without depending on database object key order. */
+function canonicalContent(value: unknown): string {
+  if (Array.isArray(value)) return `[${value.map(canonicalContent).join(',')}]`;
+  if (value && typeof value === 'object') return `{${Object.entries(value)
+    .filter(([, item]) => item !== undefined).sort(([a], [b]) => a.localeCompare(b))
+    .map(([key, item]) => `${JSON.stringify(key)}:${canonicalContent(item)}`).join(',')}}`;
+  return JSON.stringify(value ?? null);
+}
+
 /**
  * Upserts a competency standard by code, using an in-memory cache to avoid
  * redundant inserts within the same seed run.
@@ -94,15 +105,22 @@ async function ensureCompetencyStandard(
     .withIndex("by_code", (q) => q.eq("code", code))
     .unique();
 
+  const capability = capabilityGraph.nodes.find((node) => node.metadata.standardCodes.includes(code));
+  if (!capability) throw new Error(`Missing capability description for ${code}`);
+  const descriptions = {
+    description: capability.description,
+    studentFriendlyDescription: capability.title,
+  };
+
   if (existing) {
+    await ctx.db.patch(existing._id, descriptions);
     cache.set(code, existing._id);
     return existing._id;
   }
 
   const standardId = await ctx.db.insert("competency_standards", {
     code,
-    description: `Published curriculum standard ${code}`,
-    studentFriendlyDescription: `Demonstrate mastery for ${code}.`,
+    ...descriptions,
     category: "Curriculum",
     isActive: true,
     createdAt: now,
@@ -128,22 +146,48 @@ async function ensureActivity(
   now: number,
   existingActivities: Doc<"activities">[],
   cache: Map<string, Id<"activities">>,
+  referencedActivityIds: Set<string>,
 ) {
-  const signature = activitySignature(activity);
+  const signature = activitySignature(activity) + canonicalContent([activity.props, activity.gradingConfig]);
   const cached = cache.get(signature);
   if (cached) {
     return cached;
   }
 
-  const existing = existingActivities.find(
+  const pilotSource = BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source;
+  const isPilot = activity.key === pilotSource.activityKey;
+  const stableActivityId = isPilot ? pilotSource.activityId : undefined;
+  let existing = (stableActivityId === undefined
+    ? undefined
+    : existingActivities.find(
+        (candidate) => candidate.stableActivityId === stableActivityId,
+      )) ?? existingActivities.find(
     (candidate) =>
       candidate.componentKey === activity.componentKey &&
       candidate.displayName === activity.displayName &&
       (candidate.description ?? null) === (activity.description ?? null),
   );
 
+  if (existing && referencedActivityIds.has(existing._id)
+    && canonicalContent([existing.componentKey, existing.displayName, existing.description, existing.props, existing.gradingConfig])
+      !== canonicalContent([activity.componentKey, activity.displayName, activity.description, activity.props, activity.gradingConfig])) {
+    if (isPilot) throw new Error('Changing the published pilot requires a new lesson version and an explicit pilot mapping.');
+    // Keep the earlier activity for saved work and the earlier lesson version.
+    existing = existingActivities.find(candidate => candidate.componentKey === activity.componentKey
+      && candidate.displayName === activity.displayName
+      && canonicalContent([candidate.description, candidate.props, candidate.gradingConfig])
+        === canonicalContent([activity.description, activity.props, activity.gradingConfig]));
+  }
+
   if (existing) {
     await ctx.db.patch(existing._id, {
+      ...(isPilot
+        ? {
+            componentKey: activity.componentKey,
+            displayName: activity.displayName,
+            stableActivityId,
+          }
+        : {}),
       description: activity.description,
       props: activity.props,
       gradingConfig: activity.gradingConfig,
@@ -155,6 +199,7 @@ async function ensureActivity(
 
   const activityId = await ctx.db.insert("activities", {
     componentKey: activity.componentKey,
+    ...(stableActivityId === undefined ? {} : { stableActivityId }),
     displayName: activity.displayName,
     description: activity.description,
     props: activity.props,
@@ -170,35 +215,6 @@ async function ensureActivity(
 
   cache.set(signature, activityId);
   return activityId;
-}
-
-/**
- * Deletes all existing phase versions and their sections for a lesson version
- * so they can be re-seeded from scratch.
- * @param ctx - The Convex mutation context.
- * @param lessonVersionId - The ID of the lesson version to clean.
- */
-async function replaceLessonVersionPhases(
-  ctx: MutationCtx,
-  lessonVersionId: Id<"lesson_versions">,
-) {
-  const existingPhases = await ctx.db
-    .query("phase_versions")
-    .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", lessonVersionId))
-    .collect();
-
-  for (const phase of existingPhases) {
-    const sections = await ctx.db
-      .query("phase_sections")
-      .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
-      .collect();
-
-    for (const section of sections) {
-      await ctx.db.delete!(section._id);
-    }
-
-    await ctx.db.delete!(phase._id);
-  }
 }
 
 /**
@@ -282,6 +298,7 @@ async function upsertPublishedLesson(
   existingActivities: Doc<"activities">[],
   standardCache: Map<string, Id<"competency_standards">>,
   activityCache: Map<string, Id<"activities">>,
+  referencedActivityIds: Set<string>,
 ) {
   let lessonRow = await ctx.db
     .query("lessons")
@@ -327,6 +344,9 @@ async function upsertPublishedLesson(
     .unique();
 
   if (lessonVersion) {
+    if (lessonVersion.status === 'published' && (lessonVersion.title !== lesson.version.title || lessonVersion.description !== lesson.version.description)) {
+      throw new Error('Changing published lesson content requires a new lesson version.');
+    }
     await ctx.db.patch(lessonVersion._id, {
       title: lesson.version.title,
       description: lesson.version.description,
@@ -356,12 +376,35 @@ async function upsertPublishedLesson(
   }
 
   await replaceLessonStandards(ctx, lessonVersion._id, standardIds, now);
-  await replaceLessonVersionPhases(ctx, lessonVersion._id);
+  const existingPhases = await ctx.db.query("phase_versions")
+    .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", lessonVersion._id))
+    .collect();
+  if (existingPhases.some((phase) => !lesson.phases.some((planned) => planned.phaseNumber === phase.phaseNumber))) {
+    throw new Error("Removing a published phase requires a new lesson version.");
+  }
 
   const activityIdByLogicalKey = new Map<string, Id<"activities">>();
   for (const activity of lesson.activities) {
-    const activityId = await ensureActivity(ctx, activity, now, existingActivities, activityCache);
+    const activityId = await ensureActivity(ctx, activity, now, existingActivities, activityCache, referencedActivityIds);
     activityIdByLogicalKey.set(activity.key, activityId);
+  }
+
+  if (existingPhases.length > 0) {
+    for (const phase of lesson.phases) {
+      const savedPhase = existingPhases.find(candidate => candidate.phaseNumber === phase.phaseNumber);
+      if (!savedPhase) throw new Error('Adding published phases requires a new lesson version.');
+      const savedSections = await ctx.db.query('phase_sections')
+        .withIndex('by_phase_version', q => q.eq('phaseVersionId', savedPhase._id)).collect();
+      savedSections.sort((a, b) => a.sequenceOrder - b.sequenceOrder);
+      const savedContent = savedSections.map(section => ({ sectionType: section.sectionType, content: section.content }));
+      const plannedContent = phase.sections.map(section => ({ sectionType: section.sectionType,
+        content: normalizeSectionContent(section, activityIdByLogicalKey) }));
+      if (savedPhase.title !== phase.title || savedPhase.estimatedMinutes !== phase.estimatedMinutes
+        || canonicalContent(savedContent) !== canonicalContent(plannedContent)) {
+        throw new Error('Changing published phase content requires a new lesson version.');
+      }
+    }
+    return lessonRow._id;
   }
 
   for (const phase of lesson.phases) {
@@ -397,6 +440,8 @@ async function seedPublishedCurriculumHandler(ctx: MutationCtx) {
   const now = Date.now();
   const seedPlan = buildPublishedCurriculumSeedPlan();
   const existingActivities = await ctx.db.query("activities").collect();
+  const referencedActivityIds = new Set((await ctx.db.query('phase_sections').collect())
+    .filter(section => section.sectionType === 'activity').map(section => String(section.content.activityId)));
   const standardCache = new Map<string, Id<"competency_standards">>();
   const activityCache = new Map<string, Id<"activities">>();
 
@@ -410,6 +455,7 @@ async function seedPublishedCurriculumHandler(ctx: MutationCtx) {
         existingActivities,
         standardCache,
         activityCache,
+        referencedActivityIds,
       ),
     );
   }

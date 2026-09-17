@@ -198,6 +198,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
+    const message = error instanceof Error ? error.message : '';
+    if (message.includes('idempotency_conflict')) return NextResponse.json({ error: 'This request key is already used.' }, { status: 409 });
+    if (message.includes('required_activity_incomplete')) return NextResponse.json({ error: 'Save and pass each required activity before you complete this phase.' }, { status: 409 });
+    if (message.includes('previous_phase_incomplete') || message.includes('phase_unavailable')) return NextResponse.json({ error: 'This phase is not available.' }, { status: 403 });
     console.error('Unexpected error in /api/phases/complete:', error);
     return NextResponse.json(
       { error: 'Internal server error' },

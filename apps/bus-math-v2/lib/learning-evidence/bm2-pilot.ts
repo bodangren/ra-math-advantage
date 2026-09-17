@@ -1,15 +1,7 @@
-import {
-  buildPracticeSubmissionEnvelope,
-  evaluateLearningEvidenceV1,
-  normalizeLearningEvidenceV1,
-  type LearningEvidenceV1,
-  type PracticeSubmissionEnvelope,
-} from '@math-platform/practice-core';
-import {
-  InMemorySubmissionSrsAdapter,
-  type SrsCardState,
-  type SrsReviewLogEntryV31,
-} from '@math-platform/srs-engine';
+import graphNodes from '../../curriculum/skill-graph/nodes.json';
+import graphBlueprints from '../../curriculum/skill-graph/blueprints.json';
+import { buildPublishedCurriculumManifest } from '../curriculum/published-manifest';
+import { AUTHORED_UNIT_1_LESSONS } from '../curriculum/generated/unit1-authored';
 
 const BM2_PILOT_NODE_ID = 'math.bm2.skill.1.1.apply-accounting-equation';
 const BM2_PILOT_LESSON_ID = 'd6b57545-65f6-4c39-80d5-000000000001';
@@ -21,8 +13,55 @@ const BM2_PILOT_VARIANT_KEY = 'accounting-equation';
 /** The only BM2 learning-evidence node enabled by this pilot. */
 export const BM2_PILOT_NODE = BM2_PILOT_NODE_ID;
 
+/** The reviewed authored stable activity ID for the BM2 pilot. */
+export const BM2_PILOT_SOURCE_ACTIVITY_ID = BM2_PILOT_ACTIVITY_ID;
+
 /** The reviewed legacy BM2 SRS identifier for the pilot variant. */
 export const BM2_PILOT_PROBLEM_FAMILY_ID = BM2_PILOT_VARIANT_KEY;
+
+/** True when the exact reviewed source activity is available to students. */
+export function isBm2PilotSourcePublished(): boolean {
+  const blueprint = graphBlueprints.blueprints.find((candidate) => candidate.nodeId === BM2_PILOT_NODE_ID);
+  const node = graphNodes.nodes.find((candidate) => candidate.id === BM2_PILOT_NODE_ID);
+  const lesson = buildPublishedCurriculumManifest().lessons.find(
+    (candidate) => candidate.slug === BM2_PILOT_LESSON_SLUG,
+  );
+  const activity = lesson?.activities.find(
+    (candidate) => candidate.key === BM2_PILOT_ACTIVITY_KEY,
+  );
+  const authoredLesson = AUTHORED_UNIT_1_LESSONS.find(
+    (candidate) => candidate.lesson.id === BM2_PILOT_LESSON_ID,
+  );
+  const authoredActivity = authoredLesson?.activities.find(
+    (candidate) => candidate.id === BM2_PILOT_ACTIVITY_ID,
+  );
+  return node?.kind === 'skill'
+    && node.reviewStatus === 'reviewed'
+    && blueprint?.reviewStatus === 'reviewed'
+    && blueprint.metadata.activityIds.includes(BM2_PILOT_ACTIVITY_KEY)
+    && lesson?.version.status === 'published'
+    && activity?.componentKey === 'notebook-organizer'
+    && authoredActivity?.componentKey === 'notebook-organizer';
+}
+
+/** True when the reviewed adaptive pilot has all three mode specifications. */
+export function isBm2PilotPublished(): boolean {
+  const blueprint = graphBlueprints.blueprints.find(
+    (candidate) => candidate.nodeId === BM2_PILOT_NODE_ID,
+  );
+  return isBm2PilotSourcePublished()
+    && blueprint?.reviewStatus === 'reviewed'
+    && blueprint.rendererKey === 'notebook-organizer'
+    && 'workedExampleSpec' in blueprint
+    && 'guidedPracticeSpec' in blueprint
+    && 'independentPracticeSpec' in blueprint;
+}
+
+export const BM2_PILOT_MODES = [
+  'worked_example',
+  'guided_practice',
+  'independent_practice',
+] as const;
 
 /**
  * Convert the BM2 storage identifier to the canonical SRS identifier.
@@ -45,21 +84,6 @@ export function bm2VariantKeyToProblemFamilyId(variantKey: string): string {
   return BM2_PILOT_PROBLEM_FAMILY_ID;
 }
 
-/** Validate that the runtime manifest is exactly the reviewed one-node pilot. */
-export function validateBm2LearningEvidencePilotManifest(): void {
-  const [mapping] = BM2_LEARNING_EVIDENCE_PILOT.mappings;
-  if (
-    BM2_LEARNING_EVIDENCE_PILOT.enabledNodeIds.length !== 1
-    || BM2_LEARNING_EVIDENCE_PILOT.enabledNodeIds[0] !== BM2_PILOT_NODE_ID
-    || mapping === undefined
-    || mapping.nodeId !== BM2_PILOT_NODE_ID
-    || mapping.masteryAdvantage.variantKey !== BM2_PILOT_VARIANT_KEY
-    || mapping.masteryAdvantage.problemFamilyId !== BM2_PILOT_PROBLEM_FAMILY_ID
-  ) {
-    throw new Error('BM2 learning-evidence pilot manifest is invalid.');
-  }
-}
-
 export const BM2_LEARNING_EVIDENCE_PILOT = {
   enabledNodeIds: [BM2_PILOT_NODE_ID],
   mappings: [
@@ -80,326 +104,3 @@ export const BM2_LEARNING_EVIDENCE_PILOT = {
     },
   ],
 } as const;
-
-/**
- * Translate the reviewed Unit 1 Lesson 1 submission into exposure evidence.
- *
- * The source activity may contain graded parts, but the teacher-led event
- * intentionally omits graded evidence. This keeps the exposure path away
- * from the mastery bridge.
- */
-export function buildBm2TeacherLedEvidence(
-  submission: PracticeSubmissionEnvelope,
-): LearningEvidenceV1 | null {
-  const source = BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source;
-  if (submission.activityId !== source.activityId) return null;
-
-  return normalizeLearningEvidenceV1({
-    contractVersion: 'learning-evidence.v1',
-    nodeId: BM2_PILOT_NODE_ID,
-    activityId: source.activityId,
-    attemptOrdinal: submission.attemptNumber,
-    origin: 'teacher_led',
-    mode: source.mode,
-    occurredAt: submission.submittedAt,
-    idempotencyKey: `bm2:teacher-led:${source.activityId}:${submission.attemptNumber}`,
-  });
-}
-
-/**
- * Translate a graded daily-practice submission into canonical BM2 evidence.
- *
- * The helper keeps raw answers out of the evidence route. It aggregates only
- * the graded outcome fields that the shared contract permits.
- */
-export function buildBm2MasteryAdvantageEvidence(
-  submission: PracticeSubmissionEnvelope,
-): LearningEvidenceV1 {
-  const parts = submission.parts;
-  const allPartsHaveBooleanOutcome = parts.length > 0
-    && parts.every((part) => typeof part.isCorrect === 'boolean');
-  const allPartsHaveScores = parts.length > 0
-    && parts.every((part) => (
-      typeof part.score === 'number'
-      && Number.isFinite(part.score)
-      && typeof part.maxScore === 'number'
-      && Number.isFinite(part.maxScore)
-    ));
-
-  const gradedEvidence = {
-    ...(allPartsHaveBooleanOutcome
-      ? { isCorrect: parts.every((part) => part.isCorrect === true) }
-      : {}),
-    ...(allPartsHaveScores
-      ? {
-          score: parts.reduce((total, part) => total + (part.score ?? 0), 0),
-          maxScore: parts.reduce((total, part) => total + (part.maxScore ?? 0), 0),
-        }
-      : {}),
-  };
-
-  return normalizeLearningEvidenceV1({
-    contractVersion: 'learning-evidence.v1',
-    nodeId: BM2_PILOT_NODE_ID,
-    activityId: BM2_LEARNING_EVIDENCE_PILOT.mappings[0].masteryAdvantage.activityId,
-    attemptOrdinal: submission.attemptNumber,
-    origin: 'mastery_advantage',
-    mode: submission.mode,
-    occurredAt: submission.submittedAt,
-    ...(Object.keys(gradedEvidence).length > 0 ? { gradedEvidence } : {}),
-    idempotencyKey: `bm2:mastery-advantage:${submission.activityId}:${submission.attemptNumber}`,
-  });
-}
-
-type LearningEvidenceDecision = ReturnType<typeof evaluateLearningEvidenceV1>;
-
-type ProcessInput = {
-  learnerId: string;
-  evidence: LearningEvidenceV1;
-};
-
-export type Bm2MasteryObservation = {
-  nodeId: string;
-  variantKey: string;
-  activityId: string;
-  attemptOrdinal: number;
-  occurredAt: string;
-  idempotencyKey: string;
-  gradedEvidence: NonNullable<LearningEvidenceV1['gradedEvidence']>;
-};
-
-export type Bm2SrsRating = {
-  nodeId: string;
-  variantKey: string;
-  cardId: string;
-  reviewId: string;
-  rating: SrsReviewLogEntryV31['rating'];
-  reviewedAt: string;
-};
-
-export type Bm2SrsSchedule = {
-  nodeId: string;
-  variantKey: string;
-  cardId: string;
-  dueDate: string;
-  scheduledDays: number;
-  state: SrsCardState['state'];
-};
-
-export type Bm2LearningEvidenceSnapshot = {
-  acceptedEvidence: readonly LearningEvidenceV1[];
-  introduced: boolean;
-  masteryObservations: readonly Bm2MasteryObservation[];
-  masteryAttemptCount: number;
-  srsCards: readonly SrsCardState[];
-  srsRatings: readonly Bm2SrsRating[];
-  srsSchedules: readonly Bm2SrsSchedule[];
-};
-
-export type Bm2LearningEvidenceProcessResult = {
-  persisted: boolean;
-  masteryApplied: boolean;
-  decision: LearningEvidenceDecision;
-};
-
-type StoredEvidence = {
-  learnerId: string;
-  evidence: LearningEvidenceV1;
-};
-
-type StoredMasteryObservation = Bm2MasteryObservation & {
-  learnerId: string;
-};
-
-type StoredSrsRating = Bm2SrsRating & {
-  learnerId: string;
-};
-
-type StoredSrsSchedule = Bm2SrsSchedule & {
-  learnerId: string;
-};
-
-/**
- * Creates the BM2 one-node learning-evidence runtime used by the pilot.
- *
- * The runtime owns only BM2 evidence persistence and the pilot boundary. It
- * sends eligible Mastery Advantage submissions to the shared SRS adapter.
- */
-export function createBm2LearningEvidenceRuntime() {
-  const srsAdapter = new InMemorySubmissionSrsAdapter();
-  const masteryMapping = BM2_LEARNING_EVIDENCE_PILOT.mappings[0].masteryAdvantage;
-
-  srsAdapter.getResolver().register(masteryMapping.activityId, {
-    variantKey: masteryMapping.variantKey,
-    objectiveId: BM2_PILOT_NODE_ID,
-  });
-
-  const acceptedEvidence: StoredEvidence[] = [];
-  const masteryObservations: StoredMasteryObservation[] = [];
-  const srsRatings: StoredSrsRating[] = [];
-  const srsSchedules: StoredSrsSchedule[] = [];
-  const inFlight = new Map<string, Promise<Bm2LearningEvidenceProcessResult>>();
-
-  const processInternal = async ({ learnerId, evidence }: ProcessInput): Promise<Bm2LearningEvidenceProcessResult> => {
-      const normalizedEvidence = normalizeLearningEvidenceV1(evidence);
-      const learnerEvidence = acceptedEvidence
-        .filter((entry) => entry.learnerId === learnerId)
-        .map((entry) => entry.evidence);
-      const decision = evaluateLearningEvidenceV1({
-        evidence: normalizedEvidence,
-        acceptedEvidence: learnerEvidence,
-        enabledNodeIds: BM2_LEARNING_EVIDENCE_PILOT.enabledNodeIds,
-      });
-
-      if (decision.idempotency !== 'new') {
-        return {
-          persisted: false,
-          masteryApplied: false,
-          decision,
-        };
-      }
-
-      if (decision.exposureState !== 'introduced') {
-        return {
-          persisted: false,
-          masteryApplied: false,
-          decision,
-        };
-      }
-
-      if (decision.masteryBearing) {
-        const gradedEvidence = normalizedEvidence.gradedEvidence;
-        if (!gradedEvidence) {
-          throw new Error('Mastery-bearing BM2 evidence must include graded evidence.');
-        }
-
-        const submission = buildMasterySubmission(normalizedEvidence, masteryMapping.activityId);
-        const result = await srsAdapter.processSubmission({
-          studentId: learnerId,
-          activityId: masteryMapping.activityId,
-          submission,
-        });
-
-        if (!result.ok || result.skipped) {
-          throw new Error('The BM2 pilot could not forward eligible evidence to the shared SRS adapter.');
-        }
-
-        const card = result.card;
-        acceptedEvidence.push({ learnerId, evidence: normalizedEvidence });
-        masteryObservations.push({
-          learnerId,
-          nodeId: normalizedEvidence.nodeId,
-          variantKey: masteryMapping.variantKey,
-          activityId: masteryMapping.activityId,
-          attemptOrdinal: normalizedEvidence.attemptOrdinal,
-          occurredAt: normalizedEvidence.occurredAt,
-          idempotencyKey: normalizedEvidence.idempotencyKey,
-          gradedEvidence,
-        });
-        srsRatings.push({
-          learnerId,
-          nodeId: normalizedEvidence.nodeId,
-          variantKey: card.variantKey,
-          cardId: card.cardId,
-          reviewId: result.reviewLog.reviewId,
-          rating: result.reviewLog.rating,
-          reviewedAt: result.reviewLog.reviewedAt,
-        });
-        srsSchedules.push({
-          learnerId,
-          nodeId: normalizedEvidence.nodeId,
-          variantKey: card.variantKey,
-          cardId: card.cardId,
-          dueDate: card.dueDate,
-          scheduledDays: card.scheduledDays,
-          state: card.state,
-        });
-
-        return {
-          persisted: true,
-          masteryApplied: true,
-          decision,
-        };
-      }
-
-      acceptedEvidence.push({ learnerId, evidence: normalizedEvidence });
-      return {
-        persisted: true,
-        masteryApplied: false,
-        decision,
-      };
-  };
-
-  const process = async (input: ProcessInput): Promise<Bm2LearningEvidenceProcessResult> => {
-    const normalizedEvidence = normalizeLearningEvidenceV1(input.evidence);
-    const key = `${input.learnerId}\u0000${normalizedEvidence.idempotencyKey}`;
-    const previous = inFlight.get(key);
-    const operation = (previous ?? Promise.resolve()).then(() => processInternal({
-      ...input,
-      evidence: normalizedEvidence,
-    }));
-    inFlight.set(key, operation);
-
-    try {
-      return await operation;
-    } finally {
-      if (inFlight.get(key) === operation) inFlight.delete(key);
-    }
-  };
-
-  return {
-    process,
-
-    async snapshot({ learnerId, nodeId }: { learnerId: string; nodeId: string }): Promise<Bm2LearningEvidenceSnapshot> {
-      const evidenceForNode = acceptedEvidence
-        .filter((entry) => entry.learnerId === learnerId && entry.evidence.nodeId === nodeId)
-        .map((entry) => entry.evidence);
-      const cards = (await srsAdapter.getCardStore().getCardsByStudent(learnerId))
-        .filter((card) => card.objectiveId === nodeId);
-
-      return {
-        acceptedEvidence: evidenceForNode,
-        introduced: evidenceForNode.some((evidence) => evidence.origin === 'teacher_led'),
-        masteryObservations: masteryObservations
-          .filter((entry) => entry.learnerId === learnerId && entry.nodeId === nodeId),
-        masteryAttemptCount: masteryObservations
-          .filter((entry) => entry.learnerId === learnerId && entry.nodeId === nodeId)
-          .length,
-        srsCards: cards,
-        srsRatings: srsRatings
-          .filter((entry) => entry.learnerId === learnerId && entry.nodeId === nodeId),
-        srsSchedules: srsSchedules
-          .filter((entry) => entry.learnerId === learnerId && entry.nodeId === nodeId),
-      };
-    },
-
-    enabledNodeIds(): readonly string[] {
-      return [...BM2_LEARNING_EVIDENCE_PILOT.enabledNodeIds];
-    },
-  };
-}
-
-function buildMasterySubmission(
-  evidence: LearningEvidenceV1,
-  activityId: string,
-) {
-  const gradedEvidence = evidence.gradedEvidence;
-  if (!gradedEvidence) {
-    throw new Error('Mastery-bearing BM2 evidence must include graded evidence.');
-  }
-
-  return buildPracticeSubmissionEnvelope({
-    activityId,
-    mode: evidence.mode,
-    attemptNumber: evidence.attemptOrdinal,
-    submittedAt: evidence.occurredAt,
-    answers: { learningEvidence: gradedEvidence },
-    parts: [{
-      partId: 'learning-evidence',
-      rawAnswer: gradedEvidence,
-      isCorrect: gradedEvidence.isCorrect,
-      score: gradedEvidence.score,
-      maxScore: gradedEvidence.maxScore,
-    }],
-  });
-}
