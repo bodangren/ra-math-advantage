@@ -20,7 +20,7 @@
 | **Modules 3-9 Roadmap** | `./modules-3-9-roadmap.md` |
 | **Daily Practice SRS Roadmap** | `./daily-practice-srs-roadmap.md` |
 | **Practice Primitives Roadmap** | `./practice-primitives-roadmap.md` |
-| **Curriculum** | `../curriculum/` |
+| **Curriculum** | `../apps/integrated-math-3/curriculum/` |
 
 ## Per-App Definitions
 

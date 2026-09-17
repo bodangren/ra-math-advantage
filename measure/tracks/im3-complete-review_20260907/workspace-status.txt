@@ -1,0 +1,654 @@
+ M .agents/skills/convex-quickstart/SKILL.md
+ M .agents/skills/convex/SKILL.md
+ D .claude/skills/convex-create-component/SKILL.md
+ D .claude/skills/convex-create-component/agents/openai.yaml
+ D .claude/skills/convex-create-component/assets/icon.svg
+ D .claude/skills/convex-create-component/references/advanced-patterns.md
+ D .claude/skills/convex-create-component/references/hybrid-components.md
+ D .claude/skills/convex-create-component/references/local-components.md
+ D .claude/skills/convex-create-component/references/packaged-components.md
+ D .claude/skills/convex-quickstart/SKILL.md
+ D .claude/skills/convex-quickstart/agents/openai.yaml
+ D .claude/skills/convex-quickstart/assets/icon.svg
+ D .claude/skills/convex/SKILL.md
+ M apps/bus-math-v2/__tests__/app/api/learning-evidence/bm2-pilot/route.test.ts
+ M apps/bus-math-v2/__tests__/app/api/learning-evidence/bm2-pilot/submission-authority.red.test.ts
+ M apps/bus-math-v2/__tests__/app/api/progress/assessment/route.test.ts
+ M apps/bus-math-v2/__tests__/components/lesson/ActivityRenderer.test.tsx
+ M apps/bus-math-v2/__tests__/components/student/DailyPracticeSession.test.tsx
+ M apps/bus-math-v2/__tests__/convex/learningEvidence-submission-authority.red.test.ts
+ M apps/bus-math-v2/__tests__/convex/learningEvidence.test.ts
+ M apps/bus-math-v2/__tests__/dev/blueprint-qa/harness.test.tsx
+ M apps/bus-math-v2/__tests__/lib/learning-evidence/bm2-pilot.test.ts
+ M apps/bus-math-v2/__tests__/setup/convex-schema.test.ts
+ D apps/bus-math-v2/app/(dev)/blueprint-qa/actions.ts
+ M apps/bus-math-v2/app/(dev)/blueprint-qa/components/GeneratorPanel.tsx
+ D apps/bus-math-v2/app/(dev)/blueprint-qa/components/NodeList.tsx
+ M apps/bus-math-v2/app/(dev)/blueprint-qa/components/RendererPreview.tsx
+ M apps/bus-math-v2/app/(dev)/blueprint-qa/components/register-activities.ts
+ M apps/bus-math-v2/app/(dev)/blueprint-qa/page.tsx
+ M apps/bus-math-v2/app/(dev)/blueprint-qa/types.ts
+ M apps/bus-math-v2/app/api/learning-evidence/bm2-pilot/route.ts
+ M apps/bus-math-v2/app/api/progress/assessment/route.ts
+ M apps/bus-math-v2/components/lesson/ActivityRenderer.tsx
+ M apps/bus-math-v2/components/student/DailyPracticeSession.tsx
+ M apps/bus-math-v2/convex/_generated/api.d.ts
+ M apps/bus-math-v2/convex/activities.ts
+ M apps/bus-math-v2/convex/learningEvidence.ts
+ M apps/bus-math-v2/convex/schema.ts
+ M apps/bus-math-v2/convex/seed.ts
+ M apps/bus-math-v2/lib/assessments/scoring.ts
+ M apps/bus-math-v2/lib/learning-evidence/bm2-pilot.ts
+ M apps/integrated-math-3/.next/types/routes.d.ts
+ M apps/integrated-math-3/__tests__/app/api/activities/submit/route.test.ts
+ M apps/integrated-math-3/__tests__/app/api/phases/complete/route.test.ts
+ M apps/integrated-math-3/__tests__/components/activities/graphing/GraphingExplorer.test.tsx
+ M apps/integrated-math-3/__tests__/components/activities/graphing/InteractiveTableOfValues.test.tsx
+ M apps/integrated-math-3/__tests__/components/activities/roc/RateOfChangeCalculator.test.tsx
+ M apps/integrated-math-3/__tests__/components/lesson/ActivityRenderer-activity-families.test.tsx
+ M apps/integrated-math-3/__tests__/components/lesson/LessonRenderer-activity-submission.test.tsx
+ M apps/integrated-math-3/__tests__/components/lesson/PhaseCompleteButton.test.tsx
+ M apps/integrated-math-3/__tests__/components/lesson/PhaseRenderer.test.tsx
+ M apps/integrated-math-3/__tests__/components/student/PracticeCardRenderer.test.tsx
+ M apps/integrated-math-3/__tests__/components/student/PracticeSessionProvider.test.tsx
+ M apps/integrated-math-3/__tests__/components/textbook/PhaseContainer.test.tsx
+ M apps/integrated-math-3/__tests__/convex/learningEvidence-durable.test.ts
+ M apps/integrated-math-3/__tests__/convex/queue/queue.test.ts
+ M apps/integrated-math-3/__tests__/convex/schema-vany-audit.test.ts
+ M apps/integrated-math-3/__tests__/convex/seed/objective-policies.test.ts
+ M apps/integrated-math-3/__tests__/convex/seed/seed-lesson-standards.test.ts
+ M apps/integrated-math-3/__tests__/convex/seed/seed-standards.test.ts
+ M apps/integrated-math-3/__tests__/convex/srs/submission-srs-variant-key.test.ts
+ M apps/integrated-math-3/__tests__/convex/srs/submissionSrs-v31-policy.test.ts
+ M apps/integrated-math-3/__tests__/convex/srs/submissionSrs.test.ts
+ M apps/integrated-math-3/__tests__/convex/student-phase-completion.test.ts
+ M apps/integrated-math-3/__tests__/convex/studentKnowledgeState.test.ts
+ M apps/integrated-math-3/__tests__/lib/activities/submission.test.ts
+ M apps/integrated-math-3/__tests__/lib/practice/learning-evidence-pilot.test.ts
+ M apps/integrated-math-3/app/api/activities/submit/route.ts
+ M apps/integrated-math-3/app/api/phases/complete/route.ts
+ M apps/integrated-math-3/components/activities/graphing/GraphingExplorerActivity.tsx
+ M apps/integrated-math-3/components/activities/roc/RateOfChangeCalculatorActivity.tsx
+ M apps/integrated-math-3/components/lesson/ActivityRenderer.tsx
+ M apps/integrated-math-3/components/lesson/LessonRenderer.tsx
+ M apps/integrated-math-3/components/lesson/PhaseCompleteButton.tsx
+ M apps/integrated-math-3/components/lesson/PhaseRenderer.tsx
+ M apps/integrated-math-3/components/practice-timing.tsx
+ M apps/integrated-math-3/components/student/PracticeCardRenderer.tsx
+ M apps/integrated-math-3/components/student/PracticeSessionProvider.tsx
+ M apps/integrated-math-3/components/textbook/PhaseContainer.tsx
+ M apps/integrated-math-3/convex/_generated/api.d.ts
+ M apps/integrated-math-3/convex/activities.ts
+ M apps/integrated-math-3/convex/learningEvidence.ts
+ M apps/integrated-math-3/convex/queue/queue.ts
+ M apps/integrated-math-3/convex/schema.ts
+ M apps/integrated-math-3/convex/seed.ts
+ M apps/integrated-math-3/convex/seed/objective_policies.ts
+ M apps/integrated-math-3/convex/seed/seed_lesson_1_1.ts
+ M apps/integrated-math-3/convex/seed/seed_lesson_1_2.ts
+ M apps/integrated-math-3/convex/seed/seed_lesson_standards.ts
+ M apps/integrated-math-3/convex/seed/seed_standards.ts
+ M apps/integrated-math-3/convex/srs/submissionSrs.ts
+ M apps/integrated-math-3/convex/student.ts
+ M apps/integrated-math-3/curriculum/skill-graph/__tests__/pilot-generators.test.ts
+ M apps/integrated-math-3/curriculum/skill-graph/__tests__/pilot-projection.test.ts
+ M apps/integrated-math-3/curriculum/skill-graph/__tests__/pilot-rendering.test.ts
+ M apps/integrated-math-3/curriculum/skill-graph/__tests__/pilot-submission-evidence.test.ts
+ M apps/integrated-math-3/curriculum/skill-graph/blueprints.json
+ M apps/integrated-math-3/curriculum/skill-graph/draft-nodes.json
+ M apps/integrated-math-3/curriculum/skill-graph/edges.json
+ M apps/integrated-math-3/curriculum/skill-graph/module-1/blueprints.json
+ M apps/integrated-math-3/curriculum/skill-graph/module-1/edges.json
+ M apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json
+ M apps/integrated-math-3/curriculum/skill-graph/module-1/projection/practice-v1-activity-map.json
+ M apps/integrated-math-3/curriculum/skill-graph/module-1/standard-edges.json
+ M apps/integrated-math-3/curriculum/skill-graph/nodes.json
+ M apps/integrated-math-3/curriculum/skill-graph/projection/practice-v1-activity-map.json
+ M apps/integrated-math-3/curriculum/skill-graph/projection/srs-input.json
+ M apps/integrated-math-3/curriculum/skill-graph/projection/teacher-evidence-map.json
+ M apps/integrated-math-3/curriculum/skill-graph/standard-edges.json
+ M apps/integrated-math-3/lib/activities/submission.ts
+ M apps/integrated-math-3/lib/practice/learning-evidence-pilot.ts
+ M apps/pre-calculus/__tests__/app/api/learning-evidence/precalculus-pilot/production-route.test.ts
+ D apps/pre-calculus/__tests__/app/api/learning-evidence/precalculus-pilot/route.test.ts
+ M apps/pre-calculus/__tests__/app/api/learning-evidence/precalculus-pilot/submission-authority.red.test.ts
+ M apps/pre-calculus/__tests__/convex/learning-evidence-submission-authority.red.test.ts
+ M apps/pre-calculus/__tests__/convex/learning-evidence.test.ts
+ M apps/pre-calculus/__tests__/learning-evidence-pilot.test.ts
+ M apps/pre-calculus/__tests__/lib/learning-evidence/precalc-pilot.test.ts
+ M apps/pre-calculus/app/api/learning-evidence/precalculus-pilot/route.ts
+ M apps/pre-calculus/app/auth/login/page.tsx
+ M apps/pre-calculus/app/auth/register/page.tsx
+ M apps/pre-calculus/app/student/dashboard/page.tsx
+ M apps/pre-calculus/convex/_generated/api.d.ts
+ M apps/pre-calculus/convex/activities.ts
+ D apps/pre-calculus/convex/learning-evidence.ts
+ M apps/pre-calculus/convex/schema.ts
+ M apps/pre-calculus/convex/seed/seed_lesson_1_1.ts
+ M apps/pre-calculus/convex/seed/seed_lesson_1_2.ts
+ M apps/pre-calculus/convex/seed/seed_lesson_1_3.ts
+ M apps/pre-calculus/convex/seed/seed_lesson_1_4.ts
+ M apps/pre-calculus/convex/seed/seed_lesson_1_5.ts
+ M apps/pre-calculus/convex/seed/seed_lesson_1_6.ts
+ M apps/pre-calculus/curriculum/skill-graph/blueprints.json
+ M apps/pre-calculus/curriculum/skill-graph/draft-nodes.json
+ M apps/pre-calculus/curriculum/skill-graph/edges.json
+ M apps/pre-calculus/curriculum/skill-graph/generator-gap-queue.json
+ M apps/pre-calculus/curriculum/skill-graph/nodes.json
+ M apps/pre-calculus/curriculum/skill-graph/projection/practice-v1-activity-map.json
+ M apps/pre-calculus/curriculum/skill-graph/projection/srs-input.json
+ M apps/pre-calculus/curriculum/skill-graph/standard-edges.json
+ M apps/pre-calculus/lib/auth/server.ts
+ M apps/pre-calculus/lib/learning-evidence/precalc-pilot.ts
+ M apps/pre-calculus/package.json
+ M measure/architecture.md
+ M measure/generated/architecture.json
+ M measure/generated/package-dag.md
+ M measure/generated/routes.md
+ M measure/skill-graph-im3-rollout-audit.md
+ M measure/skill-graph-precalc-rollout-audit.md
+ M measure/tech-debt.md
+ M measure/tracks.md
+ M measure/tracks/kst-srs-v3-2-im3-runtime-migration_20260710/plan.md
+ M measure/tracks/teacher-led-mastery-advantage_20260819/metadata.json
+ M measure/tracks/teacher-led-mastery-advantage_20260819/plan.md
+ M measure/tracks/teacher-led-mastery-advantage_20260819/spec.md
+ M measure/tracks/vertical-slice-value-proof_20260605/metadata.json
+ M measure/tracks/vertical-slice-value-proof_20260605/plan.md
+ M package-lock.json
+ M packages/activity-components/package.json
+ M packages/activity-components/src/__tests__/schemas.test.ts
+ M packages/activity-components/src/components/blanks/FillInTheBlank.tsx
+ M packages/activity-components/src/components/graphing/GraphingCanvas.tsx
+ M packages/activity-components/src/components/graphing/GraphingExplorer.tsx
+ M packages/activity-components/src/components/graphing/GraphingExplorerActivity.tsx
+ M packages/activity-components/src/components/graphing/HintPanel.tsx
+ M packages/activity-components/src/components/graphing/InteractiveTableOfValues.tsx
+ M packages/activity-components/src/components/roc/RateOfChangeCalculator.tsx
+ M packages/activity-components/src/components/roc/RateOfChangeCalculatorActivity.tsx
+ M packages/activity-components/src/index.ts
+ M packages/activity-components/src/primitives/__tests__/coordinate-plane.adversarial.test.tsx
+ M packages/activity-components/src/schemas/comprehension-quiz.schema.ts
+ M packages/activity-components/src/schemas/discriminant-analyzer.schema.ts
+ M packages/activity-components/src/schemas/fill-in-the-blank.schema.ts
+ M packages/activity-components/src/schemas/graphing-explorer.schema.ts
+ M packages/activity-components/src/schemas/index.ts
+ M packages/activity-components/src/schemas/rate-of-change-calculator.schema.ts
+ M packages/activity-components/src/schemas/step-by-step-solver.schema.ts
+ M packages/activity-components/src/types/index.ts
+ M packages/graphing-core/src/__tests__/canvas-utils.test.ts
+ M packages/graphing-core/src/canvas-utils.ts
+ M packages/knowledge-space-practice/src/__tests__/blueprints.test.ts
+ M packages/knowledge-space-practice/src/__tests__/projections.test.ts
+ M packages/knowledge-space-practice/src/blueprints/schemas.ts
+ M packages/knowledge-space-practice/src/blueprints/types.ts
+ M packages/knowledge-space-practice/src/projections/activity-map.ts
+ M packages/knowledge-space-practice/src/projections/srs.ts
+ M packages/math-content/package.json
+ M packages/math-content/src/__tests__/integration.test.ts
+ M packages/math-content/src/__tests__/schemas.test.ts
+ M packages/math-content/src/__tests__/setup.test.ts
+ M packages/math-content/src/index.ts
+ M packages/math-content/src/knowledge-space/cross-course-edges.json
+ M packages/math-content/src/knowledge-space/generators/registry.ts
+ M packages/math-content/src/knowledge-space/index.ts
+ M packages/math-content/src/schemas/comprehension-quiz.schema.ts
+ M packages/math-content/src/schemas/discriminant-analyzer.schema.ts
+ M packages/math-content/src/schemas/fill-in-the-blank.schema.ts
+ M packages/math-content/src/schemas/graphing-explorer.schema.ts
+ M packages/math-content/src/schemas/index.ts
+ M packages/math-content/src/schemas/rate-of-change-calculator.schema.ts
+ M packages/math-content/src/schemas/step-by-step-solver.schema.ts
+ M packages/math-content/src/schemas/types.ts
+ M packages/practice-core/src/__tests__/learning-evidence.test.ts
+ M packages/practice-core/src/index.ts
+ M packages/practice-core/src/practice/learning-evidence.ts
+ M packages/srs-engine/src/srs/submission-srs-adapter.ts
+ M scripts/architecture/__tests__/baseline-capture.test.mjs
+ M scripts/architecture/__tests__/manifest-enforcer.test.mjs
+ M scripts/architecture/__tests__/repository-graph.test.mjs
+ M scripts/architecture/architecture.manifest.json
+ M scripts/generate-measure-docs.ts
+ M skills-lock.json
+?? .agents/skills/convex-add/
+?? .agents/skills/convex-advisor/
+?? .agents/skills/convex-agent/
+?? .agents/skills/convex-auth/
+?? .agents/skills/convex-authz/
+?? .agents/skills/convex-backup/
+?? .agents/skills/convex-billing/
+?? .agents/skills/convex-cost/
+?? .agents/skills/convex-crons/
+?? .agents/skills/convex-deploy-guard/
+?? .agents/skills/convex-design/
+?? .agents/skills/convex-docs/
+?? .agents/skills/convex-domains/
+?? .agents/skills/convex-env/
+?? .agents/skills/convex-expert/
+?? .agents/skills/convex-explain-app/
+?? .agents/skills/convex-improve-convex-plugin/
+?? .agents/skills/convex-insights/
+?? .agents/skills/convex-launch-readiness/
+?? .agents/skills/convex-migrate-rehearse/
+?? .agents/skills/convex-migrate/
+?? .agents/skills/convex-monitor/
+?? .agents/skills/convex-optimize/
+?? .agents/skills/convex-reviewer/
+?? .agents/skills/convex-seed/
+?? .agents/skills/convex-self-heal/
+?? .agents/skills/convex-sentinel/
+?? .agents/skills/convex-suggest/
+?? .agents/skills/convex-test/
+?? .agents/skills/convex-verify/
+?? .claude/skills/convex
+?? .claude/skills/convex-add
+?? .claude/skills/convex-advisor
+?? .claude/skills/convex-agent
+?? .claude/skills/convex-auth
+?? .claude/skills/convex-authz
+?? .claude/skills/convex-backup
+?? .claude/skills/convex-billing
+?? .claude/skills/convex-cost
+?? .claude/skills/convex-create-component
+?? .claude/skills/convex-crons
+?? .claude/skills/convex-deploy-guard
+?? .claude/skills/convex-design
+?? .claude/skills/convex-docs
+?? .claude/skills/convex-domains
+?? .claude/skills/convex-env
+?? .claude/skills/convex-expert
+?? .claude/skills/convex-explain-app
+?? .claude/skills/convex-improve-convex-plugin
+?? .claude/skills/convex-insights
+?? .claude/skills/convex-launch-readiness
+?? .claude/skills/convex-migrate
+?? .claude/skills/convex-migrate-rehearse
+?? .claude/skills/convex-monitor
+?? .claude/skills/convex-optimize
+?? .claude/skills/convex-quickstart
+?? .claude/skills/convex-reviewer
+?? .claude/skills/convex-seed
+?? .claude/skills/convex-self-heal
+?? .claude/skills/convex-sentinel
+?? .claude/skills/convex-suggest
+?? .claude/skills/convex-test
+?? .claude/skills/convex-verify
+?? =
+?? apps/bus-math-v2/.vinext/
+?? apps/bus-math-v2/__tests__/app/api/learning-evidence/bm2-pilot/teacher-consumer.red.test.ts
+?? apps/bus-math-v2/__tests__/app/api/progress/assessment/generated-variant.acceptance.test.ts
+?? apps/bus-math-v2/__tests__/app/api/progress/assessment/notebook-organizer.acceptance.test.ts
+?? apps/bus-math-v2/__tests__/components/student/DailyPracticeSession-generated-variant.acceptance.test.tsx
+?? apps/bus-math-v2/__tests__/convex/activities-daily-source-authority.red.test.ts
+?? apps/bus-math-v2/__tests__/convex/activities-generated-variant-server-owned.acceptance.test.ts
+?? apps/bus-math-v2/__tests__/convex/activities-server-owned-submission.acceptance.test.ts
+?? apps/bus-math-v2/__tests__/convex/learningEvidence-bounded-authority.red.test.ts
+?? apps/bus-math-v2/__tests__/convex/learningEvidence-production-flow.test.ts
+?? apps/bus-math-v2/__tests__/convex/seed-stable-activity-id.red.test.ts
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/concavity-from-rate-change-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/curriculum-review.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/graph-average-rate-choice-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/interval-classification-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/least-polynomial-degree-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/negative-rate-context-choice-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/physical-context-graph-choice-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/pointwise-least-rate-choice-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/pointwise-rate-ordering-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/polynomial-degree-leading-coefficient-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/polynomial-end-behavior-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/polynomial-equation-end-behavior-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/polynomial-extrema-from-graph-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/polynomial-inequality-sign-chart-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/quadratic-negative-rate-interval-choice-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/rate-pattern-classification-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/rate-sign-and-trend-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/real-zeros-and-multiplicities-registration.test.tsx
+?? apps/bus-math-v2/__tests__/dev/blueprint-qa/table-average-rate-choice-registration.test.tsx
+?? apps/bus-math-v2/app/(dev)/blueprint-qa/components/BlueprintSpecPanel.tsx
+?? apps/bus-math-v2/app/(dev)/blueprint-qa/components/ReviewDecisionControls.tsx
+?? apps/bus-math-v2/app/(dev)/blueprint-qa/components/SourcePagePanel.tsx
+?? apps/bus-math-v2/app/(dev)/blueprint-qa/data.ts
+?? apps/bus-math-v2/app/(dev)/blueprint-qa/graph-documents.ts
+?? apps/bus-math-v2/app/(dev)/blueprint-qa/review-utils.ts
+?? apps/bus-math-v2/app/(dev)/blueprint-qa/source-documents.ts
+?? apps/bus-math-v2/app/api/dev/
+?? apps/integrated-math-1/.next/
+?? apps/integrated-math-2/.next/
+?? apps/integrated-math-3/AGENTS.md
+?? apps/integrated-math-3/CLAUDE.md
+?? apps/integrated-math-3/__tests__/app/api/activities/submissions/
+?? apps/integrated-math-3/__tests__/app/api/learning-evidence/
+?? apps/integrated-math-3/__tests__/components/activities/graphing/GraphingExplorerActivity-pilot.test.tsx
+?? apps/integrated-math-3/__tests__/components/activities/graphing/GraphingExplorerActivity.test.tsx
+?? apps/integrated-math-3/__tests__/components/practice-timing-wall-clock.test.tsx
+?? apps/integrated-math-3/__tests__/components/student/PracticeSessionProvider-retry-acceptance.test.tsx
+?? apps/integrated-math-3/__tests__/components/student/PracticeSessionProvider-server-authority.test.tsx
+?? apps/integrated-math-3/__tests__/convex/activities-create-idempotency.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/activities-initial-mastery.test.ts
+?? apps/integrated-math-3/__tests__/convex/activities-public-create-boundary.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/activities-server-owned-recovery.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/activities-two-real-solutions-acceptance.test.ts
+?? apps/integrated-math-3/__tests__/convex/estimate-roots-by-graphing-schema.test.ts
+?? apps/integrated-math-3/__tests__/convex/learningEvidence-attempt-ordering.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/learningEvidence-bounded-authority.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/learningEvidence-production-factory.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/learningEvidence-submission-authority.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/queue/im3-first-offer-queue.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/queue/im3-pilot-queue.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-guided-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-guided-item-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-guided-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-guided-variant-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-independent-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-independent-item-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-independent-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-independent-variant-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-worked-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/compare-maximum-worked-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/domain-range-guided-seed-2.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/domain-range-independent-seed-2.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/domain-range-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/domain-range-worked-phase-link.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/equation-rate-guided-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/equation-rate-independent-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/equation-rate-worked-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/im3-example-1-graph-worked-source.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/im3-pilot-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/im3-profit-maximum-worked-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/im3-profit-model-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/maximum-reading-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-activity-seed-documents.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-guided-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-guided-item-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-guided-variant-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-independent-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-independent-item-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-independent-variant-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-practice-mapping-documents.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-seed-upgrade.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-worked-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/one-real-solution-worked-phase-link.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/seed-im3-pilot-mapping.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/seed-lesson-1-pilot-upgrade.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/seed-practice-items-idempotence.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/symmetry-guided-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/symmetry-guided-item-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/symmetry-guided-variant-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/symmetry-independent-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/symmetry-independent-item-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/symmetry-independent-variant-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/symmetry-seed.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/symmetry-worked-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/teacher-led-source-preservation.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-activity-seed-documents.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-guided-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-guided-item-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-guided-variant-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-independent-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-independent-item-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-independent-variant-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-practice-mapping-documents.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-worked-activity-upsert.test.ts
+?? apps/integrated-math-3/__tests__/convex/seed/two-real-solutions-worked-phase-link.test.ts
+?? apps/integrated-math-3/__tests__/convex/student-lesson-activity-props.test.ts
+?? apps/integrated-math-3/__tests__/convex/student-phase-completion-completed-row.red.test.ts
+?? apps/integrated-math-3/__tests__/convex/two-real-solutions-schema.test.ts
+?? apps/integrated-math-3/__tests__/lib/activities/server-grading-compare-maximum.test.ts
+?? apps/integrated-math-3/__tests__/lib/activities/server-grading-one-real-solution.test.ts
+?? apps/integrated-math-3/__tests__/lib/activities/server-grading-symmetry.test.ts
+?? apps/integrated-math-3/__tests__/lib/activities/server-grading-two-real-solutions.test.ts
+?? apps/integrated-math-3/__tests__/lib/activities/server-grading.test.ts
+?? apps/integrated-math-3/__tests__/lib/activities/submission-progress-authority.test.ts
+?? apps/integrated-math-3/__tests__/lib/phase-completion/
+?? apps/integrated-math-3/__tests__/lib/practice/learning-evidence-one-real-solution-identity.test.ts
+?? apps/integrated-math-3/__tests__/lib/practice/learning-evidence-two-real-solutions-identity.test.ts
+?? apps/integrated-math-3/app/api/activities/submissions/
+?? apps/integrated-math-3/app/api/learning-evidence/
+?? apps/integrated-math-3/convex/seed/seed_im3_pilot.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-1-reconciliation.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-2-example-1-atomic-node.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-2-example-2-atomic-node.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-2-example-3-atomic-node.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-2-reconciliation.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-3-candidates.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-4-reconciliation.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-5-reconciliation.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-6-reconciliation.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-7-reconciliation.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/lesson-1-8-reconciliation.test.ts
+?? apps/integrated-math-3/curriculum/skill-graph/__tests__/module-1-integration.test.ts
+?? apps/integrated-math-3/lib/activities/server-grading.ts
+?? apps/pre-calculus/.next/
+?? apps/pre-calculus/.vinext/
+?? apps/pre-calculus/__tests__/app/api/activities/
+?? apps/pre-calculus/__tests__/app/student-dashboard.practice-sequence.test.tsx
+?? apps/pre-calculus/__tests__/components/
+?? apps/pre-calculus/__tests__/convex/activities-server-owned-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/convex-module-paths.red.test.ts
+?? apps/pre-calculus/__tests__/convex/learning-evidence-bounded-authority.red.test.ts
+?? apps/pre-calculus/__tests__/convex/learning-evidence-production-flow.red.test.ts
+?? apps/pre-calculus/__tests__/convex/precalculus-kst-consumer.red.test.ts
+?? apps/pre-calculus/__tests__/convex/seed/
+?? apps/pre-calculus/__tests__/convex/topic11-daily-handler.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-negative-rate-context-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-negative-rate-context-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-negative-rate-context-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-negative-rate-context-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-pointwise-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-pointwise-least-rate-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-pointwise-least-rate-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-pointwise-rate-ordering-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-pointwise-rate-ordering-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-pointwise-rate-ordering-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-quadratic-negative-rate-interval-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-quadratic-negative-rate-interval-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-quadratic-negative-rate-interval-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic12-quadratic-negative-rate-interval-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic13-concavity-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic13-concavity-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic13-concavity-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic13-concavity-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic13-rate-pattern-classification-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic13-rate-pattern-classification-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic13-rate-pattern-classification-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic13-rate-pattern-classification-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-degree-leading-coefficient-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-degree-leading-coefficient-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-degree-leading-coefficient-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-degree-leading-coefficient-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-end-behavior-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-end-behavior-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-end-behavior-kst.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-end-behavior-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-end-behavior-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-end-behavior-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-extrema-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-extrema-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-extrema-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-extrema-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-polynomial-extrema-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-rate-sign-and-trend-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-rate-sign-and-trend-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-rate-sign-and-trend-kst.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-rate-sign-and-trend-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-rate-sign-and-trend-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic14-rate-sign-and-trend-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-least-polynomial-degree-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-least-polynomial-degree-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-least-polynomial-degree-kst.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-least-polynomial-degree-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-least-polynomial-degree-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-least-polynomial-degree-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-polynomial-inequality-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-polynomial-inequality-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-polynomial-inequality-kst.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-polynomial-inequality-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-polynomial-inequality-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-polynomial-inequality-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-real-zeros-and-multiplicities-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-real-zeros-and-multiplicities-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-real-zeros-and-multiplicities-kst.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-real-zeros-and-multiplicities-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-real-zeros-and-multiplicities-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic15-real-zeros-and-multiplicities-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic16-equation-end-behavior-activity-constants.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic16-equation-end-behavior-evidence-enablement.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic16-equation-end-behavior-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic16-equation-end-behavior-kst.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic16-equation-end-behavior-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic16-equation-end-behavior-worked-evidence.acceptance.test.ts
+?? apps/pre-calculus/__tests__/convex/topic16-equation-end-behavior-worked-submission.acceptance.test.ts
+?? apps/pre-calculus/__tests__/curriculum/topic11-interval-blueprint.acceptance.test.ts
+?? apps/pre-calculus/__tests__/lib/auth/
+?? apps/pre-calculus/__tests__/lib/practice/
+?? apps/pre-calculus/app/api/activities/
+?? apps/pre-calculus/components/student/
+?? apps/pre-calculus/convex/learningEvidence.ts
+?? apps/pre-calculus/lib/practice/
+?? measure/tracks/appc-mastery-advantage-rollout_20260821/
+?? measure/tracks/bc-mastery-advantage-rollout_20260821/
+?? measure/tracks/im3-complete-review_20260907/
+?? measure/tracks/im3-mastery-advantage-rollout_20260821/
+?? measure/tracks/mastery-advantage-graph-remediation_20260821/
+?? measure/tracks/math-series-graph-semantic-repair_20260905/
+?? opencode.json
+?? outputs/
+?? packages/activity-components/src/__tests__/concavity-from-rate-change-activity.test.tsx
+?? packages/activity-components/src/__tests__/fill-in-the-blank-guided-submit.test.tsx
+?? packages/activity-components/src/__tests__/graph-average-rate-choice-activity.test.tsx
+?? packages/activity-components/src/__tests__/graphing-explorer-activity.test.tsx
+?? packages/activity-components/src/__tests__/graphing-explorer-compare-maximums.test.tsx
+?? packages/activity-components/src/__tests__/graphing-explorer-symmetry.test.tsx
+?? packages/activity-components/src/__tests__/graphing-explorer-table-graph-conceals-answer.test.tsx
+?? packages/activity-components/src/__tests__/graphing-explorer-worked-example.test.tsx
+?? packages/activity-components/src/__tests__/hint-panel-visible-output.test.tsx
+?? packages/activity-components/src/__tests__/interval-classification-activity.test.tsx
+?? packages/activity-components/src/__tests__/least-polynomial-degree-activity.test.tsx
+?? packages/activity-components/src/__tests__/negative-rate-context-choice-activity.test.tsx
+?? packages/activity-components/src/__tests__/physical-context-graph-choice-activity.test.tsx
+?? packages/activity-components/src/__tests__/pointwise-least-rate-choice-activity.test.tsx
+?? packages/activity-components/src/__tests__/pointwise-rate-ordering-activity.test.tsx
+?? packages/activity-components/src/__tests__/polynomial-degree-leading-coefficient-activity.test.tsx
+?? packages/activity-components/src/__tests__/polynomial-end-behavior-activity.test.tsx
+?? packages/activity-components/src/__tests__/polynomial-equation-end-behavior-activity.test.tsx
+?? packages/activity-components/src/__tests__/polynomial-equation-end-behavior-export.test.ts
+?? packages/activity-components/src/__tests__/polynomial-extrema-from-graph-activity.test.tsx
+?? packages/activity-components/src/__tests__/polynomial-inequality-sign-chart-activity.test.tsx
+?? packages/activity-components/src/__tests__/polynomial-limit-notation-end-behavior-activity.test.tsx
+?? packages/activity-components/src/__tests__/polynomial-limit-notation-end-behavior-export.test.ts
+?? packages/activity-components/src/__tests__/quadratic-negative-rate-interval-choice-activity.test.tsx
+?? packages/activity-components/src/__tests__/rate-pattern-classification-activity.test.tsx
+?? packages/activity-components/src/__tests__/rate-sign-and-trend-from-graph-activity.test.tsx
+?? packages/activity-components/src/__tests__/real-zeros-and-multiplicities-activity.test.tsx
+?? packages/activity-components/src/__tests__/table-average-rate-choice-activity.test.tsx
+?? packages/activity-components/src/components/graph-choice/
+?? packages/activity-components/src/components/intervals/
+?? packages/activity-components/src/components/table/
+?? packages/activity-components/src/schemas/concavity-from-rate-change.schema.ts
+?? packages/activity-components/src/schemas/graph-average-rate-choice.schema.ts
+?? packages/activity-components/src/schemas/interval-classification.schema.ts
+?? packages/activity-components/src/schemas/least-polynomial-degree.schema.ts
+?? packages/activity-components/src/schemas/negative-rate-context-choice.schema.ts
+?? packages/activity-components/src/schemas/physical-context-graph-choice.schema.ts
+?? packages/activity-components/src/schemas/pointwise-least-rate-choice.schema.ts
+?? packages/activity-components/src/schemas/pointwise-rate-ordering.schema.ts
+?? packages/activity-components/src/schemas/polynomial-degree-leading-coefficient.schema.ts
+?? packages/activity-components/src/schemas/polynomial-end-behavior.schema.ts
+?? packages/activity-components/src/schemas/polynomial-equation-end-behavior.schema.ts
+?? packages/activity-components/src/schemas/polynomial-extrema-from-graph.schema.ts
+?? packages/activity-components/src/schemas/polynomial-inequality-sign-chart.schema.ts
+?? packages/activity-components/src/schemas/polynomial-limit-notation-end-behavior.schema.ts
+?? packages/activity-components/src/schemas/quadratic-negative-rate-interval-choice.schema.ts
+?? packages/activity-components/src/schemas/rate-pattern-classification.schema.ts
+?? packages/activity-components/src/schemas/rate-sign-and-trend-from-graph.schema.ts
+?? packages/activity-components/src/schemas/real-zeros-and-multiplicities.schema.ts
+?? packages/activity-components/src/schemas/table-average-rate-choice.schema.ts
+?? packages/activity-components/src/schemas/types.ts
+?? packages/math-content/src/__tests__/average-rate-of-change-generator.test.ts
+?? packages/math-content/src/__tests__/concavity-from-rate-change.schema.test.ts
+?? packages/math-content/src/__tests__/estimate-roots-by-graphing-generator.test.ts
+?? packages/math-content/src/__tests__/graph-average-rate-choice.schema.test.ts
+?? packages/math-content/src/__tests__/interval-classification.schema.test.ts
+?? packages/math-content/src/__tests__/least-polynomial-degree.schema.test.ts
+?? packages/math-content/src/__tests__/negative-rate-context-choice.schema.test.ts
+?? packages/math-content/src/__tests__/one-real-solution-graphing-generator.test.ts
+?? packages/math-content/src/__tests__/physical-context-graph-choice.schema.test.ts
+?? packages/math-content/src/__tests__/pointwise-least-rate-choice.schema.test.ts
+?? packages/math-content/src/__tests__/pointwise-rate-ordering.schema.test.ts
+?? packages/math-content/src/__tests__/polynomial-degree-leading-coefficient.schema.test.ts
+?? packages/math-content/src/__tests__/polynomial-end-behavior.schema.test.ts
+?? packages/math-content/src/__tests__/polynomial-equation-end-behavior.registration.test.ts
+?? packages/math-content/src/__tests__/polynomial-equation-end-behavior.schema.test.ts
+?? packages/math-content/src/__tests__/polynomial-extrema-from-graph.schema.test.ts
+?? packages/math-content/src/__tests__/polynomial-inequality-sign-chart.schema.test.ts
+?? packages/math-content/src/__tests__/polynomial-limit-notation-end-behavior.schema.test.ts
+?? packages/math-content/src/__tests__/quadratic-maximum-comparison-generator.test.ts
+?? packages/math-content/src/__tests__/quadratic-maximum-reading-generator.test.ts
+?? packages/math-content/src/__tests__/quadratic-negative-rate-interval-choice.schema.test.ts
+?? packages/math-content/src/__tests__/quadratic-symmetry-generator.test.ts
+?? packages/math-content/src/__tests__/rate-pattern-classification.schema.test.ts
+?? packages/math-content/src/__tests__/rate-sign-and-trend-from-graph.schema.test.ts
+?? packages/math-content/src/__tests__/real-zeros-and-multiplicities.schema.test.ts
+?? packages/math-content/src/__tests__/table-average-rate-choice.schema.test.ts
+?? packages/math-content/src/__tests__/two-real-solutions-graphing-generator.test.ts
+?? packages/math-content/src/knowledge-space/__tests__/cross-course-rate-cleanup.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic11-interval-graph.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic11-physical-context-graph-choice.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic12-graph-average-rate-choice.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic12-negative-rate-context-choice.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic12-pointwise-least-rate-choice.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic12-pointwise-rate-ordering.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic12-quadratic-negative-rate-interval-choice.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic12-table-average-rate-choice.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic13-concavity-from-rate-change.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic13-rate-pattern-classification.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic14-polynomial-degree-leading-coefficient.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic14-polynomial-end-behavior.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic14-polynomial-extrema-from-graph.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic14-rate-sign-and-trend.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic15-least-polynomial-degree.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic15-polynomial-inequality-sign-chart.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic15-real-zeros-and-multiplicities.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic16-equation-end-behavior-registration.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic16-equation-end-behavior.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic16-limit-notation-end-behavior-registration.test.ts
+?? packages/math-content/src/knowledge-space/generators/__tests__/topic16-limit-notation-end-behavior.test.ts
+?? packages/math-content/src/knowledge-space/generators/topic11-interval-graph.ts
+?? packages/math-content/src/knowledge-space/generators/topic11-physical-context-graph-choice.ts
+?? packages/math-content/src/knowledge-space/generators/topic12-graph-average-rate-choice.ts
+?? packages/math-content/src/knowledge-space/generators/topic12-negative-rate-context-choice.ts
+?? packages/math-content/src/knowledge-space/generators/topic12-pointwise-least-rate-choice.ts
+?? packages/math-content/src/knowledge-space/generators/topic12-pointwise-rate-ordering.ts
+?? packages/math-content/src/knowledge-space/generators/topic12-quadratic-negative-rate-interval-choice.ts
+?? packages/math-content/src/knowledge-space/generators/topic12-table-average-rate-choice.ts
+?? packages/math-content/src/knowledge-space/generators/topic13-concavity-from-rate-change.ts
+?? packages/math-content/src/knowledge-space/generators/topic13-rate-pattern-classification.ts
+?? packages/math-content/src/knowledge-space/generators/topic14-polynomial-degree-leading-coefficient.ts
+?? packages/math-content/src/knowledge-space/generators/topic14-polynomial-end-behavior.ts
+?? packages/math-content/src/knowledge-space/generators/topic14-polynomial-extrema-from-graph.ts
+?? packages/math-content/src/knowledge-space/generators/topic14-rate-sign-and-trend.ts
+?? packages/math-content/src/knowledge-space/generators/topic15-least-polynomial-degree.ts
+?? packages/math-content/src/knowledge-space/generators/topic15-polynomial-inequality-sign-chart.ts
+?? packages/math-content/src/knowledge-space/generators/topic15-real-zeros-and-multiplicities.ts
+?? packages/math-content/src/knowledge-space/generators/topic16-equation-end-behavior.ts
+?? packages/math-content/src/knowledge-space/generators/topic16-limit-notation-end-behavior.ts
+?? packages/math-content/src/schemas/concavity-from-rate-change.schema.ts
+?? packages/math-content/src/schemas/graph-average-rate-choice.schema.ts
+?? packages/math-content/src/schemas/interval-classification.schema.ts
+?? packages/math-content/src/schemas/least-polynomial-degree.schema.ts
+?? packages/math-content/src/schemas/negative-rate-context-choice.schema.ts
+?? packages/math-content/src/schemas/physical-context-graph-choice.schema.ts
+?? packages/math-content/src/schemas/pointwise-least-rate-choice.schema.ts
+?? packages/math-content/src/schemas/pointwise-rate-ordering.schema.ts
+?? packages/math-content/src/schemas/polynomial-degree-leading-coefficient.schema.ts
+?? packages/math-content/src/schemas/polynomial-end-behavior.schema.ts
+?? packages/math-content/src/schemas/polynomial-equation-end-behavior.schema.ts
+?? packages/math-content/src/schemas/polynomial-extrema-from-graph.schema.ts
+?? packages/math-content/src/schemas/polynomial-inequality-sign-chart.schema.ts
+?? packages/math-content/src/schemas/polynomial-limit-notation-end-behavior.schema.ts
+?? packages/math-content/src/schemas/quadratic-negative-rate-interval-choice.schema.ts
+?? packages/math-content/src/schemas/rate-pattern-classification.schema.ts
+?? packages/math-content/src/schemas/rate-sign-and-trend-from-graph.schema.ts
+?? packages/math-content/src/schemas/real-zeros-and-multiplicities.schema.ts
+?? packages/math-content/src/schemas/table-average-rate-choice.schema.ts
+?? tmp/

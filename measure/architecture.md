@@ -278,3 +278,7 @@ Server-side code uses `fetchInternalQuery` / `fetchInternalMutation` which resol
 4. **Path aliases** — `@/*` maps to project root
 5. **"use client"** — Applied to interactive components (AuthProvider, login form, user menu, etc.)
 6. **RSC** — Page components are server components by default; data fetching happens server-side
+
+## Activity schema ownership (2026-09-07)
+
+`packages/activity-components/src/schemas` owns the activity props schemas and registry. Components use local schema imports. `math-content` re-exports these schemas for existing consumers. Content can depend on the feature package. The feature package must not depend on content. Graphing components declare graphing-core. Precalculus declares its activity-components and math-content dependencies. Math generators declare knowledge-space-practice.

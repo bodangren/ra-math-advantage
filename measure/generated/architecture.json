@@ -1,7 +1,7 @@
 {
   "schemaVersion": "lms-architecture-report.v1",
   "workspaceCount": 26,
-  "edgeCount": 72,
+  "edgeCount": 77,
   "nodes": [
     {
       "id": "app.bus-math-v2",
@@ -445,6 +445,10 @@
     },
     {
       "source": "app.pre-calculus",
+      "target": "pkg.activity-components"
+    },
+    {
+      "source": "app.pre-calculus",
       "target": "pkg.activity-runtime"
     },
     {
@@ -461,7 +465,15 @@
     },
     {
       "source": "app.pre-calculus",
+      "target": "pkg.knowledge-space-core"
+    },
+    {
+      "source": "app.pre-calculus",
       "target": "pkg.lesson-renderer"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.math-content"
     },
     {
       "source": "app.pre-calculus",
@@ -477,7 +489,7 @@
     },
     {
       "source": "pkg.activity-components",
-      "target": "pkg.math-content"
+      "target": "pkg.graphing-core"
     },
     {
       "source": "pkg.activity-components",
@@ -509,11 +521,19 @@
     },
     {
       "source": "pkg.math-content",
+      "target": "pkg.activity-components"
+    },
+    {
+      "source": "pkg.math-content",
       "target": "pkg.activity-runtime"
     },
     {
       "source": "pkg.math-content",
       "target": "pkg.knowledge-space-core"
+    },
+    {
+      "source": "pkg.math-content",
+      "target": "pkg.knowledge-space-practice"
     },
     {
       "source": "pkg.math-content",

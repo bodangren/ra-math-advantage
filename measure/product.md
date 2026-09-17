@@ -75,7 +75,7 @@ Each app owns:
 
 ## Non-Goals
 
-- Content authoring/CMS (content managed in database and seed scripts)
+- General-purpose content management system. IM3 includes teacher lesson authoring and publication. Seed scripts provide the initial curriculum.
 - Real-time collaboration
 - Mobile native apps
 - Third-party LMS integration (Canvas, Google Classroom)

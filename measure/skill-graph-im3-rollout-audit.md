@@ -1,5 +1,10 @@
 # IM3 Skill Graph Rollout Audit
 
+> **Historical artifact audit:** The counts below describe the generated node
+> kinds from 2026-05-10. They are not an approved mastery-skill inventory. Use
+> `measure/tracks/mastery-advantage-graph-remediation_20260821/` before runtime
+> rollout work.
+
 ## Overview
 
 T11 expands the IM3 Module 1 pilot skill graph across all 9 modules, generating per-module and course-level graph artifacts. This follows the proven pilot patterns and applies them to Modules 2-9 with stub blueprints and projections.

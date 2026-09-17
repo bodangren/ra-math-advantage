@@ -1,0 +1,16 @@
+{
+  "track_id": "im3-mastery-advantage-rollout_20260821",
+  "type": "feature",
+  "status": "superseded",
+  "created_at": "2026-08-21T00:31:36Z",
+  "updated_at": "2026-08-21T04:00:00Z",
+  "description": "Superseded. This rollout used the 96 kind: skill rows as the IM3 mastery inventory and excluded concept rows that already participate in runtime projections.",
+  "estimated_tasks": 43,
+  "actual_tasks": null,
+  "deviation_notes": "The 96-skill and 83-generator-gap claims are withdrawn. The graph taxonomy and all proxy-derived rollout work require remediation before implementation resumes.",
+  "program": "Teacher-Led Mastery Advantage Progression",
+  "depends_on": [
+    "teacher-led-mastery-advantage_20260819"
+  ],
+  "superseded_by": "mastery-advantage-graph-remediation_20260821"
+}

@@ -100,3 +100,61 @@ Focused tests must prove:
 ## Baseline distinction
 
 The current Precalculus tree contains many changes from the existing remediation track. The presence of registered generators or generated activity rows does not prove this pilot is approved or complete. This review finds one viable server grader and one safe Independent public projection. It also finds incomplete Worked instruction, no positive constant variant, and an open approval boundary.
+
+## Independent teacher-first production review
+
+Date: 2026-09-07
+
+This review traces the current Topic 1.1 Worked action, its route, its source submission, and its learning-evidence consumer. It also checks the Guided and Independent submission callback.
+
+### P0: A student acknowledgement creates teacher-led exposure
+
+`PrecalculusTopic11DailyCurriculumPilot` runs in the student interface. The learner selects `Mark worked example reviewed`. The component creates the correct interval strings from `generateTopic11IntervalGraph(0)`. It sends those strings to `/api/activities/precalculus-topic-1-1/submissions`.
+
+The route requires a student session. It creates an ungraded Worked submission for that same learner. It then calls `submitTopic11TeacherSubmission`. The consumer changes this student-generated acknowledgement into evidence with `origin: teacher_led`. That evidence sets the learner's exposure state to `introduced`.
+
+No teacher authenticates this action. No teacher owns or verifies the submission. No class, enrollment, lesson delivery, or teacher attestation is present. The stored activity field `props.source: teacher_led` is static metadata. It does not prove a teacher action.
+
+This behavior violates the teacher-first contract in `learning-evidence.ts`. That contract requires accepted teacher exposure before Mastery Advantage evidence can enter the mastery bridge. A learner can currently create that exposure by selecting one button.
+
+Stop the route from calling `submitTopic11TeacherSubmission` for a student acknowledgement. Keep the Worked acknowledgement as non-mastery history if the product needs it. Create `teacher_led` evidence only through an authenticated teacher-owned source event. Apply the same rule to the other Precalculus Worked routes that use this producer pattern.
+
+### P0: The Worked source path bypasses current publication
+
+The current node and blueprint are draft. All three projected activities have `srsEligible: false`.
+
+The dashboard hides Topic 1.1 through `getApprovedPrecalculusPilot`. That query correctly requires approved graph content and approved stored activities. The lesson page renders `PrecalculusTopic11DailyCurriculumPilot` directly when a lesson section has its component key.
+
+`createTopic11DailySubmission` does not call `isPrecalculusPilotPublished`. It does not require activity approval. `submitTopic11TeacherSubmission` also omits both checks. Therefore, the lesson route can create source submissions and teacher-led exposure while the canonical node and blueprint are draft.
+
+Require current node and blueprint publication at both write boundaries. Require the exact stored Worked activity approval. Keep the route inactive while the current catalog is draft.
+
+### P1: The Worked submission does not contain learner work
+
+The Worked component sends generator-derived correct answers. The learner does not enter or select these answers. The submission status is `submitted`, and its parts look like learner responses.
+
+Store an explicit acknowledgement event if review completion is useful. Do not store generated correct answers as raw learner answers. This distinction protects later reporting and evidence analysis.
+
+### Submission and retry behavior that is correct
+
+The Topic 1.1 Worked component waits for the route response before it shows success. It keeps the same idempotency key after an error. A retry can replay the source submission. The evidence consumer derives its idempotency key from the opaque submission ID. This prevents a second evidence row for an identical replay.
+
+`PrecalculusMasteryAdvantagePilot` also waits for source submission storage and evidence delivery. If source storage succeeds and evidence delivery fails, it keeps the opaque submission ID. Its retry sends only that ID to the evidence route. It does not create a second graded submission. These callback and retry boundaries are correct.
+
+### Test result and missing assertion
+
+The focused run passed 34 tests in the Topic 1.1 route, Worked refresh, and Mastery Advantage component files.
+
+The current route acceptance test explicitly expects the student route to produce `teacher_led` evidence. This test codifies the defect. Replace it with an assertion that student acknowledgement cannot create teacher-led exposure. Add draft node, draft blueprint, and unapproved activity rejection tests for the Worked route and both Convex consumers.
+
+## Topic 1.1 recovery resolution
+
+Date: 2026-09-07
+
+The student Worked action now stores an empty acknowledgement. It does not store generated learner answers. It does not create `teacher_led` evidence.
+
+The source writer and teacher consumer require current node and blueprint publication. They also require approved exact activity identity. The teacher course action verifies teacher ownership, active enrollment, assigned Topic 1.1 lesson, source ownership, and event order. Enrollment and lesson assignment must occur before the acknowledgement.
+
+An approved-fixture test proves acknowledgement, trusted teacher attestation, replay, and the change from `awaiting_teacher_exposure` to eligible Independent evidence. Negative tests cover the wrong teacher, wrong class, inactive enrollment, missing assignment, late enrollment, and late assignment.
+
+The focused run passed 37 tests. TypeScript and scoped Oxlint passed. The other Precalculus Worked paths remain outside this recovery.

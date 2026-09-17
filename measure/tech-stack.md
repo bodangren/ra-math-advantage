@@ -1,28 +1,28 @@
 # Tech Stack — Integrated Math 3
 
-Scaffolded from `bus-math-v2` (Math for Business Operations). The stack is fully active with no legacy layers in the data path.
+Scaffolded from `bus-math-v2` (Math for Business Operations). Use the app package file for current dependency ranges.
 
 ## Runtime & Framework
 
 | Layer | Technology | Version | Rationale |
 |-------|-----------|---------|-----------|
-| Framework | Next.js (via `vinext`) | latest | App Router, RSC, server components |
-| Runtime adapter | vinext (Vite-backed Next.js) | ^0.0.5 | Faster dev builds via Vite |
-| Build tool | Vite | ^7.3.1 | vinext's underlying bundler |
-| Language | TypeScript (strict) | ^5 | Type safety across full stack |
-| React | React 19 | ^19.0.0 | Latest features, RSC support |
+| Framework | Next.js (via `vinext`) | ^16.0.0 | App Router, RSC, server components |
+| Runtime adapter | vinext (Vite-backed Next.js) | ^0.0.55 | Faster dev builds via Vite |
+| Build tool | Vite | ^8.0.0 | vinext's underlying bundler |
+| Language | TypeScript (strict) | ^6 | Type safety across full stack |
+| React | React 19 | ^19.2.7 | Latest features, RSC support |
 
 ## Backend & Database
 
 | Layer | Technology | Notes |
 |-------|-----------|-------|
 | Database | Convex | All curriculum, auth, progress, and submission data |
-| Convex schema | `convex/schema.ts` | ~228 lines, 15 tables |
+| Convex schema | `convex/schema.ts` | See the schema for the current tables |
 | Public queries | `convex/public.ts` | Unauthenticated curriculum data |
 | Internal queries | `convex/student.ts`, `convex/teacher.ts`, `convex/activities.ts` | Require server-side admin auth |
 | Server-side client | `lib/convex/server.ts` | `ConvexHttpClient` with admin auth |
 | Admin auth resolution | `lib/convex/admin.ts` | Local admin key or `CONVEX_DEPLOY_KEY` env |
-| Generated types | `convex/_generated/` | **Empty until `npx convex dev` is run.** Must be initialized before pages resolve `@/convex/_generated/api`. |
+| Generated types | `convex/_generated/` | Generated Convex API and data model types. Keep these files aligned with the backend. |
 
 ## Authentication
 
@@ -40,7 +40,7 @@ Custom JWT-based auth built on Convex. No third-party auth provider.
 
 | Layer | Technology |
 |-------|-----------|
-| CSS framework | Tailwind CSS ^3.4.1 |
+| CSS framework | Tailwind CSS ^4.0.0 |
 | Component library | shadcn/ui (new-york style, RSC) — installed: `button`, `dropdown-menu`, `avatar` |
 | Color system | oklch CSS custom properties — brand orange (hue 40), teal accent (hue 195) |
 | Dark mode | next-themes (class-based) |
@@ -159,6 +159,10 @@ npm run test:watch   # Vitest in watch mode
 
 ## Deployment
 
-- Platform: Vercel (primary)
+- Platform: Cloudflare Workers through vinext
 - Database: Convex Cloud or Convex Local
 - Build: vinext handles the Vite-based pipeline
+
+## Business Math development
+
+Use `apps/bus-math-v2/DEVELOPMENT.md` for Business Math setup, resource storage, verification, and Cloudflare deployment. This app uses the same Convex and cookie-session architecture. Its teacher resources stay outside the public asset directory.

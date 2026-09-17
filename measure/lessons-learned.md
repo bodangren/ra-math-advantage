@@ -23,7 +23,7 @@
 
 ## Patterns That Worked Well
 
-- (2026-04-05, setup) Existing `lib/` modules are pure functions with clear types — excellent for testing
+- (2026-09-07, IM3 review) Execute real seed functions against a writable mock. Validate their inserted props against the app registry. Source-text checks cannot prove runtime readiness. Verify shared Tailwind styles in the built browser page.
 - (2026-04-16, srs-product-contract) Single canonical contract module with re-exports; downstream imports from one surface
 - (2026-04-29, saveCards-batch) Two-phase Promise.all: lookups in parallel first, then writes in parallel. Sequential await = 2N DB round trips; two-phase = 2 round trips
 - (2026-05-03, rate-limiter-extraction) Extract pure algorithm logic (sliding window check, config constants) to packages; keep Convex-specific handlers thin in apps. 15 package-level tests + per-app handler tests = high confidence without mocking Convex.

@@ -125,3 +125,41 @@ They do not test these required boundaries:
 - Misnamed assignment fixture: `apps/bus-math-v2/__tests__/convex/learningEvidence-teacher-verification-flow.test.ts:15`
 
 The current implementation proves a narrow objective mapping and a functional user interface. It does not yet prove trusted teacher ownership of the lesson assignment. It also does not enforce current publication at the durable write boundary.
+
+## Implementation re-evaluation and resolution
+
+The BM2 product definition states that Phase 1 is not a learning management system. It excludes generic assignments. Students move through the full published curriculum. Teacher monitoring reads the same published curriculum and progress model.
+
+The schema has no class-to-lesson assignment record. This absence matches the stated BM2 product policy. A new assignment model is outside this repair.
+
+For BM2, these existing records are the authoritative source-access proof:
+
+- A published lesson version contains the exact source activity.
+- The learner started the exact source phase before the submission.
+- The learner had an active enrollment in the teacher's non-archived class before the submission.
+- The teacher and learner belong to the same organization.
+
+The implementation now names this check `sourceAccessIsAuthorized`. This removes the incorrect claim that `student_progress` is a lesson assignment.
+
+The bounded repair also makes these changes:
+
+- `isBm2PilotSourcePublished()` checks the reviewed node and exact published authored source activity. It does not require adaptive mode specifications.
+- `isBm2PilotPublished()` adds the reviewed blueprint and all three adaptive mode specifications.
+- Guided teacher exposure requires source publication at the durable mutation boundary.
+- Generated Independent evidence requires full adaptive publication at the durable mutation boundary.
+- An archived class cannot authorize teacher verification.
+- A verified submission replay keeps the first teacher actor and timestamps.
+- A pre-graded source submission without a durable evidence receipt cannot become trusted teacher exposure.
+
+The earlier class-assignment finding is not a blocker under the current BM2 product contract. The source-access model cannot prove which class session caused the learner's progress. This is a known limit of the BM2 monitoring model. A future class-specific assignment feature requires a separate product and schema decision.
+
+## Test integration
+
+The generated submission and end-to-end evidence tests now inject an explicit hypothetical complete adaptive publication. These tests verify runtime mechanics. They do not change the real catalog state.
+
+The real-catalog publication test still verifies both current states:
+
+- The reviewed manual source activity is published.
+- The generated adaptive family is unavailable because the blueprint does not have all required mode specifications.
+
+Seven affected test files passed. All 32 tests passed. Full BM2 lint, TypeScript compilation, and production build also passed.

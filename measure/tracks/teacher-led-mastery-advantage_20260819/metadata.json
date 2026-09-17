@@ -1,13 +1,13 @@
 {
   "track_id": "teacher-led-mastery-advantage_20260819",
   "type": "feature",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-08-19T00:41:42Z",
-  "updated_at": "2026-08-19T00:41:42Z",
-  "description": "Require teacher-led first exposure for every mastery-bearing graph node, then allow supplementary Mastery Advantage KST+SRS progression, proven through one bounded pilot node each in IM3, AP Precalculus, and BM2.",
-  "estimated_tasks": 25,
+  "updated_at": "2026-08-21T00:31:36Z",
+  "description": "Prove teacher-led first exposure and supplementary Mastery Advantage progression on one bounded node in IM3, AP Precalculus, and Business Math. IM3 applies KST and SRS. The AP Precalculus and Business Math pilots apply SRS and report kstApplied false.",
+  "estimated_tasks": 16,
   "actual_tasks": null,
-  "deviation_notes": "",
+  "deviation_notes": "The original specification overstated graph-wide and KST coverage. The closeout plan now limits this track to the accepted one-node pilots. Separate rollout tracks own IM3, APPC, and BC breadth.",
   "program": "Teacher-Led Mastery Advantage Progression",
   "depends_on": [
     "kst-srs-v3-2-im3-runtime-migration_20260710"

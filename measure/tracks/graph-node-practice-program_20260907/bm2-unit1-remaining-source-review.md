@@ -103,8 +103,26 @@ Keep the existing warning about manual review. Clarify that a published lesson a
 
 This review advances Task 3.5. It does not accept the complete 89-row catalog.
 
+## Lesson 8 through 10 implementation result
+
+The bounded repair removes `unit-1-lesson-8-activity-1`, `unit-1-lesson-9-activity-1`, and `unit-1-lesson-10-activity-1` from exact-skill blueprint metadata and the evidence projection. The published curriculum keeps all three physical activities and stable IDs.
+
+The README now describes one candidate primary capability for each lesson. It records that some objectives still need atomic review. It also states that the selected pilot is gated and draft, and that a published activity is not automatically exact-node evidence.
+
+The new project-evidence boundary test first failed three tests. It then passed three tests after the mapping repair. The selected Lesson 1, publication, and capability graph tests also passed. All 12 focused tests passed. The BM2 lint, TypeScript check, and production build passed.
+
 ## Parent contract check
 
 The shared `knowledge-space.v1` contract supports `task_blueprint`. Its `contains` rule does not permit a task blueprint as the source. Do not replace assessment prerequisite edges with unsupported `contains` edges. The current contract has no dedicated `measures` relationship.
 
 A future Lesson 11 repair can preserve its stable ID and classify it as a task blueprint. It must remove skill-readiness claims and bind assessed capabilities through the existing exact-part evidence mechanism. This does not require a new graph edge type. The present bounded repair does not change the Lesson 11 kind or add a relationship.
+
+### Lesson 11 assessment aggregate correction
+
+The bounded correction preserves `math.bm2.skill.1.11`. It changes the node kind to `task_blueprint`. The title and description now identify the Unit 1 multi-standard assessment.
+
+The correction removes the seven prerequisite edges that ended at the assessment aggregate. It does not add a `contains` edge or a new edge type. The shared contract does not permit a `task_blueprint` as the source of `contains`.
+
+The correction removes the four whole-activity exact-node mappings from the blueprint metadata and the practice projection. The published Lesson 11 activities remain in the curriculum manifest. Future evidence must identify an exact assessed part and an atomic skill. This correction does not create that mapping.
+
+The graph now has 88 candidate skill nodes and one assessment task for 89 published lessons. This correction does not approve the graph or activate adaptive updates.

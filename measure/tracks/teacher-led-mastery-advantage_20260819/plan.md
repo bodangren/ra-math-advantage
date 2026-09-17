@@ -1,186 +1,139 @@
 # Implementation Plan: Teacher-Led First Exposure and Mastery Advantage Pilots
 
-**Track type:** feature
+**Track type:** Feature closeout
 
-**Contract:** `learning-evidence.v1`
+**Pilot limit:** One node in each app
 
-**Pilot bound:** exactly one mastery-bearing node per app; three nodes total
+**Execution order:** Reconcile -> Remove -> Verify -> Close
 
-**Pipeline:** Contract → Test (Red) → Implement (Green) → Generate/Doctor
+## Read Before Work
 
-**Coordination:** target the post-migration v3.2 interfaces from
-`kst-srs-v3-2-im3-runtime-migration_20260710`; do not take ownership of its
-widen–migrate–narrow or cutover work
+Read these files in this order:
 
-## Lane 1: Shared Contract + IM3 Pilot
+1. `AGENTS.md`
+2. `measure/workflow.md`
+3. `measure/tracks/teacher-led-mastery-advantage_20260819/spec.md`
+4. `measure/practice-component-contract.md`
+5. `kst-srs.v3.2/SPECIFICATION.md`
+6. The app product file for the app that you change
 
-- **Owns:** The domain-neutral `learning-evidence.v1` schema and policy helpers,
-  plus the IM3 adapter for
-  `math.im3.skill.1.1.graph-quadratic-functions`.
-- **Boundary:** Shared packages import no app code. The IM3 adapter stays app
-  owned and integrates only after an overlap check with the active v3.2 runtime
-  migration.
-- **Proof:** Teacher exposure introduces the node without changing mastery; a
-  later graded Mastery Advantage attempt can enter IM3's KST+SRS pipeline.
+Run `git diff -- <file>` before each edit. Preserve unrelated work. Do not edit
+a file only because it is near a pilot file.
 
-## Lane 2: AP Precalculus Pilot
+## Fixed Decisions
 
-- **Owns:** The Precalculus adapter and bounded pilot wiring for
-  `math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs`.
-- **Boundary:** Reuse the shared evidence contract and KST+SRS APIs; retain
-  Precalculus-owned curriculum, graph artifacts, auth, and persistence.
-- **Proof:** The same teacher-first/no-teacher-mastery policy works without IM3
-  assumptions and enables only this one Precalculus node.
+- This track proves exactly one node in each app.
+- IM3 reuses its existing KST and SRS path.
+- APPC and BC apply SRS only in this pilot.
+- APPC and BC receipts keep `kstApplied: false`.
+- APPC belongs to the single IM1 to APPC course-series graph.
+- BC is outside that graph and has no graph in the repository.
+- Evidence retry uses only the opaque server-owned `submissionId`.
+- Idempotency conflict checks compare normalized fields directly.
+- This track adds no hash, fingerprint, checksum, or provenance field.
 
-## Lane 3: BM2 Pilot
+## Verified Baseline on 2026-08-21
 
-- **Owns:** One app-owned BM2 skill node,
-  `math.bm2.skill.1.1.apply-accounting-equation`, its activity mapping, and the
-  BM2 evidence/KST+SRS adapter.
-- **Boundary:** Do not perform a full BM2 graph extraction. Extend shared math ID
-  support only as narrowly as required for the one reviewed BM2 node, and make no
-  dependency/package-manifest change without explicit approval.
-- **Legacy seam:** Preserve BM2's app-local
-  `problemFamilyId: 'accounting-equation'` mapping. Translate it once to the
-  canonical `variantKey: 'accounting-equation'` at the shared SRS boundary. Do
-  not absorb BM2's standing practice-variant type debt into this track.
-- **Proof:** BM2 can consume the same contract and teacher-first gate while its
-  curriculum and persistence remain app owned.
+- The accepted focused gate passed 57 files and 517 tests.
+- IM3 passed 24 focused files and 186 focused tests.
+- BC passed 17 focused files and 133 focused tests.
+- APPC passed 14 focused files and 157 focused tests before the APPC
+  graph-wide KST tests were added.
+- The APPC graph-wide KST selector has 9 Green tests and 4 Red tests.
+- Full-suite current-only failures were zero against the recorded baselines.
+- The route report generator uses the installed `repo-graph` command.
+- The IM3 phase-completion route and button have retry regression coverage.
 
-All three lanes follow the global phase gates below. Complete all Contract tasks
-before Test, confirm behavioral Red before Implement, and run Generate/Doctor
-only after all three pilots are Green.
+## Phase 1: Reconcile Ownership
 
-## Phase 1: Contract
+- [ ] **Task 1.1: Approve the corrected pilot specification.**
+  - [ ] Confirm that IM3 is KST plus SRS in this pilot.
+  - [ ] Confirm that APPC and BC are SRS-only in this pilot.
+  - [ ] Confirm that `kstApplied: false` is required for APPC and BC.
+  - [ ] Confirm that graph-wide work is absent from this track.
+- [ ] **Task 1.2: Move APPC graph-wide KST ownership without changing tests.**
+  - [ ] Keep these Red tests unchanged:
+    - `apps/pre-calculus/__tests__/lib/curriculum/skill-graph-loader.test.ts`
+    - `apps/pre-calculus/__tests__/convex/precalculus-kst-consumer.red.test.ts`
+    - `apps/pre-calculus/__tests__/convex/learning-evidence-production-flow.red.test.ts`
+    - `apps/pre-calculus/__tests__/components/student/PrecalculusMasteryAdvantagePilot.acceptance.test.tsx`
+  - [ ] Record the 9 Green and 4 Red baseline in the APPC rollout plan.
+  - [ ] Do not implement those tests as pilot closeout work.
+- [ ] **Task 1.3: Update the Measure registry.**
+  - [ ] Describe this track as a one-node proof.
+  - [ ] Add the IM3, APPC, and BC rollout tracks.
+  - [ ] Show that each rollout depends on this pilot contract.
+- [ ] **Task 1.4: Measure - User Manual Verification 'Phase 1: Reconcile Ownership' (Protocol in `measure/workflow.md`).**
 
-- [ ] Task 1.1: Define the shared `learning-evidence.v1` contract (Lane 1)
-    - [ ] Add the canonical contract version, strict schema, inferred types, and public exports in the lowest valid domain-neutral package
-    - [ ] Require `nodeId`, `activityId`, positive `attemptOrdinal`, `origin`, `practice.v1` `mode`, ISO `occurredAt`, optional `gradedEvidence`, and `idempotencyKey`
-    - [ ] Validate paired/bounded scores and require at least one graded outcome when `gradedEvidence` exists
-    - [ ] Document that authenticated app context supplies learner/app identity and that raw answers stay in `practice.v1`
-- [ ] Task 1.2: Define teacher-first state transitions and mastery eligibility (Lane 1)
-    - [ ] Specify `awaiting_teacher_exposure` → `introduced` on accepted `teacher_led` evidence
-    - [ ] Specify that `teacher_led` evidence never creates a mastery observation or KST/SRS mutation, even when graded
-    - [ ] Specify that only post-exposure, graded `mastery_advantage` evidence may be mastery-bearing
-    - [ ] Define deterministic eligibility/rejection reasons and occurred-at ordering
-- [ ] Task 1.3: Freeze the exact three-node pilot manifest (All lanes)
-    - [ ] Register only `math.im3.skill.1.1.graph-quadratic-functions`
-    - [ ] Register only `math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs`
-    - [ ] Define only `math.bm2.skill.1.1.apply-accounting-equation` from BM2 Unit 1 Lesson 1
-    - [ ] Reject implicit rollout through prerequisite, equivalence, transfer, or neighbor expansion
-- [ ] Task 1.4: Define app adapter and persistence seams (All lanes)
-    - [ ] Map existing activity attempts to `attemptOrdinal` without renaming `practice.v1.attemptNumber`
-    - [ ] Define ISO-to-numeric timestamp adapters where Convex stores numbers
-    - [ ] Define same-key replay and same-key/different-payload conflict behavior at each app boundary
-    - [ ] Record the IM3 v3.2 overlap boundary and any Precalculus/BM2 dependency approval gate before runtime edits
-- [ ] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract' (Protocol in workflow.md)
+## Phase 2: Removal-First Audit
 
-## Phase 2: Test
+- [ ] **Task 2.1: Confirm that the track added no unauthorized hash.**
+  - [ ] Search only track-owned production files for `createHash`, `sha256`,
+    `fingerprint`, and new checksum fields.
+  - [ ] Remove a track-added occurrence unless an existing protocol requires it.
+  - [ ] Do not change password hashing, IP hashing, or component-approval legacy
+    behavior.
+- [ ] **Task 2.2: Confirm that APPC and BC do not duplicate KST.**
+  - [ ] Keep the shared SRS-to-KST bridge in
+    `@math-platform/knowledge-space-core` as the only bridge implementation.
+  - [ ] Remove any pilot-local KST bridge or snapshot writer that duplicates it.
+  - [ ] Keep the APPC and BC pilot receipt field at `kstApplied: false`.
+- [ ] **Task 2.3: Confirm that IM3 phase completion still works.**
+  - [ ] Run
+    `apps/integrated-math-3/__tests__/app/api/phases/complete/route.test.ts`.
+  - [ ] Run
+    `apps/integrated-math-3/__tests__/components/lesson/PhaseCompleteButton.test.tsx`.
+  - [ ] Run
+    `apps/integrated-math-3/__tests__/convex/student-phase-completion-completed-row.red.test.ts`.
+  - [ ] Require one idempotency key for the logical completion attempt.
+  - [ ] Require retry to reuse that key.
+  - [ ] Stop if a pilot change breaks ordinary phase completion.
+- [ ] **Task 2.4: Measure - User Manual Verification 'Phase 2: Removal-First Audit' (Protocol in `measure/workflow.md`).**
 
-- [~] Task 2.1: Write shared contract, normalization, and idempotency tests (Lane 1)
-    - [ ] Cover all required fields, both origins, all five `practice.v1` modes, and valid optional graded evidence
-    - [ ] Reject invalid timestamps, ordinals, origins, scores, node/activity IDs, and idempotency keys
-    - [ ] Prove normalized same-key replay is idempotent and conflicting reuse is rejected
-- [~] Task 2.2: Write adversarial no-teacher-mastery tests (Lane 1)
-    - [ ] Snapshot KST mastery/readiness/outer-fringe state before and after ungraded teacher exposure
-    - [ ] Repeat with correct/full-score teacher graded evidence and prove byte-equivalent KST state
-    - [ ] Prove no SRS card creation, rating, scheduling, rescheduling, or mastery-attempt increment occurs
-    - [ ] Prove source-presence assertions alone cannot satisfy this behavioral invariant
-- [~] Task 2.3: Write IM3 one-node pilot Red tests (Lane 1)
-    - [ ] Prove Mastery Advantage returns `awaiting_teacher_exposure` before exposure and performs no write
-    - [ ] Prove teacher exposure introduces only the IM3 pilot node exactly once
-    - [ ] Prove one later graded Mastery Advantage attempt traverses the existing IM3 KST+SRS path
-    - [ ] Prove a non-pilot IM3 node remains disabled
-    - [x] Terra: Added focused Red coverage for the durable IM3 Convex persistence seam (885d43f). It covers ISO-to-number normalization, learner-scoped replay, same-key conflict rejection, the one-node pilot boundary, and pre-exposure bridge denial. Red baseline: `createIm3ConvexLearningEvidenceHandler` is not implemented.
-    - **Verified runtime-hook blocker (2026-08-19):** Phase 4 of `module-1-lesson-1` stores a generated `activities` document ID for `step-by-step-solver`. The generated worked-example candidate is `math.im3.skill.1.1.graph-quadratic-functions.worked_example` for `graphing-explorer`. `lookupVariantForScheduling` reads `practice_items` by the stored `activities` ID. No current mapping joins these IDs. Do not add the teacher phase hook until an approved mapping aligns the seed, the generated activity map, and the resolver.
-- [~] Task 2.4: Write Precalculus one-node pilot Red tests (Lane 2)
-    - [x] Reuse the shared conformance fixture without importing IM3 code
-    - [x] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
-    - [x] Prove a second Precalculus node remains disabled
-    - [x] Terra: Added transaction and route contract tests for authenticated identity, strict v1 validation, idempotency, SRS-only mastery effects, and the KST fail-closed state. Red: the route omits `kstApplied: false`.
-- [~] Task 2.5: Write BM2 one-node pilot Red tests (Lane 3)
-    - [ ] Freeze `math.bm2.skill.1.1.apply-accounting-equation` to the reviewed Unit 1 Lesson 1 source and activity mapping
-    - [ ] Call `evaluateLearningEvidenceV1` only with `{ evidence, acceptedEvidence, enabledNodeIds }` and retain its canonical decision shape
-    - [ ] Map BM2 `problemFamilyId: 'accounting-equation'` to canonical `variantKey: 'accounting-equation'` without a broad rename
-    - [ ] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
-    - [ ] Prove no second BM2 graph node is introduced by this track
-- [~] Task 2.6: Write cross-app contract and pilot-boundary tests (All lanes)
-    - [ ] Run identical origin/mode/idempotency cases against all three adapters
-    - [ ] Assert exactly one enabled node per app and exactly three enabled node IDs total
-    - [ ] Assert shared packages contain no app or `convex/_generated` imports
-    - [ ] Assert teacher-led events never enter the KST/SRS mastery bridge in any app
-- [ ] Task 2.7: Confirm and record the behavioral Red baseline (All lanes)
-    - [ ] Run the focused shared-package and three-app pilot suites before implementation
-    - [ ] Record failures that correspond to missing contract/gate/adapter behavior
-    - [ ] Separate unrelated standing app Reds without weakening or skipping the new tests
-- [ ] Task 2.8: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+## Phase 3: Pilot Regression Gate
 
-## Phase 3: Implement
+- [ ] **Task 3.1: Run the exact focused pilot selectors.**
+  - [ ] Run the recorded 24-file IM3 selector.
+  - [ ] Run the recorded 17-file BC selector.
+  - [ ] Run the recorded 14-file APPC pilot selector.
+  - [ ] Run the Practice Core and SRS Engine selectors.
+  - [ ] Require the recorded 57-file and 517-test total unless an inspected test
+    addition changes the count.
+- [ ] **Task 3.2: Run app and package quality gates.**
+  - [ ] Run test, lint, typecheck, and build for IM3 and APPC.
+  - [ ] Run test, lint, explicit `npx tsc --noEmit`, and build for BC.
+  - [ ] Run test, lint, typecheck, and build for `practice-core`, `srs-engine`,
+    and `knowledge-space-core`.
+  - [ ] Compare full-app failures with the recorded pre-track baselines.
+  - [ ] Stop on a current-only failure.
+- [ ] **Task 3.3: Verify public trust boundaries.**
+  - [ ] Require student role on every pilot producer and consumer.
+  - [ ] Require a bounded non-blank `Idempotency-Key` on create routes.
+  - [ ] Reject browser-owned learner, score, grade, ordinal, time, and origin.
+  - [ ] Require evidence retry to send only `{ submissionId }`.
+  - [ ] Require safe HTTP 409 responses for idempotency conflicts.
+- [ ] **Task 3.4: Measure - User Manual Verification 'Phase 3: Pilot Regression Gate' (Protocol in `measure/workflow.md`).**
 
-- [x] Task 3.1: Implement the shared evidence contract and policy helpers (Lane 1) (62b2cf5)
-    - [x] Add the schema/type/public exports and deterministic normalization/fingerprint behavior
-    - [x] Add pure exposure eligibility and mastery-bearing classification helpers
-    - [x] Keep teacher-led evidence on a reporting-only path and Mastery Advantage evidence on the existing KST+SRS bridge
-    - [x] Preserve the package DAG and avoid dependency changes unless separately approved
-- [~] Task 3.2: Implement the IM3 pilot adapter (Lane 1) (35dd3d8)
-    - [x] Complete the overlap review against the active v3.2 migration before touching shared IM3 runtime surfaces
-    - [x] Persist idempotent teacher-led exposure for only the frozen IM3 node
-    - [x] Gate the pilot planner/bridge path on prior exposure and map eligible graded evidence into v3.2 KST+SRS
-    - [x] Make the focused IM3 Red tests Green without enabling neighboring nodes
-    - [x] Add the durable Convex evidence store/mutation and the phase-4 teacher-led exposure hook (a833e06). Keep the graded Mastery Advantage bridge fail-closed until the resolver blocker is resolved.
-- [x] Follow-up: Add the pure IM3 Convex learning-evidence handler seam (d1f2de0)
-    - [x] Reuse the IM3 adapter, shared evaluator, and exact one-node manifest
-    - [x] Preserve teacher-led persistence, pre-exposure denial, post-exposure bridge gating, replay idempotency, and same-key conflict rejection
-    - [x] Keep production Convex persistence outside this seam
-- [~] Task 3.3: Implement the Precalculus pilot adapter (Lane 2) (b1e5637)
-    - [x] Persist idempotent teacher-led exposure for only the frozen Precalculus node
-    - [x] Add the smallest app-owned SRS adapter needed for the bounded node; keep KST fail-closed
-    - [x] Keep curriculum, graph, auth, and storage details inside Precalculus
-    - [x] Make the focused Precalculus Red tests Green without enabling neighboring nodes
-    - [x] Preserve the explicit fail-closed `kstApplied: false` result in the authenticated Next route (719369d6)
-    - [~] Add the authenticated internal Convex transaction and concrete Next route call
-    - [~] Persist normalized evidence and the atomic SRS card/review effect exactly once
-    - [ ] Required follow-up: add the app-owned KST projection before claiming production KST completion
-- [~] Task 3.4: Implement the BM2 pilot node and adapter (Lane 3) (042e360)
-    - [x] Add the reviewed app-owned node/activity mapping for Unit 1 Lesson 1 only
-    - [x] Extend shared math ID support narrowly for `bm2` with compatibility tests
-    - [x] Translate the pilot's legacy `problemFamilyId` to `variantKey` only at the shared SRS boundary
-    - [x] Persist idempotent teacher-led exposure and gate BM2 Mastery Advantage progression
-    - [x] Reuse canonical KST+SRS behavior rather than introducing an app-local planner or scheduler
-    - [x] Make the focused BM2 Red tests Green without starting a full graph rollout
-    - [x] Follow-up: Add the pure legacy `problemFamilyId` ↔ canonical `variantKey` card compatibility boundary with focused validation tests and the BM2 Convex handler seam (37f075c)
-    - [x] Add red coverage for the authenticated BM2 evidence route and real teacher-led/mastery submission mappings (37f075c)
-    - [x] Add the authenticated Convex transaction, persist evidence atomically, and apply the existing BM2 SRS boundary once for eligible mastery evidence (37f075c)
-    - [x] P1 review fix: Reject client-submitted `teacher_led` evidence at the public route and validate the frozen teacher-led source at the trusted handler boundary (1d2e7f9e)
-- [ ] Task 3.5: Complete cross-app Green and refactor pass (All lanes)
-    *Note: Production Convex persistence and real KST/SRS wiring remain required for all three lanes.*
-    - [ ] Make the shared conformance and exact-three-node boundary suites Green
-    - [ ] Remove duplicated app policy logic while retaining app-owned persistence/auth adapters
-    - [ ] Verify duplicate delivery causes one logical event and one downstream effect in every app
-    - [ ] Re-run behavioral no-teacher-mastery tests after refactoring
-- [ ] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+## Phase 4: Generated Facts and Closeout
 
-## Phase 4: Generate/Doctor
-
-- [ ] Task 4.1: Run focused tests and coverage (All lanes)
-    - [ ] Run the shared contract/policy suites and all three app pilot suites
-    - [ ] Run relevant existing KST, SRS, practice, and adapter regression suites
-    - [ ] Meet at least 80% coverage for new code and report exact commands/results
-- [ ] Task 4.2: Run lint, typecheck, and build gates (All lanes)
-    - [ ] Run package and app lint for every touched workspace
-    - [ ] Run `npx tsc --noEmit` for every touched package/app in addition to builds
-    - [ ] Run relevant builds and record any unrelated standing baseline separately without suppressing failures
-- [ ] Task 4.3: Generate and verify repository facts (All lanes)
-    - [ ] Run `measure/generate.sh`
-    - [ ] Verify generated architecture/routes are fresh and deterministic
-    - [ ] Confirm generated output reflects only the intended shared seam and three bounded pilots
-- [ ] Task 4.4: Run Measure Doctor and architecture boundaries (All lanes)
-    - [ ] Run `measure/doctor.sh`
-    - [ ] Run package-boundary and dependency-DAG checks
-    - [ ] Resolve any shared-to-app, app-to-app, or `convex/_generated` boundary violation
-- [ ] Task 4.5: Produce the three-pilot acceptance audit (All lanes)
-    - [ ] Report one teacher-led exposure and one post-exposure Mastery Advantage proof per pilot node
-    - [ ] Prove teacher-led processing changed no mastery/SRS state in all three apps
-    - [ ] Prove exactly three node IDs are enabled and document graph-wide rollout as future scope
-    - [ ] Reconcile findings with the active IM3 v3.2 migration without taking over its cutover or backfill scope
-- [ ] Task 4.6: Measure - User Manual Verification 'Phase 4: Generate/Doctor' (Protocol in workflow.md)
+- [ ] **Task 4.1: Run repository fact gates.**
+  - [ ] Run `node scripts/check-monorepo-boundaries.mjs`.
+  - [ ] Run `node scripts/architecture/check-quality-parity.mjs`.
+  - [ ] Run `npm run generate`.
+  - [ ] Inspect each generated diff.
+  - [ ] Run `npm run doctor`.
+  - [ ] Run `git diff --check`.
+  - [ ] Do not add a report runner, hash, checksum, or manifest.
+- [ ] **Task 4.2: Run smoke checks only with the required authorization.**
+  - [ ] A local Convex and Next smoke may create local test data only after the
+    user approves that write.
+  - [ ] A persistent deployment check is read-only unless the user approves a
+    write.
+  - [ ] Do not replace a blocked smoke with a mock production claim.
+- [ ] **Task 4.3: Write the final pilot report.**
+  - [ ] Report the exact node enabled in each app.
+  - [ ] Report KST and SRS effects for each app.
+  - [ ] State that course-wide readiness is not complete.
+  - [ ] Link the three rollout plans.
+  - [ ] Record any authorized smoke that did not run.
+- [ ] **Task 4.4: Measure - User Manual Verification 'Phase 4: Generated Facts and Closeout' (Protocol in `measure/workflow.md`).**
