@@ -13,6 +13,8 @@
 - [x] T04: Render every slide. Inspect and repair. Run presentation validation and applicable Measure checks. Record the final path.
 - [~] T05: Deliver the presentation for user review. The manual checkpoint remains open.
 - [x] T06: Refresh the FFT guidance slide after the school supplied the 2022 rating descriptors. Rebuild and verify the final presentation. `4543d9192`
+- [x] T07: Add FFT 2022, TLAC 3.0, and GBF 2.0 cover images. Explain the role of TLAC and GBF in the app. Rebuild and verify the final presentation. `a4c39da30`
+- [x] T08: Rewrite the full presentation in direct teacher language. Remove sales language, inflated claims, and executive framing. Keep the evidence, limits, and decisions clear. `fd2dc8eda`
 
 No application code changes. Presentation content and package checks replace app unit tests for this document task.
 

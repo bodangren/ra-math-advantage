@@ -10,16 +10,24 @@ No observation, coaching cycle, comment, or account change was submitted.
 
 ## Presentation checks
 
-The final deck contains 16 slides and 16 speaker-note parts.
-The deck keeps text editable and includes three native comparison tables.
-Package integrity, slide geometry, heading fit, font policy, and import checks passed.
-Every final slide was rendered and inspected. Screenshot crops were revised for readability.
-Content checks confirm FFT, coaching, follow-up, library coverage, and deferred AI wording.
-The deck was not inspected in Microsoft PowerPoint.
+The final deck contains 18 slides and 18 speaker-note parts.
+The opening frame names instruction, pedagogy, teacher development, WASC support, and school administration.
+The deck includes the FFT 2022, TLAC 3.0, and GBF 2.0 covers.
+It explains how TLAC and GBF are used in the app.
+It states that TLAC mappings are school-defined.
+It states that GBF priorities do not calculate evaluation ratings.
 
-The 2026-09-17 refresh states that the app includes all 88 school-supplied FFT
-2022 rating descriptors. The finalization checks pass with 16 slides, 16 speaker
-note parts, three native tables, Arial text, and no package or layout findings.
+The WASC slide links app records to A3 Faculty and Staff, A4 Continuous Improvement, and B2 Teaching and Learning.
+It states that the app supplies only part of the evidence for self-study.
+It does not claim that the app establishes accreditation compliance.
+
+The deck keeps text editable and includes four native comparison tables.
+Package integrity, slide geometry, heading fit, font policy, and import checks passed.
+Every final slide was rendered and inspected.
+The final checks found no package findings, layout findings, or layout warnings.
+The file uses Arial throughout.
+The final SHA-256 is `3dec1bc66e1027d28f06fa4023d4aeb32b67dcd781d4b3d32ba54a7543370974`.
+The deck was not inspected in Microsoft PowerPoint.
 
 ## Repository checks
 
