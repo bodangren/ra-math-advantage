@@ -143,7 +143,6 @@ export {
   learningEvidenceV1Schema,
   evaluateLearningEvidenceV1,
   normalizeLearningEvidenceV1,
-  learningEvidenceFingerprintV1,
 } from './practice/learning-evidence';
 export type {
   LearningEvidenceV1,

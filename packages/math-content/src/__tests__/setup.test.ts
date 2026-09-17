@@ -20,16 +20,28 @@ import {
 } from '../index';
 
 describe('math-content package scaffold', () => {
-  it('all 7 activity schemas are registered', () => {
+  it('all 25 activity schemas are registered', () => {
     const keys = Object.keys(SCHEMA_REGISTRY);
-    expect(keys).toHaveLength(7);
+    expect(keys).toHaveLength(25);
+    expect(keys).toContain('concavity-from-rate-change');
     expect(keys).toContain('comprehension-quiz');
     expect(keys).toContain('fill-in-the-blank');
     expect(keys).toContain('graphing-explorer');
     expect(keys).toContain('step-by-step-solver');
     expect(keys).toContain('rate-of-change-calculator');
     expect(keys).toContain('discriminant-analyzer');
-    expect(keys).toContain('quadratic-formula');
+    expect(keys).toContain('interval-classification');
+    expect(keys).toContain('physical-context-graph-choice');
+    expect(keys).toContain('table-average-rate-choice');
+    expect(keys).toContain('graph-average-rate-choice');
+    expect(keys).toContain('negative-rate-context-choice');
+    expect(keys).toContain('pointwise-least-rate-choice');
+    expect(keys).toContain('pointwise-rate-ordering');
+    expect(keys).toContain('quadratic-negative-rate-interval-choice');
+    expect(keys).toContain('rate-pattern-classification');
+    expect(keys).toContain('polynomial-degree-leading-coefficient');
+    expect(keys).toContain('polynomial-extrema-from-graph');
+    expect(keys).toContain('rate-sign-and-trend-from-graph');
   });
 
   it('comprehensionQuizSchema validates valid input', () => {

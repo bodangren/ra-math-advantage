@@ -1,5 +1,4 @@
-import { parseQuadratic } from './quadratic-parser';
-import { parseLinear } from './linear-parser';
+import { evaluateRealExpression } from './expression';
 
 export interface Point {
   x: number;
@@ -142,28 +141,16 @@ export function evaluateLinear(
 }
 
 /**
- * Evaluates a mathematical expression (linear or quadratic) at x.
+ * Evaluates a supported course expression at x.
  * @param {string} expression - Math expression string (e.g., "2x^2+3x-1" or "mx+b")
  * @param {number} x - Input value
- * @returns {number} - Evaluated result, or 0 if unparseable
+ * @returns {number} - Evaluated result, or NaN for unsupported or non-real inputs
  */
 export function evaluateFunction(
   expression: string,
   x: number,
 ): number {
-  if (expression.includes('x^2')) {
-    const coeffs = parseQuadratic(expression);
-    if (coeffs) {
-      return evaluateQuadratic(x, coeffs.a, coeffs.b, coeffs.c);
-    }
-  } else if (expression.includes('x')) {
-    const coeffs = parseLinear(expression);
-    if (coeffs) {
-      return evaluateLinear(x, coeffs.m, coeffs.b);
-    }
-  }
-
-  return parseFloat(expression) || 0;
+  return evaluateRealExpression(expression, x);
 }
 
 /**

@@ -4,10 +4,29 @@ import {
   fillInTheBlankSchema,
   rateOfChangeCalculatorSchema,
   discriminantAnalyzerSchema,
+  graphingExplorerSchema,
+  intervalClassificationSchema,
   getPropsSchema,
   SCHEMA_REGISTRY,
   ActivityComponentKey,
 } from '../schemas';
+
+describe('intervalClassificationSchema', () => {
+  it('accepts a finite graph with a real constant interval', () => {
+    expect(intervalClassificationSchema.safeParse({
+      prompt: 'Classify all intervals.',
+      domain: [0, 8],
+      changePoints: [2, 4],
+      points: [
+        { x: 0, y: 5 },
+        { x: 2, y: 8 },
+        { x: 4, y: 8 },
+        { x: 8, y: 6 },
+      ],
+      presentationMode: 'independent_practice',
+    }).success).toBe(true);
+  });
+});
 
 describe('comprehensionQuizSchema', () => {
   it('should validate a valid quiz', () => {
@@ -56,12 +75,12 @@ describe('fillInTheBlankSchema', () => {
     expect(result.success).toBe(false);
   });
 
-  it('should reject blank without correctAnswer', () => {
+  it('accepts a blank without a client-visible answer', () => {
     const result = fillInTheBlankSchema.safeParse({
       template: 'Hello {{blank:name}}',
       blanks: [{ id: 'name' }],
     });
-    expect(result.success).toBe(false);
+    expect(result.success).toBe(true);
   });
 });
 
@@ -118,8 +137,34 @@ describe('discriminantAnalyzerSchema', () => {
 });
 
 describe('SCHEMA_REGISTRY', () => {
-  it('should contain all 7 activity keys', () => {
-    expect(Object.keys(SCHEMA_REGISTRY).length).toBe(7);
+  it('should contain the exact 25 activity keys', () => {
+    expect(Object.keys(SCHEMA_REGISTRY)).toEqual([
+      'graphing-explorer',
+      'step-by-step-solver',
+      'comprehension-quiz',
+      'fill-in-the-blank',
+      'rate-of-change-calculator',
+      'discriminant-analyzer',
+      'interval-classification',
+      'physical-context-graph-choice',
+      'table-average-rate-choice',
+      'graph-average-rate-choice',
+      'pointwise-least-rate-choice',
+      'pointwise-rate-ordering',
+      'negative-rate-context-choice',
+      'quadratic-negative-rate-interval-choice',
+      'rate-pattern-classification',
+      'concavity-from-rate-change',
+      'polynomial-degree-leading-coefficient',
+      'polynomial-extrema-from-graph',
+      'rate-sign-and-trend-from-graph',
+      'polynomial-end-behavior',
+      'polynomial-limit-notation-end-behavior',
+      'real-zeros-and-multiplicities',
+      'least-polynomial-degree',
+      'polynomial-inequality-sign-chart',
+      'polynomial-equation-end-behavior',
+    ]);
   });
 
   it('should have zod schemas for each key', () => {
@@ -130,7 +175,25 @@ describe('SCHEMA_REGISTRY', () => {
       'fill-in-the-blank',
       'rate-of-change-calculator',
       'discriminant-analyzer',
-      'quadratic-formula',
+      'interval-classification',
+      'physical-context-graph-choice',
+      'table-average-rate-choice',
+      'graph-average-rate-choice',
+      'pointwise-least-rate-choice',
+      'pointwise-rate-ordering',
+      'negative-rate-context-choice',
+      'quadratic-negative-rate-interval-choice',
+      'rate-pattern-classification',
+      'concavity-from-rate-change',
+      'polynomial-degree-leading-coefficient',
+      'polynomial-extrema-from-graph',
+      'rate-sign-and-trend-from-graph',
+      'polynomial-end-behavior',
+      'polynomial-limit-notation-end-behavior',
+      'real-zeros-and-multiplicities',
+      'least-polynomial-degree',
+      'polynomial-inequality-sign-chart',
+      'polynomial-equation-end-behavior',
     ];
     keys.forEach((key) => {
       expect(SCHEMA_REGISTRY[key]).toBeDefined();
@@ -148,5 +211,23 @@ describe('getPropsSchema', () => {
   it('should return undefined for invalid key', () => {
     const schema = getPropsSchema('nonexistent');
     expect(schema).toBeUndefined();
+  });
+});
+
+describe('graphingExplorerSchema Example 3 response props', () => {
+  it('accepts estimated root interval renderer props but rejects answer fields', () => {
+    const rendererProps = {
+      equation: 'f(x) = -x^2 + 3x + 7',
+      variant: 'plot_from_equation' as const,
+      responseVariant: 'estimated_root_intervals',
+      originalEquation: '-x^2 + 3x + 7 = 0',
+      points: [[-2, -3], [-1, 3], [0, 7], [1, 9], [2, 9], [3, 7], [4, 3], [5, -3]] as [number, number][],
+    };
+
+    expect(graphingExplorerSchema.safeParse(rendererProps).success).toBe(true);
+    expect(graphingExplorerSchema.safeParse({
+      ...rendererProps,
+      root_intervals: [[-2, -1], [4, 5]],
+    }).success).toBe(false);
   });
 });

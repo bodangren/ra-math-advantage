@@ -34,9 +34,9 @@
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
     "@math-platform/activity-runtime": "*",
-    "@math-platform/math-content": "*",
     "@math-platform/practice-core": "*",
-    "zod": "^4.1.12"
+    "zod": "^4.1.12",
+    "@math-platform/graphing-core": "*"
   },
   "peerDependencies": {
     "react": "^19"

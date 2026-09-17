@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useRef, useState } from 'react';
+import { useId, useState } from 'react';
 import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import type { IntervalClassificationProps } from '../../schemas/interval-classification.schema';
 
@@ -9,22 +9,6 @@ const ANSWER_FIELDS = [
   ['decreasingIntervals', 'Decreasing intervals'],
   ['constantIntervals', 'Constant intervals'],
 ] as const;
-
-type AnswerField = typeof ANSWER_FIELDS[number][0];
-
-const INDEPENDENT_HINTS: Record<AnswerField, string> = {
-  increasingIntervals: 'Compare each segment from left to right. Find each segment that rises.',
-  decreasingIntervals: 'Compare each segment from left to right. Find each segment that falls.',
-  constantIntervals: 'Compare each segment from left to right. Find each segment that stays level.',
-};
-
-function emptyCounts(): Record<AnswerField, number> {
-  return {
-    increasingIntervals: 0,
-    decreasingIntervals: 0,
-    constantIntervals: 0,
-  };
-}
 
 export type IntervalClassificationActivityProps = IntervalClassificationProps & {
   activityId: string;
@@ -52,11 +36,6 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
     constantIntervals: '',
   });
   const [pending, setPending] = useState(false);
-  const [locked, setLocked] = useState(false);
-  const lockedRef = useRef(false);
-  const [hintsUsed, setHintsUsed] = useState(emptyCounts);
-  const [revealStepsSeen, setRevealStepsSeen] = useState(emptyCounts);
-  const [changedCount, setChangedCount] = useState(emptyCounts);
   const [submitError, setSubmitError] = useState<string>();
   const graphTitleId = `${instanceId}-graph-title`;
   const graphDescriptionId = `${instanceId}-graph-description`;
@@ -74,62 +53,15 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
   const xScale = (x: number) => left + ((x - domainStart) / (domainEnd - domainStart)) * (width - left - right);
   const yScale = (y: number) => top + ((maxY - y) / ySpan) * (height - top - bottom);
   const graphPoints = points.map((point) => `${xScale(point.x)},${yScale(point.y)}`).join(' ');
-  const revealedAnswers: Record<AnswerField, string> = {
-    increasingIntervals: '',
-    decreasingIntervals: '',
-    constantIntervals: '',
-  };
-  for (let index = 0; index < points.length - 1; index += 1) {
-    const start = points[index]!;
-    const end = points[index + 1]!;
-    const field = end.y > start.y
-      ? 'increasingIntervals'
-      : end.y < start.y
-        ? 'decreasingIntervals'
-        : 'constantIntervals';
-    const interval = `[${start.x},${end.x}]`;
-    revealedAnswers[field] = revealedAnswers[field]
-      ? `${revealedAnswers[field]} U ${interval}`
-      : interval;
-  }
-  for (const [field] of ANSWER_FIELDS) {
-    revealedAnswers[field] ||= 'none';
-  }
-  const allAnswersPresent = ANSWER_FIELDS.every(([field]) => answers[field].trim().length > 0);
-
-  const changeAnswer = (field: AnswerField, value: string) => {
-    if (lockedRef.current) return;
-    setAnswers((current) => ({ ...current, [field]: value }));
-    setChangedCount((current) => ({ ...current, [field]: current[field] + 1 }));
-  };
-
-  const showHint = (field: AnswerField) => {
-    if (lockedRef.current) return;
-    setHintsUsed((current) => ({ ...current, [field]: 1 }));
-  };
-
-  const revealAnswer = (field: AnswerField) => {
-    if (lockedRef.current) return;
-    setRevealStepsSeen((current) => ({ ...current, [field]: 1 }));
-  };
 
   const submit = async () => {
-    if (lockedRef.current || !allAnswersPresent) return;
-    lockedRef.current = true;
-    setLocked(true);
+    if (pending) return;
     setPending(true);
     setSubmitError(undefined);
     const envelope = buildPracticeSubmissionEnvelope({
       activityId,
       mode: mode === 'practice' ? 'independent_practice' : 'guided_practice',
       answers,
-      parts: ANSWER_FIELDS.map(([partId]) => ({
-        partId,
-        rawAnswer: answers[partId],
-        hintsUsed: hintsUsed[partId],
-        revealStepsSeen: revealStepsSeen[partId],
-        changedCount: changedCount[partId],
-      })),
     });
     try {
       await onSubmit?.(envelope);
@@ -206,61 +138,44 @@ export function IntervalClassificationActivity(props: IntervalClassificationActi
             {ANSWER_FIELDS.map(([field, label]) => {
               const helpId = `${instanceId}-${field}-help`;
               return (
-                <div key={field} className="grid gap-2">
-                  <label className="grid gap-2">
-                    <span>{label}</span>
-                    <input
-                      disabled={locked}
-                      aria-describedby={hintsUsed[field] ? helpId : undefined}
-                      aria-label={label}
-                      value={answers[field]}
-                      onChange={(event) => changeAnswer(field, event.target.value)}
-                    />
-                  </label>
-                  <button type="button" disabled={locked || hintsUsed[field] > 0}
-                    onClick={() => showHint(field)}>
-                    {`Show hint for ${label}`}
-                  </button>
-                  {hintsUsed[field] > 0 && <p id={helpId}>{props.fieldHelp[field]}</p>}
-                  <button type="button" disabled={locked || revealStepsSeen[field] > 0}
-                    onClick={() => revealAnswer(field)}>
-                    {`Reveal answer for ${label}`}
-                  </button>
-                  {revealStepsSeen[field] > 0 && <p>{revealedAnswers[field]}</p>}
-                </div>
+                <label key={field} className="grid gap-2">
+                  <span>{label}</span>
+                  <span id={helpId}>{props.fieldHelp[field]}</span>
+                  <input
+                    disabled={pending}
+                    aria-describedby={helpId}
+                    aria-label={label}
+                    value={answers[field]}
+                    onChange={(event) => setAnswers((current) => ({
+                      ...current,
+                      [field]: event.target.value,
+                    }))}
+                  />
+                </label>
               );
             })}
           </div>
-          <button type="button" disabled={locked || !allAnswersPresent} onClick={submit}>
-            {pending ? 'Saving answer…' : locked ? 'Answer submitted' : 'Submit answer'}
-          </button>
+          <button type="button" disabled={pending} onClick={submit}>{pending ? 'Saving answer…' : 'Submit answer'}</button>
         </>
       ) : (
         <>
           <div className="grid gap-4">
             {ANSWER_FIELDS.map(([field, label]) => (
-              <div key={field} className="grid gap-2">
-                <label className="grid gap-2">
-                  <span>{label}</span>
-                  <input disabled={locked} aria-label={label} value={answers[field]}
-                    onChange={(event) => changeAnswer(field, event.target.value)} />
-                </label>
-                <button type="button" disabled={locked || hintsUsed[field] > 0}
-                  onClick={() => showHint(field)}>
-                  {`Show hint for ${label}`}
-                </button>
-                {hintsUsed[field] > 0 && <p>{INDEPENDENT_HINTS[field]}</p>}
-                <button type="button" disabled={locked || revealStepsSeen[field] > 0}
-                  onClick={() => revealAnswer(field)}>
-                  {`Reveal answer for ${label}`}
-                </button>
-                {revealStepsSeen[field] > 0 && <p>{revealedAnswers[field]}</p>}
-              </div>
+              <label key={field} className="grid gap-2">
+                <span>{label}</span>
+                <input
+                    disabled={pending}
+                  aria-label={label}
+                  value={answers[field]}
+                  onChange={(event) => setAnswers((current) => ({
+                    ...current,
+                    [field]: event.target.value,
+                  }))}
+                />
+              </label>
             ))}
           </div>
-          <button type="button" disabled={locked || !allAnswersPresent} onClick={submit}>
-            {pending ? 'Saving answer…' : locked ? 'Answer submitted' : 'Submit answer'}
-          </button>
+          <button type="button" disabled={pending} onClick={submit}>{pending ? 'Saving answer…' : 'Submit answer'}</button>
         </>
       )}
       {submitError && <p role="alert">{submitError}</p>}

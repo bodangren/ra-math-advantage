@@ -201,42 +201,6 @@ export function normalizeLearningEvidenceV1(
   };
 }
 
-/**
- * Returns a deterministic payload fingerprint for idempotency comparisons.
- * The result is a redacted contract representation and contains no learner
- * answer data because that data is not part of learning-evidence.v1.
- */
-export function learningEvidenceFingerprintV1(
-  input: LearningEvidenceV1,
-): string {
-  const evidence = normalizeLearningEvidenceV1(input);
-  const gradedEvidence = evidence.gradedEvidence;
-
-  return JSON.stringify({
-    contractVersion: evidence.contractVersion,
-    nodeId: evidence.nodeId,
-    activityId: evidence.activityId,
-    attemptOrdinal: evidence.attemptOrdinal,
-    origin: evidence.origin,
-    mode: evidence.mode,
-    occurredAt: evidence.occurredAt,
-    gradedEvidence: gradedEvidence === undefined
-      ? null
-      : {
-          ...(gradedEvidence.isCorrect === undefined
-            ? {}
-            : { isCorrect: gradedEvidence.isCorrect }),
-          ...(gradedEvidence.score === undefined
-            ? {}
-            : { score: gradedEvidence.score }),
-          ...(gradedEvidence.maxScore === undefined
-            ? {}
-            : { maxScore: gradedEvidence.maxScore }),
-        },
-    idempotencyKey: evidence.idempotencyKey,
-  });
-}
-
 function getIdempotency(
   evidence: LearningEvidenceV1,
   acceptedEvidence: readonly LearningEvidenceV1[],
@@ -246,9 +210,19 @@ function getIdempotency(
   );
   if (matching.length === 0) return 'new';
 
-  const fingerprint = learningEvidenceFingerprintV1(evidence);
   return matching.every(
-    (accepted) => learningEvidenceFingerprintV1(accepted) === fingerprint,
+    (accepted) => (
+      accepted.contractVersion === evidence.contractVersion
+      && accepted.nodeId === evidence.nodeId
+      && accepted.activityId === evidence.activityId
+      && accepted.attemptOrdinal === evidence.attemptOrdinal
+      && accepted.origin === evidence.origin
+      && accepted.mode === evidence.mode
+      && accepted.occurredAt === evidence.occurredAt
+      && accepted.gradedEvidence?.isCorrect === evidence.gradedEvidence?.isCorrect
+      && accepted.gradedEvidence?.score === evidence.gradedEvidence?.score
+      && accepted.gradedEvidence?.maxScore === evidence.gradedEvidence?.maxScore
+    ),
   )
     ? 'replay'
     : 'conflict';

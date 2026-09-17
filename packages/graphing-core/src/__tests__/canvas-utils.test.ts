@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { evaluateFunction } from '../canvas-utils';
+import { evaluateFunction, generateFunctionPath } from '../canvas-utils';
 
 describe('evaluateFunction', () => {
   describe('quadratic functions', () => {
@@ -81,8 +81,22 @@ describe('evaluateFunction', () => {
       expect(evaluateFunction('2x + 3', -1)).toBe(1);
     });
 
-    it('returns 0 for invalid expressions', () => {
-      expect(evaluateFunction('not a function', 5)).toBe(0);
+    it('returns NaN for invalid expressions', () => {
+      expect(evaluateFunction('not a function', 5)).toBeNaN();
     });
+  });
+});
+
+describe('generateFunctionPath', () => {
+  it('returns canvas coordinates for the 1-1-1 quadratic vertex', () => {
+    const path = generateFunctionPath(
+      'x^2 + 2x - 3',
+      [-10, 10],
+      [-10, 10],
+      20,
+      20,
+    );
+
+    expect(path.split(' ')).toContain('9,14');
   });
 });

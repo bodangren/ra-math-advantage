@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import InlineMath from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
+import { normalizeSolverAnswer } from '../../schemas/step-by-step-solver.schema';
 import { MathInputField } from '../algebraic/MathInputField';
 
 export type StepMode = 'teaching' | 'guided' | 'practice';
@@ -28,7 +29,6 @@ export interface StepByStepperProps {
   problemType?: string;
   generateDistractors?: (expression: string, problemType: string) => string[];
   onPracticeComplete?: (attempts: StepAttempt[]) => void;
-  showInitialProblem?: boolean;
 }
 
 /**
@@ -71,7 +71,7 @@ function SimpleStepReveal({ steps }: { steps: Array<{ content: React.ReactNode }
  * @param {StepByStepperProps} props - The stepper configuration including mode, steps, and scaffold level
  * @returns {React.JSX.Element | undefined} The stepper component JSX
  */
-export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, generateDistractors, onPracticeComplete, showInitialProblem = true }: StepByStepperProps) {
+export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, generateDistractors, onPracticeComplete }: StepByStepperProps) {
   if (steps.length === 0) {
     return <SimpleStepReveal steps={[]} />;
   }
@@ -96,11 +96,11 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, gen
   }
 
   if (mode === 'guided') {
-    return <GuidedMode steps={steps} problemType={problemType} generateDistractors={generateDistractors} showInitialProblem={showInitialProblem} />;
+    return <GuidedMode steps={steps} problemType={problemType} generateDistractors={generateDistractors} onComplete={onPracticeComplete} />;
   }
 
   if (mode === 'practice') {
-    return <PracticeMode steps={steps} scaffoldLevel={scaffoldLevel} onComplete={onPracticeComplete} showInitialProblem={showInitialProblem} />;
+    return <PracticeMode steps={steps} scaffoldLevel={scaffoldLevel} onComplete={onPracticeComplete} />;
   }
 }
 
@@ -109,7 +109,8 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, gen
  * @param {{ steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[] }} props - The steps, problem type, and optional distractor generator
  * @returns {React.JSX.Element} The guided mode component JSX
  */
-function GuidedMode({ steps, problemType, generateDistractors, showInitialProblem }: { steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[]; showInitialProblem: boolean }) {
+function GuidedMode({ steps, problemType, generateDistractors, onComplete }: { steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[]; onComplete?: (attempts: StepAttempt[]) => void }) {
+  const [complete, setComplete] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [, setHintUsed] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -147,13 +148,18 @@ function GuidedMode({ steps, problemType, generateDistractors, showInitialProble
   };
 
   const handleNext = () => {
-    if (!isLastStep) {
+    if (isLastStep) {
+      setComplete(true);
+      onComplete?.(steps.map((step, stepIndex) => ({ stepIndex, userAnswer: step.expression, isCorrect: true })));
+    } else {
       setCurrentStepIndex(prev => prev + 1);
       setShowHint(false);
       setHintUsed(false);
       setShowExplanation(false);
     }
   };
+
+  if (complete) return <p role="status">Guided practice complete.</p>;
 
   return (
     <div className="space-y-4">
@@ -173,7 +179,7 @@ function GuidedMode({ steps, problemType, generateDistractors, showInitialProble
             aria-current={isActive ? 'step' : undefined}
             className="space-y-3"
           >
-            {showInitialProblem && isActive && currentStepIndex === 0 && !showExplanation && (
+            {isActive && currentStepIndex === 0 && !showExplanation && (
               <div className="p-4 bg-muted/30 rounded-lg">
                 <div className="text-sm font-medium text-muted-foreground mb-2">
                   Problem:
@@ -232,11 +238,9 @@ function GuidedMode({ steps, problemType, generateDistractors, showInitialProble
               <button
                 type="button"
                 onClick={handleNext}
-                disabled={isLastStep}
-                aria-disabled={isLastStep}
                 className="px-4 py-2 min-h-[44px] min-w-[44px] bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Next Step
+                {isLastStep ? 'Complete' : 'Next'}
               </button>
             )}
 
@@ -263,7 +267,7 @@ function GuidedMode({ steps, problemType, generateDistractors, showInitialProble
  * @param {{ steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void }} props - The steps, scaffold level, and completion callback
  * @returns {React.JSX.Element} The practice mode component JSX
  */
-function PracticeMode({ steps, scaffoldLevel, onComplete, showInitialProblem }: { steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void; showInitialProblem: boolean }) {
+function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
   const [showSolution, setShowSolution] = useState<Record<number, boolean>>({});
@@ -281,7 +285,7 @@ function PracticeMode({ steps, scaffoldLevel, onComplete, showInitialProblem }: 
       const attempts: StepAttempt[] = steps.map((step, idx) => ({
         stepIndex: idx,
         userAnswer: userAnswers[idx] ?? null,
-        isCorrect: (userAnswers[idx] ?? '').trim() === step.expression.trim(),
+        isCorrect: normalizeSolverAnswer(userAnswers[idx] ?? '') === normalizeSolverAnswer(step.expression),
       }));
       onComplete?.(attempts);
     }
@@ -301,7 +305,7 @@ function PracticeMode({ steps, scaffoldLevel, onComplete, showInitialProblem }: 
       const stepIndex = parseInt(idx);
       const userAnswer = userAnswers[stepIndex];
       const correctAnswer = steps[stepIndex].expression;
-      return userAnswer && userAnswer.trim() === correctAnswer.trim();
+      return userAnswer && normalizeSolverAnswer(userAnswer) === normalizeSolverAnswer(correctAnswer);
     }).length;
 
     return (
@@ -318,14 +322,14 @@ function PracticeMode({ steps, scaffoldLevel, onComplete, showInitialProblem }: 
 
   return (
     <div className="space-y-4">
-      {showInitialProblem && <div className="p-4 bg-muted/30 rounded-lg">
+      <div className="p-4 bg-muted/30 rounded-lg">
         <div className="text-sm font-medium text-muted-foreground mb-2">
           Problem:
         </div>
         <div className="text-lg">
           <InlineMath math={steps[0].expression} />
         </div>
-      </div>}
+      </div>
 
       {scaffoldLevel > 0 && currentStepIndex >= scaffoldLevel && (
         <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
@@ -377,7 +381,7 @@ function PracticeMode({ steps, scaffoldLevel, onComplete, showInitialProblem }: 
 
           {userAnswers[currentStepIndex] && (
             <div className={`p-3 rounded-md border ${
-              userAnswers[currentStepIndex].trim() === currentStep.expression.trim()
+              normalizeSolverAnswer(userAnswers[currentStepIndex]) === normalizeSolverAnswer(currentStep.expression)
                 ? 'bg-green-50 border-green-200'
                 : 'bg-red-50 border-red-200'
             }`}>
@@ -388,11 +392,11 @@ function PracticeMode({ steps, scaffoldLevel, onComplete, showInitialProblem }: 
                 <InlineMath math={userAnswers[currentStepIndex]} />
               </div>
               <div className={`text-sm mt-1 ${
-                userAnswers[currentStepIndex].trim() === currentStep.expression.trim()
+                normalizeSolverAnswer(userAnswers[currentStepIndex]) === normalizeSolverAnswer(currentStep.expression)
                   ? 'text-green-700'
                   : 'text-red-700'
               }`}>
-                {userAnswers[currentStepIndex].trim() === currentStep.expression.trim()
+                {normalizeSolverAnswer(userAnswers[currentStepIndex]) === normalizeSolverAnswer(currentStep.expression)
                   ? '✓ Correct!'
                   : '✗ Incorrect'}
               </div>

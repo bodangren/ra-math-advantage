@@ -63,10 +63,7 @@ export function projectSrsInputs(
       0.5;
 
     const generatorKey = node.generatorKey ?? blueprint?.generatorKey;
-    const generatorReady =
-      node.independentPracticeReady === true ||
-      (blueprint?.independentPracticeSpec != null) ||
-      (blueprint?.generatorKey != null && blueprint.generatorKey.length > 0);
+    const generatorReady = node.independentPracticeReady === true;
 
     const blueprintId = blueprint
       ? `${node.id}.blueprint`

@@ -4,11 +4,12 @@ import { describe, expect, it } from 'vitest';
 // Red baseline; it is the domain-neutral contract consumed by app adapters.
 import {
   evaluateLearningEvidenceV1,
-  learningEvidenceFingerprintV1,
   learningEvidenceV1Schema,
   normalizeLearningEvidenceV1,
+  type EvaluateLearningEvidenceV1Input,
+  type LearningEvidenceDecisionV1,
   type LearningEvidenceV1,
-} from '../practice/learning-evidence';
+} from '../index';
 
 const BASE_OCCURRED_AT = '2026-08-19T08:30:00.000Z';
 
@@ -31,8 +32,14 @@ function makeEvidence(
 function evaluate(
   evidence: LearningEvidenceV1,
   acceptedEvidence: readonly LearningEvidenceV1[] = [],
-) {
-  return evaluateLearningEvidenceV1({ evidence, acceptedEvidence });
+): LearningEvidenceDecisionV1 {
+  const input: EvaluateLearningEvidenceV1Input = {
+    evidence,
+    acceptedEvidence,
+    enabledNodeIds: [evidence.nodeId],
+  };
+
+  return evaluateLearningEvidenceV1(input);
 }
 
 describe('learning-evidence.v1 schema', () => {
@@ -98,8 +105,8 @@ describe('learning-evidence.v1 schema', () => {
   });
 });
 
-describe('normalizeLearningEvidenceV1 and learningEvidenceFingerprintV1', () => {
-  it('canonicalizes equivalent IDs and UTC timestamp syntax before fingerprinting', () => {
+describe('normalizeLearningEvidenceV1', () => {
+  it('canonicalizes equivalent IDs and UTC timestamp syntax', () => {
     const compact = normalizeLearningEvidenceV1({
       ...makeEvidence(),
       nodeId: '  domain.shared.skill.linear-functions  ',
@@ -110,25 +117,6 @@ describe('normalizeLearningEvidenceV1 and learningEvidenceFingerprintV1', () => 
 
     expect(compact).toEqual(canonical);
     expect(compact.occurredAt).toBe(BASE_OCCURRED_AT);
-    expect(learningEvidenceFingerprintV1(compact)).toBe(
-      learningEvidenceFingerprintV1(canonical),
-    );
-  });
-
-  it('produces a stable fingerprint that changes for a different normalized payload', () => {
-    const first = normalizeLearningEvidenceV1(makeEvidence({
-      gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
-    }));
-    const changed = normalizeLearningEvidenceV1(makeEvidence({
-      gradedEvidence: { isCorrect: true, score: 5, maxScore: 6 },
-    }));
-
-    expect(learningEvidenceFingerprintV1(first)).toBe(
-      learningEvidenceFingerprintV1(first),
-    );
-    expect(learningEvidenceFingerprintV1(first)).not.toBe(
-      learningEvidenceFingerprintV1(changed),
-    );
   });
 });
 
@@ -140,7 +128,7 @@ describe('evaluateLearningEvidenceV1', () => {
       gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
     }));
 
-    expect(decision).toMatchObject({
+    expect(decision).toEqual({
       idempotency: 'new',
       exposureState: 'introduced',
       eligible: false,
@@ -154,7 +142,8 @@ describe('evaluateLearningEvidenceV1', () => {
       gradedEvidence: { isCorrect: true },
     }));
 
-    expect(decision).toMatchObject({
+    expect(decision).toEqual({
+      idempotency: 'new',
       exposureState: 'awaiting_teacher_exposure',
       eligible: false,
       reason: 'awaiting_teacher_exposure',
@@ -177,7 +166,9 @@ describe('evaluateLearningEvidenceV1', () => {
       [laterTeacherExposure],
     );
 
-    expect(decision).toMatchObject({
+    expect(decision).toEqual({
+      idempotency: 'new',
+      exposureState: 'awaiting_teacher_exposure',
       eligible: false,
       reason: 'awaiting_teacher_exposure',
       masteryBearing: false,
@@ -208,13 +199,15 @@ describe('evaluateLearningEvidenceV1', () => {
       [teacherExposure],
     );
 
-    expect(ungraded).toMatchObject({
+    expect(ungraded).toEqual({
+      idempotency: 'new',
       exposureState: 'introduced',
       eligible: false,
       reason: 'ungraded_evidence',
       masteryBearing: false,
     });
-    expect(graded).toMatchObject({
+    expect(graded).toEqual({
+      idempotency: 'new',
       exposureState: 'introduced',
       eligible: true,
       reason: 'eligible',
@@ -241,7 +234,7 @@ describe('evaluateLearningEvidenceV1', () => {
       [accepted],
     );
 
-    expect(replay).toMatchObject({
+    expect(replay).toEqual({
       idempotency: 'replay',
       exposureState: 'introduced',
       eligible: false,
@@ -264,10 +257,31 @@ describe('evaluateLearningEvidenceV1', () => {
       [accepted],
     );
 
-    expect(conflict).toMatchObject({
+    expect(conflict).toEqual({
       idempotency: 'conflict',
+      exposureState: 'introduced',
       eligible: false,
       reason: 'idempotency_conflict',
+      masteryBearing: false,
+    });
+  });
+
+  it('rejects a node that is absent from the required enabled-node manifest', () => {
+    const evidence = makeEvidence({
+      origin: 'teacher_led',
+      mode: 'teaching',
+    });
+    const input: EvaluateLearningEvidenceV1Input = {
+      evidence,
+      acceptedEvidence: [],
+      enabledNodeIds: ['domain.shared.skill.different-node'],
+    };
+
+    expect(evaluateLearningEvidenceV1(input)).toEqual({
+      idempotency: 'new',
+      exposureState: 'awaiting_teacher_exposure',
+      eligible: false,
+      reason: 'node_not_enabled',
       masteryBearing: false,
     });
   });

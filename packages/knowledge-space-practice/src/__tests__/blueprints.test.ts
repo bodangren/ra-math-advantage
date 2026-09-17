@@ -13,6 +13,7 @@ import {
   validateRendererCompatibility,
   validateModeSupport,
   validateGradingCompatibility,
+  gradingMetadataSchema,
 } from '../blueprints/schemas';
 import type {
   KnowledgeBlueprint,
@@ -22,6 +23,7 @@ import type {
   GenericEvidenceResult,
   SchemaAdapter,
   DeterministicGenerator,
+  GradingMetadata,
 } from '../blueprints/types';
 import {
   syntheticAlgebraicBlueprint,
@@ -89,6 +91,16 @@ describe('knowledgeBlueprintSchema', () => {
 // ---------------------------------------------------------------------------
 
 describe('deterministicGenerator', () => {
+  it('accepts custom grading metadata rules', () => {
+    const metadata: GradingMetadata = {
+      partAnswers: { intervals: '[0,3]' },
+      partMaxScores: { intervals: 1 },
+      partGradingRules: { intervals: 'custom' },
+    };
+
+    expect(gradingMetadataSchema.parse(metadata)).toEqual(metadata);
+  });
+
   // A simple deterministic generator implementation for testing
   const testGenerator: DeterministicGenerator = {
     generate: (input: GeneratorInput): GeneratorOutput => {

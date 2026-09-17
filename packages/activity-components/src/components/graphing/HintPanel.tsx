@@ -26,6 +26,7 @@ export function HintPanel({
   readonly = false,
 }: HintPanelProps) {
   const [usedHints, setUsedHints] = useState<Set<string>>(new Set());
+  const [hintResults, setHintResults] = useState<Partial<Record<HintData['type'], HintData['data']>>>({});
 
   const handleHintClick = useCallback(
     (type: HintData['type']) => {
@@ -66,6 +67,7 @@ export function HintPanel({
       };
 
       setUsedHints(prev => new Set(prev).add(type));
+      setHintResults(prev => ({ ...prev, [type]: data }));
       onHintUsed(hint);
     },
     [functionExpression, readonly, usedHints, onHintUsed]
@@ -105,6 +107,17 @@ export function HintPanel({
         >
           Show Direction
         </button>
+      </div>
+      <div aria-live="polite" className="space-y-1 text-sm text-foreground">
+        {hintResults.axis_of_symmetry?.x !== undefined && (
+          <p>Axis of symmetry: x = {hintResults.axis_of_symmetry.x}</p>
+        )}
+        {hintResults.vertex?.x !== undefined && hintResults.vertex.y !== undefined && (
+          <p>Vertex: ({hintResults.vertex.x}, {hintResults.vertex.y})</p>
+        )}
+        {hintResults.direction?.opens !== undefined && (
+          <p>The parabola opens {hintResults.direction.opens === 'up' ? 'upward' : 'downward'}.</p>
+        )}
       </div>
     </div>
   );

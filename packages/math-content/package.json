@@ -38,7 +38,9 @@
     "@math-platform/practice-core": "*",
     "@math-platform/knowledge-space-core": "*",
     "@math-platform/study-hub-core": "*",
-    "zod": "^4.1.12"
+    "zod": "^4.1.12",
+    "@math-platform/activity-components": "*",
+    "@math-platform/knowledge-space-practice": "*"
   },
   "devDependencies": {
     "typescript": "^6",

@@ -11,6 +11,7 @@ import {
   stepByStepSolverSchema,
   rateOfChangeCalculatorSchema,
   discriminantAnalyzerSchema,
+  physicalContextGraphChoiceSchema,
   glossaryTermSchema,
   IM3_GLOSSARY,
   getGlossaryTermBySlug,
@@ -149,18 +150,36 @@ describe('Activity Schemas Integration', () => {
     expect(parsed.equation).toBe('x^2 + 3x + 2 = 0');
   });
 
-  it('schema registry has all 7 keys', () => {
+  it('schema registry has all 25 keys', () => {
     const keys = Object.keys(SCHEMA_REGISTRY);
-    expect(keys).toHaveLength(7);
+    expect(keys).toHaveLength(25);
     expect(keys.sort()).toEqual([
       'comprehension-quiz',
+      'concavity-from-rate-change',
       'discriminant-analyzer',
       'fill-in-the-blank',
+      'graph-average-rate-choice',
       'graphing-explorer',
-      'quadratic-formula',
+      'interval-classification',
+      'negative-rate-context-choice',
+      'physical-context-graph-choice',
+      'pointwise-least-rate-choice',
+      'pointwise-rate-ordering',
+      'least-polynomial-degree',
+      'polynomial-degree-leading-coefficient',
+      'polynomial-end-behavior',
+      'polynomial-equation-end-behavior',
+      'polynomial-inequality-sign-chart',
+      'polynomial-limit-notation-end-behavior',
+      'real-zeros-and-multiplicities',
+      'polynomial-extrema-from-graph',
+      'quadratic-negative-rate-interval-choice',
       'rate-of-change-calculator',
+      'rate-pattern-classification',
+      'rate-sign-and-trend-from-graph',
       'step-by-step-solver',
-    ]);
+      'table-average-rate-choice',
+    ].sort());
   });
 
   it('invalid input is rejected by each schema', () => {
@@ -170,6 +189,9 @@ describe('Activity Schemas Integration', () => {
     expect(stepByStepSolverSchema.safeParse({}).success).toBe(false);
     expect(rateOfChangeCalculatorSchema.safeParse({}).success).toBe(false);
     expect(discriminantAnalyzerSchema.safeParse({}).success).toBe(false);
+    expect(SCHEMA_REGISTRY['interval-classification'].safeParse({}).success).toBe(false);
+    expect(physicalContextGraphChoiceSchema.safeParse({}).success).toBe(false);
+    expect(SCHEMA_REGISTRY['table-average-rate-choice'].safeParse({}).success).toBe(false);
   });
 });
 

@@ -572,27 +572,24 @@ export function GraphingExplorer({
               ? 'Graph the System of Equations'
               : 'Graph the Function'}
           </h2>
-          {workedExample ? (
-            <div className="text-muted-foreground" data-testid="worked-equation">
-              <InlineMath math={equation} />
-            </div>
-          ) : (
-            <p className="text-muted-foreground">
-              {equation}
-              {variant === 'compare_functions' && comparisonEquation && (
-                <>
-                  <br />
-                  {comparisonEquation}
-                </>
-              )}
-              {variant === 'graph_system' && linearEquation && (
-                <>
-                  <br />
-                  {linearEquation}
-                </>
-              )}
-            </p>
-          )}
+          <div
+            className="text-muted-foreground"
+            data-testid={workedExample ? 'worked-equation' : 'graphing-equation'}
+          >
+            <InlineMath math={equation} />
+            {variant === 'compare_functions' && comparisonEquation && (
+              <>
+                <br />
+                <InlineMath math={comparisonEquation} />
+              </>
+            )}
+            {variant === 'graph_system' && linearEquation && (
+              <>
+                <br />
+                <InlineMath math={linearEquation} />
+              </>
+            )}
+          </div>
         </div>
 
         {workedExample && (

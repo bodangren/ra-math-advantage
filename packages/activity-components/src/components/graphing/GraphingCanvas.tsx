@@ -395,8 +395,9 @@ export function GraphingCanvas({
   return (
     <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
       <div id="graphing-instructions" className="sr-only">
-        Use arrow keys to move the cursor. Press Enter or Space to place a point.
-        Tab to a placed point and press Delete to remove it.
+        {readonly
+          ? 'This is a completed coordinate graph.'
+          : 'Use arrow keys to move the cursor. Press Enter or Space to place a point. Tab to a placed point and press Delete to remove it.'}
       </div>
       {/* Render the internal status region only when no caller has supplied
           onAnnounce. Callers that provide onAnnounce are responsible for
@@ -417,9 +418,9 @@ export function GraphingCanvas({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onKeyDown={handleSvgKeyDown}
-        tabIndex={0}
+        tabIndex={readonly ? -1 : 0}
         role="img"
-        aria-label="Coordinate plane for graphing"
+        aria-label={readonly ? 'Completed coordinate plane graph' : 'Coordinate plane for graphing'}
         aria-describedby="graphing-instructions"
       >
         {renderGrid()}

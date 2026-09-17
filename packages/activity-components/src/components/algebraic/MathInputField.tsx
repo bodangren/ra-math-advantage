@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { normalizeSolverAnswer } from '../../schemas/step-by-step-solver.schema';
 import InlineMath from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
 
@@ -14,8 +15,6 @@ interface MathInputFieldProps {
   placeholder?: string;
   showValidation?: boolean;
   required?: boolean;
-  inputId?: string;
-  describedBy?: string;
 }
 
 /**
@@ -33,29 +32,12 @@ export function MathInputField({
   placeholder,
   showValidation = false,
   required = false,
-  inputId,
-  describedBy,
 }: MathInputFieldProps) {
   const checkEquivalence = (input: string, answer: string): boolean => {
-    const normalizedInput = normalizeExpression(input);
-    const normalizedAnswer = normalizeExpression(answer);
+    const normalizedInput = normalizeSolverAnswer(input);
+    const normalizedAnswer = normalizeSolverAnswer(answer);
     return normalizedInput === normalizedAnswer;
   };
-
-  const normalizeExpression = (expr: string): string => {
-    return expr
-      .toLowerCase()
-      .replace(/\s+/g, '')
-      .replace(/\+/g, '+')
-      .replace(/-/g, '-')
-      .replace(/\*/g, '')
-      .replace(/\(\+/g, '(')
-      .replace(/\(\-/g, '(-');
-  };
-
-  const resolvedInputId = inputId ?? `math-input-${label}`;
-  const errorId = `${resolvedInputId}-error`;
-  const ariaDescribedBy = [describedBy, error ? errorId : undefined].filter(Boolean).join(' ') || undefined;
 
   const isValid = showValidation && correctAnswer && value.trim() !== '' 
     ? checkEquivalence(value, correctAnswer) 
@@ -63,13 +45,13 @@ export function MathInputField({
 
   return (
     <div className="space-y-2">
-      <label htmlFor={resolvedInputId} className="block text-sm font-medium text-foreground">
+      <label htmlFor={`math-input-${label}`} className="block text-sm font-medium text-foreground">
         {label}
       </label>
       
       <div className="space-y-2">
         <input
-          id={resolvedInputId}
+          id={`math-input-${label}`}
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -83,7 +65,6 @@ export function MathInputField({
             ${disabled ? 'bg-muted disabled:cursor-not-allowed' : 'bg-background'}
           `}
           aria-label={label}
-          aria-describedby={ariaDescribedBy}
         />
 
         <div data-testid="katex-preview" className="min-h-[2rem] p-2 bg-muted/30 rounded-md border border-border">
@@ -91,7 +72,7 @@ export function MathInputField({
         </div>
 
         {error && (
-          <p id={errorId} className="text-sm text-destructive" role="alert">
+          <p className="text-sm text-destructive" role="alert">
             {error}
           </p>
         )}

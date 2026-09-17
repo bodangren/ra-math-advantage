@@ -300,6 +300,65 @@ describe('SRS projection', () => {
     const entryWithPrereqs = entries.find((e) => e.prerequisites.length > 0);
     expect(entryWithPrereqs).toBeDefined();
   });
+
+  it('uses only explicit independent-practice readiness for generator readiness', () => {
+    const nodes: KnowledgeSpaceNode[] = [
+      {
+        id: 'math.test.skill.algebraic-stub',
+        kind: 'skill',
+        title: 'Algebraic stub',
+        domain: 'math.test',
+        reviewStatus: 'draft',
+        metadata: {},
+        generatorKey: 'algebraic-step-solver',
+        independentPracticeReady: false,
+      },
+      {
+        id: 'math.test.skill.graphing-stub',
+        kind: 'skill',
+        title: 'Graphing stub',
+        domain: 'math.test',
+        reviewStatus: 'draft',
+        metadata: {},
+        generatorKey: 'graphing-explorer',
+        independentPracticeReady: false,
+      },
+      {
+        id: 'math.test.skill.ready',
+        kind: 'skill',
+        title: 'Ready skill',
+        domain: 'math.test',
+        reviewStatus: 'draft',
+        metadata: {},
+        generatorKey: 'approved-generator',
+        independentPracticeReady: true,
+      },
+    ];
+    const blueprints: KnowledgeBlueprint[] = nodes.map((node) => ({
+      nodeId: node.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'test-renderer',
+      rendererModeMap: {},
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: {},
+        gradingRules: [],
+        replayPolicy: 'unique_seeds',
+      },
+      generatorKey: node.generatorKey ?? 'test-generator',
+      reviewStatus: 'draft',
+      metadata: {},
+    }));
+
+    const entries = projectSrsInputs(nodes, [], blueprints);
+
+    expect(Object.fromEntries(entries.map((entry) => [entry.nodeId, entry.generatorReady]))).toEqual({
+      'math.test.skill.algebraic-stub': false,
+      'math.test.skill.graphing-stub': false,
+      'math.test.skill.ready': true,
+    });
+  });
 });
 
 // ---------------------------------------------------------------------------

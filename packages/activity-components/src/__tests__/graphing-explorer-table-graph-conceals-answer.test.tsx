@@ -130,4 +130,17 @@ describe('GraphingExplorer deferred table graph', () => {
     expect(graphingCanvasProps.mock.lastCall![0].functions).toEqual([ANSWER_FUNCTION]);
   });
 
+  it('keeps the answer curve for a non-table-graph practice variant', () => {
+    render(
+      <GraphingExplorer
+        activityId="example-1-practice"
+        mode="practice"
+        responseVariant="quadratic_features"
+        variant="plot_from_equation"
+        equation={EQUATION}
+      />,
+    );
+
+    expect(graphingCanvasProps.mock.lastCall![0].functions).toEqual([ANSWER_FUNCTION]);
+  });
 });

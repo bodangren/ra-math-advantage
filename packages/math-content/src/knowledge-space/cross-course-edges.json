@@ -64691,28 +64691,6 @@
     }
   },
   {
-    "id": "cross-course.edge.2935",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.1.001",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.2936",
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.1.001",
@@ -64739,28 +64717,6 @@
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.1.001",
     "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.2938",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.1.002",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
     "weight": 0.75,
     "confidence": "medium",
     "reviewStatus": "draft",
@@ -64823,28 +64779,6 @@
     }
   },
   {
-    "id": "cross-course.edge.2941",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.1.003",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.2942",
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.1.003",
@@ -64871,28 +64805,6 @@
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.1.003",
     "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.2944",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.1.004",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
     "weight": 0.75,
     "confidence": "medium",
     "reviewStatus": "draft",
@@ -64955,28 +64867,6 @@
     }
   },
   {
-    "id": "cross-course.edge.2947",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.1.005",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.2948",
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.1.005",
@@ -65003,28 +64893,6 @@
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.1.005",
     "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.2950",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.1.006",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
     "weight": 0.75,
     "confidence": "medium",
     "reviewStatus": "draft",
@@ -67199,28 +67067,6 @@
     }
   },
   {
-    "id": "cross-course.edge.3049",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.6.031",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.3050",
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.6.031",
@@ -67247,28 +67093,6 @@
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.6.031",
     "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3052",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.6.032",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
     "weight": 0.75,
     "confidence": "medium",
     "reviewStatus": "draft",
@@ -67331,28 +67155,6 @@
     }
   },
   {
-    "id": "cross-course.edge.3055",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.6.033",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.3056",
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.6.033",
@@ -67379,28 +67181,6 @@
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.6.033",
     "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3058",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.6.034",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
     "weight": 0.75,
     "confidence": "medium",
     "reviewStatus": "draft",
@@ -67463,28 +67243,6 @@
     }
   },
   {
-    "id": "cross-course.edge.3061",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.6.035",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.3062",
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.6.035",
@@ -67511,28 +67269,6 @@
     "type": "equivalent_to",
     "sourceId": "math.im2.example.8.6.035",
     "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3064",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.example.8.6.036",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
     "weight": 0.75,
     "confidence": "medium",
     "reviewStatus": "draft",
@@ -78794,28 +78530,6 @@
     }
   },
   {
-    "id": "cross-course.edge.3573",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.skill.8.1.determine-whether-a-relation-is-a-function-using-tables-mapp",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.3574",
     "type": "equivalent_to",
     "sourceId": "math.im2.skill.8.1.determine-whether-a-relation-is-a-function-using-tables-mapp",
@@ -79150,28 +78864,6 @@
     "type": "equivalent_to",
     "sourceId": "math.im2.skill.8.1.identify-domain-and-range-from-various-representations",
     "targetId": "math.im3.example.3.1.002",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3590",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.skill.8.1.identify-domain-and-range-from-various-representations",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
     "weight": 0.75,
     "confidence": "medium",
     "reviewStatus": "draft",
@@ -82160,28 +81852,6 @@
     }
   },
   {
-    "id": "cross-course.edge.3726",
-    "type": "equivalent_to",
-    "sourceId": "math.im2.skill.8.6.compare-two-or-more-functions-represented-as-graphs-tables-e",
-    "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im2 and math.im3",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im2",
-        "math.im3"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.3727",
     "type": "equivalent_to",
     "sourceId": "math.im2.skill.8.6.compare-two-or-more-functions-represented-as-graphs-tables-e",
@@ -82350,292 +82020,6 @@
       "matchType": "standard",
       "courses": [
         "math.im2",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3735",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.1.4.001",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-c-7c"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3736",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.1.4.002",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-c-7c"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3737",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.1.4.003",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-c-7c"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3738",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.1.4.004",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-c-7c"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3739",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.1.6.001",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-c-7c"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3740",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.1.6.002",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-c-7c"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3741",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.1.6.003",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-c-7c"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3742",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.2.6.001",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3743",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.2.6.002",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3744",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.2.7.001",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3745",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.2.7.002",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3746",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.2.7.003",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
-        "math.precalc"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.hsf-if-a-2"
-      ]
-    }
-  },
-  {
-    "id": "cross-course.edge.3747",
-    "type": "equivalent_to",
-    "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-    "targetId": "math.precalc.example.2.7.004",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im3 and math.precalc",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im3",
         "math.precalc"
       ],
       "sharedStandards": [
