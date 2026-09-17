@@ -23,8 +23,8 @@ test('builds a deterministic package DAG from approved dependencies', async () =
   const graph = buildWorkspaceGraph(manifest);
   assert.equal(graph.nodes.length, 26);
   assert.ok(graph.edges.some((edge) =>
-    edge.source === 'pkg.activity-components'
-    && edge.target === 'pkg.math-content'));
+    edge.source === 'pkg.math-content'
+    && edge.target === 'pkg.activity-components'));
   assert.deepEqual(graph.cycles, []);
 });
 

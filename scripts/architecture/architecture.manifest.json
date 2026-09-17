@@ -48,7 +48,7 @@
     {
       "id": "app.pre-calculus", "path": "apps/pre-calculus", "kind": "app", "packageName": null,
       "owner": "precalculus-team", "layer": "application", "domainClassification": "app-owned", "domain": "precalculus",
-      "allowedDependencies": ["pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.lesson-renderer", "pkg.practice-core", "pkg.srs-engine"],
+      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.knowledge-space-core", "pkg.lesson-renderer", "pkg.math-content", "pkg.practice-core", "pkg.srs-engine"],
       "publicEntryPoints": [],
       "qualityCommands": { "lint": "npm run lint --workspace=apps/pre-calculus", "test": "npm run test --workspace=apps/pre-calculus", "typecheck": "npm run typecheck --workspace=apps/pre-calculus", "build": "npm run build --workspace=apps/pre-calculus" },
       "debtRefs": []
@@ -56,10 +56,10 @@
     {
       "id": "pkg.activity-components", "path": "packages/activity-components", "kind": "package", "packageName": "@math-platform/activity-components",
       "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
-      "allowedDependencies": ["pkg.activity-runtime", "pkg.math-content", "pkg.practice-core"],
+      "allowedDependencies": ["pkg.activity-runtime", "pkg.graphing-core", "pkg.practice-core"],
       "publicEntryPoints": [".", "./registry", "./types", "./schemas", "./schemas/comprehension-quiz", "./schemas/fill-in-the-blank", "./schemas/graphing-explorer", "./schemas/step-by-step-solver", "./schemas/rate-of-change-calculator", "./schemas/discriminant-analyzer", "./quiz", "./blanks", "./discriminant", "./roc", "./algebraic", "./graphing", "./renderer"],
       "qualityCommands": { "lint": "npm run lint --workspace=packages/activity-components", "test": "npm run test --workspace=packages/activity-components", "typecheck": "npm run typecheck --workspace=packages/activity-components", "build": "npm run build --workspace=packages/activity-components" },
-      "debtRefs": ["debt.activity-content-inversion", "debt.activity-components-undeclared"]
+      "debtRefs": []
     },
     {
       "id": "pkg.activity-runtime", "path": "packages/activity-runtime", "kind": "package", "packageName": "@math-platform/activity-runtime",
@@ -130,9 +130,9 @@
     {
       "id": "pkg.math-content", "path": "packages/math-content", "kind": "package", "packageName": "@math-platform/math-content",
       "owner": "math-content", "layer": "domain-content", "domainClassification": "domain-specific", "domain": "math",
-      "allowedDependencies": ["pkg.activity-runtime", "pkg.knowledge-space-core", "pkg.practice-core", "pkg.study-hub-core"],
+      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.knowledge-space-core", "pkg.knowledge-space-practice", "pkg.practice-core", "pkg.study-hub-core"],
       "publicEntryPoints": [".", "./schemas", "./schemas/comprehension-quiz", "./schemas/fill-in-the-blank", "./schemas/graphing-explorer", "./schemas/step-by-step-solver", "./schemas/rate-of-change-calculator", "./schemas/discriminant-analyzer", "./algebraic", "./glossary", "./problem-families", "./problem-families/im1", "./problem-families/im2", "./problem-families/im3", "./problem-families/precalc", "./seeds", "./knowledge-space"],
-      "qualityCommands": { "lint": "npm run lint --workspace=packages/math-content", "test": "npm run test --workspace=packages/math-content", "typecheck": "npm run typecheck --workspace=packages/math-content", "build": "npm run build --workspace=packages/math-content" }, "debtRefs": ["debt.math-content-undeclared"]
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/math-content", "test": "npm run test --workspace=packages/math-content", "typecheck": "npm run typecheck --workspace=packages/math-content", "build": "npm run build --workspace=packages/math-content" }, "debtRefs": []
     },
     {
       "id": "pkg.practice-core", "path": "packages/practice-core", "kind": "package", "packageName": "@math-platform/practice-core",
@@ -178,24 +178,7 @@
     }
   ],
   "temporaryDebt": [
-    {
-      "id": "debt.activity-content-inversion",
-      "owner": "learning-platform",
-      "rationale": "Activity renderer schemas are currently re-exported from domain-owned math-content pending registry injection.",
-      "followUpTrack": "app-platform-consolidation_20260710",
-      "introducedOn": "2026-07-10",
-      "expiresOn": "2026-12-31",
-      "violations": [
-        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/comprehension-quiz.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/discriminant-analyzer.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/fill-in-the-blank.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/graphing-explorer.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/index.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/rate-of-change-calculator.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/step-by-step-solver.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/types/index.ts", "exactSpecifier": "@math-platform/math-content/schemas" }
-      ]
-    },
+
     {
       "id": "debt.bus-math-undeclared", "owner": "bus-math-team",
       "rationale": "BM2 production imports predate package-manifest parity enforcement; declarations will be reconciled with shared app composition.",
@@ -225,20 +208,7 @@
         { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-2", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-2/convex/seed/seed_problem_families.ts", "exactSpecifier": "@math-platform/math-content/problem-families/im2" }
       ]
     },
-    {
-      "id": "debt.activity-components-undeclared", "owner": "learning-platform",
-      "rationale": "Graphing components consume graphing-core before package-manifest parity enforcement.",
-      "followUpTrack": "app-platform-consolidation_20260710", "introducedOn": "2026-07-10", "expiresOn": "2026-10-31",
-      "violations": [
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.graphing-core", "sourceFile": "packages/activity-components/src/components/graphing/GraphingCanvas.tsx", "exactSpecifier": "@math-platform/graphing-core/canvas-utils" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.graphing-core", "sourceFile": "packages/activity-components/src/components/graphing/GraphingExplorer.tsx", "exactSpecifier": "@math-platform/graphing-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.graphing-core", "sourceFile": "packages/activity-components/src/components/graphing/HintPanel.tsx", "exactSpecifier": "@math-platform/graphing-core/quadratic-parser" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.graphing-core", "sourceFile": "packages/activity-components/src/components/graphing/InteractiveTableOfValues.tsx", "exactSpecifier": "@math-platform/graphing-core/canvas-utils" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.graphing-core", "sourceFile": "packages/activity-components/src/components/graphing/InterceptIdentification.tsx", "exactSpecifier": "@math-platform/graphing-core/canvas-utils" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.graphing-core", "sourceFile": "packages/activity-components/src/components/graphing/InterceptIdentification.tsx", "exactSpecifier": "@math-platform/graphing-core/linear-parser" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.graphing-core", "sourceFile": "packages/activity-components/src/components/graphing/InterceptIdentification.tsx", "exactSpecifier": "@math-platform/graphing-core/quadratic-parser" }
-      ]
-    },
+
     {
       "id": "debt.knowledge-space-practice-undeclared", "owner": "learning-platform",
       "rationale": "Misconception-loop consumes the practice contract before package-manifest parity enforcement.",
@@ -255,17 +225,7 @@
         { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.lesson-renderer", "targetWorkspace": "pkg.activity-runtime", "sourceFile": "packages/lesson-renderer/src/textbook/LessonPageLayout.tsx", "exactSpecifier": "@math-platform/activity-runtime/phase-types" },
         { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.lesson-renderer", "targetWorkspace": "pkg.activity-runtime", "sourceFile": "packages/lesson-renderer/src/textbook/PhaseContainer.tsx", "exactSpecifier": "@math-platform/activity-runtime/phase-types" }
       ]
-    },
-    {
-      "id": "debt.math-content-undeclared", "owner": "math-content",
-      "rationale": "Math-content generator adapters consume knowledge-space-practice before package-manifest parity enforcement.",
-      "followUpTrack": "shared-lms-backend-modularization_20260710", "introducedOn": "2026-07-10", "expiresOn": "2026-10-31",
-      "violations": [
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.math-content", "targetWorkspace": "pkg.knowledge-space-practice", "sourceFile": "packages/math-content/src/knowledge-space/generators/advanced-math-adapters.ts", "exactSpecifier": "@math-platform/knowledge-space-practice" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.math-content", "targetWorkspace": "pkg.knowledge-space-practice", "sourceFile": "packages/math-content/src/knowledge-space/generators/algebra-generators-adapters.ts", "exactSpecifier": "@math-platform/knowledge-space-practice" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.math-content", "targetWorkspace": "pkg.knowledge-space-practice", "sourceFile": "packages/math-content/src/knowledge-space/generators/registry.ts", "exactSpecifier": "@math-platform/knowledge-space-practice" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.math-content", "targetWorkspace": "pkg.knowledge-space-practice", "sourceFile": "packages/math-content/src/problem-families/im1/generators.ts", "exactSpecifier": "@math-platform/knowledge-space-practice" }
-      ]
     }
+
   ]
 }

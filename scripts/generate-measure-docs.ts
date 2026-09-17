@@ -3,7 +3,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const REPO_ROOT = path.resolve(__dirname, '..');
-const GRAPH_DB = path.resolve(REPO_ROOT, 'graph.db');
+const GRAPH_DB = process.env.GRAPH_DB
+  ? path.resolve(process.env.GRAPH_DB)
+  : path.resolve(REPO_ROOT, 'graph.db');
 const OUTPUT_DIR = path.resolve(REPO_ROOT, 'measure/generated');
 
 if (!fs.existsSync(OUTPUT_DIR)) {
@@ -12,7 +14,7 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 
 function hasBuildGraph(): boolean {
   try {
-    execSync('which build-graph', { stdio: 'ignore' });
+    execSync('which repo-graph', { stdio: 'ignore' });
     return true;
   } catch {
     return false;
@@ -20,7 +22,7 @@ function hasBuildGraph(): boolean {
 }
 
 function runQuery(sql: string) {
-  const cmd = `build-graph query --json ${GRAPH_DB} "${sql.replace(/"/g, '\\"')}"`;
+  const cmd = `repo-graph query --json ${GRAPH_DB} "${sql.replace(/"/g, '\\"')}"`;
   const output = execSync(cmd).toString();
   return JSON.parse(output);
 }

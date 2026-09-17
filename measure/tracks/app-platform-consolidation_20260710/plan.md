@@ -1,5 +1,9 @@
 # Implementation Plan: App and Platform Consolidation
 
+## Existing integration work
+
+- [~] Reconcile the current package dependency direction, architecture manifest, CI typecheck order, and generated architecture facts before the broader consolidation tasks.
+
 **Dependency:** `monorepo-architecture-contracts_20260710`  
 **Baseline:** 43 identical production-file groups; approximately 123 KB duplicated source  
 **Workflow:** strict contract-first TDD; preserve app product boundaries

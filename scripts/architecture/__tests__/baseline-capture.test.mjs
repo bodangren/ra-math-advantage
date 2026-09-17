@@ -29,8 +29,8 @@ test('pins the complete workspace and package-DAG baseline', async () => {
   assert.equal(baseline.workspaceInventory.total, 26);
   assert.ok(baseline.packageGraph.edges.length > 0);
   assert.ok(baseline.packageGraph.edges.some((edge) =>
-    edge.source === '@math-platform/activity-components'
-    && edge.target === '@math-platform/math-content'));
+    edge.source === '@math-platform/math-content'
+    && edge.target === '@math-platform/activity-components'));
 });
 
 test('pins all eight packages omitted from the legacy CI matrix', async () => {

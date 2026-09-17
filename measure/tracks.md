@@ -226,7 +226,7 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Depends on architecture contracts. Extract common LMS validators, schema fragments, and pure services while preserving app-owned Convex deployments, auth wrappers, generated APIs, curriculum, and data.*
    *Link: [./tracks/shared-lms-backend-modularization_20260710/](./tracks/shared-lms-backend-modularization_20260710/)*
 
-- [ ] **Track: App and Platform Consolidation**
+- [~] **Track: App and Platform Consolidation**
    *Depends on architecture contracts. Consolidate repeated tooling/configuration and common types, invert activity registry ownership, create reusable app composition surfaces, and preserve every app's design and curriculum.*
    *Link: [./tracks/app-platform-consolidation_20260710/](./tracks/app-platform-consolidation_20260710/)*
 

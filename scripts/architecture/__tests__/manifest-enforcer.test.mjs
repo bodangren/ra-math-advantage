@@ -56,18 +56,18 @@ test('exact debt suppresses only approved live violations', async () => {
   const manifest = await loadArchitectureManifest(MANIFEST_URL, { asOf: '2026-07-11' });
   const approved = {
     sourceKind: 'package', targetKind: 'package',
-    sourceLayer: 'feature', targetLayer: 'domain-content',
-    sourceDomainClassification: 'domain-neutral', targetDomainClassification: 'domain-specific',
-    declared: true, publicEntryPoint: true,
-    sourceWorkspace: 'pkg.activity-components', targetWorkspace: 'pkg.math-content',
-    sourceFile: 'packages/activity-components/src/schemas/index.ts',
-    specifier: '@math-platform/math-content/schemas',
-    exactSpecifier: '@math-platform/math-content/schemas',
+    sourceLayer: 'feature', targetLayer: 'platform',
+    sourceDomainClassification: 'domain-neutral', targetDomainClassification: 'domain-neutral',
+    declared: false, publicEntryPoint: true,
+    sourceWorkspace: 'pkg.lesson-renderer', targetWorkspace: 'pkg.activity-runtime',
+    sourceFile: 'packages/lesson-renderer/src/textbook/LessonPageLayout.tsx',
+    specifier: '@math-platform/activity-runtime/phase-types',
+    exactSpecifier: '@math-platform/activity-runtime/phase-types',
   };
   assert.deepEqual(checkResolvedImports(manifest, [approved], { asOf: '2026-07-11' }), []);
-  const future = { ...approved, sourceFile: 'packages/activity-components/src/new-copy.ts' };
+  const future = { ...approved, sourceFile: 'packages/lesson-renderer/src/new-copy.ts' };
   assert.equal(
     checkResolvedImports(manifest, [future], { asOf: '2026-07-11' })[0]?.ruleId,
-    'prohibited-layer-edge',
+    'undeclared-dependency',
   );
 });
