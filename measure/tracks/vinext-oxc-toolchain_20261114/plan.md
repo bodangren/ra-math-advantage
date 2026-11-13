@@ -375,6 +375,8 @@ _Story ref: spec.md#story-s5_
     - [ ] Root `package.json`: set `"lint": "npm run lint --workspaces --if-present"` and `"typecheck": "npm run typecheck --workspaces --if-present"`.
     - [ ] Root `package.json`: in each `ws:*:typecheck` script, remove the `|| npx tsc --noEmit --project ...` part.
     - [ ] `.github/workflows/ci.yml`: in the `boundary-check` job, add the step "Run format check" with `run: npm run format:check`, after "Install dependencies".
+    - [ ] `.github/workflows/ci.yml`: remove the `deploy` job (the "Phase 6: Deploy" comment and the job) (spec D7). `cloudflare-deploy.yml` stays the only deploy workflow, with `workflow_dispatch`.
+    - [ ] `measure/tech-debt.md`: add the row "Scale Benchmarks workflow fails each week" with severity `Medium`, status `Open`, and this note: "`scale-benchmarks.yml` has failed each week since at least 2026-07-27 (checked with `gh` on 2026-11-14). Not fixed in `vinext-oxc-toolchain_20261114`." Check the line count first (50-line limit).
 - [ ] Task: S5 Test (Red) — add the S5 gate tests
     - [ ] Add `describe('S5 gate rules')` to the test file.
     - [ ] Normal case 1: `AGENTS.md`, `measure/workflow.md`, `measure/tech-stack.md`, the root `package.json`, and each `.github/workflows/*.yml` contain none of these strings: `npx tsc`, `tsc --noEmit`, `eslint .`, `eslint src`, `vinext lint`.
@@ -383,13 +385,19 @@ _Story ref: spec.md#story-s5_
     - [ ] Normal case 4: the "Quality Gates" section of `measure/workflow.md` names `npm run format:check`, `npm run lint`, and `npm run typecheck`.
     - [ ] Edge case 5: `node scripts/validate-ci.mjs` exits with code 0.
     - [ ] Edge case 6: `git grep -n -E "npx tsc|tsc --noEmit|eslint \.|eslint src|vinext lint" -- measure/scripts` finds no match (exit code 1).
-    - [ ] Run the scripts suite. Confirm that cases 1 to 4 fail.
+    - [ ] Normal case 7: `.github/workflows/ci.yml` has no job key `deploy`, and no line that contains `wrangler-action` or `wrangler deploy`.
+    - [ ] Normal case 8: each `node-version` value in `.github/workflows/*.yml` has a major version of 22 or more.
+    - [ ] Run the scripts suite. Confirm that cases 1 to 4 and case 7 fail. Case 8 passes after S1; it guards the rule.
     - [ ] Commit: `test(vinext-oxc): add the S5 gate tests (Red)`.
 - [ ] Task: S5 Implement — apply the gate text
     - [ ] Make the `AGENTS.md`, `measure/workflow.md`, `measure/tech-stack.md`, and root `package.json` changes of the S5 Contract.
     - [ ] Commit: `docs(gates): name the Oxc gates in the guardrails and the workflow`.
-    - [ ] Make the `.github/workflows/ci.yml` change of the S5 Contract.
+    - [ ] Make the format-check change of the S5 Contract in `.github/workflows/ci.yml`.
     - [ ] Commit: `ci: run the format check`.
+    - [ ] Remove the `deploy` job from `.github/workflows/ci.yml`, as the S5 Contract says. Run `node scripts/validate-ci.mjs`.
+    - [ ] Commit: `ci: remove the deploy job from the CI workflow`.
+    - [ ] Add the "Scale Benchmarks" row to `measure/tech-debt.md`, as the S5 Contract says.
+    - [ ] Commit: `measure(tech-debt): record the failing Scale Benchmarks workflow`.
 - [ ] Task: S5 Implement — remove the last calls to the removed tools
     - [ ] Run `git grep -n -E "npx tsc|tsc --noEmit|eslint|vinext lint" -- ':!measure/archive' ':!measure/tracks' ':!**/package-lock.json'`.
     - [ ] For each match that calls ESLint or `tsc` as a command in a live script, document, or config, change it to the Oxc gate.

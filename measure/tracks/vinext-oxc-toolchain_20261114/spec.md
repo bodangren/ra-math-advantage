@@ -45,6 +45,15 @@ and format gates.
 - **Format:** the repository has no formatter and no `.git-blame-ignore-revs`.
 - **CI:** `.github/workflows/ci.yml` and `cloudflare-deploy.yml` use Node 20. The local
   Node is v24.19.0.
+- **CI deploy job:** `ci.yml` has a `deploy` job (Phase 6). It runs on each push to
+  `master` or `main` after the `im3` and `bm2` jobs, with `environment: production`. It runs
+  `cloudflare/wrangler-action@v3` with `deploy --config wrangler.jsonc` in
+  `apps/integrated-math-3`, and the secrets `CLOUDFLARE_API_TOKEN` and
+  `CLOUDFLARE_ACCOUNT_ID`.
+- **GitHub facts (user, checked with `gh` on 2026-11-14):** the repository has no Actions
+  secrets and no environments. `cloudflare-deploy.yml` has never run. The scheduled "Scale
+  Benchmarks" workflow (`scale-benchmarks.yml`) has failed each week since at least
+  2026-07-27.
 - **Audit suites:** `scripts/audit/__tests__/` holds the suites of the precedent track.
   They pin package lines, for example `next` 16.x and `eslint-config-next` 16.x. No
   vitest config and no CI step runs them.
@@ -65,6 +74,13 @@ and format gates.
 - **D4:** Every dependency moves to the latest version that works, including major
   versions. The user approved dependency changes for this track, as `AGENTS.md` requires.
 - **D5:** The track records its results in an evidence file for other repositories.
+- **D6 (change of 2026-11-14):** CI uses the Node version of the track: Node 24, and at
+  least 22, because vinext 1.x needs Node >=22. S1 sets it, and S5 checks it.
+- **D7 (change of 2026-11-14):** S5 removes the `deploy` job from `ci.yml`. Production
+  deploys run only through a dispatched workflow. Reason: the track pushes after each
+  closeout, and a push must not deploy.
+- **D8 (change of 2026-11-14):** S5 records the failing "Scale Benchmarks" workflow in
+  `measure/tech-debt.md`. This track does not fix it.
 
 ## Terms
 
@@ -158,6 +174,8 @@ and format gates.
 - Given `measure/workflow.md`, When a task reaches the quality gates, Then the gates name `npm run format:check`, `npm run lint`, and `npm run typecheck`.
 - Given the root `package.json`, When the maintainer runs `npm run lint`, `npm run typecheck`, or `npm run format:check`, Then each covers all workspaces or the whole repository and reports no new failure.
 - Given the CI workflows, When CI runs, Then a step runs `npm run format:check`, and no step calls `tsc` or `eslint`.
+- Given a push to `master`, When `ci.yml` runs, Then no job deploys, and each workflow uses Node 22 or later.
+- Given `measure/tech-debt.md`, When S5 is complete, Then it has an `Open` row for the failing "Scale Benchmarks" workflow.
 - Given the evidence file, When S5 is complete, Then its summary section gives the results for other repositories.
 
 **Estimate:** M
@@ -218,12 +236,15 @@ in this order:
 - **AC8:** The test, typecheck, and build gates have no new failure. `npm ls --workspaces
   --depth=0` is clean. The boundary check passes. `npm audit` has no new critical or high
   finding.
-- **AC9:** The CI workflows use Node 24.
+- **AC9:** The CI workflows use Node 24 (at least 22).
+- **AC10:** `ci.yml` has no `deploy` job, and no workflow deploys on a push.
+  `measure/tech-debt.md` has an `Open` row for the failing "Scale Benchmarks" workflow.
 
 ## Out of Scope
 
 - Deploys, paid services, and public dates. Do not run `convex deploy`. Do not start
   `cloudflare-deploy.yml`.
+- A fix for the "Scale Benchmarks" workflow (D8).
 - Fixes for pre-existing typecheck, test, or build failures. The evidence file lists them.
 - The React Compiler rules that the tech-debt row "IM3 React 19 react-hooks v6 violations"
   names. S2 records their oxlint status only.
