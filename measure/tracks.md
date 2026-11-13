@@ -19,17 +19,17 @@ becomes the seed of Track E (see those entries below).
    *Establish the `primitives/` contract (`MathPrimitiveProps`), consumption rules, the canonical P1–P13 catalog, a reference migration (`CoordinatePlane`/P1), boundary enforcement, and T15/T16 reconciliation. Foundation for A–F. No end-user behavior change.*
    *Link: [./archive/primitive-layer-contract_20260615/](./archive/primitive-layer-contract_20260615/)*
 - [ ] **Track A: Coordinate & Functions** — **PLANNED**
-   *Primitives P1 (CoordinatePlane) + P2 (FunctionPlot w/ sliders) → `equation-solver`, `function-analyzer` practice components. Depends on T0.*
+   *Primitives P1 (CoordinatePlane) + P2 (FunctionPlot w/ sliders) → `equation-solver`, `function-analyzer` practice components. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track B: Number line & Algebra Manipulatives** — **PLANNED**
-   *Primitives P3 (NumberLine) + P11 (AlgebraManipulatives) + P12 (MathInput) → inequality/interval + factoring components. Depends on T0.*
+   *Primitives P3 (NumberLine) + P11 (AlgebraManipulatives) + P12 (MathInput) → inequality/interval + factoring components. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track C: Geometry & Transformations** — **PLANNED**
-   *Primitives P4 (GeometryCanvas) + P5 (TransformationOverlay) + P13 (proof builder) → geometry-explorer, transformation, proof-builder. Absorbs T15 geometry scope. IM2 has zero components today. Depends on T0.*
+   *Primitives P4 (GeometryCanvas) + P5 (TransformationOverlay) + P13 (proof builder) → geometry-explorer, transformation, proof-builder. Absorbs T15 geometry scope. IM2 has zero components today. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track D: Statistics & Probability** — **PLANNED**
-   *Primitives P8 (StatChart/Distribution) + P9 (DataTable) + P10 (ProbabilitySimulator) → `statistical-explorer`. Absorbs T15 stats scope. Depends on T0.*
+   *Primitives P8 (StatChart/Distribution) + P9 (DataTable) + P10 (ProbabilitySimulator) → `statistical-explorer`. Absorbs T15 stats scope. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track E: Trigonometry & Advanced** — **PLANNED**
-   *Primitives P6 (UnitCircle) + P7 (PolarPlane) + P2-trig → `unit-circle-trainer`, trig graphing. Seeded by T16 trig-advanced-renderers. Depends on T0.*
+   *Primitives P6 (UnitCircle) + P7 (PolarPlane) + P2-trig → `unit-circle-trainer`, trig graphing. Seeded by T16 trig-advanced-renderers. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track F: Interaction & Assessment** — **PLANNED**
-   *Generalized P13 DnD surface → `drag-drop-categorization`; port `tiered-assessment` from BM2 into the shared package. Depends on T0.*
+   *Generalized P13 DnD surface → `drag-drop-categorization`; port `tiered-assessment` from BM2 into the shared package. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 
 ## Skill Graph Program Roadmap
 
@@ -69,6 +69,34 @@ Dependencies:
 - [ ] **Track: OpenRouter SDK AI Layer**
    *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: vinext-oxc-toolchain_20261114. User decisions 2026-11-14.*
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
+
+- [ ] **Track: Unified Math App: Base App and Course Data**
+   *Link: [./tracks/math-app-base_20261114/](./tracks/math-app-base_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 1*
+
+- [ ] **Track: Unified Math App: Integrated Math 1 Course Import**
+   *Link: [./tracks/math-app-course-im1_20261114/](./tracks/math-app-course-im1_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 2*
+
+- [ ] **Track: Unified Math App: Integrated Math 2 Course Import**
+   *Link: [./tracks/math-app-course-im2_20261114/](./tracks/math-app-course-im2_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 2*
+
+- [ ] **Track: Unified Math App: AP Precalculus Course Import**
+   *Link: [./tracks/math-app-course-precalc_20261114/](./tracks/math-app-course-precalc_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 2*
+
+- [ ] **Track: Unified Math App: Retire the Old Math Apps**
+   *Link: [./tracks/math-app-retire-old-apps_20261114/](./tracks/math-app-retire-old-apps_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 3*
+
+- [ ] **Track: Unified Math App: Multi-Year Student History**
+   *Link: [./tracks/math-app-student-history_20261114/](./tracks/math-app-student-history_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 4*
+
+- [ ] **Track: Unified Math App: Seat Licensing**
+   *Link: [./tracks/math-app-seat-licensing_20261114/](./tracks/math-app-seat-licensing_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 5*
 
 - [x] **[HIGH PRIORITY] Track: Unblock CI package typecheck (2026-07-01)** — **COMPLETED** (fix `ee10aa4`, docs `42fcc63`). Next: watch the CI run on push — this clears the Phase-1 package gate, but the downstream im3/bm2/deploy jobs have not been observed green remotely.
    *Every `ci.yml` run has been red since the 2026-04-18 monorepo move in Phase 1 `Validate Packages → Run package typecheck`: `practice-core`, `core-convex`, `core-auth`, `ai-tutoring` use node globals (`node:fs/path/url/os`, `process`, `Buffer`) but their tsconfig didn't declare the `node` ambient types (TS2591 + cascaded TS7006 implicit-any). Because `deploy needs:[im3,bm2] needs:[packages,boundary-check]`, this halts CI before the Phase 6 Cloudflare deploy — IM3's CI deploy has never landed. Fix: config-only `compilerOptions.types = ["node","vitest/globals"]` in the four package tsconfigs (42 errors → 0, verified locally). Resolves tech-debt line 35's Phase-1 root cause. From 2026-07-01 tech-debt triage.*

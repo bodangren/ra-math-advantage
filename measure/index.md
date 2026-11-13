@@ -9,6 +9,7 @@
 | **Tech Stack** | `./tech-stack.md` |
 | **Workflow** | `./workflow.md` |
 | **Tracks Registry** | `./tracks.md` |
+| **Track Sets Directory** | `./sets/` |
 | **Lessons Learned** | `./lessons-learned.md` |
 | **Tech Debt Registry** | `./tech-debt.md` |
 | **Architecture** | `./architecture.md` |
