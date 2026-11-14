@@ -85,6 +85,13 @@ The test file finds `REPO_ROOT` from `fileURLToPath(import.meta.url)`, not from
 ## Phase S1: Package refresh and vinext 1.x
 _Story ref: spec.md#story-s1_
 
+- Deviation (2026-11-15): merged `origin/master` (RSC hotfix, GHSA-xqc2-xf4c-x3h3,
+  a24fa828..472fd719) into S1 with `git merge` (commit 7fa14b56). The root
+  `react-server-dom-webpack` range stays `^19.3.1`; the hotfix line
+  `"react-server-dom-webpack": "^19.3.1"` stays in the `dependencies` of the 5 apps (the
+  installed 19.3.1 contains the 19.2.9 fix). The lockfile took the S1 side and
+  `npm install` regenerated it. `measure/tech-debt.md` keeps both sides.
+
 - [x] Task: S1 Contract — record the stack change and the evidence layout (68518169)
     - [x] In `measure/tech-stack.md` "Runtime & Framework", add a note dated 2026-11-14 (workflow principle 2). The note names vinext ^1.4.5, Vite ^8, React ^19.3.1, the removal of `next`, the `vinext/types` source, and CI on Node 24.
     - [x] Create `oxc-evidence.md` in this track folder with the 11 section headings of spec "Evidence File Contract".
@@ -149,6 +156,11 @@ _Story ref: spec.md#story-s1_
         - Deviation: the 5 app `eslint.config.mjs` files stopped importing `eslint-config-next` (and the `@typescript-eslint/no-explicit-any` override block). Reason: `eslint-config-next` loads `next/dist/compiled/babel/eslint-parser` at config time, so no app lint config could load after `next` was removed, and the lint gate had a new failure (exit 2) in the 4 apps that passed at baseline. S2 migrates these files in the next phase, so the rule loss is transitional. Evidence section 8 records it.
     - [x] Commit: `chore(deps): upgrade vinext to 1.x and remove next`. (dcde148d)
 - [~] Task: S1 Implement — update all other dependencies
+    - WIP commit pending: minor/patch ranges applied, npm install exit 0. Gates: lint s1
+      exit 0 (NEWFAIL=0); test s1 was interrupted by the machine move after the BM2 sweep
+      printed `NEW FAILURE: test apps/bus-math-v2 has a new diagnostic` (triage first on
+      the next run); checks-all s1 never ran. Rerun both gates after the move, before the
+      real commit A.
     - [ ] Run `npm outdated --json` at the root.
     - [ ] Run `npm outdated --json --workspace=<ws>` for each workspace. The aggregate command under-reports app dependencies (precedent spec "Audit Baseline").
     - [ ] Do not change `typescript` in S1. S3 owns it.

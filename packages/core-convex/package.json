@@ -18,11 +18,11 @@
     "build": "tsc --noEmit"
   },
   "dependencies": {
-    "convex": "^1.40.0"
+    "convex": "^1.50.0"
   },
   "devDependencies": {
     "@eslint/js": "^10",
-    "@types/node": "^22",
+    "@types/node": "^24.19.2",
     "eslint": "^10.0.0",
     "typescript": "^6",
     "typescript-eslint": "^8",

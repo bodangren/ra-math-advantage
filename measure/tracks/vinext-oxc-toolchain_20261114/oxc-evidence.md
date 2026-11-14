@@ -103,7 +103,48 @@ baseline.
 
 ## 3. Package changes
 
-The S1 Implement tasks fill this section.
+Filled by the S1 Implement tasks. The lockfile is the root `package-lock.json` only.
+
+### Commit dcde148d: vinext 1.x and the removal of `next`
+
+| Package | Old range | New range | Workspaces | Notes |
+|---|---|---|---|---|
+| `vinext` | `^0.0.55` | `^1.4.5` | root dev, 5 apps dev, `packages/app-shell` peer + dev | resolves to 1.4.5 everywhere |
+| `next` | `^16.0.0` (16.2.7 installed) | removed | root dev + overrides, 5 apps dep, `packages/app-shell` peer | lockfile entry gone; `npm ls next --all` prints `(empty)` |
+| `react`, `react-dom` | `^19.2.7` | `^19.3.1` | 5 apps dep; `react` also `packages/app-shell` dev | vinext 1.4.5 peer requirement |
+| `react-server-dom-webpack` | `^19.2.7` | `^19.3.1` | root dev | vinext peer |
+| `@vitejs/plugin-rsc` | `^0.5.27` | `^0.5.37` | IM1, IM2, IM3, PreCalc, BM2 dev | PreCalc had no other change |
+| `vite` | `^8.0.0` | `^8.3.8` | 5 apps dev | latest 8.x |
+| `@vitejs/plugin-react` | `^6.0.0` | `^6.3.0` | root dev | latest |
+| `js-yaml` | (transitive only) | `^5.5.0` added | root dev | S1 case 7 reads the workflow YAML with it; S5 needs it too |
+| `geist` | `^1.5.1` | removed | IM3, BM2 dep | dead dependency: no code imports it, and its required `next` peer made npm reinstall `next` (auto-install-peers) |
+| (tsconfig) | `{ "name": "next" }` plugin | removed; `"vinext/types"` added to `types` | 5 apps + `packages/app-shell` | case 4 |
+| (CI) | `node-version: '20'` | `'24'` | `ci.yml` (7 steps), `cloudflare-deploy.yml` (1 step) | `scale-benchmarks.yml` already had 24.4.0 |
+| (lint configs) | imports of `eslint-config-next` | removed, with the `@typescript-eslint/no-explicit-any` block | 5 apps `eslint.config.mjs` | `eslint-config-next` loads `next/dist/compiled/babel/eslint-parser` at config time; see section 8 |
+| (`.gitignore`) | — | `apps/*/.next/`, `apps/*/.vinext/` added | root | vinext 1.x builds make `.vinext/`; IM3's tracked `routes.d.ts` stays tracked |
+
+### Merge commit 7fa14b56: the RSC hotfix (GHSA-xqc2-xf4c-x3h3)
+
+| Package | Range | Workspaces | Notes |
+|---|---|---|---|
+| `react-server-dom-webpack` | `^19.3.1` in root dev and in the `dependencies` of the 5 apps | root, 5 apps | the hotfix added the app declarations (the plugin uses the installed package only when the app declares it); the S1 range admits the installed 19.3.1, which contains the 19.2.9 fix |
+
+### Commit A: minor and patch updates
+
+| Package | Old range | New range | Workspaces | Notes |
+|---|---|---|---|---|
+| `@testing-library/react` | `^16.3.0` | `^16.3.3` | 4 apps + BM2 dev, `packages/activity-components`, `packages/app-shell` | |
+| `@types/node` | `^22` / `^22.20.0` / `^22.19.20` | `^24.19.2` (latest 24.x) | 5 apps, `packages/ai-tutoring`, `core-auth`, `core-convex`, `lesson-renderer`, `practice-core` | matches CI Node 24 (plan); latest 26.x not used |
+| `@types/react` | `^19` | `^19.3.0` | 5 apps, `activity-components`, `app-shell`, `lesson-renderer`, `study-hub-core` | |
+| `@types/react-dom` | `^19` | `^19.3.0` | 5 apps | |
+| `convex` | `^1.40.0` | `^1.50.0` | 5 apps, `app-shell`, `core-convex` | |
+| `katex` | `^0.17.0` | `^0.19.1` | IM3, `activity-components`, `lesson-renderer` | |
+| `lucide-react` | `^1.0.0` | `^1.73.0` | 5 apps, `app-shell`, `lesson-renderer` | |
+| `tailwind-merge` | `^3.3.0` | `^3.7.0` | 5 apps, `lesson-renderer` | |
+| `zod` | `^4.1.12` | `^4.6.7` | IM1-3, PreCalc, BM2, `activity-components`, `efficacy-core`, `knowledge-space-core`, `knowledge-space-practice`, `math-content`, `practice-core` | `srs-engine` has no own zod range |
+
+Not changed, by plan: `typescript` (S3), `eslint`, `@eslint/js`, `@eslint/eslintrc`,
+`typescript-eslint`, `eslint-config-next` (S2 removes them).
 
 ## 4. Held packages
 
@@ -142,6 +183,10 @@ Phase S3 fills this section.
 | `npm run test:e2e` (IM3) | The Playwright `webServer` runs `npm run dev:stack`, and that runs `npx convex dev --local`. The file `apps/integrated-math-3/.env.local` links to a cloud dev deployment. A local run can rewrite that file. | Not run locally. The plan allows "not run locally". | none |
 | `agent-browser` | The `agent-browser` command is not installed on this machine. | The role used `playwright-core` 1.60.0 (repository copy) with the Chrome 151 build of `~/.agent-browser/browsers`. The default browser revision of the repository copy is not installed. | none |
 | `vinext build` | A build changes tracked files and makes untracked folders. The tracked files are `apps/bus-math-v2/lib/workbooks-manifest.json` (the `generatedAt` field) and `apps/integrated-math-3/.next/types/routes.d.ts` (route types). The untracked folders are `apps/integrated-math-1/.next/`, `apps/integrated-math-2/.next/`, and `apps/pre-calculus/.next/`. | Nobody stages these changes. Green decides about `.gitignore` entries (plan S1 Implement). | none |
+| `vinext check` (1.4.5) | The check reports one issue class: `__dirname` / `__filename` (CommonJS globals), undefined in client bundles and ESM configs. IM1 93% (`__tests__/convex/seed/referenced-codes.ts`), IM2 93% (same file), IM3 93% (`lib/level-projection/im3-level-projection.ts`, `scripts/validate-seed-integrity.mjs`), PreCalc 100%, BM2 100%. | Informational only. The flagged files are server code and scripts. The build sweep and dev-server checks decide. No code change in S1 (no gate failure needs it). | none |
+| `eslint-config-next` | It loads `next/dist/compiled/babel/eslint-parser` at config time. After `next` was removed, every app ESLint config failed to load: `eslint .` exited 2 in the 4 apps whose baseline lint passed, and BM2's config also failed. | The 5 app `eslint.config.mjs` files dropped the `eslint-config-next` imports and the `@typescript-eslint/no-explicit-any` block in S1 (commit dcde148d). The 4 apps pass again; BM2's 2 baseline `no-unused-vars` warnings disappeared with the rules. S2 replaces these files. | none |
+| `geist` | Its required `next` peer (no `peerDependenciesMeta` marker) made npm auto-install `next@16.2.7` again after the `next` removal, so `npm ls next --all` was not `(empty)` and S1 cases 2 and 8 failed. | Removed the dead `geist` dependency from IM3 and BM2 (commit dcde148d). No code imports it. The optional `next` peer of `@unpic/react` (a vinext dependency) is not auto-installed. | none |
+| `gates.sh` `key()` helper | The comparison prints `comm: input is not in sorted order` warnings for each compared log. | Noise only. The parse reads the labeled last line `NEWFAIL=<n>` (strategy section 2). | none |
 
 ## 9. Keep list
 

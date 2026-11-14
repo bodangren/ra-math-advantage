@@ -22,8 +22,8 @@
   "dependencies": {
     "@math-platform/core-auth": "*",
     "@math-platform/core-convex": "*",
-    "convex": "^1.40.0",
-    "lucide-react": "^1.0.0",
+    "convex": "^1.50.0",
+    "lucide-react": "^1.73.0",
     "next-themes": "^0.4.6"
   },
   "peerDependencies": {
@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^10",
-    "@testing-library/react": "^16.3.0",
-    "@types/react": "^19",
+    "@testing-library/react": "^16.3.3",
+    "@types/react": "^19.3.0",
     "eslint": "^10.0.0",
     "react": "^19.3.1",
     "typescript": "^6",
