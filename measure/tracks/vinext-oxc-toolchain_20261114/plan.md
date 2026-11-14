@@ -376,6 +376,7 @@ _Story ref: spec.md#story-s5_
     - [ ] Root `package.json`: in each `ws:*:typecheck` script, remove the `|| npx tsc --noEmit --project ...` part.
     - [ ] `.github/workflows/ci.yml`: in the `boundary-check` job, add the step "Run format check" with `run: npm run format:check`, after "Install dependencies".
     - [ ] `.github/workflows/ci.yml`: remove the `deploy` job (the "Phase 6: Deploy" comment and the job) (spec D7). `cloudflare-deploy.yml` stays the only deploy workflow, with `workflow_dispatch`.
+    - [ ] Remove the marker `(planned: vinext-oxc-toolchain_20261114)` from `README.md` and `measure/tech-stack.md`. Write the current state in the same place (test-strategy section 10).
     - [ ] `measure/tech-debt.md`: add the row "Scale Benchmarks workflow fails each week" with severity `Medium`, status `Open`, and this note: "`scale-benchmarks.yml` has failed each week since at least 2026-07-27 (checked with `gh` on 2026-11-14). Not fixed in `vinext-oxc-toolchain_20261114`." Check the line count first (50-line limit).
 - [ ] Task: S5 Test (Red) — add the S5 gate tests
     - [ ] Add `describe('S5 gate rules')` to the test file.
