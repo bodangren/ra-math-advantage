@@ -27,11 +27,11 @@ _Story ref: spec.md#story-s1_
     - [ ] Update `measure/index.md`, `measure/product.md`, `measure/architecture.md`, `measure/tech-stack.md`, `measure/knowledge-space.md`, and `measure/current_directive.md`.
     - [ ] Confirm the W5 constraints with `grep`. Record each result under "Test Constraints".
     - [ ] Commit: `docs(measure): update the core documents for the new direction`.
-- [~] Task: Fix the wrong instructions of the other Measure documents (group 4)
+- [x] Task: Fix the wrong instructions of the other Measure documents (group 4) 2632a84
     - [ ] Change only each sentence that gives a wrong instruction today in the other `measure/*.md` files (spec W4, W7).
     - [ ] List each file that stays as it is under "Unchanged Files".
     - [ ] Commit: `docs(measure): fix the wrong instructions in the reference documents`.
-- [ ] Task: Fix the contradictions of INTEGRATION.md (group 5)
+- [~] Task: Fix the contradictions of INTEGRATION.md (group 5)
     - [ ] Change only each contradiction with the current state or the direction.
     - [ ] List the other old sections under "INTEGRATION Sections" for `math-app-retire-old-apps_20261114`.
     - [ ] Commit: `docs: fix the contradictions in INTEGRATION.md`.
