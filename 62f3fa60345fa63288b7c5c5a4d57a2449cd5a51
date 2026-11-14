@@ -1,0 +1,1 @@
+Gate-required fix for strategy risk R4. next/* aliases to vinext/shims/* in the 5 app vitest configs. BM2 remaining failures == baseline failures (9).
