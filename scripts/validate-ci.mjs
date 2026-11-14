@@ -10,7 +10,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import yaml from 'js-yaml';
+import { load as loadYaml } from 'js-yaml';
 
 const WORKFLOWS_DIR = '.github/workflows';
 let exitCode = 0;
@@ -32,7 +32,7 @@ if (!fs.existsSync(ciPath)) {
   fail(`ci.yml not found at ${ciPath}`);
 } else {
   const ciContent = fs.readFileSync(ciPath, 'utf8');
-  const ci = yaml.load(ciContent);
+  const ci = loadYaml(ciContent);
 
   // 1a. No job-level continue-on-error on app gate jobs (im3, bm2)
   const appGateJobs = ['im3', 'bm2'];
@@ -85,7 +85,7 @@ if (!fs.existsSync(deployPath)) {
   fail(`cloudflare-deploy.yml not found at ${deployPath}`);
 } else {
   const deployContent = fs.readFileSync(deployPath, 'utf8');
-  const deploy = yaml.load(deployContent);
+  const deploy = loadYaml(deployContent);
 
   // 2a. Must have workflow_dispatch with environment choice OR staging job
   const hasWorkflowDispatch = deploy.on?.workflow_dispatch != null;
