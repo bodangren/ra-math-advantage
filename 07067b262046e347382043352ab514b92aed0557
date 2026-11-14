@@ -1,0 +1,4 @@
+Task: Fix the contradictions of INTEGRATION.md (group 5), docs-new-direction_20261114.
+Changes: monorepo name ra-math-advantage, current structure tree, package verification and test commands that exist (npm run <script> --workspace=@math-platform/<name>), app adoption through a workspace range and a root npm install after approval, Convex project names (integrated-math-3 dev only, bus-math-v2-experimental prod quiet-swan-141), removal of the nonexistent npx convex schema push, and a Deployment section for Workers with a planned marker. evidence.md lists the old sections for the retire track and the other owners.
+Files: INTEGRATION.md, evidence.md.
+Why: these sections contradicted the repository and the direction.
