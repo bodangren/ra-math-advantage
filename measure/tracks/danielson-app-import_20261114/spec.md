@@ -67,9 +67,24 @@ and serves each route and each technique image from the Worker `danielson`.
 - **Cloud:** no Worker `danielson` exists. The Convex project `danielson` (`2841695`) exists
   and stays for later; this track does not use it.
 
+## Licence Default (PM, 2026-11-14)
+
+The PM gave this licence default on 2026-11-14 at 20:05:
+
+> "the school licence may not cover public sharing of the full Danielson Framework text. Until Daniel says more, the public graph and the public Math repo keep only Danielson element IDs and short labels (own words, not more than a short title), not the full framework text or rubric wording."
+
+- D1 and D10 are in conflict with the licence default; the revision waits for Daniel.
+- The source file `src/data/danielson.ts` holds the descriptor text (the
+  `proficientDescriptor` fields). The D1 merge puts that text into the public history of this
+  repository, and a push cannot be taken back.
+- This repository holds no Danielson framework text today.
+- The plan holds Phase S1 until Daniel answers the licence question, or until a spec
+  revision for the licence default passes its spec review.
+
 ## Decisions (defaults of 2026-11-14)
 
-- **D1 Import with history:** the import copies the source into a new temporary clone under
+- **D1 Import with history (in conflict with the licence default; the revision waits for
+  Daniel):** the import copies the source into a new temporary clone under
   `/tmp`, at `c047df1`. In that clone, `git filter-branch --index-filter` moves each file of
   each commit under `apps/danielson/`. Then this repository fetches the rewritten branch and
   merges it with `git merge --allow-unrelated-histories --no-ff`. So `git log -- apps/danielson`
@@ -114,7 +129,8 @@ and serves each route and each technique image from the Worker `danielson`.
 - **D9 CI:** `.github/workflows/ci.yml` gets a `danielson` job with the lint, typecheck,
   test, and build steps of the `bm2` job. The root `package.json` gets `ws:danielson:*`
   scripts in the pattern of the other apps.
-- **D10 License facts:** the app keeps and shows the Danielson Framework text (domains,
+- **D10 License facts (in conflict with the licence default; the revision waits for
+  Daniel):** the app keeps and shows the Danielson Framework text (domains,
   components, and descriptors) under the license of the school. License holder: the school
   (Daniel, 2026-11-14: "Yes. We have that through the school.").
 - **D11 Graph data:** the app data stays TypeScript in `apps/danielson/src/data/`. The
