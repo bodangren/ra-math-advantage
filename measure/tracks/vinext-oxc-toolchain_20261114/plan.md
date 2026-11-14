@@ -89,19 +89,19 @@ _Story ref: spec.md#story-s1_
     - [x] In `measure/tech-stack.md` "Runtime & Framework", add a note dated 2026-11-14 (workflow principle 2). The note names vinext ^1.4.5, Vite ^8, React ^19.3.1, the removal of `next`, the `vinext/types` source, and CI on Node 24.
     - [x] Create `oxc-evidence.md` in this track folder with the 11 section headings of spec "Evidence File Contract".
     - [x] Fill evidence section 1 from `lscpu`, `nproc`, `free -g`, `uname -sr`, `node -v`, and `npm -v`.
-- [~] Task: S1 Baseline — record the gates before any package change
-    - [ ] Run `npm ci` on the current lockfile. Record its time in section 5.
-    - [ ] Run lint, typecheck, test, and build for each workspace. Record each result in section 2.
-    - [ ] Record each failure of these gates in section 10, with the workspace, the file, and the code.
-    - [ ] Run the audit suites, the boundary check, the CI check, the tree check, and `npm audit --json`. Record each result in section 2.
-    - [ ] Run `npm run bundle-size:audit --prefix apps/integrated-math-3`. Record the sizes.
-    - [ ] Run `npm run bundle:audit --workspace=apps/bus-math-v2`. Record the sizes.
-    - [ ] Run `npm run test:e2e --prefix apps/integrated-math-3`. If it cannot start (for example, no browser is installed), record "not run locally".
-    - [ ] For each app, start `npx vinext dev --port <port>`. Ports: IM1 4101, IM2 4102, IM3 4103, PreCalc 4104, BM2 4105.
-    - [ ] Request `/` with `curl -s -o /dev/null -w '%{http_code}'`. Record the status code. Stop the server.
-    - [ ] Time `npm run build` for each app on vinext 0.0.55. Record the times in section 5.
-    - [ ] Commit the evidence file: `measure(vinext-oxc): record the S1 baseline`.
-- [ ] Task: S1 Test (Red) — add the S1 gate tests
+- [x] Task: S1 Baseline — record the gates before any package change (b8a0ec66)
+    - [x] Run `npm ci` on the current lockfile. Record its time in section 5.
+    - [x] Run lint, typecheck, test, and build for each workspace. Record each result in section 2. (The test and checks-all gates ran as one `heavy-run.sh` job for each workspace, because `heavy-run.sh` caps a p2 job at 1800 s. Evidence section 8 records this.)
+    - [x] Record each failure of these gates in section 10, with the workspace, the file, and the code.
+    - [x] Run the audit suites, the boundary check, the CI check, the tree check, and `npm audit --json`. Record each result in section 2.
+    - [x] Run `npm run bundle-size:audit --prefix apps/integrated-math-3`. Record the sizes.
+    - [x] Run `npm run bundle:audit --workspace=apps/bus-math-v2`. Record the sizes. (It fails at baseline. Section 10 lists the two budget misses.)
+    - [x] Run `npm run test:e2e --prefix apps/integrated-math-3`. If it cannot start (for example, no browser is installed), record "not run locally". (Recorded "not run locally": the web server runs `convex dev --local`, which can rewrite `.env.local`. Evidence section 8.)
+    - [x] For each app, start `npx vinext dev --port <port>`. Ports: IM1 4101, IM2 4102, IM3 4103, PreCalc 4104, BM2 4105.
+    - [x] Request `/` with `curl -s -o /dev/null -w '%{http_code}'`. Record the status code. Stop the server. (All 5 apps gave 200. Each port was free after the stop.)
+    - [x] Time `npm run build` for each app on vinext 0.0.55. Record the times in section 5.
+    - [x] Commit the evidence file: `measure(vinext-oxc): record the S1 baseline`.
+- [~] Task: S1 Test (Red) — add the S1 gate tests
     - [ ] Create `scripts/__tests__/oxc-toolchain-gates.test.ts` with `describe('S1 vinext 1.x')`.
     - [ ] Add `'__tests__/oxc-toolchain-gates.test.ts'` to `include` in `scripts/vitest.config.ts`.
     - [ ] Normal case 1: the `vinext/package.json` that resolves from the repository root has major version 1.

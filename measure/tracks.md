@@ -62,7 +62,7 @@ Dependencies:
    *Server/client architecture for a teacher to present lesson phases/steps with every student's screen synchronized in real time. Convex reactive queries/mutations drive sync over a new `live_sessions` table; teacher controls navigation, activity reveal, and inline annotations; students follow with local interaction. Sessions end explicitly or via idle timeout. Story-shaped spec (6 stories: S1 start, S2 follow, S3 navigate/reveal, S4 local interact, S5 annotations, S6 end).*
    *Link: [./tracks/live-classroom-presentation_20260703/](./tracks/live-classroom-presentation_20260703/)*
 
-- [ ] **Track: vinext 1.x Upgrade and Oxc Toolchain Move**
+- [~] **Track: vinext 1.x Upgrade and Oxc Toolchain Move**
    *Chore, story-shaped spec with 5 phases: S1 package refresh and vinext 1.x (remove `next`), S2 ESLint to oxlint, S3 TypeScript 7 with tsrs as the type-check gate, S4 oxfmt with one format-only commit, S5 gate rules and CI. The repository is a test bed for a full move to the Oxc tools; the evidence file records speed, conformance gaps, rule gaps, and workarounds. User decisions 2026-11-14.*
    *Link: [./tracks/vinext-oxc-toolchain_20261114/](./tracks/vinext-oxc-toolchain_20261114/)*
 
