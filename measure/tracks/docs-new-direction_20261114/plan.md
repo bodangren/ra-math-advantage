@@ -12,7 +12,7 @@ Verification and Checkpointing Protocol)
 - Record each check and each unchanged file in `evidence.md` in this track folder.
 - Do not push. Only the closeout step pushes.
 
-## Phase 1: Rewrite the project documents
+## Phase 1: Rewrite the project documents [checkpoint: 9941117]
 _Story ref: spec.md#story-s1_
 
 - [x] Task: Rewrite README.md for the new direction (group 1) 5711189
@@ -38,7 +38,7 @@ _Story ref: spec.md#story-s1_
 - [x] Task: Amend the document tasks of the retire track (group 6) 3839d1d
     - [ ] In `measure/tracks/math-app-retire-old-apps_20261114/spec.md` and `plan.md`, add: each planned marker of the math app items changes into current-state text.
     - [ ] Commit: `chore(measure): Amend track 'Retire the Old Math Apps' (planned markers)`.
-- [~] Task: Measure - User Manual Verification 'Phase 1: Rewrite the project documents' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1: Rewrite the project documents' (Protocol in workflow.md) 9941117
     - [ ] Run `npm run generate` and `npm run doctor`. Record each exit code.
     - [ ] Run the protocol: the manual verification plan and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase 1`.
