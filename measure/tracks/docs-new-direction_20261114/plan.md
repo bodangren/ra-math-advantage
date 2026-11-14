@@ -15,12 +15,12 @@ Verification and Checkpointing Protocol)
 ## Phase 1: Rewrite the project documents
 _Story ref: spec.md#story-s1_
 
-- [~] Task: Rewrite README.md for the new direction (group 1)
+- [x] Task: Rewrite README.md for the new direction (group 1) 5711189
     - [ ] Create `evidence.md` with these sections: Facts, Unchanged Files, INTEGRATION Sections, Test Constraints.
     - [ ] Record the facts of spec "Current System" under "Facts", with the command of each check.
     - [ ] Rewrite `README.md`: the current apps and packages, the planned direction of spec W3, the dev commands of today, and the license facts. Keep the license line.
     - [ ] Commit: `docs: rewrite README for the new direction`.
-- [ ] Task: Rewrite AGENTS.md for the new direction (group 2)
+- [~] Task: Rewrite AGENTS.md for the new direction (group 2)
     - [ ] Rewrite `AGENTS.md`: the scope of today, the planned direction, the planned marker rule (spec W1), the cross-project rules, and the shared machine rules (spec W3 items 8 to 10). `CLAUDE.md` stays `@AGENTS.md`.
     - [ ] Commit: `docs: rewrite AGENTS.md for the new direction`.
 - [ ] Task: Update the Measure core documents (group 3)
