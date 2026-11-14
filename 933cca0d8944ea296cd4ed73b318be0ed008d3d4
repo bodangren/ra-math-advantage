@@ -1,0 +1,1 @@
+Gate-required fixes: js-yaml 5 named import in validate-ci (ci-check step); IM3 workflow test node 24 (test gate).
