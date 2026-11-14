@@ -1,0 +1,4 @@
+Task: Rewrite README.md for the new direction (group 1), docs-new-direction_20261114.
+Changes: README.md now gives the current state (5 apps, 21 package folders, stack versions from the lockfile, custom JWT auth, OpenRouter fetch layer, kst-srs.v2 contract, Workers with no deploy), the planned direction of 2026-11-14 with (planned: <track id>) markers, Node 22 or later (vinext 0.0.55 engines), the seed command npx convex run seed:seedAll, and the license facts. The license line did not change.
+Files: README.md, measure/tracks.md, measure/tracks/docs-new-direction_20261114/{plan.md,evidence.md}.
+Why: the README described one IM3 app, Node 20, and no direction.
