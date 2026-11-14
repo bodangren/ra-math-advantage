@@ -21,6 +21,14 @@ Planned: vinext 1.x with no `next` package, oxlint instead of ESLint, oxfmt, and
 the type-check gate. The repository is a test bed for the Oxc tools
 (planned: vinext-oxc-toolchain_20261114).
 
+Note (2026-11-14, Phase S1 of `vinext-oxc-toolchain_20261114`): the stack changes before
+the work starts, as workflow principle 2 requires. Phase S1 moves every app to vinext
+^1.4.5, Vite ^8, and React ^19.3.1. Phase S1 removes the `next` package from every
+manifest. The types of the `next` and `next/*` modules come from `vinext/types`, which
+loads `@vinext/types`. CI uses Node 24. vinext 1.4.5 needs Node 22 or later. The versions
+in the table above stay as they are until the end of the phase, and Phase S5 sets the
+final versions.
+
 ## Backend & Database
 
 | Layer | Technology | Notes |

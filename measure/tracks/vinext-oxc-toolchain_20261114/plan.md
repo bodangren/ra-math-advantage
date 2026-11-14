@@ -85,7 +85,7 @@ The test file finds `REPO_ROOT` from `fileURLToPath(import.meta.url)`, not from
 ## Phase S1: Package refresh and vinext 1.x
 _Story ref: spec.md#story-s1_
 
-- [ ] Task: S1 Contract — record the stack change and the evidence layout
+- [~] Task: S1 Contract — record the stack change and the evidence layout
     - [ ] In `measure/tech-stack.md` "Runtime & Framework", add a note dated 2026-11-14 (workflow principle 2). The note names vinext ^1.4.5, Vite ^8, React ^19.3.1, the removal of `next`, the `vinext/types` source, and CI on Node 24.
     - [ ] Create `oxc-evidence.md` in this track folder with the 11 section headings of spec "Evidence File Contract".
     - [ ] Fill evidence section 1 from `lscpu`, `nproc`, `free -g`, `uname -sr`, `node -v`, and `npm -v`.
