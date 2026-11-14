@@ -1,0 +1,21 @@
+{
+  "track_id": "bm2-convex-auth-v2_20261114",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-11-14T12:00:00Z",
+  "updated_at": "2026-11-14T14:00:00Z",
+  "description": "BM2 Convex Auth v2 Migration: move BM2 from the custom JWT auth to Convex Auth v2 (username and password) with the contract and the spike result of math-app-base_20261114, move each BM2 server call to the access token, then remove packages/core-auth and the old auth context of packages/app-shell. Depends on the track set unified-math-app_20261114. Runs before prod-deploy-pipeline_20261114 and Practice Primitives Tracks A to F.",
+  "estimated_tasks": 22,
+  "actual_tasks": null,
+  "deviation_notes": "",
+  "sprint": {
+    "goal": "BM2 users sign in through Convex Auth v2, each server call of BM2 reads user data with the access token, and packages/core-auth is gone.",
+    "stories": [
+      { "id": "S1", "title": "Convex Auth v2 sign-in and accounts in BM2", "size": "XL", "priority": "Must", "status": "pending" },
+      { "id": "S2", "title": "BM2 server calls use the access token", "size": "L", "priority": "Must", "status": "pending" },
+      { "id": "S3", "title": "Remove the custom JWT auth from the repository", "size": "M", "priority": "Must", "status": "pending" }
+    ],
+    "demo_notes": null,
+    "retro_ref": null
+  }
+}
