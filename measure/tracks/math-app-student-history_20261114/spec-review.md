@@ -117,8 +117,39 @@ Per the spec, a student is one `profiles` row, and after the base track the four
 
 ## Round 5
 
-Status: queued. The PM machine load rule of 2026-11-14 (07:32 ICT) stopped the first run of this re-review. The PM starts it when a slot is free. The fixes of F8 to F11 have no review result yet.
+Date: 2026-11-14
+Reviewer: measure-spec-review (volcengine-agent-plan/glm-latest#high; substitute for kimi-code-plan-cn/kimi-for-coding#high, Kimi weekly quota 98.27%)
+Cause: the re-review of the Round 4 fixes F8 to F11 (Author Response of Round 4). The spec and the plan changed after Round 4.
+
+### What this track proposes
+
+This track gives each student one account and one enrollment history across the four courses and the academic years of the unified math app (member 4 of the set, after the old apps retire). It adds an optional `endedAt` to `class_enrollments`, the rule of one active enrollment per course and year, a `withdrawEnrollment` mutation, and two history pages with the access rule of D5. An admin rollover closes a year: it completes each active enrollment, sets `endedAt`, and archives the classes of the closed year; the teacher class list gets a year filter. The knowledge state of a course reads `srs_cards` and `srs_review_log` by student, and gives each record to the nodes of `courseView(graph, C)` through `objectiveNodeIds`, with no transfer step. The track also deletes the transfer-credit code, and the per-student competency page `app/teacher/[course]/students/[studentId]/competency/page.tsx` shows the earlier courses of each competency with evidence.
+
+### How the current system works, per this spec
+
+Per the spec, a student is one `profiles` row, and the four courses share one Convex backend after the base track. `class_enrollments` holds `classId`, `studentId`, `enrolledAt`, and a status of `active`, `withdrawn`, or `completed`, with no end date; the roster import and the seeds insert enrollments, and the import skips an existing enrollment of any status (`convex/onboarding/roster-import.ts`, skip at lines 151 to 161, insert at line 166). The knowledge state reads `srs_cards` and `srs_review_log` with the `by_student` index today (`apps/integrated-math-3/convex/student/knowledge-state.ts:108-117`), and after the base track `loadMathGraph()` returns one merged graph and `courseView(graph, courseKey)` returns the view of one course. The transfer-credit runtime lives in `packages/knowledge-space-core` with three app files (`lib/transfer-credit/student-skip.ts`, `TransferCreditPrompt.tsx`, `TransferCreditAuditPanel.tsx`), and no page uses them; `cross-course-edges.json` has no runtime loader. `/teacher/dashboard` lists the students of the organization, the class list lives on `/teacher/dashboard/srs` with no year filter, and a class has no `organizationId` — the organization of a class comes from the teacher profile.
+
+### Fix check
+
+- F8: FIXED. spec.md D7a (lines 117 to 121) names the page `app/teacher/[course]/students/[studentId]/competency/page.tsx` and its route, and plan.md lines 150, 159, and 164 name the same page; the class page `/teacher/[course]/competency` does not change (spec.md line 121). The base track route table confirms the route move (`math-app-base_20261114/plan.md`, line 313).
+- F9: FIXED. spec.md D7a (lines 122 to 126) gives the database path: `competency_standards` by `by_code` (index at `convex/schema.ts:404`), then `lesson_standards` by `by_standard` (index at `convex/schema.ts:413`), then each `lesson_versions` row and its `lessons` row, which gives the `courseKey` after the base track (a required `courseKey` on `lessons`, base track spec). plan.md line 149 repeats the path.
+- F10: FIXED. spec.md D6 (lines 98 to 101) names `srs_cards` and `srs_review_log` with the `by_student` index and no course filter, and keeps `student_competency` and the practice tables outside the knowledge state; plan.md line 148 repeats it. The current reader matches: `apps/integrated-math-3/convex/student/knowledge-state.ts` reads only these two tables with `by_student` (lines 108 to 117).
+- F11: FIXED. plan.md line 60 adds the positive case: the teacher of the IM2 class of the student gets the two rows.
+
+### Findings
+
+- F15 [Major] plan.md Phase S4 Contract and Implement, spec.md D7a: the plan names no Convex module for `earlierCoursesForCompetency` and no call pattern for the page. The signature takes one `code` (plan.md line 149), but D7a needs the earlier courses of each competency with evidence, so the implementer must choose the source file (a new module in `convex/teacher/` or `convex/teacher.ts`; the plan names only the test folder `__tests__/convex/teacher/`) and the call form: one internal query per competency, `Promise.all` over the codes, or an unnamed batch query. Rationale: an API-shape and file-location choice that the plan leaves to the implementer; the per-competency reading puts a query loop on the page, against `measure/lessons-learned.md` (2026-04-19).
+- F16 [Major] plan.md Phase S1 Contract and Test, spec.md D3a: the history rows carry no data for the "Withdraw" visibility rule. `getStudentHistory` returns `{ academicYear, courseKey, courseTitle, className, status, enrolledAt, endedAt }` (plan.md line 53), D3a limits the action to the teacher of the class of the enrollment or an admin of the organization of that class (spec.md lines 81 to 87), and the S1 app test hides the action for a teacher of another class of the student (plan.md line 63), but the contract names no capability field and no second check. Rationale: an API-shape choice that the plan leaves to the implementer; the page cannot derive the caller's right per row from the named row shape.
+
+### Author Note on Round 5
+
+The permission system stopped the reviewer from writing this file. The author copied the Round 5 section above with no change from `measure/runs/math-app-student-history/spec-review-fd6ee47.log`.
+
+### Author Response
+
+- F15: FIX (new D7b: the module `convex/teacher/earlierCourses.ts` holds one batch helper `earlierCoursesForCompetencies(ctx, { studentId, courseKey, codes })`. It reads all codes of the page in parallel batches, with no read loop for each code. The competency detail query of the page calls it one time and returns `earlierCourses` for each code. The helper is not a separate page call, because DA9 of the base track forbids a deploy-key call that reads user data. A new S4 criterion and the S4 Contract, Test, and Implement tasks name the module, the helper, and the batch check.)
+- F16: FIX (new D3b: each row of `getStudentHistory` has `enrollmentId` and `canWithdraw`. The query computes `canWithdraw` from D3a for each row and the caller. The page shows the "Withdraw" action only when `canWithdraw` is true, and `withdrawEnrollment` checks the caller again. The S1 Contract and the S1 Test tasks name the field and its cases, and a new S1 criterion gives the rule.)
 
 ## Accepted Risks
 
-None.
+- F15 and F16 (Round 5, Major): fixed after the last review round, with no re-review of the fixes. The PM machine load rule of 2026-11-14 allows one review role at a time. Each fix names a module, a function, or a row field, and adds tests; neither fix adds a feature.

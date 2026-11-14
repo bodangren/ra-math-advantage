@@ -85,6 +85,12 @@ This track is member 4 of the track set [Unified Math App](../../sets/unified-ma
   `/teacher/students/[studentId]/history` shows a "Withdraw" action on each `active` row,
   only to these callers. A move to another section is two steps: the withdrawal, then a new
   enrollment. `enrollStudent` never withdraws an enrollment.
+- **D3b Withdraw right on each row:** each row of `getStudentHistory` has `enrollmentId` and
+  `canWithdraw: boolean`. The query computes `canWithdraw` for each row and the caller: it
+  is true only when the row is `active` and the caller is the teacher of the class of the
+  row, or an admin of the organization of that class. For the student and a parent, it is
+  false on each row. The page shows the "Withdraw" action only when `canWithdraw` is true.
+  `withdrawEnrollment` checks the caller again, so the field only controls the page.
 - **D4 Rollover:** the rollover sets each `active` enrollment of the closed year to
   `completed`, sets `endedAt`, and archives the classes of the closed year. It makes no new
   class and no new enrollment. It deletes no evidence. The rollover changes only the
@@ -124,6 +130,19 @@ This track is member 4 of the track set [Unified Math App](../../sets/unified-ma
     row, which gives the `courseKey`.
   - The result is the set of these course keys that are also course keys of another
     enrollment of the student (any status), without C, in the registry `sequence` order.
+- **D7b Module and call of the earlier courses:** the new module
+  `convex/teacher/earlierCourses.ts` exports one helper,
+  `earlierCoursesForCompetencies(ctx, { studentId, courseKey, codes })`. It returns a map
+  from each code to its list of earlier course keys (D7a), and an empty list for a code
+  with no earlier course.
+  - The helper reads all codes of the page in one call. It reads the enrollments of the
+    student and their classes one time. Then each step of the D7a path runs as one
+    `Promise.all` over all codes or all rows of the earlier step, with a `Map` to join the
+    rows (`measure/lessons-learned.md`, 2026-04-19). No step reads in a loop for each code.
+  - The competency detail query of the page (`getTeacherStudentCompetencyDetail` today, in
+    its form after the base track) calls the helper one time and returns `earlierCourses`.
+    The page makes no separate call for the earlier courses. A separate deploy-key call
+    would read user data, and DA9 of the base track forbids that.
 - **D8 Year filter page:** the year filter goes on `/teacher/dashboard/srs`, the page that
   lists the classes, through `getTeacherSrsDashboardData`. `/teacher/dashboard` does not
   change.
@@ -144,6 +163,7 @@ This track is member 4 of the track set [Unified Math App](../../sets/unified-ma
 - Given a parent with a `pending` or `revoked` link to the student, When the parent asks for the history, Then the query returns no row.
 - Given an enrollment, When its status changes to `withdrawn` or `completed`, Then `endedAt` is set.
 - Given the teacher of the class of an `active` enrollment, When the teacher uses the "Withdraw" action on `/teacher/students/[studentId]/history`, Then the enrollment is `withdrawn` with `endedAt`. Given a teacher of another class, When that teacher calls `withdrawEnrollment`, Then it fails with an authorization error and writes nothing.
+- Given the history rows of a student, When the teacher of the class of an `active` row or an admin of the organization of that class reads them, Then that row has `canWithdraw: true`. Given any other caller or a row that is not `active`, Then the row has `canWithdraw: false`, and the page shows no "Withdraw" action on it.
 
 **Estimate:** M
 **Priority:** Must
@@ -188,6 +208,7 @@ This track is member 4 of the track set [Unified Math App](../../sets/unified-ma
 - Given evidence on a code that the IM3 course view does not hold, When the IM3 knowledge state loads, Then the evidence does not change the IM3 state.
 - Given a student with no earlier course, When the knowledge state of a course loads, Then it equals the state before this story (regression test with a fixed fixture).
 - Given a teacher of the IM3 class, When the teacher opens `/teacher/im3/students/[studentId]/competency`, Then each competency with evidence shows the earlier courses of the student that hold it (D7a).
+- Given the competencies with evidence on that page, When the page loads, Then the page gets the earlier courses of all codes from one call of `earlierCoursesForCompetencies`, inside the competency detail query (D7b).
 - Given the repository after S4, When `git grep -n -E "computeTransferCredit|TransferCreditPrompt|TransferCreditAuditPanel|student-skip"` runs, Then it finds no match outside `measure/**`.
 
 **Note (2026-11-14):** this story replaces the earlier transfer-credit design (cross-course

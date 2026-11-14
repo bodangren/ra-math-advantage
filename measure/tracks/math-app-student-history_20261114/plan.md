@@ -50,7 +50,8 @@ _Story ref: spec.md#story-s1_
     - [ ] Run each gate on the start commit. Record the results under "Baseline".
     - [ ] Write the schema change: `class_enrollments` gets `endedAt: v.optional(v.number())` and the index `by_student_and_status` (`studentId`, `status`).
     - [ ] Write the contract of `apps/math/lib/courses/academic-year.ts` `currentAcademicYear(now: Date): string` (spec D1).
-    - [ ] Write the contract of `convex/student/history.ts`: `getStudentHistory({ studentId })` returns rows `{ academicYear, courseKey, courseTitle, className, status, enrolledAt, endedAt }`, sorted by year, then by `enrolledAt`.
+    - [ ] Write the contract of `convex/student/history.ts`: `getStudentHistory({ studentId })` returns rows `{ enrollmentId, academicYear, courseKey, courseTitle, className, status, enrolledAt, endedAt, canWithdraw }`, sorted by year, then by `enrolledAt`.
+    - [ ] Record the rule of `canWithdraw` (spec D3b): true only for an `active` row when the caller is the teacher of the class of the row or an admin of the organization of that class. The query reads the class and its teacher profile of each row with `Promise.all`.
     - [ ] Write the contract of one internal helper `enrollStudent(ctx, { classId, studentId })` in `convex/enrollment.ts`. It returns `{ status: 'created' | 'existing', enrollmentId }` or throws the D2 error. When an enrollment of any status exists in the same class, it returns `existing` and writes nothing (spec D2). Each enrollment write uses it.
     - [ ] Record the access rule of spec D5 for `getStudentHistory`: a parent needs a `parent_links` row with `status: "active"`.
     - [ ] Write the contract of `withdrawEnrollment({ enrollmentId })` in `convex/enrollment.ts` (spec D3a): the caller rule, the change of an `active` enrollment to `withdrawn` with `endedAt`, and no write for another status.
@@ -60,7 +61,9 @@ _Story ref: spec.md#story-s1_
     - [ ] Also: the teacher of the IM2 class of the student gets the two rows. A teacher with no class of the student gets no row and an authorization error. A parent with an `active` link and an admin of the organization get the rows. A parent with a `pending` or a `revoked` link gets no row.
     - [ ] `__tests__/convex/enrollment.test.ts`: an enrollment in another class of the same course and year, while an `active` one exists, fails with the message of the spec and writes nothing. An enrollment in the same class, with an existing `withdrawn` enrollment, returns `existing` and writes nothing.
     - [ ] Also: `withdrawEnrollment` by the teacher of the class sets `withdrawn` and `endedAt`. By an admin of the organization, it does the same. By a teacher of another class, it fails with an authorization error and writes nothing. On a `completed` enrollment, it writes nothing.
-    - [ ] `__tests__/app/`: `/teacher/students/[studentId]/history` shows the "Withdraw" action on an `active` row for the teacher of that class, and not for a teacher of another class.
+    - [ ] Also: for the teacher of the IM2 class, the `active` IM2 row has `canWithdraw: true`, and the `completed` IM1 row has `canWithdraw: false`. For an admin of the organization, the `active` row has `canWithdraw: true` (spec D3b).
+    - [ ] Also: for the teacher of the IM1 class, the student, and a parent with an `active` link, each row has `canWithdraw: false`.
+    - [ ] `__tests__/app/`: `/teacher/students/[studentId]/history` shows the "Withdraw" action on a row with `canWithdraw: true`, and no action on a row with `canWithdraw: false`.
     - [ ] `__tests__/convex/roster-import.test.ts`: a roster row for a student with an `active` class of the same course and year gives a row error, and the import continues with the other rows. A roster row for a student who has a `withdrawn` enrollment in the same class counts as skipped.
     - [ ] `__tests__/app/`: `/student/history` and `/teacher/students/[studentId]/history` render the rows.
     - [ ] Run the app suite. Confirm that the new cases fail.
@@ -68,7 +71,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Change `convex/schema.ts` and regenerate `convex/_generated`.
     - [ ] Implement `currentAcademicYear`, `enrollStudent`, `withdrawEnrollment`, and `getStudentHistory`.
     - [ ] Change each site of "Enrollment Writes" to use `enrollStudent`.
-    - [ ] Add the "Withdraw" action to `/teacher/students/[studentId]/history`, as spec D3a gives.
+    - [ ] Add the "Withdraw" action to `/teacher/students/[studentId]/history`. Show it only on a row with `canWithdraw: true` (spec D3a, D3b).
     - [ ] Add the pages `/student/history` and `/teacher/students/[studentId]/history`, with links from the student dashboard and the teacher student list.
     - [ ] Commit: `feat(math): add the enrollment history by academic year`.
 - [ ] Task: S1 Verify — run the gates
@@ -146,7 +149,10 @@ _Story ref: spec.md#story-s4_
 
 - [ ] Task: S4 Contract — define the knowledge state across courses
     - [ ] Write the contract (spec D6): the knowledge state of course C reads `srs_cards` and `srs_review_log` with the `by_student` indexes and no course filter, gives each record to the nodes of `courseView(graph, C)` through `objectiveNodeIds`, and calls no transfer-credit function.
-    - [ ] Write the contract of the teacher page (spec D7a): `earlierCoursesForCompetency(studentId, code, courseKey)` reads `competency_standards` by `by_code`, `lesson_standards` by `by_standard`, then each lesson version and its lesson. It returns the lesson course keys that are also course keys of another enrollment of the student, without `courseKey`, in registry `sequence` order.
+    - [ ] Write the contract of the teacher page (spec D7a, D7b): `earlierCoursesForCompetencies(ctx, { studentId, courseKey, codes })` in the new module `convex/teacher/earlierCourses.ts`. It reads `competency_standards` by `by_code`, `lesson_standards` by `by_standard`, then each lesson version and its lesson.
+    - [ ] Also: it returns a map from each code to the lesson course keys that are also course keys of another enrollment of the student, without `courseKey`, in registry `sequence` order. A code with no earlier course gets an empty list.
+    - [ ] Also: it reads the enrollments and their classes one time. Each step of the path is one `Promise.all` over all codes or all rows of the earlier step, joined with a `Map`. No step reads in a loop for each code.
+    - [ ] Record the call: the competency detail query of the page (`getTeacherStudentCompetencyDetail` today, in its form after the base track) calls the helper one time and returns `earlierCourses`. The page makes no separate call (spec D7b).
     - [ ] Record the target page: `app/teacher/[course]/students/[studentId]/competency/page.tsx`.
     - [ ] Record a fixed fixture under "Knowledge State Fixture": one student with evidence on `HSA-SSE.B.3` from an IM2 class, an IM3 course view that holds that code, and evidence on one code that the IM3 view does not hold.
     - [ ] Record the knowledge state of a student with no earlier course on the start commit, as the regression value.
@@ -155,13 +161,16 @@ _Story ref: spec.md#story-s4_
     - [ ] `__tests__/convex/student/knowledge-state.test.ts`: with the fixture, the IM3 standard node of `HSA-SSE.B.3` has the IM2 evidence.
     - [ ] Also: the evidence on the code outside the IM3 view does not change the IM3 state.
     - [ ] Also: the student with no earlier course gets the regression value.
-    - [ ] `__tests__/convex/teacher/`: `earlierCoursesForCompetency` returns `["im2"]` for the fixture, and `[]` for a student with no earlier course.
+    - [ ] `__tests__/convex/teacher/earlierCourses.test.ts`: one call of `earlierCoursesForCompetencies` with the fixture codes returns `["im2"]` for `HSA-SSE.B.3` and `[]` for the code with no earlier course. A student with no earlier course gets `[]` for each code.
+    - [ ] Also: with three codes, the mock context records one enrollment read for the student, and one `by_code` read and one `by_standard` read for each code. The test fails if a read repeats for a code.
+    - [ ] Also: the competency detail query returns `earlierCourses` for each code with evidence, from one call of the helper.
     - [ ] `__tests__/app/`: `app/teacher/[course]/students/[studentId]/competency/page.tsx` shows the earlier course of each competency with evidence.
     - [ ] `scripts/__tests__/transfer-credit-removed.test.ts`: `git grep -n -E "computeTransferCredit|TransferCreditPrompt|TransferCreditAuditPanel|student-skip"` finds no match outside `measure/**`.
     - [ ] Run the app suite and the scripts suite. Confirm that the new cases fail.
 - [ ] Task: S4 Implement — use the evidence of earlier courses
     - [ ] Change `convex/student/knowledge-state.ts` as the contract gives. Read the evidence with indexes and `Promise.all`.
-    - [ ] Add `earlierCoursesForCompetency` and show the earlier courses on `app/teacher/[course]/students/[studentId]/competency/page.tsx`.
+    - [ ] Add `convex/teacher/earlierCourses.ts` with `earlierCoursesForCompetencies`. Call it one time from the competency detail query, and return `earlierCourses` (spec D7b).
+    - [ ] Show the earlier courses on `app/teacher/[course]/students/[studentId]/competency/page.tsx` from `earlierCourses`.
     - [ ] Commit: `feat(math): use the evidence of earlier courses in the knowledge state`.
 - [ ] Task: S4 Implement — remove the transfer-credit code
     - [ ] Delete each app file of "Removal List" and its tests. Remove the entries from `lib/a11y/harness.tsx`.
