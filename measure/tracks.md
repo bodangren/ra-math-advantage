@@ -118,7 +118,7 @@ Dependencies:
    *Chore, story-shaped spec with 4 phases: S1 ingest the first `math.us-hs` release (SHA-256 check, validation, files unchanged in `apps/math/curriculum/graph/release/`); S2 the app reads the released graph (loader, course containers, runtime bindings, re-keyed authoring files and stored node IDs); S3 the CCSS tags of the release in teacher reporting (primary first, PM-approved AP exception list, CCSS notice, no College Board text); S4 removal of the 47 old graph data files and the graph-data scripts. No history rewrite. Depends on: `kst-v32-runtime_20261114` and the first release from mastery-advantage.*
    *Link: [./tracks/math-graph-consume_20261114/](./tracks/math-graph-consume_20261114/)*
 
-- [~] **Track: Project Documents for the New Direction**
+- [x] **Track: Project Documents for the New Direction**
    *Chore, docs only, one phase with one task for each file group: README.md; AGENTS.md; the Measure core documents (index, product, architecture, tech stack, knowledge space, current directive); the wrong instructions of the other Measure documents; the contradictions of INTEGRATION.md; the planned-marker amendment of the retire track. Each document keeps the current state apart from the planned direction of 2026-11-14, and each planned item has the marker `(planned: <track id>)`. Runs after each track of the 2026-11-14 queue exists.*
    *Link: [./tracks/docs-new-direction_20261114/](./tracks/docs-new-direction_20261114/)*
 

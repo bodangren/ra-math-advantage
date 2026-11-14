@@ -1,19 +1,19 @@
 {
   "track_id": "docs-new-direction_20261114",
   "type": "chore",
-  "status": "new",
-  "created_at": "2026-11-14T16:00:00Z",
-  "updated_at": "2026-11-14T16:00:00Z",
+  "status": "completed",
+  "created_at": "2026-11-14T01:07:47Z",
+  "updated_at": "2026-11-14T01:42:00Z",
   "description": "Project Documents for the New Direction: rewrite README.md, AGENTS.md, and the Measure core documents so that each keeps the current state apart from the planned direction of 2026-11-14 (each planned item marked with its track), fix the wrong instructions of the other Measure documents and the contradictions of INTEGRATION.md, record the license facts, and amend the document tasks of the retire track. Docs only.",
   "estimated_tasks": 8,
-  "actual_tasks": null,
-  "deviation_notes": "",
+  "actual_tasks": 8,
+  "deviation_notes": "1. The six file-group edits ran before the spec review, because the track is docs only with no Red phase. 2. Commit 3312cf21 put each planned marker on one line (one track for each marker) and added the one-line rule to AGENTS.md and spec W1. 3. Spec review Round 1 (glm-latest as a substitute for Kimi) passed: F1 (Major, the retire spec-review.md was outside the W4 group 6 list) was fixed in the spec with no revert and no re-review; F2 to F4 (Nit) were declined. 4. This docs-only track ran no phase acceptance role and no final acceptance role, because of the PM machine load rule; the spec review Round 1 and the orchestrator check stand in for them. 5. npm run generate did not run, because measure/generated/routes.md holds an unrelated uncommitted change; npm run doctor passed. 6. No tests ran (docs only).",
   "sprint": {
     "goal": "An agent that reads README.md, AGENTS.md, and measure/index.md gets the current state, the planned direction with its tracks, and no wrong instruction.",
     "stories": [
-      { "id": "S1", "title": "Documents give the current state and the planned direction", "size": "M", "priority": "Must", "status": "pending" }
+      { "id": "S1", "title": "Documents give the current state and the planned direction", "size": "M", "priority": "Must", "status": "done" }
     ],
-    "demo_notes": null,
+    "demo_notes": "Confirmed by the orchestrator on 2026-11-14: README Planned Direction, AGENTS.md, and the graph, CCSS, auth, and deploy sections of the Measure documents checked; spec review Round 1 pass (AC1–AC4).",
     "retro_ref": null
   }
 }
