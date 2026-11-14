@@ -1,0 +1,1 @@
+Fix inside task group 6, docs-new-direction_20261114: the marker grep of the retire track found no marker that wrapped across two lines. Each (planned: <track id>) marker now stays on one line (one track for each marker where several apply), AGENTS.md and spec W1 state the one-line rule, and the index row uses the marker form.
