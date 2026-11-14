@@ -32,6 +32,45 @@ Checked on 2026-11-14 at `8d65b94f`.
 
 ## Unchanged Files
 
+Group 4 changed only two files: `measure/tech-specs.md` (the lint command comment and the
+"Vercel (primary)" deploy line) and `measure/monorepo-ops.md` (the IM3 `npm run dev`
+comment and the two `npx convex run seed.ts` commands). Spec W7 excludes
+`measure/workflow.md`, `measure/tracks.md`, `measure/lessons-learned.md`, and
+`measure/tech-debt.md`.
+
+These `measure/*.md` files stay as they are. They hold no instruction that is wrong today.
+Some of them hold dated history or old facts, which the later tracks own:
+
+| File | Note |
+|------|------|
+| `anti-patterns.md` | No wrong instruction |
+| `autonomous-prompt.md` | No wrong instruction |
+| `autonomous_prompt.md` | No wrong instruction |
+| `bm2-alignment-report.md` | Dated report |
+| `course-objectives.md` | No wrong instruction |
+| `daily-practice-srs-roadmap.md` | Roadmap; no wrong instruction |
+| `knowledge-space-practice-projection-audit.md` | Dated audit |
+| `modules-3-9-roadmap.md` | Roadmap; no wrong instruction |
+| `monorepo-jr-execution-spec.md` | Migration history of 2026-04 (Supabase mentions are history) |
+| `monorepo-migration-index.md` | Migration history |
+| `monorepo-migration-report-20260419.md` | Dated report |
+| `monorepo-plan.md` | Migration roadmap of 2026-04-17 (history) |
+| `monorepo-track-playbook.md` | Migration playbook (history) |
+| `practice-component-contract.md` | No wrong instruction |
+| `practice-primitives-roadmap.md` | Names the four math apps; `math-app-retire-old-apps_20261114` FR-5 changes it |
+| `product-guidelines.md` | The ESLint rule is true today; `vinext-oxc-toolchain_20261114` owns the move to oxlint |
+| `review-prompt.md` | Says `npm run lint && npm run typecheck (or equivalent)`; the root has no `typecheck` script, but the text allows an equivalent |
+| `skill-graph-cross-course-equivalence-audit.md` | Dated audit |
+| `skill-graph-deprecation-report.md` | Dated report |
+| `skill-graph-edge-audit.md` | Dated audit |
+| `skill-graph-im1-rollout-audit.md` | Dated audit |
+| `skill-graph-im2-rollout-audit.md` | Dated audit |
+| `skill-graph-im3-m1-pilot-audit.md` | Dated audit |
+| `skill-graph-im3-rollout-audit.md` | Dated audit |
+| `skill-graph-inventory-audit.md` | Dated audit |
+| `skill-graph-precalc-rollout-audit.md` | Dated audit |
+| `skill-graph-standards-audit.md` | Dated audit |
+
 ## INTEGRATION Sections
 
 ## Test Constraints
