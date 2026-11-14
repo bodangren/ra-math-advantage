@@ -1,0 +1,4 @@
+Task: Rewrite AGENTS.md for the new direction (group 2), docs-new-direction_20261114.
+Changes: AGENTS.md now has the project title, the checkpoint and sync rules, the current state of the five apps, the planned direction with a pointer to README.md, the planned marker rule, the scope of today, the deploy authorization of 2026-11-14, the secrets and paid-spend rules, the cross-project rules, and the shared machine rules. The Convex block and its markers did not change. CLAUDE.md stays @AGENTS.md.
+Files: AGENTS.md.
+Why: AGENTS.md named one IM3 app and had no direction, no marker rule, and no shared rules.
