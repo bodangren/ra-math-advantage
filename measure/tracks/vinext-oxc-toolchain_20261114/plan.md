@@ -101,19 +101,35 @@ _Story ref: spec.md#story-s1_
     - [x] Request `/` with `curl -s -o /dev/null -w '%{http_code}'`. Record the status code. Stop the server. (All 5 apps gave 200. Each port was free after the stop.)
     - [x] Time `npm run build` for each app on vinext 0.0.55. Record the times in section 5.
     - [x] Commit the evidence file: `measure(vinext-oxc): record the S1 baseline`.
-- [~] Task: S1 Test (Red) — add the S1 gate tests
-    - [ ] Create `scripts/__tests__/oxc-toolchain-gates.test.ts` with `describe('S1 vinext 1.x')`.
-    - [ ] Add `'__tests__/oxc-toolchain-gates.test.ts'` to `include` in `scripts/vitest.config.ts`.
-    - [ ] Normal case 1: the `vinext/package.json` that resolves from the repository root has major version 1.
-    - [ ] Normal case 2: `require.resolve('next/package.json')` throws from the root, from each app folder, and from `packages/app-shell`.
-    - [ ] Normal case 3: no `package.json` in the root, `apps/*`, or `packages/*` declares `next` in `dependencies`, `devDependencies`, `peerDependencies`, or `overrides`.
-    - [ ] Normal case 4: each app `tsconfig.json` and `packages/app-shell/tsconfig.json` has `vinext/types` in `compilerOptions.types`.
-    - [ ] Edge case 5: a probe that imports `NextConfig` from `next`, `Link` from `next/link`, and `useRouter` from `next/navigation` type-checks with exit code 0.
-    - [ ] The probe `tsconfig.json` has `"types": ["vinext/types"]`, `"moduleResolution": "bundler"`, `"jsx": "react-jsx"`, `"strict": true`, `"noEmit": true`, and a `"files"` list with the probe file.
-    - [ ] The S1 type-check command for the probe is `tsc -p <tmp>/tsconfig.json`. The probe uses the `node_modules` symlink.
-    - [ ] Edge case 6: the same probe with `import x from "next/does-not-exist"` exits with a non-zero code.
-    - [ ] Run the scripts suite. Confirm that cases 1 to 4 fail. Record the Red output in this plan.
-    - [ ] Commit: `test(vinext-oxc): add the S1 gate tests (Red)`.
+- [~] Task: S1 Test (Red) — add the S1 gate tests (Red commit: abbe15f1; Green marks `[x]` when the S1 cases pass)
+    - [x] Create `scripts/__tests__/oxc-toolchain-gates.test.ts` with `describe('S1 vinext 1.x')`.
+    - [x] Add `'__tests__/oxc-toolchain-gates.test.ts'` to `include` in `scripts/vitest.config.ts`. (The discovery check listed no file, so the config also got a `root` option from `import.meta.url`. Strategy section 5 names this fix.)
+    - [x] Normal case 1: the `vinext/package.json` that resolves from the repository root has major version 1. (The test checks the root, each app, and `packages/app-shell`. It walks up `node_modules` because vinext 1.x has no `./package.json` entry in its `exports` map.)
+    - [x] Normal case 2: `require.resolve('next/package.json')` throws from the root, from each app folder, and from `packages/app-shell`. (Paired: the test first proves that `vinext` resolves.)
+    - [x] Normal case 3: no `package.json` in the root, `apps/*`, or `packages/*` declares `next` in `dependencies`, `devDependencies`, `peerDependencies`, or `overrides`. (The scan also reads `optionalDependencies` and nested override objects.)
+    - [x] Normal case 4: each app `tsconfig.json` and `packages/app-shell/tsconfig.json` has `vinext/types` in `compilerOptions.types`. (The test also requires that the `{ "name": "next" }` plugin is gone.)
+    - [x] Edge case 5: a probe that imports `NextConfig` from `next`, `Link` from `next/link`, and `useRouter` from `next/navigation` type-checks with exit code 0.
+    - [x] The probe `tsconfig.json` has `"types": ["vinext/types"]`, `"moduleResolution": "bundler"`, `"jsx": "react-jsx"`, `"strict": true`, `"noEmit": true`, and a `"files"` list with the probe file. (Deviation: it also has `"module": "esnext"`, `"target": "ES2022"`, and `"skipLibCheck": true`. `moduleResolution: bundler` needs the module setting. The apps use `skipLibCheck` too.)
+    - [x] The S1 type-check command for the probe is `tsc -p <tmp>/tsconfig.json`. The probe uses the `node_modules` symlink.
+    - [x] Edge case 6: the same probe with `import x from "next/does-not-exist"` exits with a non-zero code. (The test also requires `TS2307`, the text `next/does-not-exist`, no `TS2688`, and no error for the `next/link` import in the same file.)
+    - [x] Edge case 5b (strategy): a probe with `<Link />` and `useRouter().push(123)` exits non-zero with `TS2741` or `TS2345`, and with no `TS2688` and no `TS2307`.
+    - [x] Case 7 (strategy): each `actions/setup-node` step in `.github/workflows/*.yml` has Node 24. Case 8 (strategy): the lockfile has no `node_modules/next` key and no workspace entry that lists `next`.
+    - [x] Run the scripts suite. Confirm that cases 1 to 4 fail. Record the Red output in this plan.
+    - [x] Commit: `test(vinext-oxc): add the S1 gate tests (Red)`.
+    - Red command: `npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x'`. It exits with code 1. Log: `measure/runs/vinext-oxc-toolchain_20261114/red-S1-run1.log`. Discovery check before Red: `npx vitest list --filesOnly --config scripts/vitest.config.ts` names `scripts/__tests__/oxc-toolchain-gates.test.ts`.
+    - Red result of each case (first failing line):
+        - case 1: red. `AssertionError: folders that resolve a vinext release that is not 1.x` (the root, 5 apps, and `packages/app-shell` all resolve major 0).
+        - case 2: red. `AssertionError: folders where next is installed` (`. -> node_modules/next/package.json` and 6 more folders).
+        - case 3: red. `AssertionError: manifest fields that declare next` (`package.json:devDependencies.next`, `package.json:overrides.next`, 5 apps, `packages/app-shell/package.json:peerDependencies.next`).
+        - case 4: red. `AssertionError: tsconfig files without vinext/types in compilerOptions.types` (5 apps and `packages/app-shell`).
+        - case 5: red. `AssertionError: expected 'error TS2688: Cannot find type defini…' not to contain 'TS2688'` (`vinext/types` does not resolve on vinext 0.0.55).
+        - case 5b: red. `AssertionError: vinext/types did not resolve: expected 'error TS2688: Cannot find type defini…' not to contain 'TS2688'`.
+        - case 6: red. `AssertionError: vinext/types did not resolve: expected 'error TS2688: Cannot find type defini…' not to contain 'TS2688'`.
+        - case 7: red. `AssertionError: setup-node steps with a node-version that is not 24` (the `'20'` steps of `ci.yml` and `cloudflare-deploy.yml`).
+        - case 8: red. `AssertionError: lockfile package keys that end with node_modules/next: expected [ 'node_modules/next' ] to deeply equal []`.
+    - Rehearsal of the probes for Green (not a test): the three probe files ran against the `vinext@1.4.5` and `@vinext/types@1.0.2` packages from the registry, in a folder outside the repository, with `tsc` 6.0.3. The valid probe gave exit code 0. The invalid probe gave `TS2345` (`push(123)`) and `TS2741` (`<Link />`). The missing-module probe gave `TS2307` for `next/does-not-exist` only. The vinext types are strict, so case 5b holds on vinext 1.x.
+    - Deviation for Green: the case 7 test reads the workflows with `js-yaml`. The package is not a root dependency. It is only a transitive dependency of `@eslint/eslintrc` through `apps/bus-math-v2`, and S2 removes `@eslint/eslintrc`. Green adds `js-yaml` to the root `devDependencies` in the S1 manifest commit. The S5 tests need it too.
+    - Deviation for the older scripts test: the `root` option makes `scripts/__tests__/remediate-concept-blueprints.test.ts` run for the first time. It passes (log `scripts-suite-older-test.log`).
 - [ ] Task: S1 Implement — move vinext to 1.x and remove `next`
     - [ ] In `.github/workflows/ci.yml` and `.github/workflows/cloudflare-deploy.yml`, change each `node-version: '20'` to `'24'`.
     - [ ] In the root `package.json`, set `vinext` to `^1.4.5` and `react-server-dom-webpack` to `^19.3.1`.
