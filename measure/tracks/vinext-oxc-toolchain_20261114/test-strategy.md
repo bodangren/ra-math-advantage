@@ -33,8 +33,8 @@ The script is committed as `measure/tracks/vinext-oxc-toolchain_20261114/gates.s
 | `RED_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x'` |
 | `GREEN_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts` |
 | `PROJECT_LINT` | `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint s1` |
-| `PROJECT_CHECKS` | `$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh checks-all s1` |
-| `PROJECT_TESTS` | `$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s1` |
+| `PROJECT_CHECKS` | `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh checks-all s1` |
+| `PROJECT_TESTS` | `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s1` |
 | `UX_REQUIRED` | `always` |
 | `PROJECT_DEV_URL` | `http://localhost:4103` (IM3). The second URL is `http://localhost:4105` (BM2). |
 
@@ -62,8 +62,20 @@ What the gates mean:
   line is the labeled integer `NEWFAIL=<n>`. Parse that integer. Do not match any digit.
 - A pre-existing failure does not make the aggregate green. The gate compares the
   diagnostic keys with the baseline (section 7).
-- Every heavy run goes through `heavy-run.sh`, one at a time. Run `slot check` before each
-  role start.
+- **Heavy jobs.** `gates.sh` calls `heavy-run.sh` itself: one job for each workspace script
+  and one job for each step. `heavy-run.sh` caps a p2 job at 1800 s (`maxLockSecondsP2`), and a
+  whole gate needs more time. Run the gate command WITHOUT an outer `heavy-run.sh` wrapper.
+  Do not set `HEAVY_PRIORITY=p1`. Run a gate in the background and read its log. Run one
+  gate at a time. Run `slot check` before each role start.
+- **Resume.** `GATES_RESUME=1` keeps the results of an interrupted run with the same label
+  and runs only the jobs without a result. Without it, the gate starts over.
+- **Exit codes.** 0 means no new failure. 1 means a new failure. 3 means an infrastructure
+  failure of `heavy-run.sh` (exit code 64, 65, 70, 75, 77, 124, or 201). The gate prints
+  `INFRA=1` and does not compare that job. Run the job again with `GATES_RESUME=1`.
+- **File names.** The output names equal the names of the baseline files in
+  `measure/runs/vinext-oxc-toolchain_20261114/gates/baseline/`: `<script>.exit`,
+  `<script>-<workspace>.log`, `<gate>.steps`, `step-<name>.log`, and `audit.txt`. The gate
+  also writes `timing.txt`.
 
 ## 3. Phase classification and review gates
 
@@ -112,7 +124,8 @@ Reasons, one for each cell group:
 
 1. The strategy commit lands first (`measure(strategy): Test strategy for vinext-oxc-toolchain`).
 2. After that commit, run `git status --porcelain`. The only allowed entry is
-   ` M measure/generated/routes.md`. Any other entry stops the capture.
+   ` M measure/generated/routes.md` (S1 only; for S2 to S5 the tree must be clean apart
+   from ignored paths). Any other entry stops the capture.
 3. Run `git rev-parse HEAD`. Store the value as `phase_base_sha` for S1.
 4. Capture it before the first S1 task commit (S1 Contract). The Red and Green role gates
    use it as the baseline.
@@ -187,8 +200,13 @@ The plan defines cases 1 to 6. This strategy changes or adds the items marked **
 | 5 | The probe imports `NextConfig` from `next`, `Link` from `next/link`, and `useRouter` from `next/navigation`. `tsc -p` exits 0. | Fails at Red because `vinext/types` does not exist on 0.0.55. |
 | 5b **(added)** | The same project with `<Link />` (no `href`) and `useRouter().push(123)`. `tsc -p` exits non-zero. The output has `TS2741` or `TS2345`. | Proves the types are real. If the types were `any`, case 5 passes and case 5b fails. If the vinext types accept both, Mid Red records the fact and chooses another strict member of the same types. |
 | 6 | The probe with `import x from "next/does-not-exist"` exits non-zero. The output has `TS2307` and the text `next/does-not-exist`. The output has no `TS2688`. **(strengthened)** | At Red the unresolved `vinext/types` gives `TS2688`. Without the `TS2688` rule, case 6 passes for the wrong reason. |
-| 7 **(added)** | The YAML of each file in `.github/workflows/` is parsed with `js-yaml` (root dependency). Each `actions/setup-node` step has a `node-version` with major 24. A sentinel asserts that `ci.yml` and `cloudflare-deploy.yml` each have at least one such step. | Covers the S1 criterion "Node 24". The plan has no case for it. Fails at Red (`'20'`). |
+| 7 **(added)** | The YAML of each file in `.github/workflows/` is parsed with `js-yaml` (root dependency, see below). Each `actions/setup-node` step has a `node-version` with major 24. A sentinel asserts that `ci.yml` and `cloudflare-deploy.yml` each have at least one such step. | Covers the S1 criterion "Node 24". The plan has no case for it. Fails at Red (`'20'`). |
 | 8 **(added)** | `package-lock.json` has no key in `packages` that ends with `node_modules/next`. No `packages["apps/<app>"]` entry lists `next` in its dependency maps. | Fails at Red. Closes the case where a manifest is clean and the lockfile still pins `next`. |
+
+**`js-yaml` for case 7.** `js-yaml` is only a transitive dependency today (through
+`@eslint/eslintrc`, which S2 removes). Green adds `js-yaml` (`^<latest>`) to the root
+`devDependencies` in the S1 manifest commit, and records it in evidence section 3. Case 7
+must still pass after S2.
 
 Red expectation: cases 1 to 4, 7, and 8 fail on the assertion. Cases 5, 5b, and 6 also fail
 at Red, because `vinext/types` does not resolve on 0.0.55. The plan says to confirm cases 1
@@ -212,7 +230,7 @@ Run in this order. Stop at the first failure that is not a baseline failure.
 
 1. **S1 Baseline task, gate runs (Mid Red).** Packages are unchanged, and `node_modules` comes
    from `npm ci`. Run `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint baseline`, then `test baseline`, then
-   `checks-all baseline`, all under `heavy-run.sh` where heavy. Then run the bundle audits,
+   `checks-all baseline`. The script calls `heavy-run.sh` itself. Then run the bundle audits,
    the E2E run, and the dev-server status checks of the plan.
    The `baseline` label records only. The files in `measure/runs/vinext-oxc-toolchain_20261114/gates/baseline/` are the
    comparison base. Mid Red copies the failing set to evidence section 10 (the durable record).
@@ -231,7 +249,7 @@ Run in this order. Stop at the first failure that is not a baseline failure.
 5. **After each dependency commit (Jr Green):** `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint s1`,
    `test s1`, `checks-all s1`. The plan requires all gates before each commit.
 6. **Green (Jr Green):** `GREEN_TEST_COMMAND` exits 0 (all S1 cases and the older scripts suite).
-7. **Verify task (Jr Green):** `npm ci` (through `heavy-run.sh`), then all gates with label
+7. **Verify task (Jr Green):** `npm ci` (through `heavy-run.sh`, as its own job), then all gates with label
    `s1`, both bundle audits, the dev-server status checks, the E2E run when the baseline ran
    it, then the build timing.
 
@@ -279,8 +297,18 @@ Each check is a command with an exit code. The label S1 evidence file path is
   a finding. These apps need Convex for data. The comparison is relative to the baseline,
   so a baseline error that comes from a missing backend is not a finding.
 - **Bundle audits.** `npm run bundle-size:audit --prefix apps/integrated-math-3` and
-  `npm run bundle:audit --workspace=apps/bus-math-v2`. Do not change a budget. A budget
-  failure stops the phase (plan "S1 Verify").
+  `npm run bundle:audit --workspace=apps/bus-math-v2`. Do not change a budget. Compare by
+  entry, not by exit code (plan "Baseline Comparison"). The audit prints one line for each
+  entry: `[OK]` or `[EXCEEDS]`, the entry name, the size in KB, and the threshold in KB.
+  Parse the entry name and the labeled sizes (A3).
+  - An entry that failed at baseline is not a new failure. At baseline the BM2 audit fails on
+    `Total dist/server` (11299.69 KB against 3000.00 KB) and on `server/index.js → index.js`
+    (2690.45 KB against 2500.00 KB). It exits 1 at baseline. The IM3 audit passes.
+  - These stop the phase (plan "S1 Verify"): an entry that is `[EXCEEDS]` now and was `[OK]`
+    or absent at baseline, any `[EXCEEDS]` entry in the IM3 audit, and a changed budget.
+  - For each entry that failed at baseline, record both sizes (baseline and now) in the
+    evidence file. Report any growth of such an entry in the Green handoff. Growth alone
+    does not stop the phase.
 - **E2E.** Run `npm run test:e2e --prefix apps/integrated-math-3` only when the baseline
   ran it. Compare the failing test titles with the baseline.
 - **Typecheck.** `tsc` (6.0.3 in S1) over all 25 workspaces, and `apps/bus-math-v2` through
@@ -302,13 +330,19 @@ ignored files in the main tree.
   print `NEWFAIL=0`.
 - **Closeout gate (phase acceptance):** the Green gate; `npm ci` succeeded; 5 builds exit 0;
   the next-absent step is 0; the dev status matches the baseline; the browser smoke matches
-  the baseline; the bundle audits pass; evidence sections 1 to 5, 8, and 10 have content;
-  section 11 may stay empty until S5; `npm run generate` and `npm run doctor` exit 0.
-- **Docs task note (A10).** The working tree has an uncommitted `measure/generated/routes.md`
-  from another machine. Before `npm run generate`, run
-  `git diff measure/generated/routes.md > measure/runs/vinext-oxc-toolchain_20261114/gates/routes-before.patch`. After the run,
-  stage the file only when the new diff differs from that patch for a reason of this phase.
-  Never run `git checkout -- measure/generated/routes.md`.
+  the baseline; no bundle entry is new over budget and the IM3 audit passes (BM2 baseline entries follow the rule above); evidence sections 1 to 5, 8, and 10 have content;
+  section 11 may stay empty until S5; `npm run generate` and `npm run doctor` exit 0, or
+  the generator path-bug deviation below is recorded and `npm run doctor` exits 0.
+- **Docs task note (A10).** Green runs `npm run generate` in the S1 Docs & Doctor task and
+  confirms exit code 0.
+  - If the new `measure/generated/routes.md` holds `../../../daniel-bo/` paths, the generator
+    has a path bug. Green then runs `git restore measure/generated/routes.md`, skips
+    `npm run generate` in S1, and records the skip as a deviation. Green also adds one row to
+    `measure/tech-debt.md` with the cause (check the 50-line limit first).
+  - Otherwise Green stages a generated file only when `git diff` shows a change that S1 caused.
+  - The PM decided on 2026-11-15 that `measure/generated/routes.md` is a generated file with
+    no change to keep. The orchestrator restored the committed file before Green. No role
+    saves a patch of it.
 
 ## 7. New-failure rule (all phases)
 
@@ -447,6 +481,9 @@ not name this step in S5. This strategy added one S5 Contract line to `plan.md` 
 
 The only copy is `measure/tracks/vinext-oxc-toolchain_20261114/gates.sh`. It was checked with `bash -n`.
 It uses the baseline files in `measure/runs/vinext-oxc-toolchain_20261114/gates/baseline/` when the label is not `baseline`.
-It was not run on the workspaces, because `node_modules` does not exist in the repository yet.
-Change the script only through a reviewed commit. A change after the baseline run needs a new
-baseline run.
+The S1 baseline files came from an uncommitted driver that ran the same jobs one at a time. The
+committed script writes the same file names and the same line formats. A check of `base_code`
+against the real baseline files gave the recorded codes. The committed script was not run on the
+workspaces. Its first full run is the `s1` run.
+A change to the gate logic after the baseline run must keep the baseline file names and formats.
+Otherwise the change needs a new baseline run.

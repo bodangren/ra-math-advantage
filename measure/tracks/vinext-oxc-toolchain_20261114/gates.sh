@@ -1,20 +1,36 @@
 #!/usr/bin/env bash
 # gates.sh <lint|test|checks-all> <label>
-# Run from the repository root: bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh <gate> <label>
+# Run from the repository root, WITHOUT a heavy-run.sh wrapper:
+#   bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh <gate> <label>
+# This script calls heavy-run.sh itself: one job for each workspace script and one job for
+# each step. Reason: heavy-run.sh caps a p2 job at 1800 s, and a whole gate needs more.
+# Run a gate in the background and read its log. A gate takes a long time.
 # Records each result under measure/runs/vinext-oxc-toolchain_20261114/gates/<label> (gitignored).
 # The label "baseline" only records. Any other label compares with the baseline.
+# GATES_RESUME=1 keeps the results of an earlier run with the same label and runs only the
+# jobs that have no result (or an infrastructure exit code).
+# Output names: <script>.exit, <script>-<workspace>.log, <gate>.steps, step-<name>.log,
+# audit.txt, audit.json, timing.txt.
+# Exit code: 0 no new failure (always 0 for baseline), 1 new failure, 2 usage, 3 infrastructure.
 set -u
 REPO=/home/daniebo/Desktop/ra-math-advantage
 cd "$REPO" || exit 2
 export CI=true
 GATE=${1:?gate}
 LABEL=${2:?label}
+H=${HEAVY_RUN:-$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh}
+[ -x "$H" ] || { echo "heavy-run.sh not found: $H"; exit 2; }
+RESUME=${GATES_RESUME:-0}
 GATES=$REPO/measure/runs/vinext-oxc-toolchain_20261114/gates
 OUT=$GATES/$LABEL
 BASE=$GATES/baseline
 mkdir -p "$OUT"
 MUST_PASS=" next-absent "
+# Exit codes of heavy-run.sh itself (usage, deny list, temp file, memory, disk, time limit, lock).
+INFRA=" 64 65 70 75 77 124 201 "
 newfail=0
+infra=0
+JOB_CODE=0
 
 has_script() {
   node -e 'const s=require(process.argv[1]).scripts||{};process.exit(s[process.argv[2]]?0:1)' "$PWD/$1/package.json" "$2"
@@ -32,22 +48,45 @@ new_keys() { # $1 baseline log, $2 current log
   [ -n "$(comm -13 <(key "$1") <(key "$2"))" ]
 }
 
-base_code() { # $1 exit file, $2 name
-  awk -v n="$2" '$1==n{print $2}' "$1" 2>/dev/null
+# The last recorded code of a name in an exit file or a steps file.
+base_code() { # $1 file, $2 name
+  awk -v n="$2" '$1==n{v=$2} END{print v}' "$1" 2>/dev/null
+}
+
+is_infra() { [[ "$INFRA" == *" $1 "* ]]; }
+
+# One heavy-run.sh job. Sets JOB_CODE.
+run_job() { # $1 kind, $2 name, $3 log file, rest: command
+  local kind=$1 name=$2 log=$3 t0 t1
+  shift 3
+  t0=$(date +%s)
+  "$H" "$@" > "$log" 2>&1
+  JOB_CODE=$?
+  t1=$(date +%s)
+  echo "$kind $name $((t1 - t0)) exit=$JOB_CODE" >> "$OUT/timing.txt"
 }
 
 sweep() { # $1 script name
-  local s=$1 ws name code bc
-  : > "$OUT/$s.exit"
+  local s=$1 ws name code bc rec
+  [ "$RESUME" = 1 ] || : > "$OUT/$s.exit"
+  touch "$OUT/$s.exit"
   for ws in apps/* packages/*; do
     name=$(basename "$ws")
-    if has_script "$ws" "$s"; then
-      npm run "$s" --workspace="$ws" > "$OUT/$s-$name.log" 2>&1
-      code=$?
+    rec=$(base_code "$OUT/$s.exit" "$ws")
+    if [ "$RESUME" = 1 ] && [ -n "$rec" ] && ! is_infra "$rec"; then
+      code=$rec
     else
-      code=n/a
+      if has_script "$ws" "$s"; then
+        run_job "$s" "$ws" "$OUT/$s-$name.log" npm run "$s" --workspace="$ws"
+        code=$JOB_CODE
+      else
+        code=n/a
+      fi
+      echo "$ws $code" >> "$OUT/$s.exit"
     fi
-    echo "$ws $code" >> "$OUT/$s.exit"
+    if is_infra "$code"; then
+      echo "INFRA FAILURE: $s $ws exit $code"; infra=1; continue
+    fi
     [ "$LABEL" = baseline ] && continue
     bc=$(base_code "$BASE/$s.exit" "$ws")
     if [ "$code" = n/a ] && [ -n "$bc" ] && [ "$bc" != n/a ]; then
@@ -66,11 +105,19 @@ sweep() { # $1 script name
 }
 
 step() { # $1 name, rest: command
-  local n=$1 c bc
+  local n=$1 c bc rec
   shift
-  "$@" > "$OUT/step-$n.log" 2>&1
-  c=$?
-  echo "$n $c" >> "$OUT/$GATE.steps"
+  rec=$(base_code "$OUT/$GATE.steps" "$n")
+  if [ "$RESUME" = 1 ] && [ -n "$rec" ] && ! is_infra "$rec"; then
+    c=$rec
+  else
+    run_job step "$n" "$OUT/step-$n.log" "$@"
+    c=$JOB_CODE
+    echo "$n $c" >> "$OUT/$GATE.steps"
+  fi
+  if is_infra "$c"; then
+    echo "INFRA FAILURE: step $n exit $c"; infra=1; return
+  fi
   [ "$LABEL" = baseline ] && return
   bc=$(base_code "$BASE/$GATE.steps" "$n")
   if [ "$c" != 0 ]; then
@@ -99,13 +146,15 @@ audit_step() {
 case "$GATE" in
   lint) sweep lint ;;
   test)
+    [ "$RESUME" = 1 ] || : > "$OUT/test.steps"
+    touch "$OUT/test.steps"
     sweep test
-    : > "$OUT/test.steps"
     step scripts-suite npx vitest run --config scripts/vitest.config.ts
     step audit-suites npx vitest run scripts/audit/__tests__
     ;;
   checks-all)
-    : > "$OUT/checks-all.steps"
+    [ "$RESUME" = 1 ] || : > "$OUT/checks-all.steps"
+    touch "$OUT/checks-all.steps"
     sweep typecheck
     if ! has_script apps/bus-math-v2 typecheck; then
       step typecheck-bm2 npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json
@@ -121,5 +170,6 @@ case "$GATE" in
   *) echo "unknown gate $GATE"; exit 2 ;;
 esac
 echo "NEWFAIL=$newfail"
+[ "$infra" = 0 ] || { echo "INFRA=1"; exit 3; }
 [ "$LABEL" = baseline ] && exit 0
 exit "$newfail"
