@@ -1,27 +1,40 @@
-# Current Directive — 2026-06-09
+# Current Directive — 2026-11-14
 
 ## Objective
-Remediate fundamental monorepo holes and wire the Knowledge Space Engine (KST) v2 pipeline.
 
-## Strategic Detour (Status — corrected 2026-06-09 after audit verification)
-- [x] **Measure Tooling**: Implemented `generate.sh` and `doctor.sh` with real
-  architectural fact extraction. Committed `0edad3f5`. Track
-  `measure-architecture-tooling_20260605` (manual-verification gates pending).
-- [x] **Status Re-classification**: `measure/tracks.md` reflects Skill Graph
-  tracks as "Data-Complete" but not "Runtime-Active".
-- [x] **Prune BM2 Legacy**: **COMPLETE.** Live zod schemas re-homed to
-  `lib/schemas/`, ~15 importers rewired, `lib/db/` and drizzle deps fully
-  removed. BM2 typechecks, lints, builds, and passes `npm run doctor`.
-  Track `bm2-drizzle-removal_20260609` closed.
+Carry out the direction of 2026-11-14 through Measure tracks, in the order below.
+`README.md` (section "Planned Direction") lists the direction items. The directive of
+2026-06-09 is complete: `wire-kst-pipeline_20260521` closed on 2026-07-03.
 
-## Priority 2: Wire KST Pipeline (KST Track 1)
-The primary blocker for the Skill Graph value proposition is the "built but not wired" gap.
-- **Track**: `measure/tracks/wire-kst-pipeline_20260521/`
-- **Goal**: Wire `knowledge-space-core` into an IM3 production route.
+## Track Order
 
-## Also opened from the 2026-06-09 audit
-- `unified-auth-monorepo_20260609` (PLANNED) — audit #5.
-- `im1-practice-readiness_20260609` (PLANNED) — audit #2/#6.
+1. `vinext-oxc-toolchain_20261114`: vinext 1.x with no `next`, oxlint, oxfmt, and tsrs.
+2. `openrouter-sdk-ai-layer_20261114`: the OpenRouter SDK AI layer (after 1).
+3. `danielson-app-import_20261114`, Phases S1 and S2 (after 1). Phase S3 waits for
+   `prod-deploy-pipeline_20261114`.
+4. The track set `unified-math-app_20261114`: `math-app-base_20261114`, then the three
+   course imports, then `math-app-retire-old-apps_20261114`,
+   `math-app-student-history_20261114`, and `math-app-seat-licensing_20261114`.
+5. `bm2-convex-auth-v2_20261114` (after 4).
+6. `prod-deploy-pipeline_20261114` (after 4 and 5). Then Phase S3 of
+   `danielson-app-import_20261114`.
+7. `kst-v32-runtime_20261114` (after 4).
+8. `math-graph-consume_20261114` (after 7 and the first release of the math graph).
+9. Practice Primitives Tracks A to F (after 5 and 6).
+
+`docs-new-direction_20261114` updates the project documents for this direction. The
+registry `measure/tracks.md` also holds older open tracks, for example
+`live-classroom-presentation_20260703`.
+
+## Rules in Force
+
+- Each phase ends with the checkpoint protocol of `measure/workflow.md`. Each track ends
+  with a sync with origin.
+- Until 2026-12-01 (PM rule), Math runs at most two sessions at one time: the build session
+  and one role. The PM queues the spec reviews and starts each one.
+- Run `~/Desktop/advantage-pr/scripts/jobs/slot check` before a role.
 
 ## Known Blockers
-- BM2 does not currently typecheck/build (in-flight Drizzle prune). Top priority.
+
+- The first release of the merged math graph from mastery-advantage. The ID scheme has the
+  confirmation target 2026-11-21. `math-graph-consume_20261114` waits for the release.

@@ -3,6 +3,8 @@
 This document is the **repo-architecture summary** for the Knowledge Space plan. It captures the package boundaries, vocabulary, and visualization projection rules used across the monorepo. Read it before implementing any Skill Graph, Knowledge Space, blueprint, generator, SRS, practice projection, or cross-domain learning graph work.
 
 > **Canonical KST+SRS contract:** [`../kst-srs.v2/SPECIFICATION.md`](../kst-srs.v2/SPECIFICATION.md) (§3 mastery, §4 outer fringe, §5 weighted readiness, §7 planner, §9 misconception loop, §16 projection). Mastery-model, hysteresis, fringe-membership, and readiness-formula prose lives there — this document defers to that file for theoretical authority and reproduces only the repo-architecture invariants below.
+>
+> **Planned:** the contract moves to kst-srs.v3.2 of the mastery-advantage repository (`github.com/Reading-Advantage-Thailand/mastery-advantage`, file `SPECIFICATION.md`). A pointer at a pinned commit replaces the in-repo v2 copy, and the engine adopts the v3.2 changes (planned: kst-v32-runtime_20261114).
 
 ## Purpose
 
@@ -27,7 +29,7 @@ The domain content is not shared:
 
 ## Package Boundaries
 
-### `@advantage/knowledge-space-core`
+### `@math-platform/knowledge-space-core`
 
 Owns domain-neutral mechanisms:
 
@@ -41,7 +43,7 @@ Owns domain-neutral mechanisms:
 
 Must not import app code, Convex generated files, math content, GSE content, curriculum files, standards catalogs, or proprietary graph maps.
 
-### `@advantage/knowledge-space-practice`
+### `@math-platform/knowledge-space-practice`
 
 Owns reusable practice mechanisms:
 
@@ -61,6 +63,16 @@ Domain packages and app curriculum folders own proprietary data:
 - `packages/math-content` and app curriculum folders own IM1, IM2, IM3, AP Precalculus graph artifacts, standards mappings, generator bindings, and component/runtime mappings.
 - A future English/GSE content package or app folder owns GSE-aligned graph artifacts, descriptor mappings, CEFR metadata, modality/task context, and English-specific generators.
 - Domain packages consume `knowledge-space-core` and `knowledge-space-practice`; they do not redefine the core theory or reusable contracts.
+
+Planned changes to the math graph:
+
+- The math app reads one skill graph, and each course is a view of that graph through its
+  course container node (planned: math-app-base_20261114).
+- The mastery-advantage repository releases one merged domain for IM1 to AP Precalculus
+  (default name `math.us-hs`), with course-neutral skill IDs and a mapping file from the old
+  node IDs. Each learnable node has a CCSS link. The app takes the release unchanged after
+  a SHA-256 check, and the graph data files of the apps go away (planned:
+  math-graph-consume_20261114).
 
 ## Visualization Projections
 
@@ -114,7 +126,9 @@ Concept nodes MUST NOT appear in `blueprints.json` files emitted by domain conte
 
 ## Current Measure Tracks
 
-- Track 1 (`wire-kst-pipeline_20260521`) is active: it wires the v2 contract into `packages/knowledge-space-core`. The canonical contract is [`../kst-srs.v2/SPECIFICATION.md`](../kst-srs.v2/SPECIFICATION.md); Phases 1–5 land mastery/fringe/bridge/production/docs work behind that spec.
+- Track 1 (`wire-kst-pipeline_20260521`) is complete and archived (2026-07-03): it wired the v2 contract into `packages/knowledge-space-core`. The canonical contract is [`../kst-srs.v2/SPECIFICATION.md`](../kst-srs.v2/SPECIFICATION.md).
+- `kst-v32-runtime_20261114` moves the engine to kst-srs.v3.2 (planned: kst-v32-runtime_20261114).
+- `math-graph-consume_20261114` switches the math app to the released mastery-advantage graph (planned: math-graph-consume_20261114).
 - Track 2 defines `knowledge-space-core`.
 - Track 6 defines reusable blueprint and generator contracts in `knowledge-space-practice`.
 - Track 7 defines reusable practice and visualization projection adapters in `knowledge-space-practice`.

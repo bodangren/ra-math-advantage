@@ -1,6 +1,25 @@
-# Architecture — Integrated Math 3
+# Architecture — RA Math Advantage
 
-Scaffolded from `bus-math-v2`. This document describes the code architecture, auth flow, routing, and course page structure.
+Scaffolded from `bus-math-v2`. This document describes the code architecture, auth flow, routing, and course page structure of the IM3 app (`apps/integrated-math-3`). The other math apps use the same structure today.
+
+This document gives the current state. A direction item of 2026-11-14 has the marker
+`(planned: <track id>)`.
+
+## Planned Direction
+
+- **One math app:** `apps/math` holds IM1, IM2, IM3, and AP Precalculus as course data, with
+  a course registry, a `[course]` route segment, and a theme for each course (planned:
+  math-app-base_20261114). The course imports move the other courses in, and the old apps
+  retire (planned: math-app-course-im1_20261114, math-app-course-im2_20261114,
+  math-app-course-precalc_20261114, math-app-retire-old-apps_20261114).
+- **Convex Auth v2:** username and password through the Convex Auth v2 components, with
+  `profiles` as the users table and server reads with the access token. It replaces the
+  custom JWT auth below (planned: math-app-base_20261114, bm2-convex-auth-v2_20261114).
+- **One graph:** the app reads one skill graph, and each course is a view of it (planned:
+  math-app-base_20261114). The graph comes from the mastery-advantage release (planned:
+  math-graph-consume_20261114).
+- **Deploys:** local deploys to Cloudflare Workers with a smoke test and a rollback
+  (planned: prod-deploy-pipeline_20261114).
 
 ## Knowledge Space Package Boundaries
 
@@ -61,7 +80,7 @@ integrated-math-3/
 │   ├── user-menu.tsx           # User dropdown menu
 │   └── theme-switcher.tsx      # Dark/light mode toggle
 ├── convex/                     # Convex backend functions
-│   ├── schema.ts               # Database schema (~20 tables)
+│   ├── schema.ts               # Database schema (41 tables)
 │   ├── auth.ts                 # Auth credential CRUD
 │   ├── public.ts               # Public queries (curriculum stats, units)
 │   ├── student.ts              # Student queries (dashboard, progress, phase completion)
@@ -109,14 +128,14 @@ The root layout wraps children in this order:
 ```
 
 - **ConvexClientProvider** — Creates `ConvexReactClient` using `getConvexUrl()`, wraps children in `<ConvexProvider>`
-- **AuthProvider** — Client component; fetches `/api/auth/session` on mount; exposes `{user, profile, loading, signIn, signOut}`
+- **AuthProvider** — Client component; `components/auth/AuthProvider.tsx` re-exports it from `packages/app-shell`; fetches `/api/auth/session` on mount; exposes `{user, profile, loading, signIn, signOut}`
 - **ThemeProvider** — next-themes with `attribute="class"`, `defaultTheme="system"`
 
 ## Authentication Architecture
 
 ### Custom JWT Auth (No third-party provider)
 
-Auth is fully self-contained using Convex as the credential store and Web Crypto API for hashing/signing.
+Auth is fully self-contained using Convex as the credential store and Web Crypto API for hashing/signing. The code is in `packages/core-auth`. Convex Auth v2 replaces this auth (planned: math-app-base_20261114, bm2-convex-auth-v2_20261114).
 
 ### Data Model
 
@@ -247,6 +266,17 @@ The activity registry (`lib/activities/registry.ts`) maps component keys to lazy
 - **Internal mutations** (`internalMutation`): Require server-side admin auth key
 
 Server-side code uses `fetchInternalQuery` / `fetchInternalMutation` which resolve admin auth from either `CONVEX_DEPLOY_KEY` env or local `.convex/` admin key.
+
+## Deployment
+
+- **Current state:** each app has a `wrangler.jsonc` for a Cloudflare Worker. The Workers
+  `integrated-math-3` and `bus-math-v2` exist on workers.dev with no traffic. No deploy has
+  run from this repository. `.github/workflows/cloudflare-deploy.yml` is a dispatched
+  workflow.
+- **Planned:** the orchestrator runs `npm run deploy:app -- <app>` locally with the OAuth
+  logins of `wrangler` and `convex`: a preflight, the Convex deploy, the Worker deploy, a
+  smoke test, and a rollback on failure. Deploy keys go through a pipe into
+  `wrangler secret put` (planned: prod-deploy-pipeline_20261114).
 
 ## Key Conventions
 

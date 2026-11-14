@@ -35,3 +35,15 @@ Checked on 2026-11-14 at `8d65b94f`.
 ## INTEGRATION Sections
 
 ## Test Constraints
+
+Checked after group 3 with `grep` (no `node_modules` on this machine, so the Vitest suites
+did not run).
+
+| Constraint | Command | Result |
+|------------|---------|--------|
+| `measure/index.md` has the row `\| **Knowledge Space Contract** \|` | `grep -c "\| \*\*Knowledge Space Contract\*\* \|" measure/index.md` | 1 |
+| The row path cell names `SPECIFICATION.md` | `grep -o` on the row | `../kst-srs.v2/SPECIFICATION.md` |
+| `measure/knowledge-space.md` links to `kst-srs.v2/SPECIFICATION.md` | `grep -c "kst-srs.v2/SPECIFICATION.md"` | 2 |
+| `measure/knowledge-space.md` has no "source of truth" | `grep -ci "source of truth"` | 0 |
+| `measure/knowledge-space.md` has the pointer language | `grep -ciE "canonical\|defers\|pointer\|specification"` | 5 |
+| `measure/architecture.md` does not name `cloudflare-launch-checklist` | `grep -c` | 0 |
