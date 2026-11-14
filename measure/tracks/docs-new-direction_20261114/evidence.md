@@ -99,6 +99,15 @@ tracks:
 |-------|--------|
 | `bash measure/scripts/doctor.sh` (the command of `npm run doctor`) | Exit code 0: "No monorepo boundary violations found." |
 | `npm run generate` | Not run. It rewrites `measure/generated/routes.md`, which has an unrelated uncommitted change that this session must not change. The checkpoint runs it after that change is resolved. |
+| `npm run doctor` at the checkpoint (HEAD `dc3e7dd0`) | Exit code 0: "No monorepo boundary violations found." "All checks passed." |
+| `npm run generate` at the checkpoint | Not run, for the same reason. The change of `measure/generated/routes.md` is still uncommitted and not from this track. |
+| Automated tests (`CI=true npm run test`) | Not run. Docs only: the orchestrator rule for this checkpoint is no build, no test, and no install. |
+| Changed files of the track (`git diff --name-only 8d65b94f HEAD`, the files of this track) | `README.md`, `AGENTS.md`, `INTEGRATION.md`, the six group 3 files, `measure/tech-specs.md`, `measure/monorepo-ops.md`, the `spec.md`, `plan.md`, and `spec-review.md` of the retire track, the files of this track folder, and the entry of this track in `measure/tracks.md`. No code file, so no test file is necessary. The other files of the diff come from other plan edits of the same day. |
+| Spec review Round 1 | Pass, no Blocker. AC1 to AC4 pass. F1 (Major) fixed in `dc3e7dd0`; F2 to F4 (Nit) declined. |
+
+## User Manual Verification (Phase 1)
+
+Confirmed by the orchestrator on 2026-11-14: README Planned Direction, AGENTS.md, and the graph, CCSS, auth, and deploy sections of the Measure documents checked; spec review Round 1 pass (AC1–AC4).
 | Wrapped markers (`grep -n "(planned:"` without `)` on the same line) | None |
 | Retire marker grep (`git grep -c -E "planned: [^)]*(math-app-base\|math-app-course-(im1\|im2\|precalc)\|math-app-retire-old-apps)_20261114" -- README.md AGENTS.md INTEGRATION.md ':(glob)measure/*.md'`) | AGENTS.md 2, INTEGRATION.md 2, README.md 6, architecture.md 7, index.md 1, knowledge-space.md 1, product.md 6, tech-stack.md 2 |
 
