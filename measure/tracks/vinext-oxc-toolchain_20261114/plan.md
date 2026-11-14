@@ -148,7 +148,7 @@ _Story ref: spec.md#story-s1_
     - [x] Fix only what a failing gate needs. Use the held-package rule.
         - Deviation: the 5 app `eslint.config.mjs` files stopped importing `eslint-config-next` (and the `@typescript-eslint/no-explicit-any` override block). Reason: `eslint-config-next` loads `next/dist/compiled/babel/eslint-parser` at config time, so no app lint config could load after `next` was removed, and the lint gate had a new failure (exit 2) in the 4 apps that passed at baseline. S2 migrates these files in the next phase, so the rule loss is transitional. Evidence section 8 records it.
     - [x] Commit: `chore(deps): upgrade vinext to 1.x and remove next`. (dcde148d)
-- [ ] Task: S1 Implement — update all other dependencies
+- [~] Task: S1 Implement — update all other dependencies
     - [ ] Run `npm outdated --json` at the root.
     - [ ] Run `npm outdated --json --workspace=<ws>` for each workspace. The aggregate command under-reports app dependencies (precedent spec "Audit Baseline").
     - [ ] Do not change `typescript` in S1. S3 owns it.
