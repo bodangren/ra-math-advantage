@@ -1,0 +1,4 @@
+Task: Amend the document tasks of the retire track (group 6), docs-new-direction_20261114.
+Changes: retire spec FR-6a (each planned marker of math-app-base, the three course imports, and the retire track changes into current-state text; other markers stay). Retire plan: the Phase 1 inventory runs git grep -n -E "planned: [^)]*(math-app-base|math-app-course-(im1|im2|precalc)|math-app-retire-old-apps)_20261114" -- README.md AGENTS.md INTEGRATION.md ':(glob)measure/*.md' and records each marker; the FR-6 task runs it again and expects no match. spec-review.md: Author Note and an Accepted Risk (no review of the change).
+Files: measure/tracks/math-app-retire-old-apps_20261114/{spec.md,plan.md,spec-review.md}.
+Why: the docs track writes planned markers, and the retire track must turn the markers of the set into current-state text.
