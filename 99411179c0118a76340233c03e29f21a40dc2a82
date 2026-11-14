@@ -1,0 +1,6 @@
+Phase 1 checkpoint: Rewrite the project documents (docs-new-direction_20261114).
+Automated tests: not run (docs only; orchestrator rule: no build, no test, no install).
+npm run doctor: exit 0 at dc3e7dd0. npm run generate: not run (measure/generated/routes.md holds an unrelated uncommitted change).
+Changed files: README.md, AGENTS.md, INTEGRATION.md, six Measure core documents, measure/tech-specs.md, measure/monorepo-ops.md, retire track spec.md/plan.md/spec-review.md, this track folder, the tracks.md entry. No code file.
+Spec review Round 1: pass, AC1-AC4 pass; F1 (Major) fixed in dc3e7dd0; F2-F4 (Nit) declined.
+Manual verification: Confirmed by the orchestrator on 2026-11-14: README Planned Direction, AGENTS.md, and the graph, CCSS, auth, and deploy sections of the Measure documents checked; spec review Round 1 pass (AC1-AC4).
