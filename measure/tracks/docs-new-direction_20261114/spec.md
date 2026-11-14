@@ -111,7 +111,9 @@ current state, the planned direction with its tracks, and no wrong instruction.
      changes. The evidence file lists the other old sections for
      `math-app-retire-old-apps_20261114`.
   6. `measure/tracks/math-app-retire-old-apps_20261114/{spec,plan}.md`: its document tasks
-     also change each planned marker of the math app items into current-state text.
+     also change each planned marker of the math app items into current-state text. The
+     `spec-review.md` of that track gets an Author Note and an Accepted Risk line that
+     record the amendment and its missing review.
 - **W5 Test constraints:** `measure/index.md` keeps the row "Knowledge Space Contract" with
   `SPECIFICATION.md`. `measure/knowledge-space.md` keeps the link to
   `kst-srs.v2/SPECIFICATION.md` and does not contain "source of truth".
