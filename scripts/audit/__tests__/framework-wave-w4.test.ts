@@ -279,30 +279,34 @@ describe('framework-wave (W4) — fixture presence (T5.1)', () => {
 // Task 1 — vinext 0.0.5 → 0.0.55 with React/RSC peers
 // ===========================================================================
 
-describe('framework-wave (W4) — vinext 0.0.5 → 0.0.55 (Task 1 / FR7)', () => {
-  const TARGET = '0.0.55';
-
-  it('vinext installed lockfile version equals 0.0.55', () => {
+describe('framework-wave (W4) — vinext 0.0.5 → 0.0.55 → 1.x (Task 1 / FR7; S1 superseded the 0.0.55 pin)', () => {
+  it('vinext installed lockfile version is on the 1.x line', () => {
     const v = installedVersion('vinext');
     expect(v, 'vinext missing from lockfile').toBeDefined();
-    expect(v, `vinext installed version must be ${TARGET} after W4-T1, found ${v}`).toBe(TARGET);
+    const f = semverFloor(`^${v!}`);
+    expect(
+      f.major,
+      `vinext major must be 1 after S1 (vinext-oxc-toolchain_20261114), found ${f.major} in ${v}`
+    ).toBe(1);
   });
 
-  it('each first-class app vinext manifest range admits 0.0.55', () => {
+  it('each first-class app vinext manifest range admits the installed 1.x release (no leftover 0.x ceiling)', () => {
     const manifests = getAppManifests(REPO_ROOT);
+    const installed = installedVersion('vinext');
+    expect(installed, 'vinext missing from lockfile').toBeDefined();
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const ws of FIRST_CLASS_APP_WORKSPACES) {
       const m = manifestByWorkspace(manifests, ws);
       expect(m, `${ws} manifest missing`).toBeDefined();
       for (const r of allDeclaredRanges(m!, 'vinext')) {
-        if (!satisfies(TARGET, r)) {
+        if (!satisfies(installed!, r)) {
           offenders.push({ workspace: ws, range: r });
         }
       }
     }
     expect(
       offenders,
-      `every first-class app vinext range must admit ${TARGET} after W4-T1, found: ${JSON.stringify(offenders)}`
+      `every first-class app vinext range must admit the installed vinext ${installed} (no leftover 0.x ceiling), found: ${JSON.stringify(offenders)}`
     ).toEqual([]);
   });
 
@@ -343,21 +347,23 @@ describe('framework-wave (W4) — Vite 7 → 8 (Task 2 / FR7)', () => {
     ).toBe(8);
   });
 
-  it('each first-class app vite manifest range admits a 8.x release (no leftover 7.x ceiling)', () => {
+  it('each first-class app vite manifest range admits the installed 8.x release (no leftover 7.x ceiling)', () => {
     const manifests = getAppManifests(REPO_ROOT);
+    const installed = installedVersion('vite');
+    expect(installed, 'vite missing from lockfile').toBeDefined();
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const ws of FIRST_CLASS_APP_WORKSPACES) {
       const m = manifestByWorkspace(manifests, ws);
       expect(m, `${ws} manifest missing`).toBeDefined();
       for (const r of allDeclaredRanges(m!, 'vite')) {
-        if (!satisfies('8.0.0', r)) {
+        if (!satisfies(installed!, r)) {
           offenders.push({ workspace: ws, range: r });
         }
       }
     }
     expect(
       offenders,
-      `every first-class app vite range must admit 8.0.0 after W4-T2, found: ${JSON.stringify(offenders)}`
+      `every first-class app vite range must admit the installed vite ${installed} after W4-T2, found: ${JSON.stringify(offenders)}`
     ).toEqual([]);
   });
 });
@@ -396,32 +402,30 @@ describe('framework-wave (W4) — @vitejs/plugin-react 4 → 6 (Task 2 / FR7)', 
 // Task 3 — Next.js 15 → 16 and eslint-config-next 15 → 16
 // ===========================================================================
 
-describe('framework-wave (W4) — Next.js 15 → 16 (Task 3 / FR8)', () => {
-  it('next installed lockfile version is on the 16.x line', () => {
-    const v = installedVersion('next');
-    expect(v, 'next missing from lockfile').toBeDefined();
-    const f = semverFloor(`^${v}`);
+describe('framework-wave (W4) — Next.js 15 → 16 → removed (Task 3 / FR8; S1 removed next)', () => {
+  it('next is absent from the lockfile (S1 removal supersedes the W4 16.x line)', () => {
+    const stillThere = Object.keys(PACKAGE_LOCK.packages).filter((k) =>
+      k.endsWith('node_modules/next')
+    );
     expect(
-      f.major,
-      `next major must be 16 after W4-T3, found ${f.major} in ${v}`
-    ).toBe(16);
+      stillThere,
+      'next must not appear in the lockfile after S1 removed it (supersedes the W4 16.x guard)'
+    ).toEqual([]);
   });
 
-  it('each first-class app next manifest range admits a 16.x release (no leftover 15.x ceiling)', () => {
+  it('no first-class app declares next (S1 removal supersedes the W4 16.x range guard)', () => {
     const manifests = getAppManifests(REPO_ROOT);
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const ws of FIRST_CLASS_APP_WORKSPACES) {
       const m = manifestByWorkspace(manifests, ws);
       expect(m, `${ws} manifest missing`).toBeDefined();
       for (const r of allDeclaredRanges(m!, 'next')) {
-        if (!satisfies('16.0.0', r)) {
-          offenders.push({ workspace: ws, range: r });
-        }
+        offenders.push({ workspace: ws, range: r });
       }
     }
     expect(
       offenders,
-      `every first-class app next range must admit 16.0.0 after W4-T3, found: ${JSON.stringify(offenders)}`
+      `no first-class app may declare next after S1 removed it, found: ${JSON.stringify(offenders)}`
     ).toEqual([]);
   });
 });
@@ -623,19 +627,19 @@ describe('framework-wave (W4) — package-wave-matrix assigns every W4 family to
     }
   );
 
-  it('W4 framework families have non-W4 latest installed versions on the pre-W4 baseline (sanity: this Red suite is not vacuous)', () => {
-    const offenders: Array<{ pkg: string; installed: string }> = [];
+  it('W4 framework families are past their pre-W4 majors (sanity: this Red suite is not vacuous)', () => {
+    const checked: Array<{ pkg: string; installed: string; preW4Major: number }> = [];
     for (const pkg of expectedFamilies) {
       const v = installedVersion(pkg);
-      if (!v) continue;
-      if (pkg === '@types/node') continue;
+      // next was removed in S1 (vinext-oxc-toolchain_20261114); its guard is the
+      // absence assertion above. @types/node has no pre-W4 major floor here.
+      if (!v || pkg === 'next' || pkg === '@types/node') continue;
       const f = semverFloor(`^${v}`);
-      const expectedMajor = (() => {
+      const preW4Major = (() => {
         switch (pkg) {
           case 'vinext': return 0;
           case 'vite': return 7;
           case '@vitejs/plugin-react': return 4;
-          case 'next': return 15;
           case 'eslint-config-next': return 15;
           case 'typescript': return 5;
           case 'eslint': return 9;
@@ -643,13 +647,15 @@ describe('framework-wave (W4) — package-wave-matrix assigns every W4 family to
           default: return -1;
         }
       })();
-      if (f.major === expectedMajor) {
-        offenders.push({ pkg, installed: v });
-      }
+      expect(
+        f.major,
+        `${pkg} installed ${v} must be past its pre-W4 major ${preW4Major} (W4 moved it; a regression to the pre-W4 major would falsify this suite)`
+      ).toBeGreaterThan(preW4Major);
+      checked.push({ pkg, installed: v, preW4Major });
     }
     expect(
-      offenders.length,
-      `pre-W4 baseline must still be on the pre-W4 majors for the 8 framework families (Red suite is non-vacuous). Found pre-W4 majors for: ${JSON.stringify(offenders)}`
+      checked.length,
+      'the vacuity guard must still check at least one W4 framework family'
     ).toBeGreaterThan(0);
   });
 });

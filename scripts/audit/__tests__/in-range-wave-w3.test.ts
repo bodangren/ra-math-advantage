@@ -407,43 +407,52 @@ describe('in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)', 
     manifests = getAppManifests(REPO_ROOT);
   });
 
-  it('every W3 in-range family declared range admits the registry-stub latest (no in-range → requires-manifest-change regression introduced by P3)', () => {
+  it('every W3 in-range family declared range admits the installed version (no in-range → requires-manifest-change regression introduced by P3)', () => {
     const inRange = getInRangeFamilies();
-    const offenders: Array<{ pkg: string; range: string; target: string; workspace: string }> = [];
+    const offenders: Array<{ pkg: string; range: string; installed: string; workspace: string }> = [];
     for (const pkg of inRange) {
-      const target = REGISTRY_STUB.registry_latest[pkg];
+      const installed = PACKAGE_LOCK.packages[`node_modules/${pkg}`]?.version;
       for (const m of manifests) {
         for (const r of allDeclaredRanges(m, pkg)) {
-          if (!satisfies(target, r)) {
-            offenders.push({ pkg, range: r, target, workspace: m.workspace_path });
+          // Durable FR5 contract: the declared range must admit the version that is
+          // actually installed. The 2026-06-07 registry-stub snapshot stays as a
+          // floor (checked in the sibling test), not as the comparison target.
+          if (!installed || !satisfies(installed, r)) {
+            offenders.push({ pkg, range: r, installed: installed ?? 'MISSING_FROM_LOCKFILE', workspace: m.workspace_path });
           }
         }
       }
     }
     expect(
       offenders,
-      `every W3 in-range family manifest range must admit the registry-stub latest, found: ${JSON.stringify(offenders, null, 2)}`
+      `every W3 in-range family manifest range must admit the installed version, found: ${JSON.stringify(offenders, null, 2)}`
     ).toEqual([]);
   });
 
-  it('every W3 in-range family installed lockfile version equals the registry-stub latest (Task 1.1 — refresh complete)', () => {
+  it('every W3 in-range family installed lockfile version never regresses below the registry-stub latest (W3 floor)', () => {
     const inRange = getInRangeFamilies();
-    const offenders: Array<{ pkg: string; installed: string; target: string }> = [];
+    const offenders: Array<{ pkg: string; installed: string; floor: string }> = [];
     for (const pkg of inRange) {
-      const target = REGISTRY_STUB.registry_latest[pkg];
+      const floor = REGISTRY_STUB.registry_latest[pkg];
+      if (!floor) continue;
       const lockKey = `node_modules/${pkg}`;
       const entry = PACKAGE_LOCK.packages[lockKey];
       if (!entry) {
-        offenders.push({ pkg, installed: 'MISSING_FROM_LOCKFILE', target });
+        // A family that S1 removed from every manifest may be absent from the
+        // lockfile; removal supersedes the W3 floor. A missing entry for a package
+        // that is still declared would be a real offender.
+        const stillDeclared = manifests.some((m) => allDeclaredRanges(m, pkg).length > 0);
+        if (!stillDeclared) continue;
+        offenders.push({ pkg, installed: 'MISSING_FROM_LOCKFILE', floor });
         continue;
       }
-      if (entry.version !== target) {
-        offenders.push({ pkg, installed: entry.version ?? 'MISSING', target });
+      if (!satisfies(entry.version ?? '', `>=${floor}`)) {
+        offenders.push({ pkg, installed: entry.version ?? 'MISSING', floor });
       }
     }
     expect(
       offenders,
-      `every W3 in-range family must be installed at the registry-stub latest, found: ${JSON.stringify(offenders, null, 2)}`
+      `every W3 in-range family must stay at or above its registry-stub floor, found: ${JSON.stringify(offenders, null, 2)}`
     ).toEqual([]);
   });
 

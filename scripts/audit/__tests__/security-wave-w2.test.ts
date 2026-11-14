@@ -102,12 +102,13 @@ const PACKAGE_LOCK = JSON.parse(
   readFileSync(resolve(REPO_ROOT, 'package-lock.json'), 'utf-8')
 ) as PackageLock;
 
-// The Next version actually installed in the lockfile. W2 pinned 15.5.19; the
-// W4 framework wave lifted it to 16.x. The W2 FR4/AC4 guard is version-agnostic:
-// it asserts each app's manifest range admits whatever Next is installed, rather
-// than a frozen 15.x literal that W4 intentionally superseded.
-const INSTALLED_NEXT_VERSION =
-  PACKAGE_LOCK.packages['node_modules/next']?.version ?? '';
+// S1 of vinext-oxc-toolchain_20261114 removed `next` from every manifest and from the
+// lockfile. The W2 FR4/AC4 guard stays durable: the strictly stronger successor of
+// "an intentional, controlled next range" is "next is not declared at all". `next/*`
+// now resolves through vinext and its `vinext/types` shims.
+function nextDeclarationsInLockfile(): string[] {
+  return Object.keys(PACKAGE_LOCK.packages).filter((key) => key.endsWith('node_modules/next'));
+}
 
 function firstClassApps(manifests: AppManifest[]): AppManifest[] {
   return manifests.filter((m) => m.workspace === 'app');
@@ -125,43 +126,60 @@ function allDeclaredRanges(manifest: AppManifest, pkg: string): string[] {
     .filter((r): r is string => typeof r === 'string' && r.length > 0);
 }
 
-function expectPostW2NextPin(
-  manifests: AppManifest[],
-  workspacePath: string
-): void {
+// S1 removed `next`. The W2 FR4/AC4 contract is expressed at full strength: no manifest
+// declares `next`, and no lockfile entry reinstalls it. (Reintroducing `next` fails
+// these assertions, which keeps the old W2 adversarial intent.)
+function expectNextAbsent(manifests: AppManifest[], workspacePath: string): void {
   const manifest = manifestByWorkspace(manifests, workspacePath);
   expect(manifest, `${workspacePath} manifest missing from report`).toBeDefined();
-  const ranges = allDeclaredRanges(manifest, 'next');
+  const ranges = allDeclaredRanges(manifest!, 'next');
   expect(
     ranges,
-    `${workspacePath} must declare "next" after W2`
-  ).toHaveLength(1);
-  const range = ranges[0];
-  // FR4 / AC4: the declaration must be an intentional, controlled range — never
-  // an uncontrolled "latest" / "*" / empty that could silently cross a major
-  // boundary on a routine lockfile refresh. The specific Next major is owned by
-  // the wave that set it (15 in W2, 16 after the W4 framework wave); this guard
-  // is deliberately version-agnostic and asserts only the durable contract.
+    `${workspacePath} must not declare "next" (removed in vinext-oxc-toolchain_20261114; ` +
+      `supersedes the W2 intentional-range pin and the >= 15.5.19 security floor)`
+  ).toEqual([]);
   expect(
-    range,
-    `${workspacePath} next range must not be "latest" (FR4/AC4)`
-  ).not.toBe('latest');
-  expect(range, `${workspacePath} next range must not be "*" (FR4/AC4)`).not.toBe('*');
-  expect(
-    range,
-    `${workspacePath} next range must not be empty (FR4/AC4)`
-  ).not.toBe('');
-  expect(
-    INSTALLED_NEXT_VERSION,
-    'installed next version missing from package-lock.json'
-  ).not.toBe('');
-  expect(
-    satisfies(INSTALLED_NEXT_VERSION, range),
-    `${workspacePath} declares next as "${range}"; the installed Next ${INSTALLED_NEXT_VERSION} must satisfy that range (AC4)`
-  ).toBe(true);
+    nextDeclarationsInLockfile(),
+    'package-lock.json must not hold any node_modules/next entry after S1 removed next'
+  ).toEqual([]);
 }
 
-describe('security-wave (W2) — next pinning (FR4 / AC4)', () => {
+// Durable vitest contract: the declared range is controlled and admits the installed
+// version, and the vitest major never regresses below the W2 target major 4 (the
+// pre-W2 security finding was vitest 2.x). The specific major is owned by the wave
+// that set it (4 in W2; later waves may move it forward).
+const INSTALLED_VITEST_VERSION =
+  PACKAGE_LOCK.packages['node_modules/vitest']?.version ?? '';
+
+function expectPostW2VitestFloor(manifests: AppManifest[], workspacePath: string): void {
+  const manifest = manifestByWorkspace(manifests, workspacePath);
+  expect(manifest, `${workspacePath} manifest missing from report`).toBeDefined();
+  const ranges = allDeclaredRanges(manifest!, 'vitest');
+  expect(ranges, `${workspacePath} must declare "vitest" after W2`).toHaveLength(1);
+  const range = ranges[0];
+  expect(range, `${workspacePath} vitest must not be "latest" (FR4/AC4)`).not.toBe('latest');
+  expect(range, `${workspacePath} vitest must not be "*" (FR4/AC4)`).not.toBe('*');
+  expect(range, `${workspacePath} vitest must not be empty (FR4/AC4)`).not.toBe('');
+  expect(
+    INSTALLED_VITEST_VERSION,
+    'installed vitest version missing from package-lock.json'
+  ).not.toBe('');
+  expect(
+    satisfies(INSTALLED_VITEST_VERSION, range),
+    `${workspacePath} declares vitest as "${range}"; the installed vitest ${INSTALLED_VITEST_VERSION} must satisfy that range (AC4)`
+  ).toBe(true);
+  const major = parseInt(range.replace(/^[\^~>=<]*/, ''), 10);
+  expect(
+    major,
+    `${workspacePath} vitest major must never regress below the W2 target major 4, declared "${range}"`
+  ).toBeGreaterThanOrEqual(POST_W2_PTE_VITEST_TARGET_MAJOR);
+  expect(
+    major,
+    `${workspacePath} vitest must not return to the 2.x pre-W2 security finding`
+  ).not.toBe(2);
+}
+
+describe('security-wave (W2) — next absence (FR4 / AC4, after vinext-oxc-toolchain_20261114 removed next)', () => {
   let manifests: AppManifest[];
 
   beforeAll(() => {
@@ -169,25 +187,33 @@ describe('security-wave (W2) — next pinning (FR4 / AC4)', () => {
   });
 
   it.each(FIRST_CLASS_APP_WORKSPACES)(
-    '%s declares "next" as an intentional, controlled range (no "latest" / "*" / "")',
+    '%s does not declare "next" (removal supersedes the W2 intentional-range pin)',
     (workspacePath) => {
-      expectPostW2NextPin(manifests, workspacePath);
+      expectNextAbsent(manifests, workspacePath);
     }
   );
 
-  it('all 5 first-class apps report the same intentional next range (no per-app drift)', () => {
+  it('all 5 first-class apps declare vinext instead of next, on one consistent 1.x-admitting range', () => {
     const apps = firstClassApps(manifests);
     const ranges = new Set<string>();
     for (const app of apps) {
-      const appRanges = allDeclaredRanges(app, 'next');
+      const appRanges = allDeclaredRanges(app, 'vinext');
       for (const r of appRanges) {
         ranges.add(r);
       }
+      expect(
+        allDeclaredRanges(app, 'next'),
+        `${app.workspace_path} must not declare next (see the W2 absence describe)`
+      ).toEqual([]);
     }
     expect(
       ranges.size,
-      `all 5 first-class apps must share one intentional next range after W2, found: ${[...ranges].join(', ')}`
+      `all 5 first-class apps must share one intentional vinext range after S1, found: ${[...ranges].join(', ')}`
     ).toBe(1);
+    for (const r of ranges) {
+      expect(r, `vinext range must not be "latest" (FR4/AC4)`).not.toBe('latest');
+      expect(r, `vinext range must not be "*" (FR4/AC4)`).not.toBe('*');
+    }
   });
 });
 
@@ -223,32 +249,14 @@ describe('security-wave (W2) — PTE vitest upgrade (FR3, vitest 2.1.9 → 4.1.8
     manifests = getAppManifests(REPO_ROOT);
   });
 
-  it('PTE declares vitest in the 4.x range (no longer the 2.x security finding)', () => {
-    const pte = manifestByWorkspace(manifests, PTE_WORKSPACE);
-    expect(pte, `${PTE_WORKSPACE} manifest missing from report`).toBeDefined();
-    const ranges = allDeclaredRanges(pte, 'vitest');
-    expect(
-      ranges,
-      `${PTE_WORKSPACE} must declare "vitest" after W2`
-    ).toHaveLength(1);
-    const range = ranges[0];
-    expect(range, `${PTE_WORKSPACE} vitest must be a semver range, got "${range}"`).toMatch(/^[\^~]?\d/);
-    const resolved = REGISTRY_STUB.registry_latest.vitest;
-    expect(
-      satisfies(resolved, range),
-      `${PTE_WORKSPACE} declares vitest as "${range}"; registry latest ${resolved} must satisfy that range`
-    ).toBe(true);
-    const major = parseInt(range.replace(/^[\^~>=<]*/, ''), 10);
-    expect(
-      major,
-      `${PTE_WORKSPACE} vitest must reach major ${POST_W2_PTE_VITEST_TARGET_MAJOR} (target ${resolved}) after W2`
-    ).toBe(POST_W2_PTE_VITEST_TARGET_MAJOR);
+  it('PTE declares vitest in a range that admits the installed version and stays at or above the W2 major 4', () => {
+    expectPostW2VitestFloor(manifests, PTE_WORKSPACE);
   });
 
   it('PTE vitest is NOT in the 2.x range anymore (the pre-W2 security finding)', () => {
     const pte = manifestByWorkspace(manifests, PTE_WORKSPACE);
     expect(pte, `${PTE_WORKSPACE} manifest missing from report`).toBeDefined();
-    const range = allDeclaredRanges(pte, 'vitest')[0];
+    const range = allDeclaredRanges(pte!, 'vitest')[0];
     const major = parseInt(range.replace(/^[\^~>=<]*/, ''), 10);
     expect(
       major,
@@ -265,7 +273,7 @@ describe('security-wave (W2) — vitest drift between PTE and rest of workspace 
     drift = getDeclarationDrift(manifests);
   });
 
-  it('no vitest drift entry reports both ^2.0.0 and a 4.x range across workspaces', () => {
+  it('no vitest drift entry reports mixed majors below the W2 floor across workspaces', () => {
     const vitestDrift = drift.find((d) => d.package === 'vitest');
     if (!vitestDrift) {
       return;
@@ -279,10 +287,15 @@ describe('security-wave (W2) — vitest drift between PTE and rest of workspace 
       uniqueMajors.size,
       `vitest drift must collapse to a single major after W2, found majors ${[...uniqueMajors].join(', ')} from ranges: ${JSON.stringify(vitestDrift.versions)}`
     ).toBe(1);
+    const major = [...uniqueMajors][0];
     expect(
-      uniqueMajors.has(POST_W2_PTE_VITEST_TARGET_MAJOR),
-      `post-W2 vitest drift must resolve on major 4, found: ${[...uniqueMajors].join(', ')}`
-    ).toBe(true);
+      major,
+      `post-W2 vitest drift must resolve on a major at or above the W2 floor 4, found: ${major}`
+    ).toBeGreaterThanOrEqual(POST_W2_PTE_VITEST_TARGET_MAJOR);
+    expect(
+      major,
+      `vitest drift must not resolve on the 2.x pre-W2 security finding`
+    ).not.toBe(2);
   });
 
   it('no manifest anywhere in the workspace declares vitest in the 2.x range', () => {
@@ -428,47 +441,53 @@ describe('security-wave (W2) — FR3 @vitejs/plugin-rsc minimum 0.5.27 (GHSA-w94
 });
 
 describe('security-wave (W2) — lockfile sync proves installed versions match FR3/FR4', () => {
-  it('installed next never regresses below the W2 security floor (>= 15.5.19), regardless of later major waves', () => {
+  it('next is fully removed from the lockfile (the >= 15.5.19 W2 security floor is superseded by removal)', () => {
     expect(
-      INSTALLED_NEXT_VERSION,
-      'next missing from package-lock.json'
-    ).not.toBe('');
-    expect(
-      satisfies(INSTALLED_NEXT_VERSION, '>=15.5.19'),
-      `installed Next ${INSTALLED_NEXT_VERSION} must stay at or above the W2 security floor 15.5.19`
-    ).toBe(true);
+      nextDeclarationsInLockfile(),
+      'package-lock.json must not hold any node_modules/next entry after S1 removed next'
+    ).toEqual([]);
   });
 
   it.each([
-    ['react', 'node_modules/react', '19.2.7'],
-    ['react-dom', 'node_modules/react-dom', '19.2.7'],
-    ['convex', 'node_modules/convex', '1.40.0'],
-    ['@vitejs/plugin-rsc', 'node_modules/@vitejs/plugin-rsc', '0.5.27'],
-    ['vitest', 'node_modules/vitest', '4.1.8'],
-    ['react-server-dom-webpack', 'node_modules/react-server-dom-webpack', '19.2.7'],
-  ])('%s resolves to %s in package-lock.json', (pkg, lockPath, expectedVersion) => {
+    ['react', 'node_modules/react', '>=19.2.7'],
+    ['react-dom', 'node_modules/react-dom', '>=19.2.7'],
+    ['convex', 'node_modules/convex', '>=1.40.0'],
+    ['@vitejs/plugin-rsc', 'node_modules/@vitejs/plugin-rsc', '>=0.5.27'],
+    ['vitest', 'node_modules/vitest', '>=4.1.8'],
+    ['react-server-dom-webpack', 'node_modules/react-server-dom-webpack', '>=19.2.9'],
+  ])('%s resolves to %s in package-lock.json and never regresses below its security floor', (pkg, lockPath, floor) => {
     const entry = PACKAGE_LOCK.packages[lockPath];
     expect(entry, `${lockPath} missing from package-lock.json`).toBeDefined();
-    expect(entry.version, `${pkg} installed lockfile version`).toBe(expectedVersion);
+    expect(
+      satisfies(entry!.version ?? '', floor),
+      `${pkg} installed lockfile version ${entry!.version} must stay at or above the security floor ${floor}`
+    ).toBe(true);
+    // Durable manifest↔lockfile sync: the installed version must satisfy the
+    // declared range of at least one workspace manifest that owns the package.
+    const manifests = getAppManifests(REPO_ROOT);
+    const owningRanges = manifests.flatMap((m) => allDeclaredRanges(m, pkg));
+    expect(
+      owningRanges.some((range) => satisfies(entry!.version ?? '', range)),
+      `${pkg} installed ${entry!.version} must satisfy a declared range (found: ${JSON.stringify(owningRanges)})`
+    ).toBe(true);
   });
 
-  it('workspace package-lock declarations are synced for PTE vitest and first-class app Next pins', () => {
-    expect(PACKAGE_LOCK.packages['packages/practice-test-engine']?.devDependencies?.vitest).toBe('^4.1.8');
-    // FR4/AC4 + manifest↔lockfile sync, version-agnostic: each app's lockfile
-    // next declaration must mirror its manifest range and never be "latest".
+  it('workspace package-lock declarations stay in sync with the manifests (PTE vitest; next absent)', () => {
     const manifests = getAppManifests(REPO_ROOT);
+    const pteManifestRange = manifestByWorkspace(manifests, PTE_WORKSPACE)
+      ? allDeclaredRanges(manifestByWorkspace(manifests, PTE_WORKSPACE)!, 'vitest')[0]
+      : undefined;
+    expect(
+      PACKAGE_LOCK.packages['packages/practice-test-engine']?.devDependencies?.vitest,
+      'PTE package-lock vitest declaration must stay in sync with its manifest range'
+    ).toBe(pteManifestRange);
+    // FR4/AC4, superseded by removal: no lockfile workspace entry may hold a next
+    // declaration at all (a reintroduced declaration would fail here).
     for (const workspacePath of FIRST_CLASS_APP_WORKSPACES) {
-      const manifest = manifestByWorkspace(manifests, workspacePath);
-      const manifestRange = manifest ? allDeclaredRanges(manifest, 'next')[0] : undefined;
-      const lockRange = PACKAGE_LOCK.packages[workspacePath]?.dependencies?.next;
       expect(
-        lockRange,
-        `${workspacePath} package-lock next declaration must not be "latest" (FR4/AC4)`
-      ).not.toBe('latest');
-      expect(
-        lockRange,
-        `${workspacePath} package-lock next declaration must stay in sync with its manifest range`
-      ).toBe(manifestRange);
+        PACKAGE_LOCK.packages[workspacePath]?.dependencies?.next,
+        `${workspacePath} package-lock entry must not declare next after S1 removed it`
+      ).toBeUndefined();
     }
   });
 });

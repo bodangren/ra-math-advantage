@@ -421,20 +421,38 @@ describe('remaining-majors (W5) — manifest + lockfile pins (Task 1/2/3 / FR8)'
     ).toBe(true);
   });
 
-  it('katex: every owner manifest range admits 0.17.x', () => {
+  it('katex: every installed katex entry satisfies the W5 floor 0.17.0 and every owner range admits an installed entry', () => {
+    const installedEntries = Object.entries(PACKAGE_LOCK.packages)
+      .filter(([key]) => key.endsWith('node_modules/katex'))
+      .map(([, entry]) => entry.version)
+      .filter((v): v is string => typeof v === 'string' && v.length > 0);
+    expect(
+      installedEntries.length,
+      'katex must be present in the root lockfile'
+    ).toBeGreaterThan(0);
+    const belowFloor = installedEntries.filter((v) => !satisfies(v, '>=0.17.0'));
+    expect(
+      belowFloor,
+      `every installed katex entry must stay at or above the W5 floor 0.17.0, found: ${JSON.stringify(belowFloor)}`
+    ).toEqual([]);
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
       const allRanges = [m.dependencies['katex'], m.devDependencies['katex']]
         .filter((r): r is string => typeof r === 'string' && r.length > 0);
       for (const r of allRanges) {
-        if (!satisfies('0.17.0', r)) {
+        // Durable contract (lessons-learned 2026-06-07): the range must admit an
+        // installed entry of the package, not a frozen W5 snapshot. npm may keep a
+        // lower hoisted copy for a transitive peer while owners resolve a newer
+        // nested copy, so "at least one installed entry satisfies the range" is the
+        // correct admission check.
+        if (!installedEntries.some((v) => satisfies(v, r))) {
           offenders.push({ workspace: m.workspace_path, range: r });
         }
       }
     }
     expect(
       offenders,
-      `katex manifest ranges must admit 0.17.x after W5; offenders: ${JSON.stringify(offenders)}`
+      `katex manifest ranges must admit an installed katex (${JSON.stringify(installedEntries)}); offenders: ${JSON.stringify(offenders)}`
     ).toEqual([]);
   });
 
@@ -448,20 +466,24 @@ describe('remaining-majors (W5) — manifest + lockfile pins (Task 1/2/3 / FR8)'
     ).toBe(1);
   });
 
-  it('lucide-react: every owner manifest range admits 1.x', () => {
+  it('lucide-react: every owner manifest range admits the installed 1.x version', () => {
+    const installed = installedLockfileVersion('lucide-react');
+    expect(installed, 'lucide-react must be present in the root lockfile').toBeTruthy();
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
       const allRanges = [m.dependencies['lucide-react'], m.devDependencies['lucide-react']]
         .filter((r): r is string => typeof r === 'string' && r.length > 0);
       for (const r of allRanges) {
-        if (!satisfies('1.0.0', r)) {
+        // Durable contract: admit the installed version (the W5 1.x line guard is
+        // the sibling test; a regression below 1.x fails there).
+        if (!satisfies(installed!, r)) {
           offenders.push({ workspace: m.workspace_path, range: r });
         }
       }
     }
     expect(
       offenders,
-      `lucide-react manifest ranges must admit 1.x after W5; offenders: ${JSON.stringify(offenders)}`
+      `lucide-react manifest ranges must admit the installed ${installed}; offenders: ${JSON.stringify(offenders)}`
     ).toEqual([]);
   });
 

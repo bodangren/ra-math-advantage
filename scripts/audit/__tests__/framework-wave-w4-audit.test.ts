@@ -249,6 +249,19 @@ describe('framework-wave (W4) adversarial audit — W4 lockfile/target self-cons
   it('every W4 framework major installed lockfile version satisfies its w4-framework-targets.json target_version range', () => {
     const offenders: Array<{ pkg: string; installed: string; target: string }> = [];
     for (const t of W4_TARGETS) {
+      // S1 of vinext-oxc-toolchain_20261114 removed next. The durable successor of
+      // "installed version satisfies the target" for a removed package is a
+      // lockfile-absence guard (strictly stronger).
+      if (t.package === 'next') {
+        const stillThere = Object.keys(PACKAGE_LOCK.packages).filter((k) =>
+          k.endsWith('node_modules/next')
+        );
+        expect(
+          stillThere,
+          'next must not appear in the lockfile after S1 removed it (supersedes the W4 16.x target)'
+        ).toEqual([]);
+        continue;
+      }
       const v = installedVersion(t.package);
       if (!v) {
         offenders.push({ pkg: t.package, installed: '<missing>', target: t.target_version });
@@ -280,10 +293,9 @@ describe('framework-wave (W4) adversarial audit — W4 majors not in W3 advisory
 
 describe('framework-wave (W4) adversarial audit — W4 majors on post-W4 major lines (sanity)', () => {
   const expectedPostW4Major: Record<string, number> = {
-    vinext: 0,
+    vinext: 1,
     vite: 8,
     '@vitejs/plugin-react': 6,
-    next: 16,
     'eslint-config-next': 16,
     typescript: 6,
     eslint: 10,
@@ -291,14 +303,24 @@ describe('framework-wave (W4) adversarial audit — W4 majors on post-W4 major l
   };
 
   for (const [pkg, expectedMajor] of Object.entries(expectedPostW4Major)) {
-    it(`${pkg} installed lockfile version is on the ${expectedMajor}.x line (post-W4)`, () => {
+    it(`${pkg} installed lockfile version is on the ${expectedMajor}.x line (post-W4; vinext updated forward by S1)`, () => {
       const v = installedVersion(pkg);
       expect(v, `${pkg} missing from lockfile`).toBeDefined();
       const [maj] = v!.split('.').map((n) => parseInt(n, 10));
       expect(
         maj,
-        `${pkg} major must be ${expectedMajor} after W4, found ${maj} in ${v}`
+        `${pkg} major must be ${expectedMajor} after W4 (vinext: after S1), found ${maj} in ${v}`
       ).toBe(expectedMajor);
     });
   }
+
+  it('next installed lockfile version is absent (S1 removal supersedes the W4 16.x line)', () => {
+    const stillThere = Object.keys(PACKAGE_LOCK.packages).filter((k) =>
+      k.endsWith('node_modules/next')
+    );
+    expect(
+      stillThere,
+      'next must not appear in the lockfile after S1 removed it'
+    ).toEqual([]);
+  });
 });
