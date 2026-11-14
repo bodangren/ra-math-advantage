@@ -70,6 +70,10 @@ Dependencies:
    *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: vinext-oxc-toolchain_20261114. User decisions 2026-11-14.*
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
 
+- [ ] **Track: Danielson App Import**
+   *Chore, story-shaped spec with 3 phases: S1 import `github.com/bodangren/hdkwa-danielson` as `apps/danielson` with its git history, move its open Measure tracks into this registry, remove the duplicate files, and join the npm workspaces; S2 the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs) and CI; S3 a static export to the new Worker `danielson` and a report to the PM. The app keeps the Danielson Framework text under the license of the school. Depends on: `vinext-oxc-toolchain_20261114` (S1 and S2) and `prod-deploy-pipeline_20261114` (S3 only). Runs before the track set Unified Math App. Orchestrator decision 2026-11-14.*
+   *Link: [./tracks/danielson-app-import_20261114/](./tracks/danielson-app-import_20261114/)*
+
 - [ ] **Track: Unified Math App: Base App, Convex Auth v2, and Course Data**
    *Link: [./tracks/math-app-base_20261114/](./tracks/math-app-base_20261114/)*
    *Set: Unified Math App (`unified-math-app_20261114`), order 1*

@@ -1,0 +1,21 @@
+{
+  "track_id": "danielson-app-import_20261114",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-11-14T14:00:00Z",
+  "updated_at": "2026-11-14T14:00:00Z",
+  "description": "Danielson App Import: import github.com/bodangren/hdkwa-danielson as apps/danielson with its git history, move its open Measure tracks into the root registry, remove the duplicate files, join the npm workspaces, move the app to the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs), and deploy a static export to the new Cloudflare Worker danielson. The app keeps the Danielson Framework text under the license of the school. Depends on vinext-oxc-toolchain_20261114 (S1, S2) and prod-deploy-pipeline_20261114 (S3 only). Runs before the track set unified-math-app_20261114.",
+  "estimated_tasks": 23,
+  "actual_tasks": null,
+  "deviation_notes": "",
+  "sprint": {
+    "goal": "apps/danielson builds with the repository toolchain, keeps the source history, and serves each route and each technique image from the Worker danielson.",
+    "stories": [
+      { "id": "S1", "title": "Import the app with its history", "size": "M", "priority": "Must", "status": "pending" },
+      { "id": "S2", "title": "Repository toolchain", "size": "M", "priority": "Must", "status": "pending" },
+      { "id": "S3", "title": "Deploy to the Worker danielson", "size": "S", "priority": "Must", "status": "pending" }
+    ],
+    "demo_notes": null,
+    "retro_ref": null
+  }
+}
