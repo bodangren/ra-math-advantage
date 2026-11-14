@@ -69,6 +69,10 @@ After the course imports, the repository holds one math app at `apps/math` and B
 - F5: DECLINE
 - F6: DECLINE
 
+### Author Note (2026-11-14, docs track)
+
+Task group 6 of `docs-new-direction_20261114` added FR-6a: in the documents of FR-3 to FR-6, each `(planned: <track id>)` marker of a set member up to this track changes into current-state text. The Phase 1 inventory records the markers with a `git grep`, and the FR-6 task runs the `git grep` again. This change had no review, because the PM machine load rule of 2026-11-14 limits the reviews.
+
 ## Accepted Risks
 
-None.
+- FR-6a: added after the last review round of this track, with no review of the change. The change adds one inventory step and one check, with an exact command.

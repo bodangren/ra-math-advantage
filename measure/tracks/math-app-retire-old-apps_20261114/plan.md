@@ -43,6 +43,7 @@ Verify task means each row of this table.
     - [ ] Confirm that `apps/integrated-math-1`, `apps/integrated-math-2`, `apps/integrated-math-3`, and `apps/pre-calculus` do not exist. If one exists, stop and report.
     - [ ] Run `git grep -n -E "integrated-math-[123]|pre-calculus" -- . ':!measure/archive'`. Record each file outside `KEEP_PATHS` under "Remaining References".
     - [ ] For each document of spec FR-3 to FR-6, record each section that describes more than one math app under "Document Sections", with its planned text.
+    - [ ] Run `git grep -n -E "planned: [^)]*(math-app-base|math-app-course-(im1|im2|precalc)|math-app-retire-old-apps)_20261114" -- README.md AGENTS.md INTEGRATION.md ':(glob)measure/*.md'`. Record each marker under "Document Sections" with its current-state text (spec FR-6a).
     - [ ] Record the open registry entries of FR-7 under "Open Registry Entries".
 - [ ] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
@@ -82,6 +83,7 @@ Verify task means each row of this table.
     - [ ] Commit: `docs(measure): describe one math app with four courses`.
 - [ ] Task: Update the README and the integration notes (FR-6)
     - [ ] Apply the planned text to `README.md` and `INTEGRATION.md`.
+    - [ ] Run the marker `git grep` of the Phase 1 inventory again. Confirm that it finds no marker of spec FR-6a.
     - [ ] Commit: `docs: name apps/math and its courses in the README`.
 - [ ] Task: Delete the empty Convex projects (FR-8)
     - [ ] Get a Convex team access token from Daniel through a secret card. Keep it only in the environment of each command.

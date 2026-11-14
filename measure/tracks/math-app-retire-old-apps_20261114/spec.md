@@ -92,6 +92,11 @@ This track is member 3 of the track set [Unified Math App](../../sets/unified-ma
     owns it.
 - **FR-6 README and integration notes:** `README.md` and `INTEGRATION.md` name `apps/math`
   and its courses, and BM2.
+- **FR-6a Planned markers:** `docs-new-direction_20261114` marks each direction item with
+  `(planned: <track id>)` (`AGENTS.md`, "Planned Marker Rule"). In the documents of FR-3 to
+  FR-6, each marker that names `math-app-base_20261114`, a course import track, or this
+  track changes into current-state text, and the marker goes away. A marker that names
+  another track stays, because that track is not complete.
 - **FR-7 Open registry entries:** list each open entry (`[ ]`) of `measure/tracks.md` whose
   text names an old app. Record the list in the evidence file, and report it at closeout.
   Do not change these entries.
