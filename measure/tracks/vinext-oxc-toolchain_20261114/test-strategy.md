@@ -25,16 +25,16 @@ live complement.
 ## 2. Gate values (all phases)
 
 `<label>` is `baseline` for the S1 Baseline task, and `s1` to `s5` for the phase gates.
-The orchestrator copies the script of section 12 to `/tmp/oxc-gates/gates.sh` before the
-first use. The script is not part of the repository.
+The script is committed as `measure/tracks/vinext-oxc-toolchain_20261114/gates.sh`. Run it from the repository root. It writes its output under
+`measure/runs/vinext-oxc-toolchain_20261114/gates/<label>/`. That folder is gitignored and survives a reboot.
 
 | Variable | S1 value |
 |----------|----------|
 | `RED_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x'` |
 | `GREEN_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts` |
-| `PROJECT_LINT` | `bash /tmp/oxc-gates/gates.sh lint s1` |
-| `PROJECT_CHECKS` | `$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash /tmp/oxc-gates/gates.sh checks-all s1` |
-| `PROJECT_TESTS` | `$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash /tmp/oxc-gates/gates.sh test s1` |
+| `PROJECT_LINT` | `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint s1` |
+| `PROJECT_CHECKS` | `$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh checks-all s1` |
+| `PROJECT_TESTS` | `$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s1` |
 | `UX_REQUIRED` | `always` |
 | `PROJECT_DEV_URL` | `http://localhost:4103` (IM3). The second URL is `http://localhost:4105` (BM2). |
 
@@ -48,7 +48,7 @@ For S2 to S5, change only the label and the `-t` filter:
 | S5 | `-t 'S5 gate rules'` | `s5` | `never` |
 
 `GREEN_TEST_COMMAND` stays the full scripts suite in each phase.
-From S4, `PROJECT_LINT` is `npm run format:check && bash /tmp/oxc-gates/gates.sh lint <label>`.
+From S4, `PROJECT_LINT` is `npm run format:check && bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint <label>`.
 From S5, the gates also run through the root scripts: `npm run format:check`,
 `npm run lint`, and `npm run typecheck` (section 8).
 
@@ -202,29 +202,38 @@ Record this as a deviation in the handoff. Do not change the plan for it.
 
 ### 6.3 Gate sequence for S1
 
+**Owners.** Mid Red runs, in this order: the S1 Contract task, the S1 Baseline task, and the
+S1 Test (Red) task. The S1 Baseline task includes the baseline gate runs (label `baseline`)
+and the baseline browser capture. Mid Red makes the browser capture with the `agent-browser`
+skill. The orchestrator runs only the role gates and the section 6.4 checks. The orchestrator
+does not run a baseline gate and does not capture a browser state. Jr Green runs steps 4 to 7.
+
 Run in this order. Stop at the first failure that is not a baseline failure.
 
-1. **Baseline task (packages unchanged, `node_modules` from `npm ci`):**
-   `bash /tmp/oxc-gates/gates.sh lint baseline`, then `test baseline`, then
-   `checks-all baseline`, all under `heavy-run.sh` where heavy. Then the bundle audits, the
-   E2E run, and the dev-server status checks of the plan.
-   The `baseline` label records only. The files in `/tmp/oxc-gates/baseline/` are the
-   comparison base. Copy the failing set to evidence section 10 (the durable record).
-2. **Baseline browser capture (added).** On vinext 0.0.55, before the first package change,
-   capture one screenshot, one accessibility snapshot, and the console error list for
-   `http://localhost:4103/` and `http://localhost:4105/`. Save them in
+1. **S1 Baseline task, gate runs (Mid Red).** Packages are unchanged, and `node_modules` comes
+   from `npm ci`. Run `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint baseline`, then `test baseline`, then
+   `checks-all baseline`, all under `heavy-run.sh` where heavy. Then run the bundle audits,
+   the E2E run, and the dev-server status checks of the plan.
+   The `baseline` label records only. The files in `measure/runs/vinext-oxc-toolchain_20261114/gates/baseline/` are the
+   comparison base. Mid Red copies the failing set to evidence section 10 (the durable record).
+2. **S1 Baseline task, browser capture (Mid Red, `agent-browser` skill).** Run it on vinext
+   0.0.55, before the first package change. Capture one screenshot, one accessibility
+   snapshot, and the console error list for `http://localhost:4103/` and
+   `http://localhost:4105/`. Save them in
    `measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-*`. The UX role compares with
-   them.
-3. **Red:** `RED_TEST_COMMAND` fails on the named cases. Run the discovery check first.
-4. **After the vinext commit:** run typecheck and test sweeps for all workspaces. Search the
-   test logs: `grep -l 'Failed to resolve import "next' /tmp/oxc-gates/<label>/test-*.log`
+   them. The Red task does not start before the files exist.
+3. **S1 Test (Red) task (Mid Red):** `RED_TEST_COMMAND` fails on the named cases. Run the
+   discovery check first.
+4. **After the vinext commit (Jr Green):** run the typecheck and test sweeps for all
+   workspaces. Search the test logs:
+   `grep -l 'Failed to resolve import "next' measure/runs/vinext-oxc-toolchain_20261114/gates/<label>/test-*.log`
    must print nothing.
-5. **After each dependency commit:** `bash /tmp/oxc-gates/gates.sh lint s1`,
+5. **After each dependency commit (Jr Green):** `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint s1`,
    `test s1`, `checks-all s1`. The plan requires all gates before each commit.
-6. **Green:** `GREEN_TEST_COMMAND` exits 0 (all S1 cases and the older scripts suite).
-7. **Verify task:** `npm ci` (through `heavy-run.sh`), then all gates with label `s1`, both
-   bundle audits, the dev-server status checks, the E2E run when the baseline ran it, then
-   the build timing.
+6. **Green (Jr Green):** `GREEN_TEST_COMMAND` exits 0 (all S1 cases and the older scripts suite).
+7. **Verify task (Jr Green):** `npm ci` (through `heavy-run.sh`), then all gates with label
+   `s1`, both bundle audits, the dev-server status checks, the E2E run when the baseline ran
+   it, then the build timing.
 
 ### 6.4 Artifact checks (the orchestrator runs these; they are not vitest cases)
 
@@ -240,7 +249,7 @@ Each check is a command with an exit code. The label S1 evidence file path is
 - **Order check (A5).** `git log --format='%h %s' -- measure/tracks/vinext-oxc-toolchain_20261114/oxc-evidence.md package.json apps packages`
   shows `measure(vinext-oxc): record the S1 baseline` before the first manifest change.
 - **Held-package check.** Each row of section 4 names a failing gate and a first error line.
-  The orchestrator finds that line in the log of `/tmp/oxc-gates/` or in the command output
+  The orchestrator finds that line in the log under `measure/runs/vinext-oxc-toolchain_20261114/gates/` or in the command output
   copied to the row. A held package without a line fails the review.
 - **Latest check.** For each workspace, `npm outdated --json --workspace=<ws>` lists only
   packages in section 4, plus `typescript`, `eslint`, `@eslint/js`, `@eslint/eslintrc`,
@@ -297,7 +306,7 @@ ignored files in the main tree.
   section 11 may stay empty until S5; `npm run generate` and `npm run doctor` exit 0.
 - **Docs task note (A10).** The working tree has an uncommitted `measure/generated/routes.md`
   from another machine. Before `npm run generate`, run
-  `git diff measure/generated/routes.md > /tmp/oxc-gates/routes-before.patch`. After the run,
+  `git diff measure/generated/routes.md > measure/runs/vinext-oxc-toolchain_20261114/gates/routes-before.patch`. After the run,
   stage the file only when the new diff differs from that patch for a reason of this phase.
   Never run `git checkout -- measure/generated/routes.md`.
 
@@ -434,134 +443,10 @@ not name this step in S5. This strategy added one S5 Contract line to `plan.md` 
 | S5 | A11, A12 | `bash tests/measure_orchestrator_audit.sh` stays in the `checks-all` gate. The AGENTS.md edit touches only the two guardrail lines. |
 | All | A8 | Task markers: Green marks `[~]` then `[x]` with a SHA. The role gate reads them. |
 
-## 12. Gate script (copy to `/tmp/oxc-gates/gates.sh`; not in the repository)
+## 12. Gate script
 
-The script uses the baseline files in `/tmp/oxc-gates/baseline/` when the label is not
-`baseline`. It was checked with `bash -n` and with `has_script`. It was not run on the
-workspaces, because `node_modules` does not exist in the repository yet.
-
-```bash
-#!/usr/bin/env bash
-# gates.sh <lint|test|checks-all> <label>
-# Records each result under /tmp/oxc-gates/<label>.
-# The label "baseline" only records. Any other label compares with the baseline.
-set -u
-REPO=/home/daniebo/Desktop/ra-math-advantage
-cd "$REPO" || exit 2
-export CI=true
-GATE=${1:?gate}
-LABEL=${2:?label}
-OUT=/tmp/oxc-gates/$LABEL
-BASE=/tmp/oxc-gates/baseline
-mkdir -p "$OUT"
-MUST_PASS=" next-absent "
-newfail=0
-
-has_script() {
-  node -e 'const s=require(process.argv[1]).scripts||{};process.exit(s[process.argv[2]]?0:1)' "$PWD/$1/package.json" "$2"
-}
-
-# Diagnostic keys of one log: line and column numbers and timings removed.
-key() {
-  grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)' "$1" 2>/dev/null |
-    sed -E 's/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g' | sort -u
-}
-
-# A new failure: no baseline failure, or a diagnostic key that the baseline log lacks.
-new_keys() { # $1 baseline log, $2 current log
-  [ -f "$1" ] || return 0
-  [ -n "$(comm -13 <(key "$1") <(key "$2"))" ]
-}
-
-base_code() { # $1 exit file, $2 name
-  awk -v n="$2" '$1==n{print $2}' "$1" 2>/dev/null
-}
-
-sweep() { # $1 script name
-  local s=$1 ws name code bc
-  : > "$OUT/$s.exit"
-  for ws in apps/* packages/*; do
-    name=$(basename "$ws")
-    if has_script "$ws" "$s"; then
-      npm run "$s" --workspace="$ws" > "$OUT/$s-$name.log" 2>&1
-      code=$?
-    else
-      code=n/a
-    fi
-    echo "$ws $code" >> "$OUT/$s.exit"
-    [ "$LABEL" = baseline ] && continue
-    bc=$(base_code "$BASE/$s.exit" "$ws")
-    if [ "$code" = n/a ] && [ -n "$bc" ] && [ "$bc" != n/a ]; then
-      echo "NEW FAILURE: $s script removed in $ws"; newfail=1
-    elif [ "$code" != 0 ] && [ "$code" != n/a ]; then
-      if [ "${bc:-x}" = 0 ] || [ "${bc:-x}" = n/a ] || [ "${bc:-x}" = x ]; then
-        echo "NEW FAILURE: $s $ws exit $code"; newfail=1
-      elif new_keys "$BASE/$s-$name.log" "$OUT/$s-$name.log"; then
-        echo "NEW FAILURE: $s $ws has a new diagnostic"; newfail=1
-      fi
-    fi
-  done
-  if [ "$(grep -vc ' n/a$' "$OUT/$s.exit")" -eq 0 ]; then
-    echo "NEW FAILURE: $s ran in no workspace"; newfail=1
-  fi
-}
-
-step() { # $1 name, rest: command
-  local n=$1 c bc
-  shift
-  "$@" > "$OUT/step-$n.log" 2>&1
-  c=$?
-  echo "$n $c" >> "$OUT/$GATE.steps"
-  [ "$LABEL" = baseline ] && return
-  bc=$(base_code "$BASE/$GATE.steps" "$n")
-  if [ "$c" != 0 ]; then
-    if [ "${bc:-x}" = 0 ] || [ "${bc:-x}" = x ] || [[ "$MUST_PASS" == *" $n "* ]]; then
-      echo "NEW FAILURE: step $n exit $c"; newfail=1
-    elif new_keys "$BASE/step-$n.log" "$OUT/step-$n.log"; then
-      echo "NEW FAILURE: step $n has a new diagnostic"; newfail=1
-    fi
-  fi
-}
-
-audit_step() {
-  npm audit --json > "$OUT/audit.json" 2>/dev/null
-  node -e 'const m=(require(process.argv[1]).metadata||{}).vulnerabilities||{};console.log(`critical=${m.critical||0} high=${m.high||0} moderate=${m.moderate||0} low=${m.low||0}`)' "$OUT/audit.json" > "$OUT/audit.txt" 2>&1
-  echo "audit: $(cat "$OUT/audit.txt")"
-  [ "$LABEL" = baseline ] && return
-  local f c b
-  for f in critical high; do
-    c=$(sed -n "s/.*$f=\([0-9][0-9]*\).*/\1/p" "$OUT/audit.txt")
-    b=$(sed -n "s/.*$f=\([0-9][0-9]*\).*/\1/p" "$BASE/audit.txt")
-    if [ -z "$c" ] || [ -z "$b" ]; then echo "NEW FAILURE: audit $f count not parsed"; newfail=1
-    elif [ "$c" -gt "$b" ]; then echo "NEW FAILURE: audit $f $b -> $c"; newfail=1; fi
-  done
-}
-
-case "$GATE" in
-  lint) sweep lint ;;
-  test)
-    sweep test
-    : > "$OUT/test.steps"
-    step scripts-suite npx vitest run --config scripts/vitest.config.ts
-    step audit-suites npx vitest run scripts/audit/__tests__
-    ;;
-  checks-all)
-    : > "$OUT/checks-all.steps"
-    sweep typecheck
-    if ! has_script apps/bus-math-v2 typecheck; then
-      step typecheck-bm2 npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json
-    fi
-    step boundary node scripts/check-monorepo-boundaries.mjs
-    step ci-check node scripts/validate-ci.mjs
-    step tree npm ls --workspaces --depth=0
-    step next-absent bash -c "npm ls next --all 2>&1 | grep -q '(empty)'"
-    step measure-contract bash tests/measure_orchestrator_audit.sh
-    audit_step
-    sweep build
-    ;;
-  *) echo "unknown gate $GATE"; exit 2 ;;
-esac
-echo "NEWFAIL=$newfail"
-[ "$LABEL" = baseline ] && exit 0
-exit "$newfail"
-```
+The only copy is `measure/tracks/vinext-oxc-toolchain_20261114/gates.sh`. It was checked with `bash -n`.
+It uses the baseline files in `measure/runs/vinext-oxc-toolchain_20261114/gates/baseline/` when the label is not `baseline`.
+It was not run on the workspaces, because `node_modules` does not exist in the repository yet.
+Change the script only through a reviewed commit. A change after the baseline run needs a new
+baseline run.
