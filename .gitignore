@@ -12,6 +12,9 @@ node_modules/
 
 # next.js
 /.next/
+# vinext build caches (apps; IM3 tracks .next/types/routes.d.ts, which stays tracked)
+apps/*/.next/
+apps/*/.vinext/
 /out/
 
 # production

@@ -18,12 +18,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "types": ["vitest/globals"],
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "types": ["vitest/globals", "vinext/types"],
     "paths": {
       "@/*": [
         "./*"
