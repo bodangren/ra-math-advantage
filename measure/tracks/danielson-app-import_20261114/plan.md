@@ -5,8 +5,6 @@ Specification: [spec.md](./spec.md)
 Workflow: `measure/workflow.md` (Standard Task Workflow, and the Phase Completion
 Verification and Checkpointing Protocol)
 
-**Hold: do not start Phase S1 until Daniel answers the licence question, or until a spec revision for the licence default passes its spec review.** See spec "Licence Default (PM, 2026-11-14)".
-
 ## Rules for All Phases
 
 ### Start Gates
