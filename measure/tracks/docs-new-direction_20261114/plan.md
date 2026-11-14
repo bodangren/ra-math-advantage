@@ -47,7 +47,7 @@ _Story ref: spec.md#story-s1_
 
 ## Closeout (after the last phase)
 
-- [ ] Task: Close out the track and sync with origin
+- [x] Task: Close out the track and sync with origin 4e96d62
     - [ ] Run the closeout of the Measure `implement` workflow, sections 3.0 to 5.0, with no archive step: the metadata, the registry, and the generated facts.
     - [ ] Run `git fetch origin`.
     - [ ] Run `git pull --ff-only origin master`. If the pull cannot fast-forward, stop and report.
