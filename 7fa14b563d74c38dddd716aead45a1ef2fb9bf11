@@ -1,0 +1,1 @@
+S1 merge of the RSC hotfix. Lockfile took the S1 side and npm install regenerated it. react/react-server-dom-webpack 19.3.1 >= the 19.2.9 fix. Deviation recorded in plan.md.
