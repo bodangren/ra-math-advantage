@@ -1,0 +1,1 @@
+S1 Implement task 1. vinext 1.x, next removed. npm install exit 0 (2 runs). Filtered S1 suite 9/9 pass. Deviations: geist removed; app eslint configs stripped of eslint-config-next. New .gitignore: apps/*/.next, apps/*/.vinext.
