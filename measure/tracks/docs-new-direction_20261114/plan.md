@@ -23,11 +23,11 @@ _Story ref: spec.md#story-s1_
 - [x] Task: Rewrite AGENTS.md for the new direction (group 2) b4439ca
     - [ ] Rewrite `AGENTS.md`: the scope of today, the planned direction, the planned marker rule (spec W1), the cross-project rules, and the shared machine rules (spec W3 items 8 to 10). `CLAUDE.md` stays `@AGENTS.md`.
     - [ ] Commit: `docs: rewrite AGENTS.md for the new direction`.
-- [~] Task: Update the Measure core documents (group 3)
+- [x] Task: Update the Measure core documents (group 3) ab65527
     - [ ] Update `measure/index.md`, `measure/product.md`, `measure/architecture.md`, `measure/tech-stack.md`, `measure/knowledge-space.md`, and `measure/current_directive.md`.
     - [ ] Confirm the W5 constraints with `grep`. Record each result under "Test Constraints".
     - [ ] Commit: `docs(measure): update the core documents for the new direction`.
-- [ ] Task: Fix the wrong instructions of the other Measure documents (group 4)
+- [~] Task: Fix the wrong instructions of the other Measure documents (group 4)
     - [ ] Change only each sentence that gives a wrong instruction today in the other `measure/*.md` files (spec W4, W7).
     - [ ] List each file that stays as it is under "Unchanged Files".
     - [ ] Commit: `docs(measure): fix the wrong instructions in the reference documents`.
