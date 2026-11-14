@@ -130,22 +130,24 @@ _Story ref: spec.md#story-s1_
     - Rehearsal of the probes for Green (not a test): the three probe files ran against the `vinext@1.4.5` and `@vinext/types@1.0.2` packages from the registry, in a folder outside the repository, with `tsc` 6.0.3. The valid probe gave exit code 0. The invalid probe gave `TS2345` (`push(123)`) and `TS2741` (`<Link />`). The missing-module probe gave `TS2307` for `next/does-not-exist` only. The vinext types are strict, so case 5b holds on vinext 1.x.
     - Deviation for Green: the case 7 test reads the workflows with `js-yaml`. The package is not a root dependency. It is only a transitive dependency of `@eslint/eslintrc` through `apps/bus-math-v2`, and S2 removes `@eslint/eslintrc`. Green adds `js-yaml` to the root `devDependencies` in the S1 manifest commit. The S5 tests need it too.
     - Deviation for the older scripts test: the `root` option makes `scripts/__tests__/remediate-concept-blueprints.test.ts` run for the first time. It passes (log `scripts-suite-older-test.log`).
-- [ ] Task: S1 Implement — move vinext to 1.x and remove `next`
+- [x] Task: S1 Implement — move vinext to 1.x and remove `next` (dcde148d)
     - [ ] In `.github/workflows/ci.yml` and `.github/workflows/cloudflare-deploy.yml`, change each `node-version: '20'` to `'24'`.
     - [ ] In the root `package.json`, set `vinext` to `^1.4.5` and `react-server-dom-webpack` to `^19.3.1`.
     - [ ] In the root `package.json`, set `@vitejs/plugin-react` to its latest version.
     - [ ] In the root `package.json`, remove `next` from `devDependencies` and from `overrides`.
     - [ ] In each app `package.json`, remove `next`. Set `vinext` to `^1.4.5`, and `react` and `react-dom` to `^19.3.1`.
+        - Deviation: also removed the dead `geist` dependency from IM3 and BM2. No code imports it, and its required `next` peer made npm install `next` again (auto-install-peers). The `next`-absent gate needs this removal. Evidence section 8 records it.
     - [ ] In each app `package.json`, set `@vitejs/plugin-rsc` to `^0.5.37` where it is declared. Set `vite` to its latest 8.x version.
     - [ ] In `packages/app-shell/package.json`, replace the `next` peer with `"vinext": "^1.4.5"`.
     - [ ] In `packages/app-shell/package.json`, add `vinext` `^1.4.5` to `devDependencies`. Set `react` to `^19.3.1`.
     - [ ] In each app `tsconfig.json`, add `vinext/types` to `compilerOptions.types`. Remove the `{ "name": "next" }` plugin entry.
     - [ ] In `packages/app-shell/tsconfig.json`, add `vinext/types` to the existing `compilerOptions.types` list.
-    - [ ] Run `npm install`.
-    - [ ] Run `npx vinext check` in each app. Record the score and each issue in section 8.
-    - [ ] If `vinext build` makes an untracked folder (for example `.vinext/` or `.cloudflare/`), add the folder to `.gitignore`.
-    - [ ] Fix only what a failing gate needs. Use the held-package rule.
-    - [ ] Commit: `chore(deps): upgrade vinext to 1.x and remove next`.
+    - [x] Run `npm install`. (Two runs: one after the first manifest pass, one after the `geist` removal. Exit 0.)
+    - [x] Run `npx vinext check` in each app. Record the score and each issue in section 8. (IM1 93%, IM2 93%, IM3 93%, PreCalc 100%, BM2 100%. The only issue class is `__dirname` / `__filename` in server-only files and scripts. Recorded in section 8.)
+    - [x] If `vinext build` makes an untracked folder (for example `.vinext/` or `.cloudflare/`), add the folder to `.gitignore`. (`apps/*/.vinext/` added. Also `apps/*/.next/` for the pre-existing untracked folders of the baseline builds. IM3's tracked `.next/types/routes.d.ts` stays tracked.)
+    - [x] Fix only what a failing gate needs. Use the held-package rule.
+        - Deviation: the 5 app `eslint.config.mjs` files stopped importing `eslint-config-next` (and the `@typescript-eslint/no-explicit-any` override block). Reason: `eslint-config-next` loads `next/dist/compiled/babel/eslint-parser` at config time, so no app lint config could load after `next` was removed, and the lint gate had a new failure (exit 2) in the 4 apps that passed at baseline. S2 migrates these files in the next phase, so the rule loss is transitional. Evidence section 8 records it.
+    - [x] Commit: `chore(deps): upgrade vinext to 1.x and remove next`. (dcde148d)
 - [ ] Task: S1 Implement — update all other dependencies
     - [ ] Run `npm outdated --json` at the root.
     - [ ] Run `npm outdated --json --workspace=<ws>` for each workspace. The aggregate command under-reports app dependencies (precedent spec "Audit Baseline").
