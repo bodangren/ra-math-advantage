@@ -35,62 +35,110 @@ each row of this table.
 
 ### Source Rule
 
-- Never write in `/home/daniebo/Desktop/hdkwa-danielson`. Read from it, or clone it to a
-  new folder under `/tmp`.
+- Never write in `/home/daniebo/Desktop/hdkwa-danielson`. Read it only with `git -C` and
+  `archive`, `show`, `rev-parse`, `rev-list`, `status`, or `for-each-ref`.
+- Do not clone or fetch the source repository. Make no network call to GitHub for it
+  (spec D1).
+
+### Text Rule
+
+- No exact Danielson Framework text goes into a commit, a commit message, a git note,
+  `evidence.md`, or a log (spec "Non-Functional Requirements"). Record element IDs, counts,
+  paths, and hashes only.
+- The working tree holds the source text from the export until the Green task is complete.
+  Stage the snapshot only with explicit paths. Never use `git add -A` or `git add .` in S1.
+- The snapshot paths are `apps/danielson`, `measure/tracks/danielson-*`,
+  `measure/tracks.md`, `measure/index.md`, `AGENTS.md`, and this track folder.
 
 ### Commits
 
-- Make one commit for each task, with a git note (`measure/workflow.md` steps 9 to 12). The
-  history merge of S1 is one merge commit.
+- Make one commit for each task, with a git note (`measure/workflow.md` steps 9 to 12).
+- S1 exception (spec D1, D14c): the tasks "S1 Implement — export the snapshot", "S1 Test
+  (Red) — the framework text guard", and "S1 Implement (Green) — paraphrase the framework
+  text" make no commit. The task "S1 Implement — scan and make the snapshot commit" commits
+  their work as one commit. Each of the four tasks gets the SHA of the snapshot commit.
 - Do not push. Only the closeout step pushes (spec "Non-Functional Requirements").
 
-## Phase S1: Import the app with its history
+## Phase S1: Import the app as one snapshot
 _Story ref: spec.md#story-s1_
 
-- [ ] Task: S1 Contract — record the source state
-    - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Source State, Import, Moved Tracks, Removed Files, Toolchain, Build Output, Deploy, Route Check.
+- [ ] Task: S1 Contract — record the source state and the text rules
+    - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Source State, Text Rules, Import, Text Scan, Moved Tracks, Removed Files, Toolchain, Build Output, Deploy, Route Check.
     - [ ] Run each repository gate on the start commit. Record each result under "Baseline".
-    - [ ] Run `git -C /home/daniebo/Desktop/hdkwa-danielson rev-parse HEAD origin/main` and `git -C /home/daniebo/Desktop/hdkwa-danielson status --short`. Record the output under "Source State".
-    - [ ] Confirm that `origin/main` is `c047df1186e9cba458407b6f7be9c6293a9d40fd` and that `git rev-list --count c047df1` gives 71. If not, stop and report.
+    - [ ] Run `git -C /home/daniebo/Desktop/hdkwa-danielson rev-parse HEAD origin/main`. Record the output under "Source State".
+    - [ ] Run `git -C /home/daniebo/Desktop/hdkwa-danielson status --short`. Record the output under "Source State".
+    - [ ] Run `git -C /home/daniebo/Desktop/hdkwa-danielson for-each-ref`. Record the output under "Source State".
+    - [ ] Confirm that `origin/main` is `c047df1186e9cba458407b6f7be9c6293a9d40fd` and that `git -C /home/daniebo/Desktop/hdkwa-danielson rev-list --count c047df1` gives 71. If not, stop and report.
+    - [ ] Confirm that `apps/danielson` does not exist in this repository. If it exists, stop and report.
+    - [ ] Under "Text Rules", write the 26 element IDs, the normalizations of spec D14a and D14b, the run rule, the title rule, and the paraphrase rules of spec D13. Write no source text.
     - [ ] Write the list of the five open tracks, their new IDs (`danielson-<old id>`), and their status marks under "Moved Tracks".
+    - [ ] Commit: `measure(danielson-app-import): record the source state and the text rules`.
 - [ ] Task: S1 Test (Red) — specify the import
-    - [ ] Create `scripts/__tests__/danielson-import.test.ts`. Case 1: `git log --oneline -- apps/danielson` lists at least 71 commits.
+    - [ ] Create `scripts/__tests__/danielson-import.test.ts`. Add `'__tests__/danielson-import.test.ts'` to `include` in `scripts/vitest.config.ts`.
+    - [ ] Case 1: the first commit of `git log --reverse --format='%H %P %s' -- apps/danielson` has one parent, and its subject contains `hdkwa-danielson` and `c047df1`. `git log --merges --format=%H -- apps/danielson` gives no line.
     - [ ] Case 2: `apps/danielson` has `package.json`, `src/app/page.tsx`, `product.md`, `product-guidelines.md`, and `DESIGN.md`, and has no `measure/`, `AGENTS.md`, `CLAUDE.md`, `package-lock.json`, or `.github/`.
     - [ ] Case 3: `measure/tracks/danielson-implementation_report_export_20260527/plan.md` exists, and `measure/tracks.md` has a "Danielson App" section with five entries.
     - [ ] Case 4: `apps/danielson/package.json` has no `next`, `eslint`, `eslint-config-next`, or `@rolldown/binding-darwin-arm64`, and has no `name` field.
+    - [ ] Case 5: `apps/danielson/src/data/framework-text.test.ts` has 52 keys in the form `<id>:title` or `<id>:descriptor`, each with a 64-digit hex value (spec D14b).
     - [ ] Run the scripts suite. Confirm that the new cases fail.
-- [ ] Task: S1 Implement — merge the source history (spec D1)
-    - [ ] Run `git clone --no-local /home/daniebo/Desktop/hdkwa-danielson /tmp/danielson-import`. In `/tmp/danielson-import`, run `git checkout -b import c047df1186e9cba458407b6f7be9c6293a9d40fd`.
-    - [ ] In `/tmp/danielson-import`, run `git filter-branch --index-filter` with the index rewrite that puts each path under `apps/danielson/`. Record the exact command under "Import".
-    - [ ] Confirm that `git -C /tmp/danielson-import ls-tree -r --name-only import` shows only paths under `apps/danielson/`.
-    - [ ] In this repository, run `git fetch /tmp/danielson-import import`, then `git merge --allow-unrelated-histories --no-ff FETCH_HEAD -m "chore(danielson): import hdkwa-danielson main at c047df1 with history"`.
-    - [ ] Confirm that `git -C /home/daniebo/Desktop/hdkwa-danielson status --short` and `rev-parse HEAD` equal "Source State".
-    - [ ] Record the merge SHA under "Import".
-- [ ] Task: S1 Implement — move the Measure artifacts (spec D2, D3)
-    - [ ] Run `git mv apps/danielson/measure/tracks/<old id> measure/tracks/danielson-<old id>` for each of the five open tracks.
+    - [ ] Commit: `test(danielson): specify the snapshot import`.
+- [ ] Task: S1 Implement — export the snapshot (spec D1 to D4; no commit)
+    - [ ] Create the folder `/tmp/danielson-import/`.
+    - [ ] Run `git -C /home/daniebo/Desktop/hdkwa-danielson archive --format=tar --prefix=apps/danielson/ -o /tmp/danielson-import/source.tar c047df1`.
+    - [ ] Run `tar -x -f /tmp/danielson-import/source.tar -C /home/daniebo/Desktop/ra-math-advantage`. Confirm that `apps/danielson/.git` does not exist.
+    - [ ] Record the two commands under "Import".
+    - [ ] Run `mv apps/danielson/measure/tracks/<old id> measure/tracks/danielson-<old id>` for each of the five open tracks (spec D2).
     - [ ] In each moved `metadata.json`, set `track_id` to the new ID. In each moved `spec.md`, add the first line of spec D2.
     - [ ] Add the section "Danielson App" to `measure/tracks.md`, with one entry for each moved track (the text of the source `measure/tracks.md`, the new link, and "Starts after `danielson-app-import_20261114` closes"). Keep `[~]` for `danielson-implementation_report_export_20260527`.
-    - [ ] Run `git mv apps/danielson/measure/product.md apps/danielson/product.md` and `git mv apps/danielson/measure/product-guidelines.md apps/danielson/product-guidelines.md`.
+    - [ ] Run `mv apps/danielson/measure/product.md apps/danielson/product.md` and `mv apps/danielson/measure/product-guidelines.md apps/danielson/product-guidelines.md` (spec D3).
     - [ ] Add the Danielson rows to "Product Definition", "Product Guidelines", and "Design Definitions" of `measure/index.md`.
     - [ ] In `AGENTS.md`, add `apps/danielson/` to the Scope section and a "Where to Look" row for the Danielson app.
-    - [ ] Commit: `chore(danielson): move the open tracks and the product documents into the root Measure`.
-- [ ] Task: S1 Implement — remove the duplicates and join the workspaces (spec D4, D5)
-    - [ ] Run `git rm -r` for `apps/danielson/measure`, `apps/danielson/AGENTS.md`, `apps/danielson/CLAUDE.md`, `apps/danielson/package-lock.json`, and `apps/danielson/.github`. Record each path under "Removed Files".
+    - [ ] Run `rm -r` for `apps/danielson/measure`, `apps/danielson/AGENTS.md`, `apps/danielson/CLAUDE.md`, `apps/danielson/package-lock.json`, and `apps/danielson/.github` (spec D4). Record each path under "Removed Files".
+    - [ ] Do not commit. The working tree still holds the source text (Text Rule).
+- [ ] Task: S1 Test (Red) — the framework text guard (spec D14a, D14b, D14c; no commit)
+    - [ ] Write `/tmp/danielson-import/scan-framework-text.mjs` as spec D14a gives. It reads the source text only at run time, from the local clone. It holds no source text.
+    - [ ] Run `node /tmp/danielson-import/scan-framework-text.mjs --hashes`. Confirm 52 lines in the form `<id>:<kind> <sha256>`.
+    - [ ] Create `apps/danielson/src/data/framework-text.test.ts` as spec D14b gives, with the 52 hashes. Write no source text in it.
+    - [ ] Run `npx --no-install vitest run --root apps/danielson src/data/framework-text.test.ts`. The app has no workspace install before D5, so the root `vitest` runs it.
+    - [ ] Confirm that the guard fails and names each of the 52 fields of `DANIELSON_FRAMEWORK`. Record the count of failed fields under "Text Scan", with no value.
+    - [ ] Stage the snapshot paths of the Text Rule. Run `node /tmp/danielson-import/scan-framework-text.mjs`.
+    - [ ] Confirm exit code 1, run hits in `apps/danielson/src/data/danielson.ts` and `apps/danielson/src/data/techniques.ts`, and title hits under `apps/danielson/src/`.
+    - [ ] Copy the script text and the output into "Text Scan".
+    - [ ] Do not commit.
+- [ ] Task: S1 Implement (Green) — paraphrase the framework text (spec D13; no commit)
+    - [ ] In `apps/danielson/src/data/danielson.ts`, write the 26 own-word descriptors and the 26 own-word labels, as spec D13 gives.
+    - [ ] Set each technique `alignment` to `<subdomain>: <new label of that component>`.
+    - [ ] Under `apps/danielson/src/`, replace each whole source title with the new label of the same element.
+    - [ ] In each other file with a run hit, rewrite the run in own words, or use the element ID.
+    - [ ] Run the guard command of the Red task until the guard passes.
+    - [ ] Run `npx --no-install vitest run --root apps/danielson`. Confirm that each app test passes.
+    - [ ] Do not commit.
+- [ ] Task: S1 Implement — scan and make the snapshot commit (spec D1, D14a)
+    - [ ] Stage the snapshot paths of the Text Rule again.
+    - [ ] Run `node /tmp/danielson-import/scan-framework-text.mjs`. Confirm exit code 0, no run hit, and no title hit.
+    - [ ] Copy the output into "Text Scan". Stage `evidence.md` again.
+    - [ ] Confirm that the three clone commands of the Contract task give the "Source State" output.
+    - [ ] Run `git diff --cached --name-only`. Confirm that each path is a snapshot path of the Text Rule. If another path appears, stop and report.
+    - [ ] Commit: `chore(danielson): import bodangren/hdkwa-danielson at c047df1 as one snapshot`.
+    - [ ] Run the scripts suite. Confirm that cases 1, 2, 3, and 5 pass. Case 4 passes after D5.
+- [ ] Task: S1 Implement — join the workspaces (spec D5)
+    - [ ] Record the SHA of the snapshot commit under "Import".
     - [ ] Change `apps/danielson/package.json` as spec D5 gives.
     - [ ] Run `npm install`. Confirm that `npm ls next` shows no `next` package, and that the lockfile diff adds only the `apps/danielson` workspace and the packages of D5. If it changes another version, stop and report.
     - [ ] Commit: `chore(danielson): join the workspaces with the repository dependency set`.
 - [ ] Task: S1 Verify — run the gates
-    - [ ] Run the scripts suite, the boundary check, and the CI check. Confirm that each passes.
-    - [ ] Run the app gates of `apps/danielson`. Record each result under "Baseline" as the app baseline. S2 makes them pass.
+    - [ ] Run the scripts suite, the boundary check, and the CI check. Confirm that each passes, with the five cases of the Red task.
+    - [ ] Run the app gates of `apps/danielson`. Confirm that the guard passes in the Test gate. Record each result under "Baseline" as the app baseline. S2 makes them pass.
     - [ ] Commit: `measure(danielson-app-import): record the S1 results`.
 - [ ] Task: S1 Docs & Doctor
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
-- [ ] Task: Measure - User Manual Verification 'Phase S1: Import the app with its history' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase S1: Import the app as one snapshot' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
+    - [ ] Put the read of the 26 labels and the 26 paraphrases in the manual verification plan.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
-    - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Import the app with its history' as complete`.
+    - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Import the app as one snapshot' as complete`.
 
 ## Phase S2: Repository toolchain
 _Story ref: spec.md#story-s2_
@@ -145,7 +193,7 @@ _Story ref: spec.md#story-s3_
     - [ ] Run `npm run deploy:app -- danielson`. Record the workers.dev URL and the Worker version under "Deploy".
     - [ ] Run the route check against the URL. Record the counts and each failure under "Route Check". Each request must give HTTP 200.
     - [ ] Request one unknown path. Confirm HTTP 404 and the generated 404 page.
-    - [ ] Report the first production deploy of the Danielson app to the PM orchestrator: the app, the URL, and the commit. Tell the PM that the source shutdown can start (spec "External Dependencies").
+    - [ ] Report the first production deploy of the Danielson app to the PM orchestrator: the app, the URL, and the commit. Tell the PM that the Worker can replace the GitHub Pages site. The source repository stays a separate item for Daniel (spec "External Dependencies").
     - [ ] Commit: `measure(danielson-app-import): record the deploy`.
 - [ ] Task: S3 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
