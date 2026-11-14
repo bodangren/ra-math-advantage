@@ -17,7 +17,7 @@
 | **Tech Debt Registry** | `./tech-debt.md` |
 | **Architecture** | `./architecture.md` |
 | **Knowledge Space Architecture** | `./knowledge-space.md` |
-| **Knowledge Space Contract** | `../kst-srs.v2/SPECIFICATION.md` (a pointer to the kst-srs.v3.2 source replaces it: planned: kst-v32-runtime_20261114) |
+| **Knowledge Space Contract** | `../kst-srs.v2/SPECIFICATION.md`; a pointer to the kst-srs.v3.2 source replaces it (planned: kst-v32-runtime_20261114) |
 | **Tech Specs** | `./tech-specs.md` |
 | **Code Styleguides** | `./code_styleguides/` |
 | **Practice Component Contract** | `./practice-component-contract.md` |

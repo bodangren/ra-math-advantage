@@ -62,9 +62,9 @@ current state, the planned direction with its tracks, and no wrong instruction.
 ## Decisions (defaults of 2026-11-14)
 
 - **W1 Planned marker:** a direction item in a document has the marker
-  `(planned: <track id>)`, for example `(planned: math-app-base_20261114)`. The track that
-  completes the item removes the marker and writes the current state. `AGENTS.md` states
-  this rule.
+  `(planned: <track id>)`, for example `(planned: math-app-base_20261114)`. Each marker
+  stays on one line, so that `git grep` finds it. The track that completes the item removes
+  the marker and writes the current state. `AGENTS.md` states this rule.
 - **W2 Facts:** each new fact comes from the repository, the lockfile, or a track of the
   queue. Commands are quoted exactly. The dev commands stay as they are today. No document
   names a hard-coded model ID, except `openrouter/free` as the dev default of today.

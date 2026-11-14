@@ -31,8 +31,8 @@ ra-math-advantage/             # Monorepo root
 └── README.md                  # Current state and planned direction
 ```
 
-One math app `apps/math` replaces the four math apps (planned: math-app-base_20261114,
-math-app-retire-old-apps_20261114).
+One math app `apps/math` replaces the four math apps (planned: math-app-base_20261114)
+(planned: math-app-retire-old-apps_20261114).
 
 ---
 

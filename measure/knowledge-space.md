@@ -71,8 +71,8 @@ Planned changes to the math graph:
 - The mastery-advantage repository releases one merged domain for IM1 to AP Precalculus
   (default name `math.us-hs`), with course-neutral skill IDs and a mapping file from the old
   node IDs. Each learnable node has a CCSS link. The app takes the release unchanged after
-  a SHA-256 check, and the graph data files of the apps go away (planned:
-  math-graph-consume_20261114).
+  a SHA-256 check, and the graph data files of the apps go away
+  (planned: math-graph-consume_20261114).
 
 ## Visualization Projections
 

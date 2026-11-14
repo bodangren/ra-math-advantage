@@ -18,8 +18,8 @@ are paths of the IM3 app (`apps/integrated-math-3`).
 | Node.js | Node.js | 22 or later | vinext 0.0.55 needs `node >=22` |
 
 Planned: vinext 1.x with no `next` package, oxlint instead of ESLint, oxfmt, and tsrs as
-the type-check gate. The repository is a test bed for the Oxc tools (planned:
-vinext-oxc-toolchain_20261114).
+the type-check gate. The repository is a test bed for the Oxc tools
+(planned: vinext-oxc-toolchain_20261114).
 
 ## Backend & Database
 
@@ -49,8 +49,8 @@ Custom JWT-based auth built on Convex, from `packages/core-auth`. No third-party
 | Client auth context | `components/auth/AuthProvider.tsx` (re-exports `packages/app-shell`) | React context with signIn/signOut |
 
 Planned: Convex Auth v2 (`@convex-dev/auth` 2.x) with username and password replaces the
-custom JWT auth in the math app and in BM2 (planned: math-app-base_20261114,
-bm2-convex-auth-v2_20261114).
+custom JWT auth in the math app and in BM2 (planned: math-app-base_20261114)
+(planned: bm2-convex-auth-v2_20261114).
 
 ## AI
 
@@ -166,5 +166,5 @@ npm run test:watch   # Vitest in watch mode
 - Database: Convex Cloud or Convex Local.
 - Build: vinext handles the Vite-based pipeline.
 - Planned: local deploys with the OAuth logins of `wrangler` and `convex`, with a smoke test
-  and a rollback, run by the orchestrator. Not Vercel (planned:
-  prod-deploy-pipeline_20261114).
+  and a rollback, run by the orchestrator. Not Vercel
+  (planned: prod-deploy-pipeline_20261114).

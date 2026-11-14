@@ -8,16 +8,18 @@ This document gives the current state. A direction item of 2026-11-14 has the ma
 ## Planned Direction
 
 - **One math app:** `apps/math` holds IM1, IM2, IM3, and AP Precalculus as course data, with
-  a course registry, a `[course]` route segment, and a theme for each course (planned:
-  math-app-base_20261114). The course imports move the other courses in, and the old apps
-  retire (planned: math-app-course-im1_20261114, math-app-course-im2_20261114,
-  math-app-course-precalc_20261114, math-app-retire-old-apps_20261114).
+  a course registry, a `[course]` route segment, and a theme for each course
+  (planned: math-app-base_20261114). The course imports move the other courses in, and the
+  old apps retire (planned: math-app-course-im1_20261114)
+  (planned: math-app-course-im2_20261114) (planned: math-app-course-precalc_20261114)
+  (planned: math-app-retire-old-apps_20261114).
 - **Convex Auth v2:** username and password through the Convex Auth v2 components, with
   `profiles` as the users table and server reads with the access token. It replaces the
-  custom JWT auth below (planned: math-app-base_20261114, bm2-convex-auth-v2_20261114).
-- **One graph:** the app reads one skill graph, and each course is a view of it (planned:
-  math-app-base_20261114). The graph comes from the mastery-advantage release (planned:
-  math-graph-consume_20261114).
+  custom JWT auth below (planned: math-app-base_20261114)
+  (planned: bm2-convex-auth-v2_20261114).
+- **One graph:** the app reads one skill graph, and each course is a view of it
+  (planned: math-app-base_20261114). The graph comes from the mastery-advantage release
+  (planned: math-graph-consume_20261114).
 - **Deploys:** local deploys to Cloudflare Workers with a smoke test and a rollback
   (planned: prod-deploy-pipeline_20261114).
 

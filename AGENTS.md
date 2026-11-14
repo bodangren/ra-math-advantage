@@ -42,7 +42,8 @@ The documents keep the current state apart from the planned direction of 2026-11
 ### Planned Marker Rule
 
 - A document marks a direction item with `(planned: <track id>)`, for example
-  `(planned: math-app-base_20261114)`.
+  `(planned: math-app-base_20261114)`. Keep each marker on one line, so that `git grep`
+  finds it.
 - The track that completes the item removes the marker and writes the current state in the
   same document.
 - Do not describe a planned item as current, and do not describe a current item as
@@ -85,8 +86,9 @@ See `measure/practice-component-contract.md` for the full spec.
 - **Deploys and cloud cleanup:** Daniel authorized the orchestrator to run the prod deploys
   and to delete the old cloud resources of this repository (2026-11-14). This replaces the
   rule "deploys and deletions are human gates" for this project only. The deploy path runs
-  locally with the OAuth logins of `wrangler` and `convex` (planned:
-  prod-deploy-pipeline_20261114). Never touch the Convex project `codex-convex-probe`.
+  locally with the OAuth logins of `wrangler` and `convex`
+  (planned: prod-deploy-pipeline_20261114). Never touch the Convex project
+  `codex-convex-probe`.
 - **Secrets:** a deploy key, a token, or a password never goes into a file, a commit, or a
   log. The orchestrator gets each manual secret (for example the OpenRouter API key) from
   Daniel through a secret card.

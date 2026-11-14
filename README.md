@@ -106,10 +106,11 @@ track order.
 
 1. **One math app.** `apps/math` holds IM1, IM2, IM3, and AP Precalculus as course data
    (planned: math-app-base_20261114). The course imports move the other three courses in
-   (planned: math-app-course-im1_20261114, math-app-course-im2_20261114,
-   math-app-course-precalc_20261114). AP Calculus and AP Statistics come later. The old
-   apps retire with no redirects (planned: math-app-retire-old-apps_20261114). BM2 stays a
-   separate app.
+   (planned: math-app-course-im1_20261114)
+   (planned: math-app-course-im2_20261114)
+   (planned: math-app-course-precalc_20261114).
+   AP Calculus and AP Statistics come later. The old apps retire with no redirects
+   (planned: math-app-retire-old-apps_20261114). BM2 stays a separate app.
 2. **Danielson app.** `apps/danielson` comes in from `github.com/bodangren/hdkwa-danielson`
    with its history (planned: danielson-app-import_20261114).
 3. **Students across years.** One student account and one history across courses and
@@ -124,15 +125,15 @@ track order.
 6. **AI layer.** AI calls go through OpenRouter with `@openrouter/sdk`. Each role has one
    model variable. `openrouter/free` is for development only. Evaluation roles use
    structured output. Prompts contain no PII. Zero data retention applies only where a
-   role needs it. Decision models come later (planned:
-   openrouter-sdk-ai-layer_20261114).
+   role needs it. Decision models come later
+   (planned: openrouter-sdk-ai-layer_20261114).
 7. **Toolchain.** vinext 1.x with no `next`, oxlint, oxfmt, and tsrs. The repository is a
    test bed for the Oxc tools (planned: vinext-oxc-toolchain_20261114).
 8. **Deploys.** Cloudflare Workers and Convex, not Vercel. Deploys run locally on this
    machine with the OAuth logins of `wrangler` and `convex`. Deploy keys go through a pipe
    into `wrangler secret put`. The orchestrator runs the prod deploys and the cloud cleanup
-   (Daniel, 2026-11-14), and reports each first deploy of an app to the PM (planned:
-   prod-deploy-pipeline_20261114).
+   (Daniel, 2026-11-14), and reports each first deploy of an app to the PM
+   (planned: prod-deploy-pipeline_20261114).
 
 ## Getting Started
 

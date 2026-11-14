@@ -29,9 +29,9 @@ This document gives the current state. A direction item of 2026-11-14 has the ma
 Planned changes:
 
 - The four math apps become courses of `apps/math`, and the old apps retire with no
-  redirects (planned: math-app-base_20261114, math-app-course-im1_20261114,
-  math-app-course-im2_20261114, math-app-course-precalc_20261114,
-  math-app-retire-old-apps_20261114).
+  redirects (planned: math-app-base_20261114) (planned: math-app-course-im1_20261114)
+  (planned: math-app-course-im2_20261114) (planned: math-app-course-precalc_20261114)
+  (planned: math-app-retire-old-apps_20261114).
 - BM2 stays a separate app.
 - `apps/danielson`, the Danielson Framework professional development site, comes in by
   import (planned: danielson-app-import_20261114).
@@ -70,11 +70,11 @@ No app implements that rule, and the direction of 2026-11-14 replaces it.
 **Planned rule:**
 
 - A competency is a course-neutral CCSS code in canonical form, so evidence on a shared
-  competency counts in each course that teaches it, with no transfer step (planned:
-  math-app-base_20261114).
+  competency counts in each course that teaches it, with no transfer step
+  (planned: math-app-base_20261114).
 - The CCSS code of each skill comes from the released mastery-advantage graph, primary
-  link first. A node on the PM-approved exception list shows its AP code only (planned:
-  math-graph-consume_20261114).
+  link first. A node on the PM-approved exception list shows its AP code only
+  (planned: math-graph-consume_20261114).
 - Teacher reporting shows the CCSS code. Where the app shows CCSS text, it also shows the
   CCSS copyright notice. The app shows no College Board text.
 
