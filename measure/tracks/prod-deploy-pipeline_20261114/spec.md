@@ -134,17 +134,20 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
   `deploy:app` run, the orchestrator runs `npx convex deploy` alone in the app folder, records
   the URL of the prod deployment, and sets `NEXT_PUBLIC_CONVEX_URL` in `wrangler.jsonc` to
   that URL. It sets the Worker secrets on the Worker that exists. Then it runs `deploy:app`.
-  So the first Worker deploy never runs with the stale URL. This one run is the only cloud
-  change before the D13 marker check. It runs no build, and it changes only Convex. It
-  exposes no Worker code, and the Workers are OFF.
+  So the first Worker deploy never runs with the stale URL. The first `npx convex deploy`
+  and the Worker secret puts are the cloud changes before the D13 marker check. The first
+  `npx convex deploy` runs no build. Neither step puts Worker code in the cloud, and both
+  Workers are OFF at that point.
 - **D5 Preflight:** the branch is `master`; the working tree is clean; after
   `git fetch origin`, `origin/master` is an ancestor of `HEAD` (`git merge-base
   --is-ancestor origin/master HEAD`), so no remote commit is missing. `HEAD` can be ahead of
   `origin/master`, because a track pushes only at its closeout. The deploy records the SHA of
   `HEAD`. The `preflightCommands` of the app config pass
   (the typecheck and the test suite of the app); `npx wrangler whoami` shows the account
-  `0f8cef508e69d2446315a1c80042da20`; and the Convex CLI is logged in. If one check fails,
-  the deploy stops before any cloud change.
+  `0f8cef508e69d2446315a1c80042da20`; and the Convex CLI is logged in. The Convex check is
+  `npx convex login status`: it exits with code 0 when the CLI is logged in and with code 1
+  when it is not. The preflight fails on exit code 1. If one check fails, the deploy stops
+  before any cloud change.
 - **D6 Deploy keys:** a deploy key goes only from `npx convex deployment token create
   --prod` through a pipe into `npx wrangler secret put CONVEX_DEPLOY_KEY --name <worker>`.
   It never appears in a file, a log, or the terminal output. The track sets it only for an

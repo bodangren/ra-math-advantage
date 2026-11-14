@@ -63,6 +63,40 @@ Cloudflare account `0f8cef508e69d2446315a1c80042da20` holds only the Workers `in
 - F9: FIX. The Current System "Documents" bullet states the text that exists now. The S4 documents task edits the "Deploys and cloud cleanup" guardrail and the `measure/tech-stack.md` "Deployment" text, and it removes the markers of this track in the same commit. It also names the markers in `README.md`, `INTEGRATION.md`, `measure/architecture.md`, and `measure/tech-specs.md`. A new S4 story criterion and a new S4 Test case check that no marker remains outside `measure/tracks/`, `measure/runs/`, and the test file.
 - F10: FIX. The dead alternative is removed from D13.
 
+## Round 3
+
+Date: 2026-11-15
+Reviewer: measure-spec-review (volcengine-agent-plan/glm-latest#high)
+Audited HEAD: 9f019de242bf825dcc01335f376fea6a08b7a46a
+Status: pass (no Blocker; 1 Major: F12; 1 Nit: F11). Files: `measure/runs/prod-deploy-pipeline_20261114/spec-review-9f019de2.json` and `.log`.
+
+### What this track proposes
+
+This track gives the repository one local production deploy path that the orchestrator runs with the OAuth logins of `wrangler` and `convex`. The command `npm run deploy:app -- <app>` runs a preflight, builds the app with the prod `NEXT_PUBLIC_CONVEX_URL`, runs the D13 RSC marker check, deploys the Convex functions, deploys the Cloudflare Worker with a version tag of the HEAD short SHA, runs a smoke test, and on failure rolls the Worker back to a fixed version or turns workers.dev OFF. The track first checks the cloud inventory and records one reuse-or-delete decision for each resource, then brings the math app and BM2 under the path. It deletes the dispatched GitHub workflow and writes the deploy path and the release rule into the project documents.
+
+### How the current system works, per this spec
+
+Cloudflare account `0f8cef508e69d2446315a1c80042da20` holds only the Workers `integrated-math-3` and `bus-math-v2`. Both are OFF on workers.dev since 2026-11-15, because their April and March builds used an affected `react-server-dom-webpack`. The Convex team `435396` holds the projects of the inventory: `integrated-math-3` has only a dev deployment, and `bus-math-v2-experimental` has the prod deployment `quiet-swan-141`. The IM3 Worker config points at `chatty-weasel-888`, a deployment that is not in the inventory, so the value is stale. Deploys today exist only as a dispatched GitHub workflow that needs secrets the repository does not have. The documents hold the deploy path as a planned item, and each marker names this track.
+
+### Withdrawn Round 2 findings
+
+- F5: withdrawn. The order (build, marker check, `npx convex deploy`, `npx wrangler deploy --tag`, smoke test) is the same in D4, D4a, D13, the stories, the tasks, and the tests.
+- F6: withdrawn. The `--tag` flag maps each Worker version to its build commit, and the rollback target rule is complete and testable. It was verified read-only in `wrangler` 4.98.0.
+- F7: withdrawn. When no rollback target exists, the failure path turns workers.dev OFF, and the S2 Test case asserts the OFF command.
+- F8: withdrawn. The OFF step uses `npx wrangler triggers deploy --config <tmp file>` through the runner, with a read-only `--dry-run` check and a fallback.
+- F9: withdrawn. The Current System "Documents" bullet and the S4 edits match the text at HEAD, and the S4 criteria name the marker removal.
+- F10: withdrawn. The dead alternative is gone from D13.
+
+### Findings
+
+- F11 [Nit] spec.md D4a: the summary sentences of D4a contradict its own step list. D4a sets the Worker secrets on the Worker before the first `deploy:app` run, but then says 'This one run is the only cloud change before the D13 marker check' and 'It runs no build, and it changes only Convex'. The plan S2 Deploy task also runs the `npx wrangler secret put` calls before `deploy:app`. Rationale: the secret puts are cloud changes on the Worker before the marker check, so the 'only cloud change' and 'changes only Convex' claims are false. The operative order is the same in the spec and the plan, and the stated safety facts (no Worker code exposed, Workers OFF) hold, so the wording changes nothing that the implementer builds.
+- F12 [Major] spec.md D5 and plan.md S2 Contract: the preflight requires 'the Convex CLI is logged in', but no document names the check command or its success criterion. Rationale: the implementer must invent the check. The Convex CLI 1.50.0 has no `whoami` command (verified in `node_modules/convex/dist/cli.bundle.cjs`); it offers `npx convex login status`, which 'Exits with code 1 when not logged in'. The wrangler check names its exact command and its expected account; the Convex check names nothing, so the implementer must find and pick the command.
+
+### Author Response
+
+- F11: FIX. The D4a summary now says that the first `npx convex deploy` and the Worker secret puts are the cloud changes before the marker check, that neither puts Worker code in the cloud, and that both Workers are OFF at that point. The S2 Deploy task in `plan.md` says the same.
+- F12: FIX. D5 and the S2 Contract name the check: `npx convex login status` exits with code 0 when logged in and with code 1 when not, and the preflight fails on exit code 1. The command was checked read-only with `npx --no-install convex login status --help`. The S2 Test task has a new case: exit code 1 gives a preflight failure and no cloud command.
+
 ## Accepted Risks
 
 None.
