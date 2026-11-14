@@ -35,7 +35,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Change only each contradiction with the current state or the direction.
     - [ ] List the other old sections under "INTEGRATION Sections" for `math-app-retire-old-apps_20261114`.
     - [ ] Commit: `docs: fix the contradictions in INTEGRATION.md`.
-- [~] Task: Amend the document tasks of the retire track (group 6)
+- [x] Task: Amend the document tasks of the retire track (group 6) 3839d1d
     - [ ] In `measure/tracks/math-app-retire-old-apps_20261114/spec.md` and `plan.md`, add: each planned marker of the math app items changes into current-state text.
     - [ ] Commit: `chore(measure): Amend track 'Retire the Old Math Apps' (planned markers)`.
 - [ ] Task: Measure - User Manual Verification 'Phase 1: Rewrite the project documents' (Protocol in workflow.md)

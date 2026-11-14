@@ -93,6 +93,15 @@ tracks:
 | Testing: App Tests, Full Gates | IM3 paths | `math-app-retire-old-apps_20261114` |
 | Ownership Map | the `core-auth` row and the "BM2 Supabase" remainders | `bm2-convex-auth-v2_20261114` |
 
+## Phase 1 Checks
+
+| Check | Result |
+|-------|--------|
+| `bash measure/scripts/doctor.sh` (the command of `npm run doctor`) | Exit code 0: "No monorepo boundary violations found." |
+| `npm run generate` | Not run. It rewrites `measure/generated/routes.md`, which has an unrelated uncommitted change that this session must not change. The checkpoint runs it after that change is resolved. |
+| Wrapped markers (`grep -n "(planned:"` without `)` on the same line) | None |
+| Retire marker grep (`git grep -c -E "planned: [^)]*(math-app-base\|math-app-course-(im1\|im2\|precalc)\|math-app-retire-old-apps)_20261114" -- README.md AGENTS.md INTEGRATION.md ':(glob)measure/*.md'`) | AGENTS.md 2, INTEGRATION.md 2, README.md 6, architecture.md 7, index.md 1, knowledge-space.md 1, product.md 6, tech-stack.md 2 |
+
 ## Test Constraints
 
 Checked after group 3 with `grep` (no `node_modules` on this machine, so the Vitest suites
