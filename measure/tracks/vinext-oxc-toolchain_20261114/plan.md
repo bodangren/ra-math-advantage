@@ -422,3 +422,13 @@ _Story ref: spec.md#story-s5_
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S5`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S5 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S5: Gate rules and CI' as complete`.
+
+## Closeout
+
+- [ ] Task: Close out the track and sync with origin
+    - [ ] Run the closeout of the Measure `implement` workflow, sections 3.0 to 5.0: the metadata, the registry, the generated facts, and the archive choice.
+    - [ ] Run `git show HEAD:.github/workflows/ci.yml`. Record if the `deploy` job is gone (the S5 Implement task removes it).
+    - [ ] Before the push, the orchestrator sends the change list to the PM (deploy gate) unless the deploy job is already gone.
+    - [ ] Run `git fetch origin`.
+    - [ ] Run `git pull --ff-only origin master`. If the pull cannot fast-forward, stop and report.
+    - [ ] Run `git push origin master`.
