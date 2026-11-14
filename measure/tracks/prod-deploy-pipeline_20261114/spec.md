@@ -57,6 +57,11 @@ production deploy of each app to the PM orchestrator as a deploy gate record.
   `CLOUDFLARE_ACCOUNT_ID`. It has never run. `vinext-oxc-toolchain_20261114` removes the
   `deploy` job of `ci.yml` (its D7 says "production deploys run only through a dispatched
   workflow").
+- **Workers OFF (2026-11-15):** both Workers `integrated-math-3` and `bus-math-v2` are OFF
+  (workers.dev and previews disabled) because of GHSA-xqc2-xf4c-x3h3. Their builds of
+  April and March used an affected `react-server-dom-webpack`. The URLs give 404. The
+  scripts, the versions, and the secrets stay. The record file is
+  `measure/runs/hotfix-rsdw/workers-off-2026-11-15.md`. Decision D13 gives the restore rule.
 - **Documents:** `measure/tech-stack.md` ("Deployment", line 124) says "Platform: Vercel
   (primary)". This is wrong. `measure/workflow.md` has no deploy section. `AGENTS.md` has no
   deploy rule.
@@ -108,7 +113,7 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
   smoke test. When the smoke test fails, run `npx wrangler rollback` for the Worker and
   report. Convex has no rollback; the orchestrator fixes the Convex side forward.
   - The Workers `integrated-math-3` and `bus-math-v2` already have earlier versions (made on
-    another machine), so a rollback has a target.
+    another machine). These versions are affected builds (D13), so D13 limits the rollback.
   - When a Worker has no earlier version (a new Worker such as `danielson`), the deploy
     reports the smoke failure, leaves the Worker, and exits with a failure. The orchestrator
     fixes forward.
@@ -158,6 +163,20 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
   joins the `KEEP_PATHS` of `scripts/__tests__/old-app-path-guard.test.ts`. The deploy tests
   take each Worker name from `DEPLOY_APPS`, so no test file holds the literal
   `integrated-math-3`.
+- **D13 Restore after the RSC advisory (2026-11-15):** both Workers are OFF (Current
+  System). The apps come back only through this track.
+  - The build comes from master at `472fd719` or later, or from the S1 build of
+    `vinext-oxc-toolchain_20261114`.
+  - Before each deploy, the built RSC server chunk must hold both "Cannot handle action key"
+    and "Cannot transport a detached buffer". The chunk is the file outside `dist/server/ssr/`
+    that contains "Attempted to call a temporary Client Reference". If a marker is missing,
+    the deploy stops before any cloud change.
+  - The first `npx wrangler deploy` turns workers.dev on again. This is the planned restore.
+  - A rollback may target only a version that was built at `472fd719` or later.
+  - If no such version exists, the failure path turns workers.dev OFF, and it runs no
+    rollback. The call is `POST /accounts/0f8cef508e69d2446315a1c80042da20/workers/scripts/<W>/subdomain`
+    with `{"enabled": false, "previews_enabled": false}`.
+  - This decision overrides the rollback rule of D4 and the rollback criteria of S2 and S3.
 
 ## Stories
 
@@ -183,7 +202,9 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
 **Acceptance Criteria:**
 - Given a stub command runner, When `deployApp('math')` runs with a failed preflight check, Then it runs no cloud command.
 - Given a stub runner, When the steps pass, Then the commands run in the D4 order: `npx convex deploy`, `npx wrangler deploy`, then the smoke test.
-- Given a stub runner and a failed smoke test, When `deployApp` runs, Then it runs `npx wrangler rollback --name <workerName of math>` and exits with a failure.
+- Given a stub runner, a failed smoke test, and a version list that holds a version built at `472fd719` or later, When `deployApp` runs, Then it runs `npx wrangler rollback --name <workerName of math>` and exits with a failure (D13).
+- Given a stub runner, a failed smoke test, and a version list that holds only versions built before `472fd719`, When `deployApp` runs, Then it runs no rollback, it turns workers.dev OFF with the D13 API call, and it exits with a failure.
+- Given a stub runner and a built RSC server chunk that lacks "Cannot handle action key" or "Cannot transport a detached buffer", When `deployApp` runs, Then it stops before any cloud command (D13).
 - Given a stub runner, a failed smoke test, and a Worker with no earlier version, When `deployApp` runs, Then it runs no rollback, reports the failure, and exits with a failure.
 - Given a stub runner whose output holds a value of a secret variable, When `deployApp` logs, Then the log holds no secret value.
 - Given the first production deploy of the math app, When it completes, Then the Convex project `integrated-math-3` has a prod deployment, `apps/math/wrangler.jsonc` holds its URL, the Worker has the secrets of the Runtime Variables table, and the smoke test passes on the workers.dev URL.
@@ -200,6 +221,7 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
 - Given `npm run deploy:app -- bm2`, When it runs, Then it deploys `quiet-swan-141` and the Worker `bus-math-v2`, and the smoke test passes on the workers.dev URL.
 - Given old documents that block the BM2 schema, When the deploy fails for that reason, Then the evidence file records the tables and the counts, and the second deploy passes after the D10 cleanup.
 - Given the Worker `bus-math-v2`, When `npx wrangler secret list --name bus-math-v2` runs, Then it lists the secrets of the Runtime Variables table and no `AUTH_JWT_SECRET`.
+- Given a built RSC server chunk of BM2 that lacks "Cannot handle action key" or "Cannot transport a detached buffer", or a failed smoke test with only versions built before `472fd719`, When `deployApp('bm2')` runs, Then the first case stops the deploy before any cloud command, and the second case runs no rollback and turns workers.dev OFF (D13).
 
 **Estimate:** M
 **Priority:** Must

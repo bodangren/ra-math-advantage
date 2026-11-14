@@ -73,14 +73,19 @@ _Story ref: spec.md#story-s2_
     - [ ] Write the contract of `scripts/deploy/deploy-app.ts`: `deployApp(key: string, runner: CommandRunner, log: Logger): Promise<DeployResult>`. `CommandRunner` runs one command and returns its exit code and output. The CLI entry calls it with the real runner.
     - [ ] Write the contract of `scripts/deploy/smoke.ts`: `smokeTest(baseUrl: string, paths: SmokePath[], fetchFn): Promise<SmokeResult>` (spec D8).
     - [ ] Write the contract of the log filter: `redact(text: string, secretNames: string[]): string` replaces each value of each named environment variable with `[secret:NAME]`.
+    - [ ] Write the contract of the marker check (spec D13): `checkRscMarkers(distDir: string): MarkerResult`. It finds the RSC server chunk (the file outside `dist/server/ssr/` that contains "Attempted to call a temporary Client Reference"). It passes only when the chunk holds "Cannot handle action key" and "Cannot transport a detached buffer".
+    - [ ] Write the contract of the rollback target: `findRollbackTarget(versions, minCommit)` returns a version built at `472fd719` or later, or none. Write the contract of `workersDevOff(workerName)`: the D13 API call with `{"enabled": false, "previews_enabled": false}`.
     - [ ] Run `npx convex deploy --help` and `npx convex deployment token create --help`. Record the flag that skips the prompt and the output form of the token command. If the token command prints more than the key, record the pipe step that keeps only the key.
     - [ ] Record the root script: `"deploy:app": "tsx scripts/deploy/deploy-app.ts"`.
 - [ ] Task: S2 Test (Red) — specify the deploy behavior
     - [ ] `scripts/__tests__/deploy/apps.test.ts`: `DEPLOY_APPS` has `math` and `bm2`. The `workerName` of each entry equals the `name` in the `wrangler.jsonc` of its `dir`.
     - [ ] `scripts/__tests__/deploy/deploy-app.test.ts`: with a stub runner, a failed preflight check gives no cloud command.
     - [ ] Also: passing steps run `npx convex deploy`, then `npx wrangler deploy`, then the smoke test, in this order.
-    - [ ] Also: a failed smoke test runs `npx wrangler rollback --name <DEPLOY_APPS.math.workerName>`, and the result is a failure. Take each Worker name from `DEPLOY_APPS`; no test file holds the literal `integrated-math-3`.
+    - [ ] Also: a failed smoke test with a stub version list that holds a version built at `472fd719` or later runs `npx wrangler rollback --name <DEPLOY_APPS.math.workerName>`, and the result is a failure. Take each Worker name from `DEPLOY_APPS`; no test file holds the literal `integrated-math-3`.
+    - [ ] Also: a failed smoke test with a stub version list that holds only versions built before `472fd719` runs no rollback, runs the workers.dev OFF call (spec D13), and the result is a failure.
     - [ ] Also: a failed smoke test on a Worker with no earlier version (the stub list of versions is empty) runs no rollback, and the result is a failure.
+    - [ ] Also (marker check, spec D13): a stub build folder whose RSC server chunk lacks "Cannot handle action key", or lacks "Cannot transport a detached buffer", gives no cloud command and a failure. A chunk that holds both strings passes the check.
+    - [ ] Also: the marker check finds the RSC chunk outside `dist/server/ssr/`, and it does not read a file under `dist/server/ssr/`.
     - [ ] Also: the preflight passes when `HEAD` is ahead of `origin/master`, and fails when `origin/master` is not an ancestor of `HEAD`.
     - [ ] Also: an unknown app key throws before any command.
     - [ ] Also: when the stub output holds the value of `OPENROUTER_API_KEY`, the log holds `[secret:OPENROUTER_API_KEY]` and not the value.
@@ -88,6 +93,7 @@ _Story ref: spec.md#story-s2_
     - [ ] Run the scripts suite. Confirm that the new cases fail.
 - [ ] Task: S2 Implement — the deploy module
     - [ ] Implement `apps.ts`, `deploy-app.ts`, `smoke.ts`, and `redact` as the contract gives.
+    - [ ] Implement the marker check, the rollback target rule, and the workers.dev OFF call as the contract gives (spec D13). The marker check runs after the build and before `npx wrangler deploy`.
     - [ ] Add the root script `deploy:app`.
     - [ ] Add the Worker name line of `scripts/deploy/apps.ts` to `KEEP_PATHS` of `scripts/__tests__/old-app-path-guard.test.ts` (spec D12).
     - [ ] Commit: `feat(deploy): add the local deploy command with a smoke test and a rollback`.
@@ -96,7 +102,8 @@ _Story ref: spec.md#story-s2_
     - [ ] Change `NEXT_PUBLIC_CONVEX_URL` in `apps/math/wrangler.jsonc` to that URL. Set `NEXT_PUBLIC_SITE_URL` to the workers.dev URL of `integrated-math-3` that S1 recorded. Commit: `chore(math): point the Worker at the production Convex deployment`.
     - [ ] Set `OPENROUTER_API_KEY` on the Worker that exists, with a secret card: `sh -c 'printf %s "$OPENROUTER_API_KEY" | npx wrangler secret put OPENROUTER_API_KEY --name integrated-math-3'`.
     - [ ] If "Runtime Variables" keeps `CONVEX_DEPLOY_KEY` for the math app, run `npx convex deployment token create --prod | npx wrangler secret put CONVEX_DEPLOY_KEY --name integrated-math-3` in `apps/math`, with the pipe step of the S2 Contract.
-    - [ ] Run `npm run deploy:app -- math`. Record the Worker version and the smoke result under "Smoke Results". If the smoke test fails, the command rolls the Worker back; fix forward and run it again.
+    - [ ] Before the deploy, confirm that the build is from master at `472fd719` or later, and that the marker check passes on the built RSC server chunk (spec D13). If it fails, stop.
+    - [ ] Run `npm run deploy:app -- math`. The first `npx wrangler deploy` turns workers.dev on again (spec D13). Record the Worker version and the smoke result under "Smoke Results". If the smoke test fails, the command rolls the Worker back only to a version built at `472fd719` or later. If no such version exists, the command turns workers.dev OFF. Fix forward and run it again.
     - [ ] Run `npx wrangler secret list --name integrated-math-3`. Confirm that the list equals the secrets of "Runtime Variables".
     - [ ] Report the first production deploy of the math app to the PM orchestrator: the app, the URL, and the commit. Record the report under "PM Reports".
     - [ ] Commit: `measure(prod-deploy-pipeline): record the math deploy`.
@@ -117,16 +124,19 @@ _Story ref: spec.md#story-s2_
 _Story ref: spec.md#story-s3_
 
 - [ ] Task: S3 Test (Red) — specify the BM2 entry
-    - [ ] `scripts/__tests__/deploy/deploy-app.test.ts`: with a stub runner, `deployApp('bm2')` runs its commands in `apps/bus-math-v2`, and a failed smoke test runs `npx wrangler rollback --name <DEPLOY_APPS.bm2.workerName>`.
+    - [ ] `scripts/__tests__/deploy/deploy-app.test.ts`: with a stub runner, `deployApp('bm2')` runs its commands in `apps/bus-math-v2`, and a failed smoke test with a stub version list that holds a version built at `472fd719` or later runs `npx wrangler rollback --name <DEPLOY_APPS.bm2.workerName>`.
+    - [ ] Also: a failed smoke test of `deployApp('bm2')` with a stub version list that holds only versions built before `472fd719` runs no rollback, and it runs the workers.dev OFF call for `<DEPLOY_APPS.bm2.workerName>` (spec D13).
+    - [ ] Also: `deployApp('bm2')` with a stub build folder whose RSC server chunk lacks "Cannot handle action key" or "Cannot transport a detached buffer" gives no cloud command and a failure (spec D13).
     - [ ] Run the scripts suite. Confirm the result. If the case passes because S2 already covers it, record that and continue.
 - [ ] Task: S3 Deploy — the first BM2 deploy through the pipeline
+    - [ ] Before the deploy, confirm that the build is from master at `472fd719` or later, and that the marker check passes on the built RSC server chunk of BM2 (spec D13). If it fails, stop.
     - [ ] Run `npm run deploy:app -- bm2`. If the Convex step rejects the schema because of old documents, record the tables and the counts under "BM2 Deploy", and continue with the next step. Otherwise go to the secret step.
     - [ ] Add a one-off internal mutation that deletes only the documents of the rejected tables. Deploy it with `npx convex deploy` in `apps/bus-math-v2`, run it with `npx convex run --prod`, then remove it (spec D10). Commit each change.
     - [ ] Set `NEXT_PUBLIC_SITE_URL` in `apps/bus-math-v2/wrangler.jsonc` to the workers.dev URL of `bus-math-v2` that S1 recorded. Commit: `chore(bm2): set the site URL of the Worker`.
     - [ ] Set `OPENROUTER_API_KEY` for `bus-math-v2` with a secret card, as in S2.
     - [ ] If "Runtime Variables" keeps `CONVEX_DEPLOY_KEY` for BM2, pipe a new deploy key into `npx wrangler secret put CONVEX_DEPLOY_KEY --name bus-math-v2`.
     - [ ] If the Worker `bus-math-v2` holds `AUTH_JWT_SECRET`, run `npx wrangler secret delete AUTH_JWT_SECRET --name bus-math-v2`.
-    - [ ] Run `npm run deploy:app -- bm2`. Record the Worker version and the smoke result.
+    - [ ] Run `npm run deploy:app -- bm2`. The first `npx wrangler deploy` turns workers.dev on again (spec D13). If the smoke test fails, the command rolls back only to a version built at `472fd719` or later; if none exists, it turns workers.dev OFF. Record the Worker version and the smoke result.
     - [ ] Run `npx wrangler secret list --name bus-math-v2`. Confirm that the list equals the secrets of "Runtime Variables".
     - [ ] Report the first BM2 deploy through the pipeline to the PM orchestrator. Record the report under "PM Reports".
     - [ ] Commit: `measure(prod-deploy-pipeline): record the BM2 deploy`.
