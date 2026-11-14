@@ -191,6 +191,8 @@ _Story ref: spec.md#story-s3_
     - [ ] `__tests__/convex/auth-api.test.ts`: the module `convex/auth.ts` exports `signInWithUsernamePassword`, `changePassword`, `signOut`, `refreshSession`, and `isAuthenticated`. It does not export `signUpWithUsernamePassword`.
     - [ ] `__tests__/convex/authorization.test.ts`: for one teacher, one student, and one parent function of "Server Calls", a call with no identity throws. A call with an identity of the wrong role throws.
     - [ ] `__tests__/convex/roster-import.test.ts`: each new student gets an account through `createAccount`. The result holds the username and the generated password of each new student.
+    - [ ] `__tests__/convex/seed/seed-demo-env.test.ts`: with no `DEMO_MATH_PASSWORD`, or a value of 9 characters, the demo seed throws an error that names the variable and writes no account (spec DA8a).
+    - [ ] Also: with a test value set by `vi.stubEnv`, each demo account gets that value. Remove each literal demo password from the seed tests (spec DA8c).
     - [ ] `e2e/auth.spec.ts`: the demo teacher signs in and sees `/teacher/dashboard`. A wrong password shows the sign-in error.
     - [ ] Also: the teacher makes a student account, and the student signs in with the shown password.
     - [ ] Also: a password change to 9 characters fails, and the old password still works.
@@ -201,8 +203,13 @@ _Story ref: spec.md#story-s3_
     - [ ] In `convex/auth.ts`, attach `rejectSelfSignUp` and `checkActiveOnSignIn`, and set `sessionMaxLifetimeSeconds: 2592000` and the access token lifetime of 60 seconds (spec DA8).
     - [ ] Change `convex/schema.ts`: add `profiles.isActive` and remove `auth_credentials`.
     - [ ] Change the teacher account mutations, `importRoster`, and the seeds to call `createAccount`. Delete `convex/legacyAuth.ts`.
-    - [ ] Set `DEMO_PASSWORD = 'DemoMath-2026!'` in `e2e/selectors.ts`. Use it in the demo seed. Change `e2e/CONVENTIONS.md` (spec DA8a).
+    - [ ] Change `convex/seed.ts` and `convex/seed/seed_demo_env.ts` to read `DEMO_MATH_PASSWORD`. Remove each literal demo password (spec DA8a).
+    - [ ] Add `getDemoPassword()` to `e2e/selectors.ts`. Change `e2e/fixtures.ts` and `e2e/auth.spec.ts` to call it (spec DA8c).
+    - [ ] Load `.env.local` in `playwright.config.ts` with `process.loadEnvFile` when the file exists (spec DA8c).
+    - [ ] Add `# DEMO_MATH_PASSWORD=` with no value to `.env.example`. Change `e2e/CONVENTIONS.md` to name the variable, not a value (spec DA8b).
     - [ ] Change the roster import wizard to show the username and the password of each new student one time.
+    - [ ] Set `DEMO_MATH_PASSWORD` in `apps/math/.env.local`. If no value exists, get it from Daniel through a secret card (spec DA8b).
+    - [ ] Copy the value to the dev deployment with `npx convex env set`. Keep the value out of the command text and the logs.
     - [ ] Clear the dev tables and run the seed again (spec D10).
     - [ ] Commit: `feat(math): move accounts and sign-in to Convex Auth v2`.
 - [ ] Task: S3 Implement — the server calls and the pages

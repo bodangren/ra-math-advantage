@@ -75,6 +75,11 @@ After Round 3, the author applied finding F5 of `math-app-course-precalc_2026111
 
 Round 1 of `bm2-convex-auth-v2_20261114` found (F2, Blocker) that the auth provider of BM2 is a re-export of the shared context of `packages/app-shell`. The math app has the same re-export in `components/auth/AuthProvider.tsx`, `components/user-menu.tsx`, and `components/logout-button.tsx`. A change of the shared context in this track stops the sign-in of BM2. So the author added decision DA2a: the math app gets local files, and the track does not change `packages/app-shell`. The S3 Contract and the S3 Implement task name the three files. This fix had no review, because the PM machine load rule of 2026-11-14 limits the reviews.
 
+### Author Note (2026-11-14, third)
+
+The orchestrator set a rule for the demo passwords: no literal demo password in a plan, spec, seed, or document of the new tracks. So the author replaced the literal of DA8a with the variable `DEMO_MATH_PASSWORD`. New decisions DA8b and DA8c give the value source (the ignored `.env.local`, or a secret card from Daniel) and the test rules. A new S3 criterion, two S3 Red cases, and the S3 Implement steps follow the change. The NFR on secrets now names the ignored `.env.local` as the one exception. This change had no review, because of the PM machine load rule.
+
 ## Accepted Risks
 
 - BM2 F2 pattern (DA2a): fixed after the last review round of this track, with no review of the fix. The fix names three files of the math app and forbids a change of `packages/app-shell`.
+- Demo password variable (DA8a to DA8c): changed after the last review round, with no review of the change. The change removes a literal and adds a check; it adds no new feature.

@@ -115,10 +115,25 @@ data with the access token, and `packages/core-auth` is gone.
   uses the minimum of 10 characters and the common-password check of Convex Auth v2.
 - **B5 Sign-in rate limit:** `login_rate_limits` and `convex/loginRateLimits.ts` go away.
   The built-in sign-in rate limit of Convex Auth v2 applies. `api_rate_limits` stays.
-- **B6 Demo accounts:** the default demo password becomes `DemoBM2-2026!` (13 characters)
-  in `ensure-demo` and in `convex/seed.ts`. The `DEMO_*_PASSWORD` variables still override
-  it. `isDemoProvisioningEnabled` moves into `apps/bus-math-v2/lib/auth/demo-provisioning.ts`
-  with the same rules. The demo usernames stay.
+- **B6 Demo accounts:** the default `demo123` goes away. No plan, spec, seed, test, or
+  document of the track holds a literal demo password. `ensure-demo` and `convex/seed.ts`
+  read one variable, `DEMO_BM2_PASSWORD`, for the three demo accounts. The three variables
+  `DEMO_TEACHER_PASSWORD`, `DEMO_STUDENT_PASSWORD`, and `DEMO_ADMIN_PASSWORD` go away.
+  `readDemoPassword()` in `apps/bus-math-v2/lib/auth/demo-provisioning.ts` returns the value.
+  When the variable is missing or has fewer than 10 characters, it throws an error that
+  names the variable, and no demo account changes.
+- **B6a Demo password value:** `ensure-demo` reads the variable from the server environment,
+  and `convex/seed.ts` reads it from the environment of the Convex deployment. Local
+  development sets the value in the ignored file `apps/bus-math-v2/.env.local`, which
+  `playwright.config.ts` already loads. The developer copies the value to the BM2 dev
+  deployment with `npx convex env set`, and the value does not go into the command text or
+  a log. When the orchestrator sets up a deployment that runs the demo seed, the
+  orchestrator gets the value from Daniel through a secret card. `.env.example` names the
+  variable with no value.
+- **B6b Other demo rules:** `isDemoProvisioningEnabled` moves into
+  `apps/bus-math-v2/lib/auth/demo-provisioning.ts` with the same rules. The demo usernames
+  stay. The E2E tests read the password from `DEMO_BM2_PASSWORD`. The unit tests set a test
+  value with `vi.stubEnv`; the test value is no real password.
 - **B7 Dev deployment:** the track works on a BM2 dev deployment. `npx convex dev` in
   `apps/bus-math-v2` makes one in the project `bus-math-v2-experimental` for the logged-in
   user. The evidence file records its name. The track does not change the prod deployment
@@ -183,6 +198,7 @@ data with the access token, and `packages/core-auth` is gone.
 - Given a password of 9 characters, When a user of any role changes the own password to it, Then the change fails with the user error of the component.
 - Given a teacher reset of a student password, When the reset is complete, Then each earlier session of the student is revoked, and the next server read of the old session goes to the sign-in page.
 - Given an inactive profile, When the user signs in with the right password, Then the sign-in fails and makes no session.
+- Given no `DEMO_BM2_PASSWORD`, or a value of fewer than 10 characters, When `ensure-demo` or the seed runs, Then it fails with an error that names the variable, and no demo account changes.
 - Given `convex/auth.ts`, When a test reads its API, Then it has no `signUpWithUsernamePassword`.
 - Given BM2 after S1, When `git grep -n -E "core-auth|bm_session|auth_credentials|login_rate_limits|AUTH_JWT_SECRET" -- apps/bus-math-v2` runs, Then it finds no match outside the test fixtures that the evidence file lists.
 

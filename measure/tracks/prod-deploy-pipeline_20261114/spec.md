@@ -85,7 +85,7 @@ production deploy of each app to the PM orchestrator as a deploy gate record.
 | bm2 | `CONVEX_DEPLOY_KEY` | secret | as for the math app; only when the BM2 auth track evidence keeps a no-user server call |
 | danielson | none | — | static app |
 
-Not set in production: `AUTH_JWT_SECRET` (removed), `DEMO_*_PASSWORD`, `TEST_API_KEY`,
+Not set in production: `AUTH_JWT_SECRET` (removed), `DEMO_MATH_PASSWORD`, `DEMO_BM2_PASSWORD`, `TEST_API_KEY`,
 `VERCEL_URL`, the Supabase variables, and `DATABASE_URL`. Convex Auth v2 needs no key
 variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Convex.
 

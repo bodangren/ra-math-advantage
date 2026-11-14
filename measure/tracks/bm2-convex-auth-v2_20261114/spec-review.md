@@ -37,6 +37,10 @@ BM2 stores PBKDF2 password hashes in the `auth_credentials` table and signs the 
 - F7: DECLINE
 - F8: DECLINE
 
+### Author Note (2026-11-14)
+
+After Round 1, the orchestrator set a rule for the demo passwords: no literal demo password in a plan, spec, seed, or document of the new tracks. So the author rewrote B6 and added B6a and B6b. `ensure-demo` and `convex/seed.ts` read one variable, `DEMO_BM2_PASSWORD`, through `readDemoPassword()`, and the three `DEMO_<ROLE>_PASSWORD` variables go away. This change also removes the gap of the declined Nit F7. A new S1 criterion, two S1 Red cases, and the S1 Implement steps follow the change. Round 2 reviews this change with the fixes of F1 to F6.
+
 ## Round 2
 
 Status: queued. The PM machine load rule of 2026-11-14 allows one review role at a time. The PM starts this re-review when a slot is free. The fixes of F1 to F6 have no review result yet.

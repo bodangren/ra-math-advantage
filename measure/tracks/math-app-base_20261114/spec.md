@@ -211,11 +211,26 @@ The set overview gives the shared decisions. This track adds these decisions (de
   and the access token keeps its 60-second default. The app sets both values in
   `convex/auth.ts`, so a change of a package default does not change them.
 - **DA8a Demo accounts:** the demo password `Demo1234!` has 9 characters, so it fails the
-  minimum of 10. The demo seed and the E2E tests use one constant, `DEMO_PASSWORD =
-  'DemoMath-2026!'`, in `e2e/selectors.ts`. `e2e/CONVENTIONS.md` names the new value. The
-  demo usernames (`teacher@demo`, `student1@demo` to `student5@demo`) do not change. The demo
-  seed is for the dev deployment only; `prod-deploy-pipeline_20261114` runs no demo seed on
-  a production deployment.
+  minimum of 10. No plan, spec, seed, test, or document of the track holds a literal demo
+  password. The demo seeds (`convex/seed.ts` and `convex/seed/seed_demo_env.ts`) read
+  `DEMO_MATH_PASSWORD` from the environment of the Convex deployment. When the variable is
+  missing or has fewer than 10 characters, the demo seed throws an error that names the
+  variable, and it writes no demo account. The curriculum seeds do not read the variable.
+  The demo usernames (`teacher@demo`, `student1@demo` to `student5@demo`) do not change.
+- **DA8b Demo password value:** local development sets `DEMO_MATH_PASSWORD` in the ignored
+  file `apps/math/.env.local`. The developer copies the value to the dev deployment with
+  `npx convex env set`, and the value does not go into the command text or a log. When the
+  orchestrator sets up a deployment that runs the demo seed, the orchestrator gets the value
+  from Daniel through a secret card. `.env.example` names the variable with no value, and
+  `e2e/CONVENTIONS.md` names the variable, not a value. The demo seed is for the dev
+  deployment only; `prod-deploy-pipeline_20261114` runs no demo seed on a production
+  deployment.
+- **DA8c Demo password in tests:** `e2e/selectors.ts` exports `getDemoPassword()`, which
+  reads `DEMO_MATH_PASSWORD` and throws an error that names the variable when it is missing.
+  `e2e/fixtures.ts` and `e2e/auth.spec.ts` call it, so a spec with no sign-in runs without
+  the variable. `playwright.config.ts` loads `.env.local` with `process.loadEnvFile` when the
+  file exists (Node 22, no new package). The unit tests of the seeds set a test value with
+  `vi.stubEnv`; the test value is no real password.
 - **DA9 Server reads:** server code reads user data with the Convex Auth access token of the
   request. A Convex function gets the user with `getAuthUserId(ctx)` and checks the role on
   the profile. A server call with `CONVEX_DEPLOY_KEY` stays only when it reads no user data
@@ -354,6 +369,7 @@ The set overview gives the shared decisions. This track adds these decisions (de
 - Given a password of 9 characters or a common password, When a user changes the own password to it, Then the change fails with the user error of the component, and the old password still works.
 - Given a teacher reset of a student password, When the reset is complete, Then each earlier session of the student is revoked, and only the new password works.
 - Given an inactive profile, When the user signs in with the right password, Then the sign-in fails and makes no session.
+- Given no `DEMO_MATH_PASSWORD`, or a value of fewer than 10 characters, When the demo seed runs, Then it throws an error that names the variable and writes no demo account.
 - Given a roster import with new students, When the import is complete, Then each new student has a username and a generated password that work, and the wizard shows them one time.
 - Given a user call of the server, When it runs, Then it sends the access token of the request, and the Convex function reads the user with `getAuthUserId`. Given a student token, When it calls a teacher function, Then the function throws an authorization error.
 - Given the app after S3, When `git grep -n -E "core-auth|bm_session|auth_credentials|AUTH_JWT_SECRET" -- apps/math` runs, Then it finds no match outside `apps/math/__tests__/` fixtures that the evidence file lists.
@@ -428,7 +444,9 @@ The set overview gives the shared decisions. This track adds these decisions (de
   in memory.
 - Each Convex function that reads or writes user data checks the user with
   `getAuthUserId` and checks the role on the server.
-- No password, token, or deploy key goes into a file, a log, or the evidence file.
+- No password, token, or deploy key goes into a tracked file, a log, or the evidence file.
+  The ignored file `apps/math/.env.local` holds the demo password for local development
+  (DA8b).
 - Tests are behavioral. A test that only finds a symbol in source does not satisfy an
   acceptance criterion (`measure/lessons-learned.md`, 2026-06-24).
 - Each phase passes the gates of `measure/workflow.md`, as `vinext-oxc-toolchain_20261114`

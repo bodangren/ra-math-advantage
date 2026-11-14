@@ -90,11 +90,13 @@ _Story ref: spec.md#story-s1_
     - [ ] `__tests__/convex/accounts/demo.test.ts`: `ensureDemoAccount` calls `createAccount` for a new username. For an existing profile, it sets the password and inserts no profile.
     - [ ] `__tests__/convex/auth-api.test.ts`: `convex/auth.ts` exports `signInWithUsernamePassword`, `changePassword`, `signOut`, `refreshSession`, and `isAuthenticated`, and not `signUpWithUsernamePassword`.
     - [ ] `__tests__/lib/auth/demo-provisioning.test.ts`: `isDemoProvisioningEnabled` returns false for `NODE_ENV=production` and for `VERCEL_ENV=preview`, and true for `NODE_ENV=development`.
+    - [ ] Also: with no `DEMO_BM2_PASSWORD`, or a value of 9 characters, `readDemoPassword()` throws an error that names the variable. With a test value set by `vi.stubEnv`, it returns that value (spec B6).
+    - [ ] Also: `__tests__/app/api/users/ensure-demo/route.test.ts` expects the value of `DEMO_BM2_PASSWORD`. Remove `demo123` from each BM2 test that stays (spec B6b).
     - [ ] `__tests__/lib/auth/server.test.ts`: with no session, `requireTeacherSessionClaims` redirects to the sign-in page. A student session on a teacher guard redirects to the student dashboard.
     - [ ] Also: `requireActiveRequestSessionClaims` returns a 401 response for an inactive profile, and the claims for an active profile.
     - [ ] `__tests__/components/auth/AuthProvider.test.tsx`: with no session, `useAuth` gives `profile: null` and `loading: false`. `signIn` and `signOut` call the Convex Auth calls of path A.
     - [ ] Apply each change of "Test Changes".
-    - [ ] `tests/e2e/auth.spec.ts`: the demo teacher signs in with `DemoBM2-2026!` and the header menu shows the username. A wrong password shows the sign-in error.
+    - [ ] `tests/e2e/auth.spec.ts`: the demo teacher signs in with the value of `DEMO_BM2_PASSWORD` and the header menu shows the username. A wrong password shows the sign-in error.
     - [ ] Also: the sign-out control of the header menu opens the sign-in page. A teacher makes a student account, and the student signs in.
     - [ ] Also: a password change to 9 characters fails. After a teacher reset, the next server read of the old student session goes to the sign-in page. An inactive profile cannot sign in.
     - [ ] Run the BM2 suite and the E2E suite. Confirm that the new cases fail.
@@ -106,7 +108,9 @@ _Story ref: spec.md#story-s1_
     - [ ] Change `convex/schema.ts`: add `profiles.isActive`, and remove `auth_credentials` and `login_rate_limits`. Delete `convex/loginRateLimits.ts`.
     - [ ] Change `convex/seed.ts` to call `createAccount`. Change `app/api/users/ensure-demo/route.ts` to call `internal.accounts.demo.ensureDemoAccount`.
     - [ ] Change the four teacher routes of `app/api/users/` to call `internal.accounts.teacher.*`. Each route returns the generated password one time. Change `app/settings/page.tsx` to call `internal.users.getAccountSettingsContext`.
-    - [ ] Change `ensure-demo` and `convex/seed.ts` to the default `DemoBM2-2026!`. Move `isDemoProvisioningEnabled` into `lib/auth/demo-provisioning.ts` (spec B6).
+    - [ ] Add `readDemoPassword()` to `lib/auth/demo-provisioning.ts`. Move `isDemoProvisioningEnabled` into the same file (spec B6, B6b).
+    - [ ] Change `ensure-demo` and `convex/seed.ts` to call `readDemoPassword()`. Remove `demo123` and the three `DEMO_<ROLE>_PASSWORD` variables (spec B6).
+    - [ ] In `.env.example`, replace the three `DEMO_<ROLE>_PASSWORD` lines with `# DEMO_BM2_PASSWORD=` with no value (spec B6a).
     - [ ] Commit: `feat(bm2): move accounts to Convex Auth v2`.
 - [ ] Task: S1 Implement — the sign-in, the session, and the auth files
     - [ ] Add the route handlers, the proxy, and the server provider of path A. Add the spike page `/dev/auth-spike` and `convex/authSpike.ts` as in the math app.
@@ -116,6 +120,8 @@ _Story ref: spec.md#story-s1_
     - [ ] Delete `app/api/auth/{login,logout,session,change-password}`. Delete `convex/legacyAuth.ts`.
     - [ ] Remove `@math-platform/core-auth` from `apps/bus-math-v2/package.json`. Run `npm install`. Confirm that the lockfile diff changes only the BM2 workspace entry.
     - [ ] Remove `AUTH_JWT_SECRET` from `.env.example` and from the comment of `wrangler.jsonc` (line 16).
+    - [ ] Set `DEMO_BM2_PASSWORD` in `apps/bus-math-v2/.env.local`. If no value exists, get it from Daniel through a secret card (spec B6a).
+    - [ ] Copy the value to the BM2 dev deployment with `npx convex env set`. Keep the value out of the command text and the logs.
     - [ ] Clear the tables of the BM2 dev deployment and run the seed again.
     - [ ] Commit: `feat(bm2): sign in through Convex Auth v2`.
 - [ ] Task: S1 Verify — run the spike test and the gates
