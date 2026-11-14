@@ -1,0 +1,4 @@
+Task: Fix the wrong instructions of the other Measure documents (group 4), docs-new-direction_20261114.
+Changes: tech-specs.md (lint comment is eslint . --max-warnings 0; deploy platform is Cloudflare Workers, not Vercel, with a planned marker). monorepo-ops.md (IM3 npm run dev starts only the frontend; seed commands are npx convex run seed:seedAll for IM3 and seed:seedPublishedCurriculum or seed:seedDemoAccounts for BM2). evidence.md lists the 27 unchanged files with a note each.
+Files: measure/tech-specs.md, measure/monorepo-ops.md, evidence.md.
+Why: these sentences gave instructions that are wrong today.
