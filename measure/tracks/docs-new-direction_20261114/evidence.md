@@ -73,6 +73,26 @@ Some of them hold dated history or old facts, which the later tracks own:
 
 ## INTEGRATION Sections
 
+Group 5 changed these contradictions in `INTEGRATION.md`: the monorepo name, the structure
+tree (5 apps and 21 package folders), the package verification commands (the root has no
+`ws:lint`, `ws:typecheck`, `ws:test`, or `ws:build`), the app adoption step (a workspace
+range `"*"` and a root `npm install` after approval), the package test command (two
+places), the Convex project names, the removed `npx convex schema push`, and the
+Deployment section (Workers, not Pages, with a planned marker).
+
+These old sections stay for `math-app-retire-old-apps_20261114` (FR-6) and the other owner
+tracks:
+
+| Section | Old content | Owner |
+|---------|-------------|-------|
+| App Adoption | IM3 and BM2 only | `math-app-retire-old-apps_20261114` |
+| App-Local Keep List | `apps/integrated-math-3/...` paths | `math-app-retire-old-apps_20261114` |
+| Review Checklist | "Both IM3 and BM2 tests pass" | `math-app-retire-old-apps_20261114` |
+| Local Development: Environment Variables | `AUTH_JWT_SECRET` for IM3 and BM2 | `math-app-base_20261114`, `bm2-convex-auth-v2_20261114` |
+| Local Development: Running Both Apps | IM3 and BM2 paths | `math-app-retire-old-apps_20261114` |
+| Testing: App Tests, Full Gates | IM3 paths | `math-app-retire-old-apps_20261114` |
+| Ownership Map | the `core-auth` row and the "BM2 Supabase" remainders | `bm2-convex-auth-v2_20261114` |
+
 ## Test Constraints
 
 Checked after group 3 with `grep` (no `node_modules` on this machine, so the Vitest suites
