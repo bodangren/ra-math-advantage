@@ -15,7 +15,7 @@ Verification and Checkpointing Protocol)
 ## Phase 1: Rewrite the project documents
 _Story ref: spec.md#story-s1_
 
-- [ ] Task: Rewrite README.md for the new direction (group 1)
+- [~] Task: Rewrite README.md for the new direction (group 1)
     - [ ] Create `evidence.md` with these sections: Facts, Unchanged Files, INTEGRATION Sections, Test Constraints.
     - [ ] Record the facts of spec "Current System" under "Facts", with the command of each check.
     - [ ] Rewrite `README.md`: the current apps and packages, the planned direction of spec W3, the dev commands of today, and the license facts. Keep the license line.
