@@ -45,10 +45,11 @@ Verify task means each row of this table.
     - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Inventory, Seed Counts, Field Map, Component Decisions, Test Decisions, Keep List.
     - [ ] Run each gate on the start commit. Record each result and the test count of each suite under "Baseline".
     - [ ] Run `git grep -l "integrated-math-1" -- . ':!apps/integrated-math-1'`. Record each file and its planned change under "Inventory".
-    - [ ] Count the lessons and the standards that the old seeds write. Record the counts under "Seed Counts".
+    - [ ] Count the lessons that the old seeds write. Count the distinct canonical codes (`canonicalCcssCode` of each old code) that the old lesson standard links name. Record both counts under "Seed Counts". AC2 compares with these two counts.
 - [ ] Task: Define the course entry and the field map
     - [ ] Write the `im1` registry entry with the values of the spec table "Template Values".
-    - [ ] Write the field map under "Field Map": old seed field, new field, and rule. It covers `courseKey`, `code` to `sourceCode` and the namespaced `code`, `problemFamilyId` to `variantKey`, and `objectiveIds` to namespaced codes.
+    - [ ] Write the field map under "Field Map": old seed field, new field, and rule. It covers `courseKey`, `code` to `canonicalCcssCode(code)`, the reuse of a standard row that exists, `problemFamilyId` to `variantKey`, and `objectiveIds` to canonical codes.
+    - [ ] Under "Field Map", list each IM1 code that `canonicalCcssCode` changes, and each canonical code that already has a row in `apps/math`.
     - [ ] Run `git grep -n -E "\b(by_slug|by_problemFamilyId|problem_families)\b" -- apps/integrated-math-1/convex/seed`. Add each site to "Field Map".
 - [ ] Task: Decide the components and the old tests (FR-6, FR-7)
     - [ ] For each file under `apps/integrated-math-1/components/`, find its equivalent in `apps/math/components/`. Record the equivalent, or "move to `apps/math/components/courses/im1/<file>`", under "Component Decisions". Move a component only when it has no equivalent and a moved seed or curriculum file uses it.
@@ -63,10 +64,11 @@ Verify task means each row of this table.
 
 - [ ] Task: Write the course tests (Red)
     - [ ] `apps/math/__tests__/lib/courses/registry.test.ts`: the `im1` entry has the values of "Template Values".
-    - [ ] `apps/math/__tests__/courses/im1/seed.test.ts`: the seed writes the counts of "Seed Counts". Each `im1` standard has `code` equal to `namespacedCode("IM1", sourceCode)`. The codes of all seeded courses are unique. Two seed runs give the same rows.
-    - [ ] Also: each `im1` variant has `courseKey: "im1"` and namespaced `objectiveIds` that name seeded standards.
+    - [ ] `apps/math/__tests__/courses/im1/seed.test.ts`: the seed writes the counts of "Seed Counts". Each standard that an `im1` lesson links to has `code` equal to `canonicalCcssCode` of its old code. The codes of all seeded courses are unique. Two seed runs give the same rows.
+    - [ ] Also: a standard row that exists before the IM1 seed keeps each field value after the IM1 seed.
+    - [ ] Also: each `im1` variant has `courseKey: "im1"` and canonical `objectiveIds` that name seeded standards.
     - [ ] Also: the seed writes the class "Integrated Math 1 Demo" with `courseKey: "im1"` and `academicYear: "2026-2027"`.
-    - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: `loadCourseGraph("im1")` returns the node count of `curriculum/im1/skill-graph/nodes.json`.
+    - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: `courseView(loadMathGraph(), "im1")` returns each node that `math.im1` reaches in `curriculum/im1/skill-graph/`, and no IM3 lesson node.
     - [ ] `apps/math/__tests__/convex/student-queries.test.ts`: the lesson query with `courseKey: "im1"` and `module-2-lesson-1` returns the IM1 lesson, not the IM3 lesson.
     - [ ] `apps/math/__tests__/app/`: an `im1` course layout renders `data-course="im1"`.
     - [ ] `scripts/__tests__/course-paths.test.ts`: `courseCurriculumPath("im1")` is `apps/math/curriculum/im1`.
@@ -86,6 +88,7 @@ Verify task means each row of this table.
     - [ ] Run `git mv apps/integrated-math-1/curriculum apps/math/curriculum/im1`.
     - [ ] Change the `im1` value in `scripts/lib/course-paths.ts`.
     - [ ] Change each path of "Inventory" in `scripts/` and `packages/math-content/` to `apps/math/curriculum/im1`.
+    - [ ] In each moved file under `apps/math/curriculum/im1/` (the graph files included), change each path string `apps/integrated-math-1/curriculum/` to `apps/math/curriculum/im1/`. Then change each other string `apps/integrated-math-1` to `apps/math` (for example a `rootDir` value). Change no other value.
     - [ ] Commit: `refactor(math): move the IM1 curriculum to apps/math/curriculum/im1`.
 - [ ] Task: Move and change the seeds (FR-1, FR-3)
     - [ ] Run `git mv apps/integrated-math-1/convex/seed apps/math/convex/seed/im1`.
@@ -95,12 +98,12 @@ Verify task means each row of this table.
     - [ ] Add the demo class and its enrollments.
     - [ ] Call the IM1 seed from `seedAll` of `apps/math/convex/seed.ts`.
     - [ ] Commit: `feat(math): seed Integrated Math 1 as course data`.
-- [ ] Task: Add the course graph and the theme (FR-4, FR-5)
-    - [ ] Add the `im1` entry to `COURSE_GRAPHS`.
+- [ ] Task: Add the course view and the theme (FR-4, FR-5)
+    - [ ] Add the `im1` entry to `GRAPH_SOURCES`.
     - [ ] Add the `[data-course="im1"]` block to `app/themes/courses.css`.
     - [ ] Add the `im1` row to "Course Themes" in `apps/math/DESIGN.md`.
     - [ ] Run `npx tsx scripts/generate-cross-course-edges.ts`. Confirm that `git diff --exit-code packages/math-content/src/knowledge-space/cross-course-edges.json` exits 0.
-    - [ ] Commit: `feat(math): add the IM1 course graph and theme`.
+    - [ ] Commit: `feat(math): add the IM1 course view and theme`.
 - [ ] Task: Apply the component and test decisions (FR-6, FR-7)
     - [ ] Move each component of "Component Decisions" with `git mv` to its target path.
     - [ ] Move each test of "Test Decisions" with `git mv` to its target path, and change it to the new paths and fields.

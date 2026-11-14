@@ -3,18 +3,20 @@
   "type": "feature",
   "status": "new",
   "created_at": "2026-11-13T23:29:11Z",
-  "updated_at": "2026-11-13T23:29:11Z",
-  "description": "Unified Math App: Base App and Course Data",
-  "estimated_tasks": 28,
+  "updated_at": "2026-11-14T12:00:00Z",
+  "description": "Unified Math App: Base App, Convex Auth v2, and Course Data",
+  "estimated_tasks": 45,
   "actual_tasks": null,
   "deviation_notes": "",
   "sprint": {
-    "goal": "The IM3 app runs as apps/math, with IM3 as course data, course routes, and a course theme, and each IM3 test passes.",
+    "goal": "The IM3 app runs as apps/math with Convex Auth v2, with IM3 as course data, course routes, and a course theme, and each IM3 test passes.",
     "stories": [
       { "id": "S1", "title": "Move IM3 to the math app folder", "size": "L", "priority": "Must", "status": "pending" },
-      { "id": "S2", "title": "Course data model", "size": "XL", "priority": "Must", "status": "pending" },
-      { "id": "S3", "title": "Course routes and navigation", "size": "L", "priority": "Must", "status": "pending" },
-      { "id": "S4", "title": "One theme for each course", "size": "M", "priority": "Must", "status": "pending" }
+      { "id": "S2", "title": "Convex Auth v2 spike", "size": "M", "priority": "Must", "status": "pending" },
+      { "id": "S3", "title": "Convex Auth v2 username and password", "size": "XL", "priority": "Must", "status": "pending" },
+      { "id": "S4", "title": "Course data model", "size": "XL", "priority": "Must", "status": "pending" },
+      { "id": "S5", "title": "Course routes and navigation", "size": "L", "priority": "Must", "status": "pending" },
+      { "id": "S6", "title": "One theme for each course", "size": "M", "priority": "Must", "status": "pending" }
     ],
     "demo_notes": null,
     "retro_ref": null

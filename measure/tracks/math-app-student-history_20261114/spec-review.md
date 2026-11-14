@@ -81,6 +81,44 @@ Per the spec, a student is one `profiles` row, and after the base track the four
 ### Author Response
 - F7: DECLINE
 
+## Round 4
+
+Date: 2026-11-14
+Reviewer: measure-spec-review (kimi-code-plan-cn/kimi-for-coding#high)
+Cause: the revision of 2026-11-14 (the merged graph contract: one graph, no transfer step, removal of the transfer-credit code). The spec and the plan changed after Round 3.
+
+### What this track proposes
+
+This track gives each student one account and one enrollment history across the four courses and the academic years in the unified math app (member 4 of the set, after the old apps retire). It adds an optional `endedAt` to `class_enrollments`, a rule of one active enrollment per course and year, a `withdrawEnrollment` mutation, two history pages with an access rule, an admin rollover that completes the enrollments and archives the classes of the closed year, and a year filter on `/teacher/dashboard/srs`. The knowledge state of a course reads all evidence of the student through the one merged graph and `objectiveNodeIds`, with no transfer step. The track also deletes the transfer-credit code and shows the earlier courses of each competency on the teacher competency page.
+
+### How the current system works, per this spec
+
+Per the spec, a student is one `profiles` row, and after the base track the four courses share one Convex backend. After the base track, `classes` has a required `courseKey` and a required `academicYear`, and `class_enrollments` holds `classId`, `studentId`, `enrolledAt`, and a status of `active`, `withdrawn`, or `completed`, with no end date; the roster import and the seeds insert enrollments, and the import skips an existing enrollment of any status. The evidence tables (`srs_cards`, `srs_review_log`, `student_competency`, and the practice tables) key by `studentId`, and after the base track each objective ID is a canonical CCSS code, so one evidence record serves each course that teaches the competency. After the base track, `loadMathGraph()` returns one merged graph and `courseView(graph, courseKey)` returns the view of one course. The transfer-credit runtime lives in `packages/knowledge-space-core` with three app files and no page users, and `cross-course-edges.json` has no runtime loader. `/teacher/dashboard` lists the students of the organization; the class list lives on `/teacher/dashboard/srs` with no year filter, and a class has no `organizationId` — the organization comes from the teacher profile.
+
+### Findings
+
+- F8 [Major] spec.md D7a, plan.md Phase S4 Contract, Test, and Implement: the target page of "the teacher competency page" is not named, and two competency pages exist: `apps/integrated-math-3/app/teacher/competency/page.tsx` (class heatmap) and `apps/integrated-math-3/app/teacher/students/[studentId]/competency/page.tsx` (per student). D7a says "the earlier courses of the student", which reads as the per-student page, but the plan never commits to the file. Rationale: a file-location choice the plan leaves to the implementer; the two pages have different data shapes, and the wrong choice reworks the phase.
+- F9 [Major] spec.md D7a, plan.md Phase S4 Contract: the data path of "lessons link to that competency" is unnamed. `earlierCoursesForCompetency(studentId, code, courseKey)` must find the lessons of an earlier course that link to the code, but no source is recorded; two viable sources exist: the `lesson_standards` table joined to `competency_standards` (`convex/schema.ts:406`), or the graph (`courseView` lesson container nodes that reach a standard node of the code). Rationale: an implementer must choose the source and the traversal, and the two sources can disagree.
+- F10 [Major] spec.md D6, plan.md Phase S4 Contract: "each evidence record of the student" does not name the table set. The knowledge state reads only `srs_cards` and `srs_review_log` today (`apps/integrated-math-3/convex/student/knowledge-state.ts`), while the Current System lists `srs_cards`, `srs_review_log`, `student_competency`, and the practice tables as evidence. Rationale: the implementer must choose between "keep the current table set and drop the course filter" and "add reads of `student_competency` and the practice tables"; the two readings change the scope of the S4 Implement task.
+- F11 [Major] plan.md Phase S1 Test: the teacher positive access case is not named. The Test Rules require a positive case and a negative case for each access test; the list names the negative teacher case (no class of the student gets no row and an error) and positive cases for a parent with an `active` link and an admin, but no case where the teacher of a class of the student gets the rows of Story S1 AC2. Rationale: a phase test list that names no normal case for one arm of the D5 access rule.
+- F12 [Nit] spec.md Current System (Transfer credit) and D7, plan.md Phase S4 removal: the claim that `lib/a11y/harness.tsx` imports the transfer-credit files is inaccurate. The file holds no import of them; line 13 is a comment that names a transfer-credit test path, so the plan step "Remove the entries from `lib/a11y/harness.tsx`" finds no entries. Rationale: wording only; the implementer cleans up a comment, not entries, and the design does not change.
+- F13 [Nit] spec.md Current System (Teacher pages): the line references drifted. `convex/teacher.ts:278` is now line 281 (`getTeacherDashboardData`), `:1493` is now 1496 (`getTeacherSrsDashboardData`), and line 1507 (`by_teacher`) is now 1509 (verified on HEAD 0bf1900). Rationale: the symbols still resolve; only the line numbers changed.
+- F14 [Nit] plan.md Phase S4 Test: the removal-check grep pattern misses residual transfer-credit symbols. The pattern `computeTransferCredit|TransferCreditPrompt|TransferCreditAuditPanel|student-skip` does not match `TRANSFER_POLICY_DEFAULT`, `transfer-eligibility`, `transfer-skip.ts`, `transfer-teacher-audit`, or `buildTransferCreditAuditView`, so a residual reference can pass the test. Rationale: the lint, typecheck, and build gates catch a residual import; this changes the backstop, not the design.
+
+### Author Response
+
+- F8: FIX (D7a, the S4 criterion, and the S4 Contract, Test, and Implement tasks name `app/teacher/[course]/students/[studentId]/competency/page.tsx`; the class page does not change)
+- F9: FIX (D7a and the S4 Contract give the database path: `competency_standards` by `by_code`, `lesson_standards` by `by_standard`, then each lesson version and its lesson)
+- F10: FIX (D6 and the S4 Contract name `srs_cards` and `srs_review_log` with `by_student` and no course filter)
+- F11: FIX (the S1 Test task has the positive case for the teacher of the IM2 class)
+- F12: DECLINE
+- F13: DECLINE
+- F14: DECLINE
+
+## Round 5
+
+Status: queued. The PM machine load rule of 2026-11-14 (07:32 ICT) stopped the first run of this re-review. The PM starts it when a slot is free. The fixes of F8 to F11 have no review result yet.
+
 ## Accepted Risks
 
 None.

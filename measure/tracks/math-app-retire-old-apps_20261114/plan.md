@@ -38,7 +38,7 @@ Verify task means each row of this table.
 ## Phase 1: Contract & Schema Definition
 
 - [ ] Task: Record the baseline and the inventory
-    - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Remaining References, Document Sections, Open Registry Entries.
+    - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Remaining References, Document Sections, Open Registry Entries, Cloud Cleanup.
     - [ ] Run each gate on the start commit. Record each result under "Baseline".
     - [ ] Confirm that `apps/integrated-math-1`, `apps/integrated-math-2`, `apps/integrated-math-3`, and `apps/pre-calculus` do not exist. If one exists, stop and report.
     - [ ] Run `git grep -n -E "integrated-math-[123]|pre-calculus" -- . ':!measure/archive'`. Record each file outside `KEEP_PATHS` under "Remaining References".
@@ -83,6 +83,16 @@ Verify task means each row of this table.
 - [ ] Task: Update the README and the integration notes (FR-6)
     - [ ] Apply the planned text to `README.md` and `INTEGRATION.md`.
     - [ ] Commit: `docs: name apps/math and its courses in the README`.
+- [ ] Task: Delete the empty Convex projects (FR-8)
+    - [ ] Get a Convex team access token from Daniel through a secret card. Keep it only in the environment of each command.
+    - [ ] Call `GET https://api.convex.dev/v1/teams/435396/projects`. Record each project name and ID under "Cloud Cleanup".
+    - [ ] For each of `2015980`, `2015859`, and `2897579`, call `GET https://api.convex.dev/v1/projects/<id>/list_deployments`. Record the result.
+    - [ ] If a target ID is missing, has another name, or has a deployment, stop and report.
+    - [ ] For each target, call `POST https://api.convex.dev/v1/projects/<id>/delete`. Record the status code.
+    - [ ] If the API refuses the token, ask Daniel to delete the three projects in the Convex dashboard. Then continue with the list call.
+    - [ ] Call the project list again. Confirm AC7. Record the result.
+    - [ ] For each of `integrated-math-1`, `integrated-math-2`, and `pre-calculus`, run `npx wrangler deployments list --name <name>`. Confirm that each Worker does not exist. If one exists, stop and report.
+    - [ ] Commit the evidence file: `measure(math-app-retire-old-apps): record the cloud cleanup`.
 - [ ] Task: Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
     - [ ] Commit the evidence file: `measure(math-app-retire-old-apps): record the results`.

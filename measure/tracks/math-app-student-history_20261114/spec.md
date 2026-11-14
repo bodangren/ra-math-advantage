@@ -9,8 +9,9 @@ Depends on: `math-app-retire-old-apps_20261114`
 This track gives each student one history across courses and academic years in the unified
 math app. Each enrollment keeps its course and year. An admin closes an academic year with
 a rollover. Teachers see their classes by year. The knowledge state of a course uses the
-evidence from the earlier courses of the student, through the cross-course edges and the
-transfer-credit runtime that exist.
+evidence from the earlier courses of the student through the one math graph: evidence on a
+shared competency counts in each course, with no transfer step. The track removes the
+transfer-credit code, because the merged graph makes it unnecessary.
 
 Sprint goal: a student keeps one account and one history from IM1 to AP Precalculus, and
 each course uses what the student learned in the earlier courses.
@@ -31,17 +32,26 @@ This track is member 4 of the track set [Unified Math App](../../sets/unified-ma
   `by_class_and_student`. It has no end date. `convex/onboarding/roster-import.ts:166` and
   the seeds insert enrollments.
 - **Evidence:** `srs_cards`, `srs_review_log`, `student_competency`, and the practice tables
-  are keyed by `studentId`. After the base track, each objective ID is a namespaced code, so
-  the evidence of each course stays apart.
+  are keyed by `studentId`. After the base track, each objective ID is a canonical CCSS
+  code, and a competency is course-neutral (base track D5). So a student has one evidence
+  record for a competency that two courses share.
+- **One graph:** after the base track, `loadMathGraph()` returns one graph, and
+  `courseView(graph, courseKey)` returns the view of one course. `objectiveNodeIds` gives
+  the evidence of an objective to each standard node of its canonical code (base track
+  D6a).
 - **Transfer credit:** `packages/knowledge-space-core/src/transfer-credit.ts` has
   `computeTransferCredit`, `batchComputeTransferCredit`, and `TRANSFER_POLICY_DEFAULT`.
   `transfer-eligibility.ts`, `transfer-skip.ts`, and `transfer-teacher-audit.ts` complete
-  the runtime. `apps/math/lib/transfer-credit/student-skip.ts` uses it.
+  the runtime. In the app, `lib/transfer-credit/student-skip.ts`,
+  `components/student/transfer-credit/TransferCreditPrompt.tsx`, and
+  `components/teacher/transfer-credit/TransferCreditAuditPanel.tsx` use it. No page uses
+  these app files; only their tests and `lib/a11y/harness.tsx` import them (checked
+  2026-11-14).
 - **Cross-course edges:** `packages/math-content/src/knowledge-space/cross-course-edges.json`
   joins the course graphs. No runtime code loads it: only
-  `scripts/generate-cross-course-edges.ts` writes it, and the package `exports` of
-  `packages/math-content` do not export it. `loadCourseGraph(courseKey)` (base track)
-  returns one course graph.
+  `scripts/generate-cross-course-edges.ts` writes it (with
+  `packages/knowledge-space-core/src/cross-course-equivalence.ts`), and the package
+  `exports` of `packages/math-content` do not export it.
 - **Teacher pages:** `/teacher/dashboard` (`getTeacherDashboardData`,
   `convex/teacher.ts:278`) shows the students of the organization, not the classes. The
   class list is on `/teacher/dashboard/srs` (`getTeacherSrsDashboardData`,
@@ -84,15 +94,36 @@ This track is member 4 of the track set [Unified Math App](../../sets/unified-ma
 - **D5 Who can see a history:** the student, each teacher of a class of the student in the
   same organization, each parent with an `active` parent link to the student, and each
   admin of the organization. A `pending` or `revoked` link gives no access.
-- **D6 Earlier courses:** for course C, an earlier course is each other course in which the
-  student has evidence. The knowledge state of course C uses the evidence of each earlier
-  course through the cross-course edges, with `TRANSFER_POLICY_DEFAULT`. When a skill of C
-  also has direct evidence, the rules of `computeTransferCredit` decide, with no change.
-- **D7 Edge source at runtime:** `packages/math-content/src/knowledge-space/index.ts`
-  exports `CROSS_COURSE_EDGES` (the content of `cross-course-edges.json`).
-  `apps/math/lib/curriculum/skill-graph-loader.ts` gets
-  `loadCrossCourseEdges(courseKey)`, which returns the edges whose target node is a node of
-  that course. `getKnowledgeState` reads the edges only through this function.
+- **D6 Earlier courses:** for course C, an earlier course is each other course of an
+  enrollment of the student. The knowledge state of course C reads the same evidence tables
+  as today, `srs_cards` and `srs_review_log` with the `by_student` index, with no course
+  filter. `student_competency` and the practice tables stay outside the knowledge state. It
+  gives each record to the nodes of `courseView(graph, C)` through `objectiveNodeIds`. Evidence on a competency that C also holds counts in C with no
+  transfer step. Evidence on a competency that C does not hold does not change the state of
+  C. This follows the graph contract of 2026-11-14 (one merged `math.us-hs` graph).
+- **D6a Interim limit:** until the track Consume the mastery-advantage Math Graph, the
+  graph files hold one skill node for each course. So a skill that two courses teach shares
+  evidence only through its CCSS standard nodes. The released merged graph removes this
+  limit with no change to this track.
+- **D7 Removal of the transfer-credit code:** the merged graph makes transfer credit
+  unnecessary. The track deletes the app files `lib/transfer-credit/`,
+  `components/student/transfer-credit/`, and `components/teacher/transfer-credit/`, their
+  tests, and their entries in `lib/a11y/harness.tsx`. Then it deletes
+  `transfer-credit.ts`, `transfer-eligibility.ts`, `transfer-skip.ts`, and
+  `transfer-teacher-audit.ts` from `packages/knowledge-space-core`, with their tests and
+  their exports, when no caller remains. `cross-course-equivalence.ts` stays, because
+  `scripts/generate-cross-course-edges.ts` uses it; the consume track removes both. No
+  runtime code loads `cross-course-edges.json`.
+- **D7a Source course on the teacher page:** the per-student competency page
+  `app/teacher/[course]/students/[studentId]/competency/page.tsx` (route
+  `/teacher/[course]/students/[studentId]/competency` after the base track) shows, for each
+  competency with evidence, the earlier courses of the student whose lessons link to that
+  competency. The class page `/teacher/[course]/competency` does not change.
+  - The data path is the database, not the graph: `competency_standards` by `by_code`, then
+    `lesson_standards` by `by_standard`, then each `lesson_versions` row and its `lessons`
+    row, which gives the `courseKey`.
+  - The result is the set of these course keys that are also course keys of another
+    enrollment of the student (any status), without C, in the registry `sequence` order.
 - **D8 Year filter page:** the year filter goes on `/teacher/dashboard/srs`, the page that
   lists the classes, through `getTeacherSrsDashboardData`. `/teacher/dashboard` does not
   change.
@@ -153,10 +184,15 @@ This track is member 4 of the track set [Unified Math App](../../sets/unified-ma
 **So that** I do not practice again the skills that I know
 
 **Acceptance Criteria:**
-- Given a student with mastery of an IM1 skill that has an `equivalent_to` edge to an IM2 skill, When the IM2 knowledge state loads, Then the IM2 skill shows the transfer mastery that `computeTransferCredit` gives with `TRANSFER_POLICY_DEFAULT`, with the source course IM1.
-- Given an IM1 skill with no cross-course edge to IM2, When the IM2 knowledge state loads, Then the IM1 mastery does not change the IM2 state.
+- Given a student with SRS evidence on `HSA-SSE.B.3` from an IM2 class, and an IM3 course view with a standard node of that code, When the IM3 knowledge state loads, Then that node has the evidence, with no transfer step.
+- Given evidence on a code that the IM3 course view does not hold, When the IM3 knowledge state loads, Then the evidence does not change the IM3 state.
 - Given a student with no earlier course, When the knowledge state of a course loads, Then it equals the state before this story (regression test with a fixed fixture).
-- Given a teacher of the IM2 class, When the teacher opens the competency page of the student, Then each transfer value shows its source course.
+- Given a teacher of the IM3 class, When the teacher opens `/teacher/im3/students/[studentId]/competency`, Then each competency with evidence shows the earlier courses of the student that hold it (D7a).
+- Given the repository after S4, When `git grep -n -E "computeTransferCredit|TransferCreditPrompt|TransferCreditAuditPanel|student-skip"` runs, Then it finds no match outside `measure/**`.
+
+**Note (2026-11-14):** this story replaces the earlier transfer-credit design (cross-course
+edges with `TRANSFER_POLICY_DEFAULT`). The cause is the graph contract change of
+2026-11-14: one merged graph for IM1 to AP Precalculus.
 
 **Estimate:** L
 **Priority:** Must
@@ -188,19 +224,24 @@ This track is member 4 of the track set [Unified Math App](../../sets/unified-ma
   year, changes no evidence, and is idempotent.
 - AC4: `/teacher/dashboard/srs` filters classes by year, with the current year as the
   default.
-- AC5: The knowledge state of a course uses the evidence of earlier courses through the
-  cross-course edges and `TRANSFER_POLICY_DEFAULT`, and shows the source course.
+- AC5: The knowledge state of a course uses the evidence of earlier courses on the shared
+  competencies, with no transfer step, and the teacher page shows the earlier courses. The
+  app and `packages/knowledge-space-core` have no transfer-credit code.
 - AC6: Each gate passes.
 
 ## Open Dependencies
 
-- **Graph source: mastery-advantage, contract pending (2026-11-14).** D7 and the S4 tasks
-  read the cross-course edges that exist today. This track adds no graph authoring task.
-  When the contract arrives, the orchestrator amends these tasks.
+- **Graph source: mastery-advantage (contract of 2026-11-14).** mastery-advantage releases
+  one merged domain, `math.us-hs`, for IM1, IM2, IM3, and AP Precalculus, with
+  course-neutral skill IDs. S4 uses the one-graph model of the base track and reads the
+  graph files that exist today (D6a). This track adds no graph authoring task. The track
+  Consume the mastery-advantage Math Graph changes only the graph source.
 
 ## Out of Scope
 
 - A copy of classes or rosters into the new year.
 - Licenses and seats (`math-app-seat-licensing_20261114`).
-- New cross-course edges or a new transfer policy.
+- Cross-course edges and transfer credit. The one math graph makes them unnecessary. The
+  consume track removes `cross-course-edges.json`, its generator script, and
+  `cross-course-equivalence.ts`.
 - BM2.

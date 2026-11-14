@@ -9,7 +9,8 @@ Depends on: `math-app-base_20261114`
 This track adds AP Precalculus to the unified math app as course data. It moves the
 AP Precalculus curriculum and seeds into `apps/math` with `git mv`, so that the file history
 stays. It changes the seeds to the course data model of `math-app-base_20261114`. It adds
-the course entry, the course graph, and the course theme. AP Precalculus has its own theme
+the course entry, the AP Precalculus graph files as a part of the one math graph (with the
+course view), and the course theme. AP Precalculus has its own theme
 and uses units, not modules. Then the track deletes the rest of `apps/pre-calculus` and
 removes the app from CI and from the root scripts.
 
@@ -26,11 +27,11 @@ This track is one member of the template group "course import". The sample membe
 |-------|----------------|
 | Course key | `precalc` |
 | Title | AP Precalculus |
-| Standard prefix | `PC` |
+| Graph course node | `math.precalc` |
 | Sequence | 4 |
 | Unit label | `Unit` |
 | Old app | `apps/pre-calculus` |
-| Old Worker name | `pre-calculus` |
+| Old Worker name | none (the cloud inventory of 2026-11-14 found no Worker) |
 | Problem families | `@math-platform/math-content/problem-families/precalc` |
 | Old course key literals | `"pre-calculus"` in `convex/seed/seed_objective_policies.ts` (line 9) |
 | Variant blocks | Policy seeds, Demo seeds, Own theme, Unit layout |
@@ -55,7 +56,11 @@ This track is one member of the template group "course import". The sample membe
   error sentinel (lines 199, 297, and 298), not as a seeded standard code.
 - **Collisions:** the seeds have 59 slug values (for example
   `1-10-rational-functions-holes`) and 37 standard codes. AP Precalculus and IM3 share 0
-  slugs and 24 codes (for example `HSA-APR.A.1`).
+  slugs and 24 codes (for example `HSA-APR.A.1`). Each seed code is a CCSS code with the
+  `HS` prefix, so `canonicalCcssCode` keeps it.
+- **Graph files:** `skill-graph/nodes.json` has the domain node `math.precalc`, the modules
+  `math.precalc.module.<n>`, and the lessons `math.precalc.lesson.<m>.<l>`. Its 73 skill
+  nodes have no CCSS edge today.
 - **Components:** `components/` has the same files as IM2. `lib/` has `auth`, `convex`, and
   `utils.ts`.
 - **Tests:** `__tests__/` has `config.test.ts`, `curriculum`, `lib`, `pages`, and `setup`.
@@ -85,31 +90,35 @@ This track is one member of the template group "course import". The sample membe
   Then change the seeds to the course data model:
   - each lesson has `courseKey: "precalc"`, and each lesson read uses
     `by_course_and_slug`;
-  - each standard has `courseKey: "precalc"`, `sourceCode` (the old code), and
-    `code: namespacedCode("PC", sourceCode)`;
-  - each lesson standard link points to the new rows;
+  - each standard has `code: canonicalCcssCode(<old code>)`; the seed inserts a standard
+    only when no row has that code, and it never changes a row that exists, because a
+    competency is course-neutral (base track D5);
+  - each lesson standard link points to the row of the canonical code;
   - the seed writes `practice_variants` from the problem families of the table, with
-    `courseKey: "precalc"` and namespaced `objectiveIds`;
+    `courseKey: "precalc"` and canonical `objectiveIds`;
   - the variant blocks of this member apply (Policy seeds, Demo seeds, Unit layout).
   `seedAll` of `apps/math` runs the AP Precalculus seed. Two runs give the same rows.
   The old `convex/seed.ts` does not move. The course seed replaces its lesson inserts,
   FR-3b replaces its demo organization and users, and its `"ALL"` error sentinels go away
   with it. The file goes away with the old app (FR-9).
 - **FR-3a Variant block "Policy seeds":** the policy seed writes `courseKey: "precalc"` in
-  place of the old literal, and each `standardId` code becomes namespaced
-  (`PC.HSA-APR.A.1`).
+  place of the old literal, and each `standardId` code becomes a canonical code
+  (`HSA-APR.A.1` stays `HSA-APR.A.1`).
 - **FR-3b Variant block "Demo seeds":** the old demo seeds become one demo class
   "AP Precalculus Demo" with `courseKey: "precalc"` and `academicYear: "2026-2027"`, for the
   demo teacher of `apps/math`, with the demo students of `apps/math` enrolled. Its lesson
   assignments and its demo progress use these users. The seed adds no second organization
-  and no second user.
+  and no second user. No moved seed writes `auth_credentials`, because the base track
+  removed that table (Convex Auth v2).
 - **FR-3d Variant block "Unit layout":** each lesson gets `unitNumber` from its unit (the
   first number of `seed_lesson_<unit>_<n>.ts`). The registry entry has `unitLabel: "Unit"`,
   so that the course pages show "Unit 1" where the IM courses show "Module 1".
-- **FR-4 Course graph:** `COURSE_GRAPHS` has the entry `precalc`, from
-  `curriculum/precalc/skill-graph/`. The knowledge-state page and the parent view of a
-  `precalc` class use the AP Precalculus graph. The regenerated `cross-course-edges.json`
-  has no diff.
+- **FR-4 Course view:** `GRAPH_SOURCES` has the entry `precalc`, from
+  `curriculum/precalc/skill-graph/`, so `loadMathGraph()` holds the AP Precalculus nodes.
+  The knowledge-state page and the parent view of a `precalc` class use
+  `courseView(graph, "precalc")`. No code reads the course from an ID string. The registry
+  key `precalc` and the node ID `math.precalc` come from the registry entry, not from a
+  string rule. The regenerated `cross-course-edges.json` has no diff.
 - **FR-5 Theme, variant block "Own theme":** `app/themes/courses.css` has a
   `[data-course="precalc"]` block with the dark colors of the old `DESIGN.md` and the old
   `app/globals.css`. The block changes colors only; the fonts stay the fonts of
@@ -150,8 +159,15 @@ This track is one member of the template group "course import". The sample membe
   needs the user's approval.
 - Do not change the curriculum content. A moved file changes only in its paths.
 - Do not change `graph.db` or `apps/bus-math-v2`.
-- Do not change a cloud resource. The Worker `pre-calculus` stays for
-  `prod-deploy-pipeline_20261114`.
+- Do not change a cloud resource. The cloud inventory of 2026-11-14 found no
+  `pre-calculus` Worker. `math-app-retire-old-apps_20261114` deletes the empty Convex
+  project `pre-calculus`.
+- Do not change the graph data in the graph files. They are graph data of mastery-advantage,
+  and this repository only reads them. A moved graph file changes only in its source path
+  strings (`apps/pre-calculus/curriculum/...` becomes `apps/math/curriculum/precalc/...`),
+  as each other moved file does, so that AC8 and the path guard pass.
+- The app shows no College Board text from the graph. An AP node shows its AP code only
+  (PM decision, 2026-11-14).
 - Shared packages do not import from `apps/` or `convex/_generated/`.
 - Tests are behavioral (`measure/lessons-learned.md`, 2026-06-24).
 - Each phase passes the gates of `measure/workflow.md`, as `vinext-oxc-toolchain_20261114`
@@ -166,15 +182,18 @@ This track is one member of the template group "course import". The sample membe
 
 - AC1: The registry has the `precalc` entry, and the seed writes the `precalc` row of
   `courses`.
-- AC2: After the seed, the count of `precalc` lessons, standards, and policies equals the
-  count that the Contract phase recorded from the old seeds.
-- AC3: Each `precalc` standard code is `PC.<sourceCode>`. No two standards of the database
-  have the same code. Each `precalc` policy names a `precalc` standard.
+- AC2: After the seed, the count of `precalc` lessons, the count of the standards that
+  `precalc` lessons link to, and the count of `precalc` policies equal the counts that the
+  Contract phase recorded from the old seeds.
+- AC3: Each standard that a `precalc` lesson links to has a canonical CCSS code. A code that
+  AP Precalculus shares with another course (for example `HSA-APR.A.1` with IM3) has one
+  row. No two standards of the database have the same code. Each `precalc` policy names a
+  seeded standard by its canonical code.
 - AC4: A student with an active enrollment in a `precalc` class opens
   `/student/precalc/lesson/1-10-rational-functions-holes` and sees the lesson. The page
   shows "Unit 1" where an IM course page shows "Module 1".
-- AC5: `loadCourseGraph("precalc")` returns the AP Precalculus graph, and
-  `cross-course-edges.json` has no diff after the regeneration.
+- AC5: `courseView(loadMathGraph(), "precalc")` returns the nodes that `math.precalc`
+  reaches, and `cross-course-edges.json` has no diff after the regeneration.
 - AC6: A `precalc` course page has `data-course="precalc"` and the dark course colors, and
   the accessibility suite passes on it.
 - AC7: `apps/pre-calculus` does not exist. `git log --follow` on
@@ -186,9 +205,15 @@ This track is one member of the template group "course import". The sample membe
 
 ## Open Dependencies
 
-- **Graph source: mastery-advantage, contract pending (2026-11-14).** FR-4 and the graph
-  tasks read the graph files that exist today. This track adds no graph authoring task.
-  When the contract arrives, the orchestrator amends these tasks.
+- **Graph source: mastery-advantage (contract of 2026-11-14).** mastery-advantage releases
+  one merged domain, `math.us-hs` (default name), for IM1, IM2, IM3, and AP Precalculus,
+  with course-neutral skill IDs and courses as container nodes. FR-4 reads the graph files
+  that exist today, in the course-view model of the base track. This track adds no graph
+  authoring task. The track Consume the mastery-advantage Math Graph replaces the graph
+  files with the released file.
+- **AP Precalculus CCSS tags:** in the release, each AP Precalculus node maps to the closest
+  CCSS standard. A node with no fitting CCSS standard keeps its AP code and goes on the
+  PM-approved exception list. The consume track reads these tags; this track adds none.
 
 ## Out of Scope
 
@@ -196,5 +221,6 @@ This track is one member of the template group "course import". The sample membe
 - The skill extraction adapter and the standards alignment of AP Precalculus (tech debt
   rows).
 - The fonts of the old AP Precalculus design.
-- The Worker `pre-calculus` and its Convex deployment (`prod-deploy-pipeline_20261114`).
+- Each cloud resource (`math-app-retire-old-apps_20261114` and
+  `prod-deploy-pipeline_20261114`).
 - The rewrite of the project documents (`math-app-retire-old-apps_20261114`).

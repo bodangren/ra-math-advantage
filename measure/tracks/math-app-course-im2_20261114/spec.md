@@ -9,7 +9,8 @@ Depends on: `math-app-base_20261114`
 This track adds Integrated Math 2 to the unified math app as course data. It moves the IM2
 curriculum and the IM2 seeds into `apps/math` with `git mv`, so that the file history stays.
 It changes the seeds to the course data model of `math-app-base_20261114`. It adds the IM2
-course entry, the IM2 graph, and the IM2 theme block. Then it deletes the rest of
+course entry, the IM2 graph files as a part of the one math graph (with the IM2 course
+view), and the IM2 theme block. Then it deletes the rest of
 `apps/integrated-math-2` and removes the app from CI and from the root scripts.
 
 ## Track Set
@@ -25,11 +26,11 @@ This track is one member of the template group "course import". The sample membe
 |-------|-----|
 | Course key | `im2` |
 | Title | Integrated Math 2 |
-| Standard prefix | `IM2` |
+| Graph course node | `math.im2` |
 | Sequence | 2 |
 | Unit label | `Module` |
 | Old app | `apps/integrated-math-2` |
-| Old Worker name | `integrated-math-2` |
+| Old Worker name | none (the cloud inventory of 2026-11-14 found no Worker) |
 | Problem families | `@math-platform/math-content/problem-families/im2` |
 | Old course key literals | `"integrated-math-2"` in `convex/seed/objective_policies.ts` |
 | Variant blocks | Policy seeds, Demo seeds, Problem family seed |
@@ -52,7 +53,12 @@ This track is one member of the template group "course import". The sample membe
   `problem_families` and `problemFamilyId`, where `apps/math` has `practice_variants` with
   `variantKey`.
 - **Collisions:** the IM2 seeds have 78 slug values and 103 standard codes. IM2 and IM3
-  share 33 slugs and 14 codes. IM2 and IM1 share 59 slugs and 35 codes.
+  share 33 slugs and 14 codes. IM2 and IM1 share 59 slugs and 35 codes. The IM2 seeds write
+  high school codes without the `HS` prefix (for example `G-CO.A.1`), so
+  `canonicalCcssCode` changes them.
+- **Graph files:** `skill-graph/nodes.json` has the domain node `math.im2`, the modules
+  `math.im2.module.<n>`, and the lessons `math.im2.lesson.<m>.<l>`. 41 of its 77 standard
+  nodes are placeholders with no text.
 - **Components:** `components/` has the same files as IM1, without `components/student/`.
   `lib/` is the same as the IM1 `lib/`.
 - **Tests:** `__tests__/` has `ci`, `config.test.ts`, `convex`, `curriculum`, `lib`,
@@ -82,25 +88,29 @@ This track is one member of the template group "course import". The sample membe
 - **FR-3 Seeds:** `git mv apps/integrated-math-2/convex/seed apps/math/convex/seed/im2`.
   Then change the seeds to the course data model:
   - each lesson has `courseKey: "im2"`;
-  - each standard has `courseKey: "im2"`, `sourceCode` (the old code), and
-    `code: namespacedCode("IM2", sourceCode)`;
-  - each lesson standard link points to the new rows;
+  - each standard has `code: canonicalCcssCode(<old code>)`; the seed inserts a standard
+    only when no row has that code, and it never changes a row that exists, because a
+    competency is course-neutral (base track D5);
+  - each lesson standard link points to the row of the canonical code;
   - the seed writes `practice_variants` from the problem families of the table, with
-    `courseKey: "im2"` and namespaced `objectiveIds`; `problemFamilyId` becomes `variantKey`;
+    `courseKey: "im2"` and canonical `objectiveIds`; `problemFamilyId` becomes `variantKey`;
   - the variant blocks of this member apply (Policy seeds, Demo seeds, Problem family seed).
   `seedAll` of `apps/math` runs the IM2 seed. Two runs give the same rows.
 - **FR-3a Variant block "Policy seeds":** the policy seed writes `courseKey: "im2"` in place
-  of the old literal, and each `standardId` code becomes namespaced (`IM2.G-CO.A.1`).
+  of the old literal, and each `standardId` code becomes a canonical code (`G-CO.A.1`
+  becomes `HSG-CO.A.1`).
 - **FR-3b Variant block "Demo seeds":** the old demo seeds become one demo class
   "Integrated Math 2 Demo" with `courseKey: "im2"` and `academicYear: "2026-2027"`, for the
   demo teacher of `apps/math`, with the demo students of `apps/math` enrolled. Its lesson
   assignments and its demo progress use these users. The seed adds no second organization
-  and no second user.
+  and no second user. No moved seed writes `auth_credentials`, because the base track
+  removed that table (Convex Auth v2).
 - **FR-3c Variant block "Problem family seed":** the variant writes of FR-3 replace
   `seed_problem_families.ts`. Delete that file. No seed writes `problem_families`.
-- **FR-4 Course graph:** `COURSE_GRAPHS` has the entry `im2`, from
-  `curriculum/im2/skill-graph/`. The knowledge-state page and the parent view of an `im2`
-  class use the IM2 graph. The regenerated `cross-course-edges.json` has no diff.
+- **FR-4 Course view:** `GRAPH_SOURCES` has the entry `im2`, from
+  `curriculum/im2/skill-graph/`, so `loadMathGraph()` holds the IM2 nodes. The knowledge-state
+  page and the parent view of an `im2` class use `courseView(graph, "im2")`. No code reads
+  the course from an ID string. The regenerated `cross-course-edges.json` has no diff.
 - **FR-5 Theme:** `app/themes/courses.css` has a `[data-course="im2"]` block. The block
   sets no variable, because IM2 uses the default palette. `apps/math/DESIGN.md` "Course
   Themes" has an `im2` row.
@@ -140,8 +150,13 @@ This track is one member of the template group "course import". The sample membe
   needs the user's approval.
 - Do not change the curriculum content. A moved file changes only in its paths.
 - Do not change `graph.db` or `apps/bus-math-v2`.
-- Do not change a cloud resource. The Worker `integrated-math-2` stays for
-  `prod-deploy-pipeline_20261114`.
+- Do not change a cloud resource. The cloud inventory of 2026-11-14 found no
+  `integrated-math-2` Worker. `math-app-retire-old-apps_20261114` deletes the empty Convex
+  project `integrated-math-2`.
+- Do not change the graph data in the graph files. They are graph data of mastery-advantage,
+  and this repository only reads them. A moved graph file changes only in its source path
+  strings (`apps/integrated-math-2/curriculum/...` becomes `apps/math/curriculum/im2/...`),
+  as each other moved file does, so that AC8 and the path guard pass.
 - Shared packages do not import from `apps/` or `convex/_generated/`.
 - Tests are behavioral (`measure/lessons-learned.md`, 2026-06-24).
 - Each phase passes the gates of `measure/workflow.md`, as `vinext-oxc-toolchain_20261114`
@@ -155,15 +170,17 @@ This track is one member of the template group "course import". The sample membe
 ## Acceptance Criteria
 
 - AC1: The registry has the `im2` entry, and the seed writes the `im2` row of `courses`.
-- AC2: After the seed, the count of `im2` lessons, standards, and policies equals the count
-  that the Contract phase recorded from the old seeds.
-- AC3: Each `im2` standard code is `IM2.<sourceCode>`. No two standards of the database have
-  the same code. Each `im2` policy names an `im2` standard.
+- AC2: After the seed, the count of `im2` lessons, the count of the standards that `im2`
+  lessons link to, and the count of `im2` policies equal the counts that the Contract phase
+  recorded from the old seeds.
+- AC3: Each standard that an `im2` lesson links to has a canonical CCSS code. A code that
+  IM2 shares with another course has one row. No two standards of the database have the
+  same code. Each `im2` policy names a seeded standard by its canonical code.
 - AC4: A student with an active enrollment in an `im2` class opens
   `/student/im2/lesson/module-2-lesson-1` and sees the IM2 lesson. The IM3 lesson with the
   same slug stays at `/student/im3/lesson/module-2-lesson-1`.
-- AC5: `loadCourseGraph("im2")` returns the IM2 graph, and `cross-course-edges.json` has no
-  diff after the regeneration.
+- AC5: `courseView(loadMathGraph(), "im2")` returns the nodes that `math.im2` reaches, and
+  `cross-course-edges.json` has no diff after the regeneration.
 - AC6: An `im2` course page has `data-course="im2"`, and the accessibility suite passes on
   it.
 - AC7: `apps/integrated-math-2` does not exist. `git log --follow` on
@@ -175,13 +192,17 @@ This track is one member of the template group "course import". The sample membe
 
 ## Open Dependencies
 
-- **Graph source: mastery-advantage, contract pending (2026-11-14).** FR-4 and the graph
-  tasks read the graph files that exist today. This track adds no graph authoring task.
-  When the contract arrives, the orchestrator amends these tasks.
+- **Graph source: mastery-advantage (contract of 2026-11-14).** mastery-advantage releases
+  one merged domain, `math.us-hs` (default name), for IM1, IM2, IM3, and AP Precalculus,
+  with course-neutral skill IDs and courses as container nodes. FR-4 reads the graph files
+  that exist today, in the course-view model of the base track. This track adds no graph
+  authoring task. The track Consume the mastery-advantage Math Graph replaces the graph
+  files with the released file.
 
 ## Out of Scope
 
 - New IM2 content, new generators, or new objective policies.
 - The 149 IM2 blueprints without `workedExampleSpec.target` (tech debt row).
-- The Worker `integrated-math-2` and its Convex deployment (`prod-deploy-pipeline_20261114`).
+- Each cloud resource (`math-app-retire-old-apps_20261114` and
+  `prod-deploy-pipeline_20261114`).
 - The rewrite of the project documents (`math-app-retire-old-apps_20261114`).

@@ -46,7 +46,7 @@ Verify task means each row of this table.
 _Story ref: spec.md#story-s1_
 
 - [ ] Task: S1 Contract — define the history model
-    - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Enrollment Writes, Rollover Dry Run, Knowledge State Fixture.
+    - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Enrollment Writes, Rollover Dry Run, Knowledge State Fixture, Removal List.
     - [ ] Run each gate on the start commit. Record the results under "Baseline".
     - [ ] Write the schema change: `class_enrollments` gets `endedAt: v.optional(v.number())` and the index `by_student_and_status` (`studentId`, `status`).
     - [ ] Write the contract of `apps/math/lib/courses/academic-year.ts` `currentAcademicYear(now: Date): string` (spec D1).
@@ -57,7 +57,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Run `git grep -n "insert(['\"]class_enrollments" -- apps/math/convex`. Record each site under "Enrollment Writes".
 - [ ] Task: S1 Test (Red) — specify the history
     - [ ] `__tests__/convex/student/history.test.ts`: the two-row fixture of the S1 criteria returns two rows in year order.
-    - [ ] Also: a teacher with no class of the student gets no row and an authorization error. A parent with an `active` link and an admin of the organization get the rows. A parent with a `pending` or a `revoked` link gets no row.
+    - [ ] Also: the teacher of the IM2 class of the student gets the two rows. A teacher with no class of the student gets no row and an authorization error. A parent with an `active` link and an admin of the organization get the rows. A parent with a `pending` or a `revoked` link gets no row.
     - [ ] `__tests__/convex/enrollment.test.ts`: an enrollment in another class of the same course and year, while an `active` one exists, fails with the message of the spec and writes nothing. An enrollment in the same class, with an existing `withdrawn` enrollment, returns `existing` and writes nothing.
     - [ ] Also: `withdrawEnrollment` by the teacher of the class sets `withdrawn` and `endedAt`. By an admin of the organization, it does the same. By a teacher of another class, it fails with an authorization error and writes nothing. On a `completed` enrollment, it writes nothing.
     - [ ] `__tests__/app/`: `/teacher/students/[studentId]/history` shows the "Withdraw" action on an `active` row for the teacher of that class, and not for a teacher of another class.
@@ -144,26 +144,29 @@ _Story ref: spec.md#story-s3_
 ## Phase S4: Knowledge state from earlier courses
 _Story ref: spec.md#story-s4_
 
-- [ ] Task: S4 Contract — define the transfer input
-    - [ ] Read `packages/knowledge-space-core/src/transfer-credit.ts`. Record the inputs and the outputs of `batchComputeTransferCredit` in the evidence file.
-    - [ ] Write the contract of the edge source (spec D7): `packages/math-content/src/knowledge-space/index.ts` exports `CROSS_COURSE_EDGES`, and `apps/math/lib/curriculum/skill-graph-loader.ts` exports `loadCrossCourseEdges(courseKey)`.
-    - [ ] Write the contract: `getKnowledgeState` for course C reads the evidence of the student in each other course (D6), and the edges of `loadCrossCourseEdges(C)`.
-    - [ ] Also: it calls `batchComputeTransferCredit` with `TRANSFER_POLICY_DEFAULT`, and it marks each transfer value with its source course key.
-    - [ ] Record a fixed fixture under "Knowledge State Fixture": one student with IM1 evidence, one IM1 skill with an `equivalent_to` edge to an IM2 skill, and one IM1 skill with no edge.
+- [ ] Task: S4 Contract — define the knowledge state across courses
+    - [ ] Write the contract (spec D6): the knowledge state of course C reads `srs_cards` and `srs_review_log` with the `by_student` indexes and no course filter, gives each record to the nodes of `courseView(graph, C)` through `objectiveNodeIds`, and calls no transfer-credit function.
+    - [ ] Write the contract of the teacher page (spec D7a): `earlierCoursesForCompetency(studentId, code, courseKey)` reads `competency_standards` by `by_code`, `lesson_standards` by `by_standard`, then each lesson version and its lesson. It returns the lesson course keys that are also course keys of another enrollment of the student, without `courseKey`, in registry `sequence` order.
+    - [ ] Record the target page: `app/teacher/[course]/students/[studentId]/competency/page.tsx`.
+    - [ ] Record a fixed fixture under "Knowledge State Fixture": one student with evidence on `HSA-SSE.B.3` from an IM2 class, an IM3 course view that holds that code, and evidence on one code that the IM3 view does not hold.
     - [ ] Record the knowledge state of a student with no earlier course on the start commit, as the regression value.
-- [ ] Task: S4 Test (Red) — specify the transfer
-    - [ ] `packages/math-content/src/__tests__/exports.test.ts`: `CROSS_COURSE_EDGES` has the edge count of `cross-course-edges.json`.
-    - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: each edge of `loadCrossCourseEdges('im2')` has a target node of the IM2 graph.
-    - [ ] `__tests__/convex/student/knowledge-state.test.ts`: with the fixture, the IM2 skill gets the transfer value of `computeTransferCredit`, with the source course `im1`.
-    - [ ] Also: the IM1 skill with no edge does not change the IM2 state.
+    - [ ] Run `git grep -l -E "transfer-credit|transfer-eligibility|transfer-skip|transfer-teacher-audit|computeTransferCredit|TransferCredit"`. Record each file under "Removal List" with its planned removal (spec D7).
+- [ ] Task: S4 Test (Red) — specify the knowledge state across courses
+    - [ ] `__tests__/convex/student/knowledge-state.test.ts`: with the fixture, the IM3 standard node of `HSA-SSE.B.3` has the IM2 evidence.
+    - [ ] Also: the evidence on the code outside the IM3 view does not change the IM3 state.
     - [ ] Also: the student with no earlier course gets the regression value.
-    - [ ] `__tests__/app/`: the teacher competency page shows the source course of each transfer value.
-    - [ ] Run the app suite. Confirm that the new cases fail.
-- [ ] Task: S4 Implement — use the earlier courses
-    - [ ] Add the `CROSS_COURSE_EDGES` export and `loadCrossCourseEdges` as the contract gives.
+    - [ ] `__tests__/convex/teacher/`: `earlierCoursesForCompetency` returns `["im2"]` for the fixture, and `[]` for a student with no earlier course.
+    - [ ] `__tests__/app/`: `app/teacher/[course]/students/[studentId]/competency/page.tsx` shows the earlier course of each competency with evidence.
+    - [ ] `scripts/__tests__/transfer-credit-removed.test.ts`: `git grep -n -E "computeTransferCredit|TransferCreditPrompt|TransferCreditAuditPanel|student-skip"` finds no match outside `measure/**`.
+    - [ ] Run the app suite and the scripts suite. Confirm that the new cases fail.
+- [ ] Task: S4 Implement — use the evidence of earlier courses
     - [ ] Change `convex/student/knowledge-state.ts` as the contract gives. Read the evidence with indexes and `Promise.all`.
-    - [ ] Show the source course in the student, teacher, and parent views of the knowledge state.
+    - [ ] Add `earlierCoursesForCompetency` and show the earlier courses on `app/teacher/[course]/students/[studentId]/competency/page.tsx`.
     - [ ] Commit: `feat(math): use the evidence of earlier courses in the knowledge state`.
+- [ ] Task: S4 Implement — remove the transfer-credit code
+    - [ ] Delete each app file of "Removal List" and its tests. Remove the entries from `lib/a11y/harness.tsx`.
+    - [ ] Delete `transfer-credit.ts`, `transfer-eligibility.ts`, `transfer-skip.ts`, and `transfer-teacher-audit.ts` from `packages/knowledge-space-core/src/`, with their tests and their exports in `index.ts`. Keep `cross-course-equivalence.ts`.
+    - [ ] Commit: `refactor(math): remove the transfer-credit code that the merged graph replaces`.
 - [ ] Task: S4 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
     - [ ] Commit the evidence file: `measure(math-app-student-history): record the S4 results`.

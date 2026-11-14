@@ -45,12 +45,13 @@ Verify task means each row of this table.
     - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Inventory, Seed Counts, Field Map, Component Decisions, Test Decisions, Theme Colors, Keep List.
     - [ ] Run each gate on the start commit. Record each result and the test count of each suite under "Baseline".
     - [ ] Run `git grep -l "pre-calculus" -- . ':!apps/pre-calculus'`. Record each file and its planned change under "Inventory".
-    - [ ] Count the lessons, the standards, and the policies that the old seeds write. Record the counts under "Seed Counts".
+    - [ ] Count the lessons and the policies that the old seeds write. Count the distinct canonical codes (`canonicalCcssCode` of each old code) that the old lesson standard links name. Record the three counts under "Seed Counts". AC2 compares with these counts.
     - [ ] Record the role of each export of the old `convex/seed.ts` (`seedUnits`, `seedAll`) under "Field Map", with its replacement (spec FR-3).
 - [ ] Task: Define the course entry and the field map
     - [ ] Write the `precalc` registry entry with the values of the spec table "Template Values".
-    - [ ] Write the field map under "Field Map": old seed field, new field, and rule. It covers `courseKey`, `code` to `sourceCode` and the namespaced `code`, the `by_slug` reads to `by_course_and_slug`, and `objectiveIds` to namespaced codes.
-    - [ ] Variant block "Policy seeds": add the policy fields to "Field Map": the `courseKey` literal to `precalc`, and `standardId` to the namespaced code.
+    - [ ] Write the field map under "Field Map": old seed field, new field, and rule. It covers `courseKey`, `code` to `canonicalCcssCode(code)`, the reuse of a standard row that exists, the `by_slug` reads to `by_course_and_slug`, and `objectiveIds` to canonical codes.
+    - [ ] Under "Field Map", list each canonical code that already has a row in `apps/math` (the old seeds share 24 codes with IM3).
+    - [ ] Variant block "Policy seeds": add the policy fields to "Field Map": the `courseKey` literal to `precalc`, and `standardId` to the canonical code.
     - [ ] Variant block "Demo seeds": add the demo fields to "Field Map": the old organization, teacher, and students map to the demo organization, teacher, and students of `apps/math`.
     - [ ] Variant block "Unit layout": add the rule for `unitNumber` (the first number of `seed_lesson_<unit>_<n>.ts`) to "Field Map".
     - [ ] Variant block "Own theme": record the old color values (`DESIGN.md` and `app/globals.css`) under "Theme Colors", with their variable names.
@@ -67,12 +68,13 @@ Verify task means each row of this table.
 
 - [ ] Task: Write the course tests (Red)
     - [ ] `apps/math/__tests__/lib/courses/registry.test.ts`: the `precalc` entry has the values of "Template Values".
-    - [ ] `apps/math/__tests__/courses/precalc/seed.test.ts`: the seed writes the counts of "Seed Counts". Each `precalc` standard has `code` equal to `namespacedCode("PC", sourceCode)`. The codes of all seeded courses are unique. Two seed runs give the same rows.
-    - [ ] Also: each `precalc` variant has `courseKey: "precalc"` and namespaced `objectiveIds` that name seeded standards.
+    - [ ] `apps/math/__tests__/courses/precalc/seed.test.ts`: the seed writes the counts of "Seed Counts". Each standard that a `precalc` lesson links to has `code` equal to `canonicalCcssCode` of its old code. The codes of all seeded courses are unique. Two seed runs give the same rows.
+    - [ ] Also: a standard row that exists before the AP Precalculus seed (for example `HSA-APR.A.1` of IM3) keeps each field value after the seed.
+    - [ ] Also: each `precalc` variant has `courseKey: "precalc"` and canonical `objectiveIds` that name seeded standards.
     - [ ] Variant block "Policy seeds": each `precalc` policy has `courseKey: "precalc"` and names a `precalc` standard.
     - [ ] Variant block "Demo seeds": the seed writes the class "AP Precalculus Demo" with `courseKey: "precalc"` and `academicYear: "2026-2027"`. The database has one demo organization.
     - [ ] Variant block "Unit layout": the lesson of `seed_lesson_1_10.ts` has `unitNumber: 1`. The practice-test page of `precalc` shows "Unit 1".
-    - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: `loadCourseGraph("precalc")` returns the node count of `curriculum/precalc/skill-graph/nodes.json`.
+    - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: `courseView(loadMathGraph(), "precalc")` returns each node that `math.precalc` reaches in `curriculum/precalc/skill-graph/`, and no IM3 lesson node.
     - [ ] `apps/math/__tests__/app/`: a `precalc` course layout renders `data-course="precalc"`.
     - [ ] Variant block "Own theme": `apps/math/__tests__/a11y/` opens one `precalc` course page and expects no contrast violation.
     - [ ] `scripts/__tests__/course-paths.test.ts`: `courseCurriculumPath("precalc")` is `apps/math/curriculum/precalc`.
@@ -92,6 +94,7 @@ Verify task means each row of this table.
     - [ ] Run `git mv apps/pre-calculus/curriculum apps/math/curriculum/precalc`.
     - [ ] Change the `precalc` value in `scripts/lib/course-paths.ts`.
     - [ ] Change each path of "Inventory" in `scripts/`, `packages/`, and the tests to `apps/math/curriculum/precalc`.
+    - [ ] In each moved file under `apps/math/curriculum/precalc/` (the graph files included), change each path string `apps/pre-calculus/curriculum/` to `apps/math/curriculum/precalc/`. Then change each other string `apps/pre-calculus` to `apps/math` (for example a `rootDir` value). Change no other value.
     - [ ] Commit: `refactor(math): move the AP Precalculus curriculum to apps/math/curriculum/precalc`.
 - [ ] Task: Move and change the seeds (FR-1, FR-3)
     - [ ] Run `git mv apps/pre-calculus/convex/seed apps/math/convex/seed/precalc`.
@@ -103,13 +106,13 @@ Verify task means each row of this table.
     - [ ] Variant block "Unit layout": set `unitNumber` from the unit of each lesson seed (FR-3d).
     - [ ] Call the AP Precalculus seed from `seedAll` of `apps/math/convex/seed.ts`.
     - [ ] Commit: `feat(math): seed AP Precalculus as course data`.
-- [ ] Task: Add the course graph and the theme (FR-4, FR-5)
-    - [ ] Add the `precalc` entry to `COURSE_GRAPHS`.
+- [ ] Task: Add the course view and the theme (FR-4, FR-5)
+    - [ ] Add the `precalc` entry to `GRAPH_SOURCES`.
     - [ ] Variant block "Own theme": add the `[data-course="precalc"]` block to `app/themes/courses.css` with the values of "Theme Colors".
     - [ ] Run the accessibility gate. If a color fails, change it until it passes. Record the old and the new value under "Theme Colors".
     - [ ] Add the `precalc` row to "Course Themes" in `apps/math/DESIGN.md`.
     - [ ] Run `npx tsx scripts/generate-cross-course-edges.ts`. Confirm that `git diff --exit-code packages/math-content/src/knowledge-space/cross-course-edges.json` exits 0.
-    - [ ] Commit: `feat(math): add the AP Precalculus course graph and theme`.
+    - [ ] Commit: `feat(math): add the AP Precalculus course view and theme`.
 - [ ] Task: Apply the component and test decisions (FR-6, FR-7)
     - [ ] Move each component of "Component Decisions" with `git mv` to its target path.
     - [ ] Move each test of "Test Decisions" with `git mv` to its target path, and change it to the new paths and fields.

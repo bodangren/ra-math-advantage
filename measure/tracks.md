@@ -70,7 +70,7 @@ Dependencies:
    *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: vinext-oxc-toolchain_20261114. User decisions 2026-11-14.*
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
 
-- [ ] **Track: Unified Math App: Base App and Course Data**
+- [ ] **Track: Unified Math App: Base App, Convex Auth v2, and Course Data**
    *Link: [./tracks/math-app-base_20261114/](./tracks/math-app-base_20261114/)*
    *Set: Unified Math App (`unified-math-app_20261114`), order 1*
 

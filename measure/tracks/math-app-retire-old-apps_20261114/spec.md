@@ -10,7 +10,8 @@ Depends on: `math-app-course-im1_20261114`, `math-app-course-im2_20261114`,
 After the three course imports, the repository has one math app (`apps/math`) and BM2.
 This track removes each remaining reference to the four old math apps, and it updates the
 project documents so that they describe one math app with courses as data. It makes the
-path guard final. It changes no app behavior.
+path guard final. It deletes the three empty Convex projects of the old apps. It changes no
+app behavior.
 
 ## Track Set
 
@@ -36,6 +37,25 @@ This track is member 3 of the track set [Unified Math App](../../sets/unified-ma
 - `measure/tracks.md` has open entries and program sections that name the old apps (for
   example "## AP Precalculus", "## Integrated Math 2", "## Integrated Math 1", and
   "## Multi-App Curriculum Program").
+- **Cloud inventory (read-only, 2026-11-14):**
+  - Cloudflare account `0f8cef508e69d2446315a1c80042da20` has the Workers `bus-math-v2` and
+    `integrated-math-3` only. No Worker of IM1, IM2, or AP Precalculus exists.
+  - Convex team "bodangren" (ID `435396`) has these projects:
+    - `integrated-math-3` (`2960816`): the dev deployment `accurate-labrador-817`. Keep it.
+    - `bus-math-v2-experimental` (`1720191`): the prod deployment `quiet-swan-141`. Keep it.
+    - `integrated-math-1` (`2015980`), `integrated-math-2` (`2015859`), and `pre-calculus`
+      (`2897579`): no deployments. Delete them (FR-8).
+    - `danielson` (`2841695`): keep it for later.
+    - `codex-convex-probe`: never touch it.
+- **Delete method:** the Convex CLI has no project delete command. The Convex Management
+  API (OpenAPI at `https://api.convex.dev/v1/openapi.json`, read 2026-11-14) has
+  `GET /v1/teams/{team_id}/projects`, `GET /v1/projects/{project_id}/list_deployments`, and
+  `POST /v1/projects/{project_id}/delete`. The delete also deletes each deployment of the
+  project. These calls need a team access token (Bearer). A deploy key cannot list or
+  delete projects.
+- **Authorization:** Daniel authorized the orchestrator to run production deploys and to
+  delete the old cloud resources of this repository (2026-11-14). This replaces the global
+  rule "deploys and deletions are human gates" for this project only.
 
 ## Functional Requirements
 
@@ -58,20 +78,47 @@ This track is member 3 of the track set [Unified Math App](../../sets/unified-ma
 - **FR-5 Product and architecture documents:** `measure/product.md`,
   `measure/architecture.md`, `measure/tech-stack.md`, `measure/knowledge-space.md`, and
   `measure/practice-primitives-roadmap.md` describe one math app with four courses, one
-  Convex backend, one `AUTH_JWT_SECRET`, and one Worker for the math app. The section
-  "Global Competency Standard Codes" of `product.md` gives the implemented form
-  `<prefix>.<source code>` and the prefixes `IM1`, `IM2`, `IM3`, and `PC`. The roadmap says
-  that each primitive goes into `apps/math` once. Do not change the Deployment section of
-  `tech-stack.md`; `prod-deploy-pipeline_20261114` owns it.
+  Convex backend with Convex Auth v2, and one Worker for the math app. They describe one
+  skill graph with each course as a view (`math-app-base_20261114` D6a).
+  - The section "Global Competency Standard Codes" of `product.md` gives the rule of
+    `math-app-base_20261114` D5: a competency is a course-neutral CCSS code in canonical
+    form. After the track Consume the mastery-advantage Math Graph, the CCSS code comes from
+    the graph. The `IM1.A.REI.B.3` form and the rule of 2026-05-04 go away.
+  - The section also says: teacher reporting shows the CCSS code; where the app shows CCSS
+    text, it shows the CCSS copyright notice; the app shows no College Board text, and an AP
+    node shows its AP code only (PM decisions, 2026-11-14).
+  - The roadmap says that each primitive goes into `apps/math` once.
+  - Do not change the Deployment section of `tech-stack.md`; `prod-deploy-pipeline_20261114`
+    owns it.
 - **FR-6 README and integration notes:** `README.md` and `INTEGRATION.md` name `apps/math`
   and its courses, and BM2.
 - **FR-7 Open registry entries:** list each open entry (`[ ]`) of `measure/tracks.md` whose
   text names an old app. Record the list in the evidence file, and report it at closeout.
   Do not change these entries.
+- **FR-8 Delete the empty Convex projects:** the orchestrator deletes the Convex projects
+  `integrated-math-1` (`2015980`), `integrated-math-2` (`2015859`), and `pre-calculus`
+  (`2897579`) of team `435396`.
+  - The orchestrator gets a team access token from Daniel through a secret card. The token
+    lives only in the environment of the command that uses it.
+  - Before each delete, the orchestrator lists the projects of the team and the deployments
+    of the project. It deletes a project only when its ID and its name match the list above
+    and the project has no deployment. Otherwise it stops and reports.
+  - The delete call is `POST https://api.convex.dev/v1/projects/{project_id}/delete`. If
+    the API refuses the token, Daniel deletes the projects in the Convex dashboard, and the
+    orchestrator checks the result with the list call.
+  - The orchestrator never changes `integrated-math-3`, `bus-math-v2-experimental`,
+    `danielson`, or `codex-convex-probe`.
+  - The orchestrator confirms that no Worker named `integrated-math-1`,
+    `integrated-math-2`, or `pre-calculus` exists: `npx wrangler deployments list --name
+    <name>` reports that the Worker does not exist. If one exists, stop and report, because
+    `prod-deploy-pipeline_20261114` owns the Workers.
+  - The evidence file records each list result and each delete result, with no token.
 
 ## Non-Functional Requirements
 
 - The track changes no app code, no test behavior other than the guard, and no dependency.
+- The track changes no cloud resource other than the three projects of FR-8.
+- No token goes into a file, a commit, a log, or the evidence file.
 - Do not change `measure/archive/**`, the audit reports under `measure/`, or other history
   documents. They keep the old names as history.
 - Do not change `graph.db` or `apps/bus-math-v2`.
@@ -93,10 +140,14 @@ This track is member 3 of the track set [Unified Math App](../../sets/unified-ma
 - AC4: `measure/index.md` and the documents of FR-5 describe one math app with four courses.
 - AC5: The evidence file lists the open registry entries that name an old app.
 - AC6: Each gate passes.
+- AC7: The project list of team `435396` has no `integrated-math-1`, `integrated-math-2`,
+  or `pre-calculus` project. The projects `integrated-math-3`, `bus-math-v2-experimental`,
+  `danielson`, and `codex-convex-probe` are on the list with no change.
 
 ## Out of Scope
 
-- Cloud resources and the Deployment section of `tech-stack.md`
-  (`prod-deploy-pipeline_20261114`).
+- The Workers, the Convex projects `integrated-math-3` and `bus-math-v2-experimental`, and
+  the Deployment section of `tech-stack.md` (`prod-deploy-pipeline_20261114`).
+- The Convex project `danielson` (a later track).
 - Changes to closed tracks, archived tracks, and audit reports.
 - Changes to the open registry entries of FR-7.

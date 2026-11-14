@@ -53,6 +53,32 @@ Today `apps/integrated-math-1` is a standalone app with 491 curriculum files, a 
 
 After Round 2, the author applied finding F1 of `math-app-course-im2_20261114` (a Blocker in the same template) to this track: FR-6 and FR-7 name the target folders, a Phase 1 task records each component and test decision with its target path, Phase 2 adds a render test for each moved component, and Phase 3 only applies the decisions. The change keeps the three members of the template group the same. It adds no new requirement.
 
+## Round 3
+
+Date: 2026-11-14
+Reviewer: measure-spec-review (kimi-code-plan-cn/kimi-for-coding#high)
+Cause: the revision of 2026-11-14 (the merged graph contract, the CCSS rule, and the cloud inventory). The spec and the plan changed after Round 2.
+
+### What this track proposes
+
+This track imports Integrated Math 1 as course data into the unified math app. It moves the IM1 curriculum and the IM1 Convex seeds to `apps/math` with `git mv`, so the file history stays. It changes the seeds to the course data model: course keys, canonical standard codes, practice variants from the existing problem families, and one demo class. It adds the `im1` registry entry, the course graph view, and the theme block. Then it deletes the rest of `apps/integrated-math-1` and removes the app from CI, from the root scripts, from `README.md`, from the CI wiring test of IM2, and from three audit wave tests.
+
+### How the current system works, per this spec
+
+Today `apps/integrated-math-1` is a standalone app with 491 curriculum files (verified: 491), a 34-table Convex schema, and 32 seed files (verified). The seeds write 93 unique lesson slugs and 77 standards with plain codes such as `6.EE.A.1`. The graph files hold the `math.im1` domain node, 14 module nodes, 93 lesson nodes, and 77 placeholder standard nodes (verified). The base track of the set creates `apps/math` with the course registry, the course-paths map, the course graphs, and the demo environment. Scripts, package files, and package tests read the IM1 curriculum through the old app path, and CI, the root `package.json`, `README.md`, the IM2 CI wiring test (line 18, verified), and three audit wave tests (lines 106, 688, 66, verified) name the app.
+
+### Findings
+
+- F5 [Nit] spec.md "Current System", Collisions: The slug collision counts do not match this checkout. The spec says IM1 and IM3 share 43 slugs and IM1 and IM2 share 59 slugs. My count of the unique lesson slugs gives 49 (IM3) and 64 (IM2). The code claims match: 35 shared codes with IM2 and 0 with IM3. Rationale: the seed files are unchanged since 2026-06-28, so the spec numbers are miscounted, not stale. A wrong inventory count can make the Phase 1 "Seed Counts" record look inconsistent with the spec.
+
+### Author Response
+
+- F5: DECLINE
+
+### Author Note
+
+After Round 3, the author applied findings F5 and F6 of `math-app-course-im2_20261114` and F5 of `math-app-course-precalc_20261114` (the same template) to this track. The NFR on the graph files now allows a change of the source path strings in a moved graph file. The task "Move the curriculum (FR-2)" changes these strings. The Phase 1 count now uses the distinct canonical codes, and AC2 compares with it. The change keeps the three members of the template group the same, so no re-review ran.
+
 ## Accepted Risks
 
 None.
