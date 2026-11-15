@@ -53,8 +53,8 @@ in the old app folders.
 - **Loader:** `loadMathGraph()` in `apps/math/lib/curriculum/skill-graph-loader.ts` returns
   the union of the files of `GRAPH_SOURCES`. `courseView(graph, courseKey)` uses the
   registry field `graphCourseNodeId` (for example `math.im3`, an old course
-  container; the mapping sends it to the domain `math.us-hs`, so G5 changes the field to a
-  course node). `objectiveNodeIds(graph,
+  container; the mapping sends it to the course node of the release, so G5 changes the
+  field to that course node). `objectiveNodeIds(graph,
   objectiveId)` finds the `standard` nodes whose `canonicalCcssCode(metadata.code)` equals
   the objective ID (`math-app-base_20261114` D6a).
 - **Other readers:** some files read the graph files directly, not through the loader. On
@@ -149,9 +149,15 @@ mastery-advantage). The repository holds no copy of them.
     (a `math.precalc.*` seed ID stays `math.precalc.*`). Each entry has a status: `mapped`,
     `merged`, or `removed`. A `mapped` or `merged` entry has `newId`. A `removed` entry has
     no `newId`.
-  - The 9 removed entries are the 4 IM3 generator nodes and the 5 IM3 renderer nodes. The 4
-    old course containers `math.im1`, `math.im2`, `math.im3`, and `math.precalc` each have
-    their own entry (G5, G10).
+  - Each generator and renderer seed ID that leaves the graph has an explicit `removed`
+    entry. This includes the IM3 draft-only IDs. The count is not fixed here: the S1 Contract
+    records the count of the release (Graph defaults OI-18, relayed by the PM, 2026-11-15:
+    56 entries on base `6716a51`).
+  - Each old course container (`math.im1`, `math.im2`, `math.im3`, and `math.precalc`) has
+    its own `mapped` entry to its course node: `math.us-hs.course.im1`, `.im2`, `.im3`, and
+    `.ap-precalc` (Graph default OI-17). The example of `id-map-format.md` that maps
+    `math.im1` to the domain is stale, and the Graph session changes it. If the release maps
+    a container to another node, stop and report to the PM.
   - The ingestion check: each seed node ID of the 47 files has an entry, each key names a
     seed node ID, each status is one of the three, each `newId` names a node of the release,
     and each `removed` entry names a generator node or a renderer node.
@@ -161,11 +167,12 @@ mastery-advantage). The repository holds no copy of them.
   file only. `courseView` and `objectiveNodeIds` keep their contracts, with the course node
   below.
   - Each registry `graphCourseNodeId` changes to the course node of the release. The old
-    value is a container: the mapping sends `math.im1` to the domain `math.us-hs`, not to a
-    course node. The value comes from the mapping of the seed course node of each course
-    (for example `math.im1.course.im1` to `math.us-hs.course.im1`). The S2 Contract checks
-    it against row 2 of `id-scheme.md`: `math.us-hs.course.<course>`, with `<course>` one of
-    `im1`, `im2`, `im3`, and `ap-precalc`. The app course key `precalc` maps to `ap-precalc`.
+    value is a container, and the mapping sends it to the course node (for example `math.im1`
+    to `math.us-hs.course.im1`). The value comes from the mapping of the container or of the
+    seed course node of each course (for example `math.im1.course.im1`). The S2 Contract
+    checks it against row 2 of `id-scheme.md`: `math.us-hs.course.<course>`, with `<course>`
+    one of `im1`, `im2`, `im3`, and `ap-precalc`. The app course key `precalc` maps to
+    `ap-precalc`. No `graphCourseNodeId` is the domain.
   - `courseView(graph, courseKey)` returns the nodes that the course container reaches:
     course to module to lesson (`contains` edges), each skill that a lesson homes, and each
     skill that a lesson references with an `appears_in_context` edge. A skill has one home
@@ -182,12 +189,15 @@ mastery-advantage). The repository holds no copy of them.
   - If two released codes give one canonical code, or a competency code has no released
     standard node, stop and report to the PM.
   - No stored code changes.
-- **G7 Runtime bindings:** the release has no generator node and no renderer node. Each of
-  the 9 seed nodes has a `removed` entry (G4). The 9 nodes and their edges become app code in
-  `apps/math/lib/curriculum/runtime-bindings.ts`. It maps each release node that needs a
-  generator or a renderer to its key. Each reader of `generated_by` or `rendered_by` edges in
-  `apps/math` reads the bindings. The node kinds stay in `packages/knowledge-space-core`,
-  because v3.2 §3.1 defines them.
+- **G7 Runtime bindings:** the release has no generator node and no renderer node. Each
+  generator and renderer seed ID that leaves the graph has a `removed` entry (G4). The
+  bindings cover the nodes that the runtime uses (the 4 IM3 generator nodes and the 5 IM3
+  renderer nodes, with their edges). They become app code in
+  `apps/math/lib/curriculum/runtime-bindings.ts`. The file maps each release node that needs
+  a generator or a renderer to its key. A draft-only ID gets no binding, unless code names
+  it. Each reader of `generated_by` or `rendered_by` edges in `apps/math` reads the
+  bindings. The node kinds stay in `packages/knowledge-space-core`, because v3.2 §3.1 defines
+  them.
   - Generators: each release node with a `generator` entry in `exceptions[]` maps to its
     generator key. The key comes from `metadata.legacyGeneratorIds` and from the old
     `generated_by` edges of the seed files.
@@ -202,11 +212,26 @@ mastery-advantage). The repository holds no copy of them.
     `sequence` stays. The evidence file lists each dropped entry. A second node that the
     release keeps (the duplicate slug of the two completing-the-square skills) has its own
     `id-map.json` entry, so this rule and the rule of G10 need no change for it.
+  - An authoring entry (in `blueprints.json` or a gap queue) whose node has a `removed`
+    entry drops. The evidence file lists each dropped entry.
   - The projection files are regenerated outputs (v3.2 §9): the projection builder runs
     again on the released graph and the re-keyed blueprints.
 - **G9 Node IDs in code:** each node ID literal of the old scheme in `apps/math` and in
   `packages/` (code and tests, not data) changes to its mapping target. The S2 Contract
-  lists each literal with `git grep -n -E "math\.(im1|im2|im3|precalc)\."`.
+  lists each literal with two commands: `git grep -n -E "math\.(im1|im2|im3|precalc)\."` and
+  the bare form `git grep -n -E "['\"]math\.(im1|im2|im3|precalc)['\"]"`.
+  - A literal with a `removed` entry changes to its runtime binding key (G7), or the test
+    fixture drops it. The S2 Contract lists each such literal. For example,
+    `packages/knowledge-space-core/src/fixtures.ts` and its tests name `math.im3.generator.*`
+    and `math.im3.renderer.*` IDs.
+  - A bare literal is one of two kinds. A value of a `domain` field changes to the domain
+    `math.us-hs` (the domain field rule of `id-scheme.md`), not through `id-map.json`. A
+    reference to a course container changes through `id-map.json` to the course node.
+    Examples of bare literals: `apps/integrated-math-3/lib/placement/im3-probe-adapter.ts`
+    (line 40), `packages/knowledge-space-core/src/fixtures.ts`, and the fixtures of
+    `packages/knowledge-space-practice`.
+  - `apps/integrated-math-3/lib/transfer-credit/` is out of scope here. The track
+    `math-app-student-history` removes it.
 - **G10 Stored node IDs:** the one-off internal mutation `migrateGraphNodeIds` in
   `apps/math/convex/graph/migrate.ts` re-keys `placement_results.nodeId` with the mapping.
   When two rows of one student map to one node, the newest row stays. A row with a `removed`
@@ -284,7 +309,7 @@ mastery-advantage). The repository holds no copy of them.
 - Given the projection builder on the released graph, When it runs, Then the projection has no equivalence component with more than one node (G13).
 - Given `git grep -n "equivalence-candidates" -- apps/math packages ':!*.json'`, When S2 is complete, Then it finds no reader.
 - Given a student with evidence on a skill that IM1 and IM2 share, When the knowledge state of IM2 is computed, Then the shared skill node has that evidence.
-- Given `git grep -n -E "math\.(im1|im2|im3|precalc)\." -- apps/math packages ':!*.json'`, When S2 is complete, Then it finds no match outside the list that the evidence file gives with a reason.
+- Given `git grep -n -E "math\.(im1|im2|im3|precalc)\."` and the bare-form grep of G9 on `apps/math` and `packages` (without `*.json`), When S2 is complete, Then each finds no match outside the list that the evidence file gives with a reason.
 - Given the dev deployment after `migrateGraphNodeIds`, When `placement_results` is read, Then each `nodeId` is a node of the release.
 - Given the projection builder, When it runs on the released graph, Then each projection row names a node of the release.
 

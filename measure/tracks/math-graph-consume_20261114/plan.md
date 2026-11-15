@@ -60,7 +60,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Release, Mapping Format, Code Form, Validation, Readers, Literals, Kept Files, Dropped Entries, Scripts, Removal.
     - [ ] Run each gate on the start commit. Record each result and each test count under "Baseline".
     - [ ] Under "Release", record the hand-off folder, the label, each of the six files, its size, its SHA-256 value from `MANIFEST.txt`, and the source commit, the date, and the sender of `MANIFEST.txt`. Record any extra file (spec G1).
-    - [ ] Record the format of `id-map.json` under "Mapping Format" (spec G4): the statuses, the seed prefix of the keys, the 9 removed entries, and the 4 container keys. If it differs from `id-map-format.md`, stop and report to the PM.
+    - [ ] Record the format of `id-map.json` under "Mapping Format" (spec G4): the statuses, the seed prefix of the keys, the count of `removed` entries (each names a generator or a renderer seed node, including the draft-only IDs), and the 4 container keys with their course nodes (`math.us-hs.course.im1`, `.im2`, `.im3`, `.ap-precalc`). If the release differs from the spec G4 (the example of `id-map-format.md` that maps `math.im1` to the domain is stale), stop and report to the PM.
     - [ ] Record the form of `metadata.code` of the released CCSS standard nodes under "Code Form" (spec G6), with the form of `metadata.ccssPlus` and of the standard node IDs.
     - [ ] Record under "Validation" the alignment-required kinds of the M2 check, the form of `metadata.legacyGeneratorIds`, and how the release links an exception node to an AP-only standard (spec G3, G11).
     - [ ] Write the contract of `scripts/graph/ingest-release.ts <folder>` (spec G1 to G4): its checks, its output files, and its exit codes.
@@ -99,8 +99,8 @@ _Story ref: spec.md#story-s2_
 
 - [ ] Task: S2 Contract — list the readers and the old IDs
     - [ ] Run `git grep -l -E "skill-graph/|standards_inventory|cross-course-edges|GRAPH_SOURCES" -- apps/math packages scripts ':!*.json' ':!*.md'`. Record each reader under "Readers" with its new form (spec G5).
-    - [ ] Run `git grep -n -E "math\.(im1|im2|im3|precalc)\." -- apps/math packages ':!*.json'`. Record each literal under "Literals" with its mapping target (spec G9). A literal that stays (for example a mapping test) gets a reason.
-    - [ ] Record the course node ID of each course for `graphCourseNodeId` (spec G5). Take it from the mapping of the seed course node (for example `math.im1.course.im1`), and check it against `math.us-hs.course.<course>` with `<course>` one of `im1`, `im2`, `im3`, `ap-precalc` (the app key `precalc` maps to `ap-precalc`). The mapping of the four old containers gives the domain `math.us-hs`, so do not use it for this field.
+    - [ ] Run `git grep -n -E "math\.(im1|im2|im3|precalc)\." -- apps/math packages ':!*.json'` and the bare form `git grep -n -E "['\"]math\.(im1|im2|im3|precalc)['\"]" -- apps/math packages ':!*.json'`. Record each literal under "Literals" with its target (spec G9): a mapping target, a runtime binding key (a literal with a `removed` entry, or a fixture that drops it), or the domain `math.us-hs` (a `domain` field value). A literal that stays (for example a mapping test) gets a reason. `apps/integrated-math-3/lib/transfer-credit/` is out of scope.
+    - [ ] Record the course node ID of each course for `graphCourseNodeId` (spec G5). Take it from the mapping of the container (`math.im1`) or of the seed course node (`math.im1.course.im1`), and check it against `math.us-hs.course.<course>` with `<course>` one of `im1`, `im2`, `im3`, `ap-precalc` (the app key `precalc` maps to `ap-precalc`). No `graphCourseNodeId` is the domain.
     - [ ] Record the exact edge types and directions of the release for `courseView`: course to module, module to lesson, lesson to its home skill, and lesson to a referenced skill (`appears_in_context`). Record the exact edge types for worked examples and concepts of a lesson.
     - [ ] Record each reader of `generated_by` and `rendered_by` edges in `apps/math`, and the contract of `apps/math/lib/curriculum/runtime-bindings.ts` (spec G7): the generator keys from `metadata.legacyGeneratorIds` and the old `generated_by` edges, and the source of the renderer keys (the old `rendered_by` edges with the `id-map.json` mapping, or the legacy renderer IDs if the release carries them).
     - [ ] Run `git grep -n "equivalent_to" -- apps/math packages ':!*.json' ':!*.md'`. Record each reader of `equivalent_to` edges with its path and line (spec G13). Record that `teacher-evidence.ts` and `srs.ts` stay unchanged. The release has no `equivalent_to` edge.
@@ -112,8 +112,8 @@ _Story ref: spec.md#story-s2_
     - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: `loadMathGraph()` returns the nodes of the released file. The module exports no `GRAPH_SOURCES`.
     - [ ] Also: `courseView` of each registry course returns the nodes that its course node reaches: modules, lessons, the skills that a lesson homes, and the skills that a lesson references with `appears_in_context`. No `graphCourseNodeId` is the domain `math.us-hs`. `objectiveNodeIds` finds the released standard nodes of a canonical code.
     - [ ] `apps/math/__tests__/lib/courses/ccss.test.ts`: the released code form gives the canonical code (if the S2 Contract records a new form).
-    - [ ] `apps/math/__tests__/lib/curriculum/runtime-bindings.test.ts`: each of the 9 removed generator and renderer IDs has a binding key, and each binding target names a node of the release.
-    - [ ] `scripts/__tests__/graph/rekey-node-ids.test.ts`: with a fixture mapping, two entries that map to one node keep the entry of the lowest course `sequence`, and the script lists the dropped entry.
+    - [ ] `apps/math/__tests__/lib/curriculum/runtime-bindings.test.ts`: each of the 4 IM3 generator IDs and the 5 IM3 renderer IDs that the runtime uses has a binding key, and each binding target names a node of the release. A draft-only ID has no binding.
+    - [ ] `scripts/__tests__/graph/rekey-node-ids.test.ts`: with a fixture mapping, two entries that map to one node keep the entry of the lowest course `sequence`, and the script lists the dropped entry. An entry whose node has a `removed` entry drops, and the script lists it.
     - [ ] `apps/math/__tests__/convex/graph/migrate.test.ts`: two placement rows of one student that map to one node leave the newest row. A row with a `removed` entry is deleted. The calibration rows go away.
     - [ ] `apps/math/__tests__/convex/student/knowledge-state.test.ts`: evidence on a skill that IM1 and IM2 share appears in the IM2 state.
     - [ ] Run the app suite and the scripts suite. Confirm that the new cases fail.
@@ -123,7 +123,7 @@ _Story ref: spec.md#story-s2_
     - [ ] Change each registry `graphCourseNodeId` to its course node ID of the S2 Contract.
     - [ ] Change each reader of "Readers" to its new form. Add the code form to `canonicalCcssCode` if the S2 Contract records one.
     - [ ] Write `apps/math/lib/curriculum/runtime-bindings.ts`. Change each reader of `generated_by` and `rendered_by` edges to read it.
-    - [ ] Change each literal of "Literals" to its mapping target.
+    - [ ] Change each literal of "Literals" to its target of the S2 Contract: its mapping target, its runtime binding key (or drop the fixture), or the domain `math.us-hs` for a `domain` field value.
     - [ ] Commit: `feat(math): read the released math graph`.
 - [ ] Task: S2 Implement — the kept files and the stored IDs
     - [ ] Write `scripts/graph/rekey-node-ids.ts`. Run it on the kept files of "Kept Files". Record each dropped entry under "Dropped Entries".
@@ -132,7 +132,7 @@ _Story ref: spec.md#story-s2_
     - [ ] Commit: `feat(math): re-key the authoring files and the stored node IDs`.
 - [ ] Task: S2 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
-    - [ ] Run the two `git grep` commands of the S2 Contract again. Confirm that only the matches with a reason remain.
+    - [ ] Run the two literal `git grep` commands of the S2 Contract again (the form with the trailing dot and the bare form). Confirm that only the matches with a reason remain.
     - [ ] Run `git grep -n "equivalence-candidates" -- apps/math packages ':!*.json'`. Confirm that no runtime code reads the file.
     - [ ] Run the projection builder on the released graph. Confirm that the output has no equivalence component with more than one node (spec G13).
     - [ ] Commit: `measure(math-graph-consume): record the S2 results`.
