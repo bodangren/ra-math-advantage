@@ -63,10 +63,11 @@ in the old app folders.
   `lib/practice/misconception-remediations.ts`,
   `packages/math-content/src/knowledge-space/generators/algebra-generators-adapters.ts`, and
   many tests.
-- **Course from the node domain:** `packages/knowledge-space-practice/src/projections/
-  teacher-evidence.ts` line 169 derives a course from `node.domain` (or from the first two
-  ID segments). In the release each node has the domain `math.us-hs`, so this rule gives one
-  value for all nodes.
+- **Equivalence readers:** `packages/knowledge-space-practice/src/projections/
+  teacher-evidence.ts` and `srs.ts` read `equivalent_to` edges. In `teacher-evidence.ts`, the
+  equivalence components come from these edges, and line 169 derives the courses of a
+  component from `node.domain` (or from the first two ID segments). `edge-suggestions.ts`
+  in `packages/knowledge-space-core` suggests `equivalent_to` edges.
 - **Generator and renderer nodes:** IM3 `nodes.json` holds 4 `generator` nodes and 5
   `renderer` nodes, with `generated_by` and `rendered_by` edges. The release leaves them
   out of the data graph (PM rule A-58).
@@ -170,8 +171,6 @@ mastery-advantage). The repository holds no copy of them.
     skill that a lesson references with an `appears_in_context` edge. A skill has one home
     lesson, and other lessons reference it. The S2 Contract records the exact edge types and
     directions from the release.
-  - `teacher-evidence.ts` line 169 changes. It takes the course of a node from course
-    membership through `courseView`, not from `node.domain`.
   - Each direct reader of a graph file changes to `loadMathGraph()`.
 - **G6 CCSS codes:** objective IDs stay canonical CCSS codes. Standard node IDs follow rows
   8 and 9 of `id-scheme.md` and its code-id normalization. `objectiveNodeIds` applies
@@ -236,6 +235,23 @@ mastery-advantage). The repository holds no copy of them.
     projections or blueprints (keep), or validates graph data (delete; G3 replaces it).
   - The curriculum module files stay. The track plans no history rewrite (Daniel's
     decision).
+- **G13 The `equivalent_to` readers (decision of 2026-11-15):** the release has no
+  `equivalent_to` edge, because the merge gives a shared skill one node.
+  - `teacher-evidence.ts` and `srs.ts` (in `packages/knowledge-space-practice/src/
+    projections/`) stay unchanged in this track. With no `equivalent_to` edge, no node has an
+    equivalence partner, so the projection has no equivalence component with more than one
+    node. This is the correct behavior for a merged graph. The code of line 169 of
+    `teacher-evidence.ts` (the courses of a component) runs only for a component, so it does
+    not run on the release, and this track does not change it.
+  - The S2 Contract records each reader of `equivalent_to` edges with its path and line. The
+    S2 Verify task checks that the projection output on the release has no equivalence
+    component with more than one node.
+  - The edge type stays in `packages/knowledge-space-core` (`schemas.ts`, `types.ts`),
+    because v3.2 defines it.
+  - `edge-suggestions.ts` suggests `equivalent_to` edges, so it is authoring code. The S4
+    Contract classifies it with the other scripts and modules: it writes graph data
+    (delete), or it does not (keep). `cross-course-equivalence.ts` goes away by G12.
+  - A later track can remove the dead equivalence code. This track does not.
 
 ## Stories
 
@@ -265,7 +281,7 @@ mastery-advantage). The repository holds no copy of them.
 - Given `loadMathGraph()`, When it runs, Then it reads only the released file, and `GRAPH_SOURCES` does not exist.
 - Given each registry course, When `courseView` runs, Then it returns the nodes that the course node of the release reaches: its modules, its lessons, each skill that a lesson homes, and each skill that a lesson references with `appears_in_context`.
 - Given the registry, When S2 is complete, Then each `graphCourseNodeId` is a course node of the release (`math.us-hs.course.<course>`) and no `graphCourseNodeId` is the domain.
-- Given `teacher-evidence.ts`, When it takes the course of a node, Then it uses course membership through `courseView` and not `node.domain`.
+- Given the projection builder on the released graph, When it runs, Then the projection has no equivalence component with more than one node (G13).
 - Given `git grep -n "equivalence-candidates" -- apps/math packages ':!*.json'`, When S2 is complete, Then it finds no reader.
 - Given a student with evidence on a skill that IM1 and IM2 share, When the knowledge state of IM2 is computed, Then the shared skill node has that evidence.
 - Given `git grep -n -E "math\.(im1|im2|im3|precalc)\." -- apps/math packages ':!*.json'`, When S2 is complete, Then it finds no match outside the list that the evidence file gives with a reason.

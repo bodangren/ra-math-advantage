@@ -103,7 +103,7 @@ _Story ref: spec.md#story-s2_
     - [ ] Record the course node ID of each course for `graphCourseNodeId` (spec G5). Take it from the mapping of the seed course node (for example `math.im1.course.im1`), and check it against `math.us-hs.course.<course>` with `<course>` one of `im1`, `im2`, `im3`, `ap-precalc` (the app key `precalc` maps to `ap-precalc`). The mapping of the four old containers gives the domain `math.us-hs`, so do not use it for this field.
     - [ ] Record the exact edge types and directions of the release for `courseView`: course to module, module to lesson, lesson to its home skill, and lesson to a referenced skill (`appears_in_context`). Record the exact edge types for worked examples and concepts of a lesson.
     - [ ] Record each reader of `generated_by` and `rendered_by` edges in `apps/math`, and the contract of `apps/math/lib/curriculum/runtime-bindings.ts` (spec G7): the generator keys from `metadata.legacyGeneratorIds` and the old `generated_by` edges, and the source of the renderer keys (the old `rendered_by` edges with the `id-map.json` mapping, or the legacy renderer IDs if the release carries them).
-    - [ ] Run `sed -n '169p' packages/knowledge-space-practice/src/projections/teacher-evidence.ts` and `git grep -n "equivalent_to" -- apps/math packages ':!*.json' ':!*.md'`. Record each reader that derives a course from `node.domain` or the ID prefix, and each reader of `equivalent_to` edges, with its new form. The release has the domain `math.us-hs` for each node and no `equivalent_to` edge (spec G3, G5).
+    - [ ] Run `git grep -n "equivalent_to" -- apps/math packages ':!*.json' ':!*.md'`. Record each reader of `equivalent_to` edges with its path and line (spec G13). Record that `teacher-evidence.ts` and `srs.ts` stay unchanged. The release has no `equivalent_to` edge.
     - [ ] Record the contract of `scripts/graph/rekey-node-ids.ts` and the kept files that it changes under "Kept Files" (spec G8).
     - [ ] Record the contract of `migrateGraphNodeIds` in `apps/math/convex/graph/migrate.ts` (spec G10): the handling of each status (`mapped`, `merged`, `removed`) and the container keys. Edge IDs of the release are opaque keys.
     - [ ] If the "Code Form" needs a new form in `canonicalCcssCode`, record it. If two released codes give one canonical code, or a competency has no released standard node, stop and report to the PM (spec G6).
@@ -111,7 +111,6 @@ _Story ref: spec.md#story-s2_
 - [ ] Task: S2 Test (Red) — specify the switch
     - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: `loadMathGraph()` returns the nodes of the released file. The module exports no `GRAPH_SOURCES`.
     - [ ] Also: `courseView` of each registry course returns the nodes that its course node reaches: modules, lessons, the skills that a lesson homes, and the skills that a lesson references with `appears_in_context`. No `graphCourseNodeId` is the domain `math.us-hs`. `objectiveNodeIds` finds the released standard nodes of a canonical code.
-    - [ ] `packages/knowledge-space-practice/src/__tests__/` (the teacher-evidence test): with a fixture graph in which each node has the domain `math.us-hs`, the course of a node follows course membership, and a skill that two courses share lists both courses.
     - [ ] `apps/math/__tests__/lib/courses/ccss.test.ts`: the released code form gives the canonical code (if the S2 Contract records a new form).
     - [ ] `apps/math/__tests__/lib/curriculum/runtime-bindings.test.ts`: each of the 9 removed generator and renderer IDs has a binding key, and each binding target names a node of the release.
     - [ ] `scripts/__tests__/graph/rekey-node-ids.test.ts`: with a fixture mapping, two entries that map to one node keep the entry of the lowest course `sequence`, and the script lists the dropped entry.
@@ -122,7 +121,6 @@ _Story ref: spec.md#story-s2_
 - [ ] Task: S2 Implement — the loader and the readers
     - [ ] Change `loadMathGraph()` to read the released file. Remove `GRAPH_SOURCES`.
     - [ ] Change each registry `graphCourseNodeId` to its course node ID of the S2 Contract.
-    - [ ] Change the course derivation of `teacher-evidence.ts` (line 169) to course membership through `courseView`, and change each other reader of the S2 Contract that derives a course from `node.domain`.
     - [ ] Change each reader of "Readers" to its new form. Add the code form to `canonicalCcssCode` if the S2 Contract records one.
     - [ ] Write `apps/math/lib/curriculum/runtime-bindings.ts`. Change each reader of `generated_by` and `rendered_by` edges to read it.
     - [ ] Change each literal of "Literals" to its mapping target.
@@ -136,6 +134,7 @@ _Story ref: spec.md#story-s2_
     - [ ] Run each gate. Confirm that each gate passes.
     - [ ] Run the two `git grep` commands of the S2 Contract again. Confirm that only the matches with a reason remain.
     - [ ] Run `git grep -n "equivalence-candidates" -- apps/math packages ':!*.json'`. Confirm that no runtime code reads the file.
+    - [ ] Run the projection builder on the released graph. Confirm that the output has no equivalence component with more than one node (spec G13).
     - [ ] Commit: `measure(math-graph-consume): record the S2 results`.
 - [ ] Task: S2 Docs & Doctor
     - [ ] Run `npm run generate`. Confirm exit code 0.
@@ -184,6 +183,7 @@ _Story ref: spec.md#story-s4_
     - [ ] For each `standards_inventory.json`, record if a seed reads it. If a seed reads it, record the change of the seed to read the released file.
     - [ ] Under "Scripts", give each script of the spec "Current System" its class (spec G12). Also record each `package.json` script that runs a deleted script.
     - [ ] Record `cross-course-equivalence.ts`, its exports in `packages/knowledge-space-core/src/index.ts`, and its test.
+    - [ ] Give `packages/knowledge-space-core/src/edge-suggestions.ts` its class: it writes graph data (delete), or it does not (keep). The edge type `equivalent_to` stays in `schemas.ts` and `types.ts` (spec G13).
     - [ ] Record the count of files under `apps/math/curriculum/*/modules/`.
     - [ ] Commit: `measure(math-graph-consume): record the S4 contract`.
 - [ ] Task: S4 Test (Red) — specify the removal
