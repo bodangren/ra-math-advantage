@@ -98,6 +98,7 @@ function mapFsrsCardToSrsCardState(
     variantKey: string;
   },
   now: string,
+  previousLastReview: string | null,
 ): SrsCardState {
   return {
     cardId: metadata.cardId,
@@ -108,7 +109,14 @@ function mapFsrsCardToSrsCardState(
     difficulty: fsrsCard.difficulty,
     state: mapCardState(fsrsCard.state),
     dueDate: fsrsCard.due.toISOString(),
-    elapsedDays: fsrsCard.elapsed_days,
+    // ts-fsrs 6 removed Card.elapsed_days (v6 migration guide: derive elapsed time
+    // from actual review timestamps). This keeps the ts-fsrs 5 semantics of the
+    // review delta, the same derivation apps/bus-math-v2 uses in review-processor.ts.
+    elapsedDays: previousLastReview
+      ? Math.floor(
+          (new Date(now).getTime() - new Date(previousLastReview).getTime()) / 86400000
+        )
+      : 0,
     scheduledDays: fsrsCard.scheduled_days,
     reps: fsrsCard.reps,
     lapses: fsrsCard.lapses,
@@ -177,7 +185,8 @@ function toFsrsCard(card: SrsCardState): Card {
     due: new Date(card.dueDate),
     stability: card.stability,
     difficulty: card.difficulty,
-    elapsed_days: card.elapsedDays,
+    // Card.elapsed_days was removed in ts-fsrs 6 (v6 migration guide); the
+    // scheduler derives elapsed time from the review timestamps itself.
     scheduled_days: card.scheduledDays,
     learning_steps: 0,
     reps: card.reps,
@@ -219,6 +228,7 @@ export function reviewCard(
       variantKey: card.variantKey,
     },
     currentTime,
+    card.lastReview,
   );
 }
 
@@ -259,9 +269,11 @@ export function previewInterval(
 }
 
 /**
- * Map our state string to ts-fsrs state number.
+ * Map our state string to ts-fsrs state number. ts-fsrs 6 replaced the numeric
+ * State enum with a frozen constant object and a numeric union type (v6 migration
+ * guide), so the return type is the union, not plain `number`.
  */
-function mapSrsStateToNumber(state: SrsCardState['state']): number {
+function mapSrsStateToNumber(state: SrsCardState['state']): Card['state'] {
   switch (state) {
     case 'new':
       return 0;
