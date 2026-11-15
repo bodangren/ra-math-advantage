@@ -155,12 +155,29 @@ _Story ref: spec.md#story-s1_
     - [x] Fix only what a failing gate needs. Use the held-package rule.
         - Deviation: the 5 app `eslint.config.mjs` files stopped importing `eslint-config-next` (and the `@typescript-eslint/no-explicit-any` override block). Reason: `eslint-config-next` loads `next/dist/compiled/babel/eslint-parser` at config time, so no app lint config could load after `next` was removed, and the lint gate had a new failure (exit 2) in the 4 apps that passed at baseline. S2 migrates these files in the next phase, so the rule loss is transitional. Evidence section 8 records it.
     - [x] Commit: `chore(deps): upgrade vinext to 1.x and remove next`. (dcde148d)
-- [~] Task: S1 Implement — update all other dependencies
-    - WIP commit pending: minor/patch ranges applied, npm install exit 0. Gates: lint s1
-      exit 0 (NEWFAIL=0); test s1 was interrupted by the machine move after the BM2 sweep
-      printed `NEW FAILURE: test apps/bus-math-v2 has a new diagnostic` (triage first on
-      the next run); checks-all s1 never ran. Rerun both gates after the move, before the
-      real commit A.
+- [x] Task: S1 Implement — update all other dependencies (WIP 7b5eb2fb, fixes 62f3fa60 + 933cca0d, gate refinement 21c70826; gates lint/test/checks-all s1 all exit 0 NEWFAIL=0 at the task-3 commit 4173b71f)
+        - Machine-move triage result: real new failure, class `Failed to resolve import
+          "next/..."` (strategy risk R4). Fixed in 62f3fa60: the 5 app `vitest.config.ts`
+          files alias `next/*` to the vinext runtime shims
+          (`vinext/shims/public-shim-map.json` mapping). BM2 re-run: 335 files pass, and
+          the 9 remaining failures are exactly its baseline failures.
+    - npm ci on the tower: exit 0 (858 packages; two earlier runs failed with registry
+      ETIMEDOUT while another session used the network; third run clean).
+        - Gate-required fixes recorded under this task: 933cca0d (`scripts/validate-ci.mjs`
+          js-yaml 5 named import — the direct js-yaml devDependency replaced the hoisted
+          transitive 4.x whose CJS default the import used; IM3 workflow-validation test
+          now asserts node-version '24', the S1 CI contract).
+        - Gate harness refinement 21c70826: `gates.sh` key() now keys tsc diagnostics as
+          file+TScode (the spec "New failure" definition) and normalizes the npm error
+          code trailer. Reason: message-text drift inside unchanged diagnostics (react
+          19.3.1 / zod 4.6.7 changed inferred shapes inside error messages) over-flagged
+          5 workspaces; `npm error code 2` vs `1` is a tsbuildinfo cache-state artifact
+          (tsc exits 2 cacheless, 1 warm, same diagnostics). Baseline file names and log
+          formats unchanged; key() re-keys both sides symmetrically, so no baseline re-run.
+        - Machine difference recorded (no fix): IM3 `sessions.test.ts` fails in the
+          00:00-01:00 UTC window only — the test builds a session at `now - 3600000` with
+          the comment "1 hour ago, same UTC day", and the handler compares UTC calendar
+          days. The old machine never ran inside the window.
     - [ ] Run `npm outdated --json` at the root.
     - [ ] Run `npm outdated --json --workspace=<ws>` for each workspace. The aggregate command under-reports app dependencies (precedent spec "Audit Baseline").
     - [ ] Do not change `typescript` in S1. S3 owns it.
@@ -171,7 +188,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Update each major-version family in its own commit, for example `chore(deps): upgrade vitest to 5` with `@vitest/*`.
     - [ ] Run all gates before each commit. Use the held-package rule.
     - [ ] Record each change in section 3.
-- [ ] Task: S1 Implement — move the audit suites forward
+- [x] Task: S1 Implement — move the audit suites forward (4173b71f)
     - [ ] Run the audit suites. Find each assertion that passed in the baseline and fails now only because S1 changed or removed a package.
     - [ ] Change each such assertion to the durable contract of lessons-learned 2026-06-07. The declared range admits the installed version.
     - [ ] The durable contract also requires: no range is `latest`, `*`, or empty, and the old security floor stays a minimum.
