@@ -1,6 +1,7 @@
 # Spec Review: bm2-convex-auth-v2_20261114
 
 Author model: claude-opus-5-5[1m]
+Revision author (Round 2 fixes): claude-sonnet-5-5
 
 ## Round 1
 
@@ -43,7 +44,38 @@ After Round 1, the orchestrator set a rule for the demo passwords: no literal de
 
 ## Round 2
 
-Status: queued. The PM machine load rule of 2026-11-14 allows one review role at a time. The PM starts this re-review when a slot is free. The fixes of F1 to F6 have no review result yet.
+Date: 2026-11-15
+Reviewer: measure-spec-review (volcengine-agent-plan/glm-latest#high). This is a substitution: the planned reviewer, Kimi, was at WAIT on the weekly pace.
+Baseline and audited HEAD: 21c70826b59e73ea84807cda5d6cb0dbb88f8af9
+Status: fail (one new Blocker, F9)
+Evidence: `measure/runs/bm2-convex-auth-v2_20261114/spec-review-21c70826.json` and `.log`
+
+### What this track proposes
+
+This track moves BM2 (`apps/bus-math-v2`) from the custom JWT auth of `packages/core-auth` to Convex Auth v2 with username and password. BM2 reuses the auth contract and the spike result of `math-app-base_20261114` (DA2 to DA9 and DA2a) and makes its own copies of the account helpers and the auth UI files, because a shared package cannot import `convex/_generated`. Story S1 brings the new sign-in, the accounts, and the local auth files, and BM2 works at its end; S2 moves each user server call to the access token; S3 deletes `packages/core-auth` and the old auth context of `packages/app-shell` when no importer remains, and updates the project documents. The demo accounts read one variable, `DEMO_BM2_PASSWORD`, no password migrates, and the work runs on a BM2 dev deployment while the prod deployment `quiet-swan-141` and the Worker `bus-math-v2` stay unchanged.
+
+### How the current system works, per this spec
+
+BM2 stores PBKDF2 password hashes in the `auth_credentials` table and signs the `bm_session` cookie with `AUTH_JWT_SECRET` through `packages/core-auth`; `convex/auth.ts` exposes 9 internal functions, and `convex/loginRateLimits.ts` guards the login route. The guards of `lib/auth/server.ts` verify `bm_session` for 43 files, and 33 files make 109 `fetchInternalQuery` and `fetchInternalMutation` calls with `CONVEX_DEPLOY_KEY`. The sign-in UI re-exports the auth context of `packages/app-shell`, which posts to the old `/api/auth/*` routes. Nineteen test files under `__tests__/` name the old auth, and the project documents still describe the custom JWT auth. The reviewer confirmed this inventory, including the 11 calls of `internal.auth.*`, the schema tables, and the 19-file test list.
+
+### Verification of the Round 1 fixes
+
+- F1 to F6: each fix is present, complete, and consistent with the working tree. The 9 functions, the 11 calls, the 19 test files, and the pinned test lines (28, 45, 78, 114) check out.
+- F7 and F8: withdrawn. Both were Nits with the disposition DECLINE. The B6, B6a, and B6b rewrite also removed the gap of F7, and the S1 Verify cross-reference to `math-app-base_20261114` S2 Verify covers the spike variables of F8.
+
+### Findings
+
+- F9 [Blocker] plan.md Phase S1 Implement, first task: the task removes `auth_credentials` and `login_rate_limits` from `convex/schema.ts` and deletes `convex/loginRateLimits.ts` in the same commit that moves the 9 old functions into `convex/legacyAuth.ts`, but `app/api/auth/login/route.ts` and `app/api/auth/change-password/route.ts` remain until the next task. Rationale: `convex/auth.ts` lines 16 to 17 (`getCredentialByUsername` queries `auth_credentials`) and lines 639 to 650 (`changeOwnPassword` queries `auth_credentials`) move into `legacyAuth.ts` against a schema without that table, and `app/api/auth/login/route.ts:72` holds the typed reference `internal.loginRateLimits.checkAndIncrementLoginRateLimit` to the deleted module. So the first commit cannot pass `npx tsc --noEmit` or `npm run build`, and the sign-in of that commit reads a table that the same commit deletes. The repository rule requires typecheck before each commit, and the plan gives the implementer no order that keeps each commit working. This defect sits in the task split that the F1 remediation created.
+- F10 [Nit] spec.md Current System (Versions, Documents) and plan.md Phase S3 documents task: the pinned records moved after the work of 2026-11-15, so the pins are false now. Rationale: `apps/bus-math-v2/package.json` now holds `convex ^1.50.0`, `vinext ^1.4.5`, and no `next` package, and commit 472fd719 added `react-server-dom-webpack ^19.2.9`, so the values "`convex` `^1.40.0`", "`next` `^16.0.0`", and "`vinext` `^0.0.55`" of the Versions bullet are false. In `measure/tech-stack.md`, "Custom JWT-based auth" now sits at line 49 and `AUTH_JWT_SECRET` at line 149, and the Auth feature line of `measure/product.md` now sits at line 46, so the pins "lines 28 to 37", "line 110", and "line 28" of the spec and of the S3 documents task point at the vinext note and the Backend and Database table. The quotes still locate the content, but the line pins mislead the implementer.
+- F11 [Nit] plan.md Gate Commands, Format row: `npm run format:check` names no script of the repository. Rationale: no `package.json` of the root or of `apps/bus-math-v2` holds a `format` script, and the vinext-oxc-toolchain spec (line 45) records that the repository has no formatter; its decision D2 makes `oxfmt --check` the format gate after one format-only commit. The escape clause of the plan covers a renamed script, not a script that never existed, so the implementer must invent the gate command.
+
+### Author Response
+
+Revision author: claude-sonnet-5-5 (2026-11-15).
+
+- F9: FIX (new decision B15 in spec.md and the new plan rule "S1 Commit Order". The five S1 Implement tasks now run in this order: 1 move the 9 functions to `convex/legacyAuth.ts` and change the 11 callers, with the schema, `convex/loginRateLimits.ts`, and the routes unchanged; 2 add the new auth core, the accounts, and `profiles.isActive`, with the old tables kept; 3 add the new sign-in, the session source, the guards, and the local auth files, with the old routes kept; 4 switch the account callers (seed, `ensure-demo`, the teacher routes, the settings page); 5 delete the old routes, `legacyAuth.ts`, `loginRateLimits.ts`, `password-policy.ts`, and the two tables, and remove `core-auth`. The deletions come after the last caller is gone, and task 5 has a grep check for that. Each task commit runs `npm run ws:bm2:typecheck` and `npm run build --workspace=apps/bus-math-v2`. The Red test files still import modules that later tasks add, so tasks 1 to 4 may show typecheck errors only in those files, and the plan records them under a new evidence section "Task Gates"; task 5 has no error. B11 and B12 stay.)
+- F10: FIX (spec.md "Versions" now states `convex` `^1.50.0`, `vinext` `^1.4.5`, and no `next` at HEAD 21c70826. The "Documents" bullet and the plan S3 documents task now find each place by its text, with no line number. The S3 documents task also removes the planned markers of this track.)
+- F11: FIX (plan.md Gate Commands: the Format row names its source, S4 of `vinext-oxc-toolchain_20261114`, with a note that the track runs before this track through its dependency chain. If the script is missing at the start of S1, the implementer stops and reports. No CONTEST: `measure/tracks/vinext-oxc-toolchain_20261114/plan.md` line 29 lists `format:check` from S4, and `math-app-base_20261114` depends on that track.)
 
 ## Accepted Risks
 

@@ -17,7 +17,7 @@ Spike", "Server Calls", and "Runtime Variables") before S1.
 
 | Gate | Command |
 |------|---------|
-| Format | `npm run format:check` |
+| Format | `npm run format:check` (from S4 of `vinext-oxc-toolchain_20261114`) |
 | Lint | `npm run lint --workspace=apps/bus-math-v2` |
 | Typecheck | `npm run ws:bm2:typecheck` |
 | Test | `CI=true npm run test --workspace=apps/bus-math-v2` |
@@ -30,11 +30,36 @@ Spike", "Server Calls", and "Runtime Variables") before S1.
 | Boundary | `node scripts/check-monorepo-boundaries.mjs` |
 | CI check | `node scripts/validate-ci.mjs` |
 
+The Format gate script `format:check` does not exist before S4 of
+`vinext-oxc-toolchain_20261114`. That track runs before this track, because
+`math-app-base_20261114` depends on it and this track depends on the set that holds
+`math-app-base_20261114`. If the script is missing at the start of S1, stop and report.
 If `vinext-oxc-toolchain_20261114` renamed a gate script, use the new name and record it.
 A gate passes when it has no failure that the baseline did not have. "Run each gate" in a
 Verify task means each row of this table. BM2 has no Playwright test at the start, so the
 E2E baseline is "No tests found". From S1 Test on, the E2E gate runs the new files in
 `apps/bus-math-v2/tests/e2e/`.
+
+### S1 Commit Order
+
+The five S1 Implement tasks follow one order, so that each commit builds (spec B15). Add the
+new code first. Then switch the callers. Then remove the old code, the old routes, and the
+old tables. A task never removes a module, a table, or a route that a file of the same
+commit, or of a later commit, still uses.
+
+- **Task commit gate:** before each S1 Implement commit, run `npm run ws:bm2:typecheck` and
+  `npm run build --workspace=apps/bus-math-v2`. Both must pass. Record each result under
+  "Task Gates" in `evidence.md`.
+- **Red test errors:** the Red test files import modules that later S1 tasks add. In S1
+  Implement tasks 1 to 4, the typecheck may report an error only in a Red test file, and
+  only for a missing module or a missing export that a later S1 task adds. Record each
+  such error under "Task Gates". The typecheck of S1 Implement task 5 has no error.
+- **Generated files:** `convex/_generated` is in the repository. After a task adds,
+  moves, or removes a Convex module, regenerate it in the same commit.
+- **Working sign-in:** the sign-in works at the commits of tasks 1 to 3 (the old routes and
+  the old tables stay) and at the commit of task 5. Between the commits of tasks 3 and 4,
+  the demo seed of the dev deployment still makes old accounts. S1 Verify runs the
+  end-to-end tests after task 5.
 
 ### Test Rules
 
@@ -58,7 +83,7 @@ E2E baseline is "No tests found". From S1 Test on, the E2E gate runs the new fil
 _Story ref: spec.md#story-s1_
 
 - [ ] Task: S1 Contract — record the baseline and the auth contract
-    - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Dev Deployment, Auth Spike, Account Functions, Auth Files, Server Guards, Test Changes, Server Calls, Runtime Variables, Fixtures, Core-Auth Importers.
+    - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Dev Deployment, Auth Spike, Account Functions, Auth Files, Server Guards, Test Changes, Task Gates, Server Calls, Runtime Variables, Fixtures, Core-Auth Importers.
     - [ ] Run each gate on the start commit. Record each result and each test count under "Baseline".
     - [ ] Copy the chosen path and the file list of path A or B from the evidence of `math-app-base_20261114` into "Auth Spike". If the chosen path is B, stop and report (spec B11).
     - [ ] Write the contracts of `convex/users.ts`, `convex/accounts/helpers.ts`, and `convex/accounts/passwords.ts` with the contracts of `math-app-base_20261114` S3 (spec B1, B3). The roles are `student`, `teacher`, and `admin`. `convex/users.ts` also holds `getAccountSettingsContext` (spec B12).
@@ -101,29 +126,47 @@ _Story ref: spec.md#story-s1_
     - [ ] Also: a password change to 9 characters fails. After a teacher reset, the next server read of the old student session goes to the sign-in page. An inactive profile cannot sign in.
     - [ ] Run the BM2 suite and the E2E suite. Confirm that the new cases fail.
     - [ ] Commit: `test(bm2): specify the Convex Auth v2 behavior`.
-- [ ] Task: S1 Implement — the auth core and the accounts
-    - [ ] Move the 9 old functions to `convex/legacyAuth.ts`. Change each caller.
-    - [ ] Add `convex/convex.config.ts`, `convex/auth.config.ts`, and `convex/auth.ts` as in the math app.
+- [ ] Task: S1 Implement 1 of 5 — move the 9 old functions to `convex/legacyAuth.ts`
+    - [ ] Run `git mv convex/auth.ts convex/legacyAuth.ts`. Change each of the 11 callers of `internal.auth.*` to `internal.legacyAuth.*`. Do not change a function body.
+    - [ ] Regenerate `convex/_generated` (`npx convex codegen`). The schema, `convex/loginRateLimits.ts`, and each route stay.
+    - [ ] Run the task commit gate (Rules for All Phases, "S1 Commit Order").
+    - [ ] Commit: `refactor(bm2): move the old account functions to legacyAuth`.
+- [ ] Task: S1 Implement 2 of 5 — add the auth core and the accounts
+    - [ ] Add `convex/convex.config.ts`, `convex/auth.config.ts`, and the new `convex/auth.ts` as in the math app.
     - [ ] Add `convex/users.ts`, `convex/accounts/helpers.ts`, `convex/accounts/passwords.ts`, `convex/accounts/teacher.ts`, and `convex/accounts/demo.ts` (spec B12).
-    - [ ] Change `convex/schema.ts`: add `profiles.isActive`, and remove `auth_credentials` and `login_rate_limits`. Delete `convex/loginRateLimits.ts`.
-    - [ ] Change `convex/seed.ts` to call `createAccount`. Change `app/api/users/ensure-demo/route.ts` to call `internal.accounts.demo.ensureDemoAccount`.
-    - [ ] Change the four teacher routes of `app/api/users/` to call `internal.accounts.teacher.*`. Each route returns the generated password one time. Change `app/settings/page.tsx` to call `internal.users.getAccountSettingsContext`.
-    - [ ] Add `readDemoPassword()` to `lib/auth/demo-provisioning.ts`. Move `isDemoProvisioningEnabled` into the same file (spec B6, B6b).
-    - [ ] Change `ensure-demo` and `convex/seed.ts` to call `readDemoPassword()`. Remove `demo123` and the three `DEMO_<ROLE>_PASSWORD` variables (spec B6).
-    - [ ] In `.env.example`, replace the three `DEMO_<ROLE>_PASSWORD` lines with `# DEMO_BM2_PASSWORD=` with no value (spec B6a).
-    - [ ] Commit: `feat(bm2): move accounts to Convex Auth v2`.
-- [ ] Task: S1 Implement — the sign-in, the session, and the auth files
+    - [ ] Change `convex/schema.ts`: add `profiles.isActive`. Keep `auth_credentials` and `login_rate_limits`. Add `isActive: true` to each profile insert of `convex/legacyAuth.ts` and `convex/seed.ts`, so that they still typecheck.
+    - [ ] Regenerate `convex/_generated`. Run the task commit gate.
+    - [ ] Commit: `feat(bm2): add the Convex Auth v2 core and the account functions`.
+- [ ] Task: S1 Implement 3 of 5 — add the sign-in, the session, and the auth files
     - [ ] Add the route handlers, the proxy, and the server provider of path A. Add the spike page `/dev/auth-spike` and `convex/authSpike.ts` as in the math app.
-    - [ ] Change `lib/auth/server.ts`, `lib/auth/session.ts`, `lib/auth/constants.ts`, and `middleware.ts` as "Server Guards" gives. Delete `lib/auth/password-policy.ts` (spec B4).
+    - [ ] Change `lib/auth/server.ts` and `middleware.ts` as "Server Guards" gives. After this change, no guard calls `internal.legacyAuth.*`.
+    - [ ] Change `lib/auth/session.ts` and `lib/auth/constants.ts`: add the local `SessionClaims` and `UserRole` types (spec B11). Keep each re-export that a later-removed file still imports (the old routes, the teacher routes, and `lib/teacher/student-accounts.ts`).
     - [ ] Write the local `components/auth/AuthProvider.tsx`, `components/user-menu.tsx`, and `components/logout-button.tsx` (spec B10). Do not change `packages/app-shell`.
-    - [ ] Change `components/login-form.tsx`, `components/update-password-form.tsx`, `app/auth/login`, and `app/auth/update-password` as "Auth Files" gives.
-    - [ ] Delete `app/api/auth/{login,logout,session,change-password}`. Delete `convex/legacyAuth.ts`.
+    - [ ] Change `components/login-form.tsx`, `components/update-password-form.tsx`, `app/auth/login`, and `app/auth/update-password` as "Auth Files" gives. After this change, no component calls `/api/auth/login` or `/api/auth/change-password`.
+    - [ ] Keep `app/api/auth/{login,logout,session,change-password}`, `convex/legacyAuth.ts`, `convex/loginRateLimits.ts`, and both old tables. Run the task commit gate.
+    - [ ] Commit: `feat(bm2): add the Convex Auth v2 sign-in and the local auth files`.
+- [ ] Task: S1 Implement 4 of 5 — switch the account callers
+    - [ ] Add `readDemoPassword()` to `lib/auth/demo-provisioning.ts`. Move `isDemoProvisioningEnabled` into the same file (spec B6, B6b).
+    - [ ] Change `convex/seed.ts` to call `createAccount`. Change `app/api/users/ensure-demo/route.ts` to call `internal.accounts.demo.ensureDemoAccount`.
+    - [ ] Change `ensure-demo` and `convex/seed.ts` to call `readDemoPassword()`. Remove `demo123` and the three `DEMO_<ROLE>_PASSWORD` variables (spec B6).
+    - [ ] Change the four teacher routes of `app/api/users/` to call `internal.accounts.teacher.*`. Each route returns the generated password one time.
+    - [ ] Change `app/settings/page.tsx` to call `internal.users.getAccountSettingsContext`.
+    - [ ] In `.env.example`, replace the three `DEMO_<ROLE>_PASSWORD` lines with `# DEMO_BM2_PASSWORD=` with no value (spec B6a).
+    - [ ] Run `git grep -n "internal\.legacyAuth\." -- apps/bus-math-v2`. Confirm that only `app/api/auth/login` and `app/api/auth/change-password` match.
+    - [ ] Run the task commit gate.
+    - [ ] Commit: `feat(bm2): create the accounts through Convex Auth v2`.
+- [ ] Task: S1 Implement 5 of 5 — remove the old auth code and the old tables
+    - [ ] Delete `app/api/auth/{login,logout,session,change-password}`. Delete `lib/auth/password-policy.ts` (spec B4).
+    - [ ] Run `git grep -n -E "legacyAuth|loginRateLimits|auth_credentials|login_rate_limits" -- apps/bus-math-v2 ':!apps/bus-math-v2/__tests__'`. Confirm that only `convex/legacyAuth.ts`, `convex/loginRateLimits.ts`, `convex/schema.ts`, and `convex/_generated` match.
+    - [ ] Delete `convex/legacyAuth.ts` and `convex/loginRateLimits.ts`. Remove `auth_credentials` and `login_rate_limits` from `convex/schema.ts`. Regenerate `convex/_generated`.
+    - [ ] Remove the hash, sign, and cookie re-exports from `lib/auth/session.ts` and `lib/auth/constants.ts`. Change `lib/teacher/student-accounts.ts` if it imports a removed export.
     - [ ] Remove `@math-platform/core-auth` from `apps/bus-math-v2/package.json`. Run `npm install`. Confirm that the lockfile diff changes only the BM2 workspace entry.
     - [ ] Remove `AUTH_JWT_SECRET` from `.env.example` and from the comment of `wrangler.jsonc` (line 16).
     - [ ] Set `DEMO_BM2_PASSWORD` in `apps/bus-math-v2/.env.local`. If no value exists, get it from Daniel through a secret card (spec B6a).
     - [ ] Copy the value to the BM2 dev deployment with `npx convex env set`. Keep the value out of the command text and the logs.
     - [ ] Clear the tables of the BM2 dev deployment and run the seed again.
-    - [ ] Commit: `feat(bm2): sign in through Convex Auth v2`.
+    - [ ] Run the task commit gate. The typecheck has no error in this commit.
+    - [ ] Commit: `feat(bm2): remove the custom JWT auth code and the old auth tables`.
 - [ ] Task: S1 Verify — run the spike test and the gates
     - [ ] Make the spike account on the BM2 dev deployment, as in `math-app-base_20261114` S2 Verify.
     - [ ] Run `tests/e2e/auth-spike.spec.ts` in the three targets of the math spike. Record each result under "Auth Spike". If a result differs from the math app, stop and report (spec B2).
@@ -194,8 +237,9 @@ _Story ref: spec.md#story-s3_
     - [ ] Commit: `chore: remove packages/core-auth and the old auth context`.
 - [ ] Task: S3 Implement — update the project documents
     - [ ] In `measure/architecture.md`, describe Convex Auth v2 as the auth of BM2 and of the math app. Remove the description of the custom JWT auth, `bm_session`, and `AUTH_JWT_SECRET`.
-    - [ ] In `measure/tech-stack.md`, replace the auth section (lines 28 to 37) with Convex Auth v2. Remove the `AUTH_JWT_SECRET` line (line 110).
-    - [ ] In `measure/product.md`, change the feature line "**Auth** (`core-auth`)" (line 28) to Convex Auth v2.
+    - [ ] In `measure/tech-stack.md`, replace the section "## Authentication" (it starts with "Custom JWT-based auth") with Convex Auth v2. Remove the line `AUTH_JWT_SECRET=` of the env example.
+    - [ ] In `measure/product.md`, change the feature line that starts with "**Auth** (`core-auth`)" to Convex Auth v2.
+    - [ ] Run `git grep -n "planned: bm2-convex-auth-v2_20261114" -- measure/architecture.md measure/tech-stack.md measure/product.md README.md AGENTS.md`. Remove each marker of an item that this track completes, and write the current state in the same document.
     - [ ] Commit: `docs: describe Convex Auth v2 for BM2`.
 - [ ] Task: S3 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.

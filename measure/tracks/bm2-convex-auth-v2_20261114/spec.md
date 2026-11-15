@@ -15,7 +15,7 @@ them. The custom JWT auth then retires from the repository.
 Sprint goal: BM2 users sign in through Convex Auth v2, each server call of BM2 reads user
 data with the access token, and `packages/core-auth` is gone.
 
-## Current System (checked 2026-11-14)
+## Current System (checked 2026-11-14; Versions and Documents rechecked 2026-11-15)
 
 - **Auth today:** BM2 uses `packages/core-auth`: PBKDF2 password hashes and the cookie
   `bm_session`, signed with `AUTH_JWT_SECRET`.
@@ -77,13 +77,14 @@ data with the access token, and `packages/core-auth` is gone.
   own mock context (for example `createMockCtx` in `__tests__/convex/apiRateLimits.test.ts`).
 - **E2E:** BM2 has no Playwright test today. `playwright.config.ts` reads `./tests/e2e`,
   which does not exist, and starts `npm run dev` on port 3000.
-- **Documents:** `measure/tech-stack.md` (lines 28 to 37) describes "Custom JWT-based auth",
-  and line 110 lists `AUTH_JWT_SECRET`. `measure/product.md` (line 28) lists
-  "**Auth** (`core-auth`)" as a platform feature.
-- **Versions:** BM2 asks for `convex` `^1.40.0`, `next` `^16.0.0`, and `vinext` `^0.0.55`
-  today. After `vinext-oxc-toolchain_20261114`, BM2 runs on vinext 1.x with no `next`.
-  After `math-app-base_20261114`, the lockfile holds `@convex-dev/auth` 2.x and `convex`
-  1.50 or later.
+- **Documents:** the section "## Authentication" of `measure/tech-stack.md` describes
+  "Custom JWT-based auth", and the env example of the same file lists `AUTH_JWT_SECRET=`.
+  The feature line that starts with "**Auth** (`core-auth`)" in `measure/product.md` lists
+  it as a platform feature. The documents already name this track in a planned marker.
+  Find each place by its text, not by a line number, because the line numbers move.
+- **Versions:** at HEAD `21c70826`, BM2 asks for `convex` `^1.50.0` and `vinext` `^1.4.5`,
+  and has no `next` package (S1 of `vinext-oxc-toolchain_20261114` is done). After
+  `math-app-base_20261114`, the lockfile holds `@convex-dev/auth` 2.x.
 - **Cloud:** `wrangler.jsonc` has the Worker name `bus-math-v2` and
   `NEXT_PUBLIC_CONVEX_URL` `https://quiet-swan-141.convex.cloud`. Its comment (line 16)
   names `AUTH_JWT_SECRET`. The Convex project `bus-math-v2-experimental` (`1720191`) has
@@ -181,7 +182,17 @@ data with the access token, and `packages/core-auth` is gone.
 - **B14 Documents:** Story S3 updates `measure/architecture.md`, `measure/tech-stack.md`
   (the auth section and the `AUTH_JWT_SECRET` line), and `measure/product.md` (the
   `core-auth` feature line). Each one then describes Convex Auth v2 as the auth of BM2 and
-  of the math app.
+  of the math app. S3 also removes the planned markers of this track from these documents.
+- **B15 Commit order in S1:** the five S1 Implement tasks keep each commit buildable. Task 1
+  moves the 9 old functions to `convex/legacyAuth.ts` and changes the 11 callers. Task 2
+  adds the new auth core and the accounts, and keeps the old tables. Task 3 adds the new
+  sign-in, the session source, and the local auth files, and keeps the old routes. Task 4
+  switches the account callers. Task 5 removes `convex/legacyAuth.ts`,
+  `convex/loginRateLimits.ts`, the old routes, and the two old tables. A task never removes
+  a module, a table, or a route that a file of the same commit or of a later commit uses.
+  Each commit passes `npm run ws:bm2:typecheck` and `npm run build --workspace=apps/bus-math-v2`,
+  except the typecheck errors of the Red test files that a later S1 task clears (the plan
+  rule "S1 Commit Order"). BM2 works at the end of S1 (B11).
 
 ## Stories
 
