@@ -83,7 +83,20 @@ Per the spec, `apps/pre-calculus` is a full app with 167 curriculum files across
 
 ## Round 4
 
-Status: queued. The PM machine load rule of 2026-11-14 (07:32 ICT) stopped the first run of this re-review. The PM starts it when a slot is free. The F5 fix has no review result yet.
+Date: 2026-11-15
+Reviewer: measure-spec-review (volcengine-agent-plan/glm-latest#high), a substitution for the Kimi table model
+Audited HEAD: f6d96b1c7abba7b4187f73737495aa71e63d5369
+Status: pass. Files: `measure/runs/math-app-course-precalc_20261114/spec-review-f6d96b1c.json` and `.log`.
+
+### What this track proposes
+
+This track imports AP Precalculus into the unified math app as course data. It moves the curriculum and the Convex seeds of `apps/pre-calculus` into `apps/math` with `git mv`, and changes the seeds to the course data model of `math-app-base_20261114`. It adds the registry entry, the graph files as part of the one math graph with a course view, and a dark course theme. Then it moves the course documents, deletes the rest of the old app, and removes it from CI, the root scripts, and each other reference.
+
+### Findings
+
+- F5 withdrawn (the FIX of Round 3 holds).
+- F6 and F7 (Nits) withdrawn: the author gave DECLINE in Round 3, which is a valid disposition for a Nit.
+- No new findings.
 
 ## Accepted Risks
 
