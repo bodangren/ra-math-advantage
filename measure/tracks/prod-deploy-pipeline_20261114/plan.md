@@ -93,8 +93,8 @@ _Story ref: spec.md#story-s2_
     - [ ] Also: a stub output that holds the value of a secret variable never appears in the log of the OFF step, the list step, or the rollback step (the redact rule).
     - [ ] Also (marker check, spec D13): a stub build folder whose RSC server chunk lacks "Cannot handle action key", or lacks "Cannot transport a detached buffer", gives no Convex command, no Worker command, and a failure. A chunk that holds both strings passes the check.
     - [ ] Also: the marker check finds the RSC chunk outside `dist/server/ssr/`, and it does not read a file under `dist/server/ssr/`.
-    - [ ] Also (static app, spec D13): a stub static app (Convex "none", no `main`) with a build folder that has no `dist/server/` folder passes the marker check with the record "static export: no RSC server chunk", gets no Convex command, and gets the Worker deploy command.
-    - [ ] Also (static app, spec D13): a stub static app with a build folder that has a `dist/server/` folder fails the marker check, with no Convex command and no Worker command.
+    - [ ] Also (static app, spec D13): a stub static app (Convex "none", no `main`) with a build folder that has no `dist/server/` folder passes the marker check with the record "static export: no RSC server chunk", gets no `npx convex deploy` command, and gets the Worker deploy command.
+    - [ ] Also (static app, spec D13): a stub static app with a build folder that has a `dist/server/` folder fails the marker check, with no `npx convex deploy` command and no Worker command.
     - [ ] Also: when the stub runner returns exit code 1 for `npx convex login status`, the preflight fails and the stub receives no cloud command. Exit code 0 for that command passes this check.
     - [ ] Also: the preflight passes when `HEAD` is ahead of `origin/master`, and fails when `origin/master` is not an ancestor of `HEAD`.
     - [ ] Also: an unknown app key throws before any command.

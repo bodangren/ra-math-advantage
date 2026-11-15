@@ -100,6 +100,7 @@ Cloudflare account `0f8cef508e69d2446315a1c80042da20` holds only the Workers `in
 ## Amendment after Round 3 (2026-11-15)
 
 - The static-app rule of D4 and D13 comes from danielson-app-import Round 1 F4 and was not re-reviewed; pipeline S2 Review A and Review B check it; decision: orchestrator default, deferred:pm.
+- The F12 wording fix from danielson-app-import Round 2 (2026-11-15) changes "no Convex command" to "no `npx convex deploy` command" in the two static-app test lines of the S2 Test and in the two static-app Given lines of the spec. The D5 preflight is unchanged. This fix was not re-reviewed; pipeline S2 Review A checks it.
 
 ## Accepted Risks
 

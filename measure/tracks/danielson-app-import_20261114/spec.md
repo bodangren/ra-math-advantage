@@ -175,7 +175,10 @@ D1, D4, D10, D12, D13, and D14 apply these rules.
   rule). `next.config.ts` keeps `output: 'export'`, `trailingSlash: true`, and
   `images.unoptimized`, and loses `basePath` and `turbopack`. If `vinext build` cannot make
   the static export, the app uses the vinext Worker build of `apps/integrated-math-3`, keeps
-  `trailingSlash`, and the evidence file records the error.
+  `trailingSlash`, and the evidence file records the error. Under this fallback, the app is
+  not a static app: its `wrangler.jsonc` follows the Worker pattern of
+  `apps/integrated-math-3` with a `main` entry, and the normal marker check of D13 of
+  `prod-deploy-pipeline_20261114` runs on its RSC server chunk.
 - **D7 No base path:** the app serves from the root of its host. `src/lib/imagePath.ts`
   goes away, and its two callers use plain public paths.
 - **D8 Worker:** `apps/danielson/wrangler.jsonc` has `"name": "danielson"`, the
@@ -186,6 +189,8 @@ D1, D4, D10, D12, D13, and D14 apply these rules.
   step for this app. The app is a static app, so it has no RSC server chunk. The marker
   check of that pipeline follows the static-app rule of its D13: the check passes when the
   build folder has no `dist/server/` folder, and it fails when the build has server output.
+  Under the D6 fallback, the static-app rule does not apply: `wrangler.jsonc` has a `main`
+  entry, and the normal marker check of that D13 runs on the RSC server chunk.
 - **D9 CI:** `.github/workflows/ci.yml` gets a `danielson` job with the lint, typecheck,
   test, and build steps of the `bm2` job. The root `package.json` gets `ws:danielson:*`
   scripts in the pattern of the other apps.

@@ -42,7 +42,25 @@ This track imports the Danielson professional development site into this reposit
 
 ## Round 2
 
-Status: queued.
+Date: 2026-11-15
+Reviewer: measure-spec-review (volcengine-agent-plan/glm-latest#high)
+Audited HEAD: 28d1260060edc091118b1894efbe128bddcec937
+Status: pass (no Blockers; F11 Major and F12 Nit are nonblocking). Files: `measure/runs/danielson-app-import_20261114/spec-review-28d12600.json` and `.log`.
+
+### What this track proposes
+
+This track imports the Danielson professional development site into this repository as `apps/danielson`. The import is one snapshot commit of `c047df1` from the local clone, with no network and no source history. Own-word paraphrases and labels replace the 26 descriptors and the 26 titles before that commit, and a local scan and a committed SHA-256 guard test block the shared text. Then the app moves to the repository toolchain, loses its base path, and deploys as the static Cloudflare Worker `danielson` through the local deploy pipeline.
+
+### Findings
+
+- F1 to F10 withdrawn (fixed in 28d12600).
+- F11 [Major] spec.md D6 versus D8: the D6 fallback (the vinext Worker build) reads against the D8 static-app sentence. Under the fallback, the build holds server output, and the D8 `wrangler.jsonc` has no `main`, so the marker check fails and the S3 deploy stops. The spec does not say how `wrangler.jsonc` and the marker-check mode change under the fallback.
+- F12 [Nit] prod-deploy-pipeline plan.md S2 Test (two static-app lines) versus its spec D5: "gets no Convex command" can read against the D5 preflight, which runs `npx convex login status` for each deploy. The wording does not say whether it means the `npx convex deploy` step only.
+
+### Author Response
+
+- F11: FIX (orchestrator default). D6 now says that, under the fallback, the app is not a static app: `wrangler.jsonc` follows the Worker pattern of `apps/integrated-math-3` with a `main` entry, and the normal marker check of D13 of `prod-deploy-pipeline_20261114` runs on the RSC server chunk. D8 says that the static-app rule does not apply under the D6 fallback. The S3 Contract task of `plan.md` has the same condition.
+- F12: FIX (orchestrator default). In `prod-deploy-pipeline_20261114`, the two static-app test lines of the S2 Test (`plan.md`) and the two static-app Given lines of `spec.md` now say "no `npx convex deploy` command". The D5 preflight (`npx convex login status`) stays for each app. The fix is not re-reviewed; the amendment in the `spec-review.md` of that track records it.
 
 ## Accepted Risks
 

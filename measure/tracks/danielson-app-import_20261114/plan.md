@@ -194,7 +194,7 @@ _Story ref: spec.md#story-s3_
 - [ ] Task: S3 Contract — define the Worker and the route check
     - [ ] Confirm that `prod-deploy-pipeline_20261114` is closed and that `DEPLOY_APPS` has a `danielson` entry. If it has none, record the entry to add: no Convex project, the smoke paths `/` and one technique page, and the build command of the app.
     - [ ] Write `apps/danielson/wrangler.jsonc` as spec D8 gives, in the evidence file first. Read the `compatibility_date` from `apps/integrated-math-3/wrangler.jsonc` at HEAD now.
-    - [ ] Confirm that the marker check of `prod-deploy-pipeline_20261114` has the static-app rule of its spec D13. Confirm that `apps/danielson/wrangler.jsonc` has no `main`. If the rule is missing, stop and report.
+    - [ ] Confirm that the marker check of `prod-deploy-pipeline_20261114` has the static-app rule of its spec D13. Confirm that `apps/danielson/wrangler.jsonc` has no `main`. If the rule is missing, stop and report. Under the fallback of spec D6, the app is not a static app: `wrangler.jsonc` has a `main` entry as `apps/integrated-math-3` has it, and the normal marker check runs on the RSC server chunk.
     - [ ] Write the contract of `scripts/deploy/route-check.ts`: `routeCheck(baseUrl, distDir, imageDir, fetchFn)` requests the URL of each `index.html` under `distDir` and each file under `imageDir`, and returns each status.
 - [ ] Task: S3 Test (Red) — specify the route check
     - [ ] `scripts/__tests__/deploy/route-check.test.ts`: with a stub fetch and a fixture folder, each 200 response passes, and one 404 response fails with its path.
