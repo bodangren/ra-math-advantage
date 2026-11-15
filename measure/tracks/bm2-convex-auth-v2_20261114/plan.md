@@ -96,10 +96,12 @@ _Story ref: spec.md#story-s1_
     - [ ] Under "Server Guards", record the guards of `lib/auth/server.ts` (spec B11). Each exported name stays. Each guard reads `currentProfile` with the access token of path A.
     - [ ] Also: each guard returns the local `SessionClaims` type of `lib/auth/session.ts` (`sub`, `username`, `role`, `organizationId`). A missing or inactive profile gives the redirect or the 401 response of today.
     - [ ] Also: `middleware.ts` reads the session of path A for `/dev/component-review/:path*`.
-    - [ ] Run `git grep -l -E "internal\.auth\.|auth_credentials|login_rate_limits|loginRateLimits|api/auth/|app-shell/auth|core-auth|bm_session" -- apps/bus-math-v2/__tests__`. Record each of the 19 files under "Test Changes" with its change (delete or change).
+    - [ ] Run `git grep -l -E "internal\.auth\.|auth_credentials|login_rate_limits|loginRateLimits|api/auth/|app-shell/auth|core-auth|bm_session|AUTH_JWT_SECRET" -- apps/bus-math-v2/__tests__`. Record each of the 21 files under "Test Changes" with its change (delete or change). Record `__tests__/config/cloudflare-launch-hardening.test.ts` under "Fixtures" with no change (see the next task).
     - [ ] "Test Changes" deletes `__tests__/convex/loginRateLimits.test.ts`, `__tests__/app/api/auth/login/route.test.ts`, and `__tests__/app/api/auth/change-password/route.test.ts`.
     - [ ] "Test Changes" changes `__tests__/setup/convex-schema.test.ts`: lines 28 and 45 expect no `login_rate_limits` and no `auth_credentials`.
     - [ ] "Test Changes" changes `__tests__/config/convex-auth-boundary.test.ts`: remove the read of `app/api/auth/session/route.ts` (line 78) and its expectation (line 114).
+    - [ ] "Test Changes" changes `__tests__/config/curriculum-runtime-foundation.test.ts`: line 50 expects `AUTH_JWT_SECRET` in `wrangler.jsonc`, and S1 Implement 5 removes it. Remove that expectation.
+    - [ ] Also: `__tests__/config/cloudflare-launch-hardening.test.ts` (line 35) expects `AUTH_JWT_SECRET` only in a case that returns early while `measure/docs/architecture/cloudflare-launch-checklist.md` does not exist. It needs no change. Record it under "Fixtures".
     - [ ] Commit: `measure(bm2-convex-auth-v2): record the S1 contract`.
 - [ ] Task: S1 Dev deployment and dependency
     - [ ] Run `npx convex dev --once` in `apps/bus-math-v2`. Record the name of the dev deployment under "Dev Deployment" (spec B7).
@@ -162,6 +164,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Remove the hash, sign, and cookie re-exports from `lib/auth/session.ts` and `lib/auth/constants.ts`. Change `lib/teacher/student-accounts.ts` if it imports a removed export.
     - [ ] Remove `@math-platform/core-auth` from `apps/bus-math-v2/package.json`. Run `npm install`. Confirm that the lockfile diff changes only the BM2 workspace entry.
     - [ ] Remove `AUTH_JWT_SECRET` from `.env.example` and from the comment of `wrangler.jsonc` (line 16).
+    - [ ] In `apps/bus-math-v2/vite.config.ts`, delete the dead chunk rule `if (id.includes('core-auth')) return 'vendor-auth';` (line 73). No module matches it after the `@math-platform/core-auth` dependency goes.
     - [ ] Set `DEMO_BM2_PASSWORD` in `apps/bus-math-v2/.env.local`. If no value exists, get it from Daniel through a secret card (spec B6a).
     - [ ] Copy the value to the BM2 dev deployment with `npx convex env set`. Keep the value out of the command text and the logs.
     - [ ] Clear the tables of the BM2 dev deployment and run the seed again.

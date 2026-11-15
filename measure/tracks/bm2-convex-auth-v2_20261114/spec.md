@@ -64,8 +64,12 @@ data with the access token, and `packages/core-auth` is gone.
 - **Server reads:** 33 files in `app/`, `lib/`, and `components/` call
   `fetchInternalQuery` or `fetchInternalMutation` (109 calls). These calls use
   `CONVEX_DEPLOY_KEY`.
-- **Tests:** 19 test files under `__tests__/` name the old auth (the old functions, the two
-  tables, the auth routes, `core-auth`, `bm_session`, or `@math-platform/app-shell/auth`).
+- **Tests:** 21 test files under `__tests__/` name the old auth (the old functions, the two
+  tables, the auth routes, `core-auth`, `bm_session`, `@math-platform/app-shell/auth`, or
+  `AUTH_JWT_SECRET`). Two of the 21 name only `AUTH_JWT_SECRET`:
+  `__tests__/config/curriculum-runtime-foundation.test.ts` (line 50) expects it in
+  `wrangler.jsonc`, so S1 changes this test. `__tests__/config/cloudflare-launch-hardening.test.ts`
+  (line 35) expects it only in a case that returns early, so it stays as a fixture.
   Examples:
   `__tests__/convex/loginRateLimits.test.ts` imports `convex/loginRateLimits.ts`.
   `__tests__/setup/convex-schema.test.ts` (lines 28 and 45) expects `login_rate_limits` and

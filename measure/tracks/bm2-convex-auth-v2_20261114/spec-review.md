@@ -2,6 +2,7 @@
 
 Author model: claude-opus-5-5[1m]
 Revision author (Round 2 fixes): claude-sonnet-5-5
+Revision author (Round 3 fixes): claude-sonnet-5-5
 
 ## Round 1
 
@@ -77,6 +78,37 @@ Revision author: claude-sonnet-5-5 (2026-11-15).
 - F10: FIX (spec.md "Versions" now states `convex` `^1.50.0`, `vinext` `^1.4.5`, and no `next` at HEAD 21c70826. The "Documents" bullet and the plan S3 documents task now find each place by its text, with no line number. The S3 documents task also removes the planned markers of this track.)
 - F11: FIX (plan.md Gate Commands: the Format row names its source, S4 of `vinext-oxc-toolchain_20261114`, with a note that the track runs before this track through its dependency chain. If the script is missing at the start of S1, the implementer stops and reports. No CONTEST: `measure/tracks/vinext-oxc-toolchain_20261114/plan.md` line 29 lists `format:check` from S4, and `math-app-base_20261114` depends on that track.)
 
+## Round 3
+
+Date: 2026-11-15
+Reviewer: measure-spec-review (volcengine-agent-plan/glm-latest#high). This is the last allowed re-run.
+Baseline and audited HEAD: d98072e721ceec28eab2e54a23fed4f056164946
+Status: fail (two new Blockers, F12 and F13)
+Evidence: `measure/runs/bm2-convex-auth-v2_20261114/spec-review-d98072e7.json` and `.log`
+
+### What this track proposes
+
+This track moves BM2 (`apps/bus-math-v2`) from the custom JWT auth of `packages/core-auth` to Convex Auth v2 with username and password. BM2 reuses the auth contract and the spike result of `math-app-base_20261114` (DA2 to DA9 and DA2a) and makes its own copies of the account helpers and the auth UI files, because a shared package cannot import `convex/_generated`. Story S1 runs as five ordered Implement tasks: move the 9 old functions to `convex/legacyAuth.ts`, add the Convex Auth v2 core and the accounts, add the new sign-in and the local auth files, switch the account callers, then delete the old code. Each task commit passes the typecheck and the build, so BM2 works at the end of S1. Story S2 moves each user server call to the access token. Story S3 deletes `packages/core-auth` and the old auth context of `packages/app-shell` when no importer remains, and updates the project documents. The demo accounts read one variable, `DEMO_BM2_PASSWORD`, no password migrates, and the work runs on a BM2 dev deployment while the prod deployment `quiet-swan-141` and the Worker `bus-math-v2` stay unchanged.
+
+### Verification of the Round 2 findings
+
+- F9: withdrawn. B15 and the plan rule "S1 Commit Order" keep each of the five S1 Implement commits typecheckable and buildable.
+- F10: withdrawn. The Versions and Documents bullets match the tree, and no false pin remains.
+- F11: withdrawn. The Format row names its source, S4 of `vinext-oxc-toolchain_20261114`, with a real dependency chain.
+
+### Findings
+
+- F12 [Blocker] plan.md Phase S1 Contract ("Test Changes") and spec.md Current System (Tests bullet): the grep that builds "Test Changes" and the 19-file inventory omit `AUTH_JWT_SECRET`, so no plan step records or changes `__tests__/config/curriculum-runtime-foundation.test.ts`, and its expectation fails after S1 Implement 5. Rationale: line 50 of that file reads `wrangler.jsonc` and expects `toContain('AUTH_JWT_SECRET')` with no condition. Task 5 of S1 Implement removes the `AUTH_JWT_SECRET` comment of `wrangler.jsonc` (line 16), so the Test gate of S1 Verify (`CI=true npm run test --workspace=apps/bus-math-v2`) fails. The file matches none of the eight terms of the "Test Changes" grep, so the 19-file list does not hold it. The gate fails until the plan adds `AUTH_JWT_SECRET` to the grep of the S1 Contract and records the change of this test.
+- F13 [Blocker] spec.md Story S1 (last criterion) and plan.md S1 Implement 5 and S1 Verify: no task of the plan names `apps/bus-math-v2/vite.config.ts`, so its chunk rule `if (id.includes('core-auth')) return 'vendor-auth';` (line 73) keeps the string `core-auth` in BM2 after task 5. Rationale: the criterion `git grep -n -E "core-auth|bm_session|auth_credentials|login_rate_limits|AUTH_JWT_SECRET" -- apps/bus-math-v2` must find no match outside the test fixtures of the evidence file, and `vite.config.ts` is not a test fixture, so the S1 criterion and the S1 Verify step "Confirm no other match" fail. Task 5 removes the `@math-platform/core-auth` dependency of BM2, so the rule matches no module after task 5 and is dead code, and the implementer must invent a change to a file that no task names. The plan must name the deletion of this rule.
+
+### Author Response
+
+Revision author: claude-sonnet-5-5 (2026-11-15). The author checked both files read-only before the change.
+
+- F12: FIX. The check confirmed line 50 of `apps/bus-math-v2/__tests__/config/curriculum-runtime-foundation.test.ts`. The plan S1 Contract grep now has the term `AUTH_JWT_SECRET` and records 21 files. A new "Test Changes" line changes `curriculum-runtime-foundation.test.ts` (remove the expectation of line 50). A second new line records `__tests__/config/cloudflare-launch-hardening.test.ts` under "Fixtures" with no change, because its `AUTH_JWT_SECRET` case returns early while the launch checklist does not exist. The Tests bullet of spec.md Current System now states 21 files and names these two.
+- F13: FIX. The check confirmed the rule at line 73 of `apps/bus-math-v2/vite.config.ts`. S1 Implement task 5 has a new line that deletes the rule. No module matches it after the `core-auth` dependency goes.
+
 ## Accepted Risks
 
-None.
+- F12 [Blocker]: fixed by the author after the last re-run, not re-reviewed; BM2 S1 Review A checks it. Decision: PM, 2026-11-15 (deferred:pm).
+- F13 [Blocker]: fixed by the author after the last re-run, not re-reviewed; BM2 S1 Review A checks it. Decision: PM, 2026-11-15 (deferred:pm).
