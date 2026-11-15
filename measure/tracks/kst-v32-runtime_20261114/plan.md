@@ -40,7 +40,8 @@ Verify task means each row of this table.
 ### Test Rules
 
 - Each worked example of a story is a test with the numbers of `SPECIFICATION.md`.
-  Compare decimals with a tolerance of 0.001.
+  Compare decimals with a tolerance of 0.001. One exception: the S2 weighted-rate case
+  uses the tolerance 0.005, because §13.1 gives two decimals.
 - A v2 case of an existing test that contradicts v3.2 changes to the v3.2 value in the same
   Red task. Record each changed case under "Changed v2 Cases".
 - Package tests stay in the package. App tests use the mock context helpers in
@@ -230,6 +231,7 @@ _Story ref: spec.md#story-s5_
     - [ ] `packages/knowledge-space-core/src/__tests__/placement-knowledge-state-seed.test.ts`: the §11.4 worked example gives `S₀ = 28.5` for B and `S₀ = 14.25` with `medium` for its hard-edge parent. A result of 0.60 with `low` gives `S₀ = 3` and `inProgress`.
     - [ ] Also: a soft-edge parent gets nothing. A result of 0.95 with `high` is valid input and gives `S₀ = 28.5`.
     - [ ] `apps/math/__tests__/convex/placement.test.ts`: the case "rejects PlacementResult with confidence="high"" changes to accept `high` and to reject another value (for example `"extreme"`). Record the change under "Changed v2 Cases".
+    - [ ] `apps/integrated-math-3/__tests__/lib/placement/phase5-docs-and-doctor.test.ts` (line 264 in the start commit): the case that asserts `z.enum(['low', 'medium'])` in `placement.ts` changes to the three-value enum with `high`. After the app move to `apps/math`, the same case is in `apps/math/__tests__/lib/placement/`. Record the change under "Changed v2 Cases".
     - [ ] `apps/math/__tests__/lib/placement/seed-knowledge-state.test.ts`: the seeding writes one `srs_cards` row for each objective with `source: "placement"`. A later practice submission replaces an inferred estimate.
     - [ ] Run the package suites and the app suite. Confirm that the new cases fail.
     - [ ] Commit: `test(kst): specify the v3.2 placement`.

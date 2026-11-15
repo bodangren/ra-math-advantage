@@ -126,6 +126,13 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
     `FSRS_DECAY = 0.1542`. This value equals `FSRS6_DEFAULT_DECAY` of ts-fsrs 6.0.0 and
     the last default weight (`w[20]`). The `scale` argument goes away. The package gets no
     new dependency.
+  - The curve in `knowledge-space-core` is `(1 + FACTOR × elapsedDays / stability)^(−FSRS_DECAY)`.
+    The constant `FACTOR` pairs with `FSRS_DECAY` as `FACTOR = 0.9^(−1/FSRS_DECAY) − 1`
+    (about 0.980). This is the form of `computeDecayFactor` in ts-fsrs 6.0.0:
+    `exp(ln(0.9) / −DECAY) − 1`. The retention at `elapsedDays = stability` is then 0.9.
+    The S1 Red case and the parity test pin this value. The §13.5 value `FACTOR = 19/81`
+    pairs with the decay 0.5 only. With `FSRS_DECAY` it gives 0.968 at
+    `elapsedDays = stability`, so the track does not use it.
   - The new test `apps/math/__tests__/lib/srs/retention-parity.test.ts` compares the two
     functions on a grid of values.
 - **K2a Efficacy metrics:** `efficacy-core` keeps the v2 stability index for its reports.

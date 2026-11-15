@@ -36,7 +36,24 @@ Findings:
 
 ## Round 2
 
-Status: queued.
+Date: 2026-11-15
+Reviewer: measure-spec-review on opencode-go/deepseek-v4.1-flash (a substitution for the Kimi table model)
+Audited commit: 2c6de11d
+Status: pass
+
+Paraphrase: the track moves five packages and the math app callers from kst-srs.v2 to kst-srs.v3.2. It replaces the in-repo spec copy with a README that points to the mastery-advantage source at a pinned commit. Six phases apply the 16 migration items, and each phase has a contract task, a Red task, an implement task, the gates, and a checkpoint.
+
+Findings: F1 to F8 withdrawn (fixed in 2c6de11d). No Blocker remains.
+
+- F9 [Major] plan S5 Red, Changed v2 Cases: the case in `phase5-docs-and-doctor.test.ts` (line 264) that asserts the two-value `confidence` enum is not listed.
+- F10 [Nit] spec K2: the `FACTOR` that pairs with `FSRS_DECAY` in `knowledge-space-core` is not stated.
+- F11 [Nit] plan Test Rules: the S2 weighted-rate case uses the tolerance 0.005, and the rules give 0.001.
+
+### Author Response
+
+- F9: FIX. I read line 264 of `apps/integrated-math-3/__tests__/lib/placement/phase5-docs-and-doctor.test.ts`: it matches `z.enum(['low', 'medium'])` in `placement.ts`. Plan S5 Test (Red) now has a line for this case, with the change to the enum that holds `high`, the later path under `apps/math`, and the record under "Changed v2 Cases".
+- F10: FIX. I read `computeDecayFactor` and `forgetting_curve` in the ts-fsrs 6.0.0 dist source. Spec K2 now gives the curve `(1 + FACTOR × elapsedDays / stability)^(−FSRS_DECAY)` and `FACTOR = 0.9^(−1/FSRS_DECAY) − 1` (about 0.980), the same form as ts-fsrs. The retention at `elapsedDays = stability` is 0.9. The spec says that the S1 Red case and the parity test pin this value, and that `19/81` pairs with the decay 0.5 only.
+- F11: FIX. The plan Test Rules now name the one exception: the S2 weighted-rate case uses the tolerance 0.005, because §13.1 gives two decimals. Each other case uses 0.001.
 
 ## Accepted Risks
 
