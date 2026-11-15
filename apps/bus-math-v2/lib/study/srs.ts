@@ -9,7 +9,9 @@ export type SerializedCardState = {
   scheduled_days: number;
   reps: number;
   lapses: number;
-  state: number;
+  // ts-fsrs 6 replaced the numeric State enum with a numeric union type; the
+  // serialized value is one of the four state numbers.
+  state: Card['state'];
   learning_steps?: number;
   last_review?: string | number | null;
 };
@@ -38,7 +40,10 @@ export function serializeCard(card: Card): SerializedCardState {
     due: card.due.toISOString(),
     stability: card.stability,
     difficulty: card.difficulty,
-    elapsed_days: card.elapsed_days,
+    // Card.elapsed_days was removed in ts-fsrs 6 (v6 migration guide: derive
+    // elapsed time from actual review timestamps at the call site). The stored
+    // field stays at 0 here; consumers derive the review delta from last_review.
+    elapsed_days: 0,
     scheduled_days: card.scheduled_days,
     reps: card.reps,
     lapses: card.lapses,
@@ -58,7 +63,8 @@ export function deserializeCard(state: SerializedCardState): Card {
     due: new Date(state.due),
     stability: state.stability,
     difficulty: state.difficulty,
-    elapsed_days: state.elapsed_days,
+    // Card.elapsed_days was removed in ts-fsrs 6; the scheduler derives elapsed
+    // time from the review timestamps itself.
     scheduled_days: state.scheduled_days,
     reps: state.reps,
     lapses: state.lapses,

@@ -43,13 +43,17 @@ has_script() {
 # inferred type inside the message; the spec defines the key as workspace + file + code,
 # so message drift must not count as a new failure. The `npm error code <n>` trailer is
 # normalized to `npm error code` (the exit code itself is tracked in the .exit files).
-# All other lines keep their full-text key. The baseline logs are re-keyed with the same
+# All other lines keep their full-text key. Success lines (vitest ✓ lines) are not
+# diagnostics and are dropped: vitest 5 changed their trailing whitespace, which made
+# passing tests look like new diagnostics. Trailing whitespace is stripped on all
+# remaining lines for the same reason. The baseline logs are re-keyed with the same
 # function at compare time, so both sides stay symmetric and no baseline re-run is needed.
 # LC_ALL=C pins the collation: sort and comm must agree, or comm reports keys as new or
 # absent at random (the source of the earlier "input is not in sorted order" warnings).
 key() {
   grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)' "$1" 2>/dev/null |
-    LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g' | LC_ALL=C sort -u
+    grep -v '^[[:space:]]*✓' |
+    LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g; s/[[:space:]]+$//' | LC_ALL=C sort -u
 }
 
 # A new failure: no baseline failure, or a diagnostic key that the baseline log lacks.
