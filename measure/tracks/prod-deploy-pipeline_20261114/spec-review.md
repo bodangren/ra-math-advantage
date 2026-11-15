@@ -97,6 +97,10 @@ Cloudflare account `0f8cef508e69d2446315a1c80042da20` holds only the Workers `in
 - F11: FIX. The D4a summary now says that the first `npx convex deploy` and the Worker secret puts are the cloud changes before the marker check, that neither puts Worker code in the cloud, and that both Workers are OFF at that point. The S2 Deploy task in `plan.md` says the same.
 - F12: FIX. D5 and the S2 Contract name the check: `npx convex login status` exits with code 0 when logged in and with code 1 when not, and the preflight fails on exit code 1. The command was checked read-only with `npx --no-install convex login status --help`. The S2 Test task has a new case: exit code 1 gives a preflight failure and no cloud command.
 
+## Amendment after Round 3 (2026-11-15)
+
+- The static-app rule of D4 and D13 comes from danielson-app-import Round 1 F4 and was not re-reviewed; pipeline S2 Review A and Review B check it; decision: orchestrator default, deferred:pm.
+
 ## Accepted Risks
 
 None.

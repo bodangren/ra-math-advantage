@@ -15,8 +15,11 @@ Verification and Checkpointing Protocol)
 
 ### Gate Commands
 
-After S1, `<app>` is `apps/danielson`. Use the commands that `apps/math` uses after
-`vinext-oxc-toolchain_20261114`.
+After S1, `<app>` is `apps/danielson`. Use the commands that `apps/integrated-math-3` uses
+after `vinext-oxc-toolchain_20261114`. The app `apps/math` does not exist at the start of
+this track. Each task reads each range, script name, config file, gate command, and the
+`compatibility_date` from `apps/integrated-math-3` at HEAD when the task starts. The plan
+pins no version number and no line number (spec D5).
 
 | Gate | Command |
 |------|---------|
@@ -57,6 +60,15 @@ each row of this table.
   (Red) — the framework text guard", and "S1 Implement (Green) — paraphrase the framework
   text" make no commit. The task "S1 Implement — scan and make the snapshot commit" commits
   their work as one commit. Each of the four tasks gets the SHA of the snapshot commit.
+- S1 mechanics:
+  - Red writes the D14b guard in the working tree, runs it, and records the failing output
+    in its role log. The output has keys only, and no values. Red makes no commit. The
+    orchestrator records the Red HEAD-advance check as an accepted deviation for this task.
+  - Green writes the paraphrases, and runs D14a and D14b until both pass. Then Green makes
+    the snapshot commit. The snapshot commit holds the Red test.
+  - Right after the snapshot commit, one plan-update commit sets the `[x]` marks of the
+    no-commit tasks with the snapshot SHA, and adds the git notes.
+  - No commit before the snapshot commit holds a file under `apps/danielson`.
 - Do not push. Only the closeout step pushes (spec "Non-Functional Requirements").
 
 ## Phase S1: Import the app as one snapshot
@@ -70,6 +82,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Run `git -C /home/daniebo/Desktop/hdkwa-danielson for-each-ref`. Record the output under "Source State".
     - [ ] Confirm that `origin/main` is `c047df1186e9cba458407b6f7be9c6293a9d40fd` and that `git -C /home/daniebo/Desktop/hdkwa-danielson rev-list --count c047df1` gives 71. If not, stop and report.
     - [ ] Confirm that `apps/danielson` does not exist in this repository. If it exists, stop and report.
+    - [ ] Under "Baseline", record the dependency ranges and the lockfile versions of `react`, `lucide-react`, `tailwindcss`, and `vitest` at the start of S1. Also record the `vinext` and `react-server-dom-webpack` ranges of `apps/integrated-math-3`. The dated lockfile facts of the spec "Current System" are not the source of these values.
     - [ ] Under "Text Rules", write the 26 element IDs, the normalizations of spec D14a and D14b, the run rule, the title rule, and the paraphrase rules of spec D13. Write no source text.
     - [ ] Write the list of the five open tracks, their new IDs (`danielson-<old id>`), and their status marks under "Moved Tracks".
     - [ ] Commit: `measure(danielson-app-import): record the source state and the text rules`.
@@ -123,7 +136,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Run the scripts suite. Confirm that cases 1, 2, 3, and 5 pass. Case 4 passes after D5.
 - [ ] Task: S1 Implement — join the workspaces (spec D5)
     - [ ] Record the SHA of the snapshot commit under "Import".
-    - [ ] Change `apps/danielson/package.json` as spec D5 gives.
+    - [ ] Change `apps/danielson/package.json` as spec D5 gives. Read each range from `apps/integrated-math-3` at HEAD now, and add `react-server-dom-webpack`. Remove the `name` field and the `version` field, and set `"private": true`.
     - [ ] Run `npm install`. Confirm that `npm ls next` shows no `next` package, and that the lockfile diff adds only the `apps/danielson` workspace and the packages of D5. If it changes another version, stop and report.
     - [ ] Commit: `chore(danielson): join the workspaces with the repository dependency set`.
 - [ ] Task: S1 Verify — run the gates
@@ -144,7 +157,7 @@ _Story ref: spec.md#story-s1_
 _Story ref: spec.md#story-s2_
 
 - [ ] Task: S2 Contract — define the toolchain
-    - [ ] Under "Toolchain", list the scripts, the config files, and the gate commands of `apps/math` after `vinext-oxc-toolchain_20261114`. Map each to its Danielson file.
+    - [ ] Under "Toolchain", list the scripts, the config files, and the gate commands of `apps/integrated-math-3` at HEAD after `vinext-oxc-toolchain_20261114`. Map each to its Danielson file.
     - [ ] Record the `next.config.ts` change of spec D6 and the removal of `src/lib/imagePath.ts` (spec D7), with its two callers.
     - [ ] Record the expected build output: one `index.html` under `dist/client/` for each route, each `/domains/<id>/` of `generateStaticParams`, and each `/strategy/<slug>/`, and each file of `public/technique-images/`.
 - [ ] Task: S2 Test (Red) — specify the build
@@ -180,7 +193,8 @@ _Story ref: spec.md#story-s3_
 
 - [ ] Task: S3 Contract — define the Worker and the route check
     - [ ] Confirm that `prod-deploy-pipeline_20261114` is closed and that `DEPLOY_APPS` has a `danielson` entry. If it has none, record the entry to add: no Convex project, the smoke paths `/` and one technique page, and the build command of the app.
-    - [ ] Write `apps/danielson/wrangler.jsonc` as spec D8 gives, in the evidence file first.
+    - [ ] Write `apps/danielson/wrangler.jsonc` as spec D8 gives, in the evidence file first. Read the `compatibility_date` from `apps/integrated-math-3/wrangler.jsonc` at HEAD now.
+    - [ ] Confirm that the marker check of `prod-deploy-pipeline_20261114` has the static-app rule of its spec D13. Confirm that `apps/danielson/wrangler.jsonc` has no `main`. If the rule is missing, stop and report.
     - [ ] Write the contract of `scripts/deploy/route-check.ts`: `routeCheck(baseUrl, distDir, imageDir, fetchFn)` requests the URL of each `index.html` under `distDir` and each file under `imageDir`, and returns each status.
 - [ ] Task: S3 Test (Red) — specify the route check
     - [ ] `scripts/__tests__/deploy/route-check.test.ts`: with a stub fetch and a fixture folder, each 200 response passes, and one 404 response fails with its path.
@@ -190,7 +204,8 @@ _Story ref: spec.md#story-s3_
     - [ ] Implement `scripts/deploy/route-check.ts`.
     - [ ] Commit: `feat(danielson): add the Worker config and the route check`.
 - [ ] Task: S3 Deploy — deploy the Worker danielson
-    - [ ] Run `npm run deploy:app -- danielson`. Record the workers.dev URL and the Worker version under "Deploy".
+    - [ ] The orchestrator runs this task, not a role (`AGENTS.md`, the deploy authorization of 2026-11-14). The request to turn the site on names the D12 exception of the technique image pixels (PM decision 2026-11-15).
+    - [ ] The orchestrator runs `npm run deploy:app -- danielson`. The marker check records "static export: no RSC server chunk". Record the workers.dev URL and the Worker version under "Deploy".
     - [ ] Run the route check against the URL. Record the counts and each failure under "Route Check". Each request must give HTTP 200.
     - [ ] Request one unknown path. Confirm HTTP 404 and the generated 404 page.
     - [ ] Report the first production deploy of the Danielson app to the PM orchestrator: the app, the URL, and the commit. Tell the PM that the Worker can replace the GitHub Pages site. The source repository stays a separate item for Daniel (spec "External Dependencies").

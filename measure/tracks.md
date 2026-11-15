@@ -71,7 +71,7 @@ Dependencies:
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
 
 - [ ] **Track: Danielson App Import**
-   *Chore, story-shaped spec with 3 phases: S1 import `github.com/bodangren/hdkwa-danielson` as `apps/danielson` with its git history, move its open Measure tracks into this registry, remove the duplicate files, and join the npm workspaces; S2 the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs) and CI; S3 a static export to the new Worker `danielson` and a report to the PM. The app keeps the Danielson Framework text under the license of the school. Depends on: `vinext-oxc-toolchain_20261114` (S1 and S2) and `prod-deploy-pipeline_20261114` (S3 only). Runs before the track set Unified Math App. Orchestrator decision 2026-11-14.*
+   *Chore, story-shaped spec with 3 phases: S1 import `github.com/bodangren/hdkwa-danielson` as `apps/danielson` in one snapshot commit of `c047df1` with no source history, replace the Danielson Framework text with own-word paraphrases and own-word labels (no exact Danielson Framework text; element IDs stay), move its open Measure tracks into this registry, remove the duplicate files, and join the npm workspaces; S2 the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs) and CI; S3 a static export to the new Worker `danielson` and a report to the PM. Depends on: `vinext-oxc-toolchain_20261114` (S1 and S2) and `prod-deploy-pipeline_20261114` (S3 only). Runs before the track set Unified Math App. Orchestrator decision 2026-11-14.*
    *Link: [./tracks/danielson-app-import_20261114/](./tracks/danielson-app-import_20261114/)*
 
 - [ ] **Track: Unified Math App: Base App, Convex Auth v2, and Course Data**

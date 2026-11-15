@@ -38,7 +38,7 @@ each route and each technique image from the Worker `danielson`.
     `package-lock.json`.
   - Data: TypeScript files under `src/data/`. The app keeps user state in `localStorage`
     only. It has no server code and no account.
-- **Files:** 229 tracked files: 60 under `measure/` and 169 others. `public/` has 70 files;
+- **Files:** 230 tracked files: 61 under `measure/` and 169 others. `public/` has 70 files;
   62 are under `public/technique-images/`.
 - **Routes:** `/`, `/domains`, `/domains/[id]`, `/references`, `/report`, and
   `/strategy/[slug]`. The two dynamic pages use `generateStaticParams`.
@@ -80,9 +80,11 @@ each route and each technique image from the Worker `danielson`.
   `README.md` (the `create-next-app` text), and `LICENSE` (GNU AGPL 3.0). The `README.md` of
   this repository says "Proprietary - All rights reserved".
 - **This repository:** the root `package.json` has `"workspaces": ["apps/*", "packages/*"]`.
-  The lockfile holds `react` 19.2.7, `lucide-react` 1.17.0, `tailwindcss` 4.3.0, and
-  `vitest` 4.1.8 today. `git` is 2.53.0. This repository holds no Danielson Framework text
-  today.
+  On 2026-11-14 the lockfile held `react` 19.2.7, `lucide-react` 1.17.0, `tailwindcss`
+  4.3.0, and `vitest` 4.1.8. These lockfile facts are dated 2026-11-14. The S1 work of
+  `vinext-oxc-toolchain_20261114` supersedes them, and no decision rests on them. The S1
+  Contract task records the state at the start of S1. `git` is 2.53.0. This repository
+  holds no Danielson Framework text today.
 - **vinext static export** (vinext documentation and the example
   `examples/static-export`, read 2026-11-14): vinext supports `output: 'export'`.
   `vinext build` writes the site to `dist/client/`. On Cloudflare, a static export deploys
@@ -149,33 +151,50 @@ D1, D4, D10, D12, D13, and D14 apply these rules.
   `apps/danielson/.github/`. The source repo keeps them. `apps/danielson/LICENSE` and
   `apps/danielson/README.md` stay.
 - **D5 Workspace and dependencies (approved by the orchestrator, 2026-11-14):** the app joins
-  the `apps/*` workspaces. Its `package.json` loses the `name` field, as the other apps do.
-  It removes `next`, `eslint`, `eslint-config-next`, and `@rolldown/binding-darwin-arm64`. It
-  adds `vinext` with the range of `apps/math`. It takes the ranges of `apps/math` for
-  `react`, `react-dom`, `lucide-react`, `tailwindcss`, `@tailwindcss/postcss`, `vitest`,
-  `typescript`, and `@types/node`. It uses the root `oxlint`, `oxfmt`, and `tsrs`. This
-  change comes in Phase S1, before the first `npm install`, because the lockfile must never
-  hold `next` again (`vinext-oxc-toolchain_20261114`).
+  the `apps/*` workspaces.
+  - The reference app of this track is `apps/integrated-math-3` after
+    `vinext-oxc-toolchain_20261114`. The app `apps/math` does not exist at the start of this
+    track, and the track set Unified Math App creates it later. Each task that needs a
+    dependency range, a script name, a config file, a gate command, or the
+    `compatibility_date` reads it from `apps/integrated-math-3` at HEAD when the task
+    starts. The documents pin no version number and no line number.
+  - Its `package.json` loses the `name` field and the `version` field, and it has
+    `"private": true`, as the other apps do.
+  - It removes `next`, `eslint`, `eslint-config-next`, and `@rolldown/binding-darwin-arm64`.
+  - It adds `vinext` with the range of `apps/integrated-math-3`. It takes the ranges of
+    `apps/integrated-math-3` for `react`, `react-dom`, `react-server-dom-webpack`,
+    `lucide-react`, `tailwindcss`, `@tailwindcss/postcss`, `vitest`, `typescript`, and
+    `@types/node`. Each vinext app declares `react-server-dom-webpack`, because the RSC
+    plugin otherwise builds with its vendored copy (`measure/tech-debt.md`, the
+    `hotfix/rsdw-19.2.9` rows).
+  - It uses the root `oxlint`, `oxfmt`, and `tsrs`.
+  - This change comes in Phase S1, before the first `npm install`, because the lockfile must
+    never hold `next` again (`vinext-oxc-toolchain_20261114`).
 - **D6 Toolchain:** the app uses the script names, the config files, and the gate commands
-  that `apps/math` uses after `vinext-oxc-toolchain_20261114`. `next.config.ts` keeps
-  `output: 'export'`, `trailingSlash: true`, and `images.unoptimized`, and loses `basePath`
-  and `turbopack`. If `vinext build` cannot make the static export, the app uses the vinext
-  Worker build of `apps/math`, keeps `trailingSlash`, and the evidence file records the
-  error.
+  that `apps/integrated-math-3` uses after `vinext-oxc-toolchain_20261114` (D5 gives the read
+  rule). `next.config.ts` keeps `output: 'export'`, `trailingSlash: true`, and
+  `images.unoptimized`, and loses `basePath` and `turbopack`. If `vinext build` cannot make
+  the static export, the app uses the vinext Worker build of `apps/integrated-math-3`, keeps
+  `trailingSlash`, and the evidence file records the error.
 - **D7 No base path:** the app serves from the root of its host. `src/lib/imagePath.ts`
   goes away, and its two callers use plain public paths.
 - **D8 Worker:** `apps/danielson/wrangler.jsonc` has `"name": "danielson"`, the
-  `compatibility_date` of `apps/math`, and `"assets": { "directory": "./dist/client",
-  "html_handling": "force-trailing-slash", "not_found_handling": "404-page" }`, with no
-  `main`. Phase S3 deploys it with `npm run deploy:app -- danielson` of
-  `prod-deploy-pipeline_20261114`, which has no Convex step for this app.
+  `compatibility_date` of `apps/integrated-math-3` (D5 gives the read rule), and
+  `"assets": { "directory": "./dist/client", "html_handling": "force-trailing-slash",
+  "not_found_handling": "404-page" }`, with no `main`. Phase S3 deploys it with
+  `npm run deploy:app -- danielson` of `prod-deploy-pipeline_20261114`, which has no Convex
+  step for this app. The app is a static app, so it has no RSC server chunk. The marker
+  check of that pipeline follows the static-app rule of its D13: the check passes when the
+  build folder has no `dist/server/` folder, and it fails when the build has server output.
 - **D9 CI:** `.github/workflows/ci.yml` gets a `danielson` job with the lint, typecheck,
   test, and build steps of the `bm2` job. The root `package.json` gets `ws:danielson:*`
   scripts in the pattern of the other apps.
 - **D10 Framework text in the app:** the app shows own-word paraphrases of the descriptors,
   short own-word labels in place of the domain and component titles, and the element IDs
-  (`1` to `4`, `1a` to `4f`). It shows no exact Danielson Framework text. So the app follows
-  the graph rule ("IDs + paraphrased labels only"). License holder: the school (Daniel,
+  (`1` to `4`, `1a` to `4f`). It shows no exact Danielson Framework text, with one
+  exception: the pixel text of the committed technique images (D12) keeps the source
+  component titles. So the app follows the graph rule ("IDs + paraphrased labels only")
+  except for that one exception. License holder: the school (Daniel,
   2026-11-14: "Yes. We have that through the school."). The section "Licence Decision"
   gives the rules.
 - **D11 Graph data:** the app data stays TypeScript in `apps/danielson/src/data/`. The
@@ -186,6 +205,10 @@ D1, D4, D10, D12, D13, and D14 apply these rules.
   Each image shows the component name from the source `alignment` field. So the images keep
   the source component titles as pixels, with no descriptor text. The checks of D14 read
   text files only. A later track can render the images again with the new labels.
+  - PM decision (2026-11-15): keep the technique images. D10 names the one exception (the
+    exact component titles as pixels). A title is not a descriptor (D13). No re-render. The
+    request to turn the site on (the deploy gate of Phase S3) names this exception. PM rule 1
+    names descriptors and rubric wording only.
 - **D13 Paraphrase:** before the snapshot commit, the import replaces the framework text in
   each text file of the commit (D14a gives the file list). This covers `src/data/*.ts`,
   `src/data/techniques/*.ts`, the tests, `src/app/**`, `README.md`, `product.md`,

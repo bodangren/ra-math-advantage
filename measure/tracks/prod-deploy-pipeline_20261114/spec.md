@@ -118,8 +118,11 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
      `NEXT_PUBLIC_CONVEX_URL` set to the `vars` value of the `wrangler.jsonc` of that folder.
      D4a sets that value before the first `deploy:app` run.
   2. Run the D13 marker check on the built RSC server chunk. If a marker is missing, the
-     deploy stops here, before step 3.
-  3. Run `npx convex deploy`, without `--cmd`. The build of step 1 is the only build.
+     deploy stops here, before step 3. A static app (D13) has no RSC server chunk, and the
+     D13 static-app rule replaces the marker test.
+  3. Run `npx convex deploy`, without `--cmd`. The build of step 1 is the only build. Skip
+     this step for an app whose `DEPLOY_APPS` entry has Convex "none" (for example
+     `danielson`).
   4. Run `npx wrangler deploy --tag <short SHA of HEAD>` (D13 gives the reason for the tag).
   5. Run the smoke test (D8).
   - When the smoke test fails, the failure path of D13 runs: a rollback to a fixed version,
@@ -189,6 +192,12 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
     that contains "Attempted to call a temporary Client Reference". The check runs in step 2
     of D4, after the local build. If a marker is missing, `deployApp` stops before
     `npx convex deploy` and before `npx wrangler deploy`.
+  - Static app rule (2026-11-15): a static app has a `DEPLOY_APPS` entry with Convex "none",
+    and its `wrangler.jsonc` has no `main`. It has no RSC server chunk. For a static app,
+    `checkRscMarkers` passes only when the build folder holds no server output (no
+    `dist/server/` folder), and it records "static export: no RSC server chunk". A static app
+    build with server output fails the check, with no Worker command. The reason: a static
+    export has no Worker code, so the RSC server-action advisory cannot apply.
   - The first `npx wrangler deploy` turns workers.dev on again. This is the planned restore.
   - Version tag: each deploy runs `npx wrangler deploy --tag <short SHA of HEAD>`. The tag
     is the only record that maps a Worker version to its build commit. (Checked in
@@ -240,6 +249,8 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
 - Given a stub runner, a failed smoke test, and a version list that holds a version whose tag is a commit with `472fd719` as an ancestor, When `deployApp` runs, Then it runs `npx wrangler rollback <version id> --name <workerName of math> --yes` for the newest such version that is not the version of this deploy, and it exits with a failure (D13).
 - Given a stub runner, a failed smoke test, and a version list whose versions have no tag, or a tag that is not a fixed commit, When `deployApp` runs, Then it runs no rollback, it runs `npx wrangler triggers deploy --config <tmp file>` with a config that turns workers.dev and previews OFF, and it exits with a failure (D13).
 - Given a stub runner and a built RSC server chunk that lacks "Cannot handle action key" or "Cannot transport a detached buffer", When `deployApp` runs, Then it stops before `npx convex deploy` and runs no cloud command (D13).
+- Given a stub runner and a static app (Convex "none", no `main`) whose build folder has no `dist/server/` folder, When `deployApp` runs, Then the marker check passes with the record "static export: no RSC server chunk", the run has no Convex command, and the Worker deploy runs (D13).
+- Given a stub runner and a static app whose build folder has a `dist/server/` folder, When `deployApp` runs, Then the marker check fails and the run has no Convex command and no Worker command (D13).
 - Given a stub runner, a failed smoke test, and an empty version list (a Worker with no earlier version), When `deployApp` runs, Then it runs no rollback, it turns workers.dev OFF in the same way, and it exits with a failure.
 - Given a stub runner whose output holds a value of a secret variable, When `deployApp` logs, Then the log holds no secret value.
 - Given the first production deploy of the math app, When it completes, Then the Convex project `integrated-math-3` has a prod deployment, `apps/math/wrangler.jsonc` holds its URL, the Worker has the secrets of the Runtime Variables table, and the smoke test passes on the workers.dev URL.
