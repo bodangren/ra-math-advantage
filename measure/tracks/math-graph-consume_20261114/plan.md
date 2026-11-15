@@ -12,9 +12,12 @@ Verification and Checkpointing Protocol)
 Do not start S1 until both conditions are true:
 
 - `kst-v32-runtime_20261114` is closed in `measure/tracks.md`.
-- A folder `/home/daniebo/Desktop/handoff/a58-math-graph-release-us-hs-<label>/` exists. Use
-  the folder with the highest suffix (`-v2`, `-v3`, and so on), or the folder with no
-  suffix when it is the only one.
+- A folder `/home/daniebo/Desktop/handoff/a58-math-graph-release-us-hs-<label>/` exists. The
+  `<label>` follows the label pattern of `release-path.md`
+  (`^math-us-hs-[0-9]{8}-r[0-9]{2}$`). Use the folder with the highest label (the date, then
+  `rNN`).
+- The ID scheme is accepted (hand-off folder `graph-math-id-scheme-95aae15`, source commit
+  `95aae15`). The four contract files stay read-only and are not copied into the repository.
 
 ### Read-Only Rule
 
@@ -56,25 +59,28 @@ _Story ref: spec.md#story-s1_
 - [ ] Task: S1 Contract — record the release
     - [ ] Create `evidence.md` in this track folder with these sections: Baseline, Release, Mapping Format, Code Form, Validation, Readers, Literals, Kept Files, Dropped Entries, Scripts, Removal.
     - [ ] Run each gate on the start commit. Record each result and each test count under "Baseline".
-    - [ ] Under "Release", record the hand-off folder, each file, its size, its SHA-256 value from the hand-off, and the source commit if the hand-off names it.
-    - [ ] Record the format of the mapping file under "Mapping Format" (spec G4). If the hand-off does not describe it, stop and ask the PM.
-    - [ ] Record the form of `metadata.code` of the released CCSS standard nodes under "Code Form" (spec G6).
-    - [ ] Write the contract of `scripts/graph/ingest-release.ts <folder>` (spec G1 to G3): its checks, its output files, and its exit codes.
+    - [ ] Under "Release", record the hand-off folder, the label, each of the six files, its size, its SHA-256 value from `MANIFEST.txt`, and the source commit, the date, and the sender of `MANIFEST.txt`. Record any extra file (spec G1).
+    - [ ] Record the format of `id-map.json` under "Mapping Format" (spec G4): the statuses, the seed prefix of the keys, the 9 removed entries, and the 4 container keys. If it differs from `id-map-format.md`, stop and report to the PM.
+    - [ ] Record the form of `metadata.code` of the released CCSS standard nodes under "Code Form" (spec G6), with the form of `metadata.ccssPlus` and of the standard node IDs.
+    - [ ] Record under "Validation" the alignment-required kinds of the M2 check, the form of `metadata.legacyGeneratorIds`, and how the release links an exception node to an AP-only standard (spec G3, G11).
+    - [ ] Write the contract of `scripts/graph/ingest-release.ts <folder>` (spec G1 to G4): its checks, its output files, and its exit codes.
     - [ ] Commit: `measure(math-graph-consume): record the S1 contract`.
 - [ ] Task: S1 Test (Red) — specify the ingestion
-    - [ ] `scripts/__tests__/graph/ingest-release.test.ts`: with a fixture hand-off folder, the script copies the two files and writes `SHA256SUMS` and `RELEASE.md`.
-    - [ ] Also: a changed byte stops the script with the SHA-256 error, and the output folder stays unchanged.
-    - [ ] Also: a `generator` node, a learnable node with no CCSS link and no exception entry, a node with two primary links, and an old node ID with no mapping entry each fail the validation with the node ID.
-    - [ ] `apps/math/__tests__/curriculum/graph-release.test.ts`: each SHA-256 of `SHA256SUMS` matches its file. The validation of G3 passes on the files in the repository.
+    - [ ] `scripts/__tests__/graph/ingest-release.test.ts`: with a fixture hand-off folder of six files, the script copies the six files byte for byte. It writes no other file.
+    - [ ] Also: a changed byte stops the script with the SHA-256 error, and the output folder stays unchanged. A missing file and a label that does not match the pattern stop the script too.
+    - [ ] Also: a `generator` node, a `renderer` node, an `equivalent_to` edge, a learnable node with no CCSS link and no exception entry, and a node with two primary links each fail the validation with the node ID.
+    - [ ] Also: a node that needs a generator and has neither a `generated_by` edge nor a `generator` entry fails with `MATH_M1_MISSING_GENERATOR`. A node of an alignment-required kind with neither an alignment edge nor an `alignment` entry fails with `MATH_M2_MISSING_ALIGNMENT`. A `generator` entry does not satisfy the M2 check.
+    - [ ] Also: a seed node ID with no entry in `id-map.json`, a key that names no seed node ID, an unknown status, a `removed` entry with a `newId`, and a `newId` that is not a node of the release each fail with the entry key.
+    - [ ] `apps/math/__tests__/curriculum/graph-release.test.ts`: each SHA-256 of `MANIFEST.txt` matches its file. The checks of G3 that read only the release files pass on the files in the repository.
     - [ ] Run the scripts suite and the app suite. Confirm that the new cases fail.
     - [ ] Commit: `test(graph): specify the release ingestion`.
 - [ ] Task: S1 Implement — the ingestion script
-    - [ ] Write `scripts/graph/ingest-release.ts` with the checks of spec G3. Use the validation of `packages/knowledge-space-core/src/validation.ts`.
+    - [ ] Write `scripts/graph/ingest-release.ts` with the checks of spec G1, G3, and G4. Use the validation of `packages/knowledge-space-core/src/validation.ts`. The script copies the six files byte for byte.
     - [ ] Commit: `feat(graph): add the release ingestion script`.
 - [ ] Task: S1 Ingest — take the release into the repository
     - [ ] Run `npx tsx scripts/graph/ingest-release.ts <hand-off folder>`. Record the output under "Validation".
     - [ ] If the SHA-256 check or the validation fails, stop and report to the PM. Copy nothing.
-    - [ ] Send one line to the PM orchestrator and to the sender session: the folder, the two file names, and "SHA-256 verified" (spec G1).
+    - [ ] Send one line to the PM orchestrator and to the sender session: the folder, the six file names, and "SHA-256 verified" (spec G1).
     - [ ] Commit: `feat(math): add the math.us-hs graph release <label>`.
 - [ ] Task: S1 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
@@ -94,25 +100,29 @@ _Story ref: spec.md#story-s2_
 - [ ] Task: S2 Contract — list the readers and the old IDs
     - [ ] Run `git grep -l -E "skill-graph/|standards_inventory|cross-course-edges|GRAPH_SOURCES" -- apps/math packages scripts ':!*.json' ':!*.md'`. Record each reader under "Readers" with its new form (spec G5).
     - [ ] Run `git grep -n -E "math\.(im1|im2|im3|precalc)\." -- apps/math packages ':!*.json'`. Record each literal under "Literals" with its mapping target (spec G9). A literal that stays (for example a mapping test) gets a reason.
-    - [ ] Record the released course container ID for `math.im1`, `math.im2`, `math.im3`, and `math.precalc` from the mapping file.
-    - [ ] Record each reader of `generated_by` and `rendered_by` edges in `apps/math`, and the contract of `apps/math/lib/curriculum/runtime-bindings.ts` (spec G7).
+    - [ ] Record the course node ID of each course for `graphCourseNodeId` (spec G5). Take it from the mapping of the seed course node (for example `math.im1.course.im1`), and check it against `math.us-hs.course.<course>` with `<course>` one of `im1`, `im2`, `im3`, `ap-precalc` (the app key `precalc` maps to `ap-precalc`). The mapping of the four old containers gives the domain `math.us-hs`, so do not use it for this field.
+    - [ ] Record the exact edge types and directions of the release for `courseView`: course to module, module to lesson, lesson to its home skill, and lesson to a referenced skill (`appears_in_context`). Record the exact edge types for worked examples and concepts of a lesson.
+    - [ ] Record each reader of `generated_by` and `rendered_by` edges in `apps/math`, and the contract of `apps/math/lib/curriculum/runtime-bindings.ts` (spec G7): the generator keys from `metadata.legacyGeneratorIds` and the old `generated_by` edges, and the source of the renderer keys (the old `rendered_by` edges with the `id-map.json` mapping, or the legacy renderer IDs if the release carries them).
+    - [ ] Run `sed -n '169p' packages/knowledge-space-practice/src/projections/teacher-evidence.ts` and `git grep -n "equivalent_to" -- apps/math packages ':!*.json' ':!*.md'`. Record each reader that derives a course from `node.domain` or the ID prefix, and each reader of `equivalent_to` edges, with its new form. The release has the domain `math.us-hs` for each node and no `equivalent_to` edge (spec G3, G5).
     - [ ] Record the contract of `scripts/graph/rekey-node-ids.ts` and the kept files that it changes under "Kept Files" (spec G8).
-    - [ ] Record the contract of `migrateGraphNodeIds` in `apps/math/convex/graph/migrate.ts` (spec G10).
+    - [ ] Record the contract of `migrateGraphNodeIds` in `apps/math/convex/graph/migrate.ts` (spec G10): the handling of each status (`mapped`, `merged`, `removed`) and the container keys. Edge IDs of the release are opaque keys.
     - [ ] If the "Code Form" needs a new form in `canonicalCcssCode`, record it. If two released codes give one canonical code, or a competency has no released standard node, stop and report to the PM (spec G6).
     - [ ] Commit: `measure(math-graph-consume): record the S2 contract`.
 - [ ] Task: S2 Test (Red) — specify the switch
     - [ ] `apps/math/__tests__/lib/curriculum/skill-graph-loader.test.ts`: `loadMathGraph()` returns the nodes of the released file. The module exports no `GRAPH_SOURCES`.
-    - [ ] Also: `courseView` of each registry course returns the nodes that its released container reaches. `objectiveNodeIds` finds the released standard nodes of a canonical code.
+    - [ ] Also: `courseView` of each registry course returns the nodes that its course node reaches: modules, lessons, the skills that a lesson homes, and the skills that a lesson references with `appears_in_context`. No `graphCourseNodeId` is the domain `math.us-hs`. `objectiveNodeIds` finds the released standard nodes of a canonical code.
+    - [ ] `packages/knowledge-space-practice/src/__tests__/` (the teacher-evidence test): with a fixture graph in which each node has the domain `math.us-hs`, the course of a node follows course membership, and a skill that two courses share lists both courses.
     - [ ] `apps/math/__tests__/lib/courses/ccss.test.ts`: the released code form gives the canonical code (if the S2 Contract records a new form).
-    - [ ] `apps/math/__tests__/lib/curriculum/runtime-bindings.test.ts`: each of the 9 bindings names a node of the release.
+    - [ ] `apps/math/__tests__/lib/curriculum/runtime-bindings.test.ts`: each of the 9 removed generator and renderer IDs has a binding key, and each binding target names a node of the release.
     - [ ] `scripts/__tests__/graph/rekey-node-ids.test.ts`: with a fixture mapping, two entries that map to one node keep the entry of the lowest course `sequence`, and the script lists the dropped entry.
-    - [ ] `apps/math/__tests__/convex/graph/migrate.test.ts`: two placement rows of one student that map to one node leave the newest row. The calibration rows go away.
+    - [ ] `apps/math/__tests__/convex/graph/migrate.test.ts`: two placement rows of one student that map to one node leave the newest row. A row with a `removed` entry is deleted. The calibration rows go away.
     - [ ] `apps/math/__tests__/convex/student/knowledge-state.test.ts`: evidence on a skill that IM1 and IM2 share appears in the IM2 state.
     - [ ] Run the app suite and the scripts suite. Confirm that the new cases fail.
     - [ ] Commit: `test(math): specify the switch to the released graph`.
 - [ ] Task: S2 Implement — the loader and the readers
     - [ ] Change `loadMathGraph()` to read the released file. Remove `GRAPH_SOURCES`.
-    - [ ] Change each registry `graphCourseNodeId` to its released container ID.
+    - [ ] Change each registry `graphCourseNodeId` to its course node ID of the S2 Contract.
+    - [ ] Change the course derivation of `teacher-evidence.ts` (line 169) to course membership through `courseView`, and change each other reader of the S2 Contract that derives a course from `node.domain`.
     - [ ] Change each reader of "Readers" to its new form. Add the code form to `canonicalCcssCode` if the S2 Contract records one.
     - [ ] Write `apps/math/lib/curriculum/runtime-bindings.ts`. Change each reader of `generated_by` and `rendered_by` edges to read it.
     - [ ] Change each literal of "Literals" to its mapping target.
@@ -125,6 +135,7 @@ _Story ref: spec.md#story-s2_
 - [ ] Task: S2 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
     - [ ] Run the two `git grep` commands of the S2 Contract again. Confirm that only the matches with a reason remain.
+    - [ ] Run `git grep -n "equivalence-candidates" -- apps/math packages ':!*.json'`. Confirm that no runtime code reads the file.
     - [ ] Commit: `measure(math-graph-consume): record the S2 results`.
 - [ ] Task: S2 Docs & Doctor
     - [ ] Run `npm run generate`. Confirm exit code 0.
@@ -141,7 +152,8 @@ _Story ref: spec.md#story-s3_
 - [ ] Task: S3 Contract — define the tags
     - [ ] Write the contract of `ccssTags(graph, nodeId)` in `apps/math/lib/curriculum/standards.ts`: the CCSS codes of the node, primary first, or the AP CED code of an exception node (spec G11).
     - [ ] Run `git grep -l -E "competency|standardCode|ccss" -- apps/math/app/teacher apps/math/components/teacher`. Record each teacher page and component that shows a standard code or standard text.
-    - [ ] Record the CCSS copyright notice text from the release (or from the hand-off) and the place of the notice on each page that shows CCSS standard text.
+    - [ ] Record that the CCSS copyright notice text comes from `ccss-notice.txt` of the release, the way that the app loads it, and the place of the notice on each page that shows CCSS standard text.
+    - [ ] Record that the exception list is `standards-exceptions.json` of the release (spec G11).
     - [ ] Commit: `measure(math-graph-consume): record the S3 contract`.
 - [ ] Task: S3 Test (Red) — specify the tags
     - [ ] `apps/math/__tests__/lib/curriculum/standards.test.ts`: a node with a primary and a secondary link gives the primary code first. An exception node gives its AP CED code only.

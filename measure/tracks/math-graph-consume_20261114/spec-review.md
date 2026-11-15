@@ -6,6 +6,8 @@ Author model: claude-opus-5-5[1m]
 
 Status: queued. The PM machine load rule of 2026-11-14 allows one review role at a time. The PM starts this review when a slot is free.
 
+Amended on 2026-11-15 from the A-58 contracts (hand-off graph-math-id-scheme-95aae15) before this review; author model of the amendment: claude-sonnet-5-5.
+
 ## Accepted Risks
 
 None.
