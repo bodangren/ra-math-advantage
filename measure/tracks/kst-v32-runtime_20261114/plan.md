@@ -62,7 +62,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Under "Inventory", record each MIGRATION item (1 to 16) with its v3.2 sections, its files in this repository, and its phase of this plan.
     - [ ] Run `git grep -l -E "kst-srs\.v2|SPECIFICATION\.md" -- '*.test.ts' '*.test.tsx'`. Under "Spec Tests", record each file that reads the spec file or expects a link to it, with each block and its change (spec K1). Expect the eight files of the spec.
     - [ ] Count the `prerequisite_for` edges with weight 1.0 in the graph files of `GRAPH_SOURCES`. Record the count of each file under "Hard Edges" (spec K4).
-    - [ ] Write the contract of `stabilityToRetention(stability, elapsedDays)` in both packages, and of `stabilityIndex(stability)` in `efficacy-core` (spec K2, K2a).
+    - [ ] Write the contract of `stabilityToRetention(stability, elapsedDays)` in both packages, and of `stabilityIndex(stability)` in `efficacy-core` (spec K2, K2a). Record the import `forgettingCurve` from `ts-fsrs/models/fsrs-6` and its argument order (parameters, elapsed days, stability).
     - [ ] Commit: `measure(kst-v32-runtime): record the S1 contract`.
 - [ ] Task: S1 Test (Red) — specify retention and readiness
     - [ ] `packages/srs-engine/src/__tests__/retention.test.ts`: `stabilityToRetention(10, 0)` is 1.0 and `stabilityToRetention(10, 10)` is 0.9. The value drops when `elapsedDays` grows.
@@ -75,7 +75,9 @@ _Story ref: spec.md#story-s1_
     - [ ] Run the package suites and the app suite. Confirm that the new cases fail.
     - [ ] Commit: `test(kst): specify the v3.2 retention and readiness`.
 - [ ] Task: S1 Implement — retention, readiness, and trend
-    - [ ] Change `stabilityToRetention` in `srs-engine` and in `knowledge-space-core` as spec K2 gives. Change each caller to pass the elapsed days since `lastReview`.
+    - [ ] Change `stabilityToRetention` in `srs-engine`: `import { forgettingCurve } from 'ts-fsrs/models/fsrs-6'`, and return `forgettingCurve(parameters.w, elapsedDays, stability)`. Build `parameters` one time at module level with `generatorParameters(...)` and the values of `DEFAULT_SCHEDULER_CONFIG`, as `scheduler.ts` does (spec K2).
+    - [ ] Change `stabilityToRetention` in `knowledge-space-core` to the power curve with `FSRS_DECAY = 0.1542` (spec K2). Remove the `scale` argument.
+    - [ ] Change each caller to pass the elapsed days since `lastReview`.
     - [ ] Move the v2 formula to `packages/efficacy-core/src/metrics/stability-index.ts`. Change the three calls of `efficacy-core` to `stabilityIndex` (spec K2a).
     - [ ] Change `aggregateCardsToEvidence` and `srs-bridge.ts` to the objective minimum of spec K3.
     - [ ] Add `hardGateThreshold` and `trendThreshold` to `MasteryThresholds` and its schema. Change `computeWeightedReadiness` and `progress-trend.ts` (§2.5, §9.4).
@@ -83,7 +85,7 @@ _Story ref: spec.md#story-s1_
 - [ ] Task: S1 Implement — the spec pointer
     - [ ] Write `kst-srs/README.md` as spec K1 gives. Run `git rm -r kst-srs.v2`.
     - [ ] Change each test file of the list "Spec Tests" as spec K1 gives.
-    - [ ] Change the links in `measure/index.md` (line 17) and `measure/knowledge-space.md` (lines 5 and 117) to `kst-srs/README.md`.
+    - [ ] Change the links in `measure/index.md` (line 20) and `measure/knowledge-space.md` (lines 5 and 129) to `kst-srs/README.md`.
     - [ ] Add the row of spec K2a to `measure/tech-debt.md`.
     - [ ] Commit: `docs(kst): point to the kst-srs.v3.2 source`.
 - [ ] Task: S1 Verify — run the gates
@@ -104,14 +106,15 @@ _Story ref: spec.md#story-s2_
 
 - [ ] Task: S2 Contract — define the evidence inputs
     - [ ] Record each practice variant source of `apps/math` with its answer format. Give each format its guess floor (spec K5). Record the table under "Guess Floors".
-    - [ ] Write the contract of the corrected correctness (§13.1): the input is the ratings of the variant cards, newest first, and the guess floor.
+    - [ ] Write the contract of `computeCorrectedCorrectness(passes, guessFloor)` in `objective-proficiency.ts` (§13.1, spec K5): the input is the passes of the variant cards, newest first (a pass is each rating except `Again`), and the guess floor. The return value is `{ weightedRate, effectiveSampleSize, wilsonLower, retentionStrength }`.
     - [ ] Write the contract of the guess floor declaration on the adapter interface of `packages/knowledge-space-core/src/adapters.ts`, and of the math adapter in `apps/math/lib/srs/guess-floors.ts`.
-    - [ ] Record the stages of §8.4 and the current behavior of `srs-rating.ts` for each stage.
+    - [ ] Record the stages of §8.4 and the current behavior of `srs-rating.ts` for each stage. Record the first bullet of MIGRATION item 6 (the §8.4 reference to §13.3) with the comment of stage 5 as its place.
     - [ ] Record `FSRS_PARAMS_VERSION` and the schema change: `srs_review_log.paramsVersion` (optional string) (spec K7).
     - [ ] Commit: `measure(kst-v32-runtime): record the S2 contract`.
 - [ ] Task: S2 Test (Red) — specify evidence, rating, and stamps
-    - [ ] `packages/srs-engine/src/__tests__/corrected-correctness.test.ts`: 3/10 on g = 0.25 gives 0. 8/10 on g = 0.25 gives 0.388. 8/10 on g = 0 gives 0.541. The 12-attempt case gives the weighted rate 0.60.
-    - [ ] Also: 5/5 correct gives a confidence that is not `high`. 2 attempts give at most `low`.
+    - [ ] `packages/srs-engine/src/__tests__/corrected-correctness.test.ts`: `computeCorrectedCorrectness` returns `retentionStrength` 0 for 3/10 on g = 0.25, 0.388 for 8/10 on g = 0.25, and 0.541 for 8/10 on g = 0.
+    - [ ] Also: for the 12-attempt case of §13.1 (the newest 6 pass, the oldest 6 fail), `computeCorrectedCorrectness(passes, 0).weightedRate` is 0.60 (±0.005, because §13.1 gives two decimals). The raw rate is 0.50.
+    - [ ] Also: `computeObjectiveProficiency` gives an evidence confidence that is not `high` for 5/5 correct, and at most `low` for 2 attempts.
     - [ ] `packages/srs-engine/src/__tests__/objective-proficiency.test.ts`: the thresholds of §13.2 apply to the corrected retention.
     - [ ] `packages/practice-core/src/__tests__/srs-rating.test.ts`: 0 hints allow `Easy`. 1 to 2 hints cap at `Good`. 3 hints cap at `Hard`.
     - [ ] Also: one revealed step caps at `Hard`. All steps revealed give `Again`. The timing stage needs confidence `medium` or higher and 10 baseline samples.
@@ -120,13 +123,14 @@ _Story ref: spec.md#story-s2_
     - [ ] Run the package suites and the app suite. Confirm that the new cases fail.
     - [ ] Commit: `test(kst): specify the v3.2 evidence and rating`.
 - [ ] Task: S2 Implement — evidence, rating, and stamps
-    - [ ] Implement the corrected correctness in `packages/srs-engine/src/srs/objective-proficiency.ts`. Change `computeObjectiveProficiency` to use it (§13.1, §13.2).
+    - [ ] Implement `computeCorrectedCorrectness` in `packages/srs-engine/src/srs/objective-proficiency.ts`. Change `computeObjectiveProficiency` to use it (§13.1, §13.2).
     - [ ] Add the guess floor declaration to the adapter interface. Write `apps/math/lib/srs/guess-floors.ts`. Change the app callers to pass the ratings and the floors.
-    - [ ] Change `srs-rating.ts` to §8.4.
+    - [ ] Change `srs-rating.ts` to §8.4. Make the comment of the misconception cap (stage 5) cite §13.3 (MIGRATION item 6, first bullet; no behavior change).
     - [ ] Add `requestRetentionByPriority` and `FSRS_PARAMS_VERSION` to `scheduler.ts`. Add `srs_review_log.paramsVersion` to `apps/math/convex/schema.ts`, and write it on each new entry.
     - [ ] Commit: `feat(kst): adopt the v3.2 evidence and rating`.
 - [ ] Task: S2 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
+    - [ ] Run `git grep -n "13\.3" -- packages/practice-core/src/practice/srs-rating.ts`. Confirm a match in the comment of stage 5.
     - [ ] Commit: `measure(kst-v32-runtime): record the S2 results`.
 - [ ] Task: S2 Docs & Doctor
     - [ ] Run `npm run generate`. Confirm exit code 0.
@@ -180,7 +184,7 @@ _Story ref: spec.md#story-s4_
     - [ ] Write the contract of `analyzePlannerGraph(graph)` in `planner/graph-analysis.ts`: it returns `maxReach`, the reach of each skill, and the sparse flag (§10.4).
     - [ ] Write the contracts of the diversity cap (§10.2) and of the review-load budget (§10.5) with `loadBudgetFactor = 0.8`.
     - [ ] Record the optional field `utilityProvider` on the adapter interface (§10.3).
-    - [ ] Run `git grep -l -E "projectStudentVisualization|projectTeacherVisualization" -- apps/math`. Record each page and component that shows the projections, and the place of `reviewLoadState` in each.
+    - [ ] Run `git grep -l -E "projectStudentVisualization|projectTeacherVisualization" -- apps/math`. Record each page and component that shows the projections, and the place of `reviewLoadState` (student) or `reviewLoadStates` (teacher) in each.
     - [ ] Commit: `measure(kst-v32-runtime): record the S4 contract`.
 - [ ] Task: S4 Test (Red) — specify the planner
     - [ ] `packages/knowledge-space-practice/src/__tests__/priority.test.ts`: the §10.1 worked example gives P = 0.452 and Q = 0.396. With no utility provider, `utility` is 0.
@@ -188,14 +192,14 @@ _Story ref: spec.md#story-s4_
     - [ ] `packages/knowledge-space-practice/src/__tests__/graph-analysis.test.ts`: a graph where 4% of the skills have a prerequisite in-edge is sparse, and 5% is not. In sparse mode, the rank is `0.7·utility + 0.3·weaknessFit`.
     - [ ] `packages/knowledge-space-practice/src/__tests__/review-load.test.ts`: the §10.5 example gives `saturated` and 0 new skills. 60% of the budget gives `elevated`.
     - [ ] `apps/math/__tests__/lib/curriculum/planner-graph.test.ts`: the math graph is not sparse. The test records the share in its output.
-    - [ ] `apps/math/__tests__/components/student/review-load.test.tsx` and the teacher page test of the S4 Contract: each page shows `reviewLoadState`.
+    - [ ] `apps/math/__tests__/components/student/review-load.test.tsx` and the teacher page test of the S4 Contract: the student page shows `reviewLoadState`, and the teacher page shows `reviewLoadStates`.
     - [ ] Run the package suites and the app suite. Confirm that the new cases fail.
     - [ ] Commit: `test(kst): specify the v3.2 planner`.
 - [ ] Task: S4 Implement — the planner
     - [ ] Change `priority.ts`, `unlock-value.ts`, `goal-proximity.ts`, and `weakness-fit.ts` to the normalized terms. Add the `utility` term and `DEFAULT_PRIORITY_WEIGHTS`.
     - [ ] Add `planner/graph-analysis.ts`. Change the math graph loader to call `analyzePlannerGraph` one time for each loaded graph.
-    - [ ] Add the diversity cap to `recommended-next.ts`. Add the review-load budget and `reviewLoadState` to the student and the teacher projections.
-    - [ ] Change `visualization.ts` to use `DEFAULT_PRIORITY_WEIGHTS`. Show `reviewLoadState` on each page of the S4 Contract.
+    - [ ] Add the diversity cap to `recommended-next.ts`. Add the review-load budget to the student projection (`reviewLoadState`) and to the teacher projection (`reviewLoadStates`, a map from student ID to state; §9.4).
+    - [ ] Change `visualization.ts` to use `DEFAULT_PRIORITY_WEIGHTS`. Show the review-load state on each page of the S4 Contract.
     - [ ] Commit: `feat(kst): adopt the v3.2 planner and review-load budget`.
 - [ ] Task: S4 Verify — run the gates
     - [ ] Run each gate. Confirm that each gate passes.
@@ -218,17 +222,20 @@ _Story ref: spec.md#story-s5_
     - [ ] Write the contract of the seeding (§11.4): the synthesized card, `H`, the provisional state, the closure over hard edges, and the evidence type.
     - [ ] For each node of the math probe bank, record its second probe source: another variant, a new generator seed, or none. List each node with no second probe under "Placement Gaps" (spec K11).
     - [ ] Record the schema change: `srs_cards.source` (optional `"placement"`) and `placement_results.evidenceType` (optional `"direct"` or `"inferred"`).
+    - [ ] Record the widening of the `confidence` union to `low`, `medium`, and `high` (spec K11, §11.4). Run `git grep -n -E "'low' \| 'medium'|\"low\" \| \"medium\"|literal\(\"medium\"\)" -- packages apps`. Record each place that holds the union.
     - [ ] Commit: `measure(kst-v32-runtime): record the S5 contract`.
 - [ ] Task: S5 Test (Red) — specify the walk and the seeding
     - [ ] `packages/knowledge-space-core/src/__tests__/placement-engine.test.ts`: pass-pass advances. Fail-fail retreats. Pass-fail gets a third probe. `partial` counts as half a pass.
     - [ ] Also: a node with an unresolved hard-edge parent is not eligible. The walk stops at 24 probes. Direct estimates cap at `medium`.
     - [ ] `packages/knowledge-space-core/src/__tests__/placement-knowledge-state-seed.test.ts`: the §11.4 worked example gives `S₀ = 28.5` for B and `S₀ = 14.25` with `medium` for its hard-edge parent. A result of 0.60 with `low` gives `S₀ = 3` and `inProgress`.
-    - [ ] Also: a soft-edge parent gets nothing.
+    - [ ] Also: a soft-edge parent gets nothing. A result of 0.95 with `high` is valid input and gives `S₀ = 28.5`.
+    - [ ] `apps/math/__tests__/convex/placement.test.ts`: the case "rejects PlacementResult with confidence="high"" changes to accept `high` and to reject another value (for example `"extreme"`). Record the change under "Changed v2 Cases".
     - [ ] `apps/math/__tests__/lib/placement/seed-knowledge-state.test.ts`: the seeding writes one `srs_cards` row for each objective with `source: "placement"`. A later practice submission replaces an inferred estimate.
     - [ ] Run the package suites and the app suite. Confirm that the new cases fail.
     - [ ] Commit: `test(kst): specify the v3.2 placement`.
 - [ ] Task: S5 Implement — the walk and the seeding
     - [ ] Rewrite `runPlacementTraversal` in `placement-engine.ts` to §11.2. Change `buildKnowledgeStateSeed` in `placement.ts` to §11.4.
+    - [ ] Widen the `confidence` union to add `"high"` in these files (spec K11): `packages/knowledge-space-core/src/placement.ts` (the type, the zod enum, and the two guards), `apps/math/convex/placement.ts` (the handler type, the check, and the mutation validator), `apps/math/convex/schema.ts` (`placement_results`), and `apps/math/lib/placement/seed-knowledge-state.ts` (the type). Change the test types that hold the union (`multi-module-placements.ts`, `fixtures.ts`, `placement.test.ts`).
     - [ ] Change `apps/math/lib/placement/im3-probe-adapter.ts` to give a second probe as the S5 Contract records. Use the guess floors of S2 for a pass.
     - [ ] Change `apps/math/lib/placement/seed-knowledge-state.ts` and `placement-flow.ts` to write the synthesized cards and the evidence type. Add the two schema fields.
     - [ ] Commit: `feat(kst): adopt the v3.2 placement walk and seeding`.

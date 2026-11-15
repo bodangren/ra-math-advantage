@@ -25,7 +25,7 @@ Sprint goal: the engine of the math app gives the v3.2 results for the worked ex
 Paths below use `apps/integrated-math-3`. After the set, the same files are in `apps/math`.
 
 - **Spec copy:** `kst-srs.v2/SPECIFICATION.md` is the in-repo contract. `measure/index.md`
-  (line 17) and `measure/knowledge-space.md` (lines 5 and 117) link to it. Eight test files
+  (line 20) and `measure/knowledge-space.md` (lines 5 and 129) link to it. Eight test files
   read the spec file or expect a link to it:
   - `__tests__/governance/no-stale-problem-family.test.ts` (sections §12.1 and §13).
   - `apps/integrated-math-3/__tests__/lib/placement/phase5-docs-and-doctor.test.ts` (a
@@ -41,21 +41,25 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
 - **v3.2 source:** the local clone `/home/daniebo/Desktop/mastery-advantage` is at commit
   `e560a67`. `SPECIFICATION.md` has the header "Version: kst-srs.v3.2".
 - **Package dependencies:** `knowledge-space-core` depends only on `zod`. `srs-engine`
-  depends on `practice-core` and `ts-fsrs` (lockfile 5.4.1). `efficacy-core` depends on
+  depends on `practice-core` and `ts-fsrs` (lockfile 6.0.0). `efficacy-core` depends on
   `srs-engine` and `practice-core`. `knowledge-space-practice` depends on
   `knowledge-space-core`. No package depends on both `srs-engine` and
   `knowledge-space-core`.
 - **Retention (item 3):** two functions have the name `stabilityToRetention`.
-  - `packages/srs-engine/src/srs/srs-proficiency.ts:81` has one argument:
-    `1 - 1 / (1 + stability / 30)`. `aggregateCardsToEvidence` (line 98) takes the mean of
-    it across the cards of a variant. `efficacy-core` calls it at
-    `src/metrics/retention.ts:36,43` and `src/metrics/time-to-mastery.ts:45`.
-  - `packages/knowledge-space-core/src/knowledge-state-engine.ts:70` has two arguments and
-    an exponential curve: `exp(-deltaDays / (stability × scale))`. `srs-bridge.ts:257`
-    calls it.
+  - `packages/srs-engine/src/srs/srs-proficiency.ts:81` has one required argument
+    (`stability`) and the optional argument `scaleFactor`: `1 - 1 / (1 + stability / 30)`.
+    `aggregateCardsToEvidence` (line 98) takes the mean of it across the cards of a
+    variant. `efficacy-core` calls it at `src/metrics/retention.ts:36,43` and
+    `src/metrics/time-to-mastery.ts:45`.
+  - `packages/knowledge-space-core/src/knowledge-state-engine.ts:70` has two required
+    arguments and the optional argument `scale`. It uses an exponential curve:
+    `exp(-deltaDays / (stability × scale))`. `srs-bridge.ts:257` calls it.
   - v3.2 §13.5 uses the FSRS power curve, with the constants of the FSRS version in use.
-    ts-fsrs 5.4.1 exports `forgetting_curve(decayOrParameters, elapsed_days, stability)`
-    and `FSRS6_DEFAULT_DECAY = 0.1542`.
+    ts-fsrs 6.0.0 (installed) does not export `forgetting_curve` from its root module. The
+    subpath `ts-fsrs/models/fsrs-6` exports `forgettingCurve(decayOrParameters, elapsed_days,
+    stability)` and `FSRS6_DECAY = 0.1542`. The root module exports the same value as
+    `FSRS6_DEFAULT_DECAY`. `DEFAULT_SCHEDULER_CONFIG` holds no weights. The scheduler builds
+    its weights with `generatorParameters(...)`, which returns an object with the array `w`.
 - **Readiness (item 1):** `packages/knowledge-space-core/src/weighted-readiness.ts`
   `computeWeightedReadiness` gives the weighted mean of the prerequisite mastery values. It
   has no hard gate. `MasteryThresholds` (`mastery-state.ts:21`) has `masteryEnter` (0.9),
@@ -81,13 +85,15 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
   has four terms (`a` to `d`) with raw values. `projections/visualization.ts:177` calls
   `getRecommendedNext` with the weights `{ a: 1, b: 1, c: 1, d: 1 }` and top 5.
   `planner/recommended-next.ts` has no diversity cap. No `utility` term, no sparse mode, and
-  no `reviewLoadState` exist.
+  no `reviewLoadState` or `reviewLoadStates` field exist.
 - **Placement (items 4 and 9):** `packages/knowledge-space-core/src/placement-engine.ts`
   `runPlacementTraversal` makes one probe for each node (`pass` 0.85 medium, `fail` 0.15
   low, `partial` 0.4 low). `placement.ts` `buildKnowledgeStateSeed` seeds the knowledge
   state with no card. The app side is `lib/placement/{im3-probe-adapter,placement-flow,
   seed-knowledge-state}.ts`. The table `placement_results` has `nodeId`,
-  `masteryEstimate`, `confidence` (`low` or `medium`), and `source`.
+  `masteryEstimate`, `confidence` (`low` or `medium`), and `source`. The same two values
+  limit the type and the zod schema in `placement.ts` (lines 24, 34, 58, and 98), the
+  Convex mutation `convex/placement.ts` (lines 11, 30, and 124), and `schema.ts:773`.
 - **Edge calibration (items 2 and 12):** `packages/srs-engine/src/srs/edge-calibration.ts`
   `updatePosterior` (line 246) increments `alpha` or `beta` for each observation.
   `convex/edgeCalibration.ts` starts each edge at `alpha: 0, beta: 0` (line 73) and replays
@@ -110,11 +116,16 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
   - A code comment that cites `kst-srs.v2 §n` changes to the v3.2 section only in a file
     that this track changes for another reason.
 - **K2 Retention:** `stabilityToRetention(stability, elapsedDays)` follows §13.5.
-  - In `srs-engine`, it calls `forgetting_curve` of ts-fsrs with the `w` parameters of
-    `DEFAULT_SCHEDULER_CONFIG`.
+  - In `srs-engine`, it imports `forgettingCurve` from the subpath `ts-fsrs/models/fsrs-6`
+    and returns `forgettingCurve(parameters.w, elapsedDays, stability)`. The argument order
+    of the library is parameters, elapsed days, stability. The value `parameters` comes from
+    `generatorParameters(...)` with the values of `DEFAULT_SCHEDULER_CONFIG`
+    (`requestRetention`, `maximumInterval`, `enableShortTermPreview`). These are the same
+    parameters as the scheduler uses.
   - In `knowledge-space-core`, it uses the same power curve with the constant
-    `FSRS_DECAY = 0.1542` (`FSRS6_DEFAULT_DECAY` of ts-fsrs 5.4.1). The `scale` argument
-    goes away. The package gets no new dependency.
+    `FSRS_DECAY = 0.1542`. This value equals `FSRS6_DEFAULT_DECAY` of ts-fsrs 6.0.0 and
+    the last default weight (`w[20]`). The `scale` argument goes away. The package gets no
+    new dependency.
   - The new test `apps/math/__tests__/lib/srs/retention-parity.test.ts` compares the two
     functions on a grid of values.
 - **K2a Efficacy metrics:** `efficacy-core` keeps the v2 stability index for its reports.
@@ -137,7 +148,13 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
     format of each practice variant source and its floor.
   - The confidence caps of §13.1 apply (fewer than 3 attempts: at most `low`; fewer than
     6: at most `medium`).
-- **K6 Rating mapper:** `srs-rating.ts` follows §8.4 (stages 1 to 5).
+  - The new exported function `computeCorrectedCorrectness(passes, guessFloor)` in
+    `objective-proficiency.ts` takes the passes (newest first) and returns
+    `{ weightedRate, effectiveSampleSize, wilsonLower, retentionStrength }`. The tests read
+    each step of §13.1 on this function.
+- **K6 Rating mapper:** `srs-rating.ts` follows §8.4 (stages 1 to 5). The comment of the
+  misconception cap (stage 5) cites §13.3, as MIGRATION item 6 (first bullet) requires. This
+  part of item 6 changes no behavior.
 - **K7 Scheduler:** `requestRetentionByPriority` is optional with the defaults 0.95, 0.90,
   and 0.80 (§12.3). The app does not set it. Each new `srs_review_log` entry gets
   `paramsVersion` (an optional field in the schema), with the value of the constant
@@ -162,8 +179,9 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
   - `recommendedNext` applies the diversity cap of §10.2.
   - The math domain registers no utility provider, so `utility = 0` (§10.3 rule 3). The
     adapter interface gets the optional `utilityProvider` field.
-  - The review-load budget follows §10.5 with `loadBudgetFactor = 0.8`.
-    `reviewLoadState` appears in the student and the teacher projections and in their
+  - The review-load budget follows §10.5 with `loadBudgetFactor = 0.8`. The field names
+    follow §9.4. The student projection holds `reviewLoadState`. The teacher projection
+    holds `reviewLoadStates`, a map from each student ID to a state. Both appear in their
     pages.
 - **K10 Deferred items:** the FSRS parameter fit (§12.10) and the offline evaluation
   harness (§17) of item 11 are out of scope. Only the `paramsVersion` stamp of item 11 is in
@@ -179,6 +197,11 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
     `S₀ = H(confidence) × masteryEstimate` and `H = { low: 5, medium: 15, high: 30 }`.
   - `srs_cards` gets the optional field `source` (`"placement"`). `placement_results` gets
     `evidenceType` (`"direct"` or `"inferred"`).
+  - The §11.4 high-confidence case needs the value `high`. The union of `confidence` gets
+    the value `high`, in the type and the zod schema of `placement.ts`, in the two Convex
+    validators of `convex/placement.ts`, and in `placement_results` of `schema.ts`. The
+    walk of §11.2 still caps its own direct estimates at `medium`. The v2 test that
+    rejects `high` changes to accept it (the plan lists it under "Changed v2 Cases").
 - **K12 Edge calibration:** `updatePosterior` follows §6.4. Only the not-proficient-in-A
   rows change the posterior. The prior is `Beta(1, 1)`.
   - The stratified verdict follows §6.7 (terciles of the overall proficiency rate, at
@@ -240,7 +263,7 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
 **Acceptance Criteria:**
 - Given the §10.1 worked example (max reach 120; P with readiness 0.85 and reach 40; Q with readiness 1.0 and reach 2), When the priority is computed with the default weights, Then P is 0.452 and Q is 0.396 (±0.001).
 - Given six ready skills of one unit with the top priorities, When `recommendedNext` takes the top 5, Then it holds at most 2 skills of that unit.
-- Given 180 cards due in the next 7 days and `maxReviewsPerDay = 20`, When the planner runs, Then `reviewLoadState` is `saturated`, the planner recommends 0 new skills, and the student and the teacher pages show the state.
+- Given 180 cards due in the next 7 days and `maxReviewsPerDay = 20`, When the planner runs, Then the student `reviewLoadState` is `saturated`, the planner recommends 0 new skills, and the student page and the teacher page (`reviewLoadStates`) show the state.
 - Given the math graph, When `analyzePlannerGraph` runs, Then the sparse flag is false, and the evidence file records the share of skills with a prerequisite in-edge.
 
 **Estimate:** L
@@ -278,7 +301,8 @@ Paths below use `apps/integrated-math-3`. After the set, the same files are in `
 - No dependency change. No package gets a new dependency (K2).
 - The packages stay domain-neutral (§15.3 rule 1). The math values (guess floors, probe
   adapter) live in `apps/math`.
-- Each schema change adds an optional field only. No data migration.
+- Each schema change adds an optional field, or widens a literal union so that each stored
+  document stays valid. No data migration.
 - Tests are behavioral (`measure/lessons-learned.md`, 2026-06-24). Each worked example of
   the stories is a test with the numbers of `SPECIFICATION.md`.
 - BM2 changes only where a changed package signature breaks a BM2 call. The BM2 gates
