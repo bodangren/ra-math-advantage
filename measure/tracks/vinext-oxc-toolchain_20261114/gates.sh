@@ -37,9 +37,17 @@ has_script() {
 }
 
 # Diagnostic keys of one log: line and column numbers and timings removed.
+# S1 (vinext-oxc-toolchain_20261114) key refinement: tsc diagnostic lines collapse to
+# the spec "New failure" key (file + TS code) instead of the full message text. The
+# message text of an unchanged diagnostic drifts when a dependency bump changes an
+# inferred type inside the message; the spec defines the key as workspace + file + code,
+# so message drift must not count as a new failure. The `npm error code <n>` trailer is
+# normalized to `npm error code` (the exit code itself is tracked in the .exit files).
+# All other lines keep their full-text key. The baseline logs are re-keyed with the same
+# function at compare time, so both sides stay symmetric and no baseline re-run is needed.
 key() {
   grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)' "$1" 2>/dev/null |
-    sed -E 's/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g' | sort -u
+    sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g' | sort -u
 }
 
 # A new failure: no baseline failure, or a diagnostic key that the baseline log lacks.
