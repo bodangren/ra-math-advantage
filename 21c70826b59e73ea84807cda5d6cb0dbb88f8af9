@@ -1,0 +1,1 @@
+Gate harness refinement during S1 Green. Spec-level key: file + TS code for tsc lines; npm error code normalized. Baseline names/formats kept; no baseline re-run needed (symmetric re-keying). Flagged for review A.
