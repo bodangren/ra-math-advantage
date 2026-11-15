@@ -23,9 +23,6 @@ ends with a sync with origin: `git fetch origin`, `git pull --ff-only origin mas
 `git push origin master`. If the pull cannot fast-forward, stop and report. No step before
 the closeout pushes. Do the tracks in the order of `measure/tracks.md`.
 
-This project uses the **measure** skill for spec-driven development.
-Follow Measure tracks and the workflow in `measure/workflow.md`.
-
 ## Current State and Planned Direction
 
 The documents keep the current state apart from the planned direction of 2026-11-14.
