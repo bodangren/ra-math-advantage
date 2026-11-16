@@ -53,7 +53,31 @@ test('extracts static, type-only, export-from, dynamic, and require specifiers',
 });
 
 test('exact debt suppresses only approved live violations', async () => {
-  const manifest = await loadArchitectureManifest(MANIFEST_URL, { asOf: '2026-07-11' });
+  const base = await loadArchitectureManifest(MANIFEST_URL, { asOf: '2026-07-11' });
+  const fixtureDebt = {
+    id: 'debt.test-fixture',
+    owner: 'learning-platform',
+    rationale: 'Fixture debt for the exact-match suppression test.',
+    followUpTrack: 'app-platform-consolidation_20260710',
+    introducedOn: '2026-07-10',
+    expiresOn: '2026-12-31',
+    violations: [{
+      ruleId: 'undeclared-dependency',
+      sourceWorkspace: 'pkg.lesson-renderer',
+      targetWorkspace: 'pkg.activity-runtime',
+      sourceFile: 'packages/lesson-renderer/src/textbook/LessonPageLayout.tsx',
+      exactSpecifier: '@math-platform/activity-runtime/phase-types',
+    }],
+  };
+  const manifest = {
+    ...base,
+    workspaces: base.workspaces.map((workspace) => (
+      workspace.id === 'pkg.lesson-renderer'
+        ? { ...workspace, debtRefs: [...workspace.debtRefs, fixtureDebt.id] }
+        : workspace
+    )),
+    temporaryDebt: [fixtureDebt],
+  };
   const approved = {
     sourceKind: 'package', targetKind: 'package',
     sourceLayer: 'feature', targetLayer: 'platform',
@@ -69,5 +93,18 @@ test('exact debt suppresses only approved live violations', async () => {
   assert.equal(
     checkResolvedImports(manifest, [future], { asOf: '2026-07-11' })[0]?.ruleId,
     'undeclared-dependency',
+  );
+  const otherSpecifier = {
+    ...approved,
+    specifier: '@math-platform/activity-runtime/other',
+    exactSpecifier: '@math-platform/activity-runtime/other',
+  };
+  assert.equal(
+    checkResolvedImports(manifest, [otherSpecifier], { asOf: '2026-07-11' })[0]?.ruleId,
+    'undeclared-dependency',
+  );
+  assert.throws(
+    () => checkResolvedImports(manifest, [approved], { asOf: '2027-01-01' }),
+    /expired/i,
   );
 });

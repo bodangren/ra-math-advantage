@@ -11,3 +11,4 @@ export type { StepByStepSolverActivityProps } from './StepByStepSolverActivity';
 
 export { QuadraticFormulaActivity } from './QuadraticFormulaActivity';
 export type { QuadraticFormulaActivityProps } from './QuadraticFormulaActivity';
+export { quadraticFormulaActivitySchema, type QuadraticFormulaActivityPayload } from './quadratic-formula-activity.schema';

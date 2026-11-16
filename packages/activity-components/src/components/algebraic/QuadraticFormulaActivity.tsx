@@ -3,7 +3,7 @@
 import { useId, useRef, useState } from 'react';
 import InlineMath from '@matejmazur/react-katex';
 import { buildPracticeSubmissionEnvelope, type PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import type { QuadraticFormulaActivityProps as PublicProps } from '@math-platform/math-content/schemas';
+import type { QuadraticFormulaActivityPayload as PublicProps } from './quadratic-formula-activity.schema';
 import { MathInputField } from './MathInputField';
 
 const FIELDS = [
