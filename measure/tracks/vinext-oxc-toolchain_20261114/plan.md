@@ -216,6 +216,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Package refresh and vinext 1.x' as complete`.
 
 ## Phase S2: ESLint to oxlint
+_S2 is superseded by eslint-to-oxlint-migration_20260820 (Daniel's oxlint move is done), PM 2026-11-16._
 _Story ref: spec.md#story-s2_
 
 - [ ] Task: S2 Contract — record the lint change

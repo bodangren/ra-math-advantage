@@ -1,9 +1,11 @@
 {
   "track_id": "math-series-graph-semantic-repair_20260905",
   "type": "refactor",
-  "status": "new",
+  "status": "superseded",
   "created_at": "2026-09-05T12:43:54Z",
   "updated_at": "2026-09-05T12:54:54Z",
+  "superseded_by": "math-graph-consume_20261114",
+  "supersession_reason": "The Daniel sync closed this track on 2026-11-16. The graph work moves to the Consume the mastery-advantage Math Graph track. The findings went to Graph in handoff/a58-math-graph-findings-from-ra-math/.",
   "description": "Repair the semantic and structural math-series graph across IM1, IM2, IM3, and AP Precalculus. Address the eight findings from the 2026-09-05 review.",
   "estimated_tasks": 42,
   "actual_tasks": null,

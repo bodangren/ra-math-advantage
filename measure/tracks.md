@@ -70,8 +70,10 @@ Dependencies:
 
 ## Active Tracks
 
-- [~] **Track: Worktree Atomic Integration (2026-09-17)** — Reconcile the existing mixed worktree with Measure ownership. Commit reviewed source groups atomically. Keep generated output outside commits until the owning workflow requires it.
-  *Link: [./tracks/worktree-atomic-integration_20260917/](./tracks/worktree-atomic-integration_20260917/)*
+- [x] **Track: Worktree Atomic Integration (2026-09-17)** — **SUPERSEDED / ARCHIVED** (2026-11-16)
+  *Reconcile the existing mixed worktree with Measure ownership. Commit reviewed source groups atomically. Keep generated output outside commits until the owning workflow requires it.*
+  *Superseded by the sync merge 2b2d9952, PM 2026-11-16.*
+  *Link: [./archive/worktree-atomic-integration_20260917/](./archive/worktree-atomic-integration_20260917/)*
 
 - [~] **Business Math Review Fixes (2026-09-07)** — 41 local corrections verified. Dependency approval and integration of overlapping changes remain open. See `fixes.md`.
   *Link: [./tracks/business-math-review-fixes_20260907/](./tracks/business-math-review-fixes_20260907/)*
@@ -169,15 +171,17 @@ remediation track before production work resumes.
    *Capability limit: Supplementary pilot evidence uses SRS and durable KST in all three apps. Teacher-led evidence has no KST or SRS effect. The route generator uses `repo-graph`. IM3 has an internal local Convex proof. The authenticated public local flow has not been rerun after the corrections.*
    *Link: [./tracks/teacher-led-mastery-advantage_20260819/](./tracks/teacher-led-mastery-advantage_20260819/)*
 
-- [ ] **Track: Math-Series Graph Semantic Repair**
+- [x] **Track: Math-Series Graph Semantic Repair** — **SUPERSEDED / ARCHIVED** (2026-11-16)
    *Specification and plan drafted: 13 requirements, 13 acceptance criteria, and 42 top-level tasks in nine phases. Covers the eight graph findings, complete four-course source review, and cross-course prerequisite structure. Implementation and curriculum approval remain pending.*
-   *Link: [./tracks/math-series-graph-semantic-repair_20260905/](./tracks/math-series-graph-semantic-repair_20260905/)*
+   *Superseded by math-graph-consume_20261114, PM 2026-11-16.*
+   *Link: [./archive/math-series-graph-semantic-repair_20260905/](./archive/math-series-graph-semantic-repair_20260905/)*
 
-- [~] **Track: Mastery Advantage Graph Remediation**
-   *Graph construction review completed 2026-09-05 for IM1, IM2, IM3, and AP Precalculus. Eight findings remain open. See [review](./tracks/mastery-advantage-graph-remediation_20260821/graph-construction-review-2026-09-05.md). No graph repair or row approval is claimed.*
+- [x] **Track: Mastery Advantage Graph Remediation** — **SUPERSEDED / ARCHIVED** (2026-11-16)
+   *Graph construction review completed 2026-09-05 for IM1, IM2, IM3, and AP Precalculus. Eight findings remain open. See [review](./archive/mastery-advantage-graph-remediation_20260821/graph-construction-review-2026-09-05.md). No graph repair or row approval is claimed.*
    *Remove proxy-derived rollout work. Approve the real IM1 to IM2 to IM3 to AP Precalculus graph inventory. Replace the fabricated Business Math family graph. Restore IM3 phase completion. Prove one corrected vertical slice per app before broad rollout resumes.*
    *Current status (2026-08-28): The previous Module 1 pass claim is rejected historical evidence. The current artifacts map 52 authored examples to 16 candidate skill blueprints and produce 23 schema-valid activity rows. These are structural facts only. They do not prove student viability, generated-example alignment, server grading, or exact-node evidence. The prior `1-1-1` live claim is rejected as acceptance evidence. Keep all rows unapproved until direct verification in the real QA or student component proves Worked, Guided, and Independent use, server grading, and exact-node evidence. The workbench gate passes 38 tests, the Module 1 lesson and integration gate passes 39 tests, and the IM3 curriculum graph gate passes 94 tests. These gates support review but do not complete it. Affected TypeScript, lint, build, Measure Doctor, boundary, quality-parity, and diff gates pass.*
-   *Link: [./tracks/mastery-advantage-graph-remediation_20260821/](./tracks/mastery-advantage-graph-remediation_20260821/)*
+   *Superseded by math-graph-consume_20261114, PM 2026-11-16.*
+   *Link: [./archive/mastery-advantage-graph-remediation_20260821/](./archive/mastery-advantage-graph-remediation_20260821/)*
 
 - [x] **Track: IM3 Mastery Advantage Rollout** — **SUPERSEDED** (2026-08-21)
    *The plan treated 96 `kind: skill` rows as the mastery inventory. It excluded concept rows that already participate in runtime projections. The 96-skill and 83-gap claims are withdrawn.*
@@ -222,13 +226,15 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Delivered a versioned 25-workspace ownership/DAG/export/gate manifest, semantic dependency enforcement with exact expiring debt, complete 20-package local/CI quality coverage, deterministic architecture reports, and freshness-aware doctor checks. All package gates and 53 architecture tests pass; the full app audit remains recorded without suppressing pre-existing app migration debt.*
    *Link: [./tracks/monorepo-architecture-contracts_20260710/](./tracks/monorepo-architecture-contracts_20260710/)*
 
-- [ ] **Track: Shared LMS Backend Modularization**
+- [x] **Track: Shared LMS Backend Modularization** — **SUPERSEDED / ARCHIVED** (2026-11-16)
    *Depends on architecture contracts. Extract common LMS validators, schema fragments, and pure services while preserving app-owned Convex deployments, auth wrappers, generated APIs, curriculum, and data.*
-   *Link: [./tracks/shared-lms-backend-modularization_20260710/](./tracks/shared-lms-backend-modularization_20260710/)*
+   *Superseded by math-app-base_20261114, PM 2026-11-16.*
+   *Link: [./archive/shared-lms-backend-modularization_20260710/](./archive/shared-lms-backend-modularization_20260710/)*
 
-- [~] **Track: App and Platform Consolidation**
+- [x] **Track: App and Platform Consolidation** — **SUPERSEDED / ARCHIVED** (2026-11-16)
    *Depends on architecture contracts. Consolidate repeated tooling/configuration and common types, invert activity registry ownership, create reusable app composition surfaces, and preserve every app's design and curriculum.*
-   *Link: [./tracks/app-platform-consolidation_20260710/](./tracks/app-platform-consolidation_20260710/)*
+   *Superseded by math-app-base_20261114, PM 2026-11-16.*
+   *Link: [./archive/app-platform-consolidation_20260710/](./archive/app-platform-consolidation_20260710/)*
 
 - [ ] **Track: Live Classroom Presentation**
    *Server/client architecture for a teacher to present lesson phases/steps with every student's screen synchronized in real time. Convex reactive queries/mutations drive sync over a new `live_sessions` table; teacher controls navigation, activity reveal, and inline annotations; students follow with local interaction. Sessions end explicitly or via idle timeout. Story-shaped spec (6 stories: S1 start, S2 follow, S3 navigate/reveal, S4 local interact, S5 annotations, S6 end).*
@@ -242,9 +248,10 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: vinext-oxc-toolchain_20261114. User decisions 2026-11-14.*
    *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
 
-- [ ] **Track: Danielson App Import**
+- [x] **Track: Danielson App Import** — **SUPERSEDED / ARCHIVED** (2026-11-16)
    *Chore, story-shaped spec with 3 phases: S1 import `github.com/bodangren/hdkwa-danielson` as `apps/danielson` in one snapshot commit of `c047df1` with no source history, replace the Danielson Framework text with own-word paraphrases and own-word labels (no exact Danielson Framework text; element IDs stay), move its open Measure tracks into this registry, remove the duplicate files, and join the npm workspaces; S2 the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs) and CI; S3 a static export to the new Worker `danielson` and a report to the PM. Depends on: `vinext-oxc-toolchain_20261114` (S1 and S2) and `prod-deploy-pipeline_20261114` (S3 only). Runs before the track set Unified Math App. Orchestrator decision 2026-11-14.*
-   *Link: [./tracks/danielson-app-import_20261114/](./tracks/danielson-app-import_20261114/)*
+   *Superseded by the open apps/danielson tracks (danielson-observation-cycle_20260819, danielson-admin-growth_20260907, danielson-slt-deck_20260907), PM 2026-11-16.*
+   *Link: [./archive/danielson-app-import_20261114/](./archive/danielson-app-import_20261114/)*
 
 - [ ] **Track: Unified Math App: Base App, Convex Auth v2, and Course Data**
    *Link: [./tracks/math-app-base_20261114/](./tracks/math-app-base_20261114/)*
@@ -282,9 +289,10 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
    *Chore, story-shaped spec with 4 phases: S1 inventory check and one reuse or delete decision for each cloud resource, S2 the local deploy command (`npm run deploy:app -- <app>`: Convex deploy, Worker deploy, smoke test, Worker rollback) and the first math app deploy, S3 BM2 under the pipeline, S4 the release rule, the removal of `cloudflare-deploy.yml`, and the documents. Local OAuth logins of `wrangler` and `convex`; no GitHub secrets; deploy keys piped into `wrangler secret put`; the OpenRouter key through a secret card. Daniel authorized the orchestrator to deploy and to delete old cloud resources (2026-11-14). Depends on: the track set Unified Math App (`unified-math-app_20261114`) and `bm2-convex-auth-v2_20261114`. Runs before Practice Primitives Tracks A to F. Phase 3 of `danielson-app-import_20261114` depends on this track.*
    *Link: [./tracks/prod-deploy-pipeline_20261114/](./tracks/prod-deploy-pipeline_20261114/)*
 
-- [ ] **Track: KST Spec v3.2 Runtime Migration**
+- [x] **Track: KST Spec v3.2 Runtime Migration** — **SUPERSEDED / ARCHIVED** (2026-11-16)
    *Chore, story-shaped spec with 6 phases: S1 the pointer to the kst-srs.v3.2 source (replaces `kst-srs.v2/`), the v3.2 retention, and gated readiness; S2 corrected evidence, the rating mapper, and the `paramsVersion` stamp; S3 the daily queue and session composition; S4 the planner and the review-load budget; S5 the placement walk and seeding; S6 edge calibration. MIGRATION-v3.md items 1 to 16 of mastery-advantage; the FSRS fit and the evaluation harness stay out of scope. Depends on: the track set Unified Math App (`unified-math-app_20261114`). The consume track depends on this track.*
-   *Link: [./tracks/kst-v32-runtime_20261114/](./tracks/kst-v32-runtime_20261114/)*
+   *Superseded by kst-srs-v3-2-im3-runtime-migration_20260710, PM 2026-11-16.*
+   *Link: [./archive/kst-v32-runtime_20261114/](./archive/kst-v32-runtime_20261114/)*
 
 - [ ] **Track: Consume the mastery-advantage Math Graph**
    *Chore, story-shaped spec with 4 phases: S1 ingest the first `math.us-hs` release (the six release files, SHA-256 check of `MANIFEST.txt`, validation, files unchanged in `apps/math/curriculum/graph/release/`); S2 the app reads the released graph (loader, course nodes, runtime bindings, re-keyed authoring files and stored node IDs); S3 the CCSS tags of the release in teacher reporting (primary first, PM-approved AP exception list, CCSS notice, no College Board text); S4 removal of the 47 old graph data files and the graph-data scripts. No history rewrite. Depends on: `kst-v32-runtime_20261114` and the first release from mastery-advantage.*
@@ -1552,5 +1560,7 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
 - [~] **Danielson SLT presentation rebuild** — New 16-slide deck is ready (f336c096). Manual review remains open.
   *Link: [./tracks/danielson-slt-deck_20260907/](./tracks/danielson-slt-deck_20260907/)*
 
-- [x] **Remote sync: 2026-11-16** — Local files committed (`027925709`). Remote merged and pushed (`12271c1dc`). TypeScript and whitespace checks passed. Lint, tests, and build stop at existing expired architecture debt.
-  *Link: [./tracks/worktree-atomic-integration_20260917/](./tracks/worktree-atomic-integration_20260917/)*
+- [x] **Remote sync: 2026-11-16** — **SUPERSEDED / ARCHIVED** (2026-11-16)
+  *Local files committed (`027925709`). Remote merged and pushed (`12271c1dc`). TypeScript and whitespace checks passed. Lint, tests, and build stop at existing expired architecture debt.*
+  *Superseded by the sync merge 2b2d9952, PM 2026-11-16.*
+  *Link: [./archive/worktree-atomic-integration_20260917/](./archive/worktree-atomic-integration_20260917/)*

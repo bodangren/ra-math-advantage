@@ -1,5 +1,7 @@
 # Implementation Plan: Worktree Atomic Integration
 
+Superseded by the sync merge 2b2d9952, PM 2026-11-16.
+
 ## Phase 1: Inventory and ownership
 
 - [x] Count tracked and untracked paths.

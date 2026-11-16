@@ -64,8 +64,8 @@ IM1 rows include placeholders. Business Math maps published activities and uses 
 | IM3 evidence binding | `apps/integrated-math-3/lib/practice/learning-evidence-pilot.ts` |
 | Precalculus evidence binding | `apps/pre-calculus/lib/learning-evidence/precalc-pilot.ts` |
 | Business Math graph policy | `apps/bus-math-v2/curriculum/skill-graph/README.md` |
-| Four-course graph repair | `measure/tracks/math-series-graph-semantic-repair_20260905/plan.md` |
-| Existing graph and modality remediation | `measure/tracks/mastery-advantage-graph-remediation_20260821/plan.md` |
+| Four-course graph repair | `measure/archive/math-series-graph-semantic-repair_20260905/plan.md` |
+| Existing graph and modality remediation | `measure/archive/mastery-advantage-graph-remediation_20260821/plan.md` |
 | Current course corrections | `measure/tracks/{im2,im3,precalculus,business-math}-complete-review_20260907/` |
 
 The user explicitly included graph correction in this program. Execute the existing correction plans to resolve graph and runtime defects under this program. This program coordinates their completion and does not duplicate their task implementations. The parent must refresh this snapshot when implementation starts because other work is changing these files.

@@ -1,5 +1,7 @@
 # Implementation Plan: KST Spec v3.2 Runtime Migration
 
+Superseded by kst-srs-v3-2-im3-runtime-migration_20260710, PM 2026-11-16.
+
 Track: `kst-v32-runtime_20261114`
 Specification: [spec.md](./spec.md)
 Workflow: `measure/workflow.md` (Standard Task Workflow, and the Phase Completion

@@ -1,5 +1,7 @@
 # Implementation Plan: Danielson App Import
 
+Superseded by the open apps/danielson tracks (danielson-observation-cycle_20260819, danielson-admin-growth_20260907, danielson-slt-deck_20260907), PM 2026-11-16.
+
 Track: `danielson-app-import_20261114`
 Specification: [spec.md](./spec.md)
 Workflow: `measure/workflow.md` (Standard Task Workflow, and the Phase Completion

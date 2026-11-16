@@ -1,5 +1,7 @@
 # Implementation Plan: Teacher-Led First Exposure and Mastery Advantage Pilots
 
+_Deferred until math-graph-consume_20261114 re-keys its node, PM 2026-11-16._
+
 **Track type:** Feature closeout
 
 **Pilot limit:** One node in each app

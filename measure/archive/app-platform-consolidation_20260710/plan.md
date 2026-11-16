@@ -1,5 +1,7 @@
 # Implementation Plan: App and Platform Consolidation
 
+Superseded by math-app-base_20261114, PM 2026-11-16.
+
 ## Existing integration work
 
 - [~] Reconcile the current package dependency direction, architecture manifest, CI typecheck order, and generated architecture facts before the broader consolidation tasks.

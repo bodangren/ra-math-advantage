@@ -1,7 +1,9 @@
 {
   "track_id": "worktree-atomic-integration_20260917",
   "type": "chore",
-  "status": "in_progress",
+  "status": "superseded",
   "created_at": "2026-09-17",
+  "superseded_by": "sync merge 2b2d9952",
+  "supersession_reason": "The Daniel sync closed this track on 2026-11-16. The sync merge 2b2d9952 integrated the work, so no track owns the remaining integration scope.",
   "description": "Reconcile the existing mixed worktree with Measure track ownership and commit each reviewed change group atomically."
 }

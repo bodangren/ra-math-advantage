@@ -1,5 +1,7 @@
 # Implementation Plan: Shared LMS Backend Modularization
 
+Superseded by math-app-base_20261114, PM 2026-11-16.
+
 **Dependency:** `monorepo-architecture-contracts_20260710`  
 **Default shape:** normal shared package plus app-owned Convex adapters; packaged components only for isolated persistence  
 **Workflow:** strict contract-first TDD; incremental app migration

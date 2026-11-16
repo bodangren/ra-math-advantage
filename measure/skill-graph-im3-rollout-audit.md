@@ -2,7 +2,7 @@
 
 > **Historical artifact audit:** The counts below describe the generated node
 > kinds from 2026-05-10. They are not an approved mastery-skill inventory. Use
-> `measure/tracks/mastery-advantage-graph-remediation_20260821/` before runtime
+> `measure/archive/mastery-advantage-graph-remediation_20260821/` before runtime
 > rollout work.
 
 ## Overview

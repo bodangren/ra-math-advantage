@@ -1,10 +1,13 @@
 # Implementation Plan: Math-Series Graph Semantic Repair
 
+Superseded by math-graph-consume_20261114, PM 2026-11-16.
+Findings handed to Graph in handoff/a58-math-graph-findings-from-ra-math/.
+
 ## Status
 
 The original specification and checklist remain below. The user authorized implementation through the Graph Node Practice Program on 2026-09-07. That program owns current bounded execution and independent review. Do not duplicate its completed repairs.
 
-See `../graph-node-practice-program_20260907/plan.md` for verified commits and remaining gaps. IM1 Lesson 7-1 source repair is committed as `0175218e`. Lesson 7-2 source repair is committed as `4f8cafc4`. It adds six draft capabilities and reuses five existing capabilities. Lesson 7-3 source repair is committed as `ec5647ee`. It restores all 49 source problems, adds two draft elimination capabilities, and reuses five existing capabilities. Lesson 7-4 source and graph repair is committed as `d21f39ed`. Its approved-skill count correction is committed as `84872511`. Lesson 7-5 source restoration is committed as `fedfa50e`; graph review is active. Lesson 8-1 source review is active. Source approval and complete three-mode practice remain open. The original checklist is not marked complete from these partial repairs.
+See `../../tracks/graph-node-practice-program_20260907/plan.md` for verified commits and remaining gaps. IM1 Lesson 7-1 source repair is committed as `0175218e`. Lesson 7-2 source repair is committed as `4f8cafc4`. It adds six draft capabilities and reuses five existing capabilities. Lesson 7-3 source repair is committed as `ec5647ee`. It restores all 49 source problems, adds two draft elimination capabilities, and reuses five existing capabilities. Lesson 7-4 source and graph repair is committed as `d21f39ed`. Its approved-skill count correction is committed as `84872511`. Lesson 7-5 source restoration is committed as `fedfa50e`; graph review is active. Lesson 8-1 source review is active. Source approval and complete three-mode practice remain open. The original checklist is not marked complete from these partial repairs.
 
 Read the [specification](./spec.md) and the
 [source review](../mastery-advantage-graph-remediation_20260821/graph-construction-review-2026-09-05.md)

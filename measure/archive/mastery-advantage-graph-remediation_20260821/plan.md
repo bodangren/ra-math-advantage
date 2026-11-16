@@ -1,5 +1,8 @@
 # Implementation Plan: Mastery Advantage Graph Remediation
 
+Superseded by math-graph-consume_20261114, PM 2026-11-16.
+Findings handed to Graph in handoff/a58-math-graph-findings-from-ra-math/.
+
 **Track type:** Refactor and defect remediation
 
 **Scope:** The IM1 to IM2 to IM3 to AP Precalculus course-series graph, the
