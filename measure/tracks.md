@@ -31,17 +31,17 @@ becomes the seed of Track E (see those entries below).
    *Establish the `primitives/` contract (`MathPrimitiveProps`), consumption rules, the canonical P1–P13 catalog, a reference migration (`CoordinatePlane`/P1), boundary enforcement, and T15/T16 reconciliation. Foundation for A–F. No end-user behavior change.*
    *Link: [./archive/primitive-layer-contract_20260615/](./archive/primitive-layer-contract_20260615/)*
 - [ ] **Track A: Coordinate & Functions** — **PLANNED**
-   *Primitives P1 (CoordinatePlane) + P2 (FunctionPlot w/ sliders) → `equation-solver`, `function-analyzer` practice components. Depends on T0.*
+   *Primitives P1 (CoordinatePlane) + P2 (FunctionPlot w/ sliders) → `equation-solver`, `function-analyzer` practice components. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track B: Number line & Algebra Manipulatives** — **PLANNED**
-   *Primitives P3 (NumberLine) + P11 (AlgebraManipulatives) + P12 (MathInput) → inequality/interval + factoring components. Depends on T0.*
+   *Primitives P3 (NumberLine) + P11 (AlgebraManipulatives) + P12 (MathInput) → inequality/interval + factoring components. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track C: Geometry & Transformations** — **PLANNED**
-   *Primitives P4 (GeometryCanvas) + P5 (TransformationOverlay) + P13 (proof builder) → geometry-explorer, transformation, proof-builder. Absorbs T15 geometry scope. IM2 has zero components today. Depends on T0.*
+   *Primitives P4 (GeometryCanvas) + P5 (TransformationOverlay) + P13 (proof builder) → geometry-explorer, transformation, proof-builder. Absorbs T15 geometry scope. IM2 has zero components today. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track D: Statistics & Probability** — **PLANNED**
-   *Primitives P8 (StatChart/Distribution) + P9 (DataTable) + P10 (ProbabilitySimulator) → `statistical-explorer`. Absorbs T15 stats scope. Depends on T0.*
+   *Primitives P8 (StatChart/Distribution) + P9 (DataTable) + P10 (ProbabilitySimulator) → `statistical-explorer`. Absorbs T15 stats scope. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track E: Trigonometry & Advanced** — **PLANNED**
-   *Primitives P6 (UnitCircle) + P7 (PolarPlane) + P2-trig → `unit-circle-trainer`, trig graphing. Seeded by T16 trig-advanced-renderers. Depends on T0.*
+   *Primitives P6 (UnitCircle) + P7 (PolarPlane) + P2-trig → `unit-circle-trainer`, trig graphing. Seeded by T16 trig-advanced-renderers. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 - [ ] **Track F: Interaction & Assessment** — **PLANNED**
-   *Generalized P13 DnD surface → `drag-drop-categorization`; port `tiered-assessment` from BM2 into the shared package. Depends on T0.*
+   *Generalized P13 DnD surface → `drag-drop-categorization`; port `tiered-assessment` from BM2 into the shared package. Depends on T0 and the track set Unified Math App (`unified-math-app_20261114`), because each primitive then goes into one app (2026-11-14).*
 
 ## Skill Graph Program Roadmap
 
@@ -233,6 +233,66 @@ packages omitted from CI, shallow regex-only boundary guards, and an inverted
 - [ ] **Track: Live Classroom Presentation**
    *Server/client architecture for a teacher to present lesson phases/steps with every student's screen synchronized in real time. Convex reactive queries/mutations drive sync over a new `live_sessions` table; teacher controls navigation, activity reveal, and inline annotations; students follow with local interaction. Sessions end explicitly or via idle timeout. Story-shaped spec (6 stories: S1 start, S2 follow, S3 navigate/reveal, S4 local interact, S5 annotations, S6 end).*
    *Link: [./tracks/live-classroom-presentation_20260703/](./tracks/live-classroom-presentation_20260703/)*
+
+- [ ] **Track: vinext 1.x Upgrade and Oxc Toolchain Move**
+   *Chore, story-shaped spec with 5 phases: S1 package refresh and vinext 1.x (remove `next`), S2 ESLint to oxlint, S3 TypeScript 7 with tsrs as the type-check gate, S4 oxfmt with one format-only commit, S5 gate rules and CI. The repository is a test bed for a full move to the Oxc tools; the evidence file records speed, conformance gaps, rule gaps, and workarounds. User decisions 2026-11-14.*
+   *Link: [./tracks/vinext-oxc-toolchain_20261114/](./tracks/vinext-oxc-toolchain_20261114/)*
+
+- [ ] **Track: OpenRouter SDK AI Layer**
+   *Chore, story-shaped spec with 4 phases: S1 adopt `@openrouter/sdk` in `packages/ai-tutoring` (workerd probe, bundle sizes), S2 one model variable for each role with no default and fail-closed behavior, usage logging, and the PII flag, S3 structured output for BM2 spreadsheet feedback and the BM2 teacher summary (lesson-level prompt without the student name), S4 removal of the OpenAI paths and role docs. AI prompts contain no PII. Depends on: vinext-oxc-toolchain_20261114. User decisions 2026-11-14.*
+   *Link: [./tracks/openrouter-sdk-ai-layer_20261114/](./tracks/openrouter-sdk-ai-layer_20261114/)*
+
+- [ ] **Track: Danielson App Import**
+   *Chore, story-shaped spec with 3 phases: S1 import `github.com/bodangren/hdkwa-danielson` as `apps/danielson` with its git history, move its open Measure tracks into this registry, remove the duplicate files, and join the npm workspaces; S2 the repository toolchain (vinext 1.x, oxlint, oxfmt, tsrs) and CI; S3 a static export to the new Worker `danielson` and a report to the PM. The app keeps the Danielson Framework text under the license of the school. Depends on: `vinext-oxc-toolchain_20261114` (S1 and S2) and `prod-deploy-pipeline_20261114` (S3 only). Runs before the track set Unified Math App. Orchestrator decision 2026-11-14.*
+   *Link: [./tracks/danielson-app-import_20261114/](./tracks/danielson-app-import_20261114/)*
+
+- [ ] **Track: Unified Math App: Base App, Convex Auth v2, and Course Data**
+   *Link: [./tracks/math-app-base_20261114/](./tracks/math-app-base_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 1*
+
+- [ ] **Track: Unified Math App: Integrated Math 1 Course Import**
+   *Link: [./tracks/math-app-course-im1_20261114/](./tracks/math-app-course-im1_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 2*
+
+- [ ] **Track: Unified Math App: Integrated Math 2 Course Import**
+   *Link: [./tracks/math-app-course-im2_20261114/](./tracks/math-app-course-im2_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 2*
+
+- [ ] **Track: Unified Math App: AP Precalculus Course Import**
+   *Link: [./tracks/math-app-course-precalc_20261114/](./tracks/math-app-course-precalc_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 2*
+
+- [ ] **Track: Unified Math App: Retire the Old Math Apps**
+   *Link: [./tracks/math-app-retire-old-apps_20261114/](./tracks/math-app-retire-old-apps_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 3*
+
+- [ ] **Track: Unified Math App: Multi-Year Student History**
+   *Link: [./tracks/math-app-student-history_20261114/](./tracks/math-app-student-history_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 4*
+
+- [ ] **Track: Unified Math App: Seat Licensing**
+   *Link: [./tracks/math-app-seat-licensing_20261114/](./tracks/math-app-seat-licensing_20261114/)*
+   *Set: Unified Math App (`unified-math-app_20261114`), order 5*
+
+- [ ] **Track: BM2 Convex Auth v2 Migration**
+   *Chore, story-shaped spec with 3 phases: S1 Convex Auth v2 sign-in, server guards, local auth files, and accounts in BM2 (the contract and the spike result of `math-app-base_20261114`), S2 each BM2 server call uses the access token, S3 removal of `packages/core-auth` and the old auth context of `packages/app-shell`, and the document update. No credential migration. Depends on: the track set Unified Math App (`unified-math-app_20261114`). Runs before `prod-deploy-pipeline_20261114` and before Practice Primitives Tracks A to F. Orchestrator decision 2026-11-14.*
+   *Link: [./tracks/bm2-convex-auth-v2_20261114/](./tracks/bm2-convex-auth-v2_20261114/)*
+
+- [ ] **Track: Production Deploy Pipeline**
+   *Chore, story-shaped spec with 4 phases: S1 inventory check and one reuse or delete decision for each cloud resource, S2 the local deploy command (`npm run deploy:app -- <app>`: Convex deploy, Worker deploy, smoke test, Worker rollback) and the first math app deploy, S3 BM2 under the pipeline, S4 the release rule, the removal of `cloudflare-deploy.yml`, and the documents. Local OAuth logins of `wrangler` and `convex`; no GitHub secrets; deploy keys piped into `wrangler secret put`; the OpenRouter key through a secret card. Daniel authorized the orchestrator to deploy and to delete old cloud resources (2026-11-14). Depends on: the track set Unified Math App (`unified-math-app_20261114`) and `bm2-convex-auth-v2_20261114`. Runs before Practice Primitives Tracks A to F. Phase 3 of `danielson-app-import_20261114` depends on this track.*
+   *Link: [./tracks/prod-deploy-pipeline_20261114/](./tracks/prod-deploy-pipeline_20261114/)*
+
+- [ ] **Track: KST Spec v3.2 Runtime Migration**
+   *Chore, story-shaped spec with 6 phases: S1 the pointer to the kst-srs.v3.2 source (replaces `kst-srs.v2/`), the v3.2 retention, and gated readiness; S2 corrected evidence, the rating mapper, and the `paramsVersion` stamp; S3 the daily queue and session composition; S4 the planner and the review-load budget; S5 the placement walk and seeding; S6 edge calibration. MIGRATION-v3.md items 1 to 16 of mastery-advantage; the FSRS fit and the evaluation harness stay out of scope. Depends on: the track set Unified Math App (`unified-math-app_20261114`). The consume track depends on this track.*
+   *Link: [./tracks/kst-v32-runtime_20261114/](./tracks/kst-v32-runtime_20261114/)*
+
+- [ ] **Track: Consume the mastery-advantage Math Graph**
+   *Chore, story-shaped spec with 4 phases: S1 ingest the first `math.us-hs` release (SHA-256 check, validation, files unchanged in `apps/math/curriculum/graph/release/`); S2 the app reads the released graph (loader, course containers, runtime bindings, re-keyed authoring files and stored node IDs); S3 the CCSS tags of the release in teacher reporting (primary first, PM-approved AP exception list, CCSS notice, no College Board text); S4 removal of the 47 old graph data files and the graph-data scripts. No history rewrite. Depends on: `kst-v32-runtime_20261114` and the first release from mastery-advantage.*
+   *Link: [./tracks/math-graph-consume_20261114/](./tracks/math-graph-consume_20261114/)*
+
+- [x] **Track: Project Documents for the New Direction**
+   *Chore, docs only, one phase with one task for each file group: README.md; AGENTS.md; the Measure core documents (index, product, architecture, tech stack, knowledge space, current directive); the wrong instructions of the other Measure documents; the contradictions of INTEGRATION.md; the planned-marker amendment of the retire track. Each document keeps the current state apart from the planned direction of 2026-11-14, and each planned item has the marker `(planned: <track id>)`. Runs after each track of the 2026-11-14 queue exists.*
+   *Link: [./tracks/docs-new-direction_20261114/](./tracks/docs-new-direction_20261114/)*
 
 - [x] **[HIGH PRIORITY] Track: Unblock CI package typecheck (2026-07-01)** — **COMPLETED** (fix `ee10aa4`, docs `42fcc63`). Next: watch the CI run on push — this clears the Phase-1 package gate, but the downstream im3/bm2/deploy jobs have not been observed green remotely.
    *Every `ci.yml` run has been red since the 2026-04-18 monorepo move in Phase 1 `Validate Packages → Run package typecheck`: `practice-core`, `core-convex`, `core-auth`, `ai-tutoring` use node globals (`node:fs/path/url/os`, `process`, `Buffer`) but their tsconfig didn't declare the `node` ambient types (TS2591 + cascaded TS7006 implicit-any). Because `deploy needs:[im3,bm2] needs:[packages,boundary-check]`, this halts CI before the Phase 6 Cloudflare deploy — IM3's CI deploy has never landed. Fix: config-only `compilerOptions.types = ["node","vitest/globals"]` in the four package tsconfigs (42 errors → 0, verified locally). Resolves tech-debt line 35's Phase-1 root cause. From 2026-07-01 tech-debt triage.*

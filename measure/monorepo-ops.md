@@ -26,9 +26,9 @@ in `measure/generated/quality-gates.md`.
 # Navigate to app directory
 cd apps/integrated-math-3
 
-# Local development (starts Convex dev server + frontend)
+# Local development: the frontend only (Convex runs separately)
 npm run dev
-# Or use the dev stack script
+# Or start Convex and the frontend together with the dev stack script
 npm run dev:stack
 
 # Generate Convex types (runs automatically during dev)
@@ -37,8 +37,8 @@ npx convex dev
 # Deploy to Convex production
 npx convex deploy
 
-# Run seed functions
-npx convex run seed.ts
+# Run the seed (internal action seedAll in convex/seed.ts)
+npx convex run seed:seedAll
 ```
 
 ### Business Math 2 (BM2)
@@ -56,8 +56,9 @@ npx convex dev
 # Deploy to Convex production
 npx convex deploy
 
-# Run seed functions
-npx convex run seed.ts
+# Run a seed function of convex/seed.ts, for example:
+npx convex run seed:seedPublishedCurriculum
+npx convex run seed:seedDemoAccounts
 ```
 
 ## Required Environment Variables

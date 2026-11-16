@@ -118,6 +118,7 @@ npm run test:watch   # Vitest in watch mode
 
 ## Deployment
 
-- Platform: Vercel (primary)
+- Platform: Cloudflare Workers through `wrangler` (each app has a `wrangler.jsonc`). Not
+  Vercel. Local deploys are planned (planned: prod-deploy-pipeline_20261114).
 - Convex Cloud or Convex Local for database
 - `vinext` handles the Vite-based build pipeline

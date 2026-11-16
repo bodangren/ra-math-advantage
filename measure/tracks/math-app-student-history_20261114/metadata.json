@@ -1,0 +1,27 @@
+{
+  "track_id": "math-app-student-history_20261114",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-11-13T23:29:11Z",
+  "updated_at": "2026-11-13T23:29:11Z",
+  "description": "Unified Math App: Multi-Year Student History",
+  "estimated_tasks": 26,
+  "actual_tasks": null,
+  "deviation_notes": "",
+  "sprint": {
+    "goal": "A student keeps one account and one history from IM1 to AP Precalculus, and each course uses what the student learned in the earlier courses.",
+    "stories": [
+      { "id": "S1", "title": "Enrollment history by academic year", "size": "M", "priority": "Must", "status": "pending" },
+      { "id": "S2", "title": "Academic year rollover", "size": "M", "priority": "Must", "status": "pending" },
+      { "id": "S3", "title": "Teacher views by year", "size": "S", "priority": "Should", "status": "pending" },
+      { "id": "S4", "title": "Knowledge state from earlier courses", "size": "L", "priority": "Must", "status": "pending" }
+    ],
+    "demo_notes": null,
+    "retro_ref": null
+  },
+  "set": {
+    "id": "unified-math-app_20261114",
+    "order": 4,
+    "depends_on": ["math-app-retire-old-apps_20261114"]
+  }
+}

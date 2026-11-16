@@ -1,6 +1,10 @@
-# Tech Stack — Integrated Math 3
+# Tech Stack — RA Math Advantage
 
 Scaffolded from `bus-math-v2` (Math for Business Operations). Use the app package file for current dependency ranges.
+
+This document gives the current state, with the versions of `package-lock.json`. A
+direction item of 2026-11-14 has the marker `(planned: <track id>)`. The file paths below
+are paths of the IM3 app (`apps/integrated-math-3`).
 
 ## Runtime & Framework
 
@@ -10,7 +14,10 @@ Scaffolded from `bus-math-v2` (Math for Business Operations). Use the app packag
 | Runtime adapter | vinext (Vite-backed Next.js) | ^0.0.55 | Faster dev builds via Vite |
 | Build tool | Vite | ^8.0.0 | vinext's underlying bundler |
 | Language | TypeScript (strict) | ^6 | Type safety across full stack |
-| React | React 19 | ^19.2.7 | Latest features, RSC support |
+| React | React 19 | ^19.2.9 | Latest features, RSC support |
+| Node.js | Node.js | 22 or later | vinext 0.0.55 needs `node >=22` |
+
+Planned: vinext 1.x with no `next` package, oxfmt, and tsrs as the type-check gate. Oxlint is already in use (planned: vinext-oxc-toolchain_20261114).
 
 ## Backend & Database
 
@@ -24,17 +31,35 @@ Scaffolded from `bus-math-v2` (Math for Business Operations). Use the app packag
 | Admin auth resolution | `lib/convex/admin.ts` | Local admin key or `CONVEX_DEPLOY_KEY` env |
 | Generated types | `convex/_generated/` | Generated Convex API and data model types. Keep these files aligned with the backend. |
 
+Planned: one Convex backend for the math app, with the `convex` package at 1.50 or later (planned: math-app-base_20261114).
+
 ## Authentication
 
-Custom JWT-based auth built on Convex. No third-party auth provider.
+Custom JWT-based auth built on Convex, from `packages/core-auth`. No third-party auth provider.
 
 | Component | File | Details |
 |-----------|------|---------|
-| JWT signing/verification | `lib/auth/session.ts` | HMAC-SHA256, 12-hour TTL |
-| Password hashing | `lib/auth/session.ts` | PBKDF2, SHA-256, 120k iterations |
+| JWT signing/verification | `lib/auth/session.ts` (re-exports `packages/core-auth`) | HMAC-SHA256, 12-hour TTL, cookie `bm_session` |
+| Password hashing | `lib/auth/session.ts` (re-exports `packages/core-auth`) | PBKDF2, SHA-256, 120k iterations |
 | Server auth helpers | `lib/auth/server.ts` | Cookie-based session, role guards |
 | Password policy | `lib/auth/password-policy.ts` | Role-specific requirements |
-| Client auth context | `components/auth/AuthProvider.tsx` | React context with signIn/signOut |
+| Client auth context | `components/auth/AuthProvider.tsx` (re-exports `packages/app-shell`) | React context with signIn/signOut |
+
+Planned: Convex Auth v2 (`@convex-dev/auth` 2.x) with username and password replaces the
+custom JWT auth in the math app and in BM2 (planned: math-app-base_20261114)
+(planned: bm2-convex-auth-v2_20261114).
+
+## AI
+
+| Layer | Technology | Notes |
+|-------|-----------|-------|
+| Provider | OpenRouter API through `fetch` | `packages/ai-tutoring/src/providers.ts` |
+| Key | `OPENROUTER_API_KEY` | Server-only; the chatbot returns 503 when it is not set |
+| Default model | `openrouter/free` | `OPENROUTER_MODEL` can change it |
+
+Planned: `@openrouter/sdk`, one model variable for each role with no default,
+`openrouter/free` for development only, structured output for the evaluation roles, and no
+PII in prompts (planned: openrouter-sdk-ai-layer_20261114).
 
 ## Styling & UI
 
@@ -60,6 +85,7 @@ Custom JWT-based auth built on Convex. No third-party auth provider.
 | `recharts` | Data visualization (charts) - NOT used for graphing activities |
 | `@hello-pangea/dnd` | Drag-and-drop activities |
 | `zod` ^4 | Schema validation |
+| `ts-fsrs` 5.4.1 | FSRS scheduler (through `packages/srs-engine`) |
 | `class-variance-authority` | Component variants |
 | `clsx` + `tailwind-merge` | Class name utilities |
 
@@ -101,6 +127,7 @@ Custom JWT-based auth built on Convex. No third-party auth provider.
 | Playwright ^1.56 | E2E tests |
 | Testing Library | Component tests (React) |
 | @testing-library/jest-dom | DOM matchers |
+| ESLint | Lint (`eslint . --max-warnings 0`) |
 
 ## Monorepo Quality Tooling
 
@@ -140,10 +167,16 @@ group because no workspace declares a direct `effect` dependency.
 
 ## Environment Variables
 
+`apps/integrated-math-3/.env.example`:
+
 ```env
 NEXT_PUBLIC_CONVEX_URL=http://127.0.0.1:3210
-CONVEX_DEPLOY_KEY=
 AUTH_JWT_SECRET=replace-with-a-long-random-secret
+OPENROUTER_API_KEY=
+# OPENROUTER_MODEL=openrouter/free
+# OPENROUTER_API_BASE=https://openrouter.ai/api/v1
+# NEXT_PUBLIC_SITE_URL=http://localhost:3000
+# CONVEX_DEPLOY_KEY=
 ```
 
 ## Dev Commands
@@ -153,6 +186,7 @@ npm run dev          # Start dev server (vinext dev)
 npm run dev:stack    # Start full stack (convex + dev server)
 npm run build        # Production build (vinext build)
 npm run lint         # Lint (Oxlint)
+npm run typecheck    # Type check (tsc --noEmit)
 npm run test         # Run Vitest
 npm run test:watch   # Vitest in watch mode
 ```
@@ -166,3 +200,5 @@ npm run test:watch   # Vitest in watch mode
 ## Business Math development
 
 Use `apps/bus-math-v2/DEVELOPMENT.md` for Business Math setup, resource storage, verification, and Cloudflare deployment. This app uses the same Convex and cookie-session architecture. Its teacher resources stay outside the public asset directory.
+
+Planned: local deploys with the OAuth logins of `wrangler` and `convex`, with a smoke test and a rollback (planned: prod-deploy-pipeline_20261114).

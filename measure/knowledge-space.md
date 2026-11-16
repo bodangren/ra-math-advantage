@@ -81,6 +81,16 @@ Domain packages and app curriculum folders own proprietary data:
 - A future English/GSE content package or app folder owns GSE-aligned graph artifacts, descriptor mappings, CEFR metadata, modality/task context, and English-specific generators.
 - Domain packages consume `knowledge-space-core` and `knowledge-space-practice`; they do not redefine the core theory or reusable contracts.
 
+Planned changes to the math graph:
+
+- The math app reads one skill graph, and each course is a view of that graph through its
+  course container node (planned: math-app-base_20261114).
+- The mastery-advantage repository releases one merged domain for IM1 to AP Precalculus
+  (default name `math.us-hs`), with course-neutral skill IDs and a mapping file from the old
+  node IDs. Each learnable node has a CCSS link. The app takes the release unchanged after
+  a SHA-256 check, and the graph data files of the apps go away
+  (planned: math-graph-consume_20261114).
+
 ## Visualization Projections
 
 User interfaces should not expose the raw knowledge graph. Raw nodes and edges are implementation evidence; users need role-specific projections with clear labels, readiness states, blockers, and recommended next actions.
@@ -150,6 +160,8 @@ new practice targets.
 ## Current Measure Tracks
 
 - Track 1 (`wire-kst-pipeline_20260521`) completed the v2 production wiring. `kst-srs-v3-core-correctness_20260710` delivered the v3 correctness layer; the remaining evidence/calibration, planner/session, and runtime cutover work continues in the ordered v3.1/v3.2 tracks.
+- `kst-v32-runtime_20261114` defines additional runtime migration work (planned: kst-v32-runtime_20261114).
+- `math-graph-consume_20261114` switches the math app to the released mastery-advantage graph (planned: math-graph-consume_20261114).
 - Track 2 defines `knowledge-space-core`.
 - Track 6 defines reusable blueprint and generator contracts in `knowledge-space-practice`.
 - Track 7 defines reusable practice and visualization projection adapters in `knowledge-space-practice`.

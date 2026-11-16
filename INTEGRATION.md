@@ -1,6 +1,6 @@
 # Monorepo Integration Guide
 
-This document covers package creation, app adoption patterns, boundary rules, and operational guides for the `ra-integrated-math-3` monorepo.
+This document covers package creation, app adoption patterns, boundary rules, and operational guides for the `ra-math-advantage` monorepo. `README.md` gives the current state and the planned direction of 2026-11-14.
 
 ## Contents
 
@@ -19,27 +19,20 @@ This document covers package creation, app adoption patterns, boundary rules, an
 ## Monorepo Structure
 
 ```
-ra-integrated-math-3/          # Monorepo root
+ra-math-advantage/             # Monorepo root
 ├── apps/
-│   ├── integrated-math-3/     # IM3 application
-│   └── bus-math-v2/            # Business Math v2 (reference and migration source)
-├── packages/
-│   ├── _template/              # Package scaffold template
-│   ├── activity-runtime/       # Phase types, activity modes, completion tracking
-│   ├── ai-tutoring/           # OpenRouter provider, retry wrapper, lesson context assembly
-│   ├── component-approval/     # Content hashing, review queue assembly
-│   ├── core-auth/             # JWT session, password hashing, demo provisioning
-│   ├── core-convex/            # Convex client config, admin auth, query helpers
-│   ├── graphing-core/          # Quadratic/linear parsers, canvas utilities
-│   ├── practice-core/          # Practice contract, timing, rating, error analysis
-│   ├── practice-test-engine/   # Shared test types and question utilities
-│   ├── srs-engine/             # FSRS scheduler, review processor, queue, adapters
-│   ├── study-hub-core/        # Flashcard/review session primitives, shuffle utilities
-│   ├── teacher-reporting-core/ # Gradebook, course overview, competency heatmap, CSV export
-│   └── workbook-pipeline/     # Workbook filename, manifest, and path utilities
-├── measure/                    # Measure spec-driven development framework
-└── README.md                   # Project overview
+│   ├── integrated-math-3/     # IM3 application (primary)
+│   ├── integrated-math-1/     # IM1 application
+│   ├── integrated-math-2/     # IM2 application
+│   ├── pre-calculus/          # AP Precalculus application
+│   └── bus-math-v2/           # Business Math v2
+├── packages/                  # 20 shared packages and _template (README.md lists each one)
+├── measure/                   # Measure spec-driven development framework
+└── README.md                  # Current state and planned direction
 ```
+
+One math app `apps/math` replaces the four math apps (planned: math-app-base_20261114)
+(planned: math-app-retire-old-apps_20261114).
 
 ---
 
@@ -84,10 +77,10 @@ Before creating a new package, confirm:
 
 7. **Run verification:**
    ```bash
-   npm run ws:lint
-   npm run ws:typecheck
-   npm run ws:test
-   npm run ws:build
+   npm run lint --workspace=@math-platform/<your-package-name>
+   npm run typecheck --workspace=@math-platform/<your-package-name>
+   npm run test --workspace=@math-platform/<your-package-name>
+   npm run build --workspace=@math-platform/<your-package-name>
    ```
 
 ---
@@ -96,10 +89,9 @@ Before creating a new package, confirm:
 
 ### IM3 Adoption
 
-```bash
-cd apps/integrated-math-3
-npm install @math-platform/<package-name>
-```
+Add the package to the `dependencies` of `apps/integrated-math-3/package.json` with the
+range `"*"` (for example `"@math-platform/<package-name>": "*"`). Then run `npm install` at
+the monorepo root. A dependency change needs explicit approval (`AGENTS.md`, Guardrails).
 
 Update imports:
 ```typescript
@@ -189,14 +181,9 @@ npm run dev
 
 ### Workspace Scripts
 
-From monorepo root:
-
-| Command | Description |
-|---------|-------------|
-| `npm run ws:lint` | Lint all packages |
-| `npm run ws:typecheck` | Typecheck all packages |
-| `npm run ws:test` | Test all packages |
-| `npm run ws:build` | Build all packages |
+From monorepo root, each app has `ws:<app>:lint`, `ws:<app>:test`, `ws:<app>:typecheck`,
+and `ws:<app>:build` scripts (`im3`, `bm2`, `im2`, `im1`, `pc`). `README.md` lists each
+one. The root has no script that runs all packages.
 
 Per-app commands:
 
@@ -230,7 +217,7 @@ packages/<package>/
 
 Run package tests:
 ```bash
-npm run ws --workspace=@math-platform/<package-name> test
+npm run test --workspace=@math-platform/<package-name>
 ```
 
 ### App Tests
@@ -267,46 +254,37 @@ Each app maintains its own Convex project:
 
 | App | Convex Project | Schema | Generated API |
 |-----|----------------|--------|--------------|
-| IM3 | `integrated-math-3` | `apps/integrated-math-3/convex/schema.ts` | `apps/integrated-math-3/convex/_generated/api.d.ts` |
-| BM2 | `bus-math-v2` | `apps/bus-math-v2/convex/schema.ts` | `apps/bus-math-v2/convex/_generated/api.d.ts` |
+| IM3 | `integrated-math-3` (dev deployment only) | `apps/integrated-math-3/convex/schema.ts` | `apps/integrated-math-3/convex/_generated/api.d.ts` |
+| BM2 | `bus-math-v2-experimental` (prod deployment `quiet-swan-141`) | `apps/bus-math-v2/convex/schema.ts` | `apps/bus-math-v2/convex/_generated/api.d.ts` |
 
 ### Convex Commands
 
 ```bash
 # IM3
 cd apps/integrated-math-3
-npx convex dev --local          # Local development
+npx convex dev --local          # Local development (also pushes schema changes)
 npx convex deploy               # Deploy to production
-npx convex schema push          # Push schema changes
 
 # BM2
 cd apps/bus-math-v2
 npx convex dev --local
 npx convex deploy
-npx convex schema push
 ```
+
+`npx convex dev` and `npx convex deploy` push the schema. Convex has no separate schema
+push command.
 
 ---
 
 ## Deployment
 
-### IM3 (Cloudflare)
+Each app deploys to a Cloudflare Worker (not Cloudflare Pages). Its `wrangler.jsonc` names
+the Worker. The Workers `integrated-math-3` and `bus-math-v2` exist on workers.dev with no
+traffic, and no deploy has run from this repository.
 
-```bash
-cd apps/integrated-math-3
-npm run build
-npx convex deploy
-# Cloudflare Pages deploys from apps/integrated-math-3/
-```
-
-### BM2 (Cloudflare)
-
-```bash
-cd apps/bus-math-v2
-npm run build
-npx convex deploy
-# Cloudflare Pages deploys from apps/bus-math-v2/
-```
+The orchestrator runs the deploys locally with the OAuth logins of `wrangler` and
+`convex`: `npm run deploy:app -- <app>` runs a preflight, the Convex deploy, the Worker
+deploy, a smoke test, and a rollback on failure (planned: prod-deploy-pipeline_20261114).
 
 ---
 
@@ -367,7 +345,7 @@ Description.
 ## Testing
 
 \`\`\`bash
-npm run ws --workspace=@math-platform/<package-name> test
+npm run test --workspace=@math-platform/<package-name>
 \`\`\`
 
 ## Boundary Rules
