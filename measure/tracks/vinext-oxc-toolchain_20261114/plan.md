@@ -109,6 +109,7 @@ _Story ref: spec.md#story-s1_
     - [x] Time `npm run build` for each app on vinext 0.0.55. Record the times in section 5.
     - [x] Commit the evidence file: `measure(vinext-oxc): record the S1 baseline`.
 - [~] Task: S1 Test (Red) — add the S1 gate tests (Red commit: abbe15f1; Green marks `[x]` when the S1 cases pass)
+    - Sync merge 2b2d9952 of origin/master 2e353ef9 (Daniel's order, 2026-11-16): 1130 commits, adds apps/danielson and oxlint tooling; the S1 baseline, cases, and gates need a re-check before S1 Verify. Green's commit C WIP is in a named stash.
     - [x] Create `scripts/__tests__/oxc-toolchain-gates.test.ts` with `describe('S1 vinext 1.x')`.
     - [x] Add `'__tests__/oxc-toolchain-gates.test.ts'` to `include` in `scripts/vitest.config.ts`. (The discovery check listed no file, so the config also got a `root` option from `import.meta.url`. Strategy section 5 names this fix.)
     - [x] Normal case 1: the `vinext/package.json` that resolves from the repository root has major version 1. (The test checks the root, each app, and `packages/app-shell`. It walks up `node_modules` because vinext 1.x has no `./package.json` entry in its `exports` map.)
