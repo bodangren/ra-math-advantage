@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # gates.sh <lint|test|checks-all> <label>
-# Run from the repository root, WITHOUT a heavy-run.sh wrapper:
-#   bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh <gate> <label>
+# Run from any working folder, WITHOUT a heavy-run.sh wrapper:
+#   bash <path to the checkout>/measure/tracks/vinext-oxc-toolchain_20261114/gates.sh <gate> <label>
+# The script resolves the repository root from its own location.
 # This script calls heavy-run.sh itself: one job for each workspace script and one job for
 # each step. Reason: heavy-run.sh caps a p2 job at 1800 s, and a whole gate needs more.
 # Run a gate in the background and read its log. A gate takes a long time.
@@ -166,7 +167,11 @@ audit_step() {
 }
 
 main() {
-REPO=/home/daniebo/Desktop/ra-math-advantage
+# The repository root is three folders above this script (measure/tracks/<track>/).
+local script_dir
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) || exit 2
+REPO=$(cd "$script_dir/../../.." && pwd) || exit 2
+[ -f "$REPO/package.json" ] || { echo "repository root not found: $REPO has no package.json"; exit 2; }
 cd "$REPO" || exit 2
 export CI=true
 GATE=${1:?gate}

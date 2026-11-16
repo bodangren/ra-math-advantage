@@ -75,6 +75,46 @@ function runAuditCase({ response, exitCode, label = 't1', baseline }: AuditCase)
   return { status: result.status, output, infra, newfail, outDir: out };
 }
 
+// Build a fake repository tree with its own copy of gates.sh.
+function makeFakeRepo(withPackageJson = true): string {
+  const tmp = makeTempDir('gates-repo-');
+  if (withPackageJson) {
+    fs.writeFileSync(
+      path.join(tmp, 'package.json'),
+      JSON.stringify({ name: 'fake-repo', private: true }),
+    );
+  }
+  const trackDir = path.join(tmp, 'measure', 'tracks', TRACK_SLUG);
+  fs.mkdirSync(trackDir, { recursive: true });
+  fs.copyFileSync(GATES_SH, path.join(trackDir, 'gates.sh'));
+  const appDir = path.join(tmp, 'apps', 'x');
+  fs.mkdirSync(appDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(appDir, 'package.json'),
+    JSON.stringify({ name: 'fake-x', private: true, scripts: { lint: 'node --version' } }),
+  );
+  return tmp;
+}
+
+// A fake heavy-job wrapper that accepts the job and succeeds without running it.
+function makeFakeWrapper(): string {
+  const tmp = makeTempDir('gates-wrapper-');
+  const wrapper = path.join(tmp, 'heavy-run.sh');
+  fs.writeFileSync(wrapper, '#!/usr/bin/env bash\nexit 0\n');
+  fs.chmodSync(wrapper, 0o755);
+  return wrapper;
+}
+
+function runGate(gatesSh: string, gate: string, label: string, cwd: string, env: NodeJS.ProcessEnv) {
+  const result = spawnSync('bash', [gatesSh, gate, label], {
+    cwd,
+    env: { ...process.env, ...env },
+    encoding: 'utf8',
+    timeout: 60000,
+  });
+  return { status: result.status, output: `${result.stdout ?? ''}${result.stderr ?? ''}` };
+}
+
 describe('gates.sh audit_step (#3)', () => {
   it('treats a registry error object as an infrastructure failure', () => {
     const r = runAuditCase({
@@ -168,5 +208,45 @@ describe('gates.sh audit_step (#3)', () => {
     expect(r.output).toContain('NEW FAILURE: audit critical 2 -> 3');
     expect(r.infra).toBe('0');
     expect(r.newfail).toBe('1');
+  });
+});
+
+describe('gates.sh repository root (#4)', () => {
+  it('resolves the root from the script location and writes results under it', () => {
+    const repo = makeFakeRepo();
+    const wrapper = makeFakeWrapper();
+    const cwd = makeTempDir('gates-cwd-');
+    const gatesSh = path.join(repo, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+    const r = runGate(gatesSh, 'lint', 'scripttest', cwd, { HEAVY_RUN: wrapper });
+    expect(r.status, r.output).toBe(0);
+    expect(r.output).toContain('NEWFAIL=0');
+    const results = path.join(repo, 'measure', 'runs', TRACK_SLUG, 'gates', 'scripttest');
+    expect(fs.existsSync(path.join(results, 'lint.exit'))).toBe(true);
+    expect(fs.readFileSync(path.join(results, 'lint.exit'), 'utf8')).toContain('apps/x 0');
+    expect(fs.existsSync(path.join(cwd, 'measure'))).toBe(false);
+    expect(
+      fs.existsSync(path.join(REPO_ROOT, 'measure', 'runs', TRACK_SLUG, 'gates', 'scripttest')),
+    ).toBe(false);
+  });
+
+  it('fails with a clear message when the heavy-job wrapper is missing', () => {
+    const repo = makeFakeRepo();
+    const cwd = makeTempDir('gates-cwd-');
+    const gatesSh = path.join(repo, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+    const r = runGate(gatesSh, 'lint', 'scripttest', cwd, {
+      HEAVY_RUN: '/nonexistent/heavy-run.sh',
+    });
+    expect(r.status).toBe(2);
+    expect(r.output).toContain('heavy-run.sh not found');
+  });
+
+  it('fails with a clear message when the root has no package.json', () => {
+    const repo = makeFakeRepo(false);
+    const wrapper = makeFakeWrapper();
+    const cwd = makeTempDir('gates-cwd-');
+    const gatesSh = path.join(repo, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+    const r = runGate(gatesSh, 'lint', 'scripttest', cwd, { HEAVY_RUN: wrapper });
+    expect(r.status).toBe(2);
+    expect(r.output).toContain('package.json');
   });
 });
