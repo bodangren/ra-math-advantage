@@ -1552,5 +1552,5 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
 - [~] **Danielson SLT presentation rebuild** — New 16-slide deck is ready (f336c096). Manual review remains open.
   *Link: [./tracks/danielson-slt-deck_20260907/](./tracks/danielson-slt-deck_20260907/)*
 
-- [~] **Remote sync: 2026-11-16** — Commit all non-ignored local files. Merge origin/master. Run checks and push master.
+- [x] **Remote sync: 2026-11-16** — Local files committed (`027925709`). Remote merged and pushed (`12271c1dc`). TypeScript and whitespace checks passed. Lint, tests, and build stop at existing expired architecture debt.
   *Link: [./tracks/worktree-atomic-integration_20260917/](./tracks/worktree-atomic-integration_20260917/)*
