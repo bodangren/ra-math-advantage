@@ -83,6 +83,14 @@ export type NormalizeLessonDraftResult =
   | { success: true; data: AuthoringLesson }
   | { success: false; errors: AuthoringError[] };
 
+function isAuthoringPhaseType(value: string): value is AuthoringPhaseType {
+  return [
+    'explore', 'vocabulary', 'learn', 'key_concept', 'worked_example',
+    'guided_practice', 'independent_practice', 'assessment', 'discourse',
+    'reflection',
+  ].includes(value);
+}
+
 /** Derive a stable, position-based id for a node in the draft. */
 function makeStableId(prefix: string, path: ReadonlyArray<string | number>): string {
   const segments = path.length > 0 ? path.join('_') : 'root';
@@ -259,7 +267,9 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
     normalizedPhases.push({
       id: makeStableId('phase', [phaseIdx]),
       title: phaseTitle,
-      phaseType: typeof rawPhase.phaseType === 'string' ? rawPhase.phaseType : undefined,
+      phaseType: typeof rawPhase.phaseType === 'string' && isAuthoringPhaseType(rawPhase.phaseType)
+        ? rawPhase.phaseType
+        : undefined,
       sections: normalizedSections,
     });
   });

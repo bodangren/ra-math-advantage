@@ -13,7 +13,7 @@ import type { SpreadsheetData } from './index';
 
 interface SpreadsheetActivityAdapterProps {
   activity: Activity;
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void | Promise<void>;
   onComplete?: () => void;
 }
 
@@ -41,7 +41,7 @@ export function SpreadsheetActivityAdapter({
   const submittedRef = useRef(false);
 
   const handleSubmit = useCallback(
-    (data: { spreadsheetData: SpreadsheetData }) => {
+    async (data: { spreadsheetData: SpreadsheetData }) => {
       if (submittedRef.current) return;
 
       const cellCount = data.spreadsheetData.flat().length;
@@ -56,12 +56,7 @@ export function SpreadsheetActivityAdapter({
         spreadsheetData: data.spreadsheetData,
       };
 
-      const parts = buildPracticeSubmissionParts(answers).map((part) => ({
-        ...part,
-        isCorrect: filledCells > 0,
-        score: filledCells > 0 ? 1 : 0,
-        maxScore: 1,
-      }));
+      const parts = buildPracticeSubmissionParts(answers);
 
       const envelope = buildPracticeSubmissionEnvelope({
         activityId: activity.id || 'spreadsheet',
@@ -89,8 +84,8 @@ export function SpreadsheetActivityAdapter({
 
       try {
         submittedRef.current = true;
-        onSubmit?.(envelope);
-        onComplete?.();
+        if (onSubmit) await onSubmit(envelope);
+        else await onComplete?.();
       } catch (err) {
         console.error('SpreadsheetActivityAdapter submission failed:', err);
         submittedRef.current = false;

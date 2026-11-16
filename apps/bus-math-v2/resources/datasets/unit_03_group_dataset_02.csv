@@ -1,14 +1,12 @@
-Account,Account Type,Balance
-Cash,Asset,4681
-Accounts Receivable,Asset,3071
-Office Supplies,Asset,1860
-Prepaid Rent,Asset,2328
-Office Equipment,Asset,5036
-Accumulated Depreciation,Asset,-272
-Accounts Payable,Liability,5041
-Accrued Wages,Liability,875
-Deferred Revenue,Liability,749
-Bank Loan,Liability,1185
-Owner's Capital,Equity,5312
-Retained Earnings,Equity,2656
-Net Income,Equity,886
+Input,Value
+Beginning Cash,2200.0
+Revenue earned,6600.0
+Cash collected from customers,6050.0
+Operating cash expenses,3300.0
+Depreciation,550.0
+Equipment purchased for cash,1100.0
+New loan proceeds,770.0
+Owner withdrawal,220.0
+Opening equipment cost,5500.0
+Opening loan balance,2200.0
+Opening capital,5500.0

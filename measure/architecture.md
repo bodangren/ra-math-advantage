@@ -23,14 +23,36 @@ This document gives the current state. A direction item of 2026-11-14 has the ma
 - **Deploys:** local deploys to Cloudflare Workers with a smoke test and a rollback
   (planned: prod-deploy-pipeline_20261114).
 
+## Monorepo Architecture Contract
+
+`scripts/architecture/architecture.manifest.json` is the human-approved source
+of truth for all 6 apps and 20 non-template packages. It records ownership,
+layers, domain classification, allowed dependencies, public exports, quality
+commands, and exact expiring debt. `scripts/check-monorepo-boundaries.mjs`
+resolves real imports against that contract and rejects app-to-app,
+package-to-app, generated Convex, undeclared, prohibited-layer, domain-leak,
+private-export, and package-cycle violations.
+
+Generated views live under `measure/generated/`:
+
+- `architecture.json` — complete machine-readable workspace graph
+- `package-dag.md` — package dependency edges and cycle count
+- `ownership.md` — workspace ownership and domain classification
+- `exports.md` — package public entry points
+- `quality-gates.md` — lint, test, typecheck, and build coverage
+
+Run `npm run generate` after changing the manifest. `npm run doctor` fails when
+these reports are stale or the live dependency graph violates the contract.
+
 ## Knowledge Space Package Boundaries
 
 See [Knowledge Space Architecture](./knowledge-space.md) for the full project-wide doctrine. The short version: reusable packages own the domain-neutral learning mechanism, while app/domain packages own proprietary maps and generated outputs.
 
 | Package / Location | Owns | Must Not Own |
 |---|---|---|
-| `packages/knowledge-space-core` | `knowledge-space.v1` graph/state schemas, validation, traversal, readiness primitives, domain adapter interfaces, synthetic fixtures | Math curriculum maps, English/GSE descriptors, standards catalogs, app code, Convex generated files |
+| `packages/knowledge-space-core` | `knowledge-space.v2` graph/state schemas, validation, traversal, gated readiness, objective-evidence adapters, domain adapter interfaces, synthetic fixtures | FSRS formulas, queues, Math curriculum maps, English/GSE descriptors, standards catalogs, app code, Convex generated files |
 | `packages/knowledge-space-practice` | reusable blueprint/generator contracts, generic evidence, practice and visualization projection utilities, `practice.v1` adapters, synthetic fixtures | Proprietary graph maps, domain descriptor text, generated app activity maps, app component registries |
+| `packages/srs-engine` | `srs.contract.v3`, FSRS retention, reviewed-variant aggregation, placement-card synthesis, review processing, and reviews-first backlog-aware queues | App code, Convex generated files, proprietary curriculum, duplicate graph/readiness logic |
 | `packages/math-content` and app curriculum folders | IM1/IM2/IM3/AP Precalculus graph artifacts, standards mappings, generator bindings, component/runtime mappings | Re-definitions of core graph theory or reusable cross-domain contracts |
 | future English/GSE content package or app folder | proprietary GSE-aligned graph artifacts, CEFR/GSE metadata, modality/task context, English-specific generators | Pearson/GSE descriptor redistribution through reusable packages |
 
@@ -288,3 +310,7 @@ Server-side code uses `fetchInternalQuery` / `fetchInternalMutation` which resol
 4. **Path aliases** — `@/*` maps to project root
 5. **"use client"** — Applied to interactive components (AuthProvider, login form, user menu, etc.)
 6. **RSC** — Page components are server components by default; data fetching happens server-side
+
+## Activity schema ownership (2026-09-07)
+
+`packages/activity-components/src/schemas` owns the activity props schemas and registry. Components use local schema imports. `math-content` re-exports these schemas for existing consumers. Content can depend on the feature package. The feature package must not depend on content. Graphing components declare graphing-core. Precalculus declares its activity-components and math-content dependencies. Math generators declare knowledge-space-practice.

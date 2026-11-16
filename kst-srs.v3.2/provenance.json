@@ -1,0 +1,17 @@
+{
+  "contractVersion": "kst-srs.v3.2",
+  "upstreamRepository": "../mastery-advantage",
+  "capturedAt": "2026-07-10T10:25:00Z",
+  "files": [
+    {
+      "path": "SPECIFICATION.md",
+      "upstreamPath": "../mastery-advantage/SPECIFICATION.md",
+      "sha256": "e227f55846565901530b08466188b18f348cf32333e57bed933b099eb0d5ee43"
+    },
+    {
+      "path": "MIGRATION-v3.md",
+      "upstreamPath": "../mastery-advantage/MIGRATION-v3.md",
+      "sha256": "600a692325f64df6d5b057c68478dfb589795f27c4da3c3149a8f76cb793a647"
+    }
+  ]
+}

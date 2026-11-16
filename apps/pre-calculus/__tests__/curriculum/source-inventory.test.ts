@@ -63,8 +63,8 @@ describe('AP Precalculus curriculum source inventory', () => {
 
     const countMismatch = exceptions.exceptions.find((entry) => entry.id === 'topic-count-language-mismatch');
     expect(countMismatch?.values).toMatchObject({
-      productApproxLessons: '~54',
-      overviewApproxLessons: '~54',
+      productApproxLessons: '58',
+      overviewApproxLessons: '58',
       listedTopics: 58,
       cedTopics: 58,
     });

@@ -31,6 +31,10 @@ const makeRequest = (cookie?: string) =>
 describe('requireRequestSessionClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
   it('returns 401 when no cookie is present', async () => {
@@ -67,6 +71,27 @@ describe('requireRequestSessionClaims', () => {
 describe('requireStudentRequestClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
+  });
+
+  it.each([null, { isActive: false }])('rejects an inactive or missing credential', async (credential) => {
+    mockVerifySessionToken.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student', iat: 1, exp: 9999999999 });
+    mockFetchInternalQuery.mockResolvedValue(credential);
+    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
+    const result = await requireStudentRequestClaims(makeRequest('session=valid-token'));
+    expect(result).toBeInstanceOf(Response);
+    expect((result as Response).status).toBe(401);
+  });
+
+  it('fails closed when the credential lookup fails', async () => {
+    mockVerifySessionToken.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student', iat: 1, exp: 9999999999 });
+    mockFetchInternalQuery.mockRejectedValue(new Error('offline'));
+    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
+    const result = await requireStudentRequestClaims(makeRequest('session=valid-token'));
+    expect((result as Response).status).toBe(503);
   });
 
   it('returns 401 when unauthenticated', async () => {
@@ -108,6 +133,10 @@ describe('requireStudentRequestClaims', () => {
 describe('requireTeacherRequestClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
   it('returns 401 when unauthenticated', async () => {
@@ -163,6 +192,10 @@ describe('requireTeacherRequestClaims', () => {
 describe('requireDeveloperRequestClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
   it('returns 401 when unauthenticated', async () => {
@@ -204,6 +237,10 @@ describe('requireDeveloperRequestClaims', () => {
 describe('requireActiveRequestSessionClaims', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFetchInternalQuery.mockImplementation(async () => {
+      const claims = await mockVerifySessionToken.mock.results.at(-1)?.value;
+      return claims ? { ...claims, profileId: claims.sub, isActive: true } : null;
+    });
   });
 
   it('returns 401 when no cookie is present', async () => {

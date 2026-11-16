@@ -37,133 +37,71 @@ For [x^2 + bx + c] to be a perfect square, [c = (b/2)^2]. The term you add is al
 
 ### Key Concept: Steps to Complete the Square
 
-1. Move constant terms to the other side so [x^2 + bx] is alone.
+1. Divide by the nonzero leading coefficient. Then move the constant term so [x^2 + bx] is alone.
 2. Add [(b/2)^2] to both sides.
 3. Factor the perfect square trinomial.
-4. Take the square root of both sides.
+4. Take both square-root signs when the right side is positive. Zero gives one value. A negative right side gives no real solution.
 5. Solve for x.
 
 ## Example 1 — Find the Value of c
 
-### Step 1: Identify b
+### Problem
 
-In [x^2 + bx], b is the coefficient of x.
+Find c so that x²+26x+c is a perfect square trinomial.
 
-### Step 2: Compute (b/2)^2
+### Solution
 
-For [x^2 + 26x], b = 26, so [(26/2)^2 = 169].
-
-### Step 3: Verify
-
-[x^2 + 26x + 169 = (x + 13)^2].
-
-Problems 1-9: Find the value of c that makes each trinomial a perfect square.
+Half the coefficient of x is 13. Square it to get c=169. The trinomial is (x+13)².
 
 ## Example 2 — Solve Equations by Completing the Square
 
-### Step 1: Move Constants
+### Problem
 
-For [x^2 + 6x - 16 = 0], add 16 to both sides: [x^2 + 6x = 16].
+Solve x²+6x-16=0 by completing the square.
 
-### Step 2: Complete the Square
+### Solution
 
-Add [(6/2)^2 = 9] to both sides: [x^2 + 6x + 9 = 25].
-
-### Step 3: Factor
-
-[(x + 3)^2 = 25].
-
-### Step 4: Solve
-
-[x + 3 = ±5], so [x = 2] or [x = -8].
-
-### Step 5: Check
-
-Substitute back into the original equation.
-
-Problems 10-21: Solve each equation by completing the square. Round to the nearest tenth if necessary.
+Move the constant: x²+6x=16. Add 9 to both sides: (x+3)²=25. Thus x+3=5 or -5, giving x=2 or -8. Both satisfy the original equation.
 
 ## Example 3 — Solve Equations with Different Coefficients
 
-When a ≠ 1, divide both sides by a first before completing the square.
+### Problem
 
-For [5x^2 - 10x = 23]:
-1. Divide by 5: [x^2 - 2x = 23/5].
-2. Complete: [( -2/2)^2 = 1], add 1 to both sides.
-3. Factor: [(x - 1)^2 = 28/5].
-4. Solve: [x = 1 ± √(28/5)].
-5. Approximate if needed.
+Solve 2x²+8x-10=0 by completing the square.
 
-For [2x^2 - 2x + 7 = 5]:
-1. Move constants: [2x^2 - 2x = -2].
-2. Divide by 2: [x^2 - x = -1].
-3. Complete: add [( -1/2)^2 = 1/4].
-4. Factor: [(x - 1/2)^2 = -3/4].
-5. Recognize there is no real solution since the right side is negative.
+### Solution
 
-Problems 14-21: Solve each equation by completing the square.
+Divide by 2 to obtain x²+4x-5=0. Then x²+4x=5. Add 4: (x+2)²=9. Thus x=1 or x=-5. Dividing first makes the squared term coefficient 1.
 
 ## Example 4 — Write in Vertex Form
 
-### Step 1: Complete the Square
+### Problem
 
-For [y = x^2 + 8x + 7]:
-1. Group: [(x^2 + 8x) + 7].
-2. Complete: [x^2 + 8x + 16 + 7 - 16 = (x + 4)^2 - 9].
-3. Vertex form: [y = (x + 4)^2 - 9].
+Write y=x²+8x+7 in vertex form and find its zeros.
 
-### Step 2: Identify Key Features
+### Solution
 
-Axis of symmetry: [x = -4]. Vertex: (-4, -9). Opens upward (a = 1 > 0), so minimum at y = -9.
-
-### Step 3: Find Zeros
-
-Set vertex form equal to zero and solve: [(x + 4)^2 - 9 = 0] gives [x = -1] or [x = -7].
-
-Problems 22-25: Write each equation in vertex form. Identify the axis of symmetry, extrema, and zeros. Then use the key features to graph the function.
+Add and subtract 16: y=(x+4)²-9. The vertex is (-4,-9). Set (x+4)²=9 to get x=-1 or x=-7. The axis is x=-4.
 
 ## Example 5 — Graph Using Vertex Form
 
-### Step 1: Locate the Vertex
+### Problem
 
-From [y = (x + 4)^2 - 9], the vertex is (-4, -9).
+Sketch y=(x+4)²-9 using the vertex and intercepts.
 
-### Step 2: Determine Direction and Width
+### Solution
 
-Since a = 1 > 0, the parabola opens upward.
-
-### Step 3: Plot Additional Points
-
-Use the y-intercept and symmetric points to plot the curve.
-
-### Step 4: Draw the Parabola
-
-Connect with a smooth curve.
-
-Problems 22-25 (continued): Graph each function using its vertex form.
+The vertex is (-4,-9), and the graph opens upward. The horizontal intercepts are (-7,0) and (-1,0). The vertical intercept is (0,7). Plot these points and use symmetry about x=-4. The unrestricted range is [-9,infinity).
 
 ## Example 6 — Real-World Problems
 
-### Mars Gravity Problem
+### Problem
 
-For [h = -1.9t^2 + 26t]:
-1. Find the time when height is maximum: vertex at [t = -b/(2a) = 26/(3.8) ≈ 6.8 seconds].
-2. Compare to Earth's time (5.4 seconds): the difference is how much longer on Mars.
-3. Find maximum height: substitute t into the equation.
+A model gives vertical distance d(t)=16t²+64t feet for t≥0. Find when the distance is 80 ft by completing the square.
 
-### Frog Jump Problem
+### Solution
 
-For [h = -0.5d^2 + 2d + 3]:
-1. Find when the frog lands (h = 0): solve [0 = -0.5d^2 + 2d + 3].
-2. Find maximum height: find the vertex of the parabola.
-
-### Falling Object Problem
-
-For [d = 16t^2 + 64t]:
-1. Set d = 80 and solve [16t^2 + 64t = 80].
-2. Complete the square to find t.
-
-Problems 26-28: For each scenario, solve the problem and interpret your answer in context.
+Set 16t²+64t=80 and divide by 16: t²+4t=5. Add 4: (t+2)²=9. The algebraic solutions are t=1 and t=-5. Only t=1 second is in the time domain. Substitution gives 16+64=80 ft.
 
 ## Mixed Exercises
 
@@ -191,4 +129,4 @@ Images in the source:
 * Problem 31: Rectangle with area 352.
 * Problem 37: Four expressions in boxes, one of which does not belong.
 
-![](media/image1.png) ![](media/image2.png) ![](media/image3.png)
+![Worksheet figure 1](/curriculum/module-12-lesson-5/image1.png) ![Worksheet figure 2](/curriculum/module-12-lesson-5/image2.png) ![Worksheet figure 3](/curriculum/module-12-lesson-5/image3.png)

@@ -6,9 +6,11 @@ async function loadPlugins() {
   const plugins = [vinext()];
   try {
     const { cloudflare } = await import("@cloudflare/vite-plugin");
-    plugins.push(cloudflare({
-      viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
-    }));
+    plugins.push(
+      cloudflare({
+        viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
+      }),
+    );
   } catch {
     // @cloudflare/vite-plugin not installed — skip for local builds
   }
@@ -17,13 +19,14 @@ async function loadPlugins() {
 
 export default defineConfig(async () => ({
   plugins: await loadPlugins(),
+  server: { port: 3002, strictPort: true },
   build: {
     rollupOptions: {
       output: {
         manualChunks(id: string) {
-          if (id.includes('node_modules')) {
-            if (id.includes('convex')) {
-              return 'vendor-convex';
+          if (id.includes("node_modules")) {
+            if (id.includes("convex")) {
+              return "vendor-convex";
             }
           }
         },

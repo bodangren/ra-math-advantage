@@ -2,10 +2,18 @@ import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { srsCardStateLiteralValidator } from "./validators";
+import {
+  createDualWriteCardIdentity,
+  resolveCanonicalVariantKey,
+} from "../../lib/srs/v3-runtime-contract";
+
+const MAX_CARDS_PER_STUDENT_READ = 500;
+const MAX_CARDS_PER_OBJECTIVE_READ = 500;
+const MAX_DUE_CARDS_READ = 100;
 
 /**
  * Maps a database SRS card to the public contract format.
- * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
+ * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey?: string; legacyProblemFamilyId?: string; problemFamilyId?: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
  * @returns {ReturnType<typeof mapDbCardToContract>} The card in contract format with ISO date strings
  */
 function mapDbCardToContract(
@@ -13,7 +21,9 @@ function mapDbCardToContract(
     _id: Id<"srs_cards">;
     studentId: Id<"profiles">;
     objectiveId: string;
-    variantKey: string;
+    variantKey?: string;
+    legacyProblemFamilyId?: string;
+    problemFamilyId?: string;
     stability: number;
     difficulty: number;
     state: "new" | "learning" | "review" | "relearning";
@@ -26,12 +36,35 @@ function mapDbCardToContract(
     createdAt: number;
     updatedAt: number;
   }
-) {
+){
+  return toSrsCardContract(card);
+}
+
+function toSrsCardContract(card: {
+  _id: Id<"srs_cards">;
+  studentId: Id<"profiles">;
+  objectiveId: string;
+  variantKey?: string;
+  legacyProblemFamilyId?: string;
+  problemFamilyId?: string;
+  stability: number;
+  difficulty: number;
+  state: "new" | "learning" | "review" | "relearning";
+  dueDate: string;
+  elapsedDays: number;
+  scheduledDays: number;
+  reps: number;
+  lapses: number;
+  lastReview?: string;
+  createdAt: number;
+  updatedAt: number;
+}) {
+  const { variantKey } = resolveCanonicalVariantKey(card);
   return {
     cardId: card._id as string,
     studentId: card.studentId as string,
     objectiveId: card.objectiveId,
-    variantKey: card.variantKey,
+    variantKey,
     stability: card.stability,
     difficulty: card.difficulty,
     state: card.state,
@@ -46,11 +79,53 @@ function mapDbCardToContract(
   };
 }
 
+export async function findCardByStudentAndVariant(
+  ctx: { db: Pick<QueryCtx["db"], "query"> },
+  studentId: Id<"profiles">,
+  variantKey: string,
+) {
+  const current = await ctx.db
+    .query("srs_cards")
+    .withIndex("by_student_and_variant", (q) =>
+      q.eq("studentId", studentId).eq("variantKey", variantKey)
+    )
+    .first();
+  if (current) return current;
+
+  const widenedLegacy = await ctx.db
+    .query("srs_cards")
+    .withIndex("by_legacy_problem_family", (q) =>
+      q.eq("legacyProblemFamilyId", variantKey)
+    )
+    .first();
+  if (widenedLegacy?.studentId === studentId) return widenedLegacy;
+
+  const historic = await ctx.db
+    .query("srs_cards")
+    .withIndex("by_historic_problem_family", (q) =>
+      q.eq("problemFamilyId", variantKey)
+    )
+    .first();
+  return historic?.studentId === studentId ? historic : null;
+}
+
+export function dualWriteFields(variantKey: string, sourceTimestamp: number) {
+  return {
+    ...createDualWriteCardIdentity(variantKey),
+    // The historical field is retained only through the verified rollback
+    // window so still-deployed v2 readers observe the same identity.
+    problemFamilyId: variantKey,
+    sourceTimestamp,
+  };
+}
+
 export type SaveCardArgs = {
   cardId: string;
   studentId: Id<"profiles">;
   objectiveId: string;
-  variantKey: string;
+  variantKey?: string;
+  legacyProblemFamilyId?: string;
+  problemFamilyId?: string;
   stability: number;
   difficulty: number;
   state: "new" | "learning" | "review" | "relearning";
@@ -74,18 +149,14 @@ export async function saveCardHandler(
   ctx: MutationCtx,
   args: SaveCardArgs
 ): Promise<Id<"srs_cards">> {
-  const existing = await ctx.db
-    .query("srs_cards")
-    .withIndex("by_student_and_variant", (q) =>
-      q.eq("studentId", args.studentId).eq("variantKey", args.variantKey)
-    )
-    .first();
+  const { variantKey } = resolveCanonicalVariantKey(args);
+  const existing = await findCardByStudentAndVariant(ctx, args.studentId, variantKey);
 
   if (existing) {
     await ctx.db.replace(existing._id, {
       studentId: existing.studentId,
       objectiveId: args.objectiveId,
-      variantKey: args.variantKey,
+      ...dualWriteFields(variantKey, existing.sourceTimestamp ?? existing.createdAt),
       stability: args.stability,
       difficulty: args.difficulty,
       state: args.state,
@@ -103,7 +174,7 @@ export async function saveCardHandler(
     const id = await ctx.db.insert("srs_cards", {
       studentId: args.studentId,
       objectiveId: args.objectiveId,
-      variantKey: args.variantKey,
+      ...dualWriteFields(variantKey, new Date(args.createdAt).getTime()),
       stability: args.stability,
       difficulty: args.difficulty,
       state: args.state,
@@ -131,7 +202,9 @@ export const saveCard = internalMutation({
     cardId: v.string(),
     studentId: v.id("profiles"),
     objectiveId: v.string(),
-    variantKey: v.string(),
+    variantKey: v.optional(v.string()),
+    legacyProblemFamilyId: v.optional(v.string()),
+    problemFamilyId: v.optional(v.string()),
     stability: v.number(),
     difficulty: v.number(),
     state: srsCardStateLiteralValidator,
@@ -159,7 +232,9 @@ export async function saveCardsHandler(
     cardId: string;
     studentId: Id<"profiles">;
     objectiveId: string;
-    variantKey: string;
+    variantKey?: string;
+    legacyProblemFamilyId?: string;
+    problemFamilyId?: string;
     stability: number;
     difficulty: number;
     state: "new" | "learning" | "review" | "relearning";
@@ -173,25 +248,22 @@ export async function saveCardsHandler(
     updatedAt: string;
   }> }
 ): Promise<void> {
+  const normalizedCards = args.cards.map((card) => ({
+    ...card,
+    variantKey: resolveCanonicalVariantKey(card).variantKey,
+  }));
   const lookups = await Promise.all(
-    args.cards.map((card) =>
-      ctx.db
-        .query("srs_cards")
-        .withIndex("by_student_and_variant", (q) =>
-          q.eq("studentId", card.studentId).eq("variantKey", card.variantKey)
-        )
-        .first()
-    )
+    normalizedCards.map((card) => findCardByStudentAndVariant(ctx, card.studentId, card.variantKey))
   );
 
   await Promise.all(
-    args.cards.map((card, i) => {
+    normalizedCards.map((card, i) => {
       const existing = lookups[i];
       if (existing) {
         return ctx.db.replace(existing._id, {
           studentId: existing.studentId,
           objectiveId: card.objectiveId,
-          variantKey: card.variantKey,
+          ...dualWriteFields(card.variantKey, existing.sourceTimestamp ?? existing.createdAt),
           stability: card.stability,
           difficulty: card.difficulty,
           state: card.state,
@@ -208,7 +280,7 @@ export async function saveCardsHandler(
         return ctx.db.insert("srs_cards", {
           studentId: card.studentId,
           objectiveId: card.objectiveId,
-          variantKey: card.variantKey,
+          ...dualWriteFields(card.variantKey, new Date(card.createdAt).getTime()),
           stability: card.stability,
           difficulty: card.difficulty,
           state: card.state,
@@ -239,7 +311,9 @@ export const saveCards = internalMutation({
         cardId: v.string(),
         studentId: v.id("profiles"),
         objectiveId: v.string(),
-        variantKey: v.string(),
+        variantKey: v.optional(v.string()),
+        legacyProblemFamilyId: v.optional(v.string()),
+        problemFamilyId: v.optional(v.string()),
         stability: v.number(),
         difficulty: v.number(),
         state: srsCardStateLiteralValidator,
@@ -297,7 +371,7 @@ export async function getCardsByStudentHandler(
     .withIndex("by_student", (q) =>
       q.eq("studentId", args.studentId)
     )
-    .collect();
+    .take(MAX_CARDS_PER_STUDENT_READ);
   return cards.map(mapDbCardToContract);
 }
 
@@ -321,12 +395,7 @@ export async function getCardByStudentAndVariantHandler(
   ctx: QueryCtx,
   args: { studentId: Id<"profiles">; variantKey: string }
 ) {
-  const card = await ctx.db
-    .query("srs_cards")
-    .withIndex("by_student_and_variant", (q) =>
-      q.eq("studentId", args.studentId).eq("variantKey", args.variantKey)
-    )
-    .first();
+  const card = await findCardByStudentAndVariant(ctx, args.studentId, args.variantKey);
   return card ? mapDbCardToContract(card) : null;
 }
 
@@ -341,6 +410,23 @@ export const getCardByStudentAndVariant = internalQuery({
 });
 
 /**
+ * Temporary v2 adapter. Consumers that still send problemFamilyId receive the
+ * same dual-read behavior as canonical v3.2 variant callers.
+ */
+export async function getCardByStudentAndFamilyHandler(
+  ctx: QueryCtx,
+  args: { studentId: Id<"profiles">; problemFamilyId: string },
+) {
+  const card = await findCardByStudentAndVariant(ctx, args.studentId, args.problemFamilyId);
+  return card ? mapDbCardToContract(card) : null;
+}
+
+export const getCardByStudentAndFamily = internalQuery({
+  args: { studentId: v.id("profiles"), problemFamilyId: v.string() },
+  handler: getCardByStudentAndFamilyHandler,
+});
+
+/**
  * Internal query that returns every SRS card tied to a specific objective.
  * Used by teacher-facing dashboards that surface per-objective review
  * queues.
@@ -352,7 +438,7 @@ export const getCardsByObjective = internalQuery({
     const cards = await ctx.db
       .query("srs_cards")
       .withIndex("by_objective", (q) => q.eq("objectiveId", args.objectiveId))
-      .collect();
+      .take(MAX_CARDS_PER_OBJECTIVE_READ);
     return cards.map(mapDbCardToContract);
   },
 });
@@ -374,7 +460,7 @@ export const getDueCards = internalQuery({
       .withIndex("by_student_and_due", (q) =>
         q.eq("studentId", args.studentId).lte("dueDate", args.asOfDate)
       )
-      .collect();
+      .take(MAX_DUE_CARDS_READ);
     return cards.map(mapDbCardToContract);
   },
 });

@@ -1,0 +1,36 @@
+▌ Deploying code to deployment:
+▌ └─ http://127.0.0.1:43140
+- Deploying to http://127.0.0.1:43140...
+
+✔ No indexes are deleted by this push
+Uploading functions to Convex...
+Running TypeScript...
+✖ TypeScript typecheck via `tsc` failed.
+To ignore failing typecheck, use `--typecheck=disable`.
+- Collecting TypeScript errors
+
+[96mconvex/migration_operator.ts[0m:[93m53[0m:[93m49[0m - [91merror[0m[90m TS2591: [0mCannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+
+[7m53[0m     assertMigrationOperator(args.operatorToken, process.env.MIGRATION_OPERATOR_TOKEN);
+[7m  [0m [91m                                                ~~~~~~~[0m
+[96mconvex/migration_operator.ts[0m:[93m69[0m:[93m49[0m - [91merror[0m[90m TS2591: [0mCannot find name 'process'. Do you need to install type definitions for node? Try `npm i --save-dev @types/node` and then add 'node' to the types field in your tsconfig.
+
+[7m69[0m     assertMigrationOperator(args.operatorToken, process.env.MIGRATION_OPERATOR_TOKEN);
+[7m  [0m [91m                                                ~~~~~~~[0m
+
+[96mlib/activities/review-queue.ts[0m:[93m1[0m:[93m26[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/convex/_generated/dataModel' or its corresponding type declarations.
+
+[7m1[0m import type { Doc } from "@/convex/_generated/dataModel";
+[7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mlib/placement/v3-placement-migration.ts[0m:[93m5[0m:[93m48[0m - [91merror[0m[90m TS2307: [0mCannot find module '@/lib/srs/v3-runtime-contract' or its corresponding type declarations.
+
+[7m5[0m import { KST_SRS_V3_2_MIGRATION_VERSION } from '@/lib/srs/v3-runtime-contract';
+[7m [0m [91m                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+Found 4 errors in 3 files.
+
+Errors  Files
+     2  convex/migration_operator.ts[90m:53[0m
+     1  lib/activities/review-queue.ts[90m:1[0m
+     1  lib/placement/v3-placement-migration.ts[90m:5[0m

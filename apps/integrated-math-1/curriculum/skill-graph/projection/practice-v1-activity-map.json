@@ -2,79 +2,134 @@
   "metadata": {
     "course": "im1",
     "generatedAt": "2026-05-10T06:41:48.253Z",
-    "description": "IM1 practice.v1 activity map projection from skill graph"
+    "description": "IM1 practice.v1 activity map projection from skill graph",
+    "totalActivities": 333,
+    "totalSrsInputs": 283,
+    "totalSkills": 283
   },
   "activities": [
     {
       "stableActivityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.worked_example",
       "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-ee-a-1",
-        "math.standard.ccss.6-ee-a-2"
+      "sourceNodeIds": [
+        "math.im1.example.1.1.001",
+        "math.im1.example.1.1.002",
+        "math.im1.example.1.1.source-003"
       ],
+      "rendererKey": "fill-in-the-blank",
+      "mode": "worked_example",
+      "alignmentNodeIds": [],
       "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
+        "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.worked_example",
+        "mode": "teaching",
+        "template": "Write a numerical expression for “the sum of 16 and 17, divided by 12”: {{blank:expression}}",
+        "blanks": [
+          {
+            "id": "expression",
+            "isMath": true,
+            "correctAnswer": "(16 + 17) / 12",
+            "acceptedAnswers": [
+              "(16 + 17) / 12",
+              "(16 + 17) ÷ 12"
+            ]
+          }
+        ],
+        "reasoningSteps": [
+          {
+            "description": "Identify the operations",
+            "expression": "\"sum\" then \"divided by\""
+          },
+          {
+            "description": "Write the sum",
+            "expression": "16 + 17"
+          },
+          {
+            "description": "Write the full expression",
+            "expression": "(16 + 17) ÷ 12"
+          }
+        ]
       },
       "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
+        "partIds": [
+          "expression"
+        ],
+        "passingScore": 1,
+        "partialCredit": false
       },
       "srsEligible": false
     },
     {
       "stableActivityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.guided_practice",
       "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-ee-a-1",
-        "math.standard.ccss.6-ee-a-2"
+      "sourceNodeIds": [
+        "math.im1.example.1.1.001",
+        "math.im1.example.1.1.002",
+        "math.im1.example.1.1.source-003"
       ],
+      "rendererKey": "fill-in-the-blank",
+      "mode": "guided_practice",
+      "alignmentNodeIds": [],
       "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 1a: Translate verbal descriptions into correct numerical expressions using operation symbols and grouping",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
+        "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.guided_practice",
+        "mode": "guided",
+        "template": "Write a numerical expression for “the sum of 9 and 11, divided by 10”: {{blank:expression}}",
+        "blanks": [
+          {
+            "id": "expression",
+            "isMath": true,
+            "correctAnswer": "(9 + 11) / 10",
+            "acceptedAnswers": [
+              "(9 + 11) / 10",
+              "(9 + 11) ÷ 10"
+            ]
+          }
+        ],
+        "guidedSupport": {
+          "feedback": "on_check",
+          "hints": [
+            "Identify the operations \"sum\" then \"divided by\"",
+            "Write the sum 9 + 11"
+          ],
+          "revealAfterAttempts": 1
+        }
       },
       "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
+        "partIds": [
+          "expression"
+        ],
+        "passingScore": 1,
+        "partialCredit": false
       },
       "srsEligible": false
     },
     {
       "stableActivityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.independent_practice",
       "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-ee-a-1",
-        "math.standard.ccss.6-ee-a-2"
+      "sourceNodeIds": [
+        "math.im1.example.1.1.001",
+        "math.im1.example.1.1.002",
+        "math.im1.example.1.1.source-003"
       ],
+      "rendererKey": "fill-in-the-blank",
+      "mode": "independent_practice",
+      "alignmentNodeIds": [],
       "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
+        "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.independent_practice",
+        "mode": "practice",
+        "template": "Write a numerical expression for “the product of 17 and the difference between 25 and 7”: {{blank:expression}}",
+        "blanks": [
+          {
+            "id": "expression",
+            "isMath": true
+          }
+        ]
       },
       "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
+        "partIds": [
+          "expression"
+        ],
+        "passingScore": 1,
+        "partialCredit": false
       },
       "srsEligible": false
     },
@@ -7776,1959 +7831,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope.worked_example",
-      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope.guided_practice",
-      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 6i: Graph linear inequalities in two variables written in slope-intercept and standard form and write linear inequalities to model real-world constraints",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope.independent_practice",
-      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra.worked_example",
-      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra.guided_practice",
-      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 6k: Write systems of inequalities that correspond to a given graph and determine whether an ordered pair is a solution to a system without graphing",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra.independent_practice",
-      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o.worked_example",
-      "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.8-ee-c-8",
-        "math.standard.ccss.a-rei-d-10"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o.guided_practice",
-      "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.8-ee-c-8",
-        "math.standard.ccss.a-rei-d-10"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7a: Graph systems of linear equations and determine the number of solutions; classify systems as consistent or inconsistent and as independent or dependent",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o.independent_practice",
-      "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.8-ee-c-8",
-        "math.standard.ccss.a-rei-d-10"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.worked_example",
-      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.guided_practice",
-      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7c: Solve systems of linear equations using the substitution method",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.independent_practice",
-      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit.worked_example",
-      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit.guided_practice",
-      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7e: Solve systems of linear equations using elimination by addition or subtraction and recognize when adding or subtracting equations will eliminate a variable",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit.independent_practice",
-      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul.worked_example",
-      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-5"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul.guided_practice",
-      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-5"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7g: Solve systems of linear equations using elimination when multiplication of one or both equations is required",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul.independent_practice",
-      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-5"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla.worked_example",
-      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla.guided_practice",
-      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7i: Graph systems of linear inequalities and identify the overlapping solution region (feasible region)",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla.independent_practice",
-      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables.worked_example",
-      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables.guided_practice",
-      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7k: Solve real-world optimization problems by defining variables, writing a system of inequalities, graphing, and interpreting the feasible region",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables.independent_practice",
-      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios.worked_example",
-      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-if-c-7e",
-        "math.standard.ccss.f-le-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios.guided_practice",
-      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-if-c-7e",
-        "math.standard.ccss.f-le-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8a: Identify exponential behavior from data using common ratios",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios.independent_practice",
-      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-if-c-7e",
-        "math.standard.ccss.f-le-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a.worked_example",
-      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a.guided_practice",
-      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8c: Describe transformations of exponential functions verbally and in function notation",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a.independent_practice",
-      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given.worked_example",
-      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given.guided_practice",
-      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8d: Write equations for transformed exponential functions given a graph",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given.independent_practice",
-      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-1",
-        "math.standard.ccss.f-bf-b-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec.worked_example",
-      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec.guided_practice",
-      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8f: Apply the compound-interest formula to investment and depreciation problems",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec.independent_practice",
-      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph.worked_example",
-      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph.guided_practice",
-      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8e: Write an exponential function given two points on its graph",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph.independent_practice",
-      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u.worked_example",
-      "nodeId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-le-a-4",
-        "math.standard.ccss.f-le-b-5"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u.guided_practice",
-      "nodeId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-le-a-4",
-        "math.standard.ccss.f-le-b-5"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8g: Rewrite exponential functions so rates share the same time unit for direct comparison",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u.independent_practice",
-      "nodeId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-le-a-4",
-        "math.standard.ccss.f-le-b-5"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking.worked_example",
-      "nodeId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking.guided_practice",
-      "nodeId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8h: Determine whether a given sequence is geometric by checking for a constant common ratio",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking.independent_practice",
-      "nodeId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio.worked_example",
-      "nodeId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio.guided_practice",
-      "nodeId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8i: Write and use explicit formulas to model real-world situations involving exponential growth and decay",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio.independent_practice",
-      "nodeId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet.worked_example",
-      "nodeId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet.guided_practice",
-      "nodeId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8k: Convert between recursive and explicit formulas for arithmetic and geometric sequences",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet.independent_practice",
-      "nodeId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive.worked_example",
-      "nodeId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive.guided_practice",
-      "nodeId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8j: Find the first several terms of a sequence given a recursive formula",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive.independent_practice",
-      "nodeId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-bf-a-2",
-        "math.standard.ccss.f-if-a-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set.worked_example",
-      "nodeId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set.guided_practice",
-      "nodeId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9a: Calculate the mean, median, and mode of a data set",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set.independent_practice",
-      "nodeId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio.worked_example",
-      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio.guided_practice",
-      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9c: Analyze data displays to draw conclusions and answer questions about a data set",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio.independent_practice",
-      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d.worked_example",
-      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d.guided_practice",
-      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9b: Construct dot plots, bar graphs, and histograms to represent data sets",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d.independent_practice",
-      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl.worked_example",
-      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl.guided_practice",
-      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9d: Identify sample bias in survey and sampling methods and explain how it affects results",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl.independent_practice",
-      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes.worked_example",
-      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes.guided_practice",
-      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9e: Recognize biased survey questions and identify whose interests they may serve",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes.independent_practice",
-      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati.worked_example",
-      "nodeId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5d",
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati.guided_practice",
-      "nodeId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5d",
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9f: Calculate the range, interquartile range, and standard deviation of a data set",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati.independent_practice",
-      "nodeId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5d",
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f.worked_example",
-      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5d",
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f.guided_practice",
-      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5d",
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9g: Determine the five-number summary and construct a box plot from a data set",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f.independent_practice",
-      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5d",
-        "math.standard.ccss.s-id-a-2"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh.worked_example",
-      "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh.guided_practice",
-      "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9i: Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh.independent_practice",
-      "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz.worked_example",
-      "nodeId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz.guided_practice",
-      "nodeId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9h: Construct and interpret histograms and box plots to visualize the shape of a data distribution",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz.independent_practice",
-      "nodeId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-5",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare.worked_example",
       "nodeId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
       "sourceNodeIds": [],
@@ -9952,14 +8054,11 @@
     {
       "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
       "blueprintId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
-      "standards": [
-        "math.standard.ccss.6-ee-a-1",
-        "math.standard.ccss.6-ee-a-2"
-      ],
+      "standards": [],
       "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "step-by-step-solver",
-      "generatorKey": null,
+      "difficulty": 1,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": "1-1-verbal-to-numerical",
       "generatorReady": false
     },
     {
@@ -11462,61 +9561,152 @@
       "generatorReady": false
     },
     {
-      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
-      "blueprintId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
-      "standards": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "prerequisites": [
-        "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou"
-      ],
+      "nodeId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+      "blueprintId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain.blueprint",
+      "standards": [],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
-      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
-      "blueprintId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "nodeId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+      "blueprintId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+      "blueprintId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+      "blueprintId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+      "blueprintId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+      "blueprintId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
+      "blueprintId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope.blueprint",
       "standards": [
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
       ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+      "blueprintId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+      "blueprintId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+      "blueprintId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+      "blueprintId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+      "blueprintId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "blueprintId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra.blueprint",
+      "standards": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
-      "blueprintId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
+      "blueprintId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o.blueprint",
       "standards": [
         "math.standard.ccss.8-ee-c-8",
         "math.standard.ccss.a-rei-d-10"
       ],
-      "prerequisites": [
-        "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": [],
+      "generatorKey": null
     },
     {
       "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "blueprintId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+      "blueprintId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.blueprint",
       "standards": [
         "math.standard.ccss.a-rei-c-6"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
       "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
@@ -11524,11 +9714,9 @@
       "standards": [
         "math.standard.ccss.a-rei-c-6"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
+      "rendererKey": null,
       "generatorKey": null,
       "generatorReady": false
     },
@@ -11538,9 +9726,7 @@
       "standards": [
         "math.standard.ccss.a-rei-c-5"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11553,9 +9739,7 @@
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11581,9 +9765,7 @@
         "math.standard.ccss.f-if-c-7e",
         "math.standard.ccss.f-le-a-1"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
@@ -11596,9 +9778,7 @@
         "math.standard.ccss.f-bf-a-1",
         "math.standard.ccss.f-bf-b-3"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11624,9 +9804,7 @@
         "math.standard.ccss.a-ced-a-1",
         "math.standard.ccss.f-le-a-2"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "step-by-step-solver",
       "generatorKey": null,
@@ -11652,9 +9830,7 @@
         "math.standard.ccss.f-le-a-4",
         "math.standard.ccss.f-le-b-5"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11667,9 +9843,7 @@
         "math.standard.ccss.f-bf-a-2",
         "math.standard.ccss.f-if-a-3"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "step-by-step-solver",
       "generatorKey": null,
@@ -11695,9 +9869,7 @@
         "math.standard.ccss.f-bf-a-2",
         "math.standard.ccss.f-if-a-3"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "step-by-step-solver",
       "generatorKey": null,
@@ -11813,6 +9985,108 @@
       "generatorReady": false
     },
     {
+      "nodeId": "math.im1.skill.9.4.calculate-the-range-of-a-data-set",
+      "blueprintId": "math.im1.skill.9.4.calculate-the-range-of-a-data-set",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set",
+      "blueprintId": "math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set",
+      "standards": [],
+      "prerequisites": [
+        "math.im1.skill.9.1.determine-the-median-of-a-data-set"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.construct-a-box-plot-from-a-five-number-summary",
+      "blueprintId": "math.im1.skill.9.4.construct-a-box-plot-from-a-five-number-summary",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-interquartile-range-of-a-data-set",
+      "blueprintId": "math.im1.skill.9.4.calculate-the-interquartile-range-of-a-data-set",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-standard-deviation-under-a-stated-divisor-convention",
+      "blueprintId": "math.im1.skill.9.4.calculate-standard-deviation-under-a-stated-divisor-convention",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.interpret-standard-deviation-in-context",
+      "blueprintId": "math.im1.skill.9.4.interpret-standard-deviation-in-context",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-outlier-removal-as-a-way-to-decrease-standard-deviation",
+      "blueprintId": "math.im1.skill.9.4.evaluate-outlier-removal-as-a-way-to-decrease-standard-deviation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-adding-mean-values-as-a-way-to-decrease-standard-deviation",
+      "blueprintId": "math.im1.skill.9.4.evaluate-adding-mean-values-as-a-way-to-decrease-standard-deviation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-variability-of-statistics-across-random-samples",
+      "blueprintId": "math.im1.skill.9.4.evaluate-variability-of-statistics-across-random-samples",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.explain-interquartile-range-as-middle-half-spread",
+      "blueprintId": "math.im1.skill.9.4.explain-interquartile-range-as-middle-half-spread",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
       "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
       "blueprintId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
       "standards": [
@@ -11882,6 +10156,1272 @@
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+      "blueprintId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph",
+      "blueprintId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+      "blueprintId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+      "blueprintId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+      "blueprintId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "blueprintId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system",
+      "blueprintId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision",
+      "blueprintId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window",
+      "blueprintId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations",
+      "blueprintId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+      "blueprintId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+      "blueprintId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "blueprintId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "blueprintId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "blueprintId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "blueprintId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "blueprintId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "blueprintId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "blueprintId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "blueprintId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination",
+      "blueprintId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "blueprintId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination",
+      "blueprintId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.choose-between-substitution-and-elimination",
+      "blueprintId": "math.im1.skill.7.4.choose-between-substitution-and-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier",
+      "blueprintId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
+      "blueprintId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region",
+      "blueprintId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities",
+      "blueprintId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities",
+      "blueprintId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system",
+      "blueprintId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships",
+      "blueprintId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution",
+      "blueprintId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region",
+      "blueprintId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "blueprintId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "blueprintId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "blueprintId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "blueprintId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
+      "blueprintId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations",
+      "blueprintId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description",
+      "blueprintId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents",
+      "blueprintId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions",
+      "blueprintId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "blueprintId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "blueprintId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "blueprintId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "blueprintId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "blueprintId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
+      "blueprintId": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
+      "standards": [
+        "math.standard.ccss.f-le-a-4",
+        "math.standard.ccss.f-le-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "blueprintId": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "standards": [
+        "math.standard.ccss.f-le-a-4",
+        "math.standard.ccss.f-le-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.extend-a-geometric-sequence-forward-or-backward-using-its-common-ratio",
+      "blueprintId": "math.im1.skill.8.5.extend-a-geometric-sequence-forward-or-backward-using-its-common-ratio",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.evaluate-a-specified-term-of-a-geometric-sequence-with-an-explicit-formula",
+      "blueprintId": "math.im1.skill.8.5.evaluate-a-specified-term-of-a-geometric-sequence-with-an-explicit-formula",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms",
+      "blueprintId": "math.im1.skill.8.5.write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.determine-an-initial-term-from-two-nonconsecutive-geometric-sequence-terms",
+      "blueprintId": "math.im1.skill.8.5.determine-an-initial-term-from-two-nonconsecutive-geometric-sequence-terms",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "blueprintId": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "blueprintId": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "blueprintId": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "blueprintId": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "blueprintId": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "blueprintId": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-the-arithmetic-mean-of-a-data-set",
+      "blueprintId": "math.im1.skill.9.1.calculate-the-arithmetic-mean-of-a-data-set",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.determine-the-median-of-a-data-set",
+      "blueprintId": "math.im1.skill.9.1.determine-the-median-of-a-data-set",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.identify-all-modes-of-a-data-set",
+      "blueprintId": "math.im1.skill.9.1.identify-all-modes-of-a-data-set",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-a-percentile-rank-under-a-stated-counting-convention",
+      "blueprintId": "math.im1.skill.9.1.calculate-a-percentile-rank-under-a-stated-counting-convention",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "blueprintId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "blueprintId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "blueprintId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "blueprintId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "blueprintId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "blueprintId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "blueprintId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-represented-categories",
+      "blueprintId": "math.im1.skill.9.2.count-represented-categories",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "blueprintId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "blueprintId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "blueprintId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "blueprintId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "blueprintId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "blueprintId": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "blueprintId": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "blueprintId": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "blueprintId": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "blueprintId": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "blueprintId": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "blueprintId": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "blueprintId": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "blueprintId": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "blueprintId": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "blueprintId": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "blueprintId": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "blueprintId": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "blueprintId": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "blueprintId": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "blueprintId": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "blueprintId": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "blueprintId": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "blueprintId": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
+      "blueprintId": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.group-raw-values-into-stated-histogram-intervals",
+      "blueprintId": "math.im1.skill.9.5.group-raw-values-into-stated-histogram-intervals",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-shape-from-a-histogram",
+      "blueprintId": "math.im1.skill.9.5.describe-distribution-shape-from-a-histogram",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-bounded-shape-features-from-a-box-plot",
+      "blueprintId": "math.im1.skill.9.5.describe-bounded-shape-features-from-a-box-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-center-from-a-box-plot",
+      "blueprintId": "math.im1.skill.9.5.describe-distribution-center-from-a-box-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-spread-from-a-box-plot",
+      "blueprintId": "math.im1.skill.9.5.describe-distribution-spread-from-a-box-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.select-a-measure-of-spread-and-justify-the-selection",
+      "blueprintId": "math.im1.skill.9.5.select-a-measure-of-spread-and-justify-the-selection",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-center-statistic",
+      "blueprintId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-center-statistic",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-spread-statistic",
+      "blueprintId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-spread-statistic",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.compare-distribution-centers-using-given-evidence",
+      "blueprintId": "math.im1.skill.9.5.compare-distribution-centers-using-given-evidence",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.compare-distribution-spreads-using-given-evidence",
+      "blueprintId": "math.im1.skill.9.5.compare-distribution-spreads-using-given-evidence",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-a-distribution-from-partial-frequency-and-extreme-value-information",
+      "blueprintId": "math.im1.skill.9.5.describe-a-distribution-from-partial-frequency-and-extreme-value-information",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-the-effect-of-removing-extreme-values-on-a-distribution",
+      "blueprintId": "math.im1.skill.9.5.describe-the-effect-of-removing-extreme-values-on-a-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.match-histograms-and-box-plots-by-distribution-features",
+      "blueprintId": "math.im1.skill.9.5.match-histograms-and-box-plots-by-distribution-features",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.define-a-bimodal-distribution-using-researched-sources",
+      "blueprintId": "math.im1.skill.9.5.define-a-bimodal-distribution-using-researched-sources",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-center-and-spread-for-a-bimodal-distribution",
+      "blueprintId": "math.im1.skill.9.5.describe-center-and-spread-for-a-bimodal-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.create-a-real-world-data-example-with-a-stated-distribution-shape",
+      "blueprintId": "math.im1.skill.9.5.create-a-real-world-data-example-with-a-stated-distribution-shape",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.explain-when-mean-and-standard-deviation-suit-a-symmetrical-distribution",
+      "blueprintId": "math.im1.skill.9.5.explain-when-mean-and-standard-deviation-suit-a-symmetrical-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.explain-why-median-and-quartiles-help-describe-a-skewed-distribution",
+      "blueprintId": "math.im1.skill.9.5.explain-why-median-and-quartiles-help-describe-a-skewed-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
     }
   ],
   "teacherEvidence": {
@@ -11895,11 +11435,10 @@
           "math.im1.example.1.1.003",
           "math.im1.example.1.1.004",
           "math.im1.example.1.1.005",
-          "math.im1.example.1.1.006",
-          "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express"
+          "math.im1.example.1.1.006"
         ],
         "workedExampleCount": 6,
-        "guidedPracticeCount": 1,
+        "guidedPracticeCount": 0,
         "independentPracticeCount": 0
       },
       {
@@ -11926,21 +11465,20 @@
           "math.im1.example.1.3.018",
           "math.im1.example.1.5.026",
           "math.im1.example.1.5.027",
-          "math.im1.example.1.5.028",
+          "math.im1.example.1.5.027",
           "math.im1.example.1.5.029",
           "math.im1.example.1.6.030",
           "math.im1.example.1.6.031",
           "math.im1.example.1.6.032",
           "math.im1.example.1.6.033",
           "math.im1.example.1.6.034",
-          "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
           "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
           "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
           "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
           "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si"
         ],
         "workedExampleCount": 27,
-        "guidedPracticeCount": 5,
+        "guidedPracticeCount": 4,
         "independentPracticeCount": 0
       },
       {
@@ -11955,7 +11493,7 @@
           "math.im1.example.1.2.012",
           "math.im1.example.1.5.026",
           "math.im1.example.1.5.027",
-          "math.im1.example.1.5.028",
+          "math.im1.example.1.5.027",
           "math.im1.example.1.5.029",
           "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
           "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista"
@@ -11977,7 +11515,7 @@
           "math.im1.example.1.4.019",
           "math.im1.example.1.4.020",
           "math.im1.example.1.4.021",
-          "math.im1.example.1.4.022",
+          "math.im1.example.1.4.021",
           "math.im1.example.1.4.023",
           "math.im1.example.1.4.024",
           "math.im1.example.1.4.025",
@@ -11995,7 +11533,7 @@
           "math.im1.example.1.4.019",
           "math.im1.example.1.4.020",
           "math.im1.example.1.4.021",
-          "math.im1.example.1.4.022",
+          "math.im1.example.1.4.021",
           "math.im1.example.1.4.023",
           "math.im1.example.1.4.024",
           "math.im1.example.1.4.025",
@@ -12025,7 +11563,7 @@
           "math.im1.example.2.6.022",
           "math.im1.example.2.6.023",
           "math.im1.example.2.6.024",
-          "math.im1.example.2.6.025",
+          "math.im1.example.2.6.024",
           "math.im1.example.2.6.026",
           "math.im1.example.5.1.001",
           "math.im1.example.5.1.002",
@@ -12619,7 +12157,7 @@
           "math.im1.example.2.6.022",
           "math.im1.example.2.6.023",
           "math.im1.example.2.6.024",
-          "math.im1.example.2.6.025",
+          "math.im1.example.2.6.024",
           "math.im1.example.2.6.026",
           "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
           "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl"
@@ -12649,7 +12187,7 @@
         "nodeIds": [
           "math.im1.example.2.3.012",
           "math.im1.example.2.3.013",
-          "math.im1.example.2.3.014",
+          "math.im1.example.2.3.013",
           "math.im1.example.2.3.015",
           "math.im1.example.2.7.027",
           "math.im1.example.2.7.028",
@@ -12671,7 +12209,7 @@
         "nodeIds": [
           "math.im1.example.2.3.012",
           "math.im1.example.2.3.013",
-          "math.im1.example.2.3.014",
+          "math.im1.example.2.3.013",
           "math.im1.example.2.3.015",
           "math.im1.example.2.4.016",
           "math.im1.example.2.4.017",
@@ -12775,7 +12313,6 @@
           "math.im1.example.3.2.009",
           "math.im1.example.4.1.001",
           "math.im1.example.4.1.002",
-          "math.im1.example.4.1.003",
           "math.im1.example.4.1.004",
           "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
           "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi"
@@ -12818,7 +12355,6 @@
           "math.im1.example.3.3.014",
           "math.im1.example.4.1.001",
           "math.im1.example.4.1.002",
-          "math.im1.example.4.1.003",
           "math.im1.example.4.1.004",
           "math.im1.example.4.3.012",
           "math.im1.example.4.3.013",
@@ -13223,12 +12759,11 @@
       },
       {
         "standardId": "math.standard.ccss.a-ced-a-3",
-        "standardTitle": "math.standard.ccss.a-ced-a-3",
+        "standardTitle": "A-CED.A.3 (placeholder)",
         "nodeIds": [
           "math.im1.example.6.5.022",
           "math.im1.example.6.5.023",
           "math.im1.example.6.5.024",
-          "math.im1.example.6.5.025",
           "math.im1.example.6.5.026",
           "math.im1.example.7.5.016",
           "math.im1.example.7.5.017",
@@ -13239,18 +12774,17 @@
           "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
           "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
         ],
-        "workedExampleCount": 9,
-        "guidedPracticeCount": 4,
+        "workedExampleCount": 8,
+        "guidedPracticeCount": 0,
         "independentPracticeCount": 0
       },
       {
         "standardId": "math.standard.ccss.a-rei-d-12",
-        "standardTitle": "math.standard.ccss.a-rei-d-12",
+        "standardTitle": "A-REI.D.12 (placeholder)",
         "nodeIds": [
           "math.im1.example.6.5.022",
           "math.im1.example.6.5.023",
           "math.im1.example.6.5.024",
-          "math.im1.example.6.5.025",
           "math.im1.example.6.5.026",
           "math.im1.example.7.5.016",
           "math.im1.example.7.5.017",
@@ -13261,8 +12795,8 @@
           "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
           "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
         ],
-        "workedExampleCount": 9,
-        "guidedPracticeCount": 4,
+        "workedExampleCount": 8,
+        "guidedPracticeCount": 0,
         "independentPracticeCount": 0
       },
       {
@@ -13290,12 +12824,11 @@
           "math.im1.example.7.2.009",
           "math.im1.example.7.3.010",
           "math.im1.example.7.3.011",
-          "math.im1.example.7.3.012",
           "math.im1.example.7.3.013",
           "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
           "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit"
         ],
-        "workedExampleCount": 6,
+        "workedExampleCount": 5,
         "guidedPracticeCount": 2,
         "independentPracticeCount": 0
       },
@@ -13526,10 +13059,7 @@
         "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
         "title": "1a: Translate verbal descriptions into correct numerical expressions using operation symbols and grouping",
         "kind": "skill",
-        "standardsCovered": [
-          "math.standard.ccss.6-ee-a-1",
-          "math.standard.ccss.6-ee-a-2"
-        ],
+        "standardsCovered": [],
         "prerequisitesMet": false,
         "independentPracticeReady": false
       },
@@ -14673,6 +14203,60 @@
         "independentPracticeReady": false
       },
       {
+        "nodeId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+        "title": "Analyze a continuous bound and whether an endpoint is attained",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+        "title": "Analyze and explain errors in a graph of a two-variable inequality",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+        "title": "Check whether an ordered pair satisfies a two-variable inequality",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+        "title": "Construct a two-variable linear inequality from required solution and nonsolution points",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+        "title": "Find and interpret feasible integer solutions to one contextual linear inequality",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+        "title": "Graph linear inequalities in slope-intercept form",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
         "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
         "title": "6i: Graph linear inequalities in two variables written in slope-intercept and standard form and write linear inequalities to model real-world constraints",
         "kind": "skill",
@@ -14681,7 +14265,53 @@
           "math.standard.ccss.a-rei-d-12"
         ],
         "prerequisitesMet": true,
-        "independentPracticeReady": false
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+        "title": "Graph one-variable inequalities as horizontal or vertical half-planes",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+        "title": "Model a contextual constraint with one two-variable linear inequality and state the source-supported variable domain",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+        "title": "Optimize a discrete integer quantity under one contextual linear inequality",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+        "title": "Rewrite and graph linear inequalities from standard form with a positive y coefficient",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+        "title": "Use boundary inclusion and a valid test point to select a solution half-plane",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
@@ -14691,8 +14321,9 @@
           "math.standard.ccss.a-ced-a-3",
           "math.standard.ccss.a-rei-d-12"
         ],
-        "prerequisitesMet": false,
-        "independentPracticeReady": false
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
@@ -14703,7 +14334,8 @@
           "math.standard.ccss.a-rei-d-10"
         ],
         "prerequisitesMet": true,
-        "independentPracticeReady": false
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
@@ -14995,6 +14627,186 @@
         ],
         "prerequisitesMet": true,
         "independentPracticeReady": false
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+        "title": "Determine a system solution from a graph",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph",
+        "title": "Determine the number of solutions from a graph",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+        "title": "Classify a linear system by its solution set",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+        "title": "Determine the number of solutions from equation structure",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+        "title": "Write a two-equation system from a context",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+        "title": "Solve and interpret a contextual system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system",
+        "title": "Solve a linear equation by graphing its two sides as a system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision",
+        "title": "Report an approximate system solution to a specified precision",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window",
+        "title": "Evaluate a graphical claim when an intersection is outside the viewing window",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations",
+        "title": "Reason about common solutions of three linear equations",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+        "title": "Construct systems with a specified number of solutions",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+        "title": "Explain the limits of graphing as a system-solving method",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+        "title": "Substitute an isolated expression to solve a one-solution linear system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+        "title": "Recognize no solution or infinitely many solutions during substitution",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+        "title": "Represent a two-digit number and its digit reversal with linear equations",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+        "title": "Diagnose and correct an algebraic substitution error",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+        "title": "Choose an efficient substitution expression and justify the choice",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+        "title": "Generalize a complementary-angle sum-and-difference system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+        "title": "Choose addition or subtraction to eliminate a variable from an aligned linear system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+        "title": "Solve a one-solution linear system by direct elimination and show the equation-combination step",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       }
     ],
     "prerequisiteGaps": [

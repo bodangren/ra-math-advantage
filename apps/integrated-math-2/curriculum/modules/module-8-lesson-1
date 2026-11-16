@@ -13,11 +13,11 @@ Source: (Module 8, Lesson 8-1, Int2_0801_practice.docx)
 
 * **Domain** — The set of all possible input values (x-values) of a function.
 * **Range** — The set of all actual output values of a function.
-* **Codomain** — The set of all possible output values; the range is a subset of the codomain.
+* **Codomain** — The declared target set of a function. It contains the range and can include values that the function never produces.
 * **One-to-One** — A function where each element in the domain maps to a unique element in the range; no range value is repeated.
 * **Onto (Surjective)** — A function where every element in the codomain has at least one corresponding input in the domain.
 * **Discrete Function** — A function with a domain that consists of isolated, individual points.
-* **Continuous Function** — A function with an unbroken domain, often an interval, with no gaps or jumps.
+* **Continuous Function** — A function whose values approach the function value at each point in its domain. An interval domain alone does not guarantee continuity.
 
 ## Explore: What Can a Function Look Like?
 
@@ -37,74 +37,68 @@ How can changing the codomain change whether a function is onto?
 ### Key Concept: Discrete vs. Continuous
 
 * A function is **discrete** when its domain consists of isolated points (e.g., whole numbers).
-* A function is **continuous** when its domain is an unbroken interval with no gaps.
-* Some functions are neither discrete nor continuous — for example, a function with domain {1, 3, 5}.
+* A function is **continuous** on an interval when its values approach its value at each point without a jump or break. An interval domain alone does not guarantee continuity.
+* A function with domain {1, 3, 5} is discrete. A step function on the real numbers has a nondiscrete domain and is discontinuous at its jumps.
 
 ## Example 1 — Identify Domain, Range, Codomain, and Determine If Onto
 
-Use the codomain and range to determine whether the function is onto.
+### Problem
 
-### Step 1: Examine the Graphs
+Let f map the domain {1, 2, 3} into the codomain {2, 4, 6, 8}, with f(1) = 2, f(2) = 4, and f(3) = 6. State the domain, range, and codomain. Is f onto?
 
-For each graph, identify the domain (all x-values covered), the range (all y-values actually attained), and the codomain (as stated or implied).
+### Solution
 
-The function is onto when every value in the codomain also appears in the range.
+The domain is {1, 2, 3}. The range is {2, 4, 6}. The codomain is {2, 4, 6, 8}. The value 8 has no input that maps to it, so f is not onto this codomain.
 
 ## Example 2 — Analyze Functions from Tables
 
-Define the domain and range of each function and state whether it is one-to-one, onto, both, or neither.
+### Problem
 
-### Step 1: Analyze the Sales Data
+A function maps weeks {1,2,3,4} to sales counts using f(1)=12, f(2)=18, f(3)=12, and f(4)=20. Its stated codomain is {12,18,20,25}. Find its domain and range. Is it one-to-one or onto this codomain?
 
-A table shows Cool Athletics' Power Sneaker sales over 6 weeks.
+### Solution
 
-### Step 2: Interpret Temperatures
-
-A table shows low temperatures in degrees Fahrenheit for a week in Sioux Falls, Idaho.
-
-### Step 3: Examine Planetary Data
-
-A table shows the orbital period of the eight major planets given their mean distance from the Sun.
+The domain is {1,2,3,4}. The range is {12,18,20}. It is not one-to-one because weeks 1 and 3 both map to 12. It is not onto the stated codomain because 25 is never an output. Onto must be evaluated against a stated codomain, not an unspecified set of possible outputs.
 
 ## Example 3 — Determine One-to-One, Onto, Both, or Neither
 
-For each graphed function, determine whether it is one-to-one, onto, both, or neither.
+### Problem
 
-### Step 1: Analyze Each Graph
+Classify each function by whether it is one-to-one and onto. Both have domain {1, 2, 3}. Function f has codomain {a, b, c} and maps 1 to a, 2 to b, and 3 to c. Function g has codomain {a, b, c} and maps 1 to a, 2 to a, and 3 to b.
 
-Use the vertical line test (one-to-one) and compare range to codomain (onto).
+### Solution
+
+For f, different inputs have different outputs, and every codomain element is reached. Thus f is both one-to-one and onto. For g, two inputs map to a, and c is not reached. Thus g is neither one-to-one nor onto.
 
 ## Example 4 — Classify Functions as Discrete or Continuous
 
-Examine each graph. Determine whether each function is discrete, continuous, or neither discrete nor continuous. Then state the domain and range of each function.
+### Problem
 
-### Step 1: Identify the Type
+A ticket costs 12 dollars. Model the cost C of n tickets. Water flows at 2 liters per minute for 5 minutes. Model its volume V at time t. Classify the domains as discrete or continuous.
 
-Look at the domain — is it an unbroken interval (continuous) or a set of isolated points (discrete)?
+### Solution
+
+The ticket model is C = 12n with n a nonnegative integer. Its domain is discrete because fractional tickets are excluded. The water model is V = 2t for real t with 0 <= t <= 5. Its domain is continuous because any time in that interval is allowed.
 
 ## Example 5 — Real-World Discrete and Continuous Functions
 
-Determine whether the function that models each situation is discrete, continuous, or neither. Then state the domain and range.
+### Problem
 
-### Step 1: Probability (Rolling a Number Cube)
+Model (a) admission cost at 12 dollars per person for a group of 1 to 50 people, and (b) grape cost at 1.99 dollars per pound for weights from 0 to 10 pounds. Give each domain and range and classify each input model.
 
-The outcome of rolling a number cube produces a discrete function with domain {1, 2, 3, 4, 5, 6} and range {1, 2, 3, 4, 5, 6}.
+### Solution
 
-### Step 2: Amusement Park Pricing
-
-Ticket price based on group size is discrete because group size is measured in whole people.
-
-### Step 3: Grocery Pricing (Grapes)
-
-Grapes sold at $1.99 per pound produce a continuous function — weight can be any nonnegative real number.
+(a) C(n)=12n, with integer domain {1,...,50} and range {12,24,...,600} dollars. This is discrete. (b) G(w)=1.99w, with real domain [0,10] and range [0,19.90] dollars before currency rounding. This ideal weight model is continuous. A random die outcome is not by itself a deterministic function of the trial number.
 
 ## Examples 6 and 7 — Write Domain and Range in Set-Builder and Interval Notation
 
-For each graph, write the domain and range in both set-builder and interval notation.
+### Problem
 
-### Step 1: Analyze the Graphs
+For $f(x)=\sqrt{x-2}$ with real inputs and outputs, write the domain and range in set-builder and interval notation.
 
-Use the visual extent of the graph to determine which x-values and y-values are covered. Then convert to both notation forms.
+### Solution
+
+The radicand must satisfy x - 2 >= 0, so x >= 2. The domain is $\{x\in\mathbb{R}:x\geq2\}=[2,\infty)$. The principal square root is nonnegative and takes every nonnegative value. The range is $\{y\in\mathbb{R}:y\geq0\}=[0,\infty)$.
 
 ## Mixed Exercises
 
@@ -127,17 +121,17 @@ Problems 22–39 provide practice with all skills from the lesson:
 
 ## Review Notes
 
-* ![](media/image1.png)![](media/image2.png)![](media/image3.png) — Graphs for problems 1–3 (domain, range, codomain)
-* ![](media/image4.png) — SALES table (problem 4)
-* ![](media/image5.png)![](media/image6.png) — TEMPERATURES table and BAR GRAPH for problems 5–6
-* ![](media/image7.png)![](media/image8.png)![](media/image9.png) — Graphs for problems 7–9 (one-to-one/onto)
-* ![](media/image10.png)![](media/image11.png)![](media/image12.png) — Graphs for problems 10–12 (discrete/continuous)
-* ![](media/image13.png) — PROBABILITY table (problem 13)
-* ![](media/image14.png) — AMUSEMENT PARK table (problem 14)
-* ![](media/image15.png)![](media/image16.png)![](media/image17.png) — Graphs for problems 16–18 (domain/range notation)
-* ![](media/image18.png)![](media/image19.png)![](media/image20.png) — Graphs for problems 19–21 (domain/range notation)
-* ![](media/image21.png)![](media/image22.png)![](media/image23.png) — Mixed exercise graphs (problems 22–24)
-* ![](media/image24.png)![](media/image25.png)![](media/image26.png) — Mixed exercise graphs (problems 25–27)
-* ![](media/image27.png) — CPI graph (problem 31)
-* ![](media/image28.png) — Labor/jobless rate graph (problem 32)
-* ![](media/image29.png) — SHIPPING table (problem 34)
+* ![Worksheet figure 1](/curriculum/module-8-lesson-1/image1.png)![Worksheet figure 2](/curriculum/module-8-lesson-1/image2.png)![Worksheet figure 3](/curriculum/module-8-lesson-1/image3.png) — Graphs for problems 1–3 (domain, range, codomain)
+* ![Worksheet figure 4](/curriculum/module-8-lesson-1/image4.png) — SALES table (problem 4)
+* ![Worksheet figure 5](/curriculum/module-8-lesson-1/image5.png)![Worksheet figure 6](/curriculum/module-8-lesson-1/image6.png) — TEMPERATURES table and BAR GRAPH for problems 5–6
+* ![Worksheet figure 7](/curriculum/module-8-lesson-1/image7.png)![Worksheet figure 8](/curriculum/module-8-lesson-1/image8.png)![Worksheet figure 9](/curriculum/module-8-lesson-1/image9.png) — Graphs for problems 7–9 (one-to-one/onto)
+* ![Worksheet figure 10](/curriculum/module-8-lesson-1/image10.png)![Worksheet figure 11](/curriculum/module-8-lesson-1/image11.png)![Worksheet figure 12](/curriculum/module-8-lesson-1/image12.png) — Graphs for problems 10–12 (discrete/continuous)
+* ![Worksheet figure 13](/curriculum/module-8-lesson-1/image13.png) — PROBABILITY table (problem 13)
+* ![Worksheet figure 14](/curriculum/module-8-lesson-1/image14.png) — AMUSEMENT PARK table (problem 14)
+* ![Worksheet figure 15](/curriculum/module-8-lesson-1/image15.png)![Worksheet figure 16](/curriculum/module-8-lesson-1/image16.png)![Worksheet figure 17](/curriculum/module-8-lesson-1/image17.png) — Graphs for problems 16–18 (domain/range notation)
+* ![Worksheet figure 18](/curriculum/module-8-lesson-1/image18.png)![Worksheet figure 19](/curriculum/module-8-lesson-1/image19.png)![Worksheet figure 20](/curriculum/module-8-lesson-1/image20.png) — Graphs for problems 19–21 (domain/range notation)
+* ![Worksheet figure 21](/curriculum/module-8-lesson-1/image21.png)![Worksheet figure 22](/curriculum/module-8-lesson-1/image22.png)![Worksheet figure 23](/curriculum/module-8-lesson-1/image23.png) — Mixed exercise graphs (problems 22–24)
+* ![Worksheet figure 24](/curriculum/module-8-lesson-1/image24.png)![Worksheet figure 25](/curriculum/module-8-lesson-1/image25.png)![Worksheet figure 26](/curriculum/module-8-lesson-1/image26.png) — Mixed exercise graphs (problems 25–27)
+* ![Worksheet figure 27](/curriculum/module-8-lesson-1/image27.png) — CPI graph (problem 31)
+* ![Worksheet figure 28](/curriculum/module-8-lesson-1/image28.png) — Labor/jobless rate graph (problem 32)
+* ![Worksheet figure 29](/curriculum/module-8-lesson-1/image29.png) — SHIPPING table (problem 34)

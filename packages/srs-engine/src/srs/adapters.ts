@@ -7,7 +7,17 @@
  * testable.
  */
 
-import type { SrsCardState, SrsReviewLogEntry } from './contract';
+import type {
+  SrsCardState,
+  SrsReviewLogEntry,
+  SrsReviewLogEntryV31,
+} from './contract';
+
+/** Canonical identifiers assigned by a transactional persistence backend. */
+export type AtomicReviewSaveIdentifiers = {
+  cardId: string;
+  reviewId?: string;
+};
 
 /**
  * Persistence adapter for SRS card state.
@@ -50,6 +60,15 @@ export interface CardStore {
    * Save (upsert) multiple cards in one call.
    */
   saveCards(cards: SrsCardState[]): Promise<void>;
+
+  /**
+   * Optional transaction boundary for stores that can commit the scheduled
+   * card and its v3.1 audit log atomically.
+   */
+  saveCardAndReview?(
+    card: SrsCardState,
+    reviewLog: SrsReviewLogEntryV31,
+  ): Promise<void | AtomicReviewSaveIdentifiers>;
 }
 
 /**

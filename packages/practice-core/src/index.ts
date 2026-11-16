@@ -61,13 +61,34 @@ export {
 export {
   type SrsRating,
   type SrsRatingInput,
+  type SrsRatingInputV31,
   type SrsRatingResult,
   type SeverityByTag,
   type ComputeBaseRatingOptions,
   computeBaseRating,
   applyTimingToRating,
   mapPracticeToSrsRating,
+  mapPracticeToSrsRatingV31,
 } from './practice/srs-rating';
+
+export {
+  SRS_RATING_POLICY_VERSION,
+  TIMING_BASELINE_POLICY_VERSION,
+  timingZBaselineSchema,
+  srsRatingPartV31Schema,
+  srsRatingInputV31Schema,
+  ratingCapDecisionSchema,
+  timingPartDecisionSchema,
+  timingRatingDecisionSchema,
+  srsRatingResultV31Schema,
+} from './practice/v3-1-contracts';
+export type {
+  TimingZBaseline,
+  SrsRatingPartV31,
+  RatingCapDecision,
+  TimingRatingDecision,
+  SrsRatingResultV31,
+} from './practice/v3-1-contracts';
 
 export {
   DIFFICULTY_VALUES,
@@ -115,3 +136,19 @@ export {
   createMockPracticeTimingSummary,
   createMockPracticeSubmissionPart,
 } from './practice/fixtures';
+
+export {
+  LEARNING_EVIDENCE_CONTRACT_VERSION,
+  LEARNING_EVIDENCE_ORIGIN_VALUES,
+  learningEvidenceV1Schema,
+  evaluateLearningEvidenceV1,
+  normalizeLearningEvidenceV1,
+} from './practice/learning-evidence';
+export type {
+  LearningEvidenceV1,
+  LearningEvidenceIdempotencyV1,
+  LearningEvidenceExposureStateV1,
+  LearningEvidenceDecisionReasonV1,
+  LearningEvidenceDecisionV1,
+  EvaluateLearningEvidenceV1Input,
+} from './practice/learning-evidence';

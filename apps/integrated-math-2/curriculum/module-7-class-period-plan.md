@@ -1,69 +1,33 @@
-# Module 7 Class-Period Plan
+# Module 7: Probability
 
-This document is the audited class-period breakdown for Module 7.
+This plan is generated from `calendar.json`. Source lesson files define the content.
 
-It should be treated as the canonical planning source for Module 7 class periods unless a later audit supersedes it.
+Periods in this module: 15.
 
-It follows the planning model in `curriculum/course-spec.md`:
+| Day type | Periods |
+|---|---:|
+| instruction | 9 |
+| mastery | 3 |
+| jigsaw | 1 |
+| review | 1 |
+| test | 1 |
 
-- the **class period** is the atomic planning unit
-- `instruction` days must map to `measure/course-objectives.md`
-- `instruction` days must name the specific worked examples they use
-- `mastery`, `jigsaw`, `review`, and `test` days are marked primarily by day type
+| Course period | Type | Lesson or assessment modules | Objective or task | Worked examples |
+|---:|---|---|---|---|
+| 86 | instruction | module-7-lesson-1 | Define and describe the sample space for an experiment. | Example 1 — Define Sample Spaces; Example 2 — Represent Multi-Stage Sample Spaces |
+| 87 | instruction | module-7-lesson-2 | Find the intersection of two events and determine joint probabilities. | Example 1 — Find Intersections; Example 2 — Probability of Intersections |
+| 88 | instruction | module-7-lesson-3 | Calculate geometric probability using lengths and areas. | Example 1 — Length-Based Probability; Example 2 — Time-Based and Real-World Probability |
+| 89 | instruction | module-7-lesson-3 | Apply geometric probability to real-world scenarios involving distances, times, and regions. | Example 3 — Area-Based Probability; Example 4 — Spinner Probability; Example 5 — Assumptions in Geometric Probability |
+| 90 | mastery | module-7-lesson-1, module-7-lesson-2, module-7-lesson-3 | Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer. | See the listed sources. |
+| 91 | instruction | module-7-lesson-4 | Calculate probabilities using permutations and combinations. | Example 1 — Probability with Permutations; Examples 2 and 3 — Permutations with Repetition and Specific Sequences |
+| 92 | instruction | module-7-lesson-5 | Apply the multiplication rule for independent events to find joint probabilities. | Example 1 — Independent Events and Joint Probability; Example 2 — Independent vs. Dependent Events |
+| 93 | instruction | module-7-lesson-6 | Determine whether events are mutually exclusive or not mutually exclusive. | Example 1 — Classify Events as Mutually Exclusive or Not; Examples 2 and 3 — Apply the Addition Rule |
+| 94 | mastery | module-7-lesson-1, module-7-lesson-2, module-7-lesson-3, module-7-lesson-4, module-7-lesson-5, module-7-lesson-6 | Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer. | See the listed sources. |
+| 95 | instruction | module-7-lesson-7 | Calculate conditional probabilities using the definition $P(B / A) = \frac{P(A \cap B)}{P(A)}$. | Example 1 — Conditional Probability |
+| 96 | instruction | module-7-lesson-8 | Create and interpret two-way frequency tables. | Example 1 — Create Two-Way Frequency and Relative Frequency Tables; Example 2 — College Student Survey with Independence Test |
+| 97 | mastery | module-7-lesson-1, module-7-lesson-2, module-7-lesson-3, module-7-lesson-4, module-7-lesson-5, module-7-lesson-6, module-7-lesson-7, module-7-lesson-8 | Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer. | See the listed sources. |
+| 98 | jigsaw | module-7-lesson-1, module-7-lesson-2, module-7-lesson-3, module-7-lesson-4, module-7-lesson-5, module-7-lesson-6, module-7-lesson-7, module-7-lesson-8 | Assign one listed lesson to each group. Prepare a solution and explain each step. Exchange solutions with another group. Check the method and identify any restriction. | See the listed sources. |
+| 99 | review | 7 | Review the listed lessons. Solve their checkpoint questions and explain the method. Review the source examples for each error. | See the listed sources. |
+| 100 | test | 7 | Use a teacher-authored assessment for the listed modules. Include reasoning, application, and restrictions. The public checkpoint bank is review material and is not a secure test form. | See the listed sources. |
 
-## Module 7 Budget
-
-| Day Type | Count |
-|----------|------:|
-| `instruction` | 10 |
-| `mastery` | 3 |
-| `jigsaw` | 1 |
-| `review` | 1 |
-| `test` | 1 |
-| **Total** | **16** |
-
-## Notes
-
-- This is a **planning model**, not a literal calendar.
-- Most instruction days use **2-3 worked examples**.
-- A few objective-isolating days use **1 anchor example** plus guided practice, discussion, or error analysis.
-- Some course objectives are treated as **embedded objectives** rather than the single primary objective for a day.
-- This plan allocates 2 instruction days per lesson to allow thorough worked-example coverage and practice processing.
-- Probability lends itself well to jigsaw activities (independent vs. dependent events; permutations vs. combinations).
-
-## Period-by-Period Plan
-
-| Period | Day Type | Source Textbook Lesson | Primary Objective | Worked Examples | Embedded Objectives | Notes |
-|--------|----------|------------------------|-------------------|-----------------|---------------------|-------|
-| 1 | `instruction` | `7-1` | `7a. Understand experimental vs. theoretical probability and sample spaces.` | `7-1, Examples 1-3 — Experimental vs. Theoretical Probability; Sample Spaces; Counting Outcomes` | `7b` | Introduce probability ratio, favorable/total outcomes, and tree diagrams for listing outcomes. |
-| 2 | `instruction` | `7-1` | `7b. Use complementary events to find probabilities.` | `7-1, Examples 4-6 — Complementary Events; Using Complement to Find Probability; Real-World Probability Application` | — | P(A) + P(not A) = 1; "at least one" problems are efficiently solved via complement. |
-| 3 | `mastery` | — | — | — | — | Mastery cycle on `7a-7b`. |
-| 4 | `instruction` | `7-2` | `7c. Apply the Fundamental Counting Principle to determine the number of outcomes.` | `7-2, Examples 1-3 — Fundamental Counting Principle; Tree Diagrams; Counting Outcomes with Multiple Stages` | — | Multiplication principle for independent selections; builds directly to permutations. |
-| 5 | `instruction` | `7-3` | `7d. Compute permutations and interpret nPr in context.` | `7-3, Examples 1-3 — Permutation Formula; nPr in Context; Permutations with Restrictions` | — | Order matters; distinction from combinations is the key conceptual gate. |
-| 6 | `mastery` | — | — | — | — | Mastery cycle on `7c-7d`. |
-| 7 | `instruction` | `7-4` | `7e. Compute combinations and interpret nCr in context.` | `7-4, Examples 1-3 — Combination Formula; nCr in Context; Combinations vs. Permutations` | `7d` | Order does not matter; comparison to permutations embedded throughout. |
-| 8 | `instruction` | `7-4` | `7f. Use combinations and permutations to solve real-world selection problems.` | `7-4, Examples 4-6 — Selection Problems; Mixed Permutation/Combination; Real-World Application` | — | Mixed problems requiring students to decide which method applies. |
-| 9 | `jigsaw` | — | — | — | — | Mathematical practices focus: method choice between permutations and combinations; justification of why order matters or does not. |
-| 10 | `instruction` | `7-5` | `7g. Find probabilities of independent and dependent events.` | `7-5, Examples 1-3 — Independent Events; Dependent Events; P(A and B) for Each Case` | `7h` | Introduce conditional probability informally through two-stage experiments. |
-| 11 | `instruction` | `7-5` | `7h. Find probabilities of compound events using addition rules and inclusion-exclusion.` | `7-5, Examples 4-6 — P(A or B) for Independent; P(A or B) for Dependent; Inclusion-Exclusion Principle` | — | P(A ∪ B) = P(A) + P(B) − P(A ∩ B); distinguishes mutually exclusive case. |
-| 12 | `mastery` | — | — | — | — | Mastery cycle on `7e-7h`. |
-| 13 | `instruction` | `7-6` | `7i. Calculate expected value to evaluate outcomes of random processes.` | `7-6, Examples 1-3 — Expected Value Formula; Expected Value in Context; Evaluating a Game` | — | E(X) = Σ x · P(x); compares fair vs. unfair games. |
-| 14 | `instruction` | `7-6` | `7j. Apply expected value to real-world decisions such as insurance and raffles.` | `7-6, Examples 4-6 — Insurance Decision; Raffle Analysis; Fair Decision-Making Application` | — | Decision-making under uncertainty; connects probability to financial literacy. |
-| 15 | `review` | — | — | — | — | Module 7 review across `7a-7j`. |
-| 16 | `test` | — | — | — | — | Module 7 assessment. |
-
-## Objective Coverage Check
-
-All Module 7 course objectives appear either as a primary objective or an embedded objective:
-
-- Primary: `7a`, `7b`, `7c`, `7d`, `7e`, `7f`, `7g`, `7h`, `7i`, `7j`
-- Embedded: none (all objectives are primary in this module)
-
-## Why This Split Works
-
-- `7-1` naturally divides into probability fundamentals day and complementary events day.
-- `7-3` and `7-4` are closely related; the jigsaw day between them creates productive cognitive space for distinguishing permutations from combinations.
-- `7-5` (compound probability) is dense enough to warrant two instruction days: one for multiplication (independent/dependent) and one for addition rules.
-- `7-6` (expected value) extends naturally from probability into decision science, and the two-day treatment allows both formula application and real-world judgment.
-
-(End of file - total 116 lines)
+Review and test periods belong to nine assessment blocks. A block can cover more than one module. The 180-period course budget includes all blocks.

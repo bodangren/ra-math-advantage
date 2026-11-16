@@ -16,8 +16,8 @@ function makeGradebookFixture(): { rows: GradebookRow[]; lessons: GradebookLesso
       displayName: 'Alice',
       username: 'alice',
       cells: [
-        { lesson: lessons[0], masteryLevel: 85, color: 'mastered', completionStatus: 'completed' },
-        { lesson: lessons[1], masteryLevel: null, color: 'not_started', completionStatus: 'not_started' },
+        { lesson: lessons[0], masteryLevel: 85, color: 'green', completionStatus: 'completed' },
+        { lesson: lessons[1], masteryLevel: null, color: 'gray', completionStatus: 'not_started' },
       ],
     },
   ];
@@ -26,7 +26,7 @@ function makeGradebookFixture(): { rows: GradebookRow[]; lessons: GradebookLesso
 
 function makeHeatmapFixture(): { rows: CompetencyHeatmapRow[]; standards: CompetencyStandard[] } {
   const standards: CompetencyStandard[] = [
-    { id: 'std1', code: 'A-REI.1', category: 'Algebra', description: 'Solve equations' },
+    { id: 'std1', code: 'A-REI.1', category: 'Algebra', description: 'Solve equations', studentFriendlyDescription: 'Solve equations' },
   ];
   const rows: CompetencyHeatmapRow[] = [
     {
@@ -34,7 +34,7 @@ function makeHeatmapFixture(): { rows: CompetencyHeatmapRow[]; standards: Compet
       displayName: 'Alice',
       username: 'alice',
       cells: [
-        { standardId: 'std1', masteryLevel: 85, color: 'mastered' },
+        { standardId: 'std1', standardCode: 'A-REI.1', standardDescription: 'Solve equations', category: 'Algebra', masteryLevel: 85, color: 'green' },
       ],
     },
   ];

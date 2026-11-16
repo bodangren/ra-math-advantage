@@ -5,7 +5,6 @@ This directory contains generated planning artifacts that bridge the source curr
 ## Files
 
 - `class-period-packages/module-*.json`: one package for each planned class period.
-- `practice-v1/activity-map.json`: activity candidates mapped to the `practice.v1` contract.
 - `exceptions.json`: explicit source limitations and replacement plans.
 - `audit/latest.json`: latest machine-readable curriculum audit report.
 
@@ -23,4 +22,6 @@ Run:
 npm run curriculum:audit
 ```
 
-The audit verifies curriculum counts, lesson source quality, ALEKS coverage documentation, package coverage, and `practice.v1` mapping coverage.
+The audit verifies curriculum counts, lesson source quality, ALEKS coverage documentation, package coverage, and class-period package coverage. Run `npm test` to validate the seeded runtime activities.
+
+The class-period packages are teaching plans. They are not executable activity records. The lesson seeds define executable activities. The seed contract tests validate their props and section links.

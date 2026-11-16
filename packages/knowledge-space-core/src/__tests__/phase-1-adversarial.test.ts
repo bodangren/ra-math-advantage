@@ -428,7 +428,7 @@ describe('probe 6: ObjectiveProficiencyResult local structural snapshot', () => 
 // ---------------------------------------------------------------------------
 //
 // Phase 1 replaced "source of truth" language in `measure/knowledge-space.md`
-// with a pointer to `kst-srs.v2/SPECIFICATION.md`, and added a "Knowledge
+// with a pointer to `kst-srs.v3.2/SPECIFICATION.md`, and added a "Knowledge
 // Space Contract" row to `measure/index.md`. This probe catches a future
 // agent reversing those reconciliations.
 
@@ -442,7 +442,7 @@ describe('probe 7: docs reconciliation reversal', () => {
 
   it('measure/knowledge-space.md points at the canonical SPECIFICATION.md', () => {
     const content = readFileSync(KNOWLEDGE_SPACE_MD, 'utf-8');
-    expect(content).toMatch(/kst-srs\.v2\/SPECIFICATION\.md/);
+    expect(content).toMatch(/kst-srs\.v3\.2\/SPECIFICATION\.md/);
   });
 
   it('measure/index.md contains a Knowledge Space Contract row', () => {
@@ -455,7 +455,7 @@ describe('probe 7: docs reconciliation reversal', () => {
   it('measure/index.md Knowledge Space Contract row points at the spec path', () => {
     const content = readFileSync(INDEX_MD, 'utf-8');
     // The row's path column should reference SPECIFICATION.md (either at
-    // kst-srs.v2/... or packages/knowledge-space-core/...).
+    // kst-srs.v3.2/... or packages/knowledge-space-core/...).
     const rowMatch = content.match(/\|\s*\*\*Knowledge Space Contract\*\*\s*\|\s*([^|]+)\|/);
     expect(rowMatch).not.toBeNull();
     const pathCell = rowMatch![1]!.trim();

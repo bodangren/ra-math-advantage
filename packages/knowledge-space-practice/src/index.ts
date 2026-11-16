@@ -90,6 +90,87 @@ export {
 export { planRemediationInjection } from './planner/injection';
 export type { PlannedActivity, PlanRemediationInjectionInput } from './planner/injection';
 
+// Planner v3.2 — additive contract; legacy planner/types remains unchanged.
+export {
+  DEFAULT_PLANNER_V3_2_WEIGHTS,
+  plannerTermsV3_2Schema,
+  plannerWeightsV3_2Schema,
+  plannerContributionsV3_2Schema,
+  plannerRankingModeV3_2Schema,
+  plannerPriorityScoreV3_2Schema,
+  plannerDiversityGroupV3_2Schema,
+  plannerRecommendationV3_2Schema,
+  plannerRecommendationSetV3_2Schema,
+  plannerGraphReleaseInputV3_2Schema,
+  plannerGraphReleaseOutputV3_2Schema,
+} from './planner/v3-2-contract';
+export {
+  scorePlannerCandidateV3_2,
+  rankPlannerPriorityScoresV3_2,
+  precomputePlannerGraphV3_2,
+} from './planner/v3-2-planner';
+export type { ScorePlannerCandidateInputV3_2 } from './planner/v3-2-planner';
+export { planRecommendationsV3_2 } from './planner/v3-2-recommendations';
+export type {
+  PlannerCandidateV3_2,
+  PlanRecommendationsInputV3_2,
+  PlanRecommendationsResultV3_2,
+} from './planner/v3-2-recommendations';
+export {
+  learnerUtilityContextV3_2Schema,
+  utilitySignalV3_2Schema,
+  utilityProviderResultV3_2Schema,
+  utilityReleaseIdentityV3_2Schema,
+  utilityResolutionV3_2Schema,
+  domainUtilityRegistryV3_2Schema,
+  prerequisiteSparseReleaseV3_2Schema,
+  bindDomainUtilityProviderV3_2,
+} from './planner/v3-2-domain-utility-contract';
+export {
+  createDomainUtilityRegistryV3_2,
+  resolveDomainUtilityV3_2,
+  createSyntheticUtilityProviderV3_2,
+} from './planner/v3-2-domain-utility';
+export type {
+  DomainUtilityRegistryV3_2Runtime,
+  ResolveDomainUtilityInputV3_2,
+  SyntheticUtilityProviderConfigV3_2,
+} from './planner/v3-2-domain-utility';
+export {
+  reviewLoadStateV3_2Schema,
+  reviewLoadConfigV3_2Schema,
+  reviewLoadAssessmentV3_2Schema,
+} from './planner/v3-2-review-load-contract';
+export { assessReviewLoadV3_2 } from './planner/v3-2-review-load';
+export type { AssessReviewLoadInputV3_2 } from './planner/v3-2-review-load';
+export type {
+  ReviewLoadStateV3_2,
+  ReviewLoadConfigV3_2,
+  ReviewLoadAssessmentV3_2,
+} from './planner/v3-2-review-load-contract';
+export type {
+  LearnerUtilityContextV3_2,
+  UtilitySignalV3_2,
+  UtilityProviderResultV3_2,
+  UtilityReleaseIdentityV3_2,
+  DomainUtilityProviderV3_2,
+  UtilityResolutionV3_2,
+  DomainUtilityRegistryV3_2,
+  PrerequisiteSparseReleaseV3_2,
+  DomainUtilityRegistrationManifestV3_2,
+  BoundDomainUtilityProviderV3_2,
+} from './planner/v3-2-domain-utility-contract';
+export type {
+  PlannerTermsV3_2,
+  PlannerWeightsV3_2,
+  PlannerPriorityScoreV3_2,
+  PlannerDiversityGroupV3_2,
+  PlannerRecommendationV3_2,
+  PlannerRecommendationSetV3_2,
+  PlannerGraphReleaseInputV3_2,
+  PlannerGraphReleaseOutputV3_2,
+} from './planner/v3-2-contract';
+
 export type {
   ProjectedActivity,
   SrsProjectionEntry,
@@ -102,8 +183,10 @@ export type {
   VisualNodeV1,
   VisualEdgeV1,
   StudentVisualizationV1,
+  StudentVisualizationOptions,
   ParentVisualizationV1,
   TeacherHeatmapCell,
   InterventionGroup,
   TeacherVisualizationV1,
+  TeacherVisualizationOptions,
 } from './projections';

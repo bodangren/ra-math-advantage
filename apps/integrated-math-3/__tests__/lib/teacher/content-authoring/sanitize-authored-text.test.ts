@@ -176,7 +176,7 @@ describe('sanitizeAuthoringText', () => {
         html: 'alert(1)',
         // Cast simulates a JS caller or type-asserted misuse bypassing the
         // SafeTextTag type; the runtime guard must still neutralize it.
-        as: 'script' as unknown as React.JSX.IntrinsicElements,
+        as: 'script' as unknown as 'span',
       }),
     );
 
@@ -187,7 +187,7 @@ describe('sanitizeAuthoringText', () => {
     const { container: styleContainer } = render(
       React.createElement(SanitizedText, {
         html: 'body { color: red }',
-        as: 'style' as unknown as React.JSX.IntrinsicElements,
+        as: 'style' as unknown as 'span',
       }),
     );
 

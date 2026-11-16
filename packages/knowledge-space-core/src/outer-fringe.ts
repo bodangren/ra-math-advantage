@@ -5,8 +5,12 @@
 // function (FR3 — not buried in the visualization projection).
 
 import type { KnowledgeSpace } from './types';
-import type { KnowledgeStateEntry, ReadinessState } from './mastery-state';
-import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
+import type {
+  KnowledgeStateEntry,
+  MasteryConfig,
+  ReadinessState,
+} from './mastery-state';
+import { normalizeMasteryConfig } from './mastery-state';
 import { computeWeightedReadiness } from './weighted-readiness';
 
 /**
@@ -21,6 +25,18 @@ export interface FringeEntry {
   nodeId: string;
   readiness?: number;
   readinessState?: ReadinessState;
+}
+
+/** A required-shape entry in the versioned kst-srs.v3.2 fringe result. */
+export interface FringeEntryV3 {
+  nodeId: string;
+  readiness: number;
+}
+
+/** The two readiness buckets defined by kst-srs.v3.2 §2.6. */
+export interface OuterFringeV3 {
+  ready: FringeEntryV3[];
+  nearly_ready: FringeEntryV3[];
 }
 
 /**
@@ -57,8 +73,9 @@ export function getOuterFringe(
   state: Map<string, KnowledgeStateEntry>,
   graph: KnowledgeSpace,
   readinessFn?: ReadinessFn,
+  config?: Partial<MasteryConfig>,
 ): FringeEntry[] {
-  const thresholds = MASTERY_THRESHOLDS_DEFAULT;
+  const normalizedConfig = normalizeMasteryConfig(config);
 
   const result: FringeEntry[] = [];
 
@@ -74,9 +91,9 @@ export function getOuterFringe(
 
       // Coarse label from threshold band
       const readinessState: FringeEntry['readinessState'] =
-        readinessScore >= thresholds.readyThreshold
+        readinessScore >= normalizedConfig.readyThreshold
           ? 'ready'
-          : readinessScore >= thresholds.nearThreshold
+          : readinessScore >= normalizedConfig.nearThreshold
             ? 'nearly_ready'
             : 'blocked';
 
@@ -88,7 +105,7 @@ export function getOuterFringe(
     } else {
       // Default: weighted readiness. Only include ready ∪ nearly_ready.
       const { score, state: readinessState } =
-        computeWeightedReadiness(node.id, state, graph);
+        computeWeightedReadiness(node.id, state, graph, normalizedConfig);
 
       if (readinessState === 'blocked') continue;
 
@@ -97,6 +114,42 @@ export function getOuterFringe(
         readiness: score,
         readinessState,
       });
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Compute the versioned kst-srs.v3.2 outer fringe.
+ *
+ * Only skill nodes participate. Mastered and blocked skills are excluded,
+ * and the remaining candidates are partitioned into required-shape `ready`
+ * and `nearly_ready` buckets. `getOuterFringe` remains the flat v2-compatible
+ * surface for existing consumers.
+ */
+export function getOuterFringeV3(
+  state: Map<string, KnowledgeStateEntry>,
+  graph: KnowledgeSpace,
+  config?: Partial<MasteryConfig>,
+  readinessFn?: ReadinessFn,
+): OuterFringeV3 {
+  const normalizedConfig = normalizeMasteryConfig(config);
+  const result: OuterFringeV3 = { ready: [], nearly_ready: [] };
+
+  for (const node of graph.nodes) {
+    if (node.kind !== 'skill' || state.get(node.id)?.state === 'mastered') {
+      continue;
+    }
+
+    const readiness = readinessFn
+      ? readinessFn(node.id, state)
+      : computeWeightedReadiness(node.id, state, graph, normalizedConfig).score;
+
+    if (readiness >= normalizedConfig.readyThreshold) {
+      result.ready.push({ nodeId: node.id, readiness });
+    } else if (readiness >= normalizedConfig.nearThreshold) {
+      result.nearly_ready.push({ nodeId: node.id, readiness });
     }
   }
 

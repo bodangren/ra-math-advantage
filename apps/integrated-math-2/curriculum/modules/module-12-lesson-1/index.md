@@ -12,7 +12,7 @@ Source: (Module 12, Lesson 12-1, Int2_1201_practice.docx)
 ## Vocabulary
 
 * **Axis of Symmetry** — The vertical line that divides a parabola into two mirror images; passes through the vertex.
-* **Vertex** — The highest or lowest point of a parabola; the maximum or minimum value of the function.
+* **Vertex** — The turning point (h, k) of a vertical-axis parabola. Its y-coordinate k is the minimum or maximum value of the quadratic function.
 * **End Behavior** — Describes what happens to the output values as x approaches very large positive or very large negative values.
 * **Parabola** — The U-shaped graph of a quadratic function.
 * **Quadratic Function** — A function of the form [y = ax^2 + bx + c] where [a ≠ 0].
@@ -28,7 +28,7 @@ How does the sign of the leading coefficient affect whether a parabola opens upw
 
 ### Key Concept: Parts of a Parabola
 
-Every quadratic function [y = ax^2 + bx + c] produces a parabola with these key features:
+Every quadratic function [y = ax^2 + bx + c] with a ≠ 0 produces a parabola with these key features:
 
 * **Axis of Symmetry**: The vertical line [x = -b/(2a)] that passes through the vertex.
 * **Vertex**: The point [( -b/(2a) , f( -b/(2a) ) )]; a maximum when [a < 0], a minimum when [a > 0].
@@ -44,81 +44,43 @@ To graph a quadratic function:
 
 ## Example 1 — Identify Key Features from a Graph
 
-### Step 1: Identify the Axis of Symmetry
+### Problem
 
-For each graph, find the vertical line that divides the parabola in half. The axis of symmetry passes through the vertex and is equidistant from matching points on either side.
+An upward-opening parabola has vertex (2,-1) and passes through (0,3) and (4,3). Identify its axis of symmetry, vertical intercept, minimum, and end behavior.
 
-### Step 2: Identify the Vertex
+### Solution
 
-Read the coordinates of the vertex from the graph. If the parabola opens downward, the vertex is the maximum point. If it opens upward, the vertex is the minimum point.
-
-### Step 3: Identify the Y-Intercept
-
-Find where the graph crosses the y-axis (where x = 0).
-
-### Step 4: Describe End Behavior
-
-State what happens to y as x becomes very large positive and as x becomes very large negative.
-
-Problems 1-4: Identify the axis of symmetry, the vertex, and the y-intercept of each graph. Then describe the end behavior.
+The axis is x=2. The vertical intercept is (0,3). The minimum value is -1 at x=2. Both ends rise as x increases or decreases without bound. The equal-height points at x=0 and x=4 lie equally far from the axis.
 
 ## Example 2 — Graph Quadratic Functions Using Key Features
 
-### Step 1: Find the Axis of Symmetry
+### Problem
 
-For [y = -3x^2 + 6x - 4], the axis of symmetry is [x = -b/(2a) = -6/(2(-3)) = 1].
+Graph y=-3x²+6x-4 using its key features.
 
-### Step 2: Find the Vertex
+### Solution
 
-Substitute x = 1 into the function: [y = -3(1)^2 + 6(1) - 4 = -1]. The vertex is (1, -1).
-
-### Step 3: Find the Y-Intercept
-
-Evaluate at x = 0: [y = -4], so the y-intercept is (0, -4).
-
-### Step 4: Plot Points and Draw the Parabola
-
-Use the axis of symmetry to find symmetric points on the other side of the axis. Draw the curve through these points.
-
-Problems 5-10: Graph each function. Find the axis of symmetry, vertex, and y-intercept first.
+The axis is x=-6/(2(-3))=1. Substitution gives vertex (1,-1). The vertical intercept is (0,-4), with reflected point (2,-4). The parabola opens downward. Its maximum is -1, so it has no horizontal intercepts.
 
 ## Example 3 — Graph with a Table of Values
 
-When the coefficients are not friendly for completing the square, use a table of values to plot points. Choose x-values that are symmetric about the axis of symmetry for an accurate parabola shape.
+### Problem
 
-### Step 1: Build a Table
+Build a table for y=x²+6x-6 using x=-5,-4,-3,-2,-1. State the unrestricted domain and range.
 
-For [y = x^2 + 6x - 6], find the axis of symmetry [x = -3]. Create a table with x-values around -3.
+### Solution
 
-### Step 2: Compute Y-Values
-
-Calculate y for each x-value. Plot the points.
-
-### Step 3: State Domain and Range
-
-The domain of any quadratic function is all real numbers. The range is [[vertex_y), ∞)) for upward-opening parabolas or [(-∞, vertex_y]] for downward-opening ones.
-
-Problems 11-16: Use a table of values to graph each function. State the domain and range.
+The respective y-values are -11,-14,-15,-14,-11. The vertex is (-3,-15), and the parabola opens upward. The domain is all real numbers and the range is [-15,infinity). Plot the five points and reflect about x=-3.
 
 ## Example 4 — Real-World Quadratic Models
 
-### Step 1: Identify the Variables
+### Problem
 
-In the Olympics pole vault problem, x represents the Olympiad number and y represents the winning height in meters.
+A modeled ball height is h(t)=-16t²+32t+48 feet for time t≥0 until landing. Find its initial height, maximum height, and landing time.
 
-### Step 2: Complete the Table
+### Solution
 
-Substitute x-values into [y = 0.37x^2 + 4.3x + 126] and compute y.
-
-### Step 3: Graph the Function
-
-Plot the points from the table and connect them with a smooth curve.
-
-### Step 4: Interpret Key Features
-
-The vertex represents the maximum or minimum winning height. The y-intercept represents the winning height at the first Olympiad. Zeros would represent times when the height was zero, though in context they often fall outside the reasonable domain.
-
-Problems 17-20: For each real-world scenario, graph the function and interpret the key features in terms of the quantities described.
+Complete the square: h(t)=-16(t-1)²+64. The initial height h(0) is 48 ft. The maximum is 64 ft at 1 second. The equation h(t)=0 gives t=-1 or t=3. Only t=3 is in the physical time domain, so the modeled flight lasts 3 seconds.
 
 ## Mixed Exercises
 
@@ -141,6 +103,6 @@ Images in the source:
 * Problems 29-31: Additional parabola graphs.
 * Problem 36: Graph of [g(x)] for comparison with [f(x) = -x^2 + 3x - 2].
 
-![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png)
-![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png)
-![](media/image9.png) ![](media/image10.png)
+![Worksheet figure 1](/curriculum/module-12-lesson-1/image1.png) ![Worksheet figure 2](/curriculum/module-12-lesson-1/image2.png) ![Worksheet figure 3](/curriculum/module-12-lesson-1/image3.png) ![Worksheet figure 4](/curriculum/module-12-lesson-1/image4.png)
+![Worksheet figure 5](/curriculum/module-12-lesson-1/image5.png) ![Worksheet figure 6](/curriculum/module-12-lesson-1/image6.png) ![Worksheet figure 7](/curriculum/module-12-lesson-1/image7.png) ![Worksheet figure 8](/curriculum/module-12-lesson-1/image8.png)
+![Worksheet figure 9](/curriculum/module-12-lesson-1/image9.png) ![Worksheet figure 10](/curriculum/module-12-lesson-1/image10.png)

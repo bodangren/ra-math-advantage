@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const PUBLIC_WORKBOOKS_DIR = path.join(process.cwd(), 'public', 'workbooks');
+const PRIVATE_WORKBOOKS_DIR = path.join(process.cwd(), 'resources', 'workbooks');
 const OUTPUT_PATH = path.join(process.cwd(), 'lib', 'workbooks-manifest.json');
 
 interface WorkbookManifest {
@@ -24,7 +25,9 @@ function scanWorkbooks(): WorkbookManifest {
   if (!fs.existsSync(PUBLIC_WORKBOOKS_DIR)) {
     throw new Error(`Workbook directory not found: ${PUBLIC_WORKBOOKS_DIR}`);
   }
-  const files = fs.readdirSync(PUBLIC_WORKBOOKS_DIR).filter((f) => f.endsWith('.xlsx'));
+  const files = [...fs.readdirSync(PUBLIC_WORKBOOKS_DIR),
+    ...(fs.existsSync(PRIVATE_WORKBOOKS_DIR) ? fs.readdirSync(PRIVATE_WORKBOOKS_DIR) : [])]
+    .filter((f) => f.endsWith('.xlsx'));
   
   const byUnitAndLesson: Record<string, { student: boolean; teacher: boolean }> = {};
   const byCapstone = { student: false, teacher: false };

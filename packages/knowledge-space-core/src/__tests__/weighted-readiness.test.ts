@@ -147,8 +147,8 @@ describe('computeWeightedReadiness — partial mastery (FR1)', () => {
     const graph: KnowledgeSpace = {
       nodes: [a, b, c],
       edges: [
-        makePrereqEdge('skill.a', 'skill.c', 1),
-        makePrereqEdge('skill.b', 'skill.c', 1),
+        makePrereqEdge('skill.a', 'skill.c', 0.5),
+        makePrereqEdge('skill.b', 'skill.c', 0.5),
       ],
     };
     const state = new Map<string, KnowledgeStateEntry>();
@@ -171,7 +171,7 @@ describe('computeWeightedReadiness — partial mastery (FR1)', () => {
       nodes: [a, b, c],
       edges: [
         makePrereqEdge('skill.a', 'skill.c', 0.5),
-        makePrereqEdge('skill.b', 'skill.c', 1.0),
+        makePrereqEdge('skill.b', 'skill.c', 0.75),
       ],
     };
     const state = new Map<string, KnowledgeStateEntry>();
@@ -179,9 +179,10 @@ describe('computeWeightedReadiness — partial mastery (FR1)', () => {
     state.set('skill.b', makeEntry('skill.b', 0.3));
     state.set('skill.c', makeEntry('skill.c', 0));
 
-    // (0.5*0.9 + 1.0*0.3) / (0.5+1.0) = (0.45+0.30)/1.5 = 0.75/1.5 = 0.5
+    // Both edges are soft under the v3 default, so the v2 weighted-average
+    // migration property applies: (0.5*0.9 + 0.75*0.3) / 1.25 = 0.54.
     const result = computeWeightedReadiness('skill.c', state, graph);
-    expect(result.score).toBeCloseTo(0.5, 5);
+    expect(result.score).toBeCloseTo(0.54, 5);
     expect(result.state).toBe('nearly_ready'); // ≥ 0.50 is nearly_ready
   });
 

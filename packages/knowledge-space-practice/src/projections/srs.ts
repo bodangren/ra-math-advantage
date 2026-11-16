@@ -20,7 +20,14 @@ export function projectSrsInputs(
   edges: KnowledgeSpaceEdge[],
   blueprints: KnowledgeBlueprint[],
 ): SrsProjectionEntry[] {
+  edges = edges.filter(edge => edge.reviewStatus !== 'rejected');
   const blueprintByNodeId = new Map(blueprints.map((b) => [b.nodeId, b]));
+  const acceptedSkillIds = new Set(nodes
+    .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
+    .map((node) => node.id));
+  const equivalences = edges.filter((edge) =>
+    edge.type === 'equivalent_to' && edge.reviewStatus === 'approved'
+    && acceptedSkillIds.has(edge.sourceId) && acceptedSkillIds.has(edge.targetId));
 
   const entries: SrsProjectionEntry[] = [];
 
@@ -56,10 +63,7 @@ export function projectSrsInputs(
       0.5;
 
     const generatorKey = node.generatorKey ?? blueprint?.generatorKey;
-    const generatorReady =
-      node.independentPracticeReady === true ||
-      (blueprint?.independentPracticeSpec != null) ||
-      (blueprint?.generatorKey != null && blueprint.generatorKey.length > 0);
+    const generatorReady = node.independentPracticeReady === true;
 
     const blueprintId = blueprint
       ? `${node.id}.blueprint`
@@ -73,7 +77,7 @@ export function projectSrsInputs(
       difficulty,
       generatorKey,
       generatorReady,
-      equivalentNodeIds: edges
+      equivalentNodeIds: equivalences
         .filter(
           (e) =>
             e.type === 'equivalent_to' &&

@@ -1,0 +1,138 @@
+
+ RUN  v4.1.8 /Users/daniel.bodanske/Desktop/ra-math-advantage/apps/bus-math-v2
+
+ ✓ __tests__/components/teacher/GradebookDrillDown.integration.test.tsx (5 tests) 472ms
+ ✓ __tests__/components/exercises/MarkupMarginMastery.test.tsx (6 tests) 285ms
+ ❯ __tests__/lib/srs/review-processor.test.ts (11 tests | 2 failed) 13ms
+       ✓ all-correct submission produces Good or Easy rating 5ms
+       ✓ incorrect submission produces Again rating 1ms
+       ✓ submission with hints used produces Hard rating 0ms
+       × null cardState creates new card with provided studentId 3ms
+       ✓ null cardState without studentId throws error 1ms
+       ✓ existing cardState updates card 0ms
+       ✓ timing data with fast speed band can upgrade Good to Easy 0ms
+       ✓ timing data with slow speed band can downgrade Good to Hard 0ms
+       ✓ low confidence timing is ignored 0ms
+       ✓ misconception tags produce Again rating 0ms
+       × reviewLog has correct fields 1ms
+ ❯ __tests__/lib/srs/scheduler.test.ts (14 tests | 3 failed) 13ms
+       ✓ returns card with due set to approximately now 1ms
+       ✓ returns card with reviewCount = 0 0ms
+       × returns card with correct problemFamilyId and studentId 3ms
+       ✓ card has expected fsrs fields 0ms
+       ✓ Again rating sets due to very soon (within a day) 2ms
+       ✓ Easy rating sets due further out than Good 0ms
+       ✓ Good rating increments stability 0ms
+       ✓ Hard rating provides slight interval increase 0ms
+       ✓ increments reviewCount 0ms
+       ✓ updates lastReview timestamp 0ms
+       × returns only cards where due date has passed 1ms
+       ✓ returns empty array when all cards are scheduled for future 0ms
+       × returns multiple due cards sorted by due date ascending 0ms
+       ✓ respects sessionSize cap via filtering 0ms
+ ✓ __tests__/dev/blueprint-qa/rate-pattern-classification-registration.test.tsx (1 test) 706ms
+     ✓ registers and previews the exact Topic 1.3 Example 1 modes  704ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/lib/srs/review-processor.test.ts > lib/srs/review-processor > processPracticeSubmission > null cardState creates new card with provided studentId
+AssertionError: expected undefined to be 'transaction-effects' // Object.is equality
+
+- Expected:
+"transaction-effects"
+
++ Received:
+undefined
+
+ ❯ __tests__/lib/srs/review-processor.test.ts:80:43
+     78|       const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }…
+     79|       const result = processPracticeSubmission(envelope, null, makeTim…
+     80|       expect(result.card.problemFamilyId).toBe('transaction-effects');
+       |                                           ^
+     81|       expect(result.card.studentId).toBe('student-42');
+     82|       expect(result.card.reps).toBe(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  __tests__/lib/srs/review-processor.test.ts > lib/srs/review-processor > processPracticeSubmission > reviewLog has correct fields
+AssertionError: expected undefined to be 'transaction-effects' // Object.is equality
+
+- Expected:
+"transaction-effects"
+
++ Received:
+undefined
+
+ ❯ __tests__/lib/srs/review-processor.test.ts:151:48
+    149|       const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }…
+    150|       const result = processPracticeSubmission(envelope, null, makeTim…
+    151|       expect(result.reviewLog.problemFamilyId).toBe('transaction-effec…
+       |                                                ^
+    152|       expect(result.reviewLog.rating).toBe(result.rating);
+    153|       expect(result.reviewLog.scheduledAt).toBeGreaterThan(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  __tests__/lib/srs/scheduler.test.ts > lib/srs/scheduler > createNewCard (backward compatibility wrapper) > returns card with correct problemFamilyId and studentId
+AssertionError: expected undefined to be 'accounting-equation' // Object.is equality
+
+- Expected:
+"accounting-equation"
+
++ Received:
+undefined
+
+ ❯ __tests__/lib/srs/scheduler.test.ts:25:36
+     23|     it('returns card with correct problemFamilyId and studentId', () =…
+     24|       const card = createNewCard('accounting-equation', 'student-42');
+     25|       expect(card.problemFamilyId).toBe('accounting-equation');
+       |                                    ^
+     26|       expect(card.studentId).toBe('student-42');
+     27|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  __tests__/lib/srs/scheduler.test.ts > lib/srs/scheduler > getCardsDue (backward compatibility wrapper) > returns only cards where due date has passed
+AssertionError: expected undefined to be 'transaction-effects' // Object.is equality
+
+- Expected:
+"transaction-effects"
+
++ Received:
+undefined
+
+ ❯ __tests__/lib/srs/scheduler.test.ts:98:38
+     96|       const due = getCardsDue(cards, now);
+     97|       expect(due).toHaveLength(1);
+     98|       expect(due[0].problemFamilyId).toBe('transaction-effects');
+       |                                      ^
+     99|     });
+    100|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  __tests__/lib/srs/scheduler.test.ts > lib/srs/scheduler > getCardsDue (backward compatibility wrapper) > returns multiple due cards sorted by due date ascending
+AssertionError: expected undefined to be 'accounting-equation' // Object.is equality
+
+- Expected:
+"accounting-equation"
+
++ Received:
+undefined
+
+ ❯ __tests__/lib/srs/scheduler.test.ts:121:38
+    119|       const due = getCardsDue([card1, card2, card3], now);
+    120|       expect(due).toHaveLength(3);
+    121|       expect(due[0].problemFamilyId).toBe('accounting-equation');
+       |                                      ^
+    122|       expect(due[1].problemFamilyId).toBe('adjustment-effects');
+    123|       expect(due[2].problemFamilyId).toBe('classification');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  5 failed | 32 passed (37)
+   Start at  10:43:09
+   Duration  2.90s (transform 862ms, setup 369ms, import 1.01s, tests 1.49s, environment 2.26s)
+

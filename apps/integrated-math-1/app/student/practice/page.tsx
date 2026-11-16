@@ -40,12 +40,14 @@ export default async function StudentPracticePage() {
   }
 
   const { session, queue } = activeSessionData;
+  const pilotActivities = await fetchInternalQuery(internal.activities.getApprovedTranslationPilot, { studentId: claims.sub });
 
   return (
     <PracticeSessionProvider
       session={session}
       queue={queue}
       studentId={claims.sub}
+      pilotActivities={pilotActivities}
     />
   );
 }

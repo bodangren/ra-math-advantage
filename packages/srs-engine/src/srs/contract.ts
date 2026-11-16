@@ -1,7 +1,7 @@
 /**
  * Daily Practice SRS Product Contract
  *
- * Version: srs.contract.v1
+ * Version: srs.contract.v3
  *
  * This module consolidates all types needed for the spaced-repetition daily
  * practice pipeline. It re-exports from `@math-platform/practice-core` where
@@ -31,7 +31,71 @@
 /**
  * Canonical version identifier for the SRS contract.
  */
-export const SRS_CONTRACT_VERSION = 'srs.contract.v1' as const;
+export const SRS_CONTRACT_VERSION_LEGACY = 'srs.contract.v1' as const;
+export const SRS_CONTRACT_VERSION = 'srs.contract.v3' as const;
+
+export {
+  PLACEMENT_POLICY_VERSION,
+  PLACEMENT_DECISION_PROBE_COUNT,
+  PLACEMENT_TIE_BREAK_PROBE_COUNT,
+  DEFAULT_PLACEMENT_PROBE_BUDGET,
+  DEFAULT_PLACEMENT_STAGNATION_LIMIT,
+  PLACEMENT_PROBE_OUTCOMES,
+  PLACEMENT_DECISIONS,
+  PLACEMENT_FRONTIER_STATUSES,
+  PLACEMENT_STOPPING_REASONS,
+  placementProbeOutcomeSchema,
+  placementDecisionDirectionSchema,
+  placementFrontierStatusSchema,
+  placementStoppingReasonSchema,
+  placementConfidenceCapSchema,
+  placementProbeInstrumentSnapshotSchema,
+  placementProbeEvidenceSchema,
+  placementProbeDecisionSchema,
+  placementFrontierNodeStateSchema,
+  placementFrontierStateSchema,
+  resolvePlacementStoppingReason,
+  isPlacementProbeEvidenceV31,
+  isPlacementProbeDecisionV31,
+  isPlacementFrontierStateV31,
+} from './placement-contract';
+export type {
+  PlacementProbeOutcome,
+  PlacementDecisionDirection,
+  PlacementFrontierStatus,
+  PlacementStoppingReason,
+  PlacementConfidenceCap,
+  PlacementProbeInstrumentSnapshot,
+  PlacementProbeEvidenceV31,
+  PlacementProbeDecisionV31,
+  PlacementFrontierNodeState,
+  PlacementFrontierStateV31,
+} from './placement-contract';
+
+export {
+  SCHEDULER_POLICY_VERSION,
+  OBJECTIVE_PRIORITIES,
+  DEFAULT_REQUEST_RETENTION_BY_PRIORITY,
+  objectivePrioritySchema as schedulerObjectivePrioritySchema,
+  requestRetentionByPrioritySchema,
+  schedulerConfigSchema,
+  normalizeSchedulerConfig,
+  resolveRequestedRetention,
+  isSchedulerConfigV31,
+  paramsVersionSchema,
+  paramsVersionStampSchema,
+  createParamsVersionStamp,
+  isParamsVersionStampV31,
+  hasStampedParamsVersion,
+} from './scheduler-policy-contract';
+export type {
+  ObjectivePriorityV31,
+  RequestRetentionByPriority,
+  SchedulerConfigV31,
+  ParamsVersionStampV31,
+} from './scheduler-policy-contract';
+
+import type { ParamsVersionStampV31 } from './scheduler-policy-contract';
 
 // ============================================
 // Objective Policy Types (SRS-specific)
@@ -67,8 +131,27 @@ export const PRIORITY_DEFAULTS: Record<ObjectivePriority, ObjectivePracticePolic
 // Types: SRS Rating (re-exported from practice-core)
 // ============================================
 
-import type { SrsRating, SrsRatingInput, SrsRatingResult } from '@math-platform/practice-core/srs-rating';
-export type { SrsRating, SrsRatingInput, SrsRatingResult } from '@math-platform/practice-core/srs-rating';
+import type { SrsRating } from '@math-platform/practice-core/srs-rating';
+export type {
+  SrsRating,
+  SrsRatingInput,
+  SrsRatingInputV31,
+  SrsRatingResult,
+} from '@math-platform/practice-core/srs-rating';
+export {
+  SRS_RATING_POLICY_VERSION,
+  TIMING_BASELINE_POLICY_VERSION,
+  timingZBaselineSchema,
+  ratingCapDecisionSchema,
+  timingRatingDecisionSchema,
+  srsRatingResultV31Schema,
+} from '@math-platform/practice-core/v3-1-contracts';
+export type {
+  TimingZBaseline,
+  RatingCapDecision,
+  TimingRatingDecision,
+  SrsRatingResultV31,
+} from '@math-platform/practice-core/v3-1-contracts';
 
 // ============================================
 // Types: Timing Baseline (re-exported from practice-core)
@@ -120,6 +203,99 @@ export type SrsCardState = {
 };
 
 // ============================================
+// v3 Placement and Queue Contracts
+// ============================================
+
+export type PlacementConfidence = 'low' | 'medium' | 'high';
+export type PlacementEvidenceType = 'direct' | 'inferred';
+
+export type PlacementEstimate = {
+  nodeId: string;
+  masteryEstimate: number;
+  confidence: PlacementConfidence;
+  evidenceType: PlacementEvidenceType;
+  inferenceDepth: number;
+};
+
+export type PlacementCardProvenance = {
+  source: 'placement';
+  evidenceType: PlacementEvidenceType;
+  confidence: PlacementConfidence;
+  inferenceDepth: number;
+  placedAt: string;
+};
+
+export type PlacementSeededCard = SrsCardState & {
+  placement: PlacementCardProvenance;
+};
+
+export type DailyQueueResult<TItem = unknown> = {
+  items: TItem[];
+  backlog: boolean;
+  dueReviewCount: number;
+  deferredReviewCount: number;
+  newCardsSuppressed: boolean;
+};
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function isNonNegativeInteger(value: unknown): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value >= 0;
+}
+
+export function isPlacementEstimate(value: unknown): value is PlacementEstimate {
+  if (!isRecord(value)) return false;
+  const confidence = value.confidence;
+  const evidenceType = value.evidenceType;
+  const inferenceDepth = value.inferenceDepth;
+  if (typeof value.nodeId !== 'string' || value.nodeId.length === 0) return false;
+  if (typeof value.masteryEstimate !== 'number' || !Number.isFinite(value.masteryEstimate)) return false;
+  if (value.masteryEstimate < 0 || value.masteryEstimate > 1) return false;
+  if (confidence !== 'low' && confidence !== 'medium' && confidence !== 'high') return false;
+  if (evidenceType !== 'direct' && evidenceType !== 'inferred') return false;
+  if (!isNonNegativeInteger(inferenceDepth)) return false;
+  if (evidenceType === 'direct' && inferenceDepth !== 0) return false;
+  if (evidenceType === 'inferred' && inferenceDepth === 0) return false;
+  return true;
+}
+
+export function isPlacementSeededCard(value: unknown): value is PlacementSeededCard {
+  if (!isRecord(value) || !isRecord(value.placement)) return false;
+  const placement = value.placement;
+  if (placement.source !== 'placement') return false;
+  if (placement.evidenceType !== 'direct' && placement.evidenceType !== 'inferred') return false;
+  if (placement.confidence !== 'low' && placement.confidence !== 'medium' && placement.confidence !== 'high') return false;
+  if (!isNonNegativeInteger(placement.inferenceDepth)) return false;
+  if (placement.evidenceType === 'direct' && placement.inferenceDepth !== 0) return false;
+  if (placement.evidenceType === 'inferred' && placement.inferenceDepth === 0) return false;
+  if (typeof placement.placedAt !== 'string' || !Number.isFinite(Date.parse(placement.placedAt))) return false;
+
+  const stringFields = ['cardId', 'studentId', 'objectiveId', 'variantKey', 'dueDate', 'createdAt', 'updatedAt'] as const;
+  if (stringFields.some((field) => typeof value[field] !== 'string' || value[field].length === 0)) return false;
+  if (value.lastReview !== null && typeof value.lastReview !== 'string') return false;
+  if (value.state !== 'review') return false;
+  const numberFields = ['stability', 'difficulty', 'elapsedDays', 'scheduledDays', 'reps', 'lapses'] as const;
+  if (numberFields.some((field) => typeof value[field] !== 'number' || !Number.isFinite(value[field]))) return false;
+  const stability = value.stability as number;
+  const elapsedDays = value.elapsedDays as number;
+  const scheduledDays = value.scheduledDays as number;
+  const reps = value.reps as number;
+  const lapses = value.lapses as number;
+  if (stability < 0 || elapsedDays < 0 || scheduledDays < 0 || reps < 1 || lapses < 0) return false;
+  return true;
+}
+
+export function isDailyQueueResult(value: unknown): value is DailyQueueResult {
+  if (!isRecord(value) || !Array.isArray(value.items)) return false;
+  if (typeof value.backlog !== 'boolean' || typeof value.newCardsSuppressed !== 'boolean') return false;
+  if (!isNonNegativeInteger(value.dueReviewCount) || !isNonNegativeInteger(value.deferredReviewCount)) return false;
+  if (value.deferredReviewCount > value.dueReviewCount) return false;
+  return true;
+}
+
+// ============================================
 // New Types: Review Log
 // ============================================
 
@@ -151,8 +327,13 @@ export type SrsReviewLogEntry = {
     SrsCardState,
     'stability' | 'difficulty' | 'state' | 'reps' | 'lapses'
   >;
+  /** Present on v3.1+ logs; legacy persisted entries may omit this field. */
+  paramsVersion?: string;
   reviewedAt: string; // ISO timestamp
 };
+
+/** v3.1 review-log contract with mandatory scheduler-parameter attribution. */
+export type SrsReviewLogEntryV31 = SrsReviewLogEntry & ParamsVersionStampV31;
 
 // ============================================
 // New Types: Session

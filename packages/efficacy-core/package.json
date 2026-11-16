@@ -11,12 +11,15 @@
     "./metrics/retention": "./src/metrics/retention.ts",
     "./metrics/time-to-mastery": "./src/metrics/time-to-mastery.ts",
     "./metrics/accuracy": "./src/metrics/accuracy.ts",
-    "./metrics/review-success": "./src/metrics/review-success.ts"
+    "./metrics/review-success": "./src/metrics/review-success.ts",
+    "./experiment/assign": "./src/experiment/assign.ts",
+    "./experiment/registry": "./src/experiment/registry.ts",
+    "./experiment/report": "./src/experiment/report.ts"
   },
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "lint": "eslint src --max-warnings 0",
+    "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit"
   },
@@ -26,10 +29,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@eslint/js": "^10",
-    "eslint": "^10.0.0",
     "typescript": "^6",
-    "typescript-eslint": "^8",
     "vitest": "^4.1.8"
   }
 }

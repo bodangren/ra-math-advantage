@@ -32,7 +32,7 @@ For a parabola with vertex at the origin and focus at (0, p):
 * If the focus is at (0, p) and directrix is [y = -p], the equation is [x² = 4py].
 * If the focus is at (0, -p) and directrix is [y = p], the equation is [x² = -4py].
 
-For a parabola with vertex at (h, k):
+For a parabola with vertex at (h, k), use a signed nonzero parameter p:
 
 [(x - h)² = 4p(y - k)] (opens upward if p > 0, downward if p < 0)
 [(y - k)² = 4p(x - h)] (opens right if p > 0, left if p < 0)
@@ -49,48 +49,39 @@ For focus (0, 4) and directrix [y = -4]: [p = 4], so [x² = 16y].
 
 For focus (0, 2) and directrix [y = -2]: [p = 2], so [x² = 8y].
 
-### Key Concept: Parabolas with Horizontal Axes
+### Key Concept: A Shifted Vertical Axis
 
 If the focus is at (1, 7) and directrix is [y = -9], the axis of symmetry is vertical. The vertex is midway between the focus and directrix: [(1, -1)]. The distance [p = 8]. Since the focus is above the directrix, the parabola opens upward. The equation is [(x - 1)² = 32(y + 1)].
 
 ## Example 1 — Write Equations with Vertical Axes
 
-Write the equation of the parabola with the given focus and directrix.
+### Problem
 
-### Step 1: Find the Vertex and Value of p
+Write the equation of a parabola with focus (0, -9) and directrix y = 9.
 
-The vertex is at the midpoint between the focus and directrix along the axis of symmetry. The value of [p] is the distance from the vertex to the focus (or directrix).
+### Solution
 
-For focus (0, 8) and directrix [y = -8]: vertex at (0, 0), [p = 8], so [x² = 32y].
-
-For focus (0, -9) and directrix [y = 9]: vertex at (0, 0), [p = -9], so [x² = -36y].
+The vertex is (0, 0), halfway between the focus and directrix along the vertical axis. The signed parameter is p = -9 because the focus is below the vertex. Use $x^2=4py$ to get $x^2=-36y$. The parabola opens downward.
 
 ## Example 2 — Write Equations with Horizontal or Off-Axis Parabolas
 
-For focus (8, 0) and directrix [y = 4]: the axis of symmetry is vertical through [x = 8]. The vertex is at (8, 2). The distance [p = -2] (focus is below directrix, so it opens downward). The equation is [(x - 8)² = -8(y - 2)].
+### Problem
 
-### Step 1: Identify the Axis of Symmetry
+Write equations for (a) focus (8, 0) and directrix y = 4, and (b) focus (5, 2) and directrix x = 1.
 
-The axis of symmetry is perpendicular to the directrix and passes through the focus. Determine whether the parabola opens vertically (up/down) or horizontally (left/right) based on whether the directrix is horizontal or vertical.
+### Solution
 
-### Step 2: Apply the Formula
-
-For a vertical axis: [(x - h)² = 4p(y - k)].
-For a horizontal axis: [(y - k)² = 4p(x - h)].
+(a) The vertical axis is x = 8. The vertex is (8, 2), and p = -2. Thus $(x-8)^2=-8(y-2)$. (b) The horizontal axis is y = 2. The vertex is (3, 2), and p = 2. Thus $(y-2)^2=8(x-3)$. The sign of p determines the opening direction.
 
 ## Example 3 — Parabolas in the Real World
 
-### Step 1: Highway Valley
+### Problem
 
-For a highway section modeled by a parabola with focus at (100, 55) and directrix at [y = 5]: the vertex is at (100, 30), and [p = 25]. The equation is [(x - 100)² = 100(y - 30)].
+A tunnel cross-section has focus (4, -2.5) and directrix y = 2.5. Coordinates are in feet. The road is the horizontal line y = -5. Find the tunnel width at road level and the clearance above the road at the center.
 
-The level section is modeled by [y = 70]. To find the maximum width, solve for [x] when [y = 70]: [(x - 100)² = 100(40) = 4000]. [x - 100 = ± sqrt(4000) = ± 20sqrt(10) ≈ ±63.25]. The width is approximately [126.5] km.
+### Solution
 
-### Step 2: Tunnel Design
-
-For a tunnel with focus at (4, -2.5) and directrix at [y = 2.5]: the vertex is at (4, 0), [p = -2.5]. The equation is [(x - 4)² = -10y].
-
-To check the width at 5 feet above ground ([y = -5]): [(-5 - 4)² = -10(-5)], so [81 = 50]. This is false, so the width at 5 feet is not 14 feet.
+The vertex is (4, 0), and p = -2.5. The equation is $(x-4)^2=-10y$. At road level, $(x-4)^2=50$, so the endpoints have $x=4\pm5\sqrt{2}$. The width is $10\sqrt{2}\approx14.14$ ft. The center clearance is 0 - (-5) = 5 ft. A vehicle-width check alone does not establish overhead clearance across the full vehicle width.
 
 ## Mixed Exercises
 
@@ -106,4 +97,4 @@ Practice with all skills from the lesson, including:
 
 ## Review Notes
 
-* ![](media/image1.png) — parabolic reflector diagram for mixed exercises (flashlight/headlight context)
+* ![Worksheet figure 1](/curriculum/module-5-lesson-8/image1.png) — parabolic reflector diagram for mixed exercises (flashlight/headlight context)

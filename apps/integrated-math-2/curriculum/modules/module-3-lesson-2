@@ -30,7 +30,7 @@ If two polygons are similar, what must be true about their corresponding angles 
 
 * Corresponding angles are **congruent** (equal in measure).
 * Corresponding sides are **proportional** (ratios equal the scale factor).
-* The ratio of perimeters equals the scale factor: [\frac{perimeter_{image}}{perimeter_{original}} = k]
+* The ratio of perimeters equals the scale factor: $\frac{perimeter_{image}}{perimeter_{original}} = k$
 
 ### Key Concept: Writing Similarity Statements
 
@@ -39,65 +39,43 @@ When writing similarity statements, list vertices in corresponding order:
 
 ## Example 1 — Identify Corresponding Parts
 
-### Step 1: List Congruent Angles
+### Problem
 
-For similar polygons, identify the pairs of congruent angles by matching vertex positions in the similarity statement.
+Quadrilaterals ABCD and WXYZ are similar in the stated order. List corresponding angles and write a proportion for corresponding sides.
 
-*Problem 1:* [ABCD ∼ WXYZ]
-Congruent angles: [∠A ≅ ∠W], [∠B ≅ ∠X], [∠C ≅ ∠Y], [∠D ≅ ∠Z]
+### Solution
 
-### Step 2: Write the Proportion
-
-Write proportions relating corresponding sides using the similarity statement.
-
-[
-\frac{AB}{WX} = \frac{BC}{XY} = \frac{CD}{YZ} = \frac{DA}{ZW}
-]
+The vertex order gives A with W, B with X, C with Y, and D with Z. Each pair of corresponding angles is congruent. The corresponding sides satisfy $AB/WX = BC/XY = CD/YZ = DA/ZW$.
 
 ## Example 2 — Determine Similarity and Scale Factor
 
-### Step 1: Compare Angle Measures
+### Problem
 
-Check whether corresponding angles are congruent. If all corresponding angles are equal, the figures may be similar.
+Triangles ABC and DEF have corresponding side lengths (3, 4, 5) cm and (6, 8, 10) cm. Determine whether they are similar and find the scale factor from ABC to DEF.
 
-### Step 2: Compare Side Ratios
+### Solution
 
-Verify that all pairs of corresponding sides have the same ratio (scale factor). If they do, the polygons are similar.
-
-[
-k = \frac{side_{image}}{side_{original}}
-]
+The corresponding side ratios are 6/3 = 8/4 = 10/5 = 2. The triangles are similar by SSS similarity. The scale factor from ABC to DEF is 2.
 
 ## Example 3 — Find Unknown Values
 
-### Step 1: Set Up a Proportion
+### Problem
 
-Use the known side lengths and the scale factor to set up a proportion.
+Triangle ABC is similar to triangle DEF in the stated order. AB = 4 cm, BC = 6 cm, DE = 10 cm, and EF = x cm. Find x.
 
-### Step 2: Solve for the Unknown
+### Solution
 
-Cross-multiply and solve for the variable.
+The scale factor from ABC to DEF is DE/AB = 10/4 = 2.5. Thus EF = 2.5(BC) = 2.5(6) = 15 cm, so x = 15.
 
 ## Example 4 — Apply Similarity to Real-World Problems
 
-### Step 1: Extract Given Information
+### Problem
 
-Identify the actual distances or measurements from the problem.
+A game map shows home to a store as 2 cm, the store to a dungeon as 8 cm, and the dungeon to home as 7 cm. The actual store-to-dungeon distance is 4 km. Find the other two actual distances.
 
-*Problem 15 (GAMING):* Map distances: home to health food store = 2 cm, health food store to dungeon = 8 cm, dungeon to home = 7 cm. Actual distance from health food store to dungeon = 4 km.
+### Solution
 
-### Step 2: Find the Scale Factor
-
-[
-k = \frac{actual\ distance}{map\ distance}
-]
-
-### Step 3: Calculate the Requested Distance
-
-Apply the scale factor to find other actual distances.
-
-*Problem 16 (LAWN CARE):* Perimeter = 126 m, ratio length:width = 5:2.
-Let [l = 5x] and [w = 2x]. Then [2(5x + 2x) = 126], so [x = 9], and [w = 18] m.
+The map scale is $4/8 = 0.5$ km per centimeter. Home to the store is $2(0.5) = 1$ km. The dungeon to home is $7(0.5) = 3.5$ km.
 
 ## Mixed Exercises
 
@@ -120,28 +98,28 @@ The mixed exercises section provides practice with all skills from the lesson. P
 ## Review Notes
 
 * Images referenced in the worksheet (polygon pairs for problems 1–6, similar figure comparisons for problems 7–10, proportion problems for problems 11–14, triangle figures for problems 17–18, additional polygon problems for problems 19–20, proof diagram for problem 21, triangle for problem 22, hockey rink for problem 25, paramecium for problem 26, pentagon for problem 30) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
-* ![](media/image1.png) — Polygon pair for problem 1 (ABCD ∼ WXYZ)
-* ![](media/image2.png) — Polygon pair for problem 2 (MNPQ ∼ RSTU)
-* ![](media/image3.png) — Triangle pair for problem 3 (△FGH ∼ △JKL)
-* ![](media/image4.png) — Triangle pair for problem 4 (△DEF ∼ △VWX)
-* ![](media/image5.png) — Polygon pair for problem 5 (ABCD ∼ FGHJ)
-* ![](media/image6.png) — Triangle pair for problem 6 (△MNP ∼ △QRP)
-* ![](media/image7.png) — Figure for problem 7
-* ![](media/image8.png) — Figure for problem 8
-* ![](media/image9.png) — Figure for problem 9
-* ![](media/image10.png) — Figure for problem 10
-* ![](media/image11.png) — Figure for problem 11
-* ![](media/image12.png) — Figure for problem 12
-* ![](media/image13.png) — Figure for problem 13
-* ![](media/image14.png) — Figure for problem 14
-* ![](media/image15.png) — Figure for problem 17 (△CBH ∼ △FEH)
-* ![](media/image16.png) — Figure for problem 18 (△DEF ∼ △CBF)
-* ![](media/image17.png) — Polygon for problem 19 (ABCD ∼ QSRP)
-* ![](media/image18.png) — Triangle for problem 20 (△JKL ∼ △WYZ)
-* ![](media/image19.png) — Proof diagram for Theorem 8.3
-* ![](media/image20.png) — Triangle for problem 22
-* ![](media/image21.png) — Ice hockey rink for problem 25
-* ![](media/image22.png) — Paramecium figure for problem 26
+* ![Worksheet figure 1](/curriculum/module-3-lesson-2/image1.png) — Polygon pair for problem 1 (ABCD ∼ WXYZ)
+* ![Worksheet figure 2](/curriculum/module-3-lesson-2/image2.png) — Polygon pair for problem 2 (MNPQ ∼ RSTU)
+* ![Worksheet figure 3](/curriculum/module-3-lesson-2/image3.png) — Triangle pair for problem 3 (△FGH ∼ △JKL)
+* ![Worksheet figure 4](/curriculum/module-3-lesson-2/image4.png) — Triangle pair for problem 4 (△DEF ∼ △VWX)
+* ![Worksheet figure 5](/curriculum/module-3-lesson-2/image5.png) — Polygon pair for problem 5 (ABCD ∼ FGHJ)
+* ![Worksheet figure 6](/curriculum/module-3-lesson-2/image6.png) — Triangle pair for problem 6 (△MNP ∼ △QRP)
+* ![Worksheet figure 7](/curriculum/module-3-lesson-2/image7.png) — Figure for problem 7
+* ![Worksheet figure 8](/curriculum/module-3-lesson-2/image8.png) — Figure for problem 8
+* ![Worksheet figure 9](/curriculum/module-3-lesson-2/image9.png) — Figure for problem 9
+* ![Worksheet figure 10](/curriculum/module-3-lesson-2/image10.png) — Figure for problem 10
+* ![Worksheet figure 11](/curriculum/module-3-lesson-2/image11.png) — Figure for problem 11
+* ![Worksheet figure 12](/curriculum/module-3-lesson-2/image12.png) — Figure for problem 12
+* ![Worksheet figure 13](/curriculum/module-3-lesson-2/image13.png) — Figure for problem 13
+* ![Worksheet figure 14](/curriculum/module-3-lesson-2/image14.png) — Figure for problem 14
+* ![Worksheet figure 15](/curriculum/module-3-lesson-2/image15.png) — Figure for problem 17 (△CBH ∼ △FEH)
+* ![Worksheet figure 16](/curriculum/module-3-lesson-2/image16.png) — Figure for problem 18 (△DEF ∼ △CBF)
+* ![Worksheet figure 17](/curriculum/module-3-lesson-2/image17.png) — Polygon for problem 19 (ABCD ∼ QSRP)
+* ![Worksheet figure 18](/curriculum/module-3-lesson-2/image18.png) — Triangle for problem 20 (△JKL ∼ △WYZ)
+* ![Worksheet figure 19](/curriculum/module-3-lesson-2/image19.png) — Proof diagram for Theorem 8.3
+* ![Worksheet figure 20](/curriculum/module-3-lesson-2/image20.png) — Triangle for problem 22
+* ![Worksheet figure 21](/curriculum/module-3-lesson-2/image21.png) — Ice hockey rink for problem 25
+* ![Worksheet figure 22](/curriculum/module-3-lesson-2/image22.png) — Paramecium figure for problem 26
 * The worksheet contains 31 practice problems across four examples and mixed exercises.
 
 (End of file - total 196 lines)

@@ -10,8 +10,7 @@ vi.mock('@/lib/convex/server', () => ({
   fetchInternalMutation: mockFetchInternalMutation,
   internal: {
     study: {
-      savePracticeTestResult: 'study:savePracticeTestResult',
-      recordStudySession: 'study:recordStudySession',
+      completePracticeTest: 'study:completePracticeTest',
     },
   },
 }));
@@ -59,6 +58,8 @@ describe('POST /api/practice-tests/complete', () => {
     const { POST } = await import('@/app/api/practice-tests/complete/route');
     const res = await POST(
       makeRequest({
+        attemptId: 'attempt-12345678',
+        answers: [{ questionId: 'm1-l1-q1', answer: 'A' }],
         moduleNumber: 1,
         lessonsTested: ['lesson-1-1'],
         questionCount: 10,
@@ -75,21 +76,16 @@ describe('POST /api/practice-tests/complete', () => {
     expect(body.success).toBe(true);
 
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
-      'study:savePracticeTestResult',
+      'study:completePracticeTest',
       expect.objectContaining({
         userId: 'p1',
         moduleNumber: 1,
-        score: 8,
+        answers: [{ questionId: 'm1-l1-q1', answer: 'A' }],
       })
     );
 
-    expect(mockFetchInternalMutation).toHaveBeenCalledWith(
-      'study:recordStudySession',
-      expect.objectContaining({
-        userId: 'p1',
-        activityType: 'practice_test',
-      })
-    );
+    expect(mockFetchInternalMutation).toHaveBeenCalledTimes(1);
+
   });
 
   it('returns 500 when mutation throws', async () => {
@@ -103,6 +99,8 @@ describe('POST /api/practice-tests/complete', () => {
     const { POST } = await import('@/app/api/practice-tests/complete/route');
     const res = await POST(
       makeRequest({
+        attemptId: 'attempt-12345678',
+        answers: [{ questionId: 'm1-l1-q1', answer: 'A' }],
         moduleNumber: 1,
         lessonsTested: ['lesson-1-1'],
         questionCount: 10,

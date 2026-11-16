@@ -1,111 +1,145 @@
 # Lesson 5-5 — Linear Regression
 
-Source: (Module 5, Lesson 5-5, Int1_0505_practice.docx)
+Source: Module 5, Lesson 5-5, `Int1_0505_practice.docx`
 
 ## Today's Goals
 
-* Use technology to calculate the equation of a best-fit line and the correlation coefficient for a bivariate data set.
-* Interpret the correlation coefficient [ r ] in the context of a problem.
-* Make predictions using a linear regression equation and distinguish between interpolation and extrapolation.
-* Construct and analyze a residual plot to assess the appropriateness of a linear model.
+* Use technology to calculate a linear regression equation and a correlation coefficient for bivariate data.
+* Interpret the correlation coefficient `r` in context.
+* Use a linear regression equation to make predictions.
+* Distinguish interpolation from extrapolation.
+* Construct and analyze a residual plot.
 
-## Vocabulary
+## Vocabulary and limits
 
-* **Linear regression** — a statistical method for finding the line of best fit that models the relationship between two quantitative variables.
-* **Best-fit line** — the line [ y = ax + b ] that minimizes the sum of the squared residuals for a data set.
-* **Correlation coefficient** — a value [ r ] between -1 and 1 that measures the strength and direction of a linear relationship; values close to [ \pm 1 ] indicate a strong linear fit.
-* **Residual** — the difference between an observed [ y ]-value and the [ y ]-value predicted by the regression line: [ y_i - \hat{y}_i ].
-* **Residual plot** — a scatter plot of the residuals versus the independent variable, used to check whether a linear model is appropriate.
-* **Extrapolation** — using a regression equation to estimate values outside the range of the original data, which may produce unreliable predictions.
+* **Linear regression** finds a line that minimizes the sum of the squared residuals.
+* **Correlation coefficient** `r` describes the direction and strength of a linear association. It is between -1 and 1.
+* **Residual** is `observed y - predicted y`.
+* **Residual plot** shows residuals against the explanatory variable.
+* **Interpolation** uses a model inside the source data range.
+* **Extrapolation** uses a model outside the source data range.
 
-## Learn: Linear Regression and Prediction
+Random scatter around zero supports a linear model. It does not prove that the linear model is correct. A pattern is evidence against the linear model. Model fit, outliers, unequal spread, context, and source quality also affect the conclusion.
 
-When two variables appear to have a linear relationship, a regression line can model the trend and help make predictions. Technology (graphing calculator or statistical software) is typically used to find the exact equation and correlation coefficient.
+Interpolation is usually safer than extrapolation. Reliability also depends on model fit, sample quality, domain constraints, and whether the process stays stable.
 
-### Key Concept: Interpreting Linear Regression
+The worksheet does not give one rounding rule for all regression results. The calculations below keep enough decimal places to show the verified results. A future assessment must state its required precision.
 
-* The best-fit line has the form [ y = ax + b ], where [ a ] is the slope (rate of change) and [ b ] is the [ y ]-intercept.
-* The correlation coefficient [ r ] tells you how closely the data points cluster around the line. [ |r| \approx 1 ] means a strong linear fit; [ r \approx 0 ] means little to no linear relationship.
-* A residual plot with no obvious pattern suggests a linear model is appropriate. A curved pattern suggests a different model may be better.
-* Predictions made within the data range (interpolation) are generally more reliable than predictions outside the range (extrapolation).
+## Example 1: Best-Fit Line and Correlation Coefficient
 
-## Example 1 — Best-Fit Line and Correlation Coefficient
+### Problem 1: Soccer
 
-Given a table of paired data, find the equation of the best-fit line and interpret the correlation coefficient.
+Let `x` be the number of years since 2010.
 
-### Step 1: Enter the Data
+* Year: 2010, 2011, 2012, 2013, 2014, 2015
+* Goals scored: 48, 52, 50, 46, 48, 42
 
-Input the paired values into a graphing calculator or statistical software. Let [ x ] represent the independent variable (such as years since a base year) and [ y ] represent the dependent variable (such as goals scored, revenue, or sales).
+Linear regression gives `y = -1.3142857x + 50.952381` and `r = -0.713772`. The value of `r` shows a negative linear association. Strength labels can vary by convention, so use the numerical value with the contextual statement.
 
-### Step 2: Perform Linear Regression
+### Problem 2: Revenue
 
-Run the linear regression command to obtain:
-[
-y = ax + b
-]
-and the correlation coefficient:
-[
-r
-]
+Let `x` be the number of years since 2010. Revenue is in millions of dollars.
 
-### Step 3: Interpret the Results
+* Year: 2010, 2011, 2012, 2013, 2014, 2015, 2016
+* Revenue: 448, 276.2, 166.9, 97.9, 66.3, 54.5, 40.1
 
-State the equation in context. Interpret [ r ] by describing the strength and direction of the linear relationship. For example, [ r = 0.95 ] indicates a strong positive linear association.
+Linear regression gives `y = -63.132143x + 353.667857` and `r = -0.910866`. This is a strong negative linear association.
 
-## Example 2 — Prediction with Linear Regression
+### Problem 3: Sales
 
-Given a data set, find the best-fit line and use it to predict a future or unknown value.
+Let `x` be the number of years since 2010. Sales are in millions of dollars.
 
-### Step 1: Find the Regression Equation
+* Year: 2011, 2012, 2013, 2014, 2015
+* Sales: 12.2, 19.1, 29.4, 37.3, 45.7
 
-Enter the data and compute the best-fit line:
-[
-y = ax + b
-]
+Linear regression gives `y = 8.52x + 3.18` and `r = 0.998661`. This is a very strong positive linear association.
 
-### Step 2: Substitute to Predict
+## Example 2: Prediction with Linear Regression
 
-Identify the [ x ]-value for the desired prediction. Substitute into the equation:
-[
-\hat{y} = a(x_{\text{new}}) + b
-]
+### Problem 4: Sunscreen
 
-For example, if [ x ] represents years since 2010, to predict a value in 2025 use [ x = 15 ].
+Let `x` be the number of years since 2010.
 
-### Step 3: Consider Reasonableness
+* Year: 2013, 2014, 2015, 2016, 2017
+* Bottles of sunscreen: 60,200, 65,000, 66,300, 65,200, 70,600
 
-Evaluate whether the prediction is interpolation (within the data range) or extrapolation (beyond the data range). Extrapolated predictions should be reported with caution.
+Linear regression gives `y = 2100x + 54,960`. For 2025, `x = 15`. The model predicts `86,460 bottles`. This is extrapolation beyond the source years.
 
-## Example 3 — Residual Plot Analysis
+### Problem 5: Gold
 
-Given a data set, find the best-fit line and use a residual plot to assess whether a linear model is appropriate.
+Let `x` be the number of years since 2000. Price is dollars per ounce.
 
-### Step 1: Find the Best-Fit Line
+* Year: 2002, 2004, 2006, 2008, 2010, 2012, 2014
+* Price: 342.75, 435.60, 635.70, 869.75, 1420.25, 1664.00, 1199.25
 
-Perform linear regression to obtain:
-[
-\hat{y} = ax + b
-]
+Linear regression gives `y = 103.765179x + 108.064286`. For 2030, `x = 30`. The model predicts approximately `$3,221.02`. This distant extrapolation requires caution.
 
-### Step 2: Calculate Residuals
+### Problem 6: Golf scores
 
-For each data point, compute:
-[
-\text{residual} = y_i - \hat{y}_i = y_i - (ax_i + b)
-]
+* Week: 1, 2, 3, 4, 5
+* Golf score: 112, 107, 108, 104, 98
 
-### Step 3: Graph and Analyze the Residual Plot
+Linear regression gives `y = -3.1x + 115.1`. The week 10 prediction is `84.1` strokes. This is extrapolation.
 
-Plot each residual against its corresponding [ x ]-value.
+## Example 3: Residual Plot Analysis
 
-* If the points are randomly scattered around the horizontal axis with no obvious pattern, a linear model is appropriate.
-* If a curved pattern (such as a U-shape) is visible, the relationship may be nonlinear and a different model should be considered.
+### Problem 7: Sunlight and plant height
+
+* Hours of sunlight per day: 0, 3, 6, 10, 4, 9, 7, 8, 12, 11, 5
+* Height in inches: 1, 3, 4, 8, 4, 6, 7, 8, 9, 6, 5
+
+Linear regression gives `y = 0.591837x + 1.510204` and `r = 0.892780`. Calculate each residual as `observed y - predicted y`. Plot each residual at its source `x`-value. Then inspect the residual pattern before selecting the model.
+
+### Problem 8: Fertilizer and plant height
+
+* Drops of fertilizer: 5, 15, 20, 25, 18, 22, 21, 30, 10, 13, 16
+* Height in inches: 5, 8, 9, 0, 8, 0, 9, 0, 7, 6, 9
+
+The source contains height values of 0 at 25, 22, and 30 drops. Linear regression gives `y = -0.266901x + 10.276875` and `r = -0.495631`. The table shows an association. It does not identify a causal effect because the source does not state random assignment, controls, or another causal design.
 
 ## Mixed Exercises
 
-The mixed exercises provide practice combining all skills: finding best-fit lines, interpreting correlation coefficients, making predictions, analyzing residual plots, and evaluating the reasonableness of extrapolation. Problems also ask students to consider constraints in real-world contexts, compare lines of fit with linear regression, and distinguish between correlation and causation.
+### Problem 9: Physical fitness
 
-## Review Notes
+* School year: 2011–2012, 2012–2013, 2013–2014, 2014–2015
+* Percentage: 20.5, 22.1, 22.6, 21.2
 
-* The extracted worksheet references 13 image files (image1.png through image13.png) containing data tables. These images were not converted to text and must be reviewed to obtain the numerical values for each problem.
-* Several problems involve real-world contexts (soccer, revenue, sales, sunscreen, gold prices, golf, plant growth, physical fitness, farming, football, athletics) that require students to interpret slopes and predictions in context.
+A percentage prediction must stay from 0 through 100. The small four-year sample also limits long-range predictions.
+
+### Problem 10: Farming
+
+* Soil acidity in pH: 5.7, 6.2, 6.6, 6.8, 7.1
+* Bushels harvested: 3, 20, 48, 61, 73
+
+Linear regression gives approximately `y = 52.693603x - 300.454545`. Substitution at pH 10 gives approximately 226.48 bushels. This is far outside the measured range. It is also outside the stated pH range of 6 through 7.5 in which barley grows best. The model does not justify unrestricted predictions for extreme acidity.
+
+### Problem 11: Football
+
+* Game number: 1, 3, 6, 9, 12
+* Cumulative yards: 184, 431, 818, 1257, 1732
+
+Linear regression gives approximately `y = 140.426396x + 13.756345`. The model reaches 950 yards at approximately `6.67 games`. It reaches 1,000 yards at approximately `7.02 games`. These are continuous estimates. A response must state how it converts an estimate to a discrete game number.
+
+### Problem 12: Correlation and model fit
+
+The source says that `y = 1.43x - 4.2` models the data very well. The positive slope requires positive `r`. The stated good fit requires the magnitude of `r` to be close to 1. The equation alone does not determine the magnitude of `r`.
+
+### Problem 13: College athletics
+
+* School year: 2010–2011, 2011–2012, 2012–2013, 2013–2014, 2014–2015
+* Student athletes: 444,077, 453,347, 463,202, 472,625, 482,533
+
+The problem asks for a regression equation, `r`, a residual analysis, and a prediction for 2035. The 2035 prediction is a long extrapolation.
+
+### Problems 14 through 17
+
+Problem 14 compares a student-selected line of fit with linear regression. Problem 15 asks whether a sample of 10 randomly selected students supports predictions for other students. A random sample helps, but sample size and population scope still limit the conclusion.
+
+Problem 16 gives `r = 0.946` and asks whether a change in the independent variable causes a change in the dependent variable. A correlation coefficient of 0.946 can occur when a causal relationship exists or when it does not. The correct classification for the source statement is sometimes true. The high correlation alone does not prove causation.
+
+Problem 17 gives these data:
+
+* Years since 1980: 0, 10, 20, 25, 30
+* Number of athletes: 5,356,913; 5,298,671; 6,705,223; 7,159,904; 7,667,955
+
+The problem asks for a regression line and a prediction for 2008, where `x = 28`.

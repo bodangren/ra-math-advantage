@@ -1,14 +1,11 @@
-Account,Account Type,Balance
-Cash,Asset,7279
-Accounts Receivable,Asset,6407
-Office Supplies,Asset,4896
-Prepaid Rent,Asset,5393
-Office Equipment,Asset,7294
-Accumulated Depreciation,Asset,-266
-Accounts Payable,Liability,10134
-Accrued Wages,Liability,2224
-Deferred Revenue,Liability,1469
-Bank Loan,Liability,1364
-Owner's Capital,Equity,9487
-Retained Earnings,Equity,4743
-Net Income,Equity,1582
+Input,Value
+Opening units,40
+Opening unit cost,12.0
+Purchased units,60
+Purchase unit cost,14.4
+Units sold,70
+Selling price per unit,24.0
+Project materials,960.0
+Project labor hours,20
+Labor cost per hour,30.0
+Overhead per labor hour,9.6

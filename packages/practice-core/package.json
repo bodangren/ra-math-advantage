@@ -8,10 +8,12 @@
   "exports": {
     ".": "./src/index.ts",
     "./contract": "./src/practice/contract.ts",
+    "./learning-evidence": "./src/practice/learning-evidence.ts",
     "./submission-schema": "./src/practice/submission.schema.ts",
     "./timing": "./src/practice/timing.ts",
     "./timing-baseline": "./src/practice/timing-baseline.ts",
     "./srs-rating": "./src/practice/srs-rating.ts",
+    "./v3-1-contracts": "./src/practice/v3-1-contracts.ts",
     "./problem-family": "./src/practice/problem-family.ts",
     "./practice-item": "./src/practice/practice-item.ts",
     "./error-analysis": "./src/practice/error-analysis/index.ts",
@@ -21,7 +23,7 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:generators": "vitest run src/generator-qa/__tests__/ci-gate.test.ts",
-    "lint": "eslint src --max-warnings 0",
+    "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit"
   },
@@ -29,11 +31,8 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@eslint/js": "^10",
     "@types/node": "^24.19.2",
-    "eslint": "^10.0.0",
     "typescript": "^6",
-    "typescript-eslint": "^8",
     "vitest": "^4.1.8"
   }
 }

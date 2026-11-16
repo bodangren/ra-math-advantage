@@ -8,9 +8,11 @@ vi.mock('@/components/auth/AuthProvider', () => ({
   useAuth: mockUseAuth,
 }));
 
-vi.mock('@/lib/phase-completion/client', () => ({
+vi.mock('@/lib/phase-completion/client', async (importOriginal) => ({
+  ...await importOriginal<typeof import('@/lib/phase-completion/client')>(),
   completePhaseRequest: mockCompletePhaseRequest,
 }));
+const { PhaseCompletionError } = await import('@/lib/phase-completion/client');
 
 const { usePhaseCompletion } = await import('../../hooks/usePhaseCompletion');
 
@@ -93,6 +95,14 @@ describe('usePhaseCompletion', () => {
         lessonId: 'unit-1-lesson-1',
       }),
     );
+  });
+
+  it('does not queue a rejected completion policy', async () => {
+    mockCompletePhaseRequest.mockRejectedValueOnce(new PhaseCompletionError('Finish required work', { status: 409 }));
+    const { result } = renderHook(() => usePhaseCompletion(baseOptions));
+    await act(async () => { await result.current.completePhase(); });
+    expect(JSON.parse(localStorage.getItem('completion-queue') ?? '[]')).toEqual([]);
+    expect(result.current.error?.message).toBe('Finish required work');
   });
 
   it('queues failed completions for retry', async () => {

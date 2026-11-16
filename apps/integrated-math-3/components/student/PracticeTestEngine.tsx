@@ -13,6 +13,9 @@ import { filterQuestionsByLessonIds, drawRandomQuestions, shuffleAnswers } from 
 interface PracticeTestEngineProps {
   moduleConfig: PracticeTestModuleConfig;
   onComplete?: (result: {
+    attemptId: string;
+    answers: Array<{ questionId: string; answer: string }>;
+    durationSeconds: number;
     moduleNumber: number;
     lessonsTested: string[];
     questionCount: number;
@@ -71,7 +74,14 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
     setSelectedLessonIds([]);
   };
 
-  const handleStartTest = () => {
+  const attemptId = useRef('');
+  const answers = useRef<Array<{ questionId: string; answer: string }>>([]);
+  const startedAt = useRef(0);
+  const handleStartTest = (event: React.MouseEvent<HTMLButtonElement>) => {
+    attemptId.current = crypto.randomUUID();
+    answers.current = [];
+    startedAt.current = event.timeStamp;
+    hasCalledOnCompleteRef.current = false;
     const filteredQuestions = filterQuestionsByLessonIds(moduleConfig.questions, selectedLessonIds);
     const drawnQuestions = drawRandomQuestions(filteredQuestions, questionCount);
     const shuffledQuestions = drawnQuestions.map((q) => ({
@@ -103,6 +113,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
     const current = testQuestions[currentQuestionIndex];
     if (!current || hasSeenFeedback) return;
     const { question, original } = current;
+    answers.current.push({ questionId: original.id, answer: selectedAnswer });
     const isCorrect = selectedAnswer === question.choices[question.correctIndex];
     setLastAnswerCorrect(isCorrect);
 
@@ -127,7 +138,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
     setHasSeenFeedback(true);
   };
 
-  const handleContinueQuestion = () => {
+  const handleContinueQuestion = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (currentQuestionIndex < testQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
       setHasSeenFeedback(false);
@@ -146,6 +157,9 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
           })
         );
         onComplete({
+          attemptId: attemptId.current,
+          answers: answers.current,
+          durationSeconds: Math.floor((event.timeStamp - startedAt.current) / 1000),
           moduleNumber: moduleConfig.moduleNumber,
           lessonsTested: selectedLessonIds,
           questionCount: testQuestions.length,

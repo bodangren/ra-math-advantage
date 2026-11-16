@@ -5,7 +5,6 @@ import {
   buildStudentDashboardViewModel,
   type StudentDashboardUnit,
 } from '@/lib/student/dashboard';
-import { ModuleCompleteScreen } from '@/components/lesson/ModuleCompleteScreen';
 import { DailyPracticeCard } from '@/components/student/DailyPracticeCard';
 import {
   RecommendedNextPanel,
@@ -36,20 +35,8 @@ function emptyStudentVisualization(): StudentVisualizationV1 {
   };
 }
 
-interface PageProps {
-  searchParams: Promise<{ complete?: string }>;
-}
-
-/**
- * Renders the student dashboard showing unit progress, daily practice card,
- * and an optional module-completion celebration screen.
- *
- * @returns {JSX.Element} The rendered StudentDashboardPage JSX.
- */
-export default async function StudentDashboardPage({ searchParams }: PageProps) {
-  const params = await searchParams;
-  const showModuleComplete = params.complete === 'module-1';
-
+/** Renders course progress and daily practice. */
+export default async function StudentDashboardPage() {
   const claims = await requireStudentSessionClaims('/auth/login');
 
   const rawUnits: StudentDashboardUnit[] = await fetchInternalQuery(
@@ -67,8 +54,8 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
   let studentVisualization: StudentVisualizationV1 | null = null;
   try {
     studentVisualization = (await fetchInternalQuery(
-      internal.student.getStudentVisualization,
-      { userId: claims.sub },
+      'student/knowledge_state:getStudentKnowledgeState',
+      { studentId: claims.sub },
     )) as StudentVisualizationV1 | null;
   } catch (error) {
     // Don't let a planner-query failure crash the whole dashboard. The panel
@@ -78,18 +65,6 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
 
   const visualization = studentVisualization ?? emptyStudentVisualization();
 
-  if (showModuleComplete && vm.summary.completedLessons === vm.summary.totalLessons) {
-    return (
-    <div className="max-w-4xl mx-auto space-y-10 py-8" data-testid="student-dashboard">
-        <ModuleCompleteScreen
-          moduleLabel="Module 1: Linear Functions"
-          lessonsCompleted={vm.summary.completedLessons}
-          totalLessons={vm.summary.totalLessons}
-          totalTimeMinutes={0}
-        />
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-4xl mx-auto space-y-10 py-8">
@@ -120,6 +95,7 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
         dueCount={practiceStats?.dueCount ?? 0}
         streak={practiceStats?.streak ?? 0}
         lastPracticedAt={practiceStats?.lastPracticedAt ?? null}
+        reviewLoadState={practiceStats?.reviewLoadState ?? 'normal'}
       />
 
       {/* Recommended next skills — next-skill planner output */}

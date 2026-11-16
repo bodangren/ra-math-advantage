@@ -1,0 +1,10 @@
+{
+  "track_id": "danielson-slt-deck_20260907",
+  "type": "docs",
+  "status": "in_progress",
+  "created_at": "2026-09-07T10:00:00Z",
+  "updated_at": "2026-09-07T11:25:00Z",
+  "description": "Rebuild the Danielson feature presentation for SLT.",
+  "estimated_tasks": 5,
+  "actual_tasks": 4
+}

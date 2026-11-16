@@ -1,0 +1,1264 @@
+{
+  "lessonCount": 89,
+  "units": [
+    {
+      "unit": 1,
+      "lessons": 11,
+      "activities": 24,
+      "emptyActivities": 0
+    },
+    {
+      "unit": 2,
+      "lessons": 11,
+      "activities": 0,
+      "emptyActivities": 11
+    },
+    {
+      "unit": 3,
+      "lessons": 11,
+      "activities": 0,
+      "emptyActivities": 11
+    },
+    {
+      "unit": 4,
+      "lessons": 11,
+      "activities": 0,
+      "emptyActivities": 11
+    },
+    {
+      "unit": 5,
+      "lessons": 11,
+      "activities": 0,
+      "emptyActivities": 11
+    },
+    {
+      "unit": 6,
+      "lessons": 11,
+      "activities": 0,
+      "emptyActivities": 11
+    },
+    {
+      "unit": 7,
+      "lessons": 11,
+      "activities": 0,
+      "emptyActivities": 11
+    },
+    {
+      "unit": 8,
+      "lessons": 11,
+      "activities": 0,
+      "emptyActivities": 11
+    },
+    {
+      "unit": 9,
+      "lessons": 1,
+      "activities": 0,
+      "emptyActivities": 1
+    }
+  ],
+  "components": [
+    "notebook-organizer",
+    "comprehension-quiz",
+    "fill-in-the-blank",
+    "spreadsheet",
+    "peer-critique-form",
+    "reflection-journal",
+    "tiered-assessment"
+  ],
+  "lessons": [
+    {
+      "slug": "unit-1-lesson-1",
+      "title": "Launch Unit: A = L + E",
+      "objectives": [
+        "Define Assets, Liabilities, and Equity in plain language",
+        "Explain why the accounting equation must always balance",
+        "Identify how a simple business event affects the equation"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-1-activity-1",
+          "component": "notebook-organizer"
+        },
+        {
+          "key": "unit-1-lesson-1-activity-2",
+          "component": "notebook-organizer"
+        },
+        {
+          "key": "unit-1-lesson-1-activity-3",
+          "component": "comprehension-quiz"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-1-activity-1",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-1-activity-2",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-1-activity-3",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-2",
+      "title": "Classify Accounts: A, L, and E",
+      "objectives": [
+        "Classify business accounts as Assets, Liabilities, or Equity",
+        "Explain the logic behind each classification using real examples",
+        "Identify \"gray zone\" accounts that require careful analysis"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-2-activity-1",
+          "component": "notebook-organizer"
+        },
+        {
+          "key": "unit-1-lesson-2-activity-2",
+          "component": "notebook-organizer"
+        },
+        {
+          "key": "unit-1-lesson-2-activity-3",
+          "component": "comprehension-quiz"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-2-activity-1",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-2-activity-2",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-2-activity-3",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-3",
+      "title": "Apply A/L/E to Business Events",
+      "objectives": [
+        "Describe how a business event affects the accounting equation",
+        "Identify which two parts of A = L + E change in each transaction",
+        "Verify that the equation remains balanced after a series of events"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-3-activity-1",
+          "component": "fill-in-the-blank"
+        },
+        {
+          "key": "unit-1-lesson-3-activity-2",
+          "component": "comprehension-quiz"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-3-activity-1",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-3-activity-2",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-4",
+      "title": "Build the Balance Sheet",
+      "objectives": [
+        "Identify the three main sections of a Balance Sheet",
+        "Organize accounts into Current and Non-Current subsections",
+        "Calculate section subtotals and verify the Balance Sheet equation"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-4-activity-1",
+          "component": "spreadsheet"
+        },
+        {
+          "key": "unit-1-lesson-4-activity-2",
+          "component": "spreadsheet"
+        },
+        {
+          "key": "unit-1-lesson-4-activity-3",
+          "component": "comprehension-quiz"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-4-activity-1",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-4-activity-2",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-4-activity-3",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-5",
+      "title": "Detect and Fix Ledger Errors",
+      "objectives": [
+        "Identify misclassified accounts in a ledger",
+        "Recognize the impact of missing entries on the accounting equation",
+        "Apply Conditional Formatting rules to surface errors automatically"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-5-activity-1",
+          "component": "comprehension-quiz"
+        },
+        {
+          "key": "unit-1-lesson-5-activity-2",
+          "component": "comprehension-quiz"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-5-activity-1",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-5-activity-2",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-6",
+      "title": "Data Validation and Integrity",
+      "objectives": [
+        "Explain why data validation improves financial accuracy",
+        "Build a Data Validation dropdown list for the Category column in Excel",
+        "Apply zero-blank rules to ensure complete ledger entries"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-6-activity-1",
+          "component": "fill-in-the-blank"
+        },
+        {
+          "key": "unit-1-lesson-6-activity-2",
+          "component": "comprehension-quiz"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-6-activity-1",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-6-activity-2",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-7",
+      "title": "Whole-Class Guided Build: Balance Snapshot",
+      "objectives": [
+        "Compile a clean Balance Sheet from a validated ledger",
+        "Build a bar chart in Excel comparing Total Assets to Total Liabilities",
+        "Apply print layout and page setup for a presentation-ready document"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-7-activity-1",
+          "component": "spreadsheet"
+        },
+        {
+          "key": "unit-1-lesson-7-activity-2",
+          "component": "spreadsheet"
+        },
+        {
+          "key": "unit-1-lesson-7-activity-3",
+          "component": "comprehension-quiz"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-7-activity-1",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-7-activity-2",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-7-activity-3",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-8",
+      "title": "Group Build: Six Dataset Challenge",
+      "objectives": [
+        "Apply the Lesson 7 product structure to a new group dataset",
+        "Use the foundational-proficiency build guide to complete the draft workbook",
+        "Document the remaining support needs before Lesson 9 polish"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-8-activity-1",
+          "component": "peer-critique-form"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-8-activity-1",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-9",
+      "title": "Group Polish: Investor-Ready Snapshot",
+      "objectives": [
+        "Apply the advanced polish guide to the Lesson 8 workbook",
+        "Improve visual clarity, professionalism, and the audience-facing explanation",
+        "Draft a 60-second script that explains the business story behind the numbers"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-9-activity-1",
+          "component": "reflection-journal"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-9-activity-1",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-10",
+      "title": "Class Presentation: Balance by Design",
+      "objectives": [
+        "Present a public-ready Balance Snapshot package to the class",
+        "Explain the business story behind the numbers using workbook evidence",
+        "Respond to at least one audience or teacher question with specific evidence"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-10-activity-1",
+          "component": "reflection-journal"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-10-activity-1",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-1-lesson-11",
+      "title": "Unit 1 Mastery Check",
+      "objectives": [
+        "Demonstrate knowledge of Unit 1 standards ACC-1.1 through ACC-1.7",
+        "Apply concepts in scenario-based understanding questions",
+        "Solve procedural application problems using algorithmic data"
+      ],
+      "activities": [
+        {
+          "key": "unit-1-lesson-11-activity-1",
+          "component": "tiered-assessment"
+        },
+        {
+          "key": "unit-1-lesson-11-activity-2",
+          "component": "tiered-assessment"
+        },
+        {
+          "key": "unit-1-lesson-11-activity-3",
+          "component": "tiered-assessment"
+        }
+      ],
+      "activityRefs": [
+        {
+          "activityId": "unit-1-lesson-11-activity-1",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-11-activity-2",
+          "required": true
+        },
+        {
+          "activityId": "unit-1-lesson-11-activity-3",
+          "required": true
+        }
+      ]
+    },
+    {
+      "slug": "unit-2-lesson-1",
+      "title": "Launch the Transaction Trail",
+      "objectives": [
+        "Introduce Debit/Credit logic through visual T-Accounts",
+        "Use T-Account template layout accurately in context.",
+        "Produce Exit ticket: identify D/C direction with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-2",
+      "title": "Read Source Documents with Precision",
+      "objectives": [
+        "Apply DEA LER pattern to categorize transactions",
+        "Use Basic formula copy & paste discipline accurately in context.",
+        "Produce DEA LER reference chart with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-3",
+      "title": "Journalize Business Events",
+      "objectives": [
+        "Post 5–6 transactions into T-Accounts manually",
+        "Use IF statements for normal balance side accurately in context.",
+        "Produce Paper T-Accounts turned in with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-4",
+      "title": "Post to the General Ledger",
+      "objectives": [
+        "Translate manual T-Accounts to structured Excel Tables",
+        "Use Transition from manual to digital ledger accurately in context.",
+        "Produce Excel T-Account table complete with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-5",
+      "title": "Run a Clean Trial Balance",
+      "objectives": [
+        "Use IF + SWITCH to automate account type logic",
+        "Use SWITCH for account-type mapping accurately in context.",
+        "Produce Working SWITCH formula example with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-6",
+      "title": "Catch Posting Breaks Fast",
+      "objectives": [
+        "SUMIFS totals by account type",
+        "Use SUMIFS by account type accurately in context.",
+        "Produce SUMIFS totals validated with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-7",
+      "title": "Explain the Transaction Story",
+      "objectives": [
+        "Build mini income statement from categorized data",
+        "Use Sheet layout for subtotals accurately in context.",
+        "Produce Mini income statement draft with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-8",
+      "title": "Project Sprint Day 1: Map the Workflow",
+      "objectives": [
+        "Group project: apply to Sarah’s real transactions",
+        "Use Cross-sheet referencing, clean formatting accurately in context.",
+        "Produce Group ledger v1.0 with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-9",
+      "title": "Project Sprint Day 2: Build the Workbook",
+      "objectives": [
+        "Continue project: error check & peer review",
+        "Use Peer debugging with error flags accurately in context.",
+        "Produce Group ledger v2.0 + checklist with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-10",
+      "title": "Project Sprint Day 3: Present the Audit Trail",
+      "objectives": [
+        "Finalize project workbook & peer presentation",
+        "Use Export, final proof, version control accurately in context.",
+        "Produce Final group ledger & income statement with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-2-lesson-11",
+      "title": "Summative: Transaction Flow Mastery",
+      "objectives": [
+        "Individual mastery check (quiz + mini build)",
+        "Use Auto-check formulas under time accurately in context.",
+        "Produce Individual quiz and mini ledger build with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-1",
+      "title": "Launch the Reporting Story",
+      "objectives": [
+        "Connect Income Statement and Balance Sheet concepts",
+        "Use Review linking cells between sheets accurately in context.",
+        "Produce Exit ticket: how IS and BS connect with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-2",
+      "title": "Build the Income Statement",
+      "objectives": [
+        "Review closing process conceptually",
+        "Use Cross-sheet references, named ranges accurately in context.",
+        "Produce Annotated diagram: closing cycle with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-3",
+      "title": "Connect Net Income to Equity",
+      "objectives": [
+        "Build linked worksheets for Balance Sheet and Income Statement",
+        "Use Template design: statement headers and totals accurately in context.",
+        "Produce Linked worksheet skeleton with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-4",
+      "title": "Build the Cash Flow View",
+      "objectives": [
+        "Link net income to retained earnings",
+        "Use Link RE = RE_prev + NI accurately in context.",
+        "Produce Linked NI to RE cell passes test with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-5",
+      "title": "Cross-Check Statement Links",
+      "objectives": [
+        "Build mini Operating Cash Summary",
+        "Use Build simple cash reconciliation (NI + adj) accurately in context.",
+        "Produce Mini cash summary (Ops only) with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-6",
+      "title": "Repair Statement Drift",
+      "objectives": [
+        "Analyze operating cash effects of key accounts",
+        "Use Conditional formatting for cash increases/decreases accurately in context.",
+        "Produce Color-coded cash flow trends with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-7",
+      "title": "Present the Financial Story",
+      "objectives": [
+        "Peer-test and troubleshoot linked statements",
+        "Use Debug broken links with Trace Precedents accurately in context.",
+        "Produce Peer debug checklist with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-8",
+      "title": "Project Sprint Day 1: Frame the Package",
+      "objectives": [
+        "Group project: finalize 2-statement workbook",
+        "Use Clean formatting, protect cells accurately in context.",
+        "Produce Group 2-statement v1.0 with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-9",
+      "title": "Project Sprint Day 2: Build the Statement Deck",
+      "objectives": [
+        "Group project: integrate visuals and commentary",
+        "Use Add stacked column / waterfall chart accurately in context.",
+        "Produce Group workbook v2.0 + visuals with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-10",
+      "title": "Project Sprint Day 3: Present the Findings",
+      "objectives": [
+        "Presentation and peer feedback",
+        "Use Slide export / print layout accurately in context.",
+        "Produce Presentation rubric checklist with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-3-lesson-11",
+      "title": "Summative: Financial Statements Mastery",
+      "objectives": [
+        "Individual post-assessment",
+        "Use Short auto-link quiz (repair exercise) accurately in context.",
+        "Produce Quiz + reflection with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-1",
+      "title": "Launch the Payroll Workflow",
+      "objectives": [
+        "Introduce payroll purpose and components",
+        "Use Table structure for employees accurately in context.",
+        "Produce Exit ticket: list 3 parts of pay stub with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-2",
+      "title": "Calculate Gross Pay",
+      "objectives": [
+        "Calculate gross pay (hourly, salary, commission)",
+        "Use Formulas for pay types accurately in context.",
+        "Produce Gross pay calculator with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-3",
+      "title": "Model Mandatory Deductions",
+      "objectives": [
+        "Apply overtime and deductions",
+        "Use IF for overtime, MIN/MAX for limits accurately in context.",
+        "Produce Overtime calculator with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-4",
+      "title": "Calculate Net Pay",
+      "objectives": [
+        "Compute taxes and employer contributions",
+        "Use Percentage calculations, rounding accurately in context.",
+        "Produce Tax deduction worksheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-5",
+      "title": "Track Employer Payroll Costs",
+      "objectives": [
+        "Build payroll register in Excel",
+        "Use Table design and conditional formatting accurately in context.",
+        "Produce Payroll register skeleton with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-6",
+      "title": "Validate Payroll Accuracy",
+      "objectives": [
+        "Add lookups for tax tables and rates",
+        "Use XLOOKUP for tax rates and codes accurately in context.",
+        "Produce Working lookup formulas with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-7",
+      "title": "Explain the Payroll Story",
+      "objectives": [
+        "Link payroll register to financial statements",
+        "Use Cross-sheet links to Income Statement & Balance Sheet accurately in context.",
+        "Produce Linked payroll workbook with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-8",
+      "title": "Project Sprint Day 1: Scope the Payroll Run",
+      "objectives": [
+        "Group project: prepare full payroll cycle",
+        "Use File organization, protection, notes accurately in context.",
+        "Produce Group payroll file v1 with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-9",
+      "title": "Project Sprint Day 2: Build the Payroll Workbook",
+      "objectives": [
+        "Group project: peer review and debug",
+        "Use Peer debugging and validation tools accurately in context.",
+        "Produce Group payroll file v2 + checklist with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-10",
+      "title": "Project Sprint Day 3: Present the Controls",
+      "objectives": [
+        "Present and explain payroll model",
+        "Use Chart creation (gross vs net bars) accurately in context.",
+        "Produce Presentation slide & demo with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-4-lesson-11",
+      "title": "Summative: Payroll Operations Mastery",
+      "objectives": [
+        "Individual mastery quiz",
+        "Use Timed accuracy test (IF + XLOOKUP) accurately in context.",
+        "Produce Quiz + payroll mini-build with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-1",
+      "title": "Launch the Asset Lifecycle",
+      "objectives": [
+        "Introduce concept of asset life and value loss",
+        "Use Table setup for asset data accurately in context.",
+        "Produce Exit ticket: what is depreciation? with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-2",
+      "title": "Record Asset Acquisitions",
+      "objectives": [
+        "Explain straight-line (SLN) method",
+        "Use SLN function, absolute refs accurately in context.",
+        "Produce SLN formula practice sheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-3",
+      "title": "Straight-Line Depreciation",
+      "objectives": [
+        "Apply SLN in Excel to multiple assets",
+        "Use Multiple-asset range formulas accurately in context.",
+        "Produce Asset table with SLN filled with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-4",
+      "title": "Units-of-Production Depreciation",
+      "objectives": [
+        "Explore accelerated (DDB) depreciation",
+        "Use DDB function, logic for end-year limits accurately in context.",
+        "Produce DDB sheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-5",
+      "title": "Declining-Balance Comparisons",
+      "objectives": [
+        "Compare SLN and DDB results",
+        "Use Conditional formatting for comparison accurately in context.",
+        "Produce Comparison report with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-6",
+      "title": "Validate Asset Schedules",
+      "objectives": [
+        "Link depreciation to financial statements",
+        "Use Linking accumulated depreciation column accurately in context.",
+        "Produce Linked statements with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-7",
+      "title": "Explain Asset Tradeoffs",
+      "objectives": [
+        "Analyze non-cash impact on cash summary",
+        "Use unit_05_guided_workbook.xlsx and unit_05_foundation_guide.pdf to build the common class product.",
+        "Prepare a cash-summary-ready depreciation dashboard for Sarah’s office equipment and refine it with unit_05_polish_guide.pdf."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-8",
+      "title": "Project Sprint Day 1: Scope the Asset Model",
+      "objectives": [
+        "Group project: build depreciation schedule for Sarah’s office",
+        "Use one of the six group datasets while keeping the same product structure as lesson 7.",
+        "Advance a group depreciation schedule with updated financial-statement links with clear documentation and feedback notes."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-9",
+      "title": "Project Sprint Day 2: Build the Lifecycle Workbook",
+      "objectives": [
+        "Group project: integrate depreciation into model",
+        "Use unit_05_polish_guide.pdf to tighten communication quality and visual clarity.",
+        "Revise the team artifact into an investor-ready depreciation recommendation with method comparison visuals."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-10",
+      "title": "Project Sprint Day 3: Present the Recommendation",
+      "objectives": [
+        "Present depreciation analysis",
+        "Use unit_05_presentation_rubric.pdf to prepare a public presentation with evidence.",
+        "Deliver a public presentation that explains the recommended depreciation method, the non-cash cash-flow impact, and the replacement decision."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-5-lesson-11",
+      "title": "Summative: Asset Accounting Mastery",
+      "objectives": [
+        "Demonstrate knowledge, understanding, and application independently.",
+        "Define depreciation terms, identify salvage value assumptions, and classify asset-life inputs.",
+        "Build and defend a short depreciation schedule that links accumulated depreciation, expense, and cash-summary add-backs."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-1",
+      "title": "Launch Cost Intelligence",
+      "objectives": [
+        "Introduce inventory concepts and relevance to service business",
+        "Use Table setup for purchases and sales accurately in context.",
+        "Produce Exit ticket: define inventory with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-2",
+      "title": "Track Inventory Flow",
+      "objectives": [
+        "Explain FIFO and LIFO",
+        "Use INDEX/MATCH basics accurately in context.",
+        "Produce FIFO manual worksheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-3",
+      "title": "Choose a Costing Method",
+      "objectives": [
+        "Apply FIFO to sample dataset",
+        "Use Dynamic array formulas for FIFO accurately in context.",
+        "Produce FIFO Excel sheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-4",
+      "title": "Assign Project Costs",
+      "objectives": [
+        "Apply LIFO to same dataset",
+        "Use Dynamic array formulas for LIFO accurately in context.",
+        "Produce LIFO Excel sheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-5",
+      "title": "Analyze Margin Signals",
+      "objectives": [
+        "Compare FIFO/LIFO results and implications",
+        "Use Comparative table and conditional bars accurately in context.",
+        "Produce Comparison chart with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-6",
+      "title": "Validate Cost Models",
+      "objectives": [
+        "Introduce project costing and WIP tracking",
+        "Use Multi-factor calculations (materials + labor + overhead) accurately in context.",
+        "Produce WIP costing worksheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-7",
+      "title": "Explain Pricing Implications",
+      "objectives": [
+        "Build combined inventory and project costing table",
+        "Use unit_06_guided_workbook.xlsx and unit_06_foundation_guide.pdf to build the common class product.",
+        "Prepare a combined inventory and project-costing dashboard with statement links and refine it with unit_06_polish_guide.pdf."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-8",
+      "title": "Project Sprint Day 1: Scope the Cost Study",
+      "objectives": [
+        "Group project: apply to Sarah’s client dataset",
+        "Use one of the six group datasets while keeping the same product structure as lesson 7.",
+        "Advance a client-ready costing workbook with FIFO/LIFO and WIP evidence with clear documentation and feedback notes."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-9",
+      "title": "Project Sprint Day 2: Build the Cost Workbook",
+      "objectives": [
+        "Group project: debug and analysis",
+        "Use unit_06_polish_guide.pdf to tighten communication quality and visual clarity.",
+        "Revise the team artifact into a refined margin story that explains cost assumptions, risks, and pricing implications."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-10",
+      "title": "Project Sprint Day 3: Present the Margin Story",
+      "objectives": [
+        "Present dashboard and conclusions",
+        "Use unit_06_presentation_rubric.pdf to prepare a public presentation with evidence.",
+        "Deliver a public presentation that explains the dashboard, defends the chosen cost-flow method, and answers audience questions about margin risk."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-6-lesson-11",
+      "title": "Summative: Costing Mastery",
+      "objectives": [
+        "Demonstrate knowledge, understanding, and application independently.",
+        "Identify FIFO, LIFO, inventory, and work-in-progress terminology in context.",
+        "Build a short costing model that integrates inventory movements, project costs, and one pricing recommendation."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-1",
+      "title": "Launch the Financing Decision",
+      "objectives": [
+        "Introduce financing choices for an LLC",
+        "Use Inputs table (rate, term, amount) accurately in context.",
+        "Produce Exit ticket: list 2 financing types with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-2",
+      "title": "Compare Debt and Equity",
+      "objectives": [
+        "Distinguish member equity vs. debt",
+        "Use PMT for payment calc accurately in context.",
+        "Produce Equity vs. debt T-chart with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-3",
+      "title": "Model Interest and Payment Schedules",
+      "objectives": [
+        "Build a loan amortization schedule",
+        "Use Amortization layout accurately in context.",
+        "Produce PMT worksheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-4",
+      "title": "Estimate Return Expectations",
+      "objectives": [
+        "Calculate interest (IPMT) and principal (PPMT)",
+        "Use IPMT, PPMT columns accurately in context.",
+        "Produce IPMT/PPMT sheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-5",
+      "title": "Analyze Financing Risk",
+      "objectives": [
+        "Model member contributions and distributions",
+        "Use Equity activity table accurately in context.",
+        "Produce Equity activity log with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-6",
+      "title": "Validate Scenario Assumptions",
+      "objectives": [
+        "Compare cost of capital scenarios",
+        "Use CHOOSE for scenario switch; Goal Seek for target payment accurately in context.",
+        "Produce Scenario comparison sheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-7",
+      "title": "Explain the Capital Story",
+      "objectives": [
+        "Link financing flows into statements and cash summary",
+        "Use unit_07_guided_workbook.xlsx and unit_07_foundation_guide.pdf to build the common class product.",
+        "Prepare a financing tab that links debt, equity, and cash-flow consequences into the model and refine it with unit_07_polish_guide.pdf."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-8",
+      "title": "Project Sprint Day 1: Scope the Funding Case",
+      "objectives": [
+        "Group project: choose a financing plan for Sarah",
+        "Use one of the six group datasets while keeping the same product structure as lesson 7.",
+        "Advance a recommendation-ready financing scenario workbook and memo with clear documentation and feedback notes."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-9",
+      "title": "Project Sprint Day 2: Build the Financing Model",
+      "objectives": [
+        "Group project: stress test and refine",
+        "Use unit_07_polish_guide.pdf to tighten communication quality and visual clarity.",
+        "Revise the team artifact into a stress-tested financing recommendation that compares resilience, risk, and control tradeoffs."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-10",
+      "title": "Project Sprint Day 3: Present the Recommendation",
+      "objectives": [
+        "Present financing recommendation",
+        "Use unit_07_presentation_rubric.pdf to prepare a public presentation with evidence.",
+        "Deliver a public presentation and memo that justify the financing choice, defend the scenario logic, and answer at least one audience or teacher question."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-7-lesson-11",
+      "title": "Summative: Financing Mastery",
+      "objectives": [
+        "Demonstrate knowledge, understanding, and application independently.",
+        "Define debt, equity, contribution, distribution, payment, interest, and principal terms accurately.",
+        "Build and justify a short amortization and financing-impact model using PMT, IPMT, or PPMT logic."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-1",
+      "title": "Launch the Integrated Sprint",
+      "objectives": [
+        "Kickoff: model architecture and sheet roles",
+        "Use Sheet map, named ranges, consistent labels accurately in context.",
+        "Produce Architecture diagram of model with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-2",
+      "title": "Review the Full Business Model",
+      "objectives": [
+        "Re-link Income Statement from assumptions",
+        "Use Cross-sheet links; error checks accurately in context.",
+        "Produce Working Income Statement from inputs with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-3",
+      "title": "Stress-Test Assumptions",
+      "objectives": [
+        "Re-link Balance Sheet drivers and validations",
+        "Use Data validation, circular checks accurately in context.",
+        "Produce Balance Sheet proof (A=L+E) & flags with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-4",
+      "title": "Refine Operating Scenarios",
+      "objectives": [
+        "Build full Indirect Cash Flow",
+        "Use CF build: adjustments (Dep), delta AR, delta AP, delta Inv; investing & financing accurately in context.",
+        "Produce Complete Indirect Cash Flow sheet with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-5",
+      "title": "Align Statements and Cash",
+      "objectives": [
+        "Implement scenario inputs and CHOOSE logic",
+        "Use CHOOSE for scenario switch; input table design accurately in context.",
+        "Produce Scenario input block + CHOOSE cells with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-6",
+      "title": "Validate the Full Workbook",
+      "objectives": [
+        "Add Goal Seek for target outcomes",
+        "Use Goal Seek to hit target NI/cash accurately in context.",
+        "Produce Goal Seek worksheet (target + result) with clear business reasoning."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-7",
+      "title": "Explain the Recommendation",
+      "objectives": [
+        "Design KPI dashboard",
+        "Use unit_08_guided_workbook.xlsx and unit_08_foundation_guide.pdf to build the common class product.",
+        "Prepare a KPI dashboard that explains the integrated model with clear visuals and checks and refine it with unit_08_polish_guide.pdf."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-8",
+      "title": "Project Sprint Day 1: Scope the Integrated Build",
+      "objectives": [
+        "Group project: audit and stress test model",
+        "Use one of the six group datasets while keeping the same product structure as lesson 7.",
+        "Advance an audited three-statement model and storyboard package with clear documentation and feedback notes."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-9",
+      "title": "Project Sprint Day 2: Build the Model Deck",
+      "objectives": [
+        "Group project: storyboard and script the pitch",
+        "Use unit_08_polish_guide.pdf to tighten communication quality and visual clarity.",
+        "Revise the team artifact into an executive-ready pitch with a clean dashboard, script, and stress-tested model assumptions."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-10",
+      "title": "Project Sprint Day 3: Present the Executive Story",
+      "objectives": [
+        "Present integrated model and dashboard",
+        "Use unit_08_presentation_rubric.pdf to prepare a public presentation with evidence.",
+        "Deliver a public presentation with a 90-120 second live demo of the integrated model, the dashboard, and the levers behind the recommendation."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "unit-8-lesson-11",
+      "title": "Summative: Integrated Model Mastery",
+      "objectives": [
+        "Demonstrate knowledge, understanding, and application independently.",
+        "Identify the parts of the indirect cash flow, scenario block, dashboard, and audit checklist.",
+        "Repair broken model links, rebuild one dashboard view, and justify a target outcome reached with Goal Seek or scenario logic."
+      ],
+      "activities": [],
+      "activityRefs": []
+    },
+    {
+      "slug": "capstone-investor-ready-plan",
+      "title": "Capstone: Investor-Ready Plan",
+      "objectives": [
+        "Synthesize the strongest evidence from the course into one coherent plan.",
+        "Defend the investor-ready recommendation with linked workbook proof.",
+        "Deliver a final presentation that is clear, professional, and evidence-based."
+      ],
+      "activities": [],
+      "activityRefs": []
+    }
+  ]
+}
+FORMULA_REPRO {"validFormula":{"isComplete":false,"totalCells":1,"correctCells":0,"feedback":[{"cell":"A3","isCorrect":false,"message":"Expected \"30\", got \"=SUM(A1:A2)\"","expectedValue":30,"actualValue":"=SUM(A1:A2)"}],"timestamp":"2026-09-07T02:36:37.366Z"},"hardcoded":{"isComplete":true,"totalCells":1,"correctCells":1,"feedback":[{"cell":"A1","isCorrect":true,"expectedValue":30,"actualValue":30}],"timestamp":"2026-09-07T02:36:37.440Z"},"sumifs":{"isValid":false,"error":"Formula function \"SUMIFS\" is not allowed"},"lowercase":{"isValid":true},"blankZero":{"passed":true,"score":100,"perCell":[{"cellRef":"A1","passed":true,"expectedValue":0,"submittedValue":""}]}}

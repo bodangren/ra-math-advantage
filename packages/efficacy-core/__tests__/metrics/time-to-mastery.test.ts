@@ -48,7 +48,7 @@ describe('computeTimeToMastery', () => {
   });
 
   it('returns reachedMastery=false when no review clears the threshold', () => {
-    // stabilityToRetention(15) ≈ 0.333; threshold 0.8 is unreachable.
+    // Ten-day stability is below 0.8 retention at the 30-day mastery horizon.
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
@@ -66,7 +66,7 @@ describe('computeTimeToMastery', () => {
           cardId: 'c1',
           reviewedAtMs: baseMs + 1 * MS_PER_DAY,
           stateBefore: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
-          stateAfter: { stability: 15, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
+          stateAfter: { stability: 10, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
         }),
       ],
       masteryThreshold: MASTERY_RETENTION,
@@ -79,7 +79,7 @@ describe('computeTimeToMastery', () => {
   });
 
   it('returns daysToMastery=0 when the very first review clears the threshold', () => {
-    // stabilityToRetention(150) ≈ 0.833 > 0.8 (default scaleFactor 30)
+    // Stability 150 retains well above 0.8 at the 30-day horizon.
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
@@ -96,7 +96,7 @@ describe('computeTimeToMastery', () => {
       masteryThreshold: MASTERY_RETENTION,
     });
 
-    expect(stabilityToRetention(150)).toBeGreaterThan(MASTERY_RETENTION);
+    expect(stabilityToRetention(150, 30)).toBeGreaterThan(MASTERY_RETENTION);
     expect(result.value.reachedMastery).toBe(true);
     expect(result.value.daysToMastery).toBe(0);
     expect(result.value.reviewsToMastery).toBe(1);
@@ -120,13 +120,13 @@ describe('computeTimeToMastery', () => {
           cardId: 'c1',
           reviewedAtMs: baseMs + 2 * MS_PER_DAY,
           stateBefore: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
-          stateAfter: { stability: 40, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
+          stateAfter: { stability: 10, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
         }),
         makeReviewLog({
           reviewId: 'r3',
           cardId: 'c1',
           reviewedAtMs: baseMs + 7 * MS_PER_DAY,
-          stateBefore: { stability: 40, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
+          stateBefore: { stability: 10, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
           stateAfter: { stability: 200, difficulty: 0, state: 'review', reps: 3, lapses: 0 },
         }),
       ],

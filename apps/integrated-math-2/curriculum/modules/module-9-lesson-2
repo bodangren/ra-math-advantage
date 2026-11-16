@@ -37,156 +37,47 @@ For [c < 0], there is no solution because absolute value is always non-negative.
 
 ### Key Concept: Cases for Absolute Value
 
-When solving equations with multiple absolute values, such as [|x - 3| = |2x + 1|], consider all combinations of positive and negative cases for each expression. With two absolute values, there are 4 combinations, but only 2 unique cases need be considered because if [A = B], then either [A = B] or [A = -B].
+When solving equations with multiple absolute values, such as [|x - 3| = |2x + 1|], consider all combinations of positive and negative cases for each expression. With two absolute values, there are 4 combinations, but only 2 unique cases need be considered because |A| = |B| is equivalent to A = B or A = −B for real A and B.
 
 ## Example 1 — Solve Equations with One Absolute Value
 
-Solve each equation. Check your solutions.
+### Problem
 
-**1.** [|8 + p| = 2p - 3]
+Solve |8+p|=2p-3. Check each candidate in the original equation.
 
-Break into cases: [8 + p = 2p - 3] or [8 + p = -(2p - 3)]
+### Solution
 
-Solve each case and check for extraneous solutions.
-
-**2.** [|4w - 1| = 5w + 37]
-
-### Step 1: Set Up Cases
-
-Since [5w + 37] must be non-negative for a solution to exist (because absolute value equals it), first find where [5w + 37 >= 0].
-
-### Step 2: Solve Each Case
-
-Case 1: [4w - 1 = 5w + 37] → solve for w
-Case 2: [4w - 1 = -(5w + 37)] → solve for w
-
-### Step 3: Check Solutions
-
-Substitute each solution back into the original equation to verify.
-
-**3.** [4|2y - 7| + 13 = 9]
-
-**4.** [-2|7 - 3y| - 6 = -14]
-
-**5.** [2|4 - n| = -3n]
-
-**6.** [5 - 3|2 + 2w| = -7]
-
-**7.** [5|2r + 3| - 5 = 0]
-
-**8.** [3 - 5|2d - 3| = 4]
+The right side must be nonnegative, so p≥1.5. The two algebraic cases are 8+p=2p-3, giving p=11, and 8+p=-(2p-3), giving p=-5/3. The second candidate has a negative right side and fails. At p=11, both sides are 19. The only solution is 11.
 
 ## Example 2 — Real-World Absolute Value Equations
 
-Solve each problem by writing and solving an absolute value equation.
+### Problem
 
-### Step 1: Define the Situation
+A thermometer reading is 87.4°F. For this exercise, its absolute measurement error is at most 1.5°F. Find the endpoint temperatures and the full allowable interval.
 
-For problems involving tolerances, write an equation of the form [|measured - actual| = tolerance].
+### Solution
 
-**9. WEATHER** A thermometer claims accuracy within 1.5 degrees of the actual temperature. If the thermometer reads 87.4°F, write and solve an absolute value equation to find the least and greatest possible temperature.
-
-Let [T] represent the actual temperature in degrees Fahrenheit.
-
-[|87.4 - T| = 1.5]
-
-Solve: [87.4 - T = 1.5] or [87.4 - T = -1.5]
-
-[T = 85.9] or [T = 88.9]
-
-The least possible temperature is 85.9°F and the greatest is 88.9°F.
-
-**10. OPINION POLLS** A poll shows Candidate Morrison will receive 51% of the votes with a margin of error of ±3%. Write and solve an absolute value equation to find the minimum and maximum percent of the vote.
-
-Let [p] represent the actual percent of votes.
-
-[|51 - p| = 3]
-
-Solve: [51 - p = 3] or [51 - p = -3]
-
-[p = 48] or [p = 54]
-
-The candidate can expect between 48% and 54% of the vote.
+The endpoints solve |87.4-T|=1.5, giving T=85.9 or T=88.9. The full condition is |87.4-T|≤1.5, so 85.9≤T≤88.9. The equation gives the endpoints only; the inequality gives all allowed temperatures.
 
 ## Example 3 — Solve Absolute Value Inequalities
 
-Solve each inequality. Graph the solution set on a number line.
+### Problem
 
-### Key Concept: Solving |ax + b| <= c and |ax + b| >= c
+Solve (a) |2x+2|-7≤-5 and (b) |x/2-5|+2>10.
 
-* [|ax + b| <= c] (where [c > 0]) is equivalent to [-c <= ax + b <= c], an "and" compound inequality.
-* [|ax + b| >= c] is equivalent to [ax + b <= -c] or [ax + b >= c], an "or" compound inequality.
-* [|<] and [>] strict inequalities do not include the boundary.
+### Solution
 
-### Step 1: Isolate the Absolute Value
-
-**11.** [|2x + 2| - 7 <= -5]
-
-First add 7 to both sides: [|2x + 2| <= 2]
-
-Then rewrite as: [-2 <= 2x + 2 <= 2]
-
-Subtract 2: [-4 <= 2x <= 0]
-
-Divide by 2: [-2 <= x <= 0]
-
-**12.** [|x/2 - 5| + 2 > 10]
-
-First subtract 2: [|x/2 - 5| > 8]
-
-Rewrite as two cases: [x/2 - 5 > 8] or [x/2 - 5 < -8]
-
-Solve each: [x/2 > 13] or [x/2 > -3]
-
-Multiply by 2: [x > 26] or [x < -6]
-
-**13.** [|3b + 5| <= -2]
-
-No solution, because absolute value is always [>= 0] and cannot be [<= -2].
-
-**14.** [|x| > x - 1]
-
-Rewrite as: [x > x - 1] or [x < -(x - 1)]
-
-Simplify: The first case is always true ([0 > -1]). The second gives [x < -x + 1], so [2x < 1], so [x < 0.5].
-
-**15.** [|4 - 5x| < 13]
-
-**16.** [|3n - 2| - 2 < 1]
-
-**17.** [|3x + 1| > 2]
-
-**18.** [|2x - 1| < 5 + 0.5x]
+(a) Isolate the absolute value: |2x+2|≤2. Then -2≤2x+2≤2, so -2≤x≤0. (b) Isolate |x/2-5|>8. Thus x/2-5>8 or x/2-5<-8. These give x>26 or x<-6. Preserve the less-than sign in the second branch.
 
 ## Example 4 — Real-World Absolute Value Inequalities
 
-Solve each problem by writing and solving an absolute value inequality.
+### Problem
 
-### Step 1: Write the Inequality
+A product specification allows a nominal volume of 14.5 fluid ounces to vary by at most 0.08 fluid ounces. Write and solve the acceptance inequality.
 
-**19. RAINFALL** In 90% of the last 30 years, the rainfall at Shell Beach varied no more than 6.5 inches from its mean of 24 inches. Write and solve an absolute value inequality to describe the rainfall in the other 10% of the years.
+### Solution
 
-Let [R] represent the rainfall in inches.
-
-For the 10% outside the normal range: [|R - 24| > 6.5]
-
-Solve: [R - 24 > 6.5] or [R - 24 < -6.5]
-
-[R > 30.5] or [R < 17.5]
-
-In the other 10% of years, rainfall was less than 17.5 inches or greater than 30.5 inches.
-
-**20. MANUFACTURING** A soup can states a volume of 14.5 fluid ounces and must not vary by more than 0.08 ounces. Write and solve an absolute value inequality for acceptable volumes.
-
-Let [V] represent the acceptable volume.
-
-[|V - 14.5| <= 0.08]
-
-Solve: [-0.08 <= V - 14.5 <= 0.08]
-
-[14.42 <= V <= 14.58]
-
-Acceptable volumes range from 14.42 to 14.58 fluid ounces.
+Let V be volume in fluid ounces. The condition is |V-14.5|≤0.08. Rewrite as -0.08≤V-14.5≤0.08. Add 14.5 to obtain 14.42≤V≤14.58. Both endpoints are allowed.
 
 ## Mixed Exercises
 
@@ -246,11 +137,11 @@ Solve each equation. Check your solutions.
 
 **41. WHICH ONE DOESN'T BELONG?** Identify the compound inequality that does not share the same characteristics as the other three. Justify your conclusion.
 
-![](media/image1.png)
+![Worksheet figure 1](/curriculum/module-9-lesson-2/image1.png)
 
 **42. FIND THE ERROR** Ana and Ling are solving [|3x + 14| = -6x]. Is either correct?
 
-![](media/image2.png)
+![Worksheet figure 2](/curriculum/module-9-lesson-2/image2.png)
 
 **43. PERSEVERE** Solve [|2x - 1| + 3 = |5 - x|]. List all cases and resulting equations.
 
@@ -269,5 +160,5 @@ Solve each equation. Check your solutions.
 * Problem 41 references an image showing four compound inequalities.
 * Problem 42 references images showing Ana's and Ling's work on solving an absolute value equation.
 * The worksheet contains 47 problems across seven examples and mixed exercises.
-* ![](media/image1.png)
-* ![](media/image2.png)
+* ![Worksheet figure 1](/curriculum/module-9-lesson-2/image1.png)
+* ![Worksheet figure 2](/curriculum/module-9-lesson-2/image2.png)

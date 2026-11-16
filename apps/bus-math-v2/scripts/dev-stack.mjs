@@ -1,63 +1,16 @@
-import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 
-function readJsonIfPresent(filePath) {
-  if (!fs.existsSync(filePath)) {
-    return null;
-  }
-
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
-
-function resolvePinnedConvexVersion(projectRoot) {
-  const packageLock = readJsonIfPresent(path.join(projectRoot, 'package-lock.json'));
-  const lockedVersion = packageLock?.packages?.['node_modules/convex']?.version;
-
-  if (typeof lockedVersion === 'string' && lockedVersion.length > 0) {
-    return lockedVersion;
-  }
-
-  const packageJson = readJsonIfPresent(path.join(projectRoot, 'package.json'));
-  const declaredVersion =
-    packageJson?.dependencies?.convex?.trim() ||
-    packageJson?.devDependencies?.convex?.trim();
-
-  if (!declaredVersion) {
-    return null;
-  }
-
-  const normalizedVersion = declaredVersion.replace(/^[~^]/, '');
-  return /^\d+\.\d+\.\d+(?:[-+].+)?$/.test(normalizedVersion)
-    ? normalizedVersion
-    : null;
-}
-
-export function resolveConvexCliPackageSpec(projectRoot = process.cwd()) {
-  const pinnedVersion = resolvePinnedConvexVersion(projectRoot);
-  return pinnedVersion ? `convex@${pinnedVersion}` : 'convex';
-}
-
-export function createProcesses(projectRoot = process.cwd()) {
-  return [
-    {
-      name: 'convex',
-      command: 'npx',
-      // Force npm to execute the published CLI package rather than a stubbed local SDK install.
-      // Let Convex own the Vinext child process so startup stays ordered and shutdown is coordinated.
-      args: [
-        '--yes',
-        '--package',
-        resolveConvexCliPackageSpec(projectRoot),
-        'convex',
-        'dev',
-        '--local',
-        '--run-sh',
-        'npx vinext dev',
-      ],
-    },
-  ];
+export function createProcesses() {
+  const require = createRequire(import.meta.url);
+  const convexRoot = path.dirname(require.resolve('convex/package.json'));
+  return [{
+    name: 'convex',
+    command: process.execPath,
+    args: [path.join(convexRoot, 'bin/main.js'), 'dev', '--start', 'npm run dev'],
+  }];
 }
 
 export function runDevStack(processes = createProcesses()) {

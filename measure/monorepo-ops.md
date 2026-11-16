@@ -2,6 +2,15 @@
 
 > Convex operational commands and environment variables for each app in the monorepo.
 
+## CI Architecture Gates
+
+The package matrix in `.github/workflows/ci.yml` covers all 20 non-template
+packages with blocking lint, test, and typecheck commands. The independent
+boundary job runs both the manifest-aware import checker and exact inventory
+parity validation. The manifest, root package commands, and CI matrix must
+therefore cover the same workspace inventory; generated coverage is published
+in `measure/generated/quality-gates.md`.
+
 ## App Paths
 
 | App | Path |
@@ -119,6 +128,8 @@ Both apps auto-generate types during `npx convex dev`. The generated files are:
 
 > **Verified 2026-07-01** against Cloudflare (account `bodangren@gmail.com` / `0f8cef50…42da20`) and Convex bindings in each `wrangler.jsonc` / `.env.local`. Timestamps go stale — **re-verify with the command below, don't trust the dates blind.**
 
+**IM3 update, 2026-09-09:** The user deleted the entire IM3 test project before rollout. The replacement project is `bodangren/integrated-math-3` (project ID `2960816`). Its development deployment is `accurate-labrador-817`. The current Wrangler URL is `https://accurate-labrador-817.convex.cloud`. Committed backend source is deployed. The seed contract repairs are committed and deployed. All 52 lessons, 44 standards, and 79 lesson-standard mappings pass remote verification. The targeted retries preserved demo accounts. Practice-item references and demo phase states pass. These checks do not establish learner-flow or curriculum coverage. No frontend deployment ran during this rebuild. The IM3 row below is a historical snapshot, not the current backend. The main `.env.local` still selects the separate local anonymous deployment.
+
 | App | CF Worker live? | Last CF deploy | Convex (prod URL in wrangler) | In CI deploy? |
 |-----|-----------------|----------------|-------------------------------|---------------|
 | integrated-math-3 | ✅ yes | 2026-04-11 | `chatty-weasel-888.convex.cloud` | ✅ (`ci.yml` Phase 6) |
@@ -129,7 +140,7 @@ Both apps auto-generate types during `npx convex dev`. The generated files are:
 
 **Key facts (durable, not just snapshot):**
 - **Nothing is deployed *from this monorepo*.** Both live workers were last deployed *before* the apps moved into `apps/` on 2026-04-18 (BM2 2026-03-23, IM3 2026-04-11). The live versions are the pre-monorepo standalone deploys and have drifted.
-- **IM3 CI deploy has never landed.** Root cause (confirmed 2026-07-01): every `ci.yml` run fails in **Phase 1 `Validate Packages` → `Run package typecheck`** (`practice-core`, `core-convex`, `core-auth`, `ai-tutoring` — test files use `node:fs`/`node:path`/`node:url` with no `@types/node` in package tsconfig; TS2591/TS7006). The single shared matrix gates `deploy` behind `needs:[im3,bm2]` → `needs:[packages,boundary-check]`, so a package typecheck red stops CI long before the Phase 6 deploy job runs. The manual `cloudflare-deploy.yml` (`workflow_dispatch`) has **never been triggered**. Fix the package tsconfigs (see tech-debt) to unblock the deploy.
+- **IM3 CI deploy has never landed as of the last remote verification.** The package typecheck failures identified on 2026-07-01 are fixed locally; on 2026-07-11 all 20 package lint, test, and typecheck gates passed under the complete manifest-driven inventory. A post-fix remote CI/deploy run has not yet been observed, so this does not claim a production deployment.
 - **IM1 / IM2 / pre-calculus are scaffolds** — no Cloudflare worker exists and their `wrangler.jsonc` points at `localhost`, so deploying as-is would yield a backend-less worker.
 - pre-calculus `.env.local` borrows IM3's dev Convex deployment (`focused-malamute-141`); it has no Convex backend of its own.
 

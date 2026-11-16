@@ -166,10 +166,7 @@ function parseTableFrom(
       continue;
     }
 
-    const cells = trimmed
-      .slice(1, -1)
-      .split('|')
-      .map((c) => c.trim());
+    const cells = splitTableRow(trimmed);
 
     if (headers.length === 0) {
       headers = cells;
@@ -184,6 +181,51 @@ function parseTableFrom(
   }
 
   return rows;
+}
+
+/** Split one Markdown table row while preserving pipes in inline code. */
+function splitTableRow(row: string): string[] {
+  const content = row.slice(1, -1).trim();
+  let inInlineCode = false;
+  let hasSpacedDelimiter = false;
+
+  for (let index = 0; index < content.length; index++) {
+    if (content[index] === '`' && content[index - 1] !== '\\') {
+      inInlineCode = !inInlineCode;
+      continue;
+    }
+    if (
+      !inInlineCode &&
+      content[index] === '|' &&
+      /\s/.test(content[index - 1] || '') &&
+      /\s/.test(content[index + 1] || '')
+    ) {
+      hasSpacedDelimiter = true;
+      break;
+    }
+  }
+
+  const cells: string[] = [];
+  let cellStart = 0;
+  inInlineCode = false;
+  for (let index = 0; index < content.length; index++) {
+    const character = content[index];
+    if (character === '`' && content[index - 1] !== '\\') {
+      inInlineCode = !inInlineCode;
+      continue;
+    }
+    if (character !== '|' || inInlineCode) continue;
+
+    const isSpaced =
+      /\s/.test(content[index - 1] || '') &&
+      /\s/.test(content[index + 1] || '');
+    if (hasSpacedDelimiter && !isSpaced) continue;
+
+    cells.push(content.slice(cellStart, index).trim());
+    cellStart = index + 1;
+  }
+  cells.push(content.slice(cellStart).trim());
+  return cells;
 }
 
 /**
@@ -355,8 +397,19 @@ export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
       .replace(/`/g, '')
       .trim();
     const primary = parseObjectiveCell(primaryText);
-    if (primary && !lesson.objectives.some((o) => o.code === primary.code)) {
-      lesson.objectives.push(primary);
+    if (primary) {
+      const existingObjective = lesson.objectives.find(
+        (objective) => objective.code === primary.code,
+      );
+      if (existingObjective) {
+        // An earlier row can name this objective only as an embedded code.
+        // Preserve the full description when a later row makes it primary.
+        if (!existingObjective.description) {
+          existingObjective.description = primary.description;
+        }
+      } else {
+        lesson.objectives.push(primary);
+      }
     }
 
     // Embedded objectives

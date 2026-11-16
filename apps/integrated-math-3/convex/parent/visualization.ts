@@ -23,7 +23,7 @@
  *     `(parentProfileId, studentId)` so a future caller that bypasses the
  *     page guard still fails closed.
  *   - It calls `projectParentVisualization` (domain-neutral projection) on
- *     the student's `placement_results` to derive a parent-safe payload.
+ *     the student's canonical proficiency to derive a parent-safe payload.
  *     Teacher-only fields (heatmap, bottleneckNodes, etc.) never enter the
  *     response — the projection's own schema (`parentVisualizationV1Schema`)
  *     makes them unreachable.
@@ -44,15 +44,12 @@ import {
   type ParentVisualizationV1,
 } from '@math-platform/knowledge-space-practice';
 import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
-import { loadFullCurriculumGraph } from '../../lib/curriculum/skill-graph-loader';
-
-/**
- * Default no-op learner state. Used when the student has no placement rows.
- */
-const EMPTY_LEARNER_STATE: Record<
-  string,
-  'mastered' | 'ready' | 'blocked'
-> = {};
+import { getStudentKnowledgeStateHandler } from '../student/knowledge_state';
+import {
+  loadFullCurriculumGraph,
+  includeHistoricalEvidenceNodes,
+  projectApprovedReadinessGraph,
+} from '../../lib/curriculum/skill-graph-loader';
 
 /**
  * Pure projection step — given a learner state and the canonical full
@@ -63,7 +60,7 @@ const EMPTY_LEARNER_STATE: Record<
  * without setting up a Convex context.
  */
 export function buildParentProjectionPayload(
-  learnerState: Record<string, 'mastered' | 'ready' | 'blocked'>,
+  learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'>,
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
 ): ParentVisualizationV1 {
@@ -73,7 +70,7 @@ export function buildParentProjectionPayload(
 
 /**
  * Handler — verifies the (parent, student) link is active, then computes
- * the parent-safe projection from the student's placement results.
+ * the parent-safe projection from the student's canonical proficiency.
  *
  * Fail-closed semantics:
  *   - Throws when no active `parent_links` row exists for the pair.
@@ -116,27 +113,20 @@ export async function projectParentVisualizationHandler(
     );
   }
 
-  const placements = await ctx.db
-    .query('placement_results')
-    .withIndex('by_student', (q) => q.eq('studentId', args.studentId))
-    .collect();
+  const progress = await getStudentKnowledgeStateHandler(ctx, { studentId: args.studentId });
+  const learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'> = {};
+  for (const node of progress.mastered) learnerState[node.nodeId] = 'mastered';
+  for (const node of progress.ready) learnerState[node.nodeId] = 'ready';
+  for (const node of progress.nearlyReady) learnerState[node.nodeId] = 'nearly_ready';
+  for (const node of progress.blocked) learnerState[node.nodeId] = 'blocked';
+  for (const node of progress.reviewDue) learnerState[node.nodeId] = 'review_due';
 
-  const learnerState: Record<
-    string,
-    'mastered' | 'ready' | 'blocked'
-  > = { ...EMPTY_LEARNER_STATE };
-
-  for (const p of placements) {
-    if (p.masteryEstimate >= 0.8) {
-      learnerState[p.nodeId] = 'mastered';
-    } else if (p.masteryEstimate >= 0.3) {
-      learnerState[p.nodeId] = 'ready';
-    } else {
-      learnerState[p.nodeId] = 'blocked';
-    }
-  }
-
-  const { nodes, edges } = loadFullCurriculumGraph();
+  const fullGraph = loadFullCurriculumGraph();
+  const { nodes, edges } = includeHistoricalEvidenceNodes(
+    projectApprovedReadinessGraph(fullGraph),
+    fullGraph,
+    new Set(Object.keys(learnerState)),
+  );
 
   return buildParentProjectionPayload(learnerState, nodes, edges);
 }

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { useAuth } from '@/components/auth/AuthProvider';
 import type { CompletePhaseResponse } from '@/types/api';
-import { completePhaseRequest } from '@/lib/phase-completion/client';
+import { completePhaseRequest, PhaseCompletionError } from '@/lib/phase-completion/client';
 
 interface QueuedCompletion {
   userId: string;
@@ -198,6 +198,10 @@ export function usePhaseCompletion({
           
           dequeueCompletion(completion.idempotencyKey);
         } catch (err) {
+          if (err instanceof PhaseCompletionError && !err.transient) {
+            dequeueCompletion(completion.idempotencyKey);
+            continue;
+          }
           console.error(`Failed to process queued completion ${completion.idempotencyKey}:`, err);
           
           const updatedQueue = getCompletionQueue().map((c) =>
@@ -292,6 +296,8 @@ export function usePhaseCompletion({
             }
           }
         }
+
+        if (mutationError instanceof PhaseCompletionError && !mutationError.transient) throw mutationError;
 
         const queuedCompletion: QueuedCompletion = {
           userId,

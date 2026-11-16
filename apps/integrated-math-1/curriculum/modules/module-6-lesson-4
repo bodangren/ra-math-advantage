@@ -1,215 +1,100 @@
 # Lesson 6-4 — Solving Absolute Value Inequalities
 
-Source: (Module 6, Lesson 6-4, Int1_0604_practice.docx)
+Source: Module 6, Lesson 6-4, `Int1_0604_practice.docx`.
 
-## Today's Goals
+## Goals
 
-* Solve absolute value inequalities and rewrite them as compound inequalities using *and* or *or*
-* Graph the solution set of an absolute value inequality on a number line
-* Model real-world situations with absolute value inequalities and interpret the solutions
-* Recognize special cases where an absolute value inequality has no solution or all real numbers as solutions
+- Solve absolute value inequalities. Rewrite them as compound inequalities with `and` or `or`.
+- Graph solution sets on a number line.
+- Model ranges and tolerances with absolute value inequalities.
+- Identify no-solution and all-real-number cases.
 
-## Vocabulary
+## Examples 1, 2, 4, and 5 — Solve and Graph Absolute Value Inequalities
 
-* **absolute value inequality** — An inequality that contains an absolute value expression, such as [|x - 3| < 5].
-* **compound inequality** — Two inequalities joined by the word *and* or *or*.
-* **solution set** — The set of all values that make an inequality true.
-* **margin of error** — The maximum allowable difference between a measured or claimed value and the actual value.
-* **open sentence** — A mathematical statement that contains a variable and becomes true or false when values are substituted.
+Problems 1 through 20 form one joint source section. The source does not divide these problems between the four example numbers.
 
-## Learn: Solving Absolute Value Inequalities
+For `|X| < a` or `|X| <= a`, with `a > 0`, write a bounded `and` inequality. For `|X| > a` or `|X| >= a`, with `a > 0`, write an exterior `or` inequality. A less-than inequality with a negative bound has no solution. A greater-than inequality with a negative bound has all real numbers as solutions.
 
-An absolute value inequality can be rewritten as a compound inequality. The direction of the inequality symbol and the sign of the right-hand side determine the form of the compound inequality.
+The source expressions and verified solutions are:
 
-### Key Concept: Rewriting Absolute Value Inequalities
+1. `|x + 8| < 16` gives `-24 < x < 8`.
+2. `|r + 1| <= 2` gives `-3 <= r <= 1`.
+3. `|2c - 1| <= 7` gives `-3 <= c <= 4`.
+4. `|3h - 3| < 12` gives `-3 < h < 5`.
+5. `|m + 4| < -2` has no solution.
+6. `|w + 5| < -8` has no solution.
+7. `|r + 2| > 6` gives `r < -8` or `r > 4`.
+8. `|k - 4| > 3` gives `k < 1` or `k > 7`.
+9. `|2h - 3| >= 9` gives `h <= -3` or `h >= 6`.
+10. `|4p + 2| >= 10` gives `p <= -3` or `p >= 2`.
+11. `|5v + 3| > -9` has all real numbers as solutions.
+12. `|-2c - 3| > -4` has all real numbers as solutions.
+13. `|4n + 3| >= 18` gives `n <= -21/4` or `n >= 15/4`.
+14. `|5t - 2| <= 6` gives `-4/5 <= t <= 8/5`.
+15. `|(3h + 1)/2| < 8` gives `-17/3 < h < 5`.
+16. `|(2p - 8)/4| >= 9` gives `p <= -14` or `p >= 22`.
+17. `|(7c + 3)/2| <= -5` has no solution.
+18. `|(2g + 3)/2| > -7` has all real numbers as solutions.
+19. `|-6r - 4| < 8` gives `-2 < r < 2/3`.
+20. `|-3p - 7| > 5` gives `p < -4` or `p > -2/3`.
 
-* If [|X| < a] and [a > 0], rewrite as [-a < X < a] (compound inequality with *and*).
-* If [|X| \le a] and [a > 0], rewrite as [-a \le X \le a] (compound inequality with *and*).
-* If [|X| > a] and [a > 0], rewrite as [X < -a] or [X > a] (compound inequality with *or*).
-* If [|X| \ge a] and [a > 0], rewrite as [X \le -a] or [X \ge a] (compound inequality with *or*).
-* If [a < 0] and the symbol is [<] or [\le], there is **no solution** because absolute value is never negative.
-* If [a < 0] and the symbol is [>] or [\ge], the solution is **all real numbers** because absolute value is always non-negative.
+For Problem 1, rewrite the expression as `-16 < x + 8 < 16`. Subtract 8 from all three parts to get `-24 < x < 8`.
 
-## Example 1 — Solve Less-Than Absolute Value Inequalities
+For Problem 7, write `r + 2 < -6` or `r + 2 > 6`. Solve each inequality to get `r < -8` or `r > 4`.
 
-Solve absolute value inequalities with less-than or less-than-or-equal-to symbols, then graph the solution set on a number line.
+For Problem 15, write `-8 < (3h + 1)/2 < 8`. Multiply all three parts by 2. Then subtract 1 and divide by 3 to get `-17/3 < h < 5`.
 
-### Step 1: Identify the Form
+For Problem 19, write `-8 < -6r - 4 < 8`, and then write `-4 < -6r < 12`. Division by `-6` reverses both inequality symbols. The ordered result is `-2 < r < 2/3`.
 
-Determine whether the inequality uses [<] or [\le] and whether the right-hand side is positive or negative.
+## Example 3 — Model Absolute Value Inequalities in Context
 
-For [|x + 8| < 16]:
-[
--16 < x + 8 < 16
-]
+Problem 21 states that the displayed speed of 60 mph is within 2.5 percent of the actual speed. Let `s` be the positive actual speed. The correct model is `|60 - s| <= 0.025s`. Its exact solution is `2400/41 <= s <= 800/13`. Thus, the approximate range is `58.537 <= s <= 61.538` mph.
 
-### Step 2: Solve the Compound Inequality
+Problem 22 gives `|t - 375| <= 25`, so `350 <= t <= 400` degrees Fahrenheit.
 
-Isolate the variable in the middle by subtracting or adding the same value to all three parts.
+Problem 23 gives `|p - 130| <= 3.05`, so `126.95 <= p <= 133.05` fluid ounces.
 
-[
--16 - 8 < x < 16 - 8
-]
-[
--24 < x < 8
-]
+Problem 24 treats 9 through 11 pounds as the inclusive healthy interval. The unhealthy values satisfy `|w - 10| > 1`, with `w > 0`.
 
-For inequalities with a coefficient on the variable inside the absolute value, such as [|2c - 1| \le 7]:
-[
--7 \le 2c - 1 \le 7
-]
-[
--6 \le 2c \le 8
-]
-[
--3 \le c \le 4
-]
+Problem 25 gives `|s - 515| <= 114`, so `401 <= s <= 629`. Two stated standard deviations give `|s - 515| <= 228`, so `287 <= s <= 743`. These values reproduce the worksheet data. They do not state current SAT policy.
 
-### Step 3: Graph the Solution
+## Recovered Number-Line Graphs and Matching
 
-Graph the solution set on a number line using open or closed circles depending on the inequality symbol.
+Problems 26 through 31 show these sets and equations:
 
-## Example 2 — Solve Greater-Than Absolute Value Inequalities
+- `2 < x < 4`, so `|x - 3| < 1`.
+- `x <= -3` or `x >= -1`, so `|x + 2| >= 1`.
+- `x < -10` or `x > -2`, so `|x + 6| > 4`.
+- `0 < x < 4`, so `|x - 2| < 2`.
+- `1 <= x <= 9`, so `|x - 5| <= 4`.
+- `x < -1` or `x > 1`, so `|x| > 1`.
 
-Solve absolute value inequalities with greater-than or greater-than-or-equal-to symbols, then graph the solution set on a number line.
+Problems 32 through 35 match as follows: `|x| > 2` matches graph b; `|x - 2| <= 3` matches graph d; `|x + 1| < 4` matches graph a; and `|-x + 1.5| < 3` matches graph c.
 
-### Step 1: Identify the Form
+Problems 36 through 38 give `|t - 52| <= 3`, `|s - 92| <= 8`, and `|a - 87| <= 25`. Their intervals are 49 through 55, 84 through 100, and 62 through 112. Assessment content must state whether the word `within` includes the endpoints.
 
-Determine whether the inequality uses [>] or [\ge] and whether the right-hand side is positive or negative.
+## Mixed Practice
 
-For [|r + 2| > 6]:
-[
-r + 2 < -6 \quad \text{or} \quad r + 2 > 6
-]
+- Problems 39–44 give `-1 <= x <= 3`; `x <= -1` or `x >= 2`; `-9 <= x <= 3`; `x <= -11.5` or `x >= -2.5`; `x < -17` or `x > 18`; and `-3 < x < 2`.
+- Problem 45 has all real numbers as solutions because every absolute value is greater than `-1`.
+- Problem 46 predicts `2.4(47) + 46.2 = 159` centimeters. Its 3-centimeter range is 156 through 162 centimeters.
+- Problem 47 sends back boxes with `|w - 516| > 4`. The accepted interval includes 512 and 520 grams when `within 4 grams` is inclusive.
+- Problem 49 compares `|x - 2| > 4` with `-2x < 4` or `x > 6`. The first set is `x < -2` or `x > 6`. The second set simplifies to `x > -2`. The sets are not equal.
+- Problem 50 gives a positive house width no greater than 50 feet. With width 50, `2800 <= 50l <= 3200`, so `56 <= l <= 64`. The cost condition is `|c - 175000| <= 20000`, so the range is $155,000 through $195,000.
+- Problem 51 gives `x > 7` or `x < -13`. Jordan is correct. Chloe incorrectly changes `-(x + 3)` to `-x + 3`.
+- Problem 53 gives `-8 <= n < -3` or `1 < n <= 6`. The lower absolute-value bound is strict. The upper bound is closed.
+- Problem 54 shows `-3 < x < 5`. Statements I and III match. Statement II covers all real numbers.
+- Problem 55 must show `a < 1` or `a > 2`. Lucita's displayed graph is incorrect.
+- Problem 56 is sometimes true. The result depends on the inequality direction and the sign of the bound.
+- Problem 57 excludes zero because `|0|` is not greater than zero.
+- Problem 58 asks how symbols represent mathematical ideas. A response must give and explain an example.
+- Problem 59 asks for the `and` or `or` decision rule and a complete absolute-value inequality solution method.
+- Problem 60 displays `|x + 4| - 7 >= 3`, `|-6x - 1| <= 1/2`, `-2|10x + 4| < 6`, and `|3x + 5| < -3/5`.
 
-### Step 2: Solve Each Inequality
+Problem 48 asks for compound inequalities with solution set `{x | 4 <= x}` in part a and `{4}` in part b. Problem 52 asks the learner to write and solve an absolute value inequality that uses 3, 2, and -7. Problem 60 asks which of four displayed inequalities does not belong and requires a justification. Problems 48, 52, and 60 permit more than one valid response. A future assessment must evaluate the submitted inequality or justification. It must not require one fixed label.
 
-Solve each part of the compound inequality separately.
+## Source limits
 
-[
-r < -8 \quad \text{or} \quad r > 4
-]
+The source contains one joint heading for Examples 1, 2, 4, and 5. Keep one shared body for these source identities. Example 3 is the only direct worked source for contextual modeling. Mixed-practice problems do not create additional worked-example identities.
 
-For inequalities with a coefficient, such as [|2h - 3| \ge 9]:
-[
-2h - 3 \le -9 \quad \text{or} \quad 2h - 3 \ge 9
-]
-[
-2h \le -6 \quad \text{or} \quad 2h \ge 12
-]
-[
-h \le -3 \quad \text{or} \quad h \ge 6
-]
-
-### Step 3: Graph the Solution
-
-Graph both parts of the solution on a number line. The solution is the union of the two intervals.
-
-## Example 3 — Real-World Applications
-
-Write and solve absolute value inequalities that model real-world situations involving tolerance, margin of error, or acceptable ranges.
-
-### Step 1: Translate the Situation
-
-Identify the target value and the allowable deviation from that value.
-
-For a speedometer accurate within [\pm 2.5\%] at 60 mph:
-[
-|s - 60| \le 0.025(60)
-]
-[
-|s - 60| \le 1.5
-]
-
-### Step 2: Solve and Interpret
-
-Solve the inequality and interpret the result in the context of the problem.
-
-[
--1.5 \le s - 60 \le 1.5
-]
-[
-58.5 \le s \le 61.5
-]
-
-The car could actually be traveling between 58.5 mph and 61.5 mph.
-
-Other situations include baking temperatures within a range, paint amounts within a tolerance, healthy weight ranges, and SAT scores within standard deviations of the mean.
-
-## Example 4 — Special Cases
-
-Recognize and explain absolute value inequalities that have no solution or all real numbers as solutions.
-
-### No Solution
-
-When the right-hand side is negative and the symbol is [<] or [\le], the inequality has no solution because an absolute value can never be less than a negative number.
-
-[
-|m + 4| < -2 \quad \Rightarrow \quad \text{no solution}
-]
-
-[
-\left|\frac{7c + 3}{2}\right| \le -5 \quad \Rightarrow \quad \text{no solution}
-]
-
-### All Real Numbers
-
-When the right-hand side is negative and the symbol is [>] or [\ge], the solution is all real numbers because an absolute value is always non-negative.
-
-[
-|5v + 3| > -9 \quad \Rightarrow \quad \text{all real numbers}
-]
-
-[
-\left|\frac{2g + 3}{2}\right| > -7 \quad \Rightarrow \quad \text{all real numbers}
-]
-
-## Example 5 — Fractional Coefficients and Mixed Practice
-
-Solve more complex absolute value inequalities that include fractional expressions or negative coefficients inside the absolute value, then graph each solution set.
-
-### Fractional Expressions
-
-For inequalities such as [\left|\frac{3h + 1}{2}\right| < 8]:
-[
--8 < \frac{3h + 1}{2} < 8
-]
-[
--16 < 3h + 1 < 16
-]
-[
--17 < 3h < 15
-]
-[
--\frac{17}{3} < h < 5
-]
-
-### Negative Coefficients
-
-For inequalities such as [|-6r - 4| < 8], first isolate the absolute value, then proceed as usual. The negative coefficient does not change the solving process.
-
-[
--8 < -6r - 4 < 8
-]
-[
--4 < -6r < 12
-]
-
-Remember to reverse the inequality symbols when dividing by a negative number:
-[
-\frac{2}{3} > r > -2 \quad \text{or} \quad -2 < r < \frac{2}{3}
-]
-
-## Mixed Exercises
-
-The mixed exercises section provides comprehensive practice across all skills from this lesson. Students write absolute value open sentences from number line graphs, match inequalities to their graphical solutions, model real-world scenarios with absolute value inequalities and then solve and graph them, solve a variety of absolute value inequalities with and without fractional coefficients, and engage in reasoning tasks such as finding errors in worked solutions, constructing arguments about solution sets, analyzing the relationship between absolute value and compound inequalities, and creating their own inequalities.
-
-## Review Notes
-
-* Problems 26–31 require number line graphs that are not described in the source text. Each graph shows a solution interval (or union of intervals) on a number line; students must write the corresponding absolute value open sentence.
-* Problems 32–35 require matching absolute value inequalities to their number line graph solutions. The graphs are not described in the source text.
-* Problem 51 includes an image showing the work of Jordan and Chloe solving [|x + 3| > 10]. The image is not described; human review is needed to evaluate their reasoning.
-* Problem 53 includes a number line graph image showing the solution to [2 < |n + 1| \le 7]. The graph is not described in the source text.
-* Problem 54 includes a number line graph image. The graph is not described in the source text.
-* Problem 55 includes an image showing Lucita's graph of [|2a - 3| > 1]. The image is not described; human review is needed to evaluate her work.
-* Problem 60 includes an image showing four absolute value inequalities and asks which one does not belong. The image is not described; human review is needed.
+Use positive domains for physical measurements. Preserve all open and closed endpoints. Do not treat a fraction, decimal, percentage, or context as a separate mathematical capability.

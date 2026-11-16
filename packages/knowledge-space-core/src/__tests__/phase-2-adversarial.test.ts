@@ -73,18 +73,18 @@ describe('adversarial — time-travel transitions', () => {
     expect(state0.get('s1')!.state).toBe('mastered');
     const prev0 = state0;
 
-    // Day 45: no new review, retention decays below masteryExit (0.7)
-    const t45 = NOW + 45 * DAY_MS;
+    // Day 180: v3 power-curve retention decays below masteryExit (0.7)
+    const t45 = NOW + 180 * DAY_MS;
     const state45 = getKnowledgeState(student, evidenceFresh, graph, t45, undefined, prev0);
     expect(state45.get('s1')!.retention).toBeLessThan(0.7);
     // Previous was mastered, retention < masteryExit → decaying
     expect(state45.get('s1')!.state).toBe('decaying');
     const prev45 = state45;
 
-    // Day 365: deep decay, retention very low
-    const t365 = NOW + 365 * DAY_MS;
+    // Day 1000: deep decay below half the mastery-exit threshold
+    const t365 = NOW + 1000 * DAY_MS;
     const state365 = getKnowledgeState(student, evidenceFresh, graph, t365, undefined, prev45);
-    expect(state365.get('s1')!.retention).toBeLessThan(0.1);
+    expect(state365.get('s1')!.retention).toBeLessThan(0.35);
     // Deep decay → inProgress
     expect(state365.get('s1')!.state).toBe('inProgress');
     const prev365 = state365;
@@ -109,8 +109,8 @@ describe('adversarial — rapid enter/exit/re-enter cycles', () => {
     const s0 = getKnowledgeState(student, ev, graph, NOW);
     expect(s0.get('s1')!.state).toBe('mastered');
 
-    // 2 days later with stability=1 → retention < masteryExit → decaying
-    const t2 = NOW + 2 * DAY_MS;
+    // 10 days later with stability=1 → retention < masteryExit → decaying
+    const t2 = NOW + 10 * DAY_MS;
     const s1 = getKnowledgeState(student, ev, graph, t2, undefined, s0);
     expect(s1.get('s1')!.state).toBe('decaying');
 
@@ -119,8 +119,8 @@ describe('adversarial — rapid enter/exit/re-enter cycles', () => {
     const s2 = getKnowledgeState(student, ev2, graph, t2, undefined, s1);
     expect(s2.get('s1')!.state).toBe('mastered');
 
-    // 2 more days → decaying again
-    const t4 = t2 + 2 * DAY_MS;
+    // 10 more days → decaying again
+    const t4 = t2 + 10 * DAY_MS;
     const s3 = getKnowledgeState(student, ev2, graph, t4, undefined, s2);
     expect(s3.get('s1')!.state).toBe('decaying');
   });
@@ -210,20 +210,18 @@ describe('adversarial — corrupted and edge-value inputs', () => {
   const graph = makeGraph(['s1']);
 
   it('zero stability: retention returns 0 (stabilityToRetention guard)', () => {
-    const r = stabilityToRetention(0, 10, 1);
+    const r = stabilityToRetention(0, 10);
     expect(r).toBe(0);
   });
 
   it('negative stability: retention returns 0', () => {
-    const r = stabilityToRetention(-5, 10, 1);
+    const r = stabilityToRetention(-5, 10);
     expect(r).toBe(0);
   });
 
   it('negative deltaDays: clamped to 0', () => {
-    const r = stabilityToRetention(30, -10, 1);
-    // deltaDays is max(0, deltaMs/...) in the engine, but the raw fn
-    // passes negative through. Let engine handle clamping.
-    expect(r).toBeGreaterThan(0); // exp(-(-10)/(30*1)) = exp(10/30) > 1 → clamped to 1
+    const r = stabilityToRetention(30, -10);
+    expect(r).toBe(0);
   });
 
   it('NaN stability should not crash', () => {
@@ -234,21 +232,19 @@ describe('adversarial — corrupted and edge-value inputs', () => {
   });
 
   it('infinity stability → retention stays at 1', () => {
-    const r = stabilityToRetention(Infinity, 30, 1);
-    // exp(-30/infinity) = exp(0) = 1
+    const r = stabilityToRetention(Infinity, 30);
     expect(r).toBeCloseTo(1.0, 5);
   });
 
   it('very large deltaDays does not produce NaN', () => {
-    const r = stabilityToRetention(30, 1_000_000, 1);
+    const r = stabilityToRetention(30, 1_000_000);
     expect(r).toBeGreaterThanOrEqual(0);
     expect(Number.isNaN(r)).toBe(false);
     expect(r).toBeLessThan(0.1);
   });
 
-  it('scale parameter of 0: effectively zero retention for any delta', () => {
-    const r = stabilityToRetention(30, 1, 0);
-    expect(r).toBe(0);
+  it('uses FSRS stability as the 90% retention horizon', () => {
+    expect(stabilityToRetention(30, 30)).toBeCloseTo(0.9, 10);
   });
 
   it('evidence sourceId does not exist in graph → ignored gracefully', () => {

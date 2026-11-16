@@ -14,9 +14,6 @@ import type {
   ModuleOverviewExtract,
   ClassPeriodPlanExtract,
   AleksRegistryExtract,
-  ExtractedLesson,
-  ExtractedObjective,
-  ExtractedWorkedExample,
 } from './parser';
 
 // ---------------------------------------------------------------------------
@@ -73,15 +70,6 @@ function sanitizeIdSegment(s: string): string {
 function deriveSkillSlug(objective: string): string {
   // "Graph quadratic functions" → "graph-quadratic-functions"
   return toSlug(objective).slice(0, 60);
-}
-
-/**
- * Pad a number to two digits with leading zeros.
- * @param {number} n - Number to pad
- * @returns {string} - Zero-padded string
- */
-function padNum(n: number): string {
-  return String(n).padStart(2, '0');
 }
 
 // ---------------------------------------------------------------------------
@@ -168,6 +156,7 @@ export function assembleDraftInventory(
   const skillSlugSet = new Set<string>();
   if (classPeriodPlan) {
     let globalExampleIdx = 0;
+    const sourceExamples = new Set<string>();
 
     for (const lesson of classPeriodPlan.lessons) {
       const [mod, les] = lesson.lessonRef.split('-').map(sanitizeIdSegment);
@@ -198,6 +187,11 @@ export function assembleDraftInventory(
       for (const example of lesson.examples) {
         for (const num of example.exampleNumbers) {
           globalExampleIdx++;
+          // Retain later occurrence IDs while shared lesson examples use the
+          // first identity. Do not renumber saved examples during deduplication.
+          const sourceExample = `${mod}.${les}.${num}`;
+          if (sourceExamples.has(sourceExample)) continue;
+          sourceExamples.add(sourceExample);
           const idxStr = String(globalExampleIdx).padStart(3, '0');
           nodes.push({
             id: buildWorkedExampleId(course, mod, les, idxStr),

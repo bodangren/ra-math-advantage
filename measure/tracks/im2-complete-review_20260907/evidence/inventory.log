@@ -1,0 +1,13 @@
+Lesson sources: 96
+Image references: 747 unresolved: 747
+Readable DOCX files: 96 media entries: 1184
+All packages: 252 module packages: 239
+Day types: {'instruction': 165, 'test': 13, 'mastery': 35, 'jigsaw': 13, 'review': 13}
+Instruction warm-ups: {'Skill activation problem': 165}
+Node kinds: {'domain': 1, 'worked_example': 400, 'instructional_unit': 82, 'content_group': 13, 'skill': 149}
+First lesson node: {'id': 'math.im2.lesson.1.1', 'kind': 'instructional_unit', 'title': 'Classifying Triangles', 'domain': 'math.im2', 'sourceRefs': ['apps/integrated-math-2/curriculum/module-1-class-period-plan.md'], 'reviewStatus': 'draft', 'metadata': {'course': 'im2', 'module': '1', 'lesson': '1'}}
+implementation/practice-v1/activity-map.json entries: 405 modes: {'worked_example': 165, 'guided_practice': 240}
+skill-graph/projection/practice-v1-activity-map.json entries: 447 modes: {'guided_practice': 149, 'independent_practice': 149, 'worked_example': 149}
+Missing graph lessons: ['7-7', '7-8', '8-7', '9-6', '9-7', '9-8', '9-9', '10-6', '10-7', '11-7', '12-6', '12-7', '12-8', '12-9']
+Title mismatches: 75
+Renderer mismatches: 104 / 107

@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -23,9 +24,9 @@ export const seedLesson3_4 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 3,
-          title: "Graphs of Trigonometric Functions",
+          title: "Sine and Cosine Function Graphs",
           slug: lessonSlug,
-          description: "Students graph sine, cosine, and tangent functions and identify key features of each.",
+          description: "AP Precalculus Topic 3.4: Sine and Cosine Function Graphs",
           orderIndex: 4,
           createdAt: now,
           updatedAt: now,
@@ -33,204 +34,131 @@ export const seedLesson3_4 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
-          title: "Graphs of Trigonometric Functions",
-          description: "Students graph sine, cosine, and tangent functions and identify key features of each.",
+          version: 2,
+          title: "Sine and Cosine Function Graphs",
+          description: "AP Precalculus Topic 3.4: Sine and Cosine Function Graphs",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                variant: "plot_from_equation",
-                equation: "y = tan(x)",
-                title: "Explore Tangent Graph",
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Graphs of Trig Functions\n\n### $y = \\sin(x)$\n- Starts at origin, rises to max at $\\frac{\\pi}{2}$\n- Period: $2\\pi$\n- Odd function: $\\sin(-x) = -\\sin(x)$\n\n### $y = \\cos(x)$\n- Starts at maximum (1, 0)\n- Period: $2\\pi$\n- Even function: $\\cos(-x) = \\cos(x)$\n\n### $y = \\tan(x)$\n- Period: $\\pi$\n- Vertical asymptotes at $x = \\frac{\\pi}{2} + n\\pi$\n- Range: $(-\\infty, \\infty)$\n- Odd function, passes through origin\n\n### Key Differences\n\n| Feature | sin | cos | tan |\n|---------|-----|-----|-----|\n| Period | $2\\pi$ | $2\\pi$ | $\\pi$ |\n| Range | $[-1, 1]$ | $[-1, 1]$ | $(-\\infty, \\infty)$ |\n| Asymptotes | None | None | $\\frac{\\pi}{2} + n\\pi$ |",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Graphing $y = 2\\sin(x) - 1$\n\nIdentify all key features.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "graphing",
-                equation: "y = 2sin(x) - 1",
-                steps: [
-                  { expression: "Amplitude = |2| = 2", explanation: "From coefficient" },
-                  { expression: "Midline: y = -1", explanation: "Vertical shift" },
-                  { expression: "Period = 2π (unchanged)", explanation: "No horizontal change" },
-                  { expression: "Max = -1 + 2 = 1", explanation: "Maximum value" },
-                  { expression: "Min = -1 - 2 = -3", explanation: "Minimum value" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "The function $y = \\cos(x)$ is:",
-                    options: ["Odd", "Even", "Neither", "Both"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "The period of $y = \\tan(x)$ is:",
-                    options: ["2π", "π", "π/2", "4π"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                variant: "plot_from_equation",
-                equation: "y = 3cos(x) + 2",
-                title: "Graph a Cosine Function",
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Plot $\\sin \\theta$ for $\\theta$ from $0$ to $2\\pi$ using the unit circle values you know: $\\sin 0 = 0$, $\\sin(\\pi/6) = 1/2$, $\\sin(\\pi/2) = 1$, $\\sin(\\pi) = 0$, $\\sin(3\\pi/2) = -1$, $\\sin(2\\pi) = 0$. Connect the dots smoothly.\n\nWhat shape emerges? How high and low does it go? How far along the $θ$-axis does one full pattern take? These questions define the key features of every sinusoidal graph."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Midline**: The horizontal line halfway between the maximum and minimum values of a sinusoidal function. If the maximum is $M$ and the minimum is $m$, the midline is $y = (M + m)/2$.\n- **Amplitude**: The distance from the midline to the maximum (or minimum). Amplitude = $(M - m)/2$.\n- **Period**: The horizontal length of one full cycle.\n- **Frequency**: The reciprocal of the period — the number of cycles per unit of input. Frequency = $1/P$.\n- **Sinusoidal function**: A function that can be expressed as a transformation of $\\sin \\theta$ or $\\cos \\theta$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "The graphs of $f(\\theta) = \\sin \\theta$ and $g(\\theta) = \\cos \\theta$ share the same basic properties:\n\n| Property | Value |\n|---|---|\n| Midline | $y = 0$ |\n| Amplitude | $1$ |\n| Period | $2\\pi$ |\n| Frequency | $1/(2\\pi)$ |\n\nThe sine graph starts at the origin, rises to $1$ at $\\pi/2$, crosses zero at $\\pi$, falls to $-1$ at $3\\pi/2$, and returns to $0$ at $2\\pi$. The cosine graph starts at $1$, crosses zero at $\\pi/2$, reaches $-1$ at $\\pi$, crosses zero again at $3\\pi/2$, and returns to $1$ at $2\\pi$.\n\nThe graph of $\\sin \\theta$ oscillates between **concave down** (above the midline) and **concave up** (below the midline). This concavity pattern is essential for describing interval behavior.\n\nThe cosine function is a horizontal shift of sine: $\\cos \\theta = \\sin(\\theta + \\pi/2)$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** A sinusoidal function $h(\\theta)$ has a maximum value of $8$ and a minimum value of $-2$. Find the midline, amplitude, period (if max occurs at $\\pi$ and next min at $3\\pi$), and frequency.\n\n**Solution:**\n- Midline: $y = (8 + (-2))/2 = 3$\n- Amplitude: $(8 - (-2))/2 = 5$\n- Period: $2(3\\pi - \\pi) = 4\\pi$\n- Frequency: $1/(4\\pi)$\n\n**Example 2:** Describe the behavior of $f(\\theta) = \\sin \\theta$ on the interval $(0, \\pi/2)$.\n\n**Solution:** On $(0, \\pi/2)$, $f$ is **increasing** and **concave down** (the graph is above the midline and bending toward the maximum).\n\n**Example 3:** Describe the behavior on $(\\pi/2, \\pi)$.\n\n**Solution:** On $(\\pi/2, \\pi)$, $f$ is **decreasing** and **concave down** (above the midline, curving away from the peak)."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** A sinusoidal graph has a maximum of $12$ at $\\theta = 0$ and the next minimum of $4$ at $\\theta = \\pi$. Find the midline, amplitude, period, and frequency.\n\n**Hint:** The midline is the average of max and min. The period is twice the horizontal distance from max to min.\n\n**Problem 2:** On the interval $(\\pi, 3\\pi/2)$, is $\\sin \\theta$ increasing or decreasing? Is it concave up or concave down?\n\n**Hint:** Sine is below the midline on $(\\pi, 2\\pi)$ and heading toward its minimum.\n\n**Problem 3:** A sinusoidal function $g$ has a minimum at $(\\pi/2, 0)$ and a maximum at $(\\pi, 1)$. Find the midline and amplitude.\n\n**Hint:** Midline = $(1 + 0)/2 = 0.5$. Amplitude = $(1 - 0)/2 = 0.5$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** For each graph below, find the period, frequency, amplitude, and midline.\n- (a) Maximum $6$, minimum $-4$, one cycle from $0$ to $2\\pi$.\n- (b) Maximum $3$, minimum $1$, one cycle from $0$ to $\\pi$.\n\n**Problem 2:** A sinusoidal function $k(\\theta)$ has a minimum at $(\\pi, -10)$ and a maximum at $(4\\pi, 0)$. Find period, frequency, amplitude, and midline.\n\n**Problem 3:** Describe the behavior of $\\cos \\theta$ on $(0, \\pi/2)$ — is it increasing or decreasing? Concave up or concave down? Positive or negative?\n\n**Problem 4:** The function $f(\\theta) = \\cos \\theta$ has a maximum at $(0, 1)$ and a minimum at $(\\pi, -1)$. Verify that the period is $2\\pi$, the amplitude is $1$, and the midline is $y = 0$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** A sinusoidal function has a maximum at $(2, 10)$ and the next minimum at $(6, 2)$. Find the amplitude and midline.\n\n**Lesson Summary:** The graphs of sine and cosine share the same fundamental shape — smooth, repeating waves. Four parameters define any sinusoidal graph: the midline (vertical center), amplitude (distance from midline to peak), period (horizontal length of one cycle), and frequency (cycles per unit). A sinusoidal graph is concave down above the midline and concave up below it, which determines how to describe behavior on sub-intervals."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

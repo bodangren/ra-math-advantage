@@ -33,7 +33,7 @@ export function PhaseContainer({ phaseType, children }: PhaseContainerProps) {
   return (
     <section
       aria-label={`${label} phase`}
-      className={`my-6 rounded-lg border ${bgColor} ${borderColor} p-6`}
+      className={`my-6 rounded-lg border ${bgColor} ${borderColor} p-6 [--foreground:0.13_0.016_45] [--card:1_0_0] text-foreground [&_.katex]:!text-foreground`}
     >
       <div className={`flex items-center gap-2 mb-4`}>
         <span className={`text-xs font-semibold uppercase tracking-widest font-mono-num ${color}`}>

@@ -1,3 +1,4 @@
+import type { QueryCtx } from "./_generated/server";
 import { query } from "./_generated/server";
 import { coerceNullableString, getOrCreateMapEntry } from "./dashboardHelpers";
 import { resolveLatestPublishedLessonVersion } from "../lib/progress/published-curriculum";
@@ -46,11 +47,37 @@ function isCapstoneLesson(lesson: { metadata?: { tags?: string[] | null } | null
   return Boolean(lesson.metadata?.tags?.includes("capstone"));
 }
 
+
+async function publishedLessons(ctx: QueryCtx) {
+  const lessons = await ctx.db.query('lessons').collect();
+  const results = await Promise.all(lessons.map(async lesson => {
+    const versions = await ctx.db.query('lesson_versions')
+      .withIndex('by_lesson', q => q.eq('lessonId', lesson._id)).collect();
+    const version = resolveLatestPublishedLessonVersion(versions);
+    return version ? { lesson, version } : null;
+  }));
+  return results.filter(result => result !== null);
+}
+
 export const getCurriculumStats = query({
   args: {},
   handler: async (ctx) => {
-    const lessons = await ctx.db.query("lessons").collect();
-    const activities = await ctx.db.query("activities").collect();
+    const published = await publishedLessons(ctx);
+    const lessons = published.map(({ lesson }) => lesson);
+    const activityIds = new Set<string>();
+    for (const { version } of published) {
+      const phases = await ctx.db.query('phase_versions')
+        .withIndex('by_lesson_version', q => q.eq('lessonVersionId', version._id)).collect();
+      for (const phase of phases) {
+        const sections = await ctx.db.query('phase_sections')
+          .withIndex('by_phase_version', q => q.eq('phaseVersionId', phase._id)).collect();
+        for (const section of sections) {
+          if (section.sectionType === 'activity' && typeof section.content.activityId === 'string') {
+            activityIds.add(section.content.activityId);
+          }
+        }
+      }
+    }
 
     const instructionalLessons = lessons.filter((lesson) => !isCapstoneLesson(lesson));
     const uniqueUnits = new Set(instructionalLessons.map((lesson) => lesson.unitNumber));
@@ -58,7 +85,7 @@ export const getCurriculumStats = query({
     return {
       unitCount: uniqueUnits.size,
       lessonCount: lessons.length,
-      activityCount: activities.length,
+      activityCount: activityIds.size,
     };
   },
 });
@@ -66,11 +93,8 @@ export const getCurriculumStats = query({
 export const getUnits = query({
   args: {},
   handler: async (ctx) => {
-    // Fetch all lessons where orderIndex is 1
-    const lessons = await ctx.db
-      .query("lessons")
-      .filter((q) => q.eq(q.field("orderIndex"), 1))
-      .collect();
+    const lessons = (await publishedLessons(ctx))
+      .map(({ lesson }) => lesson).filter(lesson => lesson.orderIndex === 1);
 
     const instructionalLessons = lessons.filter((lesson) => !isCapstoneLesson(lesson));
 
@@ -90,7 +114,7 @@ export const getUnits = query({
 export const getUnitSummaries = query({
   args: {},
   handler: async (ctx) => {
-    const allLessons = await ctx.db.query("lessons").collect();
+    const allLessons = (await publishedLessons(ctx)).map(({ lesson }) => lesson);
 
     // Sort by unitNumber ascending, orderIndex ascending
     allLessons.sort((a, b) => {
@@ -138,7 +162,7 @@ export const getUnitSummaries = query({
 export const getCurriculum = query({
   args: {},
   handler: async (ctx) => {
-    const lessonRows = await ctx.db.query("lessons").collect();
+    const lessonRows = (await publishedLessons(ctx)).map(({ lesson }) => lesson);
     
     lessonRows.sort((a, b) => {
       if (a.unitNumber !== b.unitNumber) return a.unitNumber - b.unitNumber;
@@ -209,7 +233,7 @@ export const getCurriculum = query({
 export const getCapstonePageData = query({
   args: {},
   handler: async (ctx) => {
-    const allLessons = await ctx.db.query("lessons").collect();
+    const allLessons = (await publishedLessons(ctx)).map(({ lesson }) => lesson);
 
     allLessons.sort((a, b) => {
       if (a.unitNumber !== b.unitNumber) return a.unitNumber - b.unitNumber;

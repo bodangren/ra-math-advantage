@@ -1,0 +1,886 @@
+{
+  "edges": [
+    {
+      "from": "math.bm2.skill.1.1.apply-accounting-equation",
+      "to": "math.bm2.skill.1.3",
+      "type": "prerequisite",
+      "rationale": "The learner first identifies how one simple event changes the accounting equation. The learner then records both effects and verifies balance across a series of events."
+    },
+    {
+      "from": "math.bm2.skill.1.2",
+      "to": "math.bm2.skill.1.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Classify accounts as assets, liabilities, or equity. The next capability applies or checks that work: Record both effects of a business transaction."
+    },
+    {
+      "from": "math.bm2.skill.1.2",
+      "to": "math.bm2.skill.1.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Classify accounts as assets, liabilities, or equity. The next capability applies or checks that work: Build a classified balance sheet."
+    },
+    {
+      "from": "math.bm2.skill.1.4",
+      "to": "math.bm2.skill.1.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a classified balance sheet. The next capability applies or checks that work: Find and correct errors in account balances."
+    },
+    {
+      "from": "math.bm2.skill.1.2",
+      "to": "math.bm2.skill.1.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Classify accounts as assets, liabilities, or equity. The next capability applies or checks that work: Validate account data with spreadsheet rules."
+    },
+    {
+      "from": "math.bm2.skill.1.5",
+      "to": "math.bm2.skill.1.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Find and correct errors in account balances. The next capability applies or checks that work: Validate account data with spreadsheet rules."
+    },
+    {
+      "from": "math.bm2.skill.1.4",
+      "to": "math.bm2.skill.1.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a classified balance sheet. The next capability applies or checks that work: Explain financial position with a linked chart."
+    },
+    {
+      "from": "math.bm2.skill.1.6",
+      "to": "math.bm2.skill.1.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate account data with spreadsheet rules. The next capability applies or checks that work: Explain financial position with a linked chart."
+    },
+    {
+      "from": "math.bm2.skill.1.7",
+      "to": "math.bm2.skill.1.8",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain financial position with a linked chart. The next capability applies or checks that work: Build a balance sheet model from assigned data."
+    },
+    {
+      "from": "math.bm2.skill.1.8",
+      "to": "math.bm2.skill.1.9",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a balance sheet model from assigned data. The next capability applies or checks that work: Revise a balance sheet model after evidence-based review."
+    },
+    {
+      "from": "math.bm2.skill.1.9",
+      "to": "math.bm2.skill.1.10",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Revise a balance sheet model after evidence-based review. The next capability applies or checks that work: Present and defend a balance sheet result."
+    },
+    {
+      "from": "math.bm2.skill.1.2",
+      "to": "math.bm2.skill.2.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Classify accounts as assets, liabilities, or equity. The next capability applies or checks that work: Record debit and credit effects."
+    },
+    {
+      "from": "math.bm2.skill.2.1",
+      "to": "math.bm2.skill.2.2",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Record debit and credit effects. The next capability applies or checks that work: Use source documents to identify transactions."
+    },
+    {
+      "from": "math.bm2.skill.2.1",
+      "to": "math.bm2.skill.2.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Record debit and credit effects. The next capability applies or checks that work: Prepare balanced journal entries."
+    },
+    {
+      "from": "math.bm2.skill.2.2",
+      "to": "math.bm2.skill.2.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Use source documents to identify transactions. The next capability applies or checks that work: Prepare balanced journal entries."
+    },
+    {
+      "from": "math.bm2.skill.2.3",
+      "to": "math.bm2.skill.2.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Prepare balanced journal entries. The next capability applies or checks that work: Post journal entries to ledger accounts."
+    },
+    {
+      "from": "math.bm2.skill.2.4",
+      "to": "math.bm2.skill.2.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Post journal entries to ledger accounts. The next capability applies or checks that work: Prepare and interpret a trial balance."
+    },
+    {
+      "from": "math.bm2.skill.2.5",
+      "to": "math.bm2.skill.2.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Prepare and interpret a trial balance. The next capability applies or checks that work: Locate posting errors."
+    },
+    {
+      "from": "math.bm2.skill.2.3",
+      "to": "math.bm2.skill.2.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Prepare balanced journal entries. The next capability applies or checks that work: Explain how transactions affect profit."
+    },
+    {
+      "from": "math.bm2.skill.2.5",
+      "to": "math.bm2.skill.2.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Prepare and interpret a trial balance. The next capability applies or checks that work: Explain how transactions affect profit."
+    },
+    {
+      "from": "math.bm2.skill.2.7",
+      "to": "math.bm2.skill.2.8",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain how transactions affect profit. The next capability applies or checks that work: Build a journal and ledger model from assigned data."
+    },
+    {
+      "from": "math.bm2.skill.2.8",
+      "to": "math.bm2.skill.2.9",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a journal and ledger model from assigned data. The next capability applies or checks that work: Revise a journal and ledger model after evidence-based review."
+    },
+    {
+      "from": "math.bm2.skill.2.9",
+      "to": "math.bm2.skill.2.10",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Revise a journal and ledger model after evidence-based review. The next capability applies or checks that work: Present and defend a journal and ledger result."
+    },
+    {
+      "from": "math.bm2.skill.2.5",
+      "to": "math.bm2.skill.3.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Prepare and interpret a trial balance. The next capability applies or checks that work: Connect profit to the balance sheet."
+    },
+    {
+      "from": "math.bm2.skill.3.1",
+      "to": "math.bm2.skill.3.2",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Connect profit to the balance sheet. The next capability applies or checks that work: Build an income statement from account balances."
+    },
+    {
+      "from": "math.bm2.skill.3.2",
+      "to": "math.bm2.skill.3.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build an income statement from account balances. The next capability applies or checks that work: Link net income and distributions to equity."
+    },
+    {
+      "from": "math.bm2.skill.3.1",
+      "to": "math.bm2.skill.3.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Connect profit to the balance sheet. The next capability applies or checks that work: Reconcile operating profit with operating cash."
+    },
+    {
+      "from": "math.bm2.skill.3.2",
+      "to": "math.bm2.skill.3.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build an income statement from account balances. The next capability applies or checks that work: Check that the statements use consistent balances."
+    },
+    {
+      "from": "math.bm2.skill.3.3",
+      "to": "math.bm2.skill.3.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Link net income and distributions to equity. The next capability applies or checks that work: Check that the statements use consistent balances."
+    },
+    {
+      "from": "math.bm2.skill.3.4",
+      "to": "math.bm2.skill.3.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile operating profit with operating cash. The next capability applies or checks that work: Check that the statements use consistent balances."
+    },
+    {
+      "from": "math.bm2.skill.3.5",
+      "to": "math.bm2.skill.3.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Check that the statements use consistent balances. The next capability applies or checks that work: Repair a broken statement link."
+    },
+    {
+      "from": "math.bm2.skill.3.6",
+      "to": "math.bm2.skill.3.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Repair a broken statement link. The next capability applies or checks that work: Support a financial explanation with statement evidence."
+    },
+    {
+      "from": "math.bm2.skill.3.7",
+      "to": "math.bm2.skill.3.8",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Support a financial explanation with statement evidence. The next capability applies or checks that work: Build a linked financial statements model from assigned data."
+    },
+    {
+      "from": "math.bm2.skill.3.8",
+      "to": "math.bm2.skill.3.9",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a linked financial statements model from assigned data. The next capability applies or checks that work: Revise a linked financial statements model after evidence-based review."
+    },
+    {
+      "from": "math.bm2.skill.3.9",
+      "to": "math.bm2.skill.3.10",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Revise a linked financial statements model after evidence-based review. The next capability applies or checks that work: Present and defend a linked financial statements result."
+    },
+    {
+      "from": "math.bm2.skill.3.1",
+      "to": "math.bm2.skill.3.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Connect profit to the balance sheet. The next capability applies or checks that work: Demonstrate the calculations and checks in a linked financial statements model."
+    },
+    {
+      "from": "math.bm2.skill.3.2",
+      "to": "math.bm2.skill.3.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build an income statement from account balances. The next capability applies or checks that work: Demonstrate the calculations and checks in a linked financial statements model."
+    },
+    {
+      "from": "math.bm2.skill.3.3",
+      "to": "math.bm2.skill.3.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Link net income and distributions to equity. The next capability applies or checks that work: Demonstrate the calculations and checks in a linked financial statements model."
+    },
+    {
+      "from": "math.bm2.skill.3.4",
+      "to": "math.bm2.skill.3.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile operating profit with operating cash. The next capability applies or checks that work: Demonstrate the calculations and checks in a linked financial statements model."
+    },
+    {
+      "from": "math.bm2.skill.3.5",
+      "to": "math.bm2.skill.3.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Check that the statements use consistent balances. The next capability applies or checks that work: Demonstrate the calculations and checks in a linked financial statements model."
+    },
+    {
+      "from": "math.bm2.skill.3.6",
+      "to": "math.bm2.skill.3.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Repair a broken statement link. The next capability applies or checks that work: Demonstrate the calculations and checks in a linked financial statements model."
+    },
+    {
+      "from": "math.bm2.skill.3.7",
+      "to": "math.bm2.skill.3.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Support a financial explanation with statement evidence. The next capability applies or checks that work: Demonstrate the calculations and checks in a linked financial statements model."
+    },
+    {
+      "from": "math.bm2.skill.2.3",
+      "to": "math.bm2.skill.4.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Prepare balanced journal entries. The next capability applies or checks that work: Identify gross pay, deductions, and net pay."
+    },
+    {
+      "from": "math.bm2.skill.4.1",
+      "to": "math.bm2.skill.4.2",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Identify gross pay, deductions, and net pay. The next capability applies or checks that work: Calculate hourly, salary, and commission pay."
+    },
+    {
+      "from": "math.bm2.skill.4.2",
+      "to": "math.bm2.skill.4.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate hourly, salary, and commission pay. The next capability applies or checks that work: Calculate overtime and classroom deductions."
+    },
+    {
+      "from": "math.bm2.skill.4.2",
+      "to": "math.bm2.skill.4.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate hourly, salary, and commission pay. The next capability applies or checks that work: Calculate net pay with rounding."
+    },
+    {
+      "from": "math.bm2.skill.4.3",
+      "to": "math.bm2.skill.4.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate overtime and classroom deductions. The next capability applies or checks that work: Calculate net pay with rounding."
+    },
+    {
+      "from": "math.bm2.skill.4.2",
+      "to": "math.bm2.skill.4.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate hourly, salary, and commission pay. The next capability applies or checks that work: Distinguish employee deductions from employer cost."
+    },
+    {
+      "from": "math.bm2.skill.4.4",
+      "to": "math.bm2.skill.4.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate net pay with rounding. The next capability applies or checks that work: Distinguish employee deductions from employer cost."
+    },
+    {
+      "from": "math.bm2.skill.4.4",
+      "to": "math.bm2.skill.4.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate net pay with rounding. The next capability applies or checks that work: Validate payroll inputs and control totals."
+    },
+    {
+      "from": "math.bm2.skill.4.5",
+      "to": "math.bm2.skill.4.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Distinguish employee deductions from employer cost. The next capability applies or checks that work: Validate payroll inputs and control totals."
+    },
+    {
+      "from": "math.bm2.skill.4.5",
+      "to": "math.bm2.skill.4.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Distinguish employee deductions from employer cost. The next capability applies or checks that work: Explain payroll expense and payroll liabilities."
+    },
+    {
+      "from": "math.bm2.skill.4.6",
+      "to": "math.bm2.skill.4.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate payroll inputs and control totals. The next capability applies or checks that work: Explain payroll expense and payroll liabilities."
+    },
+    {
+      "from": "math.bm2.skill.4.7",
+      "to": "math.bm2.skill.4.8",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain payroll expense and payroll liabilities. The next capability applies or checks that work: Build a payroll model from assigned data."
+    },
+    {
+      "from": "math.bm2.skill.4.8",
+      "to": "math.bm2.skill.4.9",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a payroll model from assigned data. The next capability applies or checks that work: Revise a payroll model after evidence-based review."
+    },
+    {
+      "from": "math.bm2.skill.4.9",
+      "to": "math.bm2.skill.4.10",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Revise a payroll model after evidence-based review. The next capability applies or checks that work: Present and defend a payroll result."
+    },
+    {
+      "from": "math.bm2.skill.4.1",
+      "to": "math.bm2.skill.4.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Identify gross pay, deductions, and net pay. The next capability applies or checks that work: Demonstrate the calculations and checks in a payroll model."
+    },
+    {
+      "from": "math.bm2.skill.4.2",
+      "to": "math.bm2.skill.4.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate hourly, salary, and commission pay. The next capability applies or checks that work: Demonstrate the calculations and checks in a payroll model."
+    },
+    {
+      "from": "math.bm2.skill.4.3",
+      "to": "math.bm2.skill.4.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate overtime and classroom deductions. The next capability applies or checks that work: Demonstrate the calculations and checks in a payroll model."
+    },
+    {
+      "from": "math.bm2.skill.4.4",
+      "to": "math.bm2.skill.4.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate net pay with rounding. The next capability applies or checks that work: Demonstrate the calculations and checks in a payroll model."
+    },
+    {
+      "from": "math.bm2.skill.4.5",
+      "to": "math.bm2.skill.4.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Distinguish employee deductions from employer cost. The next capability applies or checks that work: Demonstrate the calculations and checks in a payroll model."
+    },
+    {
+      "from": "math.bm2.skill.4.6",
+      "to": "math.bm2.skill.4.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate payroll inputs and control totals. The next capability applies or checks that work: Demonstrate the calculations and checks in a payroll model."
+    },
+    {
+      "from": "math.bm2.skill.4.7",
+      "to": "math.bm2.skill.4.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain payroll expense and payroll liabilities. The next capability applies or checks that work: Demonstrate the calculations and checks in a payroll model."
+    },
+    {
+      "from": "math.bm2.skill.1.4",
+      "to": "math.bm2.skill.5.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a classified balance sheet. The next capability applies or checks that work: Explain depreciation as cost allocation."
+    },
+    {
+      "from": "math.bm2.skill.5.1",
+      "to": "math.bm2.skill.5.2",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain depreciation as cost allocation. The next capability applies or checks that work: Determine the recorded cost of an acquired asset."
+    },
+    {
+      "from": "math.bm2.skill.5.2",
+      "to": "math.bm2.skill.5.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Determine the recorded cost of an acquired asset. The next capability applies or checks that work: Calculate straight-line depreciation."
+    },
+    {
+      "from": "math.bm2.skill.5.2",
+      "to": "math.bm2.skill.5.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Determine the recorded cost of an acquired asset. The next capability applies or checks that work: Calculate units-of-production depreciation."
+    },
+    {
+      "from": "math.bm2.skill.5.2",
+      "to": "math.bm2.skill.5.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Determine the recorded cost of an acquired asset. The next capability applies or checks that work: Compare straight-line and double-declining balance."
+    },
+    {
+      "from": "math.bm2.skill.5.3",
+      "to": "math.bm2.skill.5.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate straight-line depreciation. The next capability applies or checks that work: Validate depreciation schedules and statement links."
+    },
+    {
+      "from": "math.bm2.skill.5.4",
+      "to": "math.bm2.skill.5.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate units-of-production depreciation. The next capability applies or checks that work: Validate depreciation schedules and statement links."
+    },
+    {
+      "from": "math.bm2.skill.5.5",
+      "to": "math.bm2.skill.5.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Compare straight-line and double-declining balance. The next capability applies or checks that work: Validate depreciation schedules and statement links."
+    },
+    {
+      "from": "math.bm2.skill.5.6",
+      "to": "math.bm2.skill.5.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate depreciation schedules and statement links. The next capability applies or checks that work: Explain the non-cash effect of depreciation."
+    },
+    {
+      "from": "math.bm2.skill.5.7",
+      "to": "math.bm2.skill.5.8",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain the non-cash effect of depreciation. The next capability applies or checks that work: Build a depreciation model from assigned data."
+    },
+    {
+      "from": "math.bm2.skill.5.8",
+      "to": "math.bm2.skill.5.9",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a depreciation model from assigned data. The next capability applies or checks that work: Revise a depreciation model after evidence-based review."
+    },
+    {
+      "from": "math.bm2.skill.5.9",
+      "to": "math.bm2.skill.5.10",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Revise a depreciation model after evidence-based review. The next capability applies or checks that work: Present and defend a depreciation result."
+    },
+    {
+      "from": "math.bm2.skill.5.1",
+      "to": "math.bm2.skill.5.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain depreciation as cost allocation. The next capability applies or checks that work: Demonstrate the calculations and checks in a depreciation model."
+    },
+    {
+      "from": "math.bm2.skill.5.2",
+      "to": "math.bm2.skill.5.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Determine the recorded cost of an acquired asset. The next capability applies or checks that work: Demonstrate the calculations and checks in a depreciation model."
+    },
+    {
+      "from": "math.bm2.skill.5.3",
+      "to": "math.bm2.skill.5.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate straight-line depreciation. The next capability applies or checks that work: Demonstrate the calculations and checks in a depreciation model."
+    },
+    {
+      "from": "math.bm2.skill.5.4",
+      "to": "math.bm2.skill.5.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate units-of-production depreciation. The next capability applies or checks that work: Demonstrate the calculations and checks in a depreciation model."
+    },
+    {
+      "from": "math.bm2.skill.5.5",
+      "to": "math.bm2.skill.5.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Compare straight-line and double-declining balance. The next capability applies or checks that work: Demonstrate the calculations and checks in a depreciation model."
+    },
+    {
+      "from": "math.bm2.skill.5.6",
+      "to": "math.bm2.skill.5.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate depreciation schedules and statement links. The next capability applies or checks that work: Demonstrate the calculations and checks in a depreciation model."
+    },
+    {
+      "from": "math.bm2.skill.5.7",
+      "to": "math.bm2.skill.5.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain the non-cash effect of depreciation. The next capability applies or checks that work: Demonstrate the calculations and checks in a depreciation model."
+    },
+    {
+      "from": "math.bm2.skill.2.3",
+      "to": "math.bm2.skill.6.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Prepare balanced journal entries. The next capability applies or checks that work: Reconcile inventory units."
+    },
+    {
+      "from": "math.bm2.skill.6.1",
+      "to": "math.bm2.skill.6.2",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile inventory units. The next capability applies or checks that work: Calculate first-in, first-out cost flow."
+    },
+    {
+      "from": "math.bm2.skill.6.1",
+      "to": "math.bm2.skill.6.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile inventory units. The next capability applies or checks that work: Compare inventory cost-flow methods."
+    },
+    {
+      "from": "math.bm2.skill.6.2",
+      "to": "math.bm2.skill.6.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate first-in, first-out cost flow. The next capability applies or checks that work: Compare inventory cost-flow methods."
+    },
+    {
+      "from": "math.bm2.skill.6.1",
+      "to": "math.bm2.skill.6.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile inventory units. The next capability applies or checks that work: Assign materials, labor, and overhead to a project."
+    },
+    {
+      "from": "math.bm2.skill.6.4",
+      "to": "math.bm2.skill.6.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Assign materials, labor, and overhead to a project. The next capability applies or checks that work: Distinguish margin from markup."
+    },
+    {
+      "from": "math.bm2.skill.6.4",
+      "to": "math.bm2.skill.6.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Assign materials, labor, and overhead to a project. The next capability applies or checks that work: Reconcile work in progress."
+    },
+    {
+      "from": "math.bm2.skill.6.4",
+      "to": "math.bm2.skill.6.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Assign materials, labor, and overhead to a project. The next capability applies or checks that work: Use contribution to explain a price decision."
+    },
+    {
+      "from": "math.bm2.skill.6.5",
+      "to": "math.bm2.skill.6.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Distinguish margin from markup. The next capability applies or checks that work: Use contribution to explain a price decision."
+    },
+    {
+      "from": "math.bm2.skill.6.7",
+      "to": "math.bm2.skill.6.8",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Use contribution to explain a price decision. The next capability applies or checks that work: Build a inventory and project cost model from assigned data."
+    },
+    {
+      "from": "math.bm2.skill.6.8",
+      "to": "math.bm2.skill.6.9",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a inventory and project cost model from assigned data. The next capability applies or checks that work: Revise a inventory and project cost model after evidence-based review."
+    },
+    {
+      "from": "math.bm2.skill.6.9",
+      "to": "math.bm2.skill.6.10",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Revise a inventory and project cost model after evidence-based review. The next capability applies or checks that work: Present and defend a inventory and project cost result."
+    },
+    {
+      "from": "math.bm2.skill.6.1",
+      "to": "math.bm2.skill.6.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile inventory units. The next capability applies or checks that work: Demonstrate the calculations and checks in a inventory and project cost model."
+    },
+    {
+      "from": "math.bm2.skill.6.2",
+      "to": "math.bm2.skill.6.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Calculate first-in, first-out cost flow. The next capability applies or checks that work: Demonstrate the calculations and checks in a inventory and project cost model."
+    },
+    {
+      "from": "math.bm2.skill.6.3",
+      "to": "math.bm2.skill.6.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Compare inventory cost-flow methods. The next capability applies or checks that work: Demonstrate the calculations and checks in a inventory and project cost model."
+    },
+    {
+      "from": "math.bm2.skill.6.4",
+      "to": "math.bm2.skill.6.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Assign materials, labor, and overhead to a project. The next capability applies or checks that work: Demonstrate the calculations and checks in a inventory and project cost model."
+    },
+    {
+      "from": "math.bm2.skill.6.5",
+      "to": "math.bm2.skill.6.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Distinguish margin from markup. The next capability applies or checks that work: Demonstrate the calculations and checks in a inventory and project cost model."
+    },
+    {
+      "from": "math.bm2.skill.6.6",
+      "to": "math.bm2.skill.6.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile work in progress. The next capability applies or checks that work: Demonstrate the calculations and checks in a inventory and project cost model."
+    },
+    {
+      "from": "math.bm2.skill.6.7",
+      "to": "math.bm2.skill.6.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Use contribution to explain a price decision. The next capability applies or checks that work: Demonstrate the calculations and checks in a inventory and project cost model."
+    },
+    {
+      "from": "math.bm2.skill.3.4",
+      "to": "math.bm2.skill.7.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile operating profit with operating cash. The next capability applies or checks that work: Distinguish financing receipts from revenue."
+    },
+    {
+      "from": "math.bm2.skill.7.1",
+      "to": "math.bm2.skill.7.2",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Distinguish financing receipts from revenue. The next capability applies or checks that work: Compare debt and equity amounts."
+    },
+    {
+      "from": "math.bm2.skill.7.2",
+      "to": "math.bm2.skill.7.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Compare debt and equity amounts. The next capability applies or checks that work: Build a loan payment schedule."
+    },
+    {
+      "from": "math.bm2.skill.7.1",
+      "to": "math.bm2.skill.7.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Distinguish financing receipts from revenue. The next capability applies or checks that work: Separate investment return from loan principal."
+    },
+    {
+      "from": "math.bm2.skill.7.3",
+      "to": "math.bm2.skill.7.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a loan payment schedule. The next capability applies or checks that work: Measure payment coverage under stress."
+    },
+    {
+      "from": "math.bm2.skill.7.3",
+      "to": "math.bm2.skill.7.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a loan payment schedule. The next capability applies or checks that work: Validate financing scenario inputs."
+    },
+    {
+      "from": "math.bm2.skill.7.3",
+      "to": "math.bm2.skill.7.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a loan payment schedule. The next capability applies or checks that work: Reconcile financing cash flows and loan balances."
+    },
+    {
+      "from": "math.bm2.skill.7.6",
+      "to": "math.bm2.skill.7.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate financing scenario inputs. The next capability applies or checks that work: Reconcile financing cash flows and loan balances."
+    },
+    {
+      "from": "math.bm2.skill.7.7",
+      "to": "math.bm2.skill.7.8",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile financing cash flows and loan balances. The next capability applies or checks that work: Build a funding model from assigned data."
+    },
+    {
+      "from": "math.bm2.skill.7.8",
+      "to": "math.bm2.skill.7.9",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a funding model from assigned data. The next capability applies or checks that work: Revise a funding model after evidence-based review."
+    },
+    {
+      "from": "math.bm2.skill.7.9",
+      "to": "math.bm2.skill.7.10",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Revise a funding model after evidence-based review. The next capability applies or checks that work: Present and defend a funding result."
+    },
+    {
+      "from": "math.bm2.skill.7.1",
+      "to": "math.bm2.skill.7.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Distinguish financing receipts from revenue. The next capability applies or checks that work: Demonstrate the calculations and checks in a funding model."
+    },
+    {
+      "from": "math.bm2.skill.7.2",
+      "to": "math.bm2.skill.7.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Compare debt and equity amounts. The next capability applies or checks that work: Demonstrate the calculations and checks in a funding model."
+    },
+    {
+      "from": "math.bm2.skill.7.3",
+      "to": "math.bm2.skill.7.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a loan payment schedule. The next capability applies or checks that work: Demonstrate the calculations and checks in a funding model."
+    },
+    {
+      "from": "math.bm2.skill.7.4",
+      "to": "math.bm2.skill.7.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Separate investment return from loan principal. The next capability applies or checks that work: Demonstrate the calculations and checks in a funding model."
+    },
+    {
+      "from": "math.bm2.skill.7.5",
+      "to": "math.bm2.skill.7.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Measure payment coverage under stress. The next capability applies or checks that work: Demonstrate the calculations and checks in a funding model."
+    },
+    {
+      "from": "math.bm2.skill.7.6",
+      "to": "math.bm2.skill.7.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate financing scenario inputs. The next capability applies or checks that work: Demonstrate the calculations and checks in a funding model."
+    },
+    {
+      "from": "math.bm2.skill.7.7",
+      "to": "math.bm2.skill.7.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile financing cash flows and loan balances. The next capability applies or checks that work: Demonstrate the calculations and checks in a funding model."
+    },
+    {
+      "from": "math.bm2.skill.3.6",
+      "to": "math.bm2.skill.8.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Repair a broken statement link. The next capability applies or checks that work: Define model inputs, calculations, and outputs."
+    },
+    {
+      "from": "math.bm2.skill.5.7",
+      "to": "math.bm2.skill.8.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain the non-cash effect of depreciation. The next capability applies or checks that work: Define model inputs, calculations, and outputs."
+    },
+    {
+      "from": "math.bm2.skill.7.7",
+      "to": "math.bm2.skill.8.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile financing cash flows and loan balances. The next capability applies or checks that work: Define model inputs, calculations, and outputs."
+    },
+    {
+      "from": "math.bm2.skill.8.1",
+      "to": "math.bm2.skill.8.2",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Define model inputs, calculations, and outputs. The next capability applies or checks that work: Review a complete operating model."
+    },
+    {
+      "from": "math.bm2.skill.8.2",
+      "to": "math.bm2.skill.8.3",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Review a complete operating model. The next capability applies or checks that work: Stress-test model assumptions."
+    },
+    {
+      "from": "math.bm2.skill.8.2",
+      "to": "math.bm2.skill.8.4",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Review a complete operating model. The next capability applies or checks that work: Build an indirect cash flow reconciliation."
+    },
+    {
+      "from": "math.bm2.skill.8.4",
+      "to": "math.bm2.skill.8.5",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build an indirect cash flow reconciliation. The next capability applies or checks that work: Align scenario outputs with statement cash."
+    },
+    {
+      "from": "math.bm2.skill.8.2",
+      "to": "math.bm2.skill.8.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Review a complete operating model. The next capability applies or checks that work: Validate a target result with an independent calculation."
+    },
+    {
+      "from": "math.bm2.skill.8.3",
+      "to": "math.bm2.skill.8.6",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Stress-test model assumptions. The next capability applies or checks that work: Validate a target result with an independent calculation."
+    },
+    {
+      "from": "math.bm2.skill.8.3",
+      "to": "math.bm2.skill.8.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Stress-test model assumptions. The next capability applies or checks that work: Explain a recommendation with a tested dashboard."
+    },
+    {
+      "from": "math.bm2.skill.8.5",
+      "to": "math.bm2.skill.8.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Align scenario outputs with statement cash. The next capability applies or checks that work: Explain a recommendation with a tested dashboard."
+    },
+    {
+      "from": "math.bm2.skill.8.6",
+      "to": "math.bm2.skill.8.7",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate a target result with an independent calculation. The next capability applies or checks that work: Explain a recommendation with a tested dashboard."
+    },
+    {
+      "from": "math.bm2.skill.8.7",
+      "to": "math.bm2.skill.8.8",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain a recommendation with a tested dashboard. The next capability applies or checks that work: Build a operating model model from assigned data."
+    },
+    {
+      "from": "math.bm2.skill.8.8",
+      "to": "math.bm2.skill.8.9",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build a operating model model from assigned data. The next capability applies or checks that work: Revise a operating model model after evidence-based review."
+    },
+    {
+      "from": "math.bm2.skill.8.9",
+      "to": "math.bm2.skill.8.10",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Revise a operating model model after evidence-based review. The next capability applies or checks that work: Present and defend a operating model result."
+    },
+    {
+      "from": "math.bm2.skill.8.1",
+      "to": "math.bm2.skill.8.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Define model inputs, calculations, and outputs. The next capability applies or checks that work: Demonstrate the calculations and checks in a operating model model."
+    },
+    {
+      "from": "math.bm2.skill.8.2",
+      "to": "math.bm2.skill.8.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Review a complete operating model. The next capability applies or checks that work: Demonstrate the calculations and checks in a operating model model."
+    },
+    {
+      "from": "math.bm2.skill.8.3",
+      "to": "math.bm2.skill.8.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Stress-test model assumptions. The next capability applies or checks that work: Demonstrate the calculations and checks in a operating model model."
+    },
+    {
+      "from": "math.bm2.skill.8.4",
+      "to": "math.bm2.skill.8.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Build an indirect cash flow reconciliation. The next capability applies or checks that work: Demonstrate the calculations and checks in a operating model model."
+    },
+    {
+      "from": "math.bm2.skill.8.5",
+      "to": "math.bm2.skill.8.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Align scenario outputs with statement cash. The next capability applies or checks that work: Demonstrate the calculations and checks in a operating model model."
+    },
+    {
+      "from": "math.bm2.skill.8.6",
+      "to": "math.bm2.skill.8.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Validate a target result with an independent calculation. The next capability applies or checks that work: Demonstrate the calculations and checks in a operating model model."
+    },
+    {
+      "from": "math.bm2.skill.8.7",
+      "to": "math.bm2.skill.8.11",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain a recommendation with a tested dashboard. The next capability applies or checks that work: Demonstrate the calculations and checks in a operating model model."
+    },
+    {
+      "from": "math.bm2.skill.3.6",
+      "to": "math.bm2.skill.9.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Repair a broken statement link. The next capability applies or checks that work: Defend a business recommendation with a reconciled financial model."
+    },
+    {
+      "from": "math.bm2.skill.4.7",
+      "to": "math.bm2.skill.9.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain payroll expense and payroll liabilities. The next capability applies or checks that work: Defend a business recommendation with a reconciled financial model."
+    },
+    {
+      "from": "math.bm2.skill.5.7",
+      "to": "math.bm2.skill.9.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain the non-cash effect of depreciation. The next capability applies or checks that work: Defend a business recommendation with a reconciled financial model."
+    },
+    {
+      "from": "math.bm2.skill.6.7",
+      "to": "math.bm2.skill.9.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Use contribution to explain a price decision. The next capability applies or checks that work: Defend a business recommendation with a reconciled financial model."
+    },
+    {
+      "from": "math.bm2.skill.7.7",
+      "to": "math.bm2.skill.9.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Reconcile financing cash flows and loan balances. The next capability applies or checks that work: Defend a business recommendation with a reconciled financial model."
+    },
+    {
+      "from": "math.bm2.skill.8.7",
+      "to": "math.bm2.skill.9.1",
+      "type": "prerequisite",
+      "rationale": "The learner uses this prerequisite: Explain a recommendation with a tested dashboard. The next capability applies or checks that work: Defend a business recommendation with a reconciled financial model."
+    }
+  ]
+}

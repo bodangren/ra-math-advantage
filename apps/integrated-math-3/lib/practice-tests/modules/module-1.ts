@@ -341,13 +341,13 @@ const MODULE_1_QUESTIONS: PracticeTestQuestion[] = [
     lessonId: 'lesson-1-8',
     lessonTitle: 'Solving Linear-Nonlinear Systems',
     prompt: 'A line y = mx + b intersects y = x^2 at exactly one point. What must be true about m and b?',
-    correctAnswer: 'The line is tangent to the parabola at its vertex',
+    correctAnswer: 'm^2 + 4b = 0',
     distractors: [
       'm must equal 0',
       'b must equal 0',
       'The line must be vertical',
     ],
-    explanation: 'One intersection means the line is tangent, touching the parabola at exactly one point.',
+    explanation: 'Substitute mx + b for y. The quadratic x^2 - mx - b = 0 has one real solution when its discriminant m^2 + 4b equals zero.',
     objectiveTags: ['A-REI.7', 'F-IF.7'],
   },
   {

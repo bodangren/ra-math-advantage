@@ -7,7 +7,7 @@ import { ClassificationInput } from '@/components/student/answer-inputs/Classifi
 export interface DailyPracticeAnswerInputProps {
   family: ProblemFamily<unknown, unknown, unknown>;
   definition: unknown;
-  onSubmit: (envelope: PracticeSubmissionEnvelope) => void;
+  onSubmit: (envelope: PracticeSubmissionEnvelope) => void | Promise<void>;
 }
 
 export type DailyPracticeAnswerInputComponent = React.ComponentType<DailyPracticeAnswerInputProps>;

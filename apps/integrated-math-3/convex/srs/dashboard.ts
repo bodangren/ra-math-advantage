@@ -1,7 +1,13 @@
 import { internalQuery, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
-import { resolveDailyPracticeQueue } from "../queue/queue";
+import { resolveDailyPracticeQueueResult } from "../queue/queue";
+import {
+  getRuntimeModeHandler,
+  selectReviewLoadStateForRuntime,
+} from "./runtime";
+
+const MAX_STREAK_SESSIONS = 400;
 
 /**
  * Returns the UTC day start timestamp for a given timestamp.
@@ -61,11 +67,12 @@ export async function getPracticeStatsHandler(
 ) {
   const now = args.asOfDate ? new Date(args.asOfDate).getTime() : Date.now();
 
-  const queue = await resolveDailyPracticeQueue(ctx, {
+  const queue = await resolveDailyPracticeQueueResult(ctx, {
     studentId: args.studentId,
     asOfDate: args.asOfDate,
   });
-  const dueCount = queue.length;
+  const runtime = await getRuntimeModeHandler(ctx);
+  const dueCount = queue.items.length;
 
   const sessions = await ctx.db
     .query("srs_sessions")
@@ -73,7 +80,7 @@ export async function getPracticeStatsHandler(
       q.eq("studentId", args.studentId as Id<"profiles">)
     )
     .order("desc")
-    .collect();
+    .take(MAX_STREAK_SESSIONS);
 
   const completedSessions = sessions.filter(
     (s) => s.completedAt !== undefined
@@ -95,6 +102,10 @@ export async function getPracticeStatsHandler(
     dueCount,
     streak,
     lastPracticedAt,
+    reviewLoadState: selectReviewLoadStateForRuntime(
+      runtime.mode,
+      queue.reviewLoad.reviewLoadState,
+    ),
   };
 }
 

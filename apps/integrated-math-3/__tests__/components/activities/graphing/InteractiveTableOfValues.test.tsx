@@ -185,6 +185,80 @@ describe('InteractiveTableOfValues', () => {
     });
   });
 
+  describe('deferred assessment mode', () => {
+    it('completes with wrong finite values without grading them', async () => {
+      const onComplete = vi.fn();
+      render(<InteractiveTableOfValues {...defaultProps} assessmentMode="deferred" onTableComplete={onComplete} />);
+
+      screen.getAllByRole('spinbutton').forEach(input => {
+        fireEvent.change(input, { target: { value: '999' } });
+      });
+
+      await waitFor(() => {
+        expect(onComplete).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    it('does not show correctness styling for finite values', () => {
+      const onComplete = vi.fn();
+      render(<InteractiveTableOfValues {...defaultProps} assessmentMode="deferred" onTableComplete={onComplete} />);
+
+      const firstInput = screen.getAllByRole('spinbutton')[0];
+      fireEvent.change(firstInput, { target: { value: '999' } });
+
+      const firstRow = firstInput.closest('tr');
+      expect(firstRow).not.toHaveClass('bg-red-100');
+      expect(firstRow).not.toHaveClass('bg-green-100');
+    });
+
+    it('passes the exact raw numeric rows to onTableComplete', async () => {
+      const onComplete = vi.fn();
+      render(<InteractiveTableOfValues {...defaultProps} assessmentMode="deferred" onTableComplete={onComplete} />);
+
+      const values = [1.5, -2.25, 0, 7, -8];
+      screen.getAllByRole('spinbutton').forEach((input, index) => {
+        fireEvent.change(input, { target: { value: String(values[index]) } });
+      });
+
+      await waitFor(() => {
+        expect(onComplete).toHaveBeenCalledWith([
+          { x: -2, y: 1.5 },
+          { x: -1, y: -2.25 },
+          { x: 0, y: 0 },
+          { x: 1, y: 7 },
+          { x: 2, y: -8 },
+        ]);
+      });
+    });
+
+    it('does not complete for empty or non-finite values', () => {
+      const onComplete = vi.fn();
+      render(<InteractiveTableOfValues {...defaultProps} assessmentMode="deferred" onTableComplete={onComplete} />);
+
+      const inputs = screen.getAllByRole('spinbutton');
+      inputs.slice(0, -1).forEach(input => {
+        fireEvent.change(input, { target: { value: '1' } });
+      });
+      fireEvent.change(inputs[0], { target: { value: '' } });
+      expect(onComplete).not.toHaveBeenCalled();
+
+      fireEvent.change(inputs[0], { target: { value: '1' } });
+      fireEvent.change(inputs[1], { target: { value: 'Infinity' } });
+      expect(onComplete).not.toHaveBeenCalled();
+    });
+
+    it('keeps immediate correctness behavior as the default', () => {
+      const onComplete = vi.fn();
+      render(<InteractiveTableOfValues {...defaultProps} onTableComplete={onComplete} />);
+
+      const firstInput = screen.getAllByRole('spinbutton')[0];
+      fireEvent.change(firstInput, { target: { value: '999' } });
+
+      expect(firstInput.closest('tr')).toHaveClass('bg-red-100');
+      expect(onComplete).not.toHaveBeenCalled();
+    });
+  });
+
   describe('integration with canvas plotting', () => {
     it('provides points array that can be used for canvas plotting', async () => {
       let capturedPoints: Array<{ x: number; y: number }> = [];

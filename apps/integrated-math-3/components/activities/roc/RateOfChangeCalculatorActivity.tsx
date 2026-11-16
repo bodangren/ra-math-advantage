@@ -7,7 +7,7 @@ import type { RateOfChangeCalculatorProps } from '@/lib/activities/schemas/rate-
 export interface RateOfChangeCalculatorActivityProps extends RateOfChangeCalculatorProps {
   activityId: string;
   mode: 'teaching' | 'guided' | 'practice';
-  onSubmit?: (payload: unknown) => void;
+  onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
 }
 
@@ -27,11 +27,12 @@ export function RateOfChangeCalculatorActivity({
   onComplete,
 }: RateOfChangeCalculatorActivityProps) {
   const handleSubmit = (payload: unknown) => {
-    onSubmit?.({ ...(payload as Record<string, unknown>), activityId });
+    return onSubmit?.({ ...(payload as Record<string, unknown>), activityId });
   };
 
   return (
     <RateOfChangeCalculator
+      activityId={activityId}
       mode={mode}
       sourceType={sourceType}
       data={data}

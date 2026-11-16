@@ -13,7 +13,7 @@ Source: (Module 2, Lesson 2-1, Int2_0201_practice.docx)
 * **Interior Angle** — An angle inside a polygon at one of its vertices.
 * **Exterior Angle** — An angle formed by one side of a polygon and the extension of an adjacent side.
 * **Regular Polygon** — A polygon with all sides congruent and all interior angles congruent.
-* **Polygon Interior Angles Sum Theorem** — The sum of the interior angles of a convex n-gon is [(n - 2) \times 180] degrees.
+* **Polygon Interior Angles Sum Theorem** — The sum of the interior angles of a convex n-gon is $(n - 2) \times 180$ degrees.
 * **Polygon Exterior Angles Sum Theorem** — The sum of the exterior angles of any convex polygon is 360 degrees.
 
 ## Explore: Interior and Exterior Angles
@@ -29,11 +29,11 @@ If you know the number of sides of a regular polygon, how can you find the measu
 
 The sum of the measures of the interior angles of a convex n-gon is:
 
-[S = (n - 2) \times 180]
+$S = (n - 2) \times 180$
 
 For a regular polygon, each interior angle measures:
 
-[A = \frac{(n - 2) \times 180}{n}]
+$A = \frac{(n - 2) \times 180}{n}$
 
 ### Key Concept: Exterior Angle Sum
 
@@ -41,71 +41,57 @@ The sum of the measures of the exterior angles of any convex polygon is always 3
 
 Each exterior angle of a regular n-gon measures:
 
-[E = \frac{360}{n}]
+$E = \frac{360}{n}$
 
 ## Example 1 — Find Measures of Interior Angles
 
-Use the Polygon Interior Angles Sum Theorem to find the measure of each interior angle of given regular polygons shown in diagrams.
+### Problem
 
-### Step 1: Apply the Interior Angle Formula
+Find the sum of the interior angles of a hexagon. Then find each interior angle if the hexagon is regular.
 
-For a regular polygon with n sides, substitute n into the formula for each interior angle. Use given diagrams to identify the polygon and count the number of sides.
+### Solution
 
-### Step 2: Verify with the Sum Formula
-
-Check that the sum of all interior angles equals [(n - 2) \times 180] by adding the individual angle measures.
+For n = 6, the interior angle sum is (6 - 2)(180) = 720 degrees. A regular hexagon has six equal interior angles, so each is 720/6 = 120 degrees.
 
 ## Example 2 — Apply Interior Angles to Real Polygons
 
-Use knowledge of interior angles to solve applied problems involving regular polygons found in architecture and real-world contexts.
+### Problem
 
-### Step 1: Identify the Polygon Type
+A room has the shape of a regular octagon. Find the interior angle between two consecutive walls.
 
-Determine the number of sides from the context (octagon has 8 sides, dodecagon has 12 sides, heptagon has 7 sides).
+### Solution
 
-### Step 2: Calculate the Interior Angle
-
-For a regular octagon, the measure of the angle formed by two consecutive walls is found by computing the interior angle measure using the formula.
+An octagon has 8 sides. Its interior angle sum is (8 - 2)(180) = 1080 degrees. Divide by 8 because the octagon is regular. Each interior angle is 135 degrees.
 
 ## Example 3 — Find Number of Sides Given Interior Angle
 
-Given the measure of one interior angle of a regular polygon, find the number of sides.
+### Problem
 
-### Step 1: Set Up the Equation
+Each interior angle of a regular polygon is 150 degrees. Find the number of sides.
 
-Use the formula for a regular polygon's interior angle:
+### Solution
 
-[A = \frac{(n - 2) \times 180}{n}]
-
-Substitute the given angle measure for A and solve for n.
-
-### Step 2: Solve for n
-
-Multiply both sides by n, expand, and isolate n to find the number of sides.
+Each exterior angle is 180 - 150 = 30 degrees. One exterior angle at each vertex totals 360 degrees. Thus the number of sides is 360/30 = 12.
 
 ## Example 4 — Find Unknown Values in Diagrams
 
-Solve for unknown variables in polygon diagrams using angle relationships and the interior angle sum theorem.
+### Problem
 
-### Step 1: Write Equations
+The interior angles of a quadrilateral are x degrees, (x + 10) degrees, (x + 20) degrees, and (x + 30) degrees. Find the four angles.
 
-Use the interior angle sum to write an equation involving the unknown variable.
+### Solution
 
-### Step 2: Solve the Equation
-
-Solve for the unknown, then substitute back to find the angle measures.
+A quadrilateral has interior angle sum (4 - 2)(180) = 360 degrees. Thus 4x + 60 = 360 and x = 75. The angles are 75, 85, 95, and 105 degrees. Their sum is 360 degrees.
 
 ## Example 5 — Find Exterior Angle Measures
 
-Find the measure of each exterior angle of given regular polygons.
+### Problem
 
-### Step 1: Apply the Exterior Angle Formula
+Find each exterior angle of a regular pentagon, a regular hexagon, and a regular 15-gon.
 
-For a regular n-gon, each exterior angle measures [E = \frac{360}{n}].
+### Solution
 
-### Step 2: Calculate for Each Polygon
-
-Substitute the number of sides (pentagon = 5, 15-gon = 15, hexagon = 6, etc.) to find each exterior angle measure.
+For a regular n-gon, each exterior angle is 360/n degrees. The values are 72 degrees for the pentagon, 60 degrees for the hexagon, and 24 degrees for the 15-gon.
 
 ## Mixed Exercises
 
@@ -130,6 +116,6 @@ The mixed exercises section provides practice with all skills from the lesson. P
 
 * Images referenced in the worksheet (polygon diagrams for problems 1-4, the Uffizi Tribune room plan, theater floor plan, polygon path figure, and various geometry figures) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams.
 * The worksheet contains 45 practice problems across five examples and mixed exercises.
-* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png)
+* ![Worksheet figure 1](/curriculum/module-2-lesson-1/image1.png) ![Worksheet figure 2](/curriculum/module-2-lesson-1/image2.png) ![Worksheet figure 3](/curriculum/module-2-lesson-1/image3.png) ![Worksheet figure 4](/curriculum/module-2-lesson-1/image4.png) ![Worksheet figure 5](/curriculum/module-2-lesson-1/image5.png) ![Worksheet figure 6](/curriculum/module-2-lesson-1/image6.png) ![Worksheet figure 7](/curriculum/module-2-lesson-1/image7.png) ![Worksheet figure 8](/curriculum/module-2-lesson-1/image8.png) ![Worksheet figure 9](/curriculum/module-2-lesson-1/image9.png) ![Worksheet figure 10](/curriculum/module-2-lesson-1/image10.png) ![Worksheet figure 11](/curriculum/module-2-lesson-1/image11.png) ![Worksheet figure 12](/curriculum/module-2-lesson-1/image12.png) ![Worksheet figure 13](/curriculum/module-2-lesson-1/image13.png)
 
 (End of file - total 156 lines)

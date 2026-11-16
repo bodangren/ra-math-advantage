@@ -1,0 +1,12 @@
+{
+  "track_id": "math-series-graph-semantic-repair_20260905",
+  "type": "refactor",
+  "status": "new",
+  "created_at": "2026-09-05T12:43:54Z",
+  "updated_at": "2026-09-05T12:54:54Z",
+  "description": "Repair the semantic and structural math-series graph across IM1, IM2, IM3, and AP Precalculus. Address the eight findings from the 2026-09-05 review.",
+  "estimated_tasks": 42,
+  "actual_tasks": null,
+  "deviation_notes": "Planning requested on 2026-09-05. Implementation and curriculum row approval are pending. This track owns the four-course graph repair scope. The parent track retains Business Math and activity rollout. The estimate counts top-level tasks only. Lesson tasks will be added before each source-review batch. No new dependency or skill installation is needed.",
+  "program": "Teacher-Led Mastery Advantage Progression"
+}

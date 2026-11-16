@@ -17,7 +17,7 @@ function makeCard(overrides: Partial<SrsCardState> = {}): SrsCardState {
     cardId: `card-${Math.random().toString(36).slice(2)}`,
     studentId: 'student-1',
     objectiveId: 'obj-1',
-    problemFamilyId: 'pf-1',
+    variantKey: 'pf-1',
     stability: 0,
     difficulty: 0,
     state: 'new',
@@ -183,7 +183,7 @@ describe('End-to-end: scheduler + processor + in-memory stores', () => {
     const card = createCard({
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       now: mockNow,
     });
     await cardStore.saveCard(card);
@@ -224,7 +224,7 @@ describe('End-to-end: scheduler + processor + in-memory stores', () => {
     let card = createCard({
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       now: mockNow,
     });
     await cardStore.saveCard(card);

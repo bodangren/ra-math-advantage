@@ -1,346 +1,477 @@
 {
   "schemaVersion": "class-period-package.v1",
   "unit": 10,
-  "generatedFrom": "curriculum/unit-10-class-period-plan.md",
   "periods": [
     {
-      "periodId": "u10-p01",
-      "unit": 10,
-      "period": 1,
+      "periodId": "m10-p01",
+      "number": 130,
+      "unitNumber": 10,
       "dayType": "instruction",
-      "sourceLesson": "10-1",
-      "objectiveCode": "10a",
-      "objective": "Apply the product rule and quotient rule to simplify exponential expressions.",
-      "workedExamples": "10-1, Examples 1-2 — Simplify x³ · x⁵ Using Product Rule; Simplify x⁸/x³ Using Quotient Rule",
-      "embeddedObjectives": [],
-      "problemTypes": ["exponent_rules"],
-      "notes": "Product rule and quotient rule with verification by expansion. Split from original dense day to give focused treatment to each rule before combining.",
+      "sourceLesson": "module-10-lesson-1",
+      "objective": "Apply the Product of Powers Property when multiplying two expressions with the same base.",
+      "embeddedObjectives": [
+        "Apply the Power of a Power Property when raising an expression with an exponent to another power.",
+        "Apply the Power of a Product Property when raising a product to a power.",
+        "Simplify expressions using multiple properties of exponents.",
+        "Write very large and very small numbers in scientific notation."
+      ],
+      "workedExamples": [
+        "Example 1 — Product of Powers",
+        "Example 2 — Scientific Notation"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10a with one retrieval prompt expanding x³ · x⁵ to verify the product rule.",
-        "conceptDevelopment": "Use 10-1, Examples 1-2 to develop: apply the product rule xᵃ · xᵇ = xᵃ⁺ᵇ and the quotient rule xᵃ/xᵇ = xᵃ⁻ᵇ, verifying each by expanding to repeated multiplication.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-1, Examples 1-2: simplify expressions using product and quotient rules and verify by expansion; teacher checks rule identification.",
-        "independentPractice": "Students complete aligned practice on exponent_rules: product and quotient rule simplification.",
-        "assessment": "Exit ticket: one product rule problem and one quotient rule problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with exponent rules."
+        "warmUp": "The graphs y = absolute value of (x - 2) and y = 3 intersect twice. Find the smaller intersection x-coordinate.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-10-lesson-1",
+          "workedExamples": [
+            "Example 1 — Product of Powers"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-10-lesson-1",
+          "workedExamples": [
+            "Example 2 — Scientific Notation"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-10-lesson-1",
+          "prompt": "Simplify x cubed times x to the fourth power as x to the power n. Find n."
+        },
+        "assessment": {
+          "questionId": "module-10-lesson-1",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in multiplication properties of exponents required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u10-p02",
-      "unit": 10,
-      "period": 2,
+      "periodId": "m10-p02",
+      "number": 131,
+      "unitNumber": 10,
       "dayType": "instruction",
-      "sourceLesson": "10-1",
-      "objectiveCode": "10a",
-      "objective": "Apply the power rule to simplify exponential expressions.",
-      "workedExamples": "10-1, Examples 3-4 — Simplify (x²)⁴ Using Power Rule; Simplify (2x³)²",
-      "embeddedObjectives": [],
-      "problemTypes": ["exponent_rules"],
-      "notes": "Power rule and power of a product. Split from original dense day to isolate the power rule before extending to multi-rule combinations.",
+      "sourceLesson": "module-10-lesson-2",
+      "objective": "Apply the Quotient of Powers Property when dividing two expressions with the same base.",
+      "embeddedObjectives": [
+        "Apply the Power of a Quotient Property when raising a quotient to a power.",
+        "Simplify expressions involving fractions raised to powers.",
+        "Evaluate real-world problems involving ratios, combinations, and exponential growth."
+      ],
+      "workedExamples": [
+        "Example 1 — Quotient of Powers",
+        "Example 2 — Real-World Ratios"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10a with one retrieval prompt simplifying (x³)² using the power rule.",
-        "conceptDevelopment": "Use 10-1, Examples 3-4 to develop: apply the power rule (xᵃ)ᵇ = xᵃᵇ and the power of a product rule (ab)ⁿ = aⁿbⁿ.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-1, Examples 3-4: simplify using power rule and power of a product; teacher checks exponent handling.",
-        "independentPractice": "Students complete aligned practice on exponent_rules: power rule and power of a product.",
-        "assessment": "Exit ticket: one power rule problem and one power of a product problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with the power rule."
+        "warmUp": "Simplify x cubed times x to the fourth power as x to the power n. Find n.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-10-lesson-2",
+          "workedExamples": [
+            "Example 1 — Quotient of Powers"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-10-lesson-2",
+          "workedExamples": [
+            "Example 2 — Real-World Ratios"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-10-lesson-2",
+          "prompt": "For nonzero x, simplify x to the eighth power divided by x cubed as x to the power n. Find n."
+        },
+        "assessment": {
+          "questionId": "module-10-lesson-2",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in division properties of exponents required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u10-p03",
-      "unit": 10,
-      "period": 3,
+      "periodId": "m10-p03",
+      "number": 132,
+      "unitNumber": 10,
       "dayType": "instruction",
-      "sourceLesson": "10-1",
-      "objectiveCode": "10b",
-      "objective": "Combine multiple exponent rules and apply to scientific notation.",
-      "workedExamples": "10-1, Examples 5-6 — Combine Multiple Rules in One Expression; Real-World Scientific Notation Calculation",
-      "embeddedObjectives": ["10c"],
-      "problemTypes": ["exponent_rules"],
-      "notes": "Multi-rule simplification and scientific notation application.",
+      "sourceLesson": "module-10-lesson-3",
+      "objective": "Apply the definition of negative exponents to rewrite expressions with positive exponents.",
+      "embeddedObjectives": [
+        "Simplify expressions using the properties of exponents with negative exponents.",
+        "Evaluate real-world problems involving orders of magnitude comparisons.",
+        "Understand why any nonzero base raised to the zero power equals 1."
+      ],
+      "workedExamples": [
+        "Example 1 — Simplifying Expressions with Negative Exponents",
+        "Example 2 — Orders of Magnitude"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10b with one retrieval prompt simplifying an expression using two or more exponent rules.",
-        "conceptDevelopment": "Use 10-1, Examples 5-6 to develop: combine multiple exponent rules in a single expression, and use exponent rules in a real-world scientific notation calculation.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-1, Examples 5-6: simplify multi-rule expressions and scientific notation problems; teacher checks rule sequencing.",
-        "independentPractice": "Students complete aligned practice on exponent_rules: multi-rule and scientific notation problems.",
-        "assessment": "Exit ticket: one multi-rule simplification and one scientific notation computation.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with combining exponent rules."
+        "warmUp": "For nonzero x, simplify x to the eighth power divided by x cubed as x to the power n. Find n.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-10-lesson-3",
+          "workedExamples": [
+            "Example 1 — Simplifying Expressions with Negative Exponents"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-10-lesson-3",
+          "workedExamples": [
+            "Example 2 — Orders of Magnitude"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-10-lesson-3",
+          "prompt": "Evaluate 2 to the power -3."
+        },
+        "assessment": {
+          "questionId": "module-10-lesson-3",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in negative exponents required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u10-p04",
-      "unit": 10,
-      "period": 4,
-      "dayType": "instruction",
-      "sourceLesson": "10-2",
-      "objectiveCode": "10c",
-      "objective": "Rewrite and simplify expressions with negative exponents.",
-      "workedExamples": "10-2, Examples 1-3 — Rewrite x⁻³ with Positive Exponents; Simplify (2/3)⁻²; Evaluate 8^(2/3)",
-      "embeddedObjectives": ["10d"],
-      "problemTypes": ["negative_exponents"],
-      "notes": "Negative exponent rewriting, fraction negatives, and rational exponent evaluation.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10c with one retrieval prompt rewriting x⁻² with a positive exponent.",
-        "conceptDevelopment": "Use 10-2, Examples 1-3 to develop: rewrite x⁻³ as 1/x³, simplify (2/3)⁻² by flipping the fraction and squaring, and evaluate 8^(2/3) by first taking the cube root then squaring.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-2, Examples 1-3: rewrite negative exponents and evaluate rational exponents; teacher checks sign handling.",
-        "independentPractice": "Students complete aligned practice on negative_exponents: rewriting, simplifying, and evaluating negative and rational exponents.",
-        "assessment": "Exit ticket: one negative exponent rewriting and one rational exponent evaluation.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with negative exponents."
-      }
-    },
-    {
-      "periodId": "u10-p05",
-      "unit": 10,
-      "period": 5,
-      "dayType": "instruction",
-      "sourceLesson": "10-2",
-      "objectiveCode": "10d",
-      "objective": "Convert between radical and exponential form; simplify rational exponent expressions.",
-      "workedExamples": "10-2, Examples 4-6 — Simplify x^(3/4) · x^(1/4); Convert Between Radical and Exponential Form; Simplify (x²y⁻³)²",
-      "embeddedObjectives": [],
-      "problemTypes": ["rational_exponents"],
-      "notes": "Rational exponent operations, radical ↔ exponential conversion, and combined negative/rational simplification.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10d with one retrieval prompt converting ∛x to exponential form.",
-        "conceptDevelopment": "Use 10-2, Examples 4-6 to develop: simplify x^(3/4) · x^(1/4) by adding exponents, convert freely between radical form √[n]{x} and exponential form x^(1/n), and simplify expressions with both negative and rational exponents like (x²y⁻³)².",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-2, Examples 4-6: convert between forms and simplify combined expressions; teacher checks conversion accuracy.",
-        "independentPractice": "Students complete aligned practice on rational_exponents: conversion, simplification, and combined exponent problems.",
-        "assessment": "Exit ticket: one radical-to-exponential conversion and one rational exponent simplification.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with rational exponents and radical conversion."
-      }
-    },
-    {
-      "periodId": "u10-p06",
-      "unit": 10,
-      "period": 6,
+      "periodId": "m10-p04",
+      "number": 133,
+      "unitNumber": 10,
       "dayType": "mastery",
-      "notes": "Mastery cycle on 10a-10d.",
-      "nonInstructionArtifact": {
-        "artifactType": "mastery",
-        "objectiveScope": "Mastery cycle on 10a-10d.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
-      }
+      "sourceLessons": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3"
+      ],
+      "questionIds": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3"
+      ],
+      "task": "Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer."
     },
     {
-      "periodId": "u10-p07",
-      "unit": 10,
-      "period": 7,
-      "dayType": "review",
-      "notes": "Mid-unit review on 10a-10d.",
-      "nonInstructionArtifact": {
-        "artifactType": "review",
-        "objectiveScope": "Mid-unit review on 10a-10d.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
-      }
-    },
-    {
-      "periodId": "u10-p08",
-      "unit": 10,
-      "period": 8,
+      "periodId": "m10-p05",
+      "number": 134,
+      "unitNumber": 10,
       "dayType": "instruction",
-      "sourceLesson": "10-3",
-      "objectiveCode": "10e",
-      "objective": "Convert between standard form and scientific notation; multiply and divide in scientific notation.",
-      "workedExamples": "10-3, Examples 1-3 — Convert Standard to Scientific Notation; Multiply Numbers in Scientific Notation; Divide Numbers in Scientific Notation",
-      "embeddedObjectives": [],
-      "problemTypes": ["scientific_notation"],
-      "notes": "Scientific notation conversion, multiplication (add exponents), and division (subtract exponents).",
+      "sourceLesson": "module-10-lesson-4",
+      "objective": "Convert between radical notation and exponential notation for roots.",
+      "embeddedObjectives": [
+        "Evaluate expressions with rational exponents.",
+        "Apply properties of exponents to simplify expressions with rational exponents.",
+        "Solve real-world problems involving rational exponents in formulas for velocity, geometry, astronomy, and biology."
+      ],
+      "workedExamples": [
+        "Example 1 — Converting Between Forms",
+        "Example 2 — Evaluating Rational Exponents"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10e with one retrieval prompt converting 45000 to scientific notation.",
-        "conceptDevelopment": "Use 10-3, Examples 1-3 to develop: convert between standard and scientific notation by moving the decimal point, multiply numbers in scientific notation by operating on coefficients and adding exponents, and divide by operating on coefficients and subtracting exponents.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-3, Examples 1-3: convert and perform multiplication/division in scientific notation; teacher checks exponent adjustment.",
-        "independentPractice": "Students complete aligned practice on scientific_notation: conversion, multiplication, and division problems.",
-        "assessment": "Exit ticket: one scientific notation conversion and one multiplication problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with scientific notation conversion and operations."
+        "warmUp": "Evaluate 2 to the power -3.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-10-lesson-4",
+          "workedExamples": [
+            "Example 1 — Converting Between Forms"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-10-lesson-4",
+          "workedExamples": [
+            "Example 2 — Evaluating Rational Exponents"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-10-lesson-4",
+          "prompt": "Evaluate 27 to the power 2/3."
+        },
+        "assessment": {
+          "questionId": "module-10-lesson-4",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in rational exponents required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u10-p09",
-      "unit": 10,
-      "period": 9,
+      "periodId": "m10-p06",
+      "number": 135,
+      "unitNumber": 10,
       "dayType": "instruction",
-      "sourceLesson": "10-3",
-      "objectiveCode": "10e",
-      "objective": "Add and subtract numbers in scientific notation.",
-      "workedExamples": "10-3, Examples 4-5 — Add/Subtract (Adjust Exponents First); Real-World Speed of Light Calculation",
-      "embeddedObjectives": [],
-      "problemTypes": ["scientific_notation"],
-      "notes": "Adjusting exponents for add/subtract operations and real-world scientific notation application.",
+      "sourceLesson": "module-10-lesson-5",
+      "objective": "Apply the Product Property of Square Roots to simplify radical expressions.",
+      "embeddedObjectives": [
+        "Apply the Quotient Property of Square Roots to simplify radical expressions.",
+        "Simplify radical expressions by extracting perfect square factors.",
+        "Simplify cube roots and other higher-index radicals.",
+        "Solve real-world problems involving geometric formulas with radicals."
+      ],
+      "workedExamples": [
+        "Example 1 — Simplifying Square Roots",
+        "Example 2 — Multiplying Radicals"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10e with one retrieval prompt adding (3.2 × 10⁵) + (1.5 × 10⁴) by adjusting exponents first.",
-        "conceptDevelopment": "Use 10-3, Examples 4-5 to develop: add and subtract numbers in scientific notation by first adjusting exponents to match, then combining coefficients; apply to a real-world speed of light calculation requiring division in scientific notation with unit conversion.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-3, Examples 4-5: adjust exponents and add/subtract; teacher checks the exponent-alignment step.",
-        "independentPractice": "Students complete aligned practice on scientific_notation: addition, subtraction, and real-world problems.",
-        "assessment": "Exit ticket: one scientific notation addition problem and one real-world computation.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with adjusting exponents for addition and subtraction."
+        "warmUp": "Evaluate 27 to the power 2/3.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-10-lesson-5",
+          "workedExamples": [
+            "Example 1 — Simplifying Square Roots"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-10-lesson-5",
+          "workedExamples": [
+            "Example 2 — Multiplying Radicals"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-10-lesson-5",
+          "prompt": "Write the square root of 72 as a times the square root of 2, where a is positive. Find a."
+        },
+        "assessment": {
+          "questionId": "module-10-lesson-5",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in simplifying radical expressions required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u10-p10",
-      "unit": 10,
-      "period": 10,
+      "periodId": "m10-p07",
+      "number": 136,
+      "unitNumber": 10,
       "dayType": "instruction",
-      "sourceLesson": "10-5",
-      "objectiveCode": "10h",
-      "objective": "Solve basic radical equations by isolating the radical and raising both sides.",
-      "workedExamples": "10-5, Examples 1-2 — Solve √(x + 3) = 5; Solve ∛(2x − 1) = 3",
-      "embeddedObjectives": [],
-      "problemTypes": ["solving_radical_equations"],
-      "notes": "Square root and cube root radical equation solving. Split from original dense day to focus on one-radical isolation technique before extending to complex cases.",
+      "sourceLesson": "module-10-lesson-5",
+      "objective": "Apply the Quotient Property of Square Roots to simplify radical expressions.",
+      "embeddedObjectives": [
+        "Simplify radical expressions by extracting perfect square factors.",
+        "Simplify cube roots and other higher-index radicals.",
+        "Solve real-world problems involving geometric formulas with radicals."
+      ],
+      "workedExamples": [
+        "Example 3 — Dividing Radicals",
+        "Example 4 — Real-World Applications",
+        "Example 5 — Cube Roots and Higher Index Radicals"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10h with one retrieval prompt on what operation undoes a square root.",
-        "conceptDevelopment": "Use 10-5, Examples 1-2 to develop: solve a square-root equation by isolating the radical and squaring both sides, and solve a cube-root equation by cubing both sides.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-5, Examples 1-2: isolate, raise to the appropriate power, and solve; teacher checks the isolation step.",
-        "independentPractice": "Students complete aligned practice on solving_radical_equations: square root and cube root problems.",
-        "assessment": "Exit ticket: one square-root equation and one cube-root equation to solve.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with solving radical equations."
+        "warmUp": "Write the square root of 72 as a times the square root of 2, where a is positive. Find a.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-10-lesson-5",
+          "workedExamples": [
+            "Example 3 — Dividing Radicals"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-10-lesson-5",
+          "workedExamples": [
+            "Example 4 — Real-World Applications",
+            "Example 5 — Cube Roots and Higher Index Radicals"
+          ]
+        },
+        "independentPractice": {
+          "sourceLesson": "module-10-lesson-5",
+          "workedExamples": [
+            "Example 3 — Dividing Radicals",
+            "Example 4 — Real-World Applications",
+            "Example 5 — Cube Roots and Higher Index Radicals"
+          ]
+        },
+        "assessment": {
+          "questionId": "module-10-lesson-5",
+          "requireExplanation": true
+        },
+        "capReflection": "Explain how the additional examples change your understanding of simplifying radical expressions."
       }
     },
     {
-      "periodId": "u10-p11",
-      "unit": 10,
-      "period": 11,
+      "periodId": "m10-p08",
+      "number": 137,
+      "unitNumber": 10,
+      "dayType": "mastery",
+      "sourceLessons": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5"
+      ],
+      "questionIds": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5"
+      ],
+      "task": "Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer."
+    },
+    {
+      "periodId": "m10-p09",
+      "number": 138,
+      "unitNumber": 10,
       "dayType": "instruction",
-      "sourceLesson": "10-5",
-      "objectiveCode": "10h",
-      "objective": "Solve radical equations with cube roots and radicals on both sides.",
-      "workedExamples": "10-5, Example 3 — Solve Equation with Radical on Both Sides",
-      "embeddedObjectives": [],
-      "problemTypes": ["solving_radical_equations"],
-      "notes": "Extending to multi-radical and both-sides equation types.",
+      "sourceLesson": "module-10-lesson-6",
+      "objective": "Add and subtract radical expressions by combining like radicals",
+      "embeddedObjectives": [
+        "Simplify radical expressions before adding or subtracting",
+        "Multiply radical expressions and distribute radicals over binomials",
+        "Apply operations with radicals to solve real-world geometry and measurement problems"
+      ],
+      "workedExamples": [
+        "Example 1 — Add and Subtract Like Radicals",
+        "Example 2 — Simplify Before Adding or Subtracting"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10h with one retrieval prompt on solving √(x + 1) = √(2x − 3) by squaring both sides.",
-        "conceptDevelopment": "Use 10-5, Example 3 to develop: solve an equation with radicals on both sides by squaring once and simplifying, then solving the resulting equation.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-5, Example 3: handle both-sides radical equations; teacher checks the squaring step.",
-        "independentPractice": "Students complete aligned practice on solving_radical_equations: both-sides and multi-radical problems.",
-        "assessment": "Exit ticket: one equation with radicals on both sides.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with radical equations on both sides."
+        "warmUp": "Write the square root of 72 as a times the square root of 2, where a is positive. Find a.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-10-lesson-6",
+          "workedExamples": [
+            "Example 1 — Add and Subtract Like Radicals"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-10-lesson-6",
+          "workedExamples": [
+            "Example 2 — Simplify Before Adding or Subtracting"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-10-lesson-6",
+          "prompt": "Simplify 3 times the square root of 5 plus 2 times the square root of 5 as a times the square root of 5. Find a."
+        },
+        "assessment": {
+          "questionId": "module-10-lesson-6",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in operations with radical expressions required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u10-p12",
-      "unit": 10,
-      "period": 12,
+      "periodId": "m10-p10",
+      "number": 139,
+      "unitNumber": 10,
       "dayType": "instruction",
-      "sourceLesson": "10-4",
-      "objectiveCode": "10f",
-      "objective": "Simplify square roots, cube roots, and radical expressions.",
-      "workedExamples": "10-4, Examples 1-4 — Simplify √50 = 5√2; Simplify ∛54 = 3∛2; Add Like Radicals: 3√5 + 7√5; Multiply Radicals: √3 · √12",
-      "embeddedObjectives": ["10g"],
-      "problemTypes": ["simplifying_radicals"],
-      "notes": "Simplifying radicals, like radicals, and multiplying radicals.",
+      "sourceLesson": "module-10-lesson-7",
+      "objective": "Solve exponential equations by writing both sides with a common base.",
+      "embeddedObjectives": [
+        "Apply properties of exponents to rewrite exponential expressions.",
+        "Interpret exponential models in real-world contexts involving growth and decay.",
+        "Use exponential equations to solve for unknown quantities in applied problems."
+      ],
+      "workedExamples": [
+        "Example 1 — Solve Exponential Equations with Common Bases",
+        "Example 2 — Solve Equations with Exponent Operations"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10f with one retrieval prompt finding the largest perfect square factor of 72.",
-        "conceptDevelopment": "Use 10-4, Examples 1-4 to develop: simplify square roots by extracting perfect square factors, simplify cube roots by extracting perfect cube factors, add like radicals by combining coefficients, and multiply radicals using √a · √b = √(ab).",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-4, Examples 1-4: simplify radicals and combine like radicals; teacher checks perfect square/cube identification.",
-        "independentPractice": "Students complete aligned practice on simplifying_radicals: simplification, like-radical addition, and radical multiplication.",
-        "assessment": "Exit ticket: one radical simplification and one like-radical addition problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplifying radicals."
+        "warmUp": "Simplify 3 times the square root of 5 plus 2 times the square root of 5 as a times the square root of 5. Find a.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-10-lesson-7",
+          "workedExamples": [
+            "Example 1 — Solve Exponential Equations with Common Bases"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-10-lesson-7",
+          "workedExamples": [
+            "Example 2 — Solve Equations with Exponent Operations"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-10-lesson-7",
+          "prompt": "Solve 3 to the power (x + 1) = 81. Enter x."
+        },
+        "assessment": {
+          "questionId": "module-10-lesson-7",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in exponential equations required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u10-p13",
-      "unit": 10,
-      "period": 13,
-      "dayType": "instruction",
-      "sourceLesson": "10-4",
-      "objectiveCode": "10g",
-      "objective": "Rationalize denominators and simplify radicals with variables.",
-      "workedExamples": "10-4, Examples 5-6 — Rationalize the Denominator: 5/√3; Simplify √(72x⁴)",
-      "embeddedObjectives": [],
-      "problemTypes": ["simplifying_radicals"],
-      "notes": "Rationalization technique and variable radical simplification.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10g with one retrieval prompt multiplying numerator and denominator by √3 to rationalize 5/√3.",
-        "conceptDevelopment": "Use 10-4, Examples 5-6 to develop: rationalize denominators by multiplying by the conjugate, and simplify radicals containing variables by extracting perfect square factors from both coefficients and variable parts.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-4, Examples 5-6: rationalize and simplify variable radicals; teacher checks the multiplication step.",
-        "independentPractice": "Students complete aligned practice on simplifying_radicals: rationalization and variable radical problems.",
-        "assessment": "Exit ticket: one rationalization problem and one variable radical simplification.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with rationalizing denominators."
-      }
+      "periodId": "m10-p11",
+      "number": 140,
+      "unitNumber": 10,
+      "dayType": "mastery",
+      "sourceLessons": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5",
+        "module-10-lesson-6",
+        "module-10-lesson-7"
+      ],
+      "questionIds": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5",
+        "module-10-lesson-6",
+        "module-10-lesson-7"
+      ],
+      "task": "Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer."
     },
     {
-      "periodId": "u10-p14",
-      "unit": 10,
-      "period": 14,
-      "dayType": "instruction",
-      "sourceLesson": "10-5",
-      "objectiveCode": "10h",
-      "objective": "Identify extraneous solutions and apply radical equations to real-world problems.",
-      "workedExamples": "10-5, Examples 4-5 — Identify Extraneous Solution; Real-World Physics (Free Fall)",
-      "embeddedObjectives": [],
-      "problemTypes": ["solving_radical_equations"],
-      "notes": "Extraneous solution detection and physics-based radical modeling.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 10h with one retrieval prompt on why squaring both sides of an equation can introduce extraneous solutions.",
-        "conceptDevelopment": "Use 10-5, Examples 4-5 to develop: solve a radical equation, check all solutions by substituting back into the original equation to identify extraneous solutions, and apply a radical equation to a free fall physics scenario.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 10-5, Examples 4-5: solve and check for extraneous solutions; teacher checks the substitution verification step.",
-        "independentPractice": "Students complete aligned practice on solving_radical_equations: extraneous solution identification and real-world radical problems.",
-        "assessment": "Exit ticket: one radical equation requiring extraneous solution detection.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with identifying extraneous solutions."
-      }
-    },
-    {
-      "periodId": "u10-p15",
-      "unit": 10,
-      "period": 15,
+      "periodId": "m10-p12",
+      "number": 141,
+      "unitNumber": 10,
       "dayType": "jigsaw",
-      "notes": "Mathematical practices focus: exponent rule justification, radical simplification strategy, and extraneous solution reasoning.",
-      "nonInstructionArtifact": {
-        "artifactType": "jigsaw",
-        "groupTask": "Mathematical practices focus: exponent rule justification, radical simplification strategy, and extraneous solution reasoning.",
-        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
-        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
-        "facilitationNotes": "Assign roles for rule justification, simplification strategy, solution checking, and explanation.",
-        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
-      }
+      "sourceLessons": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5",
+        "module-10-lesson-6",
+        "module-10-lesson-7"
+      ],
+      "questionIds": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5",
+        "module-10-lesson-6",
+        "module-10-lesson-7"
+      ],
+      "task": "Assign one listed lesson to each group. Prepare a solution and explain each step. Exchange solutions with another group. Check the method and identify any restriction."
     },
     {
-      "periodId": "u10-p16",
-      "unit": 10,
-      "period": 16,
+      "periodId": "m10-p13",
+      "number": 142,
+      "unitNumber": 10,
       "dayType": "review",
-      "notes": "Unit 10 review across 10a-10h.",
-      "nonInstructionArtifact": {
-        "artifactType": "review",
-        "objectiveScope": "Unit 10 review across 10a-10h.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
-      }
+      "assessmentModules": [
+        10
+      ],
+      "sourceLessons": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5",
+        "module-10-lesson-6",
+        "module-10-lesson-7"
+      ],
+      "questionIds": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5",
+        "module-10-lesson-6",
+        "module-10-lesson-7"
+      ],
+      "task": "Review the listed lessons. Solve their checkpoint questions and explain the method. Review the source examples for each error."
     },
     {
-      "periodId": "u10-p17",
-      "unit": 10,
-      "period": 17,
+      "periodId": "m10-p14",
+      "number": 143,
+      "unitNumber": 10,
       "dayType": "test",
-      "notes": "Unit 10 assessment.",
-      "nonInstructionArtifact": {
-        "artifactType": "test",
-        "objectiveScope": "Unit 10 assessment covering 10a-10h.",
-        "srsSources": [],
-        "remediationGrouping": "N/A — summative assessment day.",
-        "extensionOptions": "N/A — summative assessment day.",
-        "evidence": "Student completes unit test."
-      }
+      "assessmentModules": [
+        10
+      ],
+      "sourceLessons": [
+        "module-10-lesson-1",
+        "module-10-lesson-2",
+        "module-10-lesson-3",
+        "module-10-lesson-4",
+        "module-10-lesson-5",
+        "module-10-lesson-6",
+        "module-10-lesson-7"
+      ],
+      "task": "Use a teacher-authored assessment for the listed modules. Include reasoning, application, and restrictions. The public checkpoint bank is review material and is not a secure test form."
     }
   ]
 }

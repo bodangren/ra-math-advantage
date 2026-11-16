@@ -419,3 +419,61 @@ describe('validateSubmission', () => {
     expect(result.feedback[0].actualValue).toBe('');
   });
 });
+
+describe('authored spreadsheet formula requirements', () => {
+ it('evaluates cell references before scoring', () => {
+  expect(validateSubmission([[{value:10}],[{value:20}],[{value:'=SUM(A1:A2)'}]], [{cell:'A3',expectedValue:30,expectedFormula:'=SUM(A1:A2)'}]).isComplete).toBe(true);
+ });
+ it('rejects a typed total when a formula is required', () => {
+  expect(validateSubmission([[{value:30}]], [{cell:'A1',expectedValue:30,expectedFormula:'=SUM(B1:B2)'}]).isComplete).toBe(false);
+ });
+ it.each(['sumifs','SUMIFS','SLN','SWITCH'])('permits the taught function %s', (name) => {
+  expect(sanitizeFormula(`=${name}(A1,A2,A3)`).isValid).toBe(true);
+ });
+ it.each(['unknown','UNKNOWN','Unknown '])('rejects an unsupported function %s', (name) => {
+  expect(sanitizeFormula(`=${name}(A1)`).isValid).toBe(false);
+ });
+});
+
+it('evaluates dependent formulas and rejects circular references', () => {
+  const targets = [{ cell: 'C1', expectedValue: 60, expectedFormula: '=B1*2' }];
+  expect(validateSubmission([[{ value: 10 }, { value: '=A1+20' }, { value: '=B1*2' }]], targets).isComplete).toBe(true);
+  expect(validateSubmission([[{ value: '=B1' }, { value: '=A1' }, { value: '=B1*2' }]], targets).isComplete).toBe(false);
+});
+
+describe('taught financial and lookup formulas', () => {
+  it.each([
+    ['=SLN(10000,1000,5)', 1800],
+    ['=DDB(10000,1000,5,5)', 296],
+    ['=PMT(0,12,1200)', -100],
+    ['=ROUND(PMT(0.01,12,10000),2)', -888.49],
+    ['=PV(0,12,-100)', 1200],
+    ['=FV(0,12,-100)', 1200],
+    ['=IPMT(0.01,1,12,10000)', -100],
+    ['=IPMT(0.01,1,12,10000,0,1)', 0],
+    ['=ROUND(PPMT(0.01,1,12,10000),2)', -788.49],
+    ['=NPV(0.1,110,121)', 200],
+    ['=IRR(A1:A3)', 0.1],
+    ['=SWITCH(2,1,"one",2,"two","other")', 'two'],
+    ['=XLOOKUP(121,A1:A3,B1:B3)', 'last'],
+  ])('calculates %s', (formula, expected) => {
+    const data = [[{value:-200},{value:'first'},{value:formula}], [{value:110},{value:'next'}], [{value:121},{value:'last'}]];
+    expect(validateSubmission(data, [{cell:'C1', expectedValue:expected, expectedFormula:formula}]).isComplete).toBe(true);
+  });
+});
+
+describe('financial boundaries and dependent functions', () => {
+  it.each([
+    ['=ROUND(IPMT(0.01,2,12,10000,0,1),2)', -91.2],
+    ['=ROUND(PV(0.01,12,PMT(0.01,12,10000)),6)', 10000],
+    ['=ROUND(FV(0.01,12,PMT(0.01,12,10000),10000),6)', 0],
+    ['=DDB(10000,3000,5,4)', 0],
+    ['=IFERROR(PMT(0,0,1000),99)', 99],
+    ['=IFERROR(IRR(A1:A2),99)', 99],
+    ['=XLOOKUP("missing",A1:A2,B1:B2,"absent")', 'absent'],
+    ['=XLOOKUP(15,A1:A2,B1:B2,, -1)', 'first'],
+    ['=XLOOKUP(15,A1:A2,B1:B2,, 1)', 'second'],
+  ])('handles %s', (formula, expected) => {
+    expect(validateSubmission([[{value:10},{value:'first'},{value:formula}],[{value:20},{value:'second'}]], [{cell:'C1',expectedValue:expected}]).isComplete).toBe(true);
+  });
+});

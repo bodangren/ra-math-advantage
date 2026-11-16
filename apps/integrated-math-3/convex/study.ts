@@ -1,3 +1,5 @@
+import '../lib/practice-tests/modules';
+import { gradePracticeTest } from '../lib/practice-tests/question-banks';
 import { internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
@@ -603,4 +605,29 @@ export const getTermMasteryByUnit = internalQuery({
     moduleNumber: v.number(),
   },
   handler: getTermMasteryByUnitHandler,
+});
+/** Grades and saves a completed attempt in one transaction. Retries return the saved result. */
+export const completePracticeTest = internalMutation({
+  args: {
+    userId: v.id('profiles'), attemptId: v.string(), moduleNumber: v.number(),
+    answers: v.array(v.object({ questionId: v.string(), answer: v.string() })),
+    durationSeconds: v.number(),
+  },
+  handler: async (ctx, args) => {
+    if (!args.attemptId || args.attemptId.length > 100 || !Number.isInteger(args.durationSeconds)
+      || args.durationSeconds < 0 || args.durationSeconds > 86400) throw new Error('Invalid attempt');
+    const existing = await ctx.db.query('practice_test_results')
+      .withIndex('by_user_and_attempt', (q) => q.eq('userId', args.userId).eq('attemptId', args.attemptId)).unique();
+    if (existing) return { resultId: existing._id, score: existing.score, questionCount: existing.questionCount };
+    const result = gradePracticeTest(args.moduleNumber, args.answers);
+    const saved = await savePracticeTestResultHandler(ctx, { userId: args.userId, ...result });
+    await ctx.db.patch(saved.resultId, { attemptId: args.attemptId });
+    await recordStudySessionHandler(ctx, {
+      userId: args.userId, activityType: 'practice_test',
+      curriculumScope: { type: 'module', moduleNumber: result.moduleNumber },
+      results: { itemsSeen: result.questionCount, itemsCorrect: result.score,
+        itemsIncorrect: result.questionCount - result.score, durationSeconds: args.durationSeconds },
+    });
+    return { ...saved, score: result.score, questionCount: result.questionCount };
+  },
 });

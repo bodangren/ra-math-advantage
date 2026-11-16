@@ -1,0 +1,50 @@
+{
+  "firstReplay": {
+    "decision": {
+      "eligible": true,
+      "exposureState": "introduced",
+      "idempotency": "new",
+      "masteryBearing": true,
+      "reason": "eligible"
+    },
+    "delivery": "replay",
+    "kstApplied": false,
+    "masteryApplied": true,
+    "persisted": true
+  },
+  "rollback": "all persisted effect rows unchanged",
+  "concurrent": [
+    {
+      "decision": {
+        "eligible": true,
+        "exposureState": "introduced",
+        "idempotency": "new",
+        "masteryBearing": true,
+        "reason": "eligible"
+      },
+      "delivery": "replay",
+      "kstApplied": false,
+      "masteryApplied": true,
+      "persisted": true
+    },
+    {
+      "decision": {
+        "eligible": true,
+        "exposureState": "introduced",
+        "idempotency": "new",
+        "masteryBearing": true,
+        "reason": "eligible"
+      },
+      "delivery": "new",
+      "kstApplied": false,
+      "masteryApplied": true,
+      "persisted": true
+    }
+  ],
+  "finalCounts": {
+    "cards": 1,
+    "evidence": 3,
+    "receipts": 2,
+    "reviews": 2
+  }
+}

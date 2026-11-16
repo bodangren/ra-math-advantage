@@ -11,10 +11,10 @@ Source: (Module 9, Lesson 9-3, Int2_0903_practice.docx)
 
 ## Vocabulary
 
-* **Standard Form** — A linear equation written as [Ax + By = C], where A, B, and C are integers and A is non-negative.
+* **Standard Form** — A line equation Ax + By = C with A and B not both zero. For rational coefficients, this course uses integer coefficients with no common factor when possible.
 * **Slope-Intercept Form** — A linear equation written as [y = mx + b], where m is the slope and b is the y-intercept.
 * **Point-Slope Form** — A linear equation written as [y - y1 = m(x - x1)], where m is the slope and (x1, y1) is a point on the line.
-* **Slope** — The ratio of the change in y to the change in x between two points on a line; also [m = rise/run].
+* **Slope** — The ratio of the change in y to a nonzero change in x. A vertical line has undefined slope.
 * **Y-Intercept** — The point where a line crosses the y-axis; the value of y when [x = 0].
 * **X-Intercept** — The point where a line crosses the x-axis; the value of x when [y = 0].
 
@@ -30,11 +30,11 @@ If you know a line passes through (2, 5) with slope 3, what information can you 
 ### Key Concept: Standard Form
 
 In standard form [Ax + By = C]:
-* A, B, and C are integers (preferably positive).
+* A, B, and C are real constants. For rational coefficients, this course uses integer coefficients with no common factor when possible. Their signs cannot always all be positive.
 * A and B are not both zero.
 * If possible, A, B, and C share no common factor greater than 1.
 
-To check if a point (x, y) is on the line, substitute into Ax + By and verify it equals C.
+A vertical line x = c has undefined slope and cannot use slope-intercept form. To check if a point (x, y) is on the line, substitute into Ax + By and verify it equals C.
 
 ### Key Concept: Slope-Intercept Form
 
@@ -54,149 +54,73 @@ Point-slope form is especially useful when you know:
 
 ## Example 1 — Write Equations in Standard Form
 
-Write each equation in standard form. Identify A, B, and C.
+### Problem
 
-**1.** [-7x - 5y = 35]
+Write (2/3)y-(3/4)x+1/6=0 in standard form Ax+By=C with integer coefficients and A>0.
 
-A = -7, B = -5, C = 35
+### Solution
 
-**2.** [8x + 3y + 6 = 0]
-
-Rewrite as [8x + 3y = -6]
-
-A = 8, B = 3, C = -6
-
-**3.** [10y - 3x + 6 = 11]
-
-Rewrite as [-3x + 10y = 5] or [3x - 10y = -5] (multiply by -1)
-
-**4.** [2/3 y - 3/4 x + 1/6 = 0]
-
-Multiply by 12 to clear fractions: [8y - 9x + 2 = 0]
-
-Rewrite as [-9x + 8y = -2] or [9x - 8y = 2]
-
-**5.** [4/5 y + 1/8 x = 4]
-
-**6.** [-0.08x = 1.24y - 3.12]
+Multiply by 12 to get 8y-9x+2=0. Rearrange and multiply by -1 to obtain 9x-8y=2. Thus A=9, B=-8, and C=2.
 
 ## Example 2 — Write Equations in Slope-Intercept Form
 
-Write each equation in slope-intercept form. Identify the slope m and y-intercept b.
+### Problem
 
-### Step 1: Solve for y
+Write 6x+3y=12 in slope-intercept form. Identify the slope and vertical intercept.
 
-**7.** [6x + 3y = 12]
+### Solution
 
-[3y = -6x + 12]
-
-[y = -2x + 4]
-
-m = -2, b = 4
-
-**8.** [14x - 7y = 21]
-
-**9.** [2/3 x + 1/6 y = 2]
-
-Multiply by 6: [4x + y = 12]
-
-[y = -4x + 12]
-
-**10.** [5x + 10y = 20]
-
-**11.** [6x + 9y = 15]
-
-**12.** [1/5 x + 1/2 y = 4]
+Subtract 6x and divide by 3: y=-2x+4. The slope is -2. The vertical intercept is the point (0,4).
 
 ## Example 3 — Interpret Linear Equations in Context
 
-### Step 1: Identify What Each Variable Represents
+### Problem
 
-**13. CHARITY** The equation [y - 20x = 83] relates shirts collected, where x is hours since noon and y is total shirts.
+A collection model is y-20x=83, where x is hours after noon and y is the number of shirts collected. Interpret the equation in slope-intercept form.
 
-Write in slope-intercept form: [y = 20x + 83]
+### Solution
 
-Interpret: The slope 20 means 20 shirts are collected per hour. The y-intercept 83 means 83 shirts had been collected at noon.
-
-**14. GROWTH** The body length y of a baby snake is given by [4x - 2y = -3], where x is age in months until age 1.
-
-Write in slope-intercept form: [-2y = -4x - 3] → [y = 2x + 1.5]
-
-Interpret: The snake grows 2 inches per month. At birth (x = 0), the snake is 1.5 inches long.
+The equation is y=20x+83. The model starts with 83 shirts at noon and adds 20 shirts per hour. Shirt counts are whole numbers; a continuous line represents the modeled collection rate rather than each individual donation.
 
 ## Example 4 — Write Equations from Two Points
 
-**15. PLUMBER** Two neighbors hire the same plumber. Camila: 3 hours, $191. Conner: 1 hour, $107.
+### Problem
 
-**a.** Define variables: Let [x] = hours worked, [y] = total cost in dollars.
+A plumber charges a fixed visit fee plus a constant hourly rate. A one-hour visit costs 107 dollars and a three-hour visit costs 191 dollars. Find the cost function and the cost of five hours.
 
-**b.** Find slope and write equation: [m = (191 - 107)/(3 - 1) = 84/2 = 42]
+### Solution
 
-The plumber charges $42 per hour. Using point (1, 107): [y - 107 = 42(x - 1)]
-
-In slope-intercept form: [y = 42x + 65]
-
-The flat fee is $65 per visit.
-
-**c.** Cost for 5 hours: [y = 42(5) + 65 = 210 + 65 = 275]
-
-**16. HIKING** Tim hikes near Big Bear Lake. 9:00 A.M. to 10:30 A.M.: elevation 7200 ft. 11:15 A.M.: elevation 7425 ft.
-
-**a.** Define: Let [x] = hours since 9:00 A.M., [y] = elevation in feet.
-
-**b.** From 9:00 to 10:30 (1.5 hours), elevation increases 225 ft. Slope: [225/1.5 = 150] ft/hour.
-
-Equation: At 9:00 A.M. (x = 0), elevation is 7200 ft, so [y = 150x + 7200].
-
-**c.** 12:30 P.M. is 3.5 hours after 9:00: [y = 150(3.5) + 7200 = 525 + 7200 = 7725] ft.
+The hourly rate is (191-107)/(3-1)=42 dollars. Use 107=42(1)+b to find b=65 dollars. Thus C(t)=42t+65 for t≥0. A five-hour visit costs 275 dollars under this model.
 
 ## Example 5 — Write Equations in Point-Slope Form Given Slope and Point
 
-Write an equation in point-slope form for the line that satisfies each set of conditions.
+### Problem
 
-**17.** slope of -5, passes through (-3, -8)
+Write a point-slope equation for the line with slope -5 through (-3,-8).
 
-[y + 8 = -5(x + 3)]
+### Solution
 
-**18.** slope of 4/5, passes through (10, -3)
-
-[y + 3 = 4/5 (x - 10)]
-
-**19.** slope of -2/3, passes through (6, -8)
-
-**20.** slope of 0, passes through (0, -10)
-
-[y + 10 = 0(x - 0)] → [y = -10]
+Use y-y₁=m(x-x₁). Substitution gives y+8=-5(x+3). At x=-3, the equation gives y=-8, so it contains the required point.
 
 ## Example 6 — Write Equations Given Two Points
 
-Write an equation in point-slope form for a line passing through each pair of points.
+### Problem
 
-### Step 1: Find the Slope
+Write a point-slope equation for the line through (2,-3) and (1,5).
 
-**21.** (2, -3) and (1, 5)
+### Solution
 
-[m = (5 - (-3))/(1 - 2) = 8/(-1) = -8]
-
-Equation using (2, -3): [y + 3 = -8(x - 2)]
-
-**22.** (3, 5) and (-6, -4)
-
-**23.** (-1, -2) and (-3, 1)
-
-**24.** (-2, -4) and (1, 8)
+The slope is (5-(-3))/(1-2)=-8. Using (2,-3), the equation is y+3=-8(x-2). Using the other point gives the equivalent equation y-5=-8(x-1).
 
 ## Example 7 — Real-World Point-Slope Applications
 
-**25. SALES** Light trucks sold: 5.919 million in 2011, 11.055 million in 2017. Write an equation for y trucks sold x years after 2010.
+### Problem
 
-2011 is x = 1, y = 5.919. 2017 is x = 7, y = 11.055.
+A fictional sales model passes through 5.919 million units in year 1 and 11.055 million units in year 7. Write a point-slope equation for sales y, in millions, at year x.
 
-[m = (11.055 - 5.919)/(7 - 1) = 5.136/6 = 0.856]
+### Solution
 
-Using point (1, 5.919): [y - 5.919 = 0.856(x - 1)]
-
-**26. RESTAURANTS** A pizza franchise had 2483 restaurants in 2012, 2606 in 2017. Write an equation for y restaurants x years after 2010.
+The average modeled change is (11.055-5.919)/(7-1)=0.856 million units per year. The equation is y-5.919=0.856(x-1). This line fits the two given points. Two observations alone do not establish that future sales follow the same line.
 
 ## Mixed Exercises
 
@@ -216,11 +140,11 @@ Write linear equations in standard form, slope-intercept form, and point-slope f
 
 **33. PRECISION** Use the graph to write the equation in standard form passing through two points.
 
-![](media/image1.png)
+![Worksheet figure 1](/curriculum/module-9-lesson-3/image1.png)
 
 **34. USE ESTIMATION** Jacalyn opens a savings account with $200 initial balance and deposits about the same amount each month.
 
-![](media/image2.png)
+![Worksheet figure 2](/curriculum/module-9-lesson-3/image2.png)
 
 **a.** Write a slope-intercept equation for balance y in months x.
 
@@ -236,7 +160,7 @@ Write linear equations in standard form, slope-intercept form, and point-slope f
 
 **Joe's data:**
 
-![](media/image4.png)
+![Worksheet figure 4](/curriculum/module-9-lesson-3/image4.png)
 
 **Alisha's data:** (graph shown in original)
 
@@ -271,7 +195,7 @@ Write linear equations in standard form, slope-intercept form, and point-slope f
 * Problem 35 references a graph image for the line through two points.
 * Problem 36 references a graph image showing Alisha's data and a table showing Joe's data.
 * The worksheet contains 43 problems across seven examples and mixed exercises.
-* ![](media/image1.png)
-* ![](media/image2.png)
-* ![](media/image3.png)
-* ![](media/image4.png)
+* ![Worksheet figure 1](/curriculum/module-9-lesson-3/image1.png)
+* ![Worksheet figure 2](/curriculum/module-9-lesson-3/image2.png)
+* ![Worksheet figure 3](/curriculum/module-9-lesson-3/image3.png)
+* ![Worksheet figure 4](/curriculum/module-9-lesson-3/image4.png)

@@ -1,0 +1,16 @@
+{
+  "track_id": "appc-mastery-advantage-rollout_20260821",
+  "type": "feature",
+  "status": "superseded",
+  "created_at": "2026-08-21T00:31:36Z",
+  "updated_at": "2026-08-21T04:00:00Z",
+  "description": "Superseded. This rollout treated a mixed topic and subskill graph as a final AP Precalculus skill inventory.",
+  "estimated_tasks": 44,
+  "actual_tasks": null,
+  "deviation_notes": "The 73-skill claim is withdrawn. AP Precalculus needs one approved granularity rule before graph repair or broad runtime work resumes.",
+  "program": "Teacher-Led Mastery Advantage Progression",
+  "depends_on": [
+    "teacher-led-mastery-advantage_20260819"
+  ],
+  "superseded_by": "mastery-advantage-graph-remediation_20260821"
+}

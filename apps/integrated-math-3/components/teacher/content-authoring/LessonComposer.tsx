@@ -40,7 +40,7 @@ import {
   getTeacherAuthoringStatusView,
   type TeacherAuthoringStatusView,
 } from '@/lib/teacher/content-authoring/get-teacher-authoring-status-view';
-import type { TeacherFacingStatus } from '../../../../convex/teacher/content-authoring';
+import type { TeacherFacingStatus } from '../../../convex/teacher/content_authoring';
 
 export interface LessonComposerClient {
   saveTeacherDraft: (...args: unknown[]) => Promise<unknown>;

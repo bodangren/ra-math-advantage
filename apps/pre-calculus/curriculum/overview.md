@@ -2,7 +2,7 @@
 
 ## Overview
 
-4 units, ~54 lessons covering polynomial/rational functions, exponential/logarithmic functions, trigonometric/polar functions, and parametric/vectors/matrices.
+4 units, 58 lessons covering polynomial/rational functions, exponential/logarithmic functions, trigonometric/polar functions, and parametric/vectors/matrices.
 
 ---
 

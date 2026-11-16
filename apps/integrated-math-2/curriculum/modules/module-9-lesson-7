@@ -34,233 +34,42 @@ Why does the maximum or minimum value of a linear objective function over a feas
 2. Identify the feasible region and find the coordinates of all vertices.
 3. Write the objective function [f(x, y) = ax + by].
 4. Evaluate the objective function at each vertex.
-5. The largest value is the maximum; the smallest value is the minimum.
+5. For a nonempty closed bounded polygon, the largest vertex value is a maximum and the smallest is a minimum. For unbounded or open regions, check whether each bound exists and is attained.
 
 ### Key Concept: Bounded vs. Unbounded Regions
 
-* For a **bounded** feasible region, both a maximum and a minimum value of the objective function always exist.
+* For a nonempty **closed and bounded** feasible region, a linear objective attains both a maximum and a minimum. Strict inequalities can exclude a boundary optimum. Integer restrictions require checking feasible integer points.
 * For an **unbounded** feasible region, a maximum or minimum may not exist if the objective function increases or decreases without bound in the allowed direction.
 
 ## Example 1 — Find Maximum and Minimum on a Bounded Feasible Region
 
-Graph systems of inequalities with vertical, horizontal, and slanted boundaries. Identify the vertices of the feasible region and evaluate the objective function at each vertex to find the maximum and minimum values.
+### Problem
 
-### Step 1: Graph Constraints and Identify Vertices
+Find the maximum and minimum of f(x,y)=3x-2y subject to 1≤x≤5, y≥2, and y≤x+3.
 
-Graph the boundary lines for the given system and shade the appropriate half-planes. The feasible region is the overlapping shaded area. Find the coordinates of each vertex by solving the systems of equations formed by intersecting boundary pairs.
+### Solution
 
-[
-y \geq 2
-]
-[
-1 \leq x \leq 5
-]
-[
-y \leq x + 3
-]
-
-[
-f(x, y) = 3x - 2y
-]
-
-The vertices of the feasible region are found at the intersections of [x = 1], [x = 5], [y = 2], and [y = x + 3].
-
-[
-y \geq -2
-]
-[
-y \geq 2x - 4
-]
-[
-f(x, y) = 4x - y
-]
-
-Find where the boundary lines meet and test each vertex in the objective function.
-
-[
-x + y \geq 2
-]
-[
-4y \leq x + 8
-]
-[
-y \geq 2x - 5
-]
-[
-f(x, y) = 4x + 3y
-]
-
-[
-x \geq 2
-]
-[
-x \leq 5
-]
-[
-y \geq 1
-]
-[
-y \leq 4
-]
-[
-f(x, y) = x + y
-]
-
-[
-x \geq 1
-]
-[
-y \leq 6
-]
-[
-y \geq x - 2
-]
-[
-f(x, y) = x - y
-]
-
-[
-x \geq 0
-]
-[
-y \geq 0
-]
-[
-y \leq 7 - x
-]
-[
-f(x, y) = 3x + y
-]
-
-### Step 2: Evaluate the Objective Function at Each Vertex
-
-Substitute the coordinates of each vertex into the objective function. Compare the results to determine the maximum and minimum values.
-
-For example, if the vertices are [(1, 2)], [(5, 2)], [(1, 4)], and [(5, 8)], evaluate [f(x, y)] at each point:
-[
-f(1, 2) = 3(1) - 2(2) = -1
-]
-[
-f(5, 2) = 3(5) - 2(2) = 11
-]
-[
-f(1, 4) = 3(1) - 2(4) = -5
-]
-[
-f(5, 8) = 3(5) - 2(8) = -1
-]
-
-The maximum value is [11] and the minimum value is [-5].
+The closed feasible polygon has vertices (1,2), (5,2), (5,8), and (1,4). The respective objective values are -1, 11, -1, and -5. The maximum is 11 at (5,2). The minimum is -5 at (1,4). A linear objective on this nonempty bounded polygon attains extrema at vertices, though an entire edge can also be optimal.
 
 ## Example 2 — Optimization with Unbounded and Multi-Constraint Regions
 
-Graph systems that produce both bounded and unbounded feasible regions. Evaluate the objective function at all vertices to determine whether a maximum, minimum, both, or neither exist.
+### Problem
 
-### Step 1: Analyze Unbounded Regions
+Find any maximum or minimum of f(x,y)=x+2y subject to x≥-1 and x+y≤6.
 
-[
-x \geq -1
-]
-[
-x + y \leq 6
-]
-[
-f(x, y) = x + 2y
-]
+### Solution
 
-Graph the vertical boundary [x = -1] and the slanted boundary [y = -x + 6]. The feasible region extends downward and to the left, so it is unbounded in some directions. Check whether the objective function has both a maximum and a minimum, or if one value does not exist.
-
-[
-y \leq 2x
-]
-[
-y \geq 6 - x
-]
-[
-y \leq 6
-]
-[
-x \geq -2
-]
-[
-f(x, y) = 4x + 3y
-]
-
-### Step 2: Evaluate at Vertices for Bounded Portions
-
-[
-y \leq 3x + 6
-]
-[
-4y + 3x \leq 3
-]
-[
-x \geq -2
-]
-[
-f(x, y) = -x + 3y
-]
-
-Find the vertices by intersecting boundary pairs. Substitute each vertex into the objective function. If the region is unbounded, determine whether the objective function increases or decreases without bound in the allowed direction.
+The region is unbounded downward and to the right, not to the left of x=-1. Since y≤6-x, f≤x+2(6-x)=12-x≤13. Equality occurs at (-1,7), so the maximum is 13. With x=-1 and y decreasing without bound, f also decreases without bound. There is no minimum.
 
 ## Example 3 — Real-World Linear Programming
 
-Translate resource and cost constraints into a system of inequalities, graph the feasible region, and optimize the objective function in applied contexts.
+### Problem
 
-### Step 1: Define Variables and Write Constraints
+Each gallon of paint A uses 4 ounces of yellow pigment and 1 ounce of green pigment. Each gallon of paint B uses 1 ounce of yellow and 6 ounces of green. Available pigment is 32 ounces yellow and 54 ounces green. Fractional gallons are allowed. Maximize total gallons.
 
-**Painting:** A painter has limited supplies of two dyes. Each gallon of color A and color B requires specific amounts of yellow and green dye. Define variables for the gallons of each color mixed.
+### Solution
 
-Let [a] represent gallons of color A and [b] represent gallons of color B.
-
-Constraints based on available dye:
-[
-4a + b \leq 32
-]
-[
-a + 6b \leq 54
-]
-
-Non-negativity constraints:
-[
-a \geq 0
-]
-[
-b \geq 0
-]
-
-Objective: maximize total gallons mixed.
-[
-G = a + b
-]
-
-**Jewelry:** A necklace uses two types of beads with specific quantity limits and a cost relationship. Define variables for the number of clay beads and glass beads.
-
-Let [c] represent clay beads and [g] represent glass beads.
-
-Constraints based on bead limits:
-[
-c \leq 10
-]
-[
-g \geq 4
-]
-[
-4g \leq 2c + 8
-]
-
-Cost function to minimize:
-[
-C = 0.20c + 0.40g
-]
-
-### Step 2: Graph and Find Vertices
-
-Graph each system of constraints in the first quadrant. Identify the feasible region and find the coordinates of each vertex by solving pairs of boundary equations.
-
-### Step 3: Optimize the Objective Function
-
-Evaluate the objective function at every vertex of the feasible region. For the painting problem, the largest value of [G] gives the maximum gallons. For the jewelry problem, the smallest value of [C] gives the minimum cost.
+Let a,b≥0 be gallons. The constraints are 4a+b≤32 and a+6b≤54. The feasible vertices are (0,0), (8,0), (6,8), and (0,9). The objective a+b has values 0,8,14,9. The maximum is 14 gallons at a=6 and b=8. This uses all 32 ounces of yellow and 54 ounces of green.
 
 ## Mixed Exercises
 

@@ -1,0 +1,422 @@
+[
+  {
+    "priority": "High",
+    "title": "Reseeding removes the phase IDs used by student progress",
+    "path": "apps/bus-math-v2/convex/seed.ts",
+    "line": 197,
+    "evidence": "The publisher deletes existing phase rows and creates new rows under the same lesson version. student_progress refers to the deleted phase IDs. A second curriculum seed makes completed work disappear from current progress views. The repair helper does not make the documented full seed safe.",
+    "fix": "Preserve phase IDs for unchanged published content. Use explicit new versions and a defined progress migration for changed content.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-01"
+  },
+  {
+    "priority": "High",
+    "title": "Student activity responses disable assessment persistence",
+    "path": "apps/bus-math-v2/components/lesson/ActivityRenderer.tsx",
+    "line": 216,
+    "evidence": "GET /api/activities/[activityId] sets gradingConfig to null for students. handleActivitySubmit saves an assessment only when gradingConfig.autoGrade is true. The actual student response therefore skips the assessment request and proceeds to phase completion. Tests that inject unredacted activity data miss this failure.",
+    "fix": "Return safe submission metadata. Save and grade student answers on the server without relying on a private grading configuration in the browser.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-02"
+  },
+  {
+    "priority": "High",
+    "title": "Quiz answer redaction breaks the quiz result shown to students",
+    "path": "apps/bus-math-v2/components/activities/quiz/ComprehensionCheck.tsx",
+    "line": 120,
+    "evidence": "The activity API removes correctAnswer. ComprehensionCheck and TieredAssessment still compare each answer with that missing property. Correct responses then receive incorrect local scores and feedback.",
+    "fix": "Use the server score and server feedback after submission. Keep private answer keys out of the initial response.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-03"
+  },
+  {
+    "priority": "High",
+    "title": "Phase completion does not require the phase work",
+    "path": "apps/bus-math-v2/convex/api.ts",
+    "line": 118,
+    "evidence": "The public phase route checks the previous phase, then this mutation writes completed. Neither checks required activity submissions or passing scores. Completing one activity also completes its whole phase. Unit 1 exit tickets promise a 4/5 threshold, but that threshold does not control progression.",
+    "fix": "Check required activity evidence and the published completion policy inside the completion mutation.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-04"
+  },
+  {
+    "priority": "High",
+    "title": "Students can choose which competency receives credit",
+    "path": "apps/bus-math-v2/convex/api.ts",
+    "line": 159,
+    "evidence": "The phase API accepts linkedStandardId from the browser. The mutation looks up any matching standard and raises its masteryLevel. It does not verify a link between that standard and the phase. A student can attach an unrelated standard to a legitimate completion.",
+    "fix": "Resolve the standard from published phase or lesson data. Do not accept a client-selected credit target.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-05"
+  },
+  {
+    "priority": "High",
+    "title": "Teacher workbooks are public assets",
+    "path": "apps/bus-math-v2/app/api/workbooks/[unit]/[lesson]/[type]/route.ts",
+    "line": 43,
+    "evidence": "The protected API reads teacher files from public/workbooks. A request with no cookie to /workbooks/unit_01_lesson_04_teacher.xlsx returned HTTP 200 and the workbook. The route role check does not protect the static URL.",
+    "fix": "Store teacher files outside public assets. Serve them only after the teacher authorization check. Verify the deployed asset route too.",
+    "kind": "Reproduced by local HTTP request",
+    "id": "BM2-06"
+  },
+  {
+    "priority": "High",
+    "title": "Browser Convex calls have no authenticated identity",
+    "path": "packages/app-shell/src/providers/ConvexClientProvider.tsx",
+    "line": 15,
+    "evidence": "The provider supplies a plain ConvexReactClient. It never supplies an authentication token. BM2 signs its own HTTP-only cookie, but daily practice and study pages call public Convex functions that require ctx.auth.getUserIdentity(). No BM2 auth.config or token bridge is present.",
+    "fix": "Use the existing authenticated server request boundary for these calls, or implement a supported Convex identity integration. Test a real signed-in student end to end.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-07"
+  },
+  {
+    "priority": "High",
+    "title": "The SRS field migration breaks card identifiers",
+    "path": "apps/bus-math-v2/lib/srs/scheduler.ts",
+    "line": 64,
+    "evidence": "Shared SRS code now returns variantKey. BM2 still reads problemFamilyId and passes it to shared functions. TypeScript reports these failures in scheduler.ts, review-processor.ts, and convex/srs.ts. Existing runtime tests return undefined family identifiers.",
+    "fix": "Complete the boundary conversion between BM2 storage and the shared variantKey contract. Preserve the reviewed pilot mapping.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-08"
+  },
+  {
+    "priority": "High",
+    "title": "78 published lessons have no activities",
+    "path": "apps/bus-math-v2/lib/curriculum/published-manifest.ts",
+    "line": 1504,
+    "evidence": "The executed manifest has 89 lessons. Unit 1 has 24 activities. Every lesson in Units 2\u20138 and the capstone has activities: []. Their published assessment and project phases cannot collect the work promised by the product.",
+    "fix": "Author the missing lesson activities and assessment tasks. Do not treat a nonempty phase outline as a completed lesson.",
+    "kind": "Reproduced by manifest inventory",
+    "id": "BM2-09"
+  },
+  {
+    "priority": "High",
+    "title": "Published instruction contains teaching notes instead of instruction",
+    "path": "apps/bus-math-v2/lib/curriculum/published-manifest.ts",
+    "line": 892,
+    "evidence": "The Wave 1 builder publishes phrases such as \u201cDEA LER explained with visuals\u201d and tells the teacher to model a worked example. It supplies no actual example, worked calculation, or visual for that instruction. Wave 2 uses the same outline expansion pattern.",
+    "fix": "Replace planning notes with student-readable explanations, worked examples, explicit inputs, and verifiable tasks.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-10"
+  },
+  {
+    "priority": "High",
+    "title": "20 required curriculum assets are missing",
+    "path": "apps/bus-math-v2/lib/curriculum/generated/wave2-authored.ts",
+    "line": 35,
+    "evidence": "An exact file inventory found 20 referenced workbook or PDF names absent from resources and public. Four are Unit 1 build assets. Sixteen are Unit 5\u20138 workbooks, foundation guides, polish guides, and presentation rubrics. See asset-evidence.json.",
+    "fix": "Create the required assets or correct the references to real equivalent assets. Check every published resource reference before publishing.",
+    "kind": "Reproduced by file inventory",
+    "id": "BM2-11"
+  },
+  {
+    "priority": "High",
+    "title": "Workbook contents do not match the lesson tasks",
+    "path": "apps/bus-math-v2/public/workbooks/unit_07_lesson_07_student.xlsx",
+    "line": 1,
+    "evidence": "All 66 workbooks were inspected as XLSX packages. Thirty student workbooks have identical worksheet XML, including the capstone and Unit 7 Lesson 7. Another 30 teacher workbooks share identical worksheet XML. Sixty contain only a Journal sheet. The Unit 7 financing workbook repeats January 2025 journal entries instead of a financing model.",
+    "fix": "Author a workbook for each distinct learning task. Verify worksheet content and required calculations, not only the filename.",
+    "kind": "Reproduced by workbook content comparison",
+    "id": "BM2-12"
+  },
+  {
+    "priority": "High",
+    "title": "Unit 1 balance tables contradict their required totals",
+    "path": "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+    "line": 2621,
+    "evidence": "Lesson 4 lists assets of 12,260, liabilities of 6,250, and equity of 6,500. These do not balance; liabilities plus equity equal 12,750. Lesson 7 lists assets of 11,020, liabilities of 5,230, and equity of 6,890, but requires 11,960 = 6,230 + 5,730. The class CSV is a third state: 11,020 = 5,230 + 5,790. Students cannot satisfy the stated check with the listed figures.",
+    "fix": "Choose one verified account dataset. Derive all tables, explanations, chart totals, and expected answers from it.",
+    "kind": "Reproduced by independent arithmetic and CSV totals",
+    "id": "BM2-13"
+  },
+  {
+    "priority": "Medium",
+    "title": "The application assessment does not assess its stated skills",
+    "path": "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+    "line": 3715,
+    "evidence": "Application tasks claim to assess categorization, ledger correction, cell checks, and validation rules. The renderer supplies a single numeric box. Scoring only compares the generated numeric answer. For example, the classification task grades cash minus payable; the validation task grades total minus invalid. Neither checks the named skill.",
+    "fix": "Require the actual classification, corrected entry, formula, or validation rule. Match each scoring rule to its learning objective.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-14"
+  },
+  {
+    "priority": "Medium",
+    "title": "Later unit datasets lack the inputs for their tasks",
+    "path": "apps/bus-math-v2/resources/datasets/unit_04_class_dataset.csv",
+    "line": 1,
+    "evidence": "All 56 CSV datasets have the same Account, Account Type, Balance columns. The payroll unit has no employee hours or pay rates. The depreciation unit has no useful life or salvage inputs. The financing unit has no interest rate or payment schedule inputs. General account balances do not supply those tasks.",
+    "fix": "Provide the task-specific source inputs or explicit instructions that define them. Keep the shared account snapshot only where it is relevant.",
+    "kind": "Reproduced by dataset inventory",
+    "id": "BM2-15"
+  },
+  {
+    "priority": "Medium",
+    "title": "The dataset endpoint rejects the authored class dataset names",
+    "path": "apps/bus-math-v2/app/api/datasets/[filename]/route.ts",
+    "line": 26,
+    "evidence": "The allowlist accepts unit_NN_class_snapshot.csv. The files are unit_01_class_snapshot_dataset.csv and unit_02_class_dataset.csv through unit_08_class_dataset.csv. None of the eight class files matches the route pattern. Group dataset names do match.",
+    "fix": "Use a bounded allowlist based on the actual published dataset filenames.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-16"
+  },
+  {
+    "priority": "High",
+    "title": "Non-graded student work is discarded",
+    "path": "apps/bus-math-v2/components/lesson/ActivityRenderer.tsx",
+    "line": 214,
+    "evidence": "Peer critique, reflection, and regular spreadsheet activities send their answers to this callback. Only the autoGrade branch persists answers. Other payloads are used only to decide phase completion. The teacher cannot retrieve the student artifact from that flow.",
+    "fix": "Persist each supported submission before completing the phase. Separate saving work from automatic grading.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-17"
+  },
+  {
+    "priority": "High",
+    "title": "The error retry button bypasses saving the assessment",
+    "path": "apps/bus-math-v2/components/lesson/ActivityRenderer.tsx",
+    "line": 333,
+    "evidence": "After an assessment save fails, Try again calls phase completion directly. It does not retry the failed assessment. A transient save error can therefore become a completed phase with no saved answer evidence.",
+    "fix": "Retry the failed operation with the same submission identity. Complete the phase only after that operation succeeds.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-18"
+  },
+  {
+    "priority": "Medium",
+    "title": "Spreadsheet completion races its submission",
+    "path": "apps/bus-math-v2/components/activities/spreadsheet/SpreadsheetActivityAdapter.tsx",
+    "line": 92,
+    "evidence": "The adapter calls onSubmit and onComplete without awaiting either. The first callback can already complete the phase. This can send two concurrent completion requests. A rejected promise is not caught by the synchronous try/catch. The adapter also marks every part correct when any cell is filled, without checking the authored expectations.",
+    "fix": "Use one awaited save-and-complete path. Grade the required cells on the server. Reset the submission guard after a failed save.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-19"
+  },
+  {
+    "priority": "Medium",
+    "title": "Phase idempotency is outside the database mutation",
+    "path": "apps/bus-math-v2/convex/api.ts",
+    "line": 140,
+    "evidence": "The route performs idempotency reads before calling the mutation. Two simultaneous requests can both pass those reads. The mutation patches a completed record again, adds the time again, and replaces the idempotency key.",
+    "fix": "Check the idempotency key and completed state in the same mutation that writes progress.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-20"
+  },
+  {
+    "priority": "Medium",
+    "title": "Account revocation is inconsistent between pages and APIs",
+    "path": "apps/bus-math-v2/lib/auth/server.ts",
+    "line": 59,
+    "evidence": "Server-rendered teacher pages verify the cookie but do not check the active credential. Active request verification checks only that a credential exists for the token username; it does not compare the current profile ID or role. Deactivation and role changes therefore have inconsistent effects.",
+    "fix": "Validate the current account identity and role at the shared server boundary for both page reads and API calls.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-21"
+  },
+  {
+    "priority": "Medium",
+    "title": "Daily practice changes the queue while using a positional index",
+    "path": "apps/bus-math-v2/components/student/DailyPracticeSession.tsx",
+    "line": 66,
+    "evidence": "sessionCards is rebuilt whenever the reactive due query changes. A reviewed card can disappear before Next Problem is clicked. Advancing currentIndex then skips another card. At a later index, currentCard can become undefined while the list remains nonempty, causing a property-access error.",
+    "fix": "Keep a stable session list of card IDs, or derive the current card by ID and reconcile queue updates explicitly.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-22"
+  },
+  {
+    "priority": "Medium",
+    "title": "Consecutive daily cards reuse the previous answer state",
+    "path": "apps/bus-math-v2/components/student/DailyPracticeSession.tsx",
+    "line": 294,
+    "evidence": "The answer component has no card key. AccountingEquationInput and the other inputs retain local submitted and answer state when their definition changes. Consecutive cards of the same family can show the previous result and remain disabled.",
+    "fix": "Key the input by the stable card and problem identity, or explicitly reset its state when that identity changes.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-23"
+  },
+  {
+    "priority": "Medium",
+    "title": "Unsupported daily practice families stop the session",
+    "path": "apps/bus-math-v2/lib/srs/answer-inputs/registry.ts",
+    "line": 15,
+    "evidence": "The family registry has 19 families, but the daily input registry has three. An unsupported family shows a message with no Next or Skip control. The session cannot reach later supported cards. This is a known deferred capability, but the queue does not handle it.",
+    "fix": "Filter the queue to supported inputs and explain excluded work. Add only curriculum-approved inputs.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-24"
+  },
+  {
+    "priority": "High",
+    "title": "Legacy SRS mutations trust browser scheduling and grades",
+    "path": "apps/bus-math-v2/convex/srs.ts",
+    "line": 88,
+    "evidence": "upsertSrsCard accepts and writes the full client card state. recordSrsReview accepts client rating and schedule values; it checks only limited state transitions. A valid authenticated client can set its own stability and due date without server answer grading. The pilot has a safer server-owned path, but the legacy public surface remains.",
+    "fix": "Route evidence through server grading and scheduling. Remove or restrict unused client-authoritative writes. This risk becomes reachable when the missing Convex authentication integration is repaired.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-25"
+  },
+  {
+    "priority": "Medium",
+    "title": "The spreadsheet evaluator rejects correct formulas and accepts typed answers",
+    "path": "apps/bus-math-v2/lib/activities/spreadsheet-validation.ts",
+    "line": 266,
+    "evidence": "A1=10, A2=20, and A3=\"=SUM(A1:A2)\" fails against expectedValue 30. Typing 30 passes even when expectedFormula requires a formula. validateSubmission reads the raw value and never evaluates or checks expectedFormula.",
+    "fix": "Evaluate supported formulas against the submitted sheet and enforce formula requirements when the learning objective requires them.",
+    "kind": "Reproduced by direct function calls",
+    "id": "BM2-26"
+  },
+  {
+    "priority": "Medium",
+    "title": "The formula allowlist is case-sensitive and excludes taught functions",
+    "path": "apps/bus-math-v2/lib/activities/spreadsheet-validation.ts",
+    "line": 122,
+    "evidence": "SUMIFS is rejected, but lowercase sumifs passes the function scanner. The allowlist also omits functions named in the course, including SWITCH and SLN. This is a validation inconsistency; no code-execution exploit was established.",
+    "fix": "Parse and normalize function tokens consistently. Support the functions required by the published task and reject unsupported functions in every case.",
+    "kind": "Reproduced by direct function calls",
+    "id": "BM2-27"
+  },
+  {
+    "priority": "Medium",
+    "title": "Spreadsheet attempts can be consumed before the submission finishes",
+    "path": "apps/bus-math-v2/app/api/activities/spreadsheet/[activityId]/submit/route.ts",
+    "line": 241,
+    "evidence": "The route records the attempt, then requests AI feedback, writes feedback, writes the assessment, and updates competency through separate calls. A later failure returns 500 after consuming an attempt. A retry consumes another attempt. The three-attempt limit can lock out a student because of service failures.",
+    "fix": "Commit the authoritative attempt and assessment atomically. Make the request idempotent. Treat optional AI feedback as a separate retryable step.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-28"
+  },
+  {
+    "priority": "Medium",
+    "title": "Assessment retry limits are not enforced",
+    "path": "apps/bus-math-v2/components/activities/quiz/TieredAssessment.tsx",
+    "line": 245,
+    "evidence": "Published summative props specify maxAttempts: 2. The component always sends attemptNumber: 1 and allows reset. The regular assessment mutation neither enforces maxAttempts nor assigns a server attempt number.",
+    "fix": "Enforce attempts from stored records and published policy on the server. Display the authoritative attempt count.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-29"
+  },
+  {
+    "priority": "Medium",
+    "title": "Equivalent numeric answers can receive different scores",
+    "path": "apps/bus-math-v2/lib/assessments/scoring.ts",
+    "line": 49,
+    "evidence": "Question-bank scoring compares normalized strings. Numeric 5300 matches \"5300\" but not \"5,300\" or \"5300.00\". The application-problem path handles commas, so behavior differs between two sections of the same assessment.",
+    "fix": "Use type-aware numeric comparison and a defined tolerance for numeric questions. Keep exact text comparison for text questions.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-30"
+  },
+  {
+    "priority": "Medium",
+    "title": "Student-safe activity data still exposes other answer keys",
+    "path": "apps/bus-math-v2/app/api/activities/[activityId]/route.ts",
+    "line": 101,
+    "evidence": "The redactor removes only correctAnswer. Fill-in-the-blank answer and alternativeAnswers remain. Notebook item.category and spreadsheet expectedValue fields also remain. The endpoint therefore neither provides a consistent practice contract nor protects assessment answers.",
+    "fix": "Create component-specific safe response shapes. Release answer explanations after submission according to the task policy.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-31"
+  },
+  {
+    "priority": "Medium",
+    "title": "Competency standards are placeholder labels",
+    "path": "apps/bus-math-v2/convex/seed.ts",
+    "line": 105,
+    "evidence": "Seeded standards use descriptions such as Published curriculum standard ACC-2.1 and Demonstrate mastery for ACC-2.1. These are identifiers, not assessable capabilities. Teacher competency views cannot explain what the student can do from these labels.",
+    "fix": "Author the capability descriptions and preserve their relationship to actual lesson evidence.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-32"
+  },
+  {
+    "priority": "Medium",
+    "title": "Business Math has no complete reviewed knowledge graph",
+    "path": "apps/bus-math-v2/lib/learning-evidence/bm2-pilot.ts",
+    "line": 39,
+    "evidence": "The current evidence configuration enables one accounting-equation node. There is no BM2 curriculum skill-graph artifact set. The QA graph type explicitly excludes bm2, and evidence receipts keep kstApplied false. The prior family-derived graph was intentionally removed. This is a known coverage gap, not evidence that the removed graph should be restored.",
+    "fix": "Finish capability review from published objectives before graph authoring. Define prerequisite edges and evidence mappings from reviewed skills. Verify the graph independently of the family registry.",
+    "kind": "Confirmed scope gap; already tracked",
+    "id": "BM2-33"
+  },
+  {
+    "priority": "Medium",
+    "title": "Public curriculum lists include unpublished lessons",
+    "path": "apps/bus-math-v2/convex/public.ts",
+    "line": 158,
+    "evidence": "getCurriculum falls back to the lesson row when no published version exists and still adds it to navigation. getCurriculumStats counts all lesson and activity rows. This conflicts with the published-only runtime contract and can produce links to lessons with no available phases.",
+    "fix": "Filter each public listing and count to the same published curriculum boundary used by progress.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-34"
+  },
+  {
+    "priority": "Medium",
+    "title": "Search and Glossary navigation leads to 404 pages",
+    "path": "apps/bus-math-v2/components/header-simple.tsx",
+    "line": 11,
+    "evidence": "Browser navigation reproduced 404 pages for /search and /backmatter/glossary. The footer also links to missing PBL Methodology and Backward Design routes. These links appear in the main navigation across the app.",
+    "fix": "Link to existing features or provide the intended pages. Add a route existence check for shared navigation.",
+    "kind": "Reproduced in the browser; teacher links checked against route inventory",
+    "id": "BM2-35"
+  },
+  {
+    "priority": "Medium",
+    "title": "Dark-mode demo buttons have unreadable text",
+    "path": "apps/bus-math-v2/components/login-form.tsx",
+    "line": 223,
+    "evidence": "The rendered dark-mode button uses a near-black background with fixed dark-blue child text. The computed label color is oklch(0.282 0.091 267.935), while the button background is oklch(0.12 0.012 160). The screenshot confirms poor contrast. The login title is also a generic text element rather than a heading.",
+    "fix": "Use theme-aware foreground tokens for the button children. Render the login title as the primary heading. Verify keyboard and screen-reader behavior.",
+    "kind": "Reproduced by browser screenshot and computed styles",
+    "id": "BM2-36"
+  },
+  {
+    "priority": "Medium",
+    "title": "The production lesson registry eagerly imports unused activities",
+    "path": "apps/bus-math-v2/lib/activities/registry.ts",
+    "line": 3,
+    "evidence": "ActivityRenderer imports one registry that statically imports dozens of simulations and graphing tools. The current published manifest uses only seven component keys. Dormant components still participate in the production client dependency graph. Existing chunk naming separates files but does not make these imports lazy.",
+    "fix": "Load components on demand by their existing key. Keep QA-only components out of the normal lesson entry. Do not delete a component merely because the unfinished curriculum does not use it yet.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-37"
+  },
+  {
+    "priority": "Medium",
+    "title": "BM2 has no deployment job in the repository",
+    "path": ".github/workflows/cloudflare-deploy.yml",
+    "line": 60,
+    "evidence": "Both the manual deployment workflow and the CI deployment job build and deploy Integrated Math 3. BM2 has lint, test, build, typecheck, and bundle jobs, but no deploy step. A passing BM2 job does not publish the app.",
+    "fix": "Add a BM2 deployment target with its own existing configuration and release gate. Verify the deployed version after an approved release.",
+    "kind": "Confirmed workflow omission",
+    "id": "BM2-38"
+  },
+  {
+    "priority": "Medium",
+    "title": "The tests do not verify the complete student workflow",
+    "path": "apps/bus-math-v2/playwright.config.ts",
+    "line": 9,
+    "evidence": "The Playwright configuration points to tests/e2e, which is absent. Vitest stubs Convex generated functions. Curriculum depth tests load only Unit 1, and several later-unit tests check keywords and structure. These checks pass while 78 lessons have no activities. Two auth tests also use repository-relative paths from the app working directory and fail with ENOENT.",
+    "fix": "Add a real student and teacher flow test through the API boundary. Make curriculum checks assert meaningful task coverage for every unit. Resolve test paths from the test file or explicit repository root.",
+    "kind": "Confirmed code defect",
+    "id": "BM2-39"
+  },
+  {
+    "priority": "Medium",
+    "title": "The depreciation explanation contradicts its schedule",
+    "path": "apps/bus-math-v2/components/activities/simulations/DepreciationMethodComparisonSimulator.tsx",
+    "line": 187,
+    "evidence": "The UI says both methods must reach the same salvage value. The double-declining balance (DDB) implementation only caps values below salvage. It accepts external scenarios. A 10,000 asset with a five-year life and zero salvage ends at 777.60. The three default scenarios do reach their salvage values. The contradiction affects other supported scenario inputs.",
+    "fix": "State the DDB convention explicitly. If full allocation over useful life is required, implement the agreed final-year or switch-to-straight-line rule. Otherwise correct the claim.",
+    "kind": "Confirmed contradiction for supported external scenario inputs",
+    "id": "BM2-40"
+  },
+  {
+    "priority": "High",
+    "title": "The dependency audit reports six high-severity package entries",
+    "path": "package-lock.json",
+    "line": 6024,
+    "evidence": "npm audit --omit=dev reports six high entries in the installed monorepo tree: convex, nanoid, next, postcss, sharp, and ws. Convex and Next are direct BM2 dependencies. These are package advisory matches, not six proven BM2 exploits. Vinext and the actual deployed build affect applicability.",
+    "fix": "Triage the advisory paths against the shipped runtime. Prepare the minimum supported dependency update after approval. Do not run audit fix without reviewing the dependency changes.",
+    "kind": "Live package advisory scan; exploitability not established",
+    "id": "BM2-41"
+  },
+  {
+    "priority": "Low",
+    "title": "Project guidance does not match the current app",
+    "path": "measure/tech-stack.md",
+    "line": 162,
+    "evidence": "The shared tech-stack document names Vercel deployment and old TypeScript, Vite, and Tailwind versions. BM2 product.md names Cloudflare and package.json has newer versions. The required generated Convex AI guidance file is absent. These conflicts make setup and review instructions unreliable.",
+    "fix": "Update the app-specific setup references and restore the required guidance file through the approved workflow. Keep one current source for each command and deployment target.",
+    "kind": "Confirmed documentation gap",
+    "id": "BM2-42"
+  }
+]

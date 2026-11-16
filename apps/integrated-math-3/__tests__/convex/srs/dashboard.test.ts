@@ -116,8 +116,9 @@ function makeDashboardMockCtx(overrides: {
     config: unknown;
   }>;
   queueItems?: Array<{ _id: string }>;
+  runtimeMode?: 'compare' | 'v3_2' | 'rollback_v2';
 } = {}) {
-  const { sessions = [] } = overrides;
+  const { sessions = [], runtimeMode } = overrides;
 
   const sessionQueryMock = {
     withIndex: vi.fn().mockImplementation(
@@ -130,6 +131,7 @@ function makeDashboardMockCtx(overrides: {
         }
         return {
           collect: vi.fn().mockResolvedValue(sessions),
+          take: vi.fn().mockResolvedValue(sessions),
           order: vi.fn().mockReturnThis(),
         };
       }
@@ -138,6 +140,16 @@ function makeDashboardMockCtx(overrides: {
 
   const mockQuery = vi.fn().mockImplementation((tableName: string) => {
     if (tableName === 'srs_sessions') return sessionQueryMock;
+    if (tableName === 'srs_runtime_controls') {
+      return {
+        withIndex: vi.fn().mockReturnValue({
+          first: vi.fn().mockResolvedValue(runtimeMode === undefined ? null : {
+            _id: 'runtime-1' as Id<'srs_runtime_controls'>,
+            scope: 'im3', mode: runtimeMode, migrationVersion: 'kst-srs.v3.2', updatedAt: 0,
+          }),
+        }),
+      };
+    }
     return {
       withIndex: vi.fn().mockReturnValue({
         collect: vi.fn().mockResolvedValue([]),
@@ -154,14 +166,17 @@ function makeDashboardMockCtx(overrides: {
 }
 
 vi.mock('@/convex/queue/queue', () => ({
-  resolveDailyPracticeQueue: vi.fn().mockResolvedValue([]),
+  resolveDailyPracticeQueueResult: vi.fn().mockResolvedValue({
+    items: [],
+    reviewLoad: { reviewLoadState: 'normal' },
+  }),
 }));
 
 describe('getPracticeStatsHandler', () => {
   it('returns streak 0 and dueCount 0 when no sessions and no queue', async () => {
     const { db } = makeDashboardMockCtx();
-    const { resolveDailyPracticeQueue } = await import('@/convex/queue/queue');
-    (resolveDailyPracticeQueue as ReturnType<typeof vi.fn>).mockResolvedValueOnce([]);
+    const { resolveDailyPracticeQueueResult } = await import('@/convex/queue/queue');
+    (resolveDailyPracticeQueueResult as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ items: [], reviewLoad: { reviewLoadState: "normal" } });
 
     const result = await getPracticeStatsHandler(
       { db } as unknown as import('@/convex/_generated/server').QueryCtx,
@@ -193,8 +208,8 @@ describe('getPracticeStatsHandler', () => {
       ],
     });
 
-    const { resolveDailyPracticeQueue } = await import('@/convex/queue/queue');
-    (resolveDailyPracticeQueue as ReturnType<typeof vi.fn>).mockResolvedValueOnce([]);
+    const { resolveDailyPracticeQueueResult } = await import('@/convex/queue/queue');
+    (resolveDailyPracticeQueueResult as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ items: [], reviewLoad: { reviewLoadState: "normal" } });
 
     const result = await getPracticeStatsHandler(
       { db } as unknown as import('@/convex/_generated/server').QueryCtx,
@@ -245,8 +260,8 @@ describe('getPracticeStatsHandler', () => {
       ],
     });
 
-    const { resolveDailyPracticeQueue } = await import('@/convex/queue/queue');
-    (resolveDailyPracticeQueue as ReturnType<typeof vi.fn>).mockResolvedValueOnce([]);
+    const { resolveDailyPracticeQueueResult } = await import('@/convex/queue/queue');
+    (resolveDailyPracticeQueueResult as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ items: [], reviewLoad: { reviewLoadState: "normal" } });
 
     const result = await getPracticeStatsHandler(
       { db } as unknown as import('@/convex/_generated/server').QueryCtx,
@@ -270,8 +285,8 @@ describe('getPracticeStatsHandler', () => {
       ],
     });
 
-    const { resolveDailyPracticeQueue } = await import('@/convex/queue/queue');
-    (resolveDailyPracticeQueue as ReturnType<typeof vi.fn>).mockResolvedValueOnce([]);
+    const { resolveDailyPracticeQueueResult } = await import('@/convex/queue/queue');
+    (resolveDailyPracticeQueueResult as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ items: [], reviewLoad: { reviewLoadState: "normal" } });
 
     const result = await getPracticeStatsHandler(
       { db } as unknown as import('@/convex/_generated/server').QueryCtx,
@@ -320,8 +335,8 @@ describe('getPracticeStatsHandler', () => {
       ],
     });
 
-    const { resolveDailyPracticeQueue } = await import('@/convex/queue/queue');
-    (resolveDailyPracticeQueue as ReturnType<typeof vi.fn>).mockResolvedValueOnce([]);
+    const { resolveDailyPracticeQueueResult } = await import('@/convex/queue/queue');
+    (resolveDailyPracticeQueueResult as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ items: [], reviewLoad: { reviewLoadState: "normal" } });
 
     const result = await getPracticeStatsHandler(
       { db } as unknown as import('@/convex/_generated/server').QueryCtx,
@@ -334,12 +349,11 @@ describe('getPracticeStatsHandler', () => {
   it('returns dueCount from queue length', async () => {
     const { db } = makeDashboardMockCtx();
 
-    const { resolveDailyPracticeQueue } = await import('@/convex/queue/queue');
-    (resolveDailyPracticeQueue as ReturnType<typeof vi.fn>).mockResolvedValueOnce([
-      { _id: 'item-1' },
-      { _id: 'item-2' },
-      { _id: 'item-3' },
-    ]);
+    const { resolveDailyPracticeQueueResult } = await import('@/convex/queue/queue');
+    (resolveDailyPracticeQueueResult as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+      items: [{ _id: 'item-1' }, { _id: 'item-2' }, { _id: 'item-3' }],
+      reviewLoad: { reviewLoadState: 'saturated' },
+    });
 
     const result = await getPracticeStatsHandler(
       { db } as unknown as import('@/convex/_generated/server').QueryCtx,
@@ -347,5 +361,23 @@ describe('getPracticeStatsHandler', () => {
     );
 
     expect(result.dueCount).toBe(3);
+    expect(result.reviewLoadState).toBe('saturated');
+  });
+
+  it('uses the rollback flag to restore the v2 review-day message while retaining the canonical queue', async () => {
+    const { db } = makeDashboardMockCtx({ runtimeMode: 'rollback_v2' });
+    const { resolveDailyPracticeQueueResult } = await import('@/convex/queue/queue');
+    (resolveDailyPracticeQueueResult as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+      items: [{ _id: 'item-1' }],
+      reviewLoad: { reviewLoadState: 'saturated' },
+    });
+
+    const result = await getPracticeStatsHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { studentId: 'student-1' },
+    );
+
+    expect(result.dueCount).toBe(1);
+    expect(result.reviewLoadState).toBe('normal');
   });
 });

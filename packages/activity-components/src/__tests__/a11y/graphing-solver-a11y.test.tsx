@@ -103,7 +103,7 @@ describe('StepByStepper roles, names, and states', () => {
     }
   });
 
-  it('disables the Next button on the last step with aria-disabled="true"', async () => {
+  it('offers an accessible completion action on the last guided step', async () => {
     const user = userEvent.setup();
     const simpleSteps = [
       { expression: 'A', explanation: 'First step', distractors: [] as string[] },
@@ -123,9 +123,11 @@ describe('StepByStepper roles, names, and states', () => {
     // Step 2 (final) selecting the only answer reveals Next; it must be
     // disabled via aria-disabled rather than removed from the DOM.
     await user.click(findButton('B')!);
-    const finalNext = findButton('Next');
+    const finalNext = findButton('Complete');
     expect(finalNext).toBeTruthy();
-    expect(finalNext?.getAttribute('aria-disabled')).toBe('true');
+    expect(finalNext?.disabled).toBe(false);
+    await user.click(finalNext!);
+    expect(screen.getByRole('status').textContent).toContain('Guided practice complete');
   });
 
   it('announces an incorrect step attempt via an assertive live region', async () => {

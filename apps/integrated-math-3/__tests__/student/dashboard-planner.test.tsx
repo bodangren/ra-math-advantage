@@ -15,7 +15,7 @@ vi.mock('@/lib/auth/server', () => ({
   requireStudentSessionClaims: vi.fn().mockResolvedValue(mockClaims),
 }));
 
-const mockStudentVizRef = 'mock-student-viz';
+const mockStudentVizRef = 'student/knowledge_state:getStudentKnowledgeState';
 
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: vi.fn().mockImplementation((ref: unknown) => {
@@ -86,7 +86,7 @@ vi.mock('@/lib/convex/server', () => ({
 describe('StudentDashboardPage — planner recommendations (P3)', () => {
   it('renders recommended next skills from a stubbed StudentVisualizationV1', async () => {
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     const panel = screen.getByTestId('recommended-next-panel');
@@ -111,6 +111,7 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
       schemaVersion: 'v1',
       mastered: [],
       ready: [],
+      nearlyReady: [],
       blocked: [],
       reviewDue: [],
       recommendedNext: [
@@ -161,7 +162,7 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();
@@ -210,7 +211,7 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
 
     expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();

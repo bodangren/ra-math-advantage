@@ -25,7 +25,14 @@ export function projectTeacherEvidence(
   edges: KnowledgeSpaceEdge[],
   classStats: Record<string, { mastered: number; total: number }> = {},
 ): TeacherEvidence {
+  edges = edges.filter(edge => edge.reviewStatus !== 'rejected');
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
+  const acceptedSkillIds = new Set(nodes
+    .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
+    .map((node) => node.id));
+  const equivEdges = edges.filter((edge) =>
+    edge.type === 'equivalent_to' && edge.reviewStatus === 'approved'
+    && acceptedSkillIds.has(edge.sourceId) && acceptedSkillIds.has(edge.targetId));
 
   // --- Standard coverage ---
   const standardMap = new Map<string, StandardCoverage>();
@@ -83,7 +90,7 @@ export function projectTeacherEvidence(
       standardsCovered,
       prerequisitesMet,
       independentPracticeReady: node.independentPracticeReady ?? false,
-      equivalentNodeIds: edges
+      equivalentNodeIds: equivEdges
         .filter(
           (e) =>
             e.type === 'equivalent_to' &&
@@ -139,7 +146,6 @@ export function projectTeacherEvidence(
   attemptArtifacts.sort((a, b) => a.nodeId.localeCompare(b.nodeId));
 
   // --- Equivalent components ---
-  const equivEdges = edges.filter((e) => e.type === 'equivalent_to');
   const equivalentComponents: EquivalentComponentSummary[] = [];
   const equivAdj = new Map<string, Set<string>>();
   for (const e of equivEdges) {

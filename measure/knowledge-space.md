@@ -2,9 +2,7 @@
 
 This document is the **repo-architecture summary** for the Knowledge Space plan. It captures the package boundaries, vocabulary, and visualization projection rules used across the monorepo. Read it before implementing any Skill Graph, Knowledge Space, blueprint, generator, SRS, practice projection, or cross-domain learning graph work.
 
-> **Canonical KST+SRS contract:** [`../kst-srs.v2/SPECIFICATION.md`](../kst-srs.v2/SPECIFICATION.md) (§3 mastery, §4 outer fringe, §5 weighted readiness, §7 planner, §9 misconception loop, §16 projection). Mastery-model, hysteresis, fringe-membership, and readiness-formula prose lives there — this document defers to that file for theoretical authority and reproduces only the repo-architecture invariants below.
->
-> **Planned:** the contract moves to kst-srs.v3.2 of the mastery-advantage repository (`github.com/Reading-Advantage-Thailand/mastery-advantage`, file `SPECIFICATION.md`). A pointer at a pinned commit replaces the in-repo v2 copy, and the engine adopts the v3.2 changes (planned: kst-v32-runtime_20261114).
+> **Canonical KST+SRS contract:** [`../kst-srs.v3.2/SPECIFICATION.md`](../kst-srs.v3.2/SPECIFICATION.md). The vendored snapshot is hash-stamped in [`../kst-srs.v3.2/provenance.json`](../kst-srs.v3.2/provenance.json), with `../mastery-advantage` remaining upstream. Mastery, readiness, calibration, planner, placement, SRS, and projection semantics live there; this document defers to that file for theoretical authority and reproduces only the repository architecture invariants below.
 
 ## Purpose
 
@@ -33,15 +31,21 @@ The domain content is not shared:
 
 Owns domain-neutral mechanisms:
 
-- `knowledge-space.v1` graph document schemas and TypeScript types
+- `knowledge-space.v2` graph document schemas and TypeScript types
 - node, edge, provenance, confidence, weight, review, and exception schemas
 - domain adapter interfaces for metadata validation
 - graph validation helpers
+- edge suggestion and edge calibration mechanisms
 - traversal and prerequisite closure utilities
 - learner-state and readiness primitives
+- an evidence-only adapter accepting already-aggregated objective retention and proficiency
 - synthetic fixtures and examples only
 
-Must not import app code, Convex generated files, math content, GSE content, curriculum files, standards catalogs, or proprietary graph maps.
+Must not import app code, Convex generated files, math content, GSE content,
+curriculum files, standards catalogs, or proprietary graph maps. Its v3
+evidence boundary accepts pre-aggregated objective retention. A deprecated
+compatibility alias delegates legacy stability calls to `srs-engine`; no FSRS
+formula is implemented in core, and new consumers must use the evidence adapter.
 
 ### `@math-platform/knowledge-space-practice`
 
@@ -55,6 +59,19 @@ Owns reusable practice mechanisms:
 - synthetic fixtures and examples only
 
 Must not bundle actual math graphs, English/GSE descriptors, domain standards catalogs, or generated app outputs.
+
+### `@math-platform/srs-engine`
+
+Owns FSRS scheduling and retention, card/review state, practice-variant and
+objective proficiency aggregation, placement synthesis/provenance, and daily
+queue/backlog behavior. It receives structural graph adapters from apps or
+domains and does not import `knowledge-space-core`, app code, Convex generated
+files, or proprietary content.
+
+### `@math-platform/practice-core`
+
+Owns `practice.v1`, timing, rating, error analysis, and the misconception
+lifecycle. It does not own graph traversal, FSRS scheduling, or domain content.
 
 ### Domain Packages and App Content
 
@@ -111,23 +128,39 @@ Visualization projection rules:
 7. Do not make shared packages import from `apps/` or `convex/_generated/`.
 8. Render student, parent, and teacher graph visualizations from role-specific projections; do not have UI components infer canonical graph truth.
 
-## Concept Aggregator Resolution Rule
+## Practice and evidence target identity
 
-A `concept` node bundles multiple `skill` children via `contains` edges. Blueprints may target either a skill or a concept. When a blueprint targets a `concept`, the activity-map projection MUST resolve the concept to a single child skill before emitting practice rows so downstream consumers (SRS, planner, visualization, component props) only deal with `skill`-shaped rows.
+A concept can describe a group of capabilities. A concept blueprint does not
+establish that one activity assesses every capability in that group.
 
-Resolution algorithm (implemented in `packages/knowledge-space-practice/src/projections/activity-map.ts`):
+The activity projector accepts a `skill` or `task_blueprint` target. It keeps
+the blueprint node ID as the activity node ID. It does not select a child skill
+or copy concept work to all children. Each assessed child needs its own
+blueprint and grading contract. Concept blueprints produce no activity rows.
 
-1. `findChildSkills(conceptNode, nodes, edges)` returns direct `skill` children via `contains` edges where the concept is the source.
-2. `selectSkill(childSkills)` picks the alphabetically first child skill (deterministic, reviewer-diff stable).
-3. `projectActivityMap` rewrites the row's `nodeId` and `stableActivityId` to use the resolved skill id.
-4. If a concept has zero child skills, the projection skips the blueprint (caller is expected to log a review-queue item).
+The existing graph endpoint rules still control valid containment. This
+practice correction does not add a concept containment exception or modify the
+vendored KST+SRS specification. Source review must resolve each concept's meaning
+before graph authors change its type or relationships.
 
-Concept nodes MUST NOT appear in `blueprints.json` files emitted by domain content — only `skill` and `task_blueprint` nodes are valid blueprint targets. Cleanup is automated by `scripts/remediate-concept-blueprints.ts` which removes any blueprint referencing a concept node id.
+The projector validates each mode specification with its existing schema.
+An empty object cannot create a practice row. For each valid mode, it uses the
+matching `rendererModeMap` entry, then `rendererKey` as a fallback. A missing
+renderer produces no row. The stable activity ID remains the node ID followed
+by the practice mode.
+
+SRS identity links and teacher equivalence groups require an approved
+`equivalent_to` edge and two approved skill endpoints in the supplied catalog.
+Draft and reviewed suggestions remain source-review inputs. They do not
+establish accepted capability identity. Cross-course consumers must supply the
+complete endpoint catalog. A missing foreign endpoint produces no identity
+link. This restriction does not approve other graph relationships or activate
+new practice targets.
 
 ## Current Measure Tracks
 
-- Track 1 (`wire-kst-pipeline_20260521`) is complete and archived (2026-07-03): it wired the v2 contract into `packages/knowledge-space-core`. The canonical contract is [`../kst-srs.v2/SPECIFICATION.md`](../kst-srs.v2/SPECIFICATION.md).
-- `kst-v32-runtime_20261114` moves the engine to kst-srs.v3.2 (planned: kst-v32-runtime_20261114).
+- Track 1 (`wire-kst-pipeline_20260521`) completed the v2 production wiring. `kst-srs-v3-core-correctness_20260710` delivered the v3 correctness layer; the remaining evidence/calibration, planner/session, and runtime cutover work continues in the ordered v3.1/v3.2 tracks.
+- `kst-v32-runtime_20261114` defines additional runtime migration work (planned: kst-v32-runtime_20261114).
 - `math-graph-consume_20261114` switches the math app to the released mastery-advantage graph (planned: math-graph-consume_20261114).
 - Track 2 defines `knowledge-space-core`.
 - Track 6 defines reusable blueprint and generator contracts in `knowledge-space-practice`.

@@ -108,6 +108,20 @@ export const seedStandards = internalMutation({
         isActive: true,
       },
       {
+        code: "HSF-IF.B.5",
+        description: "Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.",
+        studentFriendlyDescription: "I can connect a function's domain to the quantities it describes.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "HSF-IF.B.6",
+        description: "Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
+        studentFriendlyDescription: "I can calculate and interpret a function's average rate of change from a formula, table, or graph.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
         code: "HSF-BF.B.5",
         description: "Understanding the inverse relationship between exponents and logarithms",
         studentFriendlyDescription: "I can use the relationship between exponents and logarithms to solve problems.",
@@ -125,6 +139,13 @@ export const seedStandards = internalMutation({
         code: "HSF-IF.C.7e",
         description: "Graphing exponential and logarithmic functions, showing intercepts and end behavior",
         studentFriendlyDescription: "I can graph exponential and logarithmic functions and identify their key features.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "HSF-IF.C.9",
+        description: "Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
+        studentFriendlyDescription: "I can compare two functions shown in different ways.",
         category: "Functions",
         isActive: true,
       },
@@ -291,6 +312,13 @@ export const seedStandards = internalMutation({
       },
       {
         code: "HSF-IF.C.7a",
+        description: "Graph linear and quadratic functions and show intercepts, maxima, and minima",
+        studentFriendlyDescription: "I can graph linear and quadratic functions and identify intercepts, maxima, and minima.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "HSF-IF.C.7b",
         description: "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
         studentFriendlyDescription: "I can graph square root, cube root, and piecewise functions.",
         category: "Functions",

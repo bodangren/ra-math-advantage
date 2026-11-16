@@ -66,7 +66,7 @@ describe('ParentPage — one linked student', () => {
     const { requireParentServerSessionClaims } = await import(
       '@/lib/auth/parent-server-guards'
     );
-    requireParentServerSessionClaims.mockResolvedValue(parentClaims);
+    (requireParentServerSessionClaims as unknown as ReturnType<typeof vi.fn>).mockResolvedValue(parentClaims);
 
     const { fetchInternalQuery } = await import('@/lib/convex/server');
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<
@@ -123,7 +123,7 @@ describe('ParentPage — multi-student switcher', () => {
     const { requireParentServerSessionClaims } = await import(
       '@/lib/auth/parent-server-guards'
     );
-    requireParentServerSessionClaims.mockResolvedValue(parentClaims);
+    (requireParentServerSessionClaims as unknown as ReturnType<typeof vi.fn>).mockResolvedValue(parentClaims);
 
     const { fetchInternalQuery } = await import('@/lib/convex/server');
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<
@@ -172,7 +172,7 @@ describe('ParentPage — no linked students', () => {
     const { requireParentServerSessionClaims } = await import(
       '@/lib/auth/parent-server-guards'
     );
-    requireParentServerSessionClaims.mockResolvedValue(parentClaims);
+    (requireParentServerSessionClaims as unknown as ReturnType<typeof vi.fn>).mockResolvedValue(parentClaims);
 
     const { fetchInternalQuery } = await import('@/lib/convex/server');
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<
@@ -204,7 +204,7 @@ describe('ParentPage — only pending links', () => {
     const { requireParentServerSessionClaims } = await import(
       '@/lib/auth/parent-server-guards'
     );
-    requireParentServerSessionClaims.mockResolvedValue(parentClaims);
+    (requireParentServerSessionClaims as unknown as ReturnType<typeof vi.fn>).mockResolvedValue(parentClaims);
 
     const { fetchInternalQuery } = await import('@/lib/convex/server');
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<
@@ -244,7 +244,7 @@ describe('ParentPage — fail-closed behavior', () => {
     const { requireParentServerSessionClaims } = await import(
       '@/lib/auth/parent-server-guards'
     );
-    requireParentServerSessionClaims.mockImplementation(() => {
+    (requireParentServerSessionClaims as unknown as ReturnType<typeof vi.fn>).mockImplementation(() => {
       const err = new Error('NEXT_REDIRECT:/auth/login?redirect=/parent');
       (err as Error & { __isRedirect: true }).__isRedirect = true;
       throw err;
@@ -261,7 +261,7 @@ describe('ParentPage — fail-closed behavior', () => {
     const { requireParentServerSessionClaims } = await import(
       '@/lib/auth/parent-server-guards'
     );
-    requireParentServerSessionClaims.mockResolvedValue(parentClaims);
+    (requireParentServerSessionClaims as unknown as ReturnType<typeof vi.fn>).mockResolvedValue(parentClaims);
 
     const { fetchInternalQuery } = await import('@/lib/convex/server');
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<
@@ -293,7 +293,7 @@ describe('ParentPage — fail-closed behavior', () => {
     );
 
     const teacherCalls = mockedFetchInternalQuery.mock.calls.filter(
-      ([ref]: [unknown, ...unknown[]]) => {
+      ([ref]) => {
         const refName = String(ref);
         return (
           refName.includes('TeacherVisualization') ||

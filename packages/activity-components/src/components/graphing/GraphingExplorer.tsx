@@ -1,19 +1,22 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
+import InlineMath from '@matejmazur/react-katex';
+import 'katex/dist/katex.min.css';
 import { GraphingCanvas, Point, FunctionPlot } from './GraphingCanvas';
 import { InteractiveTableOfValues } from './InteractiveTableOfValues';
 import { HintPanel, HintData } from './HintPanel';
 import { InterceptIdentification, InterceptData } from './InterceptIdentification';
 import { toConvexActivityId } from '@math-platform/practice-core';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import { parseQuadratic, parseLinear } from '@math-platform/graphing-core';
+import { evaluateFunction, parseQuadratic, parseLinear } from '@math-platform/graphing-core';
 
 export interface GraphingExplorerProps {
   activityId: string;
   mode: 'teaching' | 'guided' | 'practice' | 'explore';
-  onSubmit?: (payload: PracticeSubmissionEnvelope) => void;
+  onSubmit?: (payload: PracticeSubmissionEnvelope) => void | Promise<void>;
   variant?: 'plot_from_equation' | 'compare_functions' | 'find_intercepts' | 'graph_system';
+  responseVariant?: 'quadratic_features' | 'table_graph' | 'one_real_solution';
   equation: string;
   domain?: [number, number];
   range?: [number, number];
@@ -40,6 +43,7 @@ export function GraphingExplorer({
   mode,
   onSubmit,
   variant = 'plot_from_equation',
+  responseVariant,
   equation,
   domain = DEFAULT_DOMAIN,
   range = DEFAULT_RANGE,
@@ -54,10 +58,15 @@ export function GraphingExplorer({
 }: GraphingExplorerProps) {
   const [placedPoints, setPlacedPoints] = useState<Point[]>([]);
   const [tableComplete, setTableComplete] = useState(false);
+  const [tableValues, setTableValues] = useState<Array<{ x: number; y: number }>>([]);
   const [hints, setHints] = useState<HintData[]>([]);
   const [intercepts, setIntercepts] = useState<InterceptData[]>([]);
   const [interactionHistory, setInteractionHistory] = useState<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
   const [showSolution, setShowSolution] = useState(false);
+  const [deferredSubmitted, setDeferredSubmitted] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState(false);
+  const savingRef = useRef(false);
   const [comparisonAnswerSelected, setComparisonAnswerSelected] = useState<'first' | 'second' | null>(null);
   const [showComparisonFeedback, setShowComparisonFeedback] = useState(false);
   const [intersectionPoints, setIntersectionPoints] = useState<Point[]>([]);
@@ -70,6 +79,7 @@ export function GraphingExplorer({
   // screen readers from missing announcements when multiple status regions
   // exist on the same surface.
   const [feedbackMessage, setFeedbackMessage] = useState('');
+  const isDeferredTableGraph = (mode === 'practice' || mode === 'guided') && responseVariant === 'table_graph' && variant === 'plot_from_equation';
 
   const addInteraction = useCallback((type: string, data?: unknown) => {
     setInteractionHistory(prev => [...prev, { type, timestamp: Date.now(), data }]);
@@ -111,7 +121,8 @@ export function GraphingExplorer({
   }, [addInteraction, variant]);
 
   const handleTableComplete = useCallback((points: Array<{ x: number; y: number }>) => {
-    setTableComplete(true);
+    setTableValues(points);
+    setTableComplete(points.length > 0);
     addInteraction('table_complete', { points });
   }, [addInteraction]);
 
@@ -187,6 +198,58 @@ export function GraphingExplorer({
   }, [equation, linearEquation]);
 
   const handleSubmit = useCallback(() => {
+    if (isDeferredTableGraph) {
+      if (savingRef.current) return;
+      const submittedTableValues = tableValues.map(({ x, y }) => ({ x, y }));
+      const submittedPlacedPoints = placedPoints.map(({ x, y }) => ({ x, y }));
+      const envelope: PracticeSubmissionEnvelope = {
+        contractVersion: 'practice.v1',
+        activityId: toConvexActivityId(activityId),
+        mode: mode === 'guided' ? 'guided_practice' : 'independent_practice',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: new Date().toISOString(),
+        answers: {
+          table_values: submittedTableValues,
+          placed_points: submittedPlacedPoints,
+        },
+        parts: [
+          { partId: 'table_values', rawAnswer: submittedTableValues, hintsUsed: 0 },
+          { partId: 'placed_points', rawAnswer: submittedPlacedPoints, hintsUsed: hints.length },
+        ],
+        artifact: {
+          graphState: {
+            equation,
+            tableValues: submittedTableValues,
+            placedPoints: submittedPlacedPoints,
+          },
+        },
+        interactionHistory,
+      };
+      savingRef.current = true;
+      setIsSaving(true);
+      setSaveError(false);
+      setDeferredSubmitted(false);
+      setFeedbackMessage('Saving your submission.');
+      setShowSolution(false);
+      setShowComparisonFeedback(false);
+      void (async () => {
+        try {
+          if (!onSubmit) throw new Error('Missing submission handler');
+          await onSubmit(envelope);
+          setFeedbackMessage('Submission recorded for grading.');
+          setDeferredSubmitted(true);
+        } catch {
+          setFeedbackMessage('Your submission could not be saved. Try again.');
+          setSaveError(true);
+        } finally {
+          savingRef.current = false;
+          setIsSaving(false);
+        }
+      })();
+      return;
+    }
+
     const parts: Array<{
       partId: string;
       rawAnswer: unknown;
@@ -286,7 +349,7 @@ export function GraphingExplorer({
     onSubmit(envelope);
     setShowSolution(true);
     setShowComparisonFeedback(true);
-  }, [activityId, mode, onSubmit, placedPoints, intercepts, hints, interactionHistory, equation, comparisonEquation, linearEquation, domain, range, assessPointsCorrectness, assessInterceptsCorrectness, variant, comparisonAnswerSelected, assessComparisonCorrectness, intersectionPoints]);
+  }, [activityId, mode, onSubmit, placedPoints, intercepts, hints, interactionHistory, equation, comparisonEquation, linearEquation, domain, range, assessPointsCorrectness, assessInterceptsCorrectness, variant, comparisonAnswerSelected, assessComparisonCorrectness, intersectionPoints, isDeferredTableGraph, tableValues]);
 
   const functions: FunctionPlot[] = [
     {
@@ -318,6 +381,37 @@ export function GraphingExplorer({
   const isGuided = mode === 'guided';
   const isPractice = mode === 'practice';
   const isExplore = mode === 'explore';
+
+  const workedExample = (() => {
+    if (!isTeaching || variant !== 'plot_from_equation') return null;
+    const coefficients = parseQuadratic(equation);
+    if (!coefficients || coefficients.a === 0) return null;
+
+    let axisX = -coefficients.b / (2 * coefficients.a);
+    if (Object.is(axisX, -0)) axisX = 0;
+    const vertexY = evaluateFunction(equation, axisX);
+    const xValues = Array.from({ length: 5 }, (_, index) => axisX + index - 2);
+    const points: Point[] = xValues.map((x) => ({
+      x,
+      y: evaluateFunction(equation, x),
+      label: `${x}, ${evaluateFunction(equation, x)}`,
+      type: x === axisX ? 'vertex' : undefined,
+    }));
+
+    return {
+      coefficients,
+      axisX,
+      vertexY,
+      xValues,
+      points,
+      preFilledValues: Object.fromEntries(points.map((point) => [point.x, point.y])),
+    };
+  })();
+
+  const formatNumber = (value: number): string => {
+    const rounded = Number(value.toFixed(4));
+    return String(Object.is(rounded, -0) ? 0 : rounded);
+  };
 
   const formatCoefficient = (coeff: number, variable: string, isFirst: boolean): string => {
     if (coeff === 0) return '';
@@ -462,8 +556,15 @@ export function GraphingExplorer({
       ) : (
       <>
         <div>
+          {workedExample && (
+            <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">
+              Worked example
+            </p>
+          )}
           <h2 className="text-xl font-semibold text-foreground mb-2">
-            {variant === 'compare_functions'
+            {workedExample
+              ? 'Graph a Quadratic Function by Using a Table'
+              : variant === 'compare_functions'
               ? 'Compare the Functions'
               : variant === 'find_intercepts'
               ? 'Find the X-Intercepts'
@@ -471,22 +572,54 @@ export function GraphingExplorer({
               ? 'Graph the System of Equations'
               : 'Graph the Function'}
           </h2>
-          <p className="text-muted-foreground">
-            {equation}
+          <div
+            className="text-muted-foreground"
+            data-testid={workedExample ? 'worked-equation' : 'graphing-equation'}
+          >
+            <InlineMath math={equation} />
             {variant === 'compare_functions' && comparisonEquation && (
               <>
                 <br />
-                {comparisonEquation}
+                <InlineMath math={comparisonEquation} />
               </>
             )}
             {variant === 'graph_system' && linearEquation && (
               <>
                 <br />
-                {linearEquation}
+                <InlineMath math={linearEquation} />
               </>
             )}
-          </p>
+          </div>
         </div>
+
+        {workedExample && (
+          <section className="space-y-3 rounded-lg border border-border bg-card p-4 text-foreground">
+            <h3 className="text-lg font-semibold">Step 1: Analyze the function</h3>
+            <p>
+              <InlineMath
+                math={`a = ${formatNumber(workedExample.coefficients.a)},\\quad b = ${formatNumber(workedExample.coefficients.b)},\\quad c = ${formatNumber(workedExample.coefficients.c)}`}
+              />
+            </p>
+            <p>
+              The y-intercept is{' '}
+              <InlineMath math={`${formatNumber(workedExample.coefficients.c)}`} />.
+            </p>
+            <p data-testid="worked-axis">
+              Axis of symmetry:{' '}
+              <InlineMath
+                math={`x = -\\frac{b}{2a} = ${formatNumber(workedExample.axisX)}`}
+              />
+            </p>
+            <p>
+              The vertex is{' '}
+              <InlineMath
+                math={`(${formatNumber(workedExample.axisX)}, ${formatNumber(workedExample.vertexY)})`}
+              />.
+              {' '}The parabola opens {workedExample.coefficients.a > 0 ? 'upward' : 'downward'},
+              so the vertex is a {workedExample.coefficients.a > 0 ? 'minimum' : 'maximum'}.
+            </p>
+          </section>
+        )}
 
         {variant === 'graph_system' && (
         <p className="text-sm text-muted-foreground">
@@ -494,18 +627,34 @@ export function GraphingExplorer({
         </p>
       )}
 
-      {isGuided && !tableComplete && (
+      {(isDeferredTableGraph || (isGuided && !tableComplete)) && (
         <InteractiveTableOfValues
           xValues={[-2, -1, 0, 1, 2]}
           functionExpression={equation}
           onTableComplete={handleTableComplete}
+          assessmentMode={isDeferredTableGraph ? 'deferred' : undefined}
           readonly={isTeaching}
         />
       )}
 
+      {workedExample && (
+        <section aria-labelledby="worked-graph-step" className="space-y-3">
+          <h3 id="worked-graph-step" className="text-lg font-semibold text-foreground">
+            Step 2: Graph the function
+          </h3>
+          <InteractiveTableOfValues
+            xValues={workedExample.xValues}
+            functionExpression={equation}
+            onTableComplete={() => undefined}
+            preFilledValues={workedExample.preFilledValues}
+            readonly
+          />
+        </section>
+      )}
+
       {isGuided && tableComplete && (
         <div className="bg-green-50 border border-green-200 rounded-md p-3">
-          <p className="text-green-800 text-sm">Great! Now plot the points on the graph.</p>
+          <p className="text-green-800 text-sm">The table is complete. Plot your points on the graph.</p>
         </div>
       )}
 
@@ -520,16 +669,38 @@ export function GraphingExplorer({
       <GraphingCanvas
         domain={domain}
         range={range}
-        functions={functions}
-        points={[...preSetPoints, ...placedPoints]}
-        onPointAdd={(!isTeaching && (isPractice || tableComplete)) ? handlePointAdd : undefined}
-        onPointRemove={(!isTeaching && (isPractice || tableComplete)) ? handlePointRemove : undefined}
+        functions={isDeferredTableGraph ? [] : functions}
+        points={workedExample
+          ? [
+              ...workedExample.points,
+              ...preSetPoints.filter((point) => !workedExample.points.some(
+                (workedPoint) => workedPoint.x === point.x && workedPoint.y === point.y,
+              )),
+            ]
+          : [...preSetPoints, ...placedPoints]}
+        onPointAdd={(!isTeaching && (isDeferredTableGraph ? tableComplete : (isPractice || tableComplete))) ? handlePointAdd : undefined}
+        onPointRemove={(!isTeaching && (isDeferredTableGraph ? tableComplete : (isPractice || tableComplete))) ? handlePointRemove : undefined}
         readonly={isTeaching}
         snapToGrid={isGuided}
         onAnnounce={setFeedbackMessage}
       />
 
-      {isGuided && tableComplete && (
+      {workedExample && (
+        <section className="space-y-2 rounded-lg border border-border bg-card p-4 text-foreground">
+          <h3 className="text-lg font-semibold">Step 3: Analyze the graph</h3>
+          <p>The domain is all real numbers.</p>
+          <p data-testid="worked-range">
+            Range:{' '}
+            <InlineMath
+              math={workedExample.coefficients.a > 0
+                ? `\\{y \\mid y \\ge ${formatNumber(workedExample.vertexY)}\\}`
+                : `\\{y \\mid y \\le ${formatNumber(workedExample.vertexY)}\\}`}
+            />
+          </p>
+        </section>
+      )}
+
+      {isGuided && tableComplete && !isDeferredTableGraph && (
         <InterceptIdentification
           functionExpression={equation}
           onInterceptIdentified={handleInterceptIdentified}
@@ -637,13 +808,16 @@ export function GraphingExplorer({
       )}
 
       {!isTeaching && (
-        (variant === 'compare_functions'
-          ? comparisonAnswerSelected
-          : isPractice || tableComplete
+        (isDeferredTableGraph
+          ? tableComplete
+          : variant === 'compare_functions'
+            ? comparisonAnswerSelected
+            : isPractice || tableComplete
         ) && (
           <button
             type="submit"
             onClick={handleSubmit}
+            disabled={isDeferredTableGraph && isSaving}
             className="px-6 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
           >
             Submit
@@ -658,6 +832,14 @@ export function GraphingExplorer({
       <div role="status" aria-live="polite" className="sr-only">
         {feedbackMessage}
       </div>
+      {isDeferredTableGraph && saveError && (
+        <p role="alert">Your submission could not be saved. Try again.</p>
+      )}
+      {isDeferredTableGraph && deferredSubmitted && (
+        <p className="text-sm text-muted-foreground" data-testid="deferred-submission-recorded">
+          Submission recorded for grading.
+        </p>
+      )}
     </div>
   );
 }

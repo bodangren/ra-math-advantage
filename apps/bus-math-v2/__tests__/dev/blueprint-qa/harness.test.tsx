@@ -1,107 +1,21 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { useState } from 'react';
 
-
-// ---------------------------------------------------------------------------
-// Path resolution tests (actions.ts REPO_ROOT calculation)
-// ---------------------------------------------------------------------------
-
-describe('actions.ts — REPO_ROOT path resolution', () => {
-  it('resolves to the monorepo root (contains package.json with workspaces)', async () => {
-    // Resolve from this test file's own location, never process.cwd() — cwd
-    // depends on invocation (repo root vs app dir) and broke this test under
-    // the monorepo runner. This file is
-    // apps/bus-math-v2/__tests__/dev/blueprint-qa/ → up 5 to the repo root.
-    const testDir = path.dirname(fileURLToPath(import.meta.url));
-    const repoRoot = path.resolve(testDir, '../../../../..');
-
-    // The monorepo root should contain package.json with workspaces
-    const fs = await import('node:fs');
-    const pkgJsonPath = path.join(repoRoot, 'package.json');
-    expect(fs.existsSync(pkgJsonPath)).toBe(true);
-    
-    const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
-    expect(pkgJson.workspaces).toBeDefined();
-    expect(pkgJson.workspaces).toContain('apps/*');
-
-    // The IM3 skill-graph directory should exist
-    const skillGraphDir = path.join(repoRoot, 'apps', 'integrated-math-3', 'curriculum', 'skill-graph');
-    expect(fs.existsSync(skillGraphDir)).toBe(true);
-    expect(fs.existsSync(path.join(skillGraphDir, 'nodes.json'))).toBe(true);
-    expect(fs.existsSync(path.join(skillGraphDir, 'blueprints.json'))).toBe(true);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// gradeAnswerLocally tests (RendererPreview grading logic)
-// ---------------------------------------------------------------------------
-
-function gradeAnswerLocally(
-  rawAnswer: unknown,
-  expected: unknown,
-  rule: 'exact_match' | 'numeric_tolerance' | 'expression_equivalence',
-  tolerance?: number,
-): boolean {
-  if (rule === 'exact_match') {
-    return String(rawAnswer).trim() === String(expected).trim();
-  }
-  if (rule === 'numeric_tolerance') {
-    const numAnswer = Number(rawAnswer);
-    const numExpected = Number(expected);
-    if (isNaN(numAnswer) || isNaN(numExpected)) return false;
-    const tol = tolerance ?? 0.01;
-    return Math.abs(numAnswer - numExpected) <= tol;
-  }
-  if (rule === 'expression_equivalence') {
-    return String(rawAnswer).replace(/\s+/g, '') === String(expected).replace(/\s+/g, '');
-  }
-  return false;
-}
-
-describe('gradeAnswerLocally', () => {
-  it('grades exact_match correctly', () => {
-    expect(gradeAnswerLocally('hello', 'hello', 'exact_match')).toBe(true);
-    expect(gradeAnswerLocally(' hello ', 'hello', 'exact_match')).toBe(true);
-    expect(gradeAnswerLocally('hello', 'world', 'exact_match')).toBe(false);
-  });
-
-  it('grades numeric_tolerance correctly', () => {
-    expect(gradeAnswerLocally(3.14, 3.14, 'numeric_tolerance')).toBe(true);
-    expect(gradeAnswerLocally(3.141, 3.14, 'numeric_tolerance')).toBe(true);
-    expect(gradeAnswerLocally(3.20, 3.14, 'numeric_tolerance')).toBe(false);
-    expect(gradeAnswerLocally('3.14', 3.14, 'numeric_tolerance')).toBe(true);
-    // Custom tolerance
-    expect(gradeAnswerLocally(10, 15, 'numeric_tolerance', 5)).toBe(true);
-    expect(gradeAnswerLocally(10, 16, 'numeric_tolerance', 5)).toBe(false);
-  });
-
-  it('grades expression_equivalence correctly', () => {
-    expect(gradeAnswerLocally('x^2 + 2x + 1', 'x^2+2x+1', 'expression_equivalence')).toBe(true);
-    expect(gradeAnswerLocally('x^2 + 2x + 1', 'x^2+3x+1', 'expression_equivalence')).toBe(false);
-  });
-
-  it('returns false for NaN numeric inputs', () => {
-    expect(gradeAnswerLocally('abc', 42, 'numeric_tolerance')).toBe(false);
-    expect(gradeAnswerLocally(42, 'abc', 'numeric_tolerance')).toBe(false);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// NodeList component tests
-// ---------------------------------------------------------------------------
+const registryMocks = vi.hoisted(() => ({
+  getActivityComponent: vi.fn(),
+  renderedProps: [] as Array<Record<string, unknown>>,
+}));
 
 vi.mock('@math-platform/activity-components/registry', () => ({
-  getActivityComponent: vi.fn((key: string) => key === 'unregistered-component' ? null : () => null),
+  getActivityComponent: registryMocks.getActivityComponent,
   registerActivity: vi.fn(),
   getRegisteredActivityKeys: vi.fn(() => []),
   clearActivityRegistry: vi.fn(),
 }));
 
-import { NodeList } from '@/app/(dev)/blueprint-qa/components/NodeList';
-import type { SkillNode } from '@/app/(dev)/blueprint-qa/types';
-import type { KnowledgeBlueprint } from '@math-platform/knowledge-space-practice';
+import type { SkillNode, SubmissionEntry } from '@/app/(dev)/blueprint-qa/types';
+import type { KnowledgeBlueprint, ProjectedActivity } from '@math-platform/knowledge-space-practice';
 
 function makeSkillNode(overrides: Partial<SkillNode> = {}): SkillNode {
   return {
@@ -114,139 +28,6 @@ function makeSkillNode(overrides: Partial<SkillNode> = {}): SkillNode {
     ...overrides,
   };
 }
-
-describe('NodeList', () => {
-  it('renders skill nodes', () => {
-    const nodes = [makeSkillNode(), makeSkillNode({ id: 'skill.2', title: 'Second Skill' })];
-    render(
-      <NodeList
-        nodes={nodes}
-        blueprintsByNodeId={new Map()}
-        selectedNodeId={null}
-        onSelectNode={vi.fn()}
-      />,
-    );
-    expect(screen.getByText('Test Skill')).toBeInTheDocument();
-    expect(screen.getByText('Second Skill')).toBeInTheDocument();
-    expect(screen.getByText('2 total')).toBeInTheDocument();
-  });
-
-  it('filters non-skill nodes', () => {
-    const nodes = [
-      makeSkillNode(),
-      { ...makeSkillNode({ id: 'skill.2', title: 'Second Skill' }), kind: 'domain' } as SkillNode,
-    ];
-    render(
-      <NodeList
-        nodes={nodes}
-        blueprintsByNodeId={new Map()}
-        selectedNodeId={null}
-        onSelectNode={vi.fn()}
-      />,
-    );
-    expect(screen.getByText('1 total')).toBeInTheDocument();
-  });
-
-  it('filters by search query', () => {
-    const nodes = [
-      makeSkillNode({ id: 'skill.1', title: 'Graph quadratics' }),
-      makeSkillNode({ id: 'skill.2', title: 'Solve linear equations' }),
-    ];
-    render(
-      <NodeList
-        nodes={nodes}
-        blueprintsByNodeId={new Map()}
-        selectedNodeId={null}
-        onSelectNode={vi.fn()}
-      />,
-    );
-    const searchInput = screen.getByPlaceholderText('Filter by title or ID...');
-    fireEvent.change(searchInput, { target: { value: 'quadratic' } });
-    expect(screen.getByText('Graph quadratics')).toBeInTheDocument();
-    expect(screen.queryByText('Solve linear equations')).not.toBeInTheDocument();
-  });
-
-  it('shows green dot when generatorKey is on the node', () => {
-    const nodes = [makeSkillNode({ generatorKey: 'test-generator' })];
-    render(
-      <NodeList
-        nodes={nodes}
-        blueprintsByNodeId={new Map()}
-        selectedNodeId={null}
-        onSelectNode={vi.fn()}
-      />,
-    );
-    expect(screen.getByText('\uD83D\uDFE2')).toBeInTheDocument();
-    expect(screen.getByText('test-generator')).toBeInTheDocument();
-  });
-
-  it('shows red dot when no generatorKey', () => {
-    const nodes = [makeSkillNode()];
-    render(
-      <NodeList
-        nodes={nodes}
-        blueprintsByNodeId={new Map()}
-        selectedNodeId={null}
-        onSelectNode={vi.fn()}
-      />,
-    );
-    expect(screen.getByText('\uD83D\uDD34')).toBeInTheDocument();
-    expect(screen.getByText('no generator')).toBeInTheDocument();
-  });
-
-  it('shows generator from blueprint when node has none', () => {
-    const nodes = [makeSkillNode()];
-    const blueprintsByNodeId = new Map<string, KnowledgeBlueprint>();
-    blueprintsByNodeId.set('math.im3.skill.1.1.test-skill', {
-      nodeId: 'math.im3.skill.1.1.test-skill',
-      generatorKey: 'bp-generator',
-      rendererKey: 'test-renderer',
-      sourceNodeIds: [],
-      alignmentNodeIds: [],
-      rendererModeMap: {},
-      reviewStatus: 'draft',
-      metadata: {},
-    });
-    render(
-      <NodeList
-        nodes={nodes}
-        blueprintsByNodeId={blueprintsByNodeId}
-        selectedNodeId={null}
-        onSelectNode={vi.fn()}
-      />,
-    );
-    expect(screen.getByText('\uD83D\uDFE2')).toBeInTheDocument();
-    expect(screen.getByText('bp-generator')).toBeInTheDocument();
-  });
-
-  it('calls onSelectNode when a node is clicked', () => {
-    const onSelectNode = vi.fn();
-    const nodes = [makeSkillNode()];
-    render(
-      <NodeList
-        nodes={nodes}
-        blueprintsByNodeId={new Map()}
-        selectedNodeId={null}
-        onSelectNode={onSelectNode}
-      />,
-    );
-    fireEvent.click(screen.getByText('Test Skill'));
-    expect(onSelectNode).toHaveBeenCalledWith('math.im3.skill.1.1.test-skill');
-  });
-
-  it('displays module and lesson labels', () => {
-    const nodes = [makeSkillNode({ metadata: { module: '3', lesson: '5' } })];
-    render(
-      <NodeList
-        nodes={nodes}
-        blueprintsByNodeId={new Map()}
-        selectedNodeId={null}
-        onSelectNode={vi.fn()}
-      />,
-    );
-    expect(screen.getByText(/M3\.L5/)).toBeInTheDocument();
-  });
-});
 
 // ---------------------------------------------------------------------------
 // GeneratorPanel component tests
@@ -433,6 +214,42 @@ describe('GeneratorPanel', () => {
 import { RendererPreview } from '@/app/(dev)/blueprint-qa/components/RendererPreview';
 
 describe('RendererPreview', () => {
+  function StudentActivityProbe(props: Record<string, unknown>) {
+    registryMocks.renderedProps.push(props);
+    return <div>Registered student activity</div>;
+  }
+
+  function StatefulStudentActivityProbe() {
+    const [answer, setAnswer] = useState('initial answer');
+    return (
+      <input
+        aria-label="student answer"
+        value={answer}
+        onChange={(event) => setAnswer(event.target.value)}
+      />
+    );
+  }
+
+  function CompletingStudentActivityProbe(props: Record<string, unknown>) {
+    const onSubmit = props.onSubmit as ((payload: unknown) => void) | undefined;
+    const onComplete = props.onComplete as (() => void) | undefined;
+    const envelope = {
+      version: 'practice.v1',
+      activityId: 'math.im3.skill.1.1.test-skill.guided_practice',
+      mode: 'guided_practice',
+      answers: { response: { answer: 'guided answer' } },
+    };
+
+    return (
+      <button type="button" onClick={() => {
+        onSubmit?.(envelope);
+        onComplete?.();
+      }}>
+        Submit activity
+      </button>
+    );
+  }
+
   const defaultHarnessState = {
     selectedNodeId: 'math.im3.skill.1.1.test-skill',
     seed: 42,
@@ -443,166 +260,184 @@ describe('RendererPreview', () => {
     lastSubmission: null,
   };
 
+  const makeActivity = (
+    mode: ProjectedActivity['mode'] = 'independent_practice',
+    props: Record<string, unknown> = { equation: 'y = x^2 - 4' },
+    rendererKey = 'graphing-explorer',
+  ): ProjectedActivity => ({
+    stableActivityId: `math.im3.skill.1.1.test-skill.${mode}`,
+    nodeId: 'math.im3.skill.1.1.test-skill',
+    sourceNodeIds: [],
+    rendererKey,
+    mode,
+    alignmentNodeIds: [],
+    props,
+    gradingConfig: {},
+    srsEligible: mode === 'independent_practice',
+  });
+
+  beforeEach(() => {
+    registryMocks.renderedProps.length = 0;
+    registryMocks.getActivityComponent.mockReset();
+    registryMocks.getActivityComponent.mockImplementation(
+      (key: string) => key === 'unregistered-component' ? undefined : StudentActivityProbe,
+    );
+  });
+
   it('renders prompt when no node selected', () => {
     render(
       <RendererPreview
         state={{ ...defaultHarnessState, selectedNodeId: null }}
         selectedNode={null}
-        selectedBlueprint={null}
+        activity={null}
         onIntercept={vi.fn()}
       />,
     );
-    expect(screen.getByText('Select a skill to preview its component.')).toBeInTheDocument();
+    expect(screen.getByText('Select a skill to preview its student component.')).toBeInTheDocument();
   });
 
-  it('shows warning when no renderer key is assigned', () => {
+  it('shows an unavailable state when the modality projection is missing', () => {
     render(
       <RendererPreview
         state={defaultHarnessState}
         selectedNode={makeSkillNode()}
-        selectedBlueprint={null}
+        activity={null}
         onIntercept={vi.fn()}
       />,
     );
-    expect(screen.getByText('No renderer key assigned.')).toBeInTheDocument();
+    expect(screen.getByRole('alert')).toHaveTextContent('Student view unavailable');
+    expect(screen.getByRole('alert')).toHaveTextContent('activity projection is missing');
   });
 
-  it('shows error when component is not registered', () => {
-    const blueprint: KnowledgeBlueprint = {
-      nodeId: 'math.im3.skill.1.1.test-skill',
-      sourceNodeIds: [],
-      alignmentNodeIds: [],
-      rendererKey: 'unregistered-component',
-      rendererModeMap: {},
-      reviewStatus: 'draft',
-      metadata: {},
-    };
-    render(
-      <RendererPreview
-        state={defaultHarnessState}
-        selectedNode={makeSkillNode({ rendererKey: 'unregistered-component' })}
-        selectedBlueprint={blueprint}
-        onIntercept={vi.fn()}
-      />,
-    );
-    expect(screen.getByText(/not registered/)).toBeInTheDocument();
-  });
-
-  it('renders submission log when lastSubmission is set', () => {
-    render(
-      <RendererPreview
-        state={{
-          ...defaultHarnessState,
-          lastSubmission: { partId: 'result', rawAnswer: 42, isCorrect: true },
-        }}
-        selectedNode={null}
-        selectedBlueprint={null}
-        onIntercept={vi.fn()}
-      />,
-    );
-    expect(screen.getByText('Submission Log')).toBeInTheDocument();
-    expect(screen.getByText('Correct')).toBeInTheDocument();
-  });
-
-  it('shows incorrect badge for wrong submissions', () => {
-    render(
-      <RendererPreview
-        state={{
-          ...defaultHarnessState,
-          lastSubmission: { partId: 'result', rawAnswer: 99, isCorrect: false },
-        }}
-        selectedNode={null}
-        selectedBlueprint={null}
-        onIntercept={vi.fn()}
-      />,
-    );
-    expect(screen.getByText('Incorrect')).toBeInTheDocument();
-  });
-
-  it('renders prompt when no generator output yet', () => {
-    const blueprint: KnowledgeBlueprint = {
-      nodeId: 'math.im3.skill.1.1.test-skill',
-      sourceNodeIds: [],
-      alignmentNodeIds: [],
-      rendererKey: 'graphing-explorer',
-      rendererModeMap: {},
-      reviewStatus: 'draft',
-      metadata: {},
-    };
+  it('shows the exact schema mismatch instead of fallback content', () => {
     render(
       <RendererPreview
         state={defaultHarnessState}
         selectedNode={makeSkillNode({ rendererKey: 'graphing-explorer' })}
-        selectedBlueprint={blueprint}
+        activity={makeActivity('worked_example', {
+          prompt: 'Graph the source function.',
+          givens: ['f(x) = x^2 - 4'],
+        })}
         onIntercept={vi.fn()}
       />,
     );
-    expect(screen.getByText('Generate output first to preview the component.')).toBeInTheDocument();
-  });
-});
 
-// ---------------------------------------------------------------------------
-// buildComponentProps tests
-// ---------------------------------------------------------------------------
-
-function buildComponentProps(
-  rendererKey: string,
-  generatorOutput: Record<string, unknown>,
-): Record<string, unknown> {
-  const data = (generatorOutput.data ?? {}) as Record<string, unknown>;
-  const prompt = generatorOutput.prompt as string ?? '';
-
-  switch (rendererKey) {
-    case 'graphing-explorer':
-      return { equation: data?.equation ?? 'y = x^2' };
-    case 'step-by-step-solver':
-      return { steps: generatorOutput.solutionSteps, equation: data?.equation ?? '', problemType: data?.problemType };
-    case 'comprehension-quiz':
-      return { questions: data?.questions ?? [] };
-    case 'fill-in-the-blank':
-      return { template: prompt, blanks: data?.blanks ?? [] };
-    case 'rate-of-change-calculator':
-      return { sourceType: data?.sourceType, data: data?.data, interval: data?.interval };
-    case 'discriminant-analyzer':
-      return { ...data };
-    default:
-      return { ...data };
-  }
-}
-
-describe('buildComponentProps', () => {
-  const generatorOutput = {
-    prompt: 'Solve the equation',
-    data: { equation: 'y = x^2 + 1', a: 1, b: 0, c: 1 },
-    solutionSteps: [{ description: 'Step 1' }, { description: 'Step 2' }],
-    expectedAnswer: {},
-    gradingMetadata: {},
-  };
-
-  it('maps graphing-explorer props', () => {
-    const props = buildComponentProps('graphing-explorer', generatorOutput);
-    expect(props.equation).toBe('y = x^2 + 1');
+    expect(screen.getByRole('alert')).toHaveTextContent('Student view unavailable');
+    expect(screen.getByRole('alert')).toHaveTextContent('equation');
+    expect(screen.queryByText('Registered student activity')).not.toBeInTheDocument();
+    expect(registryMocks.renderedProps).toHaveLength(0);
   });
 
-  it('maps step-by-step-solver props', () => {
-    const props = buildComponentProps('step-by-step-solver', generatorOutput);
-    expect(props.steps).toEqual([{ description: 'Step 1' }, { description: 'Step 2' }]);
-    expect(props.equation).toBe('y = x^2 + 1');
+  it.each([
+    ['worked_example', 'teaching'],
+    ['guided_practice', 'guided'],
+    ['independent_practice', 'practice'],
+  ] as const)('renders the registered student component for %s', (projectionMode, runtimeMode) => {
+    const activity = makeActivity(projectionMode);
+    render(
+      <RendererPreview
+        state={{
+          ...defaultHarnessState,
+          mode: projectionMode,
+        }}
+        selectedNode={makeSkillNode({ rendererKey: 'graphing-explorer' })}
+        activity={activity}
+        onIntercept={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByText('Registered student activity')).toBeInTheDocument();
+    expect(registryMocks.renderedProps.at(-1)).toMatchObject({
+      equation: 'y = x^2 - 4',
+      activityId: activity.stableActivityId,
+      stableActivityId: activity.stableActivityId,
+      mode: runtimeMode,
+    });
   });
 
-  it('maps fill-in-the-blank props', () => {
-    const props = buildComponentProps('fill-in-the-blank', generatorOutput);
-    expect(props.template).toBe('Solve the equation');
-    expect(props.blanks).toEqual([]);
+  it('remounts the student activity when the projected activity changes', () => {
+    registryMocks.getActivityComponent.mockReturnValue(StatefulStudentActivityProbe);
+    const guidedActivity = makeActivity('guided_practice');
+    const independentActivity = makeActivity('independent_practice');
+    const { rerender } = render(
+      <RendererPreview
+        state={{ ...defaultHarnessState, mode: 'guided_practice' }}
+        selectedNode={makeSkillNode({ rendererKey: 'graphing-explorer' })}
+        activity={guidedActivity}
+        onIntercept={vi.fn()}
+      />,
+    );
+
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'guided answer' } });
+    expect(screen.getByRole('textbox')).toHaveValue('guided answer');
+
+    rerender(
+      <RendererPreview
+        state={{ ...defaultHarnessState, mode: 'independent_practice' }}
+        selectedNode={makeSkillNode({ rendererKey: 'graphing-explorer' })}
+        activity={independentActivity}
+        onIntercept={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByRole('textbox')).toHaveValue('initial answer');
   });
 
-  it('passes through unknown renderer keys', () => {
-    const props = buildComponentProps('unknown-renderer', generatorOutput);
-    expect(props.equation).toBe('y = x^2 + 1');
+  it('keeps the submitted practice envelope after completion', () => {
+    registryMocks.getActivityComponent.mockReturnValue(CompletingStudentActivityProbe);
+    function PreviewHarness() {
+      const [lastSubmission, setLastSubmission] = useState<SubmissionEntry | null>(null);
+      return (
+        <RendererPreview
+          state={{
+            ...defaultHarnessState,
+            lastSubmission,
+          }}
+          selectedNode={makeSkillNode({ rendererKey: 'graphing-explorer' })}
+          activity={makeActivity('guided_practice')}
+          onIntercept={setLastSubmission}
+        />
+      );
+    }
+
+    render(<PreviewHarness />);
+    fireEvent.click(screen.getByRole('button', { name: 'Submit activity' }));
+
+    expect(screen.getByText('Submission log')).toBeInTheDocument();
+    expect(screen.getByText(/practice\.v1/)).toBeInTheDocument();
+    expect(screen.getByText(/guided answer/)).toBeInTheDocument();
+    expect(screen.queryByText('__complete__')).not.toBeInTheDocument();
   });
 
-  it('falls back to default equation for graphing-explorer', () => {
-    const props = buildComponentProps('graphing-explorer', { prompt: '', data: {}, expectedAnswer: {}, gradingMetadata: {} });
-    expect(props.equation).toBe('y = x^2');
+  it('does not invent a graphing equation when the projection omits one', () => {
+    render(
+      <RendererPreview
+        state={defaultHarnessState}
+        selectedNode={makeSkillNode({ rendererKey: 'graphing-explorer' })}
+        activity={makeActivity('independent_practice', {})}
+        onIntercept={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByRole('alert')).toHaveTextContent('Student view unavailable');
+    expect(registryMocks.renderedProps).toHaveLength(0);
+  });
+
+  it('labels intercepted work as captured instead of grading it in the browser', () => {
+    render(
+      <RendererPreview
+        state={{
+          ...defaultHarnessState,
+          lastSubmission: { partId: 'submission', rawAnswer: { answer: 42 }, isCorrect: false },
+        }}
+        selectedNode={makeSkillNode({ rendererKey: 'graphing-explorer' })}
+        activity={makeActivity()}
+        onIntercept={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByText('Submission log')).toBeInTheDocument();
+    expect(screen.getByText('Captured')).toBeInTheDocument();
+    expect(screen.queryByText('Incorrect')).not.toBeInTheDocument();
   });
 });

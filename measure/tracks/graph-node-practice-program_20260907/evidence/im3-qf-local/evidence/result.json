@@ -1,0 +1,105 @@
+{
+  "concurrentFinal": [
+    {
+      "id": "jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+      "maxScore": 3,
+      "score": 3,
+      "submissionId": "jd758w02e67sjzj1rhps0nwp3x8e3z8d"
+    },
+    {
+      "id": "jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+      "maxScore": 3,
+      "score": 3,
+      "submissionId": "jd758w02e67sjzj1rhps0nwp3x8e3z8d"
+    }
+  ],
+  "concurrentStart": [
+    {
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "attemptOrdinal": 1,
+      "idempotencyKey": "qf:jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b\u00b2 - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    },
+    {
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "attemptOrdinal": 1,
+      "idempotencyKey": "qf:jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd758w02e67sjzj1rhps0nwp3x8e3z8d",
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b\u00b2 - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  ],
+  "guidedEquations": [
+    "x^2 + 5x - 5",
+    "x^2 - 7x + 10",
+    "x^2 - 2x + 1",
+    "x^2 - 3x + 3"
+  ],
+  "independentEquations": [
+    "x^2 - 2x - 6",
+    "2x^2 - 6x + 4",
+    "x^2 + 4x + 4",
+    "2x^2 - x + 1"
+  ],
+  "sharedLater": [
+    {
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "attemptOrdinal": 2,
+      "idempotencyKey": "qf:jd79ymn60v7q3drcknwqxh79ds8e2r9k",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd79ymn60v7q3drcknwqxh79ds8e2r9k",
+      "props": {
+        "equation": "x^2 - 7x + 10",
+        "fieldHelp": {
+          "discriminant": "Calculate b\u00b2 - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    },
+    {
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "attemptOrdinal": 2,
+      "idempotencyKey": "qf:jd76fh8js2jfpm2945p9pgqmqd8e2t9q",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd76fh8js2jfpm2945p9pgqmqd8e2t9q",
+      "props": {
+        "equation": "x^2 - 7x + 10",
+        "fieldHelp": {
+          "discriminant": "Calculate b\u00b2 - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  ],
+  "status": "passed"
+}

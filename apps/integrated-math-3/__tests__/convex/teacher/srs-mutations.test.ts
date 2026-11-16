@@ -48,7 +48,7 @@ function makeMutationMockCtx(overrides: {
     _id: Id<'srs_cards'>;
     studentId: Id<'profiles'>;
     objectiveId: string;
-    problemFamilyId: string;
+    variantKey: string;
     stability: number;
     difficulty: number;
     state: 'new' | 'learning' | 'review' | 'relearning';
@@ -61,9 +61,9 @@ function makeMutationMockCtx(overrides: {
     createdAt: number;
     updatedAt: number;
   }>;
-  problemFamilies?: Array<{
-    _id: Id<'problem_families'>;
-    problemFamilyId: string;
+  practiceVariants?: Array<{
+    _id: Id<'practice_variants'>;
+    variantKey: string;
     componentKey: string;
     displayName: string;
     description: string;
@@ -78,7 +78,7 @@ function makeMutationMockCtx(overrides: {
     standards = [],
     objectivePolicies = [],
     cards = [],
-    problemFamilies = [],
+    practiceVariants = [],
   } = overrides;
 
   const enrollmentQueryMock = {
@@ -201,7 +201,7 @@ function makeMutationMockCtx(overrides: {
             eq: (field: string, value: unknown) => {
               if (field === 'studentId') capturedStudentId = value as Id<'profiles'>;
               if (field === 'objectiveId') capturedObjectiveId = value as string;
-              if (field === 'problemFamilyId') capturedProblemFamilyId = value as string;
+              if (field === 'variantKey') capturedProblemFamilyId = value as string;
               return mockQ;
             },
           };
@@ -215,15 +215,15 @@ function makeMutationMockCtx(overrides: {
             cards.find((c) => {
               if (cStudentId && c.studentId !== cStudentId) return false;
               if (cObjectiveId && c.objectiveId !== cObjectiveId) return false;
-              if (cProblemFamilyId && c.problemFamilyId !== cProblemFamilyId) return false;
+              if (cProblemFamilyId && c.variantKey !== cProblemFamilyId) return false;
               return true;
             }) ?? null
           ),
-          collect: vi.fn().mockResolvedValue(
+          take: vi.fn().mockResolvedValue(
             cards.filter((c) => {
               if (cStudentId && c.studentId !== cStudentId) return false;
               if (cObjectiveId && c.objectiveId !== cObjectiveId) return false;
-              if (cProblemFamilyId && c.problemFamilyId !== cProblemFamilyId) return false;
+              if (cProblemFamilyId && c.variantKey !== cProblemFamilyId) return false;
               return true;
             })
           ),
@@ -248,13 +248,13 @@ function makeMutationMockCtx(overrides: {
         const cObjectiveId = capturedObjectiveId;
         return {
           first: vi.fn().mockResolvedValue(
-            problemFamilies.find((pf) => {
+            practiceVariants.find((pf) => {
               if (cObjectiveId) return pf.objectiveIds.includes(cObjectiveId);
               return true;
             }) ?? null
           ),
           collect: vi.fn().mockResolvedValue(
-            problemFamilies.filter((pf) => {
+            practiceVariants.filter((pf) => {
               if (cObjectiveId) return pf.objectiveIds.includes(cObjectiveId);
               return true;
             })
@@ -269,7 +269,7 @@ function makeMutationMockCtx(overrides: {
     if (tableName === 'competency_standards') return standardQueryMock;
     if (tableName === 'objective_policies') return policyQueryMock;
     if (tableName === 'srs_cards') return cardQueryMock;
-    if (tableName === 'problem_families') return problemFamilyQueryMock;
+    if (tableName === 'practice_variants') return problemFamilyQueryMock;
     return {
       withIndex: vi.fn().mockReturnValue({
         collect: vi.fn().mockResolvedValue([]),
@@ -430,7 +430,7 @@ describe('resetStudentCardsHandler', () => {
         _id: cardId,
         studentId,
         objectiveId: 'A-SSE.2',
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         stability: 50,
         difficulty: 3,
         state: 'review',
@@ -466,6 +466,7 @@ describe('resetStudentCardsHandler', () => {
       rating: 'Again',
       evidence: expect.objectContaining({ action: 'teacher_reset' }),
     }));
+    expect(mockInsert.mock.calls[0]?.[1]).not.toHaveProperty('paramsVersion');
   });
 
   it('clears scheduling data on reset', async () => {
@@ -485,7 +486,7 @@ describe('resetStudentCardsHandler', () => {
         _id: cardId,
         studentId,
         objectiveId: 'A-SSE.2',
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         stability: 100,
         difficulty: 5,
         state: 'review',
@@ -566,7 +567,7 @@ describe('addExtraCardsHandler', () => {
     const teacherId = 'teacher-1' as Id<'profiles'>;
     const classId = 'class-1' as Id<'classes'>;
     const studentId = 'student-1' as Id<'profiles'>;
-    const familyId = 'pf-1' as Id<'problem_families'>;
+    const familyId = 'pf-1' as Id<'practice_variants'>;
 
     const { db, mockInsert } = makeMutationMockCtx({
       profiles: [
@@ -576,7 +577,7 @@ describe('addExtraCardsHandler', () => {
       classes: [{ _id: classId, name: 'Math', teacherId }],
       enrollments: [{ _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() }],
       cards: [],
-      problemFamilies: [{ _id: familyId, problemFamilyId: 'family-1', componentKey: 'key', displayName: 'Family', description: 'Desc', objectiveIds: ['A-SSE.2'], difficulty: 'medium' }],
+      practiceVariants: [{ _id: familyId, variantKey: 'family-1', componentKey: 'key', displayName: 'Family', description: 'Desc', objectiveIds: ['A-SSE.2'], difficulty: 'medium' }],
     });
 
     const result = await addExtraCardsHandler(
@@ -588,7 +589,7 @@ describe('addExtraCardsHandler', () => {
     expect(mockInsert).toHaveBeenCalledWith('srs_cards', expect.objectContaining({
       studentId,
       objectiveId: 'A-SSE.2',
-      problemFamilyId: 'family-1',
+      variantKey: 'family-1',
       state: 'new',
       stability: 0,
       difficulty: 0,
@@ -612,7 +613,7 @@ describe('addExtraCardsHandler', () => {
       classes: [{ _id: classId, name: 'Math', teacherId }],
       enrollments: [{ _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() }],
       cards: [],
-      problemFamilies: [{ _id: 'pf-1' as Id<'problem_families'>, problemFamilyId: 'family-1', componentKey: 'key', displayName: 'Family', description: 'Desc', objectiveIds: ['A-SSE.2'], difficulty: 'medium' }],
+      practiceVariants: [{ _id: 'pf-1' as Id<'practice_variants'>, variantKey: 'family-1', componentKey: 'key', displayName: 'Family', description: 'Desc', objectiveIds: ['A-SSE.2'], difficulty: 'medium' }],
     });
 
     await addExtraCardsHandler(
@@ -660,7 +661,7 @@ describe('addExtraCardsHandler', () => {
         _id: 'card-1' as Id<'srs_cards'>,
         studentId,
         objectiveId: 'A-SSE.2',
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         stability: 50,
         difficulty: 3,
         state: 'review',
@@ -683,7 +684,7 @@ describe('addExtraCardsHandler', () => {
     expect(mockInsert).not.toHaveBeenCalled();
   });
 
-  it('links to problem family from objective', async () => {
+  it('links to the canonical practice variant from an objective', async () => {
     const teacherId = 'teacher-1' as Id<'profiles'>;
     const classId = 'class-1' as Id<'classes'>;
     const studentId = 'student-1' as Id<'profiles'>;
@@ -696,9 +697,9 @@ describe('addExtraCardsHandler', () => {
       classes: [{ _id: classId, name: 'Math', teacherId }],
       enrollments: [{ _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() }],
       cards: [],
-      problemFamilies: [
-        { _id: 'pf-1' as Id<'problem_families'>, problemFamilyId: 'family-alpha', componentKey: 'key', displayName: 'Family A', description: 'Desc', objectiveIds: ['A-SSE.2', 'OTHER'], difficulty: 'medium' },
-        { _id: 'pf-2' as Id<'problem_families'>, problemFamilyId: 'family-beta', componentKey: 'key', displayName: 'Family B', description: 'Desc', objectiveIds: ['OTHER'], difficulty: 'medium' },
+      practiceVariants: [
+        { _id: 'pf-1' as Id<'practice_variants'>, variantKey: 'family-alpha', componentKey: 'key', displayName: 'Family A', description: 'Desc', objectiveIds: ['A-SSE.2', 'OTHER'], difficulty: 'medium' },
+        { _id: 'pf-2' as Id<'practice_variants'>, variantKey: 'family-beta', componentKey: 'key', displayName: 'Family B', description: 'Desc', objectiveIds: ['OTHER'], difficulty: 'medium' },
       ],
     });
 
@@ -708,10 +709,11 @@ describe('addExtraCardsHandler', () => {
     );
 
     const insertCall = mockInsert.mock.calls[0];
-    expect(insertCall[1].problemFamilyId).toBe('family-alpha');
+    expect(insertCall[1].variantKey).toBe('family-alpha');
+    expect(insertCall[1].legacyProblemFamilyId).toBe('family-alpha');
   });
 
-  it('returns error when no problem family found for objective', async () => {
+  it('returns error when no practice variant is found for objective', async () => {
     const teacherId = 'teacher-1' as Id<'profiles'>;
     const classId = 'class-1' as Id<'classes'>;
     const studentId = 'student-1' as Id<'profiles'>;
@@ -724,7 +726,7 @@ describe('addExtraCardsHandler', () => {
       classes: [{ _id: classId, name: 'Math', teacherId }],
       enrollments: [{ _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() }],
       cards: [],
-      problemFamilies: [],
+      practiceVariants: [],
     });
 
     const result = await addExtraCardsHandler(
@@ -732,7 +734,7 @@ describe('addExtraCardsHandler', () => {
       { userId: teacherId, classId, studentId, objectiveId: 'A-SSE.2' }
     );
 
-    expect(result).toEqual({ success: false, error: 'No problem family found for objective' });
+    expect(result).toEqual({ success: false, error: 'No practice variant found for objective' });
     expect(mockInsert).not.toHaveBeenCalled();
   });
 });

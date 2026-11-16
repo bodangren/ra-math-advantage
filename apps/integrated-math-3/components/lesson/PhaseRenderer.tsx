@@ -39,7 +39,12 @@ export interface ActivitySection {
   id: string;
   sequenceOrder: number;
   sectionType: 'activity';
-  content: { componentKey: string; activityId: string; [key: string]: unknown };
+  content: {
+    componentKey: string;
+    activityId: string;
+    activityProps?: Record<string, unknown>;
+    [key: string]: unknown;
+  };
 }
 
 export interface ImageSection {
@@ -64,7 +69,7 @@ export interface PhaseRendererProps {
   lessonId?: string;
   phaseNumber?: number;
   mode?: 'teaching' | 'guided' | 'practice';
-  onActivitySubmit?: (activityId: string, payload: unknown) => void;
+  onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
 }
 
@@ -100,6 +105,7 @@ export function PhaseRenderer({
           <ContentBlockErrorBoundary key={section.id}>
             <SectionBlock
               section={section}
+              phaseType={phaseType}
               lessonId={lessonId}
               phaseNumber={phaseNumber}
               mode={mode}
@@ -118,11 +124,12 @@ export function PhaseRenderer({
 /**
  * Renders the appropriate content block for a single section type.
  *
- * @param {{ section: PhaseSection; lessonId?: string; phaseNumber?: number; mode: 'teaching' | 'guided' | 'practice'; onActivitySubmit?: (activityId: string, payload: unknown) => void; onActivityComplete?: (activityId: string) => void; }} props - Section block configuration.
+ * @param {{ section: PhaseSection; lessonId?: string; phaseNumber?: number; mode: 'teaching' | 'guided' | 'practice'; onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>; onActivityComplete?: (activityId: string) => void; }} props - Section block configuration.
  * @returns {JSX.Element} A rendered section block.
  */
 function SectionBlock({
   section,
+  phaseType,
   lessonId,
   phaseNumber,
   mode,
@@ -130,10 +137,11 @@ function SectionBlock({
   onActivityComplete,
 }: {
   section: PhaseSection;
+  phaseType: PhaseType;
   lessonId?: string;
   phaseNumber?: number;
   mode: 'teaching' | 'guided' | 'practice';
-  onActivitySubmit?: (activityId: string, payload: unknown) => void;
+  onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
 }) {
   switch (section.sectionType) {
@@ -160,7 +168,7 @@ function SectionBlock({
     case 'activity': {
       const activityId = section.content.activityId as string;
       const handleSubmit = (payload: unknown) => {
-        onActivitySubmit?.(activityId, payload);
+        return onActivitySubmit?.(activityId, payload);
       };
       const handleComplete = () => {
         onActivityComplete?.(activityId);
@@ -169,9 +177,10 @@ function SectionBlock({
         <ActivityRenderer
           componentKey={section.content.componentKey}
           activityId={activityId}
+          activityProps={section.content.activityProps}
           lessonId={lessonId}
           phaseNumber={phaseNumber}
-          mode={mode}
+          mode={phaseType === 'worked_example' ? 'teaching' : phaseType === 'guided_practice' ? 'guided' : phaseType === 'explore' && section.content.componentKey === 'graphing-explorer' ? 'explore' : mode}
           onSubmit={handleSubmit}
           onComplete={handleComplete}
         />

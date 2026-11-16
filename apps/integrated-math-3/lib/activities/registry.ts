@@ -1,4 +1,4 @@
-import { lazy, type ComponentType } from 'react';
+import { lazy } from 'react';
 import {
   registerActivity,
   getActivityComponent,
@@ -9,21 +9,6 @@ import {
 // Re-export registry functions so existing local consumers keep working.
 // All registrations go into the shared package registry.
 export { registerActivity, getActivityComponent, getRegisteredActivityKeys, clearActivityRegistry };
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ActivityComponent = ComponentType<any>;
-
-/** Placeholder component registered for activity keys that are not yet implemented. */
-const PlaceholderComponent: ActivityComponent = () => null;
-
-const PLACEHOLDER_KEYS = [
-  'equation-solver',
-  'drag-drop-categorization',
-] as const;
-
-PLACEHOLDER_KEYS.forEach(key => {
-  registerActivity(key, PlaceholderComponent);
-});
 
 // Lazy-loaded activity implementations to keep the client entry chunk small.
 // Each activity is split into its own chunk and only fetched when used.

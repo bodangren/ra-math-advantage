@@ -100,6 +100,78 @@ describe('Schema round-trip validation', () => {
     expect(result.variant).toBe('plot_from_equation');
   });
 
+  it('graphingExplorerSchema accepts symmetry graph props', () => {
+    const symmetryGraph = {
+      equation: 'g(x) = -3x^2 + 6x - 1',
+      variant: 'plot_from_equation',
+      responseVariant: 'symmetry_graph',
+      vertex: [1, 2],
+      yIntercept: [0, -1],
+      domain: [-3, 5],
+      range: [-10, 5],
+    };
+
+    expect(graphingExplorerSchema.parse(symmetryGraph)).toEqual(symmetryGraph);
+    expect(() => graphingExplorerSchema.parse({ ...symmetryGraph, vertex: ['1', 2] })).toThrow();
+    expect(() => graphingExplorerSchema.parse({ ...symmetryGraph, yIntercept: [0, '-1'] })).toThrow();
+  });
+
+  it('graphingExplorerSchema accepts two-real-solutions props', () => {
+    const twoRealSolutions = {
+      equation: 'f(x) = x^2 - 24x + 143',
+      variant: 'plot_from_equation',
+      responseVariant: 'two_real_solutions',
+      originalEquation: 'x(24 - x) = 143',
+      points: [[10, 3], [11, 0], [12, -1], [13, 0], [14, 3]],
+      domain: [8, 16],
+      range: [-2, 8],
+      sum: 24,
+      product: 143,
+    };
+
+    expect(graphingExplorerSchema.parse(twoRealSolutions)).toEqual(twoRealSolutions);
+    expect(() => graphingExplorerSchema.parse({ ...twoRealSolutions, sum: '24' })).toThrow();
+    expect(() => graphingExplorerSchema.parse({ ...twoRealSolutions, product: '143' })).toThrow();
+    expect(() => graphingExplorerSchema.parse({ ...twoRealSolutions, responseVariant: 'two_real_solution' })).toThrow();
+    expect(() => graphingExplorerSchema.parse({ ...twoRealSolutions, unrelatedField: true })).toThrow();
+  });
+
+  it('graphingExplorerSchema accepts atomic one-real-solution props', () => {
+    const atomicGraphing = {
+      ...validGraphingExplorer,
+      equation: 'f(x) = x^2 + 4x + 4',
+      variant: 'plot_from_equation',
+      responseVariant: 'one_real_solution',
+      originalEquation: '10 - x^2 = 4x + 14',
+      domain: [-5, 1],
+      range: [0, 10],
+    };
+    const result = graphingExplorerSchema.parse(atomicGraphing);
+
+    expect(result).toEqual(atomicGraphing);
+    expect((result as typeof atomicGraphing).originalEquation).toBe('10 - x^2 = 4x + 14');
+    expect(() => graphingExplorerSchema.parse({ ...atomicGraphing, originalEquation: '' })).toThrow();
+    expect(() => graphingExplorerSchema.parse({ ...atomicGraphing, responseVariant: 'one_real_solutions' })).toThrow();
+  });
+
+  it('graphingExplorerSchema accepts both response variants and omission', () => {
+    expect(graphingExplorerSchema.parse({ ...validGraphingExplorer, responseVariant: 'quadratic_features' }).responseVariant)
+      .toBe('quadratic_features');
+    expect(graphingExplorerSchema.parse({ ...validGraphingExplorer, responseVariant: 'table_graph' }).responseVariant)
+      .toBe('table_graph');
+    expect(graphingExplorerSchema.parse({ ...validGraphingExplorer, responseVariant: 'domain_range' }).responseVariant)
+      .toBe('domain_range');
+    expect(graphingExplorerSchema.parse({ ...validGraphingExplorer, responseVariant: 'maximum_value' }).responseVariant)
+      .toBe('maximum_value');
+    expect(graphingExplorerSchema.parse({ ...validGraphingExplorer, responseVariant: 'compare_maximums' }).responseVariant)
+      .toBe('compare_maximums');
+    expect(graphingExplorerSchema.parse(validGraphingExplorer).responseVariant).toBeUndefined();
+  });
+
+  it('graphingExplorerSchema rejects an unrelated response variant', () => {
+    expect(() => graphingExplorerSchema.parse({ ...validGraphingExplorer, responseVariant: 'client_graded' })).toThrow();
+  });
+
   it('graphingExplorerSchema accepts comparison mode', () => {
     const data: GraphingExplorerSchemaProps = {
       variant: 'compare_functions',
@@ -119,6 +191,20 @@ describe('Schema round-trip validation', () => {
       const result = stepByStepSolverSchema.parse(data);
       expect(result.problemType).toBe(type);
     }
+  });
+
+  it('stepByStepSolverSchema accepts a rate_of_change solver', () => {
+    const result = stepByStepSolverSchema.parse({
+      problemType: 'rate_of_change',
+      equation: 'f(x) = x^2 + 3x - 4',
+      steps: [{
+        id: 'rate-of-change-step-1',
+        description: 'Evaluate the function at the endpoints.',
+        expression: 'f(1) = 0, f(3) = 14',
+      }],
+    });
+
+    expect(result.problemType).toBe('rate_of_change');
   });
 
   it('rateOfChangeCalculatorSchema accepts table source', () => {
@@ -218,12 +304,24 @@ describe('Schema rejections (invalid inputs)', () => {
 
 describe('SCHEMA_REGISTRY dispatch', () => {
   const allKeys: ActivityComponentKey[] = [
+    'concavity-from-rate-change',
     'graphing-explorer',
     'step-by-step-solver',
     'comprehension-quiz',
     'fill-in-the-blank',
     'rate-of-change-calculator',
     'discriminant-analyzer',
+    'physical-context-graph-choice',
+    'table-average-rate-choice',
+    'graph-average-rate-choice',
+    'pointwise-least-rate-choice',
+    'pointwise-rate-ordering',
+    'negative-rate-context-choice',
+    'quadratic-negative-rate-interval-choice',
+    'rate-pattern-classification',
+    'polynomial-degree-leading-coefficient',
+    'polynomial-extrema-from-graph',
+    'rate-sign-and-trend-from-graph',
   ];
 
   it('SCHEMA_REGISTRY maps all ActivityComponentKey values', () => {
@@ -247,7 +345,7 @@ describe('SCHEMA_REGISTRY dispatch', () => {
     expect(getPropsSchema('unknown-component')).toBeUndefined();
   });
 
-  it('SCHEMA_REGISTRY has exactly six entries', () => {
-    expect(Object.keys(SCHEMA_REGISTRY)).toHaveLength(6);
+  it('SCHEMA_REGISTRY has exactly twenty-five entries', () => {
+    expect(Object.keys(SCHEMA_REGISTRY)).toHaveLength(25);
   });
 });

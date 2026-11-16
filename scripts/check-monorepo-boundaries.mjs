@@ -1,64 +1,15 @@
 #!/usr/bin/env node
 
-import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { spawnSync } from 'child_process';
+import { checkRepositoryArchitecture } from './architecture/manifest-enforcer.mjs';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const MONO_ROOT = join(__dirname, '..');
-const RULES_FILE = join(__dirname, 'monorepo-boundary-rules.json');
+const repositoryRoot = new URL('../', import.meta.url);
+const asOf = process.env.ARCHITECTURE_AS_OF ?? new Date().toISOString().slice(0, 10);
+const result = await checkRepositoryArchitecture(repositoryRoot, { asOf });
 
-const ruleConfig = JSON.parse(readFileSync(RULES_FILE, 'utf-8'));
-const rules = ruleConfig.forbiddenPatterns;
-
-const CODE_EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cts', '.mts'];
-
-let hasViolations = false;
-
-for (const rule of rules) {
-  const searchDir = join(MONO_ROOT, rule.searchIn);
-
-  const grepArgs = ['-rn', '--color=never'];
-
-  for (const ext of CODE_EXTENSIONS) {
-    grepArgs.push('--include', `*${ext}`);
-  }
-
-  // Exclude test files and fixtures — they contain boundary patterns as
-  // string literals for validation, not as real imports.
-  grepArgs.push('--exclude-dir', '__tests__');
-  grepArgs.push('--exclude', '*.test.ts');
-  grepArgs.push('--exclude', '*.test.tsx');
-
-  grepArgs.push('-E', rule.pattern, searchDir);
-
-  const result = spawnSync('grep', grepArgs, {
-    encoding: 'utf-8',
-    stdio: ['ignore', 'pipe', 'pipe']
-  });
-
-  if (result.status === 1 && result.stdout.trim() === '') {
-    continue;
-  }
-
-  if (result.status === 0 && result.stdout.trim() !== '') {
-    hasViolations = true;
-    console.log(`\n[${rule.severity.toUpperCase()}] ${rule.description}`);
-    console.log(`Pattern: ${rule.pattern}`);
-    console.log('---');
-    console.log(result.stdout);
-  } else if (result.status !== 0 && result.status !== 1) {
-    console.error(`\n[ERROR] Failed to run grep for rule: ${rule.id}`);
-    console.error(result.stderr);
-    hasViolations = true;
-  }
-}
-
-if (hasViolations) {
-  console.log('\n[MONOREPO BOUNDARY VIOLATION] Check failed. See above for details.');
+if (result.violations.length > 0) {
+  for (const violation of result.violations) console.error(violation.message);
+  console.error(`[MONOREPO ARCHITECTURE VIOLATION] ${result.violations.length} violation(s) found.`);
   process.exit(1);
-} else {
-  console.log('[OK] No monorepo boundary violations found.');
-  process.exit(0);
 }
+
+console.log(`[OK] Architecture manifest covers ${result.workspaceCount} workspaces; ${result.scannedImportCount} internal imports checked; package DAG acyclic.`);

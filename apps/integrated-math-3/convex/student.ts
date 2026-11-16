@@ -1,4 +1,9 @@
-import { internalMutation, internalQuery, type QueryCtx } from "./_generated/server";
+import { normalizeSeedProps } from '../lib/activities/seed-props';
+import {
+  internalMutation,
+  internalQuery,
+  type QueryCtx,
+} from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
@@ -7,12 +12,27 @@ import {
   buildPublishedUnitProgressRows,
   resolveLatestPublishedLessonVersion,
 } from "../lib/progress/published-curriculum";
-import { loadFullCurriculumGraph } from "../lib/curriculum/skill-graph-loader";
+import {
+  loadFullCurriculumGraph,
+  includeHistoricalEvidenceNodes,
+  projectApprovedReadinessGraph,
+} from "../lib/curriculum/skill-graph-loader";
 import {
   projectStudentVisualization,
   type StudentVisualizationV1,
 } from "@math-platform/knowledge-space-practice";
-
+import {
+  getSelectedWorkedAcknowledgementHandler,
+  isIm3GraphPilotPublished,
+  isSelectedWorkedActivity,
+} from "./activities";
+import {
+  IM3_PILOT_NODE,
+  IM3_TEACHER_LED_ACTIVITY_ID,
+} from "../lib/practice/learning-evidence-pilot";
+const IM3_SELECTED_LESSON_SLUG = "module-1-lesson-1";
+const IM3_SELECTED_PHASE_NUMBER = 4;
+const IM3_SELECTED_SECTION_SEQUENCE = 2;
 /**
  * Convex internalQuery wrapper: get dashboard data.
  * @returns {Promise<unknown>} The wrapper result.
@@ -109,12 +129,88 @@ export const getLessonProgress = internalQuery({
       )
     );
     const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();
-    phaseIds.forEach((phaseId, i) => {
-      sectionsByPhaseId.set(phaseId, allSections[i]
-        .sort((a, b) => a.sequenceOrder - b.sequenceOrder)
-        .map(s => ({ id: s._id, sequenceOrder: s.sequenceOrder, sectionType: s.sectionType, content: s.content }))
-      );
-    });
+    for (let i = 0; i < phaseIds.length; i++) {
+      const phaseId = phaseIds[i];
+      const phase = phases[i];
+      const orderedSections = allSections[i].sort((a, b) => a.sequenceOrder - b.sequenceOrder);
+      const sections = await Promise.all(orderedSections.map(async (section) => {
+        const originalSection = {
+          id: section._id,
+          sequenceOrder: section.sequenceOrder,
+          sectionType: section.sectionType,
+          content: section.content,
+        };
+        const isSelectedSourceSection = lesson.slug === IM3_SELECTED_LESSON_SLUG
+          && phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER
+          && section.sectionType === "activity"
+          && section.sequenceOrder === IM3_SELECTED_SECTION_SEQUENCE;
+        const sectionContent = typeof section.content === "object"
+          && section.content !== null
+          && !Array.isArray(section.content)
+          ? section.content as Record<string, unknown>
+          : null;
+        const hasSelectedClaim = isSelectedSourceSection
+          || sectionContent?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+          || sectionContent?.masteryNodeId === IM3_PILOT_NODE;
+        const unavailableSelectedSection = () => ({
+          ...originalSection,
+          content: {
+            activityId: typeof (section.content as { activityId?: unknown })?.activityId === "string"
+              ? (section.content as { activityId: string }).activityId
+              : "",
+            componentKey: "unavailable",
+          },
+        });
+        if (
+          section.sectionType !== "activity"
+          || typeof section.content !== "object"
+          || section.content === null
+          || Array.isArray(section.content)
+        ) {
+          return originalSection;
+        }
+
+        const activityId = (section.content as { activityId?: unknown }).activityId;
+        if (typeof activityId !== "string") {
+          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+        }
+        const normalizedActivityId = ctx.db.normalizeId("activities", activityId);
+        if (!normalizedActivityId) {
+          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+        }
+        const activity = await ctx.db.get(normalizedActivityId);
+        if (!activity) {
+          return hasSelectedClaim ? unavailableSelectedSection() : originalSection;
+        }
+        const isSelectedPhysicalActivity = activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID;
+        if ((hasSelectedClaim || isSelectedPhysicalActivity) && (
+          !isIm3GraphPilotPublished()
+          || !isSelectedWorkedActivity(activity)
+        )) return unavailableSelectedSection();
+
+        return {
+          ...originalSection,
+          content: {
+            ...(section.content as Record<string, unknown>),
+            ...(isSelectedSourceSection ? { componentKey: activity.componentKey } : {}),
+            activityProps: normalizeSeedProps(activity.componentKey, activity.props),
+            ...(activity.stableActivityId === undefined
+              ? {}
+              : { stableActivityId: activity.stableActivityId }),
+            ...(activity.masteryNodeId === undefined
+              ? {}
+              : { masteryNodeId: activity.masteryNodeId }),
+            ...(activity.learningEvidenceMode === undefined
+              ? {}
+              : { learningEvidenceMode: activity.learningEvidenceMode }),
+            ...(activity.srsEligible === undefined
+              ? {}
+              : { srsEligible: activity.srsEligible }),
+          },
+        };
+      }));
+      sectionsByPhaseId.set(phaseId, sections);
+    }
 
     const progressRows = buildLessonPhaseProgress({ phases, progressRows: userProgress });
 
@@ -145,7 +241,7 @@ export const completePhase = internalMutation({
     linkedStandardId: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    // 1. Find lesson
+    // 1. Find the lesson and its latest published version.
     let lesson = null;
     try {
       lesson = await ctx.db.get(args.lessonId as Id<"lessons">);
@@ -167,7 +263,7 @@ export const completePhase = internalMutation({
     const latestVersion = resolveLatestPublishedLessonVersion(versions);
     if (!latestVersion) throw new ConvexError("Published lesson version not found");
 
-    // 3. Find specific phase
+    // 2. Find the requested phase.
     const phase = await ctx.db
       .query("phase_versions")
       .withIndex("by_lesson_version_and_phase", (q) =>
@@ -176,21 +272,76 @@ export const completePhase = internalMutation({
       .unique();
     if (!phase) throw new ConvexError("Phase not found");
 
-    // 4. Check idempotency
+    const existingByKey = await ctx.db
+      .query("student_progress")
+      .withIndex("by_user_and_idempotency_key", (q) => (
+        q.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey)
+      ))
+      .unique();
+
+    if (existingByKey) {
+      if (
+        existingByKey.status === "completed"
+        && existingByKey.phaseId === phase._id
+        && existingByKey.timeSpentSeconds === args.timeSpent
+      ) {
+        return { success: true, alreadyCompleted: true };
+      }
+      throw new ConvexError("idempotency_conflict");
+    }
+
+    // Preserve the ordinary completion behavior for every phase.
     const existing = await ctx.db
       .query("student_progress")
-      .withIndex("by_user_and_phase", (q) =>
+      .withIndex("by_user_and_phase", (q) => (
         q.eq("userId", args.userId).eq("phaseId", phase._id)
-      )
+      ))
       .unique();
 
     if (existing?.status === "completed") {
+      if (existing.idempotencyKey !== args.idempotencyKey) {
+        throw new ConvexError("phase_already_completed");
+      }
       return { success: true, alreadyCompleted: true };
+    }
+
+    const isSelectedWorkedPhase = lesson.slug === IM3_SELECTED_LESSON_SLUG
+      && phase.phaseNumber === IM3_SELECTED_PHASE_NUMBER;
+    if (isSelectedWorkedPhase) {
+      const sections = await ctx.db.query("phase_sections")
+        .withIndex("by_phase_version", (query) => query.eq("phaseVersionId", phase._id))
+        .collect();
+      const activities = await Promise.all(sections
+        .filter((section) => section.sectionType === "activity")
+        .map(async (section) => {
+          const activityId = typeof section.content === "object"
+            && section.content !== null
+            && !Array.isArray(section.content)
+            ? (section.content as { activityId?: unknown }).activityId
+            : null;
+          const normalizedActivityId = typeof activityId === "string"
+            ? ctx.db.normalizeId("activities", activityId)
+            : null;
+          return normalizedActivityId ? ctx.db.get(normalizedActivityId) : null;
+        }));
+      const selectedActivities = activities.filter((activity) => (
+        activity && isSelectedWorkedActivity(activity)
+      ));
+      const selectedActivity = selectedActivities[0];
+      if (!selectedActivity || selectedActivities.length !== 1) {
+        throw new ConvexError("Selected Worked activity is not available");
+      }
+      const acknowledgement = await getSelectedWorkedAcknowledgementHandler(ctx, {
+        userId: args.userId,
+        activityId: selectedActivity._id,
+      });
+      if (!acknowledgement?.acknowledged) {
+        throw new ConvexError("Selected Worked acknowledgement is required");
+      }
     }
 
     const now = Date.now();
 
-    // 5. Update or create progress
     if (existing) {
       await ctx.db.patch(existing._id, {
         status: "completed",
@@ -213,7 +364,7 @@ export const completePhase = internalMutation({
       });
     }
 
-    // 6. Handle competency if linkedStandardId provided
+    // Handle competency if linkedStandardId is provided.
     if (args.linkedStandardId) {
       const standard = await ctx.db
         .query("competency_standards")
@@ -517,7 +668,7 @@ export async function getStudentVisualizationHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles"> },
 ): Promise<StudentVisualizationV1> {
-  const { nodes, edges } = loadFullCurriculumGraph();
+  const fullGraph = loadFullCurriculumGraph();
 
   const placements = await ctx.db
     .query("placement_results")
@@ -534,6 +685,17 @@ export async function getStudentVisualizationHandler(
       learnerState[p.nodeId] = "blocked";
     }
   }
+
+  const historicalNodeIds = new Set(
+    Object.entries(learnerState)
+      .filter(([, state]) => state === "mastered")
+      .map(([nodeId]) => nodeId),
+  );
+  const { nodes, edges } = includeHistoricalEvidenceNodes(
+    projectApprovedReadinessGraph(fullGraph),
+    fullGraph,
+    historicalNodeIds,
+  );
 
   const misconceptions = await ctx.db
     .query("student_misconception_state")

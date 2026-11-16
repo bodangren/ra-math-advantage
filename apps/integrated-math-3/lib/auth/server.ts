@@ -20,8 +20,8 @@ import {
   buildRequestUnauthorizedResponse,
   getRequestSessionClaims as _getRequestSessionClaims,
   requireActiveRequestSessionClaims as _requireActiveRequestSessionClaims,
+  requireActiveRoleRequestClaims as _requireActiveRoleRequestClaims,
   requireRequestSessionClaims as _requireRequestSessionClaims,
-  requireRoleRequestClaims as _requireRoleRequestClaims,
 } from '@math-platform/core-auth';
 
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
@@ -39,7 +39,8 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
   if (!token) return null;
 
-  return verifySessionToken(token, getAuthJwtSecret());
+  const claims = await verifySessionToken(token, getAuthJwtSecret());
+  return claims && await verifyActiveCredential(claims) ? claims : null;
 }
 
 /**
@@ -70,7 +71,7 @@ export async function requireStudentRequestClaims(
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  return _requireRoleRequestClaims(request, verifyToken, ['student'], {
+  return _requireActiveRoleRequestClaims(request, verifyToken, ['student'], verifyActiveCredential, {
     cookieName: SESSION_COOKIE_NAME,
     unauthorizedMessage,
     forbiddenMessage,
@@ -86,7 +87,7 @@ export async function requireTeacherRequestClaims(
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  return _requireRoleRequestClaims(request, verifyToken, ['teacher', 'admin'], {
+  return _requireActiveRoleRequestClaims(request, verifyToken, ['teacher', 'admin'], verifyActiveCredential, {
     cookieName: SESSION_COOKIE_NAME,
     unauthorizedMessage,
     forbiddenMessage,
@@ -145,7 +146,7 @@ export async function requireDeveloperRequestClaims(
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  return _requireRoleRequestClaims(request, verifyToken, ['admin'], {
+  return _requireActiveRoleRequestClaims(request, verifyToken, ['admin'], verifyActiveCredential, {
     cookieName: SESSION_COOKIE_NAME,
     unauthorizedMessage,
     forbiddenMessage,
@@ -163,7 +164,11 @@ const verifyActiveCredential: ActiveCredentialVerifier = async (claims) => {
   const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
     username: claims.username,
   });
-  return credential !== null && credential.isActive === true;
+  return credential !== null && credential.isActive === true
+    && credential.profileId === claims.sub
+    && credential.username === claims.username
+    && credential.role === claims.role
+    && credential.organizationId === claims.organizationId;
 };
 
 /**

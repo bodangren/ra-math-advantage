@@ -1,5 +1,11 @@
 # PreCalc Skill Graph Rollout Audit
 
+> **Historical artifact audit:** The counts below describe the generated graph
+> rows from 2026-05-10. They mix topic and subskill granularity. They are not an
+> approved mastery-skill inventory. Use
+> `measure/tracks/mastery-advantage-graph-remediation_20260821/` before runtime
+> rollout work.
+
 **Generated:** 2026-05-10
 **Track:** T12 — Skill Graph Program: AP Precalculus Rollout
 **Phase:** All phases complete

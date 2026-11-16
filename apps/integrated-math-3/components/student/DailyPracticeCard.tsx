@@ -4,6 +4,7 @@ export interface DailyPracticeCardProps {
   dueCount: number;
   streak: number;
   lastPracticedAt: string | null;
+  reviewLoadState?: 'normal' | 'elevated' | 'saturated';
 }
 
 /**
@@ -16,6 +17,7 @@ export function DailyPracticeCard({
   dueCount,
   streak,
   lastPracticedAt,
+  reviewLoadState = 'normal',
 }: DailyPracticeCardProps) {
   const hasPracticed = lastPracticedAt !== null;
 
@@ -34,6 +36,14 @@ export function DailyPracticeCard({
               ? `You have ${dueCount} item${dueCount === 1 ? '' : 's'} to review today.`
               : 'No practice due today. Come back tomorrow!'}
           </p>
+          {reviewLoadState === 'saturated' && (
+            <p
+              className="mt-2 text-sm font-medium text-primary"
+              data-testid="review-day-message"
+            >
+              Review day: clear your scheduled reviews before starting new skills.
+            </p>
+          )}
         </div>
         <div className="text-right flex-shrink-0">
           <div

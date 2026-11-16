@@ -1,0 +1,195 @@
+{"kind":"deck","id":"pr/sk5hho","name":"Deck"}
+{"kind":"layout","layoutId":"6cfe59aa-a04b-401e-8b95-179e70596a48","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"4239cc16-c6fd-4730-bdb5-93455a19dd4c","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/ankcie","slide":1,"title":"HDKWA Teacher Growth System","textShapes":4}
+{"kind":"shape","id":"sh/obix8nmx","slide":1,"name":"title-gold-rule","bbox":[72,178,128,7]}
+{"kind":"textbox","id":"sh/pcre1sni","slide":1,"name":"deck-title","text":"HDKWA Teacher Growth System","textPreview":"HDKWA Teacher Growth System","textChars":27,"textLines":1,"bbox":[72,222,900,84]}
+{"kind":"textbox","id":"sh/elgf2d4v","slide":1,"name":"deck-subtitle","text":"Danielson proficiency, observation evidence, and improvement planning","textPreview":"Danielson proficiency, observation evidence, and improvement planning","textChars":69,"textLines":1,"bbox":[72,326,840,58]}
+{"kind":"shape","id":"sh/fm9wvi5g","slide":1,"name":"title-navy-field","bbox":[0,518,1280,202]}
+{"kind":"textbox","id":"sh/g7ix4nm1","slide":1,"name":"deck-purpose","text":"SLT deployment decision review","textPreview":"SLT deployment decision review","textChars":30,"textLines":1,"bbox":[72,562,760,44]}
+{"kind":"textbox","id":"sh/18rex8nm","slide":1,"name":"deck-date","text":"Local HDKWA pilot · 21 August 2026","textPreview":"Local HDKWA pilot · 21 August 2026","textChars":34,"textLines":1,"bbox":[72,619,620,30]}
+{"kind":"image","id":"im/alsnehor","slide":1,"name":"","alt":"Haidian Kaiwen Academy logo","bbox":[72,64,338,75]}
+{"kind":"notes","id":"nt/ankcie","slide":1,"text":"[Sources]\n- Local project brand and user-approved product requirements.\n[/Sources]"}
+{"kind":"slide","id":"sl/bugaey","slide":2,"title":"DECISION CONTEXT","textShapes":9}
+{"kind":"textbox","id":"sh/fu187e54","slide":2,"name":"section-bugaey","text":"DECISION CONTEXT","textPreview":"DECISION CONTEXT","textChars":16,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/0va9gjm9","slide":2,"name":"title-bugaey","text":"November decisions need earlier evidence","textPreview":"November decisions need earlier evidence","textChars":40,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/1wjq9onu","slide":2,"name":"november","text":"NOVEMBER","textPreview":"NOVEMBER","textChars":8,"textLines":1,"bbox":[72,190,470,72]}
+{"kind":"textbox","id":"sh/2hsrit4f","slide":2,"name":"november-detail","text":"Senior leadership needs a usable view of teacher proficiency about 2.5 months into the school year.","textPreview":"Senior leadership needs a usable view of teacher proficiency about 2.5 months into the school year.","textChars":99,"textLines":1,"bbox":[72,280,480,112]}
+{"kind":"shape","id":"sh/ni1sbe50","slide":2,"name":"decision-divider","bbox":[620,176,2,390]}
+{"kind":"textbox","id":"sh/oja9kjml","slide":2,"name":"evidence-cycle-title","text":"The evidence cycle","textPreview":"The evidence cycle","textChars":18,"textLines":1,"bbox":[690,190,460,42]}
+{"kind":"textbox","id":"sh/pk3adon6","slide":2,"name":"evidence-cycle","text":"Weekly walkthroughs supply short evidence.\n\nFormal observations anchor Q1 and Q4.\n\nCurrent proficiency sets the next targets.\n\nImprovement plans stay visible when support is required.","textPreview":"Weekly walkthroughs supply short evidence. |  | Formal observations anchor Q1 and Q4. |  | Current proficiency sets the next targets. |  ...","textChars":183,"textLines":7,"bbox":[690,252,480,286]}
+{"kind":"shape","id":"sh/il8r6p4b","slide":2,"name":"decision-callout","bbox":[72,456,480,120]}
+{"kind":"textbox","id":"sh/jmh8zu5w","slide":2,"name":"decision-callout-text","text":"The system gives SLT small, ranked decisions instead of one large year-end report.","textPreview":"The system gives SLT small, ranked decisions instead of one large year-end report.","textChars":82,"textLines":1,"bbox":[96,481,432,80]}
+{"kind":"shape","id":"sh/f25cv6x0","slide":2,"name":"footer-line-2","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/u1wv2lgf","slide":2,"name":"footer-brand-2","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/h4nuxgf6","slide":2,"name":"footer-number-2","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"notes","id":"nt/bugaey","slide":2,"text":"[Sources]\n- User-provided decision timing and application requirements.\n[/Sources]"}
+{"kind":"slide","id":"sl/blcjxv","slide":3,"title":"ROLE-BASED FLOW","textShapes":14}
+{"kind":"textbox","id":"sh/1gr2dcjy","slide":3,"name":"section-blcjxv","text":"ROLE-BASED FLOW","textPreview":"ROLE-BASED FLOW","textChars":15,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/ed0j2x07","slide":3,"name":"title-blcjxv","text":"Each role sees the work it must do","textPreview":"Each role sees the work it must do","textChars":34,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"shape","id":"sh/ze9kb21s","slide":3,"name":"role-arrow-0","bbox":[292,310,58,30]}
+{"kind":"shape","id":"sh/cbi107ih","slide":3,"name":"role-arrow-1","bbox":[570,310,58,30]}
+{"kind":"shape","id":"sh/dcr29cjm","slide":3,"name":"role-arrow-2","bbox":[848,310,58,30]}
+{"kind":"shape","id":"sh/q9gjyx0b","slide":3,"name":"role-node-0","bbox":[82,238,210,176]}
+{"kind":"textbox","id":"sh/rapk721w","slide":3,"name":"role-title-0","text":"TEACHER","textPreview":"TEACHER","textChars":7,"textLines":1,"bbox":[100,266,174,30]}
+{"kind":"textbox","id":"sh/w72lcril","slide":3,"name":"role-detail-0","text":"View published evidence\nand submit one response","textPreview":"View published evidence | and submit one response","textChars":47,"textLines":2,"bbox":[100,318,174,68]}
+{"kind":"shape","id":"sh/x8b2lwj6","slide":3,"name":"role-node-1","bbox":[360,238,210,176]}
+{"kind":"textbox","id":"sh/9grq1cz6","slide":3,"name":"role-title-1","text":"HOD / COACH","textPreview":"HOD / COACH","textChars":11,"textLines":1,"bbox":[378,266,174,30]}
+{"kind":"textbox","id":"sh/8fi987il","slide":3,"name":"role-detail-1","text":"Complete walkthroughs\nand monitor growth","textPreview":"Complete walkthroughs | and monitor growth","textChars":40,"textLines":2,"bbox":[378,318,174,68]}
+{"kind":"shape","id":"sh/7ep8z2h0","slide":3,"name":"role-node-2","bbox":[638,238,210,176]}
+{"kind":"textbox","id":"sh/mdgr6x0f","slide":3,"name":"role-title-2","text":"SLT / HEAD","textPreview":"SLT / HEAD","textChars":10,"textLines":1,"bbox":[656,266,174,30]}
+{"kind":"textbox","id":"sh/lc7qxszu","slide":3,"name":"role-detail-2","text":"Review proficiency\nand approve plans","textPreview":"Review proficiency | and approve plans","textChars":36,"textLines":2,"bbox":[656,318,174,68]}
+{"kind":"shape","id":"sh/kby94ni9","slide":3,"name":"role-node-3","bbox":[916,238,210,176]}
+{"kind":"textbox","id":"sh/zap8v2h4","slide":3,"name":"role-title-3","text":"SYSADMIN","textPreview":"SYSADMIN","textChars":8,"textLines":1,"bbox":[934,266,174,30]}
+{"kind":"textbox","id":"sh/y9gr2x0j","slide":3,"name":"role-detail-3","text":"Manage accounts, roles,\nand school scope","textPreview":"Manage accounts, roles, | and school scope","textChars":40,"textLines":2,"bbox":[934,318,174,68]}
+{"kind":"textbox","id":"sh/58ba9wze","slide":3,"name":"role-boundary","text":"Roles can combine. Scope and self-access rules still apply.","textPreview":"Roles can combine. Scope and self-access rules still apply.","textChars":59,"textLines":1,"bbox":[72,500,740,42]}
+{"kind":"textbox","id":"sh/4729gryt","slide":3,"name":"role-boundary-strong","text":"One organization-scoped evidence model","textPreview":"One organization-scoped evidence model","textChars":38,"textLines":1,"bbox":[72,554,700,42]}
+{"kind":"shape","id":"sh/onulsza1","slide":3,"name":"footer-line-3","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/po3214bm","slide":3,"name":"footer-brand-3","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/21sjqpsv","slide":3,"name":"footer-number-3","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"notes","id":"nt/blcjxv","slide":3,"text":"[Sources]\n- Implemented local role and authorization behavior in the HDKWA demo.\n[/Sources]"}
+{"kind":"slide","id":"sl/xqvqz4","slide":4,"title":"LEADERSHIP PORTFOLIO","textShapes":5}
+{"kind":"textbox","id":"sh/29cbyt0r","slide":4,"name":"section-xqvqz4","text":"LEADERSHIP PORTFOLIO","textPreview":"LEADERSHIP PORTFOLIO","textChars":20,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/pwnut8j2","slide":4,"name":"title-xqvqz4","text":"Leadership can digest 50+ teachers","textPreview":"Leadership can digest 50+ teachers","textChars":34,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/ovut03ix","slide":4,"name":"portfolio-copy","text":"The ranked view separates Danielson status, improvement plans, GBF progress, and evidence due.","textPreview":"The ranked view separates Danielson status, improvement plans, GBF progress, and evidence due.","textChars":94,"textLines":1,"bbox":[72,145,1136,34]}
+{"kind":"shape","id":"sh/f6lcne10","slide":4,"name":"portfolio-frame","bbox":[64,194,1152,446]}
+{"kind":"shape","id":"sh/183upoj6","slide":4,"name":"footer-line-4","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/07utwj2l","slide":4,"name":"footer-brand-4","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/j25czi1k","slide":4,"name":"footer-number-4","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/72p0b2ps","slide":4,"name":"","geometry":"roundRect","alt":"HDKWA leadership teacher proficiency portfolio","bbox":[72,202,1136,430]}
+{"kind":"notes","id":"nt/xqvqz4","slide":4,"text":"[Sources]\n- Local application screenshot: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/portfolio.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/vjfqep","slide":5,"title":"WALKTHROUGH PLANNING","textShapes":7}
+{"kind":"textbox","id":"sh/m5wn298n","slide":5,"name":"section-vjfqep","text":"WALKTHROUGH PLANNING","textPreview":"WALKTHROUGH PLANNING","textChars":20,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/987mdo7e","slide":5,"name":"title-vjfqep","text":"The queue turns evidence into action","textPreview":"The queue turns evidence into action","textChars":36,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/87e54jqt","slide":5,"name":"queue-copy","text":"Each visible teacher receives three current targets when three eligible skills exist.","textPreview":"Each visible teacher receives three current targets when three eligible skills exist.","textChars":85,"textLines":1,"bbox":[72,146,430,72]}
+{"kind":"textbox","id":"sh/z2547epc","slide":5,"name":"queue-callout","text":"Priority order","textPreview":"Priority order","textChars":14,"textLines":1,"bbox":[72,256,300,34]}
+{"kind":"textbox","id":"sh/y1w3y98r","slide":5,"name":"queue-list","text":"1. Approved plan target\n2. Below Proficient\n3. GBF phase target\n4. Overdue evidence","textPreview":"1. Approved plan target | 2. Below Proficient | 3. GBF phase target | 4. Overdue evidence","textChars":83,"textLines":4,"bbox":[72,310,340,150]}
+{"kind":"shape","id":"sh/l4nm9o72","slide":5,"name":"queue-frame","bbox":[492,142,724,488]}
+{"kind":"shape","id":"sh/byl43up0","slide":5,"name":"footer-line-5","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/qxc3up8f","slide":5,"name":"footer-brand-5","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/gbehsn6d","slide":5,"name":"footer-number-5","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/pwf6x4vy","slide":5,"name":"","geometry":"roundRect","alt":"Ranked HDKWA walkthrough queue","bbox":[500,150,708,472]}
+{"kind":"notes","id":"nt/vjfqep","slide":5,"text":"[Sources]\n- Local application screenshot: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/queue.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/gv826o","slide":6,"title":"EVIDENCE CAPTURE","textShapes":6}
+{"kind":"textbox","id":"sh/qx03ad4b","slide":6,"name":"section-gv826o","text":"EVIDENCE CAPTURE","textPreview":"EVIDENCE CAPTURE","textChars":16,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/d0rm5s32","slide":6,"name":"title-gv826o","text":"A walkthrough fits inside 5–10 minutes","textPreview":"A walkthrough fits inside 5–10 minutes","textChars":38,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"shape","id":"sh/czilcnmh","slide":6,"name":"walkthrough-form-frame","bbox":[64,142,736,516]}
+{"kind":"textbox","id":"sh/el03ex4n","slide":6,"name":"walkthrough-three","text":"3 targets","textPreview":"3 targets","textChars":9,"textLines":1,"bbox":[850,190,280,52]}
+{"kind":"textbox","id":"sh/lobm9s3y","slide":6,"name":"walkthrough-copy","text":"Rate only what is visible.\n\nUse “Not enough evidence” when the visit does not show a target.\n\nSave the draft or submit the evidence.","textPreview":"Rate only what is visible. |  | Use “Not enough evidence” when the visit does not show a target. |  | Save the draft or submit the evidence.","textChars":132,"textLines":5,"bbox":[850,270,340,230]}
+{"kind":"shape","id":"sh/0nilgnmt","slide":6,"name":"walkthrough-rule","bbox":[850,536,248,5]}
+{"kind":"shape","id":"sh/fqpkvy5o","slide":6,"name":"footer-line-6","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/u5g32t4j","slide":6,"name":"footer-brand-6","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/832hc36d","slide":6,"name":"footer-number-6","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/610fytg7","slide":6,"name":"","geometry":"roundRect","alt":"Three-target HDKWA walkthrough form","bbox":[72,150,720,500]}
+{"kind":"notes","id":"nt/gv826o","slide":6,"text":"[Sources]\n- Local application screenshot: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/walkthrough-form.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/irbjt6","slide":7,"title":"MOBILE EVIDENCE CAPTURE","textShapes":6}
+{"kind":"textbox","id":"sh/twrqx8bm","slide":7,"name":"section-irbjt6","text":"MOBILE EVIDENCE CAPTURE","textPreview":"MOBILE EVIDENCE CAPTURE","textChars":23,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/6t072tcv","slide":7,"name":"title-irbjt6","text":"Leaders can record a walkthrough on a phone","textPreview":"Leaders can record a walkthrough on a phone","textChars":43,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"shape","id":"sh/7u98vytg","slide":7,"name":"mobile-walkthrough-target-frame","bbox":[64,148,262,508]}
+{"kind":"shape","id":"sh/l8rqtoba","slide":7,"name":"mobile-walkthrough-actions-frame","bbox":[350,148,262,508]}
+{"kind":"textbox","id":"sh/j698ret4","slide":7,"name":"mobile-walkthrough-count","text":"3 targets","textPreview":"3 targets","textChars":9,"textLines":1,"bbox":[690,190,360,56]}
+{"kind":"textbox","id":"sh/w3ypwjut","slide":7,"name":"mobile-walkthrough-copy","text":"Use the form during the visit.\n\nSelect a rating or “Not enough evidence.”\n\nAdd a short evidence note.\n\nSubmit the observation or save the draft.","textPreview":"Use the form during the visit. |  | Select a rating or “Not enough evidence.” |  | Add a short evidence note. |  | Submit the observation...","textChars":144,"textLines":7,"bbox":[690,276,478,250]}
+{"kind":"shape","id":"sh/x47qpobe","slide":7,"name":"mobile-walkthrough-rule","bbox":[690,554,292,5]}
+{"kind":"shape","id":"sh/58bedwz2","slide":7,"name":"footer-line-7","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/472dkrih","slide":7,"name":"footer-brand-7","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/j6twbmhw","slide":7,"name":"footer-number-7","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/hkbi5kj6","slide":7,"name":"","geometry":"roundRect","alt":"Mobile walkthrough form with the first target and rating choices","bbox":[72,156,246,492]}
+{"kind":"image","id":"im/vit03u1g","slide":7,"name":"","geometry":"roundRect","alt":"Mobile walkthrough form with the third target and final actions","bbox":[358,156,246,492]}
+{"kind":"notes","id":"nt/irbjt6","slide":7,"text":"[Sources]\n- Local mobile application screenshots: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/mobile-walkthrough-top.jpg and /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/mobile-walkthrough-bottom.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/xij50u","slide":8,"title":"CURRENT PROFICIENCY","textShapes":5}
+{"kind":"textbox","id":"sh/5ozmlwry","slide":8,"name":"section-xij50u","text":"CURRENT PROFICIENCY","textPreview":"CURRENT PROFICIENCY","textChars":19,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/il8nqhsn","slide":8,"name":"title-xij50u","text":"The graph makes proficiency visible","textPreview":"The graph makes proficiency visible","textChars":35,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/jmh4jm9s","slide":8,"name":"graph-copy","text":"Red, yellow, green, and blue show the current 1–4 score. A component expands to its approved skills.","textPreview":"Red, yellow, green, and blue show the current 1–4 score. A component expands to its approved skills.","textChars":100,"textLines":1,"bbox":[72,143,1136,34]}
+{"kind":"shape","id":"sh/wjq5o7ah","slide":8,"name":"proficiency-graph-frame","bbox":[64,184,1152,464]}
+{"kind":"shape","id":"sh/ahonmxsb","slide":8,"name":"footer-line-8","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/vih4v29w","slide":8,"name":"footer-brand-8","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/gfa50bal","slide":8,"name":"footer-number-8","text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/cbq1cz29","slide":8,"name":"","geometry":"roundRect","alt":"Expanded Danielson proficiency graph for a developing teacher","bbox":[72,192,1136,448]}
+{"kind":"notes","id":"nt/xij50u","slide":8,"text":"[Sources]\n- Local application screenshot: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/proficiency-graph.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/cna5nq","slide":9,"title":"OBSERVATION RECORD","textShapes":7}
+{"kind":"textbox","id":"sh/k7qtgrah","slide":9,"name":"section-cna5nq","text":"OBSERVATION RECORD","textPreview":"OBSERVATION RECORD","textChars":18,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/jmhc7mtw","slide":9,"name":"title-cna5nq","text":"Official evidence stays traceable","textPreview":"Official evidence stays traceable","textChars":33,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/il8behsb","slide":9,"name":"official-copy","text":"Q1 and Q4 records remain separate from current proficiency. Amendments preserve the original record.","textPreview":"Q1 and Q4 records remain separate from current proficiency. Amendments preserve the original record.","textChars":100,"textLines":1,"bbox":[72,145,430,92]}
+{"kind":"textbox","id":"sh/xkzu5cb6","slide":9,"name":"official-points","text":"Raw ratings remain visible","textPreview":"Raw ratings remain visible","textChars":26,"textLines":1,"bbox":[72,286,360,34]}
+{"kind":"textbox","id":"sh/wjqtc7al","slide":9,"name":"official-list","text":"• Source observation\n• Component ratings\n• Public evidence note\n• Amendment history","textPreview":"• Source observation | • Component ratings | • Public evidence note | • Amendment history","textChars":83,"textLines":4,"bbox":[72,342,340,150]}
+{"kind":"shape","id":"sh/vihc32t0","slide":9,"name":"published-observation-frame","bbox":[492,142,724,488]}
+{"kind":"shape","id":"sh/9gfu1cbu","slide":9,"name":"footer-line-9","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/8f6t87a9","slide":9,"name":"footer-brand-9","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/y1w72l07","slide":9,"name":"footer-number-9","text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/vahs3etk","slide":9,"name":"","geometry":"roundRect","alt":"Published HDKWA formal observation record","bbox":[500,150,708,472]}
+{"kind":"notes","id":"nt/cna5nq","slide":9,"text":"[Sources]\n- Local application screenshot: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/published-observation.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/djcxey","slide":10,"title":"PERFORMANCE SUPPORT","textShapes":6}
+{"kind":"textbox","id":"sh/ruhcv2lw","slide":10,"name":"section-djcxey","text":"PERFORMANCE SUPPORT","textPreview":"PERFORMANCE SUPPORT","textChars":19,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/svqdo72h","slide":10,"name":"title-djcxey","text":"Improvement plans stay tied to evidence","textPreview":"Improvement plans stay tied to evidence","textChars":39,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"shape","id":"sh/dwzuxc32","slide":10,"name":"improvement-plan-frame","bbox":[64,142,736,516]}
+{"kind":"textbox","id":"sh/fy1czml8","slide":10,"name":"pip-title","text":"Approved before start","textPreview":"Approved before start","textChars":21,"textLines":1,"bbox":[850,184,330,40]}
+{"kind":"textbox","id":"sh/0jadsr2t","slide":10,"name":"pip-copy","text":"Any supervisor can propose a plan. SLT approves it.\n\nTargets use Danielson skills.\n\nThe plan shows current evidence, review dates, support, and closure.","textPreview":"Any supervisor can propose a plan. SLT approves it. |  | Targets use Danielson skills. |  | The plan shows current evidence, review dates...","textChars":152,"textLines":5,"bbox":[850,250,340,240]}
+{"kind":"shape","id":"sh/1kju1c3e","slide":10,"name":"footer-line-10","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/2lsvuhkj","slide":10,"name":"footer-brand-10","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/nm1cnm14","slide":10,"name":"footer-number-10","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/j6pgbmto","slide":10,"name":"","geometry":"roundRect","alt":"Active HDKWA performance improvement plan","bbox":[72,150,720,500]}
+{"kind":"notes","id":"nt/djcxey","slide":10,"text":"[Sources]\n- Local application screenshot: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/improvement-plan.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/j2scjf","slide":11,"title":"TEACHER BOUNDARY","textShapes":5}
+{"kind":"textbox","id":"sh/o3mdw3q1","slide":11,"name":"section-j2scjf","text":"TEACHER BOUNDARY","textPreview":"TEACHER BOUNDARY","textChars":16,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/n2dc3ypg","slide":11,"name":"title-j2scjf","text":"Teachers see the public record","textPreview":"Teachers see the public record","textChars":30,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/m14vut8v","slide":11,"name":"teacher-copy","text":"Teachers see published results, public comments, plan progress, and their final response. Private leadership comments stay absent.","textPreview":"Teachers see published results, public comments, plan progress, and their final response. Private leadership comments stay absent.","textChars":130,"textLines":1,"bbox":[72,144,1136,58]}
+{"kind":"shape","id":"sh/10bu1o7a","slide":11,"name":"teacher-view-frame","bbox":[64,214,1152,416]}
+{"kind":"shape","id":"sh/zytczepk","slide":11,"name":"footer-line-11","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/exkbqt8z","slide":11,"name":"footer-brand-11","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/dwbuxore","slide":11,"name":"footer-number-11","text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/dgzmt8rq","slide":11,"name":"","geometry":"roundRect","alt":"Teacher-facing HDKWA report without private comments","bbox":[72,222,1136,400]}
+{"kind":"notes","id":"nt/j2scjf","slide":11,"text":"[Sources]\n- Local application screenshot: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/teacher-view.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/1uz1zq","slide":12,"title":"ADMINISTRATION","textShapes":7}
+{"kind":"textbox","id":"sh/0fmxoza1","slide":12,"name":"section-1uz1zq","text":"ADMINISTRATION","textPreview":"ADMINISTRATION","textChars":14,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/fedwfu9g","slide":12,"name":"title-1uz1zq","text":"Access follows role and school scope","textPreview":"Access follows role and school scope","textChars":36,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/ed4vmpsv","slide":12,"name":"admin-label","text":"SYSTEM ADMINISTRATION","textPreview":"SYSTEM ADMINISTRATION","textChars":21,"textLines":1,"bbox":[72,146,470,26]}
+{"kind":"textbox","id":"sh/94fel4ri","slide":12,"name":"scope-label","text":"HOD SCOPE","textPreview":"HOD SCOPE","textChars":9,"textLines":1,"bbox":[668,146,470,26]}
+{"kind":"shape","id":"sh/o3mxsjad","slide":12,"name":"administration-frame","bbox":[64,176,556,414]}
+{"kind":"shape","id":"sh/214fq9s7","slide":12,"name":"hod-scope-frame","bbox":[660,176,556,414]}
+{"kind":"textbox","id":"sh/w76xgja9","slide":12,"name":"scope-copy","text":"The system administrator manages accounts. HOD and coach reports stay inside assigned teacher scope.","textPreview":"The system administrator manages accounts. HOD and coach reports stay inside assigned teacher scope.","textChars":100,"textLines":1,"bbox":[72,614,1136,36]}
+{"kind":"shape","id":"sh/q90bq587","slide":12,"name":"footer-line-12","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/ra9szapc","slide":12,"name":"footer-brand-12","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/cvitsfqx","slide":12,"name":"footer-number-12","text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/ytgvu14n","slide":12,"name":"","geometry":"roundRect","alt":"HDKWA account and role administration","bbox":[72,184,540,398]}
+{"kind":"image","id":"im/wredsrmh","slide":12,"name":"","geometry":"roundRect","alt":"HOD-scoped HDKWA teacher portfolio","bbox":[668,184,540,398]}
+{"kind":"notes","id":"nt/1uz1zq","slide":12,"text":"[Sources]\n- Local application screenshots: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/administration.jpg and /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/hod-scope.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/oqvcgo","slide":13,"title":"PILOT DATA AND ACCESS","textShapes":6}
+{"kind":"textbox","id":"sh/pona903y","slide":13,"name":"section-oqvcgo","text":"PILOT DATA AND ACCESS","textPreview":"PILOT DATA AND ACCESS","textChars":21,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/2lwrel4n","slide":13,"name":"title-oqvcgo","text":"The local pilot is ready for review","textPreview":"The local pilot is ready for review","textChars":35,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"shape","id":"sh/3m5s7qls","slide":13,"name":"pilot-login-frame","bbox":[64,142,666,516]}
+{"kind":"textbox","id":"sh/dc7adk3a","slide":13,"name":"pilot-counts","text":"10 accounts\n7 teacher profiles","textPreview":"10 accounts | 7 teacher profiles","textChars":30,"textLines":2,"bbox":[790,188,360,118]}
+{"kind":"textbox","id":"sh/qpwri54j","slide":13,"name":"pilot-copy","text":"The local seed includes new, developing, experienced, active-plan, and closed-plan cases.\n\nThe seed rejects hosted Convex deployments.\n\nEach role has a stable sales-call path.","textPreview":"The local seed includes new, developing, experienced, active-plan, and closed-plan cases. |  | The seed rejects hosted Convex deployments...","textChars":175,"textLines":5,"bbox":[790,332,380,240]}
+{"kind":"shape","id":"sh/bq5sbal4","slide":13,"name":"footer-line-13","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/0fy9ofml","slide":13,"name":"footer-brand-13","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/lg7ahk36","slide":13,"name":"footer-number-13","text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/dw7mtk3q","slide":13,"name":"","geometry":"roundRect","alt":"Local HDKWA pilot login with demo account roster","bbox":[72,150,650,500]}
+{"kind":"notes","id":"nt/oqvcgo","slide":13,"text":"[Sources]\n- Local application screenshot: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/pilot-login.jpg.\n- Local deterministic demo contract and verified seed results.\n[/Sources]"}
+{"kind":"slide","id":"sl/7jyyi9","slide":14,"title":"TEACHER DEVELOPMENT","textShapes":8}
+{"kind":"textbox","id":"sh/d07ypova","slide":14,"name":"section-7jyyi9","text":"TEACHER DEVELOPMENT","textPreview":"TEACHER DEVELOPMENT","textChars":19,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/qxgfe9cj","slide":14,"name":"title-7jyyi9","text":"Each target skill has a Learn page","textPreview":"Each target skill has a Learn page","textChars":34,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/bypgned4","slide":14,"name":"learn-count","text":"63 approved skills","textPreview":"63 approved skills","textChars":18,"textLines":1,"bbox":[72,143,330,38]}
+{"kind":"textbox","id":"sh/ovexczut","slide":14,"name":"learn-copy","text":"Teachers can open the same guidance from reports, the proficiency graph, walkthroughs, and improvement plans.","textPreview":"Teachers can open the same guidance from reports, the proficiency graph, walkthroughs, and improvement plans.","textChars":109,"textLines":1,"bbox":[410,143,798,48]}
+{"kind":"shape","id":"sh/pwnyl4ve","slide":14,"name":"learn-index-frame","bbox":[64,210,556,380]}
+{"kind":"shape","id":"sh/3u5gjud8","slide":14,"name":"learn-detail-frame","bbox":[660,210,556,380]}
+{"kind":"textbox","id":"sh/1sneh4v2","slide":14,"name":"learn-index-label","text":"Find a skill by Danielson domain and component.","textPreview":"Find a skill by Danielson domain and component.","textChars":47,"textLines":1,"bbox":[88,600,508,34]}
+{"kind":"textbox","id":"sh/l8r2dob2","slide":14,"name":"learn-detail-label","text":"Review the purpose, action steps, example, and source.","textPreview":"Review the purpose, action steps, example, and source.","textChars":54,"textLines":1,"bbox":[684,600,508,34]}
+{"kind":"shape","id":"sh/k7y1kjux","slide":14,"name":"footer-line-14","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/jmpkbytc","slide":14,"name":"footer-brand-14","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/ylgjitcr","slide":14,"name":"footer-number-14","text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"image","id":"im/7ytsn25k","slide":14,"name":"","geometry":"roundRect","alt":"HDKWA Learn catalog with approved target skills","bbox":[72,218,540,364]}
+{"kind":"image","id":"im/lwralcne","slide":14,"name":"","geometry":"roundRect","alt":"Cold Call Learn page with action steps and references","bbox":[668,218,540,364]}
+{"kind":"notes","id":"nt/7jyyi9","slide":14,"text":"[Sources]\n- Local application screenshots: /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/learn-index.jpg and /Users/daniel.bodanske/Desktop/ra-math-advantage/outputs/danielson-hdkwa-system-review_20260821/deck-assets/learn-detail.jpg.\n[/Sources]"}
+{"kind":"slide","id":"sl/bqfy4n","slide":15,"title":"DEPLOYMENT DECISION","textShapes":9}
+{"kind":"textbox","id":"sh/cved0fyp","slide":15,"name":"section-bqfy4n","text":"DEPLOYMENT DECISION","textPreview":"DEPLOYMENT DECISION","textChars":19,"textLines":1,"bbox":[72,42,420,24]}
+{"kind":"textbox","id":"sh/bu5crax4","slide":15,"name":"title-bqfy4n","text":"SLT can choose the next level of use","textPreview":"SLT can choose the next level of use","textChars":36,"textLines":1,"bbox":[72,74,1136,58]}
+{"kind":"textbox","id":"sh/qtwvypgj","slide":15,"name":"verified-heading","text":"Verified in the local pilot","textPreview":"Verified in the local pilot","textChars":27,"textLines":1,"bbox":[72,174,500,42]}
+{"kind":"textbox","id":"sh/lk7ex4f6","slide":15,"name":"verified-list","text":"• Role-based login and scope\n• Leadership reports and ranked queue\n• Walkthrough and formal forms\n• Proficiency graph\n• Improvement-plan workflow\n• Teacher public view","textPreview":"• Role-based login and scope | • Leadership reports and ranked queue | • Walkthrough and formal forms | • Proficiency graph | • Improveme...","textChars":167,"textLines":6,"bbox":[72,238,490,255]}
+{"kind":"shape","id":"sh/0zyd4zyl","slide":15,"name":"decision-center-line","bbox":[624,164,2,386]}
+{"kind":"textbox","id":"sh/zypwvux0","slide":15,"name":"production-heading","text":"Required before production","textPreview":"Required before production","textChars":26,"textLines":1,"bbox":[690,174,500,42]}
+{"kind":"textbox","id":"sh/yxwv2pgf","slide":15,"name":"production-list","text":"• Confirm the final identity provider\n• Complete authenticated browser acceptance\n• Confirm policy and HR wording\n• Configure production backup and monitoring\n• Approve the deployment owner and support path","textPreview":"• Confirm the final identity provider | • Complete authenticated browser acceptance | • Confirm policy and HR wording | • Configure produ...","textChars":206,"textLines":5,"bbox":[690,238,490,230]}
+{"kind":"shape","id":"sh/9o7e14f2","slide":15,"name":"decision-band","bbox":[72,548,1136,86]}
+{"kind":"textbox","id":"sh/8nyd8zyx","slide":15,"name":"decision-question","text":"Decision: approve a controlled internal pilot, or hold for the listed production checks.","textPreview":"Decision: approve a controlled internal pilot, or hold for the listed production checks.","textChars":88,"textLines":1,"bbox":[102,574,1076,38]}
+{"kind":"shape","id":"sh/i1gfqdkv","slide":15,"name":"footer-line-15","bbox":[72,681,1136,2]}
+{"kind":"textbox","id":"sh/32pgjil0","slide":15,"name":"footer-brand-15","text":"HDKWA · Danielson Teacher Growth","textPreview":"HDKWA · Danielson Teacher Growth","textChars":32,"textLines":1,"bbox":[72,686,420,18]}
+{"kind":"textbox","id":"sh/43yxsn2l","slide":15,"name":"footer-number-15","text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1150,686,58,18]}
+{"kind":"notes","id":"nt/bqfy4n","slide":15,"text":"[Sources]\n- Verified local application behavior and project deployment scope.\n[/Sources]"}

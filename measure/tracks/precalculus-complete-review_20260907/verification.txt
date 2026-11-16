@@ -1,0 +1,86 @@
+LINT
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+
+TYPECHECK
+
+> typecheck
+> tsc --noEmit
+
+
+BUILD
+  ├ ? /curriculum                                                                                   
+  ├ ? /student/dashboard                                                                            
+  └ ? /teacher/dashboard                                                                            
+
+  λ API  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+
+PROBES
+
+ RUN  v4.1.8 /Users/daniel.bodanske/Desktop/ra-math-advantage
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  10:42:24
+   Duration  167ms (transform 52ms, setup 0ms, import 84ms, tests 5ms, environment 0ms)
+
+
+FULL TEST RUN
+    642|     expect(findNodes(draft, FOURTH_SKILL_ID)).toEqual([expectedSkill]);
+    643|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[50/58]⎯
+
+
+ Test Files  30 failed | 192 passed (222)
+      Tests  58 failed | 5846 passed (5904)
+   Start at  10:35:46
+   Duration  350.26s (transform 52.00s, setup 41.92s, import 115.12s, tests 291.76s, environment 191.80s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/daniel.bodanske/Desktop/ra-math-advantage/apps/pre-calculus
+npm error workspace undefined
+npm error location /Users/daniel.bodanske/Desktop/ra-math-advantage/apps/pre-calculus
+npm error command failed
+npm error command sh -c vitest run --maxWorkers=2
+
+INDEPENDENT MATHEMATICS
+Baby regression: slope 0.185, intercept 3.545, prediction at t=10: 5.395.
+43*(140/43)^(7/3) = 675.5758906735664.
+log_7(135) = 2.5208125775076553.
+(500*1.08^5 - 500*1.08^2)/3 = 50.48801280000009.
+Lesson 3.6 displayed model at t=8 gives 8.5, but the stated point gives 6.
+
+
+ISOLATED UI CHECK
+
+> test
+> vitest run --maxWorkers=1 __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx
+
+
+ RUN  v4.1.8 /Users/daniel.bodanske/Desktop/ra-math-advantage/apps/pre-calculus
+
+ ✓ __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx (47 tests) 12446ms
+     ✓ keeps Submit answer disabled until all 12 guided responses exist  305ms
+     ✓ preserves the server result when evidence delivery fails for non-OK response  334ms
+     ✓ fails safely for malformed evidence response: extra outer field  315ms
+     ✓ shows one safe error and no evidence request for invalid JSON  342ms
+     ✓ shows one safe error and no evidence request for missing result field  325ms
+     ✓ shows one safe error and no evidence request for non-string submission ID  315ms
+
+ Test Files  1 passed (1)
+      Tests  47 passed (47)
+   Start at  10:47:14
+   Duration  14.16s (transform 534ms, setup 155ms, import 698ms, tests 12.45s, environment 670ms)
+

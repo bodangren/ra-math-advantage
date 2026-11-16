@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -19,7 +20,11 @@ export default function LoginPage() {
 
     try {
       await signIn(username, password);
-      router.push("/student/dashboard");
+      const requested = new URLSearchParams(window.location.search).get('redirect');
+      const destination = requested && /^\/(student|teacher|curriculum|settings)(\/|\?|$)/.test(requested)
+        && !requested.includes('\\') ? requested : '/dashboard';
+      router.push(destination);
+      router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");
     } finally {
@@ -58,6 +63,7 @@ export default function LoginPage() {
               className="input-field w-full"
               required
               autoComplete="username"
+              maxLength={255}
             />
           </div>
 
@@ -73,6 +79,7 @@ export default function LoginPage() {
               className="input-field w-full"
               required
               autoComplete="current-password"
+              maxLength={255}
             />
           </div>
 
@@ -87,9 +94,9 @@ export default function LoginPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Don&apos;t have an account?{" "}
-          <a href="/auth/register" className="text-accent hover:text-accent-light transition-colors">
+          <Link href="/auth/register" className="text-accent hover:text-accent-light transition-colors">
             Register
-          </a>
+          </Link>
         </p>
       </div>
     </div>

@@ -13,16 +13,21 @@
 
 import {
   mapPracticeToSrsRating,
+  mapPracticeToSrsRatingV31,
+  type SrsRatingInputV31,
   type SrsRatingResult,
 } from '@math-platform/practice-core/srs-rating';
+import type { SrsRatingResultV31 } from '@math-platform/practice-core/v3-1-contracts';
 import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
-import { reviewCard } from './scheduler';
+import {
+  scheduleReview,
+  type ReviewSchedulerContext,
+} from './scheduler';
 import type {
   PracticeSubmissionEnvelope,
-  PracticeSubmissionPart,
   PracticeTimingBaseline,
   SrsCardState,
-  SrsReviewLogEntry,
+  SrsReviewLogEntryV31,
 } from './contract';
 
 /**
@@ -35,6 +40,14 @@ export type ReviewProcessorInput = {
   submission: PracticeSubmissionEnvelope;
   /** Optional timing baseline for the problem family; omit if unavailable. */
   baseline?: PracticeTimingBaseline;
+  /**
+   * Explicit opt-in to the normative v3.1 mapper. Callers provide the enriched
+   * reveal totals, per-part timing baselines, and misconception policy needed
+   * by that version. When omitted, legacy rating behavior is unchanged.
+   */
+  ratingInputV31?: SrsRatingInputV31;
+  /** Trusted server-side scheduling policy; never derive this from submission data. */
+  schedulerContext?: ReviewSchedulerContext;
   /** Review timestamp as an ISO string. */
   now: string;
 };
@@ -48,7 +61,7 @@ export type ReviewProcessorResult = {
   /** Card state after the FSRS review has been applied. */
   updatedCard: SrsCardState;
   /** Immutable audit entry capturing before/after state and evidence. */
-  reviewLog: SrsReviewLogEntry;
+  reviewLog: SrsReviewLogEntryV31;
 };
 
 /**
@@ -56,36 +69,49 @@ export type ReviewProcessorResult = {
  * and producing an immutable review log entry.
  */
 export function processReview(input: ReviewProcessorInput): ReviewProcessorResult {
-  const { card, submission, baseline, now } = input;
+  const { card, submission, baseline, ratingInputV31, schedulerContext, now } = input;
 
   const parts = submission.parts;
+  let ratingResult: SrsRatingResult | SrsRatingResultV31;
+  let evidenceReasons: string[];
 
-  const timingFeatures = submission.timing
-    ? deriveTimingFeatures(submission.timing, baseline)
-    : {
-        hasReliableTiming: false as const,
-        confidence: 'low' as const,
-        reasons: ['timing_missing'],
-      };
+  if (ratingInputV31 !== undefined) {
+    ratingResult = mapPracticeToSrsRatingV31(ratingInputV31);
+    evidenceReasons = ratingResult.reasons;
+  } else {
+    const timingFeatures = submission.timing
+      ? deriveTimingFeatures(submission.timing, baseline)
+      : {
+          hasReliableTiming: false as const,
+          confidence: 'low' as const,
+          reasons: ['timing_missing'],
+        };
 
-  const ratingResult = mapPracticeToSrsRating({
-    parts: parts.map((part) => ({
-      isCorrect: part.isCorrect,
-      hintsUsed: part.hintsUsed,
-      revealStepsSeen: part.revealStepsSeen,
-      misconceptionTags: part.misconceptionTags,
-    })),
-    timingFeatures,
-    baselineSampleCount: baseline?.sampleCount,
+    ratingResult = mapPracticeToSrsRating({
+      parts: parts.map((part) => ({
+        isCorrect: part.isCorrect,
+        hintsUsed: part.hintsUsed,
+        revealStepsSeen: part.revealStepsSeen,
+        misconceptionTags: part.misconceptionTags,
+      })),
+      timingFeatures,
+      baselineSampleCount: baseline?.sampleCount,
+    });
+
+    evidenceReasons = submission.timing
+      ? ratingResult.reasons
+      : ['timing_missing', ...ratingResult.reasons];
+  }
+
+  const scheduled = scheduleReview({
+    card,
+    rating: ratingResult.rating,
+    now,
+    ...schedulerContext,
   });
+  const updatedCard = scheduled.card;
 
-  const evidenceReasons = submission.timing
-    ? ratingResult.reasons
-    : ['timing_missing', ...ratingResult.reasons];
-
-  const updatedCard = reviewCard(card, ratingResult.rating, now);
-
-  const reviewLog: SrsReviewLogEntry = {
+  const reviewLog: SrsReviewLogEntryV31 = {
     reviewId: generateReviewId(),
     cardId: card.cardId,
     studentId: card.studentId,
@@ -110,6 +136,7 @@ export function processReview(input: ReviewProcessorInput): ReviewProcessorResul
       reps: updatedCard.reps,
       lapses: updatedCard.lapses,
     },
+    paramsVersion: scheduled.paramsVersion,
     reviewedAt: now,
   };
 

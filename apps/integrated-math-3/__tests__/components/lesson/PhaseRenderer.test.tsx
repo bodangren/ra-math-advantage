@@ -55,8 +55,26 @@ vi.mock('@/components/lesson/VideoPlayer', () => ({
 }));
 
 vi.mock('@/components/lesson/ActivityRenderer', () => ({
-  ActivityRenderer: ({ componentKey }: { componentKey: string }) => (
-    <div data-testid="activity-renderer">{componentKey}</div>
+  ActivityRenderer: ({
+    componentKey,
+    activityId,
+    activityProps,
+    mode,
+  }: {
+    componentKey: string;
+    activityId: string;
+    activityProps?: unknown;
+    mode: string;
+  }) => (
+    <div
+      data-testid="activity-renderer"
+      data-component-key={componentKey}
+      data-activity-id={activityId}
+      data-activity-props={JSON.stringify(activityProps)}
+      data-mode={mode}
+    >
+      {componentKey}
+    </div>
   ),
 }));
 
@@ -131,7 +149,47 @@ describe('PhaseRenderer', () => {
           })]}
         />
       );
-      expect(screen.getByTestId('activity-renderer')).toBeInTheDocument();
+      expect(screen.getByTestId('activity-renderer')).toHaveAttribute('data-mode', 'practice');
+    });
+
+    it('uses teaching mode for worked-example phases', () => {
+      render(
+        <PhaseRenderer
+          phaseType="worked_example"
+          mode="practice"
+          sections={[makeSection({
+            sectionType: 'activity',
+            content: { componentKey: 'rate-of-change-calculator', activityId: 'act-worked' },
+          })]}
+        />
+      );
+      expect(screen.getByTestId('activity-renderer')).toHaveAttribute('data-mode', 'teaching');
+    });
+
+    it('forwards activity props to ActivityRenderer', () => {
+      const activityProps = {
+        sourceType: 'function',
+        data: { expression: 'f(x) = -x^2 + 2x - 1' },
+        interval: { start: -4, end: 4 },
+      };
+      render(
+        <PhaseRenderer
+          phaseType={phaseType}
+          sections={[makeSection({
+            sectionType: 'activity',
+            content: {
+              componentKey: 'rate-of-change-calculator',
+              activityId: 'activities:equation-worked',
+              activityProps,
+            },
+          })]}
+        />
+      );
+      const renderer = screen.getByTestId('activity-renderer');
+      expect(renderer).toHaveAttribute('data-component-key', 'rate-of-change-calculator');
+      expect(renderer).toHaveAttribute('data-activity-id', 'activities:equation-worked');
+      expect(renderer).toHaveAttribute('data-activity-props', JSON.stringify(activityProps));
+      expect(JSON.parse(renderer.getAttribute('data-activity-props') ?? '')).toEqual(activityProps);
     });
 
     it('renders image section with img element', () => {

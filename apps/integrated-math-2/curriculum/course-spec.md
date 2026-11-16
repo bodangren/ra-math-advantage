@@ -154,27 +154,15 @@ Each planned class period should be representable with the following fields:
 - `problem_types` (familyKey references from problem-type PDFs)
 - `notes` (optional)
 
-### Implementation Artifact Layer
+### Implementation records
 
-The implementation bridge for this planning model lives in:
+`curriculum/calendar.json` stores the 180-period plan. The 13 files in `curriculum/implementation/class-period-packages/` provide module views. Each period has a unique `periodId`, a course-wide period number, a day type, and an objective. Instruction periods also refer to the source lesson and its worked examples.
 
-- `curriculum/implementation/class-period-packages/unit-*.json`
-- `curriculum/implementation/practice-v1/activity-map.json`
-- `curriculum/implementation/exceptions.json`
-- `curriculum/implementation/audit/latest.json`
+The six daily phases are `warmUp`, `conceptDevelopment`, `guidedPractice`, `independentPractice`, `assessment`, and `capReflection`. They currently describe planned work. They do not constitute a working daily lesson runtime.
 
-Each class-period package uses a stable `periodId` in the format `u##-p##`. Instruction packages include the class objective, source lesson, worked examples, problem-type references or worked-example-derived SRS substitutes, and daily routine fields:
+`curriculum/implementation/practice-v1/activity-map.json` lists the 96 implemented checkpoints from `curriculum/questions.json`. These questions support automatic grading without partial credit. They are not a full practice bank or secure test bank. Spaced review is not enabled for these questions.
 
-- `warmUp`
-- `conceptDevelopment`
-- `guidedPractice`
-- `independentPractice`
-- `assessment`
-- `capReflection`
-
-Non-instruction packages include a `nonInstructionArtifact` object for `mastery`, `jigsaw`, `review`, or `test` periods.
-
-The activity map translates package content into `practice.v1` activity candidates with stable activity IDs, source references, component keys, modes, objective codes, grading configuration, and SRS eligibility.
+Run `npm run curriculum:check` and `npm run curriculum:audit` to check the current files. Do not use a stored pass report as verification.
 
 ### Canonical Planning Documents
 
@@ -202,14 +190,26 @@ For a 180-day school year, the current planning target is:
 
 This budget is a planning framework, not a literal day-by-day calendar.
 
-### Unit-Level Review and Test Structure
+### Assessment Blocks
 
-Reserve approximately **2 days per unit** for end-of-unit assessment:
+Use nine review periods and nine test periods. The blocks cover these modules:
 
-- `review`
-- `test`
+1. Module 1
+2. Module 2
+3. Modules 3 and 4
+4. Modules 5 and 6
+5. Module 7
+6. Modules 8 and 9
+7. Module 10
+8. Modules 11 and 12
+9. Module 13
 
-If a unit needs a separate test-review day, it should come from that unit's broader instructional budget rather than increasing the total year budget by default.
+These blocks preserve the 180-period budget. They replace the conflicting rule that reserved two separate periods for every module. The calendar has 108 instruction periods, 36 mastery periods, 18 group-work periods, nine review periods, and nine test periods.
+
+Use `calendar.json` for the full sequence. It includes all 96 source lessons. Twelve lessons have an additional instruction period for more worked examples. The source lesson files define the objectives and worked examples. Run `npm run curriculum:build` from the app directory to update generated plans.
+
+The public checkpoint bank supports practice and review. A teacher must provide secure assessment forms. Complete assessment authoring remains open in the correction track.
+
 
 ### Example of Splitting a Textbook Lesson into Class Periods
 

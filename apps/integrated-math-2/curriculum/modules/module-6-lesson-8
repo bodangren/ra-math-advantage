@@ -28,9 +28,9 @@ If you double all the dimensions of a solid, by what factor does the surface are
 
 ### Key Concept: Scale Factor from Areas
 
-If two similar figures have areas A1 and A2, the scale factor is:
+If two similar figures have areas A1 and A2, the scale factor from figure 1 to figure 2 is [k = L2/L1]:
 [
-k = sqrt(A1/A2)
+k = sqrt(A2/A1)
 ]
 
 ### Key Concept: Finding Missing Areas
@@ -42,9 +42,9 @@ A2 = k^2 * A1
 
 ### Key Concept: Scale Factor from Volumes
 
-If two similar solids have volumes V1 and V2, the scale factor is:
+If two similar solids have volumes V1 and V2, the scale factor from figure 1 to figure 2 is [k = L2/L1]:
 [
-k = cube_root(V1/V2)
+k = cube_root(V2/V1)
 ]
 
 ### Key Concept: Volume of Similar Solids
@@ -63,148 +63,53 @@ SA2 = k^2 * SA1
 
 ## Example 1 — Find Missing Areas
 
-For each pair of similar figures, find the missing area. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Scale Factor
+Two similar plane figures have corresponding side lengths 3 cm and 6 cm. The smaller figure has area 10 square centimeters. Find the larger area.
 
-Use the ratio of corresponding sides.
+### Solution
 
-### Step 2: Square the Scale Factor
-
-The area ratio is k^2.
-
-### Step 3: Find the Missing Area
-
-Multiply or divide the known area by k^2.
-
-If the scale factor from small to large is 2:1, and small area is 10 cm^2:
-[
-k = 2
-]
-[
-Area ratio = 4
-]
-[
-Large area = 10 * 4 = 40 cm^2
-]
+The scale factor from smaller to larger is 6/3 = 2. Areas scale by the square of the linear factor, so the larger area is 10(2²) = 40 square centimeters.
 
 ## Example 2 — Find Scale Factor and Missing Value
 
-For each pair of similar figures, use the given areas to find the scale factor. Then find the value of x to the nearest tenth.
+### Problem
 
-### Step 1: Find the Scale Factor
+Two similar figures have areas 25 and 100 square centimeters. A side of the larger figure is 8 cm. Find the corresponding side of the smaller figure.
 
-[
-k = sqrt(A_small/A_large) or sqrt(A_large/A_small)
-]
+### Solution
 
-### Step 2: Use the Scale Factor to Find x
-
-Set up a proportion using corresponding sides.
-
-If areas are 25 cm^2 and 100 cm^2:
-[
-k = sqrt(25/100) = 1/2
-]
-[
-If large figure side = 8 cm, small figure side = 4 cm
-]
+The area ratio from larger to smaller is 25/100 = 1/4. The linear scale factor is its positive square root, 1/2. The smaller side is 8(1/2) = 4 cm.
 
 ## Example 3 — Real-World Similarity Problems
 
-ASSIGNMENTS: Matt has two similar rectangular posters. Larger poster length is 11 in, smaller is 6 in. Larger area is 93.5 in^2. Find smaller area.
-[
-k = 6/11
-]
-[
-Area ratio = (6/11)^2 = 36/121
-]
-[
-Small area = 93.5 * (36/121) = 27.8 in^2
-]
+### Problem
 
-ACCESSORIES: Carla has decorative pins shaped like equilateral triangles. Larger pin has side 3 times longer than smaller. Smaller area is 6.9 cm^2. Find larger area.
-[
-k = 3
-]
-[
-Area ratio = 9
-]
-[
-Large area = 6.9 * 9 = 62.1 cm^2
-]
+Two rectangular posters are similar. Their corresponding lengths are 11 inches and 6 inches. The larger poster has area 93.5 square inches. Find the smaller area to the nearest tenth.
 
-QUILT: A quilt design has one large rectangle surrounded by four congruent rectangles similar to the large rectangle. Large area is 45 in^2. Find area of each small rectangle.
-[
-Each small rectangle has area = 45/5 = 9 in^2
-]
+### Solution
+
+The linear scale from larger to smaller is 6/11. The smaller area is 93.5(6/11)² = 3366/121 square inches, approximately 27.8 square inches. The number of neighboring rectangles in a design does not determine an area ratio without a layout or scale factor.
 
 ## Example 4 — Find Volumes of Similar Solids
 
-Each pair of solids is similar. Find the volume of each solid. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Scale Factor
+Two cylinders are similar. A corresponding length in the larger cylinder is three times the length in the smaller cylinder. The smaller volume is 50 cubic meters. Find the larger volume.
 
-Use corresponding linear dimensions.
+### Solution
 
-### Step 2: Cube the Scale Factor for Volume
-
-Volume ratio = k^3
-
-### Step 3: Find the Volumes
-
-If k = 2, then volume ratio = 8.
-
-If two similar cylinders have scale factor 3:1 and small volume is 50 m^3:
-[
-Large volume = 50 * 27 = 1350 m^3
-]
+Similar volumes scale by the cube of the linear factor. The volume ratio is 3³ = 27. The larger volume is 50(27) = 1350 cubic meters.
 
 ## Example 5 — Surface Area and Volume with Similar Solids
 
-Two similar cylinders have radii of 3 inches and 12 inches. If the height of the larger cylinder is 24 inches, what is the surface area of the smaller cylinder?
+### Problem
 
-### Step 1: Find the Scale Factor
+Two similar closed cylinders have radii 3 inches and 12 inches. The larger cylinder has height 24 inches. Find the surface area of the smaller cylinder to the nearest tenth.
 
-[
-k = 3/12 = 1/4
-]
+### Solution
 
-### Step 2: Find the Height of the Smaller Cylinder
-
-[
-h_small = 24 * (1/4) = 6 in
-]
-
-### Step 3: Find the Surface Area
-
-For the larger cylinder with r = 12 and h = 24:
-[
-SA_large = 2pi * 12 * 24 + 2pi * 144 = 576pi + 288pi = 864pi
-]
-[
-SA_small = SA_large * (1/4)^2 = 864pi/16 = 54pi = 169.6 in^2
-]
-
-Two similar rectangular prisms have surface areas 112 cm^2 and 1008 cm^2. If the length and width of the smaller prism base are 4 cm and 2 cm, find the perimeter of one base of the larger prism.
-
-### Step 1: Find the Scale Factor
-
-[
-k = sqrt(112/1008) = sqrt(1/9) = 1/3
-]
-
-### Step 2: Find the Perimeter of the Small Base
-
-[
-P_small = 2(4 + 2) = 12 cm
-]
-
-### Step 3: Find the Perimeter of the Large Base
-
-[
-P_large = 12 * 3 = 36 cm
-]
+The scale from larger to smaller is 3/12 = 1/4. The smaller height is 6 inches. Its total surface area is $2\pi(3)(6)+2\pi(3^2)=54\pi$, approximately 169.6 square inches.
 
 ## Mixed Exercises
 
@@ -226,8 +131,28 @@ P_large = 12 * 3 = 36 cm
 
 ## Review Notes
 
-* ![](media/) — Image references for similar figure diagrams could not be fully captured.
+* ![Worksheet figure 1](/curriculum/module-6-lesson-8/image1.png)
+![Worksheet figure 2](/curriculum/module-6-lesson-8/image10.png)
+![Worksheet figure 3](/curriculum/module-6-lesson-8/image11.png)
+![Worksheet figure 4](/curriculum/module-6-lesson-8/image12.png)
+![Worksheet figure 5](/curriculum/module-6-lesson-8/image13.png)
+![Worksheet figure 6](/curriculum/module-6-lesson-8/image14.png)
+![Worksheet figure 7](/curriculum/module-6-lesson-8/image15.png)
+![Worksheet figure 8](/curriculum/module-6-lesson-8/image16.png)
+![Worksheet figure 9](/curriculum/module-6-lesson-8/image17.png)
+![Worksheet figure 10](/curriculum/module-6-lesson-8/image18.png)
+![Worksheet figure 11](/curriculum/module-6-lesson-8/image19.png)
+![Worksheet figure 12](/curriculum/module-6-lesson-8/image2.png)
+![Worksheet figure 13](/curriculum/module-6-lesson-8/image20.png)
+![Worksheet figure 14](/curriculum/module-6-lesson-8/image21.png)
+![Worksheet figure 15](/curriculum/module-6-lesson-8/image3.png)
+![Worksheet figure 16](/curriculum/module-6-lesson-8/image4.png)
+![Worksheet figure 17](/curriculum/module-6-lesson-8/image5.png)
+![Worksheet figure 18](/curriculum/module-6-lesson-8/image6.png)
+![Worksheet figure 19](/curriculum/module-6-lesson-8/image7.png)
+![Worksheet figure 20](/curriculum/module-6-lesson-8/image8.png)
+![Worksheet figure 21](/curriculum/module-6-lesson-8/image9.png) — Image references for similar figure diagrams could not be fully captured.
 * Key formulas: If scale factor is k, then area ratio is k^2 and volume ratio is k^3.
-* To find scale factor from areas: k = sqrt(A1/A2).
-* To find scale factor from volumes: k = cube_root(V1/V2).
+* To find scale factor from areas: k = sqrt(A2/A1).
+* To find scale factor from volumes: k = cube_root(V2/V1).
 * When working with similar solids, ALL linear dimensions scale by k, including height, radius, slant height, perimeter, etc.

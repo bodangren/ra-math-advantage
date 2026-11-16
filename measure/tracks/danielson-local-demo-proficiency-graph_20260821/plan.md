@@ -1,0 +1,475 @@
+# Implementation Plan: Danielson Local Demo and Teacher Proficiency Graph
+
+## Implementation Rules
+
+- Follow `apps/danielson/demo-contract.md` and `apps/danielson/reporting-contract.md` after Phase 1 creates or updates them.
+- Apply the Ponytail Rule before each code change.
+- Reuse the existing report, queue, proficiency, authentication, and Convex code.
+- Add no dependency.
+- Add no schema table or index.
+- Add no hash, manifest, registry, ledger, cache, or stored graph layout.
+- Use ASD-STE100 Simplified Technical English for all text.
+- Write or update a failing behavioral test before each implementation change.
+- Do not stage or edit unrelated active work in the monorepo.
+
+## Phase 1: Contract and Schema Definition
+
+- [x] Task: Define the local demo contract. [01d22e15]
+    - [ ] Create `apps/danielson/demo-contract.md`.
+    - [ ] Copy the confirmed organization, account, department, and teacher scenario tables from `spec.md`.
+    - [ ] Define the seed results as `created`, `already_seeded`, and `conflict`.
+    - [ ] Define the stable organization slug as `danielson-school`.
+    - [ ] Define all stable usernames from the specification.
+    - [ ] Require one reference time for all generated dates.
+    - [ ] Require `mustChangePassword: false` for all demo credentials.
+    - [ ] State that the seed is local only and internal only.
+    - [ ] State that native local Convex reset is the only reset process.
+
+- [x] Task: Define the report and graph contract. [01d22e15]
+    - [ ] Update `apps/danielson/reporting-contract.md`.
+    - [ ] Add `priorityTargets` to the current proficiency projection.
+    - [ ] Define each target as `{ rank, skillId, reason }`.
+    - [ ] Limit the list to three targets.
+    - [ ] State that `rankPriorityTargets()` owns the order.
+    - [ ] Define the collapsed graph as one root, four domains, and 22 components.
+    - [ ] Define one expanded component at a time.
+    - [ ] Define the radial layout and node detail fields.
+    - [ ] Define pan, zoom, Fit graph, Reset view, full screen, selection, and expansion.
+    - [ ] Define the accessible detailed list as a required companion view.
+
+- [x] Task: Confirm the minimum persistence boundary. [01d22e15]
+    - [ ] Read `apps/danielson/convex/schema.ts` before editing any Convex file.
+    - [ ] Check for `apps/danielson/convex/_generated/ai/guidelines.md`.
+    - [ ] If the file is absent, run `npx convex ai-files install` from `apps/danielson/`.
+    - [ ] Confirm that the command adds guidance files only. Stop if it changes a dependency.
+    - [ ] Read `apps/danielson/convex/_generated/ai/guidelines.md` before editing Convex code.
+    - [ ] Record in `demo-contract.md` that the current schema is sufficient.
+    - [ ] Do not add a demo table, marker row, layout row, or graph-state row.
+    - [ ] Do not add an index for a seven-teacher fixture.
+    - [ ] If the current schema cannot represent one required scenario, stop and report the exact field or relation that is missing.
+
+- [x] Task: Measure - User Manual Verification 'Contract and Schema Definition' (Protocol in workflow.md). [manual-contract-check]
+    - [ ] Confirm that the account roster has ten accounts and seven teacher profiles.
+    - [ ] Confirm that the scenario list includes new and experienced teachers.
+    - [ ] Confirm that the scenario list includes teachers with and without a PIP.
+    - [ ] Confirm that no new runtime system appears in the contract.
+
+## Phase 2: Test
+
+- [x] Task: Write Red tests for the demo scenario builder. [83035f6d]
+    - [ ] Create `apps/danielson/__tests__/demo/scenarios.red.test.ts`.
+    - [ ] Use a fixed reference time.
+    - [ ] Assert the organization slug and name.
+    - [ ] Assert the ten exact usernames.
+    - [ ] Assert the seven exact teacher profiles.
+    - [ ] Assert the full role matrix.
+    - [ ] Assert Mathematics and Primary School scope.
+    - [ ] Assert the new, developing, experienced, active-PIP, closed-PIP, HOD, and SLT scenarios.
+    - [ ] Assert that all dates follow the required event order.
+    - [ ] Assert that the fixture contains no real school or teacher data.
+
+- [x] Task: Write Red tests for the local seed script. [3046cb1d]
+    - [ ] Create `apps/danielson/__tests__/scripts/seed-demo.red.test.ts`.
+    - [ ] Export small pure helpers from `apps/danielson/scripts/seed-demo.mjs` for tests.
+    - [ ] Assert failure when `DANIELSON_DEMO_PASSWORD` is missing.
+    - [ ] Assert acceptance of `localhost`, `127.0.0.1`, and `::1` Convex URLs.
+    - [ ] Assert rejection of a cloud or production URL.
+    - [ ] Assert that the generated CLI arguments do not contain `--prod`.
+    - [ ] Assert that the password is not present in standard output.
+    - [ ] Assert that each credential gets a unique salt.
+    - [ ] Add regression coverage for `apps/danielson/scripts/seed-admin.mjs` if password hashing moves to a shared app-local helper.
+
+- [x] Task: Write Red Convex tests for demo seeding. [3adbbafc]
+    - [ ] Create `apps/danielson/__tests__/convex/demo.red.test.ts`.
+    - [ ] Use the existing Danielson in-memory Convex test pattern.
+    - [ ] Invoke the real internal mutation handler.
+    - [ ] Assert exact account, role, profile, department, membership, HOD, and coach rows.
+    - [ ] Assert `mustChangePassword: false`.
+    - [ ] Assert a second call returns `already_seeded` and preserves row counts.
+    - [ ] Seed an unrelated organization and assert `conflict` with zero new rows.
+    - [ ] Assert that rated evidence produces observation outcomes, cards, reviews, proficiency, KST, and priority through the existing processor.
+    - [ ] Assert that Not Enough Evidence produces no rating, card, review, or mastery effect.
+    - [ ] Assert the active and closed PIP states.
+    - [ ] Assert the public comment, private comment, and teacher response records.
+    - [ ] Assert the GBF assignment and due skills for Maya Chen.
+
+- [x] Task: Write Red tests for the report priority projection and graph model. [4ca69070]
+    - [ ] Create `apps/danielson/__tests__/reporting/proficiency-graph-model.red.test.ts`.
+    - [ ] Update `apps/danielson/__tests__/reporting/projections.red.test.ts`.
+    - [ ] Assert that `priorityTargets` equals the first three results from `rankPriorityTargets()`.
+    - [ ] Assert target ranks 1, 2, and 3.
+    - [ ] Assert that a collapsed model has 27 nodes and 26 hierarchy edges.
+    - [ ] Assert that one expanded component adds only its direct skill children and edges.
+    - [ ] Assert that selecting another component removes the prior component's skills.
+    - [ ] Assert deterministic positions for equivalent input.
+    - [ ] Assert that no input object is mutated.
+    - [ ] Assert proficiency, due, evidence, and target fields on skill nodes.
+    - [ ] Assert that the graph model contains no comment or response field.
+
+- [x] Task: Write Red component tests for the SVG graph. [eff09f98]
+    - [ ] Create `apps/danielson/__tests__/components/teacher-proficiency-graph.red.test.tsx`.
+    - [ ] Render the component with a representative current proficiency fixture.
+    - [ ] Assert one SVG with a useful accessible name.
+    - [ ] Assert visible Danielson, domain, and component labels.
+    - [ ] Assert that skill nodes are absent before expansion.
+    - [ ] Activate a component with a pointer and with Enter.
+    - [ ] Assert that only its direct skills appear.
+    - [ ] Assert that selecting a skill shows rating, points, due state, due date, overdue days, priority, and evidence link.
+    - [ ] Assert that status text remains present when style classes are ignored.
+    - [ ] Assert that each interactive node has an accessible name.
+    - [ ] Assert visible controls for Zoom in, Zoom out, Fit graph, Reset view, and Full screen.
+    - [ ] Mock `requestFullscreen()` and assert that the control calls it.
+    - [ ] Assert minimum and maximum zoom limits.
+    - [ ] Assert that pointer drag changes only the local SVG transform.
+    - [ ] Assert that graph interaction performs no fetch or Convex call.
+
+- [x] Task: Write Red report integration and privacy tests. [aa554583]
+    - [ ] Update `apps/danielson/__tests__/reporting/independent-review.red.test.tsx` or add one focused report test file.
+    - [ ] Assert that `TeacherReportView` renders the graph for a teacher report.
+    - [ ] Assert that the same component renders for a leadership report.
+    - [ ] Assert that the existing detailed proficiency list remains after the graph.
+    - [ ] Inject sentinel private comment text and assert that it does not enter the graph props, SVG labels, or detail panel.
+    - [ ] Assert that a self-view still has no private-comment property.
+
+- [x] Task: Write Red sales-demo acceptance tests. [83035f6d]
+    - [x] Add a behavioral test that reads the seeded leadership portfolio.
+    - [x] Assert at least one Below Proficient teacher, one Proficient teacher, and one teacher with Not Enough Evidence.
+    - [x] Assert that Noah Williams has three walkthrough targets.
+    - [x] Assert that Ethan Brooks has an active approved PIP.
+    - [x] Assert that Lina Park has a closed successful PIP and one response.
+    - [x] Assert that the HOD and coach see different scoped teacher sets.
+    - [x] Assert that the system administrator cannot read evaluation reports.
+
+- [x] Task: Run and record the Red gate. [red-gate]
+    - [x] Run the new focused test files with `CI=true`.
+    - [x] Confirm that each new behavior failed for the expected missing production seam.
+    - [x] Run Danielson lint and typecheck.
+    - [x] Fix test-only syntax and type errors.
+    - [x] Keep product assertions Red.
+
+- [x] Task: Measure - User Manual Verification 'Test' (Protocol in workflow.md). [verification.md]
+    - [x] Review the test names against every acceptance criterion.
+    - [x] Reject any test that only greps source or checks that a function was called.
+    - [x] Confirm that the tests prove visible output or persisted behavior.
+
+## Phase 3: Implement
+
+- [x] Task: Implement the local credential helper and seed command. [0a578fe8]
+    - [x] Create `apps/danielson/scripts/password-hash.mjs` only because two seed scripts need the same PBKDF2 code.
+    - [x] Move the existing `seed-admin.mjs` hashing behavior to the helper without changing its production result.
+    - [x] Create `apps/danielson/scripts/seed-demo.mjs`.
+    - [x] Read `DANIELSON_DEMO_PASSWORD` and fail when it is missing.
+    - [x] Read `NEXT_PUBLIC_CONVEX_URL` from the process environment or `apps/danielson/.env.local` with `node:fs`.
+    - [x] Parse the URL with the native `URL` class and require a loopback host.
+    - [x] Create one salted credential payload for each stable username.
+    - [x] Call `demo:seedLocalDemo` without `--prod`.
+    - [x] Print the result and username list without the password.
+    - [x] Add `"seed:demo": "node scripts/seed-demo.mjs"` to `apps/danielson/package.json`.
+    - [x] Add `"dev:stack": "convex dev --start 'vinext dev'"` to `apps/danielson/package.json`.
+    - [x] Do not create a second process supervisor.
+
+- [x] Task: Implement the internal Convex demo seed. [6d0e5676]
+    - [x] Create `apps/danielson/convex/demo.ts`.
+    - [x] Add exact argument and return validators.
+    - [x] Keep `seedLocalDemo` as an `internalMutation`.
+    - [x] Check for existing organization data before the first write.
+    - [x] Return `already_seeded` only when the expected organization and account identities exist.
+    - [x] Return `conflict` for unrelated or mismatched data.
+    - [x] Insert the organization, accounts, credentials, roles, profiles, departments, memberships, HOD assignment, and coach assignments.
+    - [x] Insert submitted observation records and comments with the current schema.
+    - [x] Use `processTeacherEvidence()` with `createDanielsonTeacherProficiencyPort()` for rated and Not Enough Evidence events.
+    - [x] Insert the GBF assignment with the current GBF contract.
+    - [x] Insert active and closed PIP data with the current PIP contract.
+    - [x] Keep all writes in the mutation transaction.
+    - [x] Do not add a schema table, index, marker, log, or fixture registry.
+
+- [x] Task: Implement priority targets in the report projection. [87aceb6c]
+    - [x] Update `apps/danielson/lib/reporting/contracts.ts`.
+    - [x] Update `apps/danielson/lib/reporting/projections.ts`.
+    - [x] Import and reuse `rankPriorityTargets()`.
+    - [x] Return only rank, skill ID, and reason for the first three targets.
+    - [x] Update the exact current-proficiency validators in `apps/danielson/convex/reporting.ts`.
+    - [x] Do not add a new Convex query or read.
+
+- [x] Task: Implement the pure radial graph model. [b6dd109e]
+    - [x] Create `apps/danielson/lib/reporting/proficiency-graph.ts`.
+    - [x] Define presentation-only node and edge types.
+    - [x] Put the central node at `(0, 0)`.
+    - [x] Place the four domains at equal angles on the first radius.
+    - [x] Place each domain's components in stable graph order on that domain's outer arc.
+    - [x] Place the selected component's skills on the next outer arc.
+    - [x] Add state, due, target rank, and evidence fields from `CurrentProficiency`.
+    - [x] Compute bounds for Fit graph.
+    - [x] Use no random value, force simulation, browser measurement, or stored coordinate.
+
+- [x] Task: Implement the dynamic SVG component. [97637f7b]
+    - [x] Create `apps/danielson/components/teacher-proficiency-graph.tsx`.
+    - [x] Accept only `CurrentProficiency` as domain data.
+    - [x] Store selected node, expanded component, and view transform in React state.
+    - [x] Render hierarchy edges before nodes.
+    - [x] Render status text in each node label or accessible name.
+    - [x] Render priority ranks 1, 2, and 3.
+    - [x] Use a distinct due border and a text due label.
+    - [x] Clamp zoom to the tested minimum and maximum.
+    - [x] Use pointer capture for drag pan.
+    - [x] Implement wheel zoom around the pointer position.
+    - [x] Implement Zoom in, Zoom out, Fit graph, and Reset view with native buttons.
+    - [x] Use `requestFullscreen()` on the graph container.
+    - [x] Handle missing full-screen support with a clear status message.
+    - [x] Support Enter and Space on interactive nodes.
+    - [x] Keep all interaction local to the component.
+
+- [x] Task: Integrate the graph with the teacher report. [97637f7b]
+    - [x] Import the graph in `apps/danielson/components/teacher-report-view.tsx`.
+    - [x] Render it before the existing Current proficiency details.
+    - [x] Use the same public `currentProficiency` object for teacher and leadership reports.
+    - [x] Keep the existing details and evidence links below the graph.
+    - [x] Do not pass comments, responses, PIP text, or private data to the graph.
+    - [x] Add graph styles to `apps/danielson/app/globals.css`.
+    - [x] Use existing design tokens.
+    - [x] Add a visible focus style.
+    - [x] Add responsive sizing for small screens.
+    - [x] Respect the existing reduced-motion rule.
+
+- [x] Task: Document the local demo. [1060bd8c]
+    - [x] Add `DANIELSON_DEMO_PASSWORD` to `apps/danielson/.env.example` without a value.
+    - [x] Create `apps/danielson/DEMO.md`.
+    - [x] Document `npx convex dev --configure new --dev-deployment local --once` as the one-time local configuration command.
+    - [x] Document `npm run seed:demo`.
+    - [x] Document `npm run dev:stack`.
+    - [x] Document the account roster and role for each account.
+    - [x] Document the native local Convex reset procedure.
+    - [x] Add a ten-minute sales path through login, portfolio, teacher report, full-screen graph, walkthrough queue, and PIP.
+    - [x] State the expected visible result for each step.
+    - [x] Do not write the password value.
+
+- [x] Task: Verify the real local Convex flow. [verification.md]
+    - [x] Configure a new local Convex deployment and clear its existing demo data with the native local import command.
+    - [x] Set `DANIELSON_DEMO_PASSWORD` in the local environment for the verification command.
+    - [x] Run the seed command once and confirm `created`.
+    - [x] Run the seed command again and confirm `already_seeded`.
+    - [x] Start the local stack.
+    - [x] Sign in with the SLT, HOD, and coach sales-call accounts.
+    - [x] Confirm that the SLT, HOD, and coach see the correct navigation and teacher scope.
+    - [x] Confirm that all seven teacher scenarios appear in reports.
+    - [x] Reset the native local deployment and repeat the seed once.
+    - [x] Record only the commands and results in the track verification note. Do not add a seed ledger or screenshot hash.
+
+- [x] Task: Measure - User Manual Verification 'Implement' (Protocol in workflow.md). [verification.md]
+    - [x] Review the leadership portfolio as `demo.slt`.
+    - [x] Review the graph for developing, proficient, active-PIP, and closed-PIP teacher states.
+    - [x] Review public self-access as a leader who also teaches.
+    - [x] Confirm that the result is ready for a sales call.
+
+## Phase 4: Generate Docs and Doctor
+
+- [x] Task: Run the focused and full automated gates. [verification.md]
+    - [x] Run the focused demo, projection, graph, component, and report tests.
+    - [x] Run `CI=true npm run test --workspace=apps/danielson`.
+    - [x] Run Danielson coverage and confirm more than 80 percent coverage overall.
+    - [x] Run `npm run lint --workspace=apps/danielson`.
+    - [x] Run `npx tsc --noEmit --project apps/danielson/tsconfig.json`.
+    - [x] Run `npx tsc -p apps/danielson/convex/tsconfig.json --noEmit`.
+    - [x] Run `npm run build --workspace=apps/danielson`.
+
+- [x] Task: Run generated facts and architecture gates. [verification.md]
+    - [x] Run `npm run generate`.
+    - [x] Inspect generated diffs. Do not include unrelated generated output.
+    - [x] Run `node scripts/check-monorepo-boundaries.mjs`.
+    - [x] Run `node scripts/architecture/check-quality-parity.mjs`.
+    - [x] Run `npm run doctor`.
+    - [x] Run `git diff --check`.
+
+- [x] Task: Run the sales-call manual verification. [verification.md]
+    - [x] Use a desktop viewport.
+    - [x] Use a 390 by 844 narrow viewport.
+    - [x] Complete the ten-minute path in `apps/danielson/DEMO.md`.
+    - [x] Test wheel zoom, zoom buttons, Fit graph, Reset view, and full screen in the browser. Keep pointer-pan verification in the component test because the browser driver did not emit the required pointer sequence.
+    - [x] Complete component expansion and skill selection with a keyboard only.
+    - [x] Confirm visible focus and text status for the tested node states.
+    - [x] Confirm that the detailed report and graph use the same proficiency projection.
+
+- [x] Task: Run an independent final review. [805b8e62]
+    - [x] Review the specification, plan, and changed-file list.
+    - [x] Check Ponytail compliance, seed safety, authorization, privacy, accessibility, layout logic, test quality, and sales-demo usefulness.
+    - [x] Identify and remove unused demo declarations.
+    - [x] Fix the wheel-anchor finding with a focused component test run.
+    - [x] Rerun the component test, lint, and typecheck after the fix.
+    - [x] Attempt a separate read-only reviewer task.
+    - [x] A separate reviewer verified the bounded query design and identified two test gaps. Both gaps now have behavioral coverage.
+
+- [x] Task: Measure - User Manual Verification 'Generate Docs and Doctor' (Protocol in workflow.md). [verification.md]
+    - [x] Keep the local startup commands and demo account list in `apps/danielson/DEMO.md`.
+    - [x] Record the final test, type, lint, build, boundary, and Doctor results.
+    - [x] Record the authenticated sales-demo flow before track closure.
+
+## Stop Conditions
+
+Stop implementation and report the exact issue if any of these conditions
+occurs:
+
+- The feature requires a new dependency.
+- The feature requires a new schema table or index.
+- The seed cannot refuse a non-local target.
+- Existing proficiency processing cannot create coherent demo state.
+- The report projection cannot supply the graph without a second data read.
+- A private field enters the graph contract.
+- The graph cannot remain keyboard-readable with the detailed list present.
+- An unrelated active-track file must change.
+
+## Phase: Review Fixes
+
+- [x] Task: Reconcile seeded attention summaries and report priorities. [a7019238]
+    - [x] Refresh attention summaries after all demo evidence and GBF records exist.
+    - [x] Apply the existing PIP and GBF priority overlays before report ranking.
+    - [x] Add behavioral coverage for seeded summaries and report target alignment.
+
+- [x] Task: Make the demo produce truthful 22-component proficiency states. [a7019238]
+    - [x] Preserve the 22-component completion rule.
+    - [x] Add component-level formal evidence for the experienced demo scenarios.
+    - [x] Use formal component evidence only when skill evidence cannot determine a component state.
+    - [x] Add behavioral coverage for Proficient, Below Proficient, and Not Enough Evidence reports.
+
+- [x] Task: Fix graph accessibility, visible status, and view transforms. [a7019238]
+    - [x] Preserve interactive SVG node roles in the accessibility tree.
+    - [x] Show state text and priority details without selection or color.
+    - [x] Convert wheel coordinates to view-box units.
+    - [x] Add wheel, zoom-limit, Fit graph, Reset view, and bounded-label coverage.
+
+- [x] Task: Fix seed setup and remove installer residue. [a7019238]
+    - [x] Load the documented local password configuration.
+    - [x] Return a failing process status for seed conflicts and preserve the reason.
+    - [x] Remove generated installer residue and mismatched audit-only guidance.
+
+- [x] Task: Run and record the review-fix gates. [a7019238]
+    - [x] Run focused and full Danielson tests.
+    - [x] Run lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
+    - [x] Record the review-fix verification and update the task hashes.
+
+## Phase: Second Review Fixes
+
+- [x] Task: Bound formal evidence reads and project effective evidence consistently. [0b714d84]
+    - [x] Read only the formal records required by the portfolio projection.
+    - [x] Select the latest effective rated component evidence by school year and event time.
+    - [x] Apply amendments consistently in the portfolio and teacher report.
+
+- [x] Task: Detect incomplete legacy demo data. [0b714d84]
+    - [x] Validate corrected summaries and formal component evidence in the existing-seed check.
+    - [x] Return a clear reset-required conflict without modifying old data.
+
+- [x] Task: Correct graph screen transforms and due text. [0b714d84]
+    - [x] Convert pointer and drag coordinates through the inverse screen transform matrix.
+    - [x] Include due state in visible node text and accessible names.
+    - [x] Add behavioral coverage for letterboxed wheel zoom, drag pan, and due labels.
+
+- [x] Task: Add database-backed sales acceptance coverage. [0b714d84]
+    - [x] Seed the in-memory database through the real demo mutation.
+    - [x] Read the real portfolio, queue, and teacher report handlers.
+    - [x] Assert the required teacher states, targets, scopes, PIP, GBF, and response outcomes.
+
+- [x] Task: Replace the custom environment parser and run second-review gates. [0b714d84]
+    - [x] Use the supported Node dotenv parser for `.env.local` values.
+    - [x] Run focused and full Danielson tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
+    - [x] Record the results and task hashes.
+
+## Phase: Portfolio Evidence Read Corrections
+
+- [x] Task: Record the portfolio evidence read correction requirements. [7a8f8f1f]
+    - [x] Use a constant number of formal-evidence queries.
+    - [x] Keep query count independent of teacher count.
+    - [x] Prevent drafts from consuming the submitted-record limit.
+    - [x] Keep older rated component evidence until newer rated evidence replaces it.
+    - [x] Use the same effective component evidence in the portfolio and teacher report.
+    - [x] Return `portfolio_capacity_exceeded` without partial proficiency data at capacity.
+
+- [x] Task: Add failing regression coverage for batched portfolio evidence reads. [1784c2a8]
+    - [x] Assert two formal-record queries and one amendment query for any teacher count.
+    - [x] Assert drafts cannot hide submitted evidence.
+    - [x] Assert evidence remains active across more than four formal records.
+    - [x] Assert amendments remain effective and preserve the original source record.
+    - [x] Assert capacity failure returns no partial portfolio page.
+
+- [x] Task: Batch the portfolio formal evidence reads. [a2fe2ffc]
+    - [x] Add only the required organization/status/type/school-year observation index.
+    - [x] Read submitted Q1 records, submitted Q4 records, and organization amendments in three bounded queries.
+    - [x] Group records and amendments in memory and reuse the existing effective evidence projection.
+    - [x] Return `portfolio_capacity_exceeded` before row assembly when either bound is exceeded.
+
+- [x] Task: Prevent pre-hydration sign-in data from entering the URL. [26a71d5b]
+    - [x] Set the native login form method to POST.
+    - [x] Add a focused component regression test.
+
+- [x] Task: Correct the local reset instructions. [verification.md]
+    - [x] Add the required project name to the one-time setup command.
+    - [x] Document the tested local-only Convex import reset.
+    - [x] Do not add a reset script or database mutation.
+
+- [x] Task: Run the correction gates and verify the local flow. [verification.md]
+    - [x] Run focused red and green tests, full tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
+    - [x] Verify the local browser portfolio and report flow at desktop and narrow viewports.
+    - [x] Record actual test totals and the authenticated browser result.
+    - [x] Complete an independent review of query count, evidence consistency, capacity handling, and scope limits.
+
+## Phase: Pilot Account Sign-in Correction
+
+- [x] Task: Show pilot account credentials on the local login page. [4b6438f3]
+    - [x] Reuse the existing demo username list.
+    - [x] Read the shared password from the server environment.
+    - [x] Show the pilot account panel only for a local Convex deployment.
+    - [x] Keep the standard login form unchanged.
+    - [x] Add behavioral tests for the local and hosted deployment cases.
+
+- [x] Task: Verify and close the correction. [verification.md]
+    - [x] Run the focused tests.
+    - [x] Run Danielson lint and TypeScript.
+    - [x] Verify the local login page in the in-app browser.
+    - [x] Run Measure Doctor and `git diff --check`.
+
+## Phase: Visible Proficiency Data Correction
+
+- [x] Task: Show the proficiency values that produce each graph state. [b7eee13e]
+    - [x] Preserve a component rating, points, and evidence source when formal evidence supplies the current component state.
+    - [x] Keep skill ratings and points on expanded skill nodes.
+    - [x] Show rating and point text on graph nodes that have a rating.
+    - [x] Include rating and point text in each rated node's accessible name.
+    - [x] Show rating, points, and evidence in the selected-node details.
+    - [x] Do not average ratings for domain or framework nodes.
+    - [x] Add behavioral projection, model, component, and Convex return-validator tests.
+
+- [x] Task: Verify and close the visible proficiency correction. [verification.md]
+    - [x] Run focused and full Danielson tests.
+    - [x] Run Danielson lint, app TypeScript, and Convex TypeScript.
+    - [x] Push the updated Convex functions to the local deployment.
+    - [x] Verify component and skill values in the in-app browser.
+    - [x] Run the Danielson build, Measure Doctor, and `git diff --check`.
+
+## Phase: Graph Score and Color Correction
+
+- [x] Task: Show one scored color inside each rated graph node. [daebb94b]
+    - [x] Add behavioral tests for skill, component, domain, and framework scores.
+    - [x] Exclude missing evidence from each mean.
+    - [x] Round each displayed score to one decimal place.
+    - [x] Add red, yellow, green, blue, and neutral node styles.
+    - [x] Show the score inside the node and in its accessible name.
+    - [x] Keep state text visible.
+    - [x] Add a score legend.
+
+- [x] Task: Verify the corrected graph in the local application. [verification.md]
+    - [x] Run focused and full Danielson tests.
+    - [x] Run Danielson lint, app TypeScript, and Convex TypeScript.
+    - [x] Run the Danielson build and Measure Doctor.
+    - [x] Verify a developing teacher and an experienced teacher in the in-app browser.
+    - [x] Leave the browser on a page that shows scored graph nodes.
+
+## Phase: Colored Legend Correction
+
+- [x] Task: Color the proficiency legend swatches. [556d3023]
+    - [x] Add a regression test for the swatch background colors.
+    - [x] Use the existing score colors for the HTML swatches.
+    - [x] Keep the legend text and neutral state.
+
+- [x] Task: Verify and close the correction. [verification.md]
+    - [x] Run the focused graph test.
+    - [x] Run Danielson lint and TypeScript.
+    - [x] Verify the legend in the in-app browser.
+    - [x] Run Measure Doctor and `git diff --check`.

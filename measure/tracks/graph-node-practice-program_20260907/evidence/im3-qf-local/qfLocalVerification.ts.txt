@@ -1,0 +1,214 @@
+import { practiceSubmissionEnvelopeSchema } from "@math-platform/practice-core";
+import { v } from "convex/values";
+import { internalMutation, internalQuery } from "./_generated/server";
+import type { Id } from "./_generated/dataModel";
+import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
+import {
+  createServerOwnedSubmissionHandler,
+  startQuadraticFormulaAttemptHandler,
+} from "./activities";
+import { upsertIm3QuadraticFormulaDrafts } from "./seed/seed_lesson_1_6";
+import {
+  gradeServerOwnedSubmission,
+  IM3_QF_DRAFT_MAPPINGS,
+  IM3_QF_VARIANT_SCHEDULES,
+  quadraticFormulaVariantKey,
+  quadraticFormulaPublicProps,
+} from "../lib/activities/server-grading";
+import { generateQuadraticFormula } from "@math-platform/math-content";
+
+const modeValidator = v.union(v.literal("guided_practice"), v.literal("independent_practice"));
+const anyResult = v.any();
+
+export const seed = internalMutation({
+  args: {},
+  returns: anyResult,
+  handler: async (ctx) => {
+    const now = 1_800_000_000_000;
+    const organizationId = await ctx.db.insert("organizations", {
+      name: "QF local transaction verification",
+      slug: `qf-local-${now}`,
+      createdAt: now,
+      updatedAt: now,
+    });
+    const learnerIds: Id<"profiles">[] = [];
+    for (let index = 1; index <= 3; index++) {
+      const username = `qf-local-student-${index}-${now}`;
+      const profileId = await ctx.db.insert("profiles", {
+        organizationId,
+        username,
+        role: "student",
+        displayName: `QF Local Student ${index}`,
+        createdAt: now + index,
+        updatedAt: now + index,
+      });
+      await ctx.db.insert("auth_credentials", {
+        profileId,
+        username,
+        role: "student",
+        organizationId,
+        passwordHash: "local-only-not-exported",
+        passwordSalt: "local-only-not-exported",
+        passwordHashIterations: 1,
+        isActive: true,
+        createdAt: now + index,
+        updatedAt: now + index,
+      });
+      learnerIds.push(profileId);
+    }
+    await upsertIm3QuadraticFormulaDrafts(ctx, now + 10);
+    const activityIds = {} as Record<string, Id<"activities">>;
+    for (const mode of ["guided_practice", "independent_practice"] as const) {
+      const activity = await ctx.db.query("activities")
+        .withIndex("by_stable_activity_id", q => q.eq("stableActivityId", IM3_QF_DRAFT_MAPPINGS[mode].stableActivityId))
+        .unique();
+      if (!activity) throw new Error(`Missing ${mode} activity`);
+      const items = await ctx.db.query("practice_items").withIndex("by_activityId", q => q.eq("activityId", activity._id)).collect();
+      if (items.length !== 1 || items[0].variantKey !== IM3_QF_DRAFT_MAPPINGS[mode].stableActivityId)
+        throw new Error(`Expected canonical-only ${mode} seed state`);
+      activityIds[mode] = activity._id;
+    }
+    return { learnerIds, activityIds };
+  },
+});
+
+export const makeEnvelope = internalQuery({
+  args: { pendingSubmissionId: v.id("activity_submissions"), timing: v.boolean() },
+  returns: anyResult,
+  handler: async (ctx, args) => {
+    const row = await ctx.db.get(args.pendingSubmissionId);
+    if (!row || row.submissionData.status !== "draft" || !row.allocatedVariantKey)
+      throw new Error("Missing pending row");
+    const variant = await ctx.db.query("practice_variants")
+      .withIndex("by_variantKey", q => q.eq("variantKey", row.allocatedVariantKey!)).unique();
+    const metadata = variant?.metadata as { seed?: unknown } | undefined;
+    if (!variant || !Number.isSafeInteger(metadata?.seed)) throw new Error("Missing private seed");
+    const problem = generateQuadraticFormula({ seed: metadata!.seed as number });
+    const [x1, x2 = ""] = problem.roots.map(root => root.value);
+    const answers = { discriminant: problem.discriminant, x1, x2 };
+    return {
+      idempotencyKey: row.idempotencyKey,
+      pendingSubmissionId: row._id,
+      activityId: row.activityId,
+      submissionData: {
+        contractVersion: "practice.v1",
+        activityId: String(row.activityId),
+        mode: row.submissionData.mode,
+        status: "submitted",
+        attemptNumber: row.attemptOrdinal,
+        submittedAt: "2027-01-15T00:00:00.000Z",
+        answers,
+        parts: Object.entries(answers).map(([partId, rawAnswer]) => ({
+          partId, rawAnswer, hintsUsed: 0, revealStepsSeen: 0, changedCount: 0,
+        })),
+        ...(args.timing ? { timing: {
+          startedAt: "2027-01-15T00:00:00.000Z",
+          submittedAt: "2027-01-15T00:00:05.000Z",
+          wallClockMs: 5000, activeMs: 4800, idleMs: 200, pauseCount: 0,
+          focusLossCount: 0, visibilityHiddenCount: 0, longestIdleMs: 200,
+          confidence: "high", confidenceReasons: [],
+        } } : {}),
+      },
+    };
+  },
+});
+
+export const insertLegacyFinal = internalMutation({
+  args: { learnerId: v.id("profiles"), activityId: v.id("activities"), mode: modeValidator, key: v.string() },
+  returns: anyResult,
+  handler: async (ctx, args) => {
+    const activity = await ctx.db.get(args.activityId);
+    if (!activity) throw new Error("Missing activity");
+    const seed = IM3_QF_DRAFT_MAPPINGS[args.mode].seed;
+    const problem = generateQuadraticFormula({ seed });
+    const [x1, x2 = ""] = problem.roots.map(root => root.value);
+    const answers = { discriminant: problem.discriminant, x1, x2 };
+    const request = {
+      contractVersion: "practice.v1" as const,
+      activityId: String(activity._id) as `activities:${string}`,
+      mode: args.mode,
+      status: "submitted" as const,
+      attemptNumber: 1,
+      submittedAt: "2027-01-14T00:00:00.000Z",
+      answers,
+      parts: Object.entries(answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer })),
+    };
+    const graded = gradeServerOwnedSubmission({
+      id: String(activity._id), stableActivityId: activity.stableActivityId,
+      masteryNodeId: activity.masteryNodeId, componentKey: activity.componentKey,
+      srsEligible: activity.srsEligible, props: quadraticFormulaPublicProps(args.mode, seed),
+      gradingConfig: activity.gradingConfig, privateGenerator: { generatorKey: "quadratic-formula", seed },
+    }, practiceSubmissionEnvelopeSchema.parse(request));
+    const now = 1_800_000_001_000;
+    const submissionId = await ctx.db.insert("activity_submissions", {
+      userId: args.learnerId, activityId: args.activityId,
+      submissionData: graded.submissionData, attemptOrdinal: 1,
+      idempotencyKey: args.key, score: graded.score, maxScore: graded.maxScore,
+      gradedAt: now, submittedAt: now, createdAt: now, updatedAt: now,
+    });
+    return { submissionId, request, idempotencyKey: args.key, score: graded.score, maxScore: graded.maxScore };
+  },
+});
+
+export const rollbackStart = internalMutation({
+  args: { learnerId: v.id("profiles"), activityId: v.id("activities"), mode: modeValidator },
+  returns: anyResult,
+  handler: async (ctx, args) => {
+    const before = await ctx.db.query("activity_submissions").withIndex("by_user_and_activity", q => q.eq("userId", args.learnerId).eq("activityId", args.activityId)).collect();
+    const beforeItems = await ctx.db.query("practice_items").withIndex("by_activityId", q => q.eq("activityId", args.activityId)).collect();
+    const beforeKeys = new Set(beforeItems.map(item => item.variantKey));
+    const result = await startQuadraticFormulaAttemptHandler(ctx, { userId: args.learnerId, activityId: args.activityId, mode: args.mode });
+    const after = await ctx.db.query("activity_submissions").withIndex("by_user_and_activity", q => q.eq("userId", args.learnerId).eq("activityId", args.activityId)).collect();
+    if (result.state !== "pending" || after.length !== before.length + 1) throw new Error("Rollback Start did not write pending row");
+    const pending = await ctx.db.get(result.pendingSubmissionId);
+    if (!pending?.allocatedVariantKey || beforeKeys.has(pending.allocatedVariantKey)) throw new Error("Rollback Start did not select a new relation");
+    const items = await ctx.db.query("practice_items").withIndex("by_variantKey", q => q.eq("variantKey", pending.allocatedVariantKey!)).collect();
+    const variants = await ctx.db.query("practice_variants").withIndex("by_variantKey", q => q.eq("variantKey", pending.allocatedVariantKey!)).collect();
+    if (items.length !== 1 || variants.length !== 1 || items[0].activityId !== args.activityId) throw new Error("Rollback Start did not create the exact relation");
+    throw new Error("qf_local_start_then_rollback");
+  },
+});
+
+export const rollbackFinal = internalMutation({
+  args: {
+    learnerId: v.id("profiles"), activityId: v.id("activities"),
+    pendingSubmissionId: v.id("activity_submissions"), idempotencyKey: v.string(),
+    submissionData: practiceSubmissionEnvelopeValidator,
+  },
+  returns: anyResult,
+  handler: async (ctx, args) => {
+    await createServerOwnedSubmissionHandler(ctx, {
+      userId: args.learnerId, activityId: args.activityId,
+      pendingSubmissionId: args.pendingSubmissionId,
+      idempotencyKey: args.idempotencyKey,
+      submissionData: args.submissionData as never,
+    });
+    const row = await ctx.db.get(args.pendingSubmissionId);
+    if (!row || row.submissionData.status !== "graded") throw new Error("Rollback final did not grade");
+    throw new Error("qf_local_final_then_rollback");
+  },
+});
+
+export const rerunQfUpsert = internalMutation({
+  args: {}, returns: v.null(),
+  handler: async (ctx) => { await upsertIm3QuadraticFormulaDrafts(ctx, 1_800_000_002_000); return null; },
+});
+
+export const snapshot = internalQuery({
+  args: { learnerIds: v.array(v.id("profiles")), activityIds: v.array(v.id("activities")) },
+  returns: anyResult,
+  handler: async (ctx, args) => {
+    const activities = (await Promise.all(args.activityIds.map(id => ctx.db.get(id)))).filter(Boolean);
+    const items = (await Promise.all(args.activityIds.map(id => ctx.db.query("practice_items").withIndex("by_activityId", q => q.eq("activityId", id)).collect()))).flat();
+    const variantKeys = (["guided_practice", "independent_practice"] as const).flatMap(mode => IM3_QF_VARIANT_SCHEDULES[mode].map((_, index) => quadraticFormulaVariantKey(mode, index)));
+    const variants = (await Promise.all(variantKeys.map(key => ctx.db.query("practice_variants").withIndex("by_variantKey", q => q.eq("variantKey", key)).collect()))).flat();
+    const submissions = (await Promise.all(args.learnerIds.flatMap(userId => args.activityIds.map(activityId => ctx.db.query("activity_submissions").withIndex("by_user_and_activity", q => q.eq("userId", userId).eq("activityId", activityId)).collect())))).flat();
+    const evidence = (await Promise.all(args.learnerIds.map(id => ctx.db.query("learning_evidence").withIndex("by_learner_and_node", q => q.eq("learnerId", id)).collect()))).flat();
+    const receipts = (await Promise.all(args.learnerIds.map(id => ctx.db.query("learning_evidence_receipts").withIndex("by_learner_and_submission_id", q => q.eq("learnerId", id)).collect()))).flat();
+    const cards = (await Promise.all(args.learnerIds.map(id => ctx.db.query("srs_cards").withIndex("by_student", q => q.eq("studentId", id)).collect()))).flat();
+    const reviews = (await Promise.all(args.learnerIds.map(id => ctx.db.query("srs_review_log").withIndex("by_student", q => q.eq("studentId", id)).collect()))).flat();
+    const scheduled = await ctx.db.system.query("_scheduled_functions").collect();
+    const byId = <T extends { _id: unknown }>(rows: T[]) => rows.sort((a, b) => String(a._id).localeCompare(String(b._id)));
+    return { activities: byId(activities as never[]), variants: byId(variants), items: byId(items), submissions: byId(submissions), evidence: byId(evidence), receipts: byId(receipts), cards: byId(cards), reviews: byId(reviews), scheduled: byId(scheduled) };
+  },
+});

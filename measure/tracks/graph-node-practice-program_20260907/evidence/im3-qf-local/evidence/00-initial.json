@@ -1,0 +1,131 @@
+{
+  "activities": [
+    {
+      "_creationTime": 1788917161730.8945,
+      "_id": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "approval": {
+        "status": "unreviewed"
+      },
+      "componentKey": "quadratic-formula",
+      "createdAt": 1800000000010,
+      "description": "Solve a generated quadratic equation by using the Quadratic Formula.",
+      "displayName": "Independent quadratic-formula practice",
+      "gradingConfig": {
+        "autoGrade": true,
+        "partIds": [
+          "discriminant",
+          "x1",
+          "x2"
+        ],
+        "partialCredit": true,
+        "passingScore": 3
+      },
+      "masteryNodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "props": {
+        "equation": "x^2 - 2x - 6",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "srsEligible": false,
+      "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice",
+      "updatedAt": 1800000000010
+    },
+    {
+      "_creationTime": 1788917161730.8938,
+      "_id": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "approval": {
+        "status": "unreviewed"
+      },
+      "componentKey": "quadratic-formula",
+      "createdAt": 1800000000010,
+      "description": "Solve a generated quadratic equation by using the Quadratic Formula.",
+      "displayName": "Guided quadratic-formula practice",
+      "gradingConfig": {
+        "autoGrade": true,
+        "partIds": [
+          "discriminant",
+          "x1",
+          "x2"
+        ],
+        "partialCredit": true,
+        "passingScore": 3
+      },
+      "masteryNodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b\u00b2 - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "srsEligible": false,
+      "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice",
+      "updatedAt": 1800000000010
+    }
+  ],
+  "cards": [],
+  "evidence": [],
+  "items": [
+    {
+      "_creationTime": 1788917161730.895,
+      "_id": "n978cmyyjtdxr0jfej948bjzr58e3ngg",
+      "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice:seed-2",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice",
+      "variantLabel": "Seed 2"
+    },
+    {
+      "_creationTime": 1788917161730.8943,
+      "_id": "n9799smfxzeb0vdn2d8mcpcm5h8e34pn",
+      "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+      "practiceItemId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice:seed-1",
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice",
+      "variantLabel": "Seed 1"
+    }
+  ],
+  "receipts": [],
+  "reviews": [],
+  "scheduled": [],
+  "submissions": [],
+  "variants": [
+    {
+      "_creationTime": 1788917161730.894,
+      "_id": "nh73ah5k5cmshtznf75a6mp11s8e2ahk",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Guided quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "guided_practice",
+        "seed": 1,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice"
+    },
+    {
+      "_creationTime": 1788917161730.8948,
+      "_id": "nh78600jxwpkxsyda2js8fa2q58e33zp",
+      "componentKey": "quadratic-formula",
+      "description": "A draft generated quadratic-formula variant.",
+      "difficulty": "standard",
+      "displayName": "Independent quadratic-formula practice",
+      "metadata": {
+        "generatorKey": "quadratic-formula",
+        "mode": "independent_practice",
+        "seed": 2,
+        "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice"
+      },
+      "objectiveIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "variantKey": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice"
+    }
+  ]
+}

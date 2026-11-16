@@ -41,37 +41,23 @@ When given a diagram with overlapping triangles, look for:
 
 ## Example 1 — Determine Triangle Similarity
 
-### Step 1: Identify Given Angle Relationships
+### Problem
 
-Look for angles that are congruent based on given information (shared angles, vertical angles, right angles, or parallel line angle relationships).
+Triangle ABC has angles A = 40 degrees and B = 60 degrees. Triangle DEF has angles D = 40 degrees and E = 60 degrees. Determine whether the triangles are similar.
 
-### Step 2: Apply the AA Similarity Postulate
+### Solution
 
-If two angles of one triangle are congruent to two angles of another triangle, conclude the triangles are similar and write the similarity statement.
+Two corresponding angle pairs are congruent. Therefore triangle ABC is similar to triangle DEF by AA similarity. Each remaining angle is 180 - 40 - 60 = 80 degrees.
 
 ## Example 2 — Indirect Measurement with AA Similarity
 
-Use similar triangles to find distances that cannot be measured directly.
+### Problem
 
-### Step 1: Set Up the Proportion
+On level ground at the same time, a vertical tower casts a 100 ft shadow. Lia is 4 ft 6 in tall and casts a 3 ft 4 in shadow. Find the tower height.
 
-**CELL TOWERS (Problem 7):** Tower shadow = 100 ft, Lia's shadow = 3 ft 4 in (3.33 ft), Lia's height = 4 ft 6 in (4.5 ft).
+### Solution
 
-The tower and Lia form similar triangles with their shadows:
-[
-\frac{tower\ height}{tower\ shadow} = \frac{Lia's\ height}{Lia's\ shadow}
-]
-[
-\frac{h}{100} = \frac{4.5}{3.33}
-]
-
-### Step 2: Solve for the Unknown
-
-[
-h = \frac{4.5 \times 100}{3.33} ≈ 135\ ft
-]
-
-**LIGHTHOUSE (Problem 8):** Maya's shadow coincides with the lighthouse shadow. Use the similar triangles formed by each object and its shadow to find distances [x] and [y].
+The vertical objects form right angles with the ground. Parallel sunlight gives equal acute angles, so the triangles are similar by AA. Convert exactly: Lia's height is $9/2$ ft and her shadow is $10/3$ ft. Then $h/100 = (9/2)/(10/3) = 27/20$, so $h = 135$ ft. Do not round the shadow to 3.33 ft before calculation.
 
 ## Mixed Exercises
 
@@ -89,20 +75,20 @@ The mixed exercises section provides practice with all skills from the lesson. P
 ## Review Notes
 
 * Images referenced in the worksheet (triangle pairs for problems 1–6, cell tower diagram for problem 7, lighthouse diagram for problem 8, triangle figures for problems 9–12, pentagon/star figure for problem 13, triangle figure for problem 14, perpendicular line figure for problem 15) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
-* ![](media/image1.png) — Triangle pair for problem 1
-* ![](media/image2.png) — Triangle pair for problem 2
-* ![](media/image3.png) — Triangle pair for problem 3
-* ![](media/image4.png) — Triangle pair for problem 4
-* ![](media/image5.png) — Triangle pair for problem 5
-* ![](media/image6.png) — Triangle pair for problem 6
-* ![](media/image7.png) — Cell tower diagram for problem 7
-* ![](media/image8.png) — Triangle for problem 9
-* ![](media/image9.png) — Triangle for problem 10
-* ![](media/image10.png) — Triangle for problem 11
-* ![](media/image11.png) — Triangle for problem 12
-* ![](media/image12.png) — Triangle for problem 12 (continued)
-* ![](media/image13.png) — Pentagon/star figure for problem 13
-* ![](media/image14.png) — Triangle figure for problem 14
+* ![Worksheet figure 1](/curriculum/module-3-lesson-3/image1.png) — Triangle pair for problem 1
+* ![Worksheet figure 2](/curriculum/module-3-lesson-3/image2.png) — Triangle pair for problem 2
+* ![Worksheet figure 3](/curriculum/module-3-lesson-3/image3.png) — Triangle pair for problem 3
+* ![Worksheet figure 4](/curriculum/module-3-lesson-3/image4.png) — Triangle pair for problem 4
+* ![Worksheet figure 5](/curriculum/module-3-lesson-3/image5.png) — Triangle pair for problem 5
+* ![Worksheet figure 6](/curriculum/module-3-lesson-3/image6.png) — Triangle pair for problem 6
+* ![Worksheet figure 7](/curriculum/module-3-lesson-3/image7.png) — Cell tower diagram for problem 7
+* ![Worksheet figure 8](/curriculum/module-3-lesson-3/image8.png) — Triangle for problem 9
+* ![Worksheet figure 9](/curriculum/module-3-lesson-3/image9.png) — Triangle for problem 10
+* ![Worksheet figure 10](/curriculum/module-3-lesson-3/image10.png) — Triangle for problem 11
+* ![Worksheet figure 11](/curriculum/module-3-lesson-3/image11.png) — Triangle for problem 12
+* ![Worksheet figure 12](/curriculum/module-3-lesson-3/image12.png) — Triangle for problem 12 (continued)
+* ![Worksheet figure 13](/curriculum/module-3-lesson-3/image13.png) — Pentagon/star figure for problem 13
+* ![Worksheet figure 14](/curriculum/module-3-lesson-3/image14.png) — Triangle figure for problem 14
 * The worksheet contains 15 practice problems across two examples and mixed exercises.
 
 (End of file - total 137 lines)

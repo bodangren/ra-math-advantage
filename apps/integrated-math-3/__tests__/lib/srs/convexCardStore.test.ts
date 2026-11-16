@@ -55,14 +55,14 @@ describe('ConvexCardStore.saveCardAndReview', () => {
       cardId: 'card-1',
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
-      stability: 5,
-      difficulty: 4,
+      variantKey: 'pf-1',
+      stability: 6,
+      difficulty: 3.5,
       state: 'review',
       dueDate: '2026-04-16T12:00:00.000Z',
       elapsedDays: 5,
       scheduledDays: 5,
-      reps: 5,
+      reps: 6,
       lapses: 0,
       lastReview: '2026-04-16T12:00:00.000Z',
       createdAt: '2026-04-16T12:00:00.000Z',
@@ -82,10 +82,11 @@ describe('ConvexCardStore.saveCardAndReview', () => {
       },
       stateBefore: { stability: 5, difficulty: 4, state: 'review', reps: 5, lapses: 0 },
       stateAfter: { stability: 6, difficulty: 3.5, state: 'review', reps: 6, lapses: 0 },
+      paramsVersion: 'fsrs-defaults.ts-fsrs.v5.4.1',
       reviewedAt: '2026-04-16T12:00:00.000Z',
     };
 
-    await store.saveCardAndReview(card, reviewLog);
+    const persisted = await store.saveCardAndReview(card, reviewLog);
 
     // Should NOT use runMutation - direct DB access for atomicity
     expect(mockRunMutation).not.toHaveBeenCalled();
@@ -93,6 +94,10 @@ describe('ConvexCardStore.saveCardAndReview', () => {
     expect(mockInsert).toHaveBeenCalledTimes(2);
     expect(mockInsert).toHaveBeenNthCalledWith(1, 'srs_cards', expect.any(Object));
     expect(mockInsert).toHaveBeenNthCalledWith(2, 'srs_review_log', expect.any(Object));
+    expect(mockInsert.mock.calls[1]?.[1]).toEqual(expect.objectContaining({
+      paramsVersion: 'fsrs-defaults.ts-fsrs.v5.4.1',
+    }));
+    expect(persisted).toEqual({ cardId: 'card-doc-1' });
   });
 
   it('replaces existing card and inserts review log atomically', async () => {
@@ -100,7 +105,7 @@ describe('ConvexCardStore.saveCardAndReview', () => {
       _id: 'card-doc-1' as Id<'srs_cards'>,
       studentId: 'student-1' as Id<'profiles'>,
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       stability: 3,
       difficulty: 5,
       state: 'learning' as const,
@@ -137,15 +142,15 @@ describe('ConvexCardStore.saveCardAndReview', () => {
       cardId: 'card-1',
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       stability: 5,
       difficulty: 4,
       state: 'review',
       dueDate: '2026-04-16T12:00:00.000Z',
       elapsedDays: 5,
       scheduledDays: 5,
-      reps: 5,
-      lapses: 0,
+      reps: 3,
+      lapses: 1,
       lastReview: '2026-04-16T12:00:00.000Z',
       createdAt: '2026-04-16T12:00:00.000Z',
       updatedAt: '2026-04-16T12:00:00.000Z',
@@ -164,6 +169,7 @@ describe('ConvexCardStore.saveCardAndReview', () => {
       },
       stateBefore: { stability: 3, difficulty: 5, state: 'learning', reps: 2, lapses: 1 },
       stateAfter: { stability: 5, difficulty: 4, state: 'review', reps: 3, lapses: 1 },
+      paramsVersion: 'fsrs-params.math.im3.secondary.v2',
       reviewedAt: '2026-04-16T12:00:00.000Z',
     };
 

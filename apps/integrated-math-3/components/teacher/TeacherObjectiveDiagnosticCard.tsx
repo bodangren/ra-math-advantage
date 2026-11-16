@@ -120,11 +120,11 @@ export function TeacherObjectiveDiagnosticCard({ view }: TeacherObjectiveDiagnos
           <div className="flex flex-wrap gap-2">
             {view.problemFamilyDetails.map((family) => (
               <span
-                key={family.problemFamilyId}
+                key={family.variantKey}
                 className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border border-border bg-background text-xs text-foreground"
                 title={`Sample count: ${family.baselineSampleCount}`}
               >
-                <span className="font-mono">{family.problemFamilyId}</span>
+                <span className="font-mono">{family.variantKey}</span>
                 {family.baselineSampleCount === 0 && (
                   <span className="text-orange-600">*</span>
                 )}

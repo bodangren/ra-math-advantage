@@ -3,9 +3,10 @@
 import type { Components } from 'react-markdown';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 import { cn } from '../lib/cn';
-import { MathBlock } from './MathBlock';
-import { MathInline } from './MathInline';
 import { parseMathSegments } from '../lib/parse-math-segments';
 
 export interface MarkdownRendererProps {
@@ -89,27 +90,18 @@ const mdComponents: Components = {
  * All other content is rendered via react-markdown with GFM support.
  */
 export function MarkdownRenderer({ content, className }: MarkdownRendererProps) {
-  const segments = parseMathSegments(content);
-
+  // Normalize legacy delimiters while preserving one Markdown document.
+  // Splitting at inline math breaks paragraphs, lists, and table cells.
+  const markdown = parseMathSegments(content).map(segment => {
+    if (segment.type === 'block-math') return `\n$$\n${segment.content}\n$$\n`;
+    if (segment.type === 'inline-math') return `$${segment.content}$`;
+    return segment.content;
+  }).join('');
   return (
     <div className={cn(PROSE_CLASSES, className)}>
-      {segments.map((segment, index) => {
-        if (segment.type === 'block-math') {
-          return <MathBlock key={index} math={segment.content} />;
-        }
-        if (segment.type === 'inline-math') {
-          return <MathInline key={index} math={segment.content} />;
-        }
-        return (
-          <ReactMarkdown
-            key={index}
-            remarkPlugins={[remarkGfm]}
-            components={mdComponents}
-          >
-            {segment.content}
-          </ReactMarkdown>
-        );
-      })}
+      <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]} components={mdComponents}>
+        {markdown}
+      </ReactMarkdown>
     </div>
   );
 }

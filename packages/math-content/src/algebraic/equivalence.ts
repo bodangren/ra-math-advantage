@@ -24,8 +24,8 @@ export function normalizeExpression(expr: string): string {
     .toLowerCase()
     .replace(/\s+/g, '')
     .replace(/\++/g, '+')
-    .replace(/-+/g, '-')
-    .replace(/\*/g, '')
+    .replace(/-+/g, (signs) => signs.length % 2 === 0 ? '+' : '-')
+    .replace(/(?<=[0-9)])\*(?=[a-z(])/g, '')
     .replace(/\(\+/g, '(')
     .replace(/\(-/g, '(-')
     .replace(/(^|\+)1x/g, '$1x')
@@ -102,7 +102,7 @@ function checkPolynomialEquivalence(expr1: string, expr2: string): boolean {
  * @returns {string} - Expanded polynomial string, or input if not expandable
  */
 function expandPolynomial(expr: string): string {
-  const perfectSquarePattern = /\(x([+-])(\d*\.?\d*)\)\^2/;
+  const perfectSquarePattern = /^(?:\(x([+-])(\d*\.?\d*)\)\^2)$/;
   const psMatch = expr.match(perfectSquarePattern);
   if (psMatch) {
     const sign = psMatch[1];
@@ -123,7 +123,7 @@ function expandPolynomial(expr: string): string {
     return `x^2${sumStr}${productStr}`;
   }
 
-  const factoredPattern = /\(x([+-])(\d*\.?\d*)\)\(x([+-])(\d*\.?\d*)\)/;
+  const factoredPattern = /^(?:\(x([+-])(\d*\.?\d*)\)\(x([+-])(\d*\.?\d*)\))$/;
   const match = expr.match(factoredPattern);
   if (match) {
     const sign1 = match[1];
@@ -148,7 +148,7 @@ function expandPolynomial(expr: string): string {
     return `x^2${sumStr}${productStr}`;
   }
 
-  const factoredPattern4 = /\(([+-]?\d*\.?\d*)x\+?([+-]?\d*\.?\d*)\)\(([+-]?\d*\.?\d*)x\+?([+-]?\d*\.?\d*)\)/;
+  const factoredPattern4 = /^(?:\(([+-]?\d*\.?\d*)x\+?([+-]?\d*\.?\d*)\)\(([+-]?\d*\.?\d*)x\+?([+-]?\d*\.?\d*)\))$/;
   const match4 = expr.match(factoredPattern4);
   if (match4) {
     const parseCoeff = (s: string, fallback: number) => {
@@ -178,7 +178,7 @@ function expandPolynomial(expr: string): string {
  * @returns {string} - Factored form or input if not factorable
  */
 function factorPolynomial(expr: string): string {
-  const expandedPattern1 = /x\^2\+?(\-?\d*\.?\d*)x\+?(\-?\d*\.?\d*)/;
+  const expandedPattern1 = /^(?:x\^2\+?(\-?\d*\.?\d*)x\+?(\-?\d*\.?\d*))$/;
   const match1 = expr.match(expandedPattern1);
   if (match1) {
     const b = parseFloat(match1[1]) || 0;
@@ -195,7 +195,7 @@ function factorPolynomial(expr: string): string {
     }
   }
 
-  const expandedPattern2 = /x\^2\-(\d*\.?\d*)x\+?(\-?\d*\.?\d*)/;
+  const expandedPattern2 = /^(?:x\^2\-(\d*\.?\d*)x\+?(\-?\d*\.?\d*))$/;
   const match2 = expr.match(expandedPattern2);
   if (match2) {
     const b = parseFloat(match2[1]) || 0;
@@ -212,7 +212,7 @@ function factorPolynomial(expr: string): string {
     }
   }
 
-  const expandedPattern3 = /x\^2\+?(\-?\d*\.?\d*)x\-(\d*\.?\d*)/;
+  const expandedPattern3 = /^(?:x\^2\+?(\-?\d*\.?\d*)x\-(\d*\.?\d*))$/;
   const match3 = expr.match(expandedPattern3);
   if (match3) {
     const b = parseFloat(match3[1]) || 0;
@@ -229,7 +229,7 @@ function factorPolynomial(expr: string): string {
     }
   }
 
-  const gcfPattern = /(\d+)x\^2\+?(\-?\d*\.?\d*)x\+?(\-?\d*\.?\d*)/;
+  const gcfPattern = /^(?:(\d+)x\^2\+?(\-?\d*\.?\d*)x\+?(\-?\d*\.?\d*))$/;
   const match4 = expr.match(gcfPattern);
   if (match4) {
     const a = parseInt(match4[1], 10);
@@ -276,7 +276,7 @@ function findFactors(n: number): number[] {
  * @returns {boolean} - True if both expressions represent the same complex number
  */
 function checkComplexNumberEquivalence(expr1: string, expr2: string): boolean {
-  const complexPattern = /([+-]?\d*\.?\d*)\*?i\+?([+-]?\d*\.?\d*)|([+-]?\d*\.?\d*)\+?([+-]?\d*\.?\d*)\*?i/;
+  const complexPattern = /^(?:([+-]?\d*\.?\d*)\*?i\+?([+-]?\d*\.?\d*)|([+-]?\d*\.?\d*)\+?([+-]?\d*\.?\d*)\*?i)$/;
 
   const parseComplex = (expr: string) => {
     const match = expr.match(complexPattern);
@@ -310,7 +310,7 @@ function checkComplexNumberEquivalence(expr1: string, expr2: string): boolean {
  * @returns {boolean} - True if both expressions represent the same rational value
  */
 function checkFractionEquivalence(expr1: string, expr2: string): boolean {
-  const fractionPattern = /(\d+)\s*(\d+\/\d+)|(\d+)\/(\d+)/;
+  const fractionPattern = /^(?:(\d+)\s*(\d+\/\d+)|(\d+)\/(\d+))$/;
 
   const parseFraction = (expr: string) => {
     const match = expr.match(fractionPattern);
@@ -329,7 +329,7 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
     return null;
   };
 
-  const fractionAdditionPattern = /(\d+)\/(\d+)\+(\d+)\/(\d+)/;
+  const fractionAdditionPattern = /^(?:(\d+)\/(\d+)\+(\d+)\/(\d+))$/;
   const parseFractionAddition = (expr: string) => {
     const match = expr.match(fractionAdditionPattern);
     if (!match) return null;
@@ -344,7 +344,7 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
     return { value: newNum / commonDen, numerator: newNum, denominator: commonDen };
   };
 
-  const algebraicFractionPattern = /\((\d+)\/(\d+)\)x\+?(\-?\d*\.?\d*)/;
+  const algebraicFractionPattern = /^(?:\((\d+)\/(\d+)\)x\+?(\-?\d*\.?\d*))$/;
   const parseAlgebraicFraction = (expr: string) => {
     const match = expr.match(algebraicFractionPattern);
     if (!match) return null;
@@ -377,12 +377,12 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
  * @returns {boolean} - True if both expressions represent the same radical value
  */
 function checkRadicalEquivalence(expr1: string, expr2: string): boolean {
-  const integerPattern = /^-?\d+$/;
+  const integerPattern = /^(?:^-?\d+$)$/;
   if (integerPattern.test(expr1) && integerPattern.test(expr2)) {
     return parseInt(expr1, 10) === parseInt(expr2, 10);
   }
 
-  const cubeRootPattern = /³√(\d+)/;
+  const cubeRootPattern = /^(?:³√(\d+))$/;
   const parseCubeRoot = (expr: string) => {
     const match = expr.match(cubeRootPattern);
     if (!match) return null;
@@ -393,7 +393,7 @@ function checkRadicalEquivalence(expr1: string, expr2: string): boolean {
   const parseRadical = (expr: string) => {
     if (expr.includes('³√')) return null;
 
-    const radicalPattern = /(\d*)\*?√(\d+)|√(\d+)/;
+    const radicalPattern = /^(?:(\d*)\*?√(\d+)|√(\d+))$/;
     const match = expr.match(radicalPattern);
     if (!match) return null;
 
@@ -410,7 +410,7 @@ function checkRadicalEquivalence(expr1: string, expr2: string): boolean {
     return { coefficient, radicand, value: coefficient * Math.sqrt(radicand) };
   };
 
-  const radicalAdditionPattern = /(\d*)√(\d+)\+(\d*)√(\d+)/;
+  const radicalAdditionPattern = /^(?:(\d*)√(\d+)\+(\d*)√(\d+))$/;
   const parseRadicalAddition = (expr: string) => {
     const match = expr.match(radicalAdditionPattern);
     if (!match) return null;

@@ -4,6 +4,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { ActivityRenderer } from '../../../components/lesson/ActivityRenderer';
 import type { Activity } from '@/lib/schemas/validators';
 import { buildPracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { BM2_PILOT_SOURCE_ACTIVITY_ID } from '@/lib/learning-evidence/bm2-pilot';
 
 const mockFetch = vi.fn();
 global.fetch = mockFetch as unknown as typeof fetch;
@@ -111,6 +112,20 @@ describe('ActivityRenderer', () => {
       }
       return null;
     });
+  });
+
+  it('saves redacted student work before completing and retries the same failed submission', async () => {
+    mockFetch.mockResolvedValueOnce({ ok: true, json: async () => buildActivity() })
+      .mockResolvedValueOnce({ ok: false, json: async () => ({ error: 'Save failed' }) })
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ score: 1, maxScore: 1, percentage: 100 }) });
+    render(<ActivityRenderer activityId="test-activity-id" lessonId="lesson" phaseNumber={1} />);
+    fireEvent.click(await screen.findByText('Submit answers'));
+    await screen.findByText('Save failed');
+    expect(mockCompletePhase).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByText('Try again'));
+    await waitFor(() => expect(mockCompletePhase).toHaveBeenCalledTimes(1));
+    expect(mockFetch.mock.calls[1][0]).toBe('/api/progress/assessment');
+    expect(mockFetch.mock.calls[2]).toEqual(mockFetch.mock.calls[1]);
   });
 
   it('should show loading state initially', () => {
@@ -280,7 +295,7 @@ describe('ActivityRenderer', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/Assessment submitted/i)).toBeInTheDocument();
+      expect(screen.getByText(/Work saved/i)).toBeInTheDocument();
     });
 
     const submissionCall = mockFetch.mock.calls[1];
@@ -305,6 +320,62 @@ describe('ActivityRenderer', () => {
 
     expect(screen.getByText(/3\/4/)).toBeInTheDocument();
     expect(screen.getByText(/Great effort/)).toBeInTheDocument();
+  });
+
+  it('uses the exact pilot envelope submittedAt value as its Idempotency-Key', async () => {
+    const pilotActivity = buildActivity({
+      id: 'activities:bm2-real-unit-1-lesson-1-source',
+      gradingConfig: {
+        autoGrade: true,
+        passingScore: 80,
+        partialCredit: false,
+      },
+    });
+    const pilotActivityRecord = {
+      ...pilotActivity,
+      stableActivityId: BM2_PILOT_SOURCE_ACTIVITY_ID,
+    };
+
+    mockFetch
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => pilotActivityRecord,
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          score: 1,
+          maxScore: 1,
+          percentage: 100,
+          feedback: 'Correct.',
+        }),
+      });
+
+    render(
+      <ActivityRenderer
+        activityId="activities:bm2-real-unit-1-lesson-1-source"
+        lessonId="test-lesson-id"
+        phaseNumber={1}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('Test Quiz')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: /submit answers/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText(/Work saved/i)).toBeInTheDocument();
+    });
+
+    const submissionCall = mockFetch.mock.calls[1];
+    expect(submissionCall?.[0]).toBe('/api/progress/assessment');
+    const requestOptions = submissionCall?.[1];
+    const body = JSON.parse(String(requestOptions?.body));
+    expect(body.activityId).toBe('activities:bm2-real-unit-1-lesson-1-source');
+    expect(body.submittedAt).toEqual(expect.any(String));
+    expect(new Headers(requestOptions?.headers).get('Idempotency-Key')).toBe(body.submittedAt);
   });
 
   it('shows an error when assessment submission fails', async () => {
@@ -501,4 +572,15 @@ describe('ActivityRenderer', () => {
       expect(mockCompletePhase).not.toHaveBeenCalled();
     });
   });
+  it('lets the spreadsheet endpoint own submission and completes only after its callback', async () => {
+    mockGetActivityComponent.mockReturnValue(MockActivityComponent);
+    mockFetch.mockResolvedValueOnce({ ok: true, json: async () => buildActivity({ componentKey: 'spreadsheet-evaluator' }) });
+    render(<ActivityRenderer activityId="test-activity-id" lessonId="test-lesson-id" phaseNumber={1} />);
+    await screen.findByTestId('mock-activity');
+    expect(screen.queryByRole('button', { name: 'Submit answers' })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Complete activity' }));
+    await waitFor(() => expect(mockCompletePhase).toHaveBeenCalledTimes(1));
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+  });
+
 });

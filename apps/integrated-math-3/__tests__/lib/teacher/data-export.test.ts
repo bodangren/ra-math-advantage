@@ -204,3 +204,8 @@ describe("formatClassExport", () => {
     expect(result).toEqual([]);
   });
 });
+
+it('neutralizes formula-leading text while preserving numeric values', () => {
+  expect(toCsv([{ name: '=1+1', score: -2 }])).toBe('name,score\n"\'=1+1",-2');
+  expect(toCsv([{ name: '  @SUM(A1)' }])).toContain("'  @SUM(A1)");
+});

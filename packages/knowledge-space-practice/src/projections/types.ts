@@ -1,3 +1,8 @@
+import type {
+  KnowledgeStateEntry,
+  MasteryConfig,
+} from '@math-platform/knowledge-space-core';
+
 export interface ProjectedActivity {
   stableActivityId: string;
   nodeId: string;
@@ -109,6 +114,18 @@ export interface StudentVisualizationV1 {
   recommendedNext: VisualNodeV1[];
   edges: VisualEdgeV1[];
   activeMisconceptionCount: number;
+  reviewLoadState?: 'normal' | 'elevated' | 'saturated';
+}
+
+/** Canonical learner-state inputs for the student visualization projection. */
+export interface StudentVisualizationOptions {
+  readonly activeMisconceptionSlugs?: readonly string[];
+  /** Numeric state computed by knowledge-space-core; preferred over category inference. */
+  readonly knowledgeState?: ReadonlyMap<string, KnowledgeStateEntry>;
+  /** Shared kst-srs.v3 engine configuration used by gated readiness. */
+  readonly masteryConfig?: Partial<MasteryConfig>;
+  /** Planner-computed review-load state; React consumers must not infer it. */
+  readonly reviewLoadState?: 'normal' | 'elevated' | 'saturated';
 }
 
 export interface ParentVisualizationV1 {
@@ -144,6 +161,13 @@ export interface TeacherVisualizationV1 {
   interventionGroups: InterventionGroup[];
   standardsCoverage: Array<{ standardId: string; title: string; proficiencyRate: number }>;
   activeMisconceptionStudentCount: number;
+  reviewLoadStates?: Record<string, 'normal' | 'elevated' | 'saturated'>;
+}
+
+export interface TeacherVisualizationOptions {
+  readonly perStudentActiveMisconceptions?: Record<string, readonly string[]>;
+  /** Planner-computed states keyed by student ID. */
+  readonly reviewLoadStates?: Record<string, 'normal' | 'elevated' | 'saturated'>;
 }
 
 // Re-export blueprint types used by projection callers

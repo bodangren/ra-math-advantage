@@ -1,0 +1,110 @@
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > AP Precalculus curriculum depth validation > Class-period packages daily phase depth > unit-1 package has unique dailyPhases text per instruction period (not copy-paste)
+AssertionError: Period 1 scaffoldedExamples should reference Topic 1.1: expected 'Passwater Examples 1-4: Example 1 (em…' to contain '1.1'
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > AP Precalculus curriculum depth validation > Class-period packages daily phase depth > unit-2 package has unique dailyPhases text per instruction period (not copy-paste)
+AssertionError: Period 1 scaffoldedExamples should reference Topic 2.1: expected 'Example 1: a_n = 4n − 3. Find a_1 (=1…' to contain '2.1'
+ FAIL  __tests__/curriculum/curriculum-depth.test.ts > AP Precalculus curriculum depth validation > Class-period packages daily phase depth > unit-3 package has unique dailyPhases text per instruction period (not copy-paste)
+AssertionError: Period 1 scaffoldedExamples should reference Topic 3.1: expected 'Example 1: Function g periodic, graph…' to contain '3.1'
+ FAIL  __tests__/curriculum/implementation-artifacts.test.ts > AP Precalculus implementation bridge artifacts > generates class-period packages for source-backed units
+AssertionError: expected false to be true // Object.is equality
+ FAIL  __tests__/curriculum/planning-structure.test.ts > AP Precalculus planning structure artifacts > creates class-period plans for Passwater source-backed units only
+AssertionError: expected '1.1 Change in Tandem (Day 1)' to match /^\`1\.1\`/
+ FAIL  __tests__/curriculum/topic11-interval-blueprint.acceptance.test.ts > AP Topic 1.1 interval blueprint > defines the physical-context graph-choice source for all three ready modes
+AssertionError: expected true to be false // Object.is equality
+ FAIL  __tests__/curriculum/topic11-interval-blueprint.acceptance.test.ts > AP Topic 1.1 interval blueprint > synchronizes stored physical activity and SRS projections with fresh output
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/curriculum/topic11-interval-blueprint.acceptance.test.ts > AP Topic 1.1 interval blueprint > defines strict Worked, Guided, and Independent shared props and projects three rows
+AssertionError: expected true to be false // Object.is equality
+ FAIL  __tests__/curriculum/topic11-interval-blueprint.acceptance.test.ts > AP Topic 1.1 interval blueprint > marks the verified interval skill ready for Independent practice
+AssertionError: expected true to be false // Object.is equality
+ FAIL  __tests__/curriculum/topic11-interval-blueprint.acceptance.test.ts > AP Topic 1.1 interval blueprint > stores ready activity and SRS projections for the interval skill
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/setup/convex-provider.test.ts > ConvexClientProvider > uses shared Convex URL fallback behavior
+AssertionError: expected 'export { ConvexClientProvider } from …' to contain 'getConvexUrl'
+ FAIL  __tests__/lib/learning-evidence/precalc-pilot.test.ts > AP Precalculus learning-evidence.v1 pilot runtime > enables exactly the planned Precalculus pilot nodes and activity IDs
+AssertionError: expected [ …(18) ] to deeply equal [ …(15) ]
+ FAIL  __tests__/components/student/PrecalculusMasteryAdvantagePilot.acceptance.test.tsx > PrecalculusMasteryAdvantagePilot acceptance > renders the interactive pilot through the student dashboard
+TypeError: Cannot read properties of undefined (reading 'replace')
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > keeps Submit answer disabled until all 12 guided responses exist
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > keeps Submit answer disabled until all 12 independent responses exist
+Error: Test timed out in 5000ms.
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > forwards the exact raw Guided node-not-enabled practice.v1 envelope and opaque evidence request, including one wrong answer
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > forwards the exact raw Guided awaiting reason practice.v1 envelope and opaque evidence request, including one wrong answer
+Error: Test timed out in 5000ms.
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > fails safely for malformed evidence response: extra decision field
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > fails safely for malformed evidence response: invalid decision idempotency
+Error: Test timed out in 5000ms.
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > shows one safe error and no evidence request for extra result field
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > shows one safe error and no evidence request for non-string attempt ordinal
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > shows one safe error and no evidence request for blank feedback
+ FAIL  __tests__/components/student/PrecalculusTopic16EquationEndBehaviorPracticePilot.test.tsx > PrecalculusTopic16EquationEndBehaviorPracticePilot > shows one safe error and no evidence request for non-string feedback
+Error: Test timed out in 5000ms.
+ FAIL  __tests__/convex/topic14-polynomial-end-behavior-activity-constants.acceptance.test.ts > Topic 1.4 polynomial end behavior activity constants > keeps this constants-only task disconnected from runtime paths
+AssertionError: expected 'import { internalMutation } from "../…' not to contain 'PRECALCULUS_TOPIC_14_POLYNOMIAL_END_B…'
+ FAIL  __tests__/convex/topic15-polynomial-inequality-activity-constants.acceptance.test.ts > Topic 1.5 polynomial-inequality activity constants > defines exact identities, projected rows, configs, and enabled evidence
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/topic16-equation-end-behavior-activity-constants.acceptance.test.ts > Topic 1.6 equation-end-behavior activity constants > defines exact identities, projection rows, configs, and disabled evidence
+AssertionError: expected [ …(18) ] to not include 'math.precalc.skill.1.6.determine-poly…'
+ FAIL  __tests__/convex/topic16-equation-end-behavior-evidence.acceptance.test.ts > Topic 1.6 equation end-behavior evidence mapping > keeps the exact Topic 1.6 node outside the evidence pilot allow-list
+AssertionError: expected [ …(18) ] to not include 'math.precalc.skill.1.6.determine-poly…'
+ FAIL  __tests__/convex/topic16-equation-end-behavior-evidence.acceptance.test.ts > Topic 1.6 equation end-behavior evidence mapping > recognizes Guided correct but returns the disabled-node decision with no effects
+ FAIL  __tests__/convex/topic16-equation-end-behavior-evidence.acceptance.test.ts > Topic 1.6 equation end-behavior evidence mapping > recognizes Guided one-answer-wrong but returns the disabled-node decision with no effects
+ FAIL  __tests__/convex/topic16-equation-end-behavior-evidence.acceptance.test.ts > Topic 1.6 equation end-behavior evidence mapping > recognizes Independent correct but returns the disabled-node decision with no effects
+AssertionError: expected { persisted: false, …(4) } to deeply equal { persisted: false, …(4) }
+ FAIL  __tests__/convex/topic16-equation-end-behavior-worked-evidence.acceptance.test.ts > Topic 1.6 equation-end-behavior Worked teacher exposure > accepts one exact disabled seed-0 source row without effects
+AssertionError: expected [ …(18) ] to not include 'math.precalc.skill.1.6.determine-poly…'
+ FAIL  __tests__/convex/topic16-equation-end-behavior-worked-evidence.acceptance.test.ts > Topic 1.6 equation-end-behavior Worked teacher exposure > accepts a max-safe stored ordinal without effects
+Error: Test timed out in 5000ms.
+ FAIL  __tests__/convex/seed/topic11-source-link.acceptance.test.ts > Precalculus Lesson 1.1 daily source seed > adds the physical-context graph-selection skill and its Example 1 source mapping
+AssertionError: expected { …(10) } to match object { …(8) }
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > synchronizes the stored Example 6 activity and ready SRS projections
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > defines the source-backed Example 3 graph blueprint and ready projections
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > projects the ready Example 1 pointwise rate-ordering blueprint
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > projects the ready Example 5 quadratic negative-rate interval blueprint
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > projects the ready Example 4 negative-rate context blueprint
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic12-source-link.acceptance.test.ts > Passwater Topic 1.2 authored examples > keeps the Example 2 least-rate projections synchronized and ready
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic13-source-link.acceptance.test.ts > Topic 1.3 source-to-skill graph reconciliation > keeps both Topic 1.3 blueprints and projections source-linked
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic14-source-link.acceptance.test.ts > Topic 1.4 Example 1 graph capability > stores the source-backed graph-ready Example 4 blueprint with live three-mode props
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic14-source-link.acceptance.test.ts > Topic 1.4 Example 1 graph capability > stores the source-backed graph-ready Example 1 blueprint and projections
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic14-source-link.acceptance.test.ts > Topic 1.4 Example 1 graph capability > stores the source-backed graph-ready Example 2 blueprint and projections
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic14-source-link.acceptance.test.ts > Topic 1.4 Example 1 graph capability > stores the source-backed practice-ready Example 3 blueprint and projections
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic15-least-polynomial-degree-activity-seed.acceptance.test.ts > Precalculus Topic 1.5 least polynomial degree activity seed > seeds exact generated modes and patches them without phase attachment
+AssertionError: expected 13 to be 10 // Object.is equality
+ FAIL  __tests__/convex/seed/topic15-least-polynomial-degree-projection.acceptance.test.ts > Topic 1.5 Example 2 least-degree projections > matches fresh projector output for activities and both SRS surfaces
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic15-polynomial-inequality-activity-seed.acceptance.test.ts > Precalculus Topic 1.5 polynomial-inequality activity seed > seeds exact generated modes and patches them without phase attachment
+AssertionError: expected [ …(18) ] to not include 'math.precalc.skill.1.5.solve-polynomi…'
+ FAIL  __tests__/convex/seed/topic15-polynomial-inequality-projection.acceptance.test.ts > Topic 1.5 Example 3 polynomial-inequality projections > matches fresh activity and SRS projection output for the exact sign-chart node
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic15-polynomial-inequality-readiness.acceptance.test.ts > Topic 1.5 Example 3 graph readiness > promotes the exact sign-chart node and its derived projections
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic15-projection.acceptance.test.ts > Topic 1.5 Example 1 activity and SRS projections > matches exact projector output for the three activity modes and both SRS surfaces
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic15-real-zeros-and-multiplicities-activity-seed.acceptance.test.ts > Precalculus Topic 1.5 real zeros and multiplicities activity seed > seeds exact generated modes and patches them without phase attachment
+AssertionError: expected 13 to be 7 // Object.is equality
+ FAIL  __tests__/convex/seed/topic16-equation-end-behavior-activity-seed.acceptance.test.ts > Precalculus Topic 1.6 equation-end-behavior activity seed > seeds exact generated modes and patches them without phase attachment
+AssertionError: expected [ …(18) ] to not include 'math.precalc.skill.1.6.determine-poly…'
+ FAIL  __tests__/convex/seed/topic16-equation-end-behavior-blueprint.acceptance.test.ts > Topic 1.6 Example 3 equation-end-behavior blueprint > stores the exact non-ready three-mode source blueprint
+AssertionError: expected [ { …(12) }, { …(12) }, …(79) ] to have a length of 80 but got 81
+ FAIL  __tests__/convex/seed/topic16-equation-end-behavior-projection.acceptance.test.ts > Topic 1.6 Example 3 equation-end-behavior projections > stores exact projector output with readiness
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic16-equation-end-behavior-readiness.acceptance.test.ts > Topic 1.6 Example 3 graph readiness > promotes the exact node and its derived projections
+AssertionError: expected [ { …(9) }, { …(9) }, { …(9) } ] to deeply equal [ { …(9) }, { …(9) }, { …(9) } ]
+ FAIL  __tests__/convex/seed/topic16-equation-end-behavior-runtime-keys.acceptance.test.ts > Topic 1.6 equation end behavior runtime keys > adds only the exact runtime keys to the equation capability
+AssertionError: expected [ { …(11) } ] to deeply equal [ { …(10) } ]
+ FAIL  __tests__/convex/seed/topic16-source-link.acceptance.test.ts > Topic 1.6 Example 3 capability support > adds the exact equation-to-end-behavior skill in both catalogs
+AssertionError: expected [ { …(11) } ] to deeply equal [ { …(10) } ]
+ FAIL  __tests__/convex/seed/topic16-source-link.acceptance.test.ts > Topic 1.6 Example 4 capability support > adds the exact formal-limit skill in both catalogs
+AssertionError: expected [ { …(10) } ] to deeply equal [ { …(8) } ]
+ Test Files  30 failed | 192 passed (222)
+      Tests  58 failed | 5846 passed (5904)

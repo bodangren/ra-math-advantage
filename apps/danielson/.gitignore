@@ -1,0 +1,8 @@
+
+.env.local
+.next/
+.vinext/
+dist/
+.convex/
+coverage/
+*.tsbuildinfo

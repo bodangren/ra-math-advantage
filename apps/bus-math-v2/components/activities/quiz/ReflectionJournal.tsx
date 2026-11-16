@@ -35,7 +35,7 @@ const REFLECTION_JOURNAL_DEFAULT_MODE = 'independent_practice' as const
 interface ReflectionJournalProps {
   activity: ReflectionJournalActivity
   className?: string
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void | boolean | Promise<void | boolean>
 }
 
 const defaultPrompts: ReflectionPrompt[] = [
@@ -97,15 +97,15 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
    * Save the reflection journal, building the practice submission envelope
    * with all prompt responses and artifact data.
    */
-  const handleSave = () => {
+  const handleSave = async () => {
     const parts = buildPracticeSubmissionParts(responses)
 
     try {
-      onSubmit?.(
+      const saved = await onSubmit?.(
         buildPracticeSubmissionEnvelope({
           activityId: activity.id,
           mode: REFLECTION_JOURNAL_DEFAULT_MODE,
-          status: 'submitted',
+          status: completedCount === totalCount ? 'submitted' : 'draft',
           attemptNumber: 1,
           submittedAt: new Date(),
           answers: responses,
@@ -126,7 +126,7 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
           },
         }),
       )
-      setIsSaved(true)
+      setIsSaved(saved !== false)
     } catch (err) {
       console.error('ReflectionJournal submission failed:', err)
     }

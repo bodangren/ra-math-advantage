@@ -1,0 +1,1961 @@
+{
+  "nodes": [
+    {
+      "id": "math.bm2.skill.1.1.apply-accounting-equation",
+      "kind": "skill",
+      "title": "Identify how a simple business event affects the accounting equation",
+      "domain": "business-math",
+      "description": "Identify how one simple business event changes Assets, Liabilities, and Equity while the accounting equation stays balanced.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "1",
+        "lessonSlug": "unit-1-lesson-1",
+        "standardCodes": [
+          "ACC-1.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.2",
+      "kind": "skill",
+      "title": "Classify accounts as assets, liabilities, or equity",
+      "domain": "business-math",
+      "description": "Classify accounts as assets, liabilities, or equity. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "2",
+        "lessonSlug": "unit-1-lesson-2",
+        "standardCodes": [
+          "ACC-1.2"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.3",
+      "kind": "skill",
+      "title": "Record both effects of a business transaction",
+      "domain": "business-math",
+      "description": "Record both effects of a business transaction. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "3",
+        "lessonSlug": "unit-1-lesson-3",
+        "standardCodes": [
+          "ACC-1.4"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.4",
+      "kind": "skill",
+      "title": "Build a classified balance sheet",
+      "domain": "business-math",
+      "description": "Build a classified balance sheet. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "4",
+        "lessonSlug": "unit-1-lesson-4",
+        "standardCodes": [
+          "ACC-1.3"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.5",
+      "kind": "skill",
+      "title": "Find and correct errors in account balances",
+      "domain": "business-math",
+      "description": "Find and correct errors in account balances. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "5",
+        "lessonSlug": "unit-1-lesson-5",
+        "standardCodes": [
+          "ACC-1.5"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.6",
+      "kind": "skill",
+      "title": "Validate account data with spreadsheet rules",
+      "domain": "business-math",
+      "description": "Validate account data with spreadsheet rules. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "6",
+        "lessonSlug": "unit-1-lesson-6",
+        "standardCodes": [
+          "ACC-1.6"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.7",
+      "kind": "skill",
+      "title": "Explain financial position with a linked chart",
+      "domain": "business-math",
+      "description": "Explain financial position with a linked chart. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "7",
+        "lessonSlug": "unit-1-lesson-7",
+        "standardCodes": [
+          "ACC-1.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.8",
+      "kind": "skill",
+      "title": "Build a balance sheet model from assigned data",
+      "domain": "business-math",
+      "description": "Build a balance sheet model from assigned data. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "8",
+        "lessonSlug": "unit-1-lesson-8",
+        "standardCodes": [],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.9",
+      "kind": "skill",
+      "title": "Revise a balance sheet model after evidence-based review",
+      "domain": "business-math",
+      "description": "Revise a balance sheet model after evidence-based review. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "9",
+        "lessonSlug": "unit-1-lesson-9",
+        "standardCodes": [],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.10",
+      "kind": "skill",
+      "title": "Present and defend a balance sheet result",
+      "domain": "business-math",
+      "description": "Present and defend a balance sheet result. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "10",
+        "lessonSlug": "unit-1-lesson-10",
+        "standardCodes": [],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.1.11",
+      "kind": "task_blueprint",
+      "title": "Complete the Unit 1 multi-standard mastery check",
+      "domain": "business-math",
+      "description": "Complete the Unit 1 knowledge, understanding, and application assessment for standards ACC-1.1 through ACC-1.7.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/generated/unit1-authored.ts",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "1",
+        "lesson": "11",
+        "lessonSlug": "unit-1-lesson-11",
+        "standardCodes": [
+          "ACC-1.1",
+          "ACC-1.2",
+          "ACC-1.3",
+          "ACC-1.4",
+          "ACC-1.5",
+          "ACC-1.6",
+          "ACC-1.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.1",
+      "kind": "skill",
+      "title": "Record debit and credit effects",
+      "domain": "business-math",
+      "description": "Record debit and credit effects. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "1",
+        "lessonSlug": "unit-2-lesson-1",
+        "standardCodes": [
+          "ACC-2.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.2",
+      "kind": "skill",
+      "title": "Use source documents to identify transactions",
+      "domain": "business-math",
+      "description": "Use source documents to identify transactions. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "2",
+        "lessonSlug": "unit-2-lesson-2",
+        "standardCodes": [
+          "ACC-2.2"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.3",
+      "kind": "skill",
+      "title": "Prepare balanced journal entries",
+      "domain": "business-math",
+      "description": "Prepare balanced journal entries. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "3",
+        "lessonSlug": "unit-2-lesson-3",
+        "standardCodes": [
+          "ACC-2.3"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.4",
+      "kind": "skill",
+      "title": "Post journal entries to ledger accounts",
+      "domain": "business-math",
+      "description": "Post journal entries to ledger accounts. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "4",
+        "lessonSlug": "unit-2-lesson-4",
+        "standardCodes": [
+          "ACC-2.4"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.5",
+      "kind": "skill",
+      "title": "Prepare and interpret a trial balance",
+      "domain": "business-math",
+      "description": "Prepare and interpret a trial balance. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "5",
+        "lessonSlug": "unit-2-lesson-5",
+        "standardCodes": [
+          "ACC-2.5"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.6",
+      "kind": "skill",
+      "title": "Locate posting errors",
+      "domain": "business-math",
+      "description": "Locate posting errors. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "6",
+        "lessonSlug": "unit-2-lesson-6",
+        "standardCodes": [
+          "ACC-2.6"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.7",
+      "kind": "skill",
+      "title": "Explain how transactions affect profit",
+      "domain": "business-math",
+      "description": "Explain how transactions affect profit. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "7",
+        "lessonSlug": "unit-2-lesson-7",
+        "standardCodes": [
+          "ACC-2.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.8",
+      "kind": "skill",
+      "title": "Build a journal and ledger model from assigned data",
+      "domain": "business-math",
+      "description": "Build a journal and ledger model from assigned data. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "8",
+        "lessonSlug": "unit-2-lesson-8",
+        "standardCodes": [
+          "ACC-2.8"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.9",
+      "kind": "skill",
+      "title": "Revise a journal and ledger model after evidence-based review",
+      "domain": "business-math",
+      "description": "Revise a journal and ledger model after evidence-based review. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "9",
+        "lessonSlug": "unit-2-lesson-9",
+        "standardCodes": [
+          "ACC-2.9"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.10",
+      "kind": "skill",
+      "title": "Present and defend a journal and ledger result",
+      "domain": "business-math",
+      "description": "Present and defend a journal and ledger result. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "10",
+        "lessonSlug": "unit-2-lesson-10",
+        "standardCodes": [
+          "ACC-2.10"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.2.11",
+      "kind": "task_blueprint",
+      "title": "Complete the Unit 2 transaction-flow mastery check",
+      "domain": "business-math",
+      "description": "Complete the Unit 2 classification, posting, formula, and mini-ledger assessment.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "2",
+        "lesson": "11",
+        "lessonSlug": "unit-2-lesson-11",
+        "standardCodes": [
+          "ACC-2.11"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.1",
+      "kind": "skill",
+      "title": "Connect profit to the balance sheet",
+      "domain": "business-math",
+      "description": "Connect profit to the balance sheet. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "1",
+        "lessonSlug": "unit-3-lesson-1",
+        "standardCodes": [
+          "ACC-3.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.2",
+      "kind": "skill",
+      "title": "Build an income statement from account balances",
+      "domain": "business-math",
+      "description": "Build an income statement from account balances. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "2",
+        "lessonSlug": "unit-3-lesson-2",
+        "standardCodes": [
+          "ACC-3.2"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.3",
+      "kind": "skill",
+      "title": "Link net income and distributions to equity",
+      "domain": "business-math",
+      "description": "Link net income and distributions to equity. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "3",
+        "lessonSlug": "unit-3-lesson-3",
+        "standardCodes": [
+          "ACC-3.3"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.4",
+      "kind": "skill",
+      "title": "Reconcile operating profit with operating cash",
+      "domain": "business-math",
+      "description": "Reconcile operating profit with operating cash. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "4",
+        "lessonSlug": "unit-3-lesson-4",
+        "standardCodes": [
+          "ACC-3.4"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.5",
+      "kind": "skill",
+      "title": "Check that the statements use consistent balances",
+      "domain": "business-math",
+      "description": "Check that the statements use consistent balances. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "5",
+        "lessonSlug": "unit-3-lesson-5",
+        "standardCodes": [
+          "ACC-3.5"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.6",
+      "kind": "skill",
+      "title": "Repair a broken statement link",
+      "domain": "business-math",
+      "description": "Repair a broken statement link. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "6",
+        "lessonSlug": "unit-3-lesson-6",
+        "standardCodes": [
+          "ACC-3.6"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.7",
+      "kind": "skill",
+      "title": "Support a financial explanation with statement evidence",
+      "domain": "business-math",
+      "description": "Support a financial explanation with statement evidence. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "7",
+        "lessonSlug": "unit-3-lesson-7",
+        "standardCodes": [
+          "ACC-3.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.8",
+      "kind": "skill",
+      "title": "Build a linked financial statements model from assigned data",
+      "domain": "business-math",
+      "description": "Build a linked financial statements model from assigned data. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "8",
+        "lessonSlug": "unit-3-lesson-8",
+        "standardCodes": [
+          "ACC-3.8"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.9",
+      "kind": "skill",
+      "title": "Revise a linked financial statements model after evidence-based review",
+      "domain": "business-math",
+      "description": "Revise a linked financial statements model after evidence-based review. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "9",
+        "lessonSlug": "unit-3-lesson-9",
+        "standardCodes": [
+          "ACC-3.9"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.10",
+      "kind": "skill",
+      "title": "Present and defend a linked financial statements result",
+      "domain": "business-math",
+      "description": "Present and defend a linked financial statements result. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "10",
+        "lessonSlug": "unit-3-lesson-10",
+        "standardCodes": [
+          "ACC-3.10"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.3.11",
+      "kind": "skill",
+      "title": "Demonstrate the calculations and checks in a linked financial statements model",
+      "domain": "business-math",
+      "description": "Demonstrate the calculations and checks in a linked financial statements model. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "3",
+        "lesson": "11",
+        "lessonSlug": "unit-3-lesson-11",
+        "standardCodes": [
+          "ACC-3.11"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.1",
+      "kind": "skill",
+      "title": "Identify gross pay, deductions, and net pay",
+      "domain": "business-math",
+      "description": "Identify gross pay, deductions, and net pay. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "1",
+        "lessonSlug": "unit-4-lesson-1",
+        "standardCodes": [
+          "ACC-4.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.2",
+      "kind": "skill",
+      "title": "Calculate hourly, salary, and commission pay",
+      "domain": "business-math",
+      "description": "Calculate hourly, salary, and commission pay. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "2",
+        "lessonSlug": "unit-4-lesson-2",
+        "standardCodes": [
+          "ACC-4.2"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.3",
+      "kind": "skill",
+      "title": "Calculate overtime and classroom deductions",
+      "domain": "business-math",
+      "description": "Calculate overtime and classroom deductions. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "3",
+        "lessonSlug": "unit-4-lesson-3",
+        "standardCodes": [
+          "ACC-4.3"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.4",
+      "kind": "skill",
+      "title": "Calculate net pay with rounding",
+      "domain": "business-math",
+      "description": "Calculate net pay with rounding. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "4",
+        "lessonSlug": "unit-4-lesson-4",
+        "standardCodes": [
+          "ACC-4.4"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.5",
+      "kind": "skill",
+      "title": "Distinguish employee deductions from employer cost",
+      "domain": "business-math",
+      "description": "Distinguish employee deductions from employer cost. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "5",
+        "lessonSlug": "unit-4-lesson-5",
+        "standardCodes": [
+          "ACC-4.5"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.6",
+      "kind": "skill",
+      "title": "Validate payroll inputs and control totals",
+      "domain": "business-math",
+      "description": "Validate payroll inputs and control totals. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "6",
+        "lessonSlug": "unit-4-lesson-6",
+        "standardCodes": [
+          "ACC-4.6"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.7",
+      "kind": "skill",
+      "title": "Explain payroll expense and payroll liabilities",
+      "domain": "business-math",
+      "description": "Explain payroll expense and payroll liabilities. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "7",
+        "lessonSlug": "unit-4-lesson-7",
+        "standardCodes": [
+          "ACC-4.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.8",
+      "kind": "skill",
+      "title": "Build a payroll model from assigned data",
+      "domain": "business-math",
+      "description": "Build a payroll model from assigned data. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "8",
+        "lessonSlug": "unit-4-lesson-8",
+        "standardCodes": [
+          "ACC-4.8"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.9",
+      "kind": "skill",
+      "title": "Revise a payroll model after evidence-based review",
+      "domain": "business-math",
+      "description": "Revise a payroll model after evidence-based review. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "9",
+        "lessonSlug": "unit-4-lesson-9",
+        "standardCodes": [
+          "ACC-4.9"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.10",
+      "kind": "skill",
+      "title": "Present and defend a payroll result",
+      "domain": "business-math",
+      "description": "Present and defend a payroll result. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "10",
+        "lessonSlug": "unit-4-lesson-10",
+        "standardCodes": [
+          "ACC-4.10"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.4.11",
+      "kind": "skill",
+      "title": "Demonstrate the calculations and checks in a payroll model",
+      "domain": "business-math",
+      "description": "Demonstrate the calculations and checks in a payroll model. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "4",
+        "lesson": "11",
+        "lessonSlug": "unit-4-lesson-11",
+        "standardCodes": [
+          "ACC-4.11"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.1",
+      "kind": "skill",
+      "title": "Explain depreciation as cost allocation",
+      "domain": "business-math",
+      "description": "Explain depreciation as cost allocation. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "1",
+        "lessonSlug": "unit-5-lesson-1",
+        "standardCodes": [
+          "ACC-5.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.2",
+      "kind": "skill",
+      "title": "Determine the recorded cost of an acquired asset",
+      "domain": "business-math",
+      "description": "Determine the recorded cost of an acquired asset. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "2",
+        "lessonSlug": "unit-5-lesson-2",
+        "standardCodes": [
+          "ACC-5.2"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.3",
+      "kind": "skill",
+      "title": "Calculate straight-line depreciation",
+      "domain": "business-math",
+      "description": "Calculate straight-line depreciation. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "3",
+        "lessonSlug": "unit-5-lesson-3",
+        "standardCodes": [
+          "ACC-5.3"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.4",
+      "kind": "skill",
+      "title": "Calculate units-of-production depreciation",
+      "domain": "business-math",
+      "description": "Calculate units-of-production depreciation. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "4",
+        "lessonSlug": "unit-5-lesson-4",
+        "standardCodes": [
+          "ACC-5.4"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.5",
+      "kind": "skill",
+      "title": "Compare straight-line and double-declining balance",
+      "domain": "business-math",
+      "description": "Compare straight-line and double-declining balance. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "5",
+        "lessonSlug": "unit-5-lesson-5",
+        "standardCodes": [
+          "ACC-5.5"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.6",
+      "kind": "skill",
+      "title": "Validate depreciation schedules and statement links",
+      "domain": "business-math",
+      "description": "Validate depreciation schedules and statement links. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "6",
+        "lessonSlug": "unit-5-lesson-6",
+        "standardCodes": [
+          "ACC-5.6"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.7",
+      "kind": "skill",
+      "title": "Explain the non-cash effect of depreciation",
+      "domain": "business-math",
+      "description": "Explain the non-cash effect of depreciation. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "7",
+        "lessonSlug": "unit-5-lesson-7",
+        "standardCodes": [
+          "ACC-5.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.8",
+      "kind": "skill",
+      "title": "Build a depreciation model from assigned data",
+      "domain": "business-math",
+      "description": "Build a depreciation model from assigned data. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "8",
+        "lessonSlug": "unit-5-lesson-8",
+        "standardCodes": [
+          "ACC-5.8"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.9",
+      "kind": "skill",
+      "title": "Revise a depreciation model after evidence-based review",
+      "domain": "business-math",
+      "description": "Revise a depreciation model after evidence-based review. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "9",
+        "lessonSlug": "unit-5-lesson-9",
+        "standardCodes": [
+          "ACC-5.9"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.10",
+      "kind": "skill",
+      "title": "Present and defend a depreciation result",
+      "domain": "business-math",
+      "description": "Present and defend a depreciation result. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "10",
+        "lessonSlug": "unit-5-lesson-10",
+        "standardCodes": [
+          "ACC-5.10"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.5.11",
+      "kind": "skill",
+      "title": "Demonstrate the calculations and checks in a depreciation model",
+      "domain": "business-math",
+      "description": "Demonstrate the calculations and checks in a depreciation model. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "5",
+        "lesson": "11",
+        "lessonSlug": "unit-5-lesson-11",
+        "standardCodes": [
+          "ACC-5.11"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.1",
+      "kind": "skill",
+      "title": "Reconcile inventory units",
+      "domain": "business-math",
+      "description": "Reconcile inventory units. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "1",
+        "lessonSlug": "unit-6-lesson-1",
+        "standardCodes": [
+          "ACC-6.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.2",
+      "kind": "skill",
+      "title": "Calculate first-in, first-out cost flow",
+      "domain": "business-math",
+      "description": "Calculate first-in, first-out cost flow. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "2",
+        "lessonSlug": "unit-6-lesson-2",
+        "standardCodes": [
+          "ACC-6.2"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.3",
+      "kind": "skill",
+      "title": "Compare inventory cost-flow methods",
+      "domain": "business-math",
+      "description": "Compare inventory cost-flow methods. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "3",
+        "lessonSlug": "unit-6-lesson-3",
+        "standardCodes": [
+          "ACC-6.3"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.4",
+      "kind": "skill",
+      "title": "Assign materials, labor, and overhead to a project",
+      "domain": "business-math",
+      "description": "Assign materials, labor, and overhead to a project. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "4",
+        "lessonSlug": "unit-6-lesson-4",
+        "standardCodes": [
+          "ACC-6.4"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.5",
+      "kind": "skill",
+      "title": "Distinguish margin from markup",
+      "domain": "business-math",
+      "description": "Distinguish margin from markup. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "5",
+        "lessonSlug": "unit-6-lesson-5",
+        "standardCodes": [
+          "ACC-6.5"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.6",
+      "kind": "skill",
+      "title": "Reconcile work in progress",
+      "domain": "business-math",
+      "description": "Reconcile work in progress. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "6",
+        "lessonSlug": "unit-6-lesson-6",
+        "standardCodes": [
+          "ACC-6.6"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.7",
+      "kind": "skill",
+      "title": "Use contribution to explain a price decision",
+      "domain": "business-math",
+      "description": "Use contribution to explain a price decision. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "7",
+        "lessonSlug": "unit-6-lesson-7",
+        "standardCodes": [
+          "ACC-6.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.8",
+      "kind": "skill",
+      "title": "Build a inventory and project cost model from assigned data",
+      "domain": "business-math",
+      "description": "Build a inventory and project cost model from assigned data. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "8",
+        "lessonSlug": "unit-6-lesson-8",
+        "standardCodes": [
+          "ACC-6.8"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.9",
+      "kind": "skill",
+      "title": "Revise a inventory and project cost model after evidence-based review",
+      "domain": "business-math",
+      "description": "Revise a inventory and project cost model after evidence-based review. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "9",
+        "lessonSlug": "unit-6-lesson-9",
+        "standardCodes": [
+          "ACC-6.9"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.10",
+      "kind": "skill",
+      "title": "Present and defend a inventory and project cost result",
+      "domain": "business-math",
+      "description": "Present and defend a inventory and project cost result. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "10",
+        "lessonSlug": "unit-6-lesson-10",
+        "standardCodes": [
+          "ACC-6.10"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.6.11",
+      "kind": "skill",
+      "title": "Demonstrate the calculations and checks in a inventory and project cost model",
+      "domain": "business-math",
+      "description": "Demonstrate the calculations and checks in a inventory and project cost model. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "6",
+        "lesson": "11",
+        "lessonSlug": "unit-6-lesson-11",
+        "standardCodes": [
+          "ACC-6.11"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.1",
+      "kind": "skill",
+      "title": "Distinguish financing receipts from revenue",
+      "domain": "business-math",
+      "description": "Distinguish financing receipts from revenue. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "1",
+        "lessonSlug": "unit-7-lesson-1",
+        "standardCodes": [
+          "ACC-7.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.2",
+      "kind": "skill",
+      "title": "Compare debt and equity amounts",
+      "domain": "business-math",
+      "description": "Compare debt and equity amounts. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "2",
+        "lessonSlug": "unit-7-lesson-2",
+        "standardCodes": [
+          "ACC-7.2"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.3",
+      "kind": "skill",
+      "title": "Build a loan payment schedule",
+      "domain": "business-math",
+      "description": "Build a loan payment schedule. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "3",
+        "lessonSlug": "unit-7-lesson-3",
+        "standardCodes": [
+          "ACC-7.3"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.4",
+      "kind": "skill",
+      "title": "Separate investment return from loan principal",
+      "domain": "business-math",
+      "description": "Separate investment return from loan principal. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "4",
+        "lessonSlug": "unit-7-lesson-4",
+        "standardCodes": [
+          "ACC-7.4"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.5",
+      "kind": "skill",
+      "title": "Measure payment coverage under stress",
+      "domain": "business-math",
+      "description": "Measure payment coverage under stress. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "5",
+        "lessonSlug": "unit-7-lesson-5",
+        "standardCodes": [
+          "ACC-7.5"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.6",
+      "kind": "skill",
+      "title": "Validate financing scenario inputs",
+      "domain": "business-math",
+      "description": "Validate financing scenario inputs. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "6",
+        "lessonSlug": "unit-7-lesson-6",
+        "standardCodes": [
+          "ACC-7.6"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.7",
+      "kind": "skill",
+      "title": "Reconcile financing cash flows and loan balances",
+      "domain": "business-math",
+      "description": "Reconcile financing cash flows and loan balances. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "7",
+        "lessonSlug": "unit-7-lesson-7",
+        "standardCodes": [
+          "ACC-7.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.8",
+      "kind": "skill",
+      "title": "Build a funding model from assigned data",
+      "domain": "business-math",
+      "description": "Build a funding model from assigned data. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "8",
+        "lessonSlug": "unit-7-lesson-8",
+        "standardCodes": [
+          "ACC-7.8"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.9",
+      "kind": "skill",
+      "title": "Revise a funding model after evidence-based review",
+      "domain": "business-math",
+      "description": "Revise a funding model after evidence-based review. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "9",
+        "lessonSlug": "unit-7-lesson-9",
+        "standardCodes": [
+          "ACC-7.9"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.10",
+      "kind": "skill",
+      "title": "Present and defend a funding result",
+      "domain": "business-math",
+      "description": "Present and defend a funding result. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "10",
+        "lessonSlug": "unit-7-lesson-10",
+        "standardCodes": [
+          "ACC-7.10"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.7.11",
+      "kind": "skill",
+      "title": "Demonstrate the calculations and checks in a funding model",
+      "domain": "business-math",
+      "description": "Demonstrate the calculations and checks in a funding model. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "7",
+        "lesson": "11",
+        "lessonSlug": "unit-7-lesson-11",
+        "standardCodes": [
+          "ACC-7.11"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.1",
+      "kind": "skill",
+      "title": "Define model inputs, calculations, and outputs",
+      "domain": "business-math",
+      "description": "Define model inputs, calculations, and outputs. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "1",
+        "lessonSlug": "unit-8-lesson-1",
+        "standardCodes": [
+          "ACC-8.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.2",
+      "kind": "skill",
+      "title": "Review a complete operating model",
+      "domain": "business-math",
+      "description": "Review a complete operating model. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "2",
+        "lessonSlug": "unit-8-lesson-2",
+        "standardCodes": [
+          "ACC-8.2"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.3",
+      "kind": "skill",
+      "title": "Stress-test model assumptions",
+      "domain": "business-math",
+      "description": "Stress-test model assumptions. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "3",
+        "lessonSlug": "unit-8-lesson-3",
+        "standardCodes": [
+          "ACC-8.3"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.4",
+      "kind": "skill",
+      "title": "Build an indirect cash flow reconciliation",
+      "domain": "business-math",
+      "description": "Build an indirect cash flow reconciliation. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "4",
+        "lessonSlug": "unit-8-lesson-4",
+        "standardCodes": [
+          "ACC-8.4"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.5",
+      "kind": "skill",
+      "title": "Align scenario outputs with statement cash",
+      "domain": "business-math",
+      "description": "Align scenario outputs with statement cash. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "5",
+        "lessonSlug": "unit-8-lesson-5",
+        "standardCodes": [
+          "ACC-8.5"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.6",
+      "kind": "skill",
+      "title": "Validate a target result with an independent calculation",
+      "domain": "business-math",
+      "description": "Validate a target result with an independent calculation. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "6",
+        "lessonSlug": "unit-8-lesson-6",
+        "standardCodes": [
+          "ACC-8.6"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.7",
+      "kind": "skill",
+      "title": "Explain a recommendation with a tested dashboard",
+      "domain": "business-math",
+      "description": "Explain a recommendation with a tested dashboard. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "7",
+        "lessonSlug": "unit-8-lesson-7",
+        "standardCodes": [
+          "ACC-8.7"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.8",
+      "kind": "skill",
+      "title": "Build a operating model model from assigned data",
+      "domain": "business-math",
+      "description": "Build a operating model model from assigned data. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "8",
+        "lessonSlug": "unit-8-lesson-8",
+        "standardCodes": [
+          "ACC-8.8"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.9",
+      "kind": "skill",
+      "title": "Revise a operating model model after evidence-based review",
+      "domain": "business-math",
+      "description": "Revise a operating model model after evidence-based review. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "9",
+        "lessonSlug": "unit-8-lesson-9",
+        "standardCodes": [
+          "ACC-8.9"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.10",
+      "kind": "skill",
+      "title": "Present and defend a operating model result",
+      "domain": "business-math",
+      "description": "Present and defend a operating model result. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "10",
+        "lessonSlug": "unit-8-lesson-10",
+        "standardCodes": [
+          "ACC-8.10"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.8.11",
+      "kind": "skill",
+      "title": "Demonstrate the calculations and checks in a operating model model",
+      "domain": "business-math",
+      "description": "Demonstrate the calculations and checks in a operating model model. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/reviewed-instruction.json",
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "8",
+        "lesson": "11",
+        "lessonSlug": "unit-8-lesson-11",
+        "standardCodes": [
+          "ACC-8.11"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    },
+    {
+      "id": "math.bm2.skill.9.1",
+      "kind": "skill",
+      "title": "Defend a business recommendation with a reconciled financial model",
+      "domain": "business-math",
+      "description": "Defend a business recommendation with a reconciled financial model. Require the saved calculation or artifact described in the lesson.",
+      "sourceRefs": [
+        "apps/bus-math-v2/lib/curriculum/published-manifest.ts"
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "course": "bm2",
+        "module": "9",
+        "lesson": "1",
+        "lessonSlug": "capstone-investor-ready-plan",
+        "standardCodes": [
+          "CAP-9.1"
+        ],
+        "evidencePolicy": "A submitted artifact proves participation. Automatic quiz grades cover only their numerical items. A teacher must review model and explanation evidence before granting application mastery."
+      }
+    }
+  ]
+}

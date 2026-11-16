@@ -3,6 +3,28 @@ import { stepByStepSolverSchema } from '@/lib/activities/schemas/step-by-step-so
 
 describe('step-by-step-solver.schema', () => {
   describe('valid props', () => {
+    it('accepts all stored problem types through the app re-export', () => {
+      const problemTypes = [
+        'quadratic_formula', 'factoring', 'completing_the_square', 'square_root_property',
+        'graphing', 'simplify_imaginary', 'complex_operations', 'vertex-form',
+        'inequality', 'system', 'polynomial', 'rate_of_change',
+      ];
+      for (const problemType of problemTypes) {
+        const props = problemType === 'system'
+          ? { problemType, equations: { first: 'y=x^2', second: 'y=x+1' } }
+          : { problemType, equation: 'x^2=1' };
+        expect(stepByStepSolverSchema.safeParse(props).success).toBe(true);
+      }
+    });
+
+    it('accepts only the ordered system equation object', () => {
+      const valid = { problemType: 'system', equations: { first: 'y=x^2', second: 'y=x+1' } };
+      expect(stepByStepSolverSchema.safeParse(valid).success).toBe(true);
+      expect(stepByStepSolverSchema.safeParse({ ...valid, equation: 'x=1' }).success).toBe(false);
+      expect(stepByStepSolverSchema.safeParse({ problemType: 'system', equations: ['y=x^2', 'y=x+1'] }).success).toBe(false);
+      expect(stepByStepSolverSchema.safeParse({ problemType: 'factoring', equations: valid.equations }).success).toBe(false);
+    });
+
     it('accepts minimal valid props', () => {
       const props = {
         problemType: 'quadratic_formula',
@@ -293,6 +315,8 @@ describe('step-by-step-solver.schema', () => {
       if (result.success) {
         // TypeScript should infer the correct types
         const problemType: string = result.data.problemType;
+        expect(result.data.problemType).not.toBe('system');
+        if (result.data.problemType === 'system') throw new Error('Expected a single-equation result');
         const equation: string = result.data.equation;
         const steps: Array<{ id: string; description: string; expression: string; explanation?: string }> | undefined =
           result.data.steps;

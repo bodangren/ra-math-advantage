@@ -1,3 +1,4 @@
+import reviewedInstruction from './reviewed-instruction.json';
 import { resolveActivityComponentKey } from '../activities/component-keys';
 import { activityPropsSchemas } from '../schemas/activity-props';
 import type { LessonMetadata, UnitContent } from '../../types/curriculum';
@@ -1847,6 +1848,122 @@ export function validatePublishedCurriculumLesson(lesson: PublishedCurriculumLes
   return lesson;
 }
 
+/** Add authored examples and saved work to the lessons that had no activities. */
+function studentLessonText(lesson: PublishedCurriculumLesson): PublishedCurriculumLesson {
+  const unit = reviewedInstruction[String(lesson.unitNumber) as keyof typeof reviewedInstruction];
+  const core = unit?.[lesson.orderIndex - 1];
+  const link = (name: string) => `[${name}](${name.endsWith('.csv') ? '/api/datasets/' : name.endsWith('.pdf') ? '/api/pdfs/' : '/workbooks/'}${name})`;
+  const resources = [...new Set(JSON.stringify(lesson.phases).match(/(?:unit_\d{2}_[a-zA-Z0-9_]+|capstone_[a-zA-Z0-9_]+)\.(?:xlsx|csv|pdf)/g) ?? [])]
+    .filter(name => !name.includes('_teacher'));
+  const resourceText = resources.length ? `\n\n### Resources\n\n${resources.map(name => `- ${link(name)}`).join('\n')}` : '';
+  if (lesson.unitNumber === 1 || lesson.lessonType === 'capstone') return lesson;
+  const task = core?.objective ?? `${lesson.unitTitle}: ${lesson.title}`;
+  const directions: Record<PublishedPhaseKey, string> = {
+    hook: `## Business decision\n\n${core?.explanation ?? lesson.unitTitle}\n\nIdentify the quantities that the business must measure. State their units and time period. Explain why this calculation matters.`,
+    instruction: '',
+    guided_practice: `## Guided practice\n\n${core?.checks[0].text ?? task}\n\nWrite the input values first. Select the accounting rule or formula. Calculate the answer. Submit the answer below. Use the saved result to check your work.`,
+    independent_practice: `## Independent workbook task\n\n${task}. Build a small workbook using the worked example. Keep inputs separate from formula cells. Label each input and output. Check the result without the workbook. Change one input and verify the dependent output. Save the workbook. Submit its link and cell references below for teacher review.`,
+    assessment: `## Assessment\n\nAnswer each question independently. Use the assumptions in that question. Submit each required task. An automatic check requires at least 80%. Workbook evidence goes to your teacher for review. A saved workbook response is not an automatic mastery award.`,
+    reflection: `## Review your work\n\nCheck the saved results from this lesson. Identify one calculation that supports a business decision. Explain its units, time period, and assumptions. Record one correction or useful check in your workbook notes.`,
+    brief: `## Project brief\n\n${task}. ${lesson.orderIndex === 10 ? 'Prepare the public presentation. ' : ''}Use the same product structure as Lesson 7. Use the assigned group dataset and the linked guides. Identify the inputs, formulas, and outputs your model needs. Divide the work among group members. Record each person's task. Keep one shared workbook.`,
+    workshop: `## Build and check\n\nImport the assigned dataset. For Units 2–8, the Input column names the quantity and the Value column gives its amount. Keep rates and periods consistent. Create formulas that refer to input cells. Reconcile the model totals. Test one changed input. Ask a peer to check the formulas. Record the check and any correction.`,
+    checkpoint: `## Save project evidence\n\nSubmit the workbook link and the requested calculations below. Include cell references and independent checks. State one assumption and its effect on the result. Your teacher will review this evidence.`,
+    directions: `## Assessment directions\n\nShow knowledge of the terms, understanding of the calculations, and application through workbook evidence. Complete each required calculation and workbook task. Show formulas and cell references in the workbook evidence. You have two attempts for the numeric mastery check. Read the saved result before using another attempt.`,
+    review: `## Explain the result\n\nPrepare the public presentation. State your recommendation. Support it with two model outputs. Identify the input assumptions and the common reporting period. Show how a changed input affects the recommendation. Keep the final workbook and presentation links in your saved evidence.`,
+  };
+  const phases = lesson.phases.map(phase => {
+    if (phase.phaseKey === 'instruction' && core) return phase;
+    const text = directions[phase.phaseKey] || `## Worked model\n\n${unit?.[6]?.explanation ?? 'Use the linked capstone workbook. Connect statement, operations, and financing outputs to the same reporting period. Check that the balance difference is zero before and after a changed input.'}`;
+    return { ...phase, sections: [{ sectionType: 'text' as const, content: { markdown: text + resourceText } }, ...phase.sections.filter(section => section.sectionType === 'activity')] };
+  });
+  const description = core ? `${core.objective}. Build the calculation in a workbook and verify the result.` : `Build, check, and explain the ${lesson.unitTitle} model. Submit the workbook and calculation evidence for teacher review.`;
+  return { ...lesson, description, version: { ...lesson.version, description }, phases };
+}
+
+function addReviewedInstruction(lesson: PublishedCurriculumLesson): PublishedCurriculumLesson {
+  if (lesson.unitNumber === 1) {
+    if (lesson.orderIndex !== 11) return lesson;
+    const key = `${lesson.slug}-application-evidence`;
+    const prompts = [
+      'Show a business event before and after it occurs. State Assets, Liabilities, and Equity. Verify both accounting equations.',
+      'Classify Cash, Accounts Payable, Prepaid Rent, Deferred Revenue, and Capital. Explain each classification.',
+      'Build a balance sheet from the Unit 1 class dataset. Provide the workbook link. Show formulas for each subtotal and the balance check.',
+      'Record a 500 cash investment and a 200 cash equipment purchase. Show both effects for each event. Calculate the final equation.',
+      'Correct a duplicated 300 Cash entry and a 250 payable entered as 520. Show each original entry, corrected entry, and changed total.',
+      'Create an A/L/E validation list in the workbook. State the allowed values. Show one accepted value and one rejected value.',
+      'Create a chart linked to the balance sheet totals. State its data range. Change one source balance. Explain the change in the chart.',
+    ];
+    const evidence: PublishedActivity = {
+      key, componentKey: 'reflection-journal', displayName: 'Unit 1 application evidence',
+      props: { unitTitle: 'Unit 1 application assessment', description: 'Submit the workbook and explanations for teacher review. Each response must show the stated skill.',
+        prompts: prompts.map((prompt, index) => ({ id: `application-${index + 1}`, category: 'persistence', prompt, placeholder: 'Enter the evidence and cell references.' })) },
+    };
+    return { ...lesson,
+      activities: [...lesson.activities.map(activity => {
+        if (activity.componentKey !== 'tiered-assessment') return activity;
+        const props = { ...activity.props };
+        delete props.applicationProblems;
+        return { ...activity, props };
+      }), evidence],
+      phases: lesson.phases.map(phase => phase.phaseKey === 'assessment' ? { ...phase, sections: [...phase.sections, { sectionType: 'activity', content: { activityId: key, required: true } }] } : phase),
+    };
+  }
+  const unit = reviewedInstruction[String(lesson.unitNumber) as keyof typeof reviewedInstruction];
+  const core = unit?.[lesson.orderIndex - 1];
+  const activities: PublishedActivity[] = [];
+  const phases = lesson.phases.map((phase) => ({ ...phase, sections: [...phase.sections] }));
+  const attach = (phaseKey: PublishedPhaseKey, activity: PublishedActivity) => {
+    activities.push(activity);
+    const phase = phases.find((candidate) => candidate.phaseKey === phaseKey) ?? phases[phases.length - 1];
+    phase.sections.push({ sectionType: 'activity', content: { activityId: activity.key, required: true } });
+  };
+  const quiz = (suffix: string, checks: Array<{ text: string; answer: number }>): PublishedActivity => ({
+    key: `${lesson.slug}-${suffix}`, componentKey: 'comprehension-quiz', displayName: `${lesson.title}: ${suffix === 'practice' ? 'Practice' : 'Check'}`,
+    props: { title: lesson.title, mode: suffix === 'practice' ? 'guided_practice' : 'assessment', description: 'Calculate each answer. Use the stated assumptions.', showExplanations: false, allowRetry: lesson.lessonType !== 'summative_mastery',
+      ...(lesson.lessonType === 'summative_mastery' ? { maxAttempts: 2 } : {}),
+      questions: checks.map((check, index) => ({ id: `q${index + 1}`, text: check.text, type: 'short-answer', correctAnswer: check.answer })) },
+    gradingConfig: { autoGrade: true, passingScore: 80, partialCredit: false,
+      ...(lesson.lessonType === 'summative_mastery' ? { maxAttempts: 2 } : {}) },
+  });
+  const journal = (suffix: string, prompts: string[]): PublishedActivity => ({
+    key: `${lesson.slug}-${suffix}`, componentKey: 'reflection-journal', displayName: `${lesson.title}: Evidence`,
+    props: { unitTitle: lesson.title, description: 'Save your calculations and explanation for teacher review.',
+      prompts: prompts.map((prompt, index) => ({ id: `evidence-${index + 1}`, category: 'persistence', prompt,
+        placeholder: 'Enter the workbook link, cell references, values, and explanation.' })) },
+  });
+  if (core) {
+    const instruction = phases.find((phase) => phase.phaseKey === 'instruction');
+    if (instruction) instruction.sections = [calloutSection(`Worked Example: ${core.explanation}`, 'example'), { sectionType: 'text', content: { markdown: `## ${core.objective}\n\n### Workbook method\n\n1. Put the given amounts in separate input cells. Label each amount and its unit.\n2. Enter a formula that uses those cells. Do not type a calculated total.\n3. Calculate the result independently. Compare it with the formula output.\n4. Change one input. Check that the dependent result changes correctly.\n5. Save the workbook and the check result.` } }];
+    attach('guided_practice', quiz('practice', [core.checks[0]]));
+    attach('assessment', quiz('check', [{ text: `${core.checks[0].text} Use that result where needed. Answer this final question: ${core.checks[1].text}`, answer: core.checks[1].answer }]));
+    attach('independent_practice', journal('workbook', [
+      `Apply this skill in a workbook: ${core.objective}. Provide the workbook link. State the input cells, formula cell, formula, and result.`,
+      'Change one input. Record its old and new values. Explain the resulting output change. Record your independent check.',
+    ]));
+    return { ...lesson, learningObjectives: [core.objective, 'Build and check the corresponding spreadsheet calculation.', 'Explain the result with saved evidence.'], phases, activities };
+  }
+  if (lesson.lessonType === 'summative_mastery' && unit) {
+    attach('assessment', quiz('mastery', unit.map((item) => ({ text: `${item.checks[0].text} Use that result where needed. Answer this final question: ${item.checks[1].text}`, answer: item.checks[1].answer }))));
+    attach('assessment', journal('model-proof', [
+      `Build a small Unit ${lesson.unitNumber} model from the class dataset. Provide the workbook link and three formulas with cell references.`,
+      'Record one independent numerical check. Identify one error you found and show the corrected result.',
+    ]));
+  } else {
+    const tasks = lesson.orderIndex === 8 ? [
+      `Use your assigned Unit ${lesson.unitNumber} group dataset. Provide the workbook link. List the source inputs and the calculated outputs in your draft.`,
+      'Show three formulas with cell references. State the units, periods, and assumptions. Record one reconciliation total and explain any difference.',
+    ] : lesson.orderIndex === 9 ? [
+      'Provide the revised workbook link. Record one peer review comment and the specific correction. Show the before and after values.',
+      'Test a downside case. Record the changed input and the resulting output. Explain how the result affects your recommendation.',
+    ] : [
+      'Provide the final workbook and presentation links. State your recommendation. Support it with two numerical results and their cell references.',
+      'Record an audience question and your answer. State one assumption that could change the recommendation. Show the relevant check.',
+    ];
+    attach('checkpoint', journal('project-evidence', tasks));
+  }
+  return { ...lesson, phases, activities };
+}
+
 /**
  * Builds the complete published curriculum manifest from authored and generated lessons.
  * @returns The manifest with all lessons sorted by unit and order index
@@ -1891,7 +2008,9 @@ export function buildPublishedCurriculumManifest(): PublishedCurriculumManifest 
   return {
     instructionalUnitCount: UNIT_PLANS.length,
     capstoneLessonCount: 1,
-    lessons: sortLessons(lessons),
+    lessons: sortLessons(lessons.map((lesson) => validatePublishedCurriculumLesson(studentLessonText(addReviewedInstruction({ ...lesson,
+      version: { ...lesson.version, version: lesson.unitNumber !== 1 || [4, 5, 6, 7, 11].includes(lesson.orderIndex) ? 2 : 1 },
+    }))))),
   };
 }
 

@@ -1,8 +1,178 @@
 import { describe, it, expect } from 'vitest';
+import { getFunctionName } from 'convex/server';
+import { seedAll } from '@/convex/seed';
+import { stepByStepSolverSchema } from '@/lib/activities/schemas/step-by-step-solver.schema';
 import type { SeedLesson, SeedCompetencyStandard, SeedDemoEnvironment } from '@/convex/seed/types';
 
+const lessonSeedModules = (import.meta as ImportMeta & {
+  glob(pattern: string, options: { eager: true }): Record<string, unknown>;
+}).glob('@/convex/seed/seed_lesson_[1-9]_[1-9].ts', { eager: true });
+
+function makeSeedContext() {
+  const stores = new Map<string, Array<Record<string, unknown> & { _id: string }>>();
+  let nextId = 1;
+  const rows = (table: string) => {
+    const stored = stores.get(table) ?? [];
+    stores.set(table, stored);
+    return stored;
+  };
+  return {
+    rows,
+    ctx: {
+      db: {
+        async get(id: string) {
+          for (const stored of stores.values()) {
+            const row = stored.find(candidate => candidate._id === id);
+            if (row) return row;
+          }
+          return null;
+        },
+        query(table: string) {
+          const filters: Array<[string, unknown]> = [];
+          const chain = {
+            withIndex(_name: string, apply: (q: { eq(field: string, value: unknown): unknown }) => unknown) {
+              const q = { eq(field: string, value: unknown) { filters.push([field, value]); return q; } };
+              apply(q);
+              return chain;
+            },
+            async first() { return rows(table).find(row => filters.every(([key, value]) => row[key] === value)) ?? null; },
+            async unique() { return rows(table).find(row => filters.every(([key, value]) => row[key] === value)) ?? null; },
+            async collect() { return rows(table).filter(row => filters.every(([key, value]) => row[key] === value)); },
+            async take(limit: number) { return rows(table).filter(row => filters.every(([key, value]) => row[key] === value)).slice(0, limit); },
+          };
+          return chain;
+        },
+        async insert(table: string, value: Record<string, unknown>) {
+          const id = `${table}:${nextId++}`;
+          rows(table).push({ _id: id, ...value });
+          return id;
+        },
+        async patch(id: string, value: Record<string, unknown>) {
+          for (const stored of stores.values()) {
+            const row = stored.find(candidate => candidate._id === id);
+            if (row) Object.assign(row, value);
+          }
+        },
+      },
+    },
+  };
+}
+
 describe('seed main entry point', () => {
+  it('writes valid activity contracts for all lessons', async () => {
+    const modules = Object.entries(lessonSeedModules);
+    const domainTypes: string[] = [];
+    const solverTypes: string[] = [];
+    const systems: Array<{ first: string; second: string }> = [];
+
+    expect(modules).toHaveLength(52);
+    for (const [, module] of modules) {
+      const memory = makeSeedContext();
+      const handler = Object.values(module as Record<string, unknown>).find(value => (
+        typeof value === 'function' && '_handler' in value
+      )) as { _handler(ctx: unknown): Promise<unknown> };
+      await handler._handler(memory.ctx);
+
+      for (const section of memory.rows('phase_sections').filter(row => row.sectionType === 'activity')) {
+        expect(Object.keys(section.content as object).sort()).toEqual(['activityId', 'componentKey']);
+      }
+      for (const activity of memory.rows('activities')) {
+        const props = activity.props as Record<string, unknown>;
+        if (activity.componentKey === 'graphing-explorer') {
+          expect(props).not.toHaveProperty('title');
+          expect(props).not.toHaveProperty('functions');
+          expect(props).not.toHaveProperty('features');
+          expect(props).not.toHaveProperty('equations');
+          expect(typeof props.equation).toBe('string');
+        } else if (activity.componentKey === 'step-by-step-solver') {
+          expect(stepByStepSolverSchema.safeParse(props).success).toBe(true);
+          const problemType = props.problemType as string;
+          solverTypes.push(problemType);
+          if (['simplify_imaginary', 'complex_operations', 'vertex-form', 'inequality', 'system'].includes(problemType)) {
+            domainTypes.push(problemType);
+          }
+          if (problemType === 'system') {
+            expect(props).not.toHaveProperty('equation');
+            systems.push(props.equations as { first: string; second: string });
+          }
+          for (const step of (props.steps as Array<Record<string, unknown>> | undefined) ?? []) {
+            expect(typeof step.id).toBe('string');
+            expect(step.description).toBe(step.explanation);
+            expect(typeof step.expression).toBe('string');
+          }
+        } else if (activity.componentKey === 'comprehension-quiz') {
+          for (const question of props.questions as Array<Record<string, unknown>>) {
+            expect(Object.keys(question).sort()).toEqual(['correctAnswer', 'id', 'options', 'prompt', 'type']);
+            expect(question.type).toBe('multiple_choice');
+            expect((question.options as string[])).toContain(question.correctAnswer);
+          }
+        }
+      }
+    }
+    expect(domainTypes.sort()).toEqual([
+      ...Array(5).fill('complex_operations'),
+      ...Array(4).fill('inequality'),
+      ...Array(3).fill('simplify_imaginary'),
+      ...Array(5).fill('system'),
+      'vertex-form',
+    ].sort());
+    expect(solverTypes).toEqual(expect.arrayContaining([
+      'completing_the_square', 'polynomial', 'rate_of_change',
+    ]));
+    expect(systems).toEqual([
+      { first: 'x = 2y^2 + 3y + 1', second: '-x + y = -1' },
+      { first: 'x^2 = y + 5', second: '-x + y = 7' },
+      { first: 'y = x^2 - 2x + 6', second: 'y = 4x + 1' },
+      { first: 'R = -0.1x^2 + 4x', second: 'R = 42' },
+      { first: 'y = x^2 + 2x', second: 'y = -x^2 + 4x + 6' },
+    ]);
+  });
+
   describe('seed orchestration', () => {
+    it('calls every registered seed mutation in order', async () => {
+      const mutationNames: string[] = [];
+      const lessonCounts = [8, 5, 5, 6, 5, 5, 6, 5, 7];
+      const expectedNames = [
+        'seed/seed_standards:seedStandards',
+        ...lessonCounts.flatMap((count, moduleIndex) =>
+          Array.from({ length: count }, (_, lessonIndex) => {
+            const moduleNumber = moduleIndex + 1;
+            const lessonNumber = lessonIndex + 1;
+            const functionName = moduleNumber === 1 ? `seedLesson${lessonNumber}` : `seedLesson${moduleNumber}_${lessonNumber}`;
+            return `seed/seed_lesson_${moduleNumber}_${lessonNumber}:${functionName}`;
+          }),
+        ),
+        ...Array.from(
+          { length: 9 },
+          (_, index) => `seed/seed_lesson_standards:seedModule${index + 1}LessonStandards`,
+        ),
+        'seed/seed_objective_policies:seedObjectivePolicies',
+        'seed/seed_problem_families:seedProblemFamilies',
+        'seed/seed_practice_items:seedPracticeItems',
+        'seed/seed_demo_env:seedDemoEnv',
+        'seed/seed_demo_progress:seedDemoProgress',
+      ];
+      const handler = seedAll as unknown as {
+        _handler(ctx: {
+          runMutation(reference: unknown, args: Record<string, never>): Promise<unknown>;
+        }): Promise<unknown>;
+      };
+
+      await handler._handler({
+        runMutation: async (reference) => {
+          const name = getFunctionName(reference as Parameters<typeof getFunctionName>[0]);
+          mutationNames.push(name);
+          if (name === 'seed/seed_standards:seedStandards' || name.startsWith('seed/seed_lesson_standards:')) {
+            return [];
+          }
+          return undefined;
+        },
+      });
+
+      expect(mutationNames).toHaveLength(67);
+      expect(mutationNames).toEqual(expectedNames);
+    });
+
     it('seeds lessons in order from 1-1 to 1-8', () => {
       const lessonOrder = [
         'module-1-lesson-1',

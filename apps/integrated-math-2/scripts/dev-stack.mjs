@@ -1,192 +1,170 @@
-import { spawn } from 'node:child_process';
-import { createServer } from 'node:net';
-import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { readFileSync } from "node:fs";
+import { parse } from "dotenv";
+import { spawn } from "node:child_process";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const DEV_PORT = 3000;
-
-export const APP_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+export const APP_ROOT = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+);
 export const CONVEX_READY_PATTERN = /functions ready/i;
-
 export function createProcesses(appRoot = APP_ROOT) {
   return [
     {
-      name: 'convex',
-      command: 'npx',
-      args: ['convex', 'dev', '--local'],
+      name: "convex",
+      command: "npx",
+      args: [
+        "--no-install",
+        "convex",
+        "dev",
+        "--local-cloud-port",
+        "3222",
+        "--local-site-port",
+        "3223",
+      ],
       cwd: appRoot,
     },
     {
-      name: 'frontend',
-      command: 'npx',
-      args: ['vinext', 'dev'],
+      name: "frontend",
+      command: "npx",
+      args: ["--no-install", "vinext", "dev", "--port", "3002"],
       cwd: appRoot,
     },
   ];
 }
-
-function waitForPort(port, timeout = 60000) {
+export function waitForOutput(
+  proc,
+  pattern = CONVEX_READY_PATTERN,
+  timeout = 120000,
+) {
   return new Promise((resolve, reject) => {
-    const startTime = Date.now();
-
-    const check = () => {
-      if (Date.now() - startTime > timeout) {
-        reject(new Error(`Timeout waiting for port ${port}`));
-        return;
-      }
-
-      const socket = new createServer();
-      socket.listen(port, () => {
-        socket.close();
-        setTimeout(check, 500);
-      });
-      socket.on('error', () => {
-        resolve();
-      });
-    };
-
-    check();
-  });
-}
-
-export function waitForOutput(proc, pattern = CONVEX_READY_PATTERN, timeout = 120000) {
-  return new Promise((resolve, reject) => {
+    let output = "";
     const cleanup = () => {
       clearTimeout(timer);
-      proc.stdout?.off('data', onData);
-      proc.stderr?.off('data', onData);
+      proc.stdout?.off("data", onData);
+      proc.stderr?.off("data", onData);
+      proc.off("exit", onExit);
+      proc.off("error", onError);
     };
-
     const onData = (data) => {
-      if (pattern.test(data.toString())) {
+      output = (output + data.toString()).slice(-8192);
+      if (pattern.test(output)) {
         cleanup();
         resolve();
       }
     };
-
+    const onExit = (code) => {
+      cleanup();
+      reject(new Error(`Process exited before readiness (${code})`));
+    };
+    const onError = (error) => {
+      cleanup();
+      reject(error);
+    };
     const timer = setTimeout(() => {
       cleanup();
-      reject(new Error('Timeout waiting for Convex readiness output'));
+      reject(new Error("Process readiness timed out"));
     }, timeout);
-
-    proc.stdout?.on('data', onData);
-    proc.stderr?.on('data', onData);
+    proc.stdout?.on("data", onData);
+    proc.stderr?.on("data", onData);
+    proc.on("exit", onExit);
+    proc.on("error", onError);
   });
 }
-
-function runProcess(processConfig, env = process.env) {
-  const child = spawn(processConfig.command, processConfig.args, {
-    stdio: 'pipe',
-    cwd: processConfig.cwd,
-    env: {
-      ...env,
-      SENTRY_DSN: '',
-      CONVEX_TELEMETRY: 'off',
-      CONVEX_DISABLE_TELEMETRY: '1',
-    },
-    detached: process.platform !== 'win32',
-  });
-
-  child.stdout.on('data', (data) => {
-    process.stdout.write(`[${processConfig.name}] ${data}`);
-  });
-
-  child.stderr.on('data', (data) => {
-    process.stderr.write(`[${processConfig.name}] ${data}`);
-  });
-
-  child.on('close', (code) => {
-    console.log(`[${processConfig.name}] exited with code ${code}`);
-  });
-
-  return child;
-}
-
-function stopChild(child, signal = 'SIGTERM') {
-  if (child.killed) {
-    return;
-  }
-
-  if (process.platform !== 'win32' && typeof child.pid === 'number') {
+function stopChild(child, signal) {
+  if (process.platform !== "win32" && child.pid) {
     try {
       process.kill(-child.pid, signal);
       return;
     } catch {
-      // Fall through to direct child termination when the process group is gone.
+      /* The group has already stopped. */
     }
   }
-
-  child.kill(signal);
+  if (child.exitCode === null && child.signalCode === null) child.kill(signal);
 }
-
 export async function runDevStack(processes = createProcesses()) {
-  console.log('Starting development stack...\n');
-
-  const children = new Set();
+  const localEnv = parse(readFileSync(path.join(APP_ROOT, ".env.local")));
+  if (!/^(anonymous|local):/.test(localEnv.CONVEX_DEPLOYMENT ?? ""))
+    throw new Error(
+      "Select an IM2 local Convex deployment before starting this stack.",
+    );
+  const childEnv = {
+    ...process.env,
+    ...localEnv,
+    CONVEX_AGENT_MODE: localEnv.CONVEX_DEPLOYMENT.startsWith("anonymous:")
+      ? "anonymous"
+      : process.env.CONVEX_AGENT_MODE,
+  };
+  const children = [];
   let shuttingDown = false;
-
-  const shutdown = (code = 0) => {
-    if (shuttingDown) {
+  const shutdown = async (code) => {
+    if (shuttingDown) return;
+    shuttingDown = true;
+    process.exitCode = code;
+    await Promise.all(
+      children.map(
+        (child) =>
+          new Promise((resolve) => {
+            if (child.exitCode !== null || child.signalCode !== null) {
+              resolve();
+              return;
+            }
+            const timer = setTimeout(() => {
+              stopChild(child, "SIGKILL");
+              resolve();
+            }, 3000);
+            child.once("exit", () => {
+              clearTimeout(timer);
+              resolve();
+            });
+            stopChild(child, "SIGTERM");
+          }),
+      ),
+    );
+  };
+  process.once("SIGINT", () => void shutdown(130));
+  process.once("SIGTERM", () => void shutdown(143));
+  for (const config of processes) {
+    if (shuttingDown) return;
+    const child = spawn(config.command, config.args, {
+      cwd: config.cwd,
+      env: childEnv,
+      stdio: "pipe",
+      detached: process.platform !== "win32",
+    });
+    children.push(child);
+    const ready = waitForOutput(
+      child,
+      config.name === "convex"
+        ? CONVEX_READY_PATTERN
+        : /Local:\s+http:\/\/(?:localhost|127\.0\.0\.1):3002/,
+    );
+    child.stdout.on("data", (data) =>
+      process.stdout.write(`[${config.name}] ${data}`),
+    );
+    child.stderr.on("data", (data) =>
+      process.stderr.write(`[${config.name}] ${data}`),
+    );
+    child.on("exit", (code) => {
+      if (!shuttingDown) void shutdown(code || 1);
+    });
+    try {
+      await ready;
+    } catch (error) {
+      console.error(error.message);
+      await shutdown(1);
       return;
     }
-
-    shuttingDown = true;
-    console.log('\nShutting down...');
-    for (const child of children) {
-      stopChild(child, 'SIGTERM');
-    }
-    setTimeout(() => {
-      for (const child of children) {
-        stopChild(child, 'SIGKILL');
-      }
-    }, 3000).unref();
-    process.exit(code);
-  };
-
-  const convexConfig = processes.find((processConfig) => processConfig.name === 'convex');
-  const frontendConfig = processes.find((processConfig) => processConfig.name === 'frontend');
-
-  if (!convexConfig || !frontendConfig) {
-    throw new Error('dev-stack requires convex and frontend process configs');
   }
-
-  console.log('Starting Convex dev server...');
-  const convex = runProcess(convexConfig);
-  children.add(convex);
-
-  try {
-    await waitForOutput(convex);
-    console.log('Convex is ready!');
-  } catch (err) {
-    console.error('Failed to start Convex:', err.message);
-    shutdown(1);
-  }
-
-  console.log('Starting frontend dev server...');
-  const frontend = runProcess(frontendConfig);
-  children.add(frontend);
-
-  try {
-    await waitForPort(DEV_PORT);
-    console.log('\nDevelopment stack is ready!');
-    console.log(`   - Convex: http://127.0.0.1:3210`);
-    console.log(`   - Frontend: http://localhost:${DEV_PORT}`);
-    console.log('\nPress Ctrl+C to stop both servers.\n');
-  } catch {
-    console.error('Frontend may still be starting...');
-  }
-
-  process.on('SIGINT', () => shutdown(130));
-  process.on('SIGTERM', () => shutdown(143));
+  console.log("IM2 is ready at http://localhost:3002. Convex uses port 3222.");
 }
-
-const isDirectExecution =
-  typeof process.argv[1] === 'string' &&
-  import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
-
-if (isDirectExecution) {
-  runDevStack().catch((err) => {
-    console.error('Error:', err);
-    process.exit(1);
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href
+) {
+  runDevStack().catch((error) => {
+    console.error(error.message);
+    process.exitCode = 1;
   });
 }

@@ -8,15 +8,10 @@
 
 ## Visual Identity
 
-- **Color System**: oklch-based CSS custom properties for all theme colors
-  - **Brand purple** (primary): TBD — define during Design Definition
-  - **Accent color**: TBD — define during Design Definition
-  - **Neutral palette**: TBD — define during Design Definition
-  - Semantic colors: destructive = red, success = green, warning = golden yellow
-- **Typography**:
-  - Display headings: Lora (serif) — `font-display`
-  - Body text: DM Sans (sans) — `font-body`
-  - Monospace/numbers: Fira Code — `font-mono-num`
+- Use the colors and tokens in `DESIGN.md` and `app/globals.css`.
+- Primary indigo: `#5e6ad2`. Sky accent: `#38bdf8`.
+- Canvas: `#080a0f`. Panels: `#141820`. Elevated surfaces: `#1e2330`.
+- Use Inter for headings and body text. Use Fira Code for monospace text.
 - **Dark Mode**: Full support via `next-themes` with class-based toggling
 - **Component Library**: shadcn/ui (new-york style, RSC-compatible)
 - **Icons**: lucide-react
@@ -39,5 +34,11 @@
 
 - TypeScript strict mode enabled
 - React Server Components by default; `"use client"` only for interactive components
-- No `any` types without eslint-disable comments
+- Give public boundaries explicit validators and types. Narrow unknown input before use.
 - Path alias `@/*` maps to project root
+
+## Backend guidance
+
+Read `../../convex/_generated/ai/guidelines.md` before you change Convex code. The shared generated guidance is the current local reference.
+
+Use TypeScript types for function parameters and return values. Add documentation for behavior and constraints. Do not repeat types in JSDoc.

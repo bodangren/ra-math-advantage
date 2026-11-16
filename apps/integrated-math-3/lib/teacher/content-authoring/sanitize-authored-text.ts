@@ -127,6 +127,6 @@ export function SanitizedText({
   const safe = sanitizeAuthoringText(typeof html === 'string' ? html : '');
   // Runtime defense in depth for JS callers or type assertions.
   const tag: SafeTextTag =
-    Tag === 'script' || Tag === 'style' ? 'span' : Tag;
+    (Tag as string) === 'script' || (Tag as string) === 'style' ? 'span' : Tag;
   return React.createElement(tag, {}, safe);
 }

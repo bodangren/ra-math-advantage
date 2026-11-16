@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 const REPO_ROOT = path.resolve(__dirname, "../../../..");
 const CI_WORKFLOW_PATH = path.join(REPO_ROOT, ".github/workflows/ci.yml");
 
-const TARGET_JOB = "im1-im2-precalc";
+const TARGET_JOB = "app-foundations";
 const INTEGRITY_RED_TRACK_ID = "im1-im2-standards-backfill_20260605";
 
 interface AppTarget {
@@ -29,12 +29,12 @@ function readCiWorkflow(): string {
 function extractJobSection(workflowText: string, jobId: string): string {
   const pattern = new RegExp(
     `^  ${jobId}:[\\s\\S]*?(?=\\n  [a-zA-Z][a-zA-Z0-9_-]*:)`,
-    "m"
+    "m",
   );
   const match = workflowText.match(pattern);
   if (!match) {
     throw new Error(
-      `Job '${jobId}' not found in CI workflow at ${CI_WORKFLOW_PATH}`
+      `Job '${jobId}' not found in CI workflow at ${CI_WORKFLOW_PATH}`,
     );
   }
   return match[0];
@@ -67,17 +67,17 @@ describe(`standards-integrity CI wiring (Phase 4 — track ${INTEGRITY_RED_TRACK
   const workflow = readCiWorkflow();
   const jobSection = extractJobSection(workflow, TARGET_JOB);
 
-  it("CI workflow defines the im1-im2-precalc job that contains the IM1/IM2 matrix", () => {
+  it("CI workflow defines the app-foundations job that contains the IM1/IM2 matrix", () => {
     expect(jobSection.length).toBeGreaterThan(0);
     expect(jobSection).toContain(`${TARGET_JOB}:`);
   });
 
   for (const app of TARGET_APPS) {
-    it(`im1-im2-precalc job runs a test step for ${app.name} (${app.prefix})`, () => {
+    it(`app-foundations job runs a test step for ${app.name} (${app.prefix})`, () => {
       const hasTestStep = jobRunsTestForApp(jobSection, app);
       const matrixVar = "${{ matrix.app.prefix }}";
       const message = [
-        `Expected im1-im2-precalc job in .github/workflows/ci.yml to contain a`,
+        `Expected app-foundations job in .github/workflows/ci.yml to contain a`,
         `\`run:\` step that invokes tests for ${app.name} (${app.prefix}).`,
         `Per test-strategy.md §5 P4 ("CI + Closure"), the integrity test must`,
         `run on every push via the per-app \`npm run ws:<app>:test\` path.`,

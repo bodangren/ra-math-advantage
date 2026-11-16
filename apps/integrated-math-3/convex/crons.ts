@@ -9,4 +9,6 @@ crons.interval(
   internal.rateLimits.cleanupStaleRateLimitsCron,
 );
 
+crons.interval('cleanup login attempts', { minutes: 15 }, internal.rateLimits.cleanupLoginAttempts);
+
 export default crons;

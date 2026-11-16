@@ -28,51 +28,53 @@ Why do 45°-45°-90° and 30°-60°-90° triangles have predictable side ratios?
 
 ## Example 1 — 45°-45°-90° Triangles
 
-Find the value of [x].
+### Problem
 
-### Step 1: Identify the Ratio
+A 45°-45°-90° triangle has a leg of 7 cm. Find its other leg and hypotenuse.
 
-For a 45°-45°-90° triangle, if the leg is [l], the hypotenuse is [l√2].
+### Solution
 
-1-6. Find [x] using the 45°-45°-90° ratio.
+The legs are equal, so the other leg is 7 cm. The hypotenuse is the leg times $\sqrt{2}$, so it is $7\sqrt{2}$ cm.
 
 ## Example 2 — 30°-60°-90° Triangles
 
-Find the value of [x].
+### Problem
 
-### Step 1: Identify the Shorter Leg
+A 30°-60°-90° triangle has a hypotenuse of 18 cm. Find both legs.
 
-For a 30°-60°-90° triangle, if the shorter leg is [x], the longer leg is [x√3] and the hypotenuse is [2x].
+### Solution
 
-7-12. Find [x] using the 30°-60°-90° ratio.
+The side ratio, opposite 30°, 60°, and 90°, is $1:\sqrt{3}:2$. The shorter leg is 18/2 = 9 cm. The longer leg is $9\sqrt{3}$ cm.
 
 ## Example 3 — Mixed Special Triangles
 
-Find the value of [x].
+### Problem
 
-### Step 1: Determine Which Special Triangle Applies
+A square and an equilateral triangle each have side length 8 cm. Find the square diagonal and the triangle altitude.
 
-13-18. Apply the appropriate ratio based on the given angle measures.
+### Solution
+
+The square diagonal is the hypotenuse of a 45°-45°-90° triangle with legs 8, so it is $8\sqrt{2}$ cm. The equilateral triangle altitude splits its base into lengths of 4 cm. Each half is a 30°-60°-90° triangle, so the altitude is $4\sqrt{3}$ cm.
 
 ## Example 4 — Find x and y
 
-Find the values of [x] and [y].
+### Problem
 
-### Step 1: Use Both Ratios
+A 30°-60°-90° triangle has a longer leg of $6\sqrt{3}$ m. Its shorter leg is x and its hypotenuse is y. Find x and y.
 
-19-24. For 30°-60°-90° triangles, find the shorter leg [x] first, then use ratios to find [y].
+### Solution
+
+The longer leg equals the shorter leg times $\sqrt{3}$. Thus $x\sqrt{3}=6\sqrt{3}$, so x = 6 m. The hypotenuse is twice the shorter leg, so y = 12 m.
 
 ## Example 5 — Real-World Applications
 
-### Step 1: Apply Special Triangle Ratios
+### Problem
 
-25. Escalators: A 40-foot escalator rises at a 30° angle. How high is the second floor?
+A 40 ft escalator makes a 30° angle with the horizontal floor. Find its vertical rise.
 
-26. Windows: Height of window using six 30°-60°-90° triangles.
+### Solution
 
-27. Certificate: Will a 12-cm equilateral triangle fit in a 12-cm by 10-cm frame?
-
-28. Chocolate Box: Hexagon with side length 3 inches inside rectangular box.
+The escalator is the hypotenuse of a 30°-60°-90° triangle. The vertical rise is opposite the 30° angle. It is half the hypotenuse, so the rise is 20 ft.
 
 ## Mixed Exercises
 
@@ -109,4 +111,4 @@ Find the values of [x] and [y].
 ## Review Notes
 
 * Images referenced in this lesson:
-  * ![](media/image1.png) through ![](media/image43.png) — various special right triangle diagrams
+  * ![Worksheet figure 1](/curriculum/module-4-lesson-4/image1.png) through ![Worksheet figure 43](/curriculum/module-4-lesson-4/image43.png) — various special right triangle diagrams

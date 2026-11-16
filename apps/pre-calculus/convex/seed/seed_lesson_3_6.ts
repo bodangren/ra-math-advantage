@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -23,9 +24,9 @@ export const seedLesson3_6 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 3,
-          title: "Sinusoidal Applications",
+          title: "Sinusoidal Function Transformations",
           slug: lessonSlug,
-          description: "Students apply sinusoidal models to real-world periodic phenomena like tides, temperatures, and daylight hours.",
+          description: "AP Precalculus Topic 3.6: Sinusoidal Function Transformations",
           orderIndex: 6,
           createdAt: now,
           updatedAt: now,
@@ -33,210 +34,131 @@ export const seedLesson3_6 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
-          title: "Sinusoidal Applications",
-          description: "Students apply sinusoidal models to real-world periodic phenomena like tides, temperatures, and daylight hours.",
+          version: 2,
+          title: "Sinusoidal Function Transformations",
+          description: "AP Precalculus Topic 3.6: Sinusoidal Function Transformations",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                variant: "plot_from_equation",
-                equation: "y = 4.5sin(pi/6 * (x - 4)) + 12.5",
-                title: "Tide Modeling",
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Sinusoidal Applications\n\n### Steps to Model Real-World Data\n\n1. Identify the period (how long for one cycle)\n2. Find max and min values\n3. Calculate amplitude and midline\n4. Choose sine or cosine based on starting point\n5. Determine phase shift\n6. Write and verify the equation\n\n### Common Applications\n\n- **Tides**: 12.4-hour cycle (half lunar day)\n- **Temperature**: 24-hour cycle (daily) or 365-day cycle (yearly)\n- **Daylight hours**: 365-day cycle\n- **Ferris wheel**: Period based on rotation speed\n- **Sound waves**: Period based on frequency",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Ferris Wheel\n\nA Ferris wheel has a diameter of 30 meters, the center is 20 m above ground, and it takes 4 minutes for one revolution. A rider starts at the bottom. Write a height function.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "h(t) = A cos(B(t - C)) + D",
-                steps: [
-                  { expression: "Amplitude A = 15 (radius = 30/2)", explanation: "From diameter" },
-                  { expression: "Midline D = 20 (center height)", explanation: "Center position" },
-                  { expression: "Period = 4 min, B = 2π/4 = π/2", explanation: "From rotation time" },
-                  { expression: "Starts at bottom (min), use -cosine, C = 0", explanation: "At t = 0, h = 5 (minimum)" },
-                  { expression: "h(t) = -15cos(πt/2) + 20", explanation: "Complete equation" },
-                  { expression: "Check: h(0) = -15 + 20 = 5 (bottom) ✓", explanation: "Verify" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "If a Ferris wheel completes one revolution in 6 minutes, B equals:",
-                    options: ["6", "π/3", "2π/6 = π/3", "3π"],
-                    correctIndex: 2,
-                  },
-                  {
-                    question: "If the rider starts at the bottom, which function is appropriate?",
-                    options: ["Positive cosine", "Negative cosine", "Positive sine only", "Tangent"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Daylight hours model",
-                steps: [
-                  { expression: "Max daylight: 15 hrs (June), Min: 9 hrs (Dec)", explanation: "Given data" },
-                  { expression: "A = (15 - 9)/2 = 3, D = (15 + 9)/2 = 12", explanation: "Amplitude and midline" },
-                  { expression: "Period = 365 days, B = 2π/365", explanation: "Annual cycle" },
-                  { expression: "D(t) = 3cos(2π(t - 172)/365) + 12", explanation: "Peak at day 172 (June 21)" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Start with $f(\\theta) = \\sin \\theta$. What happens when you change the equation to $g(\\theta) = 3\\sin(2\\theta) + 1$? The graph still looks like a wave, but it is taller, narrower, and shifted upward. How do the numbers $3$, $2$, and $1$ control the shape?\n\nEvery sinusoidal function can be written in the form $h(t) = a\\sin(bt + c) + d$. Each constant — $a$, $b$, $c$, $d$ — performs a specific transformation on the parent sine function."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Vertical dilation**: Stretching or compressing the graph vertically by a factor of $|a|$. Controls the amplitude.\n- **Horizontal dilation**: Stretching or compressing the graph horizontally by a factor of $1/b$. Controls the period.\n- **Phase shift**: A horizontal translation of the graph. For $h(t) = a\\sin(bt + c) + d$, the phase shift is $-c/b$ units.\n- **Vertical translation**: Shifting the graph up or down by $d$ units. Controls the midline.\n- **General sinusoidal form**: $h(t) = a\\sin(bt + c) + d$ (or equivalently with cosine)."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "The general sinusoidal form $h(t) = a\\sin(bt + c) + d$ encodes four transformations:\n\n| Parameter | Transformation | Controls |\n|---|---|---|\n| $a$ | Vertical dilation by $|a|$ | Amplitude = $|a|$ |\n| $b$ | Horizontal dilation by $1/b$ | Period = $2\\pi/|b|$ |\n| $c$ | Horizontal translation (phase shift) | Phase shift = $-c/b$ |\n| $d$ | Vertical translation | Midline = $d$ |\n\nTo determine $a$, $b$, $c$, $d$ from a graph or context:\n1. **Amplitude** $a = (max - min)/2$\n2. **Midline** $d = (max + min)/2$\n3. **Period** $P = 2 \\times$ (horizontal distance from max to min), then $b = 2\\pi/P$\n4. **Phase shift** $c$: If the graph reaches a maximum at $t = t_0$, then $\\sin(bt_0 + c) = 1$, so $bt_0 + c = \\pi/2$.\n\nWhen choosing between sine and cosine: use cosine if the graph starts at a maximum or minimum at $t = 0$; use sine if it starts on the midline."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** A sinusoidal function $h$ has a maximum at $(\\pi, 6)$ and the next minimum at $(3\\pi/2, -4)$. Find $h(t) = a\\sin(bt + c) + d$.\n\n**Solution:**\n- $a = (6 - (-4))/2 = 5$, $d = (6 + (-4))/2 = 1$\n- Period = $2(3\\pi/2 - \\pi) = \\pi$, so $b = 2\\pi/\\pi = 2$\n- Maximum at $t = \\pi$: $\\sin(2\\pi + c) = 1$ → $c = \\pi/2 - 2\\pi = -3\\pi/2$\n- $h(t) = 5\\sin(2t - 3\\pi/2) + 1$\n\n**Example 2:** Five labeled points: $F(2, 16)$, $G(5, 11)$, $J(8, 6)$, $K(11, 11)$, $P(14, 16)$. Find $h(t) = a\\sin(bt + c) + d$.\n\n**Solution:**\n- $a = (16 - 6)/2 = 5$, $d = (16 + 6)/2 = 11$\n- F and P are consecutive maxima. The period is $14-2=12$, so $b=2\\pi/12=\\pi/6$.\n- F is a maximum at $t=2$. A cosine model is $h(t)=5\\cos(\\pi(t-2)/6)+11$.\n- In the requested sine form, $h(t)=5\\sin(\\pi t/6+\\pi/6)+11$.\n- The model gives $16,11,6,11,16$ at the five stated times.\n\n**Example 3:** Which graph matches $f(\\theta) = 3\\sin(2\\theta) - 1$?\n\n**Solution:** Amplitude $3$, period $\\pi$, midline $y = -1$. The graph oscillates between $2$ and $-4$ with one cycle every $\\pi$ units."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Given $k(x) = 5\\cos(2x) + 1$, find the amplitude, period, and midline. Verify by checking the maximum and minimum values.\n\n**Hint:** Amplitude = $5$, period = $\\pi$, midline = $y = 1$. Max = $5 + 1 = 6$, min = $-5 + 1 = -4$.\n\n**Problem 2:** Five points: $F(0, 10)$, $G(3, 5)$, $J(6, 0)$, $K(9, 5)$, $P(12, 10)$. Find $h(t) = a\\sin(bt + c) + d$.\n\n**Hint:** $a = 5$, $d = 5$, period = $12$, $b = \\pi/6$. Start at max — consider using cosine, or find $c$ for sine.\n\n**Problem 3:** A sinusoidal function has a minimum at $t = 0$ with value $2$ and a maximum at $t = \\pi$ with value $10$. Write the equation using cosine.\n\n**Hint:** Since it starts at a minimum, use $-a\\cos(bt) + d$. $a = 4$, $d = 6$, period = $2\\pi$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** For each set of five points, find $h(t) = a\\sin(bt + c) + d$:\n- (a) $F(0, 12), G(5, 9), J(10, 6), K(15, 9), P(20, 12)$\n- (b) $F(\\pi/2, 6), G(3\\pi/4, 1), J(\\pi, -4), K(5\\pi/4, 1), P(3\\pi/2, 6)$\n\n**Problem 2:** Write the equation for a sinusoidal function with amplitude $4$, period $6\\pi$, midline $y = -3$, that starts at a maximum at $t = 0$.\n\n**Problem 3:** San Diego daylight hours can be modeled by $D(t) = 2.715\\cos(0.017(t - c)) + 12.250$. What do the numbers $2.715$, $0.017$, and $12.250$ represent in context?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** Five points: $F(0, 10)$, $G(3, 5)$, $J(6, 0)$, $K(9, 5)$, $P(12, 10)$. Find $h(t) = a\\sin(bt + c) + d$.\n\n**Lesson Summary:** The general sinusoidal form $h(t) = a\\sin(bt + c) + d$ captures every possible transformation of the sine function. The amplitude is $|a|$, the period is $2\\pi/|b|$, the midline is $y = d$, and the phase shift is $-c/b$. To determine these from five labeled points, extract $a$ and $d$ from the max/min, $b$ from the period, and $c$ from the location of the first maximum or minimum."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

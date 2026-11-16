@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,7 +75,7 @@ export const seedLesson5 = internalMutation({
               props: {
                 problemType: "completing-square",
                 equation: "x^2 - 4x - 5 = 0",
-                steps: [],
+                steps: [{"expression": "(x-2)^2=9", "explanation": "Add 9 after completing the square."}, {"expression": "x-2=\u00b13", "explanation": "Take both square roots."}, {"expression": "x=5 or x=-1", "explanation": "Add 2 to each solution."}],
               },
             },
           },
@@ -562,7 +563,7 @@ export const seedLesson5 = internalMutation({
             componentKey: activityContent.componentKey,
             displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,

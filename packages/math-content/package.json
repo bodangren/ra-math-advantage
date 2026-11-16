@@ -27,7 +27,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "lint": "eslint src --max-warnings 0",
+    "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit",
     "extract-inventory": "npx tsx ../../scripts/extract-skill-inventory.ts",
@@ -38,13 +38,12 @@
     "@math-platform/practice-core": "*",
     "@math-platform/knowledge-space-core": "*",
     "@math-platform/study-hub-core": "*",
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "@math-platform/activity-components": "*",
+    "@math-platform/knowledge-space-practice": "*"
   },
   "devDependencies": {
-    "@eslint/js": "^10",
-    "eslint": "^10.0.0",
     "typescript": "^6",
-    "typescript-eslint": "^8",
     "vitest": "^4.1.8"
   }
 }

@@ -379,7 +379,10 @@ describe('SubmissionSrsResult types', () => {
       },
       reviewLog: {
         reviewId: 'rev_123',
+        cardId: 'card-1',
+        studentId: 'student-1',
         rating: 'Good',
+        submissionId: 'activity-1-1',
         evidence: {
           baseRating: 'Good',
           timingAdjusted: false,
@@ -399,6 +402,7 @@ describe('SubmissionSrsResult types', () => {
           reps: 1,
           lapses: 0,
         },
+        paramsVersion: 'fsrs-defaults.ts-fsrs.v5.4.1',
         reviewedAt: mockNow,
       },
     };

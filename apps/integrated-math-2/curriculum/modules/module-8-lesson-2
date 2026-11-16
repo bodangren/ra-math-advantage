@@ -12,7 +12,7 @@ Source: (Module 8, Lesson 8-2, Int2_0802_practice.docx)
 
 * **Linear Function** — A function that can be written in the form [y = mx + b], where [m] and [b] are constants; its graph is a straight line.
 * **Nonlinear Function** — Any function that does not form a straight line when graphed.
-* **x-Intercept** — The point where a graph crosses the x-axis; [(a, 0)].
+* **x-Intercept** — A point where the graph meets the x-axis, including a point where it touches without crossing.
 * **y-Intercept** — The point where a graph crosses the y-axis; [(0, b)].
 * **Line Symmetry (Reflectional Symmetry)** — A graph is symmetric about a line if one half is a mirror image of the other across that line.
 * **Point Symmetry (Rotational Symmetry)** — A graph has point symmetry if it looks the same after a 180° rotation about a point.
@@ -30,7 +30,7 @@ What do the intercepts of a linear function tell you about the situation it mode
 
 ### Key Concept: Identifying Linear Functions
 
-A function is linear if it can be written as [y = mx + b] and its graph is a straight line. Nonlinear functions include quadratics, absolute value, radicals, and any equation where [x] appears with an exponent other than 1.
+A function is linear if it can be written as [y = mx + b] and its graph is a straight line. Simplify the expression first. For example, x² − x² + x is linear. Quadratic and absolute-value parent functions are nonlinear.
 
 ### Key Concept: Finding Intercepts
 
@@ -39,79 +39,84 @@ A function is linear if it can be written as [y = mx + b] and its graph is a str
 
 ### Key Concept: Symmetry Types
 
-* **Line symmetry** — the graph mirrors across a vertical or horizontal line.
+* **Line symmetry** — reflection across a line preserves the graph. The line need not be vertical or horizontal.
 * **Point symmetry** — the graph looks the same when rotated 180°.
 
 ### Key Concept: Even vs. Odd Functions
 
-Test algebraically:
+First require a domain symmetric about zero. Then test every x in the domain:
 * Even: [f(-x) = f(x)]
 * Odd: [f(-x) = -f(x)]
 
 ## Example 1 — Identify Linear Functions
 
-Determine whether each equation represents a linear function. Justify your answer.
+### Problem
 
-### Step 1: Check the Equation Form
+Determine whether each equation represents a linear function of x: (a) 2x+y=10 and (b) y=4x².
 
-* [y = 3x] — linear (in the form [y = mx + b])
-* [y = -2 + 5x] — linear
-* [2x + y = 10] — linear (rearranges to [y = -2x + 10])
-* [y = 4x^2] — nonlinear (exponent on [x] is 2)
+### Solution
+
+(a) Solve for y to get y=-2x+10. It has constant slope -2 and is linear. (b) The squared x term prevents this form. Its rate of change is not constant, so it is nonlinear.
 
 ## Example 2 — Linear vs. Nonlinear Graphs
 
-Determine whether each graph represents a linear or nonlinear function.
+### Problem
 
-### Step 1: Examine the Shape
+Determine whether f(x) = 2x + 1 and g(x) = x squared are linear. Compare their outputs at x = 0, 1, and 2.
 
-Linear graphs are straight lines. Any curve or bend indicates a nonlinear function.
+### Solution
+
+The outputs of f are 1, 3, and 5. Equal input steps give equal output steps of 2, so its graph is a line. The outputs of g are 0, 1, and 4, with changes 1 and 3. Its rate of change is not constant, so its graph is nonlinear.
 
 ## Example 3 — Tables: Linear or Nonlinear?
 
-Determine whether the relationship in each table can be modeled by a linear or nonlinear function.
+### Problem
 
-### Step 1: Check for Constant Rate of Change
+Table A has input-output pairs (0, 2), (1, 5), (2, 8), and (3, 11). Table B has pairs (0, 1), (1, 2), (2, 4), and (3, 8). Which table is consistent with a linear function?
 
-In a linear function, the difference in [y] values is constant for equal steps in [x].
+### Solution
+
+Table A has a constant output change of 3 for each input increase of 1. It is consistent with y = 3x + 2. Table B has changes 1, 2, and 4, so it is not consistent with a linear function.
 
 ## Examples 4 and 5 — Estimate Intercepts from Graphs
 
-Use the graph to estimate the x- and y-intercepts.
+### Problem
 
-### Step 1: Read the Intercept Values
+A line crosses the y-axis at (0, 6) and passes through (2, 2). Find its x-intercept and y-intercept.
 
-Find where the graph crosses each axis. Estimate coordinates to the nearest tenth if needed.
+### Solution
+
+The slope is (2 - 6)/(2 - 0) = -2, so the equation is y = -2x + 6. For the x-intercept, set y = 0 to obtain x = 3. The intercepts are (3, 0) and (0, 6).
 
 ## Example 6 — Interpret Intercepts in Context
 
-Interpret the x- and y-intercepts in the context of each situation.
+### Problem
 
-### Step 1: Money Problem (Aksa's Lunch Account)
+A lunch account begins with 20 dollars and decreases by 4 dollars per purchased lunch. Use B(n)=20-4n for integers 0 through 5. Find and interpret the intercepts.
 
-A deposit of $20 at the start of the week. The x-intercept represents when the account reaches zero; the y-intercept represents the starting balance.
+### Solution
 
-### Step 2: Golf Problem
-
-Height of a golf ball after being hit off a tee. The x-intercept represents when the ball hits the ground; the y-intercept represents the initial height.
+The vertical intercept is (0,20), the starting balance before a purchase. Setting B(n)=0 gives n=5, so the horizontal intercept is (5,0). The account reaches zero after five lunches. The actual domain is discrete; the connecting line is a model extension.
 
 ## Example 7 — Identify Symmetry Type
 
-Identify the type of symmetry for the graph of each function.
+### Problem
 
-### Step 1: Visual Inspection
+Identify the symmetry of (a) y=x² and (b) y=x³. Justify each result.
 
-Determine whether the graph has line symmetry (mirror image across a line) or point symmetry (looks the same after 180° rotation).
+### Solution
+
+For (a), replacing x with -x gives (-x)²=x². The graph has reflection symmetry across the y-axis. For (b), (-x)³=-x³, so negating both coordinates preserves the graph. It has point symmetry about the origin.
 
 ## Example 8 — Determine Even, Odd, or Neither
 
-Determine whether each function is even, odd, or neither. Confirm algebraically. If the function is odd or even, describe the symmetry.
+### Problem
 
-### Step 1: Test with [f(-x)]
+Classify f(x)=2x³-8x, g(x)=x³+x², and h(x)=x²+2 as even, odd, or neither. Each has domain all real numbers.
 
-* [f(x) = 2x^3 - 8x] — odd (symmetric about the origin)
-* [f(x) = x^3 + x^2] — neither
-* [f(x) = x^2 + 2] — even (symmetric about the y-axis)
+### Solution
+
+For f, f(-x)=-2x³+8x=-f(x), so f is odd. For g, g(-x)=-x³+x² differs from both g(x) and -g(x), so g is neither. For h, h(-x)=x²+2=h(x), so h is even. Odd graphs have origin symmetry, and even graphs have y-axis symmetry.
 
 ## Mixed Exercises
 
@@ -133,20 +138,20 @@ Problems 25–44 provide additional practice:
 
 ## Review Notes
 
-* ![](media/image1.png)![](media/image2.png) — Graphs for problems 5–6
-* ![](media/image3.png)![](media/image4.png) — Graphs for problems 7–8
-* ![](media/image5.png) — MEASUREMENT table (problem 9)
-* ![](media/image6.png) — ASTRONOMY table (problem 10)
-* ![](media/image7.png)![](media/image8.png)![](media/image9.png) — Graphs for problems 11–13
-* ![](media/image10.png)![](media/image11.png)![](media/image12.png) — Graphs for problems 14–16
-* ![](media/image13.png) — MONEY table (problem 17)
-* ![](media/image14.png) — GOLF table (problem 18)
-* ![](media/image15.png)![](media/image16.png)![](media/image17.png) — Graphs for problems 19–21
-* ![](media/image18.png)![](media/image19.png)![](media/image20.png) — Graphs for problems 22–24
-* ![](media/image21.png)![](media/image22.png)![](media/image23.png) — Mixed exercise graphs (problems 31–33)
-* ![](media/image24.png) — Graph for problem 34
-* ![](media/image25.png) — GAMES graph (problem 34)
-* ![](media/image26.png) — BASKETBALL graph (problem 35)
-* ![](media/image27.png) — PLAYGROUNDS diagram (problem 37)
-* ![](media/image28.png) — ANALYZE table (problem 42)
-* ![](media/image29.png) — WHICH ONE DOESN'T BELONG graphs (problem 44)
+* ![Worksheet figure 1](/curriculum/module-8-lesson-2/image1.png)![Worksheet figure 2](/curriculum/module-8-lesson-2/image2.png) — Graphs for problems 5–6
+* ![Worksheet figure 3](/curriculum/module-8-lesson-2/image3.png)![Worksheet figure 4](/curriculum/module-8-lesson-2/image4.png) — Graphs for problems 7–8
+* ![Worksheet figure 5](/curriculum/module-8-lesson-2/image5.png) — MEASUREMENT table (problem 9)
+* ![Worksheet figure 6](/curriculum/module-8-lesson-2/image6.png) — ASTRONOMY table (problem 10)
+* ![Worksheet figure 7](/curriculum/module-8-lesson-2/image7.png)![Worksheet figure 8](/curriculum/module-8-lesson-2/image8.png)![Worksheet figure 9](/curriculum/module-8-lesson-2/image9.png) — Graphs for problems 11–13
+* ![Worksheet figure 10](/curriculum/module-8-lesson-2/image10.png)![Worksheet figure 11](/curriculum/module-8-lesson-2/image11.png)![Worksheet figure 12](/curriculum/module-8-lesson-2/image12.png) — Graphs for problems 14–16
+* ![Worksheet figure 13](/curriculum/module-8-lesson-2/image13.png) — MONEY table (problem 17)
+* ![Worksheet figure 14](/curriculum/module-8-lesson-2/image14.png) — GOLF table (problem 18)
+* ![Worksheet figure 15](/curriculum/module-8-lesson-2/image15.png)![Worksheet figure 16](/curriculum/module-8-lesson-2/image16.png)![Worksheet figure 17](/curriculum/module-8-lesson-2/image17.png) — Graphs for problems 19–21
+* ![Worksheet figure 18](/curriculum/module-8-lesson-2/image18.png)![Worksheet figure 19](/curriculum/module-8-lesson-2/image19.png)![Worksheet figure 20](/curriculum/module-8-lesson-2/image20.png) — Graphs for problems 22–24
+* ![Worksheet figure 21](/curriculum/module-8-lesson-2/image21.png)![Worksheet figure 22](/curriculum/module-8-lesson-2/image22.png)![Worksheet figure 23](/curriculum/module-8-lesson-2/image23.png) — Mixed exercise graphs (problems 31–33)
+* ![Worksheet figure 24](/curriculum/module-8-lesson-2/image24.png) — Graph for problem 34
+* ![Worksheet figure 25](/curriculum/module-8-lesson-2/image25.png) — GAMES graph (problem 34)
+* ![Worksheet figure 26](/curriculum/module-8-lesson-2/image26.png) — BASKETBALL graph (problem 35)
+* ![Worksheet figure 27](/curriculum/module-8-lesson-2/image27.png) — PLAYGROUNDS diagram (problem 37)
+* ![Worksheet figure 28](/curriculum/module-8-lesson-2/image28.png) — ANALYZE table (problem 42)
+* ![Worksheet figure 29](/curriculum/module-8-lesson-2/image29.png) — WHICH ONE DOESN'T BELONG graphs (problem 44)

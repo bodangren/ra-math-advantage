@@ -9,6 +9,7 @@ export interface InteractiveTableOfValuesProps {
   onTableComplete: (points: Array<{ x: number; y: number }>) => void;
   readonly?: boolean;
   preFilledValues?: Record<number, number>;
+  assessmentMode?: 'immediate' | 'deferred';
 }
 
 interface TableRow {
@@ -29,6 +30,7 @@ export function InteractiveTableOfValues({
   onTableComplete,
   readonly = false,
   preFilledValues = {},
+  assessmentMode = 'immediate',
 }: InteractiveTableOfValuesProps) {
   const [rows, setRows] = useState<TableRow[]>(
     xValues.map(x => ({
@@ -40,6 +42,22 @@ export function InteractiveTableOfValues({
   );
 
   useEffect(() => {
+    if (assessmentMode === 'deferred') {
+      const allFinite = rows.length > 0 && rows.every(row => (
+        row.y.trim() !== '' && Number.isFinite(Number(row.y))
+      ));
+
+      if (allFinite) {
+        onTableComplete(rows.map(row => ({
+          x: row.x,
+          y: Number(row.y),
+        })));
+      } else {
+        onTableComplete([]);
+      }
+      return;
+    }
+
     const allFilled = rows.every(row => !row.isEmpty);
     const allCorrect = rows.every(row => row.isCorrect === true);
 
@@ -50,10 +68,21 @@ export function InteractiveTableOfValues({
       }));
       onTableComplete(points);
     }
-  }, [rows, onTableComplete]);
+  }, [assessmentMode, rows, onTableComplete]);
 
   const handleInputChange = (index: number, value: string) => {
     const x = rows[index].x;
+
+    if (assessmentMode === 'deferred') {
+      const hasFiniteValue = value.trim() !== '' && Number.isFinite(Number(value));
+
+      setRows(prevRows => prevRows.map((row, i) => (
+        i === index
+          ? { ...row, y: value, isCorrect: null, isEmpty: !hasFiniteValue }
+          : row
+      )));
+      return;
+    }
 
     const isEmpty = value.trim() === '';
     let isCorrect: boolean | null = null;
@@ -79,6 +108,7 @@ export function InteractiveTableOfValues({
 
   const getRowClassName = (row: TableRow) => {
     if (readonly) return '';
+    if (assessmentMode === 'deferred') return '';
     if (row.isEmpty) return '';
     if (row.isCorrect === true) return 'bg-green-100';
     if (row.isCorrect === false) return 'bg-red-100';

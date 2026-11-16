@@ -4,7 +4,9 @@ import { getRenderer, RENDERER_KEYS } from '@math-platform/math-content/knowledg
 import type { KnowledgeBlueprint, SchemaAdapter } from '@math-platform/knowledge-space-practice';
 import blueprintsJson from '../module-1/blueprints.json';
 
-const blueprints = (blueprintsJson as { blueprints: KnowledgeBlueprint[] }).blueprints;
+const blueprintDocument =
+  blueprintsJson as unknown as { blueprints: KnowledgeBlueprint[] };
+const blueprints = blueprintDocument.blueprints;
 
 const mathSchemaAdapter: SchemaAdapter = {
   acceptRendererKey(key: string): boolean {
@@ -73,9 +75,12 @@ describe('Module 1 Pilot Rendering', () => {
     expect(guidedBps.length).toBeGreaterThanOrEqual(3);
   });
 
-  it('can render independent practice mode for at least 3 skills', () => {
+  it('lists the current configured Independent specifications', () => {
     const independentBps = blueprints.filter(bp => bp.independentPracticeSpec != null);
-    expect(independentBps.length).toBeGreaterThanOrEqual(3);
+    expect(independentBps.map(bp => bp.nodeId)).toEqual(expect.arrayContaining([
+      'math.im3.skill.1.1.graph-quadratic-functions',
+      'math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context',
+    ]));
   });
 
   it('all renderer mode maps reference valid renderers', () => {

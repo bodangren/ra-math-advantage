@@ -7,7 +7,13 @@ import {
   getSubmissionDetailHandler,
   getTeacherCompetencyHeatmapDataHandler,
   getTeacherStudentCompetencyDetailHandler,
+  getLessonErrorSummary,
 } from '@/convex/teacher';
+
+const callGetLessonErrorSummary = getLessonErrorSummary as unknown as (
+  ctx: QueryCtx,
+  args: { userId: Id<'profiles'>; lessonId: Id<'lessons'> },
+) => Promise<{ averageAccuracy: number; studentCount: number } | null>;
 
 // ---------------------------------------------------------------------------
 // Mock DB factory
@@ -571,6 +577,65 @@ describe('getSubmissionDetailHandler', () => {
     expect(result?.phases[0].evidence).toHaveLength(1);
     expect(result?.phases[0].evidence[0].score).toBe(9);
     expect(result?.phases[0].evidence[0].attemptNumber).toBe(2);
+  });
+
+  it('keeps finalized evidence when a newer QF allocation is pending', async () => {
+    const finalData = { contractVersion: 'practice.v1', activityId: mockActivityId,
+      mode: 'guided_practice', status: 'graded', attemptNumber: 1, submittedAt: '2026-01-01T00:00:00.000Z',
+      answers: { discriminant: '16', x1: '2', x2: '-2' }, parts: [
+        { partId: 'discriminant', rawAnswer: '16', isCorrect: true, score: 1, maxScore: 1 },
+        { partId: 'x1', rawAnswer: '2', isCorrect: true, score: 1, maxScore: 1 },
+        { partId: 'x2', rawAnswer: '-2', isCorrect: true, score: 1, maxScore: 1 },
+      ] };
+    const ctx = { db: createMockDb({
+      profiles: [teacherProfile, studentProfile],
+      lessons: [{ _id: mockLessonId, title: 'Lesson 1' }],
+      lesson_versions: [{ _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published' }],
+      phase_versions: [{ _id: mockPhaseVersionId, lessonVersionId: mockLessonVersionId, phaseNumber: 1, phaseType: 'guided_practice' }],
+      student_progress: [],
+      activity_completions: [{ _id: 'complete', studentId: mockStudentId, lessonId: mockLessonId, phaseNumber: 1, activityId: mockActivityId }],
+      activities: [{ _id: mockActivityId, displayName: 'Quadratic Formula', componentKey: 'quadratic-formula' }],
+      activity_submissions: [
+        { _id: 'final', userId: mockStudentId, activityId: mockActivityId, submissionData: finalData,
+          score: 3, maxScore: 3, submittedAt: 100, updatedAt: 100 },
+        { _id: 'pending', userId: mockStudentId, activityId: mockActivityId,
+          submissionData: { ...finalData, status: 'draft', attemptNumber: 2, answers: {}, parts: [] },
+          allocatedVariantKey: 'PRIVATE_VARIANT', submittedAt: 200, updatedAt: 200 },
+      ], student_spreadsheet_responses: [],
+    }) } as unknown as QueryCtx;
+    const result = await getSubmissionDetailHandler(ctx, { userId: mockTeacherId, studentId: mockStudentId,
+      lessonId: mockLessonId, studentName: 'Student One' });
+    expect(result?.phases[0].evidence[0]).toMatchObject({ score: 3, maxScore: 3, submissionData: finalData });
+    expect(JSON.stringify(result)).not.toContain('PRIVATE_VARIANT');
+  });
+});
+
+describe('getLessonErrorSummary', () => {
+  it('uses finalized QF evidence when a newer allocation is pending', async () => {
+    const finalData = { contractVersion: 'practice.v1', activityId: mockActivityId,
+      mode: 'guided_practice', status: 'graded', attemptNumber: 1,
+      submittedAt: '2026-01-01T00:00:00.000Z', answers: { discriminant: '16', x1: '2', x2: '-2' },
+      parts: [
+        { partId: 'discriminant', rawAnswer: '16', isCorrect: true, score: 1, maxScore: 1 },
+        { partId: 'x1', rawAnswer: '2', isCorrect: true, score: 1, maxScore: 1 },
+        { partId: 'x2', rawAnswer: '-2', isCorrect: true, score: 1, maxScore: 1 },
+      ] };
+    const ctx = { db: createMockDb({
+      profiles: [teacherProfile, studentProfile],
+      lessons: [{ _id: mockLessonId, title: 'Lesson 1' }],
+      activity_completions: [{ _id: 'complete', studentId: mockStudentId, lessonId: mockLessonId,
+        phaseNumber: 1, activityId: mockActivityId }],
+      activity_submissions: [
+        { _id: 'final', userId: mockStudentId, activityId: mockActivityId,
+          submissionData: finalData, score: 1, maxScore: 1, submittedAt: 100, updatedAt: 100 },
+        { _id: 'pending', userId: mockStudentId, activityId: mockActivityId,
+          submissionData: { ...finalData, status: 'draft', attemptNumber: 2, answers: {}, parts: [] },
+          allocatedVariantKey: 'PRIVATE_VARIANT', submittedAt: 200, updatedAt: 200 },
+      ],
+    }) } as unknown as QueryCtx;
+    const result = await callGetLessonErrorSummary(ctx, { userId: mockTeacherId, lessonId: mockLessonId });
+    expect(result).toMatchObject({ averageAccuracy: 1, studentCount: 1 });
+    expect(JSON.stringify(result)).not.toContain('PRIVATE_VARIANT');
   });
 });
 

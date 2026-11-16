@@ -13,8 +13,8 @@ export interface ActivityRendererProps {
   activityId: string;
   lessonId?: string;
   phaseNumber?: number;
-  mode?: 'teaching' | 'guided' | 'practice';
-  onSubmit?: (payload: unknown) => void;
+  mode?: 'teaching' | 'guided' | 'practice' | 'explore';
+  onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
   /** Optional activity-specific configuration props (e.g. equation, questions,
    *  template). Forwarded to the registered activity component via spread, so
@@ -49,11 +49,10 @@ export function ActivityRenderer({
             ...parsed.data,
             timing,
           };
-          onSubmit?.(timedPayload);
-          return;
+          return onSubmit?.(timedPayload);
         }
       }
-      onSubmit?.(payload);
+      return onSubmit?.(payload);
     },
     [isStudentContext, getTiming, onSubmit],
   );
@@ -63,9 +62,7 @@ export function ActivityRenderer({
   if (!ActivityComponent) {
     return (
       <div className="my-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4">
-        <p className="text-sm text-yellow-700">
-          Activity <code className="font-mono text-xs">{componentKey}</code> is not yet available.
-        </p>
+        <p className="text-sm text-yellow-700">This activity is not available.</p>
       </div>
     );
   }
@@ -74,11 +71,11 @@ export function ActivityRenderer({
     <div className="my-4">
       <Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Loading activity…</div>}>
         {React.createElement(ActivityComponent, {
+          ...(activityProps ?? {}),
           activityId,
           mode,
           onSubmit: handleSubmit,
           onComplete,
-          ...(activityProps ?? {}),
         })}
       </Suspense>
     </div>

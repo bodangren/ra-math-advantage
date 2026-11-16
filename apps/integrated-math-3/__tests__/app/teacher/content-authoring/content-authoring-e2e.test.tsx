@@ -6,7 +6,7 @@ import { computeComponentContentHash } from '../../../../lib/activities/content-
 import { resolveComponentKind } from '../../../../lib/activities/review-queue';
 import { registerActivity } from '../../../../lib/activities/registry';
 import { sanitizeAuthoringText } from '../../../../lib/teacher/content-authoring/sanitize-authored-text';
-import { toTeacherFacingStatus } from '../../../../convex/teacher/content-authoring';
+import { toTeacherFacingStatus } from '../../../../convex/teacher/content_authoring';
 import {
   createComposerState,
   composerReducer,
@@ -318,7 +318,7 @@ describe('Phase 4 — End-to-end lifecycle', () => {
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../../convex/teacher/content-authoring');
+    } = await import('../../../../convex/teacher/content_authoring');
 
     // --- fixtures ---------------------------------------------------------
     const teacher = makeTeacher('teacher_1', 'org_1');

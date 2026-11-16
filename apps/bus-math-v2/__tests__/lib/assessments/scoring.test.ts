@@ -91,3 +91,12 @@ describe('calculateScore', () => {
     expect(result.percentage).toBe(50);
   });
 });
+
+it.each(['5,300', '5300.00', 5300])('accepts an equivalent numeric response %s', (answer) => {
+ const activity = { ...baseTieredActivity, props: { questions: [{id:'n',correctAnswer:5300}] } };
+ expect(calculateScore(activity, {n:answer}).score).toBe(1);
+});
+it.each(['', '5,30', false])('rejects malformed numeric input %s', (answer) => {
+ const activity = { ...baseTieredActivity, props: { questions: [{id:'n',correctAnswer:5300}] } };
+ expect(calculateScore(activity, {n:answer}).score).toBe(0);
+});

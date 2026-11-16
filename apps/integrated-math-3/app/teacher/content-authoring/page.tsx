@@ -1,6 +1,6 @@
 import { requireTeacherSessionClaims } from '@/lib/auth/server';
 import { ClientComposer } from './ClientComposer';
-import type { TeacherFacingStatus } from '../../../../convex/teacher/content-authoring';
+import type { TeacherFacingStatus } from '../../../convex/teacher/content_authoring';
 
 interface PageProps {
   searchParams: Promise<{ preview?: string }>;

@@ -6,13 +6,9 @@ on:
       - master
       - main
     paths-ignore:
-      - '**.md'
-      - 'measure/**'
       - '.gitignore'
   pull_request:
     paths-ignore:
-      - '**.md'
-      - 'measure/**'
       - '.gitignore'
   workflow_dispatch:
 
@@ -29,14 +25,22 @@ jobs:
       fail-fast: false
       matrix:
         package:
+          - activity-components
           - activity-runtime
           - ai-tutoring
+          - app-shell
           - component-approval
           - core-auth
           - core-convex
+          - efficacy-core
           - graphing-core
+          - knowledge-space-core
+          - knowledge-space-practice
+          - lesson-renderer
+          - math-content
           - practice-core
           - practice-test-engine
+          - rate-limiter
           - srs-engine
           - study-hub-core
           - teacher-reporting-core
@@ -88,6 +92,11 @@ jobs:
 
       - name: Run monorepo boundary check
         run: node scripts/check-monorepo-boundaries.mjs
+        env:
+          CI: true
+
+      - name: Verify root and CI workspace parity
+        run: node scripts/architecture/check-quality-parity.mjs
         env:
           CI: true
 
@@ -210,10 +219,9 @@ jobs:
       - name: Run IM3 E2E suite
         run: npm run test:e2e --prefix apps/integrated-math-3
 
-  # Phase 5: IM1, IM2, PreCalc lint/typecheck/build gates
-  # Test gates are deferred due to pre-existing test failures (Convex provider tests).
+  # Phase 5: IM1, IM2, PreCalc, and Danielson app gates
   # Apps share the same step structure; matrix deduplicates the config.
-  im1-im2-precalc:
+  app-foundations:
     name: ${{ matrix.app.name }} App Gates
     runs-on: ubuntu-latest
     needs: [packages, boundary-check]
@@ -224,6 +232,7 @@ jobs:
           - { name: IM1, prefix: apps/integrated-math-1, dir: apps/integrated-math-1 }
           - { name: IM2, prefix: apps/integrated-math-2, dir: apps/integrated-math-2 }
           - { name: PreCalc, prefix: apps/pre-calculus, dir: apps/pre-calculus }
+          - { name: Danielson, prefix: apps/danielson, dir: apps/danielson }
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -244,6 +253,12 @@ jobs:
 
       - name: Run ${{ matrix.app.name }} typecheck
         run: cd ${{ matrix.app.dir }} && npx tsc --noEmit
+        env:
+          CI: true
+
+      - name: Check IM2 backend types and content bundle
+        if: matrix.app.name == 'IM2'
+        run: cd apps/integrated-math-2 && npx tsc --noEmit -p convex/tsconfig.json && npm run curriculum:check
         env:
           CI: true
 

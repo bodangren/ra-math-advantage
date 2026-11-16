@@ -1,0 +1,206 @@
+[
+  {
+    "id": "active-observation",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "affirmative-checking",
+    "status": 200,
+    "title": "Technique 11 Affirmative Checking",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "art-of-consequence",
+    "status": 200,
+    "title": "66   Art of the Consequence",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "break-it-down",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "call-and-response",
+    "status": 200,
+    "title": "36   Call and Response",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "change-the-pace",
+    "status": 200,
+    "title": "27   Change the Pace",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "cold-call",
+    "status": 200,
+    "title": "Does Cold-Calling Improve Student Accountability? | with Doug Lemov",
+    "author": "InnerDrive"
+  },
+  {
+    "id": "culture-of-error",
+    "status": 200,
+    "title": "Culture of Error Montage",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "do-it-again",
+    "status": 200,
+    "title": "51   Do It Again",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "double-plan",
+    "status": 200,
+    "title": "Technique 4 Double Plan",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "emotional-constancy",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "engineer-efficiency",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "everybody-writes",
+    "status": 200,
+    "title": "39   Everybody Writes",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "exemplar-planning",
+    "status": 200,
+    "title": "Technique 1 Exemplar Planning",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "exit-ticket",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "firm-calm-finesse",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "format-matters",
+    "status": 200,
+    "title": "17   Format MAtters",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "joy-factor",
+    "status": 200,
+    "title": "75   Joy Factor",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "knowledge-organizers",
+    "status": 200,
+    "title": "Technique 5 Knowledge Organizers",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "least-invasive-intervention",
+    "status": 200,
+    "title": "63 Least Invasive Intervention",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "means-of-participation",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "no-opt-out",
+    "status": 200,
+    "title": "No Opt Out TLAC 3.0 Technique 15",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "phrasing-fundamentals",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "plan-for-error",
+    "status": 200,
+    "title": "Technique 2 Plan for Error",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "positive-framing",
+    "status": 200,
+    "title": "70   Positive Framing",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "precise-praise",
+    "status": 200,
+    "title": "71   Precise Praise",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "radar-be-seen-looking",
+    "status": 200,
+    "title": "Be Seen Looking Montage",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "replace-self-report",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "retrieval-practice",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "show-me",
+    "status": 200,
+    "title": "Technique 10 Show Me",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "silent-solo",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "standardize-format",
+    "status": 200,
+    "title": "Technique 8 Standardize the Format",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "stretch-it",
+    "status": 200,
+    "title": "Stretch It TLAC 3.0 Technique 17",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "strong-voice",
+    "status": 200,
+    "title": "69   Strong Voice",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "threshold-strong-start",
+    "status": 200,
+    "title": "Schoolhouse Rock, conjunction junction",
+    "author": "The Emmy Frequency"
+  },
+  {
+    "id": "turn-and-talk",
+    "status": 200,
+    "title": "6 Ways to Maximize Turn and Talk",
+    "author": "Edutopia"
+  },
+  {
+    "id": "wait-time",
+    "status": 200,
+    "title": "Wait Time TLAC 3.0 Technique 33",
+    "author": "Uncle Dan's Reading Advantage"
+  },
+  {
+    "id": "warm-strict",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

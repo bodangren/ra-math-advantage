@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import { toConvexActivityId } from '@math-platform/practice-core';
+import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import { RateOfChangeCalculatorProps } from '../../schemas/rate-of-change-calculator.schema';
 
 type ROCMode = 'teaching' | 'guided' | 'practice';
@@ -8,9 +10,7 @@ type ROCMode = 'teaching' | 'guided' | 'practice';
 interface ROCState {
   currentStep: number;
   identifiedValues: {
-    a: string;
     fA: string;
-    b: string;
     fB: string;
   };
   calculatedAnswer: string;
@@ -41,7 +41,7 @@ function computeRateOfChange(
 
   if (sourceType === 'function') {
     const expr = (data as { expression: string }).expression;
-    const match = expr.match(/y\s*=\s*(.+)/i);
+    const match = expr.match(/(?:y|f\(x\))\s*=\s*(.+)/i);
     if (!match) return 0;
     const formula = match[1];
     const fA = evaluateExpression(formula, start);
@@ -70,6 +70,8 @@ function computeRateOfChange(
  */
 function evaluateExpression(formula: string, x: number): number {
   const expr = formula
+    .replace(/x\s*(?:\^2|²)/gi, 'x*x')
+    .replace(/\s+/g, '')
     .replace(/\^/g, '**')
     .replace(/(\d+)x/gi, '$1*x')
     .replace(/x\^(\d+)/gi, 'x**$1')
@@ -191,7 +193,7 @@ function getValueAtIndex(
 
   if (sourceType === 'function') {
     const expr = (data as { expression: string }).expression;
-    const match = expr.match(/y\s*=\s*(.+)/i);
+    const match = expr.match(/(?:y|f\(x\))\s*=\s*(.+)/i);
     if (!match) return '';
     return String(evaluateExpression(match[1], index));
   }
@@ -208,20 +210,21 @@ function getValueAtIndex(
 
 /**
  * Render a rate of change calculator in teaching, guided, or practice mode.
- * @param {RateOfChangeCalculatorProps & { mode: ROCMode; onSubmit?: (payload: unknown) => void; onComplete?: () => void }} props - The calculator configuration including mode, data source, and interval
+ * @param {RateOfChangeCalculatorProps & { activityId?: string; mode: ROCMode; onSubmit?: (payload: unknown) => void | Promise<void>; onComplete?: () => void }} props - The calculator configuration including mode, data source, and interval
  * @returns {React.JSX.Element | null} The calculator component JSX
  */
 export function RateOfChangeCalculator({
+  activityId,
   mode,
   sourceType,
   data,
   interval,
   onSubmit,
   onComplete,
-}: RateOfChangeCalculatorProps & { mode: ROCMode; onSubmit?: (payload: unknown) => void; onComplete?: () => void }) {
+}: RateOfChangeCalculatorProps & { activityId?: string; mode: ROCMode; onSubmit?: (payload: unknown) => void | Promise<void>; onComplete?: () => void }) {
   const [state, setState] = useState<ROCState>({
     currentStep: 0,
-    identifiedValues: { a: '', fA: '', b: '', fB: '' },
+    identifiedValues: { fA: '', fB: '' },
     calculatedAnswer: '',
     submitted: false,
   });
@@ -245,25 +248,44 @@ export function RateOfChangeCalculator({
   };
 
   const handlePracticeSubmit = () => {
-    const userValue = parseFloat(state.calculatedAnswer);
-    const isCorrect = !isNaN(userValue) && Math.abs(userValue - rocValue) < 0.001;
+    if (!activityId?.trim() || state.identifiedValues.fA.trim() === '' || state.identifiedValues.fB.trim() === '' || state.calculatedAnswer.trim() === '') {
+      return;
+    }
 
-    const envelope = {
-      mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
+    const envelope: PracticeSubmissionEnvelope = {
+      contractVersion: 'practice.v1',
+      activityId: toConvexActivityId(activityId),
+      mode: mode === 'guided' ? 'guided_practice' : 'independent_practice',
       status: 'submitted',
       attemptNumber: 1,
-      identifiedValues: state.identifiedValues,
-      finalAnswer: state.calculatedAnswer,
-      correctAnswer: String(rocValue),
-      isCorrect,
-      analytics: {
-        score: isCorrect ? 100 : 0,
+      submittedAt: new Date().toISOString(),
+      answers: {
+        fA: state.identifiedValues.fA,
+        fB: state.identifiedValues.fB,
+        rate: state.calculatedAnswer,
       },
+      parts: [
+        { partId: 'f_a', rawAnswer: state.identifiedValues.fA },
+        { partId: 'f_b', rawAnswer: state.identifiedValues.fB },
+        { partId: 'rate', rawAnswer: state.calculatedAnswer },
+      ],
     };
 
-    onSubmit?.(envelope);
-    onComplete?.();
-    setState(prev => ({ ...prev, submitted: true }));
+    if (!onSubmit) {
+      return;
+    }
+
+    try {
+      const result = onSubmit(envelope);
+      void Promise.resolve(result)
+        .then(() => {
+          onComplete?.();
+          setState(prev => ({ ...prev, submitted: true }));
+        })
+        .catch(() => undefined);
+    } catch {
+      // Keep the activity incomplete when submission storage fails.
+    }
   };
 
   if (mode === 'teaching') {
@@ -275,19 +297,19 @@ export function RateOfChangeCalculator({
           <div className="space-y-4">
             <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-blue-800 mb-2">Formula</p>
-              <p className="text-lg">Average Rate of Change = (f(b) - f(a)) / (b - a)</p>
+              <p className="text-lg text-gray-900">Average Rate of Change = (f(b) - f(a)) / (b - a)</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-green-50 p-4 rounded-lg">
                 <p className="text-sm font-medium text-green-800 mb-1">f(a) where a = {start}</p>
-                <p className="text-xl font-mono">
+                <p className="text-xl font-mono text-gray-900">
                   f({start}) = {getValueAtIndex(sourceType, data, start)}
                 </p>
               </div>
               <div className="bg-green-50 p-4 rounded-lg">
                 <p className="text-sm font-medium text-green-800 mb-1">f(b) where b = {end}</p>
-                <p className="text-xl font-mono">
+                <p className="text-xl font-mono text-gray-900">
                   f({end}) = {getValueAtIndex(sourceType, data, end)}
                 </p>
               </div>
@@ -295,12 +317,12 @@ export function RateOfChangeCalculator({
 
             <div className="bg-purple-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-purple-800 mb-1">Expression</p>
-              <p className="text-lg font-mono">{(data as { expression: string }).expression}</p>
+              <p className="text-lg font-mono text-gray-900">{(data as { expression: string }).expression}</p>
             </div>
 
             <div className="bg-yellow-50 p-4 rounded-lg">
               <p className="text-sm font-medium text-yellow-800 mb-1">Result</p>
-              <p className="text-2xl font-bold">
+              <p className="text-2xl font-bold text-gray-900">
                 ({getValueAtIndex(sourceType, data, end)} - {getValueAtIndex(sourceType, data, start)}) / ({end} - {start}) = {rocValue}
               </p>
             </div>
@@ -418,59 +440,43 @@ export function RateOfChangeCalculator({
           </span>
         </div>
 
+        {sourceType === 'function' && (
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <p className="font-mono text-lg text-gray-900">{(data as { expression: string }).expression}</p>
+          </div>
+        )}
+
         <div className="space-y-4">
           {state.currentStep === 0 && (
             <div className="space-y-4">
-              <p className="text-lg">Identify the starting point (a) and its y-value (f(a))</p>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1">a = {start}</label>
-                  <input
-                    type="text"
-                    value={state.identifiedValues.a}
-                    onChange={(e) => handleGuidedStep('a', e.target.value)}
-                    className="w-full border rounded-md px-3 py-2"
-                    placeholder="Confirm a value"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">f(a) = ?</label>
-                  <input
-                    type="text"
-                    value={state.identifiedValues.fA}
-                    onChange={(e) => handleGuidedStep('fA', e.target.value)}
-                    className="w-full border rounded-md px-3 py-2"
-                    placeholder="Enter f(a)"
-                  />
-                </div>
+              <p className="text-lg">Use a = {start} as the starting x-value.</p>
+              <div>
+                <label htmlFor="guided-fA" className="block text-sm font-medium mb-1">f({start})</label>
+                <input
+                  id="guided-fA"
+                  type="text"
+                  value={state.identifiedValues.fA}
+                  onChange={(e) => handleGuidedStep('fA', e.target.value)}
+                  className="w-full border rounded-md px-3 py-2"
+                  placeholder={`Enter f(${start})`}
+                />
               </div>
             </div>
           )}
 
           {state.currentStep === 1 && (
             <div className="space-y-4">
-              <p className="text-lg">Identify the ending point (b) and its y-value (f(b))</p>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1">b = {end}</label>
-                  <input
-                    type="text"
-                    value={state.identifiedValues.b}
-                    onChange={(e) => handleGuidedStep('b', e.target.value)}
-                    className="w-full border rounded-md px-3 py-2"
-                    placeholder="Confirm b value"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">f(b) = ?</label>
-                  <input
-                    type="text"
-                    value={state.identifiedValues.fB}
-                    onChange={(e) => handleGuidedStep('fB', e.target.value)}
-                    className="w-full border rounded-md px-3 py-2"
-                    placeholder="Enter f(b)"
-                  />
-                </div>
+              <p className="text-lg">Use b = {end} as the ending x-value.</p>
+              <div>
+                <label htmlFor="guided-fB" className="block text-sm font-medium mb-1">f({end})</label>
+                <input
+                  id="guided-fB"
+                  type="text"
+                  value={state.identifiedValues.fB}
+                  onChange={(e) => handleGuidedStep('fB', e.target.value)}
+                  className="w-full border rounded-md px-3 py-2"
+                  placeholder={`Enter f(${end})`}
+                />
               </div>
             </div>
           )}
@@ -479,8 +485,8 @@ export function RateOfChangeCalculator({
             <div className="space-y-4">
               <p className="text-lg">Apply the rate of change formula</p>
               <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="font-mono text-lg">
-                  (f(b) - f(a)) / (b - a) = ({state.identifiedValues.fB || '?'} - {state.identifiedValues.fA || '?'}) / ({state.identifiedValues.b || end} - {state.identifiedValues.a || start})
+                <p className="font-mono text-lg text-gray-900">
+                  (f(b) - f(a)) / (b - a) = ({state.identifiedValues.fB || '?'} - {state.identifiedValues.fA || '?'}) / ({end} - {start})
                 </p>
               </div>
             </div>
@@ -488,8 +494,9 @@ export function RateOfChangeCalculator({
 
           {state.currentStep === 3 && (
             <div className="space-y-4">
-              <p className="text-lg">Enter your final answer</p>
+              <label htmlFor="guided-rate" className="block text-lg">Average rate of change</label>
               <input
+                id="guided-rate"
                 type="text"
                 value={state.calculatedAnswer}
                 onChange={(e) => setState(prev => ({ ...prev, calculatedAnswer: e.target.value }))}
@@ -497,7 +504,7 @@ export function RateOfChangeCalculator({
                 placeholder="Enter calculated rate of change"
               />
               {state.submitted && (
-                <p className="text-sm text-muted-foreground">Correct answer: {rocValue}</p>
+                <p className="text-sm text-muted-foreground">Submission recorded for grading.</p>
               )}
             </div>
           )}
@@ -507,6 +514,7 @@ export function RateOfChangeCalculator({
           {state.currentStep < totalSteps - 1 ? (
             <button
               onClick={handleNextStep}
+              disabled={state.currentStep === 0 ? state.identifiedValues.fA.trim() === '' : state.currentStep === 1 ? state.identifiedValues.fB.trim() === '' : state.identifiedValues.fA.trim() === '' || state.identifiedValues.fB.trim() === ''}
               className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
             >
               Next
@@ -514,6 +522,7 @@ export function RateOfChangeCalculator({
           ) : (
             <button
               onClick={handlePracticeSubmit}
+              disabled={state.identifiedValues.fA.trim() === '' || state.identifiedValues.fB.trim() === '' || state.calculatedAnswer.trim() === ''}
               className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
             >
               Submit Answer
@@ -563,7 +572,7 @@ export function RateOfChangeCalculator({
 
           {sourceType === 'function' && (
             <div className="bg-blue-50 p-4 rounded-lg">
-              <p className="font-mono text-lg">{(data as { expression: string }).expression}</p>
+              <p className="font-mono text-lg text-gray-900">{(data as { expression: string }).expression}</p>
             </div>
           )}
 
@@ -580,8 +589,31 @@ export function RateOfChangeCalculator({
 
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1">Your answer (rate of change):</label>
+            <label htmlFor="practice-fA" className="block text-sm font-medium mb-1">f({start})</label>
             <input
+              id="practice-fA"
+              type="text"
+              value={state.identifiedValues.fA}
+              onChange={(e) => handleGuidedStep('fA', e.target.value)}
+              className="w-full border rounded-md px-3 py-2"
+              placeholder={`Enter f(${start})`}
+            />
+          </div>
+          <div>
+            <label htmlFor="practice-fB" className="block text-sm font-medium mb-1">f({end})</label>
+            <input
+              id="practice-fB"
+              type="text"
+              value={state.identifiedValues.fB}
+              onChange={(e) => handleGuidedStep('fB', e.target.value)}
+              className="w-full border rounded-md px-3 py-2"
+              placeholder={`Enter f(${end})`}
+            />
+          </div>
+          <div>
+            <label htmlFor="practice-rate" className="block text-sm font-medium mb-1">Average rate of change</label>
+            <input
+              id="practice-rate"
               type="text"
               value={state.calculatedAnswer}
               onChange={(e) => setState(prev => ({ ...prev, calculatedAnswer: e.target.value }))}
@@ -593,6 +625,7 @@ export function RateOfChangeCalculator({
 
         <button
           onClick={handlePracticeSubmit}
+          disabled={state.identifiedValues.fA.trim() === '' || state.identifiedValues.fB.trim() === '' || state.calculatedAnswer.trim() === ''}
           className="px-6 py-2 bg-primary text-primary-foreground rounded-md"
         >
           Submit
@@ -600,7 +633,7 @@ export function RateOfChangeCalculator({
 
         {state.submitted && (
           <div className="mt-4 p-4 rounded-lg bg-yellow-50">
-            <p className="font-medium">Correct answer: {rocValue}</p>
+            <p className="font-medium text-gray-900">Submission recorded for grading.</p>
           </div>
         )}
       </div>

@@ -40,77 +40,43 @@ Rotating a shape around an axis creates a solid. The shape of the resulting soli
 
 ## Example 1 — Planes of Symmetry
 
-Describe each plane of symmetry for each solid.
+### Problem
 
-### Step 1: Identify Symmetry Planes
+Describe all planes of reflection symmetry of (a) a rectangular prism with three distinct edge lengths, (b) a finite right circular cylinder, and (c) a sphere.
 
-Look for ways to divide the solid into two equal halves.
+### Solution
 
-### Step 2: Describe Each Plane
-
-A rectangular prism has 3 planes of symmetry: one through the length, one through the width, and one through the height (each dividing the prism into two congruent halves).
-
-A cylinder has infinitely many planes of symmetry if it is a right circular cylinder — any plane containing the central axis.
-
-A cone has planes of symmetry that contain the central axis.
-
-A sphere has infinitely many planes of symmetry — any plane through the center.
+(a) The prism has three planes, each through its center and parallel to a pair of opposite faces. The distinct-length condition excludes the additional symmetries of a square prism or cube. (b) The cylinder has every plane through its axis and the plane perpendicular to the axis halfway between its bases. (c) Every plane through the sphere center is a symmetry plane. A symmetry plane must make reflection preserve the solid; equal volumes alone are not sufficient.
 
 ## Example 2 — Identify Cross Section Shapes
 
-Identify the shape of each cross section.
+### Problem
 
-### Step 1: Identify the Cutting Direction
+A right circular cone has base radius 6 cm and height 12 cm. A plane parallel to its base cuts the cone halfway between the vertex and the base. Identify the cross section and its radius.
 
-Determine whether the cut is parallel or perpendicular to the base, or at some other angle.
+### Solution
 
-### Step 2: Match the Shape to the Solid
-
-A slice parallel to the base of a pyramid gives a smaller similar shape.
-A slice perpendicular to the base gives a triangle (for a pyramid) or rectangle (for a prism).
-A diagonal slice gives various quadrilaterals or triangles.
-
-Cross sections can be: triangles, rectangles, squares, pentagons, hexagons, circles, ellipses.
+A plane parallel to the circular base produces a circle. At half the height from the vertex, all linear dimensions are half the base dimensions by similarity. The cross-section radius is 3 cm.
 
 ## Example 3 — Identify Solids of Revolution
 
-Identify the solid formed by rotating the two-dimensional shape about each line.
+### Problem
 
-### Step 1: Visualize the Rotation
+Rotate a 3 cm by 5 cm rectangle through one full turn about one of its 5 cm sides. Identify the solid and its dimensions.
 
-Think about what the shape would look like if spun around the given axis.
+### Solution
 
-### Step 2: Match to Known Solids
-
-Rotating a rectangle about one side creates a cylinder.
-Rotating a right triangle about one leg creates a cone.
-Rotating a semicircle about its diameter creates a sphere.
-Rotating a rectangle about its diagonal creates a cylinder with an oblique appearance.
-Rotating a trapezoid about its parallel side creates a truncated cone (frustum).
+The fixed 5 cm side becomes the axis. The opposite side moves in a circle of radius 3 cm. The solid is a right circular cylinder with radius 3 cm and height 5 cm.
 
 ## Example 4 — Axis Symmetry
 
-Determine whether each item has axis symmetry. Write yes or no.
+### Problem
 
-### Step 1: Identify the Axis
+Rotate the region bounded by x = 0, x = 2, y = 0, and y = 5 about the y-axis. Identify the solid and describe its axial symmetry.
 
-Look for a central line around which the object could rotate.
+### Solution
 
-### Step 2: Check if Rotation Leaves the Object Unchanged
-
-If rotating the object around an axis produces the same appearance, it has axis symmetry.
-
-A traffic cone with a base: Yes — any rotation around its central vertical axis leaves it unchanged.
-
-A one pound weight: Yes — a standard weight has axis symmetry around its central vertical axis.
-
-A flower petal and stem: No — the petal is not symmetric around the stem axis.
-
-A golf ball: Yes — rotation around any axis through the center leaves it appearing the same (if the dimples are uniform).
-
-A tree: Generally No — most trees are not perfectly symmetric around a central axis.
-
-A lamp: It depends on the lamp design. A symmetrical lamp shade would have axis symmetry.
+The result is a cylinder with radius 2 and height 5. Rotating the cylinder by any angle about the y-axis leaves it unchanged. Every plane through the y-axis is also a plane of reflection symmetry.
 
 ## Mixed Exercises
 
@@ -161,7 +127,35 @@ ANALYZE: Determine whether the statement below is true or false. Justify your ar
 
 ## Review Notes
 
-* ![](media/) — Image references for the many cross section and rotation diagrams in the worksheet could not be fully captured. Teachers should consult the original DOCX for exact figures.
+* ![Worksheet figure 1](/curriculum/module-6-lesson-5/image1.png)
+![Worksheet figure 2](/curriculum/module-6-lesson-5/image10.png)
+![Worksheet figure 3](/curriculum/module-6-lesson-5/image11.png)
+![Worksheet figure 4](/curriculum/module-6-lesson-5/image13.png)
+![Worksheet figure 5](/curriculum/module-6-lesson-5/image14.png)
+![Worksheet figure 6](/curriculum/module-6-lesson-5/image15.png)
+![Worksheet figure 7](/curriculum/module-6-lesson-5/image17.png)
+![Worksheet figure 8](/curriculum/module-6-lesson-5/image18.png)
+![Worksheet figure 9](/curriculum/module-6-lesson-5/image19.png)
+![Worksheet figure 10](/curriculum/module-6-lesson-5/image2.png)
+![Worksheet figure 11](/curriculum/module-6-lesson-5/image20.png)
+![Worksheet figure 12](/curriculum/module-6-lesson-5/image21.png)
+![Worksheet figure 13](/curriculum/module-6-lesson-5/image22.png)
+![Worksheet figure 14](/curriculum/module-6-lesson-5/image23.png)
+![Worksheet figure 15](/curriculum/module-6-lesson-5/image24.png)
+![Worksheet figure 16](/curriculum/module-6-lesson-5/image25.png)
+![Worksheet figure 17](/curriculum/module-6-lesson-5/image26.png)
+![Worksheet figure 18](/curriculum/module-6-lesson-5/image27.png)
+![Worksheet figure 19](/curriculum/module-6-lesson-5/image28.png)
+![Worksheet figure 20](/curriculum/module-6-lesson-5/image29.png)
+![Worksheet figure 21](/curriculum/module-6-lesson-5/image3.png)
+![Worksheet figure 22](/curriculum/module-6-lesson-5/image30.png)
+![Worksheet figure 23](/curriculum/module-6-lesson-5/image31.png)
+![Worksheet figure 24](/curriculum/module-6-lesson-5/image4.png)
+![Worksheet figure 25](/curriculum/module-6-lesson-5/image5.png)
+![Worksheet figure 26](/curriculum/module-6-lesson-5/image6.png)
+![Worksheet figure 27](/curriculum/module-6-lesson-5/image7.png)
+![Worksheet figure 28](/curriculum/module-6-lesson-5/image8.png)
+![Worksheet figure 29](/curriculum/module-6-lesson-5/image9.png) — Image references for the many cross section and rotation diagrams in the worksheet could not be fully captured. Teachers should consult the original DOCX for exact figures.
 * Cross sections are named by their shape: triangle, rectangle, square, pentagon, hexagon, circle, ellipse.
 * When a shape is rotated about an axis, points on the axis remain fixed while all other points trace circles.
 * A solid can have multiple different cross sections depending on how you slice it.

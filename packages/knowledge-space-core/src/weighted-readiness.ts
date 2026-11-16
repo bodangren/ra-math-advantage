@@ -6,16 +6,16 @@
 import type { KnowledgeSpace } from './types';
 import type {
   KnowledgeStateEntry,
-  MasteryThresholds,
+  MasteryConfig,
   ReadinessState,
 } from './mastery-state';
-import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
+import { normalizeMasteryConfig } from './mastery-state';
 
 /**
  * Result of a weighted readiness computation.
  */
 export interface ReadinessResult {
-  /** Weighted readiness score in [0, 1] (kst-srs.v2 §5.1). */
+  /** Gated weighted readiness score in [0, 1] (kst-srs.v3.2 §2.5). */
   score: number;
   /** Three-way readiness state (kst-srs.v2 §5.2). */
   state: ReadinessState;
@@ -25,25 +25,27 @@ export interface ReadinessResult {
  * Compute the weighted readiness score for a node given the current knowledge
  * state and the prerequisite structure.
  *
- * Formula (kst-srs.v2 §5.1):
- *   readiness(B) = Σ(wᵢ · mᵢ) / Σ(wᵢ) over prerequisite_for edges i → B
+ * Formula (kst-srs.v3.2 §2.5):
+ *   readiness(B) = gate(B) × comp(B)
  *
- * Where wᵢ is edge weight and mᵢ is the student mastery level of prerequisite i.
- * readiness = 1 if B has no prerequisites or if all edge weights sum to zero.
+ * `gate` is the minimum mastery across hard prerequisites and `comp` is the
+ * weighted mastery average across soft prerequisites. An absent group is a
+ * neutral factor of 1. This preserves the v2 weighted-average result for
+ * graphs with no hard-gate edges.
  *
  * @param nodeId - The target node whose readiness is being computed
  * @param state - Current knowledge state (per-node entries)
  * @param graph - Knowledge space graph with typed edges
- * @param thresholds - Optional per-call override of readiness thresholds
+ * @param config - Optional per-call override of the v3 engine configuration
  * @returns ReadinessResult with score and state label
  */
 export function computeWeightedReadiness(
   nodeId: string,
-  state: Map<string, KnowledgeStateEntry>,
+  state: ReadonlyMap<string, KnowledgeStateEntry>,
   graph: KnowledgeSpace,
-  thresholds?: Partial<MasteryThresholds>,
+  config?: Partial<MasteryConfig>,
 ): ReadinessResult {
-  const t: MasteryThresholds = { ...MASTERY_THRESHOLDS_DEFAULT, ...thresholds };
+  const normalizedConfig = normalizeMasteryConfig(config);
 
   // Filter prerequisite edges targeting this node
   const prereqEdges = graph.edges.filter(
@@ -55,25 +57,37 @@ export function computeWeightedReadiness(
     return { score: 1, state: 'ready' };
   }
 
-  let weightedSum = 0;
-  let totalWeight = 0;
+  const hardPrerequisites = prereqEdges.filter(
+    (edge) => edge.weight >= normalizedConfig.hardGateThreshold,
+  );
+  const softPrerequisites = prereqEdges.filter(
+    (edge) => edge.weight < normalizedConfig.hardGateThreshold,
+  );
 
-  for (const edge of prereqEdges) {
-    const prereqEntry = state.get(edge.sourceId);
-    const mastery = prereqEntry?.mastery ?? 0;
-    const weight = edge.weight;
-    weightedSum += weight * mastery;
-    totalWeight += weight;
-  }
+  const gate = hardPrerequisites.length === 0
+    ? 1
+    : Math.min(
+        ...hardPrerequisites.map((edge) => state.get(edge.sourceId)?.mastery ?? 0),
+      );
 
-  // If all weights sum to zero, no meaningful prerequisites → full readiness
-  const score = totalWeight === 0 ? 1 : weightedSum / totalWeight;
+  const totalSoftWeight = softPrerequisites.reduce(
+    (sum, edge) => sum + edge.weight,
+    0,
+  );
+  const comp = totalSoftWeight === 0
+    ? 1
+    : softPrerequisites.reduce(
+        (sum, edge) => sum + edge.weight * (state.get(edge.sourceId)?.mastery ?? 0),
+        0,
+      ) / totalSoftWeight;
+
+  const score = gate * comp;
 
   // Map to readiness state band (kst-srs.v2 §5.2)
   let s: ReadinessState;
-  if (score >= t.readyThreshold) {
+  if (score >= normalizedConfig.readyThreshold) {
     s = 'ready';
-  } else if (score >= t.nearThreshold) {
+  } else if (score >= normalizedConfig.nearThreshold) {
     s = 'nearly_ready';
   } else {
     s = 'blocked';
@@ -95,8 +109,9 @@ export function computeWeightedReadiness(
  */
 export function createDefaultWeightedReadinessFn(
   graph: KnowledgeSpace,
+  config?: Partial<MasteryConfig>,
 ): (nodeId: string, state: Map<string, KnowledgeStateEntry>) => number {
   return (nodeId: string, state: Map<string, KnowledgeStateEntry>): number => {
-    return computeWeightedReadiness(nodeId, state, graph).score;
+    return computeWeightedReadiness(nodeId, state, graph, config).score;
   };
 }

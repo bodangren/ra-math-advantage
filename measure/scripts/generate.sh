@@ -7,5 +7,8 @@ REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 echo "[generate] Running scripts/generate-measure-docs.ts..."
 npx tsx "$REPO_ROOT/scripts/generate-measure-docs.ts"
 
+echo "[generate] Generating manifest-backed architecture reports..."
+node "$REPO_ROOT/scripts/architecture/generate-architecture-reports.mjs"
+
 echo "[generate] Successfully updated measure/generated/ facts."
 exit 0

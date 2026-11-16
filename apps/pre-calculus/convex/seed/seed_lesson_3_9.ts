@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -25,7 +26,7 @@ export const seedLesson3_9 = internalMutation({
           unitNumber: 3,
           title: "Inverse Trigonometric Functions",
           slug: lessonSlug,
-          description: "Students evaluate arcsin, arccos, and arctan and understand their restricted domains and ranges.",
+          description: "AP Precalculus Topic 3.9: Inverse Trigonometric Functions",
           orderIndex: 9,
           createdAt: now,
           updatedAt: now,
@@ -33,214 +34,131 @@ export const seedLesson3_9 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
+          version: 2,
           title: "Inverse Trigonometric Functions",
-          description: "Students evaluate arcsin, arccos, and arctan and understand their restricted domains and ranges.",
+          description: "AP Precalculus Topic 3.9: Inverse Trigonometric Functions",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "$\\arcsin(1/2)$ equals:",
-                    options: ["π/6", "π/4", "π/3", "π/2"],
-                    correctIndex: 0,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Inverse Trigonometric Functions\n\n### Why Restrictions?\n\nTrig functions are periodic, so they're not one-to-one. We restrict domains to define inverses.\n\n| Function | Domain | Range |\n|----------|--------|-------|\n| $\\arcsin(x) = \\sin^{-1}(x)$ | $[-1, 1]$ | $[-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$ |\n| $\\arccos(x) = \\cos^{-1}(x)$ | $[-1, 1]$ | $[0, \\pi]$ |\n| $\\arctan(x) = \\tan^{-1}(x)$ | $(-\\infty, \\infty)$ | $(-\\frac{\\pi}{2}, \\frac{\\pi}{2})$ |\n\n### Key Identities\n\n- $\\sin(\\arcsin(x)) = x$ for $x \\in [-1, 1]$\n- $\\arcsin(\\sin(\\theta)) = \\theta$ only when $\\theta \\in [-\\frac{\\pi}{2}, \\frac{\\pi}{2}]$",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Evaluating Inverse Trig Functions\n\nEvaluate: a) $\\arcsin\\left(-\\frac{\\sqrt{3}}{2}\\right)$ b) $\\arccos(0)$ c) $\\arctan(1)$",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Inverse trig evaluations",
-                steps: [
-                  { expression: "a) arcsin(-√3/2): sin(?) = -√3/2 in [-π/2, π/2]", explanation: "Find angle in range" },
-                  { expression: "sin(-π/3) = -√3/2, so arcsin(-√3/2) = -π/3", explanation: "Answer" },
-                  { expression: "b) arccos(0): cos(?) = 0 in [0, π]", explanation: "Find angle in range" },
-                  { expression: "cos(π/2) = 0, so arccos(0) = π/2", explanation: "Answer" },
-                  { expression: "c) arctan(1): tan(?) = 1 in (-π/2, π/2)", explanation: "Find angle in range" },
-                  { expression: "tan(π/4) = 1, so arctan(1) = π/4", explanation: "Answer" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "The range of $\\arcsin(x)$ is:",
-                    options: ["[0, π]", "[-π/2, π/2]", "(-π/2, π/2)", "[-1, 1]"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "$\\cos(\\arccos(0.5)) =$",
-                    options: ["0", "0.5", "1", "π/3"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Evaluate tan(arcsin(3/5))",
-                steps: [
-                  { expression: "Let θ = arcsin(3/5), so sin(θ) = 3/5", explanation: "Define θ" },
-                  { expression: "θ is in [-π/2, π/2], so cos(θ) > 0", explanation: "First quadrant" },
-                  { expression: "cos(θ) = √(1 - 9/25) = 4/5", explanation: "Pythagorean identity" },
-                  { expression: "tan(θ) = sin(θ)/cos(θ) = (3/5)/(4/5) = 3/4", explanation: "Calculate tangent" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Consider the equation $\\sin(\\theta) = 1/2$. On the interval $[0, 2\\pi)$, there are two solutions: $\\theta = \\pi/6$ and $\\theta = 5\\pi/6$. But a function can only return one output for each input. So if we want to *undo* the sine function — to go from $1/2$ back to an angle — we must choose which answer to return. How do mathematicians resolve this ambiguity, and what happens when we restrict the domain?"
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Inverse sine** $\\sin^{-1}(x)$ or $\\arcsin(x)$: The inverse of the sine function, restricted to domain $[-1, 1]$ and range $[-\\pi/2, \\pi/2]$. The output is always an angle in the fourth or first quadrant.\n- **Inverse cosine** $\\cos^{-1}(x)$ or $\\arccos(x)$: The inverse of the cosine function, restricted to domain $[-1, 1]$ and range $[0, \\pi]$. The output is always an angle in the first or second quadrant.\n- **Inverse tangent** $\\tan^{-1}(x)$ or $\\arctan(x)$: The inverse of the tangent function, with domain all reals and range $(-\\pi/2, \\pi/2)$. The output is always an angle in the fourth or first quadrant.\n- **Domain restriction**: Because trig functions are periodic (not one-to-one), we limit the input domain to a specific interval where the function is one-to-one, allowing us to define a true inverse."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "The inverse of a trigonometric function switches the input and output values. As a result, the output value of an inverse trigonometric function is always an **angle measure**.\n\nBecause trig functions are periodic, their domains must be restricted to create corresponding inverse functions:\n\n$$\\sin^{-1}(x): \\text{ domain } [-1, 1], \\text{ range } [-\\pi/2, \\pi/2]$$\n$$\\cos^{-1}(x): \\text{ domain } [-1, 1], \\text{ range } [0, \\pi]$$\n$$\\tan^{-1}(x): \\text{ domain } (-\\infty, \\infty), \\text{ range } (-\\pi/2, \\pi/2)$$\n\nWith either notation $\\sin^{-1}(x)$ or $\\arcsin(x)$, we say \"arcsine of x\" aloud.\n\n**Critical distinction**: While $\\sin(x) = 1/2$ has infinitely many solutions, $\\sin^{-1}(1/2)$ returns exactly **one** value: $\\pi/6$. The inverse function must be single-valued — that is why the domain restriction is non-negotiable.\n\n**Common error**: A student evaluates $\\sin^{-1}(-\\sqrt{3}/2)$ and answers $4\\pi/3$. But $4\\pi/3$ is outside the range $[-\\pi/2, \\pi/2]$. The correct answer is $-\\pi/3$ — always check that your output falls in the restricted range."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** Evaluate $\\cos^{-1}(-\\sqrt{2}/2)$.\n\n**Solution:**\n- We need the angle $\\theta$ in $[0, \\pi]$ where $\\cos(\\theta) = -\\sqrt{2}/2$.\n- On the unit circle, $\\cos(\\theta) = -\\sqrt{2}/2$ at $\\theta = 3\\pi/4$ and $\\theta = 5\\pi/4$.\n- Only $3\\pi/4$ is in $[0, \\pi]$.\n- Answer: $\\cos^{-1}(-\\sqrt{2}/2) = 3\\pi/4$.\n\n**Example 2:** Evaluate $\\sin^{-1}(-\\sqrt{3}/2)$.\n\n**Solution:**\n- We need $\\theta$ in $[-\\pi/2, \\pi/2]$ where $\\sin(\\theta) = -\\sqrt{3}/2$.\n- On the unit circle, $\\sin(\\theta) = -\\sqrt{3}/2$ at $\\theta = -\\pi/3$ and $\\theta = 4\\pi/3$.\n- Only $-\\pi/3$ is in $[-\\pi/2, \\pi/2]$.\n- Answer: $\\sin^{-1}(-\\sqrt{3}/2) = -\\pi/3$.\n\n**Example 3:** Evaluate $\\tan^{-1}(\\sqrt{3})$.\n\n**Solution:**\n- We need $\\theta$ in $(-\\pi/2, \\pi/2)$ where $\\tan(\\theta) = \\sqrt{3}$.\n- $\\tan(\\pi/3) = \\sqrt{3}$ and $\\pi/3$ is in $(-\\pi/2, \\pi/2)$.\n- Answer: $\\tan^{-1}(\\sqrt{3}) = \\pi/3$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Write $\\sin^{-1}(1/2) = \\pi/6$ using arcsine notation.\n\n**Hint:** Replace $\\sin^{-1}$ with $\\arcsin$. The statement reads the same aloud.\n\n**Problem 2:** Evaluate $\\cos^{-1}(1/2)$.\n\n**Hint:** Find the angle in $[0, \\pi]$ whose cosine is $1/2$. Check both candidate angles from the unit circle.\n\n**Problem 3:** Why is $\\sin^{-1}(2)$ undefined?\n\n**Hint:** What is the domain of $\\sin^{-1}(x)$? Is $2$ in that interval?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Evaluate each expression:\n- $\\cos^{-1}(1/2)$\n- $\\sin^{-1}(-\\sqrt{2}/2)$\n- $\\tan^{-1}(1)$\n- $\\cos^{-1}(-\\sqrt{3}/2)$\n- $\\sin^{-1}(-1/2)$\n- $\\tan^{-1}(-1/\\sqrt{3})$\n\n**Problem 2:** Evaluate $\\sin^{-1}(1/2) - \\cos^{-1}(-1/2)$.\n\n**Hint:** Find each inverse value separately, then subtract. Check that both outputs are in their respective ranges.\n\n**Problem 3:** Angle $\\theta$ is in standard position with terminal ray hitting the unit circle at $P(x, y)$. Point $Q$ is the reflection of $P$ across the $x$-axis. Which point corresponds to the output of $\\cos^{-1}(-x)$?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** Evaluate $\\cos^{-1}(-\\sqrt{2}/2)$ and $\\sin^{-1}(\\sqrt{3}/2)$. Explain why $\\sin^{-1}(2)$ is undefined.\n\n**Lesson Summary:** Inverse trig functions return angle measures, not ratios. The domain restrictions — $[-\\pi/2, \\pi/2]$ for arcsin, $[0, \\pi]$ for arccos, $(-\\pi/2, \\pi/2)$ for arctan — ensure each inverse is single-valued. Always verify that your answer falls in the correct range. The inverse function returns one specific angle; the original equation $\\sin(x) = k$ may have infinitely many solutions."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

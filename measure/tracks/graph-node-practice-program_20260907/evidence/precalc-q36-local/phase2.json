@@ -1,0 +1,48 @@
+{
+  "teacherText": "∫\nAP Precalculus\nInteractive Course\nHome\nCurriculum\nQL\nTeacher dashboard\nOpen gradebook\nTopic 1.1 classroom introductions\nUnit 1 Topic 1.1: Change in Tandem\n\nQ36 Local Student\n\nWorked example: Intervals of increase and decrease\n\nSubmitted: 9/8/2026, 2:25:11 PM\n\nClassroom introduction confirmed.\n\nCreate a class\nClass name\nSave\n\nEnroll a student\n\nEnter an existing student username in your organization.\n\nClass\nQ36 Topic 1.1 Local Class\nStudent username\nSave\n\nAssign a lesson\nClass\nQ36 Topic 1.1 Local Class\nLesson\n1.1 Change in Tandem\nSave\n\nQ36 Topic 1.1 Local Class: Change in Tandem\nClass roster\nQ36 Local Student (q36-student-868501) — 0 lesson responses\n∫\nAP Precalculus\n\nAn interactive course platform for AP Precalculus.\n\n© 2026 Daniel Bodanske\n\nQUICK LINKS\nPreface\nCurriculum\nTEACHER RESOURCES\nTeacher Dashboard\nGradebook\n\nAP Precalculus",
+  "studentText": "∫\nAP Precalculus\nInteractive Course\nHome\nCurriculum\nQL\nAll lessons\n1.1 Change in Tandem\nWorked example\nWorked example\nYour work and explanation\nSubmit response\n\nGuided Practice: Classify Graph Intervals\n\nIdentify the intervals where the graph increases, decreases, and stays constant.\n\n0\n3\n7\n9\nMark the domain endpoints and the change points x=3 and x=7.\nRead each graph segment from left to right and decide whether it rises, falls, or stays flat.\nWrite each interval. Use U or ∪ between multiple intervals. Enter none when no interval exists.\nIncreasing intervals\nFind every segment that rises.\nDecreasing intervals\nFind every segment that falls.\nConstant intervals\nCheck whether any segment stays flat.\nSubmit answer\nIndependent Practice: Classify Graph Intervals\n\nIdentify the intervals where the graph increases, decreases, and stays constant.\n\n0\n2\n4\n8\nIncreasing intervals\nDecreasing intervals\nConstant intervals\nSubmit answer\n∫\nAP Precalculus\n\nAn interactive course platform for AP Precalculus.\n\n© 2026 Daniel Bodanske\n\nQUICK LINKS\nPreface\nCurriculum\nTEACHER RESOURCES\nTeacher Dashboard\nGradebook\n\nAP Precalculus",
+  "buttons": [
+    "Submit response",
+    "Submit answer",
+    "Submit answer"
+  ],
+  "inputs": [
+    {
+      "name": null,
+      "type": null,
+      "placeholder": null,
+      "aria": "Increasing intervals"
+    },
+    {
+      "name": null,
+      "type": null,
+      "placeholder": null,
+      "aria": "Decreasing intervals"
+    },
+    {
+      "name": null,
+      "type": null,
+      "placeholder": null,
+      "aria": "Constant intervals"
+    },
+    {
+      "name": null,
+      "type": null,
+      "placeholder": null,
+      "aria": "Increasing intervals"
+    },
+    {
+      "name": null,
+      "type": null,
+      "placeholder": null,
+      "aria": "Decreasing intervals"
+    },
+    {
+      "name": null,
+      "type": null,
+      "placeholder": null,
+      "aria": "Constant intervals"
+    }
+  ],
+  "selects": []
+}

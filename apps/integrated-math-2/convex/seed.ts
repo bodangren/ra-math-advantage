@@ -1,8 +1,13 @@
+import { v } from "convex/values";
 import { internalAction, internalMutation } from "./_generated/server";
 import { internal } from "./_generated/api";
 
 export const seedUnits = internalMutation({
   args: {},
+  returns: v.union(
+    v.object({ ok: v.literal(true) }),
+    v.object({ ok: v.literal(false), reason: v.string() }),
+  ),
   handler: async (ctx) => {
     const now = Date.now();
 
@@ -22,7 +27,7 @@ export const seedUnits = internalMutation({
       org = await ctx.db.get(orgId);
     }
 
-    if (!org) return { ok: false, reason: "organization_not_found" };
+    if (!org) return { ok: false as const, reason: "organization_not_found" };
 
     const teacherUsername = "demo_teacher";
     let teacherProfile = await ctx.db
@@ -62,117 +67,107 @@ export const seedUnits = internalMutation({
       studentProfile = await ctx.db.get(studentId);
     }
 
-    return { ok: true };
+    return { ok: true as const };
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const seedInternal = (internal as any).seed;
-
 export const seedAll = internalAction({
   args: {},
-  handler: async (ctx) => {
-    const results: {
-      lessons: { module: number; success: boolean; error?: string }[];
-      standards: { code: string; success: boolean; error?: string }[];
-      lessonStandards: { module: number; success: boolean; error?: string }[];
-    } = {
-      lessons: [],
-      standards: [],
-      lessonStandards: [],
-    };
-
-    // 1. Seed org, teacher, student
-    await ctx.runMutation(seedInternal.seedUnits, {});
-
-    // 2. Seed standards
-    try {
-      const standardResults = await ctx.runMutation(seedInternal.seedStandards, {});
-      for (const result of standardResults) {
-        results.standards.push({ code: result.code, success: true });
-      }
-    } catch (error) {
-      results.standards.push({
-        code: "ALL",
-        success: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
-    }
-
-    // 3. Seed all lesson content (modules 1-13)
-    const lessonSeedFns: Array<{ module: number; fn: string }> = [
-      { module: 1, fn: "seedModule1Lessons" },
-      { module: 2, fn: "seedModule2Lessons" },
-      { module: 3, fn: "seedModule3Lessons" },
-      { module: 4, fn: "seedModule4Lessons" },
-      { module: 5, fn: "seedModule5Lessons" },
-      { module: 6, fn: "seedModule6Lessons" },
-      { module: 7, fn: "seedModule7Lessons" },
-      { module: 8, fn: "seedModule8Lessons" },
-      { module: 9, fn: "seedModule9Lessons" },
-      { module: 10, fn: "seedModule10Lessons" },
-      { module: 11, fn: "seedModule11Lessons" },
-      { module: 12, fn: "seedModule12Lessons" },
-      { module: 13, fn: "seedModule13Lessons" },
-    ];
-
-    for (const { module, fn } of lessonSeedFns) {
-      try {
-        await ctx.runMutation(seedInternal[fn], {});
-        results.lessons.push({ module, success: true });
-      } catch (error) {
-        results.lessons.push({
-          module,
-          success: false,
-          error: error instanceof Error ? error.message : "Unknown error",
-        });
-      }
-    }
-
-    // 4. Seed lesson-standard links (modules 1-13)
-    const standardsSeedFns: Array<{ module: number; fn: string }> = [
-      { module: 1, fn: "seedModule1LessonStandards" },
-      { module: 2, fn: "seedModule2LessonStandards" },
-      { module: 3, fn: "seedModule3LessonStandards" },
-      { module: 4, fn: "seedModule4LessonStandards" },
-      { module: 5, fn: "seedModule5LessonStandards" },
-      { module: 6, fn: "seedModule6LessonStandards" },
-      { module: 7, fn: "seedModule7LessonStandards" },
-      { module: 8, fn: "seedModule8LessonStandards" },
-      { module: 9, fn: "seedModule9LessonStandards" },
-      { module: 10, fn: "seedModule10LessonStandards" },
-      { module: 11, fn: "seedModule11LessonStandards" },
-      { module: 12, fn: "seedModule12LessonStandards" },
-      { module: 13, fn: "seedModule13LessonStandards" },
-    ];
-
-    for (const { module, fn } of standardsSeedFns) {
-      try {
-        await ctx.runMutation(seedInternal[fn], {});
-        results.lessonStandards.push({ module, success: true });
-      } catch (error) {
-        results.lessonStandards.push({
-          module,
-          success: false,
-          error: error instanceof Error ? error.message : "Unknown error",
-        });
-      }
-    }
-
-    // 5. Seed objective policies
-    try {
-      await ctx.runMutation(seedInternal.seedObjectivePolicies, {});
-    } catch {
-      // Objective policies seeding failure is non-fatal
-    }
-
-    // 6. Seed problem families
-    try {
-      await ctx.runMutation(seedInternal.seedProblemFamilies, {});
-    } catch {
-      // Problem families seeding failure is non-fatal
-    }
-
-    return results;
+  returns: v.object({ lessons: v.number() }),
+  handler: async (ctx): Promise<{ lessons: number }> => {
+    await ctx.runMutation(internal.seed.seed_standards.seedStandards, {});
+    let lessons = 0;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_1_lessons.seedModule1Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_2_lessons.seedModule2Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_3_lessons.seedModule3Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_4_lessons.seedModule4Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_5_lessons.seedModule5Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_6_lessons.seedModule6Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_7_lessons.seedModule7Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_8_lessons.seedModule8Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_9_lessons.seedModule9Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_10_lessons.seedModule10Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_11_lessons.seedModule11Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_12_lessons.seedModule12Lessons,
+        {},
+      )
+    ).lessons.length;
+    lessons += (
+      await ctx.runMutation(
+        internal.seed.seed_module_13_lessons.seedModule13Lessons,
+        {},
+      )
+    ).lessons.length;
+    await ctx.runMutation(internal.seed.seed_im2_module_1_standards.seedModule1LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_2_standards.seedModule2LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_3_standards.seedModule3LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_4_standards.seedModule4LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_5_standards.seedModule5LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_6_standards.seedModule6LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_7_standards.seedModule7LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_8_standards.seedModule8LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_9_standards.seedModule9LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_10_standards.seedModule10LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_11_standards.seedModule11LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_12_standards.seedModule12LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_13_standards.seedModule13LessonStandards, {});
+    return { lessons };
   },
 });

@@ -44,3 +44,85 @@ export function loadFullCurriculumGraph(): {
     edges: (fullEdgesJson as { edges: KnowledgeSpaceEdge[] }).edges,
   };
 }
+
+/**
+ * Derive the closed graph that can control learner readiness in IM3.
+ * Candidate curriculum remains available through `loadFullCurriculumGraph`.
+ * @param {{ nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] }} graph - Complete candidate graph.
+ * @returns {{ nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] }} Closed readiness graph.
+ */
+export function projectApprovedReadinessGraph(graph: {
+  nodes: KnowledgeSpaceNode[];
+  edges: KnowledgeSpaceEdge[];
+}): { nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] } {
+  const approvedSkillIds = new Set(
+    graph.nodes
+      .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
+      .map((node) => node.id),
+  );
+  const quarantined = new Set<string>();
+
+  for (const edge of graph.edges) {
+    if (edge.type !== 'prerequisite_for' || !approvedSkillIds.has(edge.targetId)) continue;
+    if (edge.reviewStatus === 'rejected') continue;
+
+    const validApprovedEdge = edge.reviewStatus === 'approved'
+      && approvedSkillIds.has(edge.sourceId)
+      && approvedSkillIds.has(edge.targetId);
+
+    if (!validApprovedEdge) quarantined.add(edge.targetId);
+  }
+
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const edge of graph.edges) {
+      if (
+        edge.type === 'prerequisite_for'
+        && edge.reviewStatus === 'approved'
+        && approvedSkillIds.has(edge.targetId)
+        && quarantined.has(edge.sourceId)
+        && !quarantined.has(edge.targetId)
+      ) {
+        quarantined.add(edge.targetId);
+        changed = true;
+      }
+    }
+  }
+
+  const eligibleIds = new Set(
+    [...approvedSkillIds].filter((nodeId) => !quarantined.has(nodeId)),
+  );
+
+  return {
+    nodes: graph.nodes.filter((node) => eligibleIds.has(node.id)),
+    edges: graph.edges.filter((edge) =>
+      edge.type === 'prerequisite_for'
+      && edge.reviewStatus === 'approved'
+      && eligibleIds.has(edge.sourceId)
+      && eligibleIds.has(edge.targetId)),
+  };
+}
+
+/**
+ * Add evidenced historical nodes to a readiness graph without adding edges.
+ * @param {{ nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] }} readinessGraph - Approved readiness graph.
+ * @param {{ nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] }} fullGraph - Complete candidate graph.
+ * @param {ReadonlySet<string>} historicalNodeIds - IDs with learner evidence.
+ * @returns {{ nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] }} Presentation graph.
+ */
+export function includeHistoricalEvidenceNodes(
+  readinessGraph: { nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] },
+  fullGraph: { nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] },
+  historicalNodeIds: ReadonlySet<string>,
+): { nodes: KnowledgeSpaceNode[]; edges: KnowledgeSpaceEdge[] } {
+  const included = new Set(readinessGraph.nodes.map((node) => node.id));
+  return {
+    nodes: [
+      ...readinessGraph.nodes,
+      ...fullGraph.nodes.filter((node) =>
+        historicalNodeIds.has(node.id) && !included.has(node.id)),
+    ],
+    edges: readinessGraph.edges,
+  };
+}

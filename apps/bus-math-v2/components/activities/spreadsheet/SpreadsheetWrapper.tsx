@@ -1,9 +1,12 @@
 "use client";
 
 import { useMemo } from "react";
-import Spreadsheet from "react-spreadsheet";
+import Spreadsheet, { createFormulaParser } from "react-spreadsheet";
+import { COURSE_FORMULA_FUNCTIONS } from "@/lib/activities/spreadsheet-functions";
 import type { Matrix, CellBase } from "react-spreadsheet";
 import { generateColumnLabels, generateRowLabels } from "./SpreadsheetHelpers";
+
+const createCourseParser = (data: Matrix<CellBase>) => createFormulaParser(data, { functions: COURSE_FORMULA_FUNCTIONS });
 
 export interface SpreadsheetCell extends CellBase {
   value: string | number;
@@ -70,6 +73,7 @@ export function SpreadsheetWrapper({ initialData = [ [{ value: "" }, { value: ""
     <div className={`spreadsheet-wrapper ${className}`}>
       <Spreadsheet
         data={initialData}
+        createFormulaParser={createCourseParser}
         onChange={readOnly ? undefined : handleChange}
         columnLabels={finalColumnLabels}
         rowLabels={finalRowLabels}

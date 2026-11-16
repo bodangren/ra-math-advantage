@@ -30,9 +30,7 @@ When triangles are similar, how do the lengths of corresponding altitudes, media
 
 ### Key Concept: Altitudes in Similar Triangles
 
-If △RST ∼ △EFG and [SH] and [FJ] are altitudes, then [
-\frac{SH}{FJ} = \frac{ST}{FG} = k
-], where [k] is the scale factor.
+If △RST ∼ △EFG and [SH] and [FJ] are altitudes, then $\frac{SH}{FJ} = \frac{ST}{FG} = k$, where [k] is the scale factor.
 
 ### Key Concept: Perimeters Ratio
 
@@ -40,77 +38,45 @@ The ratio of the perimeters of similar triangles equals the scale factor.
 
 ### Key Concept: Medians in Similar Triangles
 
-If △ABC ∼ △RST, [AD] is a median of △ABC, and [RU] is a median of △RST, then [
-\frac{AD}{RU} = \frac{AB}{RS} = k
-].
+If △ABC ∼ △RST, [AD] is a median of △ABC, and [RU] is a median of △RST, then $\frac{AD}{RU} = \frac{AB}{RS} = k$.
 
 ### Key Concept: Angle Bisectors in Similar Triangles
 
-If △RTS ∼ △EGF and [TA] and [GB] are angle bisectors, then [
-\frac{TA}{GB} = \frac{RT}{EG} = k
-].
+If △RTS ∼ △EGF and [TA] and [GB] are angle bisectors, then $\frac{TA}{GB} = \frac{RT}{EG} = k$.
 
 ### Key Concept: Triangle Angle Bisector Theorem
 
-If [CD] bisects [∠ACB], then [
-\frac{AD}{DB} = \frac{AC}{BC}
-].
+Let D lie on side AB of triangle ABC. If [CD] bisects [∠ACB], then $\frac{AD}{DB} = \frac{AC}{BC}$.
 
 ## Example 1 — Find Unknown Side Lengths
 
-### Step 1: Set Up a Proportion
+### Problem
 
-Given similar triangles, use the ratio of corresponding sides to set up a proportion.
+An altitude from the right-angle vertex of a right triangle divides the hypotenuse into segments of lengths 9 cm and 16 cm. Find the altitude and both legs.
 
-### Step 2: Solve for the Unknown
+### Solution
 
-Cross-multiply and solve.
+The hypotenuse is 25 cm. The altitude is $\sqrt{9(16)}=12$ cm. The leg adjacent to the 9 cm hypotenuse segment is $\sqrt{25(9)}=15$ cm. The other leg is $\sqrt{25(16)}=20$ cm. Check: 15 squared + 20 squared = 25 squared.
 
 ## Example 2 — Altitudes in Similar Triangles
 
-### Step 1: Identify Corresponding Altitudes
+### Problem
 
-If △RST ∼ △EFG and [SH] is an altitude of △RST and [FJ] is an altitude of △EFG, then [SH] and [FJ] are corresponding altitudes.
+Triangles RST and EFG are similar in the stated order. SH is the altitude from S to RT, and FJ is the altitude from F to EG. ST = 6, SH = 5, and FJ = 7. Find FG.
 
-### Step 2: Apply the Proportion
+### Solution
 
-**Problem 5:** △RST ∼ △EFG, [ST = 6], [SH = 5], [FJ = 7], find [FG].
-
-Since [
-\frac{SH}{FJ} = \frac{ST}{FG}
-]:
-[
-\frac{5}{7} = \frac{6}{FG}
-]
-[
-FG = \frac{6 \times 7}{5} = 8.4
-]
-
-**Problem 6:** △ABC ∼ △MNP, [AB = 24], [AD = 14], [MQ = 10.5], find [MN].
-
-Since [
-\frac{AD}{MQ} = \frac{AB}{MN}
-]:
-[
-\frac{14}{10.5} = \frac{24}{MN}
-]
-[
-MN = \frac{24 \times 10.5}{14} = 18
-]
+Corresponding altitudes have the same scale factor as corresponding sides. The scale from RST to EFG is $FJ/SH = 7/5$. Therefore $FG = ST(7/5) = 6(7/5) = 8.4$.
 
 ## Example 3 — Real-World Application
 
-### Step 1: Set Up the Proportion
+### Problem
 
-**SCENERY (Problem 7):** Two similar triangles formed by paths. [AC = 50] yd, [MP = 35] yd. Fountain is 5 yd from intersection.
+Two similar triangular garden layouts have corresponding bases of 50 yd and 35 yd. A fountain in the smaller layout lies at the foot of an altitude that is 5 yd long. Find the corresponding altitude in the larger layout.
 
-Use the scale factor [
-k = \frac{MP}{AC} = \frac{35}{50} = \frac{7}{10}
-].
+### Solution
 
-### Step 2: Find the Unknown Distance
-
-Distance from intersection to stadium entrance is proportional to [AC] and [MP].
+The scale from the smaller layout to the larger layout is $50/35 = 10/7$. Corresponding altitudes have this ratio. The larger altitude is $5(10/7) = 50/7$ yd, approximately 7.14 yd.
 
 ## Mixed Exercises
 
@@ -131,21 +97,21 @@ The mixed exercises section provides practice with all skills from the lesson. P
 ## Review Notes
 
 * Images referenced in the worksheet (triangle figures for problems 1–4, altitude figures for problems 5–6, scenery/paths diagram for problem 7, triangle figures for problems 8–9, triangle figures for problems 10–11, proof figures for problems 12–14, triangle for problem 15, figure for problem 16, triangle for problem 17) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
-* ![](media/image1.png) — Triangle for problem 1
-* ![](media/image2.png) — Triangle for problem 2
-* ![](media/image3.png) — Triangle for problem 3
-* ![](media/image4.png) — Triangle for problem 4
-* ![](media/image5.png) — Triangle for problem 5
-* ![](media/image6.png) — Triangle for problem 6
-* ![](media/image7.png) — Scenery/path figure for problem 7
-* ![](media/image8.png) — Triangle for problem 8
-* ![](media/image9.png) — Triangle for problem 9
-* ![](media/image10.png) — Triangle for problems 10–11
-* ![](media/image11.png) — Proof figure for problem 12
-* ![](media/image12.png) — Proof figure for problem 13
-* ![](media/image13.png) — Proof figure for problem 13
-* ![](media/image14.png) — Triangle for problem 14
-* ![](media/image15.png) — Figure for problem 16
+* ![Worksheet figure 1](/curriculum/module-3-lesson-6/image1.png) — Triangle for problem 1
+* ![Worksheet figure 2](/curriculum/module-3-lesson-6/image2.png) — Triangle for problem 2
+* ![Worksheet figure 3](/curriculum/module-3-lesson-6/image3.png) — Triangle for problem 3
+* ![Worksheet figure 4](/curriculum/module-3-lesson-6/image4.png) — Triangle for problem 4
+* ![Worksheet figure 5](/curriculum/module-3-lesson-6/image5.png) — Triangle for problem 5
+* ![Worksheet figure 6](/curriculum/module-3-lesson-6/image6.png) — Triangle for problem 6
+* ![Worksheet figure 7](/curriculum/module-3-lesson-6/image7.png) — Scenery/path figure for problem 7
+* ![Worksheet figure 8](/curriculum/module-3-lesson-6/image8.png) — Triangle for problem 8
+* ![Worksheet figure 9](/curriculum/module-3-lesson-6/image9.png) — Triangle for problem 9
+* ![Worksheet figure 10](/curriculum/module-3-lesson-6/image10.png) — Triangle for problems 10–11
+* ![Worksheet figure 11](/curriculum/module-3-lesson-6/image11.png) — Proof figure for problem 12
+* ![Worksheet figure 12](/curriculum/module-3-lesson-6/image12.png) — Proof figure for problem 13
+* ![Worksheet figure 13](/curriculum/module-3-lesson-6/image13.png) — Proof figure for problem 13
+* ![Worksheet figure 14](/curriculum/module-3-lesson-6/image14.png) — Triangle for problem 14
+* ![Worksheet figure 15](/curriculum/module-3-lesson-6/image15.png) — Figure for problem 16
 * The worksheet contains 17 practice problems across three examples and mixed exercises.
 
 (End of file - total 143 lines)

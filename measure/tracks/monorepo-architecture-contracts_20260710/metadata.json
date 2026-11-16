@@ -1,0 +1,13 @@
+{
+  "track_id": "monorepo-architecture-contracts_20260710",
+  "type": "refactor",
+  "status": "completed",
+  "created_at": "2026-07-10T10:16:16Z",
+  "updated_at": "2026-07-11T01:13:00Z",
+  "description": "Define and enforce the LMS monorepo package DAG, ownership rules, complete workspace quality gates, and architecture evidence.",
+  "estimated_tasks": 19,
+  "actual_tasks": 19,
+  "deviation_notes": "Completed all planned tasks. Restoring the manifest-driven package matrix exposed dormant efficacy experiment Reds and cwd/date-coupled package tests, so the Green work expanded beyond math-content to make all 20 package gates genuinely pass. The full app audit also documented pre-existing app migration and product-suite debt; all five app lints/builds pass, while app test/typecheck reds remain visible for their owning follow-up tracks. The optional build-graph CLI was unavailable, but manifest-backed architecture reports generate and verify independently.",
+  "program": "LMS Monorepo Modularity",
+  "depends_on": []
+}

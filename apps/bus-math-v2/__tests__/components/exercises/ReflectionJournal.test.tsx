@@ -60,6 +60,17 @@ describe('ReflectionJournal', () => {
     )
   })
 
+  it('saves incomplete prompts as a draft', async () => {
+    const onSubmit = vi.fn();
+    render(<ReflectionJournal activity={buildActivity({ prompts: [
+      { id: 'a', category: 'persistence', prompt: 'First check', placeholder: 'First answer' },
+      { id: 'b', category: 'persistence', prompt: 'Second check', placeholder: 'Second answer' },
+    ] })} onSubmit={onSubmit} />);
+    await userEvent.type(screen.getByPlaceholderText('First answer'), 'A result');
+    await userEvent.click(screen.getByRole('button', { name: /save reflection/i }));
+    expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ status: 'draft' }));
+  });
+
   it('declares the supported practice modes for the family', () => {
     expect(REFLECTION_JOURNAL_SUPPORTED_MODES).toEqual([
       'guided_practice',

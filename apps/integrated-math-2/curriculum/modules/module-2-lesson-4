@@ -30,7 +30,7 @@ What additional property do rectangles have that general parallelograms do not h
 * All angles are right angles.
 * The diagonals of a rectangle are congruent.
 * The diagonals bisect each other.
-* The diagonals create two congruent right triangles.
+* Each diagonal divides the rectangle into two congruent right triangles.
 
 ### Key Concept: Diagonal Length
 
@@ -40,51 +40,43 @@ In a rectangle with length l and width w, the diagonal d can be found using the 
 
 ## Example 1 — Find Measures in Rectangles
 
-Use rectangle properties and the Pythagorean Theorem to find side lengths, diagonal lengths, and angle measures.
+### Problem
 
-### Step 1: Identify Right Angles
+A rectangle is 9 cm long and 12 cm wide. Find its diagonal length and the measure of each interior angle.
 
-In a rectangle, all angles are right angles (90°). Use this to find complementary and supplementary angles.
+### Solution
 
-### Step 2: Apply the Pythagorean Theorem
-
-When a rectangle's sides form right triangles with the diagonal, use a² + b² = c² to find unknown side lengths.
+The diagonal is the hypotenuse of a right triangle. Its length is $\sqrt{9^2+12^2}=\sqrt{225}=15$ cm. Each interior angle of the rectangle is 90 degrees.
 
 ## Example 2 — Solve Algebraic Problems with Rectangles
 
-Set up and solve equations involving angle measures and side lengths in rectangles.
+### Problem
 
-### Step 1: Write Equations
+ABCD is a rectangle. Its diagonals have lengths AC = 3x + 2 cm and BD = 5x - 6 cm. Find x and each diagonal length.
 
-Use the given angle expressions and the fact that angles in a rectangle are right angles or that consecutive angles are supplementary.
+### Solution
 
-### Step 2: Solve for the Unknown
-
-Solve the equation to find the value of the variable, then substitute to find the actual measure.
+Diagonals of a rectangle are congruent. Solve 3x + 2 = 5x - 6 to obtain x = 4. Each diagonal has length 14 cm.
 
 ## Example 3 — Prove Triangles Congruent Using Rectangles
 
-Write two-column proofs showing that triangles within or created by rectangle diagonals are congruent.
+### Problem
 
-### Step 1: Identify Congruent Triangles
+ABCD is a rectangle with AB = 8 cm and BC = 5 cm. Draw diagonal AC. Prove triangle ABC is congruent to triangle CDA.
 
-Rectangles have diagonals that bisect each other and create two pairs of congruent triangles.
+### Solution
 
-### Step 2: List Corresponding Parts
-
-Use the properties of rectangles (right angles, congruent diagonals, bisecting diagonals) to justify triangle congruence criteria.
+Opposite sides give AB = CD = 8 cm and BC = AD = 5 cm. The triangles share AC. All 3 corresponding side pairs are congruent, so the triangles are congruent by SSS.
 
 ## Example 4 — Coordinate Geometry with Rectangles
 
-Graph quadrilaterals on the coordinate plane and determine whether each is a rectangle using slope and distance formulas.
+### Problem
 
-### Step 1: Check for Right Angles (Slope Formula)
+Determine whether A(0, 0), B(4, 0), C(4, 3), and D(0, 3), in that order, form a rectangle.
 
-For adjacent sides to be perpendicular, the product of their slopes must equal -1.
+### Solution
 
-### Step 2: Check for Congruent Diagonals (Distance Formula)
-
-Calculate the lengths of both diagonals and verify they are equal.
+AB and CD are horizontal. BC and AD are vertical. Opposite sides are parallel, and each horizontal side is perpendicular to each adjacent vertical side. Thus ABCD is a rectangle. Both diagonals have length 5. Do not use a slope product for vertical lines because their slopes are undefined.
 
 ## Mixed Exercises
 
@@ -111,6 +103,6 @@ The mixed exercises section provides practice with all skills from the lesson. P
 
 * Images referenced in the worksheet (rectangle diagrams for Examples 1-4, proof figures, trapezoid figure, rectangular pattern with side lengths, and various geometry figures) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
 * The worksheet contains 39 practice problems across four examples and mixed exercises.
-* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png)
+* ![Worksheet figure 1](/curriculum/module-2-lesson-4/image1.png) ![Worksheet figure 2](/curriculum/module-2-lesson-4/image2.png) ![Worksheet figure 3](/curriculum/module-2-lesson-4/image3.png) ![Worksheet figure 4](/curriculum/module-2-lesson-4/image4.png) ![Worksheet figure 5](/curriculum/module-2-lesson-4/image5.png) ![Worksheet figure 6](/curriculum/module-2-lesson-4/image6.png) ![Worksheet figure 7](/curriculum/module-2-lesson-4/image7.png) ![Worksheet figure 8](/curriculum/module-2-lesson-4/image8.png) ![Worksheet figure 9](/curriculum/module-2-lesson-4/image9.png) ![Worksheet figure 10](/curriculum/module-2-lesson-4/image10.png) ![Worksheet figure 11](/curriculum/module-2-lesson-4/image11.png) ![Worksheet figure 12](/curriculum/module-2-lesson-4/image12.png) ![Worksheet figure 13](/curriculum/module-2-lesson-4/image13.png) ![Worksheet figure 14](/curriculum/module-2-lesson-4/image14.png)
 
 (End of file - total 169 lines)

@@ -43,6 +43,7 @@ export const workedExampleSpecSchema = z.object({
   steps: z.array(workedStepSchema).min(1),
   explanation: z.string().min(1),
   visualArtifact: z.record(z.string(), z.unknown()).optional(),
+  rendererProps: z.record(z.string(), z.unknown()).optional(),
 });
 
 const revealPolicySchema = z.enum(['all_at_once', 'one_at_a_time', 'after_attempt']);
@@ -58,6 +59,7 @@ export const guidedPracticeSpecSchema = z.object({
   hints: z.array(z.string()),
   checksPerStep: z.array(stepCheckSchema),
   revealPolicy: revealPolicySchema,
+  rendererProps: z.record(z.string(), z.unknown()).optional(),
 });
 
 const replayPolicySchema = z.enum(['any_seed', 'unique_seeds', 'uniq_seeds_per_learner']);
@@ -68,6 +70,7 @@ export const independentPracticeSpecSchema = z.object({
   answerSchema: z.record(z.string(), z.unknown()),
   gradingRules: z.array(gradingRuleSchema),
   replayPolicy: replayPolicySchema,
+  rendererProps: z.record(z.string(), z.unknown()).optional(),
 });
 
 export const gradingSpecSchema = z.object({
@@ -113,7 +116,7 @@ export const gradingMetadataSchema = z.object({
   partMaxScores: z.record(z.string(), z.number()),
   partGradingRules: z.record(
     z.string(),
-    z.enum(['exact_match', 'numeric_tolerance', 'expression_equivalence']),
+    z.enum(['exact_match', 'numeric_tolerance', 'expression_equivalence', 'custom']),
   ),
   partTolerances: z.record(z.string(), z.number()).optional(),
 });
@@ -210,7 +213,7 @@ export function validateBlueprintGeneratorReadiness(
 }
 
 /**
- * Validates that a blueprint's rendererKey is accepted by a schema adapter.
+ * Validates the fallback renderer and mode overrides with the schema adapter.
  * @param {KnowledgeBlueprint} blueprint - Knowledge blueprint to validate
  * @param {SchemaAdapter} adapter - Schema adapter with acceptRendererKey method
  * @returns {ValidationResult} - ValidationResult with valid flag and any errors
@@ -219,16 +222,18 @@ export function validateRendererCompatibility(
   blueprint: KnowledgeBlueprint,
   adapter: SchemaAdapter,
 ): ValidationResult {
-  if (!blueprint.rendererKey || blueprint.rendererKey.length === 0) {
-    return { valid: true };
-  }
-  if (!adapter.acceptRendererKey(blueprint.rendererKey)) {
+  const rendererKeys = new Set([
+    blueprint.rendererKey,
+    ...Object.values(blueprint.rendererModeMap ?? {}),
+  ].filter(Boolean));
+  const unknownKeys = [...rendererKeys].filter((key) => !adapter.acceptRendererKey(key));
+  if (unknownKeys.length > 0) {
     return {
       valid: false,
-      errors: [{
+      errors: unknownKeys.map((key) => ({
         code: 'UNKNOWN_RENDERER',
-        message: `Renderer key "${blueprint.rendererKey}" is not accepted by the schema adapter`,
-      }],
+        message: `Renderer key "${key}" is not accepted by the schema adapter`,
+      })),
     };
   }
   return { valid: true };

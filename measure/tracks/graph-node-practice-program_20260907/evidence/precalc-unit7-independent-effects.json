@@ -1,0 +1,526 @@
+{
+  "cards": [
+    {
+      "_creationTime": 1788871302303.376,
+      "_id": "nn75wjj9sbp8bs39wfdte0ph898e07p1",
+      "createdAt": 1788871302488,
+      "difficulty": 6.40211507,
+      "dueDate": "2026-09-11T12:41:42.488Z",
+      "elapsedDays": 0,
+      "lapses": 0,
+      "lastReview": "2026-09-08T12:41:42.488Z",
+      "objectiveId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "problemFamilyId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice",
+      "reps": 2,
+      "scheduledDays": 3,
+      "stability": 0.212,
+      "state": "review",
+      "studentId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "updatedAt": 1788871302488
+    }
+  ],
+  "evidence": [
+    {
+      "_creationTime": 1788870539617.587,
+      "_id": "ks7aq9qkeykx7tmz4m8mk85edx8e05n3",
+      "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.worked_example",
+      "attemptOrdinal": 1,
+      "createdAt": 1788870539617,
+      "fingerprint": "{\"contractVersion\":\"learning-evidence.v1\",\"nodeId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs\",\"activityId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.worked_example\",\"attemptOrdinal\":1,\"origin\":\"teacher_led\",\"mode\":\"teaching\",\"occurredAt\":\"2026-09-08T12:24:19.706Z\",\"gradedEvidence\":null,\"idempotencyKey\":\"precalc:teacher-led:submission:jd75r4c5nn92he2pzt786rhjv98e1ddw\"}",
+      "idempotencyKey": "precalc:teacher-led:submission:jd75r4c5nn92he2pzt786rhjv98e1ddw",
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "mode": "teaching",
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "occurredAt": 1788870259706,
+      "origin": "teacher_led"
+    },
+    {
+      "_creationTime": 1788870540445.618,
+      "_id": "ks7cq5mjeazmeabjbqjhyy6am98e0szj",
+      "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice",
+      "attemptOrdinal": 1,
+      "createdAt": 1788870540445,
+      "fingerprint": "{\"contractVersion\":\"learning-evidence.v1\",\"nodeId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs\",\"activityId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice\",\"attemptOrdinal\":1,\"origin\":\"mastery_advantage\",\"mode\":\"guided_practice\",\"occurredAt\":\"2026-09-08T12:29:00.416Z\",\"gradedEvidence\":null,\"idempotencyKey\":\"precalc:mastery-advantage:submission:jd79r2f99v63bcfce7ywapg8qn8e1q9p\"}",
+      "idempotencyKey": "precalc:mastery-advantage:submission:jd79r2f99v63bcfce7ywapg8qn8e1q9p",
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "mode": "guided_practice",
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "occurredAt": 1788870540416,
+      "origin": "mastery_advantage",
+      "submissionId": "jd79r2f99v63bcfce7ywapg8qn8e1q9p"
+    },
+    {
+      "_creationTime": 1788871302109.512,
+      "_id": "ks75250ewq2m5j1bxnztdvbmrs8e19tr",
+      "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice",
+      "attemptOrdinal": 2,
+      "createdAt": 1788871302109,
+      "fingerprint": "{\"contractVersion\":\"learning-evidence.v1\",\"nodeId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs\",\"activityId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice\",\"attemptOrdinal\":2,\"origin\":\"mastery_advantage\",\"mode\":\"guided_practice\",\"occurredAt\":\"2026-09-08T12:41:42.066Z\",\"gradedEvidence\":null,\"idempotencyKey\":\"precalc:mastery-advantage:submission:jd729ths0n13sd5572kgxvfr458e09v3\"}",
+      "idempotencyKey": "precalc:mastery-advantage:submission:jd729ths0n13sd5572kgxvfr458e09v3",
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "mode": "guided_practice",
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "occurredAt": 1788871302066,
+      "origin": "mastery_advantage",
+      "submissionId": "jd729ths0n13sd5572kgxvfr458e09v3"
+    },
+    {
+      "_creationTime": 1788871302303.3765,
+      "_id": "ks76sa5zyh34wfd8s30zq2xnq18e1p20",
+      "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice",
+      "attemptOrdinal": 1,
+      "createdAt": 1788871302303,
+      "fingerprint": "{\"contractVersion\":\"learning-evidence.v1\",\"nodeId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs\",\"activityId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice\",\"attemptOrdinal\":1,\"origin\":\"mastery_advantage\",\"mode\":\"independent_practice\",\"occurredAt\":\"2026-09-08T12:41:42.277Z\",\"gradedEvidence\":{\"isCorrect\":false,\"score\":0,\"maxScore\":3},\"idempotencyKey\":\"precalc:mastery-advantage:submission:jd706sjnmqfpjm4twszap0p1an8e1kb7\"}",
+      "gradedEvidence": {
+        "isCorrect": false,
+        "maxScore": 3,
+        "score": 0
+      },
+      "idempotencyKey": "precalc:mastery-advantage:submission:jd706sjnmqfpjm4twszap0p1an8e1kb7",
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "mode": "independent_practice",
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "occurredAt": 1788871302277,
+      "origin": "mastery_advantage",
+      "submissionId": "jd706sjnmqfpjm4twszap0p1an8e1kb7"
+    },
+    {
+      "_creationTime": 1788871302488.2073,
+      "_id": "ks71dz26fqcm21rypmnsdvgsp98e0qyz",
+      "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice",
+      "attemptOrdinal": 2,
+      "createdAt": 1788871302488,
+      "fingerprint": "{\"contractVersion\":\"learning-evidence.v1\",\"nodeId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs\",\"activityId\":\"math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice\",\"attemptOrdinal\":2,\"origin\":\"mastery_advantage\",\"mode\":\"independent_practice\",\"occurredAt\":\"2026-09-08T12:41:42.462Z\",\"gradedEvidence\":{\"isCorrect\":true,\"score\":3,\"maxScore\":3},\"idempotencyKey\":\"precalc:mastery-advantage:submission:jd7aketj5djedc7yyg14de5x4s8e1gf4\"}",
+      "gradedEvidence": {
+        "isCorrect": true,
+        "maxScore": 3,
+        "score": 3
+      },
+      "idempotencyKey": "precalc:mastery-advantage:submission:jd7aketj5djedc7yyg14de5x4s8e1gf4",
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "mode": "independent_practice",
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "occurredAt": 1788871302462,
+      "origin": "mastery_advantage",
+      "submissionId": "jd7aketj5djedc7yyg14de5x4s8e1gf4"
+    }
+  ],
+  "lessonResponses": [
+    {
+      "_creationTime": 1788870259568.244,
+      "_id": "m17frp2re2hj3tje017gd7vfc58e1yme",
+      "createdAt": 1788870259568,
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "phaseId": "mx77092bgmgs5vvbva002wdc418e0bq9",
+      "response": "Browser verification response for the ordinary mixed-phase path."
+    }
+  ],
+  "progress": [],
+  "receipts": [
+    {
+      "_creationTime": 1788871302303.3767,
+      "_id": "kx77fat0vrxtt35y6cnvycftp98e02d2",
+      "createdAt": 1788871302303,
+      "decision": {
+        "eligible": true,
+        "exposureState": "introduced",
+        "idempotency": "new",
+        "masteryBearing": true,
+        "reason": "eligible"
+      },
+      "kstApplied": false,
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "masteryApplied": true,
+      "persisted": true,
+      "submissionId": "jd706sjnmqfpjm4twszap0p1an8e1kb7"
+    },
+    {
+      "_creationTime": 1788871302109.5122,
+      "_id": "kx73bv7rraetw2b2ra9rgwfrsn8e1ged",
+      "createdAt": 1788871302109,
+      "decision": {
+        "eligible": false,
+        "exposureState": "introduced",
+        "idempotency": "new",
+        "masteryBearing": false,
+        "reason": "ungraded_evidence"
+      },
+      "kstApplied": false,
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "masteryApplied": false,
+      "persisted": true,
+      "submissionId": "jd729ths0n13sd5572kgxvfr458e09v3"
+    },
+    {
+      "_creationTime": 1788870540445.6182,
+      "_id": "kx72fyg3n4es99ma4hzcmjkg1s8e1zv9",
+      "createdAt": 1788870540445,
+      "decision": {
+        "eligible": false,
+        "exposureState": "introduced",
+        "idempotency": "new",
+        "masteryBearing": false,
+        "reason": "ungraded_evidence"
+      },
+      "kstApplied": false,
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "masteryApplied": false,
+      "persisted": true,
+      "submissionId": "jd79r2f99v63bcfce7ywapg8qn8e1q9p"
+    },
+    {
+      "_creationTime": 1788871302488.2075,
+      "_id": "kx7f1xwaar4qmpbk8xvg54dzm58e1s57",
+      "createdAt": 1788871302488,
+      "decision": {
+        "eligible": true,
+        "exposureState": "introduced",
+        "idempotency": "new",
+        "masteryBearing": true,
+        "reason": "eligible"
+      },
+      "kstApplied": false,
+      "learnerId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "masteryApplied": true,
+      "persisted": true,
+      "submissionId": "jd7aketj5djedc7yyg14de5x4s8e1gf4"
+    }
+  ],
+  "reviews": [
+    {
+      "_creationTime": 1788871302303.3762,
+      "_id": "ns79z9hpwxb290ga9q1ez919ss8e0beq",
+      "cardId": "nn75wjj9sbp8bs39wfdte0ph898e07p1",
+      "evidence": {
+        "baseRating": "Again",
+        "reasons": [
+          "timing_missing",
+          "timing_ignored_unreliable"
+        ],
+        "timingAdjusted": false
+      },
+      "rating": "Again",
+      "reviewId": "rev_816b12bd5a35a17f00d8da1757c069c9",
+      "reviewedAt": 1788871302303,
+      "stateAfter": {
+        "difficulty": 6.4133,
+        "lapses": 0,
+        "reps": 1,
+        "stability": 0.212,
+        "state": "review"
+      },
+      "stateBefore": {
+        "difficulty": 0,
+        "lapses": 0,
+        "reps": 0,
+        "stability": 0,
+        "state": "new"
+      },
+      "studentId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "submissionId": "jd706sjnmqfpjm4twszap0p1an8e1kb7"
+    },
+    {
+      "_creationTime": 1788871302488.207,
+      "_id": "ns7aase6203mfzpsmb1pc46tj18e0xq8",
+      "cardId": "nn75wjj9sbp8bs39wfdte0ph898e07p1",
+      "evidence": {
+        "baseRating": "Good",
+        "reasons": [
+          "timing_missing",
+          "timing_ignored_unreliable"
+        ],
+        "timingAdjusted": false
+      },
+      "rating": "Good",
+      "reviewId": "rev_422605f3349f37ac63e7316db368236d",
+      "reviewedAt": 1788871302488,
+      "stateAfter": {
+        "difficulty": 6.40211507,
+        "lapses": 0,
+        "reps": 2,
+        "stability": 0.212,
+        "state": "review"
+      },
+      "stateBefore": {
+        "difficulty": 6.4133,
+        "lapses": 0,
+        "reps": 1,
+        "stability": 0.212,
+        "state": "review"
+      },
+      "studentId": "nd71gajatet0ab5dgdmffatwwx8e1tgq",
+      "submissionId": "jd7aketj5djedc7yyg14de5x4s8e1gf4"
+    }
+  ],
+  "submissions": [
+    {
+      "_creationTime": 1788870259706.679,
+      "_id": "jd75r4c5nn92he2pzt786rhjv98e1ddw",
+      "activityId": "j571m08v68t7zqm64p5p86twk98e1czc",
+      "attemptOrdinal": 1,
+      "createIdempotencyKey": "05a6b2bd-b0aa-4071-ae60-be2512e17063",
+      "createdAt": 1788870259706,
+      "masteryContractVersion": "learning-evidence.v1",
+      "stableActivityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.worked_example",
+      "submissionData": {
+        "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.worked_example",
+        "answers": {},
+        "contractVersion": "practice.v1",
+        "mode": "worked_example",
+        "parts": [],
+        "status": "submitted"
+      },
+      "submittedAt": 1788870259706,
+      "updatedAt": 1788870259706,
+      "userId": "nd71gajatet0ab5dgdmffatwwx8e1tgq"
+    },
+    {
+      "_creationTime": 1788870540416.914,
+      "_id": "jd79r2f99v63bcfce7ywapg8qn8e1q9p",
+      "activityId": "j5744fba021x5tejt250gkzqds8e07hc",
+      "attemptOrdinal": 1,
+      "createIdempotencyKey": "22706cff-dc38-4558-b5b0-53d0759d564a",
+      "createdAt": 1788870540416,
+      "feedback": "0/3 interval classifications matched the server rubric.",
+      "gradedAt": 1788870540416,
+      "masteryContractVersion": "learning-evidence.v1",
+      "maxScore": 3,
+      "score": 0,
+      "stableActivityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice",
+      "submissionData": {
+        "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice",
+        "answers": {
+          "constantIntervals": "wrong",
+          "decreasingIntervals": "wrong",
+          "increasingIntervals": "wrong"
+        },
+        "attemptNumber": 1,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": false,
+            "maxScore": 1,
+            "partId": "increasingIntervals",
+            "rawAnswer": "wrong",
+            "revealStepsSeen": 0,
+            "score": 0
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": false,
+            "maxScore": 1,
+            "partId": "decreasingIntervals",
+            "rawAnswer": "wrong",
+            "revealStepsSeen": 0,
+            "score": 0
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": false,
+            "maxScore": 1,
+            "partId": "constantIntervals",
+            "rawAnswer": "wrong",
+            "revealStepsSeen": 0,
+            "score": 0
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2026-09-08T12:29:00.416Z"
+      },
+      "submittedAt": 1788870540416,
+      "updatedAt": 1788870540416,
+      "userId": "nd71gajatet0ab5dgdmffatwwx8e1tgq"
+    },
+    {
+      "_creationTime": 1788871302066.679,
+      "_id": "jd729ths0n13sd5572kgxvfr458e09v3",
+      "activityId": "j5744fba021x5tejt250gkzqds8e07hc",
+      "attemptOrdinal": 2,
+      "createIdempotencyKey": "7531145c-0bb0-4580-a8df-6245527d11a7",
+      "createdAt": 1788871302066,
+      "feedback": "3/3 interval classifications matched the server rubric.",
+      "gradedAt": 1788871302066,
+      "masteryContractVersion": "learning-evidence.v1",
+      "maxScore": 3,
+      "score": 3,
+      "stableActivityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice",
+      "submissionData": {
+        "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice",
+        "answers": {
+          "constantIntervals": "none",
+          "decreasingIntervals": "[3,7]",
+          "increasingIntervals": "[0,3]∪[7,9]"
+        },
+        "attemptNumber": 2,
+        "contractVersion": "practice.v1",
+        "mode": "guided_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "increasingIntervals",
+            "rawAnswer": "[0,3]∪[7,9]",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "decreasingIntervals",
+            "rawAnswer": "[3,7]",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "constantIntervals",
+            "rawAnswer": "none",
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2026-09-08T12:41:42.066Z"
+      },
+      "submittedAt": 1788871302066,
+      "updatedAt": 1788871302066,
+      "userId": "nd71gajatet0ab5dgdmffatwwx8e1tgq"
+    },
+    {
+      "_creationTime": 1788871302277.738,
+      "_id": "jd706sjnmqfpjm4twszap0p1an8e1kb7",
+      "activityId": "j5780ampknyepcx6zj45wk5ts98e1qpe",
+      "attemptOrdinal": 1,
+      "createIdempotencyKey": "c74e8379-884f-4bcf-8365-9cc11c41778c",
+      "createdAt": 1788871302277,
+      "feedback": "0/3 interval classifications matched the server rubric.",
+      "gradedAt": 1788871302277,
+      "masteryContractVersion": "learning-evidence.v1",
+      "maxScore": 3,
+      "score": 0,
+      "stableActivityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice",
+      "submissionData": {
+        "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice",
+        "answers": {
+          "constantIntervals": "wrong",
+          "decreasingIntervals": "wrong",
+          "increasingIntervals": "wrong"
+        },
+        "attemptNumber": 1,
+        "contractVersion": "practice.v1",
+        "mode": "independent_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": false,
+            "maxScore": 1,
+            "partId": "increasingIntervals",
+            "rawAnswer": "wrong",
+            "revealStepsSeen": 0,
+            "score": 0
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": false,
+            "maxScore": 1,
+            "partId": "decreasingIntervals",
+            "rawAnswer": "wrong",
+            "revealStepsSeen": 0,
+            "score": 0
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": false,
+            "maxScore": 1,
+            "partId": "constantIntervals",
+            "rawAnswer": "wrong",
+            "revealStepsSeen": 0,
+            "score": 0
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2026-09-08T12:41:42.277Z"
+      },
+      "submittedAt": 1788871302277,
+      "updatedAt": 1788871302277,
+      "userId": "nd71gajatet0ab5dgdmffatwwx8e1tgq"
+    },
+    {
+      "_creationTime": 1788871302462.162,
+      "_id": "jd7aketj5djedc7yyg14de5x4s8e1gf4",
+      "activityId": "j5780ampknyepcx6zj45wk5ts98e1qpe",
+      "attemptOrdinal": 2,
+      "createIdempotencyKey": "e5f0c5fb-0ed0-4c68-ac4b-183dca08cae6",
+      "createdAt": 1788871302462,
+      "feedback": "3/3 interval classifications matched the server rubric.",
+      "gradedAt": 1788871302462,
+      "masteryContractVersion": "learning-evidence.v1",
+      "maxScore": 3,
+      "score": 3,
+      "stableActivityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice",
+      "submissionData": {
+        "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.independent_practice",
+        "answers": {
+          "constantIntervals": "[2,4]",
+          "decreasingIntervals": "[4,8]",
+          "increasingIntervals": "[0,2]"
+        },
+        "attemptNumber": 2,
+        "contractVersion": "practice.v1",
+        "mode": "independent_practice",
+        "parts": [
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "increasingIntervals",
+            "rawAnswer": "[0,2]",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "decreasingIntervals",
+            "rawAnswer": "[4,8]",
+            "revealStepsSeen": 0,
+            "score": 1
+          },
+          {
+            "changedCount": 0,
+            "hintsUsed": 0,
+            "isCorrect": true,
+            "maxScore": 1,
+            "partId": "constantIntervals",
+            "rawAnswer": "[2,4]",
+            "revealStepsSeen": 0,
+            "score": 1
+          }
+        ],
+        "status": "graded",
+        "submittedAt": "2026-09-08T12:41:42.462Z"
+      },
+      "submittedAt": 1788871302462,
+      "updatedAt": 1788871302462,
+      "userId": "nd71gajatet0ab5dgdmffatwwx8e1tgq"
+    }
+  ]
+}

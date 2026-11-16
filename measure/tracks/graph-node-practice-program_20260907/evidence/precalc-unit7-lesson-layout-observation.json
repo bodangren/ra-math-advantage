@@ -1,0 +1,18 @@
+{
+  "viewport": 1280,
+  "documentWidth": 6641,
+  "overflow": [
+    {
+      "tag": "svg",
+      "className": "[object SVGAnimatedString]",
+      "width": 6400,
+      "text": ""
+    },
+    {
+      "tag": "path",
+      "className": "[object SVGAnimatedString]",
+      "width": 6412.1923828125,
+      "text": ""
+    }
+  ]
+}

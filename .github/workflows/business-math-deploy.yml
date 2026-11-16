@@ -1,0 +1,50 @@
+name: Business Math Deploy
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: business-math-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: business-math-production
+    defaults:
+      run:
+        working-directory: apps/bus-math-v2
+    env:
+      CI: true
+      NEXT_PUBLIC_CONVEX_URL: ${{ vars.BM2_CONVEX_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        working-directory: .
+        run: npm ci
+      - name: Verify deployment configuration
+        run: test -n "$NEXT_PUBLIC_CONVEX_URL"
+      - name: Check workspace boundaries
+        working-directory: .
+        run: node scripts/check-monorepo-boundaries.mjs
+      - name: Check types
+        run: npx --no-install tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test -- --maxWorkers=2
+      - name: Build worker and assets
+        run: npm run build
+      - name: Check private workbook assets
+        run: test -z "$(find dist/client -name '*_teacher.xlsx' -print -quit)"
+      - name: Deploy built worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: apps/bus-math-v2
+          command: deploy --config dist/server/wrangler.json

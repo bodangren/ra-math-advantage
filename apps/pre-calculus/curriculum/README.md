@@ -28,7 +28,9 @@ The curriculum model uses the CED for competencies and Passwater PDFs for scaffo
 - Units 1-3 are assessed on the AP Exam.
 - Unit 4 is CED-defined but not assessed on the AP Exam.
 - Unit 4 currently has no local Passwater source PDF in this repository.
-- Local product/overview language still says `~54 lessons`; this is documented in `implementation/exceptions.json` until reconciled.
+- The app publishes all 58 lessons. Each lesson includes written responses for teacher review.
+- Eighteen skills have automatic grading and review scheduling. Other skill blueprints contain lesson content and remain unavailable for automatic grading.
+- `skill-graph/nodes.json` is the canonical node catalog. Other graph files retain matching node copies for compatibility.
 
 ## Relationship to Downstream Tracks
 
@@ -39,4 +41,8 @@ The curriculum model uses the CED for competencies and Passwater PDFs for scaffo
 
 ## Current Status
 
-This is the Phase 1 contract layer for the AP Precalculus curriculum-definition track. Later phases should add normalized CED source artifacts, normalized Passwater source artifacts, unit/topic source files, class-period plans, implementation packages, practice maps, and audit output.
+The planning layer contains normalized sources, topic files, class-period plans, implementation packages, practice maps, and audit output. Lesson seeds consume the normalized lesson text.
+
+## Teacher-reviewed blueprints
+
+The app-local `lesson-written-response` renderer is `components/course/LessonWrittenResponse.tsx`. It renders the authored `content`. A lesson page supplies the phase identifier when it needs a response form. These blueprints do not claim automatic grading or generated independent practice.

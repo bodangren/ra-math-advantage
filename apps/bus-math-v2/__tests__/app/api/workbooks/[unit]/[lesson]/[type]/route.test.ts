@@ -10,14 +10,9 @@ vi.mock('@/lib/auth/server', () => ({
 const mockExistsSync = vi.fn();
 const mockReadFileSync = vi.fn();
 
-vi.mock('fs', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('fs')>();
-  return {
-    ...actual,
-    existsSync: mockExistsSync,
-    readFileSync: mockReadFileSync,
-  };
-});
+vi.mock('@/lib/server/lesson-assets', () => ({
+  getWorkbookAsset: (name: string, type: string) => mockExistsSync() ? mockReadFileSync(name, type) : null,
+}));
 
 const { GET } = await import(
   '@/app/api/workbooks/[unit]/[lesson]/[type]/route'
@@ -112,6 +107,16 @@ describe('GET /api/workbooks/[unit]/[lesson]/[type]', () => {
     expect(response.headers.get('Content-Type')).toBe(
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     );
+  });
+
+  it('reads teacher content from private storage and prevents shared caching', async () => {
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({ sub: 'teacher', role: 'teacher' });
+    mockExistsSync.mockReturnValue(true);
+    mockReadFileSync.mockReturnValue(Buffer.from('teacher content'));
+    const response = await GET(buildRequest('http://localhost/api/workbooks/01/04/teacher'), buildContext('01','04','teacher'));
+    expect(await response.text()).toBe('teacher content');
+    expect(mockReadFileSync).toHaveBeenCalledWith('unit_01_lesson_04_teacher.xlsx', 'teacher');
+    expect(response.headers.get('Cache-Control')).toBe('private, no-store');
   });
 
   it('returns 404 when file not found', async () => {

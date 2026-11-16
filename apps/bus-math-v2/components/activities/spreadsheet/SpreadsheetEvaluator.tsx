@@ -44,6 +44,7 @@ const SPREADSHEET_EVALUATOR_DEFAULT_MODE = 'assessment' as const;
 interface SpreadsheetEvaluatorProps {
   activity: SpreadsheetEvaluatorActivity;
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
+  onComplete?: () => void | Promise<void>;
 }
 
 interface CellFeedback {
@@ -137,7 +138,8 @@ interface SpreadsheetAttempt {
  * @param activity - The spreadsheet evaluator activity configuration
  * @param onSubmit - Callback to submit practice results
  */
-export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluatorProps) {
+export function SpreadsheetEvaluator({ activity, onSubmit, onComplete }: SpreadsheetEvaluatorProps) {
+  const submissionKeyRef = useRef<string | null>(null);
   const [data, setData] = useState<SpreadsheetData>(() => initializeSpreadsheet(activity.props.initialData));
   const [feedback, setFeedback] = useState<CellFeedback[]>([]);
   const [submitted, setSubmitted] = useState(false);
@@ -292,6 +294,9 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
    */
   const validateSpreadsheet = useCallback((): CellFeedback[] => {
     return targetCells.map((target) => {
+      if (target.expectedValue === undefined) {
+        return { cell: target.cell, isCorrect: false, message: 'Submit this worksheet for a server check.' };
+      }
       const actualValue = getCellValue(target.cell);
       const isCorrect = normalizeValue(actualValue) === normalizeValue(target.expectedValue);
 
@@ -391,9 +396,10 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
     const localFeedback = localValidation;
 
     try {
+      submissionKeyRef.current ??= crypto.randomUUID();
       const response = await fetch(`/api/activities/spreadsheet/${activity.id}/submit`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': submissionKeyRef.current },
         body: JSON.stringify({
           spreadsheetData: data,
           targetCells,
@@ -439,7 +445,9 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
         },
       ]);
 
-      onSubmit?.(
+      if (onComplete) {
+        if (result.isComplete) await onComplete();
+      } else onSubmit?.(
         buildSpreadsheetEvaluatorSubmission({
           activityId: activity.id,
           templateId: activity.props.templateId,
@@ -466,9 +474,10 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
     } finally {
       setIsSubmitting(false);
     }
-  }, [activity.id, activity.props.instructions, activity.props.templateId, attemptNumber, data, onSubmit, targetCells, validateSpreadsheet]);
+  }, [activity.id, activity.props.instructions, activity.props.templateId, attemptNumber, data, onSubmit, onComplete, targetCells, validateSpreadsheet]);
 
   const handleRevise = useCallback(() => {
+    submissionKeyRef.current = null;
     setSubmitted(false);
     setAiFeedback(null);
     // Keep the current data (previous submission) so student can revise
@@ -680,9 +689,9 @@ You have used all {maxAttempts} attempts. Your teacher will review your work and
                         {target.status}
                       </Badge>
                     </div>
-                    <div className="mt-1 text-xs text-muted-foreground">
+                    {target.expectedValue !== undefined && <div className="mt-1 text-xs text-muted-foreground">
                       Expected: {String(target.expectedValue)}
-                    </div>
+                    </div>}
                     <div className="mt-2 text-sm text-slate-700">
                       {target.message}
                     </div>

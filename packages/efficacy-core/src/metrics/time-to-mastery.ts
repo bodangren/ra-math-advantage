@@ -3,6 +3,7 @@ import type { SrsCardState, SrsReviewLogEntry } from '@math-platform/srs-engine'
 import type { MetricResult, TimeToMasteryStat } from '../contracts';
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
+const MASTERY_RETENTION_HORIZON_DAYS = 30;
 
 export interface ComputeTimeToMasteryInput {
   objectiveId: string;
@@ -42,7 +43,10 @@ export function computeTimeToMastery(
   let reviewsToMasteryCount = 0;
   for (let i = 0; i < relevant.length; i++) {
     const log = relevant[i];
-    if (stabilityToRetention(log.stateAfter.stability) >= masteryThreshold) {
+    if (stabilityToRetention(
+      log.stateAfter.stability,
+      MASTERY_RETENTION_HORIZON_DAYS,
+    ) >= masteryThreshold) {
       masteryReviewAtMs = new Date(log.reviewedAt).getTime();
       reviewsToMasteryCount = i + 1;
       break;

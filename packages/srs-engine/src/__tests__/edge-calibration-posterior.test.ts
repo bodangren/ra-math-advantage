@@ -6,8 +6,8 @@
  * Pin the API surface for the pure Beta-Bernoulli math:
  *   - `posteriorMean(alpha, beta)` — alpha / (alpha + beta)
  *   - `posteriorVariance(alpha, beta)` — alpha·beta / ((alpha+beta)^2 · (alpha+beta+1))
- *   - `updatePosterior(state, observation)` — consistent → α++, violation → β++,
- *     !A → no change (not a Bernoulli trial)
+ *   - `updatePosterior(state, observation)` — !A/!B (necessity) → α++,
+ *     !A/B (violation) → β++, and A rows do not update the posterior
  *   - `applyDecay(state, lambda, now)` — multiplies α and β by λ to track recent cohorts
  *   - `bucketVariance(variance, alpha, beta)` — discrete confidence bucket
  *
@@ -28,6 +28,8 @@ import {
   updatePosterior,
   applyDecay,
   bucketVariance,
+  EDGE_CALIBRATION_POSTERIOR_VERSION,
+  requiresPosteriorRecompute,
 } from '../srs/edge-calibration';
 
 // ---------------------------------------------------------------------------
@@ -120,30 +122,53 @@ describe('posteriorVariance (FR3, AC3)', () => {
 // ---------------------------------------------------------------------------
 
 describe('updatePosterior (FR3, AC3)', () => {
-  it('increments α on a consistent observation (profA, profB)', () => {
+  it('does not update the necessity posterior from the proficient-A rows', () => {
     const before = makeCalibration({ alpha: 5, beta: 2 });
-    const after = updatePosterior(before, makeObservation(true, true));
-    expect(after.alpha).toBe(6);
-    expect(after.beta).toBe(2);
+    expect(updatePosterior(before, makeObservation(true, true))).toMatchObject({
+      alpha: 5,
+      beta: 2,
+    });
+    expect(updatePosterior(before, makeObservation(true, false))).toMatchObject({
+      alpha: 5,
+      beta: 2,
+    });
   });
 
-  it('increments β on a violation observation (profA, !profB)', () => {
-    const before = makeCalibration({ alpha: 5, beta: 2 });
-    const after = updatePosterior(before, makeObservation(true, false));
-    expect(after.alpha).toBe(5);
-    expect(after.beta).toBe(3);
-  });
-
-  it('does not change α or β on a !A observation (not a Bernoulli trial)', () => {
+  it('increments β on a cell-c violation (!A, B)', () => {
     const before = makeCalibration({ alpha: 5, beta: 2 });
     expect(updatePosterior(before, makeObservation(false, true))).toMatchObject({
       alpha: 5,
-      beta: 2,
+      beta: 3,
     });
+  });
+
+  it('increments α on a cell-d necessity observation (!A, !B)', () => {
+    const before = makeCalibration({ alpha: 5, beta: 2 });
     expect(updatePosterior(before, makeObservation(false, false))).toMatchObject({
-      alpha: 5,
+      alpha: 6,
       beta: 2,
     });
+  });
+
+  it('matches the v3 worked example Beta(7, 5) from a=470, b=20, c=4, d=6', () => {
+    const observations: CalibrationObservation[] = [
+      ...Array.from({ length: 470 }, () => makeObservation(true, true)),
+      ...Array.from({ length: 20 }, () => makeObservation(true, false)),
+      ...Array.from({ length: 4 }, () => makeObservation(false, true)),
+      ...Array.from({ length: 6 }, () => makeObservation(false, false)),
+    ];
+
+    const posterior = observations.reduce(
+      (state, observation) => updatePosterior(state, observation),
+      makeCalibration(),
+    );
+
+    expect(posterior).toMatchObject({ alpha: 7, beta: 5 });
+    expect(posteriorMean(posterior.alpha, posterior.beta)).toBeCloseTo(7 / 12, 10);
+    expect(Math.sqrt(posteriorVariance(posterior.alpha, posterior.beta))).toBeCloseTo(
+      0.136735442,
+      8,
+    );
   });
 
   it('preserves the edgeId on every update', () => {
@@ -167,11 +192,11 @@ describe('updatePosterior (FR3, AC3)', () => {
   });
 
   it('is order-independent across a shuffled stream (commutativity property)', () => {
-    // 20 consistent + 5 violations, shuffled — two orderings must yield
+    // 20 necessity observations + 5 violations, shuffled — two orderings must yield
     // identical α, β in the decay-free regime.
     const stream: CalibrationObservation[] = [];
-    for (let i = 0; i < 20; i++) stream.push(makeObservation(true, true));
-    for (let i = 0; i < 5; i++) stream.push(makeObservation(true, false));
+    for (let i = 0; i < 20; i++) stream.push(makeObservation(false, false));
+    for (let i = 0; i < 5; i++) stream.push(makeObservation(false, true));
 
     const reverse = [...stream].reverse();
     const interleaved: CalibrationObservation[] = [];
@@ -212,11 +237,22 @@ describe('updatePosterior (FR3, AC3)', () => {
     let aInc = 0;
     let bInc = 0;
     for (const o of stream) {
-      if (o.a && o.b) aInc++;
-      else if (o.a && !o.b) bInc++;
+      if (!o.a && !o.b) aInc++;
+      else if (!o.a && o.b) bInc++;
     }
     expect(incremental.alpha).toBe(initial.alpha + aInc);
     expect(incremental.beta).toBe(initial.beta + bInc);
+  });
+});
+
+describe('v3 posterior persistence boundary', () => {
+  it('requires recomputation for missing and v2-derived posterior versions', () => {
+    expect(requiresPosteriorRecompute()).toBe(true);
+    expect(requiresPosteriorRecompute('edge-calibration.v2')).toBe(true);
+  });
+
+  it('accepts only the canonical v3 posterior version as current', () => {
+    expect(requiresPosteriorRecompute(EDGE_CALIBRATION_POSTERIOR_VERSION)).toBe(false);
   });
 });
 

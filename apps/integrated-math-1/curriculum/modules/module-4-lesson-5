@@ -116,20 +116,25 @@ Identify the first term [ a_1 ] (the initial value at [ n = 1 ]) and the common 
 f(n) = a_1 + (n - 1)d
 ]
 
-For example, a 128-ounce cooler loses 4 ounces per cup handed out:
+For example, a 128-ounce cooler loses 4 ounces per cup handed out. Let [ n ] be the number of cups handed out. The initial amount is the value before the first cup:
 [
-a_1 = 128, \quad d = -4, \quad f(n) = 128 + (n - 1)(-4) = 132 - 4n
+f(0) = 128, \quad d = -4, \quad f(n) = 128 - 4n, \quad 0 \le n \le 32
+]
+Here, [ n ] is an integer. The domain ends at 32 because the cooler contains 32 cups of water.
+After the first cup, the first remaining amount is:
+[
+f(1) = 124
 ]
 
 ### Step 2: Graph the Function
 
-Graph the discrete points [ (n, f(n)) ] for positive integer values of [ n ]. The points lie on a line with slope [ d ] and a [ y ]-intercept determined by the explicit form.
+Graph the discrete points [ (n, f(n)) ] for the integer values in the context domain. Include [ n = 0 ] when it represents the initial state. The points lie on a line with slope [ d ] and a [ y ]-intercept determined by the explicit form.
 
 ### Step 3: Answer the Question
 
 Substitute the given value into the function and solve. For example, to find the water remaining after the 14th cup:
 [
-f(14) = 132 - 4(14) = 132 - 56 = 76
+f(14) = 128 - 4(14) = 72
 ]
 
 Scenarios in the worksheet include:

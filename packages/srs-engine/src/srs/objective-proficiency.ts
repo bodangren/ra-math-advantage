@@ -15,6 +15,7 @@
  */
 
 import type { ObjectivePriority } from './contract';
+import type { EvidenceDiagnosticReason } from './proficiency-evidence-contract';
 export type { ObjectivePriority, ObjectivePracticePolicy } from './contract';
 
 /**
@@ -32,6 +33,8 @@ export type PracticeVariantEvidence = {
   fluencyConfidence: EvidenceConfidence;
   baselineSampleCount: number;
   timingReliable: boolean;
+  evidenceConfidenceCap?: Exclude<EvidenceConfidence, 'high'> | null;
+  diagnosticReasons?: readonly EvidenceDiagnosticReason[];
 };
 
 /**
@@ -164,9 +167,53 @@ function combineFluencyConfidences(
   if (fluencies.length === 0) return 'none';
   const reliableFluencies = fluencies.filter((f) => f.timingReliable);
   if (reliableFluencies.length === 0) return 'none';
-  if (reliableFluencies.every((f) => f.confidence === 'high')) return 'high';
-  if (reliableFluencies.some((f) => f.confidence === 'low')) return 'low';
-  return 'medium';
+  const confidenceRank: Record<EvidenceConfidence, number> = {
+    none: 0,
+    low: 1,
+    medium: 2,
+    high: 3,
+  };
+  return reliableFluencies.reduce<EvidenceConfidence>(
+    (highest, fluency) => (
+      confidenceRank[fluency.confidence] > confidenceRank[highest]
+        ? fluency.confidence
+        : highest
+    ),
+    'none',
+  );
+}
+
+const EVIDENCE_CONFIDENCE_ORDER: readonly EvidenceConfidence[] = [
+  'none',
+  'low',
+  'medium',
+  'high',
+];
+
+function applyEvidenceConfidenceCaps(
+  confidence: EvidenceConfidence,
+  evidences: readonly PracticeVariantEvidence[],
+): EvidenceConfidence {
+  const caps = evidences.flatMap((evidence) => (
+    evidence.evidenceConfidenceCap === undefined || evidence.evidenceConfidenceCap === null
+      ? []
+      : [evidence.evidenceConfidenceCap]
+  ));
+  if (caps.length === 0) {
+    return confidence;
+  }
+  const mostConservativeCap = caps.reduce<Exclude<EvidenceConfidence, 'high'>>(
+    (lowest, cap) => (
+      EVIDENCE_CONFIDENCE_ORDER.indexOf(cap) < EVIDENCE_CONFIDENCE_ORDER.indexOf(lowest)
+        ? cap
+        : lowest
+    ),
+    'medium',
+  );
+  return EVIDENCE_CONFIDENCE_ORDER.indexOf(confidence)
+    <= EVIDENCE_CONFIDENCE_ORDER.indexOf(mostConservativeCap)
+    ? confidence
+    : mostConservativeCap;
 }
 
 /**
@@ -221,7 +268,16 @@ export function computeObjectiveProficiency(input: ObjectiveProficiencyInput): O
   }));
   const fluencyConfidence = combineFluencyConfidences(fluencyConfidences);
 
-  const evidenceConfidence = resolveEvidenceConfidence(evidenceCount, avgRetention, avgCoverage, effectiveMinFamilies);
+  const uncappedEvidenceConfidence = resolveEvidenceConfidence(
+    evidenceCount,
+    avgRetention,
+    avgCoverage,
+    effectiveMinFamilies,
+  );
+  const evidenceConfidence = applyEvidenceConfidenceCaps(
+    uncappedEvidenceConfidence,
+    variantEvidences,
+  );
 
   if (evidenceCount < effectiveMinFamilies) {
     reasons.push('insufficient_problem_families');

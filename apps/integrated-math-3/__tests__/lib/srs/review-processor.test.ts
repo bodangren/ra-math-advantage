@@ -14,10 +14,24 @@ vi.mock('@math-platform/srs-engine/scheduler', () => ({
     lastReview: now ?? new Date().toISOString(),
     updatedAt: now ?? new Date().toISOString(),
   })),
+  scheduleReview: vi.fn(({ card, rating, now }) => ({
+    card: {
+      ...card,
+      stability: rating === 'Again' ? card.stability * 0.5 : card.stability * 1.5,
+      difficulty: rating === 'Again' ? card.difficulty + 1 : Math.max(card.difficulty - 0.5, 1),
+      state: rating === 'Again' ? 'relearning' : 'review',
+      reps: card.reps + 1,
+      lapses: rating === 'Again' ? card.lapses + 1 : card.lapses,
+      dueDate: now ?? new Date().toISOString(),
+      lastReview: now ?? new Date().toISOString(),
+      updatedAt: now ?? new Date().toISOString(),
+    },
+    paramsVersion: 'fsrs-builtin.v1',
+  })),
 }));
 
 import { processReview } from '@math-platform/srs-engine';
-import { reviewCard } from '@math-platform/srs-engine/scheduler';
+import { scheduleReview } from '@math-platform/srs-engine/scheduler';
 
 const mockNow = '2026-04-16T12:00:00.000Z';
 
@@ -47,7 +61,7 @@ function makeCard(overrides: Partial<SrsCardState> = {}): SrsCardState {
     cardId: 'card-1',
     studentId: 'student-1',
     objectiveId: 'obj-1',
-    problemFamilyId: 'pf-1',
+    variantKey: 'pf-1',
     stability: 5,
     difficulty: 4,
     state: 'review',
@@ -121,7 +135,7 @@ describe('processReview', () => {
       },
     });
     const baseline = {
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       sampleCount: 20,
       medianActiveMs: 20_000,
       lastComputedAt: mockNow,
@@ -200,18 +214,18 @@ describe('processReview', () => {
   });
 
   it('preserves card metadata through the review', () => {
-    const card = makeCard({ studentId: 's-99', objectiveId: 'obj-77', problemFamilyId: 'pf-12' });
+    const card = makeCard({ studentId: 's-99', objectiveId: 'obj-77', variantKey: 'pf-12' });
     const submission = makeSubmission();
 
     const result = processReview({ card, submission, now: mockNow });
 
     expect(result.updatedCard.studentId).toBe('s-99');
     expect(result.updatedCard.objectiveId).toBe('obj-77');
-    expect(result.updatedCard.problemFamilyId).toBe('pf-12');
+    expect(result.updatedCard.variantKey).toBe('pf-12');
     expect(result.updatedCard.cardId).toBe('card-1');
   });
 
-  it('calls reviewCard with the computed rating and now timestamp', () => {
+  it('calls scheduleReview with the computed rating and now timestamp', () => {
     const card = makeCard();
     const submission = makeSubmission({
       parts: [{ partId: 'part1', rawAnswer: 'answer', isCorrect: true }],
@@ -219,7 +233,11 @@ describe('processReview', () => {
 
     processReview({ card, submission, now: mockNow });
 
-    expect(reviewCard).toHaveBeenCalledWith(card, 'Good', mockNow);
+    expect(scheduleReview).toHaveBeenCalledWith(expect.objectContaining({
+      card,
+      rating: 'Good',
+      now: mockNow,
+    }));
   });
 
   it('sets reviewedAt to now in the review log', () => {

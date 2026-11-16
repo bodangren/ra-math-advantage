@@ -238,12 +238,15 @@ export async function POST(
       parsedEvaluatorProps.data.targetCells as TargetCell[]
     );
 
+    const idempotencyKey = request.headers.get('Idempotency-Key')?.trim();
+    if (!idempotencyKey) return NextResponse.json({ error: 'A submission request key is required.' }, { status: 400 });
+    const submissionData = buildSpreadsheetEvaluatorSubmission({ activityId,
+      templateId: parsedEvaluatorProps.data.templateId, instructions: parsedEvaluatorProps.data.instructions,
+      targetCells: parsedEvaluatorProps.data.targetCells, spreadsheetData: payload.spreadsheetData,
+      validationResult, mode: 'assessment' });
     const { attemptId, attemptNumber } = await fetchInternalMutation(internal.activities.submitSpreadsheet, {
-      userId: userId as never,
-      activityId: activityId as never,
-      spreadsheetData: payload.spreadsheetData,
-      isCompleted: validationResult.isComplete,
-      validationResult,
+      userId: userId as never, activityId: activityId as never, spreadsheetData: payload.spreadsheetData,
+      isCompleted: validationResult.isComplete, validationResult, idempotencyKey, submissionData: { ...submissionData, mode: 'assessment' },
     });
 
     let aiFeedback;
@@ -259,44 +262,8 @@ export async function POST(
     }
 
     if (aiFeedback) {
-      await fetchInternalMutation(internal.activities.updateAttemptWithAiFeedback, {
-        attemptId: attemptId as never,
-        aiFeedback,
-      });
-    }
-
-    const submissionData = buildSpreadsheetEvaluatorSubmission({
-      activityId,
-      templateId: parsedEvaluatorProps.data.templateId,
-      instructions: parsedEvaluatorProps.data.instructions,
-      targetCells: parsedEvaluatorProps.data.targetCells,
-      spreadsheetData: payload.spreadsheetData,
-      validationResult,
-      attemptNumber,
-      mode: 'assessment',
-    });
-
-    await fetchInternalMutation(internal.activities.submitAssessment, {
-      userId: userId as never,
-      activityId: activityId as never,
-      submissionData: submissionData as never,
-      score: validationResult.correctCells,
-      maxScore: validationResult.totalCells,
-      feedback: validationResult.feedback
-        .map((entry) => entry.message ?? `${entry.cell} needs attention.`)
-        .join(' '),
-    });
-
-    let masteryUpdate: { newLevel: number } | undefined;
-
-    if (validationResult.isComplete && activity.standardId) {
-      const competencyResult = await fetchInternalMutation(internal.activities.updateCompetency, {
-        studentId: userId as never,
-        standardId: activity.standardId,
-        activityId: activityId as never,
-        masteryIncrement: 10,
-      });
-      masteryUpdate = { newLevel: competencyResult.newLevel };
+      try { await fetchInternalMutation(internal.activities.updateAttemptWithAiFeedback, { attemptId: attemptId as never, aiFeedback }); }
+      catch (error) { console.error('Optional feedback save failed', error); aiFeedback = null; }
     }
 
     return NextResponse.json({
@@ -306,9 +273,15 @@ export async function POST(
       attemptNumber,
       attemptId,
       aiFeedback,
-      masteryUpdate,
+
     });
   } catch (error) {
+    if (error instanceof Error && error.message.includes('idempotency_conflict')) {
+      return NextResponse.json({ error: 'This request key was used for different work.' }, { status: 409 });
+    }
+    if (error instanceof Error && error.message.includes('Maximum attempts')) {
+      return NextResponse.json({ error: 'You have used all submission attempts for this activity.' }, { status: 409 });
+    }
     console.error('Spreadsheet submission error:', error);
     return NextResponse.json(
       { error: 'Unexpected error during submission' },

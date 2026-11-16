@@ -187,12 +187,11 @@
     {
       "id": "math.precalc.lesson.1.4",
       "kind": "instructional_unit",
-      "title": "Identify polynomial degree, leading coefficient, extrema, and inflection points",
+      "title": "Polynomial Functions and Rates of Change",
       "domain": "math.precalc",
       "description": "AP Precalculus Unit 1 Lesson 4",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/modules/unit-01-*/lesson-1-4/lesson.md"
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1134,10 +1133,10 @@
     {
       "id": "math.precalc.example.1.1.001",
       "kind": "worked_example",
-      "title": "Example 1: The table shows values of function [g]:",
+      "title": "Example 1: Select the graph for a filling vase",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-1/lesson.md (1-1, Example 1)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1146,16 +1145,16 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "1-1",
-        "rawText": "The table shows values of function [g]:\n| x | -2 | 0 | 2 | 4 | 6 |\n|---|---|---|---|---|---|\n| g(x) | 11 | 7 | 3 | 3 | 7 |\nDescribe the tandem change over each interval.\n**Solution:**\n- As [x] increases from [-2] to [0], [g(x)] decreases by 4 (from 11 to 7).\n- As [x] increases from [0] to [2], [g(x)] decreases by 4 (from 7 to 3).\n- As [x] increases from [2] to [4], [g(x)] remains constant at 3.\n- As [x] increases from [4] to [6], [g(x)] increases by 4 (from 3 to 7)."
+        "rawText": "An empty vase has a flat narrow base, a wide rounded body, and a short narrow neck. Water enters at a constant volume rate. Option A is linear increasing. Option B changes from gentle to steep to gentle. Option C rises, falls, and rises. Option D always rises and changes from steep to gentle to steep. Select graph D."
       }
     },
     {
       "id": "math.precalc.example.1.1.002",
       "kind": "worked_example",
-      "title": "Example 2: A piecewise function graph shows three segments. On [[-3, -1]], the graph rises.",
+      "title": "Example 2: Find increasing intervals from a graph",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-1/lesson.md (1-1, Example 2)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1164,7 +1163,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "1-1",
-        "rawText": "A piecewise function graph shows three segments. On [[-3, -1]], the graph rises. On [[-1, 3]], the graph falls. On [[3, 5]], the graph is horizontal.\n**Solution:**\n- \"As [x] increases from [-3] to [-1], [y] increases.\" → f is increasing on [[-3, -1]].\n- \"As [x] increases from [-1] to [3], [y] decreases.\" → f is decreasing on [[-1, 3]].\n- \"As [x] increases from [3] to [5], [y] remains constant.\" → f is constant on [[3, 5]]."
+        "rawText": "The graph of f on 0 <= x <= 9 uses straight segments from (0, -2) to (3, 4), from (3, 4) to (7, 1), and from (7, 1) to (9, 3). It increases from 0 to 3 and from 7 to 9."
       }
     },
     {
@@ -1422,10 +1421,10 @@
     {
       "id": "math.precalc.example.1.2.001",
       "kind": "worked_example",
-      "title": "Example 1: Find the average rate of change of [f(x) = x^2] on [[1, 4]].",
+      "title": "Example 1: Order rates of change at labeled points",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-2/lesson.md (1-2, Example 1)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1434,16 +1433,16 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "1-2",
-        "rawText": "Find the average rate of change of [f(x) = x^2] on [[1, 4]].\n**Solution:**\n- [f(1) = 1^2 = 1]\n- [f(4) = 4^2 = 16]\n- AROC = [frac{16 - 1}{4 - 1} = frac{15}{3} = 5]\n- Interpretation: \"The function increases by an average of 5 units for each 1-unit increase in [x] on the interval [[1, 4]].\""
+        "rawText": "The figure shows the graph of a function f in the xy-plane with three labeled points. Order the rates of change of f at the three labeled points from least to greatest. Labeled points: A, B, C. Verified result: B < C < A. Reasoning: Compare the local direction and steepness at A, B, and C. Point B has the least rate, point C is next, and point A has the greatest rate."
       }
     },
     {
       "id": "math.precalc.example.1.2.002",
       "kind": "worked_example",
-      "title": "Example 2: A population table shows town population at 5-year intervals:",
+      "title": "Example 2: Find the least rate of change",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-2/lesson.md (1-2, Example 2)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1452,16 +1451,16 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "1-2",
-        "rawText": "A population table shows town population at 5-year intervals:\n| t (years) | 0 | 5 | 10 | 15 |\n|---|---|---|---|---|\n| P(t) | 12,400 | 15,800 | 18,600 | 20,200 |\n**Solution:**\n- AROC on [[0, 5]]: [frac{15800 - 12400}{5} = frac{3400}{5} = 680] people/year\n- AROC on [[5, 10]]: [frac{18600 - 15800}{5} = frac{2800}{5} = 560] people/year\n- AROC on [[10, 15]]: [frac{20200 - 18600}{5} = frac{1600}{5} = 320] people/year\n- The growth rate is slowing — the town is adding fewer people per year each interval."
+        "rawText": "The figure shows the graph of a function g in the xy-plane with four labeled points. Of the following points, at which is the rate of change of g the least? Options: (A) A; (B) B; (C) C; (D) D. Verified result: option D. Reasoning: Compare the local direction and steepness at the labeled points. Point D has the steepest downward local behavior, so its rate of change is least."
       }
     },
     {
       "id": "math.precalc.example.1.2.003",
       "kind": "worked_example",
-      "title": "Example 3: Find the average rate of change of [C(t) = 500(1.08)^t] from [t = 2] to [t = 5].",
+      "title": "Example 3: Find the greatest average rate of change",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-2/lesson.md (1-2, Example 3)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=15"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1470,7 +1469,61 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "1-2",
-        "rawText": "Find the average rate of change of [C(t) = 500(1.08)^t] from [t = 2] to [t = 5].\n**Solution:**\n- [C(2) = 500(1.08)^2 approx 583.20]\n- [C(5) = 500(1.08)^5 approx 734.66]\n- AROC = [frac{734.66 - 583.20}{3} approx 50.55] dollars per year\n- Interpretation: \"The cost increases by an average of approximately $50.55 per year from year 2 to year 5.\""
+        "rawText": "The figure shows the graph of the function y = h(x). Of the following, on which interval is the average rate of change of h greatest? Options: (A) 2 <= x <= 3; (B) 3 <= x <= 5; (C) 5 <= x <= 7; (D) 7 <= x <= 8. Verified result: [5,7], option C. Reasoning: Compare (change in output)/(change in input) for each listed interval. The interval [5,7] has the greatest average rate of change."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.2.004",
+      "kind": "worked_example",
+      "title": "Example 4: Model a function with negative rate of change",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 4,
+        "sourceLesson": "1-2",
+        "rawText": "The graph of the function y = f(x) in the xy-plane always has a negative rate of change. Which definitions for x and y would best model f? Options: (A) x is the age in years of a young child and y is the height in inches; (B) x is the total number of points scored in a basketball game and y is the time remaining in seconds; (C) x is the time in seconds since a ball was thrown straight up and y is the height in feet; (D) x is the radius in meters of a circle and y is the area in square inches. Verified result: option B. Reasoning: As points scored increase, time remaining decreases, so the rate of change is negative."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.2.005",
+      "kind": "worked_example",
+      "title": "Example 5: Identify a negative rate interval",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 5,
+        "sourceLesson": "1-2",
+        "rawText": "The function k is defined by k(x) = 3.16 + 4.2x - 0.85x^2 for -10 <= x <= 10. Which statement about k is correct? Options: (A) k has a positive rate of change on -10 <= x <= 8.348; (B) k has a positive rate of change on -0.663 <= x <= 5.605; (C) k has a negative rate of change on -10 <= x <= 2.470; (D) k has a negative rate of change on 2.470 <= x <= 10. Verified result: [2.470,10], option D. Reasoning: The vertex is at x = 2.470, and the downward-opening quadratic decreases to the right of the vertex."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.2.006",
+      "kind": "worked_example",
+      "title": "Example 6: Find the greatest average rate interval",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 6,
+        "sourceLesson": "1-2",
+        "rawText": "The table gives the life expectancy of US females born in a given year over successive 50-year intervals. Over which interval is the average rate of change in life expectancy greatest? Table values: Birthyear 1800/41.24, 1850/46.10, 1900/53.63, 1950/70.65, 2000/81.83. Options: (A) 1800 to 1850; (B) 1850 to 1900; (C) 1900 to 1950; (D) 1950 to 2000. Verified result: 1900-1950, option C. Reasoning: The intervals have equal width, so compare life-expectancy increases. The largest increase is from 1900 to 1950."
       }
     },
     {
@@ -1488,7 +1541,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "1-3",
-        "rawText": "Could each function be linear, quadratic, or neither?\na) [x: 1, 2, 3, 4] → [f(x): 0, 1, 4, 9]\n**Solution:** Successive differences: 1, 3, 5. These increase by 2 (constant second differences). Since input intervals are equal (width 1), [f] could be **quadratic** (concave up).\nb) [x: 1, 2, 5, 10] → [g(x): 0, 1, 4, 9]\n**Solution:** Successive differences: 1, 3, 5 (same values as part a). But input intervals are unequal (widths 1, 3, 5). **Cannot determine** — we cannot conclude anything about function type from unequal intervals.\nc) [x: 1, 1.1, 1.2, 1.3] → [p(x): 1, 7, 11, 13]\n**Solution:** Successive differences: 6, 4, 2. These decrease by 2 (constant second differences of [-2]). Input intervals are equal (width 0.1). [p] could be **quadratic** (concave down)."
+        "rawText": "Could each function be linear, quadratic, or neither?\na) [x: 1, 2, 3, 4] → [f(x): 0, 1, 4, 9]\n**Solution:** Successive differences: 1, 3, 5. These increase by 2 (constant second differences). Since input intervals are equal (width 1), [f] could be **quadratic** (concave up).\nb) [x: 1, 2, 5, 10] → [g(x): 0, 1, 4, 9]\n**Solution:** The input widths are 1, 3, and 5. The output changes are also 1, 3, and 5. Each average rate is 1, so g could be linear: g(x) = x - 1.\nc) [x: 1, 1.1, 1.2, 1.3] → [p(x): 1, 7, 11, 13]\n**Solution:** Successive differences: 6, 4, 2. These decrease by 2 (constant second differences of [-2]). Input intervals are equal (width 0.1). [p] could be **quadratic** (concave down)."
       }
     },
     {
@@ -1542,7 +1595,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "1-4",
-        "rawText": "A graph of polynomial [g] is shown with features at labeled points. At [x = 1], the graph switches from decreasing to increasing: this is a **relative minimum**. At [x = 4], the graph switches from increasing to decreasing: this is a **relative maximum**. The lowest value overall is at [x = 1], so [g(1)] is the **absolute minimum**."
+        "rawText": "On $[0,5]$, let $g(x)=-2x^3+15x^2-24x$. Its graph has a minimum at $(1,-11)$ and a maximum at $(4,16)$ on this restricted domain. At $x = 1$, the graph switches from decreasing to increasing: this is a **relative minimum**. At $x = 4$, the graph switches from increasing to decreasing: this is a **relative maximum**. The lowest value overall is at $x = 1$, so $g(1)$ is the **absolute minimum**."
       }
     },
     {
@@ -1560,7 +1613,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "1-4",
-        "rawText": "For the graph of [h] on the interval [(3, 4)]: the graph is rising (positive rate of change) but the curve is flattening (rate of change is decreasing). So the rate of change is **positive and decreasing** on [(3, 4)]."
+        "rawText": "Let $h(x)=-(x-4)^2+8$. On the interval $(3,4)$: the graph is rising (positive rate of change) but the curve is flattening (rate of change is decreasing). So the rate of change is **positive and decreasing** on $(3, 4)$."
       }
     },
     {
@@ -1578,7 +1631,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "1-4",
-        "rawText": "[f(x) = -3x^4]. Leading term is [-3x^4]. Since degree 4 is even and LC is negative: lim(x to -infty) f(x) = -infty and lim(x to infty) f(x) = -infty."
+        "rawText": "$f(x) = -3x^4$. Leading term is $-3x^4$. Since degree 4 is even and LC is negative: lim(x to -infty) f(x) = -infty and lim(x to infty) f(x) = -infty."
       }
     },
     {
@@ -1638,10 +1691,10 @@
     {
       "id": "math.precalc.example.1.6.001",
       "kind": "worked_example",
-      "title": "Example 1: Determine end behavior and write limit statements.",
+      "title": "Example 1: Describe polynomial end behavior from graphs",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-6/lesson.md (1-6, Example 1)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=77"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1650,16 +1703,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "1-6",
-        "rawText": "Determine end behavior and write limit statements.\na) [f(x) = 4x^5] → Leading term: [4x^5]. Odd degree, positive LC.\n- Right: up. lim(x to infty) f(x) = infty.\n- Left: down (opposite). lim(x to -infty) f(x) = -infty.\nb) [g(x) = frac{1}{2}x^4] → Even degree, positive LC.\n- Right: up. lim(x to infty) g(x) = infty.\n- Left: up (same direction). lim(x to -infty) g(x) = infty.\nc) [y = -2(x+3)^6] → Leading term: [-2x^6]. Even degree, negative LC.\n- Right: down. lim(x to infty) y = -infty.\n- Left: down (same). lim(x to -infty) y = -infty."
+        "rawText": "Describe the end behavior of the following polynomials verbally and using limit notation.\na) The graph of f has a rising left end and a falling right end. As x decreases without bound, f(x) increases without bound. lim(x to -infinity) f(x) = infinity. As x increases without bound, f(x) decreases without bound. lim(x to infinity) f(x) = -infinity.\nb) The graph of g has a rising left end and a rising right end. As x decreases without bound, g(x) increases without bound. lim(x to -infinity) g(x) = infinity. As x increases without bound, g(x) increases without bound. lim(x to infinity) g(x) = infinity."
       }
     },
     {
       "id": "math.precalc.example.1.6.002",
       "kind": "worked_example",
-      "title": "Example 2: The leading term may be hidden.",
+      "title": "Example 2: Sketch polynomial functions from end behavior",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-6/lesson.md (1-6, Example 2)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1668,16 +1721,16 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "1-6",
-        "rawText": "The leading term may be hidden.\na) [h(x) = 3 - x^5 = -x^5 + 3] → Leading term: [-x^5]. Odd, negative.\n- Right: down. Left: up.\n- lim(x to infty) h(x) = -infty, lim(x to -infty) h(x) = infty.\nb) [k(x) = 8x^2 + 4 - x^5] → Leading term: [-x^5]. Odd, negative.\n- Right: down. Left: up.\nc) [m(x) = 2x(x - 1)(6 - x)] → Multiply leading terms: [2x cdot x cdot (-x) = -2x^3]. Odd, negative.\n- Right: down. Left: up."
+        "rawText": "Sketch a polynomial function with the following end behaviors.\na) lim(x to -infinity) f(x) = -infinity and lim(x to infinity) f(x) = -infinity. One valid sketch has both ends falling, such as a downward-opening even-degree polynomial.\nb) lim(x to -infinity) g(x) = -infinity and lim(x to infinity) g(x) = infinity. One valid sketch has a falling left end and a rising right end, such as a positive-leading-coefficient odd-degree polynomial."
       }
     },
     {
       "id": "math.precalc.example.1.6.003",
       "kind": "worked_example",
-      "title": "Example 3: Write limit statements for [f(x) = -3x^4 + x - 7].",
+      "title": "Example 3: Determine polynomial end behavior from equations",
       "domain": "math.precalc",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-6/lesson.md (1-6, Example 3)"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -1686,7 +1739,43 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "1-6",
-        "rawText": "Write limit statements for [f(x) = -3x^4 + x - 7].\n- Even degree, negative LC → both ends down.\n- lim(x to -infty) f(x) = -infty, lim(x to infty) f(x) = -infty."
+        "rawText": "Determine the end behavior for the following polynomials. Limit notation is not necessary.\na) f(x) = 4x^5. Left: down. Right: up.\nb) g(x) = (1/2)x^4. Left: up. Right: up.\nc) y = -2(x + 3)^6. Left: down. Right: down.\nd) h(x) = 3 - x^5. Left: up. Right: down.\ne) k(x) = 8x^2 + 4 - x^5. The leading term is -x^5. Left: up. Right: down.\nf) m(x) = 2x(x - 1)(6 - x). The leading term is -2x^3. Left: up. Right: down."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.6.004",
+      "kind": "worked_example",
+      "title": "Example 4: Write polynomial end behavior in limit notation",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=79"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 4,
+        "sourceLesson": "1-6",
+        "rawText": "Write limit statements for the end behavior of the following polynomials.\na) f(x) = -3x^4. lim(x to -infinity) f(x) = -infinity. lim(x to infinity) f(x) = -infinity.\nb) g(x) = 5x^3 + 2x^2 - 7. lim(x to -infinity) g(x) = -infinity. lim(x to infinity) g(x) = infinity."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.6.005",
+      "kind": "worked_example",
+      "title": "Example 5: Use a graphing calculator to observe end behavior",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=79"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 5,
+        "sourceLesson": "1-6",
+        "rawText": "Use a graphing calculator to determine the end behavior for the following functions.\na) f(x) = x^2 - 3x + 1. Both ends rise: lim(x to -infinity) f(x) = infinity and lim(x to infinity) f(x) = infinity.\nb) g(x) = (2x - 3)/(x + 1). The graph approaches y = 2 on both ends: lim(x to -infinity) g(x) = 2 and lim(x to infinity) g(x) = 2.\nc) h(x) = -10/x^2. The graph approaches 0 from below on both ends: lim(x to -infinity) h(x) = 0 and lim(x to infinity) h(x) = 0."
       }
     },
     {
@@ -1705,6 +1794,91 @@
         "exampleNumber": 1,
         "sourceLesson": "1-7",
         "rawText": "Determine asymptote type.\na) [f(x) = frac{3x^2 + 4x - 7}{5x^2 - 3}] → [n = 2], [d = 2]. **Case I**: HA at [y = frac{3}{5}].\nb) [y = frac{2x - 5}{x^2 + 3x + 2}] → [n = 1], [d = 2]. **Case II**: HA at [y = 0].\nc) [g(x) = frac{2x^2 - 4}{5x + 9}] → [n = 2], [d = 1]. **Case III**: slant asymptote ([n = d + 1]).\nd) [k(x) = frac{3}{x^2 + 3x - 7}] → [n = 0], [d = 2]. **Case II**: HA at [y = 0]."
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.6.describe-polynomial-end-behavior-from-graphs",
+      "kind": "skill",
+      "title": "Describe polynomial end behavior from graphs",
+      "domain": "math.precalc",
+      "description": "Given a polynomial graph, describe the left and right end behavior verbally and write both limit statements.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=77"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.6.sketch-polynomial-functions-from-end-behavior",
+      "kind": "skill",
+      "title": "Sketch polynomial functions from end behavior",
+      "domain": "math.precalc",
+      "description": "Given two end-behavior limit statements for a polynomial function, sketch a polynomial graph whose left and right ends match the statements.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.6.determine-polynomial-end-behavior-from-equations",
+      "kind": "skill",
+      "title": "Determine polynomial end behavior from equations",
+      "domain": "math.precalc",
+      "description": "Given a polynomial equation, use degree parity and the leading coefficient to state the left and right end behavior verbally.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=78"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      },
+      "rendererKey": "polynomial-equation-end-behavior",
+      "generatorKey": "topic16-equation-end-behavior",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.6.write-polynomial-end-behavior-in-limit-notation",
+      "kind": "skill",
+      "title": "Write polynomial end behavior in limit notation",
+      "domain": "math.precalc",
+      "description": "Given a polynomial equation, use its leading term to write both end-behavior limit statements.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=79"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
+      },
+      "rendererKey": "polynomial-limit-notation-end-behavior",
+      "generatorKey": "topic16-limit-notation-end-behavior"
+    },
+    {
+      "id": "math.precalc.skill.1.6.observe-function-end-behavior-with-a-graphing-calculator",
+      "kind": "skill",
+      "title": "Observe function end behavior with a graphing calculator",
+      "domain": "math.precalc",
+      "description": "Use a graphing calculator to observe both ends of polynomial and rational function graphs and state the corresponding limits.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=79"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "6"
       }
     },
     {
@@ -3976,32 +4150,13 @@
       }
     },
     {
-      "id": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
-      "kind": "skill",
-      "title": "Describe covariation and tandem change of functions",
-      "domain": "math.precalc",
-      "description": "Describe increasing, decreasing, and constant behavior on intervals using covariation language. Distinguish positive/negative from increasing/decreasing.",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "unit": "1",
-        "lesson": "1"
-      },
-      "rendererKey": "comprehension-quiz"
-    },
-    {
       "id": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
       "kind": "skill",
       "title": "Identify intervals of increase, decrease, and constant behavior from graphs",
       "domain": "math.precalc",
-      "description": "Given a function graph, labeled points, or verbal description, write precise interval descriptions for increasing, decreasing, and constant behavior.",
+      "description": "Given a function graph, write precise intervals where the function is increasing, decreasing, or constant.",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4009,17 +4164,35 @@
         "unit": "1",
         "lesson": "1"
       },
-      "rendererKey": "graphing-explorer"
+      "rendererKey": "interval-classification",
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.1.select-a-graph-that-models-a-physical-context",
+      "kind": "skill",
+      "title": "Select a graph that models a physical context",
+      "domain": "math.precalc",
+      "description": "Given a physical context, select a graph whose direction and changing rate fit the context.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "rendererKey": "physical-context-graph-choice",
+      "independentPracticeReady": false
     },
     {
       "id": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
       "kind": "skill",
       "title": "Compute and interpret the average rate of change",
       "domain": "math.precalc",
-      "description": "Compute AROC = (f(b)-f(a))/(b-a) from equations, tables, graphs, and verbal descriptions. Interpret with units. Connect to secant line slope.",
+      "description": "Compute average rate of change as (change in output)/(change in input) using endpoint values, and interpret the result in context.",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=15"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4027,17 +4200,19 @@
         "unit": "1",
         "lesson": "2"
       },
-      "rendererKey": "rate-of-change-calculator"
+      "rendererKey": "graph-average-rate-choice",
+      "generatorKey": "topic12-graph-average-rate-choice",
+      "independentPracticeReady": true
     },
     {
       "id": "math.precalc.skill.1.2.compare-rates-of-change-across-intervals",
       "kind": "skill",
-      "title": "Compare rates of change across multiple intervals",
+      "title": "Compare average rates of change across intervals",
       "domain": "math.precalc",
-      "description": "Rank rates of change at different points. Identify which interval has greatest AROC. Connect AROC patterns to concavity preview.",
+      "description": "Compare average rates of change across intervals by comparing (change in output)/(change in input).",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=15",
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4045,7 +4220,86 @@
         "unit": "1",
         "lesson": "2"
       },
-      "rendererKey": "rate-of-change-calculator"
+      "rendererKey": "table-average-rate-choice",
+      "generatorKey": "topic12-table-average-rate-choice",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.compare-pointwise-rates-of-change-from-graphs",
+      "kind": "skill",
+      "title": "Compare pointwise rates of change from graphs",
+      "domain": "math.precalc",
+      "description": "Compare pointwise rates of change from graphs by using local direction and steepness at labeled points.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=13",
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "pointwise-rate-ordering",
+      "generatorKey": "topic12-pointwise-rate-ordering",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.identify-least-pointwise-rate-of-change-from-graphs",
+      "kind": "skill",
+      "title": "Identify the least pointwise rate of change from a graph",
+      "domain": "math.precalc",
+      "description": "Identify the labeled point with the least local rate from a graph by comparing local direction and steepness.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=14"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "pointwise-least-rate-choice",
+      "generatorKey": "topic12-pointwise-least-rate-choice",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.model-negative-rate-contexts",
+      "kind": "skill",
+      "title": "Model negative-rate contexts",
+      "domain": "math.precalc",
+      "description": "Model a negative rate of change by matching increasing input and decreasing output variables in context.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "negative-rate-context-choice",
+      "generatorKey": "topic12-negative-rate-context-choice",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.2.determine-negative-rate-intervals-for-quadratics",
+      "kind": "skill",
+      "title": "Determine negative-rate intervals for quadratics",
+      "domain": "math.precalc",
+      "description": "Determine intervals where a quadratic has a negative rate of change by using its vertex and graph behavior.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=16"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "quadratic-negative-rate-interval-choice",
+      "generatorKey": "topic12-quadratic-negative-rate-interval-choice",
+      "independentPracticeReady": true
     },
     {
       "id": "math.precalc.skill.1.3.classify-linear-vs-quadratic-from-rate-patterns",
@@ -4063,7 +4317,9 @@
         "unit": "1",
         "lesson": "3"
       },
-      "rendererKey": "comprehension-quiz"
+      "rendererKey": "rate-pattern-classification",
+      "generatorKey": "topic13-rate-pattern-classification",
+      "independentPracticeReady": true
     },
     {
       "id": "math.precalc.skill.1.3.determine-concavity-from-rate-of-change",
@@ -4081,17 +4337,18 @@
         "unit": "1",
         "lesson": "3"
       },
-      "rendererKey": "rate-of-change-calculator"
+      "rendererKey": "concavity-from-rate-change",
+      "generatorKey": "topic13-concavity-from-rate-change",
+      "independentPracticeReady": true
     },
     {
-      "id": "math.precalc.skill.1.4.identify-polynomial-features-degree-leading-coefficient-extrema",
+      "id": "math.precalc.skill.1.4.identify-polynomial-degree-and-leading-coefficient",
       "kind": "skill",
-      "title": "Identify polynomial degree, leading coefficient, extrema, and inflection points",
+      "title": "Identify polynomial degree and leading coefficient",
       "domain": "math.precalc",
-      "description": "Given equation or graph, identify degree, LC, turning points (≤ n-1), relative/absolute extrema, points of inflection.",
+      "description": "Given a polynomial expression, identify the degree and leading coefficient, including reordered polynomials and nonzero constants.",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md (1-4, Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4099,7 +4356,28 @@
         "unit": "1",
         "lesson": "4"
       },
-      "rendererKey": "comprehension-quiz"
+      "rendererKey": "polynomial-degree-leading-coefficient",
+      "generatorKey": "topic14-polynomial-degree-leading-coefficient",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.4.identify-relative-and-absolute-extrema-from-graphs",
+      "kind": "skill",
+      "title": "Identify relative and absolute extrema from graphs",
+      "domain": "math.precalc",
+      "description": "Given a polynomial graph, identify relative minima, relative maxima, and absolute extrema from changes in monotonicity and global values.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md (1-4, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "4"
+      },
+      "rendererKey": "polynomial-extrema-from-graph",
+      "generatorKey": "topic14-polynomial-extrema-from-graph",
+      "independentPracticeReady": true
     },
     {
       "id": "math.precalc.skill.1.4.describe-rate-of-change-behavior-on-intervals",
@@ -4108,8 +4386,7 @@
       "domain": "math.precalc",
       "description": "Classify ROC as positive/negative and increasing/decreasing on specific intervals. Distinguish \"f is increasing\" from \"f is positive.\"",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md (1-4, Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4117,7 +4394,9 @@
         "unit": "1",
         "lesson": "4"
       },
-      "rendererKey": "rate-of-change-calculator"
+      "rendererKey": "rate-sign-and-trend-from-graph",
+      "generatorKey": "topic14-rate-sign-and-trend",
+      "independentPracticeReady": true
     },
     {
       "id": "math.precalc.skill.1.4.determine-end-behavior-from-leading-term",
@@ -4126,8 +4405,7 @@
       "domain": "math.precalc",
       "description": "Use degree (even/odd) and leading coefficient (positive/negative) to determine the four end-behavior patterns. Write limit statements.",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-4/lesson.md (1-4, Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4135,7 +4413,9 @@
         "unit": "1",
         "lesson": "4"
       },
-      "rendererKey": "graphing-explorer"
+      "rendererKey": "polynomial-end-behavior",
+      "generatorKey": "topic14-polynomial-end-behavior",
+      "independentPracticeReady": true
     },
     {
       "id": "math.precalc.skill.1.5.find-zeros-with-multiplicity-and-graph-behavior",
@@ -4178,10 +4458,9 @@
       "kind": "skill",
       "title": "Solve polynomial inequalities using sign charts",
       "domain": "math.precalc",
-      "description": "Find zeros, build sign chart, test intervals, write solution in interval notation. Apply Rational Root Theorem.",
+      "description": "Find the real zeros, test the sign on each interval, and write the solution to a polynomial inequality in interval notation.",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-5/lesson.md (1-5, Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4189,25 +4468,47 @@
         "unit": "1",
         "lesson": "5"
       },
-      "rendererKey": "step-by-step-solver"
+      "rendererKey": "polynomial-inequality-sign-chart",
+      "generatorKey": "topic15-polynomial-inequality-sign-chart",
+      "independentPracticeReady": true
     },
     {
-      "id": "math.precalc.skill.1.6.write-limit-statements-for-polynomial-end-behavior",
+      "id": "math.precalc.skill.1.5.find-real-zeros-and-multiplicities-from-factored-form",
       "kind": "skill",
-      "title": "Write limit statements for polynomial end behavior",
+      "title": "Find real zeros and multiplicities from factored form",
       "domain": "math.precalc",
-      "description": "Determine the four end-behavior patterns. Write lim(x→∞) and lim(x→-∞) statements. Identify hidden leading terms in nonstandard forms.",
+      "description": "Find the real zeros and their multiplicities from a factored polynomial expression.",
       "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-5/lesson.md (1-5, Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "precalc",
         "unit": "1",
-        "lesson": "6"
+        "lesson": "5"
       },
-      "rendererKey": "graphing-explorer"
+      "rendererKey": "real-zeros-and-multiplicities",
+      "generatorKey": "topic15-real-zeros-and-multiplicities-from-factored-form",
+      "independentPracticeReady": true
+    },
+    {
+      "id": "math.precalc.skill.1.5.determine-least-polynomial-degree-from-zeros-and-conjugate-pairs",
+      "kind": "skill",
+      "title": "Determine least polynomial degree from zeros and conjugate pairs",
+      "domain": "math.precalc",
+      "description": "Determine the least possible degree of a real-coefficient polynomial by counting given zeros, multiplicities, and required conjugate zeros.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-5/lesson.md (1-5, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "5"
+      },
+      "rendererKey": "least-polynomial-degree",
+      "generatorKey": "topic15-least-polynomial-degree-from-zeros-and-conjugate-pairs",
+      "independentPracticeReady": true
     },
     {
       "id": "math.precalc.skill.1.7.classify-rational-end-behavior-three-cases",
@@ -6026,6 +6327,264 @@
         "framework": "ccss",
         "code": "HSN-VM.B.4"
       }
+    },
+    {
+      "id": "math.precalc.example.1.1.003",
+      "kind": "worked_example",
+      "title": "Example 3: Classify function behavior from F to G",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 3,
+        "sourceLesson": "1-1",
+        "rawText": "The graph h is a smooth periodic curve with midline h = 0. It has maximum F(-6, 4), midline crossing G(-3, 0), minimum J(0, -4), midline crossing K(3, 0), and maximum P(6, 4). The arc from F to G is concave down. On the open interval from F to G, h is positive and decreasing, and its rate of change is decreasing."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.004",
+      "kind": "worked_example",
+      "title": "Example 4: Classify function behavior from K to P",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 4,
+        "sourceLesson": "1-1",
+        "rawText": "The graph h is a smooth periodic curve with midline h = -4. It has maximum F(0, -1), midline crossing G(3, -4), minimum J(6, -7), midline crossing K(9, -4), and maximum P(12, -1). The arc from K to P is concave down. On the open interval from K to P, h is negative and increasing, and its rate of change is decreasing."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.005",
+      "kind": "worked_example",
+      "title": "Example 5: Select where a function is negative and decreasing",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 5,
+        "sourceLesson": "1-1",
+        "rawText": "Examples 5 through 8 use a smooth graph through A(0, -2), B(2, 0), C(4, 2), D(7, -1), E(8, -2), and F(9, -1). It rises A-B-C, falls C-D-E, and rises E-F. It is concave up A-B, concave down B-C-D, and concave up D-E-F. Example 5 asks where k is negative and decreasing. Choices: A-B, B-C, D-E, E-F. Correct: D-E."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.006",
+      "kind": "worked_example",
+      "title": "Example 6: Identify a positive rate of change",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 6,
+        "sourceLesson": "1-1",
+        "rawText": "Use the smooth graph through A(0, -2), B(2, 0), C(4, 2), D(7, -1), E(8, -2), and F(9, -1). Choose the true statement: rate negative A-B; rate negative B-C; rate positive D-E; rate positive E-F. Correct: rate positive E-F."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.007",
+      "kind": "worked_example",
+      "title": "Example 7: Identify where rate of change increases",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 7,
+        "sourceLesson": "1-1",
+        "rawText": "Use the smooth graph through A(0, -2), B(2, 0), C(4, 2), D(7, -1), E(8, -2), and F(9, -1). Choose the true statement: rate decreasing A-B; rate increasing B-C; rate increasing D-E; rate decreasing E-F. Correct: rate increasing D-E."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.008",
+      "kind": "worked_example",
+      "title": "Example 8: Identify increasing and concave-down behavior",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 8,
+        "sourceLesson": "1-1",
+        "rawText": "Use the smooth graph through A(0, -2), B(2, 0), C(4, 2), D(7, -1), E(8, -2), and F(9, -1). It is concave up A-B, concave down B-C-D, and concave up D-E-F. Choose where k is increasing and concave down: A-B, B-C, C-D, or D-E. Correct: B-C."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.009",
+      "kind": "worked_example",
+      "title": "Example 9: Find decreasing intervals",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 9,
+        "sourceLesson": "1-1",
+        "rawText": "The graph of f on -5 <= x <= 5 uses straight segments from (-5, -2) to (-1, 2), from (-1, 2) to (2, 0), and from (2, 0) to (5, 2). It decreases for -1 < x < 2."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.010",
+      "kind": "worked_example",
+      "title": "Example 10: Find where a function is negative and increasing",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 10,
+        "sourceLesson": "1-1",
+        "rawText": "The piecewise graph f on -5 <= x <= 5 passes through (-5, -2), (-1, 2), (2, 0), and (5, 2). It is negative and increasing for -5 < x < -3. The graph crosses the horizontal axis at x = -3, so that endpoint is excluded."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.011",
+      "kind": "worked_example",
+      "title": "Example 11: Find decreasing and concave-up behavior",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 11,
+        "sourceLesson": "1-1",
+        "rawText": "The smooth graph g on -5 <= x <= 5 has a local maximum near x = -3, a change in concavity at A(-1, 0), and a local minimum near x = 1. It is concave down for -5 < x < -1 and concave up for -1 < x < 5. It decreases and is concave up for -1 < x < 1."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.012",
+      "kind": "worked_example",
+      "title": "Example 12: Find where rate is positive and decreasing",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 12,
+        "sourceLesson": "1-1",
+        "rawText": "The same smooth graph g is concave down for -5 < x < -1 and concave up for -1 < x < 5. It increases from x = -5 to the local maximum near x = -3. Its rate is positive and decreasing for -5 < x < -3."
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.1.identify-function-sign-on-intervals-from-graphs",
+      "kind": "skill",
+      "title": "Identify function sign on intervals from graphs",
+      "domain": "math.precalc",
+      "description": "Given a function graph, identify intervals where function values are positive or negative.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.1.determine-rate-of-change-sign-from-graphs",
+      "kind": "skill",
+      "title": "Determine the sign of rate of change from graphs",
+      "domain": "math.precalc",
+      "description": "Given a function graph, determine whether its rate of change is positive, negative, or zero on an interval.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.1.identify-rate-change-and-concavity-on-intervals",
+      "kind": "skill",
+      "title": "Identify change in rate and concavity on intervals",
+      "domain": "math.precalc",
+      "description": "Given a function graph, identify where rate of change increases or decreases and where the graph is concave up or concave down.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
+      "kind": "skill",
+      "title": "Describe covariation and tandem change of functions",
+      "domain": "math.precalc",
+      "description": "Describe increasing, decreasing, and constant behavior on intervals using covariation language. Distinguish positive or negative values from increasing or decreasing behavior.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "rejected",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "rendererKey": "comprehension-quiz",
+      "independentPracticeReady": false,
+      "exceptions": [
+        {
+          "type": "other",
+          "reason": "This identifier duplicates the existing interval-direction operation. The reviewed Topic 1.1 source does not provide a distinct assessed covariation task.",
+          "reviewer": "graph-node-practice-program",
+          "date": "2026-09-08"
+        }
+      ]
     }
   ]
 }

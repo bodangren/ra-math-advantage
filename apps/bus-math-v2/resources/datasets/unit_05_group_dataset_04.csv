@@ -1,14 +1,7 @@
-Account,Account Type,Balance
-Cash,Asset,7112
-Accounts Receivable,Asset,5099
-Office Supplies,Asset,4152
-Prepaid Rent,Asset,4382
-Office Equipment,Asset,6745
-Accumulated Depreciation,Asset,-227
-Accounts Payable,Liability,6765
-Accrued Wages,Liability,2785
-Deferred Revenue,Liability,2582
-Bank Loan,Liability,1226
-Owner's Capital,Equity,8343
-Retained Earnings,Equity,4171
-Net Income,Equity,1391
+Input,Value
+Purchase price,12000.0
+Delivery and setup,1200.0
+Salvage value,1200.0
+Useful life in years,5
+Lifetime units,50000
+Year 1 production units,8000

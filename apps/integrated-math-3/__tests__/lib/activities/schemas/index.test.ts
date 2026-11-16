@@ -187,7 +187,7 @@ describe('schemas index', () => {
   });
 
   describe('type safety', () => {
-    it('ActivityComponentKey type includes all 6 keys', () => {
+    it('ActivityComponentKey type includes all 7 keys', () => {
       const keys: ActivityComponentKey[] = [
         'graphing-explorer',
         'step-by-step-solver',
@@ -195,8 +195,9 @@ describe('schemas index', () => {
         'fill-in-the-blank',
         'rate-of-change-calculator',
         'discriminant-analyzer',
+        'quadratic-formula',
       ];
-      expect(keys).toHaveLength(6);
+      expect(keys).toHaveLength(7);
     });
 
     it('getPropsSchema returns Zod schema', () => {

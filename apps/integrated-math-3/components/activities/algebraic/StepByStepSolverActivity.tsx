@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { StepByStepper } from '@math-platform/activity-components/algebraic';
 import type { AlgebraicStep, StepAttempt } from '@math-platform/activity-components/algebraic';
 import type { ProblemType } from '@/lib/activities/schemas/step-by-step-solver.schema';
@@ -10,7 +10,7 @@ import { generateDistractors, type DistractorType } from '@/lib/activities/algeb
 export interface ActivityComponentProps {
   activityId: string;
   mode: 'teaching' | 'guided' | 'practice';
-  onSubmit?: (payload: unknown) => void;
+  onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
 }
 
@@ -56,7 +56,11 @@ export function StepByStepSolverActivity({
 }: StepByStepSolverActivityProps) {
   const interactionHistoryRef = useRef<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
 
-  const handlePracticeComplete = useCallback((attempts: StepAttempt[]) => {
+  const [saveError, setSaveError] = useState(false);
+  const lastAttempts = useRef<StepAttempt[]>([]);
+  const handlePracticeComplete = useCallback(async (attempts: StepAttempt[]) => {
+    lastAttempts.current = attempts;
+    setSaveError(false);
     const stepsAttemptData = attempts.map((attempt) => ({
       stepIndex: attempt.stepIndex,
       userAnswer: attempt.userAnswer,
@@ -73,8 +77,12 @@ export function StepByStepSolverActivity({
       equation,
     });
 
-    onSubmit?.(submission);
-    onComplete?.();
+    try {
+      await onSubmit?.(submission);
+      onComplete?.();
+    } catch {
+      setSaveError(true);
+    }
   }, [activityId, mode, problemType, equation, onSubmit, onComplete]);
 
   const handleGenerateDistractors = useCallback(
@@ -83,6 +91,8 @@ export function StepByStepSolverActivity({
     [],
   );
 
+  if (saveError) return <div role="alert">The answer was not saved. <button type="button" onClick={() => void handlePracticeComplete(lastAttempts.current)}>Retry save</button></div>;
+
   return (
     <div data-testid="step-by-step-solver">
       <StepByStepper
@@ -90,7 +100,7 @@ export function StepByStepSolverActivity({
         steps={steps}
         problemType={problemType}
         generateDistractors={handleGenerateDistractors}
-        onPracticeComplete={mode === 'practice' ? handlePracticeComplete : undefined}
+        onPracticeComplete={mode !== 'teaching' ? handlePracticeComplete : undefined}
       />
     </div>
   );

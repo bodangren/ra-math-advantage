@@ -5,7 +5,7 @@ This document summarizes key rules and best practices from the Google TypeScript
 ## 1. Language Features
 - **Variable Declarations:** Always use `const` or `let`. **`var` is forbidden.** Use `const` by default.
 - **Modules:** Use ES6 modules (`import`/`export`). **Do not use `namespace`.**
-- **Exports:** Use named exports (`export {MyClass};`). **Do not use default exports.**
+- **Exports:** Use named exports (`export {MyClass};`). Use default exports when a framework file contract requires them, such as Next.js pages, layouts, and configuration files.
 - **Classes:**
   - **Do not use `#private` fields.** Use TypeScript's `private` visibility modifier.
   - Mark properties never reassigned outside the constructor with `readonly`.

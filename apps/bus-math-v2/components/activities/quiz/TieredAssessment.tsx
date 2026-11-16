@@ -123,6 +123,7 @@ function isCorrectNumericResponse(expected: number, provided: unknown, tolerance
 export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const hasAnswerKeys = activity.props.questions.every((question) => question.correctAnswer !== undefined);
 
   const preparedQuestions = useMemo<ShuffledQuestion[]>(() => {
     return activity.props.questions.map((question) => {
@@ -280,7 +281,7 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
           <Badge variant="secondary" className="uppercase">
             {activity.props.tier}
           </Badge>
-          {submitted && (
+          {submitted && hasAnswerKeys && (
             <Badge variant={percentage >= 70 ? 'default' : 'destructive'}>
               {score}/{totalQuestions} correct ({percentage}%)
             </Badge>
@@ -312,7 +313,7 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
                 <div className="grid gap-2">
                   {question.options.map((option, optionIndex) => {
                     const isSelected = selected === option;
-                    const showFeedback = submitted && option === selected;
+                    const showFeedback = submitted && hasAnswerKeys && option === selected;
                     const optionIsCorrect =
                       normalizePracticeValue(option) === normalizePracticeValue(question.correctAnswer);
 
@@ -369,7 +370,7 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
                     inputMode="decimal"
                     disabled={submitted}
                   />
-                  {submitted && (
+                  {submitted && hasAnswerKeys && (
                     <p className={`text-sm ${isCorrect ? 'text-green-700' : 'text-destructive'}`}>
                       {isCorrect
                         ? 'Correct'

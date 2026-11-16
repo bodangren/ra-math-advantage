@@ -8,7 +8,6 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -143,7 +142,7 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <h1 className="text-2xl font-semibold">Login</h1>
           <CardDescription>
             Enter your username and password to access your account
           </CardDescription>
@@ -220,8 +219,8 @@ export function LoginForm({
                 aria-label="Use demo student credentials"
               >
                 <div className="flex flex-col items-start">
-                  <span className="font-semibold text-blue-950">Student Account</span>
-                  <span className="text-xs text-blue-800">demo_student / demo123</span>
+                  <span className="font-semibold text-foreground">Student Account</span>
+                  <span className="text-xs text-muted-foreground">demo_student / demo123</span>
                 </div>
               </Button>
               <Button
@@ -232,8 +231,8 @@ export function LoginForm({
                 aria-label="Use demo teacher credentials"
               >
                 <div className="flex flex-col items-start">
-                  <span className="font-semibold text-blue-950">Teacher Account</span>
-                  <span className="text-xs text-blue-800">demo_teacher / demo123</span>
+                  <span className="font-semibold text-foreground">Teacher Account</span>
+                  <span className="text-xs text-muted-foreground">demo_teacher / demo123</span>
                 </div>
               </Button>
             </div>

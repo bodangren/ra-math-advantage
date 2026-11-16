@@ -15,12 +15,11 @@ function fileExists(relativePath: string, root: string = BM2_ROOT) {
 }
 
 describe('Cloudflare launch hardening', () => {
-  it('keeps the Worker entry delegated to the built Vinext server with an assets fallback', () => {
-    const workerSource = read('cloudflare/worker.ts', BM2_ROOT);
-
-    expect(workerSource).toContain("import('../dist/server/index.js')");
-    expect(workerSource).toContain('env.ASSETS.fetch(request)');
-    expect(workerSource).not.toContain('Baseline Worker shell until');
+  it('uses the Vinext Cloudflare entry without a second worker wrapper', () => {
+    const config = read('wrangler.jsonc');
+    expect(config).toContain('"main": "vinext/server/app-router-entry"');
+    expect(config).toContain('"binding": "ASSETS"');
+    expect(fileExists('cloudflare/worker.ts')).toBe(false);
   });
 
   it('documents the required launch secrets, seeding, deployment, and verification steps', () => {

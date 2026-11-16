@@ -23,6 +23,10 @@ export default defineSchema({
     .index("by_organization", ["organizationId"])
     .index("by_username", ["username"]),
 
+  auth_attempts: defineTable({
+    key: v.string(), requestCount: v.number(), windowStart: v.number(),
+  }).index('by_key', ['key']).index('by_window', ['windowStart']),
+
   auth_credentials: defineTable({
     profileId: v.id("profiles"),
     username: v.string(),
@@ -155,6 +159,7 @@ export default defineSchema({
     .index("by_lesson_version_and_standard", ["lessonVersionId", "standardId"]),
 
   activities: defineTable({
+    stableActivityId: v.optional(v.string()),
     componentKey: v.string(),
     displayName: v.string(),
     description: v.optional(v.string()),
@@ -175,7 +180,9 @@ export default defineSchema({
     })),
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_standard", ["standardId"]),
+  })
+    .index("by_standard", ["standardId"])
+    .index("by_stable_activity_id", ["stableActivityId"]),
 
   student_competency: defineTable({
     studentId: v.id("profiles"),
@@ -211,6 +218,12 @@ export default defineSchema({
     .index("by_lesson", ["lessonId"])
     .index("by_phase", ["phaseId"]),
 
+  lesson_responses: defineTable({
+    learnerId: v.id('profiles'), phaseId: v.id('phase_versions'), response: v.string(), createdAt: v.number(),
+    score: v.optional(v.number()), maxScore: v.optional(v.number()), feedback: v.optional(v.string()),
+    gradedBy: v.optional(v.id('profiles')), gradedAt: v.optional(v.number()),
+  }).index('by_learner', ['learnerId']).index('by_learner_and_phase', ['learnerId', 'phaseId']),
+
   student_progress: defineTable({
     userId: v.id("profiles"),
     phaseId: v.id("phase_versions"),
@@ -229,7 +242,11 @@ export default defineSchema({
   activity_submissions: defineTable({
     userId: v.id("profiles"),
     activityId: v.id("activities"),
+    stableActivityId: v.optional(v.string()),
     submissionData: v.any(),
+    masteryContractVersion: v.optional(v.string()),
+    createIdempotencyKey: v.optional(v.string()),
+    attemptOrdinal: v.optional(v.number()),
     score: v.optional(v.number()),
     maxScore: v.optional(v.number()),
     feedback: v.optional(v.string()),
@@ -241,7 +258,53 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_activity", ["activityId"])
-    .index("by_user_and_activity", ["userId", "activityId"]),
+    .index("by_user_and_activity", ["userId", "activityId"])
+    .index("by_user_and_create_idempotency_key", ["userId", "createIdempotencyKey"])
+    .index("by_user_and_activity_and_attempt_ordinal", ["userId", "activityId", "attemptOrdinal"]),
+
+  learning_evidence: defineTable({
+    learnerId: v.id("profiles"),
+    submissionId: v.optional(v.id("activity_submissions")),
+    nodeId: v.string(),
+    activityId: v.string(),
+    attemptOrdinal: v.number(),
+    origin: v.union(v.literal("teacher_led"), v.literal("mastery_advantage")),
+    mode: v.union(
+      v.literal("worked_example"),
+      v.literal("guided_practice"),
+      v.literal("independent_practice"),
+      v.literal("assessment"),
+      v.literal("teaching"),
+    ),
+    occurredAt: v.number(),
+    gradedEvidence: v.optional(v.object({
+      isCorrect: v.optional(v.boolean()),
+      score: v.optional(v.number()),
+      maxScore: v.optional(v.number()),
+    })),
+    idempotencyKey: v.string(),
+    createdAt: v.number(),
+  })
+    .index("by_learner", ["learnerId"])
+    .index("by_learner_and_node", ["learnerId", "nodeId"])
+    .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"])
+    .index(
+      "by_learner_node_origin_occurred_at",
+      ["learnerId", "nodeId", "origin", "occurredAt"],
+    )
+    .index("by_learner_node_activity_origin_attempt", ["learnerId", "nodeId", "activityId", "origin", "attemptOrdinal"])
+    .index("by_learner_and_submission_id", ["learnerId", "submissionId"]),
+
+  learning_evidence_receipts: defineTable({
+    learnerId: v.id("profiles"),
+    submissionId: v.id("activity_submissions"),
+    persisted: v.boolean(),
+    masteryApplied: v.boolean(),
+    kstApplied: v.boolean(),
+    decision: v.any(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_learner_and_submission_id", ["learnerId", "submissionId"]),
 
   student_spreadsheet_responses: defineTable({
     studentId: v.id("profiles"),
@@ -393,7 +456,8 @@ export default defineSchema({
     .index("by_objective", ["objectiveId"])
     .index("by_student_and_objective", ["studentId", "objectiveId"])
     .index("by_problem_family", ["problemFamilyId"])
-    .index("by_student_and_problem_family", ["studentId", "problemFamilyId"]),
+    .index("by_student_and_problem_family", ["studentId", "problemFamilyId"])
+    .index("by_student_objective_and_problem_family", ["studentId", "objectiveId", "problemFamilyId"]),
 
   srs_review_log: defineTable({
     cardId: v.id("srs_cards"),

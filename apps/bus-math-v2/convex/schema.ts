@@ -161,6 +161,7 @@ export default defineSchema({
 
   activities: defineTable({
     componentKey: v.string(),
+    stableActivityId: v.optional(v.string()),
     displayName: v.string(),
     description: v.optional(v.string()),
     // TODO: Replace with discriminated union once BM2 component prop validators exist.
@@ -170,7 +171,9 @@ export default defineSchema({
     standardId: v.optional(v.id("competency_standards")),
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_standard", ["standardId"]),
+  })
+    .index("by_standard", ["standardId"])
+    .index("by_stable_activity_id", ["stableActivityId"]),
 
   student_competency: defineTable({
     studentId: v.id("profiles"),
@@ -219,12 +222,20 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_phase", ["phaseId"])
+    .index("by_user_and_idempotency_key", ["userId", "idempotencyKey"])
     .index("by_user_and_phase", ["userId", "phaseId"]),
 
   activity_submissions: defineTable({
+    // Accept existing local/deployed records during the submission transition.
+    // Current writers do not create this legacy identity field.
+    submissionFingerprint: v.optional(v.string()),
     userId: v.id("profiles"),
     activityId: v.id("activities"),
+    stableActivityId: v.optional(v.string()),
     submissionData: practiceSubmissionEnvelopeValidator,
+    masteryContractVersion: v.optional(v.string()),
+    idempotencyKey: v.optional(v.string()),
+    attemptOrdinal: v.optional(v.number()),
     score: v.optional(v.number()),
     maxScore: v.optional(v.number()),
     feedback: v.optional(v.string()),
@@ -236,7 +247,58 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_activity", ["activityId"])
-    .index("by_user_and_activity", ["userId", "activityId"]),
+    .index("by_user_and_activity", ["userId", "activityId"])
+    .index("by_user_and_idempotency_key", ["userId", "idempotencyKey"])
+    .index("by_user_and_activity_and_attempt_ordinal", ["userId", "activityId", "attemptOrdinal"]),
+
+  learning_evidence: defineTable({
+    // Accept existing records. Current writers do not create this legacy field.
+    fingerprint: v.optional(v.string()),
+    studentId: v.id("profiles"),
+    submissionId: v.optional(v.id("activity_submissions")),
+    contractVersion: v.literal("learning-evidence.v1"),
+    nodeId: v.string(),
+    activityId: v.string(),
+    attemptOrdinal: v.number(),
+    origin: v.union(v.literal("teacher_led"), v.literal("mastery_advantage")),
+    mode: v.union(
+      v.literal("worked_example"),
+      v.literal("guided_practice"),
+      v.literal("independent_practice"),
+      v.literal("assessment"),
+      v.literal("teaching"),
+    ),
+    occurredAt: v.number(),
+    gradedEvidence: v.optional(v.object({
+      isCorrect: v.optional(v.boolean()),
+      score: v.optional(v.number()),
+      maxScore: v.optional(v.number()),
+    })),
+    idempotencyKey: v.string(),
+    createdAt: v.number(),
+  })
+    .index("by_student_and_node", ["studentId", "nodeId"])
+    .index(
+      "by_student_node_origin_occurred_at",
+      ["studentId", "nodeId", "origin", "occurredAt"],
+    )
+    .index("by_student_node_activity_origin_attempt", ["studentId", "nodeId", "activityId", "origin", "attemptOrdinal"])
+    .index("by_student_and_submission_id", ["studentId", "submissionId"]),
+
+  learning_evidence_receipts: defineTable({
+    // Preserve saved snapshots from the retired pilot. New receipts omit them.
+    kstSnapshot: v.optional(v.any()),
+    kstSnapshotV1: v.optional(v.any()),
+    studentId: v.id("profiles"),
+    submissionId: v.id("activity_submissions"),
+    evidenceId: v.optional(v.id("learning_evidence")),
+    persisted: v.boolean(),
+    masteryApplied: v.boolean(),
+    kstApplied: v.boolean(),
+    decision: v.any(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_student_and_submission_id", ["studentId", "submissionId"]),
 
   live_sessions: defineTable({
     activityId: v.id("activities"),
@@ -312,6 +374,7 @@ export default defineSchema({
     .index("by_student_and_activity", ["studentId", "activityId"]),
 
   spreadsheet_submission_attempts: defineTable({
+    idempotencyKey: v.optional(v.string()),
     studentId: v.id("profiles"),
     activityId: v.id("activities"),
     attemptNumber: v.number(),
@@ -506,6 +569,7 @@ export default defineSchema({
     .index("by_user_and_endpoint", ["userId", "endpoint"]),
 
   srs_cards: defineTable({
+    lastSubmissionKey: v.optional(v.string()),
     cardId: v.string(),
     studentId: v.id("profiles"),
     objectiveId: v.string(),
@@ -529,12 +593,14 @@ export default defineSchema({
   })
     .index("by_student", ["studentId"])
     .index("by_student_due", ["studentId", "dueDate"])
-    .index("by_student_family", ["studentId", "problemFamilyId"]),
+    .index("by_student_family", ["studentId", "problemFamilyId"])
+    .index("by_student_objective_and_problem_family", ["studentId", "objectiveId", "problemFamilyId"]),
 
   srs_review_log: defineTable({
     studentId: v.id("profiles"),
     problemFamilyId: v.string(),
     rating: srsRatingValidator,
+    submissionId: v.optional(v.string()),
     scheduledAt: v.number(),
     reviewedAt: v.number(),
     elapsedDays: v.number(),

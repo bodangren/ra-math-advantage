@@ -130,3 +130,10 @@ describe('validateActivityConfig', () => {
     expect(JSON.stringify(props)).toBe(before);
   });
 });
+
+it('rejects a shared schema whose component is not registered in IM3', async () => {
+  const { validateActivityConfig } = await import('@/lib/teacher/content-authoring/activity-config-validation');
+  const result = validateActivityConfig('interval-classification', {});
+  expect(result.success).toBe(false);
+  if (!result.success) expect(result.errors[0].message).toContain('No schema is registered');
+});

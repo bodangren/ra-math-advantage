@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -416,7 +417,7 @@ export const seedLesson9_5 = internalMutation({
             componentKey: activityContent.componentKey,
             displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,

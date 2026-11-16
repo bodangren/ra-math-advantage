@@ -2,6 +2,9 @@
 function escapeCsvField(value: unknown): string {
   if (value == null) return "";
   const str = String(value);
+  if (typeof value === 'string' && /^\s*[=+\-@]/.test(str)) {
+    return `"'${str.replace(/"/g, '""')}"`;
+  }
   if (str.includes(",") || str.includes('"') || str.includes("\n") || str.includes("\r")) {
     return `"${str.replace(/"/g, '""')}"`;
   }

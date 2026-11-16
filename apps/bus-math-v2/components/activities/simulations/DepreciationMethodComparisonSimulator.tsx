@@ -184,7 +184,7 @@ export function DepreciationMethodComparisonSimulator({ activity, onSubmit, onCo
             <ul className="list-disc list-inside space-y-1">
               <li>DDB can drive book value below salvage without a floor cap</li>
               <li>DDB applies rate to book value, not depreciable base</li>
-              <li>Both methods must reach the same salvage value</li>
+              <li>This DDB schedule uses a salvage floor. It does not switch methods. Its final book value can exceed salvage.</li>
             </ul>
             <Button variant="outline" onClick={() => { setStage('predict'); handleReset(); onComplete?.() }}>Practice Another Asset</Button>
           </CardContent>

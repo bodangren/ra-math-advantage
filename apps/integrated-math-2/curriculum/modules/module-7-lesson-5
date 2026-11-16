@@ -11,12 +11,12 @@ Source: (Module 7, Lesson 7-5, Int2_0705_practice.docx)
 
 ## Vocabulary
 
-* **Independent Events** — Two events where the occurrence of one does not affect the probability of the other; [P(A | B) = P(A)].
+* **Independent Events** — Events satisfying $P(A\cap B)=P(A)P(B)$. A conditional-probability test also requires the conditioning probability to be positive.
 * **Dependent Events** — Two events where the occurrence of one affects the probability of the other.
-* **Joint Probability** — The probability of two events occurring together; [P(A \text{ and } B)].
+* **Joint Probability** — The probability of two events occurring together; $P(A \text{ and } B)$.
 * **Conditional Probability** — [P(B | A)] — the probability of event B given that event A has occurred.
-* **With Replacement** — Drawing an item and returning it before the next draw; events remain independent.
-* **Without Replacement** — Drawing an item and not returning it; events become dependent.
+* **With Replacement** — Returning an item before the next draw. Independent random selection after replacement gives independent draws; replacement alone is not an independence assumption.
+* **Without Replacement** — Keeping a drawn item out of the next draw. This changes the available outcomes. Check the specific events before concluding that they are dependent.
 
 ## Explore: When Does One Event Affect Another?
 
@@ -31,85 +31,59 @@ If you draw a card from a deck and do not put it back, how does that change the 
 
 For independent events A and B:
 
-[P(A \text{ and } B) = P(A) \times P(B)]
+$P(A \text{ and } B) = P(A) \times P(B)$
 
 **Example:** Flipping a coin and rolling a die — the coin flip does not affect the die roll.
-[P(\text{heads and 3}) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12}]
+$P(\text{heads and 3}) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12}$
 
 ### Key Concept: Multiplication Rule for Dependent Events
 
-For dependent events (without replacement):
+For any events with P(A) > 0, including dependent draws without replacement:
 
-[P(A \text{ and } B) = P(A) \times P(B | A)]
+$P(A \text{ and } B) = P(A) \times P(B | A)$
 
 **Example:** Drawing two aces from a standard deck without replacement:
-[P(\text{first ace}) = \frac{4}{52}]
-[P(\text{second ace} | \text{first ace}) = \frac{3}{51}]
-[P(\text{both aces}) = \frac{4}{52} \times \frac{3}{51} = \frac{1}{221}]
+$P(\text{first ace}) = \frac{4}{52}$
+$P(\text{second ace} | \text{first ace}) = \frac{3}{51}$
+$P(\text{both aces}) = \frac{4}{52} \times \frac{3}{51} = \frac{1}{221}$
 
 ### Key Concept: Testing for Independence
 
 Events A and B are independent if and only if:
 
-[P(A \text{ and } B) = P(A) \times P(B)]
+$P(A \text{ and } B) = P(A) \times P(B)$
 or equivalently
-[P(B) = P(B | A)]
+[P(B) = P(B | A)] when P(A) > 0. The product test also applies when P(A) = 0.
 
 ## Example 1 — Independent Events and Joint Probability
 
-### Step 1: Identify Events and Apply Multiplication Rule
+### Problem
 
-**Problem 1:** Omari has 2 red sock pairs, 2 white sock pairs, 2 red T-shirts, 1 white T-shirt. Choosing a red sock pair and a white T-shirt.
-[P(\text{red socks}) = \frac{2}{4} = \frac{1}{2}]
-[P(\text{white T-shirt}) = \frac{1}{3}]
-[P(\text{both}) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6}]
+A bag contains four blue and five red marbles. Draw one uniformly, replace it, mix the bag, and draw again independently. Find the probability of two blue marbles.
 
-**Problem 2:** Dropping two coins — probability both land tails.
-[P(\text{both tails}) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}]
+### Solution
 
-**Problem 3:** Rolling a 2 on a die and landing on tails with a penny.
-[P(2 \text{ and tails}) = \frac{1}{6} \times \frac{1}{2} = \frac{1}{12}]
-
-**Problem 4:** Drawing a blue marble (with replacement) and then drawing another blue marble.
-[P(\text{first blue}) = \frac{4}{9}]
-[P(\text{second blue}) = \frac{4}{9}]
-[P(\text{both blue}) = \frac{4}{9} \times \frac{4}{9} = \frac{16}{81}]
-
-**Problem 5:** Rain on Tuesday (40%) and Wednesday (60%), independent.
-[P(\text{rain both days}) = 0.4 \times 0.6 = 0.24 = 24\%]
+Each draw has blue probability 4/9. Replacement restores the contents. Under the stated independent-draw model, the probability is (4/9)(4/9) = 16/81.
 
 ## Example 2 — Independent vs. Dependent Events
 
-### Step 1: Determine Whether One Event Affects the Other
+### Problem
 
-**Problem 6:** Rolling an even number, then spinning an odd number on a 1–5 spinner.
-Independent — rolling the die does not affect the spinner.
+Two cards are drawn successively without replacement from a standard 52-card deck. Are the events of drawing an ace first and an ace second independent?
 
-**Problem 7:** Drawing an ace, not replacing it, then drawing another ace.
-Dependent — the first ace reduces the number of aces remaining.
+### Solution
 
-**Problem 8:** Drawing a blue marble, not replacing, then drawing another blue marble.
-Dependent — the first blue marble reduces the count.
-
-**Problem 9:** Rolling a 5 on each of two fair dice.
-Independent — each die roll is independent.
+The unconditional probability that the second card is an ace is 4/52 = 1/13. Given an ace first, only three aces remain among 51 cards. The conditional probability is 3/51 = 1/17. Since it differs from 1/13, the events are dependent.
 
 ## Example 3 — Dependent Events Without Replacement
 
-### Step 1: Adjust Probabilities After Each Draw
+### Problem
 
-**Problem 10:** Drawing Sofia then Joe from 4 students (Joe, Sofia, Hayden, Bonita).
-[P(\text{Sofia first}) = \frac{1}{4}]
-[P(\text{Joe second} | \text{Sofia first}) = \frac{1}{3}]
-[P(\text{Sofia then Joe}) = \frac{1}{4} \times \frac{1}{3} = \frac{1}{12}]
+A standard 52-card deck is shuffled uniformly. Two cards are drawn without replacement. Find the probability that the first is the jack of spades and the second is black.
 
-**Problem 11:** Drawing a jack of spades first, then a black card (without replacement).
-[P(\text{jack of spades first}) = \frac{1}{52}]
-[P(\text{black second} | \text{first jack of spades}) = \frac{25}{51}]
-[P(\text{both}) = \frac{1}{52} \times \frac{25}{51} = \frac{25}{2652}]
+### Solution
 
-**Problem 12:** Jersey colors table — first jersey is red, second jersey is red.
-Find P(red first) and P(red second | red first) based on table data, then multiply.
+The first-card probability is 1/52. Given the jack of spades first, 25 black cards remain among 51 cards. The joint probability is (1/52)(25/51) = 25/2652.
 
 ## Mixed Exercises
 
@@ -135,7 +109,7 @@ Problems 13–29 provide practice with all skills:
 
 ## Review Notes
 
-* ![](media/image1.png) — Intramural volleyball jersey color and number table for Problem 12
-* ![](media/image2.png) — Microchip box table for Problems 18–19
-* ![](media/image3.png) — Probability model for Problems 20–22
-* ![](media/image4.png) — Spinner for Problems 22–23
+* ![Worksheet figure 1](/curriculum/module-7-lesson-5/image1.png) — Intramural volleyball jersey color and number table for Problem 12
+* ![Worksheet figure 2](/curriculum/module-7-lesson-5/image2.png) — Microchip box table for Problems 18–19
+* ![Worksheet figure 3](/curriculum/module-7-lesson-5/image3.png) — Probability model for Problems 20–22
+* ![Worksheet figure 4](/curriculum/module-7-lesson-5/image4.png) — Spinner for Problems 22–23

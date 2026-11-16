@@ -5,11 +5,15 @@
     "dev:stack": "node scripts/dev-stack.mjs",
     "build": "vinext build",
     "start": "vinext start",
-    "lint": "eslint . --max-warnings 0",
+    "lint": "oxlint --config ../../.oxlintrc.json . --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "ws:run": "node scripts/run-workspace.mjs"
+    "curriculum:build": "node scripts/build-curriculum.mjs && node scripts/build-calendar.mjs",
+    "curriculum:check": "node scripts/build-curriculum.mjs --check && node scripts/build-calendar.mjs --check",
+    "prebuild": "npm run curriculum:check",
+    "typecheck:backend": "tsc --noEmit -p convex/tsconfig.json",
+    "curriculum:audit": "vitest run __tests__/curriculum"
   },
   "dependencies": {
     "@math-platform/activity-runtime": "*",
@@ -34,7 +38,6 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.31.2",
-    "@eslint/eslintrc": "^3",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.3",
@@ -44,8 +47,6 @@
     "@vitejs/plugin-react": "^6.0.0",
     "@vitejs/plugin-rsc": "^0.5.37",
     "autoprefixer": "^10.4.20",
-    "eslint": "^10.0.0",
-    "eslint-config-next": "^16.0.0",
     "jsdom": "^29.0.0",
     "postcss": "^8",
     "@tailwindcss/postcss": "^4.0.0",

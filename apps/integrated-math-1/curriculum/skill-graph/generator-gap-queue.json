@@ -706,8 +706,8 @@
       "nodeId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
       "title": "3a: Express a relation as a table, a graph, a mapping, and a set of ordered pairs and identify the domain and range",
       "module": "3",
-      "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -715,8 +715,8 @@
       "nodeId": "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
       "title": "3c: Determine whether a relation represented as a graph, table, mapping, set of ordered pairs, or equation is a function",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -724,8 +724,8 @@
       "nodeId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
       "title": "3e: Determine whether a function represented by a graph, equation, table, or real-world situation is discrete, continuous, or neither",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -733,8 +733,8 @@
       "nodeId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
       "title": "3g: Estimate and interpret the x- and y-intercepts of a function from its graph and describe where the function is positive and negative",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -742,8 +742,8 @@
       "nodeId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
       "title": "3i: Identify line symmetry in the graph of a function and determine the intervals where a function is increasing, decreasing, or constant",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -751,8 +751,8 @@
       "nodeId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
       "title": "3k: Sketch graphs of real-world functions from verbal descriptions, identifying intercepts, intervals of increase and decrease, end behavior, extrema, and symmetry",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -923,8 +923,8 @@
       "title": "6i: Graph linear inequalities in two variables written in slope-intercept and standard form and write linear inequalities to model real-world constraints",
       "module": "6",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "Aggregate capability requires atomic source boundaries",
       "priority": "standard"
     },
     {
@@ -932,8 +932,8 @@
       "title": "6k: Write systems of inequalities that correspond to a given graph and determine whether an ordered pair is a solution to a system without graphing",
       "module": "6",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "Lesson 6-5 worksheet does not support this systems capability",
       "priority": "standard"
     },
     {
@@ -950,8 +950,8 @@
       "title": "7c: Solve systems of linear equations using the substitution method",
       "module": "7",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Source-only draft aggregate; no reviewed renderer contract",
+      "gap": "Aggregate substitution objective without a reviewed standalone generator",
       "priority": "standard"
     },
     {
@@ -968,71 +968,62 @@
       "title": "7g: Solve systems of linear equations using elimination when multiplication of one or both equations is required",
       "module": "7",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Planning classification only; the source is an aggregate capability",
+      "gap": "Aggregate source boundary requires atomic capability generators",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "title": "7i: Graph systems of linear inequalities and identify the overlapping solution region (feasible region)",
+      "title": "Graph a system of linear inequalities and show the common feasible region",
       "module": "7",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
-      "gap": "No generator available for IM1",
-      "priority": "standard"
-    },
-    {
-      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
-      "title": "7k: Solve real-world optimization problems by defining variables, writing a system of inequalities, graphing, and interpreting the feasible region",
-      "module": "7",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No reviewed three-mode generator for this source capability",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "title": "8a: Identify exponential behavior from data using common ratios",
+      "title": "Identify exponential behavior from equally spaced table data using common ratios",
       "module": "8",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No reviewed three-mode generator for this source capability",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
-      "title": "8c: Describe transformations of exponential functions verbally and in function notation",
+      "title": "Describe transformations of exponential functions verbally and in function notation",
       "module": "8",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
-      "title": "8d: Write equations for transformed exponential functions given a graph",
+      "title": "Write an equation for a transformed exponential function from its graph",
       "module": "8",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "title": "8f: Apply the compound-interest formula to investment and depreciation problems",
+      "title": "Calculate a compound-interest balance from principal, rate, compounding frequency, and time",
       "module": "8",
       "rendererKey": "step-by-step-solver",
       "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
-      "gap": "No generator available for IM1",
+      "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "title": "8e: Write an exponential function given two points on its graph",
+      "title": "Write an exponential function from two points",
       "module": "8",
       "rendererKey": "graphing-explorer",
       "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
-      "gap": "No generator available for IM1",
+      "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
     {
@@ -1144,6 +1135,96 @@
       "priority": "high"
     },
     {
+      "nodeId": "math.im1.skill.9.4.calculate-the-range-of-a-data-set",
+      "title": "Calculate the range of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set",
+      "title": "Determine the five-number summary of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.construct-a-box-plot-from-a-five-number-summary",
+      "title": "Construct a box plot from a five-number summary",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-interquartile-range-of-a-data-set",
+      "title": "Calculate the interquartile range of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-standard-deviation-under-a-stated-divisor-convention",
+      "title": "Calculate standard deviation under a stated divisor convention",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.interpret-standard-deviation-in-context",
+      "title": "Interpret standard deviation in context",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-outlier-removal-as-a-way-to-decrease-standard-deviation",
+      "title": "Evaluate outlier removal as a way to decrease standard deviation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-adding-mean-values-as-a-way-to-decrease-standard-deviation",
+      "title": "Evaluate adding mean values as a way to decrease standard deviation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-variability-of-statistics-across-random-samples",
+      "title": "Evaluate variability of statistics across random samples",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.explain-interquartile-range-as-middle-half-spread",
+      "title": "Explain interquartile range as middle-half spread",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
       "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
       "title": "9i: Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed",
       "module": "9",
@@ -1187,10 +1268,2801 @@
       "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.1.1.evaluate-numerical-expressions-accurately-using-the-order-of",
+      "title": "1b: Evaluate numerical expressions accurately using the order of operations",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.2.evaluate-algebraic-expressions-by-substituting-given-values",
+      "title": "1d: Evaluate algebraic expressions by substituting given values for variables and following the order of operations",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.3.use-the-commutative-associative-identity-and-inverse-propert",
+      "title": "1f: Use the commutative, associative, identity, and inverse properties to simplify calculations and justify each step",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.4.use-the-distributive-property-to-simplify-algebraic-expressi",
+      "title": "1h: Use the Distributive Property to simplify algebraic expressions and combine like terms",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.5.evaluate-absolute-value-expressions-by-substituting-given-va",
+      "title": "1j: Evaluate absolute value expressions by substituting given values and simplify correctly",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.6.determine-a-reasonable-level-of-accuracy-when-performing-mul",
+      "title": "1l: Determine a reasonable level of accuracy when performing multi-step calculations and evaluate the accuracy of reported data",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.2.1.translate-algebraic-equations-and-formulas-into-complete-ver",
+      "title": "2b: Translate algebraic equations and formulas into complete verbal sentences and interpret formulas in context",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.2.write-and-solve-one-step-equations-to-model-real-world-situa",
+      "title": "2d: Write and solve one-step equations to model real-world situations and apply the correct Property of Equality to verify solutions",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.3.solve-literal-equations-for-a-specified-variable-and-solve-e",
+      "title": "2f: Solve literal equations for a specified variable and solve equations requiring the Distributive Property",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.4.determine-whether-an-equation-has-one-solution-no-solution-o",
+      "title": "2h: Determine whether an equation has one solution, no solution, or is an identity and apply equations to geometric situations",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.6.apply-proportions-to-percent-situations-scaling-problems-and",
+      "title": "2l: Apply proportions to percent situations, scaling problems, and mixture contexts",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.7.use-dimensional-analysis-to-convert-between-units-of-measure",
+      "title": "2n: Use dimensional analysis to convert between units of measurement and apply formulas to solve real-world problems",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.1.distinguish-independent-and-dependent-variables-in-real-worl",
+      "title": "3b: Distinguish independent and dependent variables in real-world situations and interpret the meaning of axes, scale, and origin on a graph",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.evaluate-functions-using-function-notation-for-numerical-and",
+      "title": "3d: Evaluate functions using function notation for numerical and algebraic inputs and interpret function values in real-world contexts",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-an-equation-grap",
+      "title": "3f: Determine whether a function represented by an equation, graph, or table is linear or nonlinear",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.4.solve-linear-and-quadratic-equations-by-graphing-and-find-th",
+      "title": "3h: Solve linear and quadratic equations by graphing and find the zero of a linear function and explain its meaning in context",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.5.locate-relative-maxima-and-minima-on-a-graph-and-describe-th",
+      "title": "3j: Locate relative maxima and minima on a graph and describe the end behavior of a function using limit notation",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.6.compare-two-functions-by-interpreting-their-key-features-fro",
+      "title": "3l: Compare two functions by interpreting their key features from descriptions and graphs and write and analyze linear functions that model cost, revenue, and profit",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.evaluate-functions-at-numerical-inputs",
+      "title": "Evaluate functions at numerical inputs",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.evaluate-functions-at-algebraic-inputs",
+      "title": "Evaluate functions at algebraic inputs",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.interpret-function-values-in-context",
+      "title": "Interpret function values in context",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.interpret-intercepts-in-the-context-of-real-world-situations",
+      "title": "Interpret intercepts in the context of real-world situations modeled by linear functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.rewrite-linear-equations-in-equivalent-forms-to-identify-int",
+      "title": "Rewrite linear equations in equivalent forms to identify intercepts and slope",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-graph",
+      "title": "Calculate the rate of change from a graph",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-table",
+      "title": "Calculate the rate of change from a table",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-real-world-data",
+      "title": "Calculate the rate of change from real-world data",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.compute-the-slope-of-a-line-passing-through-two-given-points",
+      "title": "Compute the slope of a line passing through two given points",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.determine-whether-a-function-is-linear-by-checking-for-a-con",
+      "title": "Determine whether a function is linear by checking for a constant rate of change",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.solve-for-an-unknown-coordinate-given-two-points-and-a-targe",
+      "title": "Solve for an unknown coordinate given two points and a target slope",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.write-slope-intercept-equations-from-slope-and-y-intercept",
+      "title": "Write linear equations in slope-intercept form from a slope and y-intercept",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.rewrite-standard-form-equations-in-slope-intercept-form",
+      "title": "Rewrite linear equations from standard form into slope-intercept form",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.model-contexts-with-slope-intercept-equations-and-interpret-parameters",
+      "title": "Model real-world situations with slope-intercept equations and interpret slope and intercept",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.graph-linear-functions-from-slope-intercept-or-standard-form",
+      "title": "Graph linear functions given in slope-intercept form or standard form",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-translations-of-linear-functions-relative-to-the-parent-function",
+      "title": "Describe translations of linear functions relative to the parent function",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-dilations-of-linear-functions-relative-to-the-parent-function",
+      "title": "Describe dilations of linear functions relative to the parent function",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-reflections-of-linear-functions-relative-to-the-parent-function",
+      "title": "Describe reflections of linear functions relative to the parent function",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.distinguish-vertical-and-horizontal-transformations-from-a-function-rule",
+      "title": "Distinguish vertical and horizontal transformations from a function rule",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.write-transformed-linear-functions-from-verbal-descriptions",
+      "title": "Write transformed linear functions from verbal descriptions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.write-transformed-linear-functions-from-real-world-contexts",
+      "title": "Write transformed linear functions from real-world contexts",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.find-the-common-difference-of-an-arithmetic-sequence",
+      "title": "Find the common difference of an arithmetic sequence",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.extend-an-arithmetic-sequence",
+      "title": "Extend an arithmetic sequence using its common difference",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.write-an-explicit-equation-for-an-arithmetic-sequence",
+      "title": "Write an explicit equation for an arithmetic sequence",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.use-an-explicit-equation-to-find-a-sequence-term",
+      "title": "Use an explicit equation to find a specified term of an arithmetic sequence",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.model-a-real-world-situation-with-an-arithmetic-sequence",
+      "title": "Model a real-world situation with an arithmetic sequence",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.graph-an-arithmetic-sequence-as-a-discrete-function",
+      "title": "Graph an arithmetic sequence as a discrete function",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.answer-contextual-questions-with-an-arithmetic-sequence-model",
+      "title": "Answer contextual questions with an arithmetic sequence model",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.graph-piecewise-defined-functions",
+      "title": "Graph piecewise-defined functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.identify-the-domain-and-range-of-piecewise-defined-functions",
+      "title": "Identify the domain and range of piecewise-defined functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.graph-greatest-integer-step-functions",
+      "title": "Graph greatest integer step functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.identify-the-domain-and-range-of-step-functions",
+      "title": "Identify the domain and range of step functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.model-real-world-situations-with-piecewise-linear-functions",
+      "title": "Model real-world situations with piecewise-linear functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.model-real-world-situations-with-step-functions",
+      "title": "Model real-world situations with step functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-piecewise-functions-from-tables",
+      "title": "Write piecewise functions from tables",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-piecewise-functions-from-graphs",
+      "title": "Write piecewise functions from graphs",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-piecewise-functions-from-verbal-descriptions",
+      "title": "Write piecewise functions from verbal descriptions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-step-functions-from-tables",
+      "title": "Write step functions from tables",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-step-functions-from-graphs",
+      "title": "Write step functions from graphs",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-step-functions-from-verbal-descriptions",
+      "title": "Write step functions from verbal descriptions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-translations-of-absolute-value-functions-from-equations",
+      "title": "Describe translations of absolute value functions from equations",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.write-absolute-value-equations-from-graphs",
+      "title": "Write absolute value equations from graphs",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-dilations-of-absolute-value-functions-from-equations",
+      "title": "Describe dilations of absolute value functions from equations",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-reflections-of-absolute-value-functions-from-equations",
+      "title": "Describe reflections of absolute value functions from equations",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-combined-transformations-of-absolute-value-functions",
+      "title": "Describe combined transformations of absolute value functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.graph-absolute-value-functions",
+      "title": "Graph absolute value functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.identify-the-domain-and-range-of-absolute-value-functions",
+      "title": "Identify the domain and range of absolute value functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.model-real-world-situations-with-absolute-value-functions",
+      "title": "Model real-world situations with absolute value functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-slope-intercept-equations-from-a-point-and-slope",
+      "title": "Write slope-intercept equations from a point and slope",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.model-contexts-from-a-rate-and-initial-value",
+      "title": "Model real-world contexts from a rate and initial value",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-slope-intercept-equations-from-two-points",
+      "title": "Write slope-intercept equations from two points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-horizontal-and-vertical-line-equations-from-two-points",
+      "title": "Write horizontal and vertical line equations from two points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.model-contexts-from-two-data-points",
+      "title": "Model real-world contexts from two data points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.determine-whether-a-point-lies-on-a-line",
+      "title": "Determine whether a point lies on a line",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.find-an-additional-point-on-a-line",
+      "title": "Find an additional point on a line",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-from-graphs",
+      "title": "Write linear equations from graphs",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-from-tables",
+      "title": "Write linear equations from tables",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.interpret-slope-and-y-intercept-in-context",
+      "title": "Interpret slope and y-intercept in context",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-point-slope-equations-from-a-point-and-slope",
+      "title": "Write point-slope equations from a point and slope",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-point-slope-equations-from-two-points",
+      "title": "Write point-slope equations from two points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.convert-point-slope-form-to-slope-intercept-form",
+      "title": "Convert point-slope form to slope-intercept form",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.model-contexts-in-point-slope-form",
+      "title": "Model real-world contexts in point-slope form",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.convert-linear-equations-to-standard-form",
+      "title": "Convert linear equations to standard form",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-standard-form-equations-from-two-points",
+      "title": "Write standard-form equations from two points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-parallel-line-equations-through-a-point",
+      "title": "Write parallel-line equations through a point",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-perpendicular-line-equations-through-a-point",
+      "title": "Write perpendicular-line equations through a point",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.classify-lines-as-parallel-perpendicular-or-neither",
+      "title": "Classify lines as parallel, perpendicular, or neither",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.graph-lines-from-point-slope-information",
+      "title": "Graph lines from point-slope information",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-standard-form-equations-from-intercepts",
+      "title": "Write standard-form equations from intercepts",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.find-a-missing-coordinate-for-collinear-points",
+      "title": "Find a missing coordinate for collinear points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.classify-scatter-plot-correlation",
+      "title": "Classify scatter-plot correlation",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.interpret-scatter-plot-correlation-in-context",
+      "title": "Interpret scatter-plot correlation in context",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.construct-scatter-plots-from-paired-data",
+      "title": "Construct scatter plots from paired data",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.draw-reasonable-lines-of-fit",
+      "title": "Draw reasonable lines of fit",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.write-line-of-fit-equations-from-specified-points",
+      "title": "Write line-of-fit equations from specified points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.write-equations-from-student-selected-fit-points",
+      "title": "Write equations from student-selected fit points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.predict-response-values-with-lines-of-fit",
+      "title": "Predict response values with lines of fit",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.estimate-explanatory-values-with-lines-of-fit",
+      "title": "Estimate explanatory values with lines of fit",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.evaluate-extrapolation-reliability-and-assumptions",
+      "title": "Evaluate extrapolation reliability and assumptions",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.interpret-line-of-fit-intercepts-in-context",
+      "title": "Interpret line-of-fit intercepts in context",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.compare-lines-of-fit-and-justify-model-choice",
+      "title": "Compare lines of fit and justify model choice",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.create-contexts-with-specified-correlation-patterns",
+      "title": "Create contexts with specified correlation patterns",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.assess-causal-interpretations-of-described-relationships",
+      "title": "Assess causal interpretations of described relationships",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.explain-correlation-and-causation-classifications-with-evidence",
+      "title": "Explain correlation and causation classifications with evidence",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.identify-lurking-variables-or-common-causes",
+      "title": "Identify lurking variables or common causes",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.explain-why-correlation-alone-does-not-establish-causation",
+      "title": "Explain why correlation alone does not establish causation",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.critique-causal-conclusions-from-correlational-evidence",
+      "title": "Critique causal conclusions from correlational evidence",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.calculate-linear-regression-equations-with-technology",
+      "title": "Use technology to calculate linear regression equations",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.calculate-correlation-coefficients-with-technology",
+      "title": "Use technology to calculate correlation coefficients",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.interpret-correlation-direction-and-strength-in-context",
+      "title": "Interpret correlation direction and strength in context",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.calculate-residuals-from-observed-and-predicted-values",
+      "title": "Calculate residuals from observed and predicted values",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.construct-residual-plots",
+      "title": "Construct residual plots",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.assess-linear-model-appropriateness-from-residual-plots",
+      "title": "Assess linear model appropriateness from residual plots",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.identify-contextual-constraints-on-regression-models",
+      "title": "Identify contextual constraints on regression models",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.relate-correlation-sign-and-magnitude-to-linear-model-fit",
+      "title": "Relate correlation sign and magnitude to linear model fit",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.compare-student-selected-lines-of-fit-with-regression-models",
+      "title": "Compare student-selected lines of fit with regression models",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.evaluate-sample-support-for-population-predictions",
+      "title": "Evaluate whether sample data support population predictions",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverse-relations-from-tables",
+      "title": "Find inverse relations from tables",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverse-relations-from-ordered-pairs",
+      "title": "Find inverse relations from ordered pairs",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-domain-and-range-under-inversion",
+      "title": "Relate domain and range under inversion",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.graph-inverse-relations-by-reflecting-across-y-equals-x",
+      "title": "Graph inverse relations by reflecting across y = x",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverses-of-nonconstant-linear-functions-algebraically",
+      "title": "Find inverses of nonconstant linear functions algebraically",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.interpret-inverse-function-inputs-and-outputs-in-context",
+      "title": "Interpret inverse-function inputs and outputs in context",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.use-inverse-functions-to-solve-contextual-problems",
+      "title": "Use inverse functions to solve contextual problems",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.write-inverse-functions-from-linear-equations-in-two-variables",
+      "title": "Write inverse functions from linear equations in two variables",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.construct-inverse-linear-equations-from-slope-and-point-conditions",
+      "title": "Construct inverse linear equations from slope and point conditions",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.match-linear-functions-with-graphs-of-their-inverses",
+      "title": "Match linear functions with graphs of their inverses",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.verify-inverse-relations-by-reversing-ordered-pairs",
+      "title": "Verify inverse relations by reversing ordered pairs",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.verify-inverse-functions-by-graphing-with-y-equals-x",
+      "title": "Verify inverse functions by graphing with y = x",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-slopes-of-nonconstant-linear-functions-and-their-inverses",
+      "title": "Relate slopes of nonconstant linear functions and their inverses",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-intercepts-of-linear-relations-and-their-inverses",
+      "title": "Relate intercepts of linear relations and their inverses",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.distinguish-inverse-function-notation-from-reciprocal-notation",
+      "title": "Distinguish inverse-function notation from reciprocal notation",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.solve-unknown-parameters-from-inverse-function-conditions",
+      "title": "Solve unknown parameters from inverse-function conditions",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.evaluate-whether-point-evidence-proves-functions-are-inverses",
+      "title": "Evaluate whether point evidence proves functions are inverses",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-symbolic-inequalities-on-number-lines",
+      "title": "Graph symbolic inequalities on number lines",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.write-inequalities-from-number-line-graphs",
+      "title": "Write inequalities from number-line graphs",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-by-addition-or-subtraction",
+      "title": "Solve one-step inequalities by addition or subtraction",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-inequalities-with-variable-terms-on-both-sides",
+      "title": "Solve inequalities with variable terms on both sides",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.write-inequalities-from-contextual-statements",
+      "title": "Write inequalities from contextual statements",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-contextual-inequalities",
+      "title": "Solve contextual inequalities",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.interpret-inequality-solutions-in-context",
+      "title": "Interpret inequality solutions in context",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-with-positive-factors",
+      "title": "Solve one-step inequalities with positive factors",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-with-negative-factors",
+      "title": "Solve one-step inequalities with negative factors and reverse the inequality symbol",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-solved-one-step-inequalities-on-number-lines",
+      "title": "Graph solved one-step inequalities on number lines",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.translate-comparative-statements-into-symbolic-inequalities",
+      "title": "Translate comparative statements into symbolic inequalities",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.check-whether-values-satisfy-inequalities",
+      "title": "Check whether values satisfy inequalities",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.diagnose-inequality-solving-errors",
+      "title": "Diagnose inequality-solving errors",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-literal-inequalities-with-unknown-coefficient-signs",
+      "title": "Solve literal inequalities with unknown coefficient signs",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.analyze-reciprocal-inequality-order-across-sign-cases",
+      "title": "Analyze reciprocal inequality order across sign cases",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-by-simplifying-and-collecting-terms",
+      "title": "Solve multi-step linear inequalities by simplifying and collecting terms",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.apply-the-distributive-property-in-linear-inequalities",
+      "title": "Apply the Distributive Property in linear inequalities, including a negative factor",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.classify-no-solution-and-all-real-number-inequalities",
+      "title": "Classify inequalities as no solution or all real numbers after variable terms cancel",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.generalize-contextual-inequality-models-with-parameterized-unit-intervals",
+      "title": "Generalize contextual inequality models with parameterized unit intervals",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.construct-multi-step-inequalities-with-specified-solution-sets",
+      "title": "Construct multi-step inequalities with specified solution sets and algebraic properties",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.explain-and-justify-multi-step-inequality-transformations",
+      "title": "Explain and justify transformations in multi-step inequality solutions",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.analyze-dependent-geometric-constraints-with-linear-inequalities",
+      "title": "Analyze dependent geometric constraints with linear inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-and-compound-inequalities-as-intersections",
+      "title": "Solve compound inequalities joined by and as intersections",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-or-compound-inequalities-as-unions",
+      "title": "Solve compound inequalities joined by or as unions",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-three-part-linear-inequalities",
+      "title": "Solve three-part linear inequalities by applying each operation to all three parts",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.simplify-overlapping-and-special-compound-solution-sets",
+      "title": "Simplify compound solution sets with overlap, absorption, all real numbers, or the empty set",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.graph-compound-inequality-solution-sets",
+      "title": "Graph compound inequality solution sets on number lines",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.write-compound-inequalities-from-number-line-graphs",
+      "title": "Write compound inequalities from number-line graphs",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.model-bounded-contextual-ranges-with-compound-inequalities",
+      "title": "Model bounded contextual ranges with compound inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.model-exterior-contextual-conditions-with-compound-inequalities",
+      "title": "Model exterior or disjoint contextual conditions with compound inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.compare-unions-and-intersections-of-graphed-solution-sets",
+      "title": "Compare unions and intersections of graphed solution sets",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.classify-structural-claims-about-compound-inequalities",
+      "title": "Classify structural claims about compound inequalities as always, sometimes, or never true",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.rewrite-and-solve-less-than-absolute-value-inequalities",
+      "title": "Rewrite and solve less-than absolute value inequalities as bounded and inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.rewrite-and-solve-greater-than-absolute-value-inequalities",
+      "title": "Rewrite and solve greater-than absolute value inequalities as exterior or inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.classify-negative-bound-absolute-value-inequalities",
+      "title": "Classify negative-bound absolute value inequalities as no solution or all real numbers",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.isolate-scaled-absolute-value-expressions-before-solving",
+      "title": "Isolate scaled or rational absolute value expressions before solving",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.model-centered-within-tolerance-ranges-with-absolute-value-inequalities",
+      "title": "Model centered within-tolerance ranges with absolute value inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.model-values-outside-centered-ranges-with-absolute-value-inequalities",
+      "title": "Model values outside centered ranges with absolute value inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-bounded-graphs",
+      "title": "Write absolute value inequalities from symmetric bounded number-line graphs",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-exterior-graphs",
+      "title": "Write absolute value inequalities from symmetric exterior number-line graphs",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.solve-two-sided-bounds-on-absolute-value-expressions",
+      "title": "Solve two-sided bounds on absolute value expressions",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.analyze-equivalence-and-structural-claims-about-absolute-value-inequalities",
+      "title": "Analyze equivalence and structural claims about absolute value and compound inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.construct-absolute-value-inequalities-from-numerical-constraints",
+      "title": "Construct absolute value inequalities from specified numerical constraints",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+      "title": "Graph linear inequalities in slope-intercept form",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+      "title": "Rewrite and graph linear inequalities from standard form with a positive y coefficient",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+      "title": "Use boundary inclusion and a valid test point to select a solution half-plane",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+      "title": "Graph one-variable inequalities as horizontal or vertical half-planes",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+      "title": "Model a contextual constraint with one two-variable linear inequality and state the source-supported variable domain",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+      "title": "Check whether an ordered pair satisfies a two-variable inequality",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+      "title": "Find and interpret feasible integer solutions to one contextual linear inequality",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+      "title": "Optimize a discrete integer quantity under one contextual linear inequality",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+      "title": "Analyze a continuous bound and whether an endpoint is attained",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+      "title": "Construct a two-variable linear inequality from required solution and nonsolution points",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+      "title": "Analyze and explain errors in a graph of a two-variable inequality",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+      "title": "Determine a system solution from a graph",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph",
+      "title": "Determine the number of solutions from a graph",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+      "title": "Classify a linear system by its solution set",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+      "title": "Determine the number of solutions from equation structure",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+      "title": "Write a two-equation system from a context",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "title": "Solve and interpret a contextual system",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system",
+      "title": "Solve a linear equation by graphing its two sides as a system",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision",
+      "title": "Report an approximate system solution to a specified precision",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window",
+      "title": "Evaluate a graphical claim when an intersection is outside the viewing window",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations",
+      "title": "Reason about common solutions of three linear equations",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+      "title": "Construct systems with a specified number of solutions",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+      "title": "Explain the limits of graphing as a system-solving method",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "title": "Substitute an isolated expression to solve a one-solution linear system",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "title": "Recognize no solution or infinitely many solutions during substitution",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "title": "Represent a two-digit number and its digit reversal with linear equations",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "title": "Diagnose and correct an algebraic substitution error",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "title": "Choose an efficient substitution expression and justify the choice",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "title": "Generalize a complementary-angle sum-and-difference system",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "title": "Choose addition or subtraction to eliminate a variable from an aligned linear system",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "title": "Solve a one-solution linear system by direct elimination and show the equation-combination step",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination",
+      "title": "Select one or two equation scale factors that create equal or opposite coefficients",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "title": "Solve a one-solution linear system by scaling equations and elimination",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination",
+      "title": "Diagnose and correct equation-combination errors in an elimination solution",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.choose-between-substitution-and-elimination",
+      "title": "Choose substitution or elimination for a linear system and justify the choice",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier",
+      "title": "Construct a linear system that supports a specified elimination multiplier",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
+      "title": "Determine a missing solution coordinate and equation parameter from a partially specified system solution",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.write-a-system-of-linear-inequalities-from-a-shaded-region",
+      "title": "Write a system of linear inequalities from boundary lines and a shaded intersection",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.check-an-ordered-pair-against-a-system-of-inequalities",
+      "title": "Check whether an ordered pair satisfies every inequality in a system",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.model-contextual-constraints-with-a-system-of-linear-inequalities",
+      "title": "Define variables and model contextual constraints with a system of linear inequalities",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-and-interpret-viable-solutions-to-a-contextual-system",
+      "title": "Find and interpret points that satisfy a contextual system of inequalities",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.classify-a-system-feasible-set-from-boundary-relationships",
+      "title": "Classify the feasible set of a linear inequality system from its boundary relationships",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.construct-a-system-of-linear-inequalities-with-no-solution",
+      "title": "Construct a system of linear inequalities with an empty feasible set",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region",
+      "title": "Find the area of a bounded feasible region for a system of inequalities",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "title": "Determine and interpret the initial value or y-intercept of an exponential function",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "title": "Classify growth or decay in an exponential model and explain the direction of change",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "title": "Determine the horizontal asymptote of an exponential function from its equation or graph",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "title": "Graph an exponential function from its equation",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "title": "Determine the domain and range of an exponential function from its equation or graph",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "title": "Determine and interpret a context-relevant domain and range for an exponential model",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "title": "Evaluate and interpret an exponential model at a given input",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
+      "title": "Justify why a nonzero exponential function has no x-intercept",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-translations-of-exponential-functions-from-equations",
+      "title": "Describe vertical translations of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-translations-of-exponential-functions-from-equations",
+      "title": "Describe horizontal translations of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-reflections-of-exponential-functions-from-equations",
+      "title": "Describe reflections of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-vertical-dilations-of-exponential-functions-from-equations",
+      "title": "Describe vertical dilations of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-horizontal-dilations-of-exponential-functions-from-equations",
+      "title": "Describe horizontal dilations of exponential functions from equations",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-a-transformed-exponential-equation-from-a-verbal-description",
+      "title": "Write a transformed exponential equation from a verbal description",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.justify-equivalent-exponential-transformations-using-properties-of-exponents",
+      "title": "Justify equivalent exponential transformations using properties of exponents",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.determine-and-justify-the-common-point-of-two-exponential-functions",
+      "title": "Determine and justify the common point of two exponential functions",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "title": "Write an exponential growth or decay model from context",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "title": "Write a compound-interest model from financial terms",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "title": "Write an exponential function from equally spaced table data",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "title": "Solve an exponential model for time with technology",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "title": "Determine the percent growth rate from an exponential growth factor",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
+      "title": "Determine an effective percent rate for a specified time interval",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "title": "Compare exponential growth or decay rates across different time units",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.extend-a-geometric-sequence-forward-or-backward-using-its-common-ratio",
+      "title": "Extend a geometric sequence forward or backward using its common ratio",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.evaluate-a-specified-term-of-a-geometric-sequence-with-an-explicit-formula",
+      "title": "Evaluate a specified term of a geometric sequence with an explicit formula",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms",
+      "title": "Write an explicit formula for a geometric sequence from displayed terms",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.determine-an-initial-term-from-two-nonconsecutive-geometric-sequence-terms",
+      "title": "Determine an initial term from two nonconsecutive geometric-sequence terms",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "title": "Write a recursive formula from displayed sequence terms",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "title": "Write a recursive formula from a discrete sequence graph",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "title": "Convert an explicit arithmetic formula to a recursive formula",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "title": "Convert a recursive arithmetic formula to an explicit formula",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "title": "Convert an explicit geometric formula to a recursive formula",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "title": "Convert a recursive geometric formula to an explicit formula",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-the-arithmetic-mean-of-a-data-set",
+      "title": "Calculate the arithmetic mean of a data set",
+      "module": "9",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.determine-the-median-of-a-data-set",
+      "title": "Determine the median of a data set",
+      "module": "9",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.identify-all-modes-of-a-data-set",
+      "title": "Identify all modes of a data set",
+      "module": "9",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-a-percentile-rank-under-a-stated-counting-convention",
+      "title": "Calculate a percentile rank under a stated counting convention",
+      "module": "9",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "title": "Construct a quantitative dot plot from raw values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "title": "Scale a dot-plot number line",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "title": "Construct a bar graph from categorical frequencies",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "title": "Construct a histogram from grouped frequencies",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "title": "Classify count data as discrete",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "title": "Select an appropriate data display and justify the choice",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "title": "Choose histogram intervals for measurement data",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "title": "Construct a categorical dot display from frequencies",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "title": "Identify the greatest value in a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "title": "Count values below a threshold",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-represented-categories",
+      "title": "Count represented categories",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "title": "Identify the category with the greatest frequency",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "title": "Draw and justify conclusions from a data display",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "title": "Explain when and how to construct a histogram",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "title": "Explain why a dot-plot scale may be needed",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "title": "Compare bar graphs and histograms",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "title": "Identify the intended population for a survey",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "title": "Identify sample bias in a sampling method",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "title": "Design an unbiased sampling method",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "title": "Identify bias in survey wording",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "title": "Identify contextual bias around a survey",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "title": "Identify who benefits from survey bias",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "title": "Select a measure of center and justify the selection",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "title": "Evaluate graph scale misrepresentation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "title": "Explain how axis scale affects a data display",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "title": "Compare sampling frames for bias",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "title": "Explain bias from selected survey information",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "title": "Evaluate pictorial graph misrepresentation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "title": "Predict how an outlier affects measure selection",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "title": "Evaluate contextual accuracy of a rounded statistic",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "title": "Describe a method for assessing sample bias",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "title": "Predict the mean after adding a constant to all values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "title": "Predict the median after adding a constant to all values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "title": "Construct a biased comparative data display",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "title": "Create a scenario with sample bias",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
+      "title": "Evaluate when a biased sample can be valid",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.group-raw-values-into-stated-histogram-intervals",
+      "title": "Group raw values into stated histogram intervals",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-shape-from-a-histogram",
+      "title": "Describe distribution shape from a histogram",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-bounded-shape-features-from-a-box-plot",
+      "title": "Describe bounded shape features from a box plot",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-center-from-a-box-plot",
+      "title": "Describe distribution center from a box plot",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-spread-from-a-box-plot",
+      "title": "Describe distribution spread from a box plot",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.select-a-measure-of-spread-and-justify-the-selection",
+      "title": "Select a measure of spread and justify the selection",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-center-statistic",
+      "title": "Describe an outlier's effect on a named center statistic",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-spread-statistic",
+      "title": "Describe an outlier's effect on a named spread statistic",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.compare-distribution-centers-using-given-evidence",
+      "title": "Compare distribution centers using given evidence",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.compare-distribution-spreads-using-given-evidence",
+      "title": "Compare distribution spreads using given evidence",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-a-distribution-from-partial-frequency-and-extreme-value-information",
+      "title": "Describe a distribution from partial frequency and extreme-value information",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-the-effect-of-removing-extreme-values-on-a-distribution",
+      "title": "Describe the effect of removing extreme values on a distribution",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.match-histograms-and-box-plots-by-distribution-features",
+      "title": "Match histograms and box plots by distribution features",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.define-a-bimodal-distribution-using-researched-sources",
+      "title": "Define a bimodal distribution using researched sources",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-center-and-spread-for-a-bimodal-distribution",
+      "title": "Describe center and spread for a bimodal distribution",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.create-a-real-world-data-example-with-a-stated-distribution-shape",
+      "title": "Create a real-world data example with a stated distribution shape",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.explain-when-mean-and-standard-deviation-suit-a-symmetrical-distribution",
+      "title": "Explain when mean and standard deviation suit a symmetrical distribution",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.explain-why-median-and-quartiles-help-describe-a-skewed-distribution",
+      "title": "Explain why median and quartiles help describe a skewed distribution",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
     }
   ],
   "meta": {
-    "totalSkills": 138,
-    "allNeedGenerators": true
+    "totalSkills": 451,
+    "allNeedGenerators": true,
+    "total": 451
   }
 }

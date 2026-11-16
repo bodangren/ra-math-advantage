@@ -82,7 +82,7 @@ For [x^2 - 11x - 26 = 0]: [D = 121 + 104 = 225 > 0], so two distinct real roots.
 
 ### Step 2: Describe Number and Type of Roots
 
-For [3x^2 - 2x = 0]: [D = 0 - 0 = 0]... wait, let me recalculate. Actually [b^2 - 4ac = 0 - 0 = 0], so one real root (double root).
+For [3x^2 - 2x = 0]: [D = (-2)^2 - 4(3)(0) = 4], so two distinct real roots: [x = 0] and [x = 2/3].
 
 For [5x^2 - 6 = 0]: [D = 0 - 4(5)(-6) = 120 > 0], two distinct real irrational roots.
 

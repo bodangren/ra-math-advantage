@@ -1,382 +1,585 @@
 {
   "schemaVersion": "class-period-package.v1",
   "unit": 12,
-  "generatedFrom": "curriculum/unit-12-class-period-plan.md",
   "periods": [
     {
-      "periodId": "u12-p01",
-      "unit": 12,
-      "period": 1,
+      "periodId": "m12-p01",
+      "number": 155,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-1",
-      "objectiveCode": "12a",
-      "objective": "Graph quadratic functions in vertex form and identify the vertex, axis of symmetry, and direction of opening.",
-      "workedExamples": "12-1, Examples 1-3 — Graph y = (x − 2)² + 3; Graph y = −2(x + 1)² + 4; Write Vertex Form Given Vertex and Point",
-      "embeddedObjectives": ["12b"],
-      "problemTypes": ["quadratic_vertex_form"],
-      "notes": "Core vertex-form graphing: two graphs with different orientations plus equation writing from vertex and point.",
+      "sourceLesson": "module-12-lesson-1",
+      "objective": "Identify the axis of symmetry, vertex, and end behavior of a quadratic function from its graph.",
+      "embeddedObjectives": [
+        "Graph a quadratic function using a table of values or by finding key features.",
+        "Interpret the key features of a quadratic model in context (maximum height, zeros, y-intercept).",
+        "Use quadratic functions to model real-world situations such as projectile motion and architecture."
+      ],
+      "workedExamples": [
+        "Example 1 — Identify Key Features from a Graph",
+        "Example 2 — Graph Quadratic Functions Using Key Features"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12a with one retrieval prompt identifying the vertex from y = (x − 3)² − 1.",
-        "conceptDevelopment": "Use 12-1, Examples 1-3 to develop: graph a quadratic in vertex form by plotting the vertex, drawing the axis of symmetry, and plotting symmetric points; graph a downward-opening parabola with a negative leading coefficient; and write vertex form given the vertex and a point on the parabola.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-1, Examples 1-3: graph from vertex form and write equations from vertex + point; teacher checks vertex identification and symmetry plotting.",
-        "independentPractice": "Students complete aligned practice on quadratic_vertex_form: graphing and equation-writing problems.",
-        "assessment": "Exit ticket: one graph-from-vertex-form problem and one write-vertex-form problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with graphing quadratic functions in vertex form."
+        "warmUp": "Factor x squared - 25 as (x - a)(x + a), where a is positive. Find a.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-1",
+          "workedExamples": [
+            "Example 1 — Identify Key Features from a Graph"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-1",
+          "workedExamples": [
+            "Example 2 — Graph Quadratic Functions Using Key Features"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-1",
+          "prompt": "Find the x-coordinate of the vertex of y = x squared - 6x + 5."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-1",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in graphing quadratic functions required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u12-p02",
-      "unit": 12,
-      "period": 2,
+      "periodId": "m12-p02",
+      "number": 156,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-1",
-      "objectiveCode": "12a",
-      "objective": "Describe transformations from the parent function; find maximum/minimum values; model projectile height.",
-      "workedExamples": "12-1, Examples 4-6 — Identify Transformations from Parent Function; Find Maximum or Minimum Value; Real-World Projectile Height Model",
-      "embeddedObjectives": ["12b"],
-      "problemTypes": ["quadratic_vertex_form"],
-      "notes": "Transformation description, max/min identification, and projectile modeling.",
+      "sourceLesson": "module-12-lesson-2",
+      "objective": "Describe how the graph of a quadratic function relates to the parent function [y = x^2] based on translations and dilations.",
+      "embeddedObjectives": [
+        "Identify the effect of changing the coefficient a and the constant term k on the parabola's shape and position.",
+        "Use transformations to graph quadratic functions without plotting many points.",
+        "Write quadratic equations given the graph using transformations."
+      ],
+      "workedExamples": [
+        "Example 1 — Describe Vertical and Horizontal Translations",
+        "Example 2 — Describe Dilations from Coefficients"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12a with one retrieval prompt describing how y = 2(x − 1)² + 5 differs from the parent function y = x².",
-        "conceptDevelopment": "Use 12-1, Examples 4-6 to develop: describe vertical/horizontal shifts, reflections, and stretches from vertex form, find the maximum or minimum value, and model projectile height with a quadratic function.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-1, Examples 4-6: describe transformations and find extrema; teacher checks transformation vocabulary.",
-        "independentPractice": "Students complete aligned practice on quadratic_vertex_form: transformation description, max/min, and projectile problems.",
-        "assessment": "Exit ticket: one transformation description and one max/min identification.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with quadratic transformations."
+        "warmUp": "Find the x-coordinate of the vertex of y = x squared - 6x + 5.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-2",
+          "workedExamples": [
+            "Example 1 — Describe Vertical and Horizontal Translations"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-2",
+          "workedExamples": [
+            "Example 2 — Describe Dilations from Coefficients"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-2",
+          "prompt": "The graph of y = x squared is shifted 4 units right and 2 units down. Find the y-coordinate of its new vertex."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-2",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in transformations of quadratic functions required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u12-p03",
-      "unit": 12,
-      "period": 3,
+      "periodId": "m12-p03",
+      "number": 157,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-2",
-      "objectiveCode": "12b",
-      "objective": "Factor and solve quadratic equations with leading coefficient 1.",
-      "workedExamples": "12-2, Example 1 — Factor and Solve x² − 9x + 20 = 0",
-      "embeddedObjectives": ["12c", "12d"],
-      "problemTypes": ["factoring_quadratics"],
-      "notes": "Foundational factoring with leading coefficient 1. Split from original dense day to isolate the simpler case before extending to leading coefficient ≠ 1.",
+      "sourceLesson": "module-12-lesson-3",
+      "objective": "Solve quadratic equations by finding the x-intercepts of the related quadratic function.",
+      "embeddedObjectives": [
+        "Estimate solutions when the exact x-intercepts are not integers.",
+        "Interpret the zeros of a quadratic function in real-world contexts.",
+        "Use graphing to find approximate solutions to quadratic equations."
+      ],
+      "workedExamples": [
+        "Example 1 — Identify a Quadratic with No Real Solutions",
+        "Example 2 — Solve Quadratics with Non-Integer Solutions"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12b with one retrieval prompt on finding two numbers that multiply to 20 and add to −9.",
-        "conceptDevelopment": "Use 12-2, Example 1 to develop: factor and solve quadratic trinomials with leading coefficient 1 by finding two numbers that multiply to c and add to b.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-2, Example 1: factor and solve quadratics with leading coefficient 1; teacher checks factor-pair identification.",
-        "independentPractice": "Students complete aligned practice on factoring_quadratics: leading-coefficient-1 problems.",
-        "assessment": "Exit ticket: one solve-by-factoring problem with leading coefficient 1.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with factoring quadratic equations."
+        "warmUp": "The graph of y = x squared is shifted 4 units right and 2 units down. Find the y-coordinate of its new vertex.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-3",
+          "workedExamples": [
+            "Example 1 — Identify a Quadratic with No Real Solutions"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-3",
+          "workedExamples": [
+            "Example 2 — Solve Quadratics with Non-Integer Solutions"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-3",
+          "prompt": "The graph y = x squared - 4 crosses the x-axis twice. Find the positive x-intercept."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-3",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in solving quadratic equations by graphing required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u12-p04",
-      "unit": 12,
-      "period": 4,
+      "periodId": "m12-p04",
+      "number": 158,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-2",
-      "objectiveCode": "12b",
-      "objective": "Factor and solve quadratic equations with leading coefficient ≠ 1.",
-      "workedExamples": "12-2, Example 2 — Factor and Solve 3x² + 10x − 8 = 0",
-      "embeddedObjectives": ["12c", "12d"],
-      "problemTypes": ["factoring_quadratics"],
-      "notes": "Extending to AC method with leading coefficient ≠ 1.",
+      "sourceLesson": "module-12-lesson-4",
+      "objective": "Solve quadratic equations by factoring and using the Zero Product Property.",
+      "embeddedObjectives": [
+        "Recognize and factor difference of squares, perfect square trinomials, and general trinomials.",
+        "Write quadratic functions given zeros or a graph.",
+        "Apply factoring to solve real-world problems involving area, consecutive integers, and free fall."
+      ],
+      "workedExamples": [
+        "Example 1 — Solve Equations with Squares and Simple Factors",
+        "Example 2 — Solve Equations with Trinomials"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12b with one retrieval prompt on the AC method: multiply a and c, then find factor pairs.",
-        "conceptDevelopment": "Use 12-2, Example 2 to develop: factor and solve quadratic trinomials with leading coefficient ≠ 1 using the AC method.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-2, Example 2: factor and solve quadratics with leading coefficient ≠ 1; teacher checks AC method setup.",
-        "independentPractice": "Students complete aligned practice on factoring_quadratics: leading-coefficient-not-1 problems.",
-        "assessment": "Exit ticket: one solve-by-factoring problem with leading coefficient ≠ 1.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with the AC method."
+        "warmUp": "The graph y = x squared - 4 crosses the x-axis twice. Find the positive x-intercept.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-4",
+          "workedExamples": [
+            "Example 1 — Solve Equations with Squares and Simple Factors"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-4",
+          "workedExamples": [
+            "Example 2 — Solve Equations with Trinomials"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-4",
+          "prompt": "Solve x squared - 5x + 6 = 0 by factoring. Enter the smaller solution."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-4",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in solving quadratic equations by factoring required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u12-p05",
-      "unit": 12,
-      "period": 5,
+      "periodId": "m12-p05",
+      "number": 159,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-2",
-      "objectiveCode": "12c",
-      "objective": "Factor difference of squares quadratics; determine whether a quadratic can be factored.",
-      "workedExamples": "12-2, Examples 3-5 — Factor Difference of Squares 4x² − 49 = 0; Determine if a Quadratic Can Be Factored; Application: Find Dimensions of a Rectangle",
-      "embeddedObjectives": ["12d"],
-      "problemTypes": ["factoring_quadratics"],
-      "notes": "Difference-of-squares solving, discriminant-based factorability test, and geometric application.",
+      "sourceLesson": "module-12-lesson-4",
+      "objective": "Recognize and factor difference of squares, perfect square trinomials, and general trinomials.",
+      "embeddedObjectives": [
+        "Write quadratic functions given zeros or a graph.",
+        "Apply factoring to solve real-world problems involving area, consecutive integers, and free fall."
+      ],
+      "workedExamples": [
+        "Example 3 — Solve Equations with Divided Terms",
+        "Example 4 — Use Roots to Sketch the Related Function",
+        "Example 5 — Real-World Problems"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12c with one retrieval prompt factoring x² − 36 as a difference of squares.",
-        "conceptDevelopment": "Use 12-2, Examples 3-5 to develop: factor and solve 4x² − 49 = 0 using the difference of squares pattern, determine if a quadratic can be factored over the integers, and apply factoring to find the dimensions of a rectangle given its area expression.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-2, Examples 3-5: factor difference of squares and test factorability; teacher checks pattern recognition.",
-        "independentPractice": "Students complete aligned practice on factoring_quadratics: difference of squares, factorability testing, and geometric applications.",
-        "assessment": "Exit ticket: one difference-of-squares factoring and one factorability determination.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with factoring difference of squares quadratics."
+        "warmUp": "Solve x squared - 5x + 6 = 0 by factoring. Enter the smaller solution.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-4",
+          "workedExamples": [
+            "Example 3 — Solve Equations with Divided Terms"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-4",
+          "workedExamples": [
+            "Example 4 — Use Roots to Sketch the Related Function",
+            "Example 5 — Real-World Problems"
+          ]
+        },
+        "independentPractice": {
+          "sourceLesson": "module-12-lesson-4",
+          "workedExamples": [
+            "Example 3 — Solve Equations with Divided Terms",
+            "Example 4 — Use Roots to Sketch the Related Function",
+            "Example 5 — Real-World Problems"
+          ]
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-4",
+          "requireExplanation": true
+        },
+        "capReflection": "Explain how the additional examples change your understanding of solving quadratic equations by factoring."
       }
     },
     {
-      "periodId": "u12-p06",
-      "unit": 12,
-      "period": 6,
+      "periodId": "m12-p06",
+      "number": 160,
+      "unitNumber": 12,
+      "dayType": "instruction",
+      "sourceLesson": "module-12-lesson-5",
+      "objective": "Find the value of c that completes the square for a trinomial in the form [x^2 + bx].",
+      "embeddedObjectives": [
+        "Solve quadratic equations by completing the square.",
+        "Write quadratic equations in vertex form by completing the square.",
+        "Identify the axis of symmetry, extrema, and zeros from the vertex form.",
+        "Apply completing the square to real-world problems involving projectile motion and optimization."
+      ],
+      "workedExamples": [
+        "Example 1 — Find the Value of c",
+        "Example 2 — Solve Equations by Completing the Square"
+      ],
+      "dailyPhases": {
+        "warmUp": "Solve x squared - 5x + 6 = 0 by factoring. Enter the smaller solution.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-5",
+          "workedExamples": [
+            "Example 1 — Find the Value of c"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-5",
+          "workedExamples": [
+            "Example 2 — Solve Equations by Completing the Square"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-5",
+          "prompt": "Complete the square: x squared + 6x + c = (x + 3) squared. Find c."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-5",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in solving quadratic equations by completing the square required a change in your method? Explain the change."
+      }
+    },
+    {
+      "periodId": "m12-p07",
+      "number": 161,
+      "unitNumber": 12,
       "dayType": "mastery",
-      "notes": "Mastery cycle on 12a-12c.",
-      "nonInstructionArtifact": {
-        "artifactType": "mastery",
-        "objectiveScope": "Mastery cycle on 12a-12c.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
-      }
+      "sourceLessons": [
+        "module-12-lesson-1",
+        "module-12-lesson-2",
+        "module-12-lesson-3",
+        "module-12-lesson-4",
+        "module-12-lesson-5"
+      ],
+      "questionIds": [
+        "module-12-lesson-1",
+        "module-12-lesson-2",
+        "module-12-lesson-3",
+        "module-12-lesson-4",
+        "module-12-lesson-5"
+      ],
+      "task": "Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer."
     },
     {
-      "periodId": "u12-p07",
-      "unit": 12,
-      "period": 7,
-      "dayType": "review",
-      "notes": "Mid-unit review on 12a-12c.",
-      "nonInstructionArtifact": {
-        "artifactType": "review",
-        "objectiveScope": "Mid-unit review on 12a-12c.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
-      }
-    },
-    {
-      "periodId": "u12-p08",
-      "unit": 12,
-      "period": 8,
+      "periodId": "m12-p08",
+      "number": 162,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-3",
-      "objectiveCode": "12d",
-      "objective": "Complete the square for expressions and convert quadratic functions from standard form to vertex form.",
-      "workedExamples": "12-3, Examples 1-3 — Complete the Square: x² + 6x; Solve x² + 8x + 5 = 0 by Completing the Square; Convert y = x² − 4x + 1 to Vertex Form",
-      "embeddedObjectives": ["12e"],
-      "problemTypes": ["completing_the_square"],
-      "notes": "Square completion process, solving by completing the square, and standard-to-vertex conversion.",
+      "sourceLesson": "module-12-lesson-6",
+      "objective": "Apply the Quadratic Formula to solve quadratic equations written in standard form.",
+      "embeddedObjectives": [
+        "Use the discriminant to determine the number and type of solutions of a quadratic equation.",
+        "Solve real-world problems modeled by quadratic equations, including business, physics, and geometry contexts."
+      ],
+      "workedExamples": [
+        "Example 1 — Solve Quadratic Equations with the Quadratic Formula",
+        "Example 2 — Solve Equations Requiring Rearrangement"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12d with one retrieval prompt finding the value that completes the square for x² + 10x + ___.",
-        "conceptDevelopment": "Use 12-3, Examples 1-3 to develop: complete the square for a binomial expression by adding (b/2)², solve a quadratic equation by completing the square, and convert a standard-form quadratic to vertex form by completing the square.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-3, Examples 1-3: complete the square and convert forms; teacher checks the half-and-square step.",
-        "independentPractice": "Students complete aligned practice on completing_the_square: completion, solving, and form conversion problems.",
-        "assessment": "Exit ticket: one complete-the-square problem and one standard-to-vertex conversion.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with completing the square."
+        "warmUp": "Complete the square: x squared + 6x + c = (x + 3) squared. Find c.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-6",
+          "workedExamples": [
+            "Example 1 — Solve Quadratic Equations with the Quadratic Formula"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-6",
+          "workedExamples": [
+            "Example 2 — Solve Equations Requiring Rearrangement"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-6",
+          "prompt": "For 2x squared - 3x - 2 = 0, calculate the discriminant b squared - 4ac."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-6",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in solving quadratic equations by using the quadratic formula required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u12-p09",
-      "unit": 12,
-      "period": 9,
+      "periodId": "m12-p09",
+      "number": 163,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-3",
-      "objectiveCode": "12d",
-      "objective": "Complete the square when a ≠ 1; find the vertex by completing the square.",
-      "workedExamples": "12-3, Examples 4-5 — Complete the Square When a ≠ 1; Find Vertex by Completing the Square",
-      "embeddedObjectives": ["12e"],
-      "problemTypes": ["completing_the_square"],
-      "notes": "Advanced completing the square: factoring out the leading coefficient and vertex identification.",
+      "sourceLesson": "module-12-lesson-7",
+      "objective": "Solve a system of linear and quadratic equations by graphing, identifying intersection points of the parabola and line.",
+      "embeddedObjectives": [
+        "Solve a system of linear and quadratic equations algebraically by substitution or elimination.",
+        "Interpret real-world scenarios involving parabolic and linear relationships to find solution points and explain their meaning in context."
+      ],
+      "workedExamples": [
+        "Example 1 — Solve Systems by Graphing",
+        "Example 2 — Solve Systems Algebraically"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12d with one retrieval prompt on completing the square for 2x² + 12x by first factoring out 2.",
-        "conceptDevelopment": "Use 12-3, Examples 4-5 to develop: complete the square when a ≠ 1 by factoring out a first, and find the vertex of a quadratic by completing the square and reading (h, k).",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-3, Examples 4-5: handle a ≠ 1 and find vertices; teacher checks the factored-out coefficient step.",
-        "independentPractice": "Students complete aligned practice on completing_the_square: a ≠ 1 cases and vertex finding.",
-        "assessment": "Exit ticket: one complete-the-square with a ≠ 1 and one vertex identification.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with completing the square when a ≠ 1."
+        "warmUp": "For 2x squared - 3x - 2 = 0, calculate the discriminant b squared - 4ac.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-7",
+          "workedExamples": [
+            "Example 1 — Solve Systems by Graphing"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-7",
+          "workedExamples": [
+            "Example 2 — Solve Systems Algebraically"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-7",
+          "prompt": "Solve y = x squared and y = x + 2 together. Find the larger intersection x-coordinate."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-7",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in solving systems of linear and quadratic equations required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u12-p10",
-      "unit": 12,
-      "period": 10,
+      "periodId": "m12-p10",
+      "number": 164,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-4",
-      "objectiveCode": "12e",
-      "objective": "Apply the quadratic formula to solve quadratic equations.",
-      "workedExamples": "12-4, Examples 1-2 — Solve 2x² + 3x − 5 = 0 Using Quadratic Formula; Solve x² + 2x + 5 = 0 (Complex Solutions)",
-      "embeddedObjectives": ["12f"],
-      "problemTypes": ["quadratic_formula"],
-      "notes": "Quadratic formula application and complex solutions.",
+      "sourceLesson": "module-12-lesson-8",
+      "objective": "Identify whether data is best modeled by a linear, quadratic, or exponential function by examining patterns in tables",
+      "embeddedObjectives": [
+        "Write equations that model data using first/second differences and ratios",
+        "Use regression equations to make predictions and interpret the coefficient of determination (R²)"
+      ],
+      "workedExamples": [
+        "Example 1 — Identify the Model Type from a Table",
+        "Example 2 — Model Data with a Quadratic Function"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12e with one retrieval prompt on the quadratic formula x = (−b ± √(b² − 4ac)) / 2a.",
-        "conceptDevelopment": "Use 12-4, Examples 1-2 to develop: apply the quadratic formula to solve 2x² + 3x − 5 = 0, identifying a, b, c and computing the discriminant, and solve a quadratic with complex solutions when the discriminant is negative.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-4, Examples 1-2: apply the formula and handle complex solutions; teacher checks formula setup.",
-        "independentPractice": "Students complete aligned practice on quadratic_formula: formula application with real and complex solutions.",
-        "assessment": "Exit ticket: one quadratic formula problem with real solutions and one with complex solutions.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with the quadratic formula."
+        "warmUp": "Solve y = x squared and y = x + 2 together. Find the larger intersection x-coordinate.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-8",
+          "workedExamples": [
+            "Example 1 — Identify the Model Type from a Table"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-8",
+          "workedExamples": [
+            "Example 2 — Model Data with a Quadratic Function"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-8",
+          "prompt": "A quadratic model y = ax squared + bx + c passes through (0, 1), (1, 4), and (2, 9). Find a."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-8",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in modeling and curve fitting required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u12-p11",
-      "unit": 12,
-      "period": 11,
+      "periodId": "m12-p11",
+      "number": 165,
+      "unitNumber": 12,
       "dayType": "instruction",
-      "sourceLesson": "12-4",
-      "objectiveCode": "12e",
-      "objective": "Use the discriminant to determine number and type of solutions; choose the most efficient method.",
-      "workedExamples": "12-4, Examples 3-4 — Use the Discriminant to Determine Number and Type; Choose the Best Method",
-      "embeddedObjectives": ["12f", "12g"],
-      "problemTypes": ["method_selection"],
-      "notes": "Discriminant analysis and method selection strategy.",
+      "sourceLesson": "module-12-lesson-9",
+      "objective": "Add and subtract functions to create new functions.",
+      "embeddedObjectives": [
+        "Distinguish function multiplication from composition. Interpret composition in context.",
+        "Write real-world scenarios as combined functions representing total quantity, difference, or composite relationships.",
+        "Analyze how function operations affect domain restrictions."
+      ],
+      "workedExamples": [
+        "Example 1 — Add and Subtract Functions",
+        "Example 2 — Compose Functions"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12e with one retrieval prompt computing the discriminant of x² − 6x + 9.",
-        "conceptDevelopment": "Use 12-4, Examples 3-4 to develop: use the discriminant b² − 4ac to determine whether solutions are rational, irrational, complex, or repeated, and choose the most efficient solving method (factoring, completing the square, or quadratic formula) based on the structure of the equation.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-4, Examples 3-4: compute discriminants and select methods; teacher checks discriminant interpretation.",
-        "independentPractice": "Students complete aligned practice on method_selection: discriminant analysis and method-choice problems.",
-        "assessment": "Exit ticket: one discriminant interpretation and one method selection with justification.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with discriminant analysis and method selection."
+        "warmUp": "A quadratic model y = ax squared + bx + c passes through (0, 1), (1, 4), and (2, 9). Find a.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-12-lesson-9",
+          "workedExamples": [
+            "Example 1 — Add and Subtract Functions"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-12-lesson-9",
+          "workedExamples": [
+            "Example 2 — Compose Functions"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-12-lesson-9",
+          "prompt": "Let f(x) = x + 1 and g(x) = x squared. Find the composition f(g(3))."
+        },
+        "assessment": {
+          "questionId": "module-12-lesson-9",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in combining functions required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u12-p12",
-      "unit": 12,
-      "period": 12,
-      "dayType": "instruction",
-      "sourceLesson": "12-4",
-      "objectiveCode": "12f",
-      "objective": "Understand the derivation of the quadratic formula.",
-      "workedExamples": "12-4, Example 5 — Derive the Quadratic Formula from Completing the Square",
-      "embeddedObjectives": ["12g"],
-      "problemTypes": ["method_selection"],
-      "notes": "Formula derivation connecting completing the square to the general solution.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12f with one retrieval prompt listing the four methods for solving quadratic equations.",
-        "conceptDevelopment": "Use 12-4, Example 5 to develop: follow the derivation of the quadratic formula by completing the square on the general form ax² + bx + c = 0, understanding each algebraic step from dividing by a through taking the square root.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-4, Example 5: trace the derivation step by step; teacher checks understanding of each algebraic move.",
-        "independentPractice": "Students complete aligned practice on method_selection: derivation tracing and connecting completing the square to the formula.",
-        "assessment": "Exit ticket: reproduce two steps of the derivation and explain their purpose.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with understanding the quadratic formula derivation."
-      }
+      "periodId": "m12-p12",
+      "number": 166,
+      "unitNumber": 12,
+      "dayType": "mastery",
+      "sourceLessons": [
+        "module-12-lesson-1",
+        "module-12-lesson-2",
+        "module-12-lesson-3",
+        "module-12-lesson-4",
+        "module-12-lesson-5",
+        "module-12-lesson-6",
+        "module-12-lesson-7",
+        "module-12-lesson-8",
+        "module-12-lesson-9"
+      ],
+      "questionIds": [
+        "module-12-lesson-1",
+        "module-12-lesson-2",
+        "module-12-lesson-3",
+        "module-12-lesson-4",
+        "module-12-lesson-5",
+        "module-12-lesson-6",
+        "module-12-lesson-7",
+        "module-12-lesson-8",
+        "module-12-lesson-9"
+      ],
+      "task": "Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer."
     },
     {
-      "periodId": "u12-p13",
-      "unit": 12,
-      "period": 13,
-      "dayType": "instruction",
-      "sourceLesson": "12-5",
-      "objectiveCode": "12g",
-      "objective": "Model projectile motion and solve revenue optimization problems with quadratic functions.",
-      "workedExamples": "12-5, Examples 1-2 — Projectile: Find Maximum Height and Landing Time; Revenue Optimization",
-      "embeddedObjectives": ["12h"],
-      "problemTypes": ["quadratic_applications"],
-      "notes": "Projectile motion with quadratic formula and revenue/pricing optimization via vertex.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12g with one retrieval prompt on how the vertex of a parabola relates to maximum or minimum values in context.",
-        "conceptDevelopment": "Use 12-5, Examples 1-2 to develop: model projectile motion with a quadratic function, find the maximum height from the vertex and landing time from the zeros, and set up a revenue function R = price × quantity and optimize using the vertex.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-5, Examples 1-2: write the quadratic model from context, find the vertex and zeros, and interpret; teacher checks contextual setup.",
-        "independentPractice": "Students complete aligned practice on quadratic_applications: projectile and revenue optimization problems.",
-        "assessment": "Exit ticket: one projectile problem finding max height and one revenue optimization problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with quadratic applications."
-      }
-    },
-    {
-      "periodId": "u12-p14",
-      "unit": 12,
-      "period": 14,
-      "dayType": "instruction",
-      "sourceLesson": "12-5",
-      "objectiveCode": "12h",
-      "objective": "Solve area optimization problems with quadratic functions.",
-      "workedExamples": "12-5, Example 3 — Area Optimization with Fixed Perimeter",
-      "embeddedObjectives": [],
-      "problemTypes": ["quadratic_applications"],
-      "notes": "Area optimization with fixed perimeter. Split from original dense day to separate geometric optimization from motion/structure problems.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12h with one retrieval prompt on setting up a quadratic function for area given a fixed perimeter.",
-        "conceptDevelopment": "Use 12-5, Example 3 to develop: set up and optimize a rectangle's area with a fixed perimeter using the vertex.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-5, Example 3: write and solve area optimization models; teacher checks equation setup.",
-        "independentPractice": "Students complete aligned practice on quadratic_applications: area optimization problems.",
-        "assessment": "Exit ticket: one area optimization problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with quadratic area optimization."
-      }
-    },
-    {
-      "periodId": "u12-p15",
-      "unit": 12,
-      "period": 15,
-      "dayType": "instruction",
-      "sourceLesson": "12-5",
-      "objectiveCode": "12h",
-      "objective": "Apply quadratic models to real-world structures.",
-      "workedExamples": "12-5, Examples 4-5 — Find When a Ball Reaches a Given Height; Bridge Arch Model: Find Clearance Height",
-      "embeddedObjectives": [],
-      "problemTypes": ["quadratic_applications"],
-      "notes": "Specific-height problems and parabolic structure modeling.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 12h with one retrieval prompt on solving a quadratic equation to find when an object reaches a specific height.",
-        "conceptDevelopment": "Use 12-5, Examples 4-5 to develop: find the time when a ball reaches a specific height by solving a quadratic equation, and model a parabolic bridge arch to find clearance height.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 12-5, Examples 4-5: write and solve quadratic models for height and structure problems; teacher checks equation setup.",
-        "independentPractice": "Students complete aligned practice on quadratic_applications: specific-height and structure problems.",
-        "assessment": "Exit ticket: one specific-height problem and one parabolic structure problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with quadratic structure applications."
-      }
-    },
-    {
-      "periodId": "u12-p16",
-      "unit": 12,
-      "period": 16,
+      "periodId": "m12-p13",
+      "number": 167,
+      "unitNumber": 12,
       "dayType": "jigsaw",
-      "notes": "Mathematical practices focus: solving method justification, optimization reasoning, and error analysis in quadratic applications.",
-      "nonInstructionArtifact": {
-        "artifactType": "jigsaw",
-        "groupTask": "Mathematical practices focus: solving method justification, optimization reasoning, and error analysis in quadratic applications.",
-        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
-        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
-        "facilitationNotes": "Assign roles for method selection, optimization setup, computation, and explanation.",
-        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
-      }
+      "sourceLessons": [
+        "module-12-lesson-1",
+        "module-12-lesson-3",
+        "module-12-lesson-5",
+        "module-12-lesson-7",
+        "module-12-lesson-9"
+      ],
+      "questionIds": [
+        "module-12-lesson-1",
+        "module-12-lesson-3",
+        "module-12-lesson-5",
+        "module-12-lesson-7",
+        "module-12-lesson-9"
+      ],
+      "task": "Assign one listed lesson to each group. Prepare a solution and explain each step. Exchange solutions with another group. Check the method and identify any restriction."
     },
     {
-      "periodId": "u12-p17",
-      "unit": 12,
-      "period": 17,
+      "periodId": "m12-p14",
+      "number": 168,
+      "unitNumber": 12,
+      "dayType": "jigsaw",
+      "sourceLessons": [
+        "module-12-lesson-2",
+        "module-12-lesson-4",
+        "module-12-lesson-6",
+        "module-12-lesson-8"
+      ],
+      "questionIds": [
+        "module-12-lesson-2",
+        "module-12-lesson-4",
+        "module-12-lesson-6",
+        "module-12-lesson-8"
+      ],
+      "task": "Assign one listed lesson to each group. Prepare a solution and explain each step. Exchange solutions with another group. Check the method and identify any restriction."
+    },
+    {
+      "periodId": "m12-p15",
+      "number": 169,
+      "unitNumber": 12,
       "dayType": "review",
-      "notes": "Unit 12 review across 12a-12h.",
-      "nonInstructionArtifact": {
-        "artifactType": "review",
-        "objectiveScope": "Unit 12 review across 12a-12h.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
-      }
+      "assessmentModules": [
+        11,
+        12
+      ],
+      "sourceLessons": [
+        "module-11-lesson-1",
+        "module-11-lesson-2",
+        "module-11-lesson-3",
+        "module-11-lesson-4",
+        "module-11-lesson-5",
+        "module-11-lesson-6",
+        "module-11-lesson-7",
+        "module-12-lesson-1",
+        "module-12-lesson-2",
+        "module-12-lesson-3",
+        "module-12-lesson-4",
+        "module-12-lesson-5",
+        "module-12-lesson-6",
+        "module-12-lesson-7",
+        "module-12-lesson-8",
+        "module-12-lesson-9"
+      ],
+      "questionIds": [
+        "module-11-lesson-1",
+        "module-11-lesson-2",
+        "module-11-lesson-3",
+        "module-11-lesson-4",
+        "module-11-lesson-5",
+        "module-11-lesson-6",
+        "module-11-lesson-7",
+        "module-12-lesson-1",
+        "module-12-lesson-2",
+        "module-12-lesson-3",
+        "module-12-lesson-4",
+        "module-12-lesson-5",
+        "module-12-lesson-6",
+        "module-12-lesson-7",
+        "module-12-lesson-8",
+        "module-12-lesson-9"
+      ],
+      "task": "Review the listed lessons. Solve their checkpoint questions and explain the method. Review the source examples for each error."
     },
     {
-      "periodId": "u12-p18",
-      "unit": 12,
-      "period": 18,
+      "periodId": "m12-p16",
+      "number": 170,
+      "unitNumber": 12,
       "dayType": "test",
-      "notes": "Unit 12 assessment.",
-      "nonInstructionArtifact": {
-        "artifactType": "test",
-        "objectiveScope": "Unit 12 assessment covering 12a-12h.",
-        "srsSources": [],
-        "remediationGrouping": "N/A — summative assessment day.",
-        "extensionOptions": "N/A — summative assessment day.",
-        "evidence": "Student completes unit test."
-      }
-    },
-    {
-      "periodId": "u12-p19",
-      "unit": 12,
-      "period": 19,
-      "dayType": "test",
-      "notes": "Unit 12 assessment — retake or extended time.",
-      "nonInstructionArtifact": {
-        "artifactType": "test",
-        "objectiveScope": "Unit 12 assessment covering 12a-12h.",
-        "srsSources": [],
-        "remediationGrouping": "N/A — summative assessment day.",
-        "extensionOptions": "N/A — summative assessment day.",
-        "evidence": "Student completes unit test."
-      }
+      "assessmentModules": [
+        11,
+        12
+      ],
+      "sourceLessons": [
+        "module-11-lesson-1",
+        "module-11-lesson-2",
+        "module-11-lesson-3",
+        "module-11-lesson-4",
+        "module-11-lesson-5",
+        "module-11-lesson-6",
+        "module-11-lesson-7",
+        "module-12-lesson-1",
+        "module-12-lesson-2",
+        "module-12-lesson-3",
+        "module-12-lesson-4",
+        "module-12-lesson-5",
+        "module-12-lesson-6",
+        "module-12-lesson-7",
+        "module-12-lesson-8",
+        "module-12-lesson-9"
+      ],
+      "task": "Use a teacher-authored assessment for the listed modules. Include reasoning, application, and restrictions. The public checkpoint bank is review material and is not a secure test form."
     }
   ]
 }

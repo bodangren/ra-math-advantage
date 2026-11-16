@@ -8,14 +8,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -26,7 +19,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -37,14 +32,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -55,7 +43,80 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.1.find-coordinates-of-the-circumcenter",
+      "sourceNodeIds": [
+        "math.im2.example.1.1.002",
+        "math.im2.example.1.1.003",
+        "math.im2.example.1.1.004"
+      ],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.find-the-inradius-from-equal-perpendicular-distances",
+      "sourceNodeIds": [
+        "math.im2.example.1.2.006"
+      ],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.solve-an-equal-angle-equation-and-find-the-whole-angle",
+      "sourceNodeIds": [
+        "math.im2.example.1.2.005"
+      ],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -66,14 +127,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -84,7 +138,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -95,14 +151,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -113,25 +162,22 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.1.3.find-lengths-of-medians-using-the-centroid-theorem",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im2.example.1.3.009"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.g-co-c-10",
         "math.standard.ccss.g-gpe-b-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -142,7 +188,32 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.3.find-coordinates-of-the-centroid",
+      "sourceNodeIds": [
+        "math.im2.example.1.3.010"
+      ],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -153,14 +224,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -171,7 +235,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -181,14 +247,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -199,7 +258,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -209,14 +270,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "rendererKey": "fill-in-the-blank",
-      "rendererModeMap": {
-        "worked": "fill-in-the-blank",
-        "guidedPractice": "fill-in-the-blank",
-        "independentPractice": "fill-in-the-blank"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -227,7 +281,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -237,14 +293,7 @@
         "math.standard.ccss.g-co-a-3"
       ],
       "rendererKey": "fill-in-the-blank",
-      "rendererModeMap": {
-        "worked": "fill-in-the-blank",
-        "guidedPractice": "fill-in-the-blank",
-        "independentPractice": "fill-in-the-blank"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -255,7 +304,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -265,14 +316,7 @@
         "math.standard.ccss.g-co-a-3"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -283,7 +327,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -293,14 +339,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -311,7 +350,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -321,14 +362,7 @@
         "math.standard.ccss.g-co-b-7"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -339,7 +373,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -349,14 +385,7 @@
         "math.standard.ccss.g-co-b-8"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -367,7 +396,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "7"
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -377,14 +408,7 @@
         "math.standard.ccss.g-co-b-8"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -395,7 +419,9 @@
       "metadata": {
         "course": "im2",
         "module": "1",
-        "lesson": "7"
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -405,14 +431,7 @@
         "math.standard.ccss.g-co-c-10"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -423,7 +442,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -433,14 +454,7 @@
         "math.standard.ccss.g-co-c-10"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -451,7 +465,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -462,14 +478,7 @@
         "math.standard.ccss.g-co-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -480,7 +489,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -491,14 +502,7 @@
         "math.standard.ccss.g-co-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -509,7 +513,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -520,14 +526,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -538,7 +537,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -549,14 +550,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -567,7 +561,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -577,14 +573,7 @@
         "math.standard.ccss.g-co-c-11"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -595,7 +584,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -605,14 +596,7 @@
         "math.standard.ccss.g-co-c-11"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -623,7 +607,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -633,14 +619,7 @@
         "math.standard.ccss.g-co-c-11"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -651,7 +630,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -661,14 +642,7 @@
         "math.standard.ccss.g-co-c-11"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -679,7 +653,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -689,14 +665,7 @@
         "math.standard.ccss.g-co-c-9"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -707,7 +676,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -717,14 +688,7 @@
         "math.standard.ccss.g-co-c-9"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -735,7 +699,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -745,14 +711,7 @@
         "math.standard.ccss.g-co-c-9"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -763,7 +722,9 @@
       "metadata": {
         "course": "im2",
         "module": "2",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -774,14 +735,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -792,7 +746,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -803,14 +759,7 @@
         "math.standard.ccss.g-co-a-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -821,7 +770,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -832,14 +783,7 @@
         "math.standard.ccss.g-srt-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -850,7 +794,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -861,14 +807,7 @@
         "math.standard.ccss.g-srt-b-5"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -879,7 +818,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -890,14 +831,7 @@
         "math.standard.ccss.g-srt-b-5"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -908,7 +842,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -919,14 +855,7 @@
         "math.standard.ccss.g-srt-b-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -937,7 +866,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -948,14 +879,7 @@
         "math.standard.ccss.g-srt-b-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -966,7 +890,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -977,14 +903,7 @@
         "math.standard.ccss.g-srt-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -995,7 +914,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1006,14 +927,7 @@
         "math.standard.ccss.g-srt-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1024,7 +938,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1035,14 +951,7 @@
         "math.standard.ccss.g-srt-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1053,7 +962,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1064,14 +975,7 @@
         "math.standard.ccss.g-srt-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1082,7 +986,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1093,14 +999,7 @@
         "math.standard.ccss.g-srt-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1111,7 +1010,9 @@
       "metadata": {
         "course": "im2",
         "module": "3",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1122,14 +1023,7 @@
         "math.standard.ccss.g-srt-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1140,7 +1034,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1151,14 +1047,7 @@
         "math.standard.ccss.g-srt-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1169,7 +1058,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1180,14 +1071,7 @@
         "math.standard.ccss.8-g-b-7"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1198,7 +1082,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1209,14 +1095,7 @@
         "math.standard.ccss.8-g-b-7"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1227,7 +1106,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1238,14 +1119,7 @@
         "math.standard.ccss.g-gpe-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1256,7 +1130,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1267,14 +1143,7 @@
         "math.standard.ccss.g-gpe-b-5"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1285,7 +1154,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1296,14 +1167,7 @@
         "math.standard.ccss.g-srt-c-8"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1314,7 +1178,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1325,14 +1191,7 @@
         "math.standard.ccss.g-srt-c-8"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1343,7 +1202,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1354,14 +1215,7 @@
         "math.standard.ccss.g-srt-c-7"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1372,7 +1226,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1383,14 +1239,7 @@
         "math.standard.ccss.g-srt-c-7"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1401,7 +1250,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1412,14 +1263,7 @@
         "math.standard.ccss.g-mg-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1430,7 +1274,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1441,14 +1287,7 @@
         "math.standard.ccss.g-mg-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1459,7 +1298,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1470,14 +1311,7 @@
         "math.standard.ccss.f-tf-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1488,7 +1322,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "7"
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1499,14 +1335,7 @@
         "math.standard.ccss.f-tf-a-1"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1517,7 +1346,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "7"
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1528,14 +1359,7 @@
         "math.standard.ccss.n-cn-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1546,7 +1370,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "8"
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1557,14 +1383,7 @@
         "math.standard.ccss.n-cn-a-2"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1575,7 +1394,9 @@
       "metadata": {
         "course": "im2",
         "module": "4",
-        "lesson": "8"
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1585,14 +1406,7 @@
         "math.standard.ccss.g-c-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1603,7 +1417,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1613,14 +1429,7 @@
         "math.standard.ccss.g-c-a-1"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1631,7 +1440,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1642,14 +1453,7 @@
         "math.standard.ccss.g-c-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1660,7 +1464,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1671,14 +1477,7 @@
         "math.standard.ccss.g-c-b-5"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1689,7 +1488,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1700,14 +1501,7 @@
         "math.standard.ccss.g-c-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1718,7 +1512,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1729,14 +1525,7 @@
         "math.standard.ccss.g-c-a-3"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1747,7 +1536,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1758,14 +1549,7 @@
         "math.standard.ccss.g-c-a-3"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1776,7 +1560,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1787,14 +1573,7 @@
         "math.standard.ccss.g-c-a-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1805,7 +1584,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1816,14 +1597,7 @@
         "math.standard.ccss.g-c-a-4"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1834,7 +1608,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1845,14 +1621,7 @@
         "math.standard.ccss.g-c-a-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1863,7 +1632,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1874,14 +1645,7 @@
         "math.standard.ccss.g-c-a-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1892,7 +1656,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1903,14 +1669,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1921,7 +1680,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "7"
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1932,14 +1693,7 @@
         "math.standard.ccss.g-gpe-b-4"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1950,7 +1704,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "7"
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1961,14 +1717,7 @@
         "math.standard.ccss.g-gpe-b-5"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1979,7 +1728,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "8"
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -1990,14 +1741,7 @@
         "math.standard.ccss.g-gpe-b-5"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2008,7 +1752,9 @@
       "metadata": {
         "course": "im2",
         "module": "5",
-        "lesson": "8"
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2019,14 +1765,7 @@
         "math.standard.ccss.g-mg-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2037,7 +1776,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2048,14 +1789,7 @@
         "math.standard.ccss.g-mg-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2066,7 +1800,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2077,14 +1813,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2095,7 +1824,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2106,14 +1837,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2124,7 +1848,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2135,14 +1861,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2153,7 +1872,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2164,14 +1885,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2182,7 +1896,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2193,14 +1909,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2211,7 +1920,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2222,14 +1933,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2240,7 +1944,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2251,14 +1957,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2269,7 +1968,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2279,14 +1980,7 @@
         "math.standard.ccss.g-gmd-b-4"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2297,7 +1991,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2307,14 +2003,7 @@
         "math.standard.ccss.g-gmd-b-4"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2325,7 +2014,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2335,14 +2026,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2353,7 +2037,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2363,14 +2049,7 @@
         "math.standard.ccss.g-gmd-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2381,7 +2060,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2391,14 +2072,7 @@
         "math.standard.ccss.g-gmd-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2409,7 +2083,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "7"
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2419,14 +2095,7 @@
         "math.standard.ccss.g-gmd-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2437,7 +2106,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "7"
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2448,14 +2119,7 @@
         "math.standard.ccss.g-mg-a-3"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2466,7 +2130,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "8"
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2477,14 +2143,7 @@
         "math.standard.ccss.g-mg-a-3"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2495,7 +2154,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "8"
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2505,14 +2166,7 @@
         "math.standard.ccss.g-mg-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2523,7 +2177,9 @@
       "metadata": {
         "course": "im2",
         "module": "6",
-        "lesson": "9"
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2533,14 +2189,7 @@
         "math.standard.ccss.s-cp-a-1"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2551,7 +2200,9 @@
       "metadata": {
         "course": "im2",
         "module": "7",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2561,14 +2212,7 @@
         "math.standard.ccss.s-cp-a-2"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2579,7 +2223,9 @@
       "metadata": {
         "course": "im2",
         "module": "7",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2589,14 +2235,7 @@
         "math.standard.ccss.7-sp-c-5"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2607,24 +2246,19 @@
       "metadata": {
         "course": "im2",
         "module": "7",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.7.4.compute-combinations-and-interpret-ncr-in-context",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2635,24 +2269,19 @@
       "metadata": {
         "course": "im2",
         "module": "7",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.7.4.use-combinations-and-permutations-to-solve-real-world-select",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2663,7 +2292,9 @@
       "metadata": {
         "course": "im2",
         "module": "7",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2673,14 +2304,7 @@
         "math.standard.ccss.s-cp-b-6"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2691,7 +2315,9 @@
       "metadata": {
         "course": "im2",
         "module": "7",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2701,14 +2327,7 @@
         "math.standard.ccss.s-cp-b-7"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2719,7 +2338,9 @@
       "metadata": {
         "course": "im2",
         "module": "7",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -2729,14 +2350,7 @@
         "math.standard.ccss.s-cp-b-7"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2747,25 +2361,20 @@
       "metadata": {
         "course": "im2",
         "module": "7",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.1.determine-whether-a-relation-is-a-function-using-tables-mapp",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-a-1",
-        "math.standard.ccss.hsf-if-a-2"
+        "math.standard.ccss.f-if-a-1",
+        "math.standard.ccss.f-if-a-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2776,25 +2385,20 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.1.identify-domain-and-range-from-various-representations",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-a-1",
-        "math.standard.ccss.hsf-if-a-2"
+        "math.standard.ccss.f-if-a-1",
+        "math.standard.ccss.f-if-a-2"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2805,25 +2409,20 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.2.describe-domain-and-range-restrictions-in-terms-of-real-worl",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-9",
-        "math.standard.ccss.hsf-if-b-4"
+        "math.standard.ccss.f-if-c-9",
+        "math.standard.ccss.f-if-b-4"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2834,25 +2433,20 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.2.find-domain-and-range-from-graphs-tables-equations-and-word",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-9",
-        "math.standard.ccss.hsf-if-b-4"
+        "math.standard.ccss.f-if-c-9",
+        "math.standard.ccss.f-if-b-4"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2863,25 +2457,20 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.3.interpret-and-evaluate-function-notation-fx",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-b-4",
-        "math.standard.ccss.hsf-if-b-5"
+        "math.standard.ccss.f-if-b-4",
+        "math.standard.ccss.f-if-b-5"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2892,25 +2481,20 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.4.distinguish-linear-from-nonlinear-functions-using-rate-of-ch",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-7",
-        "math.standard.ccss.hsf-if-b-6"
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-6"
       ],
       "rendererKey": "rate-of-change-calculator",
-      "rendererModeMap": {
-        "worked": "rate-of-change-calculator",
-        "guidedPractice": "rate-of-change-calculator",
-        "independentPractice": "rate-of-change-calculator"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2921,25 +2505,20 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.5.graph-reflections-stretches-and-compressions-of-parent-funct",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-ced-a-2",
-        "math.standard.ccss.hsa-ced-a-3"
+        "math.standard.ccss.a-ced-a-2",
+        "math.standard.ccss.a-ced-a-3"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2950,25 +2529,20 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.5.graph-vertical-and-horizontal-shifts-of-parent-functions",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-ced-a-2",
-        "math.standard.ccss.hsa-ced-a-3"
+        "math.standard.ccss.a-ced-a-2",
+        "math.standard.ccss.a-ced-a-3"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -2979,25 +2553,20 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.8.6.compare-two-or-more-functions-represented-as-graphs-tables-e",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-7b",
-        "math.standard.ccss.hsf-if-a-2"
+        "math.standard.ccss.f-if-c-7b",
+        "math.standard.ccss.f-if-a-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3008,7 +2577,9 @@
       "metadata": {
         "course": "im2",
         "module": "8",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3018,14 +2589,7 @@
         "math.standard.ccss.a-rei-a-1"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3036,7 +2600,9 @@
       "metadata": {
         "course": "im2",
         "module": "9",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3046,14 +2612,7 @@
         "math.standard.ccss.a-rei-a-1"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3064,7 +2623,9 @@
       "metadata": {
         "course": "im2",
         "module": "9",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3074,14 +2635,7 @@
         "math.standard.ccss.a-rei-b-3"
       ],
       "rendererKey": "rate-of-change-calculator",
-      "rendererModeMap": {
-        "worked": "rate-of-change-calculator",
-        "guidedPractice": "rate-of-change-calculator",
-        "independentPractice": "rate-of-change-calculator"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3092,7 +2646,9 @@
       "metadata": {
         "course": "im2",
         "module": "9",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3102,14 +2658,7 @@
         "math.standard.ccss.a-ced-a-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3120,7 +2669,9 @@
       "metadata": {
         "course": "im2",
         "module": "9",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3130,14 +2681,7 @@
         "math.standard.ccss.a-ced-a-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3148,7 +2692,9 @@
       "metadata": {
         "course": "im2",
         "module": "9",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3158,14 +2704,7 @@
         "math.standard.ccss.a-rei-d-10"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3176,7 +2715,9 @@
       "metadata": {
         "course": "im2",
         "module": "9",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3186,14 +2727,7 @@
         "math.standard.ccss.a-rei-c-6"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3204,7 +2738,9 @@
       "metadata": {
         "course": "im2",
         "module": "9",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3214,14 +2750,7 @@
         "math.standard.ccss.a-rei-c-6"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3232,7 +2761,9 @@
       "metadata": {
         "course": "im2",
         "module": "9",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3243,14 +2774,7 @@
         "math.standard.ccss.n-rn-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3261,7 +2785,9 @@
       "metadata": {
         "course": "im2",
         "module": "10",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3272,14 +2798,7 @@
         "math.standard.ccss.n-rn-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3290,7 +2809,9 @@
       "metadata": {
         "course": "im2",
         "module": "10",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3301,14 +2822,7 @@
         "math.standard.ccss.n-rn-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3319,7 +2833,9 @@
       "metadata": {
         "course": "im2",
         "module": "10",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3330,14 +2846,7 @@
         "math.standard.ccss.8-ee-a-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3348,7 +2857,9 @@
       "metadata": {
         "course": "im2",
         "module": "10",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3359,14 +2870,7 @@
         "math.standard.ccss.n-rn-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3377,7 +2881,9 @@
       "metadata": {
         "course": "im2",
         "module": "10",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3388,14 +2894,7 @@
         "math.standard.ccss.8-ee-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3406,7 +2905,9 @@
       "metadata": {
         "course": "im2",
         "module": "10",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3417,14 +2918,7 @@
         "math.standard.ccss.8-ee-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3435,25 +2929,20 @@
       "metadata": {
         "course": "im2",
         "module": "10",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.1.classify-polynomials-by-degree-number-of-terms-and-write-in",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-sse-a-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-sse-a-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3464,25 +2953,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.1.determine-whether-an-expression-is-a-polynomial-and-identify",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-sse-a-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-sse-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3493,25 +2977,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.2.add-and-subtract-polynomials-by-combining-like-terms",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-apr-b-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-apr-b-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3522,25 +3001,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.2.apply-addition-of-polynomials-to-find-total-area-in-geometri",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-apr-b-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-apr-b-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3551,25 +3025,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.3.multiply-polynomials-in-real-world-area-and-geometric-contex",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-apr-c-4"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-apr-c-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3580,25 +3049,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.3.multiply-polynomials-using-the-distributive-property-and-foi",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-apr-c-4"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-apr-c-4"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3609,25 +3073,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.4.recognize-and-apply-special-product-patterns-ab-ab-abab",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-c-4",
-        "math.standard.ccss.hsa-apr-b-3"
+        "math.standard.ccss.a-apr-c-4",
+        "math.standard.ccss.a-apr-b-3"
       ],
       "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3638,25 +3097,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.5.factor-polynomials-using-gcf-grouping-trinomials-and-differe",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-sse-a-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-sse-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3667,25 +3121,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.6.solve-polynomial-equations-by-factoring-using-the-zero-produ",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-b-3",
-        "math.standard.ccss.hsa-apr-b-2"
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-apr-b-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3696,25 +3145,20 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.11.6.write-polynomial-equations-given-zeros-or-a-graph-use-zeros",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-b-3",
-        "math.standard.ccss.hsa-apr-b-2"
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-apr-b-2"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3725,7 +3169,9 @@
       "metadata": {
         "course": "im2",
         "module": "11",
-        "lesson": "6"
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3736,14 +3182,7 @@
         "math.standard.ccss.f-if-b-4"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3754,7 +3193,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3765,14 +3206,7 @@
         "math.standard.ccss.f-if-b-4"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3783,7 +3217,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3794,14 +3230,7 @@
         "math.standard.ccss.f-if-c-7"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3812,7 +3241,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3823,14 +3254,7 @@
         "math.standard.ccss.f-if-c-7"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3841,7 +3265,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3852,14 +3278,7 @@
         "math.standard.ccss.f-if-c-7"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3870,7 +3289,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3881,14 +3302,7 @@
         "math.standard.ccss.f-if-c-7"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3899,7 +3313,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3910,14 +3326,7 @@
         "math.standard.ccss.a-rei-b-4"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3928,7 +3337,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3939,14 +3350,7 @@
         "math.standard.ccss.a-sse-b-3"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3957,7 +3361,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3968,14 +3374,7 @@
         "math.standard.ccss.a-sse-b-3"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3986,7 +3385,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -3997,14 +3398,7 @@
         "math.standard.ccss.a-sse-b-3"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4015,7 +3409,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -4026,14 +3422,7 @@
         "math.standard.ccss.a-sse-b-3"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4044,7 +3433,9 @@
       "metadata": {
         "course": "im2",
         "module": "12",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -4055,14 +3446,7 @@
         "math.standard.ccss.f-tf-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4073,7 +3457,9 @@
       "metadata": {
         "course": "im2",
         "module": "13",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -4084,14 +3470,7 @@
         "math.standard.ccss.f-tf-a-2"
       ],
       "rendererKey": "fill-in-the-blank",
-      "rendererModeMap": {
-        "worked": "fill-in-the-blank",
-        "guidedPractice": "fill-in-the-blank",
-        "independentPractice": "fill-in-the-blank"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4102,7 +3481,9 @@
       "metadata": {
         "course": "im2",
         "module": "13",
-        "lesson": "1"
+        "lesson": "1",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -4113,14 +3494,7 @@
         "math.standard.ccss.f-tf-c-9"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4131,7 +3505,9 @@
       "metadata": {
         "course": "im2",
         "module": "13",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -4142,14 +3518,7 @@
         "math.standard.ccss.f-tf-c-9"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4160,7 +3529,9 @@
       "metadata": {
         "course": "im2",
         "module": "13",
-        "lesson": "2"
+        "lesson": "2",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -4171,14 +3542,7 @@
         "math.standard.ccss.f-tf-a-2"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4189,25 +3553,20 @@
       "metadata": {
         "course": "im2",
         "module": "13",
-        "lesson": "3"
+        "lesson": "3",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
       "nodeId": "math.im2.skill.13.4.apply-double-angle-identities-for-sine-cosine-all-three-form",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.f-tf-c-7",
-        "math.standard.ccss.f-tf-c-6"
+        "math.standard.ccss.f-tf-b-7",
+        "math.standard.ccss.f-tf-b-6"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4218,7 +3577,9 @@
       "metadata": {
         "course": "im2",
         "module": "13",
-        "lesson": "4"
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -4229,14 +3590,7 @@
         "math.standard.ccss.f-tf-c-8"
       ],
       "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4247,7 +3601,9 @@
       "metadata": {
         "course": "im2",
         "module": "13",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     },
     {
@@ -4258,14 +3614,7 @@
         "math.standard.ccss.f-tf-c-8"
       ],
       "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
+      "rendererModeMap": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4276,7 +3625,1025 @@
       "metadata": {
         "course": "im2",
         "module": "13",
-        "lesson": "5"
+        "lesson": "5",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.1.perpendicular-bisector-equidistance",
+      "sourceNodeIds": [
+        "math.im2.example.1.1.001"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "rendererKey": "im2-question",
+      "rendererModeMap": {
+        "worked": "im2-question",
+        "guidedPractice": "im2-question",
+        "independentPractice": "im2-question"
+      },
+      "workedExampleSpec": {
+        "prompt": "D lies on the perpendicular bisector of AB. DA = 3x + 2 cm and DB = 5x - 6 cm. Find x.",
+        "givens": [
+          "D lies on the perpendicular bisector of AB.",
+          "DA = 3x + 2 cm.",
+          "DB = 5x - 6 cm."
+        ],
+        "target": {
+          "response": "x"
+        },
+        "steps": [
+          {
+            "description": "Set the distances equal.",
+            "expression": "3x + 2 = 5x - 6"
+          },
+          {
+            "description": "Collect terms.",
+            "expression": "8 = 2x"
+          },
+          {
+            "description": "Divide by 2.",
+            "result": "x = 4"
+          },
+          {
+            "description": "Check both distances.",
+            "result": "DA = DB = 14 cm"
+          }
+        ],
+        "explanation": "The perpendicular bisector theorem gives equal distances from D to A and B."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Use the equal-distance condition to solve 3x + 2 = 5x - 6.",
+        "stepPrompts": [
+          "Which distances are equal?",
+          "What equation follows after collecting terms?",
+          "What is x?"
+        ],
+        "hints": [
+          "A point on the perpendicular bisector has equal distances to the endpoints.",
+          "Subtract 3x from both sides, then add 6 to both sides.",
+          "Divide both sides by 2."
+        ],
+        "checksPerStep": [
+          {
+            "check": "Identify DA = DB.",
+            "answerPattern": "DA = DB"
+          },
+          {
+            "check": "Obtain 8 = 2x.",
+            "answerPattern": "8 = 2x"
+          },
+          {
+            "check": "Find x = 4.",
+            "answerPattern": "4"
+          }
+        ],
+        "revealPolicy": "after_attempt"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "seed": {
+            "type": "integer",
+            "min": 0,
+            "max": 959
+          },
+          "difficulty": {
+            "type": "number",
+            "min": 0,
+            "max": 1
+          }
+        },
+        "generatorInputConstraints": {
+          "safeIntegerSeed": true,
+          "positiveSegmentLengths": true
+        },
+        "answerSchema": {
+          "response": {
+            "type": "number"
+          }
+        },
+        "gradingRules": [
+          {
+            "partId": "response",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 1e-09,
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "any_seed"
+      },
+      "generatorKey": "im2-perpendicular-bisector-equidistance",
+      "gradingSpec": {
+        "partIds": [
+          "response"
+        ],
+        "passingScore": 1,
+        "partialCredit": false
+      },
+      "misconceptionTags": [
+        "perpendicular-bisector-condition-ignored",
+        "linear-equation-sign-error"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "1",
+        "implementationStatus": "generator_validated",
+        "independentPracticeReady": false,
+        "runtimeStatus": "not_connected_to_graph_practice"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.7.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.7.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.7.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.7.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.8.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.8.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.8.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.8.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.7.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.7.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.7.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.7.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.6.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.6.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.6.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.6.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.7.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.7.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.7.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.7.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.8.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.8.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.8.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-5",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.6.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.6.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.6.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.6.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.7.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.7.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.7.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.7.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.7.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.7.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.7.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.7.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.6.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.6.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.6.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "6",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.7.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.7.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.7.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "7",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.8.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.8.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.8.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "8",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.9.source-objective-1",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.9.source-objective-2",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.9.source-objective-3",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.9.source-objective-4",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "9",
+        "implementationStatus": "unavailable",
+        "sourceReviewRequired": true,
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.order-triangle-angles-from-side-lengths",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.order-triangle-sides-from-angle-measures",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "",
+      "rendererModeMap": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for this source capability"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4",
+        "implementationStatus": "unavailable",
+        "independentPracticeReady": false
       }
     }
   ]

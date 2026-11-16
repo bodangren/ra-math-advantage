@@ -22,6 +22,7 @@ import {
   type SrsCardId,
   type SrsCardState,
   type SrsReviewLogEntry,
+  type SrsReviewLogEntryV31,
   type SrsSessionConfig,
   type SrsSession,
 } from '@math-platform/srs-engine';
@@ -52,7 +53,7 @@ import type {
 
 describe('SRS type export verification', () => {
   it('should export the expected value constants', () => {
-    expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v1');
+    expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v3');
     expect(typeof PRIORITY_DEFAULTS).toBe('object');
     expect(typeof STUDENT_DAILY_PRACTICE_COPY).toBe('object');
     expect(typeof TEACHER_DAILY_PRACTICE_COPY).toBe('object');
@@ -94,7 +95,7 @@ describe('SRS type export verification', () => {
       getCard: async (_id: string) => null,
       getCardsByStudent: async (_studentId: string) => [],
       getCardsByObjective: async (_objectiveId: string) => [],
-      getCardByStudentAndFamily: async (_studentId: string, _familyId: string) => null,
+      getCardByStudentAndVariant: async (_studentId: string, _familyId: string) => null,
       getDueCards: async (_studentId: string, _now: string) => [],
       saveCard: async (_card: SrsCardState) => {},
       saveCards: async (_cards: SrsCardState[]) => {},
@@ -129,7 +130,7 @@ describe('SRS type export verification', () => {
     const _result: ReviewProcessorResult = {
       rating: 'Good',
       updatedCard: {} as SrsCardState,
-      reviewLog: {} as SrsReviewLogEntry,
+      reviewLog: {} as SrsReviewLogEntryV31,
     };
     expect(_input).toBeDefined();
     expect(_result).toBeDefined();

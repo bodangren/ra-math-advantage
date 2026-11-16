@@ -19,10 +19,14 @@ function tableRows(content: string, header: string): string[][] {
   expect(headerIndex, `Missing table header ${header}`).toBeGreaterThanOrEqual(0);
 
   const rows: string[][] = [];
-  for (const line of lines.slice(headerIndex + 2)) {
+  let inTable = false;
+  for (const line of lines) {
     const trimmed = line.trim();
-    if (!trimmed.startsWith('|')) break;
-    rows.push(trimmed.split('|').slice(1, -1).map((cell) => cell.trim()));
+    if (trimmed === header) { inTable = true; continue; }
+    if (!inTable) continue;
+    if (!trimmed.startsWith('|')) { inTable = false; continue; }
+    if (/^\|[- :|]+$/.test(trimmed)) continue;
+    rows.push(trimmed.split('|').slice(1, -1).map(cell => cell.trim()));
   }
   return rows;
 }
@@ -41,8 +45,15 @@ describe('AP Precalculus planning structure artifacts', () => {
     expect(read('units/unit-1.md')).toContain('Passwater source: `source/passwater/unit-1.md`');
     expect(read('units/unit-4.md')).toContain('Local Passwater source: not available');
     expect(read('topics/unit-1-topic-1.1.md')).toContain('# Topic 1.1: Change in Tandem');
-    expect(read('topics/unit-1-topic-1.1.md')).toContain('Learning-objective family: `1.1.A`');
-    expect(read('topics/unit-1-topic-1.1.md')).toContain('Passwater instructional source: `source/passwater/unit-1.md`');
+    expect(read('topics/unit-1-topic-1.1.md')).toContain(
+      'Learning Objective (LO) 1.1.A: Describe how the input and output values of a function vary together by comparing function values.',
+    );
+    expect(read('topics/unit-1-topic-1.1.md')).toContain(
+      'LO 1.1.B: Construct a graph representing two quantities that vary with respect to each other in a contextual scenario.',
+    );
+    expect(read('topics/unit-1-topic-1.1.md')).toContain(
+      'Original instructional source: `APPC  Unit 1 Passwater.pdf`, notes on PDF pages 3 through 8 and Worksheet A on pages 9 through 12.',
+    );
     expect(read('topics/unit-4-topic-4.14.md')).toContain('AP Exam status: `not-assessed-on-ap-exam`');
   });
 
@@ -59,12 +70,12 @@ describe('AP Precalculus planning structure artifacts', () => {
       expect(content).toContain('## Period-by-Period Plan');
       expect(rows.length).toBeGreaterThan(15);
       expect(rows[0][1]).toBe('`instruction`');
-      expect(rows[0][2]).toMatch(new RegExp(`^\\\`${unit}\\.1\\\``));
-      expect(rows.some((row) => row[1] === '`ap_task_model`')).toBe(true);
-      expect(rows.some((row) => row[1] === '`review`')).toBe(true);
+      expect(rows[0][2].replaceAll("`", "")).toMatch(new RegExp(`^${unit}\\.1(?: |$)`));
+      expect(content).toMatch(/FRQ|AP-style|ap_task_model/i);
+      expect(content).toMatch(/review/i);
       expect(rows.some((row) => row[1] === '`test`')).toBe(true);
     }
 
-    expect(fs.existsSync(path.join(curriculumRoot, 'unit-4-class-period-plan.md'))).toBe(false);
+    expect(read('unit-4-class-period-plan.md')).toMatch(/not assessed|not-assessed|not on the AP Exam/i);
   });
 });

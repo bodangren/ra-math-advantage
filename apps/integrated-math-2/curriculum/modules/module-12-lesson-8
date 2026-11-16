@@ -13,9 +13,9 @@ Source: (Module 12, Lesson 12-N, Int2_1208_practice.docx)
 ## Vocabulary
 
 * **Linear model** — a function with constant first differences; grows by equal differences over equal intervals
-* **Quadratic model** — a function with constant second differences; characterized by a² term
+* **Quadratic model** — A model of the form ax² + bx + c with a ≠ 0. Its second differences are constant and nonzero for equally spaced inputs.
 * **Exponential model** — a function with constant ratios; grows by equal factors over equal intervals
-* **Coefficient of determination (R²)** — a value between 0 and 1 indicating how well a regression model fits data; values closer to 1 indicate a better fit
+* **Coefficient of determination (R²)** — The value 1 − SSE/SST, where SSE is the sum of squared residuals and SST is the total squared deviation from the response mean. For least-squares fitting with an intercept on the fitted data, it lies between 0 and 1 when SST > 0. It can be negative for other predictions and is undefined when SST = 0.
 * **Scatter plot** — a graph of plotted points showing the relationship between two variables
 * **Regression equation** — an equation derived from data that best fits a given pattern (linear, quadratic, or exponential)
 
@@ -54,9 +54,9 @@ The constant first differences (4) indicate a **linear model**: [y = 4x + 3]
    * Quadratic: acceleration or parabolic motion (height over time, area problems)
    * Exponential: growth/decay by percentage (population, radioactive decay, interest)
 
-2. **Check the differences** — Use finite differences or ratios to confirm your hypothesis
+2. **Check the differences** — For equally spaced inputs, constant first differences support a linear model. Constant nonzero second differences support a quadratic model. Constant ratios of nonzero successive outputs support an exponential model.
 
-3. **Use technology for regression** — When differences are not perfectly constant (real-world data), use a graphing calculator to find the regression equation with the highest R² value
+3. **Use technology for regression** — Compare plausible model families using residuals, context, and prediction error. Compare R² only on the same response scale and data. A larger R² alone does not justify a more complex model. Do not log-transform zero or negative outputs.
 
 4. **Interpret domain and range** — In context, domain is typically the range of x-values (time, age, etc.) and range is the corresponding y-values (height, population, etc.)
 
@@ -64,133 +64,33 @@ The constant first differences (4) indicate a **linear model**: [y = 4x + 3]
 
 ## Example 1 — Identify the Model Type from a Table
 
-**Problem:** Look for a pattern in the table of values to determine which kind of model best describes the data. Then write an equation for the function that models the data.
+### Problem
 
-| x | 0 | 1 | 2 | 3 | 4 |
-|---|---|---|---|---|---|
-| y | 2 | 6 | 18 | 54 | 162 |
+For equally spaced inputs x=0,1,2,3,4, the outputs are 2,6,18,54,162. Choose a linear, quadratic, or exponential model and write its equation.
 
-### Step 1: Compute first differences
+### Solution
 
-- y₂ − y₁ = 6 − 2 = 4
-- y₃ − y₂ = 18 − 6 = 12
-- y₄ − y₃ = 54 − 18 = 36
-- y₅ − y₄ = 162 − 54 = 108
-
-First differences are **not constant** (4, 12, 36, 108).
-
-### Step 2: Compute second differences
-
-- 12 − 4 = 8
-- 36 − 12 = 24
-- 108 − 36 = 72
-
-Second differences are **not constant** (8, 24, 72).
-
-### Step 3: Compute ratios
-
-- 6 ÷ 2 = 3
-- 18 ÷ 6 = 3
-- 54 ÷ 18 = 3
-- 162 ÷ 54 = 3
-
-Ratios are **constant (3)**. This indicates an **exponential model**.
-
-### Step 4: Write the exponential equation
-
-The general form is [y = a \cdot b^x]. From the ratio, b = 3. Using the point (0, 2): [2 = a \cdot 3^0 = a], so a = 2.
-
-**Answer:** [y = 2 \cdot 3^x]
-
----
+Each output is three times the previous one. Constant ratios for unit input steps support the exponential model $y=2\cdot3^x$. The initial output is 2. This model fits all five points; finite data alone do not prove a unique function outside those inputs.
 
 ## Example 2 — Model Data with a Quadratic Function
 
-**Problem:** The table shows the height of a ball thrown upward at various times.
+### Problem
 
-| t (seconds) | 0 | 1 | 2 | 3 | 4 |
-|---|---|---|---|---|---|
-| h (feet) | 0 | 48 | 64 | 48 | 0 |
+A ball-height table gives h=0,48,64,48,0 feet at t=0,1,2,3,4 seconds. Find a quadratic model and its relevant domain.
 
-### Step 1: Compute first differences
+### Solution
 
-- 48 − 0 = 48
-- 64 − 48 = 16
-- 48 − 64 = −16
-- 0 − 48 = −48
-
-First differences are **not constant**.
-
-### Step 2: Compute second differences
-
-- 16 − 48 = −32
-- −16 − 16 = −32
-- −48 − (−16) = −32
-
-Second differences are **constant (−32)**. This indicates a **quadratic model**.
-
-### Step 3: Write the quadratic equation
-
-The general form is [h = at^2 + bt + c]. Using the three points:
-- t = 0: h = 0 → c = 0
-- t = 1: h = 48 → a + b = 48
-- t = 2: h = 64 → 4a + 2b = 64
-
-Solving: From a + b = 48, b = 48 − a. Substituting: 4a + 2(48 − a) = 64 → 4a + 96 − 2a = 64 → 2a = −32 → a = −16.
-Then b = 48 − (−16) = 64.
-
-**Answer:** [h = -16t^2 + 64t] (a projectile motion model)
-
----
+The second differences are -32, so for unit steps the quadratic coefficient is -16. Since h(0)=0, the constant is 0. Using h(1)=48 gives the linear coefficient 64. Thus h(t)=-16t²+64t. It fits every row. The modeled flight domain is [0,4] seconds, with maximum height 64 ft at t=2.
 
 ## Example 3 — Use Regression to Find the Best Model
 
-**Problem:** A drone's height is recorded at various times after launch.
+### Problem
 
-| Time (s) | 0 | 1 | 2 | 3 | 4 | 5 |
-|---|---|---|---|---|---|---|
-| Height (ft) | 0 | 62 | 95 | 108 | 115 | 120 |
+A drone-height table has points (0,0), (1,62), (2,95), (3,108), (4,115), and (5,120), with time in seconds and height in feet. Compare least-squares linear and quadratic fits by R². Evaluate the quadratic at t=7 and state the limitation.
 
-**(a)** Make a scatter plot of the data.
+### Solution
 
-**(b)** Which regression equation has an R² value closest to 1?
-
-**(c)** Find an appropriate regression equation and state the coefficient of determination. What are the relevant domain and range?
-
-**(d)** Predict the height of the drone 7 seconds after launch.
-
-### Step 1: Analyze the scatter plot
-
-Plot the points (0, 0), (1, 62), (2, 95), (3, 108), (4, 115), (5, 120). The relationship appears to increase rapidly at first, then level off — suggesting an exponential or logarithmic model.
-
-### Step 2: Test regression types
-
-Use a graphing calculator to compare linear, quadratic, and exponential regression:
-
-- **Linear regression**: R² ≈ 0.847
-- **Quadratic regression**: R² ≈ 0.991
-- **Exponential regression**: R² ≈ 0.953
-
-The **quadratic model has R² closest to 1**.
-
-### Step 3: Write the regression equation
-
-The quadratic regression yields:
-
-[h = -4.8t^2 + 35.2t + 0.8]
-
-R² ≈ 0.991 (99.1% of variation is explained by the model).
-
-**Domain:** In context, t ≥ 0 (time after launch) up to when the drone lands.  
-**Range:** h ≥ 0 (height above ground).
-
-### Step 4: Predict at t = 7
-
-[h = -4.8(7)^2 + 35.2(7) + 0.8 = -4.8(49) + 246.4 + 0.8 = -235.2 + 246.4 + 0.8 = 12]
-
-**Answer (d):** Approximately 12 feet.
-
----
+The linear fit is approximately $h=22.05714t+28.19048$, with $R^2\approx0.81153$. The quadratic fit is $h=-(389/56)t^2+(15901/280)t+141/28$, with $R^2\approx0.98324$. The quadratic fits these six points more closely under this measure. It does not establish the correct physical model. Its value at t=7 is approximately 62.19 ft. That is extrapolation beyond the observed time interval [0,5]. The observed height range is [0,120] ft. A standard log-linear exponential fit cannot include the zero height without changing the method or data.
 
 ## Mixed Exercises
 
@@ -250,7 +150,7 @@ R² ≈ 0.991 (99.1% of variation is explained by the model).
 
 ## Review Notes
 
-* ![](media/image1.png) through ![](media/image23.png) — Tables and scatter plots from the original worksheet are embedded in the source document and should be rendered alongside the appropriate problems.
+* ![Worksheet figure 1](/curriculum/module-12-lesson-8/image1.png) through ![Worksheet figure 23](/curriculum/module-12-lesson-8/image23.png) — Tables and scatter plots from the original worksheet are embedded in the source document and should be rendered alongside the appropriate problems.
 * **Graphing calculator skills** are required for Examples 4 and Mixed Exercises 15–19, 23–26 to compute regression equations and R² values.
 * **Problem 23 (Nuclear Waste)** connects to real-world applications of exponential decay and half-life calculations.
 * **Problem 27 (Use a Source)** is a research-based activity requiring external data lookup.

@@ -1,3 +1,4 @@
+import { sanitizeFormula } from '@/lib/activities/spreadsheet-validation';
 import type { SpreadsheetData, SpreadsheetCell } from "./SpreadsheetWrapper";
 export type { SpreadsheetData, SpreadsheetCell } from "./SpreadsheetWrapper";
 
@@ -15,26 +16,8 @@ export function validateFormula(formula: string) : { isValid: boolean; error?: s
     return { isValid: false, error: "Formula must start with =" };
   }
 
-  // Basic validation for common Excel functions
-  const allowedFunctions = [
-    "SUM", "AVERAGE", "MIN", "MAX", "COUNT", "IF", "ROUND",
-    "ABS", "SQRT", "POWER", "LOG", "EXP"
-  ];
-
-  const functionPattern = /([A-Z]+)\(/g;
-  const matches = formula.match(functionPattern);
-
-  if (matches) {
-    for (const match of matches) {
-      const functionName = match.slice(0, -1); // Remove the opening parenthesis
-      if (!allowedFunctions.includes(functionName)) {
-        return { 
-          isValid: false, 
-          error: `Function ${functionName} is not allowed or supported` 
-        };
-      }
-    }
-  }
+  const sanitized = sanitizeFormula(formula);
+  if (!sanitized.isValid) return sanitized;
 
   // Check for balanced parentheses
   let openParens = 0;

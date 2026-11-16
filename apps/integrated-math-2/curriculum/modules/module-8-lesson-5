@@ -28,7 +28,7 @@ How does the inequality symbol determine which side of the boundary line is part
 ### Key Concept: Three Methods for Graphing Lines
 
 1. **Table method:** Choose x-values, compute y-values, plot points, draw line.
-2. **Intercept method:** Find where the line crosses each axis, plot those points, draw the line through them.
+2. **Intercept method:** Find two distinct intercepts and draw the line through them. If the intercepts coincide or one does not exist, use another point or a different method.
 3. **Slope-intercept method (m and b):** Plot the y-intercept [(0, b)], use the slope [m] to find another point, draw the line.
 
 ### Key Concept: Graphing Linear Inequalities
@@ -39,53 +39,53 @@ How does the inequality symbol determine which side of the boundary line is part
 
 ## Example 1 — Graph Using a Table
 
-Graph each equation by using a table.
+### Problem
 
-### Step 1: Make a Table of Values
+Use a table to graph y = -x + 2.
 
-Choose x-values, compute corresponding y-values, plot the points, and connect them.
+### Solution
+
+Choose x = 0, 1, and 2. The corresponding y-values are 2, 1, and 0. Plot (0, 2), (1, 1), and (2, 0). Draw the straight line through them and extend it in both directions.
 
 ## Example 2 — Graph Using Intercepts
 
-Graph each equation by using the x- and y-intercepts.
+### Problem
 
-### Step 1: Find Both Intercepts
+Graph 2x+3y=12 using intercepts.
 
-Set [y = 0] to find the x-intercept; set [x = 0] to find the y-intercept. Plot both and draw the line through them.
+### Solution
+
+Set y=0 to obtain x=6, giving (6,0). Set x=0 to obtain y=4, giving (0,4). Plot both points and draw the line through them. The equivalent equation is y=4-(2/3)x.
 
 ## Example 3 — Graph Using m and b
 
-Graph each equation by using [m] and [b].
+### Problem
 
-### Step 1: Identify m and b
+Graph y = (3/2)x - 1 using its slope and y-intercept.
 
-Write each equation in the form [y = mx + b], identify [m] and [b], plot the y-intercept, use the slope to find another point, draw the line.
+### Solution
+
+The y-intercept is (0, -1). The slope 3/2 means rise 3 units for a run of 2 units. This gives the second point (2, 2). Draw the straight line through these points.
 
 ## Examples 4 and 5 — Graph Inequalities
 
-Graph each inequality.
+### Problem
 
-### Step 1: Graph the Boundary, then Shade
+Graph the solution set of y > 2x - 3. State whether the origin and the boundary point (0, -3) belong to the solution set.
+
+### Solution
+
+Draw the boundary line through (0, -3) and (2, 1). Use a dashed line because the inequality is strict. Shade above the line. The origin satisfies 0 > -3, so it is included. The boundary point (0, -3) is excluded because -3 > -3 is false.
 
 ## Example 6 — Real-World Inequality Problems
 
-Write and graph inequalities for real-world constraint situations.
+### Problem
 
-### Step 1: CRAFT FAIR
+An artist sells drawings for 100 dollars each and watercolors for 400 dollars each. Let d and w be the respective quantities sold. Write a constraint for revenue of at least 2000 dollars and describe its feasible graph.
 
-Kylie wants to sell two paintings for at least $400 total. If x is the price of the first painting and y is the price of the second: [x + y >= 400].
+### Solution
 
-### Step 2: BUILDING CODES
-
-Building height must be less than 0.1x, where x is distance in hundreds of feet from the park center: [y < 0.1x].
-
-### Step 3: WEIGHT
-
-Truck weight limit: [200t + 60c < 1200], where t is tables and c is chairs.
-
-### Step 4: ART
-
-Artist sells drawings at $100 and watercolors at $400, wants at least $2000: [100d + 400w >= 2000].
+The constraint is 100d+400w≥2000, or d+4w≥20. Both variables are nonnegative integers. The boundary line passes through (20,0) and (0,5). Include the boundary and the side above it. Only integer lattice points in the first quadrant represent sales quantities.
 
 ## Mixed Exercises
 
@@ -106,4 +106,4 @@ Problems 35–65 provide extensive practice:
 
 ## Review Notes
 
-* ![](media/image1.png) — FIND THE ERROR problem graph (problem 61)
+* ![Worksheet figure 1](/curriculum/module-8-lesson-5/image1.png) — FIND THE ERROR problem graph (problem 61)

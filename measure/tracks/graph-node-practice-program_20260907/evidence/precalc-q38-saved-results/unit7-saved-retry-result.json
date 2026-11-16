@@ -1,0 +1,15 @@
+{
+  "networkError": "Failed to fetch",
+  "malformedReceiptNotDelivered": true,
+  "sameEventRetryPostCount": 1,
+  "acceptedResponseLossRecoveredByRead": true,
+  "retryUsedOriginalSubmission": true,
+  "retryCreatedNoSubmission": true,
+  "freshAttemptUsedNewSubmission": true,
+  "oldAttemptOrdinal": 2,
+  "newAttemptOrdinal": 3,
+  "submissionPosts": 1,
+  "receiptPosts": 3,
+  "guidedRetryAndNewAttemptHadNoSrsChanges": true,
+  "reloadHadNoWrites": true
+}

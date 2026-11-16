@@ -22,7 +22,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { LessonComposer } from '@/components/teacher/content-authoring/LessonComposer';
 import { AuthoredLessonPreview, type AuthoredDraft } from '@/components/teacher/content-authoring/AuthoredLessonPreview';
-import type { TeacherFacingStatus } from '../../../../convex/teacher/content-authoring';
+import type { TeacherFacingStatus } from '../../../convex/teacher/content_authoring';
 
 export interface ComposerSeed {
   lessonId: string;

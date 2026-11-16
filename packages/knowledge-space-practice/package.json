@@ -12,12 +12,19 @@
     "./misconception-loop": "./src/misconception-loop.ts",
     "./blueprints": "./src/blueprints/index.ts",
     "./planner/types": "./src/planner/types.ts",
+    "./planner/v3-2-contract": "./src/planner/v3-2-contract.ts",
+    "./planner/v3-2-planner": "./src/planner/v3-2-planner.ts",
+    "./planner/v3-2-recommendations": "./src/planner/v3-2-recommendations.ts",
+    "./planner/v3-2-domain-utility-contract": "./src/planner/v3-2-domain-utility-contract.ts",
+    "./planner/v3-2-domain-utility": "./src/planner/v3-2-domain-utility.ts",
+    "./planner/v3-2-review-load-contract": "./src/planner/v3-2-review-load-contract.ts",
+    "./planner/v3-2-review-load": "./src/planner/v3-2-review-load.ts",
     "./projections": "./src/projections/index.ts"
   },
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "lint": "eslint src --max-warnings 0",
+    "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit"
   },
@@ -26,10 +33,8 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@eslint/js": "^10",
-    "eslint": "^10.0.0",
+    "@types/node": "^22.20.1",
     "typescript": "^6",
-    "typescript-eslint": "^8",
     "vitest": "^4.1.8"
   }
 }

@@ -1,125 +1,1442 @@
 {
   "standards": [
     {
-      "standardId": "math.standard.ccss.hsf-if-c-7c",
-      "standardTitle": "math.standard.ccss.hsf-if-c-7c",
+      "standardId": "math.standard.ccss.hsa-apr-a-1",
+      "standardTitle": "HSA-APR.A.1: Adding, subtracting, and multiplying polynomials",
       "nodeIds": [
-        "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-        "math.im3.skill.1.1.graph-quadratic-functions"
+        "math.im3.example.1.1.003",
+        "math.im3.example.2.1.001",
+        "math.im3.example.2.1.002",
+        "math.im3.example.2.1.003",
+        "math.im3.example.2.1.004",
+        "math.im3.example.2.1.005",
+        "math.im3.example.2.1.006",
+        "math.im3.example.2.3.009",
+        "math.im3.example.2.3.010",
+        "math.im3.example.2.3.011",
+        "math.im3.example.2.3.012",
+        "math.im3.example.2.4.013",
+        "math.im3.example.2.4.014",
+        "math.im3.example.2.4.015",
+        "math.im3.example.2.4.016",
+        "math.im3.example.2.4.017",
+        "math.im3.example.2.5.018",
+        "math.im3.example.2.5.019",
+        "math.im3.example.2.5.020",
+        "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+        "math.im3.skill.2.1.graph-and-analyze-power-functions",
+        "math.im3.skill.2.3.add-and-subtract-polynomials",
+        "math.im3.skill.2.3.multiply-polynomials",
+        "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+        "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+        "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+        "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context"
       ],
-      "workedExampleCount": 2,
-      "guidedPracticeCount": 2,
-      "independentPracticeCount": 2
+      "workedExampleCount": 19,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
     },
     {
-      "standardId": "math.standard.ccss.hsa-sse-b-3",
-      "standardTitle": "math.standard.ccss.hsa-sse-b-3",
+      "standardId": "math.standard.ccss.hsa-apr-b-2",
+      "standardTitle": "HSA-APR.B.2: Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x - a is p(a)",
       "nodeIds": [
-        "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-        "math.im3.skill.1.1.graph-quadratic-functions"
+        "math.im3.example.2.1.001",
+        "math.im3.example.2.1.002",
+        "math.im3.example.2.1.003",
+        "math.im3.example.2.1.004",
+        "math.im3.example.2.1.005",
+        "math.im3.example.2.1.006",
+        "math.im3.example.3.1.001",
+        "math.im3.example.3.1.002",
+        "math.im3.example.3.4.012",
+        "math.im3.example.3.4.013",
+        "math.im3.example.3.4.014",
+        "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+        "math.im3.skill.2.1.graph-and-analyze-power-functions",
+        "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+        "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution"
       ],
-      "workedExampleCount": 2,
-      "guidedPracticeCount": 2,
-      "independentPracticeCount": 2
+      "workedExampleCount": 11,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
     },
     {
-      "standardId": "math.standard.ccss.hsa-rei-b-4",
-      "standardTitle": "math.standard.ccss.hsa-rei-b-4",
+      "standardId": "math.standard.ccss.hsa-apr-b-3",
+      "standardTitle": "HSA-APR.B.3: Identifying zeros of polynomials",
       "nodeIds": [
-        "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
-        "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
-        "math.im3.skill.1.1.graph-quadratic-functions",
-        "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol"
+        "math.im3.example.2.1.001",
+        "math.im3.example.2.1.002",
+        "math.im3.example.2.1.003",
+        "math.im3.example.2.1.004",
+        "math.im3.example.2.1.005",
+        "math.im3.example.2.1.006",
+        "math.im3.example.3.1.001",
+        "math.im3.example.3.1.002",
+        "math.im3.example.3.2.003",
+        "math.im3.example.3.2.004",
+        "math.im3.example.3.2.005",
+        "math.im3.example.3.2.006",
+        "math.im3.example.3.2.007",
+        "math.im3.example.3.2.008",
+        "math.im3.example.3.2.009",
+        "math.im3.example.3.4.012",
+        "math.im3.example.3.4.013",
+        "math.im3.example.3.4.014",
+        "math.im3.example.3.5.015",
+        "math.im3.example.3.5.016",
+        "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+        "math.im3.skill.2.1.graph-and-analyze-power-functions",
+        "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+        "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+        "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+        "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+        "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+        "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb"
       ],
-      "workedExampleCount": 5,
-      "guidedPracticeCount": 5,
-      "independentPracticeCount": 3
+      "workedExampleCount": 20,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
     },
     {
-      "standardId": "math.standard.ccss.hsf-if-a-2",
-      "standardTitle": "math.standard.ccss.hsf-if-a-2",
+      "standardId": "math.standard.ccss.hsa-apr-c-4",
+      "standardTitle": "HSA-APR.C.4: Prove polynomial identities and use them to describe numerical relationships",
       "nodeIds": [
-        "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-        "math.im3.skill.1.1.graph-quadratic-functions"
+        "math.im3.example.3.1.001",
+        "math.im3.example.3.1.002",
+        "math.im3.example.3.3.010",
+        "math.im3.example.3.3.011",
+        "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+        "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric"
       ],
-      "workedExampleCount": 2,
-      "guidedPracticeCount": 2,
-      "independentPracticeCount": 2
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
     },
     {
-      "standardId": "math.standard.ccss.n-cn-a-1",
-      "standardTitle": "math.standard.ccss.n-cn-a-1",
+      "standardId": "math.standard.ccss.hsa-apr-d-6",
+      "standardTitle": "HSA-APR.D.6: Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x) where a, b, q, and r are polynomials",
       "nodeIds": [
-        "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-        "math.im3.skill.1.1.graph-quadratic-functions"
+        "math.im3.example.7.1.001",
+        "math.im3.example.7.1.002",
+        "math.im3.example.7.1.003",
+        "math.im3.example.7.1.004",
+        "math.im3.example.7.2.005",
+        "math.im3.example.7.2.006",
+        "math.im3.example.7.2.007",
+        "math.im3.example.7.2.008",
+        "math.im3.example.7.2.009",
+        "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+        "math.im3.skill.7.1.simplify-rational-expressions",
+        "math.im3.skill.7.2.simplify-complex-fractions",
+        "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting"
       ],
-      "workedExampleCount": 2,
-      "guidedPracticeCount": 2,
-      "independentPracticeCount": 2
-    },
-    {
-      "standardId": "math.standard.ccss.n-cn-c-7",
-      "standardTitle": "math.standard.ccss.n-cn-c-7",
-      "nodeIds": [
-        "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-        "math.im3.skill.1.1.graph-quadratic-functions"
-      ],
-      "workedExampleCount": 2,
-      "guidedPracticeCount": 2,
-      "independentPracticeCount": 2
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
     },
     {
       "standardId": "math.standard.ccss.hsa-ced-a-1",
-      "standardTitle": "math.standard.ccss.hsa-ced-a-1",
+      "standardTitle": "HSA-CED.A.1: Creating equations in one variable",
       "nodeIds": [
-        "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables"
+        "math.im3.example.1.7.041",
+        "math.im3.example.1.7.042",
+        "math.im3.example.1.7.043",
+        "math.im3.example.1.7.044",
+        "math.im3.example.1.7.045",
+        "math.im3.example.4.6.029",
+        "math.im3.example.4.6.030",
+        "math.im3.example.4.6.031",
+        "math.im3.example.4.6.032",
+        "math.im3.example.4.6.033",
+        "math.im3.example.4.6.034",
+        "math.im3.example.4.6.035",
+        "math.im3.example.7.6.025",
+        "math.im3.example.7.6.026",
+        "math.im3.example.7.6.027",
+        "math.im3.example.7.6.028",
+        "math.im3.example.7.6.029",
+        "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+        "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+        "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+        "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+        "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+        "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable"
       ],
-      "workedExampleCount": 1,
-      "guidedPracticeCount": 1,
+      "workedExampleCount": 17,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsa-ced-a-2",
+      "standardTitle": "HSA-CED.A.2: Create equations in two or more variables to represent relationships between quantities",
+      "nodeIds": [
+        "math.im3.example.7.1.001",
+        "math.im3.example.7.1.002",
+        "math.im3.example.7.1.003",
+        "math.im3.example.7.1.004",
+        "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+        "math.im3.skill.7.1.simplify-rational-expressions"
+      ],
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 0,
       "independentPracticeCount": 0
     },
     {
       "standardId": "math.standard.ccss.hsa-ced-a-3",
-      "standardTitle": "math.standard.ccss.hsa-ced-a-3",
+      "standardTitle": "HSA-CED.A.3: Represent constraints by equations or inequalities, and by systems of equations and/or inequalities, and interpret solutions as viable or nonviable options",
       "nodeIds": [
-        "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables"
+        "math.im3.example.1.1.003",
+        "math.im3.example.1.7.041",
+        "math.im3.example.1.7.042",
+        "math.im3.example.1.7.043",
+        "math.im3.example.1.7.044",
+        "math.im3.example.1.7.045",
+        "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+        "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+        "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model"
+      ],
+      "workedExampleCount": 6,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsa-rei-a-2",
+      "standardTitle": "HSA-REI.A.2: Solve rational equations in one variable and give examples showing how extraneous solutions can arise",
+      "nodeIds": [
+        "math.im3.example.7.1.001",
+        "math.im3.example.7.1.002",
+        "math.im3.example.7.1.003",
+        "math.im3.example.7.1.004",
+        "math.im3.example.7.6.025",
+        "math.im3.example.7.6.026",
+        "math.im3.example.7.6.027",
+        "math.im3.example.7.6.028",
+        "math.im3.example.7.6.029",
+        "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+        "math.im3.skill.7.1.simplify-rational-expressions",
+        "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+        "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable"
+      ],
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsa-rei-b-4",
+      "standardTitle": "HSA-REI.B.4: Solving quadratic equations in one variable",
+      "nodeIds": [
+        "math.im3.example.1.1.002",
+        "math.im3.example.1.1.004",
+        "math.im3.example.1.1.005",
+        "math.im3.example.1.1.006",
+        "math.im3.example.1.2.007",
+        "math.im3.example.1.2.008",
+        "math.im3.example.1.2.009",
+        "math.im3.example.1.2.010",
+        "math.im3.example.1.2.011",
+        "math.im3.example.1.4.019",
+        "math.im3.example.1.4.020",
+        "math.im3.example.1.4.021",
+        "math.im3.example.1.4.022",
+        "math.im3.example.1.4.023",
+        "math.im3.example.1.4.024",
+        "math.im3.example.1.4.025",
+        "math.im3.example.1.5.026",
+        "math.im3.example.1.5.027",
+        "math.im3.example.1.5.028",
+        "math.im3.example.1.5.029",
+        "math.im3.example.1.5.030",
+        "math.im3.example.1.5.031",
+        "math.im3.example.1.5.032",
+        "math.im3.example.1.5.033",
+        "math.im3.example.1.5.034",
+        "math.im3.example.1.5.035",
+        "math.im3.example.1.6.036",
+        "math.im3.example.1.6.037",
+        "math.im3.example.1.6.038",
+        "math.im3.example.1.6.039",
+        "math.im3.example.1.6.040",
+        "math.im3.example.3.1.001",
+        "math.im3.example.3.1.002",
+        "math.im3.example.3.2.003",
+        "math.im3.example.3.2.004",
+        "math.im3.example.3.2.005",
+        "math.im3.example.3.2.006",
+        "math.im3.example.3.2.007",
+        "math.im3.example.3.2.008",
+        "math.im3.example.3.2.009",
+        "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+        "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+        "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+        "math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+        "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+        "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+        "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+        "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+        "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+        "math.im3.skill.1.2.find-two-numbers-with-given-sum-and-product-by-graphing",
+        "math.im3.skill.1.2.estimate-roots-by-graphing",
+        "math.im3.skill.1.2.solve-a-quadratic-equation-with-one-real-solution-by-graphing"
+      ],
+      "workedExampleCount": 40,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsa-rei-c-7",
+      "standardTitle": "HSA-REI.C.7: Solve systems consisting of linear and quadratic equations graphically and algebraically",
+      "nodeIds": [
+        "math.im3.example.1.8.046",
+        "math.im3.example.1.8.047",
+        "math.im3.example.1.8.048",
+        "math.im3.example.1.8.049",
+        "math.im3.example.1.8.050",
+        "math.im3.example.1.8.051",
+        "math.im3.example.1.8.052",
+        "math.im3.example.3.1.001",
+        "math.im3.example.3.1.002",
+        "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+        "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+        "math.im3.skill.3.1.solve-polynomial-equations-by-graphing"
+      ],
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsa-sse-b-3",
+      "standardTitle": "HSA-SSE.B.3: Choosing and producing equivalent forms of expressions",
+      "nodeIds": [
+        "math.im3.example.1.1.002",
+        "math.im3.example.1.1.004",
+        "math.im3.example.1.1.005",
+        "math.im3.example.1.1.006"
+      ],
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-bf-a-1",
+      "standardTitle": "HSF-BF.A.1: Building functions that describe relationships between quantities",
+      "nodeIds": [
+        "math.im3.example.4.1.001",
+        "math.im3.example.4.1.002",
+        "math.im3.skill.4.1.find-compositions-of-functions",
+        "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions"
+      ],
+      "workedExampleCount": 2,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-bf-a-1a",
+      "standardTitle": "HSF-BF.A.1a: Determine an explicit expression, a recursive process, or steps for calculation from a context",
+      "nodeIds": [
+        "math.im3.example.1.1.003",
+        "math.im3.example.4.1.001",
+        "math.im3.example.4.1.002",
+        "math.im3.skill.4.1.find-compositions-of-functions",
+        "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+        "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-bf-b-3",
+      "standardTitle": "HSF-BF.B.3: Effects of transformations on function graphs",
+      "nodeIds": [
+        "math.im3.example.4.1.001",
+        "math.im3.example.4.1.002",
+        "math.im3.skill.4.1.find-compositions-of-functions",
+        "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions"
+      ],
+      "workedExampleCount": 2,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-bf-b-4",
+      "standardTitle": "HSF-BF.B.4: Finding inverse functions",
+      "nodeIds": [
+        "math.im3.example.4.1.001",
+        "math.im3.example.4.1.002",
+        "math.im3.example.4.2.003",
+        "math.im3.example.4.2.004",
+        "math.im3.example.4.2.005",
+        "math.im3.example.4.2.006",
+        "math.im3.example.4.2.007",
+        "math.im3.example.4.2.008",
+        "math.im3.skill.4.1.find-compositions-of-functions",
+        "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+        "math.im3.skill.4.2.find-inverses-of-relations",
+        "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions"
+      ],
+      "workedExampleCount": 8,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-bf-b-5",
+      "standardTitle": "HSF-BF.B.5: Understanding the inverse relationship between exponents and logarithms",
+      "nodeIds": [
+        "math.im3.example.5.1.001",
+        "math.im3.example.5.1.002",
+        "math.im3.example.5.1.003",
+        "math.im3.example.5.1.004",
+        "math.im3.example.5.1.005",
+        "math.im3.example.5.1.006",
+        "math.im3.example.5.1.007",
+        "math.im3.example.5.1.008",
+        "math.im3.example.6.1.001",
+        "math.im3.example.6.1.002",
+        "math.im3.example.6.1.003",
+        "math.im3.example.6.1.004",
+        "math.im3.example.6.1.005",
+        "math.im3.example.6.1.006",
+        "math.im3.example.6.1.007",
+        "math.im3.example.6.1.008",
+        "math.im3.example.6.2.009",
+        "math.im3.example.6.2.010",
+        "math.im3.example.6.2.011",
+        "math.im3.example.6.3.012",
+        "math.im3.example.6.3.013",
+        "math.im3.example.6.3.014",
+        "math.im3.example.6.3.015",
+        "math.im3.example.6.3.016",
+        "math.im3.example.6.3.017",
+        "math.im3.skill.5.1.graph-exponential-decay-functions",
+        "math.im3.skill.5.1.graph-exponential-growth-functions",
+        "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+        "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+        "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms"
+      ],
+      "workedExampleCount": 25,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-a-2",
+      "standardTitle": "HSF-IF.A.2: Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
+      "nodeIds": [
+        "math.im3.example.1.1.002",
+        "math.im3.example.1.1.003",
+        "math.im3.example.1.1.004",
+        "math.im3.example.1.1.005",
+        "math.im3.example.1.1.006",
+        "math.im3.example.3.1.001",
+        "math.im3.example.3.1.002",
+        "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+        "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-b-4",
+      "standardTitle": "HSF-IF.B.4: Interpreting key features of functions from graphs and tables",
+      "nodeIds": [
+        "math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph",
+        "math.im3.example.1.1.003",
+        "math.im3.example.2.1.001",
+        "math.im3.example.2.1.002",
+        "math.im3.example.2.1.003",
+        "math.im3.example.2.1.004",
+        "math.im3.example.2.1.005",
+        "math.im3.example.2.1.006",
+        "math.im3.example.2.2.007",
+        "math.im3.example.2.2.008",
+        "math.im3.example.4.1.001",
+        "math.im3.example.4.1.002",
+        "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+        "math.im3.skill.2.1.graph-and-analyze-power-functions",
+        "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+        "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+        "math.im3.skill.4.1.find-compositions-of-functions",
+        "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+        "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model",
+        "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph",
+        "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model"
+      ],
+      "workedExampleCount": 11,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-b-5",
+      "standardTitle": "HSF-IF.B.5: Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.",
+      "nodeIds": [
+        "math.im3.example.1.1.003",
+        "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph",
+        "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model"
       ],
       "workedExampleCount": 1,
-      "guidedPracticeCount": 1,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-b-6",
+      "standardTitle": "HSF-IF.B.6: Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.",
+      "nodeIds": [
+        "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+        "math.im3.skill.1.1.calculate-average-rate-of-change-from-an-equation",
+        "math.im3.skill.1.1.calculate-average-rate-of-change-from-a-table",
+        "math.im3.skill.1.1.estimate-and-verify-average-rate-of-change-from-a-graph",
+        "math.im3.skill.1.1.interpret-average-rate-of-change-in-context"
+      ],
+      "workedExampleCount": 0,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-c-7a",
+      "standardTitle": "HSF-IF.C.7a: Graph linear and quadratic functions and show intercepts, maxima, and minima",
+      "nodeIds": [
+        "math.im3.example.1.1.001",
+        "math.im3.example.4.1.001",
+        "math.im3.example.4.1.002",
+        "math.im3.example.4.4.015",
+        "math.im3.example.4.4.016",
+        "math.im3.example.4.4.017",
+        "math.im3.example.4.4.018",
+        "math.im3.example.4.4.019",
+        "math.im3.example.4.4.020",
+        "math.im3.example.4.4.021",
+        "math.im3.skill.1.1.graph-quadratic-functions",
+        "math.im3.skill.4.1.find-compositions-of-functions",
+        "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+        "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+        "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+        "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-c-7b",
+      "standardTitle": "HSF-IF.C.7b: Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "nodeIds": [],
+      "workedExampleCount": 0,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-c-7c",
+      "standardTitle": "HSF-IF.C.7c: Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
+      "nodeIds": [
+        "math.im3.example.1.1.002",
+        "math.im3.example.1.1.004",
+        "math.im3.example.1.1.005",
+        "math.im3.example.1.1.006",
+        "math.im3.example.2.1.001",
+        "math.im3.example.2.1.002",
+        "math.im3.example.2.1.003",
+        "math.im3.example.2.1.004",
+        "math.im3.example.2.1.005",
+        "math.im3.example.2.1.006",
+        "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+        "math.im3.skill.2.1.graph-and-analyze-power-functions"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-c-7d",
+      "standardTitle": "HSF-IF.C.7d: Graph rational functions, showing intercepts and asymptotes when suitable factorizations are available",
+      "nodeIds": [
+        "math.im3.example.7.1.001",
+        "math.im3.example.7.1.002",
+        "math.im3.example.7.1.003",
+        "math.im3.example.7.1.004",
+        "math.im3.example.7.3.010",
+        "math.im3.example.7.3.011",
+        "math.im3.example.7.3.012",
+        "math.im3.example.7.3.013",
+        "math.im3.example.7.3.014",
+        "math.im3.example.7.4.015",
+        "math.im3.example.7.4.016",
+        "math.im3.example.7.4.017",
+        "math.im3.example.7.4.018",
+        "math.im3.example.7.4.019",
+        "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+        "math.im3.skill.7.1.simplify-rational-expressions",
+        "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+        "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+        "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+        "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz"
+      ],
+      "workedExampleCount": 14,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-c-7e",
+      "standardTitle": "HSF-IF.C.7e: Graphing exponential and logarithmic functions, showing intercepts and end behavior",
+      "nodeIds": [
+        "math.im3.example.5.1.001",
+        "math.im3.example.5.1.002",
+        "math.im3.example.5.1.003",
+        "math.im3.example.5.1.004",
+        "math.im3.example.5.1.005",
+        "math.im3.example.5.1.006",
+        "math.im3.example.5.1.007",
+        "math.im3.example.5.1.008",
+        "math.im3.example.6.1.001",
+        "math.im3.example.6.1.002",
+        "math.im3.example.6.1.003",
+        "math.im3.example.6.1.004",
+        "math.im3.example.6.1.005",
+        "math.im3.example.6.1.006",
+        "math.im3.example.6.1.007",
+        "math.im3.example.6.1.008",
+        "math.im3.example.6.4.018",
+        "math.im3.example.6.4.019",
+        "math.im3.example.6.4.020",
+        "math.im3.example.6.4.021",
+        "math.im3.example.6.4.022",
+        "math.im3.example.6.4.023",
+        "math.im3.example.6.4.024",
+        "math.im3.example.7.5.020",
+        "math.im3.example.7.5.021",
+        "math.im3.example.7.5.022",
+        "math.im3.example.7.5.023",
+        "math.im3.example.7.5.024",
+        "math.im3.skill.5.1.graph-exponential-decay-functions",
+        "math.im3.skill.5.1.graph-exponential-growth-functions",
+        "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+        "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+        "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+        "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+        "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations"
+      ],
+      "workedExampleCount": 28,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-if-c-9",
+      "standardTitle": "HSF-IF.C.9: Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).",
+      "nodeIds": [
+        "math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions"
+      ],
+      "workedExampleCount": 0,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-le-a-1",
+      "standardTitle": "HSF-LE.A.1: Distinguish between situations that can be modeled with linear functions and with exponential functions",
+      "nodeIds": [
+        "math.im3.example.5.1.001",
+        "math.im3.example.5.1.002",
+        "math.im3.example.5.1.003",
+        "math.im3.example.5.1.004",
+        "math.im3.example.5.1.005",
+        "math.im3.example.5.1.006",
+        "math.im3.example.5.1.007",
+        "math.im3.example.5.1.008",
+        "math.im3.example.5.4.017",
+        "math.im3.example.5.4.018",
+        "math.im3.example.5.4.019",
+        "math.im3.example.5.4.020",
+        "math.im3.example.5.4.021",
+        "math.im3.example.5.4.022",
+        "math.im3.example.5.4.023",
+        "math.im3.example.5.4.024",
+        "math.im3.example.5.4.025",
+        "math.im3.example.5.5.026",
+        "math.im3.example.5.5.027",
+        "math.im3.example.6.1.001",
+        "math.im3.example.6.1.002",
+        "math.im3.example.6.1.003",
+        "math.im3.example.6.1.004",
+        "math.im3.example.6.1.005",
+        "math.im3.example.6.1.006",
+        "math.im3.example.6.1.007",
+        "math.im3.example.6.1.008",
+        "math.im3.example.7.5.020",
+        "math.im3.example.7.5.021",
+        "math.im3.example.7.5.022",
+        "math.im3.example.7.5.023",
+        "math.im3.example.7.5.024",
+        "math.im3.skill.5.1.graph-exponential-decay-functions",
+        "math.im3.skill.5.1.graph-exponential-growth-functions",
+        "math.im3.skill.5.4.find-sums-of-geometric-series",
+        "math.im3.skill.5.4.generate-geometric-sequences",
+        "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+        "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+        "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+        "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations"
+      ],
+      "workedExampleCount": 32,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-le-a-2",
+      "standardTitle": "HSF-LE.A.2: Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description of a relationship, or two input-output pairs",
+      "nodeIds": [
+        "math.im3.example.5.1.001",
+        "math.im3.example.5.1.002",
+        "math.im3.example.5.1.003",
+        "math.im3.example.5.1.004",
+        "math.im3.example.5.1.005",
+        "math.im3.example.5.1.006",
+        "math.im3.example.5.1.007",
+        "math.im3.example.5.1.008",
+        "math.im3.example.5.2.009",
+        "math.im3.example.5.2.010",
+        "math.im3.example.5.2.011",
+        "math.im3.example.5.2.012",
+        "math.im3.example.5.3.013",
+        "math.im3.example.5.3.014",
+        "math.im3.example.5.3.015",
+        "math.im3.example.5.3.016",
+        "math.im3.example.5.5.026",
+        "math.im3.example.5.5.027",
+        "math.im3.example.6.1.001",
+        "math.im3.example.6.1.002",
+        "math.im3.example.6.1.003",
+        "math.im3.example.6.1.004",
+        "math.im3.example.6.1.005",
+        "math.im3.example.6.1.006",
+        "math.im3.example.6.1.007",
+        "math.im3.example.6.1.008",
+        "math.im3.skill.5.1.graph-exponential-decay-functions",
+        "math.im3.skill.5.1.graph-exponential-growth-functions",
+        "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+        "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+        "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+        "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+        "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write"
+      ],
+      "workedExampleCount": 26,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-le-a-4",
+      "standardTitle": "HSF-LE.A.4: Expressing solutions to exponential models as logarithms",
+      "nodeIds": [
+        "math.im3.example.5.1.001",
+        "math.im3.example.5.1.002",
+        "math.im3.example.5.1.003",
+        "math.im3.example.5.1.004",
+        "math.im3.example.5.1.005",
+        "math.im3.example.5.1.006",
+        "math.im3.example.5.1.007",
+        "math.im3.example.5.1.008",
+        "math.im3.example.6.1.001",
+        "math.im3.example.6.1.002",
+        "math.im3.example.6.1.003",
+        "math.im3.example.6.1.004",
+        "math.im3.example.6.1.005",
+        "math.im3.example.6.1.006",
+        "math.im3.example.6.1.007",
+        "math.im3.example.6.1.008",
+        "math.im3.example.6.3.012",
+        "math.im3.example.6.3.013",
+        "math.im3.example.6.3.014",
+        "math.im3.example.6.3.015",
+        "math.im3.example.6.3.016",
+        "math.im3.example.6.3.017",
+        "math.im3.example.6.4.018",
+        "math.im3.example.6.4.019",
+        "math.im3.example.6.4.020",
+        "math.im3.example.6.4.021",
+        "math.im3.example.6.4.022",
+        "math.im3.example.6.4.023",
+        "math.im3.example.6.4.024",
+        "math.im3.example.6.5.025",
+        "math.im3.skill.5.1.graph-exponential-decay-functions",
+        "math.im3.skill.5.1.graph-exponential-growth-functions",
+        "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+        "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+        "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+        "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+        "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+        "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie"
+      ],
+      "workedExampleCount": 30,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-le-b-5",
+      "standardTitle": "HSF-LE.B.5: Interpret the parameters in a linear function or an exponential function in terms of a context",
+      "nodeIds": [
+        "math.im3.example.5.2.009",
+        "math.im3.example.5.2.010",
+        "math.im3.example.5.2.011",
+        "math.im3.example.5.2.012",
+        "math.im3.example.5.3.013",
+        "math.im3.example.5.3.014",
+        "math.im3.example.5.3.015",
+        "math.im3.example.5.3.016",
+        "math.im3.example.5.4.017",
+        "math.im3.example.5.4.018",
+        "math.im3.example.5.4.019",
+        "math.im3.example.5.4.020",
+        "math.im3.example.5.4.021",
+        "math.im3.example.5.4.022",
+        "math.im3.example.5.4.023",
+        "math.im3.example.5.4.024",
+        "math.im3.example.5.4.025",
+        "math.im3.example.6.1.001",
+        "math.im3.example.6.1.002",
+        "math.im3.example.6.1.003",
+        "math.im3.example.6.1.004",
+        "math.im3.example.6.1.005",
+        "math.im3.example.6.1.006",
+        "math.im3.example.6.1.007",
+        "math.im3.example.6.1.008",
+        "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+        "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+        "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+        "math.im3.skill.5.4.find-sums-of-geometric-series",
+        "math.im3.skill.5.4.generate-geometric-sequences",
+        "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write"
+      ],
+      "workedExampleCount": 25,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-tf-a-1",
+      "standardTitle": "HSF-TF.A.1: Extend the domain of the trigonometric functions using the unit circle",
+      "nodeIds": [
+        "math.im3.example.9.1.001",
+        "math.im3.example.9.1.002",
+        "math.im3.example.9.1.003",
+        "math.im3.example.9.1.004",
+        "math.im3.example.9.1.005",
+        "math.im3.example.9.1.006",
+        "math.im3.example.9.2.007",
+        "math.im3.example.9.2.008",
+        "math.im3.example.9.2.009",
+        "math.im3.example.9.2.010",
+        "math.im3.example.9.2.011",
+        "math.im3.example.9.2.012",
+        "math.im3.example.9.2.013",
+        "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+        "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+        "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+        "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
+        "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles"
+      ],
+      "workedExampleCount": 13,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-tf-a-2",
+      "standardTitle": "HSF-TF.A.2: Explain how the unit circle in the coordinate plane enables the extension of trigonometric functions to all real numbers, and interpret these functions in terms of a periodic phenomenon",
+      "nodeIds": [
+        "math.im3.example.9.1.001",
+        "math.im3.example.9.1.002",
+        "math.im3.example.9.1.003",
+        "math.im3.example.9.1.004",
+        "math.im3.example.9.1.005",
+        "math.im3.example.9.1.006",
+        "math.im3.example.9.2.007",
+        "math.im3.example.9.2.008",
+        "math.im3.example.9.2.009",
+        "math.im3.example.9.2.010",
+        "math.im3.example.9.2.011",
+        "math.im3.example.9.2.012",
+        "math.im3.example.9.2.013",
+        "math.im3.example.9.4.014",
+        "math.im3.example.9.4.015",
+        "math.im3.example.9.4.016",
+        "math.im3.example.9.4.017",
+        "math.im3.example.9.4.018",
+        "math.im3.example.9.4.019",
+        "math.im3.example.9.7.030",
+        "math.im3.example.9.7.031",
+        "math.im3.example.9.7.032",
+        "math.im3.example.9.7.033",
+        "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+        "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+        "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+        "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
+        "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+        "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+        "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+        "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+        "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+        "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric"
+      ],
+      "workedExampleCount": 23,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-tf-a-4",
+      "standardTitle": "HSF-TF.A.4: Use the unit circle to explain symmetry and periodicity of trigonometric functions",
+      "nodeIds": [
+        "math.im3.example.9.1.001",
+        "math.im3.example.9.1.002",
+        "math.im3.example.9.1.003",
+        "math.im3.example.9.1.004",
+        "math.im3.example.9.1.005",
+        "math.im3.example.9.1.006",
+        "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+        "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+        "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+        "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e"
+      ],
+      "workedExampleCount": 6,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hsf-tf-b-5",
+      "standardTitle": "HSF-TF.B.5: Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
+      "nodeIds": [
+        "math.im3.example.9.1.001",
+        "math.im3.example.9.1.002",
+        "math.im3.example.9.1.003",
+        "math.im3.example.9.1.004",
+        "math.im3.example.9.1.005",
+        "math.im3.example.9.1.006",
+        "math.im3.example.9.4.014",
+        "math.im3.example.9.4.015",
+        "math.im3.example.9.4.016",
+        "math.im3.example.9.4.017",
+        "math.im3.example.9.4.018",
+        "math.im3.example.9.4.019",
+        "math.im3.example.9.5.020",
+        "math.im3.example.9.5.021",
+        "math.im3.example.9.5.022",
+        "math.im3.example.9.5.023",
+        "math.im3.example.9.5.024",
+        "math.im3.example.9.6.025",
+        "math.im3.example.9.6.026",
+        "math.im3.example.9.6.027",
+        "math.im3.example.9.6.028",
+        "math.im3.example.9.6.029",
+        "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+        "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+        "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+        "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+        "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+        "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+        "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+        "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions"
+      ],
+      "workedExampleCount": 22,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-ic-a-1",
+      "standardTitle": "HSS-IC.A.1: Understand statistics as a process for making inferences about population parameters based on a random sample from that population",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-ic-b-3",
+      "standardTitle": "HSS-IC.B.3: Recognize the purposes of and differences among sample surveys, experiments, and observational studies",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-ic-b-4",
+      "standardTitle": "HSS-IC.B.4: Use data from a sample survey to estimate a population mean or proportion and develop a margin of error through simulations",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.example.8.5.022",
+        "math.im3.example.8.5.023",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+        "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+        "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co"
+      ],
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-ic-b-5",
+      "standardTitle": "HSS-IC.B.5: Use data from a randomized experiment to compare two treatments and use simulations to decide if differences between them are statistically significant",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.example.8.2.008",
+        "math.im3.example.8.2.009",
+        "math.im3.example.8.2.010",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+        "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+        "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-ic-b-6",
+      "standardTitle": "HSS-IC.B.6: Evaluate reports based on data by identifying sources of bias, questionable conclusions, and the statistical question asked",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.example.8.2.008",
+        "math.im3.example.8.2.009",
+        "math.im3.example.8.2.010",
+        "math.im3.example.8.5.022",
+        "math.im3.example.8.5.023",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+        "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+        "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+        "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+        "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co"
+      ],
+      "workedExampleCount": 12,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-id-a-1",
+      "standardTitle": "HSS-ID.A.1: Represent data with plots on the real number line (dot plots, histograms, box plots)",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.example.8.3.011",
+        "math.im3.example.8.3.012",
+        "math.im3.example.8.3.013",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+        "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-id-a-2",
+      "standardTitle": "HSS-ID.A.2: Use statistics appropriate to the shape of the data distribution to compare center and spread of two or more different data sets",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.example.8.3.011",
+        "math.im3.example.8.3.012",
+        "math.im3.example.8.3.013",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+        "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-id-a-3",
+      "standardTitle": "HSS-ID.A.3: Interpret differences in shape, center, and spread in the context of the data sets",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.example.8.4.014",
+        "math.im3.example.8.4.015",
+        "math.im3.example.8.4.016",
+        "math.im3.example.8.4.017",
+        "math.im3.example.8.4.018",
+        "math.im3.example.8.4.019",
+        "math.im3.example.8.4.020",
+        "math.im3.example.8.4.021",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+        "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+        "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
+        "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to"
+      ],
+      "workedExampleCount": 15,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.hss-id-b-6",
+      "standardTitle": "HSS-ID.B.6: Represent data on two quantitative variables, and describe how those variables vary together",
+      "nodeIds": [
+        "math.im3.example.8.1.001",
+        "math.im3.example.8.1.002",
+        "math.im3.example.8.1.003",
+        "math.im3.example.8.1.004",
+        "math.im3.example.8.1.005",
+        "math.im3.example.8.1.006",
+        "math.im3.example.8.1.007",
+        "math.im3.example.8.4.014",
+        "math.im3.example.8.4.015",
+        "math.im3.example.8.4.016",
+        "math.im3.example.8.4.017",
+        "math.im3.example.8.4.018",
+        "math.im3.example.8.4.019",
+        "math.im3.example.8.4.020",
+        "math.im3.example.8.4.021",
+        "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+        "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+        "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+        "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
+        "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to"
+      ],
+      "workedExampleCount": 15,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.n-cn-a-1",
+      "standardTitle": "N-CN.A.1: Knowing the definition of complex numbers",
+      "nodeIds": [
+        "math.im3.example.1.1.002",
+        "math.im3.example.1.1.004",
+        "math.im3.example.1.1.005",
+        "math.im3.example.1.1.006",
+        "math.im3.example.1.3.012",
+        "math.im3.example.1.3.013",
+        "math.im3.example.1.3.014",
+        "math.im3.example.1.3.015",
+        "math.im3.example.1.3.016",
+        "math.im3.example.1.3.017",
+        "math.im3.example.1.3.018",
+        "math.im3.example.3.1.001",
+        "math.im3.example.3.1.002",
+        "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+        "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+        "math.im3.skill.3.1.solve-polynomial-equations-by-graphing"
+      ],
+      "workedExampleCount": 13,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.n-cn-c-7",
+      "standardTitle": "N-CN.C.7: Solving quadratics with complex solutions",
+      "nodeIds": [
+        "math.im3.example.1.1.002",
+        "math.im3.example.1.1.004",
+        "math.im3.example.1.1.005",
+        "math.im3.example.1.1.006",
+        "math.im3.example.1.3.012",
+        "math.im3.example.1.3.013",
+        "math.im3.example.1.3.014",
+        "math.im3.example.1.3.015",
+        "math.im3.example.1.3.016",
+        "math.im3.example.1.3.017",
+        "math.im3.example.1.3.018",
+        "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+        "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i"
+      ],
+      "workedExampleCount": 11,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.n-rn-a-1",
+      "standardTitle": "N-RN.A.1: Understanding nth roots and rational exponents",
+      "nodeIds": [
+        "math.im3.example.4.1.001",
+        "math.im3.example.4.1.002",
+        "math.im3.example.4.3.009",
+        "math.im3.example.4.3.010",
+        "math.im3.example.4.3.011",
+        "math.im3.example.4.3.012",
+        "math.im3.example.4.3.013",
+        "math.im3.example.4.3.014",
+        "math.im3.skill.4.1.find-compositions-of-functions",
+        "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+        "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+        "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen"
+      ],
+      "workedExampleCount": 8,
+      "guidedPracticeCount": 0,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.n-rn-a-2",
+      "standardTitle": "N-RN.A.2: Rewriting expressions involving radicals and rational exponents",
+      "nodeIds": [
+        "math.im3.example.4.1.001",
+        "math.im3.example.4.1.002",
+        "math.im3.example.4.3.009",
+        "math.im3.example.4.3.010",
+        "math.im3.example.4.3.011",
+        "math.im3.example.4.3.012",
+        "math.im3.example.4.3.013",
+        "math.im3.example.4.3.014",
+        "math.im3.example.4.5.022",
+        "math.im3.example.4.5.023",
+        "math.im3.example.4.5.024",
+        "math.im3.example.4.5.025",
+        "math.im3.example.4.5.026",
+        "math.im3.example.4.5.027",
+        "math.im3.example.4.5.028",
+        "math.im3.skill.4.1.find-compositions-of-functions",
+        "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+        "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+        "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+        "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+        "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
+        "math.im3.skill.4.5.simplify-radical-expressions"
+      ],
+      "workedExampleCount": 15,
+      "guidedPracticeCount": 0,
       "independentPracticeCount": 0
     }
   ],
   "skills": [
     {
-      "nodeId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "title": "1a: Graph quadratic functions",
+      "nodeId": "math.im3.skill.1.1.build-and-simplify-a-quadratic-profit-model-from-context",
+      "title": "Build and simplify a quadratic profit model from context",
       "kind": "skill",
       "standardsCovered": [
-        "math.standard.ccss.hsf-if-c-7c",
-        "math.standard.ccss.hsa-sse-b-3",
-        "math.standard.ccss.hsa-rei-b-4",
-        "math.standard.ccss.hsf-if-a-2",
-        "math.standard.ccss.n-cn-a-1",
-        "math.standard.ccss.n-cn-c-7"
+        "math.standard.ccss.hsf-bf-a-1a",
+        "math.standard.ccss.hsa-apr-a-1"
       ],
       "prerequisitesMet": true,
-      "independentPracticeReady": true
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.calculate-average-rate-of-change-from-a-table",
+      "title": "Calculate average rate of change from a table",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.calculate-average-rate-of-change-from-an-equation",
+      "title": "Calculate average rate of change from an equation",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.compare-maximum-values-of-quadratic-functions",
+      "title": "Compare maximum values of quadratic functions",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-9"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.determine-the-contextual-domain-and-range-of-a-quadratic-model",
+      "title": "Determine the contextual domain and range of a quadratic model",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-5",
+        "math.standard.ccss.hsa-ced-a-3",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.estimate-and-verify-average-rate-of-change-from-a-graph",
+      "title": "Estimate and verify average rate of change from a graph",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
       "title": "1b: Find and interpret the average rate of change",
       "kind": "skill",
       "standardsCovered": [
-        "math.standard.ccss.hsf-if-c-7c",
-        "math.standard.ccss.hsa-sse-b-3",
-        "math.standard.ccss.hsa-rei-b-4",
-        "math.standard.ccss.hsf-if-a-2",
-        "math.standard.ccss.n-cn-a-1",
-        "math.standard.ccss.n-cn-c-7"
+        "math.standard.ccss.hsf-if-b-6"
       ],
       "prerequisitesMet": true,
-      "independentPracticeReady": true
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.find-and-interpret-the-maximum-of-a-quadratic-profit-model",
+      "title": "Find and interpret the maximum of a quadratic profit model",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-if-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.graph-a-quadratic-from-a-vertex-and-y-intercept-using-symmetry",
+      "title": "Graph a quadratic from a vertex and y-intercept by using symmetry",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7a"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "title": "1a: Graph a quadratic function by using a table",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7a"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.identify-a-quadratic-maximum-from-its-graph",
+      "title": "Identify a quadratic maximum from its graph",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.interpret-average-rate-of-change-in-context",
+      "title": "Interpret average rate of change in context",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.state-the-domain-and-range-of-a-quadratic-from-its-graph",
+      "title": "State the domain and range of a quadratic function from its graph",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-5",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.estimate-roots-by-graphing",
+      "title": "Estimate roots of a quadratic equation by graphing",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.find-two-numbers-with-given-sum-and-product-by-graphing",
+      "title": "Find two numbers with a given sum and product by graphing a quadratic equation",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": true,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+      "title": "1d: Interpret solutions (roots) in context",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.solve-a-quadratic-equation-with-one-real-solution-by-graphing",
+      "title": "Solve a quadratic equation with one real solution by graphing",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
@@ -128,8 +1445,44 @@
       "standardsCovered": [
         "math.standard.ccss.hsa-rei-b-4"
       ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "title": "1f: Perform operations with complex numbers",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.n-cn-a-1",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "title": "1e: Understand and use the imaginary unit i",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.n-cn-a-1",
+        "math.standard.ccss.n-cn-c-7"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": true
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+      "title": "1j: Recognize special factor patterns (GCF, trinomials, difference of squares)",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
@@ -138,8 +1491,31 @@
       "standardsCovered": [
         "math.standard.ccss.hsa-rei-b-4"
       ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+      "title": "1m: Connect completing the square to vertex form",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "title": "1k: Solve quadratic equations by completing the square",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
@@ -148,8 +1524,20 @@
       "standardsCovered": [
         "math.standard.ccss.hsa-rei-b-4"
       ],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "title": "1n: Use the Quadratic Formula to solve equations",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
@@ -159,1407 +1547,2410 @@
         "math.standard.ccss.hsa-ced-a-1",
         "math.standard.ccss.hsa-ced-a-3"
       ],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "title": "1q: Solve quadratic inequalities in one variable by graphing",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-ced-a-1",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "title": "1s: Solve systems involving a linear and a quadratic equation",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-c-7"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "title": "1t: Solve systems of two quadratic equations",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-c-7"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
       "title": "2b: Graph and analyze polynomial functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2",
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-if-c-7c"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
       "title": "2a: Graph and analyze power functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2",
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-if-c-7c"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
       "title": "2c: Approximate zeros by graphing polynomial functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
       "title": "2d: Find extrema of polynomial functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-b-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.3.add-and-subtract-polynomials",
       "title": "2e: Add and subtract polynomials",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.3.multiply-polynomials",
       "title": "2f: Multiply polynomials",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
       "title": "2g: Divide polynomials by using long division",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
       "title": "2h: Divide polynomials by using synthetic division",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
       "title": "2i: Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
-      "title": "binomial_theorem_expansion",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
-      "title": "pascal_triangle_expansion",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.polynomial-add-subtract",
-      "title": "polynomial_add_subtract",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
-      "title": "polynomial_extrema_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
-      "title": "polynomial_feature_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.polynomial-long-division",
-      "title": "polynomial_long_division",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.polynomial-multiplication",
-      "title": "polynomial_multiplication",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
-      "title": "polynomial_synthetic_division",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
-      "title": "polynomial_zero_approximation",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.2.aleks.power-function-graph-analysis",
-      "title": "power_function_graph_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
       "title": "3a: Solve polynomial equations by graphing",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-b-2",
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-c-4",
+        "math.standard.ccss.hsa-rei-b-4",
+        "math.standard.ccss.hsa-rei-c-7",
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.n-cn-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
       "title": "3b: Solve polynomial equations by factoring",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
       "title": "3c: Solve polynomial equations by writing them in quadratic form and factoring",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
       "title": "3d: Prove polynomial identities and use them to describe numerical relationships",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
       "title": "3e: Evaluate functions by using synthetic substitution",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-b-2",
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
       "title": "3h: Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
       "title": "3g: Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
-      "title": "factor_theorem_factor_testing",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
-      "title": "polynomial_equation_graph_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
-      "title": "polynomial_factoring_structures",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.3.aleks.polynomial-identity-proof",
-      "title": "polynomial_identity_proof",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
-      "title": "polynomial_quadratic_form",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.3.aleks.root-type-analysis",
-      "title": "root_type_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
-      "title": "synthetic_substitution_remainder",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
-      "title": "zeros_to_polynomial_graph",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.1.find-compositions-of-functions",
       "title": "4b: Find compositions of functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-a-1",
+        "math.standard.ccss.hsf-bf-a-1a",
+        "math.standard.ccss.hsf-bf-b-3",
+        "math.standard.ccss.hsf-bf-b-4",
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-if-c-7a",
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
       "title": "4a: Find sums, differences, products, and quotients of functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-a-1",
+        "math.standard.ccss.hsf-bf-a-1a",
+        "math.standard.ccss.hsf-bf-b-3",
+        "math.standard.ccss.hsf-bf-b-4",
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-if-c-7a",
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.2.find-inverses-of-relations",
       "title": "4c: Find inverses of relations",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-b-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
       "title": "4d: Verify that two relations are inverses by using compositions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-b-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
       "title": "4f: Simplify expressions in exponential or radical form",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
       "title": "4e: Simplify expressions involving radicals and rational exponents",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
       "title": "4h: Graph and analyze cube root functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7a"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
       "title": "4g: Graph and analyze square root functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7a"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
       "title": "4j: Add, subtract, and multiply radicals",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.n-rn-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
       "title": "4k: Divide and simplify radical expressions by rationalizing the denominator",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.n-rn-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.5.simplify-radical-expressions",
       "title": "4i: Simplify radical expressions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.n-rn-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
       "title": "4m: Solve radical equations by graphing systems of equations",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-ced-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
       "title": "4l: Solve radical equations in one variable and identify extraneous solutions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-ced-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.cube-root-function-graph-analysis",
-      "title": "cube_root_function_graph_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.function-composition",
-      "title": "function_composition",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.function-operations",
-      "title": "function_operations",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.inverse-relation-function",
-      "title": "inverse_relation_function",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.inverse-verification-by-composition",
-      "title": "inverse_verification_by_composition",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.radical-equation-graphing-systems",
-      "title": "radical_equation_graphing_systems",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.radical-equation-solving",
-      "title": "radical_equation_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.radical-operations",
-      "title": "radical_operations",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.radical-rational-exponent-conversion",
-      "title": "radical_rational_exponent_conversion",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.radical-simplification",
-      "title": "radical_simplification",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.rational-exponent-simplification",
-      "title": "rational_exponent_simplification",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.rationalize-denominator",
-      "title": "rationalize_denominator",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.4.aleks.square-root-function-graph-analysis",
-      "title": "square_root_function_graph_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.5.1.graph-exponential-decay-functions",
       "title": "5b: Graph exponential decay functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-b-5",
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-le-a-1",
+        "math.standard.ccss.hsf-le-a-2",
+        "math.standard.ccss.hsf-le-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.5.1.graph-exponential-growth-functions",
       "title": "5a: Graph exponential growth functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-b-5",
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-le-a-1",
+        "math.standard.ccss.hsf-le-a-2",
+        "math.standard.ccss.hsf-le-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
       "title": "5c: Solve exponential equations in one variable",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-le-a-2",
+        "math.standard.ccss.hsf-le-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
       "title": "5d: Solve exponential inequalities in one variable",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-le-a-2",
+        "math.standard.ccss.hsf-le-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
       "title": "5e: Analyze expressions and functions involving the natural base \\e\\",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-le-a-2",
+        "math.standard.ccss.hsf-le-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.5.4.find-sums-of-geometric-series",
       "title": "5g: Find sums of geometric series",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-le-a-1",
+        "math.standard.ccss.hsf-le-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.5.4.generate-geometric-sequences",
       "title": "5f: Generate geometric sequences",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-le-a-1",
+        "math.standard.ccss.hsf-le-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
       "title": "5h: Choose the best function type to model sets of data",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-le-a-1",
+        "math.standard.ccss.hsf-le-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.5.aleks.data-model-family-selection",
-      "title": "data_model_family_selection",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
-      "title": "exponential_decay_graph_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.5.aleks.exponential-equation-solving",
-      "title": "exponential_equation_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
-      "title": "exponential_growth_graph_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.5.aleks.exponential-inequality-solving",
-      "title": "exponential_inequality_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.5.aleks.geometric-sequence-generation",
-      "title": "geometric_sequence_generation",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.5.aleks.geometric-series-summation",
-      "title": "geometric_series_summation",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.5.aleks.natural-base-e-analysis",
-      "title": "natural_base_e_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
       "title": "6a: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-b-5",
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-le-a-1",
+        "math.standard.ccss.hsf-le-a-2",
+        "math.standard.ccss.hsf-le-a-4",
+        "math.standard.ccss.hsf-le-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
       "title": "6c: Solve logarithmic equations using properties of equality",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
       "title": "6e: Solve exponential equations by using common logarithms",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-bf-b-5",
+        "math.standard.ccss.hsf-le-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
       "title": "6g: Simplify expressions with natural logarithms",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-le-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
       "title": "6h: Solve exponential equations by using natural logarithms",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-le-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
       "title": "6j: Write and solve exponential decay equations",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-le-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
       "title": "6i: Write and solve exponential growth equations and inequalities",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-le-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.change-of-base-evaluation",
-      "title": "change_of_base_evaluation",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.common-log-exponential-solving",
-      "title": "common_log_exponential_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
-      "title": "continuous_exponential_decay_modeling",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
-      "title": "continuous_exponential_growth_modeling",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.log-exp-form-conversion",
-      "title": "log_exp_form_conversion",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.logarithm-property-simplification",
-      "title": "logarithm_property_simplification",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
-      "title": "logarithmic_equation_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
-      "title": "logarithmic_graph_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.natural-log-equation-solving",
-      "title": "natural_log_equation_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.natural-log-model-analysis",
-      "title": "natural_log_model_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.6.aleks.natural-log-simplification",
-      "title": "natural_log_simplification",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.1.simplify-rational-expressions",
       "title": "7a: Simplify rational expressions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-d-6",
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-rei-a-2",
+        "math.standard.ccss.hsf-if-c-7d"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
       "title": "7b: Simplify rational expressions by multiplying and dividing",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-d-6",
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-rei-a-2",
+        "math.standard.ccss.hsf-if-c-7d"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.2.simplify-complex-fractions",
       "title": "7d: Simplify complex fractions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-d-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
       "title": "7c: Simplify rational expressions by adding and subtracting",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-apr-d-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
       "title": "7f: Graph and write reciprocal functions by using transformations",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7d"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
       "title": "7e: Graph reciprocal functions by making tables of values",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7d"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
       "title": "7h: Graph and analyze rational functions with oblique asymptotes",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7d"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
       "title": "7g: Graph and analyze rational functions with vertical and horizontal asymptotes",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7d"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
       "title": "7i: Recognize and solve direct and joint variation equations",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-le-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
       "title": "7j: Recognize and solve inverse and combined variation equations",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-le-a-1"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
       "title": "7k: Solve rational equations in one variable",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-ced-a-1",
+        "math.standard.ccss.hsa-rei-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
       "title": "7l: Solve rational inequalities in one variable",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsa-ced-a-1",
+        "math.standard.ccss.hsa-rei-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.complex-fraction-simplification",
-      "title": "complex_fraction_simplification",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.direct-joint-variation-modeling",
-      "title": "direct_joint_variation_modeling",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.inverse-combined-variation-modeling",
-      "title": "inverse_combined_variation_modeling",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.rational-equation-applications",
-      "title": "rational_equation_applications",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.rational-equation-solving",
-      "title": "rational_equation_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.rational-expression-add-subtract",
-      "title": "rational_expression_add_subtract",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.rational-expression-multiply-divide",
-      "title": "rational_expression_multiply_divide",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.rational-expression-simplification",
-      "title": "rational_expression_simplification",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.rational-function-asymptote-analysis",
-      "title": "rational_function_asymptote_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.rational-function-oblique-asymptote",
-      "title": "rational_function_oblique_asymptote",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.rational-inequality-solving",
-      "title": "rational_inequality_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.reciprocal-function-table-graphing",
-      "title": "reciprocal_function_table_graphing",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.7.aleks.reciprocal-function-transformations",
-      "title": "reciprocal_function_transformations",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
       "title": "8a: Classify sampling methods and identify bias in samples and survey questions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-ic-a-1",
+        "math.standard.ccss.hss-ic-b-3",
+        "math.standard.ccss.hss-ic-b-4",
+        "math.standard.ccss.hss-ic-b-5",
+        "math.standard.ccss.hss-ic-b-6",
+        "math.standard.ccss.hss-id-a-1",
+        "math.standard.ccss.hss-id-a-2",
+        "math.standard.ccss.hss-id-a-3",
+        "math.standard.ccss.hss-id-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
       "title": "8b: Distinguish among sample surveys, experiments, and observational studies",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-ic-a-1",
+        "math.standard.ccss.hss-ic-b-3",
+        "math.standard.ccss.hss-ic-b-4",
+        "math.standard.ccss.hss-ic-b-5",
+        "math.standard.ccss.hss-ic-b-6",
+        "math.standard.ccss.hss-id-a-1",
+        "math.standard.ccss.hss-id-a-2",
+        "math.standard.ccss.hss-id-a-3",
+        "math.standard.ccss.hss-id-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
       "title": "8c: Compare theoretical and experimental probabilities",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-ic-b-5",
+        "math.standard.ccss.hss-ic-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
       "title": "8d: Determine whether models are consistent with results from simulations of real-life situations",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-ic-b-5",
+        "math.standard.ccss.hss-ic-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
       "title": "8e: Describe distributions by finding their mean and standard deviation",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-id-a-1",
+        "math.standard.ccss.hss-id-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
       "title": "8g: Analyze normally distributed variables by using the Empirical Rule",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-id-a-3",
+        "math.standard.ccss.hss-id-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
       "title": "8h: Analyze standardized data and distributions by using z-values",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-id-a-3",
+        "math.standard.ccss.hss-id-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
       "title": "8f: Classify variables and analyze probability distributions to determine expected outcomes",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-id-a-3",
+        "math.standard.ccss.hss-id-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
       "title": "8i: Use sample data to infer a population mean by using confidence intervals",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-ic-b-4",
+        "math.standard.ccss.hss-ic-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
       "title": "8j: Use sample data to infer a population proportion by using confidence intervals",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hss-ic-b-4",
+        "math.standard.ccss.hss-ic-b-6"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.confidence-interval-mean",
-      "title": "confidence_interval_mean",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.confidence-interval-proportion",
-      "title": "confidence_interval_proportion",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.distribution-mean-standard-deviation",
-      "title": "distribution_mean_standard_deviation",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.normal-distribution-empirical-rule",
-      "title": "normal_distribution_empirical_rule",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.probability-distribution-analysis",
-      "title": "probability_distribution_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.sampling-bias-classification",
-      "title": "sampling_bias_classification",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.simulation-model-evaluation",
-      "title": "simulation_model_evaluation",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.study-design-classification",
-      "title": "study_design_classification",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.theoretical-experimental-probability",
-      "title": "theoretical_experimental_probability",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.8.aleks.z-score-standard-normal-analysis",
-      "title": "z_score_standard_normal_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
       "title": "9b: Convert between degree and radian measures and find arc lengths by using central angles",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-1",
+        "math.standard.ccss.hsf-tf-a-2",
+        "math.standard.ccss.hsf-tf-a-4",
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
       "title": "9a: Draw angles in standard position and identify coterminal angles",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-1",
+        "math.standard.ccss.hsf-tf-a-2",
+        "math.standard.ccss.hsf-tf-a-4",
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
       "title": "9e: Find values of trigonometric functions by using reference angles",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-1",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
       "title": "9c: Find values of trigonometric functions for acute angles",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-1",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
       "title": "9d: Find values of trigonometric functions of general angles",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-1",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
       "title": "9f: Find values of trigonometric functions given a point on a unit circle or the measure of a special angle",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-2",
+        "math.standard.ccss.hsf-tf-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
       "title": "9g: Find values of trigonometric functions that model periodic events",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-2",
+        "math.standard.ccss.hsf-tf-a-4"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
       "title": "9h: Graph and analyze sine and cosine functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-2",
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
       "title": "9i: Model periodic real-world situations with sine and cosine functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-2",
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
       "title": "9k: Graph and analyze reciprocal trigonometric functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
       "title": "9j: Graph and analyze tangent functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
       "title": "9l: Graph horizontal translations of trigonometric functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
       "title": "9m: Graph vertical translations of trigonometric functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
       "title": "9n: Find values of angle measures by using inverse trigonometric functions",
       "kind": "skill",
-      "standardsCovered": [],
+      "standardsCovered": [
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.acute-angle-trig-ratios",
-      "title": "acute_angle_trig_ratios",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.angle-standard-position-coterminal",
-      "title": "angle_standard_position_coterminal",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.degree-radian-arc-length",
-      "title": "degree_radian_arc_length",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.general-angle-trig-values",
-      "title": "general_angle_trig_values",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.inverse-trig-angle-solving",
-      "title": "inverse_trig_angle_solving",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.periodic-event-trig-modeling",
-      "title": "periodic_event_trig_modeling",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.reciprocal-trig-graph-analysis",
-      "title": "reciprocal_trig_graph_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.reference-angle-trig-values",
-      "title": "reference_angle_trig_values",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.sine-cosine-feature-analysis",
-      "title": "sine_cosine_feature_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.sine-cosine-graph-construction",
-      "title": "sine_cosine_graph_construction",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.sinusoidal-modeling",
-      "title": "sinusoidal_modeling",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.tangent-graph-analysis",
-      "title": "tangent_graph_analysis",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.trig-phase-shift-graphing",
-      "title": "trig_phase_shift_graphing",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.trig-vertical-shift-graphing",
-      "title": "trig_vertical_shift_graphing",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
-    },
-    {
-      "nodeId": "math.im3.skill.9.aleks.unit-circle-special-angle-values",
-      "title": "unit_circle_special_angle_values",
-      "kind": "concept",
-      "standardsCovered": [],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     }
   ],
   "prerequisiteGaps": [
     {
       "nodeId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
-      "prerequisiteId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "gapType": "unverified",
-      "status": "needs_review"
+      "title": "1c: Solve quadratic equations by graphing",
+      "missingPrerequisites": [
+        "math.im3.skill.1.1.graph-quadratic-functions"
+      ],
+      "blockingLevel": "full"
+    },
+    {
+      "nodeId": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "title": "1f: Perform operations with complex numbers",
+      "missingPrerequisites": [
+        "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i"
+      ],
+      "blockingLevel": "full"
     },
     {
       "nodeId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
-      "prerequisiteId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
-      "gapType": "unverified",
-      "status": "needs_review"
+      "title": "1h: Solve quadratic equations by factoring",
+      "missingPrerequisites": [
+        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing"
+      ],
+      "blockingLevel": "full"
+    },
+    {
+      "nodeId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "title": "1k: Solve quadratic equations by completing the square",
+      "missingPrerequisites": [
+        "math.im3.skill.1.4.solve-quadratic-equations-by-factoring"
+      ],
+      "blockingLevel": "full"
     },
     {
       "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
-      "prerequisiteId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
-      "gapType": "unverified",
-      "status": "needs_review"
+      "title": "1o: Use the discriminant to determine the number and type of solutions",
+      "missingPrerequisites": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "blockingLevel": "full"
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "title": "1n: Use the Quadratic Formula to solve equations",
+      "missingPrerequisites": [
+        "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square"
+      ],
+      "blockingLevel": "full"
     },
     {
       "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
-      "prerequisiteId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "gapType": "unverified",
-      "status": "needs_review"
+      "title": "1p: Graph quadratic inequalities in two variables",
+      "missingPrerequisites": [
+        "math.im3.skill.1.1.graph-quadratic-functions"
+      ],
+      "blockingLevel": "full"
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "title": "1q: Solve quadratic inequalities in one variable by graphing",
+      "missingPrerequisites": [
+        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing"
+      ],
+      "blockingLevel": "full"
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "title": "1s: Solve systems involving a linear and a quadratic equation",
+      "missingPrerequisites": [
+        "math.im3.skill.1.1.graph-quadratic-functions"
+      ],
+      "blockingLevel": "full"
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "title": "1t: Solve systems of two quadratic equations",
+      "missingPrerequisites": [
+        "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables"
+      ],
+      "blockingLevel": "full"
     }
   ],
   "attemptArtifacts": [
     {
-      "nodeId": "math.im3.skill.1.1.graph-quadratic-functions",
-      "partIds": [
-        "vertex_x",
-        "vertex_y",
-        "direction",
-        "y_intercept"
-      ],
-      "submissionProvenance": "skill-graph-rollout:math.im3.skill.1.1.graph-quadratic-functions"
+      "nodeId": "math.im3.example.1.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
     },
     {
-      "nodeId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
-      "partIds": [
-        "f_a",
-        "f_b",
-        "rate"
-      ],
-      "submissionProvenance": "skill-graph-rollout:math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change"
+      "nodeId": "math.im3.example.1.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
     },
     {
-      "nodeId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
-      "partIds": [
-        "solution_1",
-        "solution_2"
-      ],
-      "submissionProvenance": "skill-graph-rollout:math.im3.skill.1.2.solve-quadratic-equations-by-graphing"
+      "nodeId": "math.im3.example.1.1.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.1.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.1.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.1.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.2.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.2.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.2.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.2.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.2.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.3.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.3.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.3.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.3.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.3.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.3.017",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.3.018",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.4.019",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.4.020",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.4.021",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.4.022",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.4.023",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.4.024",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.4.025",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.026",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.027",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.028",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.029",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.030",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.031",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.032",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.033",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.034",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.5.035",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.6.036",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.6.037",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.6.038",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.6.039",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.6.040",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.7.041",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.7.042",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.7.043",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.7.044",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.7.045",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.046",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.047",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.048",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.049",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.050",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.051",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.052",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.1.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.1.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.1.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.1.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.2.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.2.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.3.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.3.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.3.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.3.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.4.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.4.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.4.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.4.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.4.017",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.5.018",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.5.019",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.2.5.020",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.2.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.2.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.2.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.2.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.2.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.2.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.2.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.3.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.3.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.4.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.4.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.4.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.5.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.3.5.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.2.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.2.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.2.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.2.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.2.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.2.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.3.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.3.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.3.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.3.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.3.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.3.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.4.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.4.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.4.017",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.4.018",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.4.019",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.4.020",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.4.021",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.5.022",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.5.023",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.5.024",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.5.025",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.5.026",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.5.027",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.5.028",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.6.029",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.6.030",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.6.031",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.6.032",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.6.033",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.6.034",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.4.6.035",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.1.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.1.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.1.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.1.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.1.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.1.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.2.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.2.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.2.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.2.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.3.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.3.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.3.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.3.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.017",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.018",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.019",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.020",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.021",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.022",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.023",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.024",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.4.025",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.5.026",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.5.5.027",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.1.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.1.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.1.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.1.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.1.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.1.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.2.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.2.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.2.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.3.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.3.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.3.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.3.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.3.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.3.017",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.4.018",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.4.019",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.4.020",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.4.021",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.4.022",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.4.023",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.4.024",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.6.5.025",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.1.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.1.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.2.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.2.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.2.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.2.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.2.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.3.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.3.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.3.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.3.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.3.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.4.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.4.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.4.017",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.4.018",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.4.019",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.5.020",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.5.021",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.5.022",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.5.023",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.5.024",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.6.025",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.6.026",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.6.027",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.6.028",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.7.6.029",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.1.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.1.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.1.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.1.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.1.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.2.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.2.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.2.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.3.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.3.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.3.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.4.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.4.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.4.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.4.017",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.4.018",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.4.019",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.4.020",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.4.021",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.5.022",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.8.5.023",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.1.001",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.1.002",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.1.003",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.1.004",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.1.005",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.1.006",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.2.007",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.2.008",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.2.009",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.2.010",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.2.011",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.2.012",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.2.013",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.4.014",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.4.015",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.4.016",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.4.017",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.4.018",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.4.019",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.5.020",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.5.021",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.5.022",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.5.023",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.5.024",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.6.025",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.6.026",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.6.027",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.6.028",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.6.029",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.7.030",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.7.031",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.7.032",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.9.7.033",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
     }
-  ]
+  ],
+  "equivalentComponents": []
 }

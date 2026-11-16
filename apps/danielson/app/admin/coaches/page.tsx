@@ -1,0 +1,50 @@
+import Link from 'next/link';
+import { SiteHeader } from '@/components/site-header';
+import { getCoachAssignmentDirectory, getDirectoryPageHref } from '@/lib/foundation/admin-page';
+import { AdminChangeForm } from '@/components/admin-change-form';
+
+export default async function CoachesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ coachCursor?: string; teacherCursor?: string }>;
+}) {
+  const cursors = await searchParams;
+  const directory = await getCoachAssignmentDirectory('/admin/coaches', cursors);
+  const accountOptions = directory.coachPage.items.map((account) => ({
+    value: account.accountId,
+    label: `${account.displayName} (${account.username})`,
+  }));
+  const teacherOptions = directory.teacherPage.items.filter((account) => account.isTeacher).map((account) => ({
+    value: account.accountId,
+    label: `${account.displayName} (${account.username})`,
+  }));
+  return (
+    <>
+      <SiteHeader isAuthenticated showAdministration />
+      <main id="main-content" className="page-shell">
+        <p><Link href="/admin/relationships">View current assignments</Link></p>
+        <p className="eyebrow">Administration / coaches</p>
+        <h1>Coach assignments</h1>
+        <p className="lede">Assign a coach account to a teacher account. Both accounts must be active members of this organization.</p>
+        <div className="card narrow">
+          <AdminChangeForm endpoint="/api/admin/coaches" title="Manage coach assignment" submitLabel="Save assignment" fields={[
+            { name: 'kind', label: 'Action', type: 'select', required: true, options: [{ value: 'coach_assignment.assign', label: 'Assign coach' }, { value: 'coach_assignment.revoke', label: 'Revoke coach' }] },
+            { name: 'coachAccountId', label: 'Coach account', type: 'select', required: true, options: accountOptions },
+            { name: 'teacherAccountId', label: 'Teacher', type: 'select', required: true, options: teacherOptions },
+          ]} />
+        </div>
+        <nav aria-label="Coach assignment pages">
+          {directory.coachPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/coaches', {
+            coachCursor: directory.coachPage.nextCursor,
+            teacherCursor: cursors.teacherCursor,
+          })}>Next coach page</Link></p> : null}
+          {directory.teacherPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/coaches', {
+            coachCursor: cursors.coachCursor,
+            teacherCursor: directory.teacherPage.nextCursor,
+          })}>Next teacher page</Link></p> : null}
+        </nav>
+        <p><Link href="/admin">Back to administration</Link></p>
+      </main>
+    </>
+  );
+}

@@ -11,11 +11,11 @@ Source: (Module 7, Lesson 7-4, Int2_0704_practice.docx)
 
 ## Vocabulary
 
-* **Permutation** — An arrangement of objects where order matters; formula: [nPr = \frac{n!}{(n-r)!}]
-* **Combination** — A selection of objects where order does not matter; formula: [nCr = \frac{n!}{r!(n-r)!}]
+* **Permutation** — An ordered selection of r distinct objects from n distinct objects without replacement. Its count is $n!/(n-r)!$ for integers $0\le r\le n$.
+* **Combination** — An unordered selection of r distinct objects from n distinct objects without replacement. Its count is $n!/(r!(n-r)!)$ for integers $0\le r\le n$.
 * **Favorable Outcomes** — The outcomes that satisfy the event of interest.
 * **Total Outcomes** — All possible outcomes in the sample space.
-* **Probability with Permutations** — [P(E) = \frac{\text{favorable permutations}}{\text{total permutations}}]
+* **Probability with Permutations** — $P(E) = \frac{\text{favorable permutations}}{\text{total permutations}}$
 
 ## Explore: When Order Matters
 
@@ -28,26 +28,28 @@ Why is the probability of being chosen as captain and co-captain different from 
 
 ### Key Concept: Probability with Permutations
 
-When finding the probability that specific items are selected in a particular order, use permutations for both favorable outcomes and total outcomes.
+For equally likely ordered selections, count favorable ordered outcomes and total ordered outcomes. Permutations count selections without replacement.
 
-[P(E) = \frac{_{n}P_{r}}{\,_{n}P_{r}}] or use counts directly
+$P(E) = \frac{\text{favorable ordered outcomes}}{\text{total ordered outcomes}}$
 
 **Example:** Cheerleading squad of 12 girls, captain and co-captain selected randomly. Probability that Chantel and Clover are chosen as the two leaders (in any order).
 
-Total ways to choose 2 leaders from 12: [_{12}P_{2} = 12 \times 11 = 132]
-Favorable ways (Chantel and Clover as the pair): There is only 1 way for them to be the two chosen, but since they can be in either order (captain/co-captain or co-captain/captain), we need to check the problem's interpretation.
+Total ways to choose 2 leaders from 12: $_{12}P_{2} = 12 \times 11 = 132$
+Favorable ordered outcomes: 2. Either girl can be captain. [P = 2/132 = 1/66].
 
 ### Key Concept: Probability with Combinations
 
 When order does not matter, use combinations.
 
-[P(E) = \frac{\binom{n}{r}}{\binom{N}{R}}]
+$P(E)=\frac{\text{favorable combinations}}{\text{total combinations}}$
+
+The combinations must be equally likely. The numerator depends on the event. It is not always one binomial coefficient.
 
 **Example:** From 20 flavors of frozen yogurt, choosing 3 flavors. Probability the chosen flavors are vanilla, chocolate, and strawberry (in any order).
 
-Total ways to choose 3 from 20: [\binom{20}{3} = 1140]
-Favorable ways (the specific 3 flavors): [\binom{3}{3} = 1] (since the set {vanilla, chocolate, strawberry} is one specific combination)
-[P = \frac{1}{1140}]
+Total ways to choose 3 from 20: $\binom{20}{3} = 1140$
+Favorable ways (the specific 3 flavors): $\binom{3}{3} = 1$ (since the set {vanilla, chocolate, strawberry} is one specific combination)
+$P = \frac{1}{1140}$
 
 ### Key Concept: Distinguishing Permutations from Combinations
 
@@ -60,80 +62,33 @@ Favorable ways (the specific 3 flavors): [\binom{3}{3} = 1] (since the set {vani
 
 ## Example 1 — Probability with Permutations
 
-### Step 1: Identify When Order Matters
+### Problem
 
-**Problem 1:** 12 girls, captain and co-captain selected. Probability Chantel and Clover are chosen.
-Total ways: [_{12}P_{2} = 132]
-If the two positions are distinct (captain vs. co-captain), there are 2 ways to assign Chantel and Clover to the two positions. But if only the pair matters and positions are randomly assigned, there is 1 favorable pair out of 132.
+A team has 12 students. It selects a captain and a different co-captain uniformly from all ordered pairs. Find the probability that Chantel and Clover receive the two roles in either order.
 
-**Problem 2:** 6 textbooks (Spanish, English, Chemistry, Geometry, History, Psychology). Choosing 4 to arrange on a shelf. Probability Geometry is first and Chemistry is second from the left.
-Total arrangements of 4 from 6: [_{6}P_{4} = 360]
-Favorable: Geometry in position 1 AND Chemistry in position 2 — only 1 specific sequence.
+### Solution
 
-**Problem 3:** 50 raffle tickets, Alfonso gets 14 and Cordell gets 23. Probability their specific tickets are drawn.
-Total ways to assign 2 specific tickets: [50 \times 49 = 2450]
-Favorable: 1 specific assignment.
-[P = \frac{1}{2450}]
-
-**Problem 4:** Row of seats C11 and C12, Ciro in C11 and Nia in C12. Probability of this specific seating.
-Total pairs of seats available: depends on row length.
-Favorable: 1 specific assignment.
-[P = \frac{1}{\text{total possible seat pairs}}]
+There are 12(11) = 132 ordered pairs. Two pairs are favorable: Chantel then Clover, or Clover then Chantel. The probability is 2/132 = 1/66. Requiring one specified order would instead give 1/132.
 
 ## Examples 2 and 3 — Permutations with Repetition and Specific Sequences
 
-### Step 1: Count Total and Favorable Outcomes
+### Problem
 
-**Problem 5:** Phone number generated using digits 2, 3, 2, 5, 2, 7, 3. Probability of getting 222-3357.
-Total possible arrangements of the 7 digits: [\frac{7!}{3! \times 2! \times 2!} = 210]
-Only 1 favorable arrangement (the exact sequence).
-[P = \frac{1}{210}]
+Distinct arrangements of the digits 2, 2, 2, 3, 3, 5, 7 are equally likely. Find the probability of the exact sequence 2223357. Then find the probability of the exact sequence 25938 when five distinct digits are chosen in order from 1 through 9.
 
-**Problem 6:** 5-digit identification numbers from digits 1–9, no repetition. Probability of 25938.
-Total: [_{9}P_{5} = 15,120]
-Favorable: 1
-[P = \frac{1}{15,120}]
+### Solution
 
-**Problem 7a:** Class president finalists — probability Denny, Kelli, and Chaminade are the first 3 speakers in any order.
-Total ways to arrange 3 speakers from the full list of finalists: use permutation if order matters among the 3.
-Favorable: the specific set {Denny, Kelli, Chaminade} in any of their 3! = 6 possible orders.
-
-**Problem 7b:** Same finalists but Denny first, Kelli second, Chaminade third (specific order).
-Only 1 favorable arrangement out of the total possible arrangements.
+The repeated-digit count is $7!/(3!2!)=420$. Exactly one arrangement is 2223357, so its probability is 1/420. For the second experiment, there are $9(8)(7)(6)(5)=15120$ ordered sequences. The probability of 25938 is 1/15120.
 
 ## Example 4 — Probability with Combinations
 
-### Step 1: Use Combinations for Unordered Selection
+### Problem
 
-**Problem 8:** Taryn has 15 soccer trophies, displays 9. Probability that trophies from 1st through 9th grades are all chosen.
-Total ways to choose 9 from 15: [\binom{15}{9}]
-Favorable ways: only 1 way to select those specific 9 trophies.
-[P = \frac{1}{\binom{15}{9}}]
+An app chooses four different attractions uniformly from 12 attractions. Four are roller coasters. Find the probability that all four selected attractions are roller coasters.
 
-**Problem 9:** 20 frozen yogurt flavors, choosing 3. Probability of vanilla, chocolate, and strawberry.
-Total: [\binom{20}{3} = 1140]
-Favorable: 1
-[P = \frac{1}{1140}]
+### Solution
 
-**Problem 10:** Kaja serves 9 dogs, chooses 4 randomly for an extra trip. Probability that Cherish, Taffy, Haunter, and Maverick are chosen.
-Total: [\binom{9}{4} = 126]
-Favorable: 1
-[P = \frac{1}{126}]
-
-**Problem 11:** 10 food trucks, trying half (5). Probability of selecting 5 specific trucks.
-Total: [\binom{10}{5} = 252]
-Favorable: 1
-[P = \frac{1}{252}]
-
-**Problem 12:** Emily has 20 collectible dolls, donates 10. Probability of selecting 10 specific country dolls.
-Total: [\binom{20}{10}]
-Favorable: 1
-[P = \frac{1}{\binom{20}{10}}]
-
-**Problem 13:** 12 attractions (4 roller coasters, 2 carousels, 2 drop towers, 2 gravity rides, 2 dark rides). App suggests 4 in order. Probability the first 4 suggested are the four roller coasters.
-Total ordered sequences of 4 from 12: [_{12}P_{4} = 11,880]
-Favorable: specific sequence of the 4 roller coasters = 1
-[P = \frac{1}{11,880}]
+There are $\binom{12}{4}=495$ equally likely sets. Exactly one set contains all four roller coasters, so the probability is 1/495. If the selections are ordered, the same probability is $4!/(12\cdot11\cdot10\cdot9)=24/11880$.
 
 ## Mixed Exercises
 
@@ -153,17 +108,17 @@ Problems 14–30 provide practice with all skills:
 * 15 boys and 15 girls entered drawing for 4 movie tickets — probability all 4 won by girls.
 * Analyze when [_{n}P_{r} = \,_{n}C_{r}].
 * Compare and contrast permutations and combinations.
-* Describe situation with probability [\frac{1}{n}].
-* Show algebraically why [r! \times \,_{n}C_{r} = \,_{n}P_{r}].
+* Describe situation with probability $\frac{1}{n}$.
+* Show algebraically why $r! \times \,_{n}C_{r} = \,_{n}P_{r}$.
 * Evaluate Charlie's claim that [nP_{n} = \,_{n}P_{n-1}].
 
 ## Review Notes
 
-* ![](media/image1.png) — Row of seats diagram for Problem 4
-* ![](media/image2.png) — Class president finalists table for Problem 7
-* ![](media/image3.png) — Conference selection diagram for Problem 14
-* ![](media/image4.png) — Silverware place setting for Problem 15
-* ![](media/image5.png) — Five card lineup for Problem 16
-* ![](media/image6.png) — Decorative letters for Problem 18
-* ![](media/image7.png) — Game show contestant list for Problem 20
-* ![](media/image8.png) — Hair salon discount coupons for Problem 21
+* ![Worksheet figure 1](/curriculum/module-7-lesson-4/image1.png) — Row of seats diagram for Problem 4
+* ![Worksheet figure 2](/curriculum/module-7-lesson-4/image2.png) — Class president finalists table for Problem 7
+* ![Worksheet figure 3](/curriculum/module-7-lesson-4/image3.png) — Conference selection diagram for Problem 14
+* ![Worksheet figure 4](/curriculum/module-7-lesson-4/image4.png) — Silverware place setting for Problem 15
+* ![Worksheet figure 5](/curriculum/module-7-lesson-4/image5.png) — Five card lineup for Problem 16
+* ![Worksheet figure 6](/curriculum/module-7-lesson-4/image6.png) — Decorative letters for Problem 18
+* ![Worksheet figure 7](/curriculum/module-7-lesson-4/image7.png) — Game show contestant list for Problem 20
+* ![Worksheet figure 8](/curriculum/module-7-lesson-4/image8.png) — Hair salon discount coupons for Problem 21

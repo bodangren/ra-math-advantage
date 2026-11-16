@@ -16,6 +16,7 @@ export function HeaderSimple() {
       brandShort="IM2"
       brandIcon="2"
       brandSubtitle="Interactive Course"
+      bgClassName="bg-[#242220]"
       accentColor="oklch(0.55 0.19 40)"
       userMenu={<UserMenu />}
     />

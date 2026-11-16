@@ -24,58 +24,47 @@ How does the geometric mean relate to similar right triangles?
 
 For two positive numbers [a] and [b], the geometric mean [x] satisfies [a/x = x/b].
 
-This relationship comes from the similarity of triangles formed when an altitude is drawn to the hypotenuse of a right triangle. Each altitude creates three similar right triangles.
+This relationship comes from the similarity of triangles formed when an altitude is drawn to the hypotenuse of a right triangle. The altitude to the hypotenuse divides the original triangle into two smaller right triangles. All three triangles are similar. The positive geometric mean is $x=\sqrt{ab}$.
 
 ## Example 1 — Find the Geometric Mean
 
-Find the geometric mean between each pair of numbers.
+### Problem
 
-### Step 1: Apply the Formula
+Find the geometric mean of 4 and 6. Give an exact answer.
 
-For two numbers [a] and [b], the geometric mean is [x = √(ab)].
+### Solution
 
-1. 4 and 6: [x = √(4 · 6) = √24 = 2√6]
-2. [1/2] and 2: [x = √((1/2) · 2) = √1 = 1]
-3. 4 and 25: [x = √(4 · 25) = √100 = 10]
-4. 12 and 20: [x = √(12 · 20) = √240 = 4√15]
-5. 17 and 3: [x = √(17 · 3) = √51]
-6. 3 and 24: [x = √(3 · 24) = √72 = 6√2]
+The geometric mean of two positive numbers is the positive square root of their product. Thus $g = \sqrt{4(6)} = \sqrt{24} = 2\sqrt{6}$. Its square is 24, as required.
 
 ## Example 2 — Similarity Statements for Right Triangles
 
-Write a similarity statement identifying the three similar right triangles in each figure.
+### Problem
 
-### Step 1: Identify Corresponding Parts
+Triangle ABC has a right angle at C. D is the foot of the altitude from C to hypotenuse AB. Write a correctly ordered similarity statement for the three triangles.
 
-When an altitude is drawn from the right angle to the hypotenuse, three similar right triangles are formed. Use the geometric mean relationships to write proportions.
+### Solution
 
-7. (diagram with altitude to hypotenuse)
-8. (diagram with altitude to hypotenuse)
-9. (diagram with altitude to hypotenuse)
-10. (diagram with altitude to hypotenuse)
+Each small triangle has a right angle at D. Triangle ACD shares angle A with ABC, so its remaining angle at C equals angle B. Triangle CBD shares angle B with ABC, so its remaining angle at C equals angle A. Therefore triangle ABC is similar to triangle ACD and to triangle CBD, in those vertex orders.
 
 ## Example 3 — Find Unknown Values
 
-Find the values of [x], [y], and [z].
+### Problem
 
-### Step 1: Set Up Proportions
+In right triangle ABC, CD is the altitude to hypotenuse AB. D lies between A and B. AD = 4 cm and DB = 9 cm. Find CD, AC, and BC.
 
-Use the geometric mean relationships from similar triangles.
+### Solution
 
-11. (right triangle diagram)
-12. (right triangle diagram)
-13. (right triangle diagram)
-14. (right triangle diagram)
+The hypotenuse AB is 13 cm. The altitude relation gives $CD^2 = AD(DB) = 36$, so CD = 6 cm. The leg relations give $AC^2 = AB(AD) = 52$ and $BC^2 = AB(DB) = 117$. Thus $AC = 2\sqrt{13}$ cm and $BC = 3\sqrt{13}$ cm. Check: $52 + 117 = 169 = 13^2$.
 
 ## Example 4 — Real-World Applications
 
-### Step 1: Model the Situation
+### Problem
 
-15. Museum Statue: A 15-foot railing forms a right triangle with legs of 12 feet and 9 feet. Approximate how close visitors can get.
+A statue is at the right-angle vertex of a triangular display. The two perpendicular sides from the statue are 9 ft and 12 ft. A straight railing joins their other endpoints. Find the shortest distance from the statue to the railing.
 
-16. Photography: Point A is 90 feet from the walkway entrance, point B is 40 feet from the entrance. With a 90° viewing angle, where should Noah stop?
+### Solution
 
-17. Highway Service Road: An airport and factory are 6.0 miles apart. Their distances from a shopping center are 3.6 miles and 4.8 miles. Find the shortest service road length.
+The railing is the hypotenuse, with length 15 ft. Compute the display area using its legs: 9(12)/2 = 54 square feet. If h is the perpendicular distance to the railing, the same area is 15h/2. Thus h = 108/15 = 7.2 ft.
 
 ## Mixed Exercises
 
@@ -96,15 +85,15 @@ Use the geometric mean relationships from similar triangles.
 ## Review Notes
 
 * Images referenced in this lesson:
-  * ![](media/image1.png) — geometric mean triangle diagram
-  * ![](media/image2.png) — geometric mean triangle diagram
-  * ![](media/image3.png) — geometric mean triangle diagram
-  * ![](media/image4.png) — geometric mean triangle diagram
-  * ![](media/image5.png) — altitude diagram
-  * ![](media/image6.png) — altitude diagram
-  * ![](media/image7.png) — altitude diagram
-  * ![](media/image8.png) — altitude diagram
-  * ![](media/image9.png) — proof diagram
-  * ![](media/image10.png) — triangle with altitude
-  * ![](media/image11.png) — triangle diagram
-  * ![](media/image12.png) — Find the Error diagram
+  * ![Worksheet figure 1](/curriculum/module-4-lesson-1/image1.png) — geometric mean triangle diagram
+  * ![Worksheet figure 2](/curriculum/module-4-lesson-1/image2.png) — geometric mean triangle diagram
+  * ![Worksheet figure 3](/curriculum/module-4-lesson-1/image3.png) — geometric mean triangle diagram
+  * ![Worksheet figure 4](/curriculum/module-4-lesson-1/image4.png) — geometric mean triangle diagram
+  * ![Worksheet figure 5](/curriculum/module-4-lesson-1/image5.png) — altitude diagram
+  * ![Worksheet figure 6](/curriculum/module-4-lesson-1/image6.png) — altitude diagram
+  * ![Worksheet figure 7](/curriculum/module-4-lesson-1/image7.png) — altitude diagram
+  * ![Worksheet figure 8](/curriculum/module-4-lesson-1/image8.png) — altitude diagram
+  * ![Worksheet figure 9](/curriculum/module-4-lesson-1/image9.png) — proof diagram
+  * ![Worksheet figure 10](/curriculum/module-4-lesson-1/image10.png) — triangle with altitude
+  * ![Worksheet figure 11](/curriculum/module-4-lesson-1/image11.png) — triangle diagram
+  * ![Worksheet figure 12](/curriculum/module-4-lesson-1/image12.png) — Find the Error diagram

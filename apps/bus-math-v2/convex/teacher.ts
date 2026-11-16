@@ -1,6 +1,7 @@
 import { internalQuery, type QueryCtx } from "./_generated/server";
 import type { Doc, Id } from "./_generated/dataModel";
 import { v } from "convex/values";
+import { buildDeterministicSummary } from "../lib/practice/error-analysis";
 import { assembleCourseOverviewRows } from "../lib/teacher/course-overview";
 import { assembleGradebookRows } from "../lib/teacher/gradebook";
 import { assembleCompetencyHeatmapRows, assembleStudentCompetencyDetail } from "../lib/teacher/competency-heatmap";
@@ -11,6 +12,14 @@ import {
   buildPublishedUnitProgressRows,
   resolveLatestPublishedLessonVersion,
 } from "../lib/progress/published-curriculum";
+
+/** Read the activity links from the published phase, including incomplete work. */
+async function listPhaseActivityIds(ctx: QueryCtx, phaseId: Id<'phase_versions'>): Promise<Id<'activities'>[]> {
+  const sections = await ctx.db.query('phase_sections')
+    .withIndex('by_phase_version', q => q.eq('phaseVersionId', phaseId)).collect();
+  return sections.filter(section => section.sectionType === 'activity' && typeof section.content.activityId === 'string')
+    .map(section => section.content.activityId as Id<'activities'>);
+}
 
 interface TeacherProgressSnapshot {
   completedPhases: number;
@@ -54,6 +63,9 @@ interface PracticeSubmissionEvidence {
 
 interface SubmissionEvidence {
   kind: 'spreadsheet' | 'practice';
+  submissionId?: string;
+  stableActivityId?: string;
+  teacherVerified?: boolean;
   activityId: string;
   activityTitle: string;
   componentKey: string;
@@ -606,14 +618,10 @@ export const getTeacherGradebookData = internalQuery({
         masteryLevel: row.masteryLevel,
       }));
 
-    const lessonIdSet = new Set(rawLessons.map((l) => l.id));
-    const allCompletions = (await ctx.db.query("activity_completions").collect())
-      .filter((c) => lessonIdSet.has(c.lessonId));
-
-    const rawActivities = allCompletions.map((c) => ({
-      id: c.activityId,
-      lessonId: c.lessonId,
-    }));
+    const lessonByVersion = new Map(rawLessonVersions.map(version => [version.id, version.lessonId]));
+    const rawActivities = (await Promise.all(rawPhaseVersions.map(async phase =>
+      (await listPhaseActivityIds(ctx, phase.id)).map(id => ({ id, lessonId: lessonByVersion.get(phase.lessonVersionId)! })),
+    ))).flat();
 
     const activityIds = new Set(rawActivities.map((activity) => activity.id));
 
@@ -820,22 +828,14 @@ export const getSubmissionDetail = internalQuery({
       .filter((q) => q.or(...phaseIds.map((id) => q.eq(q.field("phaseId"), id))))
       .collect();
 
-    const completionRows = await ctx.db
-      .query("activity_completions")
-      .withIndex("by_student", (q) => q.eq("studentId", args.studentId))
-      .filter((q) => q.eq(q.field("lessonId"), args.lessonId))
-      .collect();
-
     const spreadsheetByPhaseNumber = new Map<number, unknown>();
     const evidenceByPhaseNumber = new Map<number, SubmissionEvidence[]>();
-
-    if (completionRows.length > 0) {
-      const activityIds = completionRows.map((c) => c.activityId);
-      const phaseByActivityId = new Map<string, number>();
-      for (const c of completionRows) {
-        phaseByActivityId.set(c.activityId, c.phaseNumber);
-      }
-
+    const phaseByActivityId = new Map<string, number>();
+    for (const phase of rawPhases) {
+      for (const id of await listPhaseActivityIds(ctx, phase._id)) phaseByActivityId.set(id, phase.phaseNumber);
+    }
+    const activityIds = [...phaseByActivityId.keys()] as Id<'activities'>[];
+    if (activityIds.length > 0) {
       const [, spreadsheetAttempts, practiceRows, activityRows] = await Promise.all([
         ctx.db
           .query("student_spreadsheet_responses")
@@ -875,6 +875,7 @@ export const getSubmissionDetail = internalQuery({
         {
           displayName: string;
           componentKey: string;
+          stableActivityId?: string;
         }
       >();
       for (const [activityId, activity] of activityRows) {
@@ -882,6 +883,7 @@ export const getSubmissionDetail = internalQuery({
         activityById.set(String(activityId), {
           displayName: activity.displayName,
           componentKey: activity.componentKey,
+          stableActivityId: activity.stableActivityId,
         });
       }
 
@@ -950,6 +952,9 @@ export const getSubmissionDetail = internalQuery({
         const submissionData = row.submissionData as PracticeSubmissionEvidence | Record<string, unknown>;
         const evidence: SubmissionEvidence = {
           kind: 'practice',
+          submissionId: String(row._id),
+          stableActivityId: activity?.stableActivityId,
+          teacherVerified: row.gradedBy !== undefined,
           activityId,
           activityTitle: activity?.displayName ?? 'Practice submission',
           componentKey: activity?.componentKey ?? 'practice',
@@ -1008,9 +1013,6 @@ export const getSubmissionDetail = internalQuery({
 
     let studentErrorSummary = null;
     if (practiceEnvelopes.length > 0) {
-      const { buildDeterministicSummary } = await import(
-        "../lib/practice/error-analysis"
-      );
 
       const studentIdMap = new Map<string, string>();
       for (const env of practiceEnvelopes) {
@@ -1063,53 +1065,16 @@ export const getLessonErrorSummary = internalQuery({
     const lesson = await ctx.db.get(args.lessonId);
     if (!lesson) return null;
 
-    const completions = await ctx.db
-      .query("activity_completions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", args.lessonId))
-      .collect();
-
-    if (completions.length === 0) return null;
-
-    const studentIds = [...new Set(completions.map((c) => c.studentId))];
-
-    const orgStudentIds: string[] = [];
-    await Promise.all(
-      studentIds.map(async (sid) => {
-        const profile = await ctx.db.get(sid as Id<"profiles">);
-        if (profile && profile.organizationId === args.teacherOrgId) {
-          orgStudentIds.push(sid);
-        }
-      }),
-    );
-
-    if (orgStudentIds.length === 0) return null;
-
-    const orgCompletions = completions.filter((c) =>
-      orgStudentIds.includes(c.studentId),
-    );
-    const activityIds = [...new Set(orgCompletions.map((c) => c.activityId))];
-
-    const submissionRows = await ctx.db
-      .query("activity_submissions")
-      .withIndex("by_activity", (q) =>
-        q.eq("activityId", activityIds[0] as Id<"activities">),
-      )
-      .collect();
-
-    const allSubmissions = await Promise.all(
-      activityIds.slice(1).map((activityId) =>
-        ctx.db
-          .query("activity_submissions")
-          .withIndex("by_activity", (q) => q.eq("activityId", activityId))
-          .collect(),
-      ),
-    );
-
-    const flatSubmissions = [...submissionRows, ...allSubmissions.flat()];
-
-    const studentSubmissions = flatSubmissions.filter((row) =>
-      orgStudentIds.includes(row.userId),
-    );
+    const versions = await listLatestPublishedLessonVersions(ctx, [args.lessonId]);
+    if (versions.length === 0) return null;
+    const phases = await ctx.db.query('phase_versions')
+      .withIndex('by_lesson_version', q => q.eq('lessonVersionId', versions[0]._id)).collect();
+    const activityIds = new Set((await Promise.all(phases.map(phase => listPhaseActivityIds(ctx, phase._id)))).flat());
+    if (activityIds.size === 0) return null;
+    const students = await listOrganizationStudents(ctx, args.teacherOrgId);
+    const studentSubmissions = (await Promise.all(students.map(student => ctx.db.query('activity_submissions')
+      .withIndex('by_user', q => q.eq('userId', student._id)).collect()))).flat()
+      .filter(row => activityIds.has(row.activityId));
 
     if (studentSubmissions.length === 0) return null;
 
@@ -1133,20 +1098,16 @@ export const getLessonErrorSummary = internalQuery({
     const envelopes = [];
     const studentIdMap = new Map<string, string>();
 
-    for (const [key, row] of latestByStudentAndActivity.entries()) {
+    for (const row of latestByStudentAndActivity.values()) {
       const data = row.submissionData as Record<string, unknown>;
       if (data.contractVersion === "practice.v1") {
         envelopes.push(data);
-        const [, studentId] = key.split(":");
-        studentIdMap.set(data.activityId as string, studentId as string);
+        studentIdMap.set(data.activityId as string, row.userId);
       }
     }
 
     if (envelopes.length === 0) return null;
 
-    const { buildDeterministicSummary } = await import(
-      "../lib/practice/error-analysis"
-    );
 
     return buildDeterministicSummary(
       args.lessonId,

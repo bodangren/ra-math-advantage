@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -25,7 +26,7 @@ export const seedLesson1_12 = internalMutation({
           unitNumber: 1,
           title: "Transformations of Functions",
           slug: lessonSlug,
-          description: "Students apply vertical/horizontal shifts, reflections, and stretches to parent functions.",
+          description: "AP Precalculus Topic 1.12: Transformations of Functions",
           orderIndex: 12,
           createdAt: now,
           updatedAt: now,
@@ -33,204 +34,131 @@ export const seedLesson1_12 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
+          version: 2,
           title: "Transformations of Functions",
-          description: "Students apply vertical/horizontal shifts, reflections, and stretches to parent functions.",
+          description: "AP Precalculus Topic 1.12: Transformations of Functions",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                variant: "compare_functions",
-                equations: ["y = x^2", "y = (x - 3)^2 + 2"],
-                title: "Explore Transformations",
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Transformations of Functions\n\nGiven a parent function $f(x)$, the function $g(x) = a \\cdot f(b(x - h)) + k$ applies:\n\n### Transformations\n\n- **$k$**: Vertical shift ($k > 0$ up, $k < 0$ down)\n- **$h$**: Horizontal shift ($h > 0$ right, $h < 0$ left)\n- **$a$**: Vertical stretch/compression and reflection\n  - $|a| > 1$ → vertical stretch\n  - $0 < |a| < 1$ → vertical compression\n  - $a < 0$ → reflection over x-axis\n- **$b$**: Horizontal stretch/compression and reflection\n  - $|b| > 1$ → horizontal compression\n  - $0 < |b| < 1$ → horizontal stretch\n  - $b < 0$ → reflection over y-axis\n\n### Order of Operations\n\nHorizontal transformations apply **inside** the function; vertical transformations apply **outside**.",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Describing Transformations\n\nDescribe the transformations from $f(x) = x^2$ to $g(x) = -2(x + 1)^2 + 3$.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "g(x) = -2(x + 1)^2 + 3",
-                steps: [
-                  { expression: "g(x) = -2(x - (-1))^2 + 3", explanation: "Rewrite to match a·f(b(x-h)) + k" },
-                  { expression: "h = -1: shift left 1 unit", explanation: "Horizontal shift" },
-                  { expression: "a = -2: reflect over x-axis and vertical stretch by 2", explanation: "Reflection and stretch" },
-                  { expression: "k = 3: shift up 3 units", explanation: "Vertical shift" },
-                  { expression: "Vertex moves from (0,0) to (-1, 3)", explanation: "Combined effect" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "The function $g(x) = (x - 4)^2$ is $f(x) = x^2$ shifted:",
-                    options: ["Left 4", "Right 4", "Up 4", "Down 4"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "The function $g(x) = -f(x)$ reflects $f$ over the:",
-                    options: ["y-axis", "x-axis", "origin", "line y = x"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                variant: "plot_from_equation",
-                equation: "y = 0.5(x + 2)^3 - 1",
-                title: "Graph the Transformed Function",
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "If $f(3) = 5$, what is $g(3)$ when $g(x) = 2f(x) - 1$? What about $g(3)$ when $g(x) = f(x + 2)$? Each transformation shifts, stretches, or reflects the graph of $f$. Today we develop a systematic table of transformations and learn how they affect domain, range, and graph behavior."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Vertical translation** — $g(x) = f(x) + k$ shifts the graph up $k$ units (down if $k < 0$).\n- **Horizontal translation** — $g(x) = f(x + h)$ shifts the graph left $h$ units (right if $h < 0$).\n- **Vertical dilation** — $g(x) = a · f(x)$ stretches the graph by factor $|a|$ vertically.\n- **Horizontal dilation** — $g(x) = f(bx)$ compresses the graph by factor $|1/b|$ horizontally.\n- **Reflection** — If $a < 0$, reflect over the x-axis. If $b < 0$, reflect over the y-axis."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**EK 1.12.A.1:** $g(x) = f(x) + k$ produces a vertical translation of $k$ units. $g(x) = f(x + h)$ produces a horizontal translation of $-h$ units.\n\n**EK 1.12.A.2:** $g(x) = a · f(x)$ produces a vertical dilation by $|a|$. If $a < 0$, reflect over the x-axis. $g(x) = f(bx)$ produces a horizontal dilation by $|1/b|$. If $b < 0$, reflect over the y-axis.\n\n**EK 1.12.A.3:** Transformations affect domain and range. Horizontal dilations scale the domain; vertical dilations scale the range. Translations shift both.\n\n### Transformation Order\n\nApply transformations in this order:\n1. **Horizontal:** translate (shift by $-h$), then dilate/reflect (scale by $1/b$)\n2. **Vertical:** dilate/reflect (scale by $a$), then translate (shift by $k$)\n\nThe general form: $g(x) = a · f(bx + c) + d$.\n\n### Mapping Points\n\nA point $(p, q)$ on $f$ maps to $(p/b - c/b, aq + d)$ on $g$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** Let $g(x) = 2f(x - 1) + 3$. Given that $f$ has domain $[-4, 6]$ and range $[-2, 5]$:\n\n- **Domain of $g$:** $x - 1 ∈ [-4, 6$] → $x ∈ [-3, 7$].\n- **Range of $g$:** $2 · [-2, 5$ + 3 = $-4, 10$ + 3 = $-1, 13$].\n- **Point mapping:** $(4, 2)$ on $f$ → $(4 + 1, 2 · 2 + 3) = (5, 7)$ on $g$.\n- **Find $g(0)$:** $g(0) = 2f(-1) + 3$.\n\n**Example 2:** $f(x) = -2(x + 3)²(x - 1)$. Let $g(x) = f(-x)$.\n\n$g(x) = -2(-x + 3)²(-x - 1)$.\n\nZeros: $-x + 3 = 0$ gives $x = 3$; $-x - 1 = 0$ gives $x = -1$.\n\n**Example 3:** $p$ is cubic with table: $p(-2) = 1, p(0) = -1, p(2) = 0, p(4) = 3, p(6) = 7$. Let $m(x) = -3p(x + 4)$.\n\n- Zero of $m$: $p(x + 4) = 0$ when $x + 4 = 2$, so $x = -2$.\n- Average rate of change of $m$ over $[0, 2]$: $m(0) = -3p(4) = -9$, $m(2) = -3p(6) = -21$. AROC = $(-21 - (-9)) / (2 - 0) = -6$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** $f$ has domain $[-6, 9]$ and range $[-8, 10)], increasing on [[-6, 1]$ and $[5, 9)], decreasing on [[1, 5]$. Find the domain and range of $q(x) = 4 - 2n(5 - x)$.\n*Hint:* For domain: $5 - x ∈ [-6, 9$]. For range: apply dilation by $-2$ then translation by $4$.\n\n**Problem 2:** Let $g(x) = 2f(x/2) - 3$. Given the table $f(-5) = 7, f(0) = 2, f(5) = -1$, find $g(-10)$ and $g(0)$.\n*Hint:* $g(-10) = 2f(-10/2) - 3 = 2f(-5) - 3$.\n\n**Problem 3:** Describe the transformation from $f$ to $g$ if $g(x) = -f(2x + 4) + 1$.\n*Hint:* Rewrite as $g(x) = -f(2(x + 2)) + 1$. Horizontal shift left 2, horizontal compression by 1/2, reflection over x-axis, vertical shift up 1."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** If $f$ has domain $[-3, 5]$ and range $[0, 8]$, find the domain and range of $g(x) = -2f(x - 1) + 3$.\n\n**Problem 2:** The graph of $f$ has a line segment from $(-4,0)$ to $(-2,0)$, the upper semicircle $y=\\sqrt{4-x^2}$ for $-2\\le x\\le2$, and a line segment from $(2,0)$ to $(3,2)$. Sketch $g(x) = ½f(x + 2) + 5$ by mapping key points.\n\n**Problem 3:** Which equation transforms $f$ to $g$ if $g$ is $f$ shifted right 2 and down 1? Options: $g(x) = f(x - 2) - 1$, $f(x + 2) - 1$, $f(x - 2) + 1$, $f(x + 2) + 1$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** If $f$ has domain $[-3, 5]$ and range $[0, 8]$, find the domain and range of $g(x) = -2f(x - 1) + 3$.\n\n**Lesson Summary:** Transformations shift, stretch, compress, and reflect function graphs. Horizontal transformations act on the input (inside the function); vertical transformations act on the output (outside). Always track how domain and range change, and map key points to verify your transformed graph."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

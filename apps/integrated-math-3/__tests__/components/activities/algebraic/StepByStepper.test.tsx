@@ -150,3 +150,17 @@ describe('StepByStepper', () => {
     });
   });
 });
+
+describe('StepByStepper initial problem display', () => {
+  const steps = [{ expression: 'x=1', explanation: 'Solve.' }];
+
+  it.each(['guided', 'practice'] as const)('shows the initial problem by default in %s mode', (mode) => {
+    render(<StepByStepper mode={mode} steps={steps} />);
+    expect(screen.getByText('Problem:')).toBeInTheDocument();
+  });
+
+  it.each(['guided', 'practice'] as const)('can suppress the initial problem in %s mode', (mode) => {
+    render(<StepByStepper mode={mode} steps={steps} showInitialProblem={false} />);
+    expect(screen.queryByText('Problem:')).not.toBeInTheDocument();
+  });
+});

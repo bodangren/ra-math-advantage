@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { StepByStepper } from './StepByStepper';
 import type { AlgebraicStep, StepAttempt } from './StepByStepper';
 import type { ProblemType } from '../../schemas/step-by-step-solver.schema';
@@ -8,7 +8,7 @@ import type { ProblemType } from '../../schemas/step-by-step-solver.schema';
 export interface ActivityComponentProps {
   activityId: string;
   mode: 'teaching' | 'guided' | 'practice';
-  onSubmit?: (payload: unknown) => void;
+  onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
 }
 
@@ -102,7 +102,11 @@ export function StepByStepSolverActivity({
 }: StepByStepSolverActivityProps) {
   const interactionHistoryRef = useRef<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
 
-  const handlePracticeComplete = useCallback((attempts: StepAttempt[]) => {
+  const [saveError, setSaveError] = useState(false);
+  const lastAttempts = useRef<StepAttempt[]>([]);
+  const handlePracticeComplete = useCallback(async (attempts: StepAttempt[]) => {
+    lastAttempts.current = attempts;
+    setSaveError(false);
     const stepsAttemptData = attempts.map((attempt) => ({
       stepIndex: attempt.stepIndex,
       userAnswer: attempt.userAnswer,
@@ -119,16 +123,22 @@ export function StepByStepSolverActivity({
       equation,
     });
 
-    onSubmit?.(submission);
-    onComplete?.();
+    try {
+      await onSubmit?.(submission);
+      onComplete?.();
+    } catch {
+      setSaveError(true);
+    }
   }, [activityId, mode, problemType, equation, onSubmit, onComplete]);
+
+  if (saveError) return <div role="alert">The answer was not saved. <button type="button" onClick={() => void handlePracticeComplete(lastAttempts.current)}>Retry save</button></div>;
 
   return (
     <StepByStepper
       mode={mode}
       steps={steps}
       problemType={problemType}
-      onPracticeComplete={mode === 'practice' ? handlePracticeComplete : undefined}
+      onPracticeComplete={mode !== 'teaching' ? handlePracticeComplete : undefined}
     />
   );
 }

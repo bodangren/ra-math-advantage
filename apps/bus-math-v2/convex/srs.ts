@@ -1,4 +1,4 @@
-import { internalQuery, mutation, query } from './_generated/server';
+import { internalMutation, internalQuery, query } from './_generated/server';
 import { v, ConvexError } from 'convex/values';
 import type { Doc, Id } from './_generated/dataModel';
 import {
@@ -8,7 +8,9 @@ import {
   formatFamilyDisplayName,
 } from '../lib/srs/teacher-analytics';
 import { srsCardStateValidator, srsRatingValidator } from './srs_validators';
-import { createCard } from '@math-platform/srs-engine';
+import { createCard, reviewCard } from '@math-platform/srs-engine';
+import { normalBalanceFamily } from '../lib/practice/engine/families/normal-balance';
+import { classificationFamily } from '../lib/practice/engine/families/classification';
 
 // COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING
 const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
@@ -85,7 +87,7 @@ async function verifyStudentIdentity(
   }
 }
 
-export const upsertSrsCard = mutation({
+export const upsertSrsCard = internalMutation({
   args: {
     studentId: v.id('profiles'),
     objectiveId: v.string(),
@@ -144,7 +146,7 @@ export const upsertSrsCard = mutation({
   },
 });
 
-export const recordSrsReview = mutation({
+export const recordSrsReview = internalMutation({
   args: {
     studentId: v.id('profiles'),
     problemFamilyId: v.string(),
@@ -248,17 +250,12 @@ export const recordSrsReview = mutation({
   },
 });
 
-export const getDueCards = query({
+export const getDueCards = internalQuery({
   args: {
     studentId: v.id('profiles'),
     now: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError('Unauthenticated');
-
-    await verifyStudentIdentity(ctx, identity, args.studentId);
-
     const cutoff = args.now ?? new Date().toISOString();
     const cards: Doc<'srs_cards'>[] = [];
 
@@ -339,19 +336,14 @@ async function getAuthorizedTeacher(
   return profile;
 }
 
-export const getClassSrsHealth = query({
+export const getClassSrsHealth = internalQuery({
   args: {
+    userId: v.id('profiles'),
     classId: v.id('classes'),
     now: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError('Unauthenticated');
-
-    const profile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
@@ -399,18 +391,13 @@ export const getClassSrsHealth = query({
   },
 });
 
-export const getWeakFamilies = query({
+export const getWeakFamilies = internalQuery({
   args: {
+    userId: v.id('profiles'),
     classId: v.id('classes'),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError('Unauthenticated');
-
-    const profile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
@@ -447,19 +434,14 @@ export const getWeakFamilies = query({
   },
 });
 
-export const getStrugglingStudents = query({
+export const getStrugglingStudents = internalQuery({
   args: {
+    userId: v.id('profiles'),
     classId: v.id('classes'),
     now: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError('Unauthenticated');
-
-    const profile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
@@ -505,19 +487,14 @@ export const getStrugglingStudents = query({
   },
 });
 
-export const resetStudentCard = mutation({
+export const resetStudentCard = internalMutation({
   args: {
+    userId: v.id('profiles'),
     studentId: v.id('profiles'),
     problemFamilyId: v.string(),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError('Unauthenticated');
-
-    const profile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
@@ -553,7 +530,7 @@ export const resetStudentCard = mutation({
     const newCard = createCard({
       studentId: args.studentId,
       objectiveId: args.problemFamilyId,
-      problemFamilyId: args.problemFamilyId,
+      variantKey: args.problemFamilyId,
       now,
     });
 
@@ -561,7 +538,7 @@ export const resetStudentCard = mutation({
       await ctx.db.patch(existing._id, {
         cardId: newCard.cardId,
         objectiveId: newCard.objectiveId,
-        problemFamilyId: newCard.problemFamilyId,
+        problemFamilyId: newCard.variantKey,
         stability: newCard.stability,
         difficulty: newCard.difficulty,
         state: newCard.state,
@@ -578,7 +555,7 @@ export const resetStudentCard = mutation({
         cardId: newCard.cardId,
         studentId: args.studentId,
         objectiveId: newCard.objectiveId,
-        problemFamilyId: newCard.problemFamilyId,
+        problemFamilyId: newCard.variantKey,
         stability: newCard.stability,
         difficulty: newCard.difficulty,
         state: newCard.state,
@@ -608,19 +585,14 @@ export const resetStudentCard = mutation({
   },
 });
 
-export const bumpFamilyPriority = mutation({
+export const bumpFamilyPriority = internalMutation({
   args: {
+    userId: v.id('profiles'),
     classId: v.id('classes'),
     problemFamilyId: v.string(),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new ConvexError('Unauthenticated');
-
-    const profile = await ctx.db
-      .query('profiles')
-      .withIndex('by_username', (q) => q.eq('username', identity.email!))
-      .unique();
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
@@ -691,5 +663,40 @@ export const getTeacherClasses = internalQuery({
         description: cls.description ?? null,
         academicYear: cls.academicYear ?? null,
       }));
+  },
+});
+/** Grade a supported daily card and commit its next schedule in one transaction. */
+export const submitDailyReview = internalMutation({
+  args: { studentId: v.id('profiles'), cardId: v.string(), activityId: v.string(),
+    answers: v.record(v.string(), v.string()), idempotencyKey: v.string() },
+  returns: v.object({ success: v.boolean() }),
+  handler: async (ctx, args) => {
+    const cards = await ctx.db.query('srs_cards').withIndex('by_student', (q) => q.eq('studentId', args.studentId)).collect();
+    const card = cards.find((candidate) => candidate.cardId === args.cardId);
+    if (!card) throw new Error('card_unavailable');
+    if (card.lastSubmissionKey === args.idempotencyKey) return { success: true };
+    const family = card.problemFamilyId === 'normal-balance' ? normalBalanceFamily
+      : card.problemFamilyId === 'classification' ? classificationFamily : null;
+    if (!family) throw new Error('unsupported_family');
+    const seed = card.reps + 1;
+    if (card.problemFamilyId === 'normal-balance' && Object.values(args.answers).some((answer) => answer !== 'debit' && answer !== 'credit')) throw new Error('invalid_answer');
+    const grade = card.problemFamilyId === 'normal-balance'
+      ? normalBalanceFamily.grade(normalBalanceFamily.generate(seed, {}), args.answers as Record<string, 'debit' | 'credit'>)
+      : classificationFamily.grade(classificationFamily.generate(seed, {}), args.answers);
+    const definition = family.generate(seed, {});
+    if (definition.activityId !== args.activityId) throw new Error('stale_problem');
+    const rating = grade.score === grade.maxScore ? 'Good' : 'Again';
+    const now = new Date().toISOString();
+    const updated = reviewCard({ ...card, variantKey: card.problemFamilyId }, rating, now);
+    await ctx.db.patch(card._id, {
+      stability: updated.stability, difficulty: updated.difficulty, state: updated.state,
+      dueDate: updated.dueDate, elapsedDays: updated.elapsedDays, scheduledDays: updated.scheduledDays,
+      reps: updated.reps, lapses: updated.lapses, lastReview: updated.lastReview,
+      updatedAt: updated.updatedAt, lastSubmissionKey: args.idempotencyKey,
+    });
+    await ctx.db.insert('srs_review_log', { studentId: args.studentId, problemFamilyId: card.problemFamilyId,
+      rating, scheduledAt: Date.now(), reviewedAt: Date.now(), elapsedDays: updated.elapsedDays,
+      scheduledDays: updated.scheduledDays });
+    return { success: true };
   },
 });

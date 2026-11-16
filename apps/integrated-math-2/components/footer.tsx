@@ -25,6 +25,7 @@ export function Footer() {
       brandIcon="2"
       sections={sections}
       copyright="© 2026 Daniel Bodanske"
+      bgClassName="bg-[#242220]"
       accentColor="oklch(0.55 0.19 40)"
     />
   );

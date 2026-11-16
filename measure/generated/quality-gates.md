@@ -1,0 +1,32 @@
+# Workspace Quality Gates
+
+Generated gate coverage: 26 workspaces. A dash is an explicitly unsupported capability.
+
+| Workspace | Lint | Test | Typecheck | Build |
+|---|---|---|---|---|
+| `app.bus-math-v2` | `npm run lint --workspace=apps/bus-math-v2` | `npm run test --workspace=apps/bus-math-v2` | `npx tsc --noEmit --project apps/bus-math-v2/tsconfig.json` | `npm run build --workspace=apps/bus-math-v2` |
+| `app.danielson` | `npm run lint --workspace=apps/danielson` | `npm run test --workspace=apps/danielson` | `npm run typecheck --workspace=apps/danielson` | `npm run build --workspace=apps/danielson` |
+| `app.integrated-math-1` | `npm run lint --workspace=apps/integrated-math-1` | `npm run test --workspace=apps/integrated-math-1` | `npm run typecheck --workspace=apps/integrated-math-1` | `npm run build --workspace=apps/integrated-math-1` |
+| `app.integrated-math-2` | `npm run lint --workspace=apps/integrated-math-2` | `npm run test --workspace=apps/integrated-math-2` | `npm run typecheck --workspace=apps/integrated-math-2` | `npm run build --workspace=apps/integrated-math-2` |
+| `app.integrated-math-3` | `npm run lint --workspace=apps/integrated-math-3` | `npm run test --workspace=apps/integrated-math-3` | `npm run typecheck --workspace=apps/integrated-math-3` | `npm run build --workspace=apps/integrated-math-3` |
+| `app.pre-calculus` | `npm run lint --workspace=apps/pre-calculus` | `npm run test --workspace=apps/pre-calculus` | `npm run typecheck --workspace=apps/pre-calculus` | `npm run build --workspace=apps/pre-calculus` |
+| `pkg.activity-components` | `npm run lint --workspace=packages/activity-components` | `npm run test --workspace=packages/activity-components` | `npm run typecheck --workspace=packages/activity-components` | `npm run build --workspace=packages/activity-components` |
+| `pkg.activity-runtime` | `npm run lint --workspace=packages/activity-runtime` | `npm run test --workspace=packages/activity-runtime` | `npm run typecheck --workspace=packages/activity-runtime` | `npm run build --workspace=packages/activity-runtime` |
+| `pkg.ai-tutoring` | `npm run lint --workspace=packages/ai-tutoring` | `npm run test --workspace=packages/ai-tutoring` | `npm run typecheck --workspace=packages/ai-tutoring` | `npm run build --workspace=packages/ai-tutoring` |
+| `pkg.app-shell` | `npm run lint --workspace=packages/app-shell` | `npm run test --workspace=packages/app-shell` | `npm run typecheck --workspace=packages/app-shell` | `npm run build --workspace=packages/app-shell` |
+| `pkg.component-approval` | `npm run lint --workspace=packages/component-approval` | `npm run test --workspace=packages/component-approval` | `npm run typecheck --workspace=packages/component-approval` | `npm run build --workspace=packages/component-approval` |
+| `pkg.core-auth` | `npm run lint --workspace=packages/core-auth` | `npm run test --workspace=packages/core-auth` | `npm run typecheck --workspace=packages/core-auth` | `npm run build --workspace=packages/core-auth` |
+| `pkg.core-convex` | `npm run lint --workspace=packages/core-convex` | `npm run test --workspace=packages/core-convex` | `npm run typecheck --workspace=packages/core-convex` | `npm run build --workspace=packages/core-convex` |
+| `pkg.efficacy-core` | `npm run lint --workspace=packages/efficacy-core` | `npm run test --workspace=packages/efficacy-core` | `npm run typecheck --workspace=packages/efficacy-core` | `npm run build --workspace=packages/efficacy-core` |
+| `pkg.graphing-core` | `npm run lint --workspace=packages/graphing-core` | `npm run test --workspace=packages/graphing-core` | `npm run typecheck --workspace=packages/graphing-core` | `npm run build --workspace=packages/graphing-core` |
+| `pkg.knowledge-space-core` | `npm run lint --workspace=packages/knowledge-space-core` | `npm run test --workspace=packages/knowledge-space-core` | `npm run typecheck --workspace=packages/knowledge-space-core` | `npm run build --workspace=packages/knowledge-space-core` |
+| `pkg.knowledge-space-practice` | `npm run lint --workspace=packages/knowledge-space-practice` | `npm run test --workspace=packages/knowledge-space-practice` | `npm run typecheck --workspace=packages/knowledge-space-practice` | `npm run build --workspace=packages/knowledge-space-practice` |
+| `pkg.lesson-renderer` | `npm run lint --workspace=packages/lesson-renderer` | `npm run test --workspace=packages/lesson-renderer` | `npm run typecheck --workspace=packages/lesson-renderer` | `npm run build --workspace=packages/lesson-renderer` |
+| `pkg.math-content` | `npm run lint --workspace=packages/math-content` | `npm run test --workspace=packages/math-content` | `npm run typecheck --workspace=packages/math-content` | `npm run build --workspace=packages/math-content` |
+| `pkg.practice-core` | `npm run lint --workspace=packages/practice-core` | `npm run test --workspace=packages/practice-core` | `npm run typecheck --workspace=packages/practice-core` | `npm run build --workspace=packages/practice-core` |
+| `pkg.practice-test-engine` | `npm run lint --workspace=packages/practice-test-engine` | `npm run test --workspace=packages/practice-test-engine` | `npm run typecheck --workspace=packages/practice-test-engine` | — |
+| `pkg.rate-limiter` | `npm run lint --workspace=packages/rate-limiter` | `npm run test --workspace=packages/rate-limiter` | `npm run typecheck --workspace=packages/rate-limiter` | `npm run build --workspace=packages/rate-limiter` |
+| `pkg.srs-engine` | `npm run lint --workspace=packages/srs-engine` | `npm run test --workspace=packages/srs-engine` | `npm run typecheck --workspace=packages/srs-engine` | `npm run build --workspace=packages/srs-engine` |
+| `pkg.study-hub-core` | `npm run lint --workspace=packages/study-hub-core` | `npm run test --workspace=packages/study-hub-core` | `npm run typecheck --workspace=packages/study-hub-core` | `npm run build --workspace=packages/study-hub-core` |
+| `pkg.teacher-reporting-core` | `npm run lint --workspace=packages/teacher-reporting-core` | `npm run test --workspace=packages/teacher-reporting-core` | `npm run typecheck --workspace=packages/teacher-reporting-core` | `npm run build --workspace=packages/teacher-reporting-core` |
+| `pkg.workbook-pipeline` | `npm run lint --workspace=packages/workbook-pipeline` | `npm run test --workspace=packages/workbook-pipeline` | `npm run typecheck --workspace=packages/workbook-pipeline` | `npm run build --workspace=packages/workbook-pipeline` |

@@ -1,0 +1,18 @@
+{
+  "activityId": "j579pan0nknrps8n5z6pgxx3sd8e2pqj",
+  "attemptOrdinal": 4,
+  "idempotencyKey": "qf:jd7589fjb68argped6ffe13vc18e3zxb",
+  "mode": "guided_practice",
+  "pendingSubmissionId": "jd7589fjb68argped6ffe13vc18e3zxb",
+  "props": {
+    "equation": "x^2 - 3x + 3",
+    "fieldHelp": {
+      "discriminant": "Calculate b² - 4ac.",
+      "x1": "Enter one root.",
+      "x2": "Enter the other root. Leave this blank for a repeated root."
+    },
+    "presentationMode": "guided",
+    "prompt": "Use the Quadratic Formula to solve the equation."
+  },
+  "state": "pending"
+}

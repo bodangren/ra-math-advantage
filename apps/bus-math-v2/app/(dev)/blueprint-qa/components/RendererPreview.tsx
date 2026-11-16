@@ -1,244 +1,162 @@
 'use client';
 
-import { Suspense, useEffect, useMemo, createContext, useContext, createElement } from 'react';
-import { Monitor, Send, AlertTriangle, Puzzle, Loader2 } from 'lucide-react';
+import { Suspense, createElement } from 'react';
+import { AlertTriangle, Loader2, Monitor, Send } from 'lucide-react';
 import { getActivityComponent } from '@math-platform/activity-components/registry';
+import { getPropsSchema } from '@math-platform/activity-components/schemas';
+import type { ProjectedActivity } from '@math-platform/knowledge-space-practice';
 import { ensureActivitiesRegistered } from './register-activities';
 import type { HarnessState, SkillNode, SubmissionEntry } from '../types';
-import type { KnowledgeBlueprint, GradingMetadata } from '@math-platform/knowledge-space-practice';
 
 interface RendererPreviewProps {
   state: HarnessState;
   selectedNode: SkillNode | null;
-  selectedBlueprint: KnowledgeBlueprint | null;
+  activity: ProjectedActivity | null;
   onIntercept: (entry: SubmissionEntry) => void;
 }
 
-interface MockSubmissionContextValue {
-  submit: (partId: string, rawAnswer: unknown) => Promise<{ success: boolean }>;
-  isSubmitting: boolean;
+export interface StudentPreviewProblem {
+  summary: string;
+  details: string[];
 }
 
-const MockSubmissionContext = createContext<MockSubmissionContextValue>({
-  submit: async () => ({ success: false }),
-  isSubmitting: false,
-});
-
-/**
- * Hook returning a mock submission object for preview purposes.
- *
- * @returns The mock submission context value with submit function and state.
- */
-export function useMockSubmission() {
-  return useContext(MockSubmissionContext);
+function formatIssuePath(path: PropertyKey[]): string {
+  return path.length === 0 ? 'props' : path.map(String).join('.');
 }
 
-/**
- * Grades an answer locally for preview purposes using the specified rule.
- *
- * @param rawAnswer - The student's submitted answer.
- * @param expected - The expected correct answer.
- * @param rule - The grading rule to apply.
- * @param tolerance - Optional numeric tolerance for numeric_tolerance rule.
- * @returns True if the answer is correct under the given rule.
- */
-function gradeAnswerLocally(
-  rawAnswer: unknown,
-  expected: unknown,
-  rule: 'exact_match' | 'numeric_tolerance' | 'expression_equivalence',
-  tolerance?: number,
-): boolean {
-  if (rule === 'exact_match') {
-    return String(rawAnswer).trim() === String(expected).trim();
+export function getStudentPreviewProblem(
+  activity: ProjectedActivity | null,
+): StudentPreviewProblem | null {
+  if (!activity) {
+    return {
+      summary: 'The activity projection is missing for this modality.',
+      details: [],
+    };
   }
-  if (rule === 'numeric_tolerance') {
-    const numAnswer = Number(rawAnswer);
-    const numExpected = Number(expected);
-    if (isNaN(numAnswer) || isNaN(numExpected)) return false;
-    const tol = tolerance ?? 0.01;
-    return Math.abs(numAnswer - numExpected) <= tol;
+
+  const schema = getPropsSchema(activity.rendererKey);
+  if (!schema) {
+    return {
+      summary: `No runtime prop schema exists for ${activity.rendererKey}.`,
+      details: [],
+    };
   }
-  if (rule === 'expression_equivalence') {
-    return String(rawAnswer).replace(/\s+/g, '') === String(expected).replace(/\s+/g, '');
+
+  const parsed = schema.safeParse(activity.props);
+  if (!parsed.success) {
+    return {
+      summary: `The projected props do not match ${activity.rendererKey}.`,
+      details: parsed.error.issues.map(
+        (issue) => `${formatIssuePath(issue.path)}: ${issue.message}`,
+      ),
+    };
   }
-  return false;
+
+  ensureActivitiesRegistered();
+  if (!getActivityComponent(activity.rendererKey)) {
+    return {
+      summary: `The ${activity.rendererKey} student component is not registered.`,
+      details: [],
+    };
+  }
+
+  return null;
 }
 
-/**
- * Builds renderer-specific component props from generator output for preview.
- *
- * @param rendererKey - The renderer component key (e.g. "graphing-explorer").
- * @param generatorOutput - The raw generator output containing data and prompt.
- * @returns A props object tailored to the specified renderer component.
- */
-function buildComponentProps(
-  rendererKey: string,
-  generatorOutput: Record<string, unknown>,
-): Record<string, unknown> {
-  const data = (generatorOutput.data ?? {}) as Record<string, unknown>;
-  const prompt = generatorOutput.prompt as string ?? '';
-
-  switch (rendererKey) {
-    case 'graphing-explorer':
-      return { equation: data?.equation ?? 'y = x^2' };
-    case 'step-by-step-solver':
-      return { steps: generatorOutput.solutionSteps, equation: data?.equation ?? '', problemType: data?.problemType };
-    case 'comprehension-quiz':
-      return { questions: data?.questions ?? [] };
-    case 'fill-in-the-blank':
-      return { template: prompt, blanks: data?.blanks ?? [] };
-    case 'rate-of-change-calculator':
-      return { sourceType: data?.sourceType, data: data?.data, interval: data?.interval };
-    case 'discriminant-analyzer':
-      return { ...data };
-    default:
-      return { ...data };
-  }
+function runtimeMode(mode: ProjectedActivity['mode']): 'teaching' | 'guided' | 'practice' {
+  if (mode === 'worked_example') return 'teaching';
+  if (mode === 'guided_practice') return 'guided';
+  return 'practice';
 }
 
-/**
- * Renders a preview of an activity component with mock submission handling.
- *
- * @param props - The component props.
- * @param props.state - Current harness state including generator output.
- * @param props.selectedNode - The currently selected skill node, or null.
- * @param props.selectedBlueprint - The blueprint for the selected node, or null.
- * @param props.onIntercept - Callback invoked when a submission is intercepted.
- * @returns The renderer preview JSX element.
- */
-export function RendererPreview({ state, selectedNode, selectedBlueprint, onIntercept }: RendererPreviewProps) {
-  useEffect(() => {
-    ensureActivitiesRegistered();
-  }, []);
-
-  const gradingMetadata = (state.generatorOutput?.gradingMetadata ?? null) as GradingMetadata | null;
-
-  const mockContext = useMemo<MockSubmissionContextValue>(
-    () => ({
-      isSubmitting: false,
-      submit: async (partId: string, rawAnswer: unknown) => {
-        if (!gradingMetadata) {
-          onIntercept({ partId, rawAnswer, isCorrect: false });
-          return { success: true };
-        }
-        const expected = gradingMetadata.partAnswers[partId];
-        const rule = gradingMetadata.partGradingRules[partId] ?? 'exact_match';
-        const tolerance = gradingMetadata.partTolerances?.[partId];
-        const isCorrect = gradeAnswerLocally(rawAnswer, expected, rule, tolerance);
-        onIntercept({ partId, rawAnswer, isCorrect });
-        return { success: true };
-      },
-    }),
-    [gradingMetadata, onIntercept],
-  );
-
-  const rendererKey = selectedBlueprint?.rendererKey ?? selectedNode?.rendererKey ?? null;
-  const activityComponent = rendererKey ? getActivityComponent(rendererKey) : null;
-  const hasOutput = !!state.generatorOutput;
+export function RendererPreview({
+  state,
+  selectedNode,
+  activity,
+  onIntercept,
+}: RendererPreviewProps) {
+  const problem = selectedNode ? getStudentPreviewProblem(activity) : null;
+  const activityComponent = problem || !activity
+    ? null
+    : getActivityComponent(activity.rendererKey);
 
   const handleSubmit = (payload: unknown) => {
-    if (!gradingMetadata) {
-      onIntercept({ partId: 'unknown', rawAnswer: payload, isCorrect: false });
-      return;
-    }
-    const payloadObj = payload as Record<string, unknown>;
-    const partIds = Object.keys(gradingMetadata.partAnswers);
-    for (const partId of partIds) {
-      const rawAnswer = payloadObj[partId] ?? payloadObj.answer ?? payloadObj.value ?? payload;
-      const expected = gradingMetadata.partAnswers[partId];
-      const rule = gradingMetadata.partGradingRules[partId] ?? 'exact_match';
-      const tolerance = gradingMetadata.partTolerances?.[partId];
-      const isCorrect = gradeAnswerLocally(rawAnswer, expected, rule, tolerance);
-      onIntercept({ partId, rawAnswer, isCorrect });
-    }
+    onIntercept({ partId: 'submission', rawAnswer: payload, isCorrect: false });
   };
 
   const handleComplete = () => {
-    onIntercept({ partId: '__complete__', rawAnswer: null, isCorrect: true });
+    return undefined;
   };
 
-  const componentProps = hasOutput && state.generatorOutput
-    ? buildComponentProps(rendererKey ?? '', state.generatorOutput)
-    : {};
-  const activityId = `qa-${selectedNode?.id ?? 'none'}-${state.seed}`;
-
   return (
-    <div className="space-y-4 rounded-2xl border bg-white/90 p-6 shadow-sm">
+    <div className="space-y-4 border border-[#8A958E] bg-[#EEEADF] p-4 text-[#0A1C1A]">
       <div className="flex items-center gap-2">
-        <Monitor className="size-4 text-slate-400" />
-        <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Preview</h2>
+        <Monitor className="size-4 text-[#365451]" aria-hidden="true" />
+        <h2 className="text-sm font-semibold uppercase tracking-[0.2em]">Student view</h2>
       </div>
 
       {!selectedNode ? (
-        <p className="text-xs text-slate-400">Select a skill to preview its component.</p>
-      ) : !rendererKey ? (
-        <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3">
-          <AlertTriangle className="size-4 shrink-0 text-amber-500 mt-0.5" />
-          <p className="text-xs text-amber-700">No renderer key assigned.</p>
-        </div>
-      ) : !activityComponent ? (
-        <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3">
-          <Puzzle className="size-4 shrink-0 text-red-500 mt-0.5" />
-          <div className="text-xs text-red-700">
-            <p>Component <code className="rounded bg-red-100 px-1 font-mono">{rendererKey}</code> not registered.</p>
-            <p className="mt-1 text-red-500">
-              Run <code className="rounded bg-red-100 px-1 font-mono">getRegisteredActivityKeys()</code> to see available keys.
-            </p>
+        <p className="text-sm text-[#365451]">Select a skill to preview its student component.</p>
+      ) : problem ? (
+        <div role="alert" className="flex items-start gap-2 border border-amber-500 bg-amber-50 p-3 text-amber-950">
+          <AlertTriangle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+          <div className="text-sm">
+            <p className="font-semibold">Student view unavailable</p>
+            <p className="mt-1">{problem.summary}</p>
+            {problem.details.length > 0 && (
+              <ul className="mt-2 list-disc space-y-1 pl-5 font-mono text-xs">
+                {problem.details.map((detail) => <li key={detail}>{detail}</li>)}
+              </ul>
+            )}
           </div>
         </div>
-      ) : !hasOutput ? (
-        <p className="text-xs text-slate-400">Generate output first to preview the component.</p>
-      ) : (
-        <MockSubmissionContext.Provider value={mockContext}>
-          <div className="rounded-lg border border-slate-200 bg-white p-4">
-            <div className="mb-2 flex items-center gap-2">
-              <span className="text-xs font-medium text-slate-500">Renderer:</span>
-              <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs font-mono text-slate-700">
-                {rendererKey}
-              </code>
-            </div>
-            <Suspense fallback={
-              <div className="flex items-center gap-2 py-4 text-xs text-slate-400">
-                <Loader2 className="size-3 animate-spin" />
-                Loading component...
+      ) : activity && activityComponent ? (
+        <div>
+          <p className="mb-2 text-xs text-[#365451]">
+            Component: <code className="font-mono font-semibold">{activity.rendererKey}</code>
+          </p>
+          <div data-testid="student-view" className="rounded-lg border border-border bg-background p-4 text-foreground">
+            <Suspense fallback={(
+              <div className="flex items-center gap-2 py-4 text-sm text-muted-foreground">
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                Loading student component…
               </div>
-            }>
+            )}>
               {createElement(activityComponent, {
-                activityId,
-                mode: state.mode === 'worked_example' ? 'teaching' : state.mode === 'guided_practice' ? 'guided' : 'practice',
+                key: activity.stableActivityId,
+                ...activity.props,
+                activityId: activity.stableActivityId,
+                stableActivityId: activity.stableActivityId,
+                mode: runtimeMode(activity.mode),
                 onSubmit: handleSubmit,
                 onComplete: handleComplete,
-                ...componentProps,
               })}
             </Suspense>
           </div>
-        </MockSubmissionContext.Provider>
-      )}
+        </div>
+      ) : null}
 
       {state.lastSubmission && (
         <div>
           <div className="mb-2 flex items-center gap-2">
-            <Send className="size-3 text-slate-400" />
-            <h3 className="text-xs font-semibold text-slate-600">Submission Log</h3>
+            <Send className="size-3 text-[#365451]" aria-hidden="true" />
+            <h3 className="text-xs font-semibold">Submission log</h3>
           </div>
-          <div className="rounded-lg bg-slate-50 p-3">
+          <div className="bg-white p-3 text-[#0A1C1A]">
             <div className="mb-2 flex items-center gap-2">
-              <span className="text-xs text-slate-500">Part:</span>
-              <code className="rounded bg-slate-200 px-1.5 text-xs font-mono">
+              <span className="text-xs text-[#365451]">Part:</span>
+              <code className="bg-[#EEEADF] px-1.5 text-xs font-mono">
                 {state.lastSubmission.partId}
               </code>
-              <span
-                className={`ml-auto rounded-full px-2 py-0.5 text-xs font-semibold ${
-                  state.lastSubmission.isCorrect
-                    ? 'bg-emerald-100 text-emerald-700'
-                    : 'bg-red-100 text-red-700'
-                }`}
-              >
-                {state.lastSubmission.isCorrect ? 'Correct' : 'Incorrect'}
+              <span className="ml-auto bg-[#DCE9E0] px-2 py-0.5 text-xs font-semibold text-[#1E6238]">
+                Captured
               </span>
             </div>
-            <pre className="max-h-32 overflow-auto rounded bg-slate-100 p-2 text-xs text-slate-700">
-              {JSON.stringify({ rawAnswer: state.lastSubmission.rawAnswer, partId: state.lastSubmission.partId, isCorrect: state.lastSubmission.isCorrect }, null, 2)}
+            <pre className="max-h-32 overflow-auto bg-[#EEEADF] p-2 text-xs text-[#0A1C1A]">
+              {JSON.stringify({
+                rawAnswer: state.lastSubmission.rawAnswer,
+                partId: state.lastSubmission.partId,
+              }, null, 2)}
             </pre>
           </div>
         </div>

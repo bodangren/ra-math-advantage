@@ -90,7 +90,7 @@ describe('Convex Schema v.any() Field Audit (source-level)', () => {
       expect(metadataTables).toContain('lessons');
       expect(metadataTables).toContain('phase_versions');
       expect(metadataTables).toContain('resources');
-      expect(metadataTables).toContain('problem_families');
+      expect(metadataTables).toContain('practice_variants');
     });
 
     it('organizations.settings uses v.record() not bare v.any()', () => {
@@ -197,6 +197,11 @@ describe('Convex Schema v.any() Field Audit (source-level)', () => {
   describe('activity props validators exist', () => {
     it('graphingExplorerPropsValidator is defined', () => {
       expect(schemaSource).toMatch(/graphingExplorerPropsValidator/);
+    });
+    it('graphingExplorerPropsValidator accepts the shared response variants', () => {
+      for (const variant of ['quadratic_features', 'table_graph', 'domain_range', 'maximum_value', 'symmetry_graph', 'compare_maximums', 'one_real_solution', 'two_real_solutions', 'estimated_root_intervals']) {
+        expect(schemaSource).toContain(`v.literal("${variant}")`);
+      }
     });
     it('stepByStepSolverPropsValidator is defined', () => {
       expect(schemaSource).toMatch(/stepByStepSolverPropsValidator/);

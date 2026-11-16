@@ -14,6 +14,9 @@ vi.mock('@/lib/convex/server', () => ({
       getTeacherDashboardData: 'teacher.getTeacherDashboardData',
       getTeacherStudentDetail: 'teacher.getTeacherStudentDetail',
     },
+    learningEvidence: {
+      getIm3GraphTeacherExposureCandidates: 'learningEvidence.getIm3GraphTeacherExposureCandidates',
+    },
   },
 }));
 
@@ -95,6 +98,7 @@ describe('StudentsPage', () => {
       const { fetchInternalQuery } = await import('@/lib/convex/server');
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockDashboardData);
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockStudentDetail);
+      (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce([]);
 
       const searchParams = Promise.resolve({ id: 'student-1' });
       const { default: Page } = await import('@/app/teacher/students/page');
@@ -128,6 +132,7 @@ describe('StudentsPage', () => {
       const { fetchInternalQuery } = await import('@/lib/convex/server');
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockDashboardData);
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(fullMockDetail);
+      (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce([]);
 
       const searchParams = Promise.resolve({ id: 'student-1' });
       const { default: Page } = await import('@/app/teacher/students/page');
@@ -148,6 +153,7 @@ describe('StudentsPage', () => {
       const { fetchInternalQuery } = await import('@/lib/convex/server');
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockDashboardData);
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockStudentDetail);
+      (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce([]);
 
       const searchParams = Promise.resolve({ id: 'student-1' });
       const { default: Page } = await import('@/app/teacher/students/page');
@@ -164,6 +170,7 @@ describe('StudentsPage', () => {
       const { fetchInternalQuery } = await import('@/lib/convex/server');
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockDashboardData);
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockStudentDetail);
+      (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce([]);
 
       const searchParams = Promise.resolve({ id: 'student-1' });
       const { default: Page } = await import('@/app/teacher/students/page');
@@ -177,6 +184,7 @@ describe('StudentsPage', () => {
       const { fetchInternalQuery } = await import('@/lib/convex/server');
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockDashboardData);
       (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce(mockStudentDetail);
+      (fetchInternalQuery as unknown as import('vitest').Mock<any>).mockResolvedValueOnce([]);
 
       const searchParams = Promise.resolve({ id: 'student-1', lesson: '2' });
       const { default: Page } = await import('@/app/teacher/students/page');

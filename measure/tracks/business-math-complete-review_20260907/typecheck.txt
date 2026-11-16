@@ -1,0 +1,29 @@
+__tests__/dev/blueprint-qa/polynomial-end-behavior-registration.test.tsx(144,7): error TS2698: Spread types may only be created from object types.
+__tests__/dev/blueprint-qa/polynomial-end-behavior-registration.test.tsx(167,7): error TS2698: Spread types may only be created from object types.
+__tests__/dev/blueprint-qa/polynomial-end-behavior-registration.test.tsx(199,41): error TS2698: Spread types may only be created from object types.
+__tests__/lib/practice/timing-baseline.test.ts(27,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(32,21): error TS2339: Property 'problemFamilyId' does not exist on type 'PracticeTimingBaseline'.
+__tests__/lib/practice/timing-baseline.test.ts(43,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(58,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(68,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(81,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(92,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(106,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(118,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(130,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'ComputeBaselineInput'.
+__tests__/lib/practice/timing-baseline.test.ts(141,5): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'PracticeTimingBaseline'.
+__tests__/lib/srs/contract.test.ts(129,9): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'SrsCardState'.
+__tests__/lib/srs/queue.test.ts(12,5): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'SrsCardState'.
+__tests__/lib/srs/review-processor.test.ts(109,9): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'PracticeTimingBaseline'.
+__tests__/lib/srs/review-processor.test.ts(124,9): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'PracticeTimingBaseline'.
+convex/srs.ts(556,7): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type '{ studentId: string; objectiveId: string; variantKey?: string | undefined; now?: string | undefined; config?: Partial<SchedulerConfig> | undefined; }'.
+convex/srs.ts(564,34): error TS2339: Property 'problemFamilyId' does not exist on type 'SrsCardState'.
+convex/srs.ts(581,34): error TS2339: Property 'problemFamilyId' does not exist on type 'SrsCardState'.
+lib/srs/review-processor.ts(56,37): error TS2339: Property 'problemFamilyId' does not exist on type 'SrsCardState'.
+lib/srs/review-processor.ts(68,7): error TS2741: Property 'problemFamilyId' is missing in type 'SrsCardState' but required in type '{ cardId: string; studentId: string; objectiveId: string; problemFamilyId: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; ... 6 more ...; updatedAt: string; }'.
+lib/srs/review-processor.ts(83,35): error TS2339: Property 'problemFamilyId' does not exist on type 'SrsCardState'.
+lib/srs/review-processor.ts(95,5): error TS2741: Property 'problemFamilyId' is missing in type 'SrsCardState' but required in type '{ cardId: string; studentId: string; objectiveId: string; problemFamilyId: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; ... 6 more ...; updatedAt: string; }'.
+lib/srs/scheduler.ts(60,5): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type '{ studentId: string; objectiveId: string; variantKey?: string | undefined; now?: string | undefined; config?: Partial<SchedulerConfig> | undefined; }'.
+lib/srs/scheduler.ts(64,30): error TS2339: Property 'problemFamilyId' does not exist on type 'SrsCardState'.
+lib/srs/scheduler.ts(118,5): error TS2353: Object literal may only specify known properties, and 'problemFamilyId' does not exist in type 'SrsCardState'.
+lib/srs/scheduler.ts(133,30): error TS2339: Property 'problemFamilyId' does not exist on type 'SrsCardState'.

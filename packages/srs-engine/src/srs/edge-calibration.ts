@@ -87,6 +87,180 @@ export type EdgeCalibration = {
   lastUpdated: number;
 };
 
+/**
+ * Persistence version for necessity posteriors conditioned on the ¬A row.
+ *
+ * Unversioned and v2-derived posteriors must be rebuilt from stored
+ * contingency tables before they are used: v2 counted the curriculum-heavy
+ * proficient-A row and therefore produced systematically inflated values.
+ */
+export const EDGE_CALIBRATION_POSTERIOR_VERSION = 'edge-calibration.v3' as const;
+
+/**
+ * Identify stored calibration values that cannot be trusted under v3.
+ * @param {string | undefined} posteriorVersion - Persisted derivation version
+ * @returns {boolean} - True when the posterior must be recomputed from source evidence
+ */
+export function requiresPosteriorRecompute(posteriorVersion?: string): boolean {
+  return posteriorVersion !== EDGE_CALIBRATION_POSTERIOR_VERSION;
+}
+
+// ============================================
+// Ability-Stratified Calibration (v3.1)
+// ============================================
+
+/** Fixed overall-proficiency bands used to audit self-selection bias. */
+export type AbilityTercile = 'low' | 'mid' | 'high';
+
+/** A paired edge observation with ability measured at observation time. */
+export type AbilityCalibrationObservation = CalibrationObservation & {
+  overallProficiencyRate: number;
+};
+
+/** Deterministic summary of the necessity posterior for one ability band. */
+export type AbilityBandCalibrationSummary = {
+  band: AbilityTercile;
+  notProficientAObservationCount: number;
+  posteriorMean: number;
+  eligible: boolean;
+};
+
+/** Why ability adjustment could not preserve the pooled edge verdict. */
+export type AbilityStratificationReason =
+  | 'insufficient_ability_bands'
+  | 'confounded_by_ability';
+
+/** Result of checking a pooled calibration verdict across ability bands. */
+export type AbilityStratifiedCalibrationResult = {
+  status: CalibrationStatus;
+  reason: AbilityStratificationReason | null;
+  eligibleBandCount: number;
+  bands: AbilityBandCalibrationSummary[];
+};
+
+const ABILITY_TERCILES: readonly AbilityTercile[] = ['low', 'mid', 'high'];
+const MID_ABILITY_BOUNDARY = 1 / 3;
+const HIGH_ABILITY_BOUNDARY = 2 / 3;
+const MIN_NOT_PROFICIENT_A_PER_BAND = 5;
+const MAX_ABILITY_BAND_POSTERIOR_SPREAD = 0.2;
+
+/**
+ * Assign a fixed proficiency-rate tercile.
+ *
+ * Fixed boundaries keep band assignment deterministic across cohort sizes and
+ * input order. Invalid rates throw before they can contribute to a verdict.
+ * @param {number} overallProficiencyRate - Overall proficiency rate in [0, 1]
+ * @returns {AbilityTercile} - The fixed low, mid, or high ability band
+ * @throws {RangeError} - When the rate is non-finite or outside [0, 1]
+ */
+export function assignAbilityTercile(overallProficiencyRate: number): AbilityTercile {
+  if (!Number.isFinite(overallProficiencyRate)
+    || overallProficiencyRate < 0
+    || overallProficiencyRate > 1) {
+    throw new RangeError('overallProficiencyRate must be finite and within [0, 1]');
+  }
+
+  if (overallProficiencyRate < MID_ABILITY_BOUNDARY) return 'low';
+  if (overallProficiencyRate < HIGH_ABILITY_BOUNDARY) return 'mid';
+  return 'high';
+}
+
+function assertAbilityCalibrationObservation(
+  observation: AbilityCalibrationObservation,
+): void {
+  if (observation === null || typeof observation !== 'object') {
+    throw new TypeError('ability calibration observations must be objects');
+  }
+  if (typeof observation.studentId !== 'string' || observation.studentId.trim() === '') {
+    throw new TypeError('ability calibration observations require a studentId');
+  }
+  if (typeof observation.a !== 'boolean' || typeof observation.b !== 'boolean') {
+    throw new TypeError('ability calibration observations require boolean a and b verdicts');
+  }
+  assignAbilityTercile(observation.overallProficiencyRate);
+}
+
+/**
+ * Check whether ability-band necessity posteriors support a pooled verdict.
+ *
+ * Each band uses a Beta(1, 1) prior and only the not-proficient-in-A row:
+ * not-proficient B increments alpha, while proficient B increments beta.
+ * @param {ReadonlyArray<AbilityCalibrationObservation>} observations - Paired observations with ability rates
+ * @param {CalibrationStatus} pooledStatus - Verdict produced from pooled evidence
+ * @returns {AbilityStratifiedCalibrationResult} - Ordered band summaries and adjusted verdict
+ * @throws {TypeError | RangeError} - When runtime input is malformed
+ */
+export function stratifyCalibrationByAbility(
+  observations: ReadonlyArray<AbilityCalibrationObservation>,
+  pooledStatus: CalibrationStatus,
+): AbilityStratifiedCalibrationResult {
+  if (!Array.isArray(observations)) {
+    throw new TypeError('observations must be an array');
+  }
+  if (!CALIBRATION_STATUS_VALUES.includes(pooledStatus)) {
+    throw new TypeError('pooledStatus must be a valid calibration status');
+  }
+
+  const counts = new Map<AbilityTercile, { alpha: number; beta: number; count: number }>(
+    ABILITY_TERCILES.map((band) => [band, { alpha: 1, beta: 1, count: 0 }]),
+  );
+  const seenStudentIds = new Set<string>();
+
+  for (const observation of observations) {
+    assertAbilityCalibrationObservation(observation);
+    if (seenStudentIds.has(observation.studentId)) {
+      throw new TypeError(`duplicate studentId: ${observation.studentId}`);
+    }
+    seenStudentIds.add(observation.studentId);
+    if (observation.a) continue;
+
+    const band = assignAbilityTercile(observation.overallProficiencyRate);
+    const bandCounts = counts.get(band)!;
+    bandCounts.count += 1;
+    if (observation.b) bandCounts.beta += 1;
+    else bandCounts.alpha += 1;
+  }
+
+  const bands = ABILITY_TERCILES.map((band): AbilityBandCalibrationSummary => {
+    const bandCounts = counts.get(band)!;
+    return {
+      band,
+      notProficientAObservationCount: bandCounts.count,
+      posteriorMean: bandCounts.alpha / (bandCounts.alpha + bandCounts.beta),
+      eligible: bandCounts.count >= MIN_NOT_PROFICIENT_A_PER_BAND,
+    };
+  });
+  const eligibleBands = bands.filter((band) => band.eligible);
+
+  if (eligibleBands.length < 2) {
+    return {
+      status: 'untested',
+      reason: 'insufficient_ability_bands',
+      eligibleBandCount: eligibleBands.length,
+      bands,
+    };
+  }
+
+  const posteriorMeans = eligibleBands.map((band) => band.posteriorMean);
+  const spread = Math.max(...posteriorMeans) - Math.min(...posteriorMeans);
+  const boundaryTolerance = Number.EPSILON * 4;
+  if (spread > MAX_ABILITY_BAND_POSTERIOR_SPREAD + boundaryTolerance) {
+    return {
+      status: 'untested',
+      reason: 'confounded_by_ability',
+      eligibleBandCount: eligibleBands.length,
+      bands,
+    };
+  }
+
+  return {
+    status: pooledStatus,
+    reason: null,
+    eligibleBandCount: eligibleBands.length,
+    bands,
+  };
+}
+
 // ============================================
 // Necessity / Informativeness Result (FR2)
 // ============================================
@@ -192,7 +366,7 @@ export function buildContingencyTable(
 export function computeNecessity(table: CalibrationContingencyTable): number {
   const notProfA = table.notProficientAProficientB + table.notProficientANotProficientB;
   if (notProfA === 0) return 0;
-  return table.notProficientAProficientB / notProfA;
+  return table.notProficientANotProficientB / notProfA;
 }
 
 /**
@@ -250,9 +424,9 @@ export function updatePosterior(
 ): EdgeCalibration {
   let alpha = state.alpha;
   let beta = state.beta;
-  if (observation.a && observation.b) {
+  if (!observation.a && !observation.b) {
     alpha++;
-  } else if (observation.a && !observation.b) {
+  } else if (!observation.a && observation.b) {
     beta++;
   }
   return {

@@ -1,0 +1,6 @@
+Blueprint schema failures 149 / 149
+First issues ["workedExampleSpec.prompt","workedExampleSpec.givens","workedExampleSpec.target","workedExampleSpec.steps","workedExampleSpec.explanation","guidedPracticeSpec.scaffoldedPrompt","guidedPracticeSpec.stepPrompts","guidedPracticeSpec.hints","guidedPracticeSpec.checksPerStep","guidedPracticeSpec.revealPolicy","independentPracticeSpec.variantParameters","independentPracticeSpec.answerSchema","independentPracticeSpec.gradingRules","independentPracticeSpec.replayPolicy"]
+Graph valid true Errors 0
+Graph error groups {}
+Graph examples []
+seed function names seed:seedModule1Lessons seed/seed_module_1_lessons:seedModule1Lessons

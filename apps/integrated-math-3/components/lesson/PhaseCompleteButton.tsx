@@ -1,11 +1,12 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { CheckCircle2, Loader2, SkipForward } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { completePhaseRequest, skipPhaseRequest } from '@/lib/phase-completion/client';
 import { cn } from '@/lib/utils';
 import { isSkippable, type PhaseType } from '@math-platform/activity-runtime/phase-types';
+import type { CompletePhaseRequest } from '@/types/api';
 
 type ProgressStatus = 'not_started' | 'in_progress' | 'completed' | 'skipped';
 
@@ -43,7 +44,8 @@ export function PhaseCompleteButton({
   const [status, setStatus] = useState<ProgressStatus>(initialStatus);
   const [isCompleting, setIsCompleting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [requestError, setRequestError] = useState<{ message: string; retryCompletion: boolean } | null>(null);
+  const pendingCompletion = useRef<CompletePhaseRequest | null>(null);
   const [startTime] = useState(() => Date.now());
 
   const isCompleted = status === 'completed';
@@ -55,31 +57,34 @@ export function PhaseCompleteButton({
     if (isDisabled) return;
 
     setIsCompleting(true);
-    setErrorMessage(null);
+    setRequestError(null);
+    const request = pendingCompletion.current ?? {
+      lessonId,
+      phaseNumber,
+      timeSpent: Math.round((Date.now() - startTime) / 1000),
+      idempotencyKey: `${lessonId}-${phaseNumber}-${Date.now()}`,
+    };
+    pendingCompletion.current = request;
 
     try {
-      await completePhaseRequest({
-        lessonId,
-        phaseNumber,
-        timeSpent: Math.round((Date.now() - startTime) / 1000),
-        idempotencyKey: `${lessonId}-${phaseNumber}-${Date.now()}`,
-      });
+      await completePhaseRequest(request);
 
+      pendingCompletion.current = null;
       setStatus('completed');
       onStatusChange?.('completed');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unable to save progress. Please try again.';
-      setErrorMessage(message);
+      setRequestError({ message, retryCompletion: true });
     } finally {
       setIsCompleting(false);
     }
-  }, [isDisabled, lessonId, phaseNumber, onStatusChange, startTime]);
+  }, [isDisabled, lessonId, onStatusChange, phaseNumber, startTime]);
 
   const handleSkip = useCallback(async () => {
     if (isDisabled || !canSkip) return;
 
     setIsSkipping(true);
-    setErrorMessage(null);
+    setRequestError(null);
 
     try {
       await skipPhaseRequest({
@@ -92,7 +97,7 @@ export function PhaseCompleteButton({
       onStatusChange?.('skipped');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unable to skip phase. Please try again.';
-      setErrorMessage(message);
+      setRequestError({ message, retryCompletion: false });
     } finally {
       setIsSkipping(false);
     }
@@ -114,7 +119,11 @@ export function PhaseCompleteButton({
       >
         {isCompleting && <Loader2 className="h-4 w-4 animate-spin mr-2" aria-hidden />}
         {!isCompleting && isCompleted && <CheckCircle2 className="h-4 w-4 mr-2" aria-hidden />}
-        {isCompleted ? completedLabel : idleLabel}
+        {isCompleted
+          ? completedLabel
+          : requestError?.retryCompletion
+            ? 'Retry completion'
+            : idleLabel}
       </Button>
 
       {canSkip && !isCompleted && !isSkipped && (
@@ -137,10 +146,10 @@ export function PhaseCompleteButton({
         </p>
       )}
 
-      {errorMessage && (
-        <p className="text-sm text-destructive" role="alert">
-          {errorMessage}
-        </p>
+      {requestError && (
+        <div className="grid gap-2 text-sm text-destructive" role="alert">
+          <p>{requestError.message}</p>
+        </div>
       )}
     </div>
   );

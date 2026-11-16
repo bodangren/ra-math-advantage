@@ -158,7 +158,7 @@ export interface RawLesson {
 export interface RawLessonVersion {
   id: string;
   lessonId: string;
-  status?: 'draft' | 'review' | 'published' | 'archived';
+  status?: 'draft' | 'review' | 'approved' | 'published' | 'archived';
   version?: number;
 }
 

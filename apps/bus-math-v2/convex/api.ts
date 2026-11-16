@@ -123,71 +123,53 @@ export const completePhaseMutation = internalMutation({
     idempotencyKey: v.string(),
     linkedStandardId: v.optional(v.string()),
   },
+  returns: v.object({ success: v.boolean(), completedAt: v.number(), existing: v.boolean() }),
   handler: async (ctx, args) => {
     const now = Date.now();
-
-    const existing = await ctx.db
-      .query("student_progress")
-      .withIndex("by_user_and_phase", (q) =>
-        q.eq("userId", args.userId).eq("phaseId", args.phaseId)
-      )
-      .unique();
-
-    if (existing) {
-      await ctx.db.patch(existing._id, {
-        status: "completed",
-        completedAt: now,
-        timeSpentSeconds: (existing.timeSpentSeconds ?? 0) + args.timeSpent,
-        idempotencyKey: args.idempotencyKey,
-        updatedAt: now,
-      });
-      return { success: true, completedAt: now, existing: true };
+    const priorKey = await ctx.db.query("student_progress")
+      .withIndex("by_user_and_idempotency_key", (q) => q.eq("userId", args.userId).eq("idempotencyKey", args.idempotencyKey)).unique();
+    if (priorKey && priorKey.phaseId !== args.phaseId) throw new Error("idempotency_conflict");
+    const existing = await ctx.db.query("student_progress")
+      .withIndex("by_user_and_phase", (q) => q.eq("userId", args.userId).eq("phaseId", args.phaseId)).unique();
+    if (existing?.status === "completed") {
+      return { success: true, completedAt: existing.completedAt ?? existing.updatedAt, existing: true };
     }
-
-    await ctx.db.insert("student_progress", {
-      userId: args.userId,
-      phaseId: args.phaseId,
-      status: "completed",
-      startedAt: now - args.timeSpent * 1000,
-      completedAt: now,
-      timeSpentSeconds: args.timeSpent,
-      idempotencyKey: args.idempotencyKey,
-      createdAt: now,
-      updatedAt: now,
-    });
-
-    if (args.linkedStandardId) {
-      const standard = await ctx.db
-        .query("competency_standards")
-        .withIndex("by_code", (q) => q.eq("code", args.linkedStandardId!))
-        .unique();
-
-      if (standard) {
-        const existingComp = await ctx.db
-          .query("student_competency")
-          .withIndex("by_student_and_standard", (q) =>
-            q.eq("studentId", args.userId).eq("standardId", standard._id)
-          )
-          .unique();
-
-        if (existingComp) {
-          await ctx.db.patch(existingComp._id, {
-            masteryLevel: Math.max(existingComp.masteryLevel, 1),
-            lastUpdated: now,
-          });
-        } else {
-          await ctx.db.insert("student_competency", {
-            studentId: args.userId,
-            standardId: standard._id,
-            masteryLevel: 1,
-            lastUpdated: now,
-            createdAt: now,
-          });
-        }
-      }
+    const phase = await ctx.db.get(args.phaseId);
+    const version = phase ? await ctx.db.get(phase.lessonVersionId) : null;
+    if (!phase || version?.status !== "published") throw new Error("phase_unavailable");
+    const versions = await ctx.db.query("lesson_versions")
+      .withIndex("by_lesson", (q) => q.eq("lessonId", version.lessonId)).collect();
+    if (resolveLatestPublishedLessonVersion(versions)?._id !== version._id) throw new Error("phase_unavailable");
+    if (phase.phaseNumber > 1) {
+      const previous = await ctx.db.query("phase_versions")
+        .withIndex("by_lesson_version_and_phase", (q) => q.eq("lessonVersionId", phase.lessonVersionId).eq("phaseNumber", phase.phaseNumber - 1)).unique();
+      const progress = previous ? await ctx.db.query("student_progress")
+        .withIndex("by_user_and_phase", (q) => q.eq("userId", args.userId).eq("phaseId", previous._id)).unique() : null;
+      if (progress?.status !== "completed") throw new Error("previous_phase_incomplete");
     }
-
-    return { success: true, completedAt: now, existing: false };
+    const sections = await ctx.db.query("phase_sections")
+      .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", args.phaseId)).collect();
+    for (const section of sections) {
+      if (section.sectionType !== "activity" || section.content.required === false) continue;
+      const activityId = section.content.activityId as Id<"activities">;
+      const activity = await ctx.db.get(activityId);
+      if (!activity) throw new Error("required_activity_incomplete");
+      const submissions = await ctx.db.query("activity_submissions")
+        .withIndex("by_user_and_activity", (q) => q.eq("userId", args.userId).eq("activityId", activityId)).collect();
+      const passing = activity.gradingConfig?.passingScore ?? 70;
+      const completed = submissions.some((submission) => submission.submissionData.status !== "draft"
+        && (!activity.gradingConfig?.autoGrade || (typeof submission.score === "number" && (submission.maxScore ?? 0) > 0
+          && submission.score / submission.maxScore! * 100 >= passing)));
+      if (!completed) throw new Error("required_activity_incomplete");
+    }
+    const values = { status: "completed" as const, completedAt: now,
+      timeSpentSeconds: (existing?.timeSpentSeconds ?? 0) + args.timeSpent,
+      idempotencyKey: args.idempotencyKey, updatedAt: now };
+    if (existing) await ctx.db.patch(existing._id, values);
+    else await ctx.db.insert("student_progress", { userId: args.userId, phaseId: args.phaseId,
+      startedAt: now - args.timeSpent * 1000, createdAt: now, ...values });
+    // Phase completion records participation. Assessment evidence owns competency credit.
+    return { success: true, completedAt: now, existing: Boolean(existing) };
   },
 });
 

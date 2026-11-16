@@ -37,57 +37,49 @@ A quadrilateral is a parallelogram if any of the following is true:
 
 To verify a quadrilateral is a parallelogram using coordinates:
 
-* **Slope Formula** — Opposite sides have the same slope (parallel).
+* **Slope Formula** — Opposite nonvertical sides have the same slope. Two vertical sides are parallel and have undefined slopes.
 * **Distance Formula** — Opposite sides have the same length (congruent).
 * **Midpoint Formula** — Diagonals have the same midpoint (bisect each other).
 
 ## Example 1 — Identify Parallelograms from Diagrams
 
-Determine whether each given quadrilateral is a parallelogram based on visual inspection and measurement information.
+### Problem
 
-### Step 1: Check Side Relationships
+The diagonals of quadrilateral ABCD meet at E. AE = EC = 5 cm and BE = ED = 3 cm. Must ABCD be a parallelogram?
 
-Look for parallel sides (indicated by arrows), congruent sides (tick marks), or other properties shown in the diagram.
+### Solution
 
-### Step 2: Apply a Test
-
-Use one of the parallelogram tests to justify whether the quadrilateral is or is not a parallelogram.
+Yes. E is the midpoint of each diagonal, so the diagonals bisect each other. A quadrilateral whose diagonals bisect each other is a parallelogram.
 
 ## Example 2 — Find Values to Form a Parallelogram
 
-Solve for x and y so that a quadrilateral satisfies the conditions to be a parallelogram.
+### Problem
 
-### Step 1: Identify the Test Being Used
+In quadrilateral ABCD, AB is parallel to CD. AB = 2x + 1 cm and CD = 5x - 8 cm. Find x so that this side pair proves ABCD is a parallelogram.
 
-Determine whether to use opposite sides parallel, opposite sides congruent, or another condition based on the problem context.
+### Solution
 
-### Step 2: Set Up Equations
-
-Create equations using the given expressions for sides or angles, then solve for the unknowns.
+One pair of opposite sides must be both parallel and congruent. The parallel condition is given. Set 2x + 1 = 5x - 8 to obtain x = 3. Both sides then have length 7 cm, so the quadrilateral is a parallelogram.
 
 ## Example 3 — Coordinate Geometry Verification
 
-Graph quadrilaterals with given vertices and determine whether each is a parallelogram using the indicated formula.
+### Problem
 
-### Step 1: Calculate Slopes, Distances, or Midpoints
+Determine whether A(0, 0), B(4, 1), C(6, 4), and D(2, 3), in that order, form a parallelogram.
 
-Use the appropriate formula based on whether the problem asks for slope formula, distance and slope formulas, or midpoint formula verification.
+### Solution
 
-### Step 2: Compare Results
-
-For opposite sides to be parallel, their slopes must be equal. For opposite sides to be congruent, their lengths must be equal. For diagonals to bisect each other, their midpoints must be equal.
+The slope of AB is 1/4, and the slope of CD is (3 - 4)/(2 - 6) = 1/4. The slope of BC is 3/2, and the slope of AD is 3/2. Both pairs of opposite sides are parallel, so ABCD is a parallelogram.
 
 ## Example 4 — Write Coordinate Proofs
 
-Write coordinate proofs for statements about parallelograms.
+### Problem
 
-### Step 1: Position the Figure
+Prove that A(0, 0), B(a, 0), C(a + b, c), and D(b, c) form a parallelogram when a > 0 and c > 0.
 
-Place the parallelogram conveniently on the coordinate plane, often with one vertex at the origin and sides along the axes.
+### Solution
 
-### Step 2: Use Algebraic Methods
-
-Calculate slopes, distances, or midpoints algebraically to prove the desired property.
+The midpoint of AC is ((a + b)/2, c/2). The midpoint of BD is also ((a + b)/2, c/2). The diagonals therefore bisect each other. Thus ABCD is a parallelogram. The positive conditions prevent a degenerate quadrilateral.
 
 ## Mixed Exercises
 
@@ -113,6 +105,6 @@ The mixed exercises section provides practice with all skills from the lesson. P
 
 * Images referenced in the worksheet (quadrilateral diagrams for Examples 1-4, coordinate graphs, street map, and jet formation) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
 * The worksheet contains 35 practice problems across four examples and mixed exercises.
-* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png) ![](media/image15.png) ![](media/image16.png) ![](media/image17.png) ![](media/image18.png) ![](media/image19.png) ![](media/image20.png)
+* ![Worksheet figure 1](/curriculum/module-2-lesson-3/image1.png) ![Worksheet figure 2](/curriculum/module-2-lesson-3/image2.png) ![Worksheet figure 3](/curriculum/module-2-lesson-3/image3.png) ![Worksheet figure 4](/curriculum/module-2-lesson-3/image4.png) ![Worksheet figure 5](/curriculum/module-2-lesson-3/image5.png) ![Worksheet figure 6](/curriculum/module-2-lesson-3/image6.png) ![Worksheet figure 7](/curriculum/module-2-lesson-3/image7.png) ![Worksheet figure 8](/curriculum/module-2-lesson-3/image8.png) ![Worksheet figure 9](/curriculum/module-2-lesson-3/image9.png) ![Worksheet figure 10](/curriculum/module-2-lesson-3/image10.png) ![Worksheet figure 11](/curriculum/module-2-lesson-3/image11.png) ![Worksheet figure 12](/curriculum/module-2-lesson-3/image12.png) ![Worksheet figure 13](/curriculum/module-2-lesson-3/image13.png) ![Worksheet figure 14](/curriculum/module-2-lesson-3/image14.png) ![Worksheet figure 15](/curriculum/module-2-lesson-3/image15.png) ![Worksheet figure 16](/curriculum/module-2-lesson-3/image16.png) ![Worksheet figure 17](/curriculum/module-2-lesson-3/image17.png) ![Worksheet figure 18](/curriculum/module-2-lesson-3/image18.png) ![Worksheet figure 19](/curriculum/module-2-lesson-3/image19.png) ![Worksheet figure 20](/curriculum/module-2-lesson-3/image20.png)
 
 (End of file - total 178 lines)

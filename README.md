@@ -220,7 +220,7 @@ Run from `apps/integrated-math-3/`:
 | `npm run dev:stack` | Start Convex and the dev server together |
 | `npm run build` | Production build |
 | `npm run start` | Start the production server |
-| `npm run lint` | Run ESLint |
+| `npm run lint` | Run Oxlint |
 | `npm run typecheck` | Run `tsc --noEmit` |
 | `npm test` | Run the Vitest suite |
 | `npm run test:watch` | Run Vitest in watch mode |

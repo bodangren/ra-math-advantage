@@ -1,110 +1,552 @@
 {
-  "apps": [
+  "schemaVersion": "lms-architecture-report.v1",
+  "workspaceCount": 26,
+  "edgeCount": 77,
+  "nodes": [
     {
-      "name": "bus-math-v2",
-      "path": "apps/bus-math-v2"
+      "id": "app.bus-math-v2",
+      "path": "apps/bus-math-v2",
+      "kind": "app",
+      "owner": "bus-math-team",
+      "layer": "application",
+      "domainClassification": "app-owned",
+      "domain": "business-math"
     },
     {
-      "name": "integrated-math-1",
-      "path": "apps/integrated-math-1"
+      "id": "app.danielson",
+      "path": "apps/danielson",
+      "kind": "app",
+      "owner": "danielson-team",
+      "layer": "application",
+      "domainClassification": "app-owned",
+      "domain": "danielson"
     },
     {
-      "name": "integrated-math-2",
-      "path": "apps/integrated-math-2"
+      "id": "app.integrated-math-1",
+      "path": "apps/integrated-math-1",
+      "kind": "app",
+      "owner": "im1-team",
+      "layer": "application",
+      "domainClassification": "app-owned",
+      "domain": "integrated-math-1"
     },
     {
-      "name": "integrated-math-3",
-      "path": "apps/integrated-math-3"
+      "id": "app.integrated-math-2",
+      "path": "apps/integrated-math-2",
+      "kind": "app",
+      "owner": "im2-team",
+      "layer": "application",
+      "domainClassification": "app-owned",
+      "domain": "integrated-math-2"
     },
     {
-      "name": "pre-calculus",
-      "path": "apps/pre-calculus"
+      "id": "app.integrated-math-3",
+      "path": "apps/integrated-math-3",
+      "kind": "app",
+      "owner": "im3-team",
+      "layer": "application",
+      "domainClassification": "app-owned",
+      "domain": "integrated-math-3"
+    },
+    {
+      "id": "app.pre-calculus",
+      "path": "apps/pre-calculus",
+      "kind": "app",
+      "owner": "precalculus-team",
+      "layer": "application",
+      "domainClassification": "app-owned",
+      "domain": "precalculus"
+    },
+    {
+      "id": "pkg.activity-components",
+      "path": "packages/activity-components",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "feature",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.activity-runtime",
+      "path": "packages/activity-runtime",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.ai-tutoring",
+      "path": "packages/ai-tutoring",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "feature",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.app-shell",
+      "path": "packages/app-shell",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "feature",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.component-approval",
+      "path": "packages/component-approval",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.core-auth",
+      "path": "packages/core-auth",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "infrastructure",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.core-convex",
+      "path": "packages/core-convex",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "infrastructure",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.efficacy-core",
+      "path": "packages/efficacy-core",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.graphing-core",
+      "path": "packages/graphing-core",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.knowledge-space-core",
+      "path": "packages/knowledge-space-core",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.knowledge-space-practice",
+      "path": "packages/knowledge-space-practice",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.lesson-renderer",
+      "path": "packages/lesson-renderer",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "feature",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.math-content",
+      "path": "packages/math-content",
+      "kind": "package",
+      "owner": "math-content",
+      "layer": "domain-content",
+      "domainClassification": "domain-specific",
+      "domain": "math"
+    },
+    {
+      "id": "pkg.practice-core",
+      "path": "packages/practice-core",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.practice-test-engine",
+      "path": "packages/practice-test-engine",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "feature",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.rate-limiter",
+      "path": "packages/rate-limiter",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "infrastructure",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.srs-engine",
+      "path": "packages/srs-engine",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.study-hub-core",
+      "path": "packages/study-hub-core",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "feature",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.teacher-reporting-core",
+      "path": "packages/teacher-reporting-core",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "feature",
+      "domainClassification": "domain-neutral",
+      "domain": null
+    },
+    {
+      "id": "pkg.workbook-pipeline",
+      "path": "packages/workbook-pipeline",
+      "kind": "package",
+      "owner": "learning-platform",
+      "layer": "platform",
+      "domainClassification": "domain-neutral",
+      "domain": null
     }
   ],
-  "packages": [
+  "edges": [
     {
-      "name": "_template",
-      "path": "packages/_template"
+      "source": "app.bus-math-v2",
+      "target": "pkg.activity-components"
     },
     {
-      "name": "activity-components",
-      "path": "packages/activity-components"
+      "source": "app.bus-math-v2",
+      "target": "pkg.activity-runtime"
     },
     {
-      "name": "activity-runtime",
-      "path": "packages/activity-runtime"
+      "source": "app.bus-math-v2",
+      "target": "pkg.ai-tutoring"
     },
     {
-      "name": "ai-tutoring",
-      "path": "packages/ai-tutoring"
+      "source": "app.bus-math-v2",
+      "target": "pkg.app-shell"
     },
     {
-      "name": "app-shell",
-      "path": "packages/app-shell"
+      "source": "app.bus-math-v2",
+      "target": "pkg.component-approval"
     },
     {
-      "name": "component-approval",
-      "path": "packages/component-approval"
+      "source": "app.bus-math-v2",
+      "target": "pkg.core-auth"
     },
     {
-      "name": "core-auth",
-      "path": "packages/core-auth"
+      "source": "app.bus-math-v2",
+      "target": "pkg.core-convex"
     },
     {
-      "name": "core-convex",
-      "path": "packages/core-convex"
+      "source": "app.bus-math-v2",
+      "target": "pkg.graphing-core"
     },
     {
-      "name": "efficacy-core",
-      "path": "packages/efficacy-core"
+      "source": "app.bus-math-v2",
+      "target": "pkg.knowledge-space-practice"
     },
     {
-      "name": "graphing-core",
-      "path": "packages/graphing-core"
+      "source": "app.bus-math-v2",
+      "target": "pkg.math-content"
     },
     {
-      "name": "knowledge-space-core",
-      "path": "packages/knowledge-space-core"
+      "source": "app.bus-math-v2",
+      "target": "pkg.practice-core"
     },
     {
-      "name": "knowledge-space-practice",
-      "path": "packages/knowledge-space-practice"
+      "source": "app.bus-math-v2",
+      "target": "pkg.srs-engine"
     },
     {
-      "name": "lesson-renderer",
-      "path": "packages/lesson-renderer"
+      "source": "app.danielson",
+      "target": "pkg.app-shell"
     },
     {
-      "name": "math-content",
-      "path": "packages/math-content"
+      "source": "app.danielson",
+      "target": "pkg.core-auth"
     },
     {
-      "name": "practice-core",
-      "path": "packages/practice-core"
+      "source": "app.danielson",
+      "target": "pkg.core-convex"
     },
     {
-      "name": "practice-test-engine",
-      "path": "packages/practice-test-engine"
+      "source": "app.danielson",
+      "target": "pkg.knowledge-space-core"
     },
     {
-      "name": "rate-limiter",
-      "path": "packages/rate-limiter"
+      "source": "app.danielson",
+      "target": "pkg.srs-engine"
     },
     {
-      "name": "srs-engine",
-      "path": "packages/srs-engine"
+      "source": "app.integrated-math-1",
+      "target": "pkg.activity-runtime"
     },
     {
-      "name": "study-hub-core",
-      "path": "packages/study-hub-core"
+      "source": "app.integrated-math-1",
+      "target": "pkg.app-shell"
     },
     {
-      "name": "teacher-reporting-core",
-      "path": "packages/teacher-reporting-core"
+      "source": "app.integrated-math-1",
+      "target": "pkg.core-auth"
     },
     {
-      "name": "workbook-pipeline",
-      "path": "packages/workbook-pipeline"
+      "source": "app.integrated-math-1",
+      "target": "pkg.core-convex"
+    },
+    {
+      "source": "app.integrated-math-1",
+      "target": "pkg.lesson-renderer"
+    },
+    {
+      "source": "app.integrated-math-1",
+      "target": "pkg.practice-core"
+    },
+    {
+      "source": "app.integrated-math-1",
+      "target": "pkg.srs-engine"
+    },
+    {
+      "source": "app.integrated-math-2",
+      "target": "pkg.activity-runtime"
+    },
+    {
+      "source": "app.integrated-math-2",
+      "target": "pkg.app-shell"
+    },
+    {
+      "source": "app.integrated-math-2",
+      "target": "pkg.core-auth"
+    },
+    {
+      "source": "app.integrated-math-2",
+      "target": "pkg.core-convex"
+    },
+    {
+      "source": "app.integrated-math-2",
+      "target": "pkg.lesson-renderer"
+    },
+    {
+      "source": "app.integrated-math-2",
+      "target": "pkg.practice-core"
+    },
+    {
+      "source": "app.integrated-math-2",
+      "target": "pkg.srs-engine"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.activity-components"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.activity-runtime"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.ai-tutoring"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.app-shell"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.component-approval"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.core-auth"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.core-convex"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.efficacy-core"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.graphing-core"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.knowledge-space-core"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.knowledge-space-practice"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.lesson-renderer"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.math-content"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.practice-core"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.practice-test-engine"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.rate-limiter"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.srs-engine"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.study-hub-core"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.teacher-reporting-core"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.workbook-pipeline"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.activity-components"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.activity-runtime"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.app-shell"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.core-auth"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.core-convex"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.knowledge-space-core"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.lesson-renderer"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.math-content"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.practice-core"
+    },
+    {
+      "source": "app.pre-calculus",
+      "target": "pkg.srs-engine"
+    },
+    {
+      "source": "pkg.activity-components",
+      "target": "pkg.activity-runtime"
+    },
+    {
+      "source": "pkg.activity-components",
+      "target": "pkg.graphing-core"
+    },
+    {
+      "source": "pkg.activity-components",
+      "target": "pkg.practice-core"
+    },
+    {
+      "source": "pkg.app-shell",
+      "target": "pkg.core-auth"
+    },
+    {
+      "source": "pkg.app-shell",
+      "target": "pkg.core-convex"
+    },
+    {
+      "source": "pkg.efficacy-core",
+      "target": "pkg.practice-core"
+    },
+    {
+      "source": "pkg.efficacy-core",
+      "target": "pkg.srs-engine"
+    },
+    {
+      "source": "pkg.knowledge-space-core",
+      "target": "pkg.srs-engine"
+    },
+    {
+      "source": "pkg.knowledge-space-practice",
+      "target": "pkg.knowledge-space-core"
+    },
+    {
+      "source": "pkg.math-content",
+      "target": "pkg.activity-components"
+    },
+    {
+      "source": "pkg.math-content",
+      "target": "pkg.activity-runtime"
+    },
+    {
+      "source": "pkg.math-content",
+      "target": "pkg.knowledge-space-core"
+    },
+    {
+      "source": "pkg.math-content",
+      "target": "pkg.knowledge-space-practice"
+    },
+    {
+      "source": "pkg.math-content",
+      "target": "pkg.practice-core"
+    },
+    {
+      "source": "pkg.math-content",
+      "target": "pkg.study-hub-core"
+    },
+    {
+      "source": "pkg.srs-engine",
+      "target": "pkg.practice-core"
     }
-  ]
+  ],
+  "cycles": []
 }

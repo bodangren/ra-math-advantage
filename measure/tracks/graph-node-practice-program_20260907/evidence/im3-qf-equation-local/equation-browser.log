@@ -1,0 +1,8 @@
+file:///private/tmp/im3-qf-equation-browser-prep/run-browser.mjs:175
+  if (cloudRequests !== 0 || externalRequests !== 0) throw new Error(`Blocked ${externalRequests} external requests, including ${cloudRequests} Convex cloud requests`);
+                                                           ^
+
+Error: Blocked 8 external requests, including 0 Convex cloud requests
+    at file:///private/tmp/im3-qf-equation-browser-prep/run-browser.mjs:175:60
+
+Node.js v24.18.0

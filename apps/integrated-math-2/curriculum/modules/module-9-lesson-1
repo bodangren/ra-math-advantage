@@ -44,300 +44,60 @@ Why do we perform the same operation on both sides of an equation? What would ha
 
 | Simplification | Conclusion |
 |----------------|------------|
-| [a = b] where [a \neq b] (e.g., [0 = 5]) | **No solution** |
+| [a = b] where $a \neq b$ (e.g., [0 = 5]) | **No solution** |
 | [a = a] (e.g., [3 = 3]) | **Infinitely many solutions** |
 
 ---
 
 ## Example 1 — Solve [3(x + 4) = 2x + 15]
 
-### Step 1: Distribute
+### Problem
 
+Solve 3(x+4)=2x+15 and check the result.
 
-[
-3x + 12 = 2x + 15
-]
+### Solution
 
-
-### Step 2: Move Variable Terms to One Side
-
-Subtract [2x] from both sides:
-
-
-[
-3x - 2x + 12 = 15
-]
-
-
-
-[
-x + 12 = 15
-]
-
-
-### Step 3: Move Constants to the Other Side
-
-Subtract 12 from both sides:
-
-
-[
-x = 3
-]
-
-
-### Step 4: Verify
-
-
-[
-3(3 + 4) = 3(7) = 21
-]
-
-
-
-[
-2(3) + 15 = 6 + 15 = 21 \checkmark
-]
-
-
-✅ Answer: [x = 3].
-
----
+Distribute to get 3x+12=2x+15. Subtract 2x and then 12 to obtain x=3. Substitution gives 3(7)=21 and 2(3)+15=21, so the solution checks.
 
 ## Example 2 — Solve [5x - 3 = 2x + 9]
 
-### Step 1: Move Variable Terms to One Side
+### Problem
 
-Subtract [2x] from both sides:
+Solve 5x-3=2x+9 and check the result.
 
+### Solution
 
-[
-5x - 2x - 3 = 9
-]
-
-
-
-[
-3x - 3 = 9
-]
-
-
-### Step 2: Move Constants to the Other Side
-
-Add 3 to both sides:
-
-
-[
-3x = 12
-]
-
-
-### Step 3: Divide
-
-
-[
-x = \frac{12}{3} = 4
-]
-
-
-### Step 4: Verify
-
-
-[
-5(4) - 3 = 20 - 3 = 17
-]
-
-
-
-[
-2(4) + 9 = 8 + 9 = 17 \checkmark
-]
-
-
-✅ Answer: [x = 4].
-
----
+Subtract 2x to get 3x-3=9. Add 3, then divide by 3, to obtain x=4. Both sides of the original equation equal 17.
 
 ## Example 3 — Solve Equation with Fractions
 
-Solve [\frac{2}{3}x + 5 = \frac{1}{2}x + 7].
+### Problem
 
-### Step 1: Clear Fractions by Multiplying by the LCD
+Solve $(2/3)x+5=(1/2)x+7$.
 
-The LCD of 3 and 2 is 6. Multiply every term by 6:
+### Solution
 
-
-[
-6 \cdot \frac{2}{3}x + 6 \cdot 5 = 6 \cdot \frac{1}{2}x + 6 \cdot 7
-]
-
-
-
-[
-4x + 30 = 3x + 42
-]
-
-
-### Step 2: Move Variable Terms
-
-Subtract [3x] from both sides:
-
-
-[
-x + 30 = 42
-]
-
-
-### Step 3: Solve
-
-
-[
-x = 42 - 30 = 12
-]
-
-
-### Step 4: Verify
-
-
-[
-\frac{2}{3}(12) + 5 = 8 + 5 = 13
-]
-
-
-
-[
-\frac{1}{2}(12) + 7 = 6 + 7 = 13 \checkmark
-]
-
-
-✅ Answer: [x = 12].
-
----
+Multiply every term by 6 to get 4x+30=3x+42. Subtract 3x and then 30 to obtain x=12. Substitution in the original equation gives 13 on both sides.
 
 ## Example 4 — No Solution vs. Infinite Solutions
 
-Solve each equation and classify.
+### Problem
 
-**(a)** [2(x + 3) = 2x + 7]
+Classify the solution sets of (a) 2(x+3)=2x+7 and (b) 4(x-1)+2=4x-2.
 
-**(b)** [4(x - 1) + 2 = 4x - 2]
+### Solution
 
-### Step 1: Solve (a)
-
-
-[
-2x + 6 = 2x + 7
-]
-
-
-Subtract [2x] from both sides:
-
-
-[
-6 = 7
-]
-
-
-This is **false** for all [x]. **No solution.**
-
-### Step 2: Solve (b)
-
-
-[
-4x - 4 + 2 = 4x - 2
-]
-
-
-
-[
-4x - 2 = 4x - 2
-]
-
-
-Subtract [4x] from both sides:
-
-
-[
--2 = -2
-]
-
-
-This is **true** for all [x]. **Infinitely many solutions.**
-
-### Step 3: Verify (a)
-
-No value of [x] makes [2(x + 3) = 2x + 7] true, since [2x + 6] is always 1 less than [2x + 7].
-
-### Step 4: Verify (b)
-
-For any value of [x], both sides equal [4x - 2]. Every real number is a solution.
-
-✅ Answer: (a) **No solution**; (b) **Infinitely many solutions**.
-
----
+(a) Expansion and subtraction of 2x give 6=7, which is false. There is no solution. (b) Both sides simplify to 4x-2. Every real x is a solution.
 
 ## Example 5 — Real-World: Solve for Break-Even Point
 
-A company sells widgets for [15] each. The cost to produce [x] widgets is [C(x) = 5x + 200]. Find the break-even point.
+### Problem
 
-### Step 1: Write the Revenue Function
+A company sells each item for 15 dollars. Producing x items costs C(x)=5x+200 dollars. Assume every produced item is sold. Find the break-even quantity.
 
+### Solution
 
-[
-R(x) = 15x
-]
-
-
-### Step 2: Set Revenue Equal to Cost
-
-
-[
-15x = 5x + 200
-]
-
-
-### Step 3: Solve
-
-
-[
-15x - 5x = 200
-]
-
-
-
-[
-10x = 200
-]
-
-
-
-[
-x = 20
-]
-
-
-### Step 4: Verify
-
-
-[
-R(20) = 15(20) = 300
-]
-
-
-
-[
-C(20) = 5(20) + 200 = 100 + 200 = 300 \checkmark
-]
-
-
-Revenue equals cost at [x = 20].
-
-### Step 5: Interpret
-
-The company must sell **20 widgets** to break even. At that point, both revenue and cost are [300]. Selling more than 20 generates profit; selling fewer results in a loss.
-
-✅ Answer: Break-even at **[x = 20] widgets** (revenue = cost = \$300).
-
----
+Revenue is R(x)=15x. Set revenue equal to cost: 15x=5x+200. Then 10x=200, so x=20 items. Revenue and cost both equal 300 dollars at this quantity.
 
 ## Think About It
 

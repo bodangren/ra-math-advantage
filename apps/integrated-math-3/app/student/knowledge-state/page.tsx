@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { requireStudentSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery } from '@/lib/convex/server';
 
@@ -21,20 +22,7 @@ interface StudentVisualizationV1 {
   activeMisconceptionCount: number;
 }
 
-const QUERY_REF = 'internal.student.getStudentKnowledgeState';
-
-function emptyVisualization(): StudentVisualizationV1 {
-  return {
-    schemaVersion: 'v1',
-    mastered: [],
-    ready: [],
-    blocked: [],
-    reviewDue: [],
-    recommendedNext: [],
-    edges: [],
-    activeMisconceptionCount: 0,
-  };
-}
+const QUERY_REF = 'student/knowledge_state:getStudentKnowledgeState';
 
 /**
  * Renders the student's knowledge-state dashboard derived from the
@@ -46,24 +34,29 @@ function emptyVisualization(): StudentVisualizationV1 {
  *
  * Authorization: gated by requireStudentSessionClaims (student-only).
  * The Convex call uses a pending API ref — once Convex deploys pick up
- * convex/student/knowledge-state.ts, replace QUERY_REF with
- * `internal.student.getStudentKnowledgeState`.
+ * convex/student/knowledge_state.ts, replace QUERY_REF with
+ * `student/knowledge_state:getStudentKnowledgeState`.
  */
 export default async function StudentKnowledgeStatePage() {
   const claims = await requireStudentSessionClaims('/auth/login');
 
-  let visualization: StudentVisualizationV1;
+  let visualization: StudentVisualizationV1 | null = null;
   try {
-    visualization = (await fetchInternalQuery(
+    const response = (await fetchInternalQuery(
       QUERY_REF,
       { studentId: claims.sub },
     )) as StudentVisualizationV1 | null;
-
-    if (!visualization) {
-      visualization = emptyVisualization();
-    }
+    visualization = response;
   } catch {
-    visualization = emptyVisualization();
+    visualization = null;
+  }
+
+  if (!visualization) {
+    return <section role="alert" className="space-y-4 p-8">
+      <h1>Progress is unavailable</h1>
+      <p>We could not load your progress. Try again.</p>
+      <Link href="/student/knowledge-state">Retry</Link>
+    </section>;
   }
 
   return (
@@ -76,8 +69,7 @@ export default async function StudentKnowledgeStatePage() {
           Knowledge State
         </h1>
         <p className="text-sm text-muted-foreground">
-          KST-derived mastery tracking — Phase 4 production wiring
-          verification.
+          See the skills you have learned and the skills that need practice.
         </p>
       </div>
 

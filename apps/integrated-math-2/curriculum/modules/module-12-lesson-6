@@ -10,138 +10,74 @@ Source: (Module 12, Lesson 12-N, Int2_1206_practice.docx)
 
 ## Vocabulary
 
-* **Quadratic Formula** — The formula [ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} ] used to find the exact solutions of any quadratic equation written in standard form [ ax^2 + bx + c = 0 ].
+* **Quadratic Formula** — The formula $ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $ used to find the exact solutions of any quadratic equation written in standard form [ ax^2 + bx + c = 0 ].
 * **Discriminant** — The expression [ b^2 - 4ac ] under the radical in the Quadratic Formula, which determines the number and nature of the solutions.
 * **Real solutions** — Solutions to a quadratic equation that are real numbers; they occur when the discriminant is greater than or equal to zero.
 * **Complex (nonreal) solutions** — Solutions that involve the imaginary unit [ i ]; they occur when the discriminant is negative.
 
 ## Explore: Why Does the Quadratic Formula Work?
 
-The Quadratic Formula provides the exact solutions to any quadratic equation [ ax^2 + bx + c = 0 ]. Students explore how completing the square on the general quadratic leads to this powerful formula, and why it works for every value of [ a ], [ b ], and [ c ] (as long as [ a \ne 0 ]).
+The Quadratic Formula provides the exact solutions to any quadratic equation [ ax^2 + bx + c = 0 ]. Students explore how completing the square on the general quadratic leads to this powerful formula, and why it works for every value of [ a ], [ b ], and [ c ] (as long as $ a \ne 0 $).
 
 Inquiry Question:
 Why does the Quadratic Formula give all solutions to a quadratic equation, and what does the discriminant reveal about those solutions?
 
 ## Learn: The Quadratic Formula
 
-For any quadratic equation in standard form [ ax^2 + bx + c = 0 ] where [ a \ne 0 ], the Quadratic Formula gives the exact solutions:
+For any quadratic equation in standard form [ ax^2 + bx + c = 0 ] where $ a \ne 0 $, the Quadratic Formula gives the exact solutions:
 
-[
+$$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-]
-
-Before applying the formula, rewrite the equation in standard form and identify the coefficients [ a ], [ b ], and [ c ]. Substitute these values into the formula, simplify the radical and the fraction, and separate the two solutions indicated by [ \pm ]. Round to the nearest tenth when instructed.
+$$
+Before applying the formula, rewrite the equation in standard form and identify the coefficients [ a ], [ b ], and [ c ]. Substitute these values into the formula, simplify the radical and the fraction, and separate the two solutions indicated by $ \pm $. Round to the nearest tenth when instructed.
 
 ### Key Concept: Using the Quadratic Formula
 
 * Rewrite the equation in standard form [ ax^2 + bx + c = 0 ].
 * Identify [ a ], [ b ], and [ c ], including their signs.
-* Substitute into [ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} ].
+* Substitute into $ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $.
 * Simplify the discriminant and the entire fraction.
-* Use [ \pm ] to write both solutions; round when necessary.
+* Use $ \pm $ to write both solutions; round when necessary.
 
 ## Example 1 — Solve Quadratic Equations with the Quadratic Formula
 
-Solve quadratic equations by applying the Quadratic Formula. Equations may already be in standard form or may require rearrangement.
+### Problem
 
-### Step 1: Write in Standard Form
+Use the quadratic formula to solve x²-x-20=0.
 
-Ensure the equation is in the form [ ax^2 + bx + c = 0 ].
+### Solution
 
-### Step 2: Identify Coefficients
-
-Determine [ a ], [ b ], and [ c ] from the standard form. Watch for missing terms and negative signs.
-
-### Step 3: Substitute and Simplify
-
-Substitute the coefficients into the Quadratic Formula:
-
-[
-x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-]
-
-Simplify the expression under the radical and the entire fraction. If the discriminant is a perfect square, the solutions are rational. If not, approximate to the nearest tenth.
-
-For example, for [ x^2 - x - 20 = 0 ] with [ a = 1 ], [ b = -1 ], and [ c = -20 ]:
-
-[
-x = \frac{-(-1) \pm \sqrt{(-1)^2 - 4(1)(-20)}}{2(1)} = \frac{1 \pm \sqrt{81}}{2} = \frac{1 \pm 9}{2}
-]
-
-This gives [ x = 5 ] or [ x = -4 ].
+Here a=1, b=-1, and c=-20. Thus $x=(1\pm\sqrt{1+80})/2=(1\pm9)/2$. The solutions are 5 and -4.
 
 ## Example 2 — Solve Equations Requiring Rearrangement
 
-Solve quadratic equations that are not initially given in standard form, including equations with missing terms, decimals, or fractional coefficients.
+### Problem
 
-### Step 1: Rearrange into Standard Form
+Solve 5x²-8x=6 exactly using the quadratic formula.
 
-Move all terms to one side to obtain [ ax^2 + bx + c = 0 ]. For example, [ 5x^2 - 8x = 6 ] becomes [ 5x^2 - 8x - 6 = 0 ].
+### Solution
 
-### Step 2: Identify Coefficients and Solve
-
-Identify [ a ], [ b ], and [ c ] from the rearranged equation, then substitute into the Quadratic Formula and simplify.
-
-### Step 3: Simplify Special Cases
-
-For equations with no linear term, such as [ x^2 - 49 = 0 ]:
-
-[
-x = \frac{-0 \pm \sqrt{0^2 - 4(1)(-49)}}{2(1)} = \frac{\pm \sqrt{196}}{2} = \pm 7
-]
-
-For equations with no real solutions, such as [ x^2 + 16 = 0 ]:
-
-[
-x = \frac{-0 \pm \sqrt{0 - 4(1)(16)}}{2(1)} = \frac{\pm \sqrt{-64}}{2} = \pm 4i
-]
+Standard form is 5x²-8x-6=0. The discriminant is 64+120=184. Therefore $x=(8\pm\sqrt{184})/10=(4\pm\sqrt{46})/5$. The approximate solutions are 2.16 and -0.56.
 
 ## Example 3 — Apply Quadratic Equations to Real-World Problems
 
-Use the Quadratic Formula to solve application problems from business, physics, architecture, and crafts.
+### Problem
 
-### Step 1: Model the Situation
+A modeled profit is P(n)=n²+2n-37 dollars for nonnegative integer sales quantity n. Find the smallest quantity with positive modeled profit.
 
-Write a quadratic equation that represents the problem. For example, a profit function [ f(x) = x^2 + 2x - 37 ] can be set equal to zero to find break-even points, or set greater than zero to find the minimum number of meals needed for a profit.
+### Solution
 
-### Step 2: Solve and Interpret
-
-Apply the Quadratic Formula, then interpret the result in context. Discard solutions that do not make sense for the situation (e.g., negative time or a negative count of items).
-
-### Step 3: Round Appropriately
-
-Round answers to the nearest tenth (or hundredth when specified) and include appropriate units.
-
-Representative applications include:
-* Free-fall motion modeled by [ h = -16t^2 + 50 ], where [ h ] is height in feet and [ t ] is time in seconds.
-* The Golden Ratio relationship in architecture: [ \frac{W + H}{W} = \frac{W}{H} ], which simplifies to a quadratic in [ W ] when [ H ] is known.
-* Dividing a length into two unequal pieces to form squares with a specified total area.
+The zero-profit roots are $n=-1\pm\sqrt{38}$. The positive root is approximately 5.16. For n≥0, profit is positive above that root. The smallest integer is 6. Check P(5)=-2 and P(6)=11. Rounding the root to the nearest integer would give the wrong threshold.
 
 ## Example 4 — Use the Discriminant
 
-Determine the number of real solutions of a quadratic equation without fully solving it by evaluating the discriminant.
+### Problem
 
-### Step 1: Identify Coefficients
+Classify the real solutions of (a) x²-4x+10=0 and (b) x²-6x+9=0 using discriminants.
 
-From [ ax^2 + bx + c = 0 ], identify [ a ], [ b ], and [ c ].
+### Solution
 
-### Step 2: Calculate the Discriminant
-
-Evaluate [ b^2 - 4ac ].
-
-### Step 3: Determine the Number of Solutions
-
-* If [ b^2 - 4ac > 0 ], the equation has **two distinct real solutions**.
-* If [ b^2 - 4ac = 0 ], the equation has **one real solution** (a repeated root).
-* If [ b^2 - 4ac < 0 ], the equation has **no real solutions** (two complex solutions).
-
-For example, for [ x^2 - 4x + 10 = 0 ]:
-
-[
-b^2 - 4ac = (-4)^2 - 4(1)(10) = 16 - 40 = -24
-]
-
-Since [ -24 < 0 ], there are no real solutions.
+For (a), the discriminant is 16-40=-24, so there are no real roots. For (b), it is 36-36=0, so there is one repeated real root, x=3. These statements assume the leading coefficient is nonzero.
 
 ## Mixed Exercises
 
@@ -157,7 +93,7 @@ The mixed exercises provide comprehensive practice across all skills in this les
 
 ## Review Notes
 
-* Images referenced in the worksheet (![](media/image1.png) for Parthenon facade in problem 18, ![](media/image2.png) for site-design border in problem 50, ![](media/image3.png) for parabola graph in problems 54-55, ![](media/image4.png) for rectangular enclosure figures in problem 56) provide visual context for the geometric relationships described.
+* Images referenced in the worksheet (![Worksheet figure 1](/curriculum/module-12-lesson-6/image1.png) for Parthenon facade in problem 18, ![Worksheet figure 2](/curriculum/module-12-lesson-6/image2.png) for site-design border in problem 50, ![Worksheet figure 3](/curriculum/module-12-lesson-6/image3.png) for parabola graph in problems 54-55, ![Worksheet figure 4](/curriculum/module-12-lesson-6/image4.png) for rectangular enclosure figures in problem 56) provide visual context for the geometric relationships described.
 * Problem 57 requires external research on the St. Louis Arch dimensions, which cannot be completed without a source.
 * The Golden Ratio equation in problem 18 involves a proportion that simplifies to a quadratic equation; the image provides visual context for the architectural relationship.
 

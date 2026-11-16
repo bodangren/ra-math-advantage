@@ -17,7 +17,7 @@
 | **Tech Debt Registry** | `./tech-debt.md` |
 | **Architecture** | `./architecture.md` |
 | **Knowledge Space Architecture** | `./knowledge-space.md` |
-| **Knowledge Space Contract** | `../kst-srs.v2/SPECIFICATION.md`; a pointer to the kst-srs.v3.2 source replaces it (planned: kst-v32-runtime_20261114) |
+| **Knowledge Space Contract** | `../kst-srs.v3.2/SPECIFICATION.md` |
 | **Tech Specs** | `./tech-specs.md` |
 | **Code Styleguides** | `./code_styleguides/` |
 | **Practice Component Contract** | `./practice-component-contract.md` |
@@ -44,6 +44,7 @@ data replaces them (planned: math-app-base_20261114, math-app-retire-old-apps_20
 | **Integrated Math 3** | `../apps/integrated-math-3/product.md` |
 | **Bus Math v2** | `../apps/bus-math-v2/product.md` |
 | **AP Precalculus** | `../apps/pre-calculus/product.md` |
+| **Danielson Teacher Growth** | `../apps/danielson/product.md` |
 
 ### Product Guidelines
 
@@ -55,6 +56,7 @@ data replaces them (planned: math-app-base_20261114, math-app-retire-old-apps_20
 | **Integrated Math 3** | `../apps/integrated-math-3/product-guidelines.md` |
 | **Bus Math v2** | `../apps/bus-math-v2/product-guidelines.md` |
 | **AP Precalculus** | `../apps/pre-calculus/product-guidelines.md` |
+| **Danielson Teacher Growth** | `../apps/danielson/product-guidelines.md` |
 
 ### Design Definitions
 
@@ -65,3 +67,4 @@ data replaces them (planned: math-app-base_20261114, math-app-retire-old-apps_20
 | **Integrated Math 3** | `../apps/integrated-math-3/DESIGN.md` |
 | **Bus Math v2** | `../apps/bus-math-v2/DESIGN.md` |
 | **AP Precalculus** | `../apps/pre-calculus/DESIGN.md` |
+| **Danielson Teacher Growth** | `../apps/danielson/DESIGN.md` |

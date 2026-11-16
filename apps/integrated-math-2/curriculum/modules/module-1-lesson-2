@@ -14,7 +14,7 @@ Source: (Module 1, Lesson 1-2, Int2_0102_practice.docx)
 * **Angle Bisector** — A ray that divides an angle into two congruent angles.
 * **Incenter** — The point of concurrency of the three angle bisectors of a triangle; equidistant from all three sides.
 * **Angle Bisector Theorem** — If a point is on the bisector of an angle, then it is equidistant from the two sides of the angle.
-* **Converse of the Angle Bisector Theorem** — If a point is equidistant from the two sides of an angle, then it lies on the angle bisector.
+* **Converse of the Angle Bisector Theorem** — A point inside an angle that has equal perpendicular distances to its side lines lies on its internal angle bisector.
 * **Incenter Theorem** — The incenter of a triangle is equidistant from all three sides.
 
 ## Explore: Where Do Angle Bisectors Meet?
@@ -28,7 +28,7 @@ Why does the incenter always lie inside the triangle while the circumcenter can 
 
 ### Key Concept: Angle Bisector Theorem
 
-If a point lies on the bisector of an angle, then the perpendicular distances from that point to the two sides of the angle are equal. The converse states that if a point is equally distant from the two sides, it lies on the angle bisector.
+For a point in the interior of an angle, the point lies on the internal angle bisector if and only if its perpendicular distances to the two side lines are equal. The interior condition excludes the external angle bisector.
 
 ### Key Concept: The Incenter
 
@@ -36,59 +36,43 @@ The incenter is the point where all three angle bisectors of a triangle meet. Un
 
 ## Example 1 — Find Angle and Segment Measures Using Angle Bisectors
 
-Given a triangle with an angle bisector, use the Angle Bisector Theorem to find unknown angle measures and segment lengths.
+### Problem
 
-### Step 1: Identify the Angle Bisector
+BD bisects angle ABC. Angle ABD is (3x + 4) degrees and angle DBC is (5x - 12) degrees. Find angle ABC.
 
-Locate the ray that divides an angle into two equal parts. The point where the angle bisector meets the opposite side is on the segment connecting to the vertex.
+### Solution
 
-### Step 2: Apply Proportional Relationships
-
-When a ray bisects an angle, it divides the opposite side into segments that are proportional to the adjacent sides. Use this relationship to set up equations.
-
-### Step 3: Solve and Check
-
-Solve for the unknown variable and substitute back to find the requested angle or segment measure.
+The two angles are equal. Solve 3x + 4 = 5x - 12 to obtain x = 8. Each smaller angle is 28 degrees, so angle ABC is 56 degrees.
 
 ## Example 2 — Use the Incenter to Find Measures
 
-The incenter is where all three angle bisectors meet. Use its properties to find distances and angle measures.
+### Problem
 
-### Step 1: Recognize the Incenter
+I is the incenter of triangle ABC. D and E are the feet of perpendiculars from I to AB and BC. ID = 2x + 1 cm and IE = 5x - 8 cm. Find the inradius.
 
-The incenter is equidistant from all three sides, so perpendicular segments from the incenter to the sides are congruent.
+### Solution
 
-### Step 2: Use Equal Distances
-
-Set up relationships using the fact that the incenter's distance to each side is the same.
+The incenter has equal perpendicular distances to all three sides. Thus 2x + 1 = 5x - 8, so x = 3. The inradius is ID = IE = 7 cm.
 
 ## Example 3 — Incenter in Triangles
 
-Given a triangle with an incenter, find angle measures and distances from the incenter to the vertices.
+### Problem
 
-### Step 1: Find Angle Measures
+I is the incenter of triangle ABC. Angle A is 60 degrees and angle B is 50 degrees. Find angle BIC.
 
-Since the incenter is on all three angle bisectors, the angles around the incenter relate to the original triangle's angles. The angle between any two bisectors equals [90] plus half of the opposite angle.
+### Solution
 
-### Step 2: Find Distances
-
-Use triangle geometry relationships to find distances from the incenter to the vertices.
+Since BI and CI bisect their vertex angles, the angle at I in triangle BIC is $180^\circ-(B/2+C/2)$. Also B + C = 180 degrees - A. Therefore angle BIC = 90 degrees + A/2 = 120 degrees. Distances from I to the vertices are not generally equal.
 
 ## Example 4 — Real-World Angle Bisector Applications
 
-Use angle bisectors to find points that are equidistant from the sides of an angle, such as locating a facility that should be equally distant from two roads.
+### Problem
 
-### Step 1: Interpret the Problem
+Two straight road edges meet at a right angle. A marker must be 4 meters from each edge. Use the edges as the positive coordinate axes. Find the marker location inside the angle.
 
-Identify the two lines (roads) that form an angle, and determine what "equidistant from the roads" means in context.
+### Solution
 
-### Step 2: Locate the Point
-
-The set of points equidistant from two intersecting lines is the union of the two angle bisectors. Determine which bisector makes sense given the constraints.
-
-### Step 3: Apply Coordinates
-
-If coordinates are given for the roads' intersection and other reference points, find the coordinates of the point on the appropriate bisector.
+Distance from the x-axis is y, and distance from the y-axis is x. Thus x = 4 and y = 4. The location (4, 4) lies on the angle bisector y = x.
 
 ## Mixed Exercises
 

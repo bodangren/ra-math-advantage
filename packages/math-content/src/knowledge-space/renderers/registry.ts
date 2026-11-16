@@ -5,6 +5,7 @@
 // this registry only references their key + props schema.
 
 import { z } from 'zod';
+import { quadraticFormulaActivitySchema } from '../../schemas/quadratic-formula-activity.schema';
 
 export interface MathRendererDescriptor {
   key: string;
@@ -39,11 +40,24 @@ const comprehensionQuizPropsSchema = z.object({
 });
 
 const fillInTheBlankPropsSchema = z.object({
-  text: z.string(),
+  activityId: z.string().min(1),
+  mode: z.enum(['teaching', 'guided', 'practice']),
+  template: z.string().min(1),
   blanks: z.array(z.object({
     id: z.string(),
-    answer: z.string(),
+    correctAnswer: z.string().min(1).optional(),
+    acceptedAnswers: z.array(z.string().min(1)).min(1).optional(),
+    isMath: z.boolean().optional(),
   })),
+  reasoningSteps: z.array(z.object({
+    description: z.string().min(1),
+    expression: z.string().min(1).optional(),
+  })).min(1).optional(),
+  guidedSupport: z.object({
+    feedback: z.literal('on_check'),
+    hints: z.array(z.string().min(1)).min(1),
+    revealAfterAttempts: z.number().int().positive(),
+  }).optional(),
 });
 
 const rateOfChangeCalculatorPropsSchema = z.object({
@@ -89,6 +103,10 @@ const RENDERER_REGISTRY: Record<string, MathRendererDescriptor> = {
   'discriminant-analyzer': {
     key: 'discriminant-analyzer',
     propsSchema: discriminantAnalyzerPropsSchema,
+  },
+  'quadratic-formula': {
+    key: 'quadratic-formula',
+    propsSchema: quadraticFormulaActivitySchema,
   },
 };
 

@@ -1,0 +1,16 @@
+{
+  "track_id": "bc-mastery-advantage-rollout_20260821",
+  "type": "feature",
+  "status": "superseded",
+  "created_at": "2026-08-21T00:31:36Z",
+  "updated_at": "2026-08-21T04:00:00Z",
+  "description": "Superseded. This rollout treated 19 deterministic problem families as 19 Business Math curriculum skills.",
+  "estimated_tasks": 38,
+  "actual_tasks": null,
+  "deviation_notes": "The 19-skill claim is withdrawn. The published curriculum contains 261 unique lesson objective strings. The replacement graph needs curriculum review before runtime work resumes.",
+  "program": "Teacher-Led Mastery Advantage Progression",
+  "depends_on": [
+    "teacher-led-mastery-advantage_20260819"
+  ],
+  "superseded_by": "mastery-advantage-graph-remediation_20260821"
+}

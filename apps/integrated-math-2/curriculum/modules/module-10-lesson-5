@@ -12,8 +12,8 @@ Source: (Module 10, Lesson 10-5, Int2_1005_practice.docx)
 
 ## Vocabulary
 
-* **Product Property of Square Roots** — [\sqrt{ab} = \sqrt{a} \cdot \sqrt{b}], where [a \geq 0] and [b \geq 0].
-* **Quotient Property of Square Roots** — [\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}], where [a \geq 0] and [b > 0].
+* **Product Property of Square Roots** — $\sqrt{ab} = \sqrt{a} \cdot \sqrt{b}$, where $a \geq 0$ and $b \geq 0$.
+* **Quotient Property of Square Roots** — $\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}$, where $a \geq 0$ and [b > 0].
 * **Simplest Form of a Radical** — A radical expression where no perfect [n]th power factors remain under the radical and no fractions remain under the radical.
 * **Like Radicals** — Radical expressions that have the same radicand and index; can be combined by addition or subtraction.
 
@@ -28,179 +28,86 @@ How do the Product and Quotient Properties of Radicals help us write radical exp
 
 ### Key Concept: Product Property of Square Roots
 
-The square root of a product equals the product of the square roots.
+For nonnegative real factors, the square root of a product equals the product of the square roots.
 
-[
+$$
 \sqrt{52} = \sqrt{4 \cdot 13} = \sqrt{4} \cdot \sqrt{13} = 2\sqrt{13}
-]
-
-[
+$$
+$$
 \sqrt{72} = \sqrt{36 \cdot 2} = \sqrt{36} \cdot \sqrt{2} = 6\sqrt{2}
-]
-
+$$
 ### Key Concept: Quotient Property of Square Roots
 
-The square root of a quotient equals the quotient of the square roots.
+For a nonnegative numerator and a positive denominator, the square root of a quotient equals the quotient of the square roots.
 
-[
+$$
 \sqrt{\frac{75}{49}} = \frac{\sqrt{75}}{\sqrt{49}} = \frac{\sqrt{25 \cdot 3}}{7} = \frac{5\sqrt{3}}{7}
-]
-
-[
+$$
+$$
 \sqrt{\frac{8}{81}} = \frac{\sqrt{8}}{\sqrt{81}} = \frac{2\sqrt{2}}{9}
-]
-
+$$
 ### Key Concept: Simplifying Variables
 
-When the radicand contains variables raised to powers, extract even powers as coefficients.
+Use the principal square root: √(u²) = |u|. The last example below assumes q ≥ 0 and r ≥ 0. Without sign conditions, do not remove an absolute value.
 
-[
+$$
 \sqrt{16b^4} = 4b^2
-]
-
-[
+$$
+$$
 \sqrt{40x^4y^8} = \sqrt{4 \cdot 10 \cdot x^4 \cdot y^8} = 2x^2y^4\sqrt{10}
-]
-
-[
+$$
+$$
 \sqrt{75qr^3} = \sqrt{25 \cdot 3 \cdot q \cdot r^2 \cdot r} = 5r\sqrt{3qr}
-]
-
+$$
 ## Example 1 — Simplifying Square Roots
 
-Simplify square root expressions by identifying perfect square factors.
+### Problem
 
-### Step 1: Factor Out Perfect Squares
+Simplify $\sqrt{52}$ and $\sqrt{16b^2}$ for real b.
 
-[
-\sqrt{52} = \sqrt{4 \cdot 13} = 2\sqrt{13}
-]
+### Solution
 
-[
-\sqrt{56} = \sqrt{4 \cdot 14} = 2\sqrt{14}
-]
-
-[
-\sqrt{72} = \sqrt{36 \cdot 2} = 6\sqrt{2}
-]
-
-### Step 2: Simplify Variable Expressions
-
-[
-\sqrt{16b^4} = 4b^2
-]
-
-[
-\sqrt{81a^{12}d^4} = 9a^6d^2
-]
-
-[
-\sqrt{28a^4b^3} = \sqrt{4 \cdot 7 \cdot a^4 \cdot b^2 \cdot b} = 2a^2b\sqrt{7b}
-]
+Factor out the perfect square: $\sqrt{52}=\sqrt{4\cdot13}=2\sqrt{13}$. The principal square root is nonnegative, so $\sqrt{16b^2}=4|b|$. It equals 4b only when b≥0.
 
 ## Example 2 — Multiplying Radicals
 
-Multiply radical expressions and simplify the result.
+### Problem
 
-### Step 1: Multiply Under the Radical
+Simplify $\sqrt{8}\sqrt{12}$.
 
-[
-\sqrt{5} \cdot \sqrt{10} = \sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt{2}
-]
+### Solution
 
-[
-\sqrt{10} \cdot \sqrt{20} = \sqrt{200} = \sqrt{100 \cdot 2} = 10\sqrt{2}
-]
-
-### Step 2: Simplify the Product
-
-[
-\sqrt{2} \cdot \sqrt{10} = \sqrt{20} = 2\sqrt{5}
-]
-
-[
-\sqrt{8} \cdot \sqrt{12} = \sqrt{96} = \sqrt{16 \cdot 6} = 4\sqrt{6}
-]
+Both radicands are nonnegative, so the product is $\sqrt{96}=\sqrt{16\cdot6}=4\sqrt{6}$. The real-number product rule for square roots requires nonnegative radicands.
 
 ## Example 3 — Dividing Radicals
 
-Apply the Quotient Property to simplify radical expressions involving fractions.
+### Problem
 
-### Step 1: Apply Quotient Property
+Simplify $\sqrt{75/49}$.
 
-[
-\sqrt{\frac{75}{49}} = \frac{\sqrt{75}}{\sqrt{49}} = \frac{\sqrt{25 \cdot 3}}{7} = \frac{5\sqrt{3}}{7}
-]
+### Solution
 
-[
-\sqrt{\frac{8}{81}} = \frac{\sqrt{8}}{\sqrt{81}} = \frac{2\sqrt{2}}{9}
-]
-
-[
-\sqrt{\frac{84}{121}} = \frac{\sqrt{84}}{\sqrt{121}} = \frac{2\sqrt{21}}{11}
-]
+The denominator is positive, so $\sqrt{75/49}=\sqrt{75}/7=5\sqrt{3}/7$.
 
 ## Example 4 — Real-World Applications
 
-Apply radical formulas to solve real-world problems involving measurement.
+### Problem
 
-### Step 1: Tsunami Velocity
+A model gives a pendulum period of $t=0.2\sqrt{p}$ seconds for length p in centimeters. Use the model for p=22 and round to the nearest hundredth.
 
-The velocity formula is [V = \sqrt{16} \cdot \sqrt{d}]. In 300 feet of water:
+### Solution
 
-[
-V = 4 \cdot \sqrt{300} = 4 \cdot 10\sqrt{3} = 40\sqrt{3} \text{ feet per second}
-]
-
-### Step 2: Pendulum Period
-
-The period formula is [t = 0.2\sqrt{p}] where [p] is the pendulum length in centimeters. For a 22 cm pendulum:
-
-[
-t = 0.2 \cdot \sqrt{22} \approx 0.2 \cdot 4.7 = 0.94 \text{ seconds}
-]
-
-### Step 3: Horizon Distance
-
-The distance to the horizon formula is [d = \sqrt{\frac{3h}{2}}] where [h] is height in feet. For someone 60 feet above sea level:
-
-[
-d = \sqrt{\frac{180}{2}} = \sqrt{90} = 3\sqrt{10} \text{ miles}
-]
+Substitute the given length: $t=0.2\sqrt{22}\approx0.9381$ seconds. The rounded result is 0.94 seconds. This answer uses the stated approximation; retain the exact radical until rounding.
 
 ## Example 5 — Cube Roots and Higher Index Radicals
 
-Simplify cube roots and other radicals with indices greater than 2.
+### Problem
 
-### Step 1: Identify Perfect Cubes
+Simplify $\sqrt[3]{54b^8}$ for real b.
 
-[
-\sqrt[3]{8} = 2
-]
+### Solution
 
-[
-\sqrt[3]{125} = 5
-]
-
-[
-\sqrt[3]{216} = 6
-]
-
-### Step 2: Simplify Expressions with Variables
-
-[
-\sqrt[3]{54b^8} = \sqrt[3]{27 \cdot 2 \cdot b^6 \cdot b^2} = 3b^2\sqrt[3]{2b^2}
-]
-
-[
-\sqrt[3]{10yz^5} \cdot \sqrt[3]{4y^3} = \sqrt[3]{40y^4z^5} = \sqrt[3]{8 \cdot 5 \cdot y^3 \cdot y \cdot z^3 \cdot z^2} = 2yz\sqrt[3]{5yz^2}
-]
-
-### Step 3: Simplify Quotients of Cube Roots
-
-[
-\sqrt[3]{\frac{162}{375}} = \sqrt[3]{\frac{54}{125}} = \frac{\sqrt[3]{54}}{\sqrt[3]{125}} = \frac{3\sqrt[3]{2}}{5}
-]
+Factor the radicand as $27b^6(2b^2)$. The cube root of $27b^6$ is $3b^2$. Therefore the expression is $3b^2\sqrt[3]{2b^2}$. Odd roots are defined for negative real inputs and do not require the absolute-value rule used for square roots.
 
 ## Mixed Exercises
 
@@ -221,7 +128,7 @@ Practice problems covering all skills in the lesson:
 
 ## Review Notes
 
-* ![](media/image1.png) Image of triangle diagram for problem 67 (triangle area calculation).
-* ![](media/image2.png) Image of rectangle diagram for problem 68 (rectangle area calculation).
+* ![Worksheet figure 1](/curriculum/module-10-lesson-5/image1.png) Image of triangle diagram for problem 67 (triangle area calculation).
+* ![Worksheet figure 2](/curriculum/module-10-lesson-5/image2.png) Image of rectangle diagram for problem 68 (rectangle area calculation).
 
 (End of file - total 242 lines)

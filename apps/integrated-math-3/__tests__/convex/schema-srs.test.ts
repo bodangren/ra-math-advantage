@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
 import schema from '@/convex/schema';
+
+const schemaSource = fs.readFileSync(
+  path.resolve(__dirname, '../../convex/schema.ts'),
+  'utf8',
+);
 
 describe('srs_cards table schema', () => {
   it('exists in the schema', () => {
@@ -41,6 +48,14 @@ describe('srs_review_log table schema', () => {
     expect(() => (table as unknown as { stateAfter: unknown }).stateAfter).not.toThrow();
     expect(() => (table as unknown as { reviewedAt: unknown }).reviewedAt).not.toThrow();
   });
+
+  it('widens historical rows with an optional parameter-version stamp', () => {
+    const tableSource = schemaSource.match(
+      /srs_review_log:\s*defineTable\(\{([\s\S]*?)\}\)\s*\.index\("by_card"/,
+    )?.[1];
+
+    expect(tableSource).toMatch(/paramsVersion:\s*v\.optional\(v\.string\(\)\)/);
+  });
 });
 
 describe('srs_sessions table schema', () => {
@@ -56,5 +71,26 @@ describe('srs_sessions table schema', () => {
     expect(() => (table as unknown as { plannedCards: unknown }).plannedCards).not.toThrow();
     expect(() => (table as unknown as { completedCards: unknown }).completedCards).not.toThrow();
     expect(() => (table as unknown as { config: unknown }).config).not.toThrow();
+  });
+});
+
+describe('KST+SRS v3.2 widening schema', () => {
+  it('keeps legacy card identities readable while adding canonical migration fields', () => {
+    const cardsSource = schemaSource.match(
+      /srs_cards:\s*defineTable\(\{([\s\S]*?)\}\)\s*\.index\("by_student"/,
+    )?.[1];
+
+    expect(cardsSource).toMatch(/variantKey:\s*v\.optional\(v\.string\(\)\)/);
+    expect(cardsSource).toMatch(/problemFamilyId:\s*v\.optional\(v\.string\(\)\)/);
+    expect(cardsSource).toMatch(/legacyProblemFamilyId:\s*v\.optional\(v\.string\(\)\)/);
+    expect(cardsSource).toMatch(/migrationVersion:\s*v\.optional\(srsRuntimeMigrationVersionValidator\)/);
+  });
+
+  it('records bounded runtime controls, comparisons, and migration provenance', () => {
+    expect(schemaSource).toMatch(/srs_runtime_controls:\s*defineTable/);
+    expect(schemaSource).toMatch(/srs_runtime_comparisons:\s*defineTable/);
+    expect(schemaSource).toMatch(/evidenceType:\s*v\.optional\(placementEvidenceTypeValidator\)/);
+    expect(schemaSource).toMatch(/reviewLoadState:\s*v\.optional\(srsReviewLoadStateValidator\)/);
+    expect(schemaSource).toMatch(/srsMigrationRunStatusValidator/);
   });
 });

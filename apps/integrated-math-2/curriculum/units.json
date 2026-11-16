@@ -1,0 +1,67 @@
+[
+  {
+    "number": 1,
+    "title": "Relationships in Triangles",
+    "description": "Triangle properties, congruence criteria, and reasoning through proofs."
+  },
+  {
+    "number": 2,
+    "title": "Quadrilaterals",
+    "description": "Properties and classification of quadrilaterals, coordinate proofs."
+  },
+  {
+    "number": 3,
+    "title": "Similarity",
+    "description": "Scale factors, proportional reasoning, and similarity proofs."
+  },
+  {
+    "number": 4,
+    "title": "Right Triangles & Trigonometry",
+    "description": "Pythagorean theorem, special right triangles, trigonometric ratios, and laws."
+  },
+  {
+    "number": 5,
+    "title": "Circles",
+    "description": "Circle geometry, angles, arcs, tangents, and coordinate equations."
+  },
+  {
+    "number": 6,
+    "title": "Measurement",
+    "description": "Area, surface area, volume, and composite solids."
+  },
+  {
+    "number": 7,
+    "title": "Probability",
+    "description": "Counting principles, permutations, combinations, and compound probability."
+  },
+  {
+    "number": 8,
+    "title": "Relations and Functions",
+    "description": "Function concepts, notation, transformations, and comparisons."
+  },
+  {
+    "number": 9,
+    "title": "Linear Equations, Inequalities & Systems",
+    "description": "Solving and graphing linear equations, inequalities, and systems."
+  },
+  {
+    "number": 10,
+    "title": "Exponents and Roots",
+    "description": "Laws of exponents, rational exponents, scientific notation, and radicals."
+  },
+  {
+    "number": 11,
+    "title": "Polynomials",
+    "description": "Polynomial operations, factoring techniques, and solving polynomial equations."
+  },
+  {
+    "number": 12,
+    "title": "Quadratic Functions",
+    "description": "Graphing, factoring, completing the square, and the quadratic formula."
+  },
+  {
+    "number": 13,
+    "title": "Trigonometric Identities & Equations",
+    "description": "Fundamental identities, sum/difference, double/half-angle, and solving trig equations."
+  }
+]

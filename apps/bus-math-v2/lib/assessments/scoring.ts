@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { generateProblemInstance } from '@/lib/curriculum/problem-generator';
+import { activityPropsSchemas } from '@/lib/schemas/activity-props';
 import type { Activity } from '@/lib/schemas/validators';
 
 const DEFAULT_PASSING_SCORE = 70;
@@ -141,6 +142,13 @@ function scoreQuestions(questions: Question[], answers: Record<string, unknown>)
       return;
     }
 
+    if (typeof question.correctAnswer === 'number') {
+      const text = typeof response === 'string' ? response.trim() : '';
+      const number = typeof response === 'number' ? response
+        : /^[+-]?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/.test(text) ? Number(text.replaceAll(',', '')) : Number.NaN;
+      if (Number.isFinite(number) && Math.abs(number - question.correctAnswer) <= 0.000001) correct += 1;
+      return;
+    }
     if (normalizeAnswer(question.correctAnswer) === normalizeAnswer(response)) {
       correct += 1;
     }
@@ -211,6 +219,23 @@ function scoreApplicationProblems(
   return { correct, total: parsed.length };
 }
 
+/** Scores notebook placements against the authored item's categories. */
+function scoreNotebookOrganizer(
+  props: Activity['props'],
+  answers: Record<string, unknown>,
+) {
+  const parsed = activityPropsSchemas['notebook-organizer'].parse(props);
+  let correct = 0;
+
+  parsed.items.forEach((item) => {
+    if (normalizeAnswer(item.category) === normalizeAnswer(answers[item.id])) {
+      correct += 1;
+    }
+  });
+
+  return { correct, total: parsed.items.length };
+}
+
 /**
  * Calculates the score for an auto-graded activity.
  * @param activity - The activity with grading configuration
@@ -252,6 +277,13 @@ export function calculateScore(
       activity.props.applicationProblems as ApplicationProblem[],
       answers,
     );
+    correct += result.correct;
+    total += result.total;
+    foundSupportedScoring = true;
+  }
+
+  if (activity.componentKey === 'notebook-organizer') {
+    const result = scoreNotebookOrganizer(activity.props, answers);
     correct += result.correct;
     total += result.total;
     foundSupportedScoring = true;

@@ -11,6 +11,15 @@ import {
   misconceptionLifecycleStatusValidator,
   misconceptionSeverityValidator,
 } from "./misconceptionState";
+import {
+  placementEvidenceTypeValidator,
+  srsComparisonSubjectValidator,
+  srsDivergenceClassValidator,
+  srsMigrationRunStatusValidator,
+  srsReviewLoadStateValidator,
+  srsRuntimeMigrationVersionValidator,
+  srsRuntimeModeValidator,
+} from "./srs/runtime_contract";
 
 export const textContentValidator = v.object({
   markdown: v.string(),
@@ -46,20 +55,49 @@ export const mathContentSectionValidators = {
 };
 
 const graphingExplorerPropsValidator = v.object({
+  title: v.optional(v.string()),
   variant: v.optional(v.union(
     v.literal("plot_from_equation"), v.literal("compare_functions"),
     v.literal("find_intercepts"), v.literal("graph_system"),
     v.literal("explore"), v.literal("find_zeros"),
     v.literal("compare"), v.literal("rate_of_change"),
   )),
+  responseVariant: v.optional(v.union(v.literal("quadratic_features"), v.literal("table_graph"), v.literal("domain_range"), v.literal("maximum_value"), v.literal("symmetry_graph"), v.literal("compare_maximums"), v.literal("one_real_solution"), v.literal("two_real_solutions"), v.literal("estimated_root_intervals"))),
   equation: v.string(),
+  originalEquation: v.optional(v.string()),
+  vertex: v.optional(v.array(v.number())),
+  yIntercept: v.optional(v.array(v.number())),
   domain: v.optional(v.array(v.number())),
   range: v.optional(v.array(v.number())),
+  sum: v.optional(v.number()),
+  product: v.optional(v.number()),
   points: v.optional(v.array(v.array(v.number()))),
   comparisonEquation: v.optional(v.string()),
   comparisonQuestion: v.optional(v.string()),
   comparisonAnswer: v.optional(v.union(v.literal("first"), v.literal("second"))),
   linearEquation: v.optional(v.string()),
+  // The IM3 pilot keeps the variant generator and grading contract in the
+  // server-owned activity document. These fields are optional so existing
+  // authored graphing activities remain valid during schema rollout.
+  variantParameters: v.optional(v.record(v.string(), v.any())),
+  answerSchema: v.optional(v.record(v.string(), v.any())),
+  canonicalAnswers: v.optional(v.record(v.string(), v.any())),
+  gradingRules: v.optional(v.array(v.object({
+    partId: v.string(),
+    ruleType: v.union(
+      v.literal("numeric_tolerance"),
+      v.literal("exact_match"),
+      v.literal("expression_equivalence"),
+    ),
+    tolerance: v.optional(v.number()),
+    maxScore: v.number(),
+  }))),
+  replayPolicy: v.optional(v.string()),
+  canonicalVariant: v.optional(v.object({
+    a: v.number(),
+    b: v.number(),
+    c: v.number(),
+  })),
 });
 
 const stepByStepSolverPropsValidator = v.object({
@@ -146,9 +184,11 @@ const gradingConfigValidator = v.object({
   autoGrade: v.boolean(),
   passingScore: v.optional(v.number()),
   partialCredit: v.boolean(),
+  partIds: v.optional(v.array(v.string())),
   rubric: v.optional(v.array(v.object({
     criteria: v.string(),
     points: v.number(),
+    partId: v.optional(v.string()),
   }))),
 });
 
@@ -212,6 +252,11 @@ const submissionDataValidator = v.object({
 });
 
 export default defineSchema({
+  login_attempts: defineTable({
+    username: v.string(),
+    requestCount: v.number(),
+    windowStart: v.number(),
+  }).index('by_username', ['username']).index('by_window', ['windowStart']),
   organizations: defineTable({
     name: v.string(),
     slug: v.string(),
@@ -347,7 +392,7 @@ export default defineSchema({
     version: v.number(),
     title: v.optional(v.string()),
     description: v.optional(v.string()),
-    status: v.union(v.literal("draft"), v.literal("review"), v.literal("published"), v.literal("archived")),
+    status: v.union(v.literal("draft"), v.literal("review"), v.literal("approved"), v.literal("published"), v.literal("archived")),
     createdAt: v.number(),
   })
     .index("by_lesson", ["lessonId"])
@@ -420,6 +465,10 @@ export default defineSchema({
     props: activityPropsValidator,
     gradingConfig: v.optional(gradingConfigValidator),
     standardId: v.optional(v.id("competency_standards")),
+    stableActivityId: v.optional(v.string()),
+    masteryNodeId: v.optional(v.string()),
+    srsEligible: v.optional(v.boolean()),
+    learningEvidenceMode: v.optional(v.literal("worked_example")),
     approval: v.optional(v.object({
       status: v.union(
         v.literal("unreviewed"),
@@ -434,7 +483,9 @@ export default defineSchema({
     })),
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_standard", ["standardId"]),
+  })
+    .index("by_standard", ["standardId"])
+    .index("by_stable_activity_id", ["stableActivityId"]),
 
   student_competency: defineTable({
     studentId: v.id("profiles"),
@@ -483,12 +534,19 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_phase", ["phaseId"])
-    .index("by_user_and_phase", ["userId", "phaseId"]),
+    .index("by_user_and_phase", ["userId", "phaseId"])
+    .index("by_user_and_idempotency_key", ["userId", "idempotencyKey"]),
 
   activity_submissions: defineTable({
     userId: v.id("profiles"),
     activityId: v.id("activities"),
     submissionData: submissionDataValidator,
+    masteryContractVersion: v.optional(v.literal("learning-evidence.v1")),
+    // Server-owned attempt identity. Existing rows remain valid during rollout.
+    attemptOrdinal: v.optional(v.number()),
+    // The create request key makes a lost create response recoverable without
+    // storing client grading claims.
+    idempotencyKey: v.optional(v.string()),
     score: v.optional(v.number()),
     maxScore: v.optional(v.number()),
     feedback: v.optional(v.string()),
@@ -500,7 +558,80 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_activity", ["activityId"])
-    .index("by_user_and_activity", ["userId", "activityId"]),
+    .index("by_user_and_activity", ["userId", "activityId"])
+    .index("by_user_activity_attempt_ordinal", ["userId", "activityId", "attemptOrdinal"])
+    .index("by_user_activity_idempotency_key", ["userId", "activityId", "idempotencyKey"]),
+
+  learning_evidence: defineTable({
+    learnerId: v.id("profiles"),
+    submissionId: v.optional(v.id("activity_submissions")),
+    contractVersion: v.literal("learning-evidence.v1"),
+    nodeId: v.string(),
+    activityId: v.string(),
+    attemptOrdinal: v.number(),
+    origin: v.union(v.literal("teacher_led"), v.literal("mastery_advantage")),
+    mode: v.union(
+      v.literal("worked_example"),
+      v.literal("guided_practice"),
+      v.literal("independent_practice"),
+      v.literal("assessment"),
+      v.literal("teaching"),
+    ),
+    occurredAt: v.number(),
+    gradedEvidence: v.optional(v.object({
+      isCorrect: v.optional(v.boolean()),
+      score: v.optional(v.number()),
+      maxScore: v.optional(v.number()),
+    })),
+    idempotencyKey: v.string(),
+    createdAt: v.number(),
+  })
+    .index("by_learner_and_node", ["learnerId", "nodeId"])
+    .index("by_learner_node_origin", ["learnerId", "nodeId", "origin"])
+    .index(
+      "by_learner_node_origin_occurred_at",
+      ["learnerId", "nodeId", "origin", "occurredAt"],
+    )
+    .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"])
+    .index("by_learner_and_submission_id", ["learnerId", "submissionId"])
+    .index(
+      "by_learner_node_activity_origin_attempt",
+      ["learnerId", "nodeId", "activityId", "origin", "attemptOrdinal"],
+    ),
+
+  // A receipt is the durable replay boundary for server-owned submissions.
+  // Negative awaiting-exposure receipts are durable as well.
+  learning_evidence_receipts: defineTable({
+    learnerId: v.id("profiles"),
+    submissionId: v.id("activity_submissions"),
+    evidenceId: v.optional(v.id("learning_evidence")),
+    persisted: v.boolean(),
+    masteryApplied: v.boolean(),
+    kstApplied: v.boolean(),
+    decision: v.object({
+      idempotency: v.union(
+        v.literal("new"),
+        v.literal("replay"),
+        v.literal("conflict"),
+      ),
+      exposureState: v.union(
+        v.literal("awaiting_teacher_exposure"),
+        v.literal("introduced"),
+      ),
+      eligible: v.boolean(),
+      reason: v.union(
+        v.literal("node_not_enabled"),
+        v.literal("idempotency_conflict"),
+        v.literal("teacher_led"),
+        v.literal("awaiting_teacher_exposure"),
+        v.literal("ungraded_evidence"),
+        v.literal("eligible"),
+      ),
+      masteryBearing: v.boolean(),
+    }),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_learner_and_submission_id", ["learnerId", "submissionId"]),
 
   student_spreadsheet_responses: defineTable({
     studentId: v.id("profiles"),
@@ -603,6 +734,10 @@ export default defineSchema({
 
   practice_variants: defineTable({
     variantKey: v.string(),
+    // Widen-only legacy identity retained until the post-cutover narrowing task.
+    legacyProblemFamilyId: v.optional(v.string()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    sourceTimestamp: v.optional(v.number()),
     componentKey: v.string(),
     displayName: v.string(),
     description: v.string(),
@@ -618,6 +753,9 @@ export default defineSchema({
     practiceItemId: v.string(),
     activityId: v.id("activities"),
     variantKey: v.string(),
+    legacyProblemFamilyId: v.optional(v.string()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    sourceTimestamp: v.optional(v.number()),
     variantLabel: v.string(),
   })
     .index("by_activityId", ["activityId"])
@@ -630,12 +768,20 @@ export default defineSchema({
     priority: v.number(),
   })
     .index("by_standardId", ["standardId"])
+    .index("by_standardId_and_courseKey", ["standardId", "courseKey"])
     .index("by_courseKey", ["courseKey"]),
 
   srs_cards: defineTable({
     studentId: v.id("profiles"),
     objectiveId: v.string(),
-    variantKey: v.string(),
+    // During the widened window every historical identity remains readable.
+    // New writes populate all three fields; the v3.2 adapter resolves the
+    // canonical key with variantKey > legacyProblemFamilyId > problemFamilyId.
+    variantKey: v.optional(v.string()),
+    legacyProblemFamilyId: v.optional(v.string()),
+    problemFamilyId: v.optional(v.string()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    sourceTimestamp: v.optional(v.number()),
     stability: v.number(),
     difficulty: v.number(),
     state: srsCardStateLiteralValidator,
@@ -653,7 +799,11 @@ export default defineSchema({
     .index("by_objective", ["objectiveId"])
     .index("by_student_and_objective", ["studentId", "objectiveId"])
     .index("by_variant", ["variantKey"])
-    .index("by_student_and_variant", ["studentId", "variantKey"]),
+    .index("by_student_and_variant", ["studentId", "variantKey"])
+    .index("by_student_objective_and_variant", ["studentId", "objectiveId", "variantKey"])
+    .index("by_legacy_problem_family", ["legacyProblemFamilyId"])
+    .index("by_historic_problem_family", ["problemFamilyId"])
+    .index("by_migration_version", ["migrationVersion"]),
 
   srs_review_log: defineTable({
     cardId: v.id("srs_cards"),
@@ -664,6 +814,10 @@ export default defineSchema({
     evidence: srsEvidenceValidator,
     stateBefore: srsCardStatePickValidator,
     stateAfter: srsCardStatePickValidator,
+    // Widen-only: historical and administrative reset rows remain valid.
+    paramsVersion: v.optional(v.string()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    sourceTimestamp: v.optional(v.number()),
     reviewedAt: v.number(),
   })
     .index("by_card", ["cardId"])
@@ -677,6 +831,9 @@ export default defineSchema({
     plannedCards: v.number(),
     completedCards: v.number(),
     config: sessionConfigValidator,
+    runtimeMode: v.optional(srsRuntimeModeValidator),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    reviewLoadState: v.optional(srsReviewLoadStateValidator),
   })
     .index("by_student", ["studentId"])
     .index("by_student_and_status", ["studentId", "completedAt"]),
@@ -709,6 +866,7 @@ export default defineSchema({
     .index("by_user_and_started", ["userId", "startedAt"]),
 
   practice_test_results: defineTable({
+    attemptId: v.optional(v.string()),
     userId: v.id("profiles"),
     moduleNumber: v.number(),
     lessonsTested: v.array(v.string()),
@@ -724,6 +882,7 @@ export default defineSchema({
     createdAt: v.number(),
   })
     .index("by_user", ["userId"])
+    .index("by_user_and_attempt", ["userId", "attemptId"])
     .index("by_user_and_module", ["userId", "moduleNumber"])
     .index("by_user_and_completed", ["userId", "completedAt"]),
 
@@ -772,11 +931,61 @@ export default defineSchema({
     masteryEstimate: v.number(),
     confidence: v.union(v.literal("low"), v.literal("medium")),
     source: v.string(),
+    evidenceType: v.optional(placementEvidenceTypeValidator),
+    provenance: v.optional(v.string()),
+    sourceTimestamp: v.optional(v.number()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    synthesizedCardId: v.optional(v.id("srs_cards")),
     createdAt: v.number(),
   })
     .index("by_student", ["studentId"])
     .index("by_student_and_node", ["studentId", "nodeId"])
-    .index("by_student_and_createdAt", ["studentId", "createdAt"]),
+    .index("by_student_and_createdAt", ["studentId", "createdAt"])
+    .index("by_migration_version", ["migrationVersion"]),
+
+  // Only internal functions change these controls. Client arguments never
+  // select a runtime mode or authorize cutover/rollback.
+  srs_runtime_controls: defineTable({
+    scope: v.literal("im3"),
+    mode: srsRuntimeModeValidator,
+    migrationVersion: srsRuntimeMigrationVersionValidator,
+    approvedAt: v.optional(v.number()),
+    updatedAt: v.number(),
+  })
+    .index("by_scope", ["scope"])
+    .index("by_mode", ["mode"]),
+
+  // Store stable fingerprints and divergence classes, never learner answers or
+  // raw queue/recommendation payloads.
+  srs_runtime_comparisons: defineTable({
+    subject: srsComparisonSubjectValidator,
+    classification: srsDivergenceClassValidator,
+    explanationKey: v.string(),
+    v2Fingerprint: v.string(),
+    v3Fingerprint: v.string(),
+    migrationVersion: srsRuntimeMigrationVersionValidator,
+    observedAt: v.number(),
+  })
+    .index("by_subject_and_observed_at", ["subject", "observedAt"])
+    .index("by_classification_and_observed_at", ["classification", "observedAt"]),
+
+  // App-visible summary only; the migrations component owns cursors, retries,
+  // and workers. This table makes execution status auditable without copying
+  // any migration data payload.
+  srs_migration_runs: defineTable({
+    migrationName: v.string(),
+    status: srsMigrationRunStatusValidator,
+    dryRun: v.boolean(),
+    processed: v.number(),
+    changed: v.number(),
+    failed: v.number(),
+    cursor: v.optional(v.string()),
+    startedAt: v.number(),
+    updatedAt: v.number(),
+    completedAt: v.optional(v.number()),
+  })
+    .index("by_migration_name", ["migrationName"])
+    .index("by_status_and_updated_at", ["status", "updatedAt"]),
 
   chatbot_rate_limits: defineTable({
     userId: v.id("profiles"),

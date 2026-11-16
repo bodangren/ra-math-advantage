@@ -28,7 +28,6 @@ import { describe, it, expect, vi } from 'vitest';
 import type { Id } from '@/convex/_generated/dataModel';
 import {
   computeRetentionCurve,
-  computeReviewSuccessRate,
 } from '@math-platform/efficacy-core';
 
 import { aggregateCohortMetricsHandler } from '@/convex/efficacy/cohort';
@@ -75,7 +74,7 @@ function makeSrsCard(args: {
     cardId,
     studentId: studentId as Id<'profiles'>,
     objectiveId: `obj_${cardId}`,
-    problemFamilyId: `pf_${cardId}`,
+    variantKey: `pf_${cardId}`,
     stability,
     difficulty: 3,
     state: 'review' as const,
@@ -137,24 +136,30 @@ function makeFakeCtx(opts: FakeCtxOptions = {}) {
         if (tableName === 'class_enrollments') {
           return {
             collect: async () => enrollments,
+              take: async (limit: number) => enrollments.slice(0, limit),
             filter: () => ({
               collect: async () => enrollments,
+              take: async (limit: number) => enrollments.slice(0, limit),
             }),
           };
         }
         if (tableName === 'srs_cards') {
           return {
             collect: async () => cards,
+              take: async (limit: number) => cards.slice(0, limit),
             filter: () => ({
               collect: async () => cards,
+              take: async (limit: number) => cards.slice(0, limit),
             }),
           };
         }
         if (tableName === 'srs_review_log') {
           return {
             collect: async () => reviews,
+              take: async (limit: number) => reviews.slice(0, limit),
             filter: () => ({
               collect: async () => reviews,
+              take: async (limit: number) => reviews.slice(0, limit),
             }),
           };
         }
@@ -280,8 +285,8 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
     // reuse, no re-implementation.
     const expectedRetention = computeRetentionCurve({
       cards: [
-        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }),
-        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }),
+        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
+        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
       ],
       windowStartMs: COHORT_START_MS,
       windowEndMs: COHORT_END_MS,
@@ -313,7 +318,7 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
       },
     );
 
-    const reviewSuccess = result.metrics.reviewSuccess as ReturnType<typeof computeReviewSuccessRate> | undefined;
+    const reviewSuccess = result.metrics.reviewSuccess;
     expect(reviewSuccess).toBeDefined();
     // Only the inside-window review counts → totalCount = 1, success = 1.
     expect(reviewSuccess?.totalCount).toBe(1);

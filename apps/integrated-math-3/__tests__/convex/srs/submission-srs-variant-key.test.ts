@@ -56,7 +56,7 @@ describe('convex/srs/submissionSrs.ts (artifact rename, FR1/FR5)', () => {
     expect(
       content,
       'submissionSrs.ts must not reference the legacy ProblemFamily identifier',
-    ).not.toMatch(/ProblemFamily/);
+    ).not.toMatch(/\bProblemFamily\b/);
   });
 
   it('references the renamed `variantKey` identifier (positive contract, FR1)', () => {

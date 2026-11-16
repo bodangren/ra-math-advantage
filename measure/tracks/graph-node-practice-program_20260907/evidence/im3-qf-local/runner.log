@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/tmp/im3-qf-local-verification/run-verification.py", line 158, in <module>
+    fixture("rerunQfUpsert", {}, "08-seed-rerun")
+  File "/tmp/im3-qf-local-verification/run-verification.py", line 37, in fixture
+    def fixture(name, args, label, fail=False): return call(f"qfLocalVerification:{name}", args, label, fail)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/im3-qf-local-verification/run-verification.py", line 34, in call
+    return json.loads(stdout)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel.bodanske/.pyenv/versions/3.12.13/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel.bodanske/.pyenv/versions/3.12.13/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniel.bodanske/.pyenv/versions/3.12.13/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

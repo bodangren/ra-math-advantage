@@ -1,0 +1,41 @@
+{
+  "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+  "idempotencyKey": "qf:jd723s098s6cy7c6b22vz8tad58e25hs",
+  "pendingSubmissionId": "jd723s098s6cy7c6b22vz8tad58e25hs",
+  "submissionData": {
+    "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+    "answers": {
+      "discriminant": 4,
+      "x1": 2,
+      "x2": 1
+    },
+    "attemptNumber": 2,
+    "contractVersion": "practice.v1",
+    "mode": "independent_practice",
+    "parts": [
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "discriminant",
+        "rawAnswer": 4,
+        "revealStepsSeen": 0
+      },
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "x1",
+        "rawAnswer": 2,
+        "revealStepsSeen": 0
+      },
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "x2",
+        "rawAnswer": 1,
+        "revealStepsSeen": 0
+      }
+    ],
+    "status": "submitted",
+    "submittedAt": "2027-01-15T00:00:00.000Z"
+  }
+}

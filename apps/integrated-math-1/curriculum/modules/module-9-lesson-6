@@ -1,123 +1,300 @@
 # Lesson 9-6 — Comparing Sets of Data
 
-Source: (Module 9, Lesson 9-6, Int1_0906_practice.docx)
+Source: Module 9, Lesson 9-6, `Int1_0906_practice.docx`.
 
-## Today's Goals
+## Transformation Rule
 
-* Describe how adding or multiplying every value in a data set by a constant affects the mean, median, mode, range, and standard deviation.
-* Construct and interpret box plots and histograms to compare the shape, center, and spread of two data sets.
-* Select and justify the appropriate statistical measures (mean/standard deviation or five-number summary) based on the shape of a distribution.
+When each value is multiplied by a negative constant `k`, keep the sign for measures of center. Multiply the mean, median, and each mode by k. Multiply the range and standard deviation by |k|.
 
-## Vocabulary
+## Example 1
 
-* **Mean** — The average of a data set, found by summing all values and dividing by the number of values.
-* **Median** — The middle value of an ordered data set; the second quartile [ Q_2 ].
-* **Mode** — The value(s) that appear most frequently in a data set.
-* **Range** — The difference between the maximum and minimum values in a data set.
-* **Standard Deviation** — A measure of the spread of a data set, based on the average squared distance from the mean.
-* **Five-Number Summary** — The minimum, first quartile [ Q_1 ], median [ Q_2 ], third quartile [ Q_3 ], and maximum of a data set.
-* **Interquartile Range (IQR)** — The difference [ Q_3 - Q_1 ], representing the spread of the middle 50% of data.
-* **Symmetrical Distribution** — A distribution whose left and right sides are approximately mirror images.
-* **Skewed Distribution** — A distribution with a longer tail on one side; described as left-skewed or right-skewed.
+Find the mean, median, mode, range, and standard deviation of each data set that is obtained after adding the given constant to each value.
 
-## Explore: How Do Changes to Data Affect Its Description?
+### Problem 1
 
-Students imagine a teacher adds 5 points to every student's test score or converts every score to a percentage out of 100. They predict how the mean, median, range, and standard deviation would change and explain their reasoning.
+52, 53, 49, 61, 57, 52, 48, 60, 50, 47; + 8
 
-Inquiry Question:
-What happens to the measures of center and spread when every value in a data set is changed by the same amount?
+### Problem 2
 
-## Learn: Effects of Transformations on Data
+101, 99, 97, 88, 92, 100, 97, 89, 94, 90; + (–13)
 
-When every value in a data set is transformed by addition or multiplication, the measures of center and spread change in predictable ways.
+### Problem 3
 
-### Key Concept: Adding a Constant
+27, 21, 34, 42, 20, 19, 18, 26, 25, 33; + (–4)
 
-* Adding a constant [ c ] to every value shifts all measures of center by [ c ].
-* Measures of spread (range, standard deviation) remain unchanged because the distances between values do not change.
-* If the original mean is [ \bar{x} ], the new mean is [ \bar{x} + c ].
-* The new range equals the original range: [ \text{Range}_{\text{new}} = \text{Range}_{\text{old}} ].
+### Problem 4
 
-### Key Concept: Multiplying by a Constant
+72, 56, 71, 63, 68, 59, 77, 74, 76, 66; + 16
 
-* Multiplying every value by a constant [ k ] scales all measures of center and spread by [ |k| ].
-* If the original mean is [ \bar{x} ], the new mean is [ k \cdot \bar{x} ].
-* The new standard deviation is [ |k| \cdot \sigma ].
-* The new range is [ |k| \cdot \text{Range}_{\text{old}} ].
+## Example 2
 
-### Key Concept: Choosing Comparison Statistics
+Find the mean, median, mode, range, and standard deviation of each data set that is obtained after multiplying each value by the given constant.
 
-* For symmetrical distributions, use the **mean** and **standard deviation** to compare center and spread.
-* For skewed distributions, or when comparing a symmetric and a skewed distribution, use the **five-number summary** (or median and IQR).
+### Problem 5
 
-## Example 1 — Add a Constant and Find Statistics
+11, 7, 3, 13, 16, 8, 3, 11, 17, 3; × 4
 
-Given a data set, add a constant to each value and compute the mean, median, mode, range, and standard deviation of the transformed data.
+### Problem 6
 
-### Step 1: Apply the Transformation
+64, 42, 58, 40, 61, 67, 58, 52, 51, 49; × 0.2
 
-Add the given constant to every data value. For example, with data [ 52, 53, 49, 61, 57, 52, 48, 60, 50, 47 ] and constant [ +8 ]:
+### Problem 7
 
-[
-60, 61, 57, 69, 65, 60, 56, 68, 58, 55
-]
+33, 37, 38, 29, 35, 37, 27, 40, 28, 31; × 0.8
 
-### Step 2: Compute Measures of Center and Spread
+### Problem 8
 
-Find the mean, median, mode, range, and standard deviation of the new data set. Notice that:
+1, 5, 4, 2, 1, 3, 6, 2, 5, 1; × 6.5
 
-* Mean, median, and mode each increase by [ 8 ].
-* Range and standard deviation stay the same as the original data set.
+## Examples 3 and 4
 
-## Example 2 — Multiply by a Constant and Find Statistics
+### Problem 9
 
-Given a data set, multiply each value by a constant and compute the mean, median, mode, range, and standard deviation of the transformed data.
+BASEBALL The total wins per season for the first 17 seasons of the Marlins are shown. The total wins over the same time period for the Cubs are also shown.
 
-### Step 1: Apply the Transformation
+![Marlins and Cubs season-win tables. Each table contains 17 values.](/curriculum/module-9-lesson-6/source-image-1.png)
 
-Multiply every data value by the given constant. For example, with data [ 11, 7, 3, 13, 16, 8, 3, 11, 17, 3 ] and constant [ \times 4 ]:
+| Marlins |
+| --- |
+| 64, 51, 67, 80, 92, 54, 64, 79, 76, 79, 91, 83, 83, 78, 71, 84, 87 |
 
-[
-44, 28, 12, 52, 64, 32, 12, 44, 68, 12
-]
+| Cubs |
+| --- |
+| 84, 49, 73, 76, 68, 90, 67, 65, 88, 67, 88, 89, 79, 66, 85, 97, 83 |
 
-### Step 2: Compute Measures of Center and Spread
+a. Use a graphing calculator to construct a box plot for each set of data. Then describe the shape of each distribution.
 
-Find the mean, median, mode, range, and standard deviation of the new data set. Notice that:
+b. Compare the data sets using either the means and standard deviations or the five-number summaries. Justify your choice.
 
-* Mean, median, and mode are each multiplied by [ 4 ].
-* Range and standard deviation are also multiplied by [ 4 ].
+### Problem 10
 
-## Examples 3 and 4 — Compare Data Sets with Graphs and Statistics
+HEALTH CLUBS To plan their future equipment purchases, the Northville Health Club randomly chooses 8 patrons and tracks how many minutes they spend on the treadmill.
 
-Use technology and statistical reasoning to compare two real-world data sets.
+![A table of treadmill minutes for last week and this week. The table contains eight paired rows.](/curriculum/module-9-lesson-6/source-image-2.png)
 
-### Step 1: Construct Graphs
+| Minutes on Treadmill Last Week | Minutes on Treadmill This Week |
+| --- | --- |
+| 30 | 20 |
+| 30 | 30 |
+| 45 | 45 |
+| 20 | 45 |
+| 60 | 30 |
+| 30 | 60 |
+| 30 | 50 |
+| 45 | 45 |
 
-Use a graphing calculator to build a box plot or histogram for each data set. Describe the shape of each distribution (symmetric, skewed left, skewed right).
+a. Use a graphing calculator to construct a histogram for each set of data. Then describe the shape of each distribution.
 
-### Step 2: Choose and Apply Comparison Statistics
-
-* If both distributions are roughly symmetric, compare using **means and standard deviations**.
-* If either distribution is skewed, compare using **five-number summaries** (or medians and IQRs).
-
-### Step 3: Justify the Choice
-
-Explain why the chosen statistics are appropriate for the shapes of the distributions. Summarize how the center and spread differ between the two data sets.
+b. Compare the data sets using either the means and standard deviations or the five-number summaries. Justify your choice.
 
 ## Mixed Exercises
 
-The mixed exercises provide practice across all lesson skills:
+Find the mean, median, mode, range, and standard deviation of each data set that is obtained after adding or multiplying each value by the given constant(s).
 
-* Compute statistics after adding a constant, multiplying by a constant, or applying a sequence of both operations.
-* Solve real-world problems involving unit conversions (e.g., Fahrenheit to Celsius) and analyze how the transformation affects each statistic.
-* Construct box plots and histograms for paired data sets, describe their shapes, and compare them using the appropriate statistics.
-* Analyze the effect of eliminating outliers on comparisons.
-* Use the median and IQR to evaluate which of two samples is more representative of a population.
-* Explain reasoning for choosing specific statistical measures based on distribution shape.
-* Analyze combined transformations: if [ k ] is added to every value and then each result is multiplied by [ m ] (where [ m > 0 ]), the new measures of center become [ m(\bar{x} + k) ] and measures of spread become [ m ] times the original spread.
+### Problem 11
 
-## Review Notes
+98, 95, 97, 89, 88, 95, 90, 81, 87, 95; + 2
 
-* Problems 9, 10, 21–28 contain images/tables (baseball win data, treadmill times, bowling scores, football distances, temperature tables, fantasy sports points, phone accessory prices, snail shell samples, height samples, and rainfall data) that cannot be described from the extracted text. These require visual review of the original worksheet or scanned images.
-* The data tables in problems 21–26 and 28 are represented as images in the source document and should be recreated or referenced from the original `.docx`.
+### Problem 12
+
+32, 30, 27, 29, 25, 33, 38, 26, 23, 31; × 1.6
+
+### Problem 13
+
+14, 17, 13, 9, 15, 7, 12, 16, 8, 9; × 5
+
+### Problem 14
+
+5, 12, 7, 3, 8, 5, 7, 1, 4, 7, 3, 9; + 22
+
+### Problem 15
+
+12, 15, 16, 12, 12, 15, 17, 19, 22, 27, 42, 42; + 5
+
+### Problem 16
+
+49, 43, 26, 39, 40, 30, 33, 64, 26, 45, 23, 26; × 3, + (–8)
+
+### Problem 17
+
+71, 72, 68, 70, 72, 67, 68, 72, 65, 70; × 0.2
+
+### Problem 18
+
+112, 91, 108, 129, 80, 99, 78, 80; + (–15)
+
+### Problem 19
+
+57, 38, 42, 51, 39, 44, 33, 55; + (–7), × 2
+
+### Problem 20
+
+55, 50, 58, 52, 56, 57, 50, 55, 50; × 2, + 5
+
+### Problem 21
+
+BOWLING The scores of 15 bowlers are shown in the table.
+
+![A table with 15 bowling scores.](/curriculum/module-9-lesson-6/source-image-3.png)
+
+| Score |
+| --- |
+| 211, 123, 183, 176, 224, 115, 109, 136, 152, 177, 127, 196, 143, 166, 170 |
+
+a. Find the mean, median, mode, range, and standard deviation of the scores.
+
+b. The handicap of the bowling team will add 56 points to each score. Find the statistics of the scores while including the handicap.
+
+### Problem 22
+
+COMPETITION The distances that 18 participants threw a football are shown in the table.
+
+![A table with 18 football distances in feet.](/curriculum/module-9-lesson-6/source-image-4.png)
+
+| Distance (feet) |
+| --- |
+| 96, 94, 114, 85, 96, 109, 90, 109, 67, 82, 98, 79, 69, 70, 106, 96, 112, 84 |
+
+a. Find the mean, median, mode, range, and standard deviation of the participants’ distances.
+
+b. Find the statistics of the participants’ distances in yards.
+
+### Problem 23
+
+TEMPERATURE The monthly average high temperatures for Lexington, Kentucky are shown in the table.
+
+![A table with 12 monthly temperatures in degrees Fahrenheit.](/curriculum/module-9-lesson-6/source-image-5.png)
+
+| Temperature (°F) |
+| --- |
+| 40, 45, 55, 65, 74, 82, 86, 85, 78, 67, 55, 44 |
+
+a. Find the mean, median, mode, range, and standard deviation of the temperatures.
+
+b. Find the statistics of the temperatures in degrees Celsius. Recall that C = (5/9)(F – 32).
+
+### Problem 24
+
+FANTASY SPORTS The weekly total points of Scott’s and Azumi’s fantasy baseball teams are shown in the table.
+
+![Scott’s Team and Azumi’s Team tables. Each table contains 22 weekly point totals.](/curriculum/module-9-lesson-6/source-image-6.png)
+
+| Scott’s Team |
+| --- |
+| 109, 99, 121, 137, 131, 141, 77, 83, 139, 92, 42, 133, 98, 153, 124, 102, 113, 117, 112, 128, 107, 147 |
+
+| Azumi’s Team |
+| --- |
+| 113, 121, 98, 104, 106, 123, 175, 141, 109, 129, 49, 110, 112, 144, 106, 119, 127, 88, 132, 93, 137, 123 |
+
+a. Use a graphing calculator to construct a box plot for each set of data. Then describe the shape of each distribution.
+
+b. Compare the data sets using either the means and standard deviations or the five-number summaries. Justify your choice.
+
+c. How does eliminating the outliers of each data set affect the statistics and comparison from part b?
+
+### Problem 25
+
+BUSINESS Saeed owns an electronics store. He is revising his pricing for phone accessories. His current prices for an assortment of accessories are listed at the right. He has also determined that the mean price for the same assortment of accessories at a rival store is $10.99.
+
+![Saeed’s Price Data in dollars. The table has five rows and three columns.](/curriculum/module-9-lesson-6/source-image-7.png)
+
+| Saeed’s Price Data ($) |  |  |
+| --- | --- | --- |
+| 14.99 | 4.49 | 9.99 |
+| 18.49 | 12.99 | 6.99 |
+| 8.49 | 21.99 | 13.49 |
+| 13.99 | 9.99 | 10.99 |
+| 12.49 | 4.49 | 12.99 |
+
+a. Saeed wants to match his rival’s prices. Make a table to list the new prices. Explain.
+
+b. Compare the mean and standard deviation of the current prices to the new prices.
+
+### Problem 26
+
+REASONING Two different samples on the shell diameter of a species of snail are shown.
+
+![Sample A and Sample B snail diameters in millimeters. Each table has nine values.](/curriculum/module-9-lesson-6/source-image-8.png)
+
+| Sample A (mm) |  |  |
+| --- | --- | --- |
+| 45 | 35 | 37 |
+| 40 | 42 | 40 |
+| 28 | 38 | 31 |
+
+| Sample B (mm) |  |  |
+| --- | --- | --- |
+| 26 | 44 | 40 |
+| 27 | 35 | 28 |
+| 26 | 39 | 31 |
+
+a. Use the median and interquartile range to compare the samples.
+
+b. Based on your findings and on the data points in each sample, which sample appears to be more representative? Explain your reasons.
+
+### Problem 27
+
+STRUCTURE Height data samples of 17-year-old male and female students are shown. Use the mean and standard deviation to compare the samples.
+
+![Male and female student heights in inches. Each table has 12 values.](/curriculum/module-9-lesson-6/source-image-9.png)
+
+| Heights of Male Students (inches) |  |  |
+| --- | --- | --- |
+| 71 | 69 | 67 |
+| 68 | 69 | 70 |
+| 72 | 74 | 68 |
+| 71 | 69 | 72 |
+
+| Heights of Female Students (inches) |  |  |
+| --- | --- | --- |
+| 67 | 62 | 69 |
+| 65 | 71 | 66 |
+| 63 | 65 | 68 |
+| 66 | 63 | 70 |
+
+### Problem 28
+
+CONSTRUCT ARGUMENTS Francisca is planning a two-week vacation to one of two cities and wants to base her decision on the weather history for the same dates as her vacation. She has collected the number of days that it has rained during this two-week period for each city over the past 10 years. The results are shown.
+
+![City A and City B rainy-day results. Each table has 10 values.](/curriculum/module-9-lesson-6/source-image-10.png)
+
+| City A |  |
+| --- | --- |
+| 5 | 0 |
+| 7 | 6 |
+| 5 | 6 |
+| 6 | 6 |
+| 3 | 2 |
+
+| City B |  |
+| --- | --- |
+| 4 | 4 |
+| 6 | 5 |
+| 3 | 7 |
+| 4 | 3 |
+| 5 | 7 |
+
+a. Determine the shape of each distribution, and use the appropriate statistics to find the center and spread for each set of data.
+
+b. Which city do you think Francisca should visit on her vacation? Justify your argument.
+
+### Problem 29
+
+WRITE Compare and contrast the benefits of displaying data using histograms and box plots.
+
+### Problem 30
+
+ANALYZE If every value in a set of data is multiplied by a constant k, k < 0, then how can the mean, median, mode, range, and standard deviation of the new data set be found?
+
+### Problem 31
+
+PERSEVERE A salesperson has 15 SUVs priced between $33,000 and $37,000 and 5 luxury cars priced between $44,000 and $48,000. The average price for all of the vehicles is $39,250. The salesperson decides to reduce the prices of the SUVs by $2000 per vehicle. What is the new average price for all of the vehicles?
+
+### Problem 32
+
+ANALYZE If k is added to every value in a set of data, and then each resulting value is multiplied by a constant m, m > 0, how can the mean, median, mode, range, and standard deviation of the new data set be found? Justify your argument.
+
+### Problem 33
+
+WRITE Explain why the mean and standard deviation are used to compare the center and spread of two symmetrical distributions, and the five-number summary is used to compare the center and spread of two skewed distributions or a symmetric distribution and a skewed distribution.

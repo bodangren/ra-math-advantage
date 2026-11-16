@@ -1,0 +1,74 @@
+{
+  "badReferences": {
+    "activitySections": 0,
+    "completions": 0,
+    "items": 1,
+    "phases": 0,
+    "progress": 0,
+    "sections": 0,
+    "standards": 0,
+    "versions": 0
+  },
+  "counts": {
+    "activities": 3,
+    "activity_completions": 0,
+    "class_enrollments": 5,
+    "classes": 1,
+    "competency_standards": 44,
+    "lesson_standards": 1,
+    "lesson_versions": 1,
+    "lessons": 1,
+    "objective_policies": 44,
+    "organizations": 1,
+    "phase_sections": 12,
+    "phase_versions": 11,
+    "practice_items": 3,
+    "practice_variants": 89,
+    "profiles": 7,
+    "student_progress": 0
+  },
+  "demoStates": [
+    {
+      "alias": "student1",
+      "completionPhases": [],
+      "incoherentCompletions": 0,
+      "progress": []
+    },
+    {
+      "alias": "student2",
+      "completionPhases": [],
+      "incoherentCompletions": 0,
+      "progress": []
+    },
+    {
+      "alias": "student3",
+      "completionPhases": [],
+      "incoherentCompletions": 0,
+      "progress": []
+    },
+    {
+      "alias": "student4",
+      "completionPhases": [],
+      "incoherentCompletions": 0,
+      "progress": []
+    },
+    {
+      "alias": "student5",
+      "completionPhases": [],
+      "incoherentCompletions": 0,
+      "progress": []
+    }
+  ],
+  "lessonSlugs": [
+    "module-1-lesson-6"
+  ],
+  "profileRoleCounts": {
+    "student": 6,
+    "teacher": 1
+  },
+  "systems": [],
+  "uniqueItemIds": 3,
+  "uniqueLessonSlugs": 1,
+  "uniqueStandardCodes": 44,
+  "uniqueVariantKeys": 89
+}

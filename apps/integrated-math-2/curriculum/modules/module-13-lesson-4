@@ -36,6 +36,8 @@ Why are there three forms of cos(2theta)? When is each form most useful?
 
 [tan(2theta) = (2 tan theta) / (1 - tan^2 theta)]
 
+The tangent double-angle formula requires tan θ to be defined and 1 − tan² θ ≠ 0.
+
 ### Key Concept: Choosing the Right Form for cos(2theta)
 
 * Use [cos^2 theta - sin^2 theta] when you know both sin and cos
@@ -52,121 +54,53 @@ The sign depends on the quadrant of theta/2.
 
 ## Example 1 — Find sin(2theta), cos(2theta), sin(theta/2), cos(theta/2)
 
-Given [sin theta = 2/3] and [90 degrees < theta < 180 degrees] (Q2), find all four values.
+### Problem
 
-### Step 1: Find cos theta
+Given $\sin\theta=2/3$ with $90^\circ<\theta<180^\circ$, find $\sin2\theta$, $\cos2\theta$, $\sin(\theta/2)$, and $\cos(\theta/2)$ exactly.
 
-[sin^2 theta + cos^2 theta = 1]
+### Solution
 
-[cos^2 theta = 1 - 4/9 = 5/9]
-
-In Q2, cosine is negative: [cos theta = -sqrt(5)/3]
-
-### Step 2: Find sin(2theta)
-
-[sin(2theta) = 2 sin theta cos theta = 2 * (2/3) * (-sqrt(5)/3) = -4 sqrt(5)/9]
-
-### Step 3: Find cos(2theta)
-
-[cos(2theta) = cos^2 theta - sin^2 theta = 5/9 - 4/9 = 1/9]
-
-### Step 4: Find sin(theta/2)
-
-Since [90 degrees < theta < 180 degrees], [45 degrees < theta/2 < 90 degrees] (Q1).
-
-[sin(theta/2) = sqrt((1 - cos theta)/2) = sqrt((1 - (-sqrt(5)/3))/2) = sqrt((1 + sqrt(5)/3)/2)]
-
-### Step 5: Find cos(theta/2)
-
-[cos(theta/2) = sqrt((1 + cos theta)/2) = sqrt((1 - sqrt(5)/3)/2)]
-
-Since theta/2 is in Q1, both sin and cos are positive.
+Quadrant II gives $\cos\theta=-\sqrt5/3$. Thus $\sin2\theta=2\sin\theta\cos\theta=-4\sqrt5/9$ and $\cos2\theta=1-2\sin^2\theta=1/9$. The half-angle is in quadrant I. Therefore $\sin(\theta/2)=\sqrt{(3+\sqrt5)/6}$ and $\cos(\theta/2)=\sqrt{(3-\sqrt5)/6}$, both positive.
 
 ## Example 2 — Apply Double-Angle to Sound Wave Problem
 
-SOUND WAVES: The sound from a tuning fork is represented by [S = 2 sin 2theta]. Rewrite this formula in terms of sin theta and cos theta.
+### Problem
 
-### Step 1: Apply Double-Angle Identity
+A wave model is $S(\theta)=2\sin(2\theta)$. Rewrite it using sine and cosine of theta.
 
-[S = 2 sin(2theta) = 2 * (2 sin theta cos theta) = 4 sin theta cos theta]
+### Solution
 
-### Step 2: Interpret
-
-The formula shows the wave can be expressed as [4 sin theta cos theta], which relates to the product-to-sum identities.
+The double-angle identity is $\sin(2\theta)=2\sin\theta\cos\theta$. Therefore $S(\theta)=4\sin\theta\cos\theta$. The outer factor 2 multiplies the factor 2 from the identity.
 
 ## Example 3 — Find Exact Values Using Half-Angle Formulas
 
-Find the exact value of [sin 75 degrees].
+### Problem
 
-### Step 1: Write as a Half-Angle
+Find $\sin75^\circ$ with a half-angle identity.
 
-[75 degrees = 150 degrees / 2]
+### Solution
 
-[sin 75 degrees = sin(150 degrees / 2)]
-
-### Step 2: Apply Half-Angle Formula
-
-[sin(theta/2) = sqrt((1 - cos theta)/2)]
-
-[sin 75 degrees = sqrt((1 - cos 150 degrees)/2)]
-
-### Step 3: Substitute Known Values
-
-[cos 150 degrees = -sqrt(3)/2]
-
-[sin 75 degrees = sqrt((1 - (-sqrt(3)/2))/2) = sqrt((1 + sqrt(3)/2)/2)]
-
-### Step 4: Simplify
-
-[= sqrt((2 + sqrt(3))/4) = sqrt(2 + sqrt(3))/2]
-
-Alternatively, using [75 degrees = 45 degrees + 30 degrees]:
-
-[sin 75 degrees = sin 45 degrees cos 30 degrees + cos 45 degrees sin 30 degrees]
-
-[= (sqrt(2)/2)(sqrt(3)/2) + (sqrt(2)/2)(1/2) = (sqrt(6) + sqrt(2))/4]
+Use 75°=150°/2. Since 75° is in quadrant I, select the positive square root: $\sin75^\circ=\sqrt{(1-\cos150^\circ)/2}=\sqrt{2+\sqrt3}/2$. This equals $(\sqrt6+\sqrt2)/4$.
 
 ## Example 4 — Find tan 165 degrees
 
-### Step 1: Write as Sum or Difference
+### Problem
 
-[165 degrees = 180 degrees - 15 degrees] or [330 degrees / 2]
+Find $\tan165^\circ$ exactly.
 
-Using [tan(180 degrees - theta) = -tan theta]:
+### Solution
 
-[tan 165 degrees = -tan 15 degrees]
-
-### Step 2: Find tan 15 degrees Using Half-Angle
-
-[tan(15 degrees) = tan(30 degrees/2)]
-
-Using [tan(theta/2) = sin theta / (1 + cos theta)]:
-
-[tan 15 degrees = sin 30 degrees / (1 + cos 30 degrees) = (1/2) / (1 + sqrt(3)/2) = 1/(2 + sqrt(3))]
-
-Rationalize: [= (2 - sqrt(3))/1 = 2 - sqrt(3)]
-
-### Step 3: Apply Sign
-
-[tan 165 degrees = -tan 15 degrees = -(2 - sqrt(3)) = sqrt(3) - 2]
+First use $\tan15^\circ=\sin30^\circ/(1+\cos30^\circ)=1/(2+\sqrt3)=2-\sqrt3$. Tangent is negative in quadrant II, so $\tan165^\circ=-\tan15^\circ=\sqrt3-2$. The denominator in the half-angle form is nonzero here.
 
 ## Example 5 — Structure Problem with Isosceles Right Triangle
 
-STRUCTURE: A large isosceles right triangle has a small triangle formed by bisecting each acute angle.
+### Problem
 
-### Part a: Find sine and cosine for the congruent angles of the small triangle
+Triangle ABC has A=B=45° and C=90°. The internal angle bisectors from A and B meet at I. Find the angles of triangle AIB and the sine and cosine of its angle at I.
 
-Each acute angle of the large triangle is 45 degrees. When bisected, each becomes 22.5 degrees.
+### Solution
 
-[sin 22.5 degrees = sqrt((1 - cos 45 degrees)/2) = sqrt((1 - sqrt(2)/2)/2)]
-
-[cos 22.5 degrees = sqrt((1 + cos 45 degrees)/2) = sqrt((1 + sqrt(2)/2)/2)]
-
-### Part b: Find sine and cosine for the obtuse angle of the small triangle
-
-The obtuse angle is [180 degrees - 22.5 degrees - 22.5 degrees = 135 degrees].
-
-[sin 135 degrees = sqrt(2)/2], [cos 135 degrees = -sqrt(2)/2]
+The angles at A and B in triangle AIB are each 22.5°. Their sum leaves angle AIB=135°. Thus sin(135°)=√2/2 and cos(135°)=-√2/2. Stating which rays form the smaller triangle is necessary to identify its angles.
 
 ## Mixed Exercises
 
@@ -183,6 +117,6 @@ The mixed exercises provide practice with:
 
 ## Review Notes
 
-* Image references: ![](media/image1.png) — Problem 11 shows sound wave diagram. ![](media/image2.png) — Problem 31 shows isosceles triangle structure. ![](media/image3.png) — Problem 32 shows ramp diagram. ![](media/image4.png) — Problem 34 shows Teresa and Armando's calculations. ![](media/image5.png) — Problem 34 shows additional calculation. Consult original worksheet for exact diagrams.
+* Image references: ![Worksheet figure 1](/curriculum/module-13-lesson-4/image1.png) — Problem 11 shows sound wave diagram. ![Worksheet figure 2](/curriculum/module-13-lesson-4/image2.png) — Problem 31 shows isosceles triangle structure. ![Worksheet figure 3](/curriculum/module-13-lesson-4/image3.png) — Problem 32 shows ramp diagram. ![Worksheet figure 4](/curriculum/module-13-lesson-4/image4.png) — Problem 34 shows Teresa and Armando's calculations. ![Worksheet figure 5](/curriculum/module-13-lesson-4/image5.png) — Problem 34 shows additional calculation. Consult original worksheet for exact diagrams.
 * The worksheet contains 40 practice problems across worked examples and mixed exercises.
 * Problem 33 requires solving sin 240 degrees using four different methods.

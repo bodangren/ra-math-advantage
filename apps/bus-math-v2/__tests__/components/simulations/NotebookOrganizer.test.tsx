@@ -18,6 +18,7 @@ const activity: NotebookOrganizerActivity = {
   description: 'Sort the notebook notes',
   componentKey: 'notebook-organizer',
   props: {
+    mode: 'guided_practice',
     title: 'Notebook Organizer Practice',
     description: 'Sort the notebook notes',
     items: [
@@ -88,15 +89,7 @@ describe('NotebookOrganizer', () => {
       );
     });
 
-    expect(onComplete).toHaveBeenCalledWith(
-      expect.objectContaining({
-        totals: expect.objectContaining({
-          asset: 100,
-          liability: 0,
-          equity: 100,
-        }),
-      }),
-    );
+    expect(onComplete).not.toHaveBeenCalled();
   });
 
   it('emits a canonical practice submission when the notebook is solved', async () => {
@@ -134,15 +127,7 @@ describe('NotebookOrganizer', () => {
     const envelope = onSubmit.mock.calls[0][0]
     expect(envelope.parts.length).toBeGreaterThan(0)
 
-    expect(onComplete).toHaveBeenCalledWith(
-      expect.objectContaining({
-        totals: expect.objectContaining({
-          asset: 100,
-          liability: 0,
-          equity: 100,
-        }),
-      }),
-    );
+    expect(onComplete).not.toHaveBeenCalled();
   });
 
   it('only calls onSubmit once on rapid double-click of submit button', async () => {
@@ -177,6 +162,35 @@ describe('NotebookOrganizer', () => {
       expect(onSubmit).toHaveBeenCalledTimes(2);
     });
 
-    expect(onComplete).toHaveBeenCalledTimes(2);
+    expect(onComplete).not.toHaveBeenCalled();
+  });
+
+  it('does not show durable completion when the submission callback returns false', async () => {
+    const onSubmit = vi.fn().mockResolvedValue(false);
+    render(<NotebookOrganizer activity={activity} onSubmit={onSubmit} />);
+
+    dragNoteTo('cash-note', 'asset');
+    dragNoteTo('owner-note', 'equity');
+
+    await waitFor(() => expect(onSubmit).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(screen.getByRole('button', { name: /^submit$/i })).toBeEnabled());
+    expect(screen.queryByText('Balanced and sorted.')).not.toBeInTheDocument();
+  });
+
+  it('preserves the authored Independent mode in the submission envelope', async () => {
+    const onSubmit = vi.fn().mockResolvedValue(true);
+    render(
+      <NotebookOrganizer
+        activity={{ ...activity, props: { ...activity.props, mode: 'independent_practice' } }}
+        onSubmit={onSubmit}
+      />,
+    );
+
+    dragNoteTo('cash-note', 'asset');
+    dragNoteTo('owner-note', 'equity');
+
+    await waitFor(() => expect(onSubmit).toHaveBeenCalledWith(
+      expect.objectContaining({ mode: 'independent_practice' }),
+    ));
   });
 });

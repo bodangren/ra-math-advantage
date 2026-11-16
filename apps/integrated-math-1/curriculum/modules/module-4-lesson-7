@@ -34,7 +34,7 @@ Each parameter transforms the parent graph [ f(x) = |x| ] in a specific way.
 * **Horizontal translation:** [ h ] shifts the graph right if [ h > 0 ] and left if [ h < 0 ].
 * **Vertical translation:** [ k ] shifts the graph up if [ k > 0 ] and down if [ k < 0 ].
 * **Vertical stretch/compression:** [ |a| > 1 ] stretches the graph vertically; [ 0 < |a| < 1 ] compresses it vertically.
-* **Horizontal stretch/compression:** [ |a| > 1 ] inside the absolute value with [ x ] compresses horizontally; [ 0 < |a| < 1 ] stretches horizontally.
+* **Horizontal stretch/compression:** A coefficient [ b ] inside the absolute value compresses horizontally by [ \frac{1}{|b|} ] when [ |b| > 1 ]. It stretches horizontally by [ \frac{1}{|b|} ] when [ 0 < |b| < 1 ].
 * **Reflection:** If [ a < 0 ], the graph reflects across the [ x ]-axis. If [ x ] is replaced by [ -x ], the graph reflects across the [ y ]-axis.
 * The vertex of the transformed graph is at [ (h, k) ].
 
@@ -109,6 +109,8 @@ Given an absolute value function involving reflection, dilation, and translation
 * If [ a < 0 ], the graph reflects across the [ x ]-axis.
 * If [ x ] is replaced by [ -x ] inside the absolute value, the graph reflects across the [ y ]-axis.
 
+For the parent [ f(x) = |x| ], this y-axis reflection has the same graph because the parent is even.
+
 For example, [ g(x) = -3|x| ] reflects across the [ x ]-axis and vertically stretches by a factor of 3.
 
 ### Step 2: Identify Dilations
@@ -148,25 +150,23 @@ For example, for [ h(x) = -2|x - 3| + 2 ], the range is [ y \le 2 ].
 
 ## Example 6 — Model with Absolute Value Functions
 
-Write an absolute value function that models a real-world situation involving a target value and a tolerance.
+Use each provided situation graph to determine an absolute value function. Example 15 includes an escalator-distance graph and a travel-distance graph.
 
-### Step 1: Identify the Target and Tolerance
+### Step 1: Locate the Vertex
 
-Determine the ideal or target value (the vertex) and how much deviation is allowed.
+Read the vertex from the provided graph. Define the input and output variables from the situation.
 
-### Step 2: Write the Equation
+### Step 2: Determine the Scale Factor
 
-Use the form [ y = |x - h| + k ] or an equation comparing the absolute difference to a tolerance. For example, if a bag should contain 16 ounces and the difference cannot exceed [ x ] ounces:
+Use another visible point on the graph to determine [ a ] in:
 
 [
-|s - 16| \le x
+y = a|x - h| + k
 ]
 
-where [ s ] is the actual amount.
+### Step 3: State the Model
 
-### Step 3: Interpret the Results
-
-Solve to find the maximum and minimum acceptable values.
+Write the function and state what the vertex and scale factor mean in the escalator or travel situation.
 
 ## Mixed Exercises
 

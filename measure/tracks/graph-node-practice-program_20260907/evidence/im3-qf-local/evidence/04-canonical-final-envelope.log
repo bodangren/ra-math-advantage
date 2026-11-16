@@ -1,0 +1,41 @@
+{
+  "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+  "idempotencyKey": "qf:jd7a0p35f88113ehj3zha2g0y98e21sf",
+  "pendingSubmissionId": "jd7a0p35f88113ehj3zha2g0y98e21sf",
+  "submissionData": {
+    "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+    "answers": {
+      "discriminant": 28,
+      "x1": "(2 + √28)/2",
+      "x2": "(2 - √28)/2"
+    },
+    "attemptNumber": 1,
+    "contractVersion": "practice.v1",
+    "mode": "independent_practice",
+    "parts": [
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "discriminant",
+        "rawAnswer": 28,
+        "revealStepsSeen": 0
+      },
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "x1",
+        "rawAnswer": "(2 + √28)/2",
+        "revealStepsSeen": 0
+      },
+      {
+        "changedCount": 0,
+        "hintsUsed": 0,
+        "partId": "x2",
+        "rawAnswer": "(2 - √28)/2",
+        "revealStepsSeen": 0
+      }
+    ],
+    "status": "submitted",
+    "submittedAt": "2027-01-15T00:00:00.000Z"
+  }
+}

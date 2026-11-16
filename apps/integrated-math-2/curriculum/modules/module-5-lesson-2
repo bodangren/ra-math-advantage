@@ -33,7 +33,7 @@ If a central angle measures 72°, what type of arc does it intercept? How many s
 * A **semicircle** has measure exactly 180°.
 * A **major arc** has measure greater than 180°.
 
-The sum of the measures of all arcs in a circle is 360°.
+The measures of nonoverlapping arcs that cover the circle sum to 360°.
 
 ### Key Concept: Arc Length
 
@@ -52,29 +52,23 @@ To convert radians to degrees: multiply by [180/π].
 
 ## Example 1 — Find Angle Measures in Circles
 
-Find the value of [x] using geometric relationships in circle diagrams.
+### Problem
 
-### Step 1: Apply Angle Relationships
+Radii OA, OB, and OC divide a circle into three sectors with central angles x°, 2x°, and 3x°. Find all three angles.
 
-Use the fact that angles around a point sum to 360°, vertical angles are congruent, and linear pairs sum to 180°.
+### Solution
+
+Angles around O sum to 360°. Thus x + 2x + 3x = 360, so x = 60. The three central angles are 60°, 120°, and 180°. Each sector arc has the same degree measure as its central angle.
 
 ## Example 2 — Classify Arcs and Find Arc Measures
 
-In ⊙*R*, [AC] and [EB] are diameters. Identify each arc as major, minor, or semicircle, then find its measure.
+### Problem
 
-### Step 1: Identify Arc Type and Apply 360°
+In circle O, A and C are endpoints of a diameter. Point B lies on one semicircle from A to C. The minor arc AB measures 60°. Classify and measure minor arc BC, arc ABC, and the arc from A to B that passes through C.
 
-For arc [EA]: since *E* and *A* are endpoints and the arc does not pass through the opposite side of the circle, [mEA = 60°] or similar, making it a minor arc.
+### Solution
 
-For arc [DEB]: this arc passes through *D* and *E* to *B*, spanning more than 180°, making it a major arc. Its measure is [360° - mED - mDC - mCB - mBA] or similar decomposition.
-
-For arc [AB]: if [AB] is a diameter, then [mAB = 180°], making it a semicircle.
-
-For arc [CDA]: this arc goes from *C* through *D* to *A*, passing through the opposite side of the circle. [mCDA = 180°], making it a semicircle.
-
-### Step 2: Find Specific Arc Measures
-
-If [m∠HCG = 2x°] and [m∠HCD = (6x + 28)°], and [HE] and [GD] are diameters, then find the arc measures using the relationship between inscribed angles and arcs.
+The semicircle ABC measures 180°, so minor arc BC measures 180° - 60° = 120°. Arc ABC is a semicircle. The arc from A through C to B is the major arc AB and measures 360° - 60° = 300°. Three letters identify which path between the endpoints is intended.
 
 ## Mixed Exercises
 
@@ -96,20 +90,20 @@ Practice with all skills from the lesson, including:
 
 ## Review Notes
 
-* ![](media/image1.png), ![](media/image2.png), ![](media/image3.png) — diagrams for Exercises 1–3 (find x)
-* ![](media/image4.png) — ⊙*R* with diameters AC and EB for Exercises 4–9
-* ![](media/image5.png) — circle graph for Westwood High School mascot survey (Exercise 10)
-* ![](media/image6.png) — circle graph for favorite spectator sport (Exercise 11)
-* ![](media/image7.png) — ⊙*A* with diameters PR and QT for Exercises 12–19
-* ![](media/image8.png) — ⊙*D* with diameter NL for Exercises 20–25 (arc length)
-* ![](media/image9.png) — ⊙*Z* for Exercises 38–41 (arc length with given radii)
-* ![](media/image10.png) — ⊙*Z* for Exercise 41
-* ![](media/image11.png) — Chinese clock for Exercise 42
-* ![](media/image12.png) — table and circle graph for Leland High School homework data (Exercise 46)
-* ![](media/image13.png) — diagram for Exercise 47 (Theorem 10.2 proof)
-* ![](media/image14.png), ![](media/image15.png), ![](media/image16.png) — ⊙*S* diagrams for Exercises 48–50
-* ![](media/image17.png) — diagram for Exercises 51–53 (m∠HCG = 2x°)
-* ![](media/image18.png) — table for Exercise 54 (arc length for given radius)
-* ![](media/image19.png) — theater seating diagram for Exercise 55
-* ![](media/image20.png) — diagram for Exercise 59 (congruent arcs discussion)
-* ![](media/image21.png) — diagram for Exercise 60 (clock at 8:10)
+* ![Worksheet figure 1](/curriculum/module-5-lesson-2/image1.png), ![Worksheet figure 2](/curriculum/module-5-lesson-2/image2.png), ![Worksheet figure 3](/curriculum/module-5-lesson-2/image3.png) — diagrams for Exercises 1–3 (find x)
+* ![Worksheet figure 4](/curriculum/module-5-lesson-2/image4.png) — ⊙*R* with diameters AC and EB for Exercises 4–9
+* ![Worksheet figure 5](/curriculum/module-5-lesson-2/image5.png) — circle graph for Westwood High School mascot survey (Exercise 10)
+* ![Worksheet figure 6](/curriculum/module-5-lesson-2/image6.png) — circle graph for favorite spectator sport (Exercise 11)
+* ![Worksheet figure 7](/curriculum/module-5-lesson-2/image7.png) — ⊙*A* with diameters PR and QT for Exercises 12–19
+* ![Worksheet figure 8](/curriculum/module-5-lesson-2/image8.png) — ⊙*D* with diameter NL for Exercises 20–25 (arc length)
+* ![Worksheet figure 9](/curriculum/module-5-lesson-2/image9.png) — ⊙*Z* for Exercises 38–41 (arc length with given radii)
+* ![Worksheet figure 10](/curriculum/module-5-lesson-2/image10.png) — ⊙*Z* for Exercise 41
+* ![Worksheet figure 11](/curriculum/module-5-lesson-2/image11.png) — Chinese clock for Exercise 42
+* ![Worksheet figure 12](/curriculum/module-5-lesson-2/image12.png) — table and circle graph for Leland High School homework data (Exercise 46)
+* ![Worksheet figure 13](/curriculum/module-5-lesson-2/image13.png) — diagram for Exercise 47 (Theorem 10.2 proof)
+* ![Worksheet figure 14](/curriculum/module-5-lesson-2/image14.png), ![Worksheet figure 15](/curriculum/module-5-lesson-2/image15.png), ![Worksheet figure 16](/curriculum/module-5-lesson-2/image16.png) — ⊙*S* diagrams for Exercises 48–50
+* ![Worksheet figure 17](/curriculum/module-5-lesson-2/image17.png) — diagram for Exercises 51–53 (m∠HCG = 2x°)
+* ![Worksheet figure 18](/curriculum/module-5-lesson-2/image18.png) — table for Exercise 54 (arc length for given radius)
+* ![Worksheet figure 19](/curriculum/module-5-lesson-2/image19.png) — theater seating diagram for Exercise 55
+* ![Worksheet figure 20](/curriculum/module-5-lesson-2/image20.png) — diagram for Exercise 59 (congruent arcs discussion)
+* ![Worksheet figure 21](/curriculum/module-5-lesson-2/image21.png) — diagram for Exercise 60 (clock at 8:10)

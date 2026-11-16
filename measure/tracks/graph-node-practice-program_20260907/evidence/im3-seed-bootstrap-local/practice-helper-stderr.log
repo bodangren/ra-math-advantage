@@ -1,0 +1,4 @@
+✖ Failed to run function "seed/seed_practice_items:seedPracticeItems":
+Error: [Request ID: 8e3027b294763a75] Server Error
+Uncaught Error: Too many bytes read in a single function execution (limit: 16777216 bytes). Consider using smaller limits in your queries, paginating your queries, or using indexed queries with a selective index range expressions.
+    at async handler (../../convex/seed/seed_practice_items.ts:71:31)

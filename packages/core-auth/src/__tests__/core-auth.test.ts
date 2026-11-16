@@ -66,6 +66,10 @@ describe('session token signing and verification', () => {
     expect(claims?.role).toBe('student');
   });
 
+  it.each(['!', 'a', '%%%'])('rejects malformed signature %s without throwing', async (signature) => {
+    await expect(verifySessionToken(`a.b.${signature}`, TEST_SECRET)).resolves.toBeNull();
+  });
+
   it('rejects tampered tokens', async () => {
     const input = {
       sub: 'user-123',

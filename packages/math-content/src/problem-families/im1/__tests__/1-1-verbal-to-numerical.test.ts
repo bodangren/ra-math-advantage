@@ -168,4 +168,21 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
       expect((out.solutionSteps ?? []).length).toBeGreaterThan(0);
     }
   });
+
+  it('grades only the translated expression and preserves the value for objective 1b', () => {
+    const entry = findEntryForSkill();
+    for (let seed = 0; seed < 50; seed += 1) {
+      const out = entry.generate({ nodeId: SKILL_ID, seed, difficulty: 0.5 });
+      const expression = out.data.expression as string;
+      const acceptedExpressions = out.data.acceptedExpressions as string[];
+
+      expect(Object.keys(out.expectedAnswer)).toEqual(['expression']);
+      expect(out.expectedAnswer.expression).toBe(expression);
+      expect(Object.keys(out.gradingMetadata.partAnswers)).toEqual(['expression']);
+      expect(out.gradingMetadata.partGradingRules).toEqual({ expression: 'custom' });
+      expect(typeof out.data.value).toBe('number');
+      expect(acceptedExpressions).toContain(expression);
+      expect(acceptedExpressions).not.toContain(String(out.data.value));
+    }
+  });
 });

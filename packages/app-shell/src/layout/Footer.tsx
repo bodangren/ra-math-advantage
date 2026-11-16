@@ -56,26 +56,26 @@ export function Footer({
                   {brandIcon}
                 </div>
               )}
-              <h3 className="font-display font-semibold text-white text-sm leading-tight">
+              <h2 className="font-display font-semibold text-white text-sm leading-tight">
                 {brandName}
-              </h3>
+              </h2>
             </div>
             {brandDescription && (
-              <p className="text-sm text-white/45 font-body leading-relaxed">
+              <p className="text-sm text-white/70 font-body leading-relaxed">
                 {brandDescription}
               </p>
             )}
             {copyright && (
-              <p className="text-xs text-white/30 font-mono-num">{copyright}</p>
+              <p className="text-xs text-white/70 font-mono-num">{copyright}</p>
             )}
           </div>
 
           {sections.map((section) => (
             <div key={section.title} className="space-y-3">
-              <h4 className="text-xs font-mono-num font-medium tracking-widest uppercase text-white/40">
+              <h3 className="text-xs font-mono-num font-medium tracking-widest uppercase text-white/70">
                 {section.title}
-              </h4>
-              <nav className="flex flex-col space-y-2 text-sm font-body">
+              </h3>
+              <nav aria-label={section.title} className="flex flex-col space-y-2 text-sm font-body">
                 {section.links.map((link) => (
                   <Link
                     key={link.href}
@@ -91,7 +91,7 @@ export function Footer({
         </div>
 
         <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between gap-4 flex-wrap">
-          <p className="text-xs text-white/25 font-mono-num">{brandName}</p>
+          <p className="text-xs text-white/70 font-mono-num">{brandName}</p>
           <div
             className="h-1 w-8 rounded-full"
             style={{ backgroundColor: accentColor }}

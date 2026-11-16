@@ -14,7 +14,7 @@ export function createCard(params: {
   problemFamilyId: string;
   now?: string;
 }) {
-  return pkgCreateCard(params);
+  return pkgCreateCard({ ...params, variantKey: params.problemFamilyId });
 }
 
 /**
@@ -57,11 +57,11 @@ export function createNewCard(problemFamilyId: string, studentId: string): {
   const newCard = pkgCreateCard({
     studentId,
     objectiveId: problemFamilyId,
-    problemFamilyId,
+    variantKey: problemFamilyId,
     now,
   });
   return {
-    problemFamilyId: newCard.problemFamilyId,
+    problemFamilyId: newCard.variantKey,
     studentId: newCard.studentId,
     card: {
       due: newCard.dueDate,
@@ -115,7 +115,7 @@ export function reviewCardLegacy(card: {
     cardId: `legacy_${Date.now()}`,
     studentId: card.studentId,
     objectiveId: card.problemFamilyId,
-    problemFamilyId: card.problemFamilyId,
+    variantKey: card.problemFamilyId,
     stability: card.card.stability as number ?? 0,
     difficulty: card.card.difficulty as number ?? 0,
     state: stateMap[card.card.state as number] ?? 'new',
@@ -130,7 +130,7 @@ export function reviewCardLegacy(card: {
   }, rating);
 
   return {
-    problemFamilyId: newCard.problemFamilyId,
+    problemFamilyId: newCard.variantKey,
     studentId: newCard.studentId,
     card: {
       due: newCard.dueDate,

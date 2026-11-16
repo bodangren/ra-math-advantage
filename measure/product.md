@@ -25,6 +25,7 @@ This document gives the current state. A direction item of 2026-11-14 has the ma
 | `apps/integrated-math-3/` | Integrated Math 3 Honors | Active development |
 | `apps/pre-calculus/` | AP Precalculus | Separate app: Convex schema, skill graph |
 | `apps/bus-math-v2/` | Math for Business Operations v2 | Migrated, maintained |
+| `apps/danielson/` | Danielson Teacher Growth | Active development |
 
 Planned changes:
 
@@ -115,7 +116,7 @@ Each app owns:
 
 ## Non-Goals
 
-- Content authoring/CMS (content managed in database and seed scripts)
+- General-purpose content management system. IM3 includes teacher lesson authoring and publication. Seed scripts provide the initial curriculum.
 - Real-time collaboration
 - Mobile native apps
 - Third-party LMS integration (Canvas, Google Classroom)

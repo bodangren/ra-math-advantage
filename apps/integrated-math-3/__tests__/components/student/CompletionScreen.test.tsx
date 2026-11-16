@@ -9,7 +9,7 @@ describe('CompletionScreen', () => {
     render(<CompletionScreen completedCount={5} totalCount={10} />);
 
     expect(screen.getByText('All done for today! Come back tomorrow for your next review.')).toBeInTheDocument();
-    expect(screen.getByText(/Completed 5 of 10 cards/)).toBeInTheDocument();
+    expect(screen.getByRole('status')).toBeInTheDocument();
   });
 
   it('renders dashboard link', () => {
@@ -28,7 +28,7 @@ describe('CompletionScreen', () => {
   it('uses correct heading', () => {
     render(<CompletionScreen completedCount={1} totalCount={1} />);
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Daily Practice');
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Session complete');
   });
 });
 

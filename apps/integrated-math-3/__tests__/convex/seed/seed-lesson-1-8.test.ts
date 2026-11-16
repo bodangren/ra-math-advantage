@@ -96,7 +96,7 @@ describe('seed-lesson-1-8', () => {
         content: {
           componentKey: 'graphing-explorer' as const,
           props: {
-            equations: ['y = x^2', 'y = x + 2'],
+            equations: { first: 'y = x^2', second: 'y = x + 2' },
           },
         },
       };
@@ -113,7 +113,7 @@ describe('seed-lesson-1-8', () => {
           componentKey: 'step-by-step-solver' as const,
           props: {
             problemType: 'system',
-            equations: ['y = x^2', 'y = x + 2'],
+            equations: { first: 'y = x^2', second: 'y = x + 2' },
             steps: [],
           },
         },
@@ -121,6 +121,7 @@ describe('seed-lesson-1-8', () => {
 
       expect(workedExampleSection.content.componentKey).toBe('step-by-step-solver');
       expect(validComponentKeys).toContain(workedExampleSection.content.componentKey);
+      expect(workedExampleSection.content.props.equations).toEqual({ first: 'y = x^2', second: 'y = x + 2' });
     });
 
     it('discourse phase should have comprehension-quiz activity', () => {

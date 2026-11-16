@@ -13,10 +13,10 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
 
   describe('teaching mode', () => {
     it('renders the graph with function plotted', () => {
-      render(<GraphingExplorer {...defaultProps} mode="teaching" />);
+      const { container } = render(<GraphingExplorer {...defaultProps} mode="teaching" />);
 
       expect(screen.getByText(/graph the function/i)).toBeInTheDocument();
-      expect(screen.getByText('y = x^2 - 4')).toBeInTheDocument();
+      expect(container.querySelector('[data-testid="worked-equation"] .katex')).toBeInTheDocument();
     });
 
     it('shows all key points labeled (vertex, intercepts)', () => {
@@ -26,7 +26,8 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
       };
       render(<GraphingExplorer {...propsWithPoints} mode="teaching" />);
 
-      expect(screen.getByText(/0, -4/i)).toBeInTheDocument();
+      expect(Array.from(document.querySelectorAll('.point-label')).map((label) => label.textContent))
+        .toContain('0.0, -4.0');
     });
 
     it('is read-only - no interaction allowed', () => {
@@ -134,14 +135,122 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
         expect(screen.getByText(/0, 0/i)).toBeInTheDocument();
       }, { timeout: 3000 });
     });
+
+    it('submits a deferred table-and-graph envelope for Guided table_graph mode', async () => {
+      const onSubmit = vi.fn();
+      const tableValues = [-2, -1, 0, 1, 2].map((x) => ({ x, y: x ** 2 - 4 }));
+      const { container } = render(
+        <GraphingExplorer
+          {...defaultProps}
+          mode="guided"
+          responseVariant="table_graph"
+          onSubmit={onSubmit}
+        />,
+      );
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      fireEvent.click(canvas, { clientX: 300, clientY: 300 });
+      expect(container.querySelectorAll('.point-label')).toHaveLength(0);
+      expect(screen.queryByRole('button', { name: 'Submit' })).not.toBeInTheDocument();
+      expect(screen.getByText(/hints/i)).toBeInTheDocument();
+
+      screen.getAllByRole('spinbutton').forEach((input, index) => {
+        fireEvent.change(input, { target: { value: String(tableValues[index].y) } });
+      });
+
+      await waitFor(() => {
+        expect(container.querySelectorAll('.point-label')).toHaveLength(0);
+        expect(screen.getByRole('button', { name: 'Submit' })).toBeEnabled();
+      });
+
+      container.querySelectorAll('tr').forEach((row) => {
+        expect(row).not.toHaveClass('bg-red-100');
+        expect(row).not.toHaveClass('bg-green-100');
+      });
+
+      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+
+      await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
+      const submission = onSubmit.mock.calls[0][0];
+      expect(submission.mode).toBe('guided_practice');
+      expect(Object.keys(submission.answers).sort()).toEqual(['placedPoints', 'tableValues']);
+      expect(submission.answers).toEqual({ tableValues, placedPoints: [] });
+      expect(submission.parts).toEqual([
+        { partId: 'table_values', rawAnswer: tableValues },
+        { partId: 'placed_points', rawAnswer: [] },
+      ]);
+      expect(submission.parts.every((part: Record<string, unknown>) => (
+        !('isCorrect' in part) && !('score' in part) && !('maxScore' in part)
+      ))).toBe(true);
+      expect(submission.artifact.graphState).toEqual({
+        equation: 'y = x^2 - 4',
+        tableValues,
+        placedPoints: [],
+      });
+      expect(screen.getByTestId('deferred-submission-recorded')).toHaveTextContent('Submission recorded for grading.');
+      expect(screen.queryByText(/correct solution/i)).not.toBeInTheDocument();
+      expect(screen.getByText(/hints/i)).toBeInTheDocument();
+    });
   });
 
   describe('practice mode', () => {
+    it('uses deferred table-and-graph submission without client grading', async () => {
+      const onSubmit = vi.fn();
+      const { container } = render(
+        <GraphingExplorer
+          {...defaultProps}
+          mode="practice"
+          responseVariant="table_graph"
+          onSubmit={onSubmit}
+        />,
+      );
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      fireEvent.click(canvas, { clientX: 300, clientY: 300 });
+      expect(container.querySelectorAll('.point-label')).toHaveLength(0);
+
+      const tableValues = [7, 8, 9, 10, 11];
+      screen.getAllByRole('spinbutton').forEach((input, index) => {
+        fireEvent.change(input, { target: { value: String(tableValues[index]) } });
+      });
+
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: 'Submit' })).toBeEnabled();
+      });
+
+      container.querySelectorAll('tr').forEach((row) => {
+        expect(row).not.toHaveClass('bg-red-100');
+        expect(row).not.toHaveClass('bg-green-100');
+      });
+      expect(screen.queryByText(/hints/i)).not.toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+
+      await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
+      const submission = onSubmit.mock.calls[0][0];
+      expect(submission.answers).toEqual({
+        tableValues: [-2, -1, 0, 1, 2].map((x, index) => ({ x, y: tableValues[index] })),
+        placedPoints: [],
+      });
+      expect(submission.parts).toEqual([
+        { partId: 'table_values', rawAnswer: expect.any(Array) },
+        { partId: 'placed_points', rawAnswer: [] },
+      ]);
+      expect(submission.parts.every((part: Record<string, unknown>) => !('isCorrect' in part))).toBe(true);
+      expect(submission.artifact.graphState).toEqual({
+        equation: 'y = x^2 - 4',
+        tableValues: submission.answers.tableValues,
+        placedPoints: [],
+      });
+      expect(screen.getByTestId('deferred-submission-recorded')).toHaveTextContent('Submission recorded for grading.');
+      expect(screen.queryByText(/correct solution/i)).not.toBeInTheDocument();
+    });
+
     it('shows problem statement without table scaffold', () => {
-      render(<GraphingExplorer {...defaultProps} mode="practice" />);
+      const { container } = render(<GraphingExplorer {...defaultProps} mode="practice" />);
 
       expect(screen.getByText(/graph the function/i)).toBeInTheDocument();
-      expect(screen.getByText('y = x^2 - 4')).toBeInTheDocument();
+      expect(container.querySelector('[data-testid="graphing-equation"] .katex')).toBeInTheDocument();
       expect(screen.queryByText(/table of values/i)).not.toBeInTheDocument();
     });
 
@@ -301,10 +410,10 @@ describe('GraphingExplorer - find_intercepts variant', () => {
         ...defaultProps,
         points: [[-2, 0], [2, 0]] as [number, number][],
       };
-      render(<GraphingExplorer {...props} mode="teaching" />);
+      const { container } = render(<GraphingExplorer {...props} mode="teaching" />);
 
       expect(screen.getByText(/find the x-intercepts/i)).toBeInTheDocument();
-      expect(screen.getByText('y = x^2 - 4')).toBeInTheDocument();
+      expect(container.querySelector('[data-testid="graphing-equation"] .katex')).toBeInTheDocument();
     });
 
     it('shows all x-intercepts labeled', () => {

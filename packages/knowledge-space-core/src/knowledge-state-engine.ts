@@ -13,6 +13,7 @@ import type {
   MasteryState,
 } from './mastery-state';
 import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
+import { stabilityToRetention as canonicalStabilityToRetention } from '@math-platform/srs-engine';
 
 /**
  * Minimal student shape consumed by the engine. The structural `{ id: string }`
@@ -49,33 +50,24 @@ export type KnowledgeStateEvidence = {
 };
 
 // ---------------------------------------------------------------------------
-// Retention decay (kst-srs.v2 §3.3)
+// Retention compatibility (kst-srs.v3.2 §13.5)
 // ---------------------------------------------------------------------------
 
 /**
- * Exponential decay model: `retention = exp(−deltaDays / (stability · scale))`.
- *
- * When `deltaDays = 0` (just reviewed), retention = 1.0. As time passes
- * relative to stability, retention drops toward 0 asymptotically. The
- * optional `scale` parameter (default 1) allows the bridge or calibration
- * to tune the decay speed without touching stability.
- *
- * Pure, deterministic, exported for testing and for the SRS→KST bridge.
+ * Compatibility alias for the canonical SRS-owned retention implementation.
+ * New KST callers should pass pre-aggregated objective evidence instead.
  *
  * @param stability - FSRS-style stability in days (> 0)
  * @param deltaDays - Elapsed time in days since last review (≥ 0)
- * @param scale - Tuning factor for decay speed (default 1)
  * @returns retention ∈ [0, 1]
+ * @deprecated Import from `@math-platform/srs-engine` and pass aggregated
+ * objective retention across the SRS→KST adapter boundary.
  */
 export function stabilityToRetention(
   stability: number,
   deltaDays: number,
-  scale: number = 1,
 ): number {
-  if (stability <= 0) return 0;
-  const exponent = -deltaDays / (stability * scale);
-  const retention = Math.exp(exponent);
-  return Math.max(0, Math.min(1, retention));
+  return canonicalStabilityToRetention(stability, deltaDays);
 }
 
 // ---------------------------------------------------------------------------

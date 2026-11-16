@@ -32,36 +32,43 @@ To find a missing side, isolate the variable on one side of the equation.
 
 ## Example 1 — Find the Value of x
 
-### Step 1: Apply the Pythagorean Theorem
+### Problem
 
-1-6. Solve [a² + b² = c²] for the unknown side length in each right triangle.
+A right triangle has one leg of 5 cm and a hypotenuse of 13 cm. Find the other leg x.
+
+### Solution
+
+The hypotenuse is the longest side. Use 5² + x² = 13². Then x² = 169 - 25 = 144. A length is positive, so x = 12 cm.
 
 ## Example 2 — Use Pythagorean Triples
 
-### Step 1: Recognize Common Triples
+### Problem
 
-Pythagorean triples include (3, 4, 5), (5, 12, 13), (7, 24, 25), (8, 15, 17), and (9, 40, 41).
+A right triangle has legs of 14 m and 48 m. Find its hypotenuse using a Pythagorean triple.
 
-7-12. Identify and use Pythagorean triples to find values more efficiently.
+### Solution
+
+The legs are twice 7 and 24. The triple (7, 24, 25) gives a hypotenuse of 2(25) = 50 m. Check: 14² + 48² = 196 + 2304 = 2500 = 50².
 
 ## Example 3 — Real-World Applications
 
-### Step 1: Set Up the Problem
+### Problem
 
-13. Ramp: The bottom of a ramp is 10 feet from the dock. The ramp is 11 feet long. How high is the dock?
+A straight ramp is 11 ft long. Its lower end is 10 ft horizontally from the vertical dock wall. Find the dock height to the nearest hundredth of a foot.
 
-14. Flight: An airplane lands 60 miles east and 25 miles north of where it took off. How far apart are the airports?
+### Solution
+
+The ramp is the hypotenuse. Use $h^2 + 10^2 = 11^2$. Thus $h = \sqrt{21}$ ft, approximately 4.58 ft.
 
 ## Example 4 — Classify Triangles
 
-Determine whether points X, Y, and Z can be vertices of a triangle. If so, classify as acute, right, or obtuse.
+### Problem
 
-### Step 1: Check Triangle Inequality and Side Lengths
+Classify the triangle with X(-3, -2), Y(-1, 0), and Z(0, -1) as acute, right, or obtuse.
 
-15. X(−3, −2), Y(−1, 0), Z(0, −1)
-16. X(−7, −3), Y(−2, −5), Z(−4, −1)
-17. X(1, 2), Y(4, 6), Z(6, 6)
-18. X(3, 1), Y(3, 7), Z(11, 1)
+### Solution
+
+The squared side lengths are XY² = 2² + 2² = 8, YZ² = 1² + (-1)² = 2, and XZ² = 3² + 1² = 10. The points are not collinear. Since 8 + 2 = 10, the triangle is right. The right angle is at Y, opposite the longest side XZ.
 
 ## Mixed Exercises
 
@@ -91,32 +98,32 @@ Determine whether points X, Y, and Z can be vertices of a triangle. If so, class
 ## Review Notes
 
 * Images referenced in this lesson:
-  * ![](media/image1.png) — right triangle diagram
-  * ![](media/image2.png) — right triangle diagram
-  * ![](media/image3.png) — right triangle diagram
-  * ![](media/image4.png) — right triangle diagram
-  * ![](media/image5.png) — right triangle diagram
-  * ![](media/image6.png) — right triangle diagram
-  * ![](media/image7.png) — Pythagorean triple triangle
-  * ![](media/image8.png) — Pythagorean triple triangle
-  * ![](media/image9.png) — Pythagorean triple triangle
-  * ![](media/image10.png) — Pythagorean triple triangle
-  * ![](media/image11.png) — Pythagorean triple triangle
-  * ![](media/image12.png) — Pythagorean triple triangle
-  * ![](media/image13.png) — warehouse ramp diagram
-  * ![](media/image14.png) — proof diagram
-  * ![](media/image15.png) — triangle classification diagram
-  * ![](media/image16.png) — proof diagram
-  * ![](media/image17.png) — proof diagram
-  * ![](media/image18.png) — perimeter/area diagram
-  * ![](media/image19.png) — perimeter/area diagram
-  * ![](media/image20.png) — perimeter/area diagram
-  * ![](media/image21.png) — redwood tree diagram
-  * ![](media/image22.png) — find x diagram
-  * ![](media/image23.png) — find x diagram
-  * ![](media/image24.png) — find x diagram
-  * ![](media/image25.png) — structure diagram
-  * ![](media/image26.png) — HDTV diagram
-  * ![](media/image27.png) — distance diagram
-  * ![](media/image28.png) — office park diagram
-  * ![](media/image29.png) — find x diagram
+  * ![Worksheet figure 1](/curriculum/module-4-lesson-2/image1.png) — right triangle diagram
+  * ![Worksheet figure 2](/curriculum/module-4-lesson-2/image2.png) — right triangle diagram
+  * ![Worksheet figure 3](/curriculum/module-4-lesson-2/image3.png) — right triangle diagram
+  * ![Worksheet figure 4](/curriculum/module-4-lesson-2/image4.png) — right triangle diagram
+  * ![Worksheet figure 5](/curriculum/module-4-lesson-2/image5.png) — right triangle diagram
+  * ![Worksheet figure 6](/curriculum/module-4-lesson-2/image6.png) — right triangle diagram
+  * ![Worksheet figure 7](/curriculum/module-4-lesson-2/image7.png) — Pythagorean triple triangle
+  * ![Worksheet figure 8](/curriculum/module-4-lesson-2/image8.png) — Pythagorean triple triangle
+  * ![Worksheet figure 9](/curriculum/module-4-lesson-2/image9.png) — Pythagorean triple triangle
+  * ![Worksheet figure 10](/curriculum/module-4-lesson-2/image10.png) — Pythagorean triple triangle
+  * ![Worksheet figure 11](/curriculum/module-4-lesson-2/image11.png) — Pythagorean triple triangle
+  * ![Worksheet figure 12](/curriculum/module-4-lesson-2/image12.png) — Pythagorean triple triangle
+  * ![Worksheet figure 13](/curriculum/module-4-lesson-2/image13.png) — warehouse ramp diagram
+  * ![Worksheet figure 14](/curriculum/module-4-lesson-2/image14.png) — proof diagram
+  * ![Worksheet figure 15](/curriculum/module-4-lesson-2/image15.png) — triangle classification diagram
+  * ![Worksheet figure 16](/curriculum/module-4-lesson-2/image16.png) — proof diagram
+  * ![Worksheet figure 17](/curriculum/module-4-lesson-2/image17.png) — proof diagram
+  * ![Worksheet figure 18](/curriculum/module-4-lesson-2/image18.png) — perimeter/area diagram
+  * ![Worksheet figure 19](/curriculum/module-4-lesson-2/image19.png) — perimeter/area diagram
+  * ![Worksheet figure 20](/curriculum/module-4-lesson-2/image20.png) — perimeter/area diagram
+  * ![Worksheet figure 21](/curriculum/module-4-lesson-2/image21.png) — redwood tree diagram
+  * ![Worksheet figure 22](/curriculum/module-4-lesson-2/image22.png) — find x diagram
+  * ![Worksheet figure 23](/curriculum/module-4-lesson-2/image23.png) — find x diagram
+  * ![Worksheet figure 24](/curriculum/module-4-lesson-2/image24.png) — find x diagram
+  * ![Worksheet figure 25](/curriculum/module-4-lesson-2/image25.png) — structure diagram
+  * ![Worksheet figure 26](/curriculum/module-4-lesson-2/image26.png) — HDTV diagram
+  * ![Worksheet figure 27](/curriculum/module-4-lesson-2/image27.png) — distance diagram
+  * ![Worksheet figure 28](/curriculum/module-4-lesson-2/image28.png) — office park diagram
+  * ![Worksheet figure 29](/curriculum/module-4-lesson-2/image29.png) — find x diagram

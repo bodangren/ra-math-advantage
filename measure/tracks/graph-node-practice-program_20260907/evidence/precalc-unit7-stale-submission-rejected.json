@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "mode": "guided_practice",
+      "status": 409,
+      "body": {
+        "error": "Practice is not available"
+      }
+    },
+    {
+      "mode": "independent_practice",
+      "status": 409,
+      "body": {
+        "error": "Practice is not available"
+      }
+    }
+  ],
+  "persistedIdentitiesUnchanged": true
+}

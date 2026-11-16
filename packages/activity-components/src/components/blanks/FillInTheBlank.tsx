@@ -7,7 +7,8 @@ import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/co
 
 interface Blank {
   id: string;
-  correctAnswer: string;
+  correctAnswer?: string;
+  acceptedAnswers?: string[];
   isMath?: boolean;
 }
 
@@ -21,8 +22,14 @@ export interface FillInTheBlankProps {
   mode: 'teaching' | 'guided' | 'practice';
   template: string;
   blanks: Blank[];
+  reasoningSteps?: Array<{ description: string; expression?: string }>;
+  guidedSupport?: {
+    feedback: 'on_check';
+    hints: string[];
+    revealAfterAttempts: number;
+  };
   wordBank?: WordBankItem[];
-  onSubmit?: (payload: unknown) => void;
+  onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
 }
 
@@ -32,6 +39,10 @@ interface FitBState {
   currentBlankIndex: number;
   feedbackShown: Record<string, boolean>;
   submitted: boolean;
+  submitError?: string;
+  attempts: Record<string, number>;
+  hintsUsed: Record<string, number>;
+  revealed: Record<string, boolean>;
 }
 
 const BLANK_REGEX = /\{\{blank:(\w+)\}\}/g;
@@ -63,13 +74,32 @@ function parseTemplate(template: string): Array<{ type: 'text' | 'blank'; value:
 }
 
 /**
- * Check if a user's answer matches the blank's correct answer.
- * @param {Blank} blank - The blank definition with the correct answer
- * @param {string} answer - The user's submitted answer
- * @returns {boolean} - True if the answer is correct (case-insensitive)
+ * Normalize supported expression notation without evaluating the expression.
+ * @param {string} value - The typed expression.
+ * @returns {string} Expression with consistent operator notation.
  */
+function normalizeAcceptedExpression(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/\\left|\\right/g, '')
+    .replace(/\\times|\\cdot/g, '*')
+    .replace(/\\div/g, '/')
+    .replace(/[−–]/g, '-')
+    .replace(/×/g, '*')
+    .replace(/÷/g, '/')
+    .replace(/\s+/g, '');
+}
+
 function isAnswerCorrect(blank: Blank, answer: string): boolean {
-  return answer.trim().toLowerCase() === blank.correctAnswer.trim().toLowerCase();
+  const acceptedAnswers = blank.acceptedAnswers ??
+    (blank.correctAnswer ? [blank.correctAnswer] : []);
+  const normalize = blank.isMath
+    ? normalizeAcceptedExpression
+    : (value: string) => value.trim().toLowerCase();
+  const normalizedAnswer = normalize(answer);
+  return acceptedAnswers.some(accepted =>
+    normalize(accepted) === normalizedAnswer,
+  );
 }
 
 /**
@@ -96,6 +126,8 @@ export function FillInTheBlank({
   mode,
   template,
   blanks,
+  reasoningSteps,
+  guidedSupport,
   wordBank,
   onSubmit,
   onComplete,
@@ -106,6 +138,9 @@ export function FillInTheBlank({
     currentBlankIndex: 0,
     feedbackShown: {},
     submitted: false,
+    attempts: {},
+    hintsUsed: {},
+    revealed: {},
   });
 
   const templateParts = parseTemplate(template);
@@ -117,7 +152,44 @@ export function FillInTheBlank({
     setState(prev => ({
       ...prev,
       answers: { ...prev.answers, [blankId]: answer },
-      feedbackShown: { ...prev.feedbackShown, [blankId]: true },
+      feedbackShown: {
+        ...prev.feedbackShown,
+        [blankId]: guidedSupport ? false : true,
+      },
+    }));
+  };
+
+  const handleCheck = () => {
+    if (!currentBlankId) return;
+    setState(previous => ({
+      ...previous,
+      feedbackShown: { ...previous.feedbackShown, [currentBlankId]: true },
+      attempts: {
+        ...previous.attempts,
+        [currentBlankId]: (previous.attempts[currentBlankId] ?? 0) + 1,
+      },
+    }));
+  };
+
+  const handleHint = () => {
+    if (!currentBlankId || !guidedSupport) return;
+    setState(previous => ({
+      ...previous,
+      hintsUsed: {
+        ...previous.hintsUsed,
+        [currentBlankId]: Math.min(
+          guidedSupport.hints.length,
+          (previous.hintsUsed[currentBlankId] ?? 0) + 1,
+        ),
+      },
+    }));
+  };
+
+  const handleReveal = () => {
+    if (!currentBlankId) return;
+    setState(previous => ({
+      ...previous,
+      revealed: { ...previous.revealed, [currentBlankId]: true },
     }));
   };
 
@@ -178,13 +250,26 @@ export function FillInTheBlank({
     });
   };
 
-  const handlePracticeSubmit = () => {
+  const handlePracticeSubmit = async () => {
+    if (state.submitted) return;
     const answers: Record<string, unknown> = {};
     const parts = blankIds.map((id, index) => {
       const blank = blanks.find(b => b.id === id)!;
       const answer = state.answers[id] || '';
-      const correct = isAnswerCorrect(blank, answer);
       const usedWordBank = !!state.wordBankAssignments[id];
+      if (mode === 'practice') {
+        answers[id] = { answer, usedWordBank };
+        return {
+          partId: id,
+          partIndex: index,
+          rawAnswer: answer,
+          maxScore: 1,
+          usedWordBank,
+          hintsUsed: state.hintsUsed[id] ?? 0,
+          revealStepsSeen: state.revealed[id] ? 1 : 0,
+        };
+      }
+      const correct = isAnswerCorrect(blank, answer);
       answers[id] = { answer, isCorrect: correct, usedWordBank };
       return {
         partId: id,
@@ -194,11 +279,15 @@ export function FillInTheBlank({
         score: correct ? 1 : 0,
         maxScore: 1,
         usedWordBank,
+        hintsUsed: state.hintsUsed[id] ?? 0,
+        revealStepsSeen: state.revealed[id] ? 1 : 0,
       };
     });
 
-    const correctCount = parts.filter(p => p.isCorrect).length;
-    const score = blankIds.length > 0 ? Math.round((correctCount / blankIds.length) * 100) : 0;
+    const correctCount = parts.filter(p => p.isCorrect === true).length;
+    const score = mode === 'practice'
+      ? undefined
+      : blankIds.length > 0 ? Math.round((correctCount / blankIds.length) * 100) : 0;
     const wordBankUsedCount = Object.keys(state.wordBankAssignments).length;
 
     const envelope = buildPracticeSubmissionEnvelope({
@@ -208,11 +297,22 @@ export function FillInTheBlank({
       attemptNumber: 1,
       answers,
       parts,
-      analytics: { score, totalBlanks: blankIds.length, correctCount, wordBankUsedCount },
+      analytics: mode === 'practice'
+        ? { totalBlanks: blankIds.length, wordBankUsedCount }
+        : { score, totalBlanks: blankIds.length, correctCount, wordBankUsedCount },
     });
 
-    onSubmit?.(envelope);
-    onComplete?.();
+    setState(previous => ({ ...previous, submitted: true, submitError: undefined }));
+    try {
+      await onSubmit?.(envelope);
+      onComplete?.();
+    } catch {
+      setState(previous => ({
+        ...previous,
+        submitted: false,
+        submitError: 'Your response was not saved. Submit it again.',
+      }));
+    }
   };
 
   if (mode === 'teaching') {
@@ -236,6 +336,16 @@ export function FillInTheBlank({
               );
             })}
           </p>
+          {reasoningSteps && (
+            <ol className="space-y-3" aria-label="Worked reasoning">
+              {reasoningSteps.map((step, index) => (
+                <li key={`${step.description}-${index}`} className="rounded-md border p-3">
+                  <p className="font-medium">{step.description}</p>
+                  {step.expression && <p className="mt-1 font-mono">{step.expression}</p>}
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
       </div>
     );
@@ -299,10 +409,18 @@ export function FillInTheBlank({
               value={currentAnswer || ''}
               onChange={(value) => handleAnswer(currentBlankId, value)}
               label={`Blank ${state.currentBlankIndex + 1} of ${blankIds.length} — fill in the blank in: ${truncateForLabel(template)}`}
-              correctAnswer={currentBlank.correctAnswer}
-              showValidation={feedbackShown}
               required
             />
+          )}
+          {guidedSupport && !feedbackShown && (
+            <button
+              type="button"
+              onClick={handleCheck}
+              disabled={!currentAnswer}
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50"
+            >
+              Check
+            </button>
           )}
         </div>
 
@@ -319,7 +437,7 @@ export function FillInTheBlank({
                 </button>
               ) : (
                 <button
-                  onClick={onComplete}
+                  onClick={handlePracticeSubmit}
                   className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
                 >
                   Finish
@@ -328,7 +446,7 @@ export function FillInTheBlank({
             </div>
           )}
 
-          {feedbackShown && !correct && (
+          {feedbackShown && !correct && !guidedSupport && (
             <div className="space-y-2">
               <span className="text-red-600 font-medium">
                 Correct answer: {currentBlank?.correctAnswer}
@@ -342,7 +460,7 @@ export function FillInTheBlank({
                 </button>
               ) : (
                 <button
-                  onClick={onComplete}
+                  onClick={handlePracticeSubmit}
                   className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
                 >
                   Finish
@@ -350,7 +468,52 @@ export function FillInTheBlank({
               )}
             </div>
           )}
+          {feedbackShown && !correct && guidedSupport && (
+            <div className="space-y-3">
+              <p className="text-red-600 font-medium">Try again.</p>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={handleHint}
+                  disabled={(state.hintsUsed[currentBlankId] ?? 0) >= guidedSupport.hints.length}
+                  className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md disabled:opacity-50"
+                >
+                  Show Hint
+                </button>
+                <button
+                  type="button"
+                  onClick={handleReveal}
+                  disabled={(state.attempts[currentBlankId] ?? 0) < guidedSupport.revealAfterAttempts}
+                  className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md disabled:opacity-50"
+                >
+                  Reveal Answer
+                </button>
+              </div>
+              {(state.hintsUsed[currentBlankId] ?? 0) > 0 && (
+                <div aria-live="polite" className="space-y-1">
+                  {guidedSupport.hints
+                    .slice(0, state.hintsUsed[currentBlankId])
+                    .map(hint => <p key={hint}>{hint}</p>)}
+                </div>
+              )}
+              {state.revealed[currentBlankId] && (
+                <div className="space-y-2">
+                  <p className="text-foreground font-medium">
+                    Correct answer: {currentBlank?.correctAnswer}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handlePracticeSubmit}
+                    className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
+                  >
+                    Finish
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
+        {state.submitError && <p role="alert" className="text-sm text-destructive">{state.submitError}</p>}
       </div>
     );
   }
@@ -475,11 +638,12 @@ export function FillInTheBlank({
             <button
               type="submit"
               onClick={handlePracticeSubmit}
-              disabled={!allAnswered}
+              disabled={!allAnswered || state.submitted}
               className="px-6 py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50"
             >
               Submit All Answers
             </button>
+            {state.submitError && <p role="alert" className="text-sm text-destructive">{state.submitError}</p>}
           </div>
         </DragDropContext>
       );
@@ -538,11 +702,12 @@ export function FillInTheBlank({
         <button
           type="submit"
           onClick={handlePracticeSubmit}
-          disabled={!allAnswered}
+          disabled={!allAnswered || state.submitted}
           className="px-6 py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50"
         >
           Submit All Answers
         </button>
+        {state.submitError && <p role="alert" className="text-sm text-destructive">{state.submitError}</p>}
       </div>
     );
   }

@@ -1,0 +1,1 @@
+✖ Error fetching POST  http://127.0.0.1:43150/api/run_test_function 400 Bad Request: InvalidTestQuery: Default export is not a Convex function.

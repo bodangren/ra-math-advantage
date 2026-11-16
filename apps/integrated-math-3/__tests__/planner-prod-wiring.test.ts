@@ -284,7 +284,7 @@ describe("Phase 1 — planner production caller exists (spec FR-5, test-strategy
 const STUDENT_APP_ROOT = "apps/integrated-math-3/app/student";
 
 /** Matches either the full internal query ref or a local import alias. */
-const STUDENT_SURFACE_PATTERN = /\bgetStudentVisualization\b/;
+const STUDENT_SURFACE_PATTERN = /\bgetStudentKnowledgeState\b/;
 
 function findStudentSurfaceReferences(): CallerMatch[] {
   const matches: CallerMatch[] = [];
@@ -311,7 +311,7 @@ function findStudentSurfaceReferences(): CallerMatch[] {
 }
 
 describe("Phase 1 — student-facing surface consumes planner recommendations (spec FR-5, test-strategy §4 'Student route only')", () => {
-  it("≥1 production file under app/student/ references `getStudentVisualization`", () => {
+  it("≥1 production file under app/student/ references `getStudentKnowledgeState`", () => {
     const refs = findStudentSurfaceReferences();
     expect(
       refs.length,

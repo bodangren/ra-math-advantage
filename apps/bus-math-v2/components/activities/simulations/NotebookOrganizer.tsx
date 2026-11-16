@@ -30,7 +30,6 @@ export const NOTEBOOK_ORGANIZER_SUPPORTED_MODES = [
   'guided_practice',
   'independent_practice',
 ] as const
-const NOTEBOOK_ORGANIZER_DEFAULT_MODE = 'guided_practice' as const
 
 export type NotebookOrganizerActivity = Omit<Activity, 'componentKey' | 'props'> & {
   componentKey: 'notebook-organizer'
@@ -52,7 +51,7 @@ export interface NotebookOrganizerProps {
     totals: { asset: number; liability: number; equity: number }
     items: Record<string, string>
   }) => void
-  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
+  onSubmit?: (payload: PracticeSubmissionCallbackPayload) => boolean | Promise<boolean>
 }
 
 export const NOTEBOOK_QUEUE_DROPPABLE = 'notebook-organizer-queue'
@@ -115,7 +114,7 @@ function buildSubmission(args: {
 
   return buildPracticeSubmissionEnvelope({
     activityId: resolveActivityId(args.activity),
-    mode: NOTEBOOK_ORGANIZER_DEFAULT_MODE,
+    mode: args.activity.props.mode,
     status: 'submitted',
     attemptNumber: 1,
     submittedAt: new Date(),
@@ -200,10 +199,11 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
 
   const equationBalanced = totals.asset === (totals.liability + totals.equity) && totals.asset > 0
   const allItemsPlaced = Object.keys(placedItems).length === items.length
-  const correctPlacements = items.every((item) => placedItems[item.id] === item.category)
+  const hasAnswerKeys = items.every((item) => item.category !== undefined)
+  const correctPlacements = !hasAnswerKeys || items.every((item) => placedItems[item.id] === item.category)
 
   useEffect(() => {
-    if (allItemsPlaced && equationBalanced && !isComplete && correctPlacements && !submittedRef.current) {
+    if (allItemsPlaced && (!hasAnswerKeys || (equationBalanced && correctPlacements)) && !isComplete && !submittedRef.current) {
       submittedRef.current = true
       const submission = buildSubmission({
         activity,
@@ -214,21 +214,39 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
         initialMessage,
       })
 
-      setIsComplete(true)
       setSubmitted(true)
-      try {
-        onSubmit?.(submission)
-        onComplete?.({ totals, items: placedItems })
-      } catch (err) {
-        console.error('NotebookOrganizer submission failed:', err)
-        submittedRef.current = false
-        queueMicrotask(() => {
+      if (onSubmit) {
+        let result: boolean | Promise<boolean>
+        try {
+          result = onSubmit(submission)
+        } catch (err) {
+          console.error('NotebookOrganizer submission failed:', err)
+          submittedRef.current = false
+          queueMicrotask(() => setSubmitted(false))
+          return
+        }
+        void Promise.resolve(result).then((saved) => {
+          if (saved) {
+            setIsComplete(true)
+            return
+          }
+          submittedRef.current = false
+          setIsComplete(false)
+          setSubmitted(false)
+        }).catch((err: unknown) => {
+          console.error('NotebookOrganizer submission failed:', err)
+          submittedRef.current = false
           setIsComplete(false)
           setSubmitted(false)
         })
+      } else {
+        queueMicrotask(() => {
+          setIsComplete(true)
+          onComplete?.({ totals, items: placedItems })
+        })
       }
     }
-  }, [activity, allItemsPlaced, correctPlacements, equationBalanced, initialMessage, isComplete, items, onComplete, onSubmit, placedItems, successMessage, totals])
+  }, [activity, allItemsPlaced, correctPlacements, equationBalanced, hasAnswerKeys, initialMessage, isComplete, items, onComplete, onSubmit, placedItems, successMessage, totals])
 
 
   /**
@@ -298,7 +316,7 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
   }
 
   const submitNow = () => {
-    if (!allItemsPlaced || !equationBalanced || !correctPlacements || submittedRef.current) {
+    if (!allItemsPlaced || (hasAnswerKeys && (!equationBalanced || !correctPlacements)) || submittedRef.current) {
       return
     }
 
@@ -312,16 +330,34 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
       initialMessage,
     })
 
-    try {
-      setSubmitted(true)
+    setSubmitted(true)
+    if (onSubmit) {
+      let result: boolean | Promise<boolean>
+      try {
+        result = onSubmit(submission)
+      } catch (err) {
+        console.error('NotebookOrganizer submission failed:', err)
+        submittedRef.current = false
+        setSubmitted(false)
+        return
+      }
+      void Promise.resolve(result).then((saved) => {
+        if (saved) {
+          setIsComplete(true)
+          return
+        }
+        submittedRef.current = false
+        setSubmitted(false)
+        setIsComplete(false)
+      }).catch((err: unknown) => {
+        console.error('NotebookOrganizer submission failed:', err)
+        submittedRef.current = false
+        setSubmitted(false)
+        setIsComplete(false)
+      })
+    } else {
       setIsComplete(true)
-      onSubmit?.(submission)
       onComplete?.({ totals, items: placedItems })
-    } catch (err) {
-      console.error('NotebookOrganizer submission failed:', err)
-      submittedRef.current = false
-      setSubmitted(false)
-      setIsComplete(false)
     }
   }
 
@@ -417,7 +453,7 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
           <CardDescription className="text-lg">{resolvedDescription}</CardDescription>
           <div className="flex flex-wrap items-center justify-center gap-2">
             <Badge variant="outline" className="uppercase">
-              {NOTEBOOK_ORGANIZER_DEFAULT_MODE.replace('_', ' ')}
+              {activity.props.mode.replace('_', ' ')}
             </Badge>
             <Badge variant="secondary">
               {Object.keys(placedItems).length}/{items.length} sorted
@@ -605,7 +641,7 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
           </Button>
           <Button
             onClick={submitNow}
-            disabled={submitted || !allItemsPlaced || !equationBalanced || !correctPlacements}
+            disabled={submitted || !allItemsPlaced || (hasAnswerKeys && (!equationBalanced || !correctPlacements))}
           >
             {submitted ? 'Submitted' : 'Submit'}
           </Button>

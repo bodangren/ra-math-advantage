@@ -1,0 +1,13 @@
+{
+  "activityId": "j57836h8qbe46q0ea4g22hmy7h8e2j4r",
+  "attemptOrdinal": 1,
+  "idempotencyKey": "qf:jd7a0p35f88113ehj3zha2g0y98e21sf",
+  "mode": "independent_practice",
+  "pendingSubmissionId": "jd7a0p35f88113ehj3zha2g0y98e21sf",
+  "props": {
+    "equation": "x^2 - 2x - 6",
+    "presentationMode": "independent",
+    "prompt": "Use the Quadratic Formula to solve the equation."
+  },
+  "state": "pending"
+}

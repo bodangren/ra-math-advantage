@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "lms-architecture-baseline.v1",
+  "baselineDate": "2026-07-10",
+  "methodology": {
+    "workspaceInventory": "Immediate apps/* and packages/* directories containing package.json; packages/_template excluded.",
+    "packageGraph": "Internal dependencies, optionalDependencies, and peerDependencies declared by non-template package manifests.",
+    "ciCoverage": "Package names parsed from the packages.strategy.matrix.package list in .github/workflows/ci.yml.",
+    "duplicateProductionSources": "SHA-256-identical .css/.js/.jsx/.mjs/.ts/.tsx files across at least two apps; tests, generated output, dependencies, coverage, and build output excluded.",
+    "redundantBytes": "For each identical group, total bytes after the first copy."
+  },
+  "workspaceInventory": {
+    "total": 25,
+    "apps": 5,
+    "packages": 20,
+    "paths": [
+      "apps/bus-math-v2",
+      "apps/integrated-math-1",
+      "apps/integrated-math-2",
+      "apps/integrated-math-3",
+      "apps/pre-calculus",
+      "packages/activity-components",
+      "packages/activity-runtime",
+      "packages/ai-tutoring",
+      "packages/app-shell",
+      "packages/component-approval",
+      "packages/core-auth",
+      "packages/core-convex",
+      "packages/efficacy-core",
+      "packages/graphing-core",
+      "packages/knowledge-space-core",
+      "packages/knowledge-space-practice",
+      "packages/lesson-renderer",
+      "packages/math-content",
+      "packages/practice-core",
+      "packages/practice-test-engine",
+      "packages/rate-limiter",
+      "packages/srs-engine",
+      "packages/study-hub-core",
+      "packages/teacher-reporting-core",
+      "packages/workbook-pipeline"
+    ]
+  },
+  "packageGraph": {
+    "nodes": [
+      "@math-platform/activity-components",
+      "@math-platform/activity-runtime",
+      "@math-platform/ai-tutoring",
+      "@math-platform/app-shell",
+      "@math-platform/component-approval",
+      "@math-platform/core-auth",
+      "@math-platform/core-convex",
+      "@math-platform/efficacy-core",
+      "@math-platform/graphing-core",
+      "@math-platform/knowledge-space-core",
+      "@math-platform/knowledge-space-practice",
+      "@math-platform/lesson-renderer",
+      "@math-platform/math-content",
+      "@math-platform/practice-core",
+      "@math-platform/practice-test-engine",
+      "@math-platform/rate-limiter",
+      "@math-platform/srs-engine",
+      "@math-platform/study-hub-core",
+      "@math-platform/teacher-reporting-core",
+      "@math-platform/workbook-pipeline"
+    ],
+    "edges": [
+      { "source": "@math-platform/activity-components", "target": "@math-platform/activity-runtime" },
+      { "source": "@math-platform/activity-components", "target": "@math-platform/math-content" },
+      { "source": "@math-platform/activity-components", "target": "@math-platform/practice-core" },
+      { "source": "@math-platform/app-shell", "target": "@math-platform/core-auth" },
+      { "source": "@math-platform/app-shell", "target": "@math-platform/core-convex" },
+      { "source": "@math-platform/efficacy-core", "target": "@math-platform/practice-core" },
+      { "source": "@math-platform/efficacy-core", "target": "@math-platform/srs-engine" },
+      { "source": "@math-platform/knowledge-space-core", "target": "@math-platform/srs-engine" },
+      { "source": "@math-platform/knowledge-space-practice", "target": "@math-platform/knowledge-space-core" },
+      { "source": "@math-platform/math-content", "target": "@math-platform/activity-runtime" },
+      { "source": "@math-platform/math-content", "target": "@math-platform/knowledge-space-core" },
+      { "source": "@math-platform/math-content", "target": "@math-platform/practice-core" },
+      { "source": "@math-platform/math-content", "target": "@math-platform/study-hub-core" },
+      { "source": "@math-platform/srs-engine", "target": "@math-platform/practice-core" }
+    ]
+  },
+  "ciCoverage": {
+    "coveredPackages": [
+      "activity-runtime",
+      "ai-tutoring",
+      "component-approval",
+      "core-auth",
+      "core-convex",
+      "graphing-core",
+      "practice-core",
+      "practice-test-engine",
+      "srs-engine",
+      "study-hub-core",
+      "teacher-reporting-core",
+      "workbook-pipeline"
+    ],
+    "omittedPackages": [
+      "activity-components",
+      "app-shell",
+      "efficacy-core",
+      "knowledge-space-core",
+      "knowledge-space-practice",
+      "lesson-renderer",
+      "math-content",
+      "rate-limiter"
+    ]
+  },
+  "duplicateProductionSources": {
+    "groupCount": 43,
+    "redundantBytes": 123295
+  },
+  "knownViolations": [
+    {
+      "ruleId": "prohibited-layer-edge",
+      "subject": "@math-platform/activity-components -> @math-platform/math-content",
+      "owner": "learning-platform",
+      "followUpTrack": "app-platform-consolidation_20260710"
+    },
+    {
+      "ruleId": "missing-required-gate",
+      "subject": "packages/lesson-renderer#lint",
+      "owner": "learning-platform",
+      "followUpTrack": "monorepo-architecture-contracts_20260710"
+    },
+    {
+      "ruleId": "known-failing-gate",
+      "subject": "packages/math-content#lint",
+      "owner": "math-content",
+      "followUpTrack": "monorepo-architecture-contracts_20260710"
+    },
+    {
+      "ruleId": "known-failing-gate",
+      "subject": "packages/math-content#typecheck",
+      "owner": "math-content",
+      "followUpTrack": "monorepo-architecture-contracts_20260710"
+    },
+    {
+      "ruleId": "ci-inventory-omission",
+      "subject": "activity-components,app-shell,efficacy-core,knowledge-space-core,knowledge-space-practice,lesson-renderer,math-content,rate-limiter",
+      "owner": "learning-platform",
+      "followUpTrack": "monorepo-architecture-contracts_20260710"
+    }
+  ]
+}

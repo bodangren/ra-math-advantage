@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -74,7 +75,7 @@ export const seedLesson3 = internalMutation({
               props: {
                 problemType: "simplify_imaginary",
                 equation: "sqrt(-9)",
-                steps: [],
+                steps: [{"expression": "3i", "explanation": "The principal square root of -9 is 3i because i^2 = -1."}],
               },
             },
           },
@@ -435,7 +436,7 @@ export const seedLesson3 = internalMutation({
             componentKey: activityContent.componentKey,
             displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,

@@ -1,7 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { StepByStepSolverActivity } from '@/components/activities/algebraic/StepByStepSolverActivity';
 import type { AlgebraicStep } from '@math-platform/activity-components/algebraic';
+import * as distractors from '@/lib/activities/algebraic/distractors';
 import 'katex/dist/katex.min.css';
 
 describe('StepByStepSolverActivity', () => {
@@ -172,6 +173,52 @@ describe('StepByStepSolverActivity', () => {
         />
       );
       expect(container.firstChild).toBeDefined();
+    });
+  });
+
+  describe('system contract', () => {
+    const systemProps = {
+      activityId: 'system-activity',
+      problemType: 'system' as const,
+      equations: { first: 'y = x^2', second: 'y = x + 2' },
+      steps: [{ expression: 'x^2 = x + 2', explanation: 'Set the equations equal.' }],
+    };
+
+    it.each(['teaching', 'guided', 'practice'] as const)('renders both source equations in %s mode', (mode) => {
+      render(<StepByStepSolverActivity {...systemProps} mode={mode} />);
+      const group = screen.getByRole('group', { name: 'System of equations' });
+      expect(group.querySelectorAll('annotation[encoding="application/x-tex"]')).toHaveLength(2);
+      expect(group.querySelectorAll('annotation')[0]).toHaveTextContent('y = x^2');
+      expect(group.querySelectorAll('annotation')[1]).toHaveTextContent('y = x + 2');
+      expect(group).not.toHaveTextContent('x^2 + 5x + 6 = 0');
+      expect(screen.queryByText('Problem:')).not.toBeInTheDocument();
+    });
+
+    it('passes the truthful system type to the distractor callback', () => {
+      const generateSpy = vi.spyOn(distractors, 'generateDistractors');
+      render(<StepByStepSolverActivity {...systemProps} mode="guided" />);
+      expect(generateSpy).toHaveBeenCalledWith('x^2 = x + 2', 'system');
+      generateSpy.mockRestore();
+    });
+
+    it('submits the ordered system equations and no single equation', () => {
+      const onSubmit = vi.fn();
+      render(<StepByStepSolverActivity {...systemProps} mode="practice" onSubmit={onSubmit} />);
+      fireEvent.change(screen.getByLabelText('Your answer'), { target: { value: 'x^2 = x + 2' } });
+      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+      const artifact = onSubmit.mock.calls[0][0].artifact;
+      expect(artifact).toMatchObject({ problemType: 'system', equations: systemProps.equations });
+      expect(artifact).not.toHaveProperty('equation');
+    });
+
+    it('submits an ordinary equation and no equations object', () => {
+      const onSubmit = vi.fn();
+      render(<StepByStepSolverActivity {...defaultProps} mode="practice" steps={[defaultSteps[0]]} onSubmit={onSubmit} />);
+      fireEvent.change(screen.getByLabelText('Your answer'), { target: { value: defaultSteps[0].expression } });
+      fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+      const artifact = onSubmit.mock.calls[0][0].artifact;
+      expect(artifact).toMatchObject({ problemType: 'factoring', equation: defaultProps.equation });
+      expect(artifact).not.toHaveProperty('equations');
     });
   });
 });

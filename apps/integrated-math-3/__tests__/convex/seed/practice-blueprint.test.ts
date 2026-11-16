@@ -11,21 +11,21 @@ describe("Problem Family Seed Data Validation", () => {
   it("all problem family records pass problemFamilySchema", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
       const result = problemFamilySchema.safeParse(family);
-      expect(result.success, `Failed for ${family.problemFamilyId}: ${result.error?.message}`).toBe(true);
+      expect(result.success, `Failed for ${family.variantKey}: ${result.error?.message}`).toBe(true);
     }
   });
 
-  it("no duplicate problemFamilyId values within seed data", () => {
-    const ids = ALL_PROBLEM_FAMILIES.map((f) => f.problemFamilyId);
+  it("no duplicate variantKey values within seed data", () => {
+    const ids = ALL_PROBLEM_FAMILIES.map((f) => f.variantKey);
     const uniqueIds = new Set(ids);
     expect(ids.length).toBe(uniqueIds.size);
   });
 
   it("all objectiveIds are non-empty strings", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(family.objectiveIds.length, `${family.problemFamilyId} has no objectiveIds`).toBeGreaterThan(0);
+      expect(family.objectiveIds.length, `${family.variantKey} has no objectiveIds`).toBeGreaterThan(0);
       for (const objId of family.objectiveIds) {
-        expect(objId.trim().length, `${family.problemFamilyId} has empty objectiveId`).toBeGreaterThan(0);
+        expect(objId.trim().length, `${family.variantKey} has empty objectiveId`).toBeGreaterThan(0);
       }
     }
   });
@@ -33,14 +33,14 @@ describe("Problem Family Seed Data Validation", () => {
   it("difficulty is one of introductory, standard, challenging", () => {
     const validDifficulties = ["introductory", "standard", "challenging"];
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(validDifficulties.includes(family.difficulty), `Invalid difficulty for ${family.problemFamilyId}: ${family.difficulty}`).toBe(true);
+      expect(validDifficulties.includes(family.difficulty), `Invalid difficulty for ${family.variantKey}: ${family.difficulty}`).toBe(true);
     }
   });
 
   it("displayName and description are non-empty", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(family.displayName.trim().length, `${family.problemFamilyId} has empty displayName`).toBeGreaterThan(0);
-      expect(family.description.trim().length, `${family.problemFamilyId} has empty description`).toBeGreaterThan(0);
+      expect(family.displayName.trim().length, `${family.variantKey} has empty displayName`).toBeGreaterThan(0);
+      expect(family.description.trim().length, `${family.variantKey} has empty description`).toBeGreaterThan(0);
     }
   });
 
@@ -56,20 +56,20 @@ describe("Problem Family Seed Data Validation", () => {
       "multiple-choice",
     ];
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(knownComponentKeys.includes(family.componentKey), `Unknown componentKey for ${family.problemFamilyId}: ${family.componentKey}`).toBe(true);
+      expect(knownComponentKeys.includes(family.componentKey), `Unknown componentKey for ${family.variantKey}: ${family.componentKey}`).toBe(true);
     }
   });
 
   it("metadata contains module number", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(family.metadata.module, `${family.problemFamilyId} missing module in metadata`).toBeDefined();
+      expect(family.metadata.module, `${family.variantKey} missing module in metadata`).toBeDefined();
       expect(typeof family.metadata.module).toBe("number");
     }
   });
 
-  it("problemFamilyId follows naming convention component:specific-name", () => {
+  it("variantKey follows naming convention component:specific-name", () => {
     for (const family of ALL_PROBLEM_FAMILIES) {
-      expect(family.problemFamilyId).toMatch(/^[a-z-]+:.+$/);
+      expect(family.variantKey).toMatch(/^[a-z-]+:.+$/);
     }
   });
 });
@@ -78,7 +78,7 @@ describe("Practice Item Schema Validation", () => {
   const samplePracticeItem = {
     practiceItemId: "step-by-step-solver:quadratic:solve:1",
     activityId: "abc123",
-    problemFamilyId: "step-by-step-solver:quadratic:solve",
+    variantKey: "step-by-step-solver:quadratic:solve",
     variantLabel: "Set A",
   };
 
@@ -103,10 +103,10 @@ describe("Practice Item Schema Validation", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejects practice item with empty problemFamilyId", () => {
+  it("rejects practice item with empty variantKey", () => {
     const result = practiceItemSchema.safeParse({
       ...samplePracticeItem,
-      problemFamilyId: "",
+      variantKey: "",
     });
     expect(result.success).toBe(false);
   });

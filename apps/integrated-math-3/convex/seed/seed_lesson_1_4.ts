@@ -1,3 +1,4 @@
+import { normalizeSeedProps } from '../../lib/activities/seed-props';
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
@@ -28,7 +29,7 @@ export const seedLesson4 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 1,
-          title: "Solve Quadratic Equations by Factoring",
+          title: "Solving Quadratic Equations by Factoring",
           slug: lessonSlug,
           description: "Students factor trinomials and apply the zero product property.",
           orderIndex: 4,
@@ -46,7 +47,7 @@ export const seedLesson4 = internalMutation({
       : await ctx.db.insert("lesson_versions", {
           lessonId,
           version: 1,
-          title: "Solve Quadratic Equations by Factoring",
+          title: "Solving Quadratic Equations by Factoring",
           description: "Students factor trinomials and apply the zero product property.",
           status: "published",
           createdAt: now,
@@ -74,7 +75,7 @@ export const seedLesson4 = internalMutation({
               props: {
                 problemType: "factoring",
                 equation: "x^2 - 5x + 6 = 0",
-                steps: [],
+                steps: [{"expression": "(x-2)(x-3)=0", "explanation": "Factor the quadratic."}, {"expression": "x=2 or x=3", "explanation": "Apply the zero product property."}],
               },
             },
           },
@@ -433,7 +434,7 @@ export const seedLesson4 = internalMutation({
             componentKey: activityContent.componentKey,
             displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props as never,
+            props: normalizeSeedProps(activityContent.componentKey, activityContent.props) as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,

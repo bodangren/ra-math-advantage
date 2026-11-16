@@ -7,7 +7,6 @@ import {
   getCardByStudentAndFamilyHandler,
 } from '@/convex/srs/cards';
 import type { Id } from '@/convex/_generated/dataModel';
-import type { SrsCardState } from '@math-platform/srs-engine';
 
 function makeMockCtx(overrides: {
   existingCard?: {
@@ -60,6 +59,7 @@ function makeMockCtx(overrides: {
     withIndex: vi.fn().mockReturnValue({
       first: vi.fn().mockResolvedValue(existingCard ?? null),
       collect: vi.fn().mockResolvedValue(cards ?? (existingCard ? [existingCard] : [])),
+      take: vi.fn().mockResolvedValue(cards ?? (existingCard ? [existingCard] : [])),
     }),
   };
 
@@ -136,7 +136,7 @@ describe('mapDbCardToContract studentId type alignment', () => {
 
   it('should round-trip studentId through save and load as plain string', async () => {
     const studentId = 'student-abc-123';
-    const card: SrsCardState = {
+    const card = {
       cardId: 'card-1',
       studentId,
       objectiveId: 'obj-1',
@@ -165,6 +165,12 @@ describe('mapDbCardToContract studentId type alignment', () => {
     const inserted = mockInsert.mock.calls[0][1];
     expect(typeof inserted.studentId).toBe('string');
     expect(inserted.studentId).toBe(studentId);
+    expect(inserted).toMatchObject({
+      variantKey: 'pf-1',
+      legacyProblemFamilyId: 'pf-1',
+      problemFamilyId: 'pf-1',
+      migrationVersion: 'kst-srs.v3.2',
+    });
   });
 
   it('getCardsByStudent returns studentId as plain string for all cards', async () => {

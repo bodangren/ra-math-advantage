@@ -14,7 +14,7 @@ Source: (Module 2, Lesson 2-6, Int2_0206_practice.docx)
 * **Trapezoid** — A quadrilateral with exactly one pair of parallel sides.
 * **Isosceles Trapezoid** — A trapezoid with congruent non-parallel sides (legs).
 * **Midsegment of a Trapezoid** — The segment connecting the midpoints of the legs; its length is the average of the two bases.
-* **Kite** — A quadrilateral with two pairs of adjacent congruent sides.
+* **Kite** — In this course, a quadrilateral with two pairs of adjacent congruent sides, with different lengths for the two pairs. This convention excludes rhombi.
 * **Legs of a Trapezoid** — The non-parallel sides of a trapezoid.
 * **Bases of a Trapezoid** — The parallel sides of a trapezoid.
 
@@ -33,7 +33,7 @@ What makes an isosceles trapezoid different from a regular trapezoid? What speci
 * In an isosceles trapezoid, the base angles are congruent and the diagonals are congruent.
 * The midsegment of a trapezoid is parallel to both bases and its length equals the average of the base lengths:
 
-[m = \frac{b_1 + b_2}{2}]
+$m = \frac{b_1 + b_2}{2}$
 
 ### Key Concept: Kite Properties
 
@@ -44,75 +44,63 @@ What makes an isosceles trapezoid different from a regular trapezoid? What speci
 
 ## Example 1 — Solve Problems with Trapezoids
 
-Use trapezoid properties to solve for unknown variables, angle measures, and perimeters.
+### Problem
 
-### Step 1: Set Up Equations
+An isosceles trapezoid has parallel bases AB and CD. Angle A is 70 degrees. Find angles B, C, and D.
 
-Use the given algebraic expressions for side lengths and the properties of trapezoids (or isosceles trapezoids) to write equations.
+### Solution
 
-### Step 2: Solve and Verify
-
-Solve for the unknown variable, then use this to find angle measures or perimeter.
+Base angles of an isosceles trapezoid are congruent, so angle B is 70 degrees. Angles on the same leg are supplementary because the bases are parallel. Thus angles C and D are each 110 degrees.
 
 ## Example 2 — Verify Trapezoids Using Coordinates
 
-Determine whether a quadrilateral is a trapezoid or an isosceles trapezoid by calculating slopes and distances.
+### Problem
 
-### Step 1: Check for Parallel Sides
+Verify that A(0, 0), B(8, 0), C(6, 4), and D(2, 4) form an isosceles trapezoid.
 
-Calculate slopes to determine which sides are parallel. A trapezoid has exactly one pair of parallel sides.
+### Solution
 
-### Step 2: Check for Congruent Legs (Isosceles)
-
-Calculate the lengths of the non-parallel sides (legs). If they are congruent, the trapezoid is isosceles.
+AB and CD are horizontal, so they are parallel. The slopes of AD and BC are 2 and -2, so these sides are not parallel. AD and BC each have length $\sqrt{2^2+4^2}=\sqrt{20}$. The trapezoid is isosceles.
 
 ## Example 3 — Find Midsegment Lengths
 
-Use the midsegment formula to find unknown lengths in trapezoids.
+### Problem
 
-### Step 1: Identify the Bases and Midsegment
+A trapezoid has base lengths 12 cm and 20 cm. Find its midsegment length.
 
-The midsegment connects the midpoints of the legs.
+### Solution
 
-### Step 2: Apply the Formula
-
-Substitute the known base lengths into [m = \frac{b_1 + b_2}{2}] and solve for the unknown.
+The midsegment length is the average of the base lengths. Thus m = (12 + 20)/2 = 16 cm.
 
 ## Example 4 — Find Midsegment Endpoints
 
-Find the coordinates of the endpoints of the midsegment of a trapezoid given the vertices.
+### Problem
 
-### Step 1: Find Midpoints of the Legs
+A trapezoid has vertices A(0, 0), B(8, 0), C(6, 4), and D(2, 4). Find the endpoints and length of its midsegment.
 
-Use the midpoint formula to find where each leg is bisected.
+### Solution
 
-### Step 2: Connect the Midpoints
-
-The segment connecting these midpoints is the midsegment.
+The midpoint of AD is M(1, 2). The midpoint of BC is N(7, 2). The horizontal distance MN is 6. This also equals the average base length: (8 + 4)/2 = 6.
 
 ## Example 5 — Find Angle Measures in Kites
 
-Use kite properties to find unknown angle measures.
+### Problem
 
-### Step 1: Identify Congruent Angles
+Kite ABCD has AB = AD and CB = CD. Angle A is 70 degrees and angle C is 110 degrees. Find angles B and D.
 
-In a kite, the angles between pairs of unequal adjacent sides are congruent.
+### Solution
 
-### Step 2: Apply Angle Sum
-
-Use the fact that the sum of interior angles in a quadrilateral is 360 degrees.
+Angles B and D are the angles between unequal adjacent sides, so they are congruent. The angle sum gives B + D = 360 - 70 - 110 = 180 degrees. Therefore each angle is 90 degrees.
 
 ## Example 6 — Perimeter and Area Problems with Kites
 
-Solve for unknown side lengths and find perimeters of kites.
+### Problem
 
-### Step 1: Use Diagonal Properties
+A kite has vertices A(0, 6), B(4, 0), C(0, -3), and D(-4, 0). Find its area and perimeter.
 
-The diagonals of a kite are perpendicular and one diagonal bisects the other.
+### Solution
 
-### Step 2: Apply the Pythagorean Theorem
-
-Right triangles formed by the diagonals allow use of the Pythagorean Theorem to find unknown lengths.
+The perpendicular diagonals have lengths AC = 9 and BD = 8. The area is (1/2)(9)(8) = 36 square units. AB and AD each have length $\sqrt{52}=2\sqrt{13}$. BC and CD each have length 5. The perimeter is $10+4\sqrt{13}$ units, approximately 24.42 units.
 
 ## Mixed Exercises
 
@@ -137,6 +125,6 @@ The mixed exercises section provides practice with all skills from the lesson. P
 
 * Images referenced in the worksheet (trapezoid sign, trapezoid diagrams, coordinate graphs, kite figures, and various geometry figures) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
 * The worksheet contains 34 practice problems across seven examples and mixed exercises.
-* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png) ![](media/image15.png) ![](media/image16.png) ![](media/image17.png) ![](media/image18.png)
+* ![Worksheet figure 1](/curriculum/module-2-lesson-6/image1.png) ![Worksheet figure 2](/curriculum/module-2-lesson-6/image2.png) ![Worksheet figure 3](/curriculum/module-2-lesson-6/image3.png) ![Worksheet figure 4](/curriculum/module-2-lesson-6/image4.png) ![Worksheet figure 5](/curriculum/module-2-lesson-6/image5.png) ![Worksheet figure 6](/curriculum/module-2-lesson-6/image6.png) ![Worksheet figure 7](/curriculum/module-2-lesson-6/image7.png) ![Worksheet figure 8](/curriculum/module-2-lesson-6/image8.png) ![Worksheet figure 9](/curriculum/module-2-lesson-6/image9.png) ![Worksheet figure 10](/curriculum/module-2-lesson-6/image10.png) ![Worksheet figure 11](/curriculum/module-2-lesson-6/image11.png) ![Worksheet figure 12](/curriculum/module-2-lesson-6/image12.png) ![Worksheet figure 13](/curriculum/module-2-lesson-6/image13.png) ![Worksheet figure 14](/curriculum/module-2-lesson-6/image14.png) ![Worksheet figure 15](/curriculum/module-2-lesson-6/image15.png) ![Worksheet figure 16](/curriculum/module-2-lesson-6/image16.png) ![Worksheet figure 17](/curriculum/module-2-lesson-6/image17.png) ![Worksheet figure 18](/curriculum/module-2-lesson-6/image18.png)
 
 (End of file - total 175 lines)

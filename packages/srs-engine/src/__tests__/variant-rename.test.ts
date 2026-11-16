@@ -126,9 +126,9 @@ describe('aggregateCardsToEvidence (srs-proficiency rename)', () => {
 
   it('groups cards by variantKey (not problemFamilyId) when threading the new field', () => {
     const cards = [
-      { stability: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf1' },
-      { stability: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf2' },
-      { stability: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf3' },
+      { stability: 30, elapsedDays: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf1' },
+      { stability: 30, elapsedDays: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf2' },
+      { stability: 30, elapsedDays: 30, difficulty: 3, reps: 1, lapses: 0, variantKey: 'variant:pf3' },
     ];
     const result = aggregateCardsToEvidence(cards as never, emptyBaselines);
     expect(result).toHaveLength(3);
@@ -139,11 +139,12 @@ describe('aggregateCardsToEvidence (srs-proficiency rename)', () => {
     ).toEqual(['variant:pf1', 'variant:pf2', 'variant:pf3']);
   });
 
-  it('numeric outputs of aggregateCardsToEvidence are byte-for-byte unchanged after rename', () => {
+  it('preserves variant grouping while applying v3 live-retention semantics', () => {
     const cards = [
-      { stability: 0, difficulty: 3, reps: 0, lapses: 0, variantKey: 'variant:pf1' },
+      { stability: 0, elapsedDays: 0, difficulty: 3, reps: 0, lapses: 0, variantKey: 'variant:pf1' },
       {
         stability: 30,
+        elapsedDays: 30,
         difficulty: 3,
         reps: 1,
         lapses: 0,
@@ -152,6 +153,7 @@ describe('aggregateCardsToEvidence (srs-proficiency rename)', () => {
       },
       {
         stability: 300,
+        elapsedDays: 30,
         difficulty: 5,
         reps: 5,
         lapses: 1,
@@ -181,14 +183,14 @@ describe('aggregateCardsToEvidence (srs-proficiency rename)', () => {
     const pf2 = result.find((e: unknown) => (e as { variantKey: string }).variantKey === 'variant:pf2');
     expect(pf1).toBeDefined();
     expect(pf2).toBeDefined();
-    // PF1: retentions = [0, 0.5] → avg 0.25 → rounded 0.25. Coverage = 1/2 = 0.5.
+    // PF1: the reps=0 card is excluded; R(30,30)=0.9. Coverage remains 1/2.
     //      1 fast out of 1 reliable → ratio 1.0 → high.
-    expect((pf1 as { retentionStrength: number }).retentionStrength).toBeCloseTo(0.25, 2);
+    expect((pf1 as { retentionStrength: number }).retentionStrength).toBe(0.9);
     expect((pf1 as { practiceCoverage: number }).practiceCoverage).toBe(0.5);
     expect((pf1 as { fluencyConfidence: string }).fluencyConfidence).toBe('high');
-    // PF2: retention = 0.909 → rounded 0.91. Coverage = 1.0.
+    // PF2: R(300,30)=0.988... → rounded 0.99. Coverage = 1.0.
     //      1 slow out of 1 reliable → ratio 0 → low.
-    expect((pf2 as { retentionStrength: number }).retentionStrength).toBeCloseTo(0.91, 2);
+    expect((pf2 as { retentionStrength: number }).retentionStrength).toBe(0.99);
     expect((pf2 as { practiceCoverage: number }).practiceCoverage).toBe(1);
     expect((pf2 as { fluencyConfidence: string }).fluencyConfidence).toBe('low');
   });
@@ -292,8 +294,6 @@ describe('computeObjectiveProficiency (rename)', () => {
 // ============================================
 
 describe('InMemoryCardStore (rename)', () => {
-  const mockNow = '2026-04-18T00:00:00.000Z';
-
   it('exposes getCardByStudentAndVariant (not getCardByStudentAndFamily)', () => {
     const store = new InMemoryCardStore();
     expect(typeof (store as unknown as Record<string, unknown>).getCardByStudentAndVariant).toBe(

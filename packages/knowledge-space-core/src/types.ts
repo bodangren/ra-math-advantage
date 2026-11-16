@@ -1,4 +1,7 @@
-// Domain-neutral knowledge-space.v1 TypeScript types
+// Domain-neutral knowledge-space.v2 TypeScript types
+
+/** Canonical schema version from kst-srs.v3.2 Appendix C. */
+export const KNOWLEDGE_SPACE_SCHEMA_VERSION = 'knowledge-space.v2' as const;
 
 export type NodeKind =
   | 'domain'
@@ -87,9 +90,54 @@ export interface KnowledgeSpace {
   edges: KnowledgeSpaceEdge[];
 }
 
+/** Versioned chance-performance floors keyed by domain-opaque answer formats. */
+export interface GuessFloorPolicy {
+  policyVersion: string;
+  byAnswerFormat: Record<string, number>;
+}
+
+/** A half-open learner-age range used to form the FSRS `(domain, ageBand)` key. */
+export interface AgeBandDefinition {
+  populationKey: string;
+  minAgeYearsInclusive: number;
+  maxAgeYearsExclusive: number;
+}
+
+/** Versioned age-band declarations for population-level FSRS fitting. */
+export interface AgeBandPolicy {
+  policyVersion: string;
+  bands: ReadonlyArray<AgeBandDefinition>;
+}
+
+/**
+ * An opaque domain-owned instrument declaration. Core does not store probe
+ * content or execute the instrument.
+ */
+export interface HighFidelityPlacementProbeInstrument {
+  instrumentId: string;
+  instrumentVersion: string;
+  highFidelity: true;
+}
+
+/** Versioned declarations for placement instruments allowed to yield high confidence. */
+export interface PlacementProbeInstrumentPolicy {
+  policyVersion: string;
+  instruments: ReadonlyArray<HighFidelityPlacementProbeInstrument>;
+}
+
+/** Domain-owned policy declarations added by the v3.1 contract. */
+export interface DomainAdapterV31Declarations {
+  contractVersion: 'domain-adapter.v3.1';
+  guessFloors: GuessFloorPolicy;
+  ageBands: AgeBandPolicy;
+  placementProbeInstruments?: PlacementProbeInstrumentPolicy;
+}
+
 export interface DomainAdapter {
   domain: string;
   validateNodeMetadata: (node: KnowledgeSpaceNode) => { valid: boolean; errors?: string[] };
+  /** Optional so existing pre-v3.1 adapters remain source-compatible. */
+  v31?: DomainAdapterV31Declarations;
 }
 
 export interface ValidationError {

@@ -25,6 +25,14 @@ vi.mock('@/lib/auth/session', () => ({
   verifySessionToken: mockVerifySessionToken,
 }));
 
+vi.mock('@/lib/convex/server', () => ({
+  internal: { auth: { getCredentialByUsername: 'credential' } },
+  fetchInternalQuery: async () => {
+    const claims = await mockVerifySessionToken();
+    return claims ? { profileId: claims.sub, username: claims.username, role: claims.role } : null;
+  },
+}));
+
 const loadModule = async () => import('../../../lib/auth/server');
 
 describe('lib/auth/server role guards', () => {

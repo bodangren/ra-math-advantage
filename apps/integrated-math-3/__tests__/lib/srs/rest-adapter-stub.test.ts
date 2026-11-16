@@ -11,7 +11,7 @@ describe('RestAdapterStub', () => {
     cardId: 'card-1',
     studentId,
     objectiveId: 'obj-1',
-    problemFamilyId: 'pf-1',
+    variantKey: 'pf-1',
     stability: 5,
     difficulty: 4,
     state: 'review',
@@ -58,15 +58,15 @@ describe('RestAdapterStub', () => {
       expect(results[0].cardId).toBe('card-1');
     });
 
-    it('should retrieve a card by student and problem family', async () => {
+    it('should retrieve a card by student and variant', async () => {
       await adapter.saveCard(baseCard);
-      const result = await adapter.getCardByStudentAndFamily(studentId, 'pf-1');
+      const result = await adapter.getCardByStudentAndVariant(studentId, 'pf-1');
       expect(result).toEqual(baseCard);
     });
 
-    it('should return null for mismatched student and problem family', async () => {
+    it('should return null for mismatched student and variant', async () => {
       await adapter.saveCard(baseCard);
-      const result = await adapter.getCardByStudentAndFamily(studentId, 'pf-2');
+      const result = await adapter.getCardByStudentAndVariant(studentId, 'pf-2');
       expect(result).toBeNull();
     });
 

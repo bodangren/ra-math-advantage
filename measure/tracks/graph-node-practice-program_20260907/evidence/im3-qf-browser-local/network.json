@@ -1,0 +1,3593 @@
+[
+  {
+    "sequence": 1,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 2,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 3,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 4,
+    "type": "session-check",
+    "status": 200,
+    "role": "student",
+    "username": "student1@demo"
+  },
+  {
+    "sequence": 5,
+    "type": "request-failed",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/auth/login",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 6,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 7,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 8,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 9,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 10,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "state": "no_attempt"
+    }
+  },
+  {
+    "sequence": 11,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 12,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "attemptOrdinal": 1,
+      "idempotencyKey": "qf:jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 13,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 14,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 15,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 16,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 17,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 18,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 19,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 20,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 21,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 22,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 23,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 24,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 25,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 26,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 27,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 28,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 29,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 30,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 31,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 32,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 33,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 34,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 35,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 36,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 37,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 + 5x - 5",
+    "renderedEquation": "x^2 + 5x - 5"
+  },
+  {
+    "sequence": 38,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 39,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 40,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 41,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 42,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "attemptOrdinal": 1,
+      "idempotencyKey": "qf:jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 43,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 44,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 45,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 46,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 47,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 48,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 49,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 50,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 51,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 52,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 53,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 54,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 55,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 56,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 57,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 58,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 59,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 60,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 61,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 62,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 63,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 64,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 65,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 66,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 67,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 + 5x - 5",
+    "renderedEquation": "x^2 + 5x - 5"
+  },
+  {
+    "sequence": 68,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 69,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 70,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 71,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 72,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "attemptOrdinal": 1,
+      "idempotencyKey": "qf:jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 73,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 74,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 75,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 76,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 77,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 78,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "state": "no_attempt"
+    }
+  },
+  {
+    "sequence": 79,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 80,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 81,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 82,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 83,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "attemptOrdinal": 1,
+      "idempotencyKey": "qf:jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 84,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 85,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 86,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 87,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 88,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 89,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 90,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 91,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 92,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 93,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 94,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 95,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 96,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 97,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 98,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 99,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 100,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 101,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 102,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 103,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 104,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 105,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 106,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 107,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 108,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 + 5x - 5",
+    "renderedEquation": "x^2 + 5x - 5"
+  },
+  {
+    "sequence": 109,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/check",
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "fieldId": "discriminant",
+      "rawAnswer": "45",
+      "pendingSubmissionId": "jd77b4hme563djmxyzj6jd1cd98e3d8z"
+    }
+  },
+  {
+    "sequence": 110,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/check",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "isCorrect": true
+    }
+  },
+  {
+    "sequence": 111,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "x-pending-submission-id": "jd77b4hme563djmxyzj6jd1cd98e3d8z"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "mode": "guided_practice",
+      "status": "submitted",
+      "attemptNumber": 1,
+      "submittedAt": "2026-09-09T04:56:50.789Z",
+      "answers": {
+        "discriminant": "45",
+        "x1": "(-5+3sqrt(5))/2",
+        "x2": "(-5-3sqrt(5))/2"
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "45",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "(-5+3sqrt(5))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "(-5-3sqrt(5))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:00.399Z",
+        "submittedAt": "1970-01-01T00:00:01.299Z",
+        "wallClockMs": 900.1000000089407,
+        "activeMs": 900.1000000089407,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 112,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "score": 3,
+      "maxScore": 3
+    }
+  },
+  {
+    "sequence": 113,
+    "type": "injected-failure",
+    "target": "submission response after application save"
+  },
+  {
+    "sequence": 114,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  },
+  {
+    "sequence": 115,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "x-pending-submission-id": "jd77b4hme563djmxyzj6jd1cd98e3d8z"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "mode": "guided_practice",
+      "status": "submitted",
+      "attemptNumber": 1,
+      "submittedAt": "2026-09-09T04:56:50.789Z",
+      "answers": {
+        "discriminant": "45",
+        "x1": "(-5+3sqrt(5))/2",
+        "x2": "(-5-3sqrt(5))/2"
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "45",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "(-5+3sqrt(5))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "(-5-3sqrt(5))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:00.399Z",
+        "submittedAt": "1970-01-01T00:00:01.299Z",
+        "wallClockMs": 900.1000000089407,
+        "activeMs": 900.1000000089407,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 116,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd77b4hme563djmxyzj6jd1cd98e3d8z",
+      "score": 3,
+      "maxScore": 3
+    }
+  },
+  {
+    "sequence": 117,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 118,
+    "type": "injected-failure",
+    "target": "attempt GET"
+  },
+  {
+    "sequence": 119,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  },
+  {
+    "sequence": 120,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 121,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "answers": {
+        "discriminant": "45",
+        "x1": "(-5+3sqrt(5))/2",
+        "x2": "(-5-3sqrt(5))/2"
+      },
+      "attemptOrdinal": 1,
+      "maxScore": 3,
+      "mode": "guided_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "45",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "(-5+3sqrt(5))/2",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x2",
+          "rawAnswer": "(-5-3sqrt(5))/2",
+          "score": 1
+        }
+      ],
+      "props": {
+        "equation": "x^2 + 5x - 5",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 3,
+      "state": "final",
+      "submissionId": "jd77b4hme563djmxyzj6jd1cd98e3d8z"
+    }
+  },
+  {
+    "sequence": 122,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 123,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "attemptOrdinal": 2,
+      "idempotencyKey": "qf:jd7232j9sh84rwznggccyyb44h8e2gmz",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd7232j9sh84rwznggccyyb44h8e2gmz",
+      "props": {
+        "equation": "x^2 - 7x + 10",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 124,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 - 7x + 10",
+    "renderedEquation": "x^2 - 7x + 10"
+  },
+  {
+    "sequence": 125,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/check",
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "fieldId": "discriminant",
+      "rawAnswer": "9",
+      "pendingSubmissionId": "jd7232j9sh84rwznggccyyb44h8e2gmz"
+    }
+  },
+  {
+    "sequence": 126,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/check",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "isCorrect": true
+    }
+  },
+  {
+    "sequence": 127,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd7232j9sh84rwznggccyyb44h8e2gmz",
+      "x-pending-submission-id": "jd7232j9sh84rwznggccyyb44h8e2gmz"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "mode": "guided_practice",
+      "status": "submitted",
+      "attemptNumber": 2,
+      "submittedAt": "2026-09-09T04:56:51.389Z",
+      "answers": {
+        "discriminant": "9",
+        "x1": "5",
+        "x2": "2"
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "9",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "5",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:01.721Z",
+        "submittedAt": "1970-01-01T00:00:01.898Z",
+        "wallClockMs": 177.80000001192093,
+        "activeMs": 177.80000001192093,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 128,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd7232j9sh84rwznggccyyb44h8e2gmz",
+      "score": 3,
+      "maxScore": 3
+    }
+  },
+  {
+    "sequence": 129,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 130,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "answers": {
+        "discriminant": "9",
+        "x1": "5",
+        "x2": "2"
+      },
+      "attemptOrdinal": 2,
+      "maxScore": 3,
+      "mode": "guided_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "9",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "5",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x2",
+          "rawAnswer": "2",
+          "score": 1
+        }
+      ],
+      "props": {
+        "equation": "x^2 - 7x + 10",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 3,
+      "state": "final",
+      "submissionId": "jd7232j9sh84rwznggccyyb44h8e2gmz"
+    }
+  },
+  {
+    "sequence": 131,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 132,
+    "type": "injected-failure",
+    "target": "attempt POST"
+  },
+  {
+    "sequence": 133,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  },
+  {
+    "sequence": 134,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 135,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "attemptOrdinal": 3,
+      "idempotencyKey": "qf:jd7bg343q8z0mw2p1r5vtfypd58e2xca",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd7bg343q8z0mw2p1r5vtfypd58e2xca",
+      "props": {
+        "equation": "x^2 - 2x + 1",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 136,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 - 2x + 1",
+    "renderedEquation": "x^2 - 2x + 1"
+  },
+  {
+    "sequence": 137,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 - 2x + 1",
+    "renderedEquation": "x^2 - 2x + 1"
+  },
+  {
+    "sequence": 138,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 - 2x + 1",
+    "renderedEquation": "x^2 - 2x + 1"
+  },
+  {
+    "sequence": 139,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/check",
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "fieldId": "discriminant",
+      "rawAnswer": "0",
+      "pendingSubmissionId": "jd7bg343q8z0mw2p1r5vtfypd58e2xca"
+    }
+  },
+  {
+    "sequence": 140,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/check",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "isCorrect": true
+    }
+  },
+  {
+    "sequence": 141,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd7bg343q8z0mw2p1r5vtfypd58e2xca",
+      "x-pending-submission-id": "jd7bg343q8z0mw2p1r5vtfypd58e2xca"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "mode": "guided_practice",
+      "status": "submitted",
+      "attemptNumber": 3,
+      "submittedAt": "2026-09-09T04:56:51.920Z",
+      "answers": {
+        "discriminant": "0",
+        "x1": "1",
+        "x2": ""
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "0",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "1",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 0
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:02.168Z",
+        "submittedAt": "1970-01-01T00:00:02.430Z",
+        "wallClockMs": 261.6000000089407,
+        "activeMs": 261.6000000089407,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 142,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd7bg343q8z0mw2p1r5vtfypd58e2xca",
+      "score": 2,
+      "maxScore": 2
+    }
+  },
+  {
+    "sequence": 143,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 144,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "answers": {
+        "discriminant": "0",
+        "x1": "1",
+        "x2": ""
+      },
+      "attemptOrdinal": 3,
+      "maxScore": 2,
+      "mode": "guided_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "0",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "1",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 0,
+          "partId": "x2",
+          "rawAnswer": "",
+          "score": 0
+        }
+      ],
+      "props": {
+        "equation": "x^2 - 2x + 1",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 2,
+      "state": "final",
+      "submissionId": "jd7bg343q8z0mw2p1r5vtfypd58e2xca"
+    }
+  },
+  {
+    "sequence": 145,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 146,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 147,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 148,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 149,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "answers": {
+        "discriminant": "0",
+        "x1": "1",
+        "x2": ""
+      },
+      "attemptOrdinal": 3,
+      "maxScore": 2,
+      "mode": "guided_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "0",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "1",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 0,
+          "partId": "x2",
+          "rawAnswer": "",
+          "score": 0
+        }
+      ],
+      "props": {
+        "equation": "x^2 - 2x + 1",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 2,
+      "state": "final",
+      "submissionId": "jd7bg343q8z0mw2p1r5vtfypd58e2xca"
+    }
+  },
+  {
+    "sequence": 150,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 151,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "attemptOrdinal": 4,
+      "idempotencyKey": "qf:jd7fhexqfp1eqz5hdr0rhnr2a98e2dff",
+      "mode": "guided_practice",
+      "pendingSubmissionId": "jd7fhexqfp1eqz5hdr0rhnr2a98e2dff",
+      "props": {
+        "equation": "x^2 - 3x + 3",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 152,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 153,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 154,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 155,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 156,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 157,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 158,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 159,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 160,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 161,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 162,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 163,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 164,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 165,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 166,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 167,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 168,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 169,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 170,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 171,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 172,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 173,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 174,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 175,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 176,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 - 3x + 3",
+    "renderedEquation": "x^2 - 3x + 3"
+  },
+  {
+    "sequence": 177,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/check",
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "fieldId": "discriminant",
+      "rawAnswer": "-3",
+      "pendingSubmissionId": "jd7fhexqfp1eqz5hdr0rhnr2a98e2dff"
+    }
+  },
+  {
+    "sequence": 178,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/check",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "isCorrect": true
+    }
+  },
+  {
+    "sequence": 179,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd7fhexqfp1eqz5hdr0rhnr2a98e2dff",
+      "x-pending-submission-id": "jd7fhexqfp1eqz5hdr0rhnr2a98e2dff"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "mode": "guided_practice",
+      "status": "submitted",
+      "attemptNumber": 4,
+      "submittedAt": "2026-09-09T04:56:54.238Z",
+      "answers": {
+        "discriminant": "-3",
+        "x1": "(3+i*sqrt(3))/2",
+        "x2": "(3-i*sqrt(3))/2"
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "-3",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "(3+i*sqrt(3))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "(3-i*sqrt(3))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:01.228Z",
+        "submittedAt": "1970-01-01T00:00:02.182Z",
+        "wallClockMs": 953.9000000059605,
+        "activeMs": 953.9000000059605,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 180,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd7fhexqfp1eqz5hdr0rhnr2a98e2dff",
+      "score": 3,
+      "maxScore": 3
+    }
+  },
+  {
+    "sequence": 181,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 182,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "answers": {
+        "discriminant": "-3",
+        "x1": "(3+i*sqrt(3))/2",
+        "x2": "(3-i*sqrt(3))/2"
+      },
+      "attemptOrdinal": 4,
+      "maxScore": 3,
+      "mode": "guided_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "-3",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "(3+i*sqrt(3))/2",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x2",
+          "rawAnswer": "(3-i*sqrt(3))/2",
+          "score": 1
+        }
+      ],
+      "props": {
+        "equation": "x^2 - 3x + 3",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 3,
+      "state": "final",
+      "submissionId": "jd7fhexqfp1eqz5hdr0rhnr2a98e2dff"
+    }
+  },
+  {
+    "sequence": 183,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 184,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "state": "exhausted"
+    }
+  },
+  {
+    "sequence": 185,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 186,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 187,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 188,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 189,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "state": "no_attempt"
+    }
+  },
+  {
+    "sequence": 190,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 191,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "attemptOrdinal": 1,
+      "idempotencyKey": "qf:jd780xk8xfq4f135qab2ry7ps98e2bfr",
+      "mode": "independent_practice",
+      "pendingSubmissionId": "jd780xk8xfq4f135qab2ry7ps98e2bfr",
+      "props": {
+        "equation": "x^2 - 2x - 6",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 192,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 193,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 194,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 195,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 196,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 197,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 198,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 199,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 200,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 201,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 202,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 203,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 204,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 205,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 206,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 207,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 208,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 209,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 210,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 211,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 212,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 213,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 214,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 215,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 216,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 - 2x - 6",
+    "renderedEquation": "x^2 - 2x - 6"
+  },
+  {
+    "sequence": 217,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 218,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 219,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 220,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 221,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "attemptOrdinal": 1,
+      "idempotencyKey": "qf:jd780xk8xfq4f135qab2ry7ps98e2bfr",
+      "mode": "independent_practice",
+      "pendingSubmissionId": "jd780xk8xfq4f135qab2ry7ps98e2bfr",
+      "props": {
+        "equation": "x^2 - 2x - 6",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 222,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 223,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 224,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 225,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 226,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 227,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 228,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 229,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 230,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 231,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 232,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 233,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 234,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 235,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 236,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 237,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 238,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 239,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 240,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 241,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 242,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 243,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 244,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 245,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 246,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 - 2x - 6",
+    "renderedEquation": "x^2 - 2x - 6"
+  },
+  {
+    "sequence": 247,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 - 2x - 6",
+    "renderedEquation": "x^2 - 2x - 6"
+  },
+  {
+    "sequence": 248,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd780xk8xfq4f135qab2ry7ps98e2bfr",
+      "x-pending-submission-id": "jd780xk8xfq4f135qab2ry7ps98e2bfr"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "mode": "independent_practice",
+      "status": "submitted",
+      "attemptNumber": 1,
+      "submittedAt": "2026-09-09T04:56:56.979Z",
+      "answers": {
+        "discriminant": "28",
+        "x1": "(2+2sqrt(7))/2",
+        "x2": "(2-2sqrt(7))/2"
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "28",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "(2+2sqrt(7))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "(2-2sqrt(7))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:00.422Z",
+        "submittedAt": "1970-01-01T00:00:01.175Z",
+        "wallClockMs": 753.5,
+        "activeMs": 753.5,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 249,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd780xk8xfq4f135qab2ry7ps98e2bfr",
+      "score": 3,
+      "maxScore": 3
+    }
+  },
+  {
+    "sequence": 250,
+    "type": "injected-failure",
+    "target": "submission response after application save"
+  },
+  {
+    "sequence": 251,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  },
+  {
+    "sequence": 252,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd780xk8xfq4f135qab2ry7ps98e2bfr",
+      "x-pending-submission-id": "jd780xk8xfq4f135qab2ry7ps98e2bfr"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "mode": "independent_practice",
+      "status": "submitted",
+      "attemptNumber": 1,
+      "submittedAt": "2026-09-09T04:56:56.979Z",
+      "answers": {
+        "discriminant": "28",
+        "x1": "(2+2sqrt(7))/2",
+        "x2": "(2-2sqrt(7))/2"
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "28",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "(2+2sqrt(7))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "(2-2sqrt(7))/2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:00.422Z",
+        "submittedAt": "1970-01-01T00:00:01.175Z",
+        "wallClockMs": 753.5,
+        "activeMs": 753.5,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 253,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd780xk8xfq4f135qab2ry7ps98e2bfr",
+      "score": 3,
+      "maxScore": 3
+    }
+  },
+  {
+    "sequence": 254,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 255,
+    "type": "injected-failure",
+    "target": "attempt GET"
+  },
+  {
+    "sequence": 256,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  },
+  {
+    "sequence": 257,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 258,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 259,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "answers": {
+        "discriminant": "28",
+        "x1": "(2+2sqrt(7))/2",
+        "x2": "(2-2sqrt(7))/2"
+      },
+      "attemptOrdinal": 1,
+      "maxScore": 3,
+      "mode": "independent_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "28",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "(2+2sqrt(7))/2",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x2",
+          "rawAnswer": "(2-2sqrt(7))/2",
+          "score": 1
+        }
+      ],
+      "props": {
+        "equation": "x^2 - 2x - 6",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 3,
+      "state": "final",
+      "submissionId": "jd780xk8xfq4f135qab2ry7ps98e2bfr"
+    }
+  },
+  {
+    "sequence": 260,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "attemptOrdinal": 2,
+      "idempotencyKey": "qf:jd7fcre0gwxz9080bjahveqg8n8e2qcb",
+      "mode": "independent_practice",
+      "pendingSubmissionId": "jd7fcre0gwxz9080bjahveqg8n8e2qcb",
+      "props": {
+        "equation": "2x^2 - 6x + 4",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 261,
+    "type": "dom-equation-check",
+    "publicEquation": "2x^2 - 6x + 4",
+    "renderedEquation": "2x^2 - 6x + 4"
+  },
+  {
+    "sequence": 262,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd7fcre0gwxz9080bjahveqg8n8e2qcb",
+      "x-pending-submission-id": "jd7fcre0gwxz9080bjahveqg8n8e2qcb"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "mode": "independent_practice",
+      "status": "submitted",
+      "attemptNumber": 2,
+      "submittedAt": "2026-09-09T04:56:57.888Z",
+      "answers": {
+        "discriminant": "4",
+        "x1": "2",
+        "x2": "1"
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "4",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "1",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:02.018Z",
+        "submittedAt": "1970-01-01T00:00:02.084Z",
+        "wallClockMs": 65.8999999910593,
+        "activeMs": 65.8999999910593,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 263,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd7fcre0gwxz9080bjahveqg8n8e2qcb",
+      "score": 3,
+      "maxScore": 3
+    }
+  },
+  {
+    "sequence": 264,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 265,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "answers": {
+        "discriminant": "4",
+        "x1": "2",
+        "x2": "1"
+      },
+      "attemptOrdinal": 2,
+      "maxScore": 3,
+      "mode": "independent_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "4",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "2",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x2",
+          "rawAnswer": "1",
+          "score": 1
+        }
+      ],
+      "props": {
+        "equation": "2x^2 - 6x + 4",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 3,
+      "state": "final",
+      "submissionId": "jd7fcre0gwxz9080bjahveqg8n8e2qcb"
+    }
+  },
+  {
+    "sequence": 266,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 267,
+    "type": "injected-failure",
+    "target": "attempt POST"
+  },
+  {
+    "sequence": 268,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  },
+  {
+    "sequence": 269,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 270,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "attemptOrdinal": 3,
+      "idempotencyKey": "qf:jd72hesw9prjxshy7krx43rbxs8e325z",
+      "mode": "independent_practice",
+      "pendingSubmissionId": "jd72hesw9prjxshy7krx43rbxs8e325z",
+      "props": {
+        "equation": "x^2 + 4x + 4",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 271,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 + 4x + 4",
+    "renderedEquation": "x^2 + 4x + 4"
+  },
+  {
+    "sequence": 272,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 + 4x + 4",
+    "renderedEquation": "x^2 + 4x + 4"
+  },
+  {
+    "sequence": 273,
+    "type": "dom-equation-check",
+    "publicEquation": "x^2 + 4x + 4",
+    "renderedEquation": "x^2 + 4x + 4"
+  },
+  {
+    "sequence": 274,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd72hesw9prjxshy7krx43rbxs8e325z",
+      "x-pending-submission-id": "jd72hesw9prjxshy7krx43rbxs8e325z"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "mode": "independent_practice",
+      "status": "submitted",
+      "attemptNumber": 3,
+      "submittedAt": "2026-09-09T04:56:58.638Z",
+      "answers": {
+        "discriminant": "0",
+        "x1": "-2",
+        "x2": ""
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "0",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "-2",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 0
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:02.716Z",
+        "submittedAt": "1970-01-01T00:00:02.834Z",
+        "wallClockMs": 118.20000000298023,
+        "activeMs": 118.20000000298023,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 275,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd72hesw9prjxshy7krx43rbxs8e325z",
+      "score": 2,
+      "maxScore": 2
+    }
+  },
+  {
+    "sequence": 276,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 277,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "answers": {
+        "discriminant": "0",
+        "x1": "-2",
+        "x2": ""
+      },
+      "attemptOrdinal": 3,
+      "maxScore": 2,
+      "mode": "independent_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "0",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "-2",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 0,
+          "partId": "x2",
+          "rawAnswer": "",
+          "score": 0
+        }
+      ],
+      "props": {
+        "equation": "x^2 + 4x + 4",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 2,
+      "state": "final",
+      "submissionId": "jd72hesw9prjxshy7krx43rbxs8e325z"
+    }
+  },
+  {
+    "sequence": 278,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 279,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 280,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 281,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 282,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "answers": {
+        "discriminant": "0",
+        "x1": "-2",
+        "x2": ""
+      },
+      "attemptOrdinal": 3,
+      "maxScore": 2,
+      "mode": "independent_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "0",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "-2",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 0,
+          "partId": "x2",
+          "rawAnswer": "",
+          "score": 0
+        }
+      ],
+      "props": {
+        "equation": "x^2 + 4x + 4",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 2,
+      "state": "final",
+      "submissionId": "jd72hesw9prjxshy7krx43rbxs8e325z"
+    }
+  },
+  {
+    "sequence": 283,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 284,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "attemptOrdinal": 4,
+      "idempotencyKey": "qf:jd76s9mfkj36kqyhftxeexfkrs8e2eze",
+      "mode": "independent_practice",
+      "pendingSubmissionId": "jd76s9mfkj36kqyhftxeexfkrs8e2eze",
+      "props": {
+        "equation": "2x^2 - x + 1",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "state": "pending"
+    }
+  },
+  {
+    "sequence": 285,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 286,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 287,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 288,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 289,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 290,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 291,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 292,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 293,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 294,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 295,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 296,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 297,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 298,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 299,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 300,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff2",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 301,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 302,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 303,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 304,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.woff",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 305,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 306,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Main-Regular.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 307,
+    "type": "console",
+    "level": "error",
+    "text": "Failed to load resource: the server responded with a status of 403 (Forbidden)"
+  },
+  {
+    "sequence": 308,
+    "type": "request-failed",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/@fs/Users/daniel.bodanske/Desktop/ra-math-advantage/node_modules/katex/dist/fonts/KaTeX_Math-Italic.ttf",
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "sequence": 309,
+    "type": "dom-equation-check",
+    "publicEquation": "2x^2 - x + 1",
+    "renderedEquation": "2x^2 - x + 1"
+  },
+  {
+    "sequence": 310,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "headers": {
+      "content-type": "application/json",
+      "idempotency-key": "qf:jd76s9mfkj36kqyhftxeexfkrs8e2eze",
+      "x-pending-submission-id": "jd76s9mfkj36kqyhftxeexfkrs8e2eze"
+    },
+    "body": {
+      "contractVersion": "practice.v1",
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "mode": "independent_practice",
+      "status": "submitted",
+      "attemptNumber": 4,
+      "submittedAt": "2026-09-09T04:57:00.237Z",
+      "answers": {
+        "discriminant": "-7",
+        "x1": "(1+i*sqrt(7))/4",
+        "x2": "(1-i*sqrt(7))/4"
+      },
+      "parts": [
+        {
+          "partId": "discriminant",
+          "rawAnswer": "-7",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x1",
+          "rawAnswer": "(1+i*sqrt(7))/4",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        },
+        {
+          "partId": "x2",
+          "rawAnswer": "(1-i*sqrt(7))/4",
+          "hintsUsed": 0,
+          "revealStepsSeen": 0,
+          "changedCount": 1
+        }
+      ],
+      "timing": {
+        "startedAt": "1970-01-01T00:00:00.652Z",
+        "submittedAt": "1970-01-01T00:00:01.466Z",
+        "wallClockMs": 814,
+        "activeMs": 814,
+        "idleMs": 0,
+        "pauseCount": 0,
+        "focusLossCount": 0,
+        "visibilityHiddenCount": 0,
+        "longestIdleMs": 0,
+        "confidence": "high"
+      }
+    }
+  },
+  {
+    "sequence": 311,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/submissions",
+    "status": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "body": {
+      "submissionId": "jd76s9mfkj36kqyhftxeexfkrs8e2eze",
+      "score": 3,
+      "maxScore": 3
+    }
+  },
+  {
+    "sequence": 312,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 313,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j57fj3c3gbqcbrc79tnm5c74118e23f1",
+      "answers": {
+        "discriminant": "-7",
+        "x1": "(1+i*sqrt(7))/4",
+        "x2": "(1-i*sqrt(7))/4"
+      },
+      "attemptOrdinal": 4,
+      "maxScore": 3,
+      "mode": "independent_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "-7",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "(1+i*sqrt(7))/4",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x2",
+          "rawAnswer": "(1-i*sqrt(7))/4",
+          "score": 1
+        }
+      ],
+      "props": {
+        "equation": "2x^2 - x + 1",
+        "presentationMode": "independent",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 3,
+      "state": "final",
+      "submissionId": "jd76s9mfkj36kqyhftxeexfkrs8e2eze"
+    }
+  },
+  {
+    "sequence": 314,
+    "type": "request",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 315,
+    "type": "response",
+    "method": "POST",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j57fj3c3gbqcbrc79tnm5c74118e23f1&mode=independent_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "state": "exhausted"
+    }
+  },
+  {
+    "sequence": 316,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connecting..."
+  },
+  {
+    "sequence": 317,
+    "type": "console",
+    "level": "debug",
+    "text": "[vite] connected."
+  },
+  {
+    "sequence": 318,
+    "type": "console",
+    "level": "info",
+    "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"
+  },
+  {
+    "sequence": 319,
+    "type": "request",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "headers": {},
+    "body": null
+  },
+  {
+    "sequence": 320,
+    "type": "response",
+    "method": "GET",
+    "url": "http://127.0.0.1:43142/api/activities/quadratic-formula/attempt?activityId=j570d2he5qa11md6cewcvdpdx98e3asj&mode=guided_practice",
+    "status": 200,
+    "headers": {
+      "cache-control": "private, no-store",
+      "content-type": "application/json"
+    },
+    "body": {
+      "activityId": "j570d2he5qa11md6cewcvdpdx98e3asj",
+      "answers": {
+        "discriminant": "-3",
+        "x1": "(3+i*sqrt(3))/2",
+        "x2": "(3-i*sqrt(3))/2"
+      },
+      "attemptOrdinal": 4,
+      "maxScore": 3,
+      "mode": "guided_practice",
+      "parts": [
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "discriminant",
+          "rawAnswer": "-3",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x1",
+          "rawAnswer": "(3+i*sqrt(3))/2",
+          "score": 1
+        },
+        {
+          "isCorrect": true,
+          "maxScore": 1,
+          "partId": "x2",
+          "rawAnswer": "(3-i*sqrt(3))/2",
+          "score": 1
+        }
+      ],
+      "props": {
+        "equation": "x^2 - 3x + 3",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        },
+        "presentationMode": "guided",
+        "prompt": "Use the Quadratic Formula to solve the equation."
+      },
+      "score": 3,
+      "state": "final",
+      "submissionId": "jd7fhexqfp1eqz5hdr0rhnr2a98e2dff"
+    }
+  }
+]

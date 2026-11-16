@@ -1,0 +1,31 @@
+{
+  "cards": [],
+  "evidence": [],
+  "lessonResponses": [],
+  "progress": [],
+  "receipts": [],
+  "reviews": [],
+  "submissions": [
+    {
+      "_creationTime": 1788873637218.196,
+      "_id": "jd72ysv300sj63g4q7j4rftxe58e0t6a",
+      "activityId": "j571m08v68t7zqm64p5p86twk98e1czc",
+      "attemptOrdinal": 1,
+      "createIdempotencyKey": "3ce53ced-3c18-4714-b277-19b82fa1f42e",
+      "createdAt": 1788873637218,
+      "masteryContractVersion": "learning-evidence.v1",
+      "stableActivityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.worked_example",
+      "submissionData": {
+        "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.worked_example",
+        "answers": {},
+        "contractVersion": "practice.v1",
+        "mode": "worked_example",
+        "parts": [],
+        "status": "submitted"
+      },
+      "submittedAt": 1788873637218,
+      "updatedAt": 1788873637218,
+      "userId": "nd7388vxjx63gbs8jt97fcgazx8e1jef"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+# Danielson Whole-App Review Plan
+
+## Review work
+
+- [x] Map app surfaces and requirements.
+- [x] Review all 63 curriculum modules and source alignment.
+- [x] Trace teacher, supervisor, and administrator workflows.
+- [x] Review data integrity, security, capacity, and unnecessary content.
+- [x] Verify quality checks and targeted local browser behavior.
+- [x] Publish consolidated findings and explicit coverage limits.
+
+## Deliverables
+
+- `report.md`: 13 finding groups, seven product gaps and risks, verification, and limits.
+- `curriculum-review.md`: all 63 training pages with source links.
+- `evidence/video-checks.json`: results for 38 configured videos.
+- `evidence/learn-mobile.png` and `evidence/draft-mobile.png`: local mobile review captures.
+
+## Correction work
+
+- [x] F01–F05: Correct technique content, references, media, and component labels. `69249bf2`
+- [x] F06–F07: Preserve unsaved work and reject future observation evidence. `07c4c342`
+- [x] F08–F09: Preserve existing due dates and exclude inactive plan subjects. `07c4c342`
+- [x] F10–F11: Update displayed data and revisions after successful changes. `b8959159`
+- [x] F12–F13: Improve navigation, touch targets, and current documentation. `b8959159`
+- [x] Fix the additional administration account-status defect. `b8959159`
+- [x] G01–G03: Add rehearsal, rating guidance, and explicit partial-evaluation status. `b8959159`
+- [x] G04–G06: Add actionable GBF steps, assignment visibility, and account recovery. `b8959159`
+- [x] G07: Document operating limits and capacity planning. `b8959159`
+- [x] Verify tests, lint, both TypeScript checks, build, browser flows, and Measure Doctor.
+
+## School decisions still open
+
+- [ ] Supply or approve instruction for components 1b, 1d, and 4a–4f.
+- [x] Supply the approved component rubric. Calibration examples remain a school decision.
+- [ ] Decide whether new formal evaluations require all 22 components.
+- [ ] Define correction of published subject, date, and school-year metadata.
+- [ ] Decide whether to change the supplied GBF edition or assignment lifecycle.
+- [ ] Approve a higher capacity if the documented limits do not meet school needs.
+
+The review is complete. The user authorized corrections on 2026-09-07.
+Confirmed defects are corrected. The school decisions above remain open.
+See `fixes.md` for the exact scope and verification.
+The local browser draft was discarded. The review-owned local stack was stopped.
+
+## Source video inclusion (2026-09-07)
+
+- [x] V01: Include the eight TLAC 3.0 videos from the source CSV. Show the overview in Learn. Connect seven tutorials to their technique pages. Preserve source titles and explain the Replace Self-Report number error. Test links, embeds, and lesson mapping. Commit: `e8ca6ad6`.
+- [ ] V02: Include Get Better Faster videos when their source location is identified. The supplied directory has no matching files or text links. A source-location question is pending.
+
+## Admin effectiveness assessment (2026-09-07)
+
+- [x] A01: Review current leadership and administration flows. Recommend priorities, coaching methods, and pilot measures in `admin-effectiveness.md`. This is an assessment only.
+
+## FFT 2022 rubric descriptors (2026-09-17)
+
+- [x] R01: Add the supplied FFT 2022 descriptors for all 22 components and four rating levels. Show the component-specific descriptors in the observation form. Test source completeness and user-visible guidance. `4543d9192`

@@ -362,7 +362,7 @@ describe('completeDailySessionHandler', () => {
     ).rejects.toThrow('No active session found for student student-1');
   });
 
-  it('throws if session is already completed', async () => {
+  it('returns the same session when completion is retried', async () => {
     const now = Date.now();
     const existingSession = {
       _id: 'session-active' as Id<'srs_sessions'>,
@@ -380,6 +380,7 @@ describe('completeDailySessionHandler', () => {
         { db } as unknown as import('@/convex/_generated/server').MutationCtx,
         { studentId: 'student-1', sessionId: 'session-active' }
       )
-    ).rejects.toThrow('No active session found for student student-1');
+    ).resolves.toBe('session-active');
+    expect(db.patch).not.toHaveBeenCalled();
   });
 });

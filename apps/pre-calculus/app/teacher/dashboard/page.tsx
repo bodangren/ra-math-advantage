@@ -1,34 +1,12 @@
-import Link from "next/link";
-
-export default function TeacherDashboard() {
-  return (
-    <div className="max-w-content mx-auto px-6 py-16">
-      <div className="text-center py-20">
-        <div
-          className="inline-flex items-center justify-center w-16 h-16 rounded-panel mb-6"
-          style={{ backgroundColor: "rgba(56, 189, 248, 0.15)" }}
-        >
-          <span className="text-3xl" aria-hidden="true">👨‍🏫</span>
-        </div>
-        <h1
-          className="text-primary-text mb-4"
-          style={{ fontSize: '32px', fontWeight: 510 }}
-        >
-          Teacher Dashboard
-        </h1>
-        <p className="text-secondary-text text-lg mb-8 max-w-md mx-auto">
-          Your class management dashboard is coming soon. Monitor student progress,
-          view gradebooks, and manage assignments.
-        </p>
-        <div className="flex justify-center gap-4">
-          <Link href="/curriculum" className="btn-secondary">
-            View Curriculum
-          </Link>
-          <Link href="/" className="btn-primary">
-            Back to Home
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+import Link from 'next/link';
+import { requireTeacherSessionClaims } from '@/lib/auth/server';
+import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { TeacherCourse } from '@/components/course/TeacherCourse';
+export default async function TeacherDashboard() {
+  const claims = await requireTeacherSessionClaims('/teacher/dashboard');
+  const [data, topic11Candidates] = await Promise.all([
+    fetchInternalQuery(internal.course.getTeacherData, { teacherId: claims.sub }),
+    fetchInternalQuery(internal.course.getTopic11TeacherCandidates, { teacherId: claims.sub }),
+  ]);
+  return <main className="max-w-4xl mx-auto p-6"><h1>Teacher dashboard</h1><Link href="/teacher/gradebook" className="underline">Open gradebook</Link><TeacherCourse data={data} topic11Candidates={topic11Candidates} /></main>;
 }

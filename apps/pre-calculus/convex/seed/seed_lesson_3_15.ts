@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -23,9 +24,9 @@ export const seedLesson3_15 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 3,
-          title: "Polar Representations",
+          title: "Rates of Change in Polar Functions",
           slug: lessonSlug,
-          description: "Students convert between rectangular and polar equations and understand when polar representation is advantageous.",
+          description: "AP Precalculus Topic 3.15: Rates of Change in Polar Functions",
           orderIndex: 15,
           createdAt: now,
           updatedAt: now,
@@ -33,212 +34,131 @@ export const seedLesson3_15 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
-          title: "Polar Representations",
-          description: "Students convert between rectangular and polar equations and understand when polar representation is advantageous.",
+          version: 2,
+          title: "Rates of Change in Polar Functions",
+          description: "AP Precalculus Topic 3.15: Rates of Change in Polar Functions",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "Which equation is simpler in polar form: $x^2 + y^2 = 25$?",
-                    options: ["r = 5", "r = 25", "θ = 5", "r² = 5"],
-                    correctIndex: 0,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Polar Representations\n\n### Conversion Identities\n\n$$x^2 + y^2 = r^2, \\quad x = r\\cos\\theta, \\quad y = r\\sin\\theta$$\n$$\\tan\\theta = \\frac{y}{x}, \\quad \\frac{y}{x} = \\frac{\\sin\\theta}{\\cos\\theta}$$\n\n### When Polar is Better\n\n- **Circles through origin**: $r = 2a\\cos\\theta$ instead of $(x-a)^2 + y^2 = a^2$\n- **Rotational symmetry**: Rose curves, spirals\n- **Distance from origin**: Natural in polar\n\n### When Rectangular is Better\n\n- **Lines**: $y = mx + b$ is simpler\n- **Parabolas**: $y = x^2$ is simpler\n- **Horizontal/vertical distances**: Natural in rectangular\n\n### Multiple Representations\n\nThe same curve can have different polar equations (adding $\\pi$ to $\\theta$, negating $r$).",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Convert Between Forms\n\na) Convert $r = 4\\sin\\theta$ to rectangular.\nb) Convert $x^2 + y^2 = 6x$ to polar.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Polar-rectangular conversion",
-                steps: [
-                  { expression: "a) r = 4sinθ → r² = 4rsinθ", explanation: "Multiply both sides by r" },
-                  { expression: "x² + y² = 4y", explanation: "Substitute r² and rsinθ" },
-                  { expression: "x² + y² - 4y = 0 → x² + (y-2)² = 4", explanation: "Complete the square — circle of radius 2" },
-                  { expression: "b) x² + y² = 6x → r² = 6rcosθ", explanation: "Substitute polar forms" },
-                  { expression: "r = 6cosθ", explanation: "Divide by r (r ≠ 0)" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "The rectangular equation of $r = 2\\cos\\theta$ is a:",
-                    options: ["Line", "Circle", "Ellipse", "Parabola"],
-                    correctIndex: 1,
-                  },
-                  {
-                    question: "Polar form is most natural for curves with:",
-                    options: ["Linear behavior", "Rotational symmetry", "Parabolic shape", "Cubic behavior"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Convert x² + y² = 9 to polar",
-                steps: [
-                  { expression: "x² + y² = r²", explanation: "Identity" },
-                  { expression: "r² = 9", explanation: "Substitute" },
-                  { expression: "r = 3", explanation: "Circle of radius 3" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "For $r = 3\\cos(\\theta)$, when $\\theta = 0$ we get $r = 3$ and when $\\theta = \\pi/2$ we get $r = 0$. The radius decreased. But what if $r$ were negative? If $r = -2$ and increases to $r = -1$, the actual distance from the origin *decreases* — the point moves closer. How does the sign of $r$ change the relationship between the direction of $r$ and the distance from the origin?"
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Signed radius**: $r$ can be positive or negative. When $r < 0$, the point plots in the opposite direction from $\\theta$, but the **distance** from the origin is $|r|$.\n- **Distance-from-origin behavior**: Determined by both the sign and the monotonicity (increasing/decreasing) of $r$.\n- **Average rate of change**: $\\frac{f(b) - f(a)}{b - a}$ over the interval $[a, b]$ — the rate at which $r$ changes per radian of $\\theta$.\n- **Relative extremum**: Where $r$ changes from increasing to decreasing (relative max) or decreasing to increasing (relative min), corresponding to a point farthest from or closest to the origin."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Given a polar function $r = f(\\theta)$, the value $r$ is a **signed radius**. The actual distance from the origin is $|r|$. This means the sign of $r$ affects how we interpret increasing and decreasing behavior:\n\n| $r$ behavior | Distance to origin |\n|---|---|\n| $r$ positive and increasing | Distance increasing |\n| $r$ positive and decreasing | Distance decreasing |\n| $r$ negative and increasing | Distance **decreasing** |\n| $r$ negative and decreasing | Distance **increasing** |\n\nThe key insight: when $r$ is negative, increasing $r$ means moving *toward* zero (closer to the origin), and decreasing $r$ means moving *away from* zero (farther from the origin).\n\n**Relative extrema**: If $r$ changes from increasing to decreasing (or vice versa), the function has a relative extremum — a point closest to or farthest from the origin.\n\n**Average rate of change** of $r$ with respect to $\\theta$ over $[a, b]$:\n\n$$\\frac{f(b) - f(a)}{b - a}$$\n\nThis measures the rate at which the radius changes per radian. It can estimate $f(\\theta)$ within the interval using point-slope form: $r - r_1 = \\text{(avg rate)}(\\theta - \\theta_1)$.\n\n**AP exam tip**: It often helps to sketch $r = f(\\theta)$ in rectangular coordinates (with $\\theta$ on the horizontal axis and $r$ on the vertical axis) to visualize sign and monotonicity."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** For a polar function, $r$ is positive and increasing on $[0, \\pi/2]$. What happens to the distance from the origin?\n\n**Solution:**\n- $r$ positive: distance equals $r$.\n- $r$ increasing: distance is **increasing**. The point moves away from the origin.\n\n**Example 2:** $r$ is negative and increasing on $[\\pi, 3\\pi/2]$. What happens to the distance?\n\n**Solution:**\n- $r$ negative: distance equals $-r$.\n- $r$ increasing (becoming less negative): $-r$ is **decreasing**.\n- Distance is **decreasing**. The point moves closer to the origin.\n\n**Example 3:** For a polar function, $f(\\pi/6) = 2$ and $f(\\pi/3) = 5$. Find the average rate of change on $[\\pi/6, \\pi/3]$.\n\n**Solution:**\n- $\\frac{5 - 2}{\\pi/3 - \\pi/6} = \\frac{3}{\\pi/6} = \\frac{18}{\\pi}$\n- The radius increases by $18/\\pi$ units per radian on this interval.\n\n**Example 4:** Using Example 3, estimate $f(\\pi/4)$.\n\n**Solution:**\n- Point-slope from $\\theta_1 = \\pi/6$, $r_1 = 2$:\n- $r - 2 = \\frac{18}{\\pi}(\\pi/4 - \\pi/6) = \\frac{18}{\\pi} \\cdot \\frac{\\pi}{12} = \\frac{3}{2}$\n- $r \\approx 2 + 1.5 = 3.5$"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** $r$ is negative and decreasing on $[\\pi, 3\\pi/2]$. Is the distance from the origin increasing or decreasing?\n\n**Hint:** If $r$ is negative, distance is $-r$. A decreasing $r$ (more negative) means $-r$ is increasing.\n\n**Problem 2:** $f(0) = 3$ and $f(\\pi/2) = 0$. Find the average rate of change on $[0, \\pi/2]$.\n\n**Hint:** Apply $\\frac{f(b) - f(a)}{b - a}$.\n\n**Problem 3:** On which interval is the average rate of change equal to zero: $[0, \\pi/4]$, $[\\pi/4, \\pi/2]$, $[\\pi/2, 3\\pi/4]$? You are given that $f(0) = 2$, $f(\\pi/4) = 4$, $f(\\pi/2) = 4$, $f(3\\pi/4) = 2$.\n\n**Hint:** Zero average rate of change means $f(b) = f(a)$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** For a polar function $r = f(\\theta)$, complete the table:\n\n| Interval | $r$ positive/negative? | $r$ increasing/decreasing? | Distance behavior |\n|---|---|---|---|\n| $[0, \\pi/4]$ | positive | increasing | ? |\n| $[\\pi/4, \\pi/2]$ | positive | decreasing | ? |\n| $[\\pi/2, 3\\pi/4]$ | negative | increasing | ? |\n| $[3\\pi/4, \\pi]$ | negative | decreasing | ? |\n\n**Problem 2:** A polar function has $f(\\pi/8) = 4$ and $f(\\pi/4) = 7$. Estimate $f(3\\pi/16)$ using the average rate of change.\n\n**Problem 3:** On which interval is the average rate of change least: $[0, \\pi/3]$, $[\\pi/3, 2\\pi/3]$, $[2\\pi/3, \\pi]$? Given $f(0) = 6$, $f(\\pi/3) = 3$, $f(2\\pi/3) = -1$, $f(\\pi) = -4$.\n\n**Hint:** Compute the average rate of change for each interval and compare."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** For a polar function, $r = 2$ when $\\theta = 0$ and $r = 5$ when $\\theta = \\pi/4$. What is the average rate of change? Estimate $r$ when $\\theta = \\pi/8$.\n\n**Lesson Summary:** The signed radius $r$ can be positive or negative, which reverses the distance interpretation when $r < 0$. When $r$ is negative and increasing, the distance from the origin is actually decreasing. The average rate of change $\\frac{f(b) - f(a)}{b - a}$ measures how fast the radius changes per radian and enables estimation via point-slope form. Sketching $r = f(\\theta)$ in rectangular coordinates helps visualize sign and monotonicity behavior."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

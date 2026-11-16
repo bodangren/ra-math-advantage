@@ -104,6 +104,7 @@ const applicationProblemSchema = z.object({
 });
 
 const baseAssessmentSchema = z.object({
+  mode: z.enum(['guided_practice', 'independent_practice', 'assessment']).optional(),
   title: z.string().default('Comprehension Check'),
   description: z.string().default('Test your understanding of the lesson.'),
   showExplanations: z.boolean().default(true),

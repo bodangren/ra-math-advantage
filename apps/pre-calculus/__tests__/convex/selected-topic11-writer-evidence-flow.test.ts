@@ -1,0 +1,516 @@
+import { describe, expect, it, vi } from "vitest";
+
+const catalogs = vi.hoisted(() => ({
+  nodes: {
+    nodes: [
+      {
+        id: "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+        kind: "skill",
+        reviewStatus: "approved",
+      },
+    ],
+  },
+  blueprints: {
+    blueprints: [
+      {
+        nodeId:
+          "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+        reviewStatus: "approved",
+        rendererKey: "interval-classification",
+        rendererModeMap: {
+          worked: "interval-classification",
+          guidedPractice: "interval-classification",
+          independentPractice: "interval-classification",
+        },
+        guidedPracticeSpec: {
+          scaffoldedPrompt:
+            "Identify the intervals where the graph increases, decreases, and stays constant.",
+          stepPrompts: [
+            "Mark the domain endpoints and the change points x=3 and x=7.",
+            "Read each graph segment from left to right and decide whether it rises, falls, or stays flat.",
+            "Write each interval. Use U or ∪ between multiple intervals. Enter none when no interval exists.",
+          ],
+          hints: [
+            "Use the two change points to separate the graph into three segments.",
+            "Read each segment from left to right.",
+            "Enter none when no segment has the requested behavior.",
+          ],
+          checksPerStep: [
+            {
+              check:
+                "The domain endpoints and both change points are identified.",
+            },
+            {
+              check: "Each segment is classified as rising, falling, or flat.",
+            },
+            { check: "All three interval fields are completed." },
+          ],
+          revealPolicy: "one_at_a_time",
+          rendererProps: {
+            title: "Guided Practice: Classify Graph Intervals",
+            prompt:
+              "Identify the intervals where the graph increases, decreases, and stays constant.",
+            domain: [0, 9],
+            changePoints: [3, 7],
+            points: [
+              { x: 0, y: 1 },
+              { x: 3, y: 7 },
+              { x: 7, y: 2 },
+              { x: 9, y: 6 },
+            ],
+            presentationMode: "guided_practice",
+            guidedSteps: [
+              "Mark the domain endpoints and the change points x=3 and x=7.",
+              "Read each graph segment from left to right and decide whether it rises, falls, or stays flat.",
+              "Write each interval. Use U or ∪ between multiple intervals. Enter none when no interval exists.",
+            ],
+            fieldHelp: {
+              increasingIntervals: "Find every segment that rises.",
+              decreasingIntervals: "Find every segment that falls.",
+              constantIntervals: "Check whether any segment stays flat.",
+            },
+          },
+        },
+        independentPracticeSpec: {
+          variantParameters: {
+            seed: {
+              type: "integer",
+              min: 0,
+              description:
+                "Deterministic Topic 1.1 interval graph variant seed",
+            },
+          },
+          answerSchema: {
+            increasingIntervals: "string",
+            decreasingIntervals: "string",
+            constantIntervals: "string",
+          },
+          gradingRules: [
+            { partId: "increasingIntervals", ruleType: "custom", maxScore: 1 },
+            { partId: "decreasingIntervals", ruleType: "custom", maxScore: 1 },
+            { partId: "constantIntervals", ruleType: "custom", maxScore: 1 },
+          ],
+          replayPolicy: "any_seed",
+          rendererProps: {
+            title: "Independent Practice: Classify Graph Intervals",
+            prompt:
+              "Identify the intervals where the graph increases, decreases, and stays constant.",
+            domain: [0, 8],
+            changePoints: [2, 4],
+            points: [
+              { x: 0, y: 5 },
+              { x: 2, y: 8 },
+              { x: 4, y: 8 },
+              { x: 8, y: 6 },
+            ],
+            presentationMode: "independent_practice",
+          },
+        },
+        generatorKey: "topic11-interval-graph",
+        gradingSpec: {
+          partIds: [
+            "increasingIntervals",
+            "decreasingIntervals",
+            "constantIntervals",
+          ],
+          passingScore: 3,
+          partialCredit: true,
+          rubric: [
+            {
+              partId: "increasingIntervals",
+              points: 1,
+              criteria: "Correct increasing intervals",
+            },
+            {
+              partId: "decreasingIntervals",
+              points: 1,
+              criteria: "Correct decreasing intervals",
+            },
+            {
+              partId: "constantIntervals",
+              points: 1,
+              criteria: "Correct constant intervals",
+            },
+          ],
+        },
+      },
+    ],
+  },
+}));
+vi.mock("@/curriculum/skill-graph/nodes.json", () => ({
+  default: catalogs.nodes,
+}));
+vi.mock("@/curriculum/skill-graph/blueprints.json", () => ({
+  default: catalogs.blueprints,
+}));
+
+import {
+  PRECALCULUS_TOPIC_12_GUIDED_ACTIVITY_ID,
+  PRECALCULUS_TOPIC_12_NODE_ID,
+} from '@/lib/learning-evidence/precalc-pilot';
+
+const NODE =
+  "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
+const GUIDED = `${NODE}.guided_practice`;
+const INDEPENDENT = `${NODE}.independent_practice`;
+type Row = Record<string, any> & { _id: string };
+
+function harness(
+  stableActivityId = GUIDED,
+  overrides: Record<string, unknown> = {},
+) {
+  const mode =
+    stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
+  const rows: Record<string, Row[]> = {
+    profiles: [
+      {
+        _id: "profiles:student",
+        organizationId: "organizations:1",
+        username: "student",
+        role: "student",
+      },
+    ],
+    auth_credentials: [
+      {
+        _id: "auth_credentials:1",
+        profileId: "profiles:student",
+        organizationId: "organizations:1",
+        username: "student",
+        role: "student",
+        isActive: true,
+      },
+    ],
+    activities: [
+      {
+        _id: `activities:${mode}`,
+        stableActivityId,
+        componentKey: "precalculus-mastery-advantage-pilot",
+        displayName:
+          mode === "guided_practice"
+            ? "Mastery Advantage: Identify Graph Intervals"
+            : "Independent Practice: Classify Graph Intervals",
+        description:
+          mode === "guided_practice"
+            ? "Classify the increasing, decreasing, and constant intervals from a graph."
+            : "Classify the increasing, decreasing, and constant intervals from a generated graph.",
+        props: { nodeId: NODE, mode },
+        gradingConfig: { variantSeed: mode === "guided_practice" ? 0 : 2 },
+        approval: { status: "approved" },
+        ...overrides,
+      },
+    ],
+    activity_submissions: [],
+  };
+  const db = {
+    get: async (_table: string, id: string) =>
+      Object.values(rows)
+        .flat()
+        .find((row) => row._id === id) ?? null,
+    insert: async (table: string, value: Record<string, unknown>) => {
+      const row = { _id: `${table}:${rows[table].length + 1}`, ...value };
+      rows[table].push(row);
+      return row._id;
+    },
+    query: (table: string) => ({
+      withIndex: (_index: string, configure: (q: any) => any) => {
+        const conditions = new Map<string, unknown>();
+        const upperBounds = new Map<string, number>();
+        const q = {
+          eq(field: string, value: unknown) { conditions.set(field, value); return q; },
+          lte(field: string, value: number) { upperBounds.set(field, value); return q; },
+        };
+        configure(q);
+        const selected = () =>
+          rows[table].filter((row) =>
+            [...conditions].every(([key, value]) => row[key] === value)
+              && [...upperBounds].every(([key, value]) => typeof row[key] === 'number' && row[key] <= value),
+          );
+        return {
+          unique: async () => {
+            const found = selected();
+            if (found.length > 1) throw new Error("duplicate");
+            return found[0] ?? null;
+          },
+          order: () => ({
+            first: async () =>
+              selected().sort(
+                (a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0),
+              )[0] ?? null,
+          }),
+        };
+      },
+    }),
+  };
+  return { ctx: { db }, rows };
+}
+
+function envelope(activityId = GUIDED, mode = "guided_practice") {
+  return {
+    contractVersion: "practice.v1",
+    activityId,
+    mode,
+    status: "submitted",
+    attemptNumber: 99,
+    submittedAt: "2020-01-01T00:00:00.000Z",
+    answers: {
+      increasingIntervals: "[0,3]U[7,9]",
+      decreasingIntervals: "[3,7]",
+      constantIntervals: "none",
+    },
+    parts: [
+      { partId: "increasingIntervals", rawAnswer: "[0,3]U[7,9]", hintsUsed: 1 },
+      { partId: "decreasingIntervals", rawAnswer: "[3,7]" },
+      { partId: "constantIntervals", rawAnswer: "none" },
+    ],
+  };
+}
+
+async function handler() {
+  const activitiesModule = await import("@/convex/activities");
+  return (activitiesModule.createServerOwnedSubmission as any)._handler as (
+    ctx: any,
+    args: any,
+  ) => Promise<any>;
+}
+
+
+async function evidenceHandler() {
+  const loadedModule = await import('@/convex/selectedLearningEvidence');
+  return loadedModule.submitRoutedEvidenceHandler;
+}
+
+function addEvidenceTables(h: ReturnType<typeof harness>) {
+  Object.assign(h.rows, {
+    learning_evidence: [], learning_evidence_receipts: [], srs_cards: [], srs_review_log: [],
+  });
+  const originalQuery = h.ctx.db.query;
+  h.ctx.db.query = (table: string) => {
+    const query = originalQuery(table);
+    const originalWithIndex = query.withIndex;
+    query.withIndex = (index: string, configure: (q: any) => any) => {
+      const result = originalWithIndex(index, configure);
+      const selected = async () => {
+        const all = h.rows[table] ?? [];
+        const conditions = new Map<string, unknown>();
+        const upperBounds = new Map<string, number>();
+        const q: any = {
+          eq(field: string, value: unknown) { conditions.set(field, value); return q; },
+          lte(field: string, value: number) { upperBounds.set(field, value); return q; },
+        };
+        configure(q);
+        return all.filter((row: Row) => [...conditions].every(([key, value]) => row[key] === value)
+          && [...upperBounds].every(([key, value]) => typeof row[key] === 'number' && row[key] <= value));
+      };
+      return { ...result, collect: selected };
+    };
+    return query;
+  };
+  (h.ctx.db as any).patch = async (id: string, value: Record<string, unknown>) => {
+    const row = Object.values(h.rows).flat().find((item) => item._id === id);
+    if (!row) throw new Error('missing row');
+    Object.assign(row, value);
+  };
+  return h;
+}
+
+function addTeacherExposure(h: ReturnType<typeof harness>, occurredAt: number) {
+  h.rows.learning_evidence.push({
+    _id: 'learning_evidence:teacher', learnerId: 'profiles:student' as any, nodeId: NODE,
+    activityId: 'topic11-worked-source', attemptOrdinal: 1, origin: 'teacher_led',
+    mode: 'worked_example', occurredAt,
+    idempotencyKey: 'teacher:verified-source', fingerprint: 'existing', createdAt: occurredAt,
+  });
+}
+
+async function createStored(h: ReturnType<typeof harness>, activityId: string, body: any, key: string) {
+  return (await handler())(h.ctx as any, {
+    userId: 'profiles:student', activityId, submissionData: body, idempotencyKey: key,
+  });
+}
+
+describe('selected Topic 1.1 writer to actual evidence stores', () => {
+  it('stores Guided participation without an SRS row', async () => {
+    const h = addEvidenceTables(harness());
+    const created = await createStored(h, GUIDED, envelope(), 'guided-flow');
+    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
+    await expect((await evidenceHandler())(h.ctx as any, {
+      learnerId: 'profiles:student' as any, submissionId: created.submissionId,
+    })).resolves.toMatchObject({ persisted: true, masteryApplied: false, decision: { reason: 'ungraded_evidence' } });
+    expect(h.rows.learning_evidence.at(-1)).not.toHaveProperty('gradedEvidence');
+    expect(h.rows.srs_cards).toHaveLength(0);
+    expect(h.rows.learning_evidence_receipts).toHaveLength(1);
+  });
+
+  it('creates one Independent SRS effect and replays its receipt', async () => {
+    const h = addEvidenceTables(harness(INDEPENDENT));
+    const generated = (await import('@/lib/practice/topic11-interval-graph')).generateTopic11IntervalGraph(2);
+    const answer = (value: readonly (readonly [number, number])[]) => value.length ? value.map(([a,b]) => `[${a},${b}]`).join('U') : 'none';
+    const body = envelope(INDEPENDENT, 'independent_practice');
+    body.answers = { increasingIntervals: answer(generated.increasingIntervals), decreasingIntervals: answer(generated.decreasingIntervals), constantIntervals: answer(generated.constantIntervals) };
+    body.parts = Object.entries(body.answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer, hintsUsed: 1 }));
+    const created = await createStored(h, INDEPENDENT, body, 'independent-flow');
+    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
+    const consume = await evidenceHandler();
+    const first = await consume(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId });
+    expect(first).toMatchObject({ persisted: true, masteryApplied: true, delivery: 'new' });
+    const effectCounts = {
+      evidence: h.rows.learning_evidence.length, receipts: h.rows.learning_evidence_receipts.length,
+      cards: h.rows.srs_cards.length, reviews: h.rows.srs_review_log.length,
+    };
+    await expect(consume(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
+      .resolves.toEqual({ ...first, delivery: 'replay' });
+    expect({
+      evidence: h.rows.learning_evidence.length, receipts: h.rows.learning_evidence_receipts.length,
+      cards: h.rows.srs_cards.length, reviews: h.rows.srs_review_log.length,
+    }).toEqual(effectCounts);
+    expect(h.rows.srs_review_log[0]).toMatchObject({
+      rating: 'Hard',
+      evidence: {
+        baseRating: 'Hard',
+      },
+    });
+  });
+
+  it('creates no effects while teacher exposure is absent', async () => {
+    const h = addEvidenceTables(harness(INDEPENDENT));
+    const body = envelope(INDEPENDENT, 'independent_practice');
+    body.answers = { increasingIntervals: '[0,2]', decreasingIntervals: '[4,8]', constantIntervals: '[2,4]' };
+    body.parts = Object.entries(body.answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer }));
+    const created = await createStored(h, INDEPENDENT, body, 'awaiting-flow');
+    await expect((await evidenceHandler())(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
+      .resolves.toMatchObject({ persisted: false, decision: { reason: 'awaiting_teacher_exposure' } });
+    expect(h.rows.learning_evidence).toHaveLength(0);
+    expect(h.rows.learning_evidence_receipts).toHaveLength(0);
+    expect(h.rows.srs_cards).toHaveLength(0);
+  });
+
+  it('rejects inactive learner authority before receipt replay', async () => {
+    const h = addEvidenceTables(harness());
+    const created = await createStored(h, GUIDED, envelope(), 'inactive-flow');
+    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
+    const consume = await evidenceHandler();
+    await expect(consume(h.ctx as any, {
+      learnerId: 'profiles:student' as any, submissionId: created.submissionId,
+    })).resolves.toMatchObject({ persisted: true, delivery: 'new' });
+    expect(h.rows.learning_evidence_receipts).toHaveLength(1);
+    h.rows.auth_credentials[0].isActive = false;
+    await expect(consume(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
+      .rejects.toThrow(/identity/i);
+    expect(h.rows.learning_evidence_receipts).toHaveLength(1);
+  });
+
+  it.each([
+    ['deleted', (h: ReturnType<typeof harness>) => { h.rows.activity_submissions.length = 0; }],
+    ['identity-damaged', (h: ReturnType<typeof harness>) => { h.rows.activity_submissions[0].stableActivityId = 'changed.activity'; }],
+  ])('authenticates a durable selected replay after the physical row is %s', async (_label, damage) => {
+    const h = addEvidenceTables(harness());
+    const created = await createStored(h, GUIDED, envelope(), `durable-${_label}`);
+    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
+    const consume = await evidenceHandler();
+    const first = await consume(h.ctx as any, {
+      learnerId: 'profiles:student' as any, submissionId: created.submissionId,
+    });
+    expect(first).toMatchObject({ persisted: true, delivery: 'new' });
+    const counts = { evidence: h.rows.learning_evidence.length, receipts: h.rows.learning_evidence_receipts.length, reviews: h.rows.srs_review_log.length };
+
+    damage(h);
+    h.rows.auth_credentials[0].isActive = false;
+    await expect(consume(h.ctx as any, {
+      learnerId: 'profiles:student' as any, submissionId: created.submissionId,
+    })).rejects.toThrow(/identity/i);
+    expect(h.rows.learning_evidence).toHaveLength(counts.evidence);
+    expect(h.rows.learning_evidence_receipts).toHaveLength(counts.receipts);
+    expect(h.rows.srs_review_log).toHaveLength(counts.reviews);
+  });
+
+  it('uses an incorrect assisted Independent server grade', async () => {
+    const h = addEvidenceTables(harness(INDEPENDENT));
+    const body = envelope(INDEPENDENT, 'independent_practice');
+    body.answers = { increasingIntervals: 'none', decreasingIntervals: '[4,8]', constantIntervals: '[2,4]' };
+    body.parts = Object.entries(body.answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer, hintsUsed: 2 }));
+    const created = await createStored(h, INDEPENDENT, body, 'wrong-assisted');
+    expect(created.score).toBe(2);
+    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
+    await expect((await evidenceHandler())(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
+      .resolves.toMatchObject({ persisted: true, masteryApplied: true });
+    expect(h.rows.learning_evidence.at(-1)?.gradedEvidence).toEqual({ isCorrect: false, score: 2, maxScore: 3 });
+    expect(h.rows.activity_submissions[0].submissionData.parts).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ hintsUsed: 2 }),
+        expect.objectContaining({ hintsUsed: 2 }),
+        expect.objectContaining({ hintsUsed: 2 }),
+      ]),
+    );
+    expect(h.rows.srs_review_log).toHaveLength(1);
+    expect(h.rows.srs_review_log[0]).toMatchObject({
+      rating: 'Again',
+      evidence: { baseRating: 'Again' },
+    });
+  });
+
+  it('routes a stored Topic 1.2 submission through the real later-topic stores and replays its receipt', async () => {
+    const h = addEvidenceTables(harness());
+    const submittedAt = Date.parse('2026-08-19T10:00:00.000Z');
+    h.rows.activity_submissions.push({
+      _id: 'activity_submissions:topic12',
+      userId: 'profiles:student',
+      activityId: 'activities:topic12',
+      stableActivityId: PRECALCULUS_TOPIC_12_GUIDED_ACTIVITY_ID,
+      masteryContractVersion: 'learning-evidence.v1',
+      attemptOrdinal: 2,
+      submissionData: {
+        contractVersion: 'practice.v1',
+        activityId: PRECALCULUS_TOPIC_12_GUIDED_ACTIVITY_ID,
+        attemptNumber: 2,
+        mode: 'guided_practice',
+        status: 'graded',
+        submittedAt: new Date(submittedAt).toISOString(),
+        answers: { firstRate: 2, secondRate: 3 },
+        parts: [
+          { partId: 'firstRate', rawAnswer: 2, isCorrect: true, score: 1, maxScore: 1 },
+          { partId: 'secondRate', rawAnswer: 3, isCorrect: true, score: 1, maxScore: 1 },
+        ],
+      },
+      score: 2, maxScore: 2, submittedAt, gradedAt: submittedAt, createdAt: submittedAt, updatedAt: submittedAt,
+    });
+    h.rows.learning_evidence.push({
+      _id: 'learning_evidence:topic12-teacher', learnerId: 'profiles:student',
+      nodeId: PRECALCULUS_TOPIC_12_NODE_ID, activityId: `${PRECALCULUS_TOPIC_12_NODE_ID}.worked_example`,
+      attemptOrdinal: 1, origin: 'teacher_led', mode: 'teaching', occurredAt: submittedAt - 1,
+      idempotencyKey: 'teacher:topic12', createdAt: submittedAt - 1,
+    });
+    const consume = await evidenceHandler();
+    const args = { learnerId: 'profiles:student' as any, submissionId: 'activity_submissions:topic12' as any };
+
+    await expect(consume(h.ctx as any, args)).resolves.toMatchObject({
+      persisted: true, masteryApplied: true, delivery: 'new',
+      decision: { reason: 'eligible', masteryBearing: true },
+    });
+    expect(h.rows.learning_evidence).toHaveLength(2);
+    expect(h.rows.learning_evidence.at(-1)).toMatchObject({
+      submissionId: 'activity_submissions:topic12',
+      nodeId: PRECALCULUS_TOPIC_12_NODE_ID,
+      activityId: PRECALCULUS_TOPIC_12_GUIDED_ACTIVITY_ID,
+      mode: 'guided_practice', origin: 'mastery_advantage',
+    });
+    expect(h.rows.learning_evidence_receipts).toHaveLength(1);
+    expect(h.rows.srs_review_log).toHaveLength(1);
+
+    await expect(consume(h.ctx as any, args)).resolves.toMatchObject({
+      persisted: true, masteryApplied: true, delivery: 'replay',
+    });
+    expect(h.rows.learning_evidence).toHaveLength(2);
+    expect(h.rows.learning_evidence_receipts).toHaveLength(1);
+    expect(h.rows.srs_review_log).toHaveLength(1);
+  });
+
+  it('fails closed when the approved physical source changes after grading', async () => {
+    const h = addEvidenceTables(harness());
+    const created = await createStored(h, GUIDED, envelope(), 'changed-source');
+    h.rows.activities[0].description = 'Changed content';
+    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
+    await expect((await evidenceHandler())(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
+      .resolves.toEqual({ accepted: false, reason: 'submission_not_found' });
+    expect(h.rows.learning_evidence_receipts).toHaveLength(0);
+  });
+});

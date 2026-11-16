@@ -15,7 +15,7 @@ describe('ActivityRenderer - graphing-explorer', () => {
     render(<ActivityRenderer {...defaultProps} />);
 
     expect(await screen.findByText(/graph the function/i)).toBeInTheDocument();
-    expect(screen.getByText('y = x^2')).toBeInTheDocument();
+    await waitFor(() => expect(document.querySelector('annotation[encoding="application/x-tex"]')).toHaveTextContent('y = x^2'));
   });
 
   it('passes activityId and mode to GraphingExplorer', async () => {

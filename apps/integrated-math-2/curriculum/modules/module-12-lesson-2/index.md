@@ -46,7 +46,7 @@ The sign is counterintuitive: (x - 3) means shift right 3 because you solve x - 
 
 * [g(x) = ax^2] where [a > 1] stretches the parabola vertically, making it narrower.
 * [g(x) = ax^2] where [0 < a < 1] compresses the parabola vertically, making it wider.
-* [g(x) = -ax^2] reflects the parabola across the x-axis, opening downward.
+* For a > 0, [g(x) = -ax^2] reflects the upward parabola across the x-axis and opens downward.
 
 When the dilation factor is inside the squared term as [(bx)^2], the width is affected horizontally. The effective horizontal stretch factor is [|1/b|].
 
@@ -59,65 +59,53 @@ When the dilation factor is inside the squared term as [(bx)^2], the width is af
 
 ## Example 1 — Describe Vertical and Horizontal Translations
 
-### Step 1: Identify the Constant Outside the Square
+### Problem
 
-If the equation has [+ k] or [- k] outside the squared term, the graph shifts vertically.
+Describe the translation from y=x² to y=(x-3)²-5.
 
-### Step 2: Identify the Expression Inside the Square
+### Solution
 
-If the equation has [(x - h)] inside the square, the graph shifts horizontally.
-
-Problems 1-12: Describe how each function is related to the graph of [y = x^2].
+Move the graph right 3 units and down 5 units. The vertex moves from (0,0) to (3,-5). The shape and upward opening stay the same.
 
 ## Example 2 — Describe Dilations from Coefficients
 
-### Step 1: Check the Coefficient of x^2
+### Problem
 
-A coefficient greater than 1 makes the parabola narrower. A coefficient between 0 and 1 makes it wider.
+Compare y=4x², y=(1/4)x², and y=-4x² with y=x².
 
-### Step 2: Check for Negative Sign
+### Solution
 
-A negative coefficient reflects the parabola across the x-axis.
-
-### Step 3: Check for Horizontal Dilation
-
-When x is multiplied by a factor inside the square, the graph is compressed or stretched horizontally.
-
-Problems 13-20: Describe the dilation in each function as it relates to the graph of [y = x^2].
+Multiplying outputs by 4 makes y=4x² narrower. Multiplying outputs by 1/4 makes y=(1/4)x² wider. The graph y=-4x² has the same width as y=4x² but reflects across the x-axis. Width depends on the coefficient magnitude.
 
 ## Example 3 — Describe Combined Transformations
 
-For [g(x) = -5 - (4/3)x^2], the negative sign reflects the parabola, the coefficient (4/3) affects the width, and the -5 shifts it down.
+### Problem
 
-For [h(x) = 3 + (5/2)x^2], the coefficient (5/2) stretches the parabola vertically and the +3 shifts it up.
+Describe g(x)=-5-(4/3)x² relative to y=x².
 
-Problems 21-32: Describe how each function is related to the graph of [y = x^2].
+### Solution
+
+Multiply vertical coordinates by 4/3, reflect across the x-axis, and shift down 5. The parabola is narrower than the parent, opens downward, and has vertex (0,-5). Its range is (-infinity,-5].
 
 ## Example 4 — Use a Graph to Write the Equation
 
-### Step 1: Identify the Vertex
+### Problem
 
-Find the (h, k) coordinates from the graph.
+A parabola has vertex (2,-3) and passes through (4,5). Find its equation.
 
-### Step 2: Identify the Direction and Width
+### Solution
 
-Determine whether [a] is positive or negative (opens up or down) and estimate its magnitude from how wide or narrow the parabola is.
-
-### Step 3: Write the Equation
-
-Substitute into [f(x) = a(x - h)^2 + k] and solve for a if needed by substituting another point.
-
-Problems 36-38: Use the graph of each function to write its equation.
+Use y=a(x-2)²-3. Substituting (4,5) gives 5=4a-3, so a=2. The equation is y=2(x-2)²-3. A second point determines the coefficient; visual width alone is not an exact measurement.
 
 ## Example 5 — Transformations in Real-World Contexts
 
-The spring constant problem compares [U_s = (1/2)kx^2] for k = 10 versus k = 2. The larger spring constant produces a steeper, narrower parabola.
+### Problem
 
-The falling ball problem [h = -16t^2 + 20] is a vertical stretch (wider than [y = t^2]) combined with a reflection across the x-axis and a vertical shift up 20 units.
+For the spring-energy model U=(1/2)kx², compare k=2 and k=10 using the same displacement x and the same axis scales.
 
-The racing car problem compares [d = 3t^2] and [d = 2t^2 + 100]. The second car's equation represents a vertical stretch factor of 2 and a vertical translation up 100 units.
+### Solution
 
-Problems 33-35: Compare each real-world quadratic model to its parent function.
+The two functions are U₁=x² and U₂=5x². For every fixed x, U₂ is five times U₁. Its graph is a vertical stretch by 5 and appears narrower. Both have their minimum at x=0.
 
 ## Mixed Exercises
 
@@ -142,7 +130,7 @@ Images in the source:
 * Problem 61: Graph showing two parabolas for comparison.
 * Problem 64: Parabola for creating a function.
 
-![](media/image1.png) ![](media/image2.png) ![](media/image3.png)
-![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png)
-![](media/image8.png) ![](media/image9.png) ![](media/image10.png)
-![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png)
+![Worksheet figure 1](/curriculum/module-12-lesson-2/image1.png) ![Worksheet figure 2](/curriculum/module-12-lesson-2/image2.png) ![Worksheet figure 3](/curriculum/module-12-lesson-2/image3.png)
+![Worksheet figure 4](/curriculum/module-12-lesson-2/image4.png) ![Worksheet figure 5](/curriculum/module-12-lesson-2/image5.png) ![Worksheet figure 6](/curriculum/module-12-lesson-2/image6.png) ![Worksheet figure 7](/curriculum/module-12-lesson-2/image7.png)
+![Worksheet figure 8](/curriculum/module-12-lesson-2/image8.png) ![Worksheet figure 9](/curriculum/module-12-lesson-2/image9.png) ![Worksheet figure 10](/curriculum/module-12-lesson-2/image10.png)
+![Worksheet figure 11](/curriculum/module-12-lesson-2/image11.png) ![Worksheet figure 12](/curriculum/module-12-lesson-2/image12.png) ![Worksheet figure 13](/curriculum/module-12-lesson-2/image13.png) ![Worksheet figure 14](/curriculum/module-12-lesson-2/image14.png)

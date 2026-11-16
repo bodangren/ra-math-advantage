@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -25,7 +26,7 @@ export const seedLesson1_9 = internalMutation({
           unitNumber: 1,
           title: "Rational Functions and Vertical Asymptotes",
           slug: lessonSlug,
-          description: "Students identify vertical asymptotes and analyze the behavior of rational functions near them.",
+          description: "AP Precalculus Topic 1.9: Rational Functions and Vertical Asymptotes",
           orderIndex: 9,
           createdAt: now,
           updatedAt: now,
@@ -33,203 +34,131 @@ export const seedLesson1_9 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
+          version: 2,
           title: "Rational Functions and Vertical Asymptotes",
-          description: "Students identify vertical asymptotes and analyze the behavior of rational functions near them.",
+          description: "AP Precalculus Topic 1.9: Rational Functions and Vertical Asymptotes",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                variant: "plot_from_equation",
-                equation: "y = 1/(x - 2)",
-                title: "Explore Vertical Asymptotes",
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Vertical Asymptotes of Rational Functions\n\nA **vertical asymptote** occurs at $x = a$ if the denominator is zero at $x = a$ and the numerator is nonzero.\n\n### How to Find Vertical Asymptotes\n\n1. Factor numerator and denominator completely\n2. Cancel common factors (these create holes, not asymptotes)\n3. Set the remaining denominator equal to zero\n4. Solve — each solution is a vertical asymptote\n\n### Behavior Near Vertical Asymptotes\n\nAs $x$ approaches a vertical asymptote from either side, $|f(x)| \\to \\infty$. The sign of $f(x)$ on each side depends on the signs of the numerator and denominator.",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Finding Vertical Asymptotes\n\nFind the vertical asymptotes of $f(x) = \\frac{x + 1}{x^2 - 5x + 6}$.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "f(x) = (x+1)/(x^2 - 5x + 6)",
-                steps: [
-                  { expression: "Factor denominator: x^2 - 5x + 6 = (x-2)(x-3)", explanation: "Factor" },
-                  { expression: "Numerator x + 1 has no common factors with denominator", explanation: "No cancellation" },
-                  { expression: "(x - 2)(x - 3) = 0 → x = 2 or x = 3", explanation: "Set denominator to zero" },
-                  { expression: "Vertical asymptotes at x = 2 and x = 3", explanation: "Both are vertical asymptotes" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "Vertical asymptotes of $f(x) = \\frac{1}{x^2 - 4}$:",
-                    options: ["x = 2 only", "x = -2 only", "x = ±2", "x = 0"],
-                    correctIndex: 2,
-                  },
-                  {
-                    question: "Near a vertical asymptote, the function value:",
-                    options: ["Approaches 0", "Approaches infinity", "Is undefined", "Is constant"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "graphing-explorer",
-              props: {
-                variant: "plot_from_equation",
-                equation: "y = (x^2 + 1)/(x^2 - x - 6)",
-                title: "Identify Vertical Asymptotes",
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Graph $f(x) = 1/x$ on your calculator. What happens to the graph as $x$ approaches 0 from the left? From the right? The graph shoots toward infinity — this behavior is called a vertical asymptote. Now consider $g(x) = (x² - 4) / (x - 2)$. What happens at $x = 2$? Is it the same as $f(x)$ at $x = 0$? How can we tell the difference between a vertical asymptote and a hole?"
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Vertical asymptote (VA)** — A vertical line $x = c$ where the function approaches $±∞$ as $x$ approaches $c$.\n- **One-sided limit** — The value a function approaches as $x$ approaches $c$ from the left ($\\lim(x→c⁻)$) or from the right ($\\lim(x→c⁺)$).\n- **Without bound** — Describes function values increasing or decreasing infinitely ($+∞$ or $-∞$).\n- **Hole** — A point where the function is undefined but does not diverge to $±∞$ (covered in Topic 1.10)."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**EK 1.9.A.1:** A vertical asymptote occurs at $x = c$ when a factor in the denominator of a rational function **cannot cancel** with factors in the numerator. The function is undefined at $x = c$ and the graph approaches $±∞$ as $x$ approaches $c$.\n\n**EK 1.9.A.2:** The behavior near a vertical asymptote is described using one-sided limits. As $x$ approaches $c$ from the left or right, $f(x)$ increases or decreases without bound.\n\n**EK 1.9.A.3:** The sign on each side of a VA depends on the signs of the remaining factors evaluated near $c$.\n\n### How to Identify Vertical Asymptotes\n\n1. Factor both the numerator and denominator completely.\n2. Cancel any common factors.\n3. The remaining denominator zeros are vertical asymptotes.\n4. Write one-sided limit statements for each VA by testing values on either side.\n\nFor example, $f(x) = (x - 3)(x + 2) / (x - 1)$ has a VA at $x = 1$ because $(x - 1)$ does not cancel. Testing: $\\lim(x→1⁻) f(x) = -∞$ and $\\lim(x→1⁺) f(x) = +∞$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example 1:** Find all VAs of $f(x) = (x - 2)(x + 3) / ((x + 3)(x - 5))$.\n\nFactor and cancel $(x + 3)$: simplified form is $(x - 2) / (x - 5)$.\n\nThe remaining denominator zero is $x = 5$, so there is a VA at $x = 5$. The canceled factor $(x + 3)$ produces a hole at $x = -3$ (not a VA).\n\n**Example 2:** Write one-sided limit statements for $f(x) = (x - 1)(x + 3) / (x - 2)$.\n\nVA at $x = 2$. Test values near 2:\n\n- At $x = 1.9$: numerator = $(0.9)(4.9)$ > 0, denominator = $-0.1$ < 0 → $f(1.9) < 0$.\n- At $x = 2.1$: numerator = $(1.1)(5.1)$ > 0, denominator = $0.1$ > 0 → $f(2.1) > 0$.\n\nTherefore: $\\lim(x→2⁻) f(x) = -∞$ and $\\lim(x→2⁺) f(x) = +∞$.\n\n**Example 3:** Find VAs of $g(x) = (x - 1)(x + 2) / (x - 1)²$.\n\nCancel one $(x - 1)$: simplified form is $(x + 2) / (x - 1)$. One $(x - 1)$ remains in the denominator, so VA at $x = 1$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Find all vertical asymptotes of $p(x) = (x² - 1) / (x + 1)²$.\n*Hint:* Factor the numerator as $(x - 1)(x + 1)$. Cancel one $(x + 1)$ and check what remains in the denominator.\n\n**Problem 2:** Write one-sided limit statements for $g(x) = (x - 2)(x + 4) / ((x - 2)(x - 3))$.\n*Hint:* First cancel $(x - 2)$ to find the VA. Then test values on either side.\n\n**Problem 3:** Find VAs of $h(x) = 1 / (x³ + 4x)$.\n*Hint:* Factor the denominator: $x(x² + 4)$. Which factor produces a real zero?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** Find all VAs of $f(x) = (x - 1)(x - 5) / ((x - 5)(x + 2))$. State one-sided limit statements at each VA.\n\n**Problem 2:** Find all VAs of $f(x) = (2x + 6) / (x - 3)$ and write $\\lim(x→3⁻) f(x)$ and $\\lim(x→3⁺) f(x)$.\n\n**Problem 3:** Write the equation of a rational function that has a VA at $x = 1$ with $\\lim(x→1⁻) f(x) = -∞$ and $\\lim(x→1⁺) f(x) = +∞$, and a hole at $x = 3$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** Find all vertical asymptotes of $g(x) = (x² - 9) / (x² - x - 6)$. Write one-sided limit statements at each VA.\n\n**Lesson Summary:** Vertical asymptotes occur where denominator factors do not cancel with the numerator. To find VAs, factor completely, cancel common factors, then identify remaining denominator zeros. Use test values on either side of each VA to determine whether the function approaches $+∞$ or $-∞$ from each direction."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

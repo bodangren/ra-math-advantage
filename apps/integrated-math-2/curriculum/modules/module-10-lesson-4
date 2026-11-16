@@ -11,13 +11,13 @@ Source: (Module 10, Lesson 10-4, Int2_1004_practice.docx)
 
 ## Vocabulary
 
-* **Rational Exponent** — An exponent that is a fraction: [a^{\frac{m}{n}} = \sqrt[n]{a^m} = (\sqrt[n]{a})^m], where [a \geq 0] when [n] is even.
-* **Principal Root** — The nonnegative root of a number; for [\sqrt[n]{a}], the principal root is always nonnegative when [n] is even.
-* **nth Root** — A number that when raised to the [n]th power gives the original number: [\sqrt[n]{a} = b] means [b^n = a].
+* **Rational Exponent** — An exponent that is a fraction: $a^{\frac{m}{n}} = \sqrt[n]{a^m} = (\sqrt[n]{a})^m$, where $a \geq 0$ when [n] is even.
+* **Principal Root** — For an even index, the nonnegative real root of a nonnegative number. For an odd index, the unique real root, which can be negative.
+* **nth Root** — A number that when raised to the [n]th power gives the original number: $\sqrt[n]{a} = b$ means [b^n = a].
 
 ## Explore: Roots as Exponents
 
-Students explore the connection between radicals and exponents, understanding that taking the [n]th root of a number is equivalent to raising that number to the power of [\frac{1}{n}].
+Students explore the connection between radicals and exponents, understanding that taking the [n]th root of a number is equivalent to raising that number to the power of $\frac{1}{n}$.
 
 Inquiry Question:
 How can the properties of exponents help us understand radical expressions, and vice versa?
@@ -26,169 +26,69 @@ How can the properties of exponents help us understand radical expressions, and 
 
 ### Key Concept: Converting Between Forms
 
-A rational exponent represents both a root and a power.
+Use a rational exponent m/n in lowest terms with n > 0. For an even n, the real base must be nonnegative. A negative exponent also requires a nonzero base. General exponent laws are safe for positive bases; negative bases require checking the defined real roots.
 
-[
+$$
 a^{\frac{1}{2}} = \sqrt{a}
-]
-
-[
+$$
+$$
 a^{\frac{1}{3}} = \sqrt[3]{a}
-]
-
-[
+$$
+$$
 k^{\frac{1}{4}} = \sqrt[4]{k}
-]
-
+$$
 ### Key Concept: Full Rational Exponents
 
 When the numerator is not 1, apply both the root and the power.
 
-[
+$$
 a^{\frac{m}{n}} = \sqrt[n]{a^m} = (\sqrt[n]{a})^m
-]
-
-[
+$$
+$$
 125^{\frac{4}{3}} = (\sqrt[3]{125})^4 = 5^4 = 625
-]
-
-[
+$$
+$$
 49^{\frac{5}{2}} = (\sqrt{49})^5 = 7^5 = 16,807
-]
-
+$$
 ## Example 1 — Converting Between Forms
 
-Convert expressions between radical form and exponential form.
+### Problem
 
-### Step 1: Convert Exponential to Radical
+Write $15^{1/2}$ in radical form. Write $2\sqrt{ab}$ using rational exponents when a≥0 and b≥0.
 
-[
-15^{\frac{1}{2}} = \sqrt{15}
-]
+### Solution
 
-[
-24^{\frac{1}{2}} = \sqrt{24}
-]
-
-[
-4k^{\frac{1}{2}} = 4\sqrt{k}
-]
-
-### Step 2: Convert Radical to Exponential
-
-[
-\sqrt{26} = 26^{\frac{1}{2}}
-]
-
-[
-\sqrt{44} = 44^{\frac{1}{2}}
-]
-
-[
-2\sqrt{ab} = 2(ab)^{\frac{1}{2}} = 2a^{\frac{1}{2}}b^{\frac{1}{2}}
-]
+The first expression is $\sqrt{15}$. The second is $2(ab)^{1/2}=2a^{1/2}b^{1/2}$. The separate square roots require a and b to be nonnegative. A nonnegative product alone does not ensure that both separate real square roots exist.
 
 ## Example 2 — Evaluating Rational Exponents
 
-Evaluate expressions with rational exponents.
+### Problem
 
-### Step 1: Evaluate Perfect Powers
+Evaluate $729^{5/6}$ and $(9/100)^{3/2}$ exactly.
 
-[
-\left(\frac{1}{16}\right)^{\frac{1}{4}} = \frac{1}{\sqrt[4]{16}} = \frac{1}{2}
-]
+### Solution
 
-[
-\sqrt[5]{3125} = 3125^{\frac{1}{5}} = 5
-]
-
-[
-729^{\frac{1}{3}} = \sqrt[3]{729} = 9
-]
-
-### Step 2: Evaluate Mixed Numerator and Denominator
-
-[
-729^{\frac{5}{6}} = (\sqrt[6]{729})^5 = 3^5 = 243
-]
-
-[
-256^{\frac{3}{8}} = (\sqrt[8]{256})^3 = 2^3 = 8
-]
-
-[
-\left(\frac{9}{100}\right)^{\frac{3}{2}} = \left(\frac{3}{10}\right)^3 = \frac{27}{1000}
-]
+Since $729=3^6$, the first value is $3^5=243$. The principal square root of 9/100 is 3/10, so the second value is $(3/10)^3=27/1000$.
 
 ## Example 3 — Real-World Applications
 
-Apply rational exponents in formulas from science and geometry.
+### Problem
 
-### Step 1: Velocity Formula
+A cube has volume 4096 cubic inches. Express its surface area using a rational power of its volume, then evaluate.
 
-The velocity of a freely falling object: [v = 8h^{\frac{1}{2}}]. If the object has fallen 144 feet:
+### Solution
 
-[
-v = 8 \cdot \sqrt{144} = 8 \cdot 12 = 96 \text{ feet per second}
-]
-
-### Step 2: Geometry Formulas
-
-Surface area of a cube: [S = 6V^{\frac{2}{3}}]. For a cube with volume 4096 cubic inches:
-
-[
-S = 6 \cdot \sqrt[3]{4096^2} = 6 \cdot (16)^2 = 6 \cdot 256 = 1536 \text{ square inches}
-]
-
-### Step 3: Astronomy
-
-Average distance from Sun: [d = t^{\frac{2}{3}}] where [t] is in Earth years. For a planet with 27-year orbit:
-
-[
-d = \sqrt[3]{27^2} = \sqrt[3]{729} = 9 \text{ astronomical units}
-]
-
-### Step 4: Biology
-
-Metabolism relationship: [P = 73.3\sqrt[4]{m^3}]. For a 16-kilogram organism:
-
-[
-P = 73.3 \cdot \sqrt[4]{16^3} = 73.3 \cdot \sqrt[4]{4096} = 73.3 \cdot 8 = 586.4 \text{ Calories per day}
-]
+If the side is s, then $V=s^3$ and $s=V^{1/3}$. Thus $S=6s^2=6V^{2/3}$. The cube root of 4096 is 16, so the surface area is $6(16^2)=1536$ square inches.
 
 ## Example 4 — Simplifying Expressions with Rational Exponents
 
-Apply exponent properties to simplify expressions with rational exponents.
+### Problem
 
-### Step 1: Multiply Rational Exponents
+Simplify $(y^{3/4})^{1/2}$ for y≥0 and evaluate $16^{-3/2}$.
 
-[
-a^{\frac{1}{3}} \cdot a^{\frac{2}{3}} = a^{\frac{1}{3}+\frac{2}{3}} = a^1 = a
-]
+### Solution
 
-[
-c^{\frac{1}{2}} \cdot c^{\frac{3}{2}} = c^{\frac{1}{2}+\frac{3}{2}} = c^2
-]
-
-### Step 2: Apply Power of a Power
-
-[
-(8^2)^{\frac{2}{3}} = 64^{\frac{2}{3}} = (\sqrt[3]{64})^2 = 4^2 = 16
-]
-
-[
-\left(y^{\frac{3}{4}}\right)^{\frac{1}{2}} = y^{\frac{3}{4} \cdot \frac{1}{2}} = y^{\frac{3}{8}}
-]
-
-### Step 3: Handle Negative Rational Exponents
-
-[
-9^{-\frac{1}{2}} = \frac{1}{9^{\frac{1}{2}}} = \frac{1}{3}
-]
-
-[
-16^{-\frac{3}{2}} = \frac{1}{16^{\frac{3}{2}}} = \frac{1}{64}
-]
+For the stated nonnegative domain, multiply the exponents: $(y^{3/4})^{1/2}=y^{3/8}$. The negative exponent gives $16^{-3/2}=1/(\sqrt{16})^3=1/64$.
 
 ## Mixed Exercises
 
@@ -206,11 +106,11 @@ Practice problems covering all skills in the lesson:
 
 ## Review Notes
 
-* ![](media/image1.png) Image of Cobb-Douglas production function table for problem 53.
-* ![](media/image2.png) Image of biology measurement diagram for problem 55 (giraffe height).
-* ![](media/image3.png) Image of graph with table for problem 56 (y = x^{2/5} values).
-* ![](media/image4.png) Image of cylinder diagram for problem 59 (surface area calculation).
-* ![](media/image5.png) Image of student work for problem 65 (Find the Error — Sachi and Makayla).
-* ![](media/image6.png) Image of four expressions for problem 66 (Which One Doesn't Belong).
+* ![Worksheet figure 1](/curriculum/module-10-lesson-4/image1.png) Image of Cobb-Douglas production function table for problem 53.
+* ![Worksheet figure 2](/curriculum/module-10-lesson-4/image2.png) Image of biology measurement diagram for problem 55 (giraffe height).
+* ![Worksheet figure 3](/curriculum/module-10-lesson-4/image3.png) Image of graph with table for problem 56 (y = x^{2/5} values).
+* ![Worksheet figure 4](/curriculum/module-10-lesson-4/image4.png) Image of cylinder diagram for problem 59 (surface area calculation).
+* ![Worksheet figure 5](/curriculum/module-10-lesson-4/image5.png) Image of student work for problem 65 (Find the Error — Sachi and Makayla).
+* ![Worksheet figure 6](/curriculum/module-10-lesson-4/image6.png) Image of four expressions for problem 66 (Which One Doesn't Belong).
 
 (End of file - total 268 lines)

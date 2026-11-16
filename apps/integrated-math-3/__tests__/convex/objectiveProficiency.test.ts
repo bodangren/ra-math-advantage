@@ -7,7 +7,7 @@ function makeMockCtx(overrides: {
     _id: Id<'srs_cards'>;
     studentId: Id<'profiles'>;
     objectiveId: string;
-    problemFamilyId: string;
+    variantKey: string;
     stability: number;
     difficulty: number;
     state: 'new' | 'learning' | 'review' | 'relearning';
@@ -21,8 +21,8 @@ function makeMockCtx(overrides: {
     updatedAt: number;
   }>;
   problemFamilies?: Array<{
-    _id: Id<'problem_families'>;
-    problemFamilyId: string;
+    _id: Id<'practice_variants'>;
+    variantKey: string;
     objectiveIds: string[];
     componentKey: string;
     displayName: string;
@@ -55,7 +55,7 @@ function makeMockCtx(overrides: {
   }>;
   baselines?: Array<{
     _id: Id<'timing_baselines'>;
-    problemFamilyId: string;
+    variantKey: string;
     sampleCount: number;
     medianActiveMs: number;
     p25ActiveMs?: number;
@@ -92,6 +92,7 @@ function makeMockCtx(overrides: {
   const cardQueryMock = {
     withIndex: vi.fn().mockReturnValue({
       collect: vi.fn().mockResolvedValue(cards),
+      take: vi.fn().mockImplementation((limit: number) => Promise.resolve(cards.slice(0, limit))),
     }),
   };
 
@@ -171,7 +172,7 @@ const problemFamilyQueryMock = {
       (_indexName: string, fn: (q: { eq: (field: string, value: string) => unknown }) => void) => {
         const mockQ = {
           eq: vi.fn().mockImplementation((field: string, value: string) => {
-            if (field === 'problemFamilyId') {
+            if (field === 'variantKey') {
               lastProblemFamilyId = value;
             }
             return {};
@@ -181,7 +182,7 @@ const problemFamilyQueryMock = {
         const capturedId = lastProblemFamilyId;
         return {
           first: vi.fn().mockImplementation(() => {
-            const found = baselines.find((b) => b.problemFamilyId === capturedId);
+            const found = baselines.find((b) => b.variantKey === capturedId);
             return Promise.resolve(found ?? null);
           }),
         };
@@ -225,7 +226,7 @@ const problemFamilyQueryMock = {
 
   const mockQuery = vi.fn().mockImplementation((tableName: string) => {
     if (tableName === 'srs_cards') return cardQueryMock;
-    if (tableName === 'problem_families') return problemFamilyQueryMock;
+    if (tableName === 'practice_variants') return problemFamilyQueryMock;
     if (tableName === 'srs_review_log') return reviewQueryMock;
     if (tableName === 'activity_submissions') return submissionQueryMock;
     if (tableName === 'timing_baselines') return baselineQueryMock;
@@ -272,7 +273,7 @@ describe('getObjectiveProficiencyHandler', () => {
           _id: cardId,
           studentId,
           objectiveId: 'HSA-SSE.B.3',
-          problemFamilyId: 'pf-1',
+          variantKey: 'pf-1',
           stability: 90,
           difficulty: 3,
           state: 'review',
@@ -313,7 +314,7 @@ describe('getObjectiveProficiencyHandler', () => {
       baselines: [
         {
           _id: 'base-1' as Id<'timing_baselines'>,
-          problemFamilyId: 'pf-1',
+          variantKey: 'pf-1',
           sampleCount: 20,
           medianActiveMs: 20000,
           lastComputedAt: '2026-04-16T00:00:00.000Z',
@@ -343,7 +344,7 @@ describe('getObjectiveProficiencyHandler', () => {
           _id: card1,
           studentId,
           objectiveId: 'obj-a',
-          problemFamilyId: 'pf-a',
+          variantKey: 'pf-a',
           stability: 90,
           difficulty: 3,
           state: 'review',
@@ -359,7 +360,7 @@ describe('getObjectiveProficiencyHandler', () => {
           _id: card2,
           studentId,
           objectiveId: 'obj-b',
-          problemFamilyId: 'pf-b',
+          variantKey: 'pf-b',
           stability: 10,
           difficulty: 3,
           state: 'review',
@@ -374,8 +375,8 @@ describe('getObjectiveProficiencyHandler', () => {
       ],
       problemFamilies: [
         {
-          _id: 'fam-a' as Id<'problem_families'>,
-          problemFamilyId: 'pf-a',
+          _id: 'fam-a' as Id<'practice_variants'>,
+          variantKey: 'pf-a',
           objectiveIds: ['obj-a'],
           componentKey: 'key-a',
           displayName: 'Family A',
@@ -411,7 +412,7 @@ describe('getObjectiveProficiencyHandler', () => {
     expect(result.objectiveId).toBe('obj-a');
     expect(result.retentionStrength).toBeGreaterThan(0.7);
     expect(result.problemFamilyDetails).toHaveLength(1);
-    expect(result.problemFamilyDetails[0].problemFamilyId).toBe('pf-a');
+    expect(result.problemFamilyDetails[0].variantKey).toBe('pf-a');
   });
 
   it('uses objective priority from policy when objectiveId is provided', async () => {
@@ -424,7 +425,7 @@ describe('getObjectiveProficiencyHandler', () => {
           _id: cardId,
           studentId,
           objectiveId: 'obj-triaged',
-          problemFamilyId: 'pf-triaged',
+          variantKey: 'pf-triaged',
           stability: 100,
           difficulty: 3,
           state: 'review',
@@ -439,8 +440,8 @@ describe('getObjectiveProficiencyHandler', () => {
       ],
       problemFamilies: [
         {
-          _id: 'fam-triaged' as Id<'problem_families'>,
-          problemFamilyId: 'pf-triaged',
+          _id: 'fam-triaged' as Id<'practice_variants'>,
+          variantKey: 'pf-triaged',
           objectiveIds: ['obj-triaged'],
           componentKey: 'key-triaged',
           displayName: 'Family Triaged',
@@ -488,7 +489,7 @@ describe('getObjectiveProficiencyHandler', () => {
           _id: cardId,
           studentId,
           objectiveId: 'obj-timing',
-          problemFamilyId: 'pf-timing',
+          variantKey: 'pf-timing',
           stability: 30,
           difficulty: 3,
           state: 'review',
@@ -529,7 +530,7 @@ describe('getObjectiveProficiencyHandler', () => {
       baselines: [
         {
           _id: 'base-timing' as Id<'timing_baselines'>,
-          problemFamilyId: 'pf-timing',
+          variantKey: 'pf-timing',
           sampleCount: 20,
           medianActiveMs: 15000,
           lastComputedAt: '2026-04-16T00:00:00.000Z',
@@ -538,8 +539,8 @@ describe('getObjectiveProficiencyHandler', () => {
       ],
       problemFamilies: [
         {
-          _id: 'fam-timing' as Id<'problem_families'>,
-          problemFamilyId: 'pf-timing',
+          _id: 'fam-timing' as Id<'practice_variants'>,
+          variantKey: 'pf-timing',
           objectiveIds: ['obj-timing'],
           componentKey: 'key-timing',
           displayName: 'Family Timing',
@@ -583,7 +584,7 @@ describe('getStudentProficiencySummaryHandler', () => {
       _id: Id<'srs_cards'>;
       studentId: Id<'profiles'>;
       objectiveId: string;
-      problemFamilyId: string;
+      variantKey: string;
       stability: number;
       difficulty: number;
       state: 'new' | 'learning' | 'review' | 'relearning';
@@ -597,8 +598,8 @@ describe('getStudentProficiencySummaryHandler', () => {
       updatedAt: number;
     }>;
     problemFamilies?: Array<{
-      _id: Id<'problem_families'>;
-      problemFamilyId: string;
+      _id: Id<'practice_variants'>;
+      variantKey: string;
       objectiveIds: string[];
       componentKey: string;
       displayName: string;
@@ -631,7 +632,7 @@ describe('getStudentProficiencySummaryHandler', () => {
     }>;
     baselines?: Array<{
       _id: Id<'timing_baselines'>;
-      problemFamilyId: string;
+      variantKey: string;
       sampleCount: number;
       medianActiveMs: number;
       p25ActiveMs?: number;
@@ -682,6 +683,7 @@ describe('getStudentProficiencySummaryHandler', () => {
           }
           return {
             collect: () => Promise.resolve(cards.filter((c) => !capturedStudentId || c.studentId === capturedStudentId)),
+            take: (limit: number) => Promise.resolve(cards.filter((c) => !capturedStudentId || c.studentId === capturedStudentId).slice(0, limit)),
           };
         },
       };
@@ -763,7 +765,7 @@ describe('getStudentProficiencySummaryHandler', () => {
         (_indexName: string, fn: (q: { eq: (field: string, value: string) => unknown }) => void) => {
           const mockQ = {
             eq: vi.fn().mockImplementation((field: string, value: string) => {
-              if (field === 'problemFamilyId') {
+              if (field === 'variantKey') {
                 lastProblemFamilyId = value;
               }
               return {};
@@ -773,7 +775,7 @@ describe('getStudentProficiencySummaryHandler', () => {
           const capturedId = lastProblemFamilyId;
           return {
             first: vi.fn().mockImplementation(() => {
-              const found = baselines.find((b) => b.problemFamilyId === capturedId);
+              const found = baselines.find((b) => b.variantKey === capturedId);
               return Promise.resolve(found ?? null);
             }),
           };
@@ -815,7 +817,7 @@ describe('getStudentProficiencySummaryHandler', () => {
 
     const mockQuery = vi.fn().mockImplementation((tableName: string) => {
       if (tableName === 'srs_cards') return cardQueryMock;
-      if (tableName === 'problem_families') return problemFamilyQueryMock;
+      if (tableName === 'practice_variants') return problemFamilyQueryMock;
       if (tableName === 'srs_review_log') return reviewQueryMock;
       if (tableName === 'activity_submissions') return submissionQueryMock;
       if (tableName === 'timing_baselines') return baselineQueryMock;
@@ -859,7 +861,7 @@ describe('getStudentProficiencySummaryHandler', () => {
           _id: card1Id,
           studentId,
           objectiveId: 'obj-a',
-          problemFamilyId: 'pf-1a',
+          variantKey: 'pf-1a',
           stability: 120,
           difficulty: 3,
           state: 'review',
@@ -875,7 +877,7 @@ describe('getStudentProficiencySummaryHandler', () => {
           _id: 'card-1b' as Id<'srs_cards'>,
           studentId,
           objectiveId: 'obj-a',
-          problemFamilyId: 'pf-1b',
+          variantKey: 'pf-1b',
           stability: 120,
           difficulty: 3,
           state: 'review',
@@ -891,7 +893,7 @@ describe('getStudentProficiencySummaryHandler', () => {
           _id: 'card-1c' as Id<'srs_cards'>,
           studentId,
           objectiveId: 'obj-a',
-          problemFamilyId: 'pf-1c',
+          variantKey: 'pf-1c',
           stability: 120,
           difficulty: 3,
           state: 'review',
@@ -907,7 +909,7 @@ describe('getStudentProficiencySummaryHandler', () => {
           _id: card2Id,
           studentId,
           objectiveId: 'obj-b',
-          problemFamilyId: 'pf-2',
+          variantKey: 'pf-2',
           stability: 30,
           difficulty: 3,
           state: 'review',
@@ -922,8 +924,8 @@ describe('getStudentProficiencySummaryHandler', () => {
       ],
       problemFamilies: [
         {
-          _id: 'fam-1a' as Id<'problem_families'>,
-          problemFamilyId: 'pf-1a',
+          _id: 'fam-1a' as Id<'practice_variants'>,
+          variantKey: 'pf-1a',
           objectiveIds: ['obj-a'],
           componentKey: 'key-1a',
           displayName: 'Family 1A',
@@ -931,8 +933,8 @@ describe('getStudentProficiencySummaryHandler', () => {
           difficulty: 'medium',
         },
         {
-          _id: 'fam-1b' as Id<'problem_families'>,
-          problemFamilyId: 'pf-1b',
+          _id: 'fam-1b' as Id<'practice_variants'>,
+          variantKey: 'pf-1b',
           objectiveIds: ['obj-a'],
           componentKey: 'key-1b',
           displayName: 'Family 1B',
@@ -940,8 +942,8 @@ describe('getStudentProficiencySummaryHandler', () => {
           difficulty: 'medium',
         },
         {
-          _id: 'fam-1c' as Id<'problem_families'>,
-          problemFamilyId: 'pf-1c',
+          _id: 'fam-1c' as Id<'practice_variants'>,
+          variantKey: 'pf-1c',
           objectiveIds: ['obj-a'],
           componentKey: 'key-1c',
           displayName: 'Family 1C',
@@ -949,8 +951,8 @@ describe('getStudentProficiencySummaryHandler', () => {
           difficulty: 'medium',
         },
         {
-          _id: 'fam-2' as Id<'problem_families'>,
-          problemFamilyId: 'pf-2',
+          _id: 'fam-2' as Id<'practice_variants'>,
+          variantKey: 'pf-2',
           objectiveIds: ['obj-b'],
           componentKey: 'key-2',
           displayName: 'Family 2',
@@ -986,7 +988,7 @@ describe('getStudentProficiencySummaryHandler', () => {
       baselines: [
         {
           _id: 'base-1a' as Id<'timing_baselines'>,
-          problemFamilyId: 'pf-1a',
+          variantKey: 'pf-1a',
           sampleCount: 20,
           medianActiveMs: 20000,
           lastComputedAt: '2026-04-16T00:00:00.000Z',
@@ -994,7 +996,7 @@ describe('getStudentProficiencySummaryHandler', () => {
         },
         {
           _id: 'base-1b' as Id<'timing_baselines'>,
-          problemFamilyId: 'pf-1b',
+          variantKey: 'pf-1b',
           sampleCount: 20,
           medianActiveMs: 20000,
           lastComputedAt: '2026-04-16T00:00:00.000Z',
@@ -1002,7 +1004,7 @@ describe('getStudentProficiencySummaryHandler', () => {
         },
         {
           _id: 'base-1c' as Id<'timing_baselines'>,
-          problemFamilyId: 'pf-1c',
+          variantKey: 'pf-1c',
           sampleCount: 20,
           medianActiveMs: 20000,
           lastComputedAt: '2026-04-16T00:00:00.000Z',
@@ -1033,7 +1035,7 @@ describe('getStudentProficiencySummaryHandler', () => {
           _id: cardId,
           studentId,
           objectiveId: 'obj-new',
-          problemFamilyId: 'pf-new',
+          variantKey: 'pf-new',
           stability: 0,
           difficulty: 3,
           state: 'new',
@@ -1048,8 +1050,8 @@ describe('getStudentProficiencySummaryHandler', () => {
       ],
       problemFamilies: [
         {
-          _id: 'fam-new' as Id<'problem_families'>,
-          problemFamilyId: 'pf-new',
+          _id: 'fam-new' as Id<'practice_variants'>,
+          variantKey: 'pf-new',
           objectiveIds: ['obj-new'],
           componentKey: 'key-new',
           displayName: 'Family New',
@@ -1084,7 +1086,7 @@ describe('getTeacherClassProficiencyHandler', () => {
       _id: Id<'srs_cards'>;
       studentId: Id<'profiles'>;
       objectiveId: string;
-      problemFamilyId: string;
+      variantKey: string;
       stability: number;
       difficulty: number;
       state: 'new' | 'learning' | 'review' | 'relearning';
@@ -1098,8 +1100,8 @@ describe('getTeacherClassProficiencyHandler', () => {
       updatedAt: number;
     }>;
     problemFamilies?: Array<{
-      _id: Id<'problem_families'>;
-      problemFamilyId: string;
+      _id: Id<'practice_variants'>;
+      variantKey: string;
       objectiveIds: string[];
       componentKey: string;
       displayName: string;
@@ -1132,7 +1134,7 @@ describe('getTeacherClassProficiencyHandler', () => {
     }>;
     baselines?: Array<{
       _id: Id<'timing_baselines'>;
-      problemFamilyId: string;
+      variantKey: string;
       sampleCount: number;
       medianActiveMs: number;
       p25ActiveMs?: number;
@@ -1194,6 +1196,7 @@ describe('getTeacherClassProficiencyHandler', () => {
       let capturedStudentId: Id<'profiles'> | null = null;
       return {
         collect: vi.fn().mockResolvedValue(cards),
+      take: vi.fn().mockImplementation((limit: number) => Promise.resolve(cards.slice(0, limit))),
         withIndex: (_indexName: string, fn?: (q: { eq: (field: string, value: unknown) => unknown }) => void) => {
           if (fn) {
             const mockQ: { eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown } } = {
@@ -1208,6 +1211,7 @@ describe('getTeacherClassProficiencyHandler', () => {
           }
           return {
             collect: () => Promise.resolve(cards.filter((c) => !capturedStudentId || c.studentId === capturedStudentId)),
+            take: (limit: number) => Promise.resolve(cards.filter((c) => !capturedStudentId || c.studentId === capturedStudentId).slice(0, limit)),
           };
         },
       };
@@ -1282,7 +1286,7 @@ describe('getTeacherClassProficiencyHandler', () => {
         (_indexName: string, fn: (q: { eq: (field: string, value: string) => unknown }) => void) => {
           const mockQ = {
             eq: vi.fn().mockImplementation((field: string, value: string) => {
-              if (field === 'problemFamilyId') {
+              if (field === 'variantKey') {
                 lastProblemFamilyId = value;
               }
               return {};
@@ -1292,7 +1296,7 @@ describe('getTeacherClassProficiencyHandler', () => {
           const capturedId = lastProblemFamilyId;
           return {
             first: vi.fn().mockImplementation(() => {
-              const found = baselines.find((b) => b.problemFamilyId === capturedId);
+              const found = baselines.find((b) => b.variantKey === capturedId);
               return Promise.resolve(found ?? null);
             }),
           };
@@ -1338,7 +1342,7 @@ describe('getTeacherClassProficiencyHandler', () => {
       if (tableName === 'class_enrollments') return enrollmentQueryMock;
       if (tableName === 'srs_cards') return cardQueryMock;
       if (tableName === 'srs_review_log') return reviewQueryMock;
-      if (tableName === 'problem_families') return problemFamilyQueryMock;
+      if (tableName === 'practice_variants') return problemFamilyQueryMock;
       if (tableName === 'activity_submissions') return submissionQueryMock;
       if (tableName === 'timing_baselines') return baselineQueryMock;
       if (tableName === 'competency_standards') return standardQueryMock;
@@ -1401,7 +1405,7 @@ describe('getTeacherClassProficiencyHandler', () => {
           _id: 'card-s1-1' as Id<'srs_cards'>,
           studentId: student1Id,
           objectiveId: 'obj-a',
-          problemFamilyId: 'pf-1',
+          variantKey: 'pf-1',
           stability: 90,
           difficulty: 3,
           state: 'review',
@@ -1416,8 +1420,8 @@ describe('getTeacherClassProficiencyHandler', () => {
       ],
       problemFamilies: [
         {
-          _id: 'fam-1' as Id<'problem_families'>,
-          problemFamilyId: 'pf-1',
+          _id: 'fam-1' as Id<'practice_variants'>,
+          variantKey: 'pf-1',
           objectiveIds: ['obj-a'],
           componentKey: 'key-1',
           displayName: 'Family 1',
@@ -1489,7 +1493,7 @@ describe('getTeacherClassProficiencyHandler', () => {
           _id: 'card-s1-1' as Id<'srs_cards'>,
           studentId: student1Id,
           objectiveId: 'obj-struggle',
-          problemFamilyId: 'pf-struggle',
+          variantKey: 'pf-struggle',
           stability: 90,
           difficulty: 3,
           state: 'review',
@@ -1505,7 +1509,7 @@ describe('getTeacherClassProficiencyHandler', () => {
           _id: 'card-s2-1' as Id<'srs_cards'>,
           studentId: student2Id,
           objectiveId: 'obj-struggle',
-          problemFamilyId: 'pf-struggle',
+          variantKey: 'pf-struggle',
           stability: 5,
           difficulty: 3,
           state: 'review',
@@ -1520,8 +1524,8 @@ describe('getTeacherClassProficiencyHandler', () => {
       ],
       problemFamilies: [
         {
-          _id: 'fam-struggle' as Id<'problem_families'>,
-          problemFamilyId: 'pf-struggle',
+          _id: 'fam-struggle' as Id<'practice_variants'>,
+          variantKey: 'pf-struggle',
           objectiveIds: ['obj-struggle'],
           componentKey: 'key-struggle',
           displayName: 'Family Struggle',

@@ -11,25 +11,32 @@
     "./scheduler": "./src/srs/scheduler.ts",
     "./review-processor": "./src/srs/review-processor.ts",
     "./queue": "./src/srs/queue.ts",
+    "./evidence": "./src/srs/proficiency-evidence.ts",
+    "./scheduler-policy": "./src/srs/scheduler-policy-contract.ts",
+    "./fsrs-fitting": "./src/srs/fsrs-fitting.ts",
+    "./evaluation": "./src/srs/evaluation-harness.ts",
+    "./placement": "./src/srs/placement.ts",
+    "./placement-contract": "./src/srs/placement-contract.ts",
+    "./adaptive-placement": "./src/srs/adaptive-placement.ts",
     "./adapters": "./src/srs/adapters.ts",
-    "./submission-adapter": "./src/srs/submission-srs-adapter.ts"
+    "./submission-adapter": "./src/srs/submission-srs-adapter.ts",
+    "./session-composition-contract": "./src/srs/session-composition-contract.ts",
+    "./session-composition": "./src/srs/session-composition.ts"
   },
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "lint": "eslint src --max-warnings 0",
+    "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit"
   },
   "dependencies": {
     "@math-platform/practice-core": "*",
-    "ts-fsrs": "^6.0.0"
+    "ts-fsrs": "^6.0.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@eslint/js": "^10",
-    "eslint": "^10.0.0",
     "typescript": "^6",
-    "typescript-eslint": "^8",
     "vitest": "^4.1.8"
   }
 }

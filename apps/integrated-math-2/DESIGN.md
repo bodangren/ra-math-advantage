@@ -68,6 +68,12 @@ The system uses OKLCH colors for modern browser support and better perceptual un
 - **Background (#FAF9F6):** `oklch(0.985 0.003 75)`. A barely warm white to reduce eye strain during long reading sessions.
 - **Foreground (#242220):** `oklch(0.13 0.016 45)`. A warm near-black for high-contrast text.
 
+### Text contrast
+
+Use #706B64 for small muted text on light surfaces. Use #9D968C for muted text on dark surfaces. Use #006F78 for accent text on light surfaces and #00A3AE on dark surfaces. Keep #00828C for non-text accents and charts. Underline text links on hover. Do not reduce text opacity.
+
+The light text colors meet 4.5:1 contrast on #FFFFFF, #FAF9F6, and #F4F1EA.
+
 ### Chart Colors
 The chart palette is designed for distinctiveness in data visualization:
 - **Chart 1:** Primary Orange (#B14C00)

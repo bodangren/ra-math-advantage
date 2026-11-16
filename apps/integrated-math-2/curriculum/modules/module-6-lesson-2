@@ -41,105 +41,43 @@ A = (1/2) * n * s * a
 
 ## Example 1 — Identify Parts of Regular Polygons
 
-In each figure, a regular polygon is inscribed in a circle. Identify the center, a radius, an apothem, and a central angle of each polygon. Then find the measure of a central angle.
+### Problem
 
-### Step 1: Identify the Center
+Regular hexagon ABCDEF has center O. M is the midpoint of AB. Identify a radius, an apothem, and a central angle. Find the central angle measure.
 
-The center is the point equidistant from all vertices.
+### Solution
 
-### Step 2: Identify the Radius
-
-A radius is a segment from the center to any vertex.
-
-### Step 3: Identify the Apothem
-
-The apothem is a perpendicular segment from the center to a side.
-
-### Step 4: Find the Central Angle
-
-Divide 360 degrees by the number of sides: [360 / n]
-
-For a regular hexagon, the central angle is [360 / 6 = 60] degrees.
-For a regular octagon, the central angle is [360 / 8 = 45] degrees.
+OA is a radius. OM is an apothem because it is perpendicular to side AB. Angle AOB is a central angle between adjacent vertices. Six equal central angles fill 360°, so each measures 60°.
 
 ## Example 2 — Find Areas of Regular Polygons
 
-Find the area of each regular polygon. Round to the nearest tenth.
+### Problem
 
-### Step 1: Find the Perimeter
+A regular hexagon has side length 8 inches. Find its exact area and its area to the nearest tenth.
 
-Multiply the side length by the number of sides.
+### Solution
 
-### Step 2: Find the Apothem
-
-Use trigonometry if needed. The apothem is the height of each isosceles triangle formed by radii.
-
-### Step 3: Apply the Formula
-
-[
-A = (1/2) * Perimeter * Apothem
-]
-
-Find the area of a regular pentagon with side length 6 centimeters and apothem 4.1 centimeters.
-[
-P = 5 * 6 = 30 cm
-]
-[
-A = (1/2) * 30 * 4.1
-]
-[
-A = 61.5 cm^2
-]
-
-Find the area of a regular hexagon with side length 8 inches and apothem 6.9 inches.
-[
-P = 6 * 8 = 48 in
-]
-[
-A = (1/2) * 48 * 6.9
-]
-[
-A = 165.6 in^2
-]
-
-Find the area of a regular octagon with side length 5 meters and apothem 6 meters.
-[
-P = 8 * 5 = 40 m
-]
-[
-A = (1/2) * 40 * 6
-]
-[
-A = 120 m^2
-]
+The perimeter is 48 inches. Half of a central triangle is a 30°-60°-90° triangle with short leg 4 inches, so the apothem is $4\sqrt{3}$ inches. The area is $Pa/2=48(4\sqrt{3})/2=96\sqrt{3}$, approximately 166.3 square inches. Do not use a rounded apothem before the final calculation.
 
 ## Example 3 — Area with Given Apothem
 
-Find the area of each figure. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Calculate the Perimeter
+A regular octagon has apothem 6 m. Find its area to the nearest tenth of a square meter.
 
-Multiply the side length by the number of sides.
+### Solution
 
-### Step 2: Apply the Area Formula
-
-Use [A = (1/2) * P * a] where P is perimeter and a is apothem.
+Half a central angle is 22.5°. If s is a side length, $\tan22.5^\circ=(s/2)/6$, so $s=12\tan22.5^\circ$. The area is $8s(6)/2=288\tan22.5^\circ$, approximately 119.3 square meters.
 
 ## Example 4 — Composite Figures with Regular Polygons
 
-Find the area of each figure. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Decompose the Figure
+A regular hexagon with side length 4 cm shares one full side with a square of side length 4 cm. Their interiors do not overlap. Find the combined area.
 
-Break the composite figure into regular polygons and other shapes.
+### Solution
 
-### Step 2: Find the Area of Each Part
-
-Calculate the area of each component.
-
-### Step 3: Combine or Subtract
-
-Add areas of combined shapes or subtract holes from larger areas.
+The hexagon contains six equilateral triangles. Each triangle has area $(\sqrt{3}/4)(4^2)=4\sqrt{3}$ square centimeters. The hexagon area is $24\sqrt{3}$. Add the square area, 16. The total is $16+24\sqrt{3}$ square centimeters, approximately 57.57 square centimeters.
 
 ## Mixed Exercises
 
@@ -171,6 +109,25 @@ Add areas of combined shapes or subtract holes from larger areas.
 ## Review Notes
 
 * The DOCX contains many diagrams and images for the polygon identification and area problems. Teachers should consult the original worksheet for exact figures.
-* ![](media/) — Image references in original worksheet could not be fully captured.
+* ![Worksheet figure 1](/curriculum/module-6-lesson-2/image1.png)
+![Worksheet figure 2](/curriculum/module-6-lesson-2/image10.png)
+![Worksheet figure 3](/curriculum/module-6-lesson-2/image11.png)
+![Worksheet figure 4](/curriculum/module-6-lesson-2/image12.png)
+![Worksheet figure 5](/curriculum/module-6-lesson-2/image13.png)
+![Worksheet figure 6](/curriculum/module-6-lesson-2/image14.png)
+![Worksheet figure 7](/curriculum/module-6-lesson-2/image15.png)
+![Worksheet figure 8](/curriculum/module-6-lesson-2/image16.png)
+![Worksheet figure 9](/curriculum/module-6-lesson-2/image17.png)
+![Worksheet figure 10](/curriculum/module-6-lesson-2/image18.png)
+![Worksheet figure 11](/curriculum/module-6-lesson-2/image19.png)
+![Worksheet figure 12](/curriculum/module-6-lesson-2/image2.png)
+![Worksheet figure 13](/curriculum/module-6-lesson-2/image20.png)
+![Worksheet figure 14](/curriculum/module-6-lesson-2/image3.png)
+![Worksheet figure 15](/curriculum/module-6-lesson-2/image4.png)
+![Worksheet figure 16](/curriculum/module-6-lesson-2/image5.png)
+![Worksheet figure 17](/curriculum/module-6-lesson-2/image6.png)
+![Worksheet figure 18](/curriculum/module-6-lesson-2/image7.png)
+![Worksheet figure 19](/curriculum/module-6-lesson-2/image8.png)
+![Worksheet figure 20](/curriculum/module-6-lesson-2/image9.png) — Image references in original worksheet could not be fully captured.
 * The formula [A = (1/2) * Perimeter * Apothem] works for ALL regular polygons.
 * For composite figures, students should identify all regular polygon components and calculate each separately before combining.

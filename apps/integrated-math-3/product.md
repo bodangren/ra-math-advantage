@@ -87,7 +87,7 @@ All graded work is completed in class. Retakes allowed (max score 85%).
 
 ## Non-Goals (Current Scope)
 
-- Content authoring/CMS for teachers (content is managed in the database)
+- General-purpose content management system. IM3 includes teacher lesson authoring and publication.
 - Real-time collaboration
 - Mobile native apps
 - Third-party LMS integration (e.g., Canvas, Google Classroom)

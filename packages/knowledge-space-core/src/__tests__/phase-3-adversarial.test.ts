@@ -122,12 +122,13 @@ describe('adversarial — empty inputs', () => {
     expect(result.state.get('B')!.state).toBe('untouched');
   });
 
-  it('empty proficiencies with cards → works from cards alone', () => {
+  it('empty proficiencies with cards → does not recreate SRS retention in core', () => {
     const cards: SrsCardState[] = [
       { cardId: 'c.a', objectiveId: 'A', stability: 30, lastReviewedAt: NOW, state: 'review' },
     ];
     const result = buildKstState(cards, [], graph, NOW);
-    expect(result.state.get('A')!.state).toBe('mastered');
+    expect(result.state.get('A')!.state).toBe('inProgress');
+    expect(result.state.get('A')!.retention).toBe(0);
     expect(result.state.get('B')!.state).toBe('untouched');
   });
 
@@ -149,7 +150,7 @@ describe('adversarial — future-dated lastReviewedAt (clock skew)', () => {
     edges: [],
   };
 
-  it('future lastReviewedAt → treated as just-reviewed (retention = 1)', () => {
+  it('future card timestamps cannot override aggregated objective evidence', () => {
     const cards: SrsCardState[] = [
       { cardId: 'future.card', objectiveId: 'F', stability: 10, lastReviewedAt: NOW + 100 * DAY_MS, state: 'review' },
     ];
@@ -159,19 +160,18 @@ describe('adversarial — future-dated lastReviewedAt (clock skew)', () => {
 
     const result = buildKstState(cards, profs, graph, NOW);
     const entry = result.state.get('F')!;
-    // Card-based retention: deltaDays is clamped to 0 (max(0, negative)) → retention = 1
-    expect(entry.retention).toBeCloseTo(1.0);
-    expect(entry.state).toBe('mastered');
+    expect(entry.retention).toBeCloseTo(0.5);
+    expect(entry.state).toBe('inProgress');
   });
 
-  it('future lastReviewedAt with no proficiency → still treated as just-reviewed', () => {
+  it('future card timestamps without aggregate evidence fail closed', () => {
     const cards: SrsCardState[] = [
       { cardId: 'future2.card', objectiveId: 'F', stability: 10, lastReviewedAt: NOW + 365 * DAY_MS, state: 'review' },
     ];
     const result = buildKstState(cards, [], graph, NOW);
     const entry = result.state.get('F')!;
-    expect(entry.retention).toBeCloseTo(1.0);
-    expect(entry.state).toBe('mastered');
+    expect(entry.retention).toBe(0);
+    expect(entry.state).toBe('inProgress');
   });
 });
 
@@ -252,12 +252,12 @@ describe('adversarial — no proficiencies', () => {
     edges: [],
   };
 
-  it('cards alone with review state → mastered', () => {
+  it('cards alone with review state require SRS aggregation before mastery', () => {
     const cards: SrsCardState[] = [
       { cardId: 'c.c1', objectiveId: 'C1', stability: 30, lastReviewedAt: NOW, state: 'review' },
     ];
     const result = buildKstState(cards, [], graph, NOW);
-    expect(result.state.get('C1')!.state).toBe('mastered');
+    expect(result.state.get('C1')!.state).toBe('inProgress');
     expect(result.state.get('C2')!.state).toBe('untouched');
   });
 
@@ -288,14 +288,14 @@ describe('adversarial — no proficiencies', () => {
     expect(result.state.get('C1')!.state).toBe('inProgress');
   });
 
-  it('multiple cards for same node with no proficiencies → most recent wins', () => {
+  it('multiple raw cards cannot bypass objective aggregation', () => {
     const cards: SrsCardState[] = [
       { cardId: 'old', objectiveId: 'C1', stability: 5, lastReviewedAt: NOW - 50 * DAY_MS, state: 'review' },
       { cardId: 'recent', objectiveId: 'C1', stability: 30, lastReviewedAt: NOW, state: 'review' },
     ];
     const result = buildKstState(cards, [], graph, NOW);
-    expect(result.state.get('C1')!.retention).toBeCloseTo(1.0);
-    expect(result.state.get('C1')!.state).toBe('mastered');
+    expect(result.state.get('C1')!.retention).toBe(0);
+    expect(result.state.get('C1')!.state).toBe('inProgress');
   });
 });
 

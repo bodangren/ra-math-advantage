@@ -154,7 +154,7 @@ describe('CoordinatePlane — adversarial gaps', () => {
         onChange={() => {}}
       />,
     );
-    // GraphingCanvas renders each function as a <path class="function-curve">
+    // GraphingCanvas renders each function as a visible SVG path.
     const curves = container.querySelectorAll('path.function-curve');
     expect(curves.length).toBeGreaterThanOrEqual(1);
   });

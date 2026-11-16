@@ -5,8 +5,14 @@ import { buildDailyQueue, type QueueItem } from "@math-platform/srs-engine";
 import type { ObjectivePracticePolicy, SrsCardState } from "@math-platform/srs-engine";
 
 const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
+import { IM1_TRANSLATION_NODE_ID, isTranslationPilotReady } from '../activities';
+import { projectIM1VerbalToNumerical } from '@math-platform/math-content/knowledge-space';
 
 export type ResolvedQueueItem = QueueItem & {
+  activityId?: string;
+  stableActivityId?: string;
+  masteryNodeId?: string;
+  mode?: "guided_practice" | "independent_practice";
   componentKey: string;
   props: Record<string, unknown>;
 };
@@ -34,7 +40,7 @@ function mapDbCardToContract(
     cardId: card._id as string,
     studentId: card.studentId as string,
     objectiveId: card.objectiveId,
-    problemFamilyId: card.problemFamilyId,
+    variantKey: card.problemFamilyId,
     stability: card.stability,
     difficulty: card.difficulty,
     state: card.state,
@@ -57,24 +63,24 @@ async function resolveQueueItems(
   ctx: QueueDbContext,
   items: QueueItem[]
 ): Promise<ResolvedQueueItem[]> {
-  const uniqueProblemFamilyIds = [...new Set(items.map((item) => item.card.problemFamilyId))];
+  const uniqueVariantKeys = [...new Set(items.map((item) => item.card.variantKey))];
 
   const practiceItemResults = await Promise.all(
-    uniqueProblemFamilyIds.map(async (problemFamilyId) => {
+    uniqueVariantKeys.map(async (variantKey) => {
       const practiceItem = await ctx.db
         .query("practice_items")
         .withIndex("by_problemFamilyId", (q) =>
-          q.eq("problemFamilyId", problemFamilyId)
+          q.eq("problemFamilyId", variantKey)
         )
         .first();
-      return { problemFamilyId, practiceItem };
+      return { variantKey, practiceItem };
     })
   );
 
   const practiceItemMap = new Map(
     practiceItemResults
-      .filter((r): r is { problemFamilyId: string; practiceItem: NonNullable<typeof r.practiceItem> } => r.practiceItem !== null)
-      .map((r) => [r.problemFamilyId, r.practiceItem])
+      .filter((r): r is { variantKey: string; practiceItem: NonNullable<typeof r.practiceItem> } => r.practiceItem !== null)
+      .map((r) => [r.variantKey, r.practiceItem])
   );
 
   const activityIds = [...new Set(
@@ -98,16 +104,41 @@ async function resolveQueueItems(
 
   const resolvedItems: ResolvedQueueItem[] = [];
   for (const item of items) {
-    const practiceItem = practiceItemMap.get(item.card.problemFamilyId);
+    const practiceItem = practiceItemMap.get(item.card.variantKey);
     if (!practiceItem) continue;
 
     const activity = activityMap.get(practiceItem.activityId);
     if (!activity) continue;
+    const isIdentityAware = activity.stableActivityId !== undefined || activity.masteryNodeId !== undefined;
+    if (isIdentityAware && (
+      !isTranslationPilotReady()
+      || activity.componentKey !== "fill-in-the-blank"
+      || activity.generatorSeed === undefined
+      || activity.generatorDifficulty === undefined
+      || activity.approval?.status !== "approved"
+      || activity.srsEligible !== true
+      || activity.masteryNodeId !== item.card.objectiveId
+      || activity.masteryNodeId !== IM1_TRANSLATION_NODE_ID
+      || activity.stableActivityId !== `${IM1_TRANSLATION_NODE_ID}.${activity.learningEvidenceMode}`
+      || !activity.stableActivityId
+      || (activity.learningEvidenceMode !== "guided_practice" && activity.learningEvidenceMode !== "independent_practice")
+    )) continue;
 
     resolvedItems.push({
       ...item,
+      activityId: String(activity._id),
+      ...(isIdentityAware ? {
+        stableActivityId: activity.stableActivityId!,
+        masteryNodeId: activity.masteryNodeId!,
+        mode: activity.learningEvidenceMode as "guided_practice" | "independent_practice",
+      } : {}),
       componentKey: activity.componentKey,
-      props: activity.props as Record<string, unknown>,
+      props: isIdentityAware
+        ? projectIM1VerbalToNumerical(
+            { nodeId: IM1_TRANSLATION_NODE_ID, seed: activity.generatorSeed!, difficulty: activity.generatorDifficulty! },
+            activity.learningEvidenceMode!, activity.stableActivityId!,
+          ).props
+        : activity.props as Record<string, unknown>,
     });
   }
 

@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import InlineMath from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
+import { normalizeSolverAnswer } from '../../schemas/step-by-step-solver.schema';
 import { MathInputField } from '../algebraic/MathInputField';
 
 export type StepMode = 'teaching' | 'guided' | 'practice';
@@ -36,7 +37,7 @@ export interface StepByStepperProps {
  * @returns {React.JSX.Element} The step reveal component JSX
  */
 function SimpleStepReveal({ steps }: { steps: Array<{ content: React.ReactNode }> }) {
-  const [visibleCount, setVisibleCount] = useState(steps.length);
+  const visibleCount = steps.length;
 
   if (steps.length === 0) {
     return <div className="my-6" />;
@@ -95,7 +96,7 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, gen
   }
 
   if (mode === 'guided') {
-    return <GuidedMode steps={steps} problemType={problemType} generateDistractors={generateDistractors} />;
+    return <GuidedMode steps={steps} problemType={problemType} generateDistractors={generateDistractors} onComplete={onPracticeComplete} />;
   }
 
   if (mode === 'practice') {
@@ -108,7 +109,8 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, gen
  * @param {{ steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[] }} props - The steps, problem type, and optional distractor generator
  * @returns {React.JSX.Element} The guided mode component JSX
  */
-function GuidedMode({ steps, problemType, generateDistractors }: { steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[] }) {
+function GuidedMode({ steps, problemType, generateDistractors, onComplete }: { steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[]; onComplete?: (attempts: StepAttempt[]) => void }) {
+  const [complete, setComplete] = useState(false);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [, setHintUsed] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -146,13 +148,18 @@ function GuidedMode({ steps, problemType, generateDistractors }: { steps: Algebr
   };
 
   const handleNext = () => {
-    if (!isLastStep) {
+    if (isLastStep) {
+      setComplete(true);
+      onComplete?.(steps.map((step, stepIndex) => ({ stepIndex, userAnswer: step.expression, isCorrect: true })));
+    } else {
       setCurrentStepIndex(prev => prev + 1);
       setShowHint(false);
       setHintUsed(false);
       setShowExplanation(false);
     }
   };
+
+  if (complete) return <p role="status">Guided practice complete.</p>;
 
   return (
     <div className="space-y-4">
@@ -231,11 +238,9 @@ function GuidedMode({ steps, problemType, generateDistractors }: { steps: Algebr
               <button
                 type="button"
                 onClick={handleNext}
-                disabled={isLastStep}
-                aria-disabled={isLastStep}
                 className="px-4 py-2 min-h-[44px] min-w-[44px] bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Next Step
+                {isLastStep ? 'Complete' : 'Next'}
               </button>
             )}
 
@@ -280,7 +285,7 @@ function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicSt
       const attempts: StepAttempt[] = steps.map((step, idx) => ({
         stepIndex: idx,
         userAnswer: userAnswers[idx] ?? null,
-        isCorrect: (userAnswers[idx] ?? '').trim() === step.expression.trim(),
+        isCorrect: normalizeSolverAnswer(userAnswers[idx] ?? '') === normalizeSolverAnswer(step.expression),
       }));
       onComplete?.(attempts);
     }
@@ -300,7 +305,7 @@ function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicSt
       const stepIndex = parseInt(idx);
       const userAnswer = userAnswers[stepIndex];
       const correctAnswer = steps[stepIndex].expression;
-      return userAnswer && userAnswer.trim() === correctAnswer.trim();
+      return userAnswer && normalizeSolverAnswer(userAnswer) === normalizeSolverAnswer(correctAnswer);
     }).length;
 
     return (
@@ -376,7 +381,7 @@ function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicSt
 
           {userAnswers[currentStepIndex] && (
             <div className={`p-3 rounded-md border ${
-              userAnswers[currentStepIndex].trim() === currentStep.expression.trim()
+              normalizeSolverAnswer(userAnswers[currentStepIndex]) === normalizeSolverAnswer(currentStep.expression)
                 ? 'bg-green-50 border-green-200'
                 : 'bg-red-50 border-red-200'
             }`}>
@@ -387,11 +392,11 @@ function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicSt
                 <InlineMath math={userAnswers[currentStepIndex]} />
               </div>
               <div className={`text-sm mt-1 ${
-                userAnswers[currentStepIndex].trim() === currentStep.expression.trim()
+                normalizeSolverAnswer(userAnswers[currentStepIndex]) === normalizeSolverAnswer(currentStep.expression)
                   ? 'text-green-700'
                   : 'text-red-700'
               }`}>
-                {userAnswers[currentStepIndex].trim() === currentStep.expression.trim()
+                {normalizeSolverAnswer(userAnswers[currentStepIndex]) === normalizeSolverAnswer(currentStep.expression)
                   ? '✓ Correct!'
                   : '✗ Incorrect'}
               </div>

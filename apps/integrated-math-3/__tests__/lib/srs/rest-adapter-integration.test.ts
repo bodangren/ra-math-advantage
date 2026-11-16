@@ -58,7 +58,7 @@ describe('REST Adapter Integration', () => {
       const pastDueCard = createCard({
         studentId,
         objectiveId: 'obj-1',
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         now: '2026-04-15T12:00:00.000Z',
       });
       pastDueCard.dueDate = '2026-04-15T12:00:00.000Z';
@@ -69,7 +69,7 @@ describe('REST Adapter Integration', () => {
       const futureCard = createCard({
         studentId,
         objectiveId: 'obj-2',
-        problemFamilyId: 'pf-2',
+        variantKey: 'pf-2',
         now,
       });
       futureCard.dueDate = '2026-04-17T12:00:00.000Z';
@@ -97,12 +97,12 @@ describe('REST Adapter Integration', () => {
       const newCard = createCard({
         studentId,
         objectiveId: 'obj-1',
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         now,
       });
       await adapter.saveCard(newCard);
 
-      const retrieved = await adapter.getCardByStudentAndFamily(studentId, 'pf-1');
+      const retrieved = await adapter.getCardByStudentAndVariant(studentId, 'pf-1');
       expect(retrieved).not.toBeNull();
       expect(retrieved!.state).toBe('new');
 
@@ -121,7 +121,7 @@ describe('REST Adapter Integration', () => {
         cardId: 'card-1',
         studentId,
         objectiveId: 'obj-1',
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         stability: 5,
         difficulty: 4,
         state: 'review',
@@ -181,13 +181,13 @@ describe('REST Adapter Integration', () => {
     });
 
     it('should load card from adapter, process review, and save back', async () => {
-      const card = createCard({ studentId, objectiveId: 'obj-1', problemFamilyId: 'pf-1', now });
+      const card = createCard({ studentId, objectiveId: 'obj-1', variantKey: 'pf-1', now });
       card.state = 'review';
       card.reps = 2;
       card.stability = 3;
       await adapter.saveCard(card);
 
-      const loaded = await adapter.getCardByStudentAndFamily(studentId, 'pf-1');
+      const loaded = await adapter.getCardByStudentAndVariant(studentId, 'pf-1');
       expect(loaded).not.toBeNull();
 
       const submission = buildPracticeSubmissionEnvelope({
@@ -217,15 +217,15 @@ describe('REST Adapter Integration', () => {
 
   describe('queue engine builds a practice session end-to-end with the REST adapter', () => {
     it('should build a daily queue from cards stored in the adapter', async () => {
-      const card1 = createCard({ studentId, objectiveId: 'obj-1', problemFamilyId: 'pf-1', now });
+      const card1 = createCard({ studentId, objectiveId: 'obj-1', variantKey: 'pf-1', now });
       card1.dueDate = '2026-04-15T12:00:00.000Z';
       card1.state = 'review';
       card1.reps = 3;
 
-      const card2 = createCard({ studentId, objectiveId: 'obj-2', problemFamilyId: 'pf-2', now });
+      const card2 = createCard({ studentId, objectiveId: 'obj-2', variantKey: 'pf-2', now });
       card2.state = 'new';
 
-      const card3 = createCard({ studentId, objectiveId: 'obj-3', problemFamilyId: 'pf-3', now });
+      const card3 = createCard({ studentId, objectiveId: 'obj-3', variantKey: 'pf-3', now });
       card3.dueDate = '2026-04-17T12:00:00.000Z';
       card3.state = 'review';
       card3.reps = 3;
@@ -258,12 +258,12 @@ describe('REST Adapter Integration', () => {
     it('should respect newCardsPerDay and maxReviewsPerDay caps', async () => {
       const cards: SrsCardState[] = [];
       for (let i = 0; i < 10; i++) {
-        const card = createCard({ studentId, objectiveId: `obj-${i}`, problemFamilyId: `pf-${i}`, now });
+        const card = createCard({ studentId, objectiveId: `obj-${i}`, variantKey: `pf-${i}`, now });
         card.state = 'new';
         cards.push(card);
       }
       for (let i = 10; i < 30; i++) {
-        const card = createCard({ studentId, objectiveId: `obj-${i}`, problemFamilyId: `pf-${i}`, now });
+        const card = createCard({ studentId, objectiveId: `obj-${i}`, variantKey: `pf-${i}`, now });
         card.dueDate = '2026-04-15T12:00:00.000Z';
         card.state = 'review';
         card.reps = 1;

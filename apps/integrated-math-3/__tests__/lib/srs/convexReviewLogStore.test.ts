@@ -29,6 +29,7 @@ function makeReviewLog(overrides: Partial<SrsReviewLogEntry> = {}): SrsReviewLog
     },
     stateBefore: { stability: 0, difficulty: 0, state: 'new', reps: 0, lapses: 0 },
     stateAfter: { stability: 1, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
+    paramsVersion: 'fsrs-defaults.ts-fsrs.v5.4.1',
     reviewedAt: '2026-04-16T12:00:00.000Z',
     ...overrides,
   };
@@ -61,9 +62,17 @@ describe('ConvexReviewLogStore', () => {
           evidence: entry.evidence,
           stateBefore: entry.stateBefore,
           stateAfter: entry.stateAfter,
+          paramsVersion: entry.paramsVersion,
           reviewedAt: entry.reviewedAt,
         },
       );
+    });
+
+    it('rejects an unstamped learner review before calling Convex', async () => {
+      const entry = makeReviewLog({ paramsVersion: undefined });
+
+      await expect(store.saveReview(entry)).rejects.toThrow(/paramsVersion/);
+      expect(mockRunMutation).not.toHaveBeenCalled();
     });
   });
 

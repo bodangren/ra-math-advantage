@@ -77,10 +77,15 @@ export async function GET(
  * @returns A copy of the activity with gradingConfig nulled and props redacted.
  */
 function buildStudentSafeActivity(activity: Record<string, unknown>) {
+  const props = redactSensitiveFields(activity.props, String(activity.componentKey)) as Record<string, unknown>;
+  const original = activity.props as Record<string, unknown>;
+  if (activity.componentKey === 'fill-in-the-blank' && original.showWordList && Array.isArray(original.sentences)) {
+    props.wordBank = [...new Set(original.sentences.flatMap((sentence) => [sentence.answer, ...(sentence.alternativeAnswers ?? [])]).filter((word) => typeof word === 'string'))].sort();
+  }
   return {
     ...activity,
     gradingConfig: null,
-    props: redactSensitiveFields(activity.props),
+    props,
   };
 }
 
@@ -90,18 +95,19 @@ function buildStudentSafeActivity(activity: Record<string, unknown>) {
  * @param value - The value to sanitize (object, array, or primitive).
  * @returns A deep copy with sensitive keys stripped.
  */
-function redactSensitiveFields(value: unknown): unknown {
+function redactSensitiveFields(value: unknown, componentKey: string): unknown {
   if (Array.isArray(value)) {
-    return value.map((item) => redactSensitiveFields(item));
+    return value.map((item) => redactSensitiveFields(item, componentKey));
   }
 
   if (value && typeof value === 'object') {
     const redacted: Record<string, unknown> = {};
     for (const [key, nestedValue] of Object.entries(value as Record<string, unknown>)) {
-      if (key === 'correctAnswer') {
+      if (['correctAnswer', 'answer', 'answerFormula', 'alternativeAnswers', 'expectedValue', 'expectedFormula', 'explanation'].includes(key)
+        || (componentKey === 'notebook-organizer' && key === 'category')) {
         continue;
       }
-      redacted[key] = redactSensitiveFields(nestedValue);
+      redacted[key] = redactSensitiveFields(nestedValue, componentKey);
     }
     return redacted;
   }

@@ -12,25 +12,25 @@ vi.mock("next/navigation", () => ({
   default: () => ({}),
 }));
 
-vi.mock("@/lib/convex/server", () => ({
-  fetchInternalQuery: mockFetchInternalQuery,
-  fetchInternalMutation: mockFetchInternalMutation,
-  api: {
-    srs: {
-      getClassSrsHealth: "api.srs.getClassSrsHealth",
-      getWeakFamilies: "api.srs.getWeakFamilies",
-      getStrugglingStudents: "api.srs.getStrugglingStudents",
-      resetStudentCard: "api.srs.resetStudentCard",
-      bumpFamilyPriority: "api.srs.bumpFamilyPriority",
-    },
-  },
-}));
 
 import { TeacherSRSDashboardClient } from "../../../../components/teacher/srs/TeacherSRSDashboardClient";
 
 describe("TeacherSRSDashboardClient", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.stubGlobal('fetch', async (url: string, options?: RequestInit) => {
+      if (options?.method === 'POST') {
+        const { action, ...args } = JSON.parse(String(options.body));
+        const result = await mockFetchInternalMutation(`api.srs.${action === 'reset' ? 'resetStudentCard' : 'bumpFamilyPriority'}`, args);
+        return Response.json(result ?? null);
+      }
+      const classId = new URL(url, 'http://localhost').searchParams.get('classId');
+      const args = { classId };
+      const health = await mockFetchInternalQuery('api.srs.getClassSrsHealth', args);
+      const families = await mockFetchInternalQuery('api.srs.getWeakFamilies', args);
+      const students = await mockFetchInternalQuery('api.srs.getStrugglingStudents', args);
+      return Response.json({ health, families, students: students?.students ?? [] });
+    });
     mockFetchInternalQuery.mockResolvedValue(null);
     mockFetchInternalMutation.mockResolvedValue(null);
   });

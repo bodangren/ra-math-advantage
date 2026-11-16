@@ -1,0 +1,15 @@
+{
+  "results": [
+    {
+      "mode": "guided_practice",
+      "status": 200,
+      "sameSubmissionId": true
+    },
+    {
+      "mode": "independent_practice",
+      "status": 200,
+      "sameSubmissionId": true
+    }
+  ],
+  "persistedIdentitiesUnchanged": true
+}

@@ -13,6 +13,12 @@ vi.mock('@/lib/convex/server', () => ({
     if (ref === 'mock-practice-stats') {
       return Promise.resolve({ dueCount: 3, streak: 5, lastPracticedAt: '2026-04-15T10:00:00.000Z' });
     }
+    if (ref === 'student/knowledge_state:getStudentKnowledgeState') {
+      return Promise.resolve({
+        schemaVersion: 'v1', mastered: [], ready: [], blocked: [], reviewDue: [],
+        recommendedNext: [], edges: [], activeMisconceptionCount: 0,
+      });
+    }
     return Promise.resolve([
       {
         unitNumber: 1,
@@ -32,24 +38,37 @@ vi.mock('@/lib/convex/server', () => ({
 describe('StudentDashboardPage', () => {
   it('renders dashboard heading', async () => {
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/dashboard/i);
   });
 
   it('renders unit section', async () => {
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
     expect(screen.getByText(/quadratic functions/i)).toBeInTheDocument();
   });
 
   it('renders daily practice card', async () => {
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
     expect(screen.getByText('Daily Practice')).toBeInTheDocument();
     expect(screen.getByTestId('practice-link')).toHaveAttribute('href', '/student/practice');
+  });
+
+  it('loads the canonical v3.2 KST projection for recommendations', async () => {
+    const { fetchInternalQuery } = await import('@/lib/convex/server');
+    const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
+    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+
+    await DashboardPage();
+
+    expect(mockedFetchInternalQuery).toHaveBeenCalledWith(
+      'student/knowledge_state:getStudentKnowledgeState',
+      { studentId: mockClaims.sub },
+    );
   });
 
   it('renders daily practice card with zero items due', async () => {
@@ -58,6 +77,12 @@ describe('StudentDashboardPage', () => {
     mockedFetchInternalQuery.mockImplementation((ref) => {
       if (ref === 'mock-practice-stats') {
         return Promise.resolve({ dueCount: 0, streak: 0, lastPracticedAt: null });
+      }
+      if (ref === 'student/knowledge_state:getStudentKnowledgeState') {
+        return Promise.resolve({
+          schemaVersion: 'v1', mastered: [], ready: [], blocked: [], reviewDue: [],
+          recommendedNext: [], edges: [], activeMisconceptionCount: 0,
+        });
       }
       return Promise.resolve([
         {
@@ -71,7 +96,7 @@ describe('StudentDashboardPage', () => {
     });
 
     const { default: DashboardPage } = await import('@/app/student/dashboard/page');
-    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    const jsx = await DashboardPage();
     render(jsx);
     expect(screen.getByText('No practice due today. Come back tomorrow!')).toBeInTheDocument();
     expect(screen.getByText('Start your streak today')).toBeInTheDocument();

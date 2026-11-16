@@ -12,10 +12,10 @@ Source: (Module 6, Lesson 6-6, Int2_0606_practice.docx)
 ## Vocabulary
 
 * **Volume** — The amount of space occupied by a three-dimensional solid.
-* **Prism** — A polyhedron with two parallel, congruent bases and rectangular lateral faces.
+* **Prism** — A polyhedron with two congruent parallel polygonal bases and parallelogram lateral faces. A right prism has rectangular lateral faces.
 * **Pyramid** — A polyhedron with one base and triangular lateral faces meeting at a vertex.
 * **Composite Solid** — A three-dimensional solid made up of two or more simpler solids.
-* **Base** — A congruent, parallel face of a prism or pyramid.
+* **Base** — Either of the two parallel congruent polygonal faces of a prism, or the polygonal face opposite a pyramid's apex.
 
 ## Explore: Volumes of Prisms and Pyramids
 
@@ -32,7 +32,7 @@ The volume of a prism is the area of the base multiplied by the height:
 [
 V = B * h
 ]
-where B is the area of the base.
+Here B is the base area and h is the perpendicular height. Use perpendicular height in the pyramid formula too.
 
 ### Key Concept: Volume of a Pyramid
 
@@ -47,107 +47,73 @@ Find the volume of each component and add them together (or subtract holes).
 
 ## Example 1 — Volume of Prisms
 
-Find the volume of each prism. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Area of the Base
+Find the volumes of (a) a rectangular prism measuring 5 cm by 3 cm by 4 cm and (b) a prism with base area 12 square inches and perpendicular height 8 inches.
 
-Calculate the base area using the appropriate formula for the base shape.
+### Solution
 
-### Step 2: Multiply by the Height
-
-[
-V = B * h
-]
-
-A rectangular prism with length 5 cm, width 3 cm, and height 4 cm:
-[
-V = 5 * 3 * 4 = 60 cm^3
-]
-
-A triangular prism with base area 12 in^2 and height 8 in:
-[
-V = 12 * 8 = 96 in^3
-]
+Prism volume is base area times perpendicular height. (a) V = 5(3)(4) = 60 cubic centimeters. (b) V = 12(8) = 96 cubic inches.
 
 ## Example 2 — Volume of Pyramids
 
-Find the volume of each pyramid. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Area of the Base
+A square pyramid has base side 6 m and perpendicular height 4 m. Find its volume.
 
-Calculate the base area.
+### Solution
 
-### Step 2: Multiply by Height and Divide by 3
-
-[
-V = (1/3) * B * h
-]
-
-A square pyramid with base side 6 m and height 4 m:
-[
-B = 6^2 = 36 m^2
-]
-[
-V = (1/3) * 36 * 4 = 48 m^3
-]
+The base area is 6² = 36 square meters. Pyramid volume is one third of base area times height. Thus V = 36(4)/3 = 48 cubic meters.
 
 ## Example 3 — Volume with Variables
 
-Find the volume in terms of x.
+### Problem
 
-CHOCOLATE: Leah wants to calculate the volume of chocolate in her candy bar.
-a. Find the volume in terms of x.
-b. Find the volume if x = 2 inches.
+A rectangular chocolate bar measures 3x inches by 2x inches by x inches, with x > 0. Find its volume in terms of x and evaluate at x = 2.
 
-CANDLE: Benton wants to calculate the volume of wax needed for a candle.
-a. Find the volume in terms of x.
-b. Find the volume if x = 3 centimeters.
+### Solution
+
+Multiply the three perpendicular dimensions: V = (3x)(2x)(x) = 6x³ cubic inches. At x = 2, V = 6(8) = 48 cubic inches.
 
 ## Example 4 — More Volume Problems
 
-Find the volume of each prism or pyramid. Round to the nearest tenth, if necessary.
+### Problem
 
-Work through problems involving various base shapes including rectangles, triangles, and regular polygons.
+A pyramid has a rectangular base measuring 6 cm by 9 cm. Its perpendicular height is 10 cm. Find its volume.
+
+### Solution
+
+The base area is B = 6(9) = 54 square centimeters. Use V = Bh/3 to obtain V = 54(10)/3 = 180 cubic centimeters.
 
 ## Example 5 — Volume of Pyramids with Variables
 
-Find the volume in terms of x.
+### Problem
 
-SAND ART: Noelle wants to calculate the volume of sand in a regular hexagonal pyramid.
-a. Find the volume in terms of x.
-b. Find the volume if x = 5 inches.
+A square pyramid has base side 2x cm and perpendicular height 5x cm, with x > 0. Find its volume in terms of x and evaluate at x = 3.
 
-PUZZLE: A puzzle shaped like a pyramid with square base and height 5x units.
-a. Find the volume in terms of x.
-b. Find the volume if x = 10 centimeters.
+### Solution
+
+The base area is (2x)² = 4x² square centimeters. The volume is (4x²)(5x)/3 = 20x³/3 cubic centimeters. At x = 3, V = 20(27)/3 = 180 cubic centimeters.
 
 ## Example 6 — Volume of Composite Solids
 
-Find the volume of each composite solid. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Decompose the Solid
+A rectangular prism is 8 m long, 6 m wide, and 4 m high. A rectangular pyramid roof has the same base and perpendicular height 3 m. The interiors do not overlap. Find the total volume.
 
-Break the composite solid into recognizable prisms, pyramids, cylinders, cones, or spheres.
+### Solution
 
-### Step 2: Find Each Volume
-
-Calculate the volume of each component.
-
-### Step 3: Combine the Volumes
-
-Add all component volumes to find the total volume.
+The prism volume is 8(6)(4) = 192 cubic meters. The roof volume is (1/3)(8)(6)(3) = 48 cubic meters. The total is 240 cubic meters.
 
 ## Example 7 — Volume of Frames
 
-FRAMES: Margaret makes a square frame out of four pieces of wood. Each piece is a rectangular prism with length 40 cm, height 4 cm, and depth 6 cm. What is the total volume of wood?
-[
-Volume of one piece = 40 * 4 * 6 = 960 cm^3
-]
-[
-Total volume = 4 * 960 = 3840 cm^3
-]
+### Problem
 
-PARKS: Find the volume of a trashcan shaped like a composite solid.
+Four separate pieces of wood are rectangular prisms, each 40 cm long, 4 cm high, and 6 cm deep. Find their total volume before cutting or joining.
+
+### Solution
+
+One piece has volume 40(4)(6) = 960 cubic centimeters. Four pieces have total volume 3840 cubic centimeters. This is the volume before any material is removed for joints or cuts.
 
 ## Mixed Exercises
 
@@ -169,7 +135,33 @@ PARKS: Find the volume of a trashcan shaped like a composite solid.
 
 ## Review Notes
 
-* ![](media/) — Image references for diagrams in the original DOCX could not be fully captured. Teachers should consult the original worksheet for exact figures.
+* ![Worksheet figure 1](/curriculum/module-6-lesson-6/image1.png)
+![Worksheet figure 2](/curriculum/module-6-lesson-6/image10.png)
+![Worksheet figure 3](/curriculum/module-6-lesson-6/image11.png)
+![Worksheet figure 4](/curriculum/module-6-lesson-6/image12.png)
+![Worksheet figure 5](/curriculum/module-6-lesson-6/image13.png)
+![Worksheet figure 6](/curriculum/module-6-lesson-6/image14.png)
+![Worksheet figure 7](/curriculum/module-6-lesson-6/image15.png)
+![Worksheet figure 8](/curriculum/module-6-lesson-6/image16.png)
+![Worksheet figure 9](/curriculum/module-6-lesson-6/image17.png)
+![Worksheet figure 10](/curriculum/module-6-lesson-6/image18.png)
+![Worksheet figure 11](/curriculum/module-6-lesson-6/image19.png)
+![Worksheet figure 12](/curriculum/module-6-lesson-6/image2.png)
+![Worksheet figure 13](/curriculum/module-6-lesson-6/image20.png)
+![Worksheet figure 14](/curriculum/module-6-lesson-6/image21.png)
+![Worksheet figure 15](/curriculum/module-6-lesson-6/image22.png)
+![Worksheet figure 16](/curriculum/module-6-lesson-6/image23.png)
+![Worksheet figure 17](/curriculum/module-6-lesson-6/image24.png)
+![Worksheet figure 18](/curriculum/module-6-lesson-6/image25.png)
+![Worksheet figure 19](/curriculum/module-6-lesson-6/image26.png)
+![Worksheet figure 20](/curriculum/module-6-lesson-6/image27.png)
+![Worksheet figure 21](/curriculum/module-6-lesson-6/image3.png)
+![Worksheet figure 22](/curriculum/module-6-lesson-6/image4.png)
+![Worksheet figure 23](/curriculum/module-6-lesson-6/image5.png)
+![Worksheet figure 24](/curriculum/module-6-lesson-6/image6.png)
+![Worksheet figure 25](/curriculum/module-6-lesson-6/image7.png)
+![Worksheet figure 26](/curriculum/module-6-lesson-6/image8.png)
+![Worksheet figure 27](/curriculum/module-6-lesson-6/image9.png) — Image references for diagrams in the original DOCX could not be fully captured. Teachers should consult the original worksheet for exact figures.
 * The key relationship: a pyramid has exactly 1/3 the volume of a prism with the same base and height.
 * Volume formulas: Prism [V = Bh], Pyramid [V = (1/3)Bh] where B is base area and h is height.
 * When finding volume of composite solids, be careful to identify all components and whether volumes should be added or subtracted.

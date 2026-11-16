@@ -8,7 +8,7 @@
     "curriculum:implementation": "node scripts/generate-curriculum-implementation.mjs",
     "curriculum:plan": "node scripts/generate-curriculum-planning.mjs",
     "start": "vinext start",
-    "lint": "eslint . --max-warnings 0",
+    "lint": "oxlint --config ../../.oxlintrc.json . --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest watch",
@@ -33,11 +33,13 @@
     "react-dom": "^19.3.1",
     "react-server-dom-webpack": "^19.3.1",
     "tailwind-merge": "^3.7.0",
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "@math-platform/knowledge-space-core": "*",
+    "@math-platform/activity-components": "*",
+    "@math-platform/math-content": "*"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.31.2",
-    "@eslint/eslintrc": "^3",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.3",
@@ -47,8 +49,6 @@
     "@vitejs/plugin-react": "^6.0.0",
     "@vitejs/plugin-rsc": "^0.5.37",
     "autoprefixer": "^10.4.20",
-    "eslint": "^10.0.0",
-    "eslint-config-next": "^16.0.0",
     "jsdom": "^29.0.0",
     "postcss": "^8",
     "@tailwindcss/postcss": "^4.0.0",

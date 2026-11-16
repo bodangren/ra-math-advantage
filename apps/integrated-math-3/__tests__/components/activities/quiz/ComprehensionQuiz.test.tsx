@@ -109,7 +109,7 @@ describe('ComprehensionQuiz', () => {
 
       render(<ComprehensionQuiz {...props} mode="teaching" />);
 
-      const correctOption = screen.getByText('(0, 0)').closest('button');
+      const correctOption = screen.getByRole('radio', { name: '(0, 0) (Correct)' });
       expect(correctOption).toHaveClass('bg-green-100');
     });
 
@@ -126,9 +126,9 @@ describe('ComprehensionQuiz', () => {
 
       render(<ComprehensionQuiz {...props} mode="teaching" />);
 
-      const options = screen.getAllByRole('button');
+      const options = screen.getAllByRole('radio');
       options.forEach(option => {
-        expect(option).toBeDisabled();
+        expect(option).toHaveAttribute('aria-disabled', 'true');
       });
     });
 

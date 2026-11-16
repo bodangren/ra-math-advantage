@@ -1,14 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import schema from '@/convex/schema';
 
-describe('problem_families table schema', () => {
+describe('practice_variants table schema', () => {
   it('exists in the schema', () => {
-    expect(schema.tables).toHaveProperty('problem_families');
+    expect(schema.tables).toHaveProperty('practice_variants');
   });
 
   it('has required fields defined', () => {
-    const table = schema.tables.problem_families;
-    expect(() => (table as unknown as { problemFamilyId: unknown }).problemFamilyId).not.toThrow();
+    const table = schema.tables.practice_variants;
+    expect(() => (table as unknown as { variantKey: unknown }).variantKey).not.toThrow();
     expect(() => (table as unknown as { componentKey: unknown }).componentKey).not.toThrow();
     expect(() => (table as unknown as { displayName: unknown }).displayName).not.toThrow();
     expect(() => (table as unknown as { description: unknown }).description).not.toThrow();
@@ -27,7 +27,7 @@ describe('practice_items table schema', () => {
     const table = schema.tables.practice_items;
     expect(() => (table as unknown as { practiceItemId: unknown }).practiceItemId).not.toThrow();
     expect(() => (table as unknown as { activityId: unknown }).activityId).not.toThrow();
-    expect(() => (table as unknown as { problemFamilyId: unknown }).problemFamilyId).not.toThrow();
+    expect(() => (table as unknown as { variantKey: unknown }).variantKey).not.toThrow();
     expect(() => (table as unknown as { variantLabel: unknown }).variantLabel).not.toThrow();
   });
 });

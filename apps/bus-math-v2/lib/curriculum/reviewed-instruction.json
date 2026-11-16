@@ -1,0 +1,702 @@
+{
+  "2": [
+    {
+      "objective": "Record debit and credit effects",
+      "explanation": "A debit is the left side of an account. A credit is the right side. Assets and expenses normally increase with debits. Liabilities, equity, and revenue normally increase with credits. A cash investment of 2,000 creates a 2,000 debit to Cash and a 2,000 credit to Capital. The two entries preserve A = L + E.",
+      "checks": [
+        {
+          "text": "A business receives a cash investment of 3,500. What amount must it credit to Capital?",
+          "answer": 3500
+        },
+        {
+          "text": "The business buys equipment for 900 cash. What amount must it credit to Cash?",
+          "answer": 900
+        }
+      ]
+    },
+    {
+      "objective": "Use source documents to identify transactions",
+      "explanation": "A supplier invoice for 600 of supplies on credit records Supplies debit 600 and Accounts Payable credit 600. The invoice date identifies the event. The payment date identifies a different event. Payment of the invoice records Accounts Payable debit 600 and Cash credit 600. Do not record the supplies expense twice.",
+      "checks": [
+        {
+          "text": "An invoice records 450 of supplies on credit. What liability increase must the journal show?",
+          "answer": 450
+        },
+        {
+          "text": "A later payment settles 175 of that invoice. What liability remains?",
+          "answer": 275
+        }
+      ]
+    },
+    {
+      "objective": "Prepare balanced journal entries",
+      "explanation": "A customer pays 1,200 for services already delivered. Debit Cash 1,200 and credit Service Revenue 1,200. A payment before delivery is different: credit Deferred Revenue until the service is delivered. Each journal entry must have equal debit and credit totals.",
+      "checks": [
+        {
+          "text": "Services worth 800 are delivered on credit. What amount must be debited to Accounts Receivable?",
+          "answer": 800
+        },
+        {
+          "text": "The customer pays 300 toward that receivable. What receivable balance remains?",
+          "answer": 500
+        }
+      ]
+    },
+    {
+      "objective": "Post journal entries to ledger accounts",
+      "explanation": "Start Cash with a debit balance of 2,000. Post a 700 debit for receipts and a 400 credit for payments. The ending debit balance is 2,000 + 700 - 400 = 2,300. Retain the journal reference beside each ledger entry so a reviewer can find its source.",
+      "checks": [
+        {
+          "text": "Cash starts at 1,500. Receipts are 650 and payments are 280. What is ending Cash?",
+          "answer": 1870
+        },
+        {
+          "text": "Accounts Payable starts at 900. New invoices add 350 and payments reduce it by 400. What is the ending liability?",
+          "answer": 850
+        }
+      ]
+    },
+    {
+      "objective": "Prepare and interpret a trial balance",
+      "explanation": "A trial balance lists each ending debit or credit balance once. Cash debit 1,000 and Equipment debit 2,000 equal Payables credit 800 and Capital credit 2,200. Both columns total 3,000. Equal columns do not prove that every transaction was recorded or correctly classified.",
+      "checks": [
+        {
+          "text": "Debit balances total 4,600. Known credits total 3,900. What missing credit would balance the columns?",
+          "answer": 700
+        },
+        {
+          "text": "A balanced trial balance omits both sides of a 250 cash sale. What is the difference between its debit and credit totals?",
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "objective": "Locate posting errors",
+      "explanation": "A 90 receipt is posted to Cash as 900. Cash is overstated by 900 - 90 = 810. Trace the entry to its source document before changing it. Correct the erroneous posting. Do not add an unsupported balancing entry. Use SUMIFS to total journal amounts for each account.",
+      "checks": [
+        {
+          "text": "An expense of 640 is entered as 460. By how much is expense understated?",
+          "answer": 180
+        },
+        {
+          "text": "The original 460 is replaced with the correct 640. What is the corrected amount?",
+          "answer": 640
+        }
+      ]
+    },
+    {
+      "objective": "Explain how transactions affect profit",
+      "explanation": "Service Revenue is 4,000. Rent Expense is 900 and Wages Expense is 1,600. Net income is 4,000 - 900 - 1,600 = 1,500. A loan receipt increases cash and liabilities. It does not increase revenue. Link the statement total to the ledger instead of typing it again.",
+      "checks": [
+        {
+          "text": "Revenue is 5,200. Expenses are 1,300 and 2,100. What is net income?",
+          "answer": 1800
+        },
+        {
+          "text": "The business receives a 2,000 loan after it earns that income. What is its net income now?",
+          "answer": 1800
+        }
+      ]
+    }
+  ],
+  "3": [
+    {
+      "objective": "Connect profit to the balance sheet",
+      "explanation": "Revenue of 6,000 less expenses of 4,200 gives net income of 1,800. With no distributions, retained earnings increases by 1,800. The income statement covers a period. The balance sheet reports balances at a date. Keep those dates consistent.",
+      "checks": [
+        {
+          "text": "Revenue is 7,500 and expenses are 5,100. What is net income?",
+          "answer": 2400
+        },
+        {
+          "text": "Beginning retained earnings is 3,000. Add that income and subtract distributions of 400. What is ending retained earnings?",
+          "answer": 5000
+        }
+      ]
+    },
+    {
+      "objective": "Build an income statement from account balances",
+      "explanation": "Sales of 10,000 less cost of goods sold of 6,000 gives gross profit of 4,000. Operating expenses of 2,500 leave net income of 1,500. A purchase of equipment is an asset acquisition. Do not deduct its entire cost as an operating expense in this example.",
+      "checks": [
+        {
+          "text": "Sales are 12,000 and cost of goods sold is 7,200. What is gross profit?",
+          "answer": 4800
+        },
+        {
+          "text": "Operating expenses are 3,100. What is net income after those expenses?",
+          "answer": 1700
+        }
+      ]
+    },
+    {
+      "objective": "Link net income and distributions to equity",
+      "explanation": "Beginning retained earnings is 5,000. Net income is 1,400 and distributions are 600. Ending retained earnings is 5,000 + 1,400 - 600 = 5,800. Use a link to the net income cell. A typed copy will not update when revenue changes.",
+      "checks": [
+        {
+          "text": "Beginning retained earnings is 2,500, income is 900, and distributions are 250. What is ending retained earnings?",
+          "answer": 3150
+        },
+        {
+          "text": "Income increases by 200. All other inputs stay fixed. What is the revised ending retained earnings?",
+          "answer": 3350
+        }
+      ]
+    },
+    {
+      "objective": "Reconcile operating profit with operating cash",
+      "explanation": "Start with net income of 2,000. Add non-cash depreciation of 300. Subtract a 500 increase in Accounts Receivable. Add a 200 increase in Accounts Payable. Operating cash is 2,000 + 300 - 500 + 200 = 2,000. An increase in receivables means some recognized revenue has not yet produced cash.",
+      "checks": [
+        {
+          "text": "Net income is 1,800, depreciation is 200, receivables increase by 400, and payables increase by 150. What is operating cash?",
+          "answer": 1750
+        },
+        {
+          "text": "Receivables instead increase by 600. What is revised operating cash?",
+          "answer": 1550
+        }
+      ]
+    },
+    {
+      "objective": "Check that the statements use consistent balances",
+      "explanation": "The cash flow statement starts with 1,200 cash and reports a net cash increase of 800. Ending Cash must be 2,000. The balance sheet Cash cell must show the same 2,000. A difference indicates a missing flow, a sign error, or a broken link.",
+      "checks": [
+        {
+          "text": "Beginning Cash is 900 and the net change is 450. What balance must the balance sheet report?",
+          "answer": 1350
+        },
+        {
+          "text": "The balance sheet instead reports 1,500. What is the absolute reconciliation difference?",
+          "answer": 150
+        }
+      ]
+    },
+    {
+      "objective": "Repair a broken statement link",
+      "explanation": "A revenue cell changes from 8,000 to 8,500. Expenses stay at 6,000. Net income must change from 2,000 to 2,500. If the equity statement still uses 2,000, replace its typed value with a reference to the income statement result. Check the output again after changing an input.",
+      "checks": [
+        {
+          "text": "Revenue is 9,400 and expenses are 7,100. What net income should the linked statements use?",
+          "answer": 2300
+        },
+        {
+          "text": "Expenses increase by 300. What should the linked net income become?",
+          "answer": 2000
+        }
+      ]
+    },
+    {
+      "objective": "Support a financial explanation with statement evidence",
+      "explanation": "A business has net income of 3,000 but operating cash of 1,800. An increase in receivables of 1,200 explains the gap when there are no other adjustments. Profit and cash measure different things. Identify the relevant account movement before recommending action.",
+      "checks": [
+        {
+          "text": "Net income is 2,600. Receivables increase by 700 with no other adjustments. What is operating cash?",
+          "answer": 1900
+        },
+        {
+          "text": "Customers then pay 300 of those receivables. What is the revised operating cash?",
+          "answer": 2200
+        }
+      ]
+    }
+  ],
+  "4": [
+    {
+      "objective": "Identify gross pay, deductions, and net pay",
+      "explanation": "Gross pay is pay before employee deductions. Net pay is gross pay less employee deductions. Gross pay of 800 less deductions of 120 gives net pay of 680. Employer contributions are additional employer costs. They are not deducted from the employee again. All rates in this unit are classroom assumptions, not payroll rules for a jurisdiction.",
+      "checks": [
+        {
+          "text": "Gross pay is 950 and employee deductions are 145. What is net pay?",
+          "answer": 805
+        },
+        {
+          "text": "An employer contribution is 76. What is total employer cost for this pay?",
+          "answer": 1026
+        }
+      ]
+    },
+    {
+      "objective": "Calculate hourly, salary, and commission pay",
+      "explanation": "At 20 per hour for 35 hours, hourly gross pay is 700. A salary of 31,200 paid in 26 equal periods gives 1,200 per period. A 4% commission on 5,000 sales gives 200. Match the pay formula to the stated employment arrangement.",
+      "checks": [
+        {
+          "text": "An employee works 38 hours at 25 per hour. What is gross pay?",
+          "answer": 950
+        },
+        {
+          "text": "A salesperson earns 3% of 8,000 sales. What is commission pay?",
+          "answer": 240
+        }
+      ]
+    },
+    {
+      "objective": "Calculate overtime and classroom deductions",
+      "explanation": "Assume overtime starts after 40 hours and pays 1.5 times the hourly rate. For 44 hours at 20, regular pay is 800 and overtime pay is 4 × 30 = 120. Gross pay is 920. A classroom deduction rate of 10% gives 92. Use the stated rates only.",
+      "checks": [
+        {
+          "text": "Using the same overtime policy, an employee works 42 hours at 24. What is gross pay?",
+          "answer": 1032
+        },
+        {
+          "text": "Use a classroom deduction rate of 10%. What is the deduction?",
+          "answer": 103.2
+        }
+      ]
+    },
+    {
+      "objective": "Calculate net pay with rounding",
+      "explanation": "Gross pay is 1,000. A classroom withholding rate of 12% gives 120. A benefit deduction is 35. Net pay is 1,000 - 120 - 35 = 845. Round each monetary deduction to two decimal places according to the stated task policy before you total it.",
+      "checks": [
+        {
+          "text": "Gross pay is 1,250, withholding is 10%, and benefits cost 45. What is net pay?",
+          "answer": 1080
+        },
+        {
+          "text": "Gross pay is 999.99 and a deduction is 7.5%, rounded to two decimals. What is that deduction?",
+          "answer": 75
+        }
+      ]
+    },
+    {
+      "objective": "Distinguish employee deductions from employer cost",
+      "explanation": "Gross wages are 2,000. Employee deductions are 300. Employer contributions are 160. The employee receives 1,700. Total employer expense is 2,160. The 300 withheld is a liability until it is remitted. It is not extra wage expense.",
+      "checks": [
+        {
+          "text": "Gross wages are 3,000 and employer contributions are 240. What is employer expense?",
+          "answer": 3240
+        },
+        {
+          "text": "Employee deductions are 450. What amount is paid to employees?",
+          "answer": 2550
+        }
+      ]
+    },
+    {
+      "objective": "Validate payroll inputs and control totals",
+      "explanation": "A payroll register must use a unique employee ID, valid hours, and the rate for the correct pay type. A rate lookup must match the employee code. If two employees have gross pay of 700 and 900, the register gross total is 1,600. Reconcile the sum of net pay and deductions to gross pay.",
+      "checks": [
+        {
+          "text": "Net pay totals 1,360 and deductions total 240. What must gross pay total?",
+          "answer": 1600
+        },
+        {
+          "text": "The gross-pay column totals 1,650. What is the reconciliation difference?",
+          "answer": 50
+        }
+      ]
+    },
+    {
+      "objective": "Explain payroll expense and payroll liabilities",
+      "explanation": "A payroll run has gross wages of 4,000, employee deductions of 600, and employer contributions of 320. Net-pay cash is 3,400. Withholding and contribution liabilities total 920 before remittance. Payroll expense is 4,320. Link these amounts to the correct statement accounts.",
+      "checks": [
+        {
+          "text": "Gross wages are 5,000 and employee deductions are 750. What is net-pay cash?",
+          "answer": 4250
+        },
+        {
+          "text": "Employer contributions are 400. What total liability remains for deductions and contributions before remittance?",
+          "answer": 1150
+        }
+      ]
+    }
+  ],
+  "5": [
+    {
+      "objective": "Explain depreciation as cost allocation",
+      "explanation": "Depreciation allocates depreciable cost over useful life. It does not measure the resale price. An asset costs 12,000 and has estimated salvage value of 2,000. Its depreciable amount is 10,000. Useful life and salvage value are estimates that must be stated.",
+      "checks": [
+        {
+          "text": "An asset costs 18,000 with salvage value of 3,000. What is the depreciable amount?",
+          "answer": 15000
+        },
+        {
+          "text": "The asset has accumulated depreciation of 4,000. What is its book value?",
+          "answer": 14000
+        }
+      ]
+    },
+    {
+      "objective": "Determine the recorded cost of an acquired asset",
+      "explanation": "Equipment costs 8,000. Delivery costs 300 and installation costs 700 are needed to prepare it for use. Recorded cost is 9,000. A separate annual maintenance service of 400 is not part of this acquisition cost in the example. Keep invoices for each amount.",
+      "checks": [
+        {
+          "text": "A machine costs 10,000, delivery is 450, and installation is 550. What is recorded cost?",
+          "answer": 11000
+        },
+        {
+          "text": "The business pays 3,000 immediately and finances the balance. What liability is recorded?",
+          "answer": 8000
+        }
+      ]
+    },
+    {
+      "objective": "Calculate straight-line depreciation",
+      "explanation": "Cost is 12,000, salvage is 2,000, and useful life is five years. Annual straight-line depreciation is (12,000 - 2,000) / 5 = 2,000. In Excel, use SLN(cost, salvage, life). After two full years, book value is 12,000 - 4,000 = 8,000.",
+      "checks": [
+        {
+          "text": "Cost is 17,000, salvage is 2,000, and life is five years. What is annual depreciation?",
+          "answer": 3000
+        },
+        {
+          "text": "What is book value after three full years?",
+          "answer": 8000
+        }
+      ]
+    },
+    {
+      "objective": "Calculate units-of-production depreciation",
+      "explanation": "Cost is 22,000 and salvage is 2,000. Expected lifetime output is 100,000 units. The depreciation rate is (22,000 - 2,000) / 100,000 = 0.20 per unit. Output of 15,000 units gives depreciation of 3,000. Do not depreciate below salvage.",
+      "checks": [
+        {
+          "text": "Cost is 16,000, salvage is 1,000, and expected output is 50,000 units. What is depreciation for 8,000 units?",
+          "answer": 2400
+        },
+        {
+          "text": "Total accumulated depreciation is now 6,000. What is book value?",
+          "answer": 10000
+        }
+      ]
+    },
+    {
+      "objective": "Compare straight-line and double-declining balance",
+      "explanation": "For cost 10,000 and life five years, the double-declining rate is 2 / 5 = 40%. Year 1 expense is 4,000. Year 2 expense is 6,000 × 40% = 2,400. Apply a salvage floor. This schedule does not switch to straight-line; it can end above salvage.",
+      "checks": [
+        {
+          "text": "Cost is 20,000 and life is five years. What is first-year double-declining depreciation before the salvage floor?",
+          "answer": 8000
+        },
+        {
+          "text": "What is second-year depreciation before the salvage floor?",
+          "answer": 4800
+        }
+      ]
+    },
+    {
+      "objective": "Validate depreciation schedules and statement links",
+      "explanation": "An asset costs 15,000. Accumulated depreciation is 6,000. Net carrying value is 9,000. Current-year depreciation expense must equal the increase in accumulated depreciation when there are no disposals or adjustments. Check that the schedule does not reduce book value below salvage.",
+      "checks": [
+        {
+          "text": "Cost is 24,000 and accumulated depreciation is 9,000. What is net carrying value?",
+          "answer": 15000
+        },
+        {
+          "text": "Accumulated depreciation was 6,000 at the start of the year. What is current-year expense?",
+          "answer": 3000
+        }
+      ]
+    },
+    {
+      "objective": "Explain the non-cash effect of depreciation",
+      "explanation": "Net income is 5,000 after depreciation expense of 1,200. With no other operating adjustments, operating cash is 6,200. Add depreciation back because it reduced income without a current cash payment. The original equipment purchase is an investing cash flow.",
+      "checks": [
+        {
+          "text": "Net income is 4,600 after depreciation of 900. What is operating cash before other adjustments?",
+          "answer": 5500
+        },
+        {
+          "text": "Equipment purchases require 2,000 cash. What net cash remains after those purchases, with no other flows?",
+          "answer": 3500
+        }
+      ]
+    }
+  ],
+  "6": [
+    {
+      "objective": "Reconcile inventory units",
+      "explanation": "Beginning inventory is 20 units. Purchases add 50 and sales remove 45. Ending inventory is 20 + 50 - 45 = 25 units. Cost flow determines the value assigned to units sold and units remaining. It does not change the physical unit count.",
+      "checks": [
+        {
+          "text": "Beginning inventory is 35 units, purchases are 40, and sales are 52. How many units remain?",
+          "answer": 23
+        },
+        {
+          "text": "Each remaining unit costs 12 under the stated uniform-cost assumption. What is ending inventory value?",
+          "answer": 276
+        }
+      ]
+    },
+    {
+      "objective": "Calculate first-in, first-out cost flow",
+      "explanation": "Inventory has 10 units at 8 and then 10 units at 10. Sell 12 units. Under first-in, first-out (FIFO), cost of goods sold is 10 × 8 + 2 × 10 = 100. Eight units at 10 remain, valued at 80.",
+      "checks": [
+        {
+          "text": "There are 5 units at 20 and then 8 units at 25. Under FIFO, what is the cost of selling 7 units?",
+          "answer": 150
+        },
+        {
+          "text": "What is the value of the 6 remaining units?",
+          "answer": 150
+        }
+      ]
+    },
+    {
+      "objective": "Compare inventory cost-flow methods",
+      "explanation": "There are 10 units at 8 and then 10 at 10. Sell 12. FIFO cost is 100. Last-in, first-out (LIFO) cost is 10 × 10 + 2 × 8 = 116. The physical sale is unchanged. This exercise compares arithmetic; a real reporting policy must use an allowed accounting method.",
+      "checks": [
+        {
+          "text": "There are 5 units at 20 and then 8 at 25. Under LIFO, what is the cost of selling 7 units?",
+          "answer": 175
+        },
+        {
+          "text": "The cost available is 300. What ending inventory remains under that calculation?",
+          "answer": 125
+        }
+      ]
+    },
+    {
+      "objective": "Assign materials, labor, and overhead to a project",
+      "explanation": "A project uses materials of 600 and ten labor hours at 30. Overhead is applied at 20 per labor hour. Total project cost is 600 + 300 + 200 = 1,100. Use one documented allocation basis. Do not add the same labor cost twice.",
+      "checks": [
+        {
+          "text": "Materials are 850. Labor is 12 hours at 25. Overhead is 15 per labor hour. What is project cost?",
+          "answer": 1330
+        },
+        {
+          "text": "The project price is 1,800. What is its gross profit under this cost model?",
+          "answer": 470
+        }
+      ]
+    },
+    {
+      "objective": "Distinguish margin from markup",
+      "explanation": "Cost is 80 and selling price is 100. Profit is 20. Margin is 20 / 100 = 20%. Markup is 20 / 80 = 25%. The denominator differs. Label percentage outputs so a reader knows which measure is shown.",
+      "checks": [
+        {
+          "text": "Cost is 60 and price is 80. What is margin as a percentage?",
+          "answer": 25
+        },
+        {
+          "text": "For the same cost and price, what is profit in currency units?",
+          "answer": 20
+        }
+      ]
+    },
+    {
+      "objective": "Reconcile work in progress",
+      "explanation": "Beginning work in progress is 2,000. New project costs add 5,000. Completed work transfers out at cost of 4,000. Ending work in progress is 3,000. Reconcile each transfer to a completed job. Do not include the sales price in this cost reconciliation.",
+      "checks": [
+        {
+          "text": "Beginning work in progress is 1,500, new costs are 4,800, and completed costs are 3,700. What remains?",
+          "answer": 2600
+        },
+        {
+          "text": "A completed job was understated by 200. What is corrected ending work in progress?",
+          "answer": 2400
+        }
+      ]
+    },
+    {
+      "objective": "Use contribution to explain a price decision",
+      "explanation": "Price is 50 and variable cost is 30 per unit. Contribution is 20 per unit. With fixed costs of 2,000, break-even volume is 2,000 / 20 = 100 units. A higher price can change demand, so the arithmetic alone does not prove that a price change will work.",
+      "checks": [
+        {
+          "text": "Price is 75 and variable cost is 45. Fixed cost is 3,600. What is break-even volume in whole units?",
+          "answer": 120
+        },
+        {
+          "text": "At 150 units, what is profit under the same assumptions?",
+          "answer": 900
+        }
+      ]
+    }
+  ],
+  "7": [
+    {
+      "objective": "Distinguish financing receipts from revenue",
+      "explanation": "A loan of 10,000 increases Cash and Loan Payable by 10,000. An owner contribution of 4,000 increases Cash and Equity by 4,000. Neither receipt is sales revenue. The funding choice changes repayment obligations and ownership claims.",
+      "checks": [
+        {
+          "text": "A business receives an 8,000 loan and 3,000 owner contribution. What is the total cash increase?",
+          "answer": 11000
+        },
+        {
+          "text": "What is the liability increase from these two receipts?",
+          "answer": 8000
+        }
+      ]
+    },
+    {
+      "objective": "Compare debt and equity amounts",
+      "explanation": "A project needs 20,000. The owner contributes 8,000 and borrows 12,000. Debt provides 60% of the funding. Loan principal must be repaid under the agreement. An equity contribution does not create a scheduled loan payment.",
+      "checks": [
+        {
+          "text": "A project needs 30,000 and the owner provides 12,000. What loan amount is required?",
+          "answer": 18000
+        },
+        {
+          "text": "What percentage of this funding is debt?",
+          "answer": 60
+        }
+      ]
+    },
+    {
+      "objective": "Build a loan payment schedule",
+      "explanation": "A 1,200 loan has a monthly interest rate of 1% and a first payment of 110. Interest is 1,200 × 1% = 12. Principal repayment is 110 - 12 = 98. Ending principal is 1,102. Use the periodic rate, not the annual rate, in each monthly row.",
+      "checks": [
+        {
+          "text": "A 2,000 loan has monthly interest of 1% and a payment of 180. What is first-month interest?",
+          "answer": 20
+        },
+        {
+          "text": "What is ending principal after that payment?",
+          "answer": 1840
+        }
+      ]
+    },
+    {
+      "objective": "Separate investment return from loan principal",
+      "explanation": "An investor contributes 5,000. During the period, the investor receives a 300 distribution. The ending ownership value is 5,200. Total gain is 300 + 5,200 - 5,000 = 500. The simple period return is 500 / 5,000 = 10%. This is not an annualized return unless the period is one year.",
+      "checks": [
+        {
+          "text": "An investor contributes 8,000, receives 400, and has ending value of 8,400. What is total gain?",
+          "answer": 800
+        },
+        {
+          "text": "What is the simple period return as a percentage?",
+          "answer": 10
+        }
+      ]
+    },
+    {
+      "objective": "Measure payment coverage under stress",
+      "explanation": "Cash available for debt service is 1,500 per month and required payments are 1,000. Coverage is 1.5. If available cash falls to 900, the shortfall is 100. State which cash flows are included. A coverage ratio is a scenario result, not a guarantee.",
+      "checks": [
+        {
+          "text": "Available monthly cash is 1,800 and debt payments are 1,200. What is coverage?",
+          "answer": 1.5
+        },
+        {
+          "text": "Available cash falls to 1,050. What is the payment shortfall?",
+          "answer": 150
+        }
+      ]
+    },
+    {
+      "objective": "Validate financing scenario inputs",
+      "explanation": "An annual nominal rate of 12% with monthly periods gives 1% per month in this model. A three-year loan has 36 monthly payments. In Excel, PMT uses a periodic rate and the matching number of periods. Use a negative present value to display a positive payment.",
+      "checks": [
+        {
+          "text": "An annual nominal rate is 9.6% with monthly periods. What is the monthly rate as a percentage?",
+          "answer": 0.8
+        },
+        {
+          "text": "A four-year loan has how many monthly payments?",
+          "answer": 48
+        }
+      ]
+    },
+    {
+      "objective": "Reconcile financing cash flows and loan balances",
+      "explanation": "Beginning debt is 10,000. New borrowing is 3,000 and principal repayments are 2,000. Ending debt is 11,000. Interest expense of 800 does not reduce loan principal. Owner contributions and distributions also belong in the financing explanation.",
+      "checks": [
+        {
+          "text": "Beginning debt is 15,000, new borrowing is 5,000, and principal repaid is 3,500. What is ending debt?",
+          "answer": 16500
+        },
+        {
+          "text": "What is the net borrowing cash inflow from those new loans and principal repayments?",
+          "answer": 1500
+        }
+      ]
+    }
+  ],
+  "8": [
+    {
+      "objective": "Define model inputs, calculations, and outputs",
+      "explanation": "Keep price and volume in an input table. Revenue is price × volume in the calculation sheet. Link the dashboard to that calculated result. With price 40 and volume 250, revenue is 10,000. A dashboard value typed as 10,000 will not update when an input changes.",
+      "checks": [
+        {
+          "text": "Price is 60 and volume is 200. What revenue should the model calculate?",
+          "answer": 12000
+        },
+        {
+          "text": "Volume increases to 230. What revenue should the linked dashboard show?",
+          "answer": 13800
+        }
+      ]
+    },
+    {
+      "objective": "Review a complete operating model",
+      "explanation": "Revenue is 20,000. Variable costs are 12,000 and fixed costs are 5,000. Operating profit is 3,000. Check that every output uses the same scenario. A chart from a different scenario can contradict the statement even when each formula is correct.",
+      "checks": [
+        {
+          "text": "Revenue is 24,000, variable costs are 14,000, and fixed costs are 6,000. What is operating profit?",
+          "answer": 4000
+        },
+        {
+          "text": "Revenue falls to 22,000 while those costs stay fixed. What is revised profit?",
+          "answer": 2000
+        }
+      ]
+    },
+    {
+      "objective": "Stress-test model assumptions",
+      "explanation": "Price is 50, unit variable cost is 30, volume is 400, and fixed cost is 6,000. Profit is (50 - 30) × 400 - 6,000 = 2,000. At volume 300, profit is zero. Change one assumption at a time before you test combined changes.",
+      "checks": [
+        {
+          "text": "Price is 80, unit variable cost is 50, volume is 200, and fixed cost is 4,500. What is profit?",
+          "answer": 1500
+        },
+        {
+          "text": "Volume falls to 150. What is revised profit?",
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "objective": "Build an indirect cash flow reconciliation",
+      "explanation": "Net income is 4,000. Add depreciation of 800. Subtract increases in receivables of 500 and inventory of 300. Add a payable increase of 200. Operating cash is 4,200. Then report investing and financing flows to reconcile the total cash change.",
+      "checks": [
+        {
+          "text": "Net income is 3,500, depreciation is 600, receivables increase by 400, inventory increases by 200, and payables increase by 100. What is operating cash?",
+          "answer": 3600
+        },
+        {
+          "text": "Investing cash is -1,500 and financing cash is 700. What is the total cash change?",
+          "answer": 2800
+        }
+      ]
+    },
+    {
+      "objective": "Align scenario outputs with statement cash",
+      "explanation": "Beginning Cash is 2,000 and the cash flow statement reports an increase of 1,300. Ending Cash is 3,300. Link this result to the balance sheet. The balance sheet check is Assets - Liabilities - Equity. A correct integrated model has a zero difference.",
+      "checks": [
+        {
+          "text": "Assets are 18,000, liabilities are 7,000, and equity is 11,000. What is the balance check?",
+          "answer": 0
+        },
+        {
+          "text": "Beginning Cash is 2,500 and the cash change is -600. What is ending Cash?",
+          "answer": 1900
+        }
+      ]
+    },
+    {
+      "objective": "Validate a target result with an independent calculation",
+      "explanation": "Price is 70, unit variable cost is 40, and fixed cost is 6,000. To earn target profit of 3,000, required volume is (6,000 + 3,000) / 30 = 300 units. A Goal Seek result should agree with this independent calculation. Check that required volume is feasible.",
+      "checks": [
+        {
+          "text": "Price is 90, unit variable cost is 60, fixed cost is 4,800, and target profit is 1,200. What volume is required?",
+          "answer": 200
+        },
+        {
+          "text": "At that volume, what revenue must the model show?",
+          "answer": 18000
+        }
+      ]
+    },
+    {
+      "objective": "Explain a recommendation with a tested dashboard",
+      "explanation": "A dashboard reports revenue of 30,000 and profit of 3,000. Profit margin is 10%. Show the same scenario name and period as the statements. State one downside case and its effect. Use the supporting calculation instead of a chart color as evidence.",
+      "checks": [
+        {
+          "text": "Revenue is 40,000 and profit is 6,000. What is profit margin as a percentage?",
+          "answer": 15
+        },
+        {
+          "text": "A downside case lowers profit to 2,000 at revenue of 32,000. What is the new margin as a percentage?",
+          "answer": 6.25
+        }
+      ]
+    }
+  ]
+}

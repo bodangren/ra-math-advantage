@@ -18,7 +18,25 @@ import {
   type Card,
   type Grade,
 } from 'ts-fsrs';
-import type { SrsCardId, SrsCardState, SrsRating } from './contract';
+import type {
+  ObjectivePriority,
+  SrsCardId,
+  SrsCardState,
+  SrsRating,
+} from './contract';
+import {
+  BUILTIN_FSRS_PARAMS_VERSION,
+  normalizeSchedulerConfig,
+  objectivePrioritySchema,
+  paramsVersionSchema,
+  resolveRequestedRetention,
+} from './scheduler-policy-contract';
+import {
+  scheduleIntervalWithLoadBalancingV3_2,
+} from './session-composition';
+import type { IntervalLoadBalancingDecisionV3_2 } from './session-composition-contract';
+
+export { BUILTIN_FSRS_PARAMS_VERSION } from './scheduler-policy-contract';
 
 /**
  * Scheduler configuration parameters.
@@ -31,6 +49,12 @@ export type SchedulerConfig = {
   requestRetention: number;
 
   /**
+   * Optional v3.1 per-priority retention targets. An absent map preserves the
+   * scalar requestRetention behavior.
+   */
+  requestRetentionByPriority?: Partial<Record<ObjectivePriority, number>>;
+
+  /**
    * Maximum interval in days.
    * Default: 365 (one school year)
    */
@@ -41,6 +65,9 @@ export type SchedulerConfig = {
    * Default: false
    */
   enableShortTermPreview: boolean;
+
+  /** Optional future sibling-card reinforcement policy. */
+  siblingReinforcement?: boolean;
 };
 
 /**
@@ -50,6 +77,32 @@ export const DEFAULT_SCHEDULER_CONFIG: SchedulerConfig = {
   requestRetention: 0.9,
   maximumInterval: 365,
   enableShortTermPreview: false,
+};
+
+/** Trusted scheduling inputs resolved by server-side policy code. */
+export type ReviewSchedulerContext = {
+  objectivePriority?: ObjectivePriority;
+  config?: Partial<SchedulerConfig>;
+};
+
+/** One scheduling decision and its inseparable audit provenance. */
+export type ScheduledReview = {
+  card: SrsCardState;
+  requestedRetention: number;
+  paramsVersion: string;
+  loadBalancingDecision?: IntervalLoadBalancingDecisionV3_2;
+};
+
+export type ScheduleReviewInput = ReviewSchedulerContext & {
+  card: SrsCardState;
+  rating: SrsRating;
+  now?: string;
+  loadBalancing?: {
+    readonly projectedDayLoads: readonly {
+      readonly dayOffset: number;
+      readonly load: number;
+    }[];
+  };
 };
 
 /**
@@ -204,12 +257,51 @@ export function reviewCard(
   rating: SrsRating,
   now?: string,
   config?: Partial<SchedulerConfig>,
+  objectivePriority?: ObjectivePriority,
 ): SrsCardState {
+  return scheduleReview({
+    card,
+    rating,
+    now,
+    config,
+    objectivePriority,
+  }).card;
+}
+
+/**
+ * Apply one review and return the card together with the exact retention and
+ * parameter-version decisions that produced it. Keeping these values in one
+ * return object prevents a caller from independently reconstructing an audit
+ * stamp that can drift from the actual scheduler inputs.
+ */
+export function scheduleReview(input: ScheduleReviewInput): ScheduledReview {
+  const {
+    card,
+    rating,
+    now,
+    config,
+    objectivePriority,
+    loadBalancing,
+  } = input;
   const currentTime = now ?? new Date().toISOString();
-  const fullConfig = { ...DEFAULT_SCHEDULER_CONFIG, ...config };
+  const fullConfig = normalizeSchedulerConfig({
+    ...DEFAULT_SCHEDULER_CONFIG,
+    ...config,
+  });
+  const parsedPriority = objectivePriority === undefined
+    ? undefined
+    : objectivePrioritySchema.parse(objectivePriority);
+  const requestedRetention = parsedPriority === undefined
+    ? fullConfig.requestRetention
+    : resolveRequestedRetention(fullConfig, parsedPriority);
+  // Fitted releases currently have provenance references but no executable
+  // weights bundle. Until that binding exists, claiming any fitted version
+  // here would be false attribution, so scheduling is intentionally pinned to
+  // the exact installed built-in parameter set.
+  const parsedParamsVersion = paramsVersionSchema.parse(BUILTIN_FSRS_PARAMS_VERSION);
 
   const params = generatorParameters({
-    request_retention: fullConfig.requestRetention,
+    request_retention: requestedRetention,
     maximum_interval: fullConfig.maximumInterval,
     enable_short_term: fullConfig.enableShortTermPreview,
   });
@@ -219,7 +311,7 @@ export function reviewCard(
   const grade = mapSrsRatingToGrade(rating);
   const result = scheduler.next(fsrsCard, currentTime, grade);
 
-  return mapFsrsCardToSrsCardState(
+  const scheduledCard = mapFsrsCardToSrsCardState(
     result.card,
     {
       cardId: card.cardId,
@@ -230,6 +322,49 @@ export function reviewCard(
     currentTime,
     card.lastReview,
   );
+  const updatedCard = scheduledCard.scheduledDays <= fullConfig.maximumInterval
+    ? scheduledCard
+    : {
+        ...scheduledCard,
+        scheduledDays: fullConfig.maximumInterval,
+        dueDate: new Date(
+          Date.parse(currentTime) + fullConfig.maximumInterval * 86_400_000,
+        ).toISOString(),
+      };
+
+  let finalCard = updatedCard;
+  let loadBalancingDecision: IntervalLoadBalancingDecisionV3_2 | undefined;
+  if (loadBalancing && updatedCard.scheduledDays > 0) {
+    const minimumDayOffset = Math.ceil(updatedCard.scheduledDays * 0.95);
+    const maximumDayOffset = Math.max(
+      minimumDayOffset,
+      Math.min(fullConfig.maximumInterval, Math.floor(updatedCard.scheduledDays * 1.05)),
+    );
+    const projectedDayLoads = loadBalancing.projectedDayLoads.filter(
+      (entry) =>
+        entry.dayOffset >= minimumDayOffset && entry.dayOffset <= maximumDayOffset,
+    );
+    loadBalancingDecision = scheduleIntervalWithLoadBalancingV3_2({
+      cardId: updatedCard.cardId,
+      reps: updatedCard.reps,
+      anchorDate: currentTime,
+      baseIntervalDays: updatedCard.scheduledDays,
+      maximumIntervalDays: fullConfig.maximumInterval,
+      projectedDayLoads,
+    });
+    finalCard = {
+      ...updatedCard,
+      scheduledDays: loadBalancingDecision.selectedDayOffset,
+      dueDate: loadBalancingDecision.selectedDueDate,
+    };
+  }
+
+  return {
+    card: finalCard,
+    requestedRetention,
+    paramsVersion: parsedParamsVersion,
+    ...(loadBalancingDecision ? { loadBalancingDecision } : {}),
+  };
 }
 
 /**
@@ -252,20 +387,16 @@ export function previewInterval(
   card: SrsCardState,
   rating: SrsRating,
   now?: string,
+  config?: Partial<SchedulerConfig>,
+  objectivePriority?: ObjectivePriority,
 ): number {
-  const currentTime = now ?? new Date().toISOString();
-  const params = generatorParameters({
-    request_retention: DEFAULT_SCHEDULER_CONFIG.requestRetention,
-    maximum_interval: DEFAULT_SCHEDULER_CONFIG.maximumInterval,
-    enable_short_term: DEFAULT_SCHEDULER_CONFIG.enableShortTermPreview,
-  });
-
-  const scheduler = fsrs(params);
-  const fsrsCard = toFsrsCard(card);
-  const grade = mapSrsRatingToGrade(rating);
-  const result = scheduler.next(fsrsCard, currentTime, grade);
-
-  return result.card.scheduled_days;
+  return scheduleReview({
+    card,
+    rating,
+    now,
+    config,
+    objectivePriority,
+  }).card.scheduledDays;
 }
 
 /**

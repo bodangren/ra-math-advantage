@@ -13,7 +13,7 @@ import {
 describe('SRS Contract', () => {
   describe('version', () => {
     it('exports srs.contract.v1', () => {
-      expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v1');
+      expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v3');
     });
   });
 
@@ -126,7 +126,7 @@ describe('SRS Contract', () => {
         cardId: 'card_abc123',
         studentId: 'student-123',
         objectiveId: 'obj-1',
-        problemFamilyId: 'accounting-equation',
+        variantKey: 'accounting-equation',
         stability: 1.0,
         difficulty: 2.5,
         state: 'new',
@@ -140,7 +140,7 @@ describe('SRS Contract', () => {
         updatedAt: now,
       };
       expect(
-        dailyQueueSchema.safeParse({ ...validQueue, cards: [card] }).success,
+        dailyQueueSchema.safeParse({ ...validQueue, cards: [{ ...card, problemFamilyId: card.variantKey }] }).success,
       ).toBe(true);
     });
   });

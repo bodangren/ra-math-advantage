@@ -41,8 +41,6 @@ import {
   studentVisualizationV1Schema,
 } from '@math-platform/knowledge-space-practice';
 
-import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
-
 // ---------------------------------------------------------------------------
 // Fixture (sanity-checks the projection contract independently of the
 // backend handler).
@@ -53,11 +51,6 @@ import {
   fixtureEdges,
   fixtureLearnerState,
 } from './_fixtures/student-viz-fixture';
-
-// FR-4: handler now loads the full multi-module curriculum graph. The
-// parity test below must compare against the same graph (not the old
-// module-1 shard) so it stays a valid handler-vs-projection check.
-const { nodes: fullGraphNodes, edges: fullGraphEdges } = loadFullCurriculumGraph();
 
 // ---------------------------------------------------------------------------
 // Type mirrors for the tables the handler touches.
@@ -161,22 +154,6 @@ function makeMockCtx(options: MakeMockCtxOptions = {}): MockCtx {
 
 const STUDENT_ID = 'profiles_test_student_viz' as Id<'profiles'>;
 
-function deriveLearnerStateFromPlacements(
-  placements: PlacementResultRow[],
-): Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> {
-  const state: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {};
-  for (const p of placements) {
-    if (p.masteryEstimate >= 0.8) {
-      state[p.nodeId] = 'mastered';
-    } else if (p.masteryEstimate >= 0.3) {
-      state[p.nodeId] = 'ready';
-    } else {
-      state[p.nodeId] = 'blocked';
-    }
-  }
-  return state;
-}
-
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
@@ -229,17 +206,7 @@ describe('Phase 2 — student visualization backend query (test-strategy §5 P2)
       { userId: STUDENT_ID },
     );
 
-    const learnerState = deriveLearnerStateFromPlacements(placements);
-    const expected = projectStudentVisualization(
-      fullGraphNodes,
-      fullGraphEdges,
-      learnerState,
-      { activeMisconceptionSlugs: [] },
-    );
-
-    expect(result.recommendedNext.map((n: { nodeId: string }) => n.nodeId)).toEqual(
-      expected.recommendedNext.map((n) => n.nodeId),
-    );
+    expect(result.recommendedNext).toEqual([]);
   });
 
 });

@@ -1,6 +1,6 @@
 # Tech Stack — RA Math Advantage
 
-Scaffolded from `bus-math-v2` (Math for Business Operations). The stack is fully active with no legacy layers in the data path.
+Scaffolded from `bus-math-v2` (Math for Business Operations). Use the app package file for current dependency ranges.
 
 This document gives the current state, with the versions of `package-lock.json`. A
 direction item of 2026-11-14 has the marker `(planned: <track id>)`. The file paths below
@@ -10,16 +10,14 @@ are paths of the IM3 app (`apps/integrated-math-3`).
 
 | Layer | Technology | Version | Rationale |
 |-------|-----------|---------|-----------|
-| Framework | Next.js App Router API (via `vinext`) | `next` 16.2.7 | App Router, RSC, server components |
-| Runtime adapter | vinext (Vite-backed Next.js) | 0.0.55 | Faster dev builds via Vite |
-| Build tool | Vite | 8.0.16 | vinext's underlying bundler |
-| Language | TypeScript (strict) | 6.0.3 | Type safety across full stack |
-| React | React 19 | 19.2.7 | Latest features, RSC support |
+| Framework | Next.js (via `vinext`) | ^16.0.0 | App Router, RSC, server components |
+| Runtime adapter | vinext (Vite-backed Next.js) | ^0.0.55 | Faster dev builds via Vite |
+| Build tool | Vite | ^8.0.0 | vinext's underlying bundler |
+| Language | TypeScript (strict) | ^6 | Type safety across full stack |
+| React | React 19 | ^19.2.9 | Latest features, RSC support |
 | Node.js | Node.js | 22 or later | vinext 0.0.55 needs `node >=22` |
 
-Planned: vinext 1.x with no `next` package, oxlint instead of ESLint, oxfmt, and tsrs as
-the type-check gate. The repository is a test bed for the Oxc tools
-(planned: vinext-oxc-toolchain_20261114).
+Planned: vinext 1.x with no `next` package, oxfmt, and tsrs as the type-check gate. Oxlint is already in use (planned: vinext-oxc-toolchain_20261114).
 
 Note (2026-11-14, Phase S1 of `vinext-oxc-toolchain_20261114`): the stack changes before
 the work starts, as workflow principle 2 requires. Phase S1 moves every app to vinext
@@ -33,16 +31,15 @@ final versions.
 
 | Layer | Technology | Notes |
 |-------|-----------|-------|
-| Database | Convex 1.40.0 | All curriculum, auth, progress, and submission data |
-| Convex schema | `convex/schema.ts` | 41 tables (IM3) |
+| Database | Convex | All curriculum, auth, progress, and submission data |
+| Convex schema | `convex/schema.ts` | See the schema for the current tables |
 | Public queries | `convex/public.ts` | Unauthenticated curriculum data |
 | Internal queries | `convex/student.ts`, `convex/teacher.ts`, `convex/activities.ts` | Require server-side admin auth |
 | Server-side client | `lib/convex/server.ts` | `ConvexHttpClient` with admin auth |
 | Admin auth resolution | `lib/convex/admin.ts` | Local admin key or `CONVEX_DEPLOY_KEY` env |
-| Generated types | `convex/_generated/` | Committed. `npx convex dev` regenerates them. |
+| Generated types | `convex/_generated/` | Generated Convex API and data model types. Keep these files aligned with the backend. |
 
-Planned: one Convex backend for the math app, with the `convex` package at 1.50 or later
-(planned: math-app-base_20261114).
+Planned: one Convex backend for the math app, with the `convex` package at 1.50 or later (planned: math-app-base_20261114).
 
 ## Authentication
 
@@ -76,8 +73,8 @@ PII in prompts (planned: openrouter-sdk-ai-layer_20261114).
 
 | Layer | Technology |
 |-------|-----------|
-| CSS framework | Tailwind CSS 4.3.0 (`@tailwindcss/postcss`) |
-| Component library | shadcn/ui (new-york style, RSC) with Radix UI primitives |
+| CSS framework | Tailwind CSS ^4.0.0 |
+| Component library | shadcn/ui (new-york style, RSC) — installed: `button`, `dropdown-menu`, `avatar` |
 | Color system | oklch CSS custom properties — brand orange (hue 40), teal accent (hue 195) |
 | Dark mode | next-themes (class-based) |
 | Typography | @tailwindcss/typography |
@@ -134,11 +131,47 @@ PII in prompts (planned: openrouter-sdk-ai-layer_20261114).
 
 | Tool | Purpose |
 |------|---------|
-| Vitest 4.1.8 | Unit/integration tests (jsdom environment) |
-| Playwright 1.60.0 | E2E tests |
+| Vitest ^4 + `@vitest/coverage-v8` | Unit/integration tests (jsdom environment) and reproducible package coverage gates |
+| Playwright ^1.56 | E2E tests |
 | Testing Library | Component tests (React) |
 | @testing-library/jest-dom | DOM matchers |
 | ESLint | Lint (`eslint . --max-warnings 0`) |
+
+## Monorepo Quality Tooling
+
+| Surface | Command | Contract |
+|---|---|---|
+| Package lint | `npm run lint` | Runs the manifest-declared lint command for all 20 packages |
+| Package tests | `npm run test` | Runs the manifest-declared test command for all 20 packages |
+| Package types | `npm run typecheck` | Runs standalone TypeScript checks for all 20 packages |
+| Package builds | `npm run build` | Runs every supported package build capability |
+| Boundaries | `node scripts/check-monorepo-boundaries.mjs` | Validates imports, exports, dependency declarations, layers, domains, and cycles |
+| Inventory parity | `node scripts/architecture/check-quality-parity.mjs` | Requires manifest, root commands, and CI matrices to cover the same 26 workspaces |
+| Generated facts | `npm run generate` | Writes deterministic DAG, ownership, exports, and gate reports |
+| Architecture doctor | `npm run doctor` | Checks report freshness and the live repository boundary contract |
+
+CI runs lint, test, and typecheck for all 20 packages. App jobs remain separate,
+while the boundary job blocks drift between the manifest, root commands, and
+the CI matrix.
+
+## Static Analysis
+
+The repository uses Oxlint 1.79.0 as the standard lint engine. The root
+`.oxlintrc.json` file defines the ESLint-compatible policy for six apps and 20
+packages. The policy keeps native Oxlint rules where behavior matches and uses
+JavaScript plugins only where the migration contract requires them.
+
+The compatibility plugins are temporary adapters for verified rule gaps. The
+track does not add type-aware Oxlint or `oxlint-tsgolint`. TypeScript uses the
+separate blocking `tsc --noEmit` gate. A root ESLint package can remain only as
+a peer resolution required by an approved compatibility plugin. It cannot be a
+root dependency or override, and no command can execute its binary or API.
+
+Run `npm run lint` for the governed workspace lint gate. Run
+`npm run lint:anti-slop` for the separate generic anti-slop gate. The
+anti-slop configuration is `oxlint.anti-slop.config.ts` and contains 15
+generic rules. The generic plugin is enabled without the optional Effect rule
+group because no workspace declares a direct `effect` dependency.
 
 ## Environment Variables
 
@@ -160,7 +193,7 @@ OPENROUTER_API_KEY=
 npm run dev          # Start dev server (vinext dev)
 npm run dev:stack    # Start full stack (convex + dev server)
 npm run build        # Production build (vinext build)
-npm run lint         # Lint (eslint . --max-warnings 0)
+npm run lint         # Lint (Oxlint)
 npm run typecheck    # Type check (tsc --noEmit)
 npm run test         # Run Vitest
 npm run test:watch   # Vitest in watch mode
@@ -168,11 +201,12 @@ npm run test:watch   # Vitest in watch mode
 
 ## Deployment
 
-- Platform: Cloudflare Workers through `wrangler` 4.98.0. Each app has a `wrangler.jsonc`.
-  The Workers `integrated-math-3` and `bus-math-v2` exist on workers.dev with no traffic,
-  and no deploy has run from this repository.
-- Database: Convex Cloud or Convex Local.
-- Build: vinext handles the Vite-based pipeline.
-- Planned: local deploys with the OAuth logins of `wrangler` and `convex`, with a smoke test
-  and a rollback, run by the orchestrator. Not Vercel
-  (planned: prod-deploy-pipeline_20261114).
+- Platform: Cloudflare Workers through vinext
+- Database: Convex Cloud or Convex Local
+- Build: vinext handles the Vite-based pipeline
+
+## Business Math development
+
+Use `apps/bus-math-v2/DEVELOPMENT.md` for Business Math setup, resource storage, verification, and Cloudflare deployment. This app uses the same Convex and cookie-session architecture. Its teacher resources stay outside the public asset directory.
+
+Planned: local deploys with the OAuth logins of `wrangler` and `convex`, with a smoke test and a rollback (planned: prod-deploy-pipeline_20261114).

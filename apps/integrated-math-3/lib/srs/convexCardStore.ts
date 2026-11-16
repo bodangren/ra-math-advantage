@@ -3,6 +3,7 @@ import { internal } from "../../convex/_generated/api";
 import { type MutationCtx } from "../../convex/_generated/server";
 import { processReviewHandler } from "../../convex/srs/processReview";
 import type { Id } from "../../convex/_generated/dataModel";
+import { resolveReviewParamsVersion } from "../../convex/srs/paramsVersion";
 
 /**
  * Explicitly narrows a string to Id<"profiles"> at the package boundary.
@@ -106,8 +107,15 @@ export class ConvexCardStore implements CardStore {
    * Convex transaction. This avoids the non-atomic pattern of separate
    * `runMutation` calls for card and review log.
    */
-  async saveCardAndReview(card: SrsCardState, reviewLog: SrsReviewLogEntry): Promise<void> {
-    await processReviewHandler(this.ctx, {
+  async saveCardAndReview(
+    card: SrsCardState,
+    reviewLog: SrsReviewLogEntry,
+  ): Promise<{ cardId: string }> {
+    const paramsVersion = resolveReviewParamsVersion(
+      "action" in reviewLog.evidence,
+      reviewLog.paramsVersion,
+    );
+    const result = await processReviewHandler(this.ctx, {
       cardState: {
         ...card,
         studentId: toProfileId(card.studentId),
@@ -121,9 +129,11 @@ export class ConvexCardStore implements CardStore {
         evidence: reviewLog.evidence,
         stateBefore: reviewLog.stateBefore,
         stateAfter: reviewLog.stateAfter,
+        ...(paramsVersion === undefined ? {} : { paramsVersion }),
         reviewedAt: reviewLog.reviewedAt,
       },
     });
+    return { cardId: result.cardId };
   }
 }
 

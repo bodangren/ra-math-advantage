@@ -1,139 +1,56 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { renderHook } from '@testing-library/react';
-
-const mockUseQuery = vi.fn();
-const mockUseMutation = vi.fn();
-
-vi.mock('convex/react', () => ({
-  useQuery: mockUseQuery,
-  useMutation: mockUseMutation,
-}));
-
-vi.mock('@/convex/_generated/api', () => ({
-  api: {
-    study: {
-      getStudyPreferences: 'api.study.getStudyPreferences',
-      updatePreferences: 'api.study.updatePreferences',
-      getTermMasteryByUnit: 'api.study.getTermMasteryByUnit',
-      getDueTerms: 'api.study.getDueTerms',
-      getRecentSessions: 'api.study.getRecentSessions',
-      processReview: 'api.study.processReview',
-      recordSession: 'api.study.recordSession',
-    },
-  },
-}));
-
-const {
-  useStudyPreferences,
-  useTermMastery,
-  useDueTerms,
-  useRecentSessions,
-  useProcessReview,
-  useRecordSession,
-  getGlossaryTermDisplay,
-} = await import('../../hooks/useStudy');
-
-describe('useStudy hooks', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { useStudyPreferences, useTermMastery, useDueTerms, useRecentSessions, useProcessReview, useRecordSession, getGlossaryTermDisplay } from '../../hooks/useStudy';
+const mockFetch = vi.fn();
+beforeEach(() => { mockFetch.mockReset(); vi.stubGlobal('fetch', mockFetch); });
+const response = (data: unknown) => new Response(JSON.stringify(data));
+describe('study hooks through authenticated routes', () => {
+  it('loads preferences without sending a user ID', async () => {
+    mockFetch.mockResolvedValue(response({ languageMode: 'en_to_zh' }));
+    const { result } = renderHook(() => useStudyPreferences());
+    expect(result.current.languageMode).toBe('en_to_en');
+    await waitFor(() => expect(result.current.languageMode).toBe('en_to_zh'));
+    const url = new URL(mockFetch.mock.calls[0][0], 'http://localhost');
+    expect(JSON.parse(url.searchParams.get('request')!)).toEqual({ operation: 'getStudyPreferences', args: {} });
   });
-
-  describe('useStudyPreferences', () => {
-    it('returns study preferences, updatePreferences mutation, and default languageMode', () => {
-      mockUseQuery.mockReturnValue(undefined);
-      const mockUpdatePrefs = vi.fn();
-      mockUseMutation.mockReturnValue(mockUpdatePrefs);
-
-      const { result } = renderHook(() => useStudyPreferences());
-
-      expect(mockUseQuery).toHaveBeenCalledWith('api.study.getStudyPreferences');
-      expect(mockUseMutation).toHaveBeenCalledWith('api.study.updatePreferences');
-      expect(result.current.preferences).toBeUndefined();
-      expect(result.current.updatePreferences).toBe(mockUpdatePrefs);
-      expect(result.current.languageMode).toBe('en_to_en');
-    });
-
-    it('returns loaded preferences and correct languageMode', () => {
-      mockUseQuery.mockReturnValue({ languageMode: 'en_to_zh' });
-      const { result } = renderHook(() => useStudyPreferences());
-      expect(result.current.preferences).toEqual({ languageMode: 'en_to_zh' });
-      expect(result.current.languageMode).toBe('en_to_zh');
-    });
+  it.each([
+    ['getTermMasteryByUnit', () => useTermMastery(2), { unitNumber: 2 }],
+    ['getDueTerms', () => useDueTerms(), {}],
+    ['getRecentSessions', () => useRecentSessions(5), { limit: 5 }],
+  ] as const)('loads %s', async (operation, hook, args) => {
+    mockFetch.mockResolvedValue(response([{ id: 'result' }]));
+    const { result } = renderHook<unknown, void>(hook);
+    await waitFor(() => expect(result.current).toEqual([{ id: 'result' }]));
+    expect(JSON.parse(new URL(mockFetch.mock.calls[0][0], 'http://localhost').searchParams.get('request')!)).toEqual({ operation, args });
   });
-
-  describe('useTermMastery', () => {
-    it('calls useQuery with unitNumber undefined when not provided', () => {
-      renderHook(() => useTermMastery());
-      expect(mockUseQuery).toHaveBeenCalledWith('api.study.getTermMasteryByUnit', { unitNumber: undefined });
-    });
-
-    it('calls useQuery with unitNumber when provided', () => {
-      renderHook(() => useTermMastery(1));
-      expect(mockUseQuery).toHaveBeenCalledWith('api.study.getTermMasteryByUnit', { unitNumber: 1 });
-    });
-
-    it('returns the query result', () => {
-      const mockMastery = [{ termSlug: 'asset', mastery: 0.8 }];
-      mockUseQuery.mockReturnValue(mockMastery);
-      const { result } = renderHook(() => useTermMastery(1));
-      expect(result.current).toEqual(mockMastery);
-    });
+  it('loads recent sessions with the server default limit', async () => {
+    mockFetch.mockResolvedValue(response([]));
+    const { result } = renderHook(() => useRecentSessions());
+    await waitFor(() => expect(result.current).toEqual([]));
+    expect(mockFetch).toHaveBeenCalledTimes(1);
   });
-
-  describe('useDueTerms', () => {
-    it('calls useQuery for getDueTerms', () => {
-      renderHook(() => useDueTerms());
-      expect(mockUseQuery).toHaveBeenCalledWith('api.study.getDueTerms');
-    });
-
-    it('returns the query result', () => {
-      const mockDue = [{ termSlug: 'liability', scheduledFor: Date.now() }];
-      mockUseQuery.mockReturnValue(mockDue);
-      const { result } = renderHook(() => useDueTerms());
-      expect(result.current).toEqual(mockDue);
-    });
+  it('saves preferences and refreshes subscribed data', async () => {
+    mockFetch.mockResolvedValue(response({ languageMode: 'en_to_en' }));
+    const { result } = renderHook(() => useStudyPreferences());
+    await waitFor(() => expect(result.current.preferences).toBeDefined());
+    mockFetch.mockImplementation(async (_url, options) => response(options?.method === 'POST' ? null : { languageMode: 'zh_to_en' }));
+    await act(() => result.current.updatePreferences({ languageMode: 'zh_to_en' }));
+    await waitFor(() => expect(result.current.languageMode).toBe('zh_to_en'));
+    const call = mockFetch.mock.calls.find(([, options]) => options?.method === 'POST')!;
+    expect(JSON.parse(call[1].body)).toEqual({ operation: 'updatePreferences', args: { languageMode: 'zh_to_en' } });
   });
-
-  describe('useRecentSessions', () => {
-    it('calls useQuery with skip when limit not provided', () => {
-      renderHook(() => useRecentSessions());
-      expect(mockUseQuery).toHaveBeenCalledWith('api.study.getRecentSessions', 'skip');
-    });
-
-    it('calls useQuery with limit when provided', () => {
-      renderHook(() => useRecentSessions(5));
-      expect(mockUseQuery).toHaveBeenCalledWith('api.study.getRecentSessions', { limit: 5 });
-    });
-
-    it('returns the query result', () => {
-      const mockSessions = [{ id: 'session-1', type: 'flashcards' }];
-      mockUseQuery.mockReturnValue(mockSessions);
-      const { result } = renderHook(() => useRecentSessions(5));
-      expect(result.current).toEqual(mockSessions);
-    });
+  it('exposes server errors to callers of mutations', async () => {
+    mockFetch.mockResolvedValue(new Response('{}', { status: 503 }));
+    const { result } = renderHook(() => useProcessReview());
+    await expect(result.current({ termSlug: 'asset', rating: 'good' })).rejects.toThrow('Unable to load or save study data.');
   });
-
-  describe('useProcessReview', () => {
-    it('returns the useMutation result', () => {
-      const mockProcessReview = vi.fn();
-      mockUseMutation.mockReturnValue(mockProcessReview);
-      const { result } = renderHook(() => useProcessReview());
-      expect(mockUseMutation).toHaveBeenCalledWith('api.study.processReview');
-      expect(result.current).toBe(mockProcessReview);
-    });
+  it('returns a stable session save function', () => {
+    const { result, rerender } = renderHook(() => useRecordSession());
+    const first = result.current; rerender(); expect(result.current).toBe(first);
   });
+});
 
-  describe('useRecordSession', () => {
-    it('returns the useMutation result', () => {
-      const mockRecordSession = vi.fn();
-      mockUseMutation.mockReturnValue(mockRecordSession);
-      const { result } = renderHook(() => useRecordSession());
-      expect(mockUseMutation).toHaveBeenCalledWith('api.study.recordSession');
-      expect(result.current).toBe(mockRecordSession);
-    });
-  });
-
-  describe('getGlossaryTermDisplay', () => {
+describe('getGlossaryTermDisplay', () => {
     const mockTerm = {
       slug: 'asset',
       term_en: 'Asset',
@@ -172,4 +89,3 @@ describe('useStudy hooks', () => {
       expect(result).toEqual({ prompt: 'Asset', answer: 'An economic resource owned by a business' });
     });
   });
-});

@@ -84,6 +84,113 @@ describe('Activity map projection', () => {
       'math.im3.standard.ccss.hsa.rei.b.4b',
     );
   });
+
+  it('marks Guided and Independent rows SRS eligible for an approved and explicitly ready node, but not Worked', () => {
+    const node: KnowledgeSpaceNode = {
+      id: 'math.test.skill.ready',
+      kind: 'skill',
+      title: 'Ready skill',
+      domain: 'math.test',
+      reviewStatus: 'approved',
+      metadata: {},
+      independentPracticeReady: true,
+    };
+    const blueprint: KnowledgeBlueprint = {
+      nodeId: node.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'graphing-explorer',
+      rendererModeMap: {},
+      workedExampleSpec: {
+        prompt: 'Worked prompt',
+        givens: [],
+        target: {},
+        steps: [{ description: 'Show the completed graph.' }],
+        explanation: 'Worked explanation',
+      },
+      guidedPracticeSpec: {
+        scaffoldedPrompt: 'Guided prompt',
+        stepPrompts: [],
+        hints: [],
+        checksPerStep: [],
+        revealPolicy: 'after_attempt',
+      },
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: {},
+        gradingRules: [],
+        replayPolicy: 'unique_seeds',
+      },
+      reviewStatus: 'approved',
+      metadata: {},
+    };
+
+    const rows = projectActivityMap([node], [], [blueprint]);
+
+    expect(Object.fromEntries(rows.map((row) => [row.mode, row.srsEligible]))).toEqual({
+      worked_example: false,
+      guided_practice: true,
+      independent_practice: true,
+    });
+    for (const status of ['draft', 'reviewed', 'rejected'] as const) {
+      const unapprovedNodeRows = projectActivityMap([{ ...node, reviewStatus: status }], [], [blueprint]);
+      const unapprovedBlueprintRows = projectActivityMap([node], [], [{ ...blueprint, reviewStatus: status }]);
+      expect(unapprovedNodeRows).toHaveLength(3);
+      expect(unapprovedBlueprintRows).toHaveLength(3);
+      expect(unapprovedNodeRows.every(row => !row.srsEligible)).toBe(true);
+      expect(unapprovedBlueprintRows.every(row => !row.srsEligible)).toBe(true);
+    }
+  });
+
+  it('does not infer activity eligibility from a specification or generator key', () => {
+    const node: KnowledgeSpaceNode = {
+      id: 'math.test.skill.not-ready',
+      kind: 'skill',
+      title: 'Unavailable skill',
+      domain: 'math.test',
+      reviewStatus: 'draft',
+      metadata: {},
+      independentPracticeReady: false,
+    };
+    const blueprint: KnowledgeBlueprint = {
+      nodeId: node.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'graphing-explorer',
+      rendererModeMap: {},
+      workedExampleSpec: {
+        prompt: 'Worked prompt',
+        givens: [],
+        target: {},
+        steps: [{ description: 'Show the completed graph.' }],
+        explanation: 'Worked explanation',
+      },
+      guidedPracticeSpec: {
+        scaffoldedPrompt: 'Guided prompt',
+        stepPrompts: [],
+        hints: [],
+        checksPerStep: [],
+        revealPolicy: 'after_attempt',
+      },
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: {},
+        gradingRules: [],
+        replayPolicy: 'unique_seeds',
+      },
+      generatorKey: 'pilot-stub-generator',
+      reviewStatus: 'draft',
+      metadata: {},
+    };
+
+    const rows = projectActivityMap([node], [], [blueprint]);
+
+    expect(Object.fromEntries(rows.map((row) => [row.mode, row.srsEligible]))).toEqual({
+      worked_example: false,
+      guided_practice: false,
+      independent_practice: false,
+    });
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -102,6 +209,68 @@ describe('Component props validation', () => {
       expect(row.props).not.toBeNull();
       expect(Object.keys(row.props).length).toBeGreaterThan(0);
     }
+  });
+
+  it('copies explicit modality renderer props without blueprint display fields', () => {
+    const skill = syntheticMathFixture.nodes.find((node) => node.kind === 'skill');
+    expect(skill).toBeDefined();
+
+    const blueprint = {
+      nodeId: skill!.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'graphing-explorer',
+      rendererModeMap: {
+        worked: 'graphing-explorer',
+        guidedPractice: 'graphing-explorer',
+        independentPractice: 'graphing-explorer',
+      },
+      workedExampleSpec: {
+        prompt: 'Worked prompt',
+        givens: ['f(x) = x^2 - 4'],
+        target: {},
+        steps: [{ description: 'Graph the function.' }],
+        explanation: 'Worked explanation',
+        rendererProps: { equation: 'f(x) = x^2 - 4', variant: 'plot_from_equation' },
+      },
+      guidedPracticeSpec: {
+        scaffoldedPrompt: 'Guided prompt',
+        stepPrompts: ['Graph the function.'],
+        hints: ['Use the vertex.'],
+        checksPerStep: [{ check: 'The graph is correct.' }],
+        revealPolicy: 'after_attempt',
+        rendererProps: { equation: 'f(x) = x^2 - 2x - 3', variant: 'plot_from_equation' },
+      },
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: { answer: 'graph' },
+        gradingRules: [],
+        replayPolicy: 'unique_seeds',
+        rendererProps: {
+          equation: 'y = x^2 - 4',
+          variant: 'plot_from_equation',
+          responseVariant: 'quadratic_features',
+        },
+      },
+      reviewStatus: 'draft',
+      metadata: {},
+    } as unknown as KnowledgeBlueprint;
+
+    const rows = projectActivityMap(
+      syntheticMathFixture.nodes,
+      syntheticMathFixture.edges,
+      [blueprint],
+    );
+
+    expect(rows.map((row) => row.props)).toEqual([
+      { equation: 'f(x) = x^2 - 4', variant: 'plot_from_equation' },
+      { equation: 'f(x) = x^2 - 2x - 3', variant: 'plot_from_equation' },
+      {
+        equation: 'y = x^2 - 4',
+        variant: 'plot_from_equation',
+        responseVariant: 'quadratic_features',
+      },
+    ]);
   });
 });
 
@@ -130,6 +299,65 @@ describe('SRS projection', () => {
     // At least one entry should have prerequisite info
     const entryWithPrereqs = entries.find((e) => e.prerequisites.length > 0);
     expect(entryWithPrereqs).toBeDefined();
+  });
+
+  it('uses only explicit independent-practice readiness for generator readiness', () => {
+    const nodes: KnowledgeSpaceNode[] = [
+      {
+        id: 'math.test.skill.algebraic-stub',
+        kind: 'skill',
+        title: 'Algebraic stub',
+        domain: 'math.test',
+        reviewStatus: 'draft',
+        metadata: {},
+        generatorKey: 'algebraic-step-solver',
+        independentPracticeReady: false,
+      },
+      {
+        id: 'math.test.skill.graphing-stub',
+        kind: 'skill',
+        title: 'Graphing stub',
+        domain: 'math.test',
+        reviewStatus: 'draft',
+        metadata: {},
+        generatorKey: 'graphing-explorer',
+        independentPracticeReady: false,
+      },
+      {
+        id: 'math.test.skill.ready',
+        kind: 'skill',
+        title: 'Ready skill',
+        domain: 'math.test',
+        reviewStatus: 'draft',
+        metadata: {},
+        generatorKey: 'approved-generator',
+        independentPracticeReady: true,
+      },
+    ];
+    const blueprints: KnowledgeBlueprint[] = nodes.map((node) => ({
+      nodeId: node.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'test-renderer',
+      rendererModeMap: {},
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: {},
+        gradingRules: [],
+        replayPolicy: 'unique_seeds',
+      },
+      generatorKey: node.generatorKey ?? 'test-generator',
+      reviewStatus: 'draft',
+      metadata: {},
+    }));
+
+    const entries = projectSrsInputs(nodes, [], blueprints);
+
+    expect(Object.fromEntries(entries.map((entry) => [entry.nodeId, entry.generatorReady]))).toEqual({
+      'math.test.skill.algebraic-stub': false,
+      'math.test.skill.graphing-stub': false,
+      'math.test.skill.ready': true,
+    });
   });
 });
 
@@ -449,6 +677,7 @@ describe('Cross-domain smoke test (English/GSE)', () => {
 describe('Concept Aggregator resolution', () => {
   const conceptNode: KnowledgeSpaceNode = {
     id: 'math.precalc.concept.unit-circle-trig',
+    domain: 'math',
     kind: 'concept',
     title: 'Unit Circle Trigonometry',
     description: 'Aggregator node bundling unit-circle trig skills.',
@@ -457,6 +686,7 @@ describe('Concept Aggregator resolution', () => {
   };
   const skillA: KnowledgeSpaceNode = {
     id: 'math.precalc.skill.unit-circle.sin-definition',
+    domain: 'math',
     kind: 'skill',
     title: 'Sin from unit circle',
     reviewStatus: 'approved',
@@ -464,6 +694,7 @@ describe('Concept Aggregator resolution', () => {
   };
   const skillB: KnowledgeSpaceNode = {
     id: 'math.precalc.skill.unit-circle.cos-definition',
+    domain: 'math',
     kind: 'skill',
     title: 'Cos from unit circle',
     reviewStatus: 'approved',
@@ -471,6 +702,7 @@ describe('Concept Aggregator resolution', () => {
   };
   const skillC: KnowledgeSpaceNode = {
     id: 'math.precalc.skill.unit-circle.tan-definition',
+    domain: 'math',
     kind: 'skill',
     title: 'Tan from unit circle',
     reviewStatus: 'approved',
@@ -478,6 +710,7 @@ describe('Concept Aggregator resolution', () => {
   };
   const otherConcept: KnowledgeSpaceNode = {
     id: 'math.precalc.concept.other',
+    domain: 'math',
     kind: 'concept',
     title: 'Other concept',
     reviewStatus: 'approved',
@@ -527,15 +760,13 @@ describe('Concept Aggregator resolution', () => {
     expect(selectSkill([])).toBeNull();
   });
 
-  it('projectActivityMap emits one row per child skill for a 2-skill concept (FR-13)', () => {
-    // 2-skill concept, 1 spec → 2 rows (one per child skill). Replaces
-    // the prior test that asserted 1 row (the FR-20 anti-pattern that
-    // certified the sibling-dropping limitation).
+  it('projectActivityMap emits no child rows for a 2-skill concept', () => {
     const blueprint: KnowledgeBlueprint = {
       nodeId: conceptNode.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
+      rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
@@ -545,45 +776,34 @@ describe('Concept Aggregator resolution', () => {
       reviewStatus: 'draft',
       metadata: {},
     };
-    // Use only 2 of the 3 skills to mirror the 2-skill original fixture
-    // shape (so the assertion is "2 rows for 2 child skills" — direct
-    // count, not a derived cardinality).
     const twoSkillEdges = conceptEdges.filter((e) => e.targetId !== skillC.id);
     const nodes = [conceptNode, skillA, skillB];
     const rows = projectActivityMap(nodes, twoSkillEdges, [blueprint]);
-    expect(rows).toHaveLength(2);
-    const rowNodeIds = rows.map((r) => r.nodeId).sort();
-    expect(rowNodeIds).toEqual([skillA.id, skillB.id].sort());
-    for (const r of rows) {
-      expect(r.stableActivityId).toBe(`${r.nodeId}.independent_practice`);
-    }
+    expect(rows).toEqual([]);
   });
 
-  it('projectActivityMap emits one row per child skill for a 3-skill concept (FR-13)', () => {
-    // 3-skill concept, 1 spec → 3 rows (one per child skill). The full
-    // unit-circle-trig fixture (sin, cos, tan) covers all 3.
+  it('projectActivityMap emits only the row for an exact child-owned blueprint', () => {
     const blueprint: KnowledgeBlueprint = {
-      nodeId: conceptNode.id,
+      nodeId: skillA.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
+      rendererModeMap: {},
       workedExampleSpec: {
         prompt: 'Worked example for unit circle trig',
         givens: [],
-        steps: [],
-        explanation: '',
+        target: {},
+        steps: [{ description: 'Show the exact child skill.' }],
+        explanation: 'This activity belongs only to the selected skill.',
       },
       reviewStatus: 'draft',
       metadata: {},
     };
     const nodes = [conceptNode, skillA, skillB, skillC];
     const rows = projectActivityMap(nodes, conceptEdges, [blueprint]);
-    expect(rows).toHaveLength(3);
-    const rowNodeIds = rows.map((r) => r.nodeId).sort();
-    expect(rowNodeIds).toEqual([skillA.id, skillB.id, skillC.id].sort());
-    for (const r of rows) {
-      expect(r.mode).toBe('worked_example');
-    }
+    expect(rows).toHaveLength(1);
+    expect(rows[0]?.nodeId).toBe(skillA.id);
+    expect(rows[0]?.stableActivityId).toBe(`${skillA.id}.worked_example`);
   });
 
   it('projectActivityMap emits zero rows for a concept with no child skills (FR-13 edge case)', () => {
@@ -600,6 +820,7 @@ describe('Concept Aggregator resolution', () => {
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
+      rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
@@ -614,11 +835,10 @@ describe('Concept Aggregator resolution', () => {
     expect(rows).toHaveLength(0);
   });
 
-  it('projectActivityMap emits exactly one row for a 1-skill concept (regression guard)', () => {
-    // 1-skill concept → 1 row. This is the limit case for the FR-13
-    // fix; the N-row behavior must collapse to 1 row when N=1.
+  it('projectActivityMap emits no child row for a 1-skill concept', () => {
     const skillOnly: KnowledgeSpaceNode = {
       id: 'math.precalc.skill.unit-circle.tan-definition',
+      domain: 'math',
       kind: 'skill',
       title: 'Tan from unit circle',
       reviewStatus: 'approved',
@@ -626,6 +846,7 @@ describe('Concept Aggregator resolution', () => {
     };
     const singleConcept: KnowledgeSpaceNode = {
       id: 'math.precalc.concept.tan-only',
+      domain: 'math',
       kind: 'concept',
       title: 'Tan-only concept',
       reviewStatus: 'approved',
@@ -647,6 +868,7 @@ describe('Concept Aggregator resolution', () => {
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
+      rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
@@ -658,8 +880,7 @@ describe('Concept Aggregator resolution', () => {
     };
     const nodes = [singleConcept, skillOnly];
     const rows = projectActivityMap(nodes, singleEdge, [blueprint]);
-    expect(rows).toHaveLength(1);
-    expect(rows[0]?.nodeId).toBe(skillOnly.id);
+    expect(rows).toEqual([]);
   });
 });
 
@@ -689,7 +910,7 @@ describe('Student visualization — nearly_ready support (FR4)', () => {
 
     // The result should have a nearlyReady property
     expect(result).toHaveProperty('nearlyReady');
-    expect(Array.isArray((result as Record<string, unknown>)['nearlyReady'])).toBe(true);
+    expect(Array.isArray((result as unknown as Record<string, unknown>)['nearlyReady'])).toBe(true);
   });
 
   it('nearly_ready nodes are NOT in the ready or blocked buckets', () => {
@@ -715,7 +936,7 @@ describe('Student visualization — nearly_ready support (FR4)', () => {
       learnerState as Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
     );
 
-    const nearlyReadyBucket = (result as Record<string, unknown>)['nearlyReady'] as Array<{ nodeId: string }> | undefined;
+    const nearlyReadyBucket = (result as unknown as Record<string, unknown>)['nearlyReady'] as Array<{ nodeId: string }> | undefined;
     if (nearlyReadyBucket) {
       const nearlyIds = nearlyReadyBucket.map((n) => n.nodeId);
       expect(nearlyIds).toContain(almostReadyId);

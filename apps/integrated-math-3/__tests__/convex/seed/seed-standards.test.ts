@@ -1,7 +1,67 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { describe, it, expect } from 'vitest';
 import type { SeedCompetencyStandard } from '@/convex/seed/types';
 
+const seedStandardsSource = readFileSync(
+  resolve(process.cwd(), 'convex/seed/seed_standards.ts'),
+  'utf8',
+);
+
 describe('seed-standards', () => {
+  describe('official HSF-IF.C.7 source records', () => {
+    it('assigns the official descriptions to 7a and 7b exactly once', () => {
+      const expectedRecords = [
+        {
+          code: 'HSF-IF.C.7a',
+          description: 'Graph linear and quadratic functions and show intercepts, maxima, and minima',
+        },
+        {
+          code: 'HSF-IF.C.7b',
+          description: 'Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions',
+        },
+      ];
+
+      for (const record of expectedRecords) {
+        expect(seedStandardsSource.match(new RegExp(`code: "${record.code}"`, 'g'))).toHaveLength(1);
+        expect(seedStandardsSource).toContain(
+          `code: "${record.code}",\n        description: "${record.description}"`,
+        );
+      }
+    });
+  });
+
+  it('assigns the official descriptions to HSF-IF.B.6 and HSF-IF.C.9 exactly once', () => {
+    const expectedRecords = [
+      {
+        code: 'HSF-IF.B.6',
+        description: 'Calculate and interpret the average rate of change of a function (presented symbolically or as a table) over a specified interval. Estimate the rate of change from a graph.',
+      },
+      {
+        code: 'HSF-IF.C.9',
+        description: 'Compare properties of two functions each represented in a different way (algebraically, graphically, numerically in tables, or by verbal descriptions).',
+      },
+    ];
+
+    for (const record of expectedRecords) {
+      expect(seedStandardsSource.match(new RegExp(`code: "${record.code}"`, 'g'))).toHaveLength(1);
+      expect(seedStandardsSource).toContain(
+        `code: "${record.code}",\n        description: "${record.description}"`,
+      );
+    }
+  });
+
+  it('adds HSF-IF.B.5 with its source meaning exactly once', () => {
+    const code = 'HSF-IF.B.5';
+    const description = 'Relate the domain of a function to its graph and, where applicable, to the quantitative relationship it describes.';
+    const studentFriendlyDescription = "I can connect a function's domain to the quantities it describes.";
+
+    expect(seedStandardsSource.match(new RegExp(`code: "${code}"`, 'g'))).toHaveLength(1);
+    expect(seedStandardsSource).toContain(
+      `code: "${code}",\n        description: "${description}",\n        studentFriendlyDescription: "${studentFriendlyDescription}",\n        category: "Functions",\n        isActive: true,`,
+    );
+  });
+
   describe('Module 1 competency standards', () => {
     const module1Standards: SeedCompetencyStandard[] = [
       {

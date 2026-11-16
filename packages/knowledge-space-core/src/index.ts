@@ -11,10 +11,31 @@ export type {
   KnowledgeSpaceNode,
   KnowledgeSpaceEdge,
   KnowledgeSpace,
+  GuessFloorPolicy,
+  AgeBandDefinition,
+  AgeBandPolicy,
+  HighFidelityPlacementProbeInstrument,
+  PlacementProbeInstrumentPolicy,
+  DomainAdapterV31Declarations,
   DomainAdapter,
   ValidationError,
   ValidationResult,
 } from './types';
+export { KNOWLEDGE_SPACE_SCHEMA_VERSION } from './types';
+
+export {
+  DOMAIN_ADAPTER_V31_CONTRACT_VERSION,
+  guessFloorPolicySchema,
+  ageBandDefinitionSchema,
+  ageBandPolicySchema,
+  highFidelityPlacementProbeInstrumentSchema,
+  placementProbeInstrumentPolicySchema,
+  domainAdapterV31DeclarationsSchema,
+  isGuessFloorPolicy,
+  isAgeBandPolicy,
+  isPlacementProbeInstrumentPolicy,
+  isDomainAdapterV31Declarations,
+} from './adapters';
 
 export type { PrerequisiteCycle, CycleDetectionOptions } from './validation';
 
@@ -37,10 +58,15 @@ export type {
 export {
   masterySnapshotSchema,
   progressTrendHistorySchema,
+  DEFAULT_PROGRESS_TREND_WINDOW_DAYS,
+  DEFAULT_PROGRESS_TREND_THRESHOLD,
+  computeProgressTrend,
 } from './progress-trend';
 export type {
   MasterySnapshot,
   ProgressTrendHistory,
+  ProgressTrend,
+  ProgressTrendOptions,
 } from './progress-trend';
 
 export {
@@ -95,11 +121,18 @@ export type {
 
 export {
   MASTERY_THRESHOLDS_DEFAULT,
+  MASTERY_CONFIG_DEFAULT,
   masteryThresholdsSchema,
+  masteryConfigSchema,
+  normalizeMasteryConfig,
   knowledgeStateEntrySchema,
 } from './mastery-state';
+
+export { objectiveStateEvidenceSchema } from './srs-adapter';
+export type { ObjectiveStateEvidence } from './srs-adapter';
 export type {
   MasteryThresholds,
+  MasteryConfig,
   MasteryState,
   KnowledgeStateEntry,
   KnowledgeStateEvidence,
@@ -112,9 +145,11 @@ export type {
   KnowledgeStateEvidence as KnowledgeStateEvidenceArg,
 } from './knowledge-state-engine';
 
-export { getOuterFringe } from './outer-fringe';
+export { getOuterFringe, getOuterFringeV3 } from './outer-fringe';
 export type {
   FringeEntry,
+  FringeEntryV3,
+  OuterFringeV3,
   ReadinessFn,
 } from './outer-fringe';
 

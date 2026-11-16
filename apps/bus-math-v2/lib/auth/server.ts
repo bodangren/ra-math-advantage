@@ -10,9 +10,7 @@ import {
   requireRequestSessionClaims as _requireRequestSessionClaims,
   requireRoleRequestClaims as _requireRoleRequestClaims,
   requireActiveRequestSessionClaims as _requireActiveRequestSessionClaims,
-  buildRequestUnauthorizedResponse,
   buildRequestForbiddenResponse,
-  buildRequestServiceUnavailableResponse,
 } from '@math-platform/core-auth';
 
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
@@ -30,7 +28,8 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
   if (!token) return null;
 
-  return verifySessionToken(token, getAuthJwtSecret());
+  const claims = await verifySessionToken(token, getAuthJwtSecret());
+  return claims && await verifyActiveCredential(claims) ? claims : null;
 }
 
 function buildLoginRedirect(loginRedirectPath: string): string {
@@ -84,7 +83,8 @@ const verifyActiveCredential: ActiveCredentialVerifier = async (claims) => {
   const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
     username: claims.username,
   });
-  return credential !== null;
+  return credential !== null && credential.profileId === claims.sub
+    && credential.username === claims.username && credential.role === claims.role;
 };
 
 export async function requireActiveRequestSessionClaims(

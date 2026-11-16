@@ -56,7 +56,7 @@ export function ComprehensionQuizActivity({
       id: 'q3',
       type: 'short_answer' as const,
       prompt: 'Solve for x: x^2 = 49',
-      correctAnswer: '7',
+      correctAnswer: '±7',
       explanation: 'Taking the square root of both sides gives x = ±7',
     },
     {

@@ -117,7 +117,7 @@ function makeMockCtx(overrides: {
 
   const mockInsert = vi.fn().mockImplementation((tableName: string, doc: Record<string, unknown>) => {
     insertCounter++;
-    const id = `mock-id-${insertCounter}` as Id<typeof tableName>;
+    const id = `mock-id-${insertCounter}` as Id<'edge_calibration'>;
     if (tableName === 'edge_calibration') {
       insertedEdgeCalibrations.push(doc);
     } else if (tableName === 'calibration_review_queue') {
@@ -148,8 +148,9 @@ function makeMockCtx(overrides: {
 // Test fixture helpers
 // ---------------------------------------------------------------------------
 
+let studentSequence = 0;
 function makeObservation(a: boolean, b: boolean) {
-  return { studentId: 's', a, b };
+  return { studentId: `s-${++studentSequence}`, a, b };
 }
 
 function makeDivergingEdge(edgeId: string) {
@@ -161,15 +162,15 @@ function makeDivergingEdge(edgeId: string) {
     authoredWeight: 0.9,
     authoredConfidence: 'high' as const,
     observations: [
-      makeObservation(true, false),
-      makeObservation(true, false),
-      makeObservation(true, false),
-      makeObservation(true, false),
-      makeObservation(true, false),
-      makeObservation(true, false),
-      makeObservation(true, false),
       makeObservation(false, true),
       makeObservation(false, true),
+      makeObservation(false, true),
+      makeObservation(false, true),
+      makeObservation(false, true),
+      makeObservation(false, true),
+      makeObservation(false, true),
+      makeObservation(false, false),
+      makeObservation(false, false),
     ],
     // alpha=2, beta=8 → mean ≈ 0.2, low confidence → diverges
   };
@@ -181,11 +182,11 @@ function makeMatchingEdge(edgeId: string) {
     authoredWeight: 0.7,
     authoredConfidence: 'medium' as const,
     observations: [
-      makeObservation(true, true),
-      makeObservation(true, true),
-      makeObservation(true, true),
       makeObservation(false, false),
       makeObservation(false, false),
+      makeObservation(false, false),
+      makeObservation(false, true),
+      makeObservation(false, true),
     ],
     // alpha=3, beta=2 → mean ≈ 0.6, medium confidence → within thresholds
   };
@@ -257,11 +258,11 @@ describe('refreshCalibrationReviewQueueHandler (FR7, AC6)', () => {
     expect(insertedQueueItems).toHaveLength(1);
     const ct = (insertedQueueItems[0] as { contingencyTable: Record<string, number> })
       .contingencyTable;
-    // makeDivergingEdge emits 7 × (true,false) and 2 × (false,true)
+    // makeDivergingEdge emits 7 × (false,true) and 2 × (false,false)
     expect(ct.proficientAProficientB).toBe(0);
-    expect(ct.proficientANotProficientB).toBe(7);
-    expect(ct.notProficientAProficientB).toBe(2);
-    expect(ct.notProficientANotProficientB).toBe(0);
+    expect(ct.proficientANotProficientB).toBe(0);
+    expect(ct.notProficientAProficientB).toBe(7);
+    expect(ct.notProficientANotProficientB).toBe(2);
   });
 
   it('does not write to the queue for edges that are untested (FR5 confounding guardrail)', async () => {

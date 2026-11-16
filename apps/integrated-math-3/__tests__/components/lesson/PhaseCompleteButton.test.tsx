@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { PhaseCompleteButton } from '@/components/lesson/PhaseCompleteButton';
 import type { CompletePhaseResponse, SkipPhaseResponse } from '@/types/api';
 
@@ -18,6 +18,10 @@ const mockSkipPhase = vi.mocked(skipPhaseRequest);
 describe('PhaseCompleteButton', () => {
   beforeEach(() => {
     mockCompletePhase.mockReset();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   describe('rendering', () => {
@@ -108,6 +112,46 @@ describe('PhaseCompleteButton', () => {
       });
     });
 
+    it('relabels the existing primary action as the only retry and reuses the exact cached completion request', async () => {
+      vi.spyOn(Date, 'now')
+        .mockReturnValueOnce(1_000)
+        .mockReturnValueOnce(62_000)
+        .mockReturnValueOnce(62_001)
+        .mockReturnValue(900_000);
+      mockCompletePhase
+        .mockRejectedValueOnce(new Error('Temporary completion failure'))
+        .mockResolvedValueOnce({ success: true, nextPhaseUnlocked: true });
+
+      render(
+        <PhaseCompleteButton lessonId="module-1-lesson-1" phaseNumber={4} />,
+      );
+      const completionAction = screen.getByRole('button', { name: /mark complete/i });
+      fireEvent.click(completionAction);
+
+      const alert = await screen.findByRole('alert');
+      expect(alert).toHaveTextContent(/temporary completion failure/i);
+      const retry = screen.getByRole('button', { name: /^retry completion$/i });
+      expect(retry).toBe(completionAction);
+      expect(retry).toBeEnabled();
+      expect(screen.getAllByRole('button', { name: /mark complete|retry completion/i }))
+        .toStrictEqual([completionAction]);
+      expect(alert.querySelector('button')).toBeNull();
+
+      const firstPayload = mockCompletePhase.mock.calls[0]?.[0];
+      expect(firstPayload).toMatchObject({
+        lessonId: 'module-1-lesson-1',
+        phaseNumber: 4,
+        timeSpent: 61,
+        idempotencyKey: expect.any(String),
+      });
+      expect(firstPayload?.idempotencyKey).not.toHaveLength(0);
+
+      fireEvent.click(retry);
+
+      await waitFor(() => expect(mockCompletePhase).toHaveBeenCalledTimes(2));
+      expect(mockCompletePhase.mock.calls[1]?.[0]).toStrictEqual(firstPayload);
+    });
+
     it('calls onStatusChange when completion succeeds', async () => {
       mockCompletePhase.mockResolvedValueOnce({ success: true });
       const onStatusChange = vi.fn();
@@ -138,7 +182,34 @@ describe('PhaseCompleteButton', () => {
         expect(btn).toBeDisabled();
       });
 
-      resolve!({ success: true });
+      await act(async () => {
+        resolve!({ success: true });
+      });
+    });
+
+    it('disables every completion control while the completion request is pending', async () => {
+      let resolve: (value: CompletePhaseResponse) => void = () => undefined;
+      mockCompletePhase.mockReturnValueOnce(new Promise((finish) => {
+        resolve = finish;
+      }));
+
+      render(
+        <PhaseCompleteButton
+          lessonId="module-1-lesson-1"
+          phaseNumber={4}
+          phaseType="explore"
+        />,
+      );
+      fireEvent.click(screen.getByRole('button', { name: /mark complete/i }));
+
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: /mark complete/i })).toBeDisabled();
+        expect(screen.getByRole('button', { name: /skip/i })).toBeDisabled();
+      });
+
+      await act(async () => {
+        resolve({ success: true, nextPhaseUnlocked: true });
+      });
     });
   });
 
@@ -243,6 +314,8 @@ describe('PhaseCompleteButton', () => {
 
       await waitFor(() => {
         expect(screen.getByRole('alert')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /^mark complete$/i })).toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /^retry completion$/i })).not.toBeInTheDocument();
       });
     });
 

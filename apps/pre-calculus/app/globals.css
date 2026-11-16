@@ -4,6 +4,11 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 @source "../";
+@source "../../../packages/app-shell/src";
+@source "../../../packages/activity-components/src";
+@source "../../../packages/activity-runtime/src";
+@source "../../../packages/lesson-renderer/src";
+@source "../../../packages/practice-core/src";
 @tailwind components;
 @tailwind utilities;
 
@@ -177,6 +182,12 @@
   .gradient-brand {
     background: linear-gradient(135deg, #5e6ad2 0%, #4f5bc0 100%);
   }
+}
+
+.katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 @keyframes fadeUp {

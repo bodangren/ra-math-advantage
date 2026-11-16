@@ -5,6 +5,7 @@ import {
   getStatus,
   isDuplicateInsertError,
   CHATBOT_RATE_LIMIT,
+  LOGIN_RATE_LIMIT,
   STALE_ENTRY_THRESHOLD_MS,
 } from "@math-platform/rate-limiter";
 
@@ -139,4 +140,34 @@ export async function cleanupStaleRateLimitsCronHandler(ctx: MutationCtx) {
 export const cleanupStaleRateLimitsCron = internalMutation({
   args: {},
   handler: cleanupStaleRateLimitsCronHandler,
+});
+
+/** Limits login attempts for one account name across server instances. */
+export const checkLoginAttempt = internalMutation({
+  args: { username: v.string() },
+  handler: async (ctx, { username }) => {
+    if (!username || username.length > 255) throw new Error('Invalid username');
+    const existing = await ctx.db.query('login_attempts')
+      .withIndex('by_username', (q) => q.eq('username', username)).unique();
+    const now = Date.now();
+    const check = checkAndIncrement(existing, LOGIN_RATE_LIMIT, now);
+    if (check.action === 'insert') {
+      await ctx.db.insert('login_attempts', { username, requestCount: 1, windowStart: now });
+    } else if (check.action === 'reset' && existing) {
+      await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now });
+    } else if (check.action === 'increment' && existing) {
+      await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1 });
+    }
+    return check.result;
+  },
+});
+
+/** Removes expired login attempt windows in bounded batches. */
+export const cleanupLoginAttempts = internalMutation({
+  args: {},
+  handler: async (ctx) => {
+    const expired = await ctx.db.query('login_attempts')
+      .withIndex('by_window', (q) => q.lt('windowStart', Date.now() - LOGIN_RATE_LIMIT.windowMs)).take(100);
+    await Promise.all(expired.map((row) => ctx.db.delete(row._id)));
+  },
 });

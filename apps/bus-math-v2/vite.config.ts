@@ -8,8 +8,9 @@ import { defineConfig } from "vite";
  *
  * @returns A promise that resolves to the array of Vite plugins.
  */
-async function loadPlugins() {
+async function loadPlugins(nodeDevelopment: boolean) {
   const plugins = [vinext()];
+  if (nodeDevelopment) return plugins;
   try {
     const { cloudflare } = await import("@cloudflare/vite-plugin");
     plugins.push(cloudflare({
@@ -21,8 +22,12 @@ async function loadPlugins() {
   return plugins;
 }
 
-export default defineConfig(async () => ({
-  plugins: await loadPlugins(),
+export default defineConfig(async ({ command }) => ({
+  plugins: await loadPlugins(command === "serve" && process.env.BM2_DEV_RUNTIME === "node"),
+  environments: {
+    rsc: { optimizeDeps: { include: ["fast-formula-parser"] } },
+    ssr: { optimizeDeps: { include: ["fast-formula-parser"] } },
+  },
   ssr: {
     noExternal: ["react-spreadsheet", "fast-formula-parser"],
   },

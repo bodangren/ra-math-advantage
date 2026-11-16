@@ -8,6 +8,7 @@ import { IM1_GENERATORS } from './generators';
 // Types
 // ---------------------------------------------------------------------------
 
+/** `served` means that the skill has a registered generator binding only. */
 export type CoverageStatus = 'served' | 'gap' | 'newComponent';
 
 export type CoverageMatrixSkillEntry = {
@@ -50,6 +51,7 @@ type RolloutNode = {
   id: string;
   kind: string;
   metadata?: { module?: string; course?: string; lesson?: string };
+  reviewStatus?: string;
 };
 
 type RolloutNodesFile = {
@@ -90,8 +92,6 @@ const IM1_ROLLOUT_DIR = resolve(
 const NODES_JSON = resolve(IM1_ROLLOUT_DIR, 'nodes.json');
 const GAP_QUEUE_JSON = resolve(IM1_ROLLOUT_DIR, 'generator-gap-queue.json');
 const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
-const MATRIX_JSON = resolve(IM1_ROLLOUT_DIR, 'im1-coverage-matrix.json');
-
 // ---------------------------------------------------------------------------
 // buildCoverageMatrix
 // ---------------------------------------------------------------------------
@@ -111,7 +111,9 @@ export function buildCoverageMatrix(): CoverageMatrix {
     readFileSync(BLUEPRINTS_JSON, 'utf-8'),
   ) as BlueprintsFile;
 
-  const skills = nodes.nodes.filter((n) => n.kind === 'skill');
+  const skills = nodes.nodes.filter(
+    (node) => node.kind === 'skill' && node.reviewStatus !== 'rejected',
+  );
 
   // Build lookup maps from gap-queue and blueprints for rendererKey / priority.
   const gapByNodeId = new Map<string, GapQueueEntry>(
@@ -120,6 +122,8 @@ export function buildCoverageMatrix(): CoverageMatrix {
   const bpByNodeId = new Map<string, BlueprintEntry>(
     blueprints.blueprints.map((b) => [b.nodeId, b]),
   );
+  // This legacy field reports generator registration. It does not prove that
+  // Worked, Guided, and Independent practice is complete or production-ready.
   const servedNodeIds = new Set(
     IM1_GENERATORS.flatMap((entry) => entry.nodeIds),
   );

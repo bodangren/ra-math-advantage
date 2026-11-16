@@ -1,3 +1,4 @@
+import { upsertLessonPhases } from "./lesson_phases";
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 
@@ -23,9 +24,9 @@ export const seedLesson4_14 = internalMutation({
       ? existingLesson._id
       : await ctx.db.insert("lessons", {
           unitNumber: 4,
-          title: "Matrix Inverses",
+          title: "Matrices Modeling Contexts",
           slug: lessonSlug,
-          description: "Students compute matrix inverses using the adjugate method and row reduction, and use inverses to solve systems.",
+          description: "AP Precalculus Topic 4.14: Matrices Modeling Contexts",
           orderIndex: 14,
           createdAt: now,
           updatedAt: now,
@@ -33,210 +34,131 @@ export const seedLesson4_14 = internalMutation({
 
     const existingLessonVersion = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
+      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId).eq("version", 2))
       .first();
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
       : await ctx.db.insert("lesson_versions", {
           lessonId,
-          version: 1,
-          title: "Matrix Inverses",
-          description: "Students compute matrix inverses using the adjugate method and row reduction, and use inverses to solve systems.",
+          version: 2,
+          title: "Matrices Modeling Contexts",
+          description: "AP Precalculus Topic 4.14: Matrices Modeling Contexts",
           status: "published",
           createdAt: now,
         });
 
     const phaseData = [
+  {
+    "phaseNumber": 1,
+    "title": "Explore",
+    "phaseType": "explore",
+    "estimatedMinutes": 10,
+    "sections": [
       {
-        phaseNumber: 1,
-        title: "Explore",
-        phaseType: "explore" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "comprehension-quiz",
-              props: {
-                questions: [
-                  {
-                    question: "A matrix has an inverse if and only if its determinant is:",
-                    options: ["Zero", "Nonzero", "Positive", "Negative"],
-                    correctIndex: 1,
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 2,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Matrix Inverses\n\n### Definition\n\n$A^{-1}$ satisfies $AA^{-1} = A^{-1}A = I$.\n\n### 2×2 Formula\n\n$$A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} \\implies A^{-1} = \\frac{1}{ad-bc}\\begin{pmatrix} d & -b \\\\ -c & a \\end{pmatrix}$$\n\n### Existence\n\n- $A$ is **invertible** (nonsingular) iff $\\det(A) \\ne 0$\n- Square matrices only\n- A system $Ax = b$ has unique solution $x = A^{-1}b$ iff $A$ is invertible\n\n### Row Reduction Method\n\nForm $[A | I]$ and row reduce to $[I | A^{-1}]$.\n\n### Properties\n\n- $(AB)^{-1} = B^{-1}A^{-1}$ (reverse order!)\n- $(A^{-1})^{-1} = A$\n- $(A^T)^{-1} = (A^{-1})^T$\n- $\\det(A^{-1}) = 1/\\det(A)$\n\n### Using Inverses to Solve Systems\n\n$$A\\vec{x} = \\vec{b} \\implies \\vec{x} = A^{-1}\\vec{b}$$",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 3,
-        title: "Worked Example",
-        phaseType: "worked_example" as const,
-        estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example: Find the Inverse\n\nFind $A^{-1}$ for $A = \\begin{pmatrix} 3 & 1 \\\\ 2 & 4 \\end{pmatrix}$ and use it to solve $A\\vec{x} = \\begin{pmatrix} 5 \\\\ 10 \\end{pmatrix}$.",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "A = [[3,1],[2,4]], solve Ax = [5,10]",
-                steps: [
-                  { expression: "det(A) = 3(4) - 1(2) = 12 - 2 = 10", explanation: "Determinant" },
-                  { expression: "A⁻¹ = (1/10)[[4,-1],[-2,3]]", explanation: "2×2 inverse formula" },
-                  { expression: "x = A⁻¹b = (1/10)[[4,-1],[-2,3]][[5],[10]]", explanation: "Multiply" },
-                  { expression: "= (1/10)[[20-10],[-10+30]] = (1/10)[[10],[20]]", explanation: "Compute" },
-                  { expression: "x = [[1],[2]] → x=1, y=2", explanation: "Solution" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 4,
-        title: "Guided Practice",
-        phaseType: "guided_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Row reduce [A|I] for A = [[1,2],[3,7]]",
-                steps: [
-                  { expression: "[[1,2|1,0],[3,7|0,1]]", explanation: "Augmented [A|I]" },
-                  { expression: "R₂←R₂-3R₁: [[1,2|1,0],[0,1|-3,1]]", explanation: "Eliminate" },
-                  { expression: "R₁←R₁-2R₂: [[1,0|7,-2],[0,1|-3,1]]", explanation: "Back-substitute" },
-                  { expression: "A⁻¹ = [[7,-2],[-3,1]]", explanation: "Inverse is right half" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
-        title: "Independent Practice",
-        phaseType: "independent_practice" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "algebraic",
-                equation: "Verify (AB)⁻¹ = B⁻¹A⁻¹ for A=[[1,0],[1,1]], B=[[2,1],[0,1]]",
-                steps: [
-                  { expression: "AB = [[2,1],[2,2]]", explanation: "Multiply A and B" },
-                  { expression: "det(AB) = 4-2 = 2, (AB)⁻¹ = (1/2)[[2,-1],[-2,2]]", explanation: "Inverse of AB" },
-                  { expression: "A⁻¹ = [[1,0],[-1,1]], B⁻¹ = (1/2)[[1,-1],[0,2]]", explanation: "Individual inverses" },
-                  { expression: "B⁻¹A⁻¹ = (1/2)[[2,-1],[-2,2]]", explanation: "Multiply in reverse order" },
-                  { expression: "(AB)⁻¹ = B⁻¹A⁻¹ ✓", explanation: "Property verified" },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
-    let phasesCreated = 0;
-    let activitiesCreated = 0;
-
-    for (const phase of phaseData) {
-      const existingPhase = await ctx.db
-        .query("phase_versions")
-        .withIndex("by_lesson_version_and_phase", (q) =>
-          q.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", phase.phaseNumber)
-        )
-        .first();
-
-      if (existingPhase) continue;
-
-      const phaseId = await ctx.db.insert("phase_versions", {
-        lessonVersionId,
-        phaseNumber: phase.phaseNumber,
-        title: phase.title,
-        estimatedMinutes: phase.estimatedMinutes,
-        phaseType: phase.phaseType,
-        createdAt: now,
-      });
-
-      phasesCreated++;
-
-      for (const section of phase.sections) {
-        if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: Record<string, unknown>;
-          };
-
-          const insertedActivityId = await ctx.db.insert("activities", {
-            componentKey: activityContent.componentKey,
-            displayName: `${phase.title} - ${activityContent.componentKey}`,
-            description: `Activity for ${phase.title}`,
-            props: activityContent.props,
-            gradingConfig: { autoGrade: true, partialCredit: true },
-            createdAt: now,
-            updatedAt: now,
-          });
-
-          activitiesCreated++;
-
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: {
-              ...activityContent,
-              activityId: insertedActivityId,
-            },
-            createdAt: now,
-          });
-        } else {
-          await ctx.db.insert("phase_sections", {
-            phaseVersionId: phaseId,
-            sequenceOrder: section.sequenceOrder,
-            sectionType: section.sectionType,
-            content: section.content,
-            createdAt: now,
-          });
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "A store sells two products. On Monday it sells 10 of product A and 5 of product B; on Tuesday it sells 8 of A and 12 of B. Product A costs $3 and product B costs$7. The revenue for each day can be computed with a single matrix multiplication. Matrices model real-world problems where multiple quantities interact across multiple categories."
         }
       }
-    }
+    ]
+  },
+  {
+    "phaseNumber": 2,
+    "title": "Vocabulary",
+    "phaseType": "vocabulary",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "- **Matrix model**: Using matrix multiplication to represent and solve a real-world problem.\n- **Coefficient matrix**: The matrix of coefficients in a system of equations.\n- **Input-output model**: A matrix representation showing how outputs of one sector become inputs of another."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 3,
+    "title": "Learn",
+    "phaseType": "learn",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "Matrices naturally model problems involving **multiple inputs and outputs**.\n\n**Revenue model**: If $S = \\begin{bmatrix} 10 & 5 \\\\ 8 & 12 \\end{bmatrix}$ (rows = days, columns = products) and $P = \\begin{bmatrix} 3 \\\\ 7 \\end{bmatrix}$ (prices), then:\n$$R = SP = \\begin{bmatrix} 10(3) + 5(7) \\\\ 8(3) + 12(7) \\end{bmatrix} = \\begin{bmatrix} 65 \\\\ 108 \\end{bmatrix}$$\nThe revenue vector gives Monday's and Tuesday's revenue.\n\n**Systems of equations**: The system $2x + 3y = 7$ and $x - y = 1$ can be written as:\n$$\\begin{bmatrix} 2 & 3 \\\\ 1 & -1 \\end{bmatrix} \\begin{bmatrix} x \\\\ y \\end{bmatrix} = \\begin{bmatrix} 7 \\\\ 1 \\end{bmatrix}$$\n\nSolving: $\\mathbf{x} = A^{-1}\\mathbf{b}$, provided $\\det(A) \\neq 0$.\n\n**Modeling strategy**:\n1. Identify the quantities and organize them into matrices.\n2. Set up the matrix equation $A\\mathbf{x} = \\mathbf{b}$.\n3. Solve by multiplying both sides by $A^{-1}$: $\\mathbf{x} = A^{-1}\\mathbf{b}$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 4,
+    "title": "Worked Example",
+    "phaseType": "worked_example",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Example:** A bakery makes cookies and cakes. Each batch of cookies uses 2 cups flour and 1 cup sugar. Each batch of cake uses 3 cups flour and 2 cups sugar. The bakery has 14 cups flour and 9 cups sugar. How many batches of each can be made?\n\n**Solution:**\nSet up the system:\n$$2x + 3y = 14$$\n$$x + 2y = 9$$\n\nMatrix form:\n$$\\begin{bmatrix} 2 & 3 \\\\ 1 & 2 \\end{bmatrix} \\begin{bmatrix} x \\\\ y \\end{bmatrix} = \\begin{bmatrix} 14 \\\\ 9 \\end{bmatrix}$$\n\nFind $A^{-1}$:\n$\\det(A) = 2(2) - 3(1) = 1$\n$$A^{-1} = \\begin{bmatrix} 2 & -3 \\\\ -1 & 2 \\end{bmatrix}$$\n\nSolve:\n$$\\begin{bmatrix} x \\\\ y \\end{bmatrix} = \\begin{bmatrix} 2 & -3 \\\\ -1 & 2 \\end{bmatrix} \\begin{bmatrix} 14 \\\\ 9 \\end{bmatrix} = \\begin{bmatrix} 28 - 27 \\\\ -14 + 18 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 4 \\end{bmatrix}$$\n\nAnswer: 1 batch of cookies, 4 batches of cake."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 5,
+    "title": "Guided Practice",
+    "phaseType": "guided_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** A school sells tickets: adult tickets cost $8 and student tickets cost$5. On Friday, 120 adult and 80 student tickets were sold; on Saturday, 95 adult and 110 student tickets were sold. Write a matrix equation for the total revenue each day.\n\n**Hint:** $R = \\begin{bmatrix} 120 & 80 \\\\ 95 & 110 \\end{bmatrix} \\begin{bmatrix} 8 \\\\ 5 \\end{bmatrix}$\n\n**Problem 2:** Solve $3x + y = 10$ and $x + 2y = 9$ using $A^{-1}$."
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 6,
+    "title": "Independent Practice",
+    "phaseType": "independent_practice",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Problem 1:** A farmer plants corn and wheat. Each acre of corn uses 4 hours labor and 2 tons water; each acre of wheat uses 3 hours labor and 3 tons water. The farmer has 24 hours labor and 18 tons water available. Set up and solve using matrices.\n\n**Problem 2:** Verify the solution to Problem 1 by substituting back into the original equations.\n\n**Problem 3:** Explain why $A^{-1}$ cannot be used to solve a system where $\\det(A) = 0$. What does this mean geometrically?"
+        }
+      }
+    ]
+  },
+  {
+    "phaseNumber": 7,
+    "title": "Reflection",
+    "phaseType": "reflection",
+    "estimatedMinutes": 10,
+    "sections": [
+      {
+        "sequenceOrder": 1,
+        "sectionType": "text",
+        "content": {
+          "markdown": "**Exit Ticket:** Write the system $5x - 2y = 11$ and $x + 3y = 7$ as a matrix equation $A\\mathbf{x} = \\mathbf{b}$.\n\n**Lesson Summary:** Matrices model real-world problems by organizing data and representing systems of equations. Solving $A\\mathbf{x} = \\mathbf{b}$ uses $\\mathbf{x} = A^{-1}\\mathbf{b}$. This approach works whenever $\\det(A) \\neq 0$."
+        }
+      }
+    ]
+  }
+] as const;
+
+    const activitiesCreated = 0;
+
+    const phasesCreated = await upsertLessonPhases(ctx, lessonVersionId, phaseData, now);
 
     return {
       lessonId,

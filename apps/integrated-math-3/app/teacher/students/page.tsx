@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { requireTeacherSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import { SubmissionReviewPanel } from '@/components/teacher/SubmissionReviewPanel';
+import { Im3GraphExposureForm, type Im3GraphExposureCandidate } from '@/components/teacher/Im3GraphExposureForm';
 
 interface StudentRow {
   id: string;
@@ -280,11 +281,17 @@ export default async function StudentsPage({ searchParams }: PageProps) {
   const students = dashboardData?.students ?? [];
 
   let detail: StudentDetail | null = null;
+  let exposureCandidates: Im3GraphExposureCandidate[] = [];
   if (selectedId) {
-    detail = await fetchInternalQuery(internal.teacher.getTeacherStudentDetail, {
-      userId: claims.sub,
-      studentId: selectedId,
-    });
+    [detail, exposureCandidates] = await Promise.all([
+      fetchInternalQuery(internal.teacher.getTeacherStudentDetail, {
+        userId: claims.sub,
+        studentId: selectedId,
+      }),
+      fetchInternalQuery(internal.learningEvidence.getIm3GraphTeacherExposureCandidates, {
+        teacherId: claims.sub,
+      }),
+    ]);
   }
 
   const showDetail = detail?.status === 'success';
@@ -301,7 +308,10 @@ export default async function StudentsPage({ searchParams }: PageProps) {
       </div>
 
       {showDetail ? (
-        <StudentDetailView detail={detail!} scrollTarget={scrollTarget} />
+        <>
+          <StudentDetailView detail={detail!} scrollTarget={scrollTarget} />
+          <Im3GraphExposureForm candidates={exposureCandidates.filter((candidate) => candidate.studentId === selectedId)} />
+        </>
       ) : (
         <div className="grid gap-3" data-testid="teacher-student-list">
           {students.length === 0 ? (

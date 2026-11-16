@@ -58,6 +58,7 @@ describe('core-convex query wrappers', () => {
 
       const result = await fetchPublicMutation(mockRef, mockArgs);
       expect(result).toEqual({ result: 'mocked' });
+      expect(mockMutation).toHaveBeenCalledWith(mockRef, mockArgs, { skipQueue: true });
     });
 
     it('infers return type from function reference', async () => {
@@ -102,6 +103,7 @@ describe('core-convex query wrappers', () => {
 
       const result = await fetchInternalMutation(mockRef, { name: 'test' });
       expect(result).toBeDefined();
+      expect(mockMutation).toHaveBeenCalledWith(mockRef, { name: 'test' }, { skipQueue: true });
     });
   });
 });
