@@ -13,24 +13,6 @@
 # audit.txt, audit.json, timing.txt.
 # Exit code: 0 no new failure (always 0 for baseline), 1 new failure, 2 usage, 3 infrastructure.
 set -u
-REPO=/home/daniebo/Desktop/ra-math-advantage
-cd "$REPO" || exit 2
-export CI=true
-GATE=${1:?gate}
-LABEL=${2:?label}
-H=${HEAVY_RUN:-$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh}
-[ -x "$H" ] || { echo "heavy-run.sh not found: $H"; exit 2; }
-RESUME=${GATES_RESUME:-0}
-GATES=$REPO/measure/runs/vinext-oxc-toolchain_20261114/gates
-OUT=$GATES/$LABEL
-BASE=$GATES/baseline
-mkdir -p "$OUT"
-MUST_PASS=" next-absent "
-# Exit codes of heavy-run.sh itself (usage, deny list, temp file, memory, disk, time limit, lock).
-INFRA=" 64 65 70 75 77 124 201 "
-newfail=0
-infra=0
-JOB_CODE=0
 
 has_script() {
   node -e 'const s=require(process.argv[1]).scripts||{};process.exit(s[process.argv[2]]?0:1)' "$PWD/$1/package.json" "$2"
@@ -143,9 +125,35 @@ step() { # $1 name, rest: command
   fi
 }
 
+# A valid advisory report parses as JSON, has no top-level "error" object, and has a
+# numeric count for each severity. npm audit exits 1 when it finds advisories, so the
+# exit status cannot tell an error response from a valid report. The JSON decides.
+# An invalid response is an infrastructure failure and never writes audit.txt.
 audit_step() {
   npm audit --json > "$OUT/audit.json" 2>/dev/null
-  node -e 'const m=(require(process.argv[1]).metadata||{}).vulnerabilities||{};console.log(`critical=${m.critical||0} high=${m.high||0} moderate=${m.moderate||0} low=${m.low||0}`)' "$OUT/audit.json" > "$OUT/audit.txt" 2>&1
+  local reason
+  reason=$(node -e '
+    const fs = require("fs");
+    let d;
+    try { d = JSON.parse(fs.readFileSync(process.argv[1], "utf8")); }
+    catch { console.log("response is not JSON"); process.exit(0); }
+    if (d && typeof d === "object" && d.error) {
+      const e = d.error;
+      console.log(`error object: ${e.code || e.summary || "unknown"}`);
+      process.exit(0);
+    }
+    const v = d && d.metadata && d.metadata.vulnerabilities;
+    if (!v || typeof v !== "object" || Array.isArray(v)) { console.log("missing metadata.vulnerabilities"); process.exit(0); }
+    for (const s of ["critical", "high", "moderate", "low"]) {
+      if (typeof v[s] !== "number" || Number.isNaN(v[s])) { console.log(`non-numeric ${s} count`); process.exit(0); }
+    }
+  ' "$OUT/audit.json") || reason="report could not be validated"
+  if [ -n "$reason" ]; then
+    echo "INFRA FAILURE: audit $reason"
+    infra=1
+    return
+  fi
+  node -e 'const m=require(process.argv[1]).metadata.vulnerabilities;console.log(`critical=${m.critical} high=${m.high} moderate=${m.moderate} low=${m.low}`)' "$OUT/audit.json" > "$OUT/audit.txt"
   echo "audit: $(cat "$OUT/audit.txt")"
   [ "$LABEL" = baseline ] && return
   local f c b
@@ -156,6 +164,26 @@ audit_step() {
     elif [ "$c" -gt "$b" ]; then echo "NEW FAILURE: audit $f $b -> $c"; newfail=1; fi
   done
 }
+
+main() {
+REPO=/home/daniebo/Desktop/ra-math-advantage
+cd "$REPO" || exit 2
+export CI=true
+GATE=${1:?gate}
+LABEL=${2:?label}
+H=${HEAVY_RUN:-$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh}
+[ -x "$H" ] || { echo "heavy-run.sh not found: $H"; exit 2; }
+RESUME=${GATES_RESUME:-0}
+GATES=$REPO/measure/runs/vinext-oxc-toolchain_20261114/gates
+OUT=$GATES/$LABEL
+BASE=$GATES/baseline
+mkdir -p "$OUT"
+MUST_PASS=" next-absent "
+# Exit codes of heavy-run.sh itself (usage, deny list, temp file, memory, disk, time limit, lock).
+INFRA=" 64 65 70 75 77 124 201 "
+newfail=0
+infra=0
+JOB_CODE=0
 
 case "$GATE" in
   lint) sweep lint ;;
@@ -187,3 +215,8 @@ echo "NEWFAIL=$newfail"
 [ "$infra" = 0 ] || { echo "INFRA=1"; exit 3; }
 [ "$LABEL" = baseline ] && exit 0
 exit "$newfail"
+}
+
+# Run a gate only when the script is executed. Tests source this file and call the
+# individual functions with their own folders.
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then main "$@"; fi

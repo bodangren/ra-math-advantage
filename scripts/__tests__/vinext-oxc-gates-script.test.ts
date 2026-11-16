@@ -1,0 +1,172 @@
+import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { afterEach, describe, expect, it } from 'vitest';
+
+// Script-level gate tests for issues #3 and #4. They copy gates.sh into temp folders
+// and never write under the real repository (no measure/runs/ writes from these tests).
+const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+const TRACK_SLUG = 'vinext-oxc-toolchain_20261114';
+const GATES_SH = path.join(REPO_ROOT, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+const BASELINE = 'critical=2 high=17 moderate=18 low=5';
+
+const tempDirs: string[] = [];
+
+function makeTempDir(prefix: string): string {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  tempDirs.push(dir);
+  return dir;
+}
+
+afterEach(() => {
+  while (tempDirs.length > 0) {
+    const dir = tempDirs.pop();
+    if (dir) fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+interface AuditCase {
+  response: string;
+  exitCode: number;
+  label?: string;
+  baseline?: string;
+}
+
+// Source gates.sh in bash, put a fake npm first on PATH, call audit_step, and print
+// the infra and newfail flags. The folders OUT and BASE live in a temp directory.
+function runAuditCase({ response, exitCode, label = 't1', baseline }: AuditCase) {
+  const tmp = makeTempDir('gates-audit-');
+  const out = path.join(tmp, 'out');
+  const base = path.join(tmp, 'base');
+  fs.mkdirSync(out, { recursive: true });
+  fs.mkdirSync(base, { recursive: true });
+  if (baseline !== undefined) fs.writeFileSync(path.join(base, 'audit.txt'), baseline);
+  const bin = path.join(tmp, 'bin');
+  fs.mkdirSync(bin);
+  const responseFile = path.join(tmp, 'audit-response.json');
+  fs.writeFileSync(responseFile, response);
+  const npm = path.join(bin, 'npm');
+  fs.writeFileSync(npm, `#!/usr/bin/env bash\ncat "${responseFile}"\nexit ${exitCode}\n`);
+  fs.chmodSync(npm, 0o755);
+  const harness = path.join(tmp, 'harness.sh');
+  fs.writeFileSync(
+    harness,
+    [
+      'set -u',
+      `LABEL="${label}"`,
+      `OUT="${out}"`,
+      `BASE="${base}"`,
+      'newfail=0',
+      'infra=0',
+      `export PATH="${bin}:$PATH"`,
+      `source "${GATES_SH}"`,
+      'audit_step',
+      'echo "infra=$infra"',
+      'echo "newfail=$newfail"',
+      '',
+    ].join('\n'),
+  );
+  const result = spawnSync('bash', [harness], { encoding: 'utf8', timeout: 60000 });
+  const output = `${result.stdout ?? ''}${result.stderr ?? ''}`;
+  const infra = /infra=(\d)/.exec(output)?.[1];
+  const newfail = /newfail=(\d)/.exec(output)?.[1];
+  return { status: result.status, output, infra, newfail, outDir: out };
+}
+
+describe('gates.sh audit_step (#3)', () => {
+  it('treats a registry error object as an infrastructure failure', () => {
+    const r = runAuditCase({
+      response: JSON.stringify({
+        error: { code: 'ENOTFOUND', summary: 'registry lookup failed' },
+      }),
+      exitCode: 1,
+      baseline: BASELINE,
+    });
+    expect(r.output).toContain('INFRA FAILURE: audit');
+    expect(r.infra).toBe('1');
+    expect(r.newfail).toBe('0');
+    expect(fs.existsSync(path.join(r.outDir, 'audit.txt'))).toBe(false);
+  });
+
+  it('treats a registry error with the baseline label as an infrastructure failure', () => {
+    const r = runAuditCase({
+      response: JSON.stringify({
+        error: { code: 'ENOTFOUND', summary: 'registry lookup failed' },
+      }),
+      exitCode: 1,
+      label: 'baseline',
+    });
+    expect(r.output).toContain('INFRA FAILURE: audit');
+    expect(r.infra).toBe('1');
+    expect(fs.existsSync(path.join(r.outDir, 'audit.txt'))).toBe(false);
+  });
+
+  it('rejects a response that is not JSON', () => {
+    const r = runAuditCase({ response: 'Registry unavailable', exitCode: 1, baseline: BASELINE });
+    expect(r.output).toContain('INFRA FAILURE: audit');
+    expect(r.infra).toBe('1');
+    expect(fs.existsSync(path.join(r.outDir, 'audit.txt'))).toBe(false);
+  });
+
+  it('rejects a response with no metadata', () => {
+    const r = runAuditCase({ response: '{}', exitCode: 0, baseline: BASELINE });
+    expect(r.output).toContain('INFRA FAILURE: audit');
+    expect(r.infra).toBe('1');
+  });
+
+  it('rejects vulnerability counts that are not numbers', () => {
+    const r = runAuditCase({
+      response: JSON.stringify({
+        metadata: { vulnerabilities: { critical: '2', high: 1, moderate: 0, low: 0 } },
+      }),
+      exitCode: 0,
+      baseline: BASELINE,
+    });
+    expect(r.output).toContain('INFRA FAILURE: audit');
+    expect(r.infra).toBe('1');
+  });
+
+  it('accepts a valid report with zero counts and exit 0', () => {
+    const r = runAuditCase({
+      response: JSON.stringify({
+        metadata: { vulnerabilities: { critical: 0, high: 0, moderate: 0, low: 0 } },
+      }),
+      exitCode: 0,
+      baseline: BASELINE,
+    });
+    expect(r.output).toContain('critical=0 high=0 moderate=0 low=0');
+    expect(r.infra).toBe('0');
+    expect(r.newfail).toBe('0');
+    expect(fs.readFileSync(path.join(r.outDir, 'audit.txt'), 'utf8').trim()).toBe(
+      'critical=0 high=0 moderate=0 low=0',
+    );
+  });
+
+  it('accepts valid nonzero counts below the baseline and exit 1', () => {
+    const r = runAuditCase({
+      response: JSON.stringify({
+        metadata: { vulnerabilities: { critical: 1, high: 10, moderate: 20, low: 3 } },
+      }),
+      exitCode: 1,
+      baseline: BASELINE,
+    });
+    expect(r.output).toContain('critical=1 high=10 moderate=20 low=3');
+    expect(r.infra).toBe('0');
+    expect(r.newfail).toBe('0');
+  });
+
+  it('flags valid nonzero counts above the baseline and exit 1', () => {
+    const r = runAuditCase({
+      response: JSON.stringify({
+        metadata: { vulnerabilities: { critical: 3, high: 17, moderate: 18, low: 5 } },
+      }),
+      exitCode: 1,
+      baseline: BASELINE,
+    });
+    expect(r.output).toContain('NEW FAILURE: audit critical 2 -> 3');
+    expect(r.infra).toBe('0');
+    expect(r.newfail).toBe('1');
+  });
+});
