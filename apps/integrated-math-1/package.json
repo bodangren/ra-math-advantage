@@ -12,11 +12,13 @@
     "ws:run": "node scripts/run-workspace.mjs"
   },
   "dependencies": {
+    "@math-platform/activity-components": "*",
     "@math-platform/activity-runtime": "*",
     "@math-platform/app-shell": "*",
     "@math-platform/core-auth": "*",
     "@math-platform/core-convex": "*",
     "@math-platform/lesson-renderer": "*",
+    "@math-platform/math-content": "*",
     "@math-platform/practice-core": "*",
     "@math-platform/srs-engine": "*",
     "@tailwindcss/typography": "^0.5.19",

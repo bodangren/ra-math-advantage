@@ -24,7 +24,7 @@
     {
       "id": "app.integrated-math-1", "path": "apps/integrated-math-1", "kind": "app", "packageName": null,
       "owner": "im1-team", "layer": "application", "domainClassification": "app-owned", "domain": "integrated-math-1",
-      "allowedDependencies": ["pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.lesson-renderer", "pkg.practice-core", "pkg.srs-engine"],
+      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.lesson-renderer", "pkg.math-content", "pkg.practice-core", "pkg.srs-engine"],
       "publicEntryPoints": [],
       "qualityCommands": { "lint": "npm run lint --workspace=apps/integrated-math-1", "test": "npm run test --workspace=apps/integrated-math-1", "typecheck": "npm run typecheck --workspace=apps/integrated-math-1", "build": "npm run build --workspace=apps/integrated-math-1" },
       "debtRefs": []
@@ -48,7 +48,7 @@
     {
       "id": "app.pre-calculus", "path": "apps/pre-calculus", "kind": "app", "packageName": null,
       "owner": "precalculus-team", "layer": "application", "domainClassification": "app-owned", "domain": "precalculus",
-      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.knowledge-space-core", "pkg.lesson-renderer", "pkg.math-content", "pkg.practice-core", "pkg.srs-engine"],
+      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.knowledge-space-core", "pkg.knowledge-space-practice", "pkg.lesson-renderer", "pkg.math-content", "pkg.practice-core", "pkg.srs-engine"],
       "publicEntryPoints": [],
       "qualityCommands": { "lint": "npm run lint --workspace=apps/pre-calculus", "test": "npm run test --workspace=apps/pre-calculus", "typecheck": "npm run typecheck --workspace=apps/pre-calculus", "build": "npm run build --workspace=apps/pre-calculus" },
       "debtRefs": []

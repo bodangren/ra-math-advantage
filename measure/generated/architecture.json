@@ -1,7 +1,7 @@
 {
   "schemaVersion": "lms-architecture-report.v1",
   "workspaceCount": 26,
-  "edgeCount": 77,
+  "edgeCount": 86,
   "nodes": [
     {
       "id": "app.bus-math-v2",
@@ -285,7 +285,19 @@
     },
     {
       "source": "app.bus-math-v2",
+      "target": "pkg.rate-limiter"
+    },
+    {
+      "source": "app.bus-math-v2",
       "target": "pkg.srs-engine"
+    },
+    {
+      "source": "app.bus-math-v2",
+      "target": "pkg.teacher-reporting-core"
+    },
+    {
+      "source": "app.bus-math-v2",
+      "target": "pkg.workbook-pipeline"
     },
     {
       "source": "app.danielson",
@@ -309,6 +321,10 @@
     },
     {
       "source": "app.integrated-math-1",
+      "target": "pkg.activity-components"
+    },
+    {
+      "source": "app.integrated-math-1",
       "target": "pkg.activity-runtime"
     },
     {
@@ -326,6 +342,10 @@
     {
       "source": "app.integrated-math-1",
       "target": "pkg.lesson-renderer"
+    },
+    {
+      "source": "app.integrated-math-1",
+      "target": "pkg.math-content"
     },
     {
       "source": "app.integrated-math-1",
@@ -354,6 +374,10 @@
     {
       "source": "app.integrated-math-2",
       "target": "pkg.lesson-renderer"
+    },
+    {
+      "source": "app.integrated-math-2",
+      "target": "pkg.math-content"
     },
     {
       "source": "app.integrated-math-2",
@@ -469,6 +493,10 @@
     },
     {
       "source": "app.pre-calculus",
+      "target": "pkg.knowledge-space-practice"
+    },
+    {
+      "source": "app.pre-calculus",
       "target": "pkg.lesson-renderer"
     },
     {
@@ -518,6 +546,14 @@
     {
       "source": "pkg.knowledge-space-practice",
       "target": "pkg.knowledge-space-core"
+    },
+    {
+      "source": "pkg.knowledge-space-practice",
+      "target": "pkg.practice-core"
+    },
+    {
+      "source": "pkg.lesson-renderer",
+      "target": "pkg.activity-runtime"
     },
     {
       "source": "pkg.math-content",

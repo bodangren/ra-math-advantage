@@ -19,6 +19,7 @@
     "@math-platform/app-shell": "*",
     "@math-platform/core-auth": "*",
     "@math-platform/core-convex": "*",
+    "@math-platform/knowledge-space-practice": "*",
     "@math-platform/lesson-renderer": "*",
     "@math-platform/practice-core": "*",
     "@math-platform/srs-engine": "*",
