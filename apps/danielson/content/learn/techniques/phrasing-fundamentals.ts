@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3a",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3a: Communicating About Purpose and Content",
+  "alignment": "3a: Clear Communication of Purpose and Content",
   "hasImage": false,
   "description": "Phrase questions clearly so students can identify the thinking you want them to do.",
   "detailedSummary": "Clear question wording reduces ambiguity. Ask one question at a time. If a response is incomplete, use a focused follow-up instead of adding several new questions.\n\nExample: Replace “Is this good, and why, and what about the other answer?” with “Which answer is supported by the evidence?”",

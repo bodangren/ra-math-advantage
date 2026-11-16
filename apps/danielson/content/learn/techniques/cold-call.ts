@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3b",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3b: Using Questioning and Discussion Techniques",
+  "alignment": "3b: Skillful Questioning and Discussion Methods",
   "description": "Invite a selected student to respond after all students have had time to think about the question.",
   "detailedSummary": "Use Cold Call predictably and with a supportive tone. Select students for an instructional purpose. Do not use the technique as a punishment. Thinking time belongs before the name so every student can prepare.\n\nExample: Ask students to explain a character’s decision. Pause, then select a student. Ask a second student to identify evidence that supports the explanation.",
   "actionSteps": [

@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2d",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2d: Supporting Positive Student Behavior",
+  "alignment": "2d: Promoting Positive Student Behavior",
   "hasImage": false,
   "description": "Give specific, concrete, observable directions in a clear sequence.",
   "detailedSummary": "Directions should tell students what to do. A named routine can reduce repeated explanation after students learn it, but the name does not replace clear initial instruction.\n\nExample: Replace “Settle down” with “Put the materials in the tray. Open your notebook to the next page.”",

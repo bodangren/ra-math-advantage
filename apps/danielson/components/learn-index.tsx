@@ -6,10 +6,10 @@ import { COMPONENT_TITLES, type DanielsonComponentId } from '@/lib/proficiency/g
 import { learnHref, type Technique } from '@/lib/learn/catalog';
 
 const DOMAIN_TITLES: Record<number, string> = {
-  1: 'Planning and Preparation',
-  2: 'Learning Environments',
-  3: 'Learning Experiences',
-  4: 'Principled Teaching',
+  1: 'Planning and Readiness',
+  2: 'Classroom Environment',
+  3: 'Instruction and Learning',
+  4: 'Professional Responsibility',
 };
 
 export function LearnIndex({ techniques }: { techniques: readonly Technique[] }) {

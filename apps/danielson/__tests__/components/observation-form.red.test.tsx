@@ -16,7 +16,7 @@ const draft = {
       skillId: 'danielson.tlac.skill.double-plan',
       skillTitle: 'Double Plan',
       componentId: 'danielson.framework.component.1e',
-      componentTitle: '1e: Planning Coherent Instruction',
+      componentTitle: '1e: Designing Coherent Lesson Sequences',
       priorityReason: 'evidence_gap',
       outcome: null,
       evidenceNote: null,
@@ -26,7 +26,7 @@ const draft = {
       skillId: 'danielson.tlac.skill.change-the-pace',
       skillTitle: 'Change the Pace',
       componentId: 'danielson.framework.component.1e',
-      componentTitle: '1e: Planning Coherent Instruction',
+      componentTitle: '1e: Designing Coherent Lesson Sequences',
       priorityReason: 'due',
       outcome: null,
       evidenceNote: null,
@@ -36,7 +36,7 @@ const draft = {
       skillId: 'danielson.tlac.skill.engineer-efficiency',
       skillTitle: 'Engineer Efficiency',
       componentId: 'danielson.framework.component.1e',
-      componentTitle: '1e: Planning Coherent Instruction',
+      componentTitle: '1e: Designing Coherent Lesson Sequences',
       priorityReason: 'overdue',
       outcome: null,
       evidenceNote: null,
@@ -49,8 +49,8 @@ describe('observation form accessibility', () => {
     render(<ObservationForm draft={draft} onSave={vi.fn()} onSubmit={vi.fn()} />);
     expect(screen.getAllByText('FFT 2022 rating descriptors')).toHaveLength(3);
     expect(screen.getAllByText('1 — Unsatisfactory')).toHaveLength(4);
-    expect(screen.getAllByText('The design of learning experiences does not support student engagement with important content.')).toHaveLength(3);
-    expect(screen.getAllByText('Learning experiences are challenging and engaging; they are designed to meet the needs of students in the class.')).toHaveLength(3);
+    expect(screen.getAllByText('Learning experiences are not designed to engage students with important content.')).toHaveLength(3);
+    expect(screen.getAllByText('Learning experiences are engaging and challenging and meet student needs in this class.')).toHaveLength(3);
   });
 
   it('matches component guidance to each target and omits unknown components', () => {
@@ -60,8 +60,8 @@ describe('observation form accessibility', () => {
       { ...draft.items[2], componentId: 'unknown' },
     ] }} onSave={vi.fn()} onSubmit={vi.fn()} />);
     const groups = screen.getAllByRole('group').filter((element) => element.tagName === 'FIELDSET');
-    expect(within(groups[0]).getByText('Questioning and discussion are absent, low-level, or do not support learning and development.')).toBeInTheDocument();
-    expect(within(groups[1]).getByText(/does not engage in professional inquiry or learning/)).toBeInTheDocument();
+    expect(within(groups[0]).getByText('Questioning and discussion are missing, stay at a low level, or fail to support learning and development.')).toBeInTheDocument();
+    expect(within(groups[1]).getByText(/does not pursue professional inquiry or learning/)).toBeInTheDocument();
     expect(within(groups[2]).queryByText('FFT 2022 rating descriptors')).not.toBeInTheDocument();
   });
 
@@ -70,7 +70,7 @@ describe('observation form accessibility', () => {
 
     const groups = screen.getAllByRole('group').filter((element) => element.tagName === 'FIELDSET');
     expect(groups).toHaveLength(3);
-    expect(groups[0]).toHaveAccessibleName(/Double Plan.*1e: Planning Coherent Instruction/i);
+    expect(groups[0]).toHaveAccessibleName(/Double Plan.*1e: Designing Coherent Lesson Sequences/i);
     expect(screen.getAllByRole('radio')).toHaveLength(15);
     expect(screen.getAllByRole('radio', { name: /^Rating 1 — Unsatisfactory$/ })[0]).toHaveAttribute('type', 'radio');
     expect(screen.getAllByRole('radio', { name: /^Not enough evidence$/ })[0]).toHaveAttribute('type', 'radio');

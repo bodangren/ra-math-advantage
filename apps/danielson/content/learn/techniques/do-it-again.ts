@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2c",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2c: Maintaining Purposeful Environments",
+  "alignment": "2c: Purposeful Routines and Procedures",
   "description": "Use physical repetition to build behavior, reinforce expectations, and create muscle memory for routines through purposeful movement.",
   "detailedSummary": "When a familiar routine is below the expected standard, give specific feedback and let students practice it again. Explain the improvement you want to see. Keep the repeat purposeful and proportionate. If students do not understand the routine, teach it before asking them to repeat it.",
   "actionSteps": [

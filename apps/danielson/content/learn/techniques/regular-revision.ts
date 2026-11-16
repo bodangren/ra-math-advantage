@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3b",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3b: Using Questioning and Discussion Techniques",
+  "alignment": "3b: Skillful Questioning and Discussion Methods",
   "hasImage": false,
   "description": "Make revision a daily habit rather than a special occasion by integrating it into every writing exercise, treating even single sentences as compositions worthy of deliberate refinement.",
   "detailedSummary": "Make revision a regular part of writing. Select a manageable focus, such as evidence, clarity, or sentence structure. Give students feedback and time to improve the work. Compare the revision with the original so students can explain what changed and why it helps the reader.",

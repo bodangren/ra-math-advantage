@@ -27,7 +27,7 @@ describe('walkthrough queue Learn links', () => {
         targets: [{
           skillId: 'danielson.tlac.skill.double-plan',
           skillTitle: 'Double Plan',
-          componentTitle: '1e: Planning Coherent Instruction',
+          componentTitle: '1e: Designing Coherent Lesson Sequences',
         }],
       }],
       formalCandidates: [],

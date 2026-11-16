@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2c",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2c: Maintaining Purposeful Environments",
+  "alignment": "2c: Purposeful Routines and Procedures",
   "hasImage": false,
   "description": "Without Apology is a technique that counters the unintentional negative messaging teachers can convey about content through language that assumes students will find material boring, too difficult, or uninteresting. Rather than apologizing for challenging content, effective educators reframe difficulty as an opportunity for growth and mastery.",
   "detailedSummary": "Present worthwhile content with confidence in its value and in students’ ability to learn it. Explain the purpose of challenging work. Provide the support students need. Avoid introductions that dismiss the content as boring or imply that students cannot succeed with it.",

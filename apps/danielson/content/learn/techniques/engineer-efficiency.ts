@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "1e",
   "domain": 1,
   "source": "TLAC 3.0",
-  "alignment": "1e: Planning Coherent Instruction",
+  "alignment": "1e: Designing Coherent Lesson Sequences",
   "hasImage": false,
   "description": "Design efficient classroom routines so students can spend more time learning.",
   "detailedSummary": "Small repeated delays can interrupt learning. Improve the procedure rather than rushing students without a clear method. Judge the routine by smooth, accurate completion as well as time.",

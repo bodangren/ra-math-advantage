@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2d",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2d: Supporting Positive Student Behavior",
+  "alignment": "2d: Promoting Positive Student Behavior",
   "description": "Art of the Consequence is the deliberate practice of delivering consequences in a way that is precise, calm, and purposeful rather than reactive or emotional. Rather than defaulting to harsh punishments or lengthy reprimands, effective teachers learn to deliver consequences that are connected to the behavior, proportionate, and delivered with emotional constancy. The technique emphasizes that consequences should teach rather than merely punish—that a well-crafted consequence helps students understand what went wrong, what they should do instead, and why the expectation exists in the first place. The teacher maintains a businesslike tone, avoiding power struggles and emotional escalation while still holding the student accountable. This approach preserves the dignity of the student, maintains the teacher's authority, and ultimately produces better behavioral outcomes than punitive approaches that rely on fear or embarrassment. When delivered with warmth and clarity, consequences become powerful teaching moments rather than sources of resentment or avoidance.",
   "detailedSummary": "Deliver a consequence calmly and consistently. Use the school behavior policy. State the action that led to the consequence and explain how the student can return to the learning task. Keep the response proportionate. A consequence does not replace instruction in the expected behavior.",
   "actionSteps": [

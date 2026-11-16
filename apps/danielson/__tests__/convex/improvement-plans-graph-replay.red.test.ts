@@ -10,7 +10,7 @@ const graphState = vi.hoisted(() => ({
       {
         id: 'danielson.framework.component.1e',
         kind: 'instructional_unit',
-        title: '1e: Planning Coherent Instruction',
+        title: '1e: Designing Coherent Lesson Sequences',
         domain: 'danielson',
         sourceRefs: [{ source: 'Danielson Framework for Teaching 2022' }],
         reviewStatus: 'approved',

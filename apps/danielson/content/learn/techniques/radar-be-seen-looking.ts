@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2d",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2d: Supporting Positive Student Behavior",
+  "alignment": "2d: Promoting Positive Student Behavior",
   "hasImage": false,
   "description": "Scan deliberately and make your attention visible when checking student follow-through.",
   "detailedSummary": "Scanning after a direction helps you check whether students understood and acted. It does not require you to stop using lesson notes or written observation records throughout the lesson.",

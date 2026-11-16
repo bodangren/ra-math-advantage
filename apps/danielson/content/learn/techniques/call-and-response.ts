@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3a",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3a: Communicating About Purpose and Content",
+  "alignment": "3a: Clear Communication of Purpose and Content",
   "description": "Use a clear cue for students to give an academic response together.",
   "detailedSummary": "Call and Response can support retrieval, vocabulary, and familiar procedures. It can be lively without being musical. A strong group response can hide individual uncertainty, so use another check when individual evidence matters.",
   "actionSteps": [

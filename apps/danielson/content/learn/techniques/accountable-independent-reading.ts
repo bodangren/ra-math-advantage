@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3c",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3c: Engaging Students in Learning",
+  "alignment": "3c: Active Engagement in Learning",
   "hasImage": false,
   "description": "Use short, purposeful independent reading periods with observable checks for understanding.",
   "detailedSummary": "Reading independence depends on the text and the reader’s knowledge. Adjust the amount of independent reading using evidence from the initial section. This technique applies across subjects. It is not limited to student-choice books.\n\nExample: Students read a short science passage and explain one relationship. Use their explanations to decide whether to continue, clarify vocabulary, or read the next section together.",

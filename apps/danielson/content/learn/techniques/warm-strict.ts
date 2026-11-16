@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2a",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2a: Cultivating Respectful and Affirming Environments",
+  "alignment": "2a: Building Respectful and Affirming Classrooms",
   "hasImage": false,
   "description": "Combine care for students with clear expectations and consistent follow-through.",
   "detailedSummary": "Warmth and clear expectations can occur together. Do not assume that difficulty shows a lack of will. Attend to understanding, access, and context while maintaining the learning expectation.",

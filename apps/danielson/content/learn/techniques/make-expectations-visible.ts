@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2b",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2b: Fostering a Culture for Learning",
+  "alignment": "2b: Building a Strong Learning Culture",
   "hasImage": false,
   "description": "Give directions with an observable action so you can check whether students have followed them.",
   "detailedSummary": "An observable direction gives the teacher evidence of follow-through. A posted learning objective serves a different purpose.\n\nExample: Ask students to place a finger on the first paragraph before reading. This is easier to check than “Be ready”. Use a suitable alternative when the action is not accessible to a student.",

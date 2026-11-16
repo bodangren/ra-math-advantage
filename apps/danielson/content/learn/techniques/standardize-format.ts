@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "1f",
   "domain": 1,
   "source": "TLAC 3.0",
-  "alignment": "1f: Designing and Analyzing Assessments",
+  "alignment": "1f: Assessment Design and Analysis",
   "description": "Use a consistent response format when it helps you inspect and compare student work.",
   "detailedSummary": "The format serves observation and feedback. It need not make every page or subject look the same. Preserve room for different reasoning methods when those methods matter.",
   "actionSteps": [

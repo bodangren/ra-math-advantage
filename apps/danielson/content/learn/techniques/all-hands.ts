@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3c",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3c: Engaging Students in Learning",
+  "alignment": "3c: Active Engagement in Learning",
   "hasImage": false,
   "description": "Manage voluntary hand-raising so participation supports the pace and focus of discussion.",
   "detailedSummary": "Raised hands show willingness to contribute. They do not establish understanding. Combine voluntary participation with writing, Cold Call, or another method that reveals the thinking of more students.\n\nCheck: Before you move on, inspect an answer or explanation. Do not use the number of raised hands as a mastery measure.",

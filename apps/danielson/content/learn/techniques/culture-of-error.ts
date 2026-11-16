@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2b",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2b: Fostering a Culture for Learning",
+  "alignment": "2b: Building a Strong Learning Culture",
   "description": "Building and maintaining a classroom environment where errors are expected, celebrated, and analyzed so that both teachers and students increase their learning through mistake-making.",
   "detailedSummary": "Make it safe to reveal an incorrect or uncertain answer. Respond to errors with interest and use them to examine reasoning. Explain that the class will correct misunderstandings together. Keep the correct understanding clear so students leave the discussion knowing what they learned.",
   "actionSteps": [

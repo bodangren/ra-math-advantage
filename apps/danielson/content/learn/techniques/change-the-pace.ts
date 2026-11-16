@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "1e",
   "domain": 1,
   "source": "TLAC 3.0",
-  "alignment": "1e: Planning Coherent Instruction",
+  "alignment": "1e: Designing Coherent Lesson Sequences",
   "description": "A deliberate strategy for varying the energy, activity type, and interaction pattern during instruction to sustain student engagement and maintain attention throughout the lesson.",
   "detailedSummary": "Change the type of student work while keeping the learning goal clear. A lesson can move from explanation to writing, discussion, or independent application. Plan useful transitions and adjust them from the evidence you observe. A change should support thinking rather than add variety for its own sake.",
   "actionSteps": [

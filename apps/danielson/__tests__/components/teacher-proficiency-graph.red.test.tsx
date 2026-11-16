@@ -58,7 +58,7 @@ describe('TeacherProficiencyGraph', () => {
       name: /Framework for Teaching 2022: Below Proficient: Score 3\.0 of 4: Green/,
     });
     const component = screen.getByRole('button', {
-      name: /Applying Knowledge of Content and Pedagogy: Below Proficient: Score 2\.5 of 4: Yellow/,
+      name: /Command of Content and Teaching Methods: Below Proficient: Score 2\.5 of 4: Yellow/,
     });
 
     expect(framework).toHaveClass('score-green');
@@ -85,7 +85,7 @@ describe('TeacherProficiencyGraph', () => {
     render(<TeacherProficiencyGraph currentProficiency={current} />);
 
     const component = screen.getByRole('button', {
-      name: /Applying Knowledge of Content and Pedagogy: Proficient: Score 4\.0 of 4: Blue: Rating 4: 100 points/,
+      name: /Command of Content and Teaching Methods: Proficient: Score 4\.0 of 4: Blue: Rating 4: 100 points/,
     });
     expect(component).toHaveTextContent('4.0');
 
@@ -103,7 +103,7 @@ describe('TeacherProficiencyGraph', () => {
     expect(screen.getByText('Framework for Teaching 2022')).toBeInTheDocument();
     expect(screen.getByText(/Domain 1:/)).toBeInTheDocument();
     expect(screen.getAllByText(/1a:/).length).toBeGreaterThan(0);
-    expect(screen.queryByText('Applying Knowledge of Content and Pedagogy: Rating 2')).not.toBeInTheDocument();
+    expect(screen.queryByText('Command of Content and Teaching Methods: Rating 2')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Zoom in' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Zoom out' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Fit graph' })).toBeInTheDocument();
@@ -111,7 +111,7 @@ describe('TeacherProficiencyGraph', () => {
     expect(screen.getByRole('button', { name: 'Full screen' })).toBeInTheDocument();
     expect(screen.getAllByText('Below Proficient').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Not enough evidence').length).toBeGreaterThan(0);
-    fireEvent.keyDown(screen.getByRole('button', { name: /1a: Applying Knowledge/ }), { key: 'Enter' });
+    fireEvent.keyDown(screen.getByRole('button', { name: /1a: Command of Content/ }), { key: 'Enter' });
     expect(screen.getAllByText(/Below Proficient · Due/).length).toBeGreaterThan(0);
     expect(screen.getByRole('button', {
       name: /Exemplar Planning: Below Proficient: Score 2\.0 of 4: Yellow: Rating 2: 80 points: Due/,
@@ -120,11 +120,11 @@ describe('TeacherProficiencyGraph', () => {
 
   it('expands a component with pointer and keyboard activation', () => {
     render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
-    const component = screen.getByRole('button', { name: /1a: Applying Knowledge/ });
+    const component = screen.getByRole('button', { name: /1a: Command of Content/ });
 
     fireEvent.pointerDown(component, { pointerId: 1 });
     fireEvent.pointerUp(component, { pointerId: 1 });
-    expect(screen.getByText(/Applying Knowledge of Content and Pedagogy:/)).toBeInTheDocument();
+    expect(screen.getByText(/Command of Content and Teaching Methods:/)).toBeInTheDocument();
 
     fireEvent.keyDown(component, { key: 'Enter' });
     expect(screen.getByText(/Danielson component (expanded|collapsed)/)).toBeInTheDocument();
@@ -132,7 +132,7 @@ describe('TeacherProficiencyGraph', () => {
 
   it('shows skill detail without comment or response data', () => {
     render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
-    fireEvent.keyDown(screen.getByRole('button', { name: /1a: Applying Knowledge/ }), { key: 'Enter' });
+    fireEvent.keyDown(screen.getByRole('button', { name: /1a: Command of Content/ }), { key: 'Enter' });
     const skill = screen.getByRole('button', { name: /Exemplar Planning: Below Proficient/ });
     fireEvent.keyDown(skill, { key: ' ' });
 

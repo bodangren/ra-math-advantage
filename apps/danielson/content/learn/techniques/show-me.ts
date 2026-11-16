@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3d",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3d: Using Assessment for Learning",
+  "alignment": "3d: Using Assessment to Guide Learning",
   "hasImage": false,
   "description": "Show Me flips the traditional observation dynamic by requiring students to actively present visual evidence of their understanding. Rather than teachers circulating to gather data, students display their answers in a format the teacher can assess at a glance.",
   "detailedSummary": "Ask students to display an answer or piece of work at the same time. Use a format you can inspect quickly, such as a short whiteboard response. Check the content of the response, not only participation. Use what you see to decide whether to clarify, give feedback, or continue.",

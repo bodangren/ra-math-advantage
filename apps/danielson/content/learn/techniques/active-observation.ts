@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3d",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3d: Using Assessment for Learning",
+  "alignment": "3d: Using Assessment to Guide Learning",
   "hasImage": false,
   "description": "Collect written evidence of student understanding while students work.",
   "detailedSummary": "Observe the work against a specific learning goal. Written tracking helps you compare responses and select the next teaching action. Scanning for engagement alone does not show whether students understand.\n\nExample: Use a short list to record which students explain a fraction comparison correctly and which confuse numerator size with fraction size.",

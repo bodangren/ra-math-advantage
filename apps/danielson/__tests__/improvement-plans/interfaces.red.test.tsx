@@ -30,7 +30,7 @@ const { ImprovementPlanView } = await import(
 
 const target = {
   componentId: 'danielson.framework.component.1e',
-  componentTitle: '1e: Planning Coherent Instruction',
+  componentTitle: '1e: Designing Coherent Lesson Sequences',
   skillId: 'danielson.tlac.skill.double-plan',
   skillTitle: 'Double Plan',
 };
@@ -236,7 +236,7 @@ describe('PIP interface', () => {
     );
     expect(screen.getByText(/further disciplinary action/i)).toBeVisible();
     expect(screen.getByText(/support professional improvement/i)).toBeVisible();
-    expect(screen.getByRole('option', { name: /Double Plan.*Planning Coherent Instruction/i }))
+    expect(screen.getByRole('option', { name: /Double Plan.*Designing Coherent Lesson Sequences/i }))
       .toBeVisible();
     expect(screen.queryByLabelText(/score.*Courage/i)).not.toBeInTheDocument();
   });

@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3b",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3b: Using Questioning and Discussion Techniques",
+  "alignment": "3b: Skillful Questioning and Discussion Methods",
   "hasImage": false,
   "description": "Display selected student work so the class can analyze it and improve its own work.",
   "detailedSummary": "Show Call makes an individual piece of work available for shared study. Select work for a clear instructional purpose. A document camera is useful, but a copied or transcribed example can also work.\n\nExample: Display two explanations with different uses of evidence. Students identify the stronger reasoning, then revise their own explanation.",

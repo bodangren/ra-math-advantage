@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2e",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2e: Organizing Spaces for Learning",
+  "alignment": "2e: Organizing Physical Learning Spaces",
   "hasImage": false,
   "description": "Model how students should record important content by connecting the board model to their notes.",
   "detailedSummary": "A board display is not enough if students cannot make a useful record of the lesson. Model the selection and organization of information. Give feedback on notes before you remove the support.\n\nExample: Complete one row of a comparison table on the board. Students complete the matching row, then select the next comparison themselves.",

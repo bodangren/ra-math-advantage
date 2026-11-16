@@ -26,12 +26,12 @@ describe('FFT 2022 rubric descriptors', () => {
     }
   });
 
-  it('preserves the supplied component-specific wording', () => {
+  it('preserves the app-owned component-specific wording', () => {
     expect(FFT_2022_RUBRIC_DESCRIPTORS['1a'].descriptors.unsatisfactory).toBe(
-      'The teacher lacks sufficient knowledge of content and pedagogy to support student learning of the content.',
+      'The teacher does not know the subject or how to teach it well enough to support student learning.',
     );
     expect(FFT_2022_RUBRIC_DESCRIPTORS['4f'].descriptors.distinguished).toContain(
-      'The teacher is a leader in the school in defining and upholding high standards of ethical practice',
+      'setting and upholding high ethical standards',
     );
   });
 });

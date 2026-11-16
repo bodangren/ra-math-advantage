@@ -309,11 +309,11 @@ const report: PrivateTeacherReport = {
     priorityTargets: [],
     domains: [{
       domainId: 'danielson.framework.domain.1',
-      title: 'Domain 1: Planning and Preparation',
+      title: 'Domain 1: Planning and Readiness',
       state: 'not_enough_evidence',
       components: [{
         componentId: 'danielson.framework.component.1e',
-        title: '1e: Planning Coherent Instruction',
+        title: '1e: Designing Coherent Lesson Sequences',
         state: 'not_enough_evidence',
         rawRating: null,
         points: null,
@@ -607,9 +607,9 @@ describe('reporting independent-review interface contracts', () => {
     />);
     const detailedProficiency = screen.getByRole('heading', { name: 'Current proficiency' }).closest('section');
     if (!detailedProficiency) throw new Error('detailed proficiency section missing');
-    fireEvent.click(within(detailedProficiency).getByText(/Domain 1: Planning and Preparation/));
+    fireEvent.click(within(detailedProficiency).getByText(/Domain 1: Planning and Readiness/));
 
-    expect(within(detailedProficiency).getByText('1e: Planning Coherent Instruction')).toBeVisible();
+    expect(within(detailedProficiency).getByText('1e: Designing Coherent Lesson Sequences')).toBeVisible();
     expect(within(detailedProficiency).getByText(/Double Plan: Rating 3/)).toBeVisible();
     expect(within(detailedProficiency).getByText(/Due on .*2027/i)).toBeVisible();
     expect(within(detailedProficiency).getByRole('link', { name: 'Open skill evidence source' }))

@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2a",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2a: Cultivating Respectful and Affirming Environments",
+  "alignment": "2a: Building Respectful and Affirming Classrooms",
   "description": "Precise Praise is the practice of delivering specific, targeted commendations that clearly identify exactly what a student did well and why it merits recognition. Rather than offering generic positive feedback like 'good job' or 'nice work,' Precise Praise names the exact behavior, thinking, or action being celebrated and connects it to a broader principle or value. This technique transforms routine validation into a powerful instructional tool that communicates expectations, reinforces desired behaviors, and models the language students should use when providing feedback to one another.",
   "detailedSummary": "Identify the action that deserves recognition. Explain what the student did well so the feedback can guide another attempt. Distinguish recognition of expected participation from praise for a specific achievement. Apply the same care and specificity across students.",
   "actionSteps": [

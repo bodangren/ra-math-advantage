@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2b",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2b: Fostering a Culture for Learning",
+  "alignment": "2b: Building a Strong Learning Culture",
   "hasImage": false,
   "description": "Teach students concrete ways to listen and show attention to the person speaking.",
   "detailedSummary": "Attention includes listening to peers and responding to their ideas. Teach the behavior rather than only asking for attention. Do not treat a single posture or eye-contact pattern as proof of understanding.",

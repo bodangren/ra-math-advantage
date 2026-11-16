@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2b",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2b: Fostering a Culture for Learning",
+  "alignment": "2b: Building a Strong Learning Culture",
   "hasImage": false,
   "description": "Help students record corrected understanding so they can distinguish an earlier mistake from what they learned.",
   "detailedSummary": "An error discussion can leave students unsure about which idea was correct. Make the learning explicit and preserve it in their work. A mark or arrow without corrected reasoning is not enough.\n\nExample: After comparing two lines, students record that parallel lines have the same slope and different intercepts. They annotate the earlier incorrect choice with the reason it fails.",

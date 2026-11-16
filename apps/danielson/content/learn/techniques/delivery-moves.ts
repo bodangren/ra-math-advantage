@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3e",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3e: Responding Flexibly to Student Needs",
+  "alignment": "3e: Adapting Instruction to Student Needs",
   "hasImage": false,
   "description": "Plan how you will deliver key parts of a lesson, including participation, student selection, and decisions during instruction.",
   "detailedSummary": "Delivery planning connects the lesson content to what students will actually do. It includes decisions about writing, discussion, questions, and transitions. Voice and gesture can support delivery, but they do not define this technique.\n\nExample: Plan silent writing before a difficult question, then select contrasting responses for discussion.",

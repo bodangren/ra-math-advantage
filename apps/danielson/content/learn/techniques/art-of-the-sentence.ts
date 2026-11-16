@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3a",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3a: Communicating About Purpose and Content",
+  "alignment": "3a: Clear Communication of Purpose and Content",
   "hasImage": false,
   "description": "Use a short writing task to help students express a complete idea in one effective sentence.",
   "detailedSummary": "The sentence is a unit of student thinking and writing. A short task lets students practice precision without the demands of a full essay. Adjust the constraint to the learning need.\n\nExample: Ask students to explain why two fractions are equivalent in one sentence. Compare a response that only states the result with one that explains the relationship. Ask students to revise their explanation.",

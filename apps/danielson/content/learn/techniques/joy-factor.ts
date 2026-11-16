@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2a",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2a: Cultivating Respectful and Affirming Environments",
+  "alignment": "2a: Building Respectful and Affirming Classrooms",
   "description": "The Joy Factor technique centers on the intentional creation of genuine positive emotional energy in the classroom. Rather than treating joy as an accidental byproduct of learning, effective teachers deliberately architect moments of delight, connection, and authentic enthusiasm that strengthen the classroom community and increase student engagement.",
   "detailedSummary": "Create opportunities for students to enjoy the learning and feel that they belong. Use suitable shared routines, humor, recognition, or creative tasks. Connect the activity to the work and the classroom community. Watch how students respond and adjust when an activity excludes or distracts them.",
   "actionSteps": [

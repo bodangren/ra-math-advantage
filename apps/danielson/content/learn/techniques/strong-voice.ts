@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2c",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2c: Maintaining Purposeful Environments",
+  "alignment": "2c: Purposeful Routines and Procedures",
   "description": "Use clear language, an appropriate register, and deliberate physical presence to communicate expectations.",
   "detailedSummary": "Strong Voice includes several delivery practices. Quiet Power is one part. A quieter voice alone does not create clear directions or consistent follow-through. Practice the words, posture, and pause together.",
   "actionSteps": [

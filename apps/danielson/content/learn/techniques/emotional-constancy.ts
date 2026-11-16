@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2a",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2a: Cultivating Respectful and Affirming Environments",
+  "alignment": "2a: Building Respectful and Affirming Classrooms",
   "hasImage": false,
   "description": "Keep your response to classroom events calm, predictable, and focused on learning.",
   "detailedSummary": "Emotional Constancy helps students know what to expect from the teacher. It does not mean hiding all emotion. Address the behavior while keeping respect for the student.",

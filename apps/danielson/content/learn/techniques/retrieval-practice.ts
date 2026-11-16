@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "3d",
   "domain": 3,
   "source": "TLAC 3.0",
-  "alignment": "3d: Using Assessment for Learning",
+  "alignment": "3d: Using Assessment to Guide Learning",
   "hasImage": false,
   "description": "Retrieval Practice counters the relentless problem of forgetting by requiring students to recall previously learned knowledge after a strategic delay, strengthening long-term memory with each successful retrieval.",
   "detailedSummary": "Ask students to recall previously taught content without first consulting their notes. Use brief, low-stakes questions and provide feedback. Return to important content over time. Include recall and explanation where each serves the learning goal. Use errors to identify content that needs further teaching or practice.",

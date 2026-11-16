@@ -6,7 +6,7 @@ const technique: Technique = {
   "subdomain": "2c",
   "domain": 2,
   "source": "TLAC 3.0",
-  "alignment": "2c: Maintaining Purposeful Environments",
+  "alignment": "2c: Purposeful Routines and Procedures",
   "hasImage": false,
   "description": "Make the start and end of each activity clear so students can move promptly to the next task.",
   "detailedSummary": "Clear activity boundaries reduce uncertainty about when to work, listen, or move. The signal should be easy to recognize. Posted behavior rules alone do not establish these boundaries.\n\nExample: Explain a pair task before saying “Begin”. Use an agreed signal to end the discussion and return attention to the next question.",

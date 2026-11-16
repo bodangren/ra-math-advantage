@@ -330,7 +330,7 @@ function seedPlan(
     teacherProfileId,
     ordinal: 0,
     componentId: 'danielson.framework.component.1e',
-    componentTitle: '1e: Planning Coherent Instruction',
+    componentTitle: '1e: Designing Coherent Lesson Sequences',
     skillId: 'danielson.tlac.skill.double-plan',
     skillTitle: 'The Double Plan',
     expectedRating: 3,
