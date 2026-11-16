@@ -35,3 +35,14 @@ Residual state is limited to generated `.next`, `.vinext`, and coverage output, 
 Quality gates passed after the shared export fix: focused quadratic-formula tests (21/21), package lint, package typecheck, repository lint, repository typecheck, and package build.
 
 Residual state remains limited to generated `.next`, `.vinext`, and coverage output, temporary review captures, the local `opencode.json`, an empty `=` file, two tracked generated route declarations, and one tracked Danielson output deletion. These paths remain outside the atomic source commits for explicit review.
+
+## Remote sync: 2026-11-16
+
+Daniel requested that all non-ignored local files be committed before the merge. This includes the residual output listed above.
+
+- [~] Review and commit all non-ignored local files.
+- [ ] Merge origin/master. Preserve both histories.
+- [ ] Run the required checks. Record failures.
+- [ ] Push master and verify remote equality.
+
+Pre-merge checks: `git diff --check` and `npx --no-install tsc --noEmit` passed. Lint, tests, and build stop before workspace execution because `debt.bus-math-undeclared` expired on 2026-10-31. This is an existing architecture gate failure. No dependencies were installed. The local file review found 114 untracked files. No file exceeded 50 MB. The text credential scan found no apparent credentials.

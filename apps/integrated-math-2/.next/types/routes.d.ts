@@ -20,18 +20,22 @@ declare global {
 }
 
 declare namespace VinextRouteTypes {
-  type PageRoute = "/" | "/auth/login" | "/auth/register" | "/curriculum" | "/preface" | "/settings" | "/student/dashboard" | "/student/lessons/[slug]" | "/teacher/classes/[id]" | "/teacher/dashboard" | "/teacher/gradebook" | "/teacher/students/[id]";
+  type PageRoute = "/" | "/admin/curriculum" | "/admin/curriculum/[id]" | "/auth/login" | "/auth/register" | "/curriculum" | "/preface" | "/settings" | "/student/dashboard" | "/student/lessons/[slug]" | "/student/practice" | "/teacher/classes/[id]" | "/teacher/dashboard" | "/teacher/gradebook" | "/teacher/students/[id]";
   type LayoutRoute = "/";
-  type RouteHandlerRoute = "/api/auth/login" | "/api/auth/logout" | "/api/auth/register" | "/api/auth/session" | "/api/learning";
-  type AppRoute = "/" | "/api/auth/login" | "/api/auth/logout" | "/api/auth/register" | "/api/auth/session" | "/api/learning" | "/auth/login" | "/auth/register" | "/curriculum" | "/preface" | "/settings" | "/student/dashboard" | "/student/lessons/[slug]" | "/teacher/classes/[id]" | "/teacher/dashboard" | "/teacher/gradebook" | "/teacher/students/[id]";
+  type RouteHandlerRoute = "/api/activities/[activityId]/submissions" | "/api/auth/login" | "/api/auth/logout" | "/api/auth/register" | "/api/auth/session" | "/api/learning" | "/api/teacher/perpendicular-bisector-exposure";
+  type AppRoute = "/" | "/admin/curriculum" | "/admin/curriculum/[id]" | "/api/activities/[activityId]/submissions" | "/api/auth/login" | "/api/auth/logout" | "/api/auth/register" | "/api/auth/session" | "/api/learning" | "/api/teacher/perpendicular-bisector-exposure" | "/auth/login" | "/auth/register" | "/curriculum" | "/preface" | "/settings" | "/student/dashboard" | "/student/lessons/[slug]" | "/student/practice" | "/teacher/classes/[id]" | "/teacher/dashboard" | "/teacher/gradebook" | "/teacher/students/[id]";
 
   interface ParamMap {
     "/": {};
+    "/admin/curriculum": {};
+    "/admin/curriculum/[id]": { id: string; };
+    "/api/activities/[activityId]/submissions": { activityId: string; };
     "/api/auth/login": {};
     "/api/auth/logout": {};
     "/api/auth/register": {};
     "/api/auth/session": {};
     "/api/learning": {};
+    "/api/teacher/perpendicular-bisector-exposure": {};
     "/auth/login": {};
     "/auth/register": {};
     "/curriculum": {};
@@ -39,6 +43,7 @@ declare namespace VinextRouteTypes {
     "/settings": {};
     "/student/dashboard": {};
     "/student/lessons/[slug]": { slug: string; };
+    "/student/practice": {};
     "/teacher/classes/[id]": { id: string; };
     "/teacher/dashboard": {};
     "/teacher/gradebook": {};

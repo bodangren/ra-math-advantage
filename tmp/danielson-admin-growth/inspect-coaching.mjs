@@ -1,0 +1,17 @@
+import { chromium } from 'playwright';
+import { readFileSync } from 'node:fs';
+import { parseEnv } from 'node:util';
+const env = parseEnv(readFileSync('apps/danielson/.env.local', 'utf8'));
+const browser = await chromium.launch({ headless: true, channel: 'chrome' });
+const page = await browser.newPage();
+await page.goto('http://localhost:3014/auth/login'); await page.waitForLoadState('networkidle');
+await page.getByLabel('Username').fill('demo.head');
+await page.getByLabel('Password', { exact: true }).fill(env.DANIELSON_DEMO_PASSWORD);
+await page.getByRole('button', { name: 'Sign in' }).click(); await page.waitForURL('http://localhost:3014/');
+await page.goto('http://localhost:3014/reports'); await page.waitForLoadState('networkidle');
+await page.getByRole('link', { name: 'Noah Williams', exact: true }).click(); await page.waitForLoadState('networkidle');
+await page.getByRole('link', { name: 'Open coaching cycles' }).click(); await page.waitForLoadState('networkidle');
+await page.getByText('Start a coaching cycle', { exact: true }).click();
+console.log(await page.locator('main').innerText());
+console.log(await page.locator('select').evaluateAll(nodes => nodes.map(n => ({ id: n.id, options: Array.from(n.options).map(o => ({ value: o.value, text: o.textContent })) }))));
+await browser.close();

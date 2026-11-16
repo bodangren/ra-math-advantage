@@ -1491,3 +1491,6 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
 
 - [~] **Danielson SLT presentation rebuild** — New 16-slide deck is ready (f336c096). Manual review remains open.
   *Link: [./tracks/danielson-slt-deck_20260907/](./tracks/danielson-slt-deck_20260907/)*
+
+- [~] **Remote sync: 2026-11-16** — Commit all non-ignored local files. Merge origin/master. Run checks and push master.
+  *Link: [./tracks/worktree-atomic-integration_20260917/](./tracks/worktree-atomic-integration_20260917/)*
