@@ -8,10 +8,10 @@
     {
       "id": "app.bus-math-v2", "path": "apps/bus-math-v2", "kind": "app", "packageName": null,
       "owner": "bus-math-team", "layer": "application", "domainClassification": "app-owned", "domain": "business-math",
-      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.ai-tutoring", "pkg.app-shell", "pkg.component-approval", "pkg.core-auth", "pkg.core-convex", "pkg.graphing-core", "pkg.knowledge-space-practice", "pkg.math-content", "pkg.practice-core", "pkg.srs-engine"],
+      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.ai-tutoring", "pkg.app-shell", "pkg.component-approval", "pkg.core-auth", "pkg.core-convex", "pkg.graphing-core", "pkg.knowledge-space-practice", "pkg.math-content", "pkg.practice-core", "pkg.rate-limiter", "pkg.srs-engine", "pkg.teacher-reporting-core", "pkg.workbook-pipeline"],
       "publicEntryPoints": [],
       "qualityCommands": { "lint": "npm run lint --workspace=apps/bus-math-v2", "test": "npm run test --workspace=apps/bus-math-v2", "typecheck": "npx tsc --noEmit --project apps/bus-math-v2/tsconfig.json", "build": "npm run build --workspace=apps/bus-math-v2" },
-      "debtRefs": ["debt.bus-math-undeclared"]
+      "debtRefs": []
     },
     {
       "id": "app.danielson", "path": "apps/danielson", "kind": "app", "packageName": null,
@@ -32,10 +32,10 @@
     {
       "id": "app.integrated-math-2", "path": "apps/integrated-math-2", "kind": "app", "packageName": null,
       "owner": "im2-team", "layer": "application", "domainClassification": "app-owned", "domain": "integrated-math-2",
-      "allowedDependencies": ["pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.lesson-renderer", "pkg.practice-core", "pkg.srs-engine"],
+      "allowedDependencies": ["pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.lesson-renderer", "pkg.math-content", "pkg.practice-core", "pkg.srs-engine"],
       "publicEntryPoints": [],
       "qualityCommands": { "lint": "npm run lint --workspace=apps/integrated-math-2", "test": "npm run test --workspace=apps/integrated-math-2", "typecheck": "npm run typecheck --workspace=apps/integrated-math-2", "build": "npm run build --workspace=apps/integrated-math-2" },
-      "debtRefs": ["debt.im2-undeclared"]
+      "debtRefs": []
     },
     {
       "id": "app.integrated-math-3", "path": "apps/integrated-math-3", "kind": "app", "packageName": null,
@@ -118,14 +118,14 @@
     {
       "id": "pkg.knowledge-space-practice", "path": "packages/knowledge-space-practice", "kind": "package", "packageName": "@math-platform/knowledge-space-practice",
       "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
-      "allowedDependencies": ["pkg.knowledge-space-core"], "publicEntryPoints": [".", "./types", "./schemas", "./misconception-loop", "./blueprints", "./planner/types", "./planner/v3-2-contract", "./planner/v3-2-planner", "./planner/v3-2-recommendations", "./planner/v3-2-domain-utility-contract", "./planner/v3-2-domain-utility", "./planner/v3-2-review-load-contract", "./planner/v3-2-review-load", "./projections"],
-      "qualityCommands": { "lint": "npm run lint --workspace=packages/knowledge-space-practice", "test": "npm run test --workspace=packages/knowledge-space-practice", "typecheck": "npm run typecheck --workspace=packages/knowledge-space-practice", "build": "npm run build --workspace=packages/knowledge-space-practice" }, "debtRefs": ["debt.knowledge-space-practice-undeclared"]
+      "allowedDependencies": ["pkg.knowledge-space-core", "pkg.practice-core"], "publicEntryPoints": [".", "./types", "./schemas", "./misconception-loop", "./blueprints", "./planner/types", "./planner/v3-2-contract", "./planner/v3-2-planner", "./planner/v3-2-recommendations", "./planner/v3-2-domain-utility-contract", "./planner/v3-2-domain-utility", "./planner/v3-2-review-load-contract", "./planner/v3-2-review-load", "./projections"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/knowledge-space-practice", "test": "npm run test --workspace=packages/knowledge-space-practice", "typecheck": "npm run typecheck --workspace=packages/knowledge-space-practice", "build": "npm run build --workspace=packages/knowledge-space-practice" }, "debtRefs": []
     },
     {
       "id": "pkg.lesson-renderer", "path": "packages/lesson-renderer", "kind": "package", "packageName": "@math-platform/lesson-renderer",
       "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
-      "allowedDependencies": [], "publicEntryPoints": [".", "./textbook", "./components", "./video", "./markdown", "./error-boundary", "./skeletons"],
-      "qualityCommands": { "lint": "npm run lint --workspace=packages/lesson-renderer", "test": "npm run test --workspace=packages/lesson-renderer", "typecheck": "npm run typecheck --workspace=packages/lesson-renderer", "build": "npm run build --workspace=packages/lesson-renderer" }, "debtRefs": ["debt.lesson-renderer-undeclared"]
+      "allowedDependencies": ["pkg.activity-runtime"], "publicEntryPoints": [".", "./textbook", "./components", "./video", "./markdown", "./error-boundary", "./skeletons"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/lesson-renderer", "test": "npm run test --workspace=packages/lesson-renderer", "typecheck": "npm run typecheck --workspace=packages/lesson-renderer", "build": "npm run build --workspace=packages/lesson-renderer" }, "debtRefs": []
     },
     {
       "id": "pkg.math-content", "path": "packages/math-content", "kind": "package", "packageName": "@math-platform/math-content",
@@ -177,55 +177,5 @@
       "qualityCommands": { "lint": "npm run lint --workspace=packages/workbook-pipeline", "test": "npm run test --workspace=packages/workbook-pipeline", "typecheck": "npm run typecheck --workspace=packages/workbook-pipeline", "build": "npm run build --workspace=packages/workbook-pipeline" }, "debtRefs": []
     }
   ],
-  "temporaryDebt": [
-
-    {
-      "id": "debt.bus-math-undeclared", "owner": "bus-math-team",
-      "rationale": "BM2 production imports predate package-manifest parity enforcement; declarations will be reconciled with shared app composition.",
-      "followUpTrack": "app-platform-consolidation_20260710", "introducedOn": "2026-07-10", "expiresOn": "2026-10-31",
-      "violations": [
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.rate-limiter", "sourceFile": "apps/bus-math-v2/convex/apiRateLimits.ts", "exactSpecifier": "@math-platform/rate-limiter" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.rate-limiter", "sourceFile": "apps/bus-math-v2/convex/loginRateLimits.ts", "exactSpecifier": "@math-platform/rate-limiter" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.rate-limiter", "sourceFile": "apps/bus-math-v2/convex/rateLimits.ts", "exactSpecifier": "@math-platform/rate-limiter" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.teacher-reporting-core", "sourceFile": "apps/bus-math-v2/app/teacher/competency/CompetencyHeatmapClient.tsx", "exactSpecifier": "@math-platform/teacher-reporting-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.teacher-reporting-core", "sourceFile": "apps/bus-math-v2/app/teacher/competency/page.tsx", "exactSpecifier": "@math-platform/teacher-reporting-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.teacher-reporting-core", "sourceFile": "apps/bus-math-v2/app/teacher/gradebook/page.tsx", "exactSpecifier": "@math-platform/teacher-reporting-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.teacher-reporting-core", "sourceFile": "apps/bus-math-v2/app/teacher/students/[studentId]/competency/page.tsx", "exactSpecifier": "@math-platform/teacher-reporting-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.teacher-reporting-core", "sourceFile": "apps/bus-math-v2/components/teacher/CompetencyHeatmapGrid.tsx", "exactSpecifier": "@math-platform/teacher-reporting-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.teacher-reporting-core", "sourceFile": "apps/bus-math-v2/components/teacher/CourseOverviewGrid.tsx", "exactSpecifier": "@math-platform/teacher-reporting-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.teacher-reporting-core", "sourceFile": "apps/bus-math-v2/components/teacher/StudentCompetencyDetailGrid.tsx", "exactSpecifier": "@math-platform/teacher-reporting-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.teacher-reporting-core", "sourceFile": "apps/bus-math-v2/components/teacher/TeacherDashboardContent.tsx", "exactSpecifier": "@math-platform/teacher-reporting-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.workbook-pipeline", "sourceFile": "apps/bus-math-v2/app/api/workbooks/capstone/[type]/route.ts", "exactSpecifier": "@math-platform/workbook-pipeline" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.workbook-pipeline", "sourceFile": "apps/bus-math-v2/lib/curriculum/workbooks.client.ts", "exactSpecifier": "@math-platform/workbook-pipeline" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.bus-math-v2", "targetWorkspace": "pkg.workbook-pipeline", "sourceFile": "apps/bus-math-v2/lib/curriculum/workbooks.ts", "exactSpecifier": "@math-platform/workbook-pipeline" }
-      ]
-    },
-    {
-      "id": "debt.im2-undeclared", "owner": "im2-team",
-      "rationale": "IM2 seed code consumes math-content before its app manifest declares the package.",
-      "followUpTrack": "app-platform-consolidation_20260710", "introducedOn": "2026-07-10", "expiresOn": "2026-10-31",
-      "violations": [
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-2", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-2/convex/seed/seed_problem_families.ts", "exactSpecifier": "@math-platform/math-content/problem-families/im2" }
-      ]
-    },
-
-    {
-      "id": "debt.knowledge-space-practice-undeclared", "owner": "learning-platform",
-      "rationale": "Misconception-loop consumes the practice contract before package-manifest parity enforcement.",
-      "followUpTrack": "app-platform-consolidation_20260710", "introducedOn": "2026-07-10", "expiresOn": "2026-10-31",
-      "violations": [
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.knowledge-space-practice", "targetWorkspace": "pkg.practice-core", "sourceFile": "packages/knowledge-space-practice/src/misconception-loop.ts", "exactSpecifier": "@math-platform/practice-core/contract" }
-      ]
-    },
-    {
-      "id": "debt.lesson-renderer-undeclared", "owner": "learning-platform",
-      "rationale": "Lesson renderer consumes shared phase types before package-manifest parity enforcement.",
-      "followUpTrack": "app-platform-consolidation_20260710", "introducedOn": "2026-07-10", "expiresOn": "2026-10-31",
-      "violations": [
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.lesson-renderer", "targetWorkspace": "pkg.activity-runtime", "sourceFile": "packages/lesson-renderer/src/textbook/LessonPageLayout.tsx", "exactSpecifier": "@math-platform/activity-runtime/phase-types" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "pkg.lesson-renderer", "targetWorkspace": "pkg.activity-runtime", "sourceFile": "packages/lesson-renderer/src/textbook/PhaseContainer.tsx", "exactSpecifier": "@math-platform/activity-runtime/phase-types" }
-      ]
-    }
-
-  ]
+  "temporaryDebt": []
 }
