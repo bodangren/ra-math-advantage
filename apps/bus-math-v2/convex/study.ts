@@ -1,6 +1,7 @@
 import { internalMutation, internalQuery } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import { scheduleNewTerm, processReview as processFsrsReview, proficiencyBand, updateMastery } from "../lib/study/srs";
+import type { SerializedCardState } from "../lib/study/srs";
 import { getGlossaryTermsByUnit } from "../lib/study/glossary";
 
 export const getStudyPreferences = internalQuery({
@@ -150,7 +151,7 @@ export const processReview = internalMutation({
       fsrsResult = processFsrsReview(
         {
           termSlug: args.termSlug,
-          fsrsState: dueReview.fsrsState,
+          fsrsState: dueReview.fsrsState as SerializedCardState,
           scheduledFor: dueReview.scheduledFor,
         },
         args.rating
