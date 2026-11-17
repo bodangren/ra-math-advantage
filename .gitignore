@@ -68,7 +68,6 @@ apps/*/scale-evaluation.json
 
 # scratch capture scripts and generated evidence output (kept on disk, not tracked)
 /tmp/
-/outputs/
 
 # Junk files created by misfired CLI flag invocations (e.g. `build-graph --db`
 # treated as a literal filename rather than a flag). See
