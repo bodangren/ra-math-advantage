@@ -6723,7 +6723,7 @@
       }
     },
     {
-      "id": "math.im2.example.8.6.036",
+      "id": "math.im2.example.8.6.037",
       "kind": "worked_example",
       "title": "Examples 3 and 4 \u2014 Graph Greatest Integer Functions",
       "domain": "math.im2",
@@ -41248,10 +41248,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.6.036.containment",
+      "id": "math.im2.example.8.6.037.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.6",
-      "targetId": "math.im2.example.8.6.036",
+      "targetId": "math.im2.example.8.6.037",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
