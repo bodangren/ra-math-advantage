@@ -262,7 +262,7 @@ _Story ref: spec.md#story-s1_
 - [x] Task: S1 Docs & Doctor (ea024eee)
     - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0. Log `jr-green-generate.log`. It rewrote no file outside the 6 known dirty generated files; those stay unstaged.)
     - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0. Log `jr-green-doctor.log`. Output: "All checks passed".)
-- [ ] Task: Measure - User Manual Verification 'Phase S1: Package refresh and vinext 1.x' (Protocol in workflow.md)
+- [b] Task: Measure - User Manual Verification 'Phase S1: Package refresh and vinext 1.x' (Protocol in workflow.md) — deferred:orchestrator
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
