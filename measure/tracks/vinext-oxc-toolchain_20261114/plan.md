@@ -113,7 +113,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Run the danielson `npm run build`. Record the exit code, and the first error line when it fails.
     - [ ] Start danielson on port 4106 and request `/`. Record the status code, and the `location` header of a redirect.
     - [ ] Make the danielson browser capture. Save one screenshot, one accessibility snapshot, and the console error list under `measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-m2-danielson`.
-    - [ ] Record that the pre-merge `gates/baseline/` folder is historical, and that a workspace present in one baseline and absent in the other is a new failure (strategy 13.2 and 6.4).
+    - [ ] Record that the pre-merge `gates/baseline/` folder (26 names) is historical and is not a comparison base. Record that a phase run whose workspace set differs from the `baseline-m2` set (27 names) is a new failure (strategy 6.4 and 14.4).
     - [ ] Commit the evidence file: `measure(vinext-oxc): record the 6-app S1 baseline`.
 - [~] Task: S1 Test (Red) — add the S1 gate tests (Red commit: abbe15f1; Green marks `[x]` when the S1 cases pass)
     - Sync merge 2b2d9952 of origin/master 2e353ef9 (Daniel's order, 2026-11-16): 1130 commits, adds apps/danielson and oxlint tooling; the S1 baseline, cases, and gates need a re-check before S1 Verify. Green's commit C WIP is in a named stash.
@@ -145,7 +145,8 @@ _Story ref: spec.md#story-s1_
     - Rehearsal of the probes for Green (not a test): the three probe files ran against the `vinext@1.4.5` and `@vinext/types@1.0.2` packages from the registry, in a folder outside the repository, with `tsc` 6.0.3. The valid probe gave exit code 0. The invalid probe gave `TS2345` (`push(123)`) and `TS2741` (`<Link />`). The missing-module probe gave `TS2307` for `next/does-not-exist` only. The vinext types are strict, so case 5b holds on vinext 1.x.
     - Deviation for Green: the case 7 test reads the workflows with `js-yaml`. The package is not a root dependency. It is only a transitive dependency of `@eslint/eslintrc` through `apps/bus-math-v2`, and S2 removes `@eslint/eslintrc`. Green adds `js-yaml` to the root `devDependencies` in the S1 manifest commit. The S5 tests need it too.
     - Deviation for the older scripts test: the `root` option makes `scripts/__tests__/remediate-concept-blueprints.test.ts` run for the first time. It passes (log `scripts-suite-older-test.log`).
-    - [ ] Follow-up Red commit for the 6-app tree (strategy section 14.3). Run the discovery check first. Extend cases 1 to 4 to `apps/danielson`, with the `APP_DIRS` sentinel. Extend case 7 to the five workflow files, with its sentinels. Add the nested-vinext rule to case 8. Add the issue #2 case 9 with its seeded-fault case 9b. Add two guard cases for the `gates.sh` workspace-set rule to `scripts/__tests__/vinext-oxc-gates-script.test.ts`. Record the W4 command result in the Red log. Commit: `test(vinext-oxc): extend the S1 gate tests for the 6-app tree (Red)`.
+    - [ ] Follow-up Red commit for the 6-app tree (strategy section 14.3). Run the discovery check first. Extend cases 1 to 4 to `apps/danielson`, with the `APP_DIRS` sentinel. Extend case 7 to the five workflow files, with its sentinels. Add the nested-vinext rule to case 8. Add the issue #2 case 9 with its seeded-fault case 9b. Add two guard cases for the `gates.sh` workspace-set rule to `scripts/__tests__/vinext-oxc-gates-script.test.ts`. Record the W4 command result in the Red log (checks K1 to K3 of strategy 14.2). Commit: `test(vinext-oxc): extend the S1 gate tests for the 6-app tree (Red)`.
+    - [ ] Before the first r5 `s1` gate, rename the folder `measure/runs/vinext-oxc-toolchain_20261114/gates/s1` to `gates/s1-premerge` with `mv`. It holds the pre-merge S1 results (26 names). Do not delete it. Do not set `GATES_RESUME=1` for the first run of a label (strategy 14.4).
 - [x] Task: S1 Implement — move vinext to 1.x and remove `next` (dcde148d)
     - [ ] In `.github/workflows/ci.yml` and `.github/workflows/cloudflare-deploy.yml`, change each `node-version: '20'` to `'24'`.
     - [ ] In the root `package.json`, set `vinext` to `^1.4.5` and `react-server-dom-webpack` to `^19.3.1`.
@@ -207,18 +208,20 @@ _Story ref: spec.md#story-s1_
     - [ ] Run all gates before each commit. Use the held-package rule.
     - [ ] Record each change in section 3.
 - [~] Task: S1 Implement — move the audit suites forward (4173b71f)
-    - [ ] Issue #2 (strategy 13.3): make these four W4 titles pass in `scripts/audit/__tests__/framework-wave-w4-audit.test.ts`: `eslint-config-next installed lockfile version is on the 16.x line`, `eslint installed lockfile version is on the 10.x line`, `@eslint/js installed lockfile version is on the 10.x line`, `next installed lockfile version is absent`.
-    - [ ] Follow the durability contract of strategy 13.3. The version floors stay for the required packages. Each removed package gets an absence check. No `it(` or `expect(` line disappears unless it names a removed package.
-    - [ ] Follow the S1/S2 split of strategy 13.3. S1 asserts manifest absence for `eslint` and `@eslint/js`, because they remain peer dependencies of the React ESLint plugins. S2 asserts lockfile absence after it removes them.
+    - [ ] Issue #2, check K1 (strategy 14.2): in `scripts/audit/__tests__/framework-wave-w4-audit.test.ts`, make the 8 tests of `-t 'post-W4 major lines'` pass. Titles 1, 2, 3, and 5 stay. Titles 4, 6, and 7 become titles A, B, and C of strategy 14.2, copied verbatim. Title 8 stays. It turns green when the danielson move removes the key `node_modules/next`.
+    - [ ] Issue #2, check K2 (strategy 14.2): the whole file has at least 15 tests and 0 failed tests. This includes the test at file line 249, "every W4 framework major installed lockfile version satisfies its w4-framework-targets.json target_version range". Give `eslint-config-next`, `eslint`, and `@eslint/js` the absence rule in its loop. Keep the fixture entries.
+    - [ ] Issue #2, check K3 (strategy 14.2; question Q2 of strategy 15.3, default yes): in `scripts/audit/__tests__/framework-wave-w4.test.ts`, give the 5 tests at lines 406, 434, 500, 528, and 630 the same rule. Its `@types/node` test (line 560) follows the `@types/node` move.
+    - [ ] Follow the durability contract of strategy 14.2 (R9 and R20). The version floors stay for the required packages. Each removed package gets an absence check. No `it(` or `expect(` line disappears unless it names a removed package.
+    - [ ] Follow the peer-only rule of strategy 14.2. S1 asserts manifest absence for `eslint` and `@eslint/js`. It also asserts `peer: true` for each lockfile copy. The two React ESLint plugins stay, because the root `.oxlintrc.json` loads them as `jsPlugins`. No test asserts lockfile absence of `eslint` or `@eslint/js`.
     - [ ] Run the audit suites. Find each assertion that passed in the baseline and fails now only because S1 changed or removed a package.
     - [ ] Change each such assertion to the durable contract of lessons-learned 2026-06-07. The declared range admits the installed version.
     - [ ] The durable contract also requires: no range is `latest`, `*`, or empty, and the old security floor stays a minimum.
     - [ ] For a removed package, assert that no manifest declares it.
-    - [ ] Do not change an assertion that failed in the baseline. It stays in section 10.
+    - [ ] Do not change an assertion that failed in the baseline. It stays in section 10. The tests of checks K1 to K3 are the one exception.
     - [ ] Commit: `test(audit): move the audit suites forward for vinext 1.x`.
 - [ ] Task: S1 Verify — run the gates after the upgrade
     - [ ] Run each gate. Confirm that no gate has a new failure.
-    - [ ] Confirm that the scripts suite passes, with the r4 case set (cases 1 to 8, with the issue #2 audit case).
+    - [ ] Confirm that the scripts suite passes, with the S1 case set of strategy 6.2 (cases 1 to 9, with 5b and 9b: 11 tests). Run the closure checks K1 to K5 of strategy 14.2. Confirm that they hold.
     - [ ] Confirm that all 6 apps pass `npm run build`, danielson included.
     - [ ] Confirm that `/` of each app gives the baseline status code.
     - [ ] Run both bundle audits. If a budget fails, do not change the budget. Stop the phase and report the sizes to the user.
@@ -235,7 +238,7 @@ _Story ref: spec.md#story-s1_
     - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Package refresh and vinext 1.x' as complete`.
 
-Phase note (2026-11-17): the S1 phase base is captured after the r5 strategy commit (strategy section 4). The run log and the role handoff hold it. No plan line carries a phase SHA.
+Phase note (2026-11-17): the S1 phase base is captured after the r6 strategy commit (strategy section 4). The run log and the role handoff hold it. No plan line carries a phase SHA.
 
 ## Phase S2: ESLint to oxlint
 _S2 is superseded by eslint-to-oxlint-migration_20260820 (Daniel's oxlint move is done), PM 2026-11-16._
@@ -257,7 +260,9 @@ _Story ref: spec.md#story-s2_
     - [ ] Normal case 3: each workspace lint script, except `packages/_template`, is in the target form and names `../../.oxlintrc.json`. No `.oxlintrc.json` other than the root exists outside `node_modules`.
     - [ ] Edge case 4: a probe with `const unused = 1;` fails `oxlint --config <repo>/.oxlintrc.json --max-warnings 0 <probe>`. The exit code is non-zero, and the output contains `no-unused-vars`.
     - [ ] Edge case 5: the same probe with `/* oxlint-disable */` as its first line exits with code 0.
-    - [ ] Run the scripts suite. Record each case that fails. Cases 1 to 3 already pass at the merged tree (strategy section 8), so the S2 refresh re-derives the Red set.
+    - [ ] Normal case 9 (strategy section 8, issue #2, non-droppable): `package-lock.json` has no `node_modules/eslint-config-next` key and no `node_modules/typescript-eslint` key. Each of `node_modules/eslint`, `node_modules/@eslint/js`, and `node_modules/@eslint/eslintrc` is absent or has `peer: true`. Each `jsPlugins` specifier of `.oxlintrc.json` has a `node_modules/<specifier>` key.
+    - [ ] Edge case 9b: the scan of case 9 runs on an in-memory lockfile with one seeded fault for each clause. It returns exactly 3 hits.
+    - [ ] Run the scripts suite. Record each case that fails. Cases 1 to 3 and case 9 already pass at the merged tree (strategy section 8), so the S2 refresh re-derives the Red set. The refresh cannot drop case 9 or case 9b.
     - [ ] Commit: `test(vinext-oxc): add the S2 gate tests (Red)`.
 - [ ] Task: S2 Implement — record the migration that the lint track made (rewritten 2026-11-17)
     - [ ] `eslint-to-oxlint-migration_20260820` made the migration. Run no `@oxlint/migrate` command. Make no per-workspace `.oxlintrc.json`.
@@ -266,7 +271,7 @@ _Story ref: spec.md#story-s2_
     - [ ] Confirm that `oxlint` is in the root `devDependencies`, and only there.
     - [ ] Confirm that 26 lint scripts (6 apps and 20 packages) are in the target forms of the S2 Contract.
     - [ ] Confirm that no `eslint.config.*` file is tracked, that no manifest declares the 5 ESLint packages, and that the root `overrides` has no `eslint` key.
-    - [ ] Record that the lockfile keeps `eslint`, `@eslint/js`, and `@eslint/eslintrc` as peers of `eslint-plugin-react` and `eslint-plugin-react-hooks` (root `devDependencies`). The S2 refresh decides whether S2 removes the two plugins (strategy section 8).
+    - [ ] Record that the lockfile keeps `eslint`, `@eslint/js`, and `@eslint/eslintrc` as peer-only copies (`peer: true`) of `eslint-plugin-react` and `eslint-plugin-react-hooks` (root `devDependencies`). The root `.oxlintrc.json` loads both plugins as `jsPlugins`, so S2 keeps them (strategy 14.2, question Q1). Do not remove a plugin or a `jsPlugins` entry.
     - [ ] Run `npm install` only when a manifest changed. Commit only a change that this task makes.
 - [ ] Task: S2 Implement — reach zero warnings
     - [ ] Run `npm run lint` in each workspace.
@@ -277,6 +282,7 @@ _Story ref: spec.md#story-s2_
     - [ ] Confirm that all 26 oxlint lint scripts exit with code 0 and report zero warnings.
     - [ ] Run the other gates. Confirm that no gate has a new failure.
     - [ ] Confirm that the scripts suite passes.
+    - [ ] Run the closure checks K1 to K4 of strategy 14.2 again, with the S2 phase base. Confirm that they hold.
     - [ ] Time `npm run lint` with oxlint for the 26 workspaces that run it. Record "after" in section 5.
     - [ ] Commit the evidence file: `measure(vinext-oxc): record the S2 results`.
 - [ ] Task: S2 Docs & Doctor

@@ -1,9 +1,9 @@
 # Test Strategy: vinext-oxc-toolchain_20261114
 
 Track: `vinext-oxc-toolchain_20261114` (Chore, 5 phases S1 to S5)
-Strategy revision: r5 (2026-11-17), `role_base_sha` b23bfb748e797e78a5f9836bafcbf9043d0ff60b.
-Scope of revision r5: six apps and 27 workspace folders. Section 13 records r4. Section 14
-records r5. Section 14 wins when an earlier rule disagrees with it.
+Strategy revision: r6 (2026-11-17), `role_base_sha` e341753803ed005b932355d1d78af565a759f245.
+Scope of revision r6: six apps and 27 workspace folders. Section 13 records r4. Section 14
+records r5. Section 15 records r6. A later section wins when an earlier rule disagrees with it.
 Detail level: S1 has full detail. S2 to S5 have the risks, the Red commands, and the gates.
 Refresh this file at the start of each later phase if the plan changed.
 
@@ -43,7 +43,7 @@ that the environment variable `GATES_BASE` names (default `baseline`). S1 uses
 | `PROJECT_LINT` | `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint s1` with `GATES_BASE=baseline-m2` |
 | `PROJECT_CHECKS` | `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh checks-all s1` with `GATES_BASE=baseline-m2` |
 | `PROJECT_TESTS` | `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s1` with `GATES_BASE=baseline-m2` |
-| `W4_AUDIT_COMMAND` | `npx --no-install vitest run scripts/audit/__tests__/framework-wave-w4-audit.test.ts -t 'post-W4 major lines' --reporter=json --outputFile=measure/runs/vinext-oxc-toolchain_20261114/w4-audit-<stage>.json`, then the parse of section 14.2. It is the Red and Green command for issue #2. |
+| `W4_AUDIT_COMMAND` | `npx --no-install vitest run scripts/audit/__tests__/framework-wave-w4-audit.test.ts -t 'post-W4 major lines' --reporter=json --outputFile=measure/runs/vinext-oxc-toolchain_20261114/w4-audit-<stage>.json`, then the parse of section 14.2. It is the Red and Green command for the 8 titles (check K1). Issue #2 closes only when checks K1 to K5 hold (section 14.2). |
 | `UX_REQUIRED` | `always` |
 | `PROJECT_DEV_URL` | `http://localhost:4103` (IM3). The second URL is `http://localhost:4105` (BM2). The third is `http://localhost:4106` (danielson). |
 
@@ -120,7 +120,7 @@ Reasons, one for each cell group:
   gate hides every later fault.
 - **Review B, S1:** every dependency moves, with major versions, a new lockfile, and new
   native packages. Review B reads the lockfile diff, the `npm audit` totals, and the install
-  scripts. **Mandatory for the danielson risk (section 13.4):** the reviewer also reads each
+  scripts. **Mandatory for the danielson risk (section 6.1, R16 and R18):** the reviewer also reads each
   lockfile key that ends with `node_modules/vinext` or `node_modules/next`, and names the
   workspace that owns each one.
 - **Review B, S2 and S4:** the change is a lint config, or one exact-version formatter and
@@ -154,15 +154,16 @@ Reasons, one for each cell group:
   render. The danielson capture is new in r4: it has never rendered on vinext. Other phases
   change no runtime. **Mandatory for the danielson risk.**
 
-## 4. `phase_base_sha` capture (r5)
+## 4. `phase_base_sha` capture (r6)
 
-`role_base_sha` b23bfb74 predates this strategy (r5). Do not use it as `phase_base_sha`.
+`role_base_sha` e3417538 predates this strategy (r6). Do not use it as `phase_base_sha`.
+The r5 strategy commit `3cef6c6f` also predates it. A value that was captured there is void.
 The r4 value `3e141e05` also predates this strategy, the plan changes, and the track edits
 of 2026-11-17. It is void. The Red commit `abbe15f1` predates the merged tree. Do not use it.
 No SHA in this file is the capture point.
 
-1. The r5 strategy commit lands first: `measure(strategy): revise the S1 test strategy for
-   the 6-app merged tree (r5)`. It holds `test-strategy.md`, `plan.md`, and `gates.sh` only.
+1. The r6 strategy commit lands first: `measure(strategy): fix the r5 re-check findings in
+   the S1 test strategy (r6)`. It holds `test-strategy.md` and `plan.md` only.
 2. **Captured point.** Immediately after that commit, before any other commit, run
    `git status --porcelain`. Only these entries may appear, each with the status ` M`:
    `apps/*/.next/types/routes.d.ts`, `apps/bus-math-v2/lib/workbooks-manifest.json`, and
@@ -176,7 +177,7 @@ No SHA in this file is the capture point.
 4. Capture it before the first S1 task commit: the baseline evidence commit, the follow-up
    Red commit, and the first manifest change. The Red and Green role gates use it as the
    baseline.
-5. A `phase_base_sha` that is not a descendant of the r5 strategy commit is invalid. Stop
+5. A `phase_base_sha` that is not a descendant of the r6 strategy commit is invalid. Stop
    and report.
 6. The baseline sweeps of 2026-11-17 are run files, not commits. The capture does not move
    them. They stay valid when no workspace file changed after the run. At the capture, this
@@ -281,7 +282,7 @@ holds the Red commit shape.
 | 6 | The probe with `import x from "next/does-not-exist"` exits non-zero. The output has `TS2307` and the text `next/does-not-exist`. The output has no `TS2688`. **(strengthened)** | At Red the unresolved `vinext/types` gives `TS2688`. Without the `TS2688` rule, case 6 passes for the wrong reason. **r4: passes at this HEAD.** | unchanged |
 | 7 **(added)** | The YAML of every file in `.github/workflows/` is parsed with `js-yaml`. Each `actions/setup-node` step has a `node-version` with major 24. **r4: the parsed map must have one entry for each of the five files**: `business-math-deploy.yml`, `ci.yml`, `cloudflare-deploy.yml`, `jsdoc-typed-params.yml`, and `scale-benchmarks.yml`. Sentinels: the sorted key list equals the sorted `readdirSync` list; `ci.yml` has at least 1 step; `cloudflare-deploy.yml` has at least 1; `jsdoc-typed-params.yml` has exactly 0, which proves the file was parsed although it has no `setup-node`. | Covers the S1 criterion "Node 24". Fails at Red on `business-math-deploy.yml:deploy node-version='22'`. The key-list sentinel fails when a filter drops a file, and the zero-step sentinel fails when the parse skips a file with no step. | extended |
 | 8 **(added)** | `package-lock.json` has no key in `packages` that ends with `node_modules/next`. No `packages["apps/<app>"]` entry lists `next` in its dependency maps. **r4: the only key that ends with `node_modules/vinext` is `node_modules/vinext`.** | Fails at Red on `node_modules/next`. The nested-copy rule fails on `apps/danielson/node_modules/vinext` (0.0.55). Closes the case where a manifest is clean and the lockfile still pins `next` or a second vinext. | extended |
-| 9 **(added r5, issue #2 audit case)** | In `describe('S1 vinext 1.x')`, with the manifest reader of case 3. **(a)** No manifest of the root, `apps/*`, and `packages/*` (count at least 28, with `apps/danielson` and `packages/app-shell` present) has the key `eslint` or `@eslint/js` in `dependencies`, `devDependencies`, `peerDependencies`, `optionalDependencies`, or `overrides` (nested objects included). **(b)** No lockfile `packages` entry of a workspace (key `""`, `apps/<name>`, `packages/<name>`) lists either name in a dependency map. **(c)** The case reads no `node_modules/eslint` key and no `node_modules/@eslint/js` key. Both stay at 9.39.5 with the flags `dev` and `peer`. They are peers of `eslint-plugin-react` and `eslint-plugin-react-hooks`, which the root `devDependencies` declare. S2 asserts lockfile absence. | **Passes at this HEAD** (guard): no manifest declares either name. Fails when a manifest declares one. That is the wrong fix for issue #2: adding `eslint ^10` and `@eslint/js ^10` to satisfy the old 10.x titles (R20). | added |
+| 9 **(added r5, issue #2 audit case)** | In `describe('S1 vinext 1.x')`, with the manifest reader of case 3. **(a)** No manifest of the root, `apps/*`, and `packages/*` (count at least 28, with `apps/danielson` and `packages/app-shell` present) has the key `eslint` or `@eslint/js` in `dependencies`, `devDependencies`, `peerDependencies`, `optionalDependencies`, or `overrides` (nested objects included). **(b)** No lockfile `packages` entry of a workspace (key `""`, `apps/<name>`, `packages/<name>`) lists either name in a dependency map. Those entries are the lockfile copy of the manifests. **(c)** Case 9 checks only the workspace manifests and their lockfile copy. It asserts nothing about lockfile keys that start with `node_modules/`. The keys `node_modules/eslint` and `node_modules/@eslint/js` exist at 9.39.5 with the flags `dev` and `peer`. They are peers of `eslint-plugin-react` and `eslint-plugin-react-hooks`, which the root `devDependencies` declare and the root `.oxlintrc.json` loads as `jsPlugins`. An absence assertion for them fails at this HEAD, and it is a wrong test (section 14.2). Titles B and C of section 14.2 and S2 case 9 (section 8) cover the peer-only copies. | **Passes at this HEAD** (guard): no manifest declares either name. Fails when a manifest declares one. That is the wrong fix for issue #2: adding `eslint ^10` and `@eslint/js ^10` to satisfy the old 10.x titles (R20). | added |
 | 9b **(added r5)** | The scan function of case 9 runs on an in-memory manifest set. One workspace declares `eslint` in `devDependencies`. The root declares `@eslint/js` in `overrides`. The scan returns exactly these two hits: `apps/x/package.json:devDependencies.eslint` and `package.json:overrides.@eslint/js`. | Seeded fault. It proves that case 9 can fail (A4). It passes at this HEAD. It fails when the scan skips a dependency map or skips nested overrides. | added |
 
 **`js-yaml` for case 7.** In r1 to r3 `js-yaml` was only a transitive dependency (through
@@ -290,10 +291,12 @@ holds the Red commit shape.
 a direct dependency of `scripts/validate-ci.mjs`. Green records it in evidence section 3 as
 already present. Green makes no manifest change for it. Case 7 must still pass after S2.
 
-Red expectation at this HEAD (r5): the S1 describe holds 11 tests. Cases 1, 2, 3, 4, 7, and 8
-fail on the assertion (6 red). Cases 5, 5b, 6, 9, and 9b pass (5 green guards). Cases 5, 5b,
-and 6 pass because the root has vinext 1.4.5. Cases 9 and 9b pass because no manifest
-declares `eslint` or `@eslint/js`. The plan said "confirm cases 1 to 4" for the original Red
+Red expectation (r5, fixed in r6). At this HEAD the S1 describe holds 9 tests: cases 1 to 8,
+with 5b (collect-only `vitest list`, 2026-11-17). The follow-up Red commit adds cases 9 and 9b.
+After that commit the describe holds 11 tests. Cases 1, 2, 3, 4, 7, and 8 must fail on the
+assertion (6 red). Cases 5, 5b, 6, 9, and 9b must pass (5 green guards). Cases 5, 5b, and 6
+pass because the root has vinext 1.4.5. Cases 9 and 9b pass because no manifest declares
+`eslint` or `@eslint/js`. The plan said "confirm cases 1 to 4" for the original Red
 commit `abbe15f1`. The Red run must confirm all six failing cases and record each first
 failing line. A passing guard is not a defect. Mid Red records it as a green guard. The W4
 command of section 14.2 is the second Red evidence: 4 failed and 4 passed.
@@ -343,7 +346,7 @@ Run in this order. Stop at the first failure that is not a baseline failure.
    record its first redirect or status (for example a redirect to a login route), because a
    login gate is a baseline fact and not a finding.
 3. **S1 Test (Red) task (Mid Red):** `RED_TEST_COMMAND` fails on the six named cases. Run
-   the discovery check first. Land the follow-up Red commit (section 13.3).
+   the discovery check first. Land the follow-up Red commit (section 14.3).
 4. **After the vinext commit (Jr Green):** run the typecheck and test sweeps for all
    workspaces. Search the test logs:
    `grep -l 'Failed to resolve import "next' measure/runs/vinext-oxc-toolchain_20261114/gates/<label>/test-*.log`
@@ -428,7 +431,8 @@ Each check is a command with an exit code. The label S1 evidence file path is
   **r5:** the W4 rewrite follows section 14.2. The orchestrator runs the `W4_AUDIT_COMMAND`
   of section 2 with its parse. It requires `w4_failed=0` and the eight exact titles of
   section 14.2 in the passed set. (Was: "the four titles of section 13.3". That list held
-  prefixes, and the file holds none of them.)
+  prefixes, and the file holds none of them.) **r6:** the orchestrator also runs the closure
+  checks K2 to K5 of section 14.2. The eight titles alone do not close issue #2.
 - **Manifest check.** `git diff <phase_base_sha> --name-only` has one `package-lock.json` at
   the root only, and no `.npmrc`.
 - **Marker check.** `git grep -n 'planned: vinext-oxc-toolchain_20261114'` still finds the
@@ -488,7 +492,7 @@ ignored files in the main tree.
 
 - **Green gate:** `GREEN_TEST_COMMAND` exits 0. `lint s1`, `test s1`, and `checks-all s1`
   print `NEWFAIL=0`. The W4 check of section 14.2 prints `w4_failed=0` with the eight exact
-  titles passed.
+  titles passed. **(r6)** The closure checks K2 to K5 of section 14.2 hold at the same commit.
 - **Closeout gate (phase acceptance):** the Green gate; `npm ci` succeeded; 6 builds exit 0;
   the next-absent step is 0; the workspace-set check of section 6.4 prints
   `workspaces-<script>=27` four times and no `comm` line; the dev status matches the baseline; the browser smoke matches
@@ -536,7 +540,7 @@ ignored files in the main tree.
 | Oxlint reads no file | Each lint log has a labeled count `on <n> files`. Parse `<n>`. It is above 0 (A3, A4). |
 | Findings fixed with a behavior change | `fix(lint)` commit diff goes to Review A with the question "does any change alter behavior". The test, typecheck, and build sweeps show no new failure. |
 | Rule gap not recorded | Orchestrator check: each rule in the `--details` output of the migration appears in evidence section 6 (A5). |
-| `eslint` family left in a manifest or lockfile | Plan case 1. **(added)** `package-lock.json` has no `node_modules/eslint` key. |
+| `eslint` family left in a manifest, or an ESLint copy that is not peer-only **(r6)** | Plan case 1. **(added r6, non-droppable)** S2 case 9, the issue #2 case: **(a)** the lockfile has no `node_modules/eslint-config-next` key and no `node_modules/typescript-eslint` key; **(b)** each of `node_modules/eslint`, `node_modules/@eslint/js`, and `node_modules/@eslint/eslintrc` is absent or has `peer: true`; **(c)** each `jsPlugins` specifier of the root `.oxlintrc.json` has a `node_modules/<specifier>` key. S2 case 9b runs the scan on an in-memory lockfile with one seeded fault for each clause and expects exactly three hits. Case 9 passes at this HEAD (guard). Falsification: (a) fails when either key exists, (b) fails when a copy lacks `peer: true`, and (c) fails when a specifier has no key. The S2 refresh may re-derive the Red set. It cannot drop case 9 or case 9b. |
 
 Gates: `RED_TEST_COMMAND` filter `S2 oxlint`. `PROJECT_LINT` must print `NEWFAIL=0` and every
 workspace lint script exits 0 with zero warnings (the sweep covers the 27 workspace folders;
@@ -547,9 +551,11 @@ in section 5 and the section 6 and section 8 entries.
 ESLint package. The plan cases 1, 2, and 3 already pass at the merged tree. The S2 refresh at
 the start of S2 re-derives the Red set. It also decides how to fill evidence section 6 and
 the "before" lint timing, because the migration tool has no config left to read (section
-14.8). The lockfile keeps `eslint`, `@eslint/js`, and `@eslint/eslintrc` as peers of the two
-React ESLint plugins in the root `devDependencies`. The row "`eslint` family left in a
-manifest or lockfile" can pass only after S2 removes those plugins.
+14.8). The lockfile keeps `eslint`, `@eslint/js`, and `@eslint/eslintrc` as peer-only copies
+(flags `dev` and `peer`) of the two React ESLint plugins in the root `devDependencies`.
+**(r6)** The root `.oxlintrc.json` loads both plugins as `jsPlugins` (section 14.2). S2 keeps
+them. No S2 case asserts lockfile absence of `eslint` or `@eslint/js`. Such a case cannot pass
+while the plugins stay, and it is a wrong test.
 
 ### S3: TypeScript 7 and tsrs (risk: high)
 
@@ -654,7 +660,8 @@ not name this step in S5. This strategy added one S5 Contract line to `plan.md` 
 | S5 | A11, A12 | `bash tests/measure_orchestrator_audit.sh` stays in the `checks-all` gate. The AGENTS.md edit touches only the two guardrail lines. |
 | All | A8 | Task markers: Green marks `[~]` then `[x]` with a SHA. The role gate reads them. |
 
-Revision r5 adds defenses to the S1 rows. Section 14.9 lists them.
+Revision r5 adds defenses to the S1 rows. Section 14.9 lists them. Revision r6 adds more.
+Section 15.4 lists them.
 
 ## 12. Gate script
 
@@ -767,9 +774,11 @@ Red result at this HEAD, from the r4 verification run:
 - No `it(` or `expect(` line disappears unless it names a removed package.
 - **S1/S2 split.** `eslint` and `@eslint/js` remain in the lockfile in S1, because the React
   ESLint plugins name them as peers. S1 therefore asserts manifest absence for both. S1
-  asserts both manifest and lockfile absence for `eslint-config-next` and `next`. S2 asserts
-  lockfile absence for `eslint` and `@eslint/js` after it removes the ESLint plugins. A
-  lockfile-absence check for `eslint` or `@eslint/js` in S1 cannot pass and is a wrong test.
+  asserts both manifest and lockfile absence for `eslint-config-next` and `next`. **(superseded
+  by r6, section 14.2)** The r4 text said that S2 asserts lockfile absence for `eslint` and
+  `@eslint/js` after it removes the ESLint plugins. S2 keeps the plugins, so S2 asserts the
+  peer-only copies. A lockfile-absence check for `eslint` or `@eslint/js` cannot pass in S1 or
+  in S2, and it is a wrong test.
 - **(superseded by r5, section 14.2)** The r4 rule said that the four titles keep their text.
   Three of them cannot: they would claim a version line that the lockfile does not hold.
   Section 14.2 sets the replacement titles.
@@ -856,7 +865,7 @@ This role does not edit `plan.md`. The orchestrator applies these edits.
 4. **S2 layout.** The plan says one `.oxlintrc.json` for each of 25 linted workspaces. The
    merged tree has one root `.oxlintrc.json`, and every workspace lint script names
    `../../.oxlintrc.json`. Replace the 25-file layout with the single root config. The rule
-   for the S2 cases is unchanged (13.4, R17).
+   for the S2 cases is unchanged (6.1, R17).
 5. **S1 Verify.** Change "all 5 apps pass `npm run build`" to 6 apps. Change "cases 1 to 6"
    to the r4 case set of 13.3.
 6. **No phase SHA marker changes.** No plan line carries a SHA for S1. `phase_base_sha`
@@ -925,8 +934,13 @@ eight tests, not four.
 Replacement titles (Green copies them verbatim):
 
 - A: `eslint-config-next is absent from every manifest and from the lockfile (S1 removal supersedes the W4 16.x line)`
-- B: `eslint is absent from every manifest; the lockfile keeps a peer copy until S2 (S1 supersedes the W4 10.x line)`
-- C: `@eslint/js is absent from every manifest; the lockfile keeps a peer copy until S2 (S1 supersedes the W4 10.x line)`
+- B: `eslint is absent from every manifest; the lockfile keeps only a peer copy (S1 supersedes the W4 10.x line)`
+- C: `@eslint/js is absent from every manifest; the lockfile keeps only a peer copy (S1 supersedes the W4 10.x line)`
+
+(r6) Titles B and C lose the words "until S2" of r5, because S2 keeps the peer copies (below).
+The test body of B asserts two things: no manifest declares `eslint`, and the key
+`node_modules/eslint`, when it exists, has `peer: true`. The test body of C does the same for
+`@eslint/js`. Both hold at this HEAD.
 
 The state at this HEAD comes from the lookup that the test uses (`installedVersion`), run in
 `node -e`, and from the collect-only `vitest list`. The r4 verification run also recorded 4 failed.
@@ -936,6 +950,16 @@ The state at this HEAD comes from the lookup that the test uses (`installedVersi
 `eslint-plugin-react-hooks` `^7.1.1`. The peer range of `eslint-plugin-react` stops at `eslint`
 `^9.7`. npm therefore installs `eslint` 9.39.5, `@eslint/js` 9.39.5, and `@eslint/eslintrc`
 3.3.7 as peers (flags `dev` and `peer`). A title that claims the 10.x line would be false.
+
+**Why S2 keeps the peer copies (r6).** The root `.oxlintrc.json` has three `jsPlugins`:
+`eslint-js` (`oxlint-plugin-eslint`), `react-js` (`eslint-plugin-react`), and `react-hooks-js`
+(`eslint-plugin-react-hooks`). Its 3 `overrides` for files under `apps/` enable 1 `react-js`
+rule and 14 `react-hooks-js` rules. That is 45 rule entries. A removal of the two plugins
+drops those rules, or leaves two `jsPlugins` specifiers without a package. Issue #2
+condition 1 says to preserve the Oxlint migration. The lint track spec
+(`eslint-to-oxlint-migration_20260820`, "Complete engine cutover", items 6 to 8) allows a
+peer-only `eslint` package in `package-lock.json` and `node_modules`. That track is `[~]` in
+`measure/tracks.md`.
 
 **Selectors.** The collect-only command `npx --no-install vitest list <file> -t '<pattern>'`
 printed the names above for each pattern below.
@@ -976,7 +1000,7 @@ compare is a set equality, not a count.
 - A removed package gets an absence check, not a version check. `eslint-config-next` and `next`
   are absent from every manifest and from the lockfile. `eslint` and `@eslint/js` are absent
   from every manifest. The lockfile keeps `node_modules/eslint` and `node_modules/@eslint/js`
-  as peer copies until S2 removes the plugins.
+  as peer-only copies (`peer: true`), because the two React ESLint plugins stay (r6, below).
 - The three absence tests stay in the same describe, so the same selector gives eight tests.
 - No `it(` or `expect(` line disappears unless it names a removed package. The loop `it(`
   stays, because it serves titles 1, 2, 3, and 5.
@@ -984,11 +1008,64 @@ compare is a set equality, not a count.
   manifest or to `overrides` to make an old title pass (R20). Case 9 enforces this.
 - The old security floor stays a minimum for every package that a manifest still declares.
 
+**W4 8/8 does not close issue #2 alone (r6).** The eight titles are one describe of one file.
+Issue #2 has four completion conditions. (1) Preserve the Oxlint migration. (2) Replace
+requirements for removed lint packages with absence checks where appropriate. (3) Keep version
+floors for packages that stay required. (4) Run the W3 and W4 audit suites against the merged
+lockfile. The eight titles cover conditions 2 and 3 for one describe. They cover neither
+condition 1 nor condition 4. The evidence below was checked on 2026-11-17.
+
+- The test at line 249 of the same file is not one of the eight. Its title is "every W4
+  framework major installed lockfile version satisfies its w4-framework-targets.json
+  target_version range". At `baseline-m2` it fails on the `next` guard (line 262). After the
+  key `node_modules/next` leaves, it still fails. The loop reports `eslint-config-next` (no
+  lockfile entry, target 16.0.0), `eslint` (9.39.5, target 10.0.0), and `@eslint/js` (9.39.5,
+  target 10.0.0). The fixture `fixtures/w4-framework-targets.json` still lists the three. The
+  issue text names this: "restores removed packages to `W4_TARGETS`". The fix goes in the
+  loop, as the `next` branch shows. Green keeps the fixture entries. The sibling file counts
+  them (`framework_families_count`, lines 195 to 206, and lines 224 to 243).
+- The sibling file `framework-wave-w4.test.ts` has 35 tests. Six fail at `baseline-m2`. Five of
+  the six name a removed package. They are at line 406 (`next`), line 434 (`eslint-config-next`),
+  line 500 (`eslint`), line 528 (`@eslint/js`), and line 630. The test at line 630 is a sanity
+  test: `eslint` 9.39.5 "must be past its pre-W4 major 9". The r5 plan box gave the titles at
+  lines 434, 500, and 528, but it named the `-audit` file (section 15.3, Q2).
+- `baseline-m2` has 24 failed audit tests in 5 files (`step-audit-suites.log`). `key()` in
+  `gates.sh` keeps the `FAIL` and `AssertionError` lines, and `new_keys` compares them. The
+  four sibling tests at lines 434, 500, 528, and 630 repeat their baseline keys while they
+  stay red. `test s1` then gives `NEWFAIL=0`. The gate cannot close issue #2. Checks K1 to K5
+  can.
+
+Issue #2 closes when K1 to K5 hold at one commit. `<stage>` is `red` or `green`.
+
+| # | Check | Command | At `baseline-m2` | Required at Green |
+|---|-------|---------|------------------|-------------------|
+| K1 | The 8 titles | `W4_AUDIT_COMMAND` and its parse | `w4_passed=4 w4_failed=4` | `w4_passed=8 w4_failed=0` |
+| K2 | The whole file `framework-wave-w4-audit.test.ts` | The `W4_AUDIT_COMMAND` without `-t`, with `--outputFile=measure/runs/vinext-oxc-toolchain_20261114/w4-audit-file-<stage>.json`, and the same parse. `w4_passed + w4_failed` is the test count (A4). | 15 tests, 5 failed | at least 15 tests, `w4_failed=0` |
+| K3 | The file `framework-wave-w4.test.ts` (Q2) | The same form, with the output file `w4-sibling-<stage>.json` | 35 tests, 6 failed | the only failed title, if any, is `@types/node: every workspace declaration shares a single major-version floor (W3 must hold; W4 must not re-introduce drift)`. At S1 Verify: `w4_failed=0`. |
+| K4 | The Oxlint migration stays | The command below | not applicable | `jsplugins_changed=0` and `jsplugins_count` of 3 or more. In S1 also: `git diff <phase_base_sha> --name-only -- .oxlintrc.json` prints nothing. |
+| K5 | No hidden residue | The `audit-suites` step of `test s1` | 24 failed | no failing key outside `baseline-m2`. Each remaining failure is in evidence section 10. |
+
+K4 command. Run it from the repository root. `<phase_base_sha>` is the S1 value in S1 and the
+S2 value in S2:
+
+```
+node -e 'const cp=require("child_process"),fs=require("fs");
+const b=JSON.parse(cp.execSync("git show "+process.argv[1]+":.oxlintrc.json")).jsPlugins;
+const n=JSON.parse(fs.readFileSync(".oxlintrc.json","utf8")).jsPlugins;
+console.log("jsplugins_changed="+(JSON.stringify(b)===JSON.stringify(n)?0:1)+" jsplugins_count="+n.length)' <phase_base_sha>
+```
+
+Parse the two labeled integers (A3). At this HEAD the command prints
+`jsplugins_changed=0 jsplugins_count=3`. S2 Verify repeats K1 to K4. S2 case 9 (section 8) is
+the S2 part of the closure. The S2 refresh cannot drop it. No S2 case asserts lockfile absence
+of `eslint` or `@eslint/js` (section 15.2).
+
 ### 14.3 Red commit shape and case set (F6)
 
 The r5 case set is cases 1 to 9, with 5b and 9b. `RED_TEST_COMMAND` does not change. The S1
-describe holds 11 tests at this HEAD. Six are red (1, 2, 3, 4, 7, 8). Five are green guards
-(5, 5b, 6, 9, 9b). The W4 command gives 4 red and 4 green (section 14.2).
+describe holds 9 tests at this HEAD (`vitest list`). After the follow-up Red commit it holds
+11. Six must be red (1, 2, 3, 4, 7, 8). Five must be green guards (5, 5b, 6, 9, 9b). The W4
+command gives 4 red and 4 green (section 14.2).
 
 `abbe15f1` stays the Red commit of the plan task. One follow-up Red commit lands on top:
 `test(vinext-oxc): extend the S1 gate tests for the 6-app tree (Red)`. It holds:
@@ -1098,8 +1175,8 @@ task stays `[~]` with its boxes unticked.
 
 Open items for the orchestrator. The r5 plan scope excludes them:
 
-1. The S1 audit-forward box repeats the four prefix titles. It needs one line that cites
-   section 14.2.
+1. (Done in r6.) The S1 audit-forward box cites section 14.2 and the closure checks K1 to
+   K5. It no longer repeats the four prefix titles.
 2. The danielson sub-boxes of S1 Implement have no box for the `next/*` alias in
    `apps/danielson/vitest.config.ts` (R4). The 5 other apps have it (62f3fa60).
 3. The closed "update all other dependencies" task predates the merge. The danielson ranges and
@@ -1107,9 +1184,11 @@ Open items for the orchestrator. The r5 plan scope excludes them:
 4. The S2 "before" lint timing cannot run, because no ESLint config remains. The S2 refresh
    decides how to fill it, and evidence section 6.
 5. The S3 Contract boxes that name `-c .oxlintrc.json` use the old layout (section 14.6).
-6. The S1 Verify box says "r4 case set (cases 1 to 8, with the issue #2 audit case)". It means
-   the cases of section 6.2, up to case 9b.
-7. Rename `gates/s1` to `gates/s1-premerge` before the first r5 `s1` gate (section 14.4).
+6. (Done in r6.) The S1 Verify box names the cases of section 6.2, up to case 9b, and the
+   closure checks of section 14.2.
+7. (r6) A box in the plan task S1 Test (Red) holds the step: rename `gates/s1` to
+   `gates/s1-premerge` before the first r5 `s1` gate (section 14.4). This role did not run
+   the `mv`.
 
 ### 14.9 Anti-pattern coverage (r5 additions)
 
@@ -1120,3 +1199,76 @@ Open items for the orchestrator. The r5 plan scope excludes them:
 | S1 | A5 | Each title and count of section 14.2 comes from `vitest list` output and file lines. Each risk id has one meaning. Falsifies when a section names a title that the file lacks. |
 | S1 | A7 | The W4 selectors name the package and the fixed phrase. They never use the bare word `eslint`. `vitest list` showed 4 matches for each selector. |
 | S1 | A10 | The capture rule names the three kinds of generated drift. Any other entry stops the capture. |
+
+## 15. Revision r6 (2026-11-17)
+
+**Revision record.** A second independent check of r5 (`strategy-r5-check-3cef6c6f.md`) gave
+PASS WITH FIXES: 0 blockers, 4 majors (F8 to F11), and 3 minors (F12 to F14). It also rated
+the open items of section 14.8. r6 fixes the seven findings and adds the plan box of item 7.
+This section wins when an earlier rule disagrees with it.
+
+### 15.1 Finding map
+
+| Finding | Fix | Sections |
+|---------|-----|----------|
+| F8 major | Step 3 of section 6.3 cites section 14.3 for the follow-up Red commit. | 6.3 |
+| F9 major | Case 9 checks only the workspace manifests. It asserts nothing about lockfile keys that start with `node_modules/`. | 6.2 |
+| F10 major | The plan audit-forward box cites section 14.2: the 8 titles, the closure checks K1 to K5, and the peer-only rule. | plan S1, 14.2 |
+| F11 major | Section 14.2 states that 8/8 does not close issue #2, and lists K1 to K5. S2 case 9 (peer-only) replaces the S2 lockfile-absence row. | 2, 6.4, 6.7, 8, 13.3, 14.2, plan S2 |
+| F12 minor | The plan Verify box names the cases of section 6.2 (1 to 9, with 5b and 9b). | plan S1 Verify |
+| F13 minor | Section 3 and section 13.8 item 4 cite section 6.1. The plan baseline box cites sections 6.4 and 14.4. | 3, 13.8, plan S1 Baseline |
+| F14 minor | The count of 11 tests belongs to the time after the follow-up Red commit. The describe holds 9 tests at this HEAD. | 6.2, 14.3 |
+| Item 7 | A plan box in S1 Test (Red) renames `gates/s1` to `gates/s1-premerge`. This role did not run the `mv`. | 14.8, plan S1 Test |
+
+Derived edits. No finding names them. Each follows from a finding:
+
+- Section 4 moves the capture point to the r6 commit. The r5 commit `3cef6c6f` predates the fixes.
+- Titles B and C of section 14.2 lose "until S2" (the F11 decision, section 15.2).
+- Sections 2, 6.4, and 6.7 name the closure checks, so that a Green gate cannot pass on 8/8 alone.
+- Section 13.3 marks the r4 S1/S2 split bullet as superseded. Section 14.8 marks items 1, 6, and 7 as done.
+
+### 15.2 F11 decision: what closes issue #2
+
+Issue #2 (`gh issue view 2 --json body`, state OPEN) lists four completion conditions (section
+14.2). `spec.md` has no text about issue #2. The decision rests on these facts, checked on
+2026-11-17:
+
+| Fact | Evidence |
+|------|----------|
+| The root `.oxlintrc.json` has the `jsPlugins` `oxlint-plugin-eslint`, `eslint-plugin-react`, and `eslint-plugin-react-hooks`. | `node -e` parse of the file. |
+| 3 `overrides` for files under `apps/` enable `react-js/no-deprecated` and 14 `react-hooks-js/*` rules. That is 45 entries, and none is `off`. | The same parse. |
+| The lockfile keeps `node_modules/eslint` 9.39.5, `node_modules/@eslint/js` 9.39.5, and `node_modules/@eslint/eslintrc` 3.3.7. Each has the flags `dev` and `peer`. | `node -e` on `package-lock.json`. |
+| The lockfile entries that list `eslint` in `peerDependencies` are `eslint-plugin-react`, `eslint-plugin-react-hooks`, and `@eslint-community/eslint-utils`. | The same scan, over all entries. |
+| The keys `node_modules/eslint-config-next` and `node_modules/typescript-eslint` do not exist. | The same scan. |
+| The lint track spec allows a peer-only `eslint` package in the lockfile and in `node_modules`. It cannot be a root manifest dependency or override. | `measure/tracks/eslint-to-oxlint-migration_20260820/spec.md`, "Complete engine cutover", items 6 to 9. |
+| `baseline-m2` has 24 failed audit tests. `framework-wave-w4-audit.test.ts` has 15 tests and 5 failed. `framework-wave-w4.test.ts` has 35 tests and 6 failed. | `gates/baseline-m2/step-audit-suites.log`, and `vitest list` (15 and 35). |
+| After the key `node_modules/next` leaves, the loop at line 249 reports 3 offenders. | The test lookup and `semver.satisfies`, run in `node -e` on the lockfile and the fixture. |
+| Only `apps/danielson/package.json` declares `next`. | `grep -ln '"next"'` over the manifests. |
+| The S1 describe holds 9 tests at this HEAD. | `vitest list --config scripts/vitest.config.ts -t 'S1 vinext 1.x'`. |
+| `gates/` holds `baseline`, `baseline-m2`, and `s1`. `gates/s1/lint.exit` has 26 names. `gates/s1-premerge` does not exist. | `ls` and `awk`. |
+
+**Decision.** Closure does not need a removal of the React ESLint plugins. The removal would
+break issue #2 condition 1. A lockfile-absence case for `eslint` and `@eslint/js` cannot pass,
+and it is a wrong test. S2 case 9 takes its place: the copies stay peer-only, and each
+`jsPlugins` specifier has a lockfile key. The open part of issue #2 is in S1: the
+self-consistency test and the sibling file. Checks K2 to K5 of section 14.2 cover it.
+
+### 15.3 Open questions for the orchestrator (defaults applied)
+
+- **Q1.** Does the PM want the two React ESLint plugins removed? Default: no. S2 keeps them and
+  asserts the peer-only copies. A removal needs a change of `jsPlugins` and the loss of 45 rule
+  entries. That is a lint-behavior change, outside S1 and S2.
+- **Q2.** Is `framework-wave-w4.test.ts` in the scope of issue #2? Default: yes. Check K3 and
+  the plan audit-forward box then cover its five tests that name a removed package. If the
+  answer is no, delete K3 and its plan box. Record the five failures in evidence section 10.
+  The registry then says that issue #2 closed for `framework-wave-w4-audit.test.ts` only.
+
+### 15.4 Anti-pattern coverage (r6 additions)
+
+| Phase | Anti-patterns | Defense and falsification |
+|-------|---------------|---------------------------|
+| S1 | A3 | K2 and K3 parse the labeled integers `w4_passed` and `w4_failed`. K4 prints `jsplugins_changed=<n> jsplugins_count=<n>`. Falsifies when a bare digit passes a wrong count. |
+| S1 | A4 | K2 needs at least 15 tests, so a file that loses its tests, or a `-t` that matches nothing, fails. K4 needs a count of 3 or more, so two missing lists cannot compare equal. |
+| S1 | A5 | The words "issue #2 closed" need K1 to K5 at one commit. The A5 and A6 detectors at closeout reject a registry or plan claim of closure on 8/8 alone. |
+| S1, S2 | A7 | The K4 compare reads the parsed `jsPlugins` array, not a text line. No bare-word filter. |
+| S2 | A4 | S2 case 9b seeds one fault for each clause of S2 case 9 in memory, and expects three hits. Case 9 cannot pass vacuously. |
