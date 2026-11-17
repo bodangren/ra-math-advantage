@@ -65,7 +65,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { getAppManifests, type AppManifest } from '../audit-contract';
@@ -125,7 +125,7 @@ const W3_DISPOSITION_FIXTURE = resolve(FIXTURES_DIR, 'w3-advisory-disposition.js
 const PACKAGE_LOCK = JSON.parse(
   readFileSync(resolve(REPO_ROOT, 'package-lock.json'), 'utf-8')
 ) as {
-  packages: Record<string, { version?: string }>;
+  packages: Record<string, { version?: string; peer?: boolean }>;
 };
 
 interface W4Target {
@@ -177,6 +177,50 @@ const W3_DISPOSITION: { advisories: Array<{ package: string }> } = JSON.parse(
 
 function installedVersion(pkg: string): string | undefined {
   return PACKAGE_LOCK.packages[`node_modules/${pkg}`]?.version;
+}
+
+// The manifest fields that a declaration scan reads.
+const DECLARATION_FIELDS = [
+  'dependencies',
+  'devDependencies',
+  'peerDependencies',
+  'optionalDependencies',
+  'overrides',
+] as const;
+
+// Every manifest of the repository: the root plus each workspace folder.
+function manifestFiles(): string[] {
+  const files = [resolve(REPO_ROOT, 'package.json')];
+  for (const dir of ['apps', 'packages']) {
+    const parent = resolve(REPO_ROOT, dir);
+    if (!existsSync(parent)) continue;
+    for (const entry of readdirSync(parent, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      const file = resolve(parent, entry.name, 'package.json');
+      if (existsSync(file)) files.push(file);
+    }
+  }
+  return files;
+}
+
+// Each place a manifest declares `pkg`, nested override objects included. A key
+// such as `eslint@9` counts as a declaration of `eslint`.
+function manifestDeclarations(pkg: string): string[] {
+  const hits: string[] = [];
+  const matches = (key: string) => key === pkg || key.startsWith(`${pkg}@`);
+  const walk = (value: unknown, trail: string, display: string) => {
+    if (value === null || typeof value !== 'object') return;
+    for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+      if (matches(key)) hits.push(`${display}:${trail}.${key}`);
+      walk(child, `${trail}.${key}`, display);
+    }
+  };
+  for (const file of manifestFiles()) {
+    const manifest = JSON.parse(readFileSync(file, 'utf8')) as Record<string, unknown>;
+    const display = file.startsWith(`${REPO_ROOT}/`) ? file.slice(REPO_ROOT.length + 1) : file;
+    for (const field of DECLARATION_FIELDS) walk(manifest[field], field, display);
+  }
+  return hits.sort();
 }
 
 const W4_MIGRATION_KEYS = [
@@ -262,6 +306,39 @@ describe('framework-wave (W4) adversarial audit — W4 lockfile/target self-cons
         ).toEqual([]);
         continue;
       }
+      // S1 removed eslint-config-next. The durable successor of the version check
+      // for a removed package is an absence check (strategy 14.2).
+      if (t.package === 'eslint-config-next') {
+        expect(
+          manifestDeclarations('eslint-config-next'),
+          'no manifest may declare eslint-config-next after S1 removed it'
+        ).toEqual([]);
+        const stillThere = Object.keys(PACKAGE_LOCK.packages).filter((k) =>
+          k.endsWith('node_modules/eslint-config-next')
+        );
+        expect(
+          stillThere,
+          'eslint-config-next must not appear in the lockfile after S1 removed it'
+        ).toEqual([]);
+        continue;
+      }
+      // S1 keeps eslint and @eslint/js as peer-only lockfile copies of the two React
+      // ESLint plugins. No manifest may declare them, and each copy stays peer-only
+      // (strategy 14.2 peer-only rule).
+      if (t.package === 'eslint' || t.package === '@eslint/js') {
+        expect(
+          manifestDeclarations(t.package),
+          `no manifest may declare ${t.package} after S1`
+        ).toEqual([]);
+        const key = `node_modules/${t.package}`;
+        if (PACKAGE_LOCK.packages[key]) {
+          expect(
+            PACKAGE_LOCK.packages[key].peer,
+            `${key} must stay a peer copy of the React ESLint plugins`
+          ).toBe(true);
+        }
+        continue;
+      }
       const v = installedVersion(t.package);
       if (!v) {
         offenders.push({ pkg: t.package, installed: '<missing>', target: t.target_version });
@@ -296,10 +373,7 @@ describe('framework-wave (W4) adversarial audit — W4 majors on post-W4 major l
     vinext: 1,
     vite: 8,
     '@vitejs/plugin-react': 6,
-    'eslint-config-next': 16,
     typescript: 6,
-    eslint: 10,
-    '@eslint/js': 10,
   };
 
   for (const [pkg, expectedMajor] of Object.entries(expectedPostW4Major)) {
@@ -322,5 +396,43 @@ describe('framework-wave (W4) adversarial audit — W4 majors on post-W4 major l
       stillThere,
       'next must not appear in the lockfile after S1 removed it'
     ).toEqual([]);
+  });
+
+  it('eslint-config-next is absent from every manifest and from the lockfile (S1 removal supersedes the W4 16.x line)', () => {
+    expect(
+      manifestDeclarations('eslint-config-next'),
+      'manifest fields that declare eslint-config-next'
+    ).toEqual([]);
+    const stillThere = Object.keys(PACKAGE_LOCK.packages).filter((k) =>
+      k.endsWith('node_modules/eslint-config-next')
+    );
+    expect(
+      stillThere,
+      'eslint-config-next must not appear in the lockfile after S1 removed it'
+    ).toEqual([]);
+  });
+
+  it('eslint is absent from every manifest; the lockfile keeps only a peer copy (S1 supersedes the W4 10.x line)', () => {
+    expect(manifestDeclarations('eslint'), 'manifest fields that declare eslint').toEqual([]);
+    const key = 'node_modules/eslint';
+    if (PACKAGE_LOCK.packages[key]) {
+      expect(
+        PACKAGE_LOCK.packages[key].peer,
+        'node_modules/eslint must stay a peer copy of the React ESLint plugins'
+      ).toBe(true);
+    }
+  });
+
+  it('@eslint/js is absent from every manifest; the lockfile keeps only a peer copy (S1 supersedes the W4 10.x line)', () => {
+    expect(manifestDeclarations('@eslint/js'), 'manifest fields that declare @eslint/js').toEqual(
+      []
+    );
+    const key = 'node_modules/@eslint/js';
+    if (PACKAGE_LOCK.packages[key]) {
+      expect(
+        PACKAGE_LOCK.packages[key].peer,
+        'node_modules/@eslint/js must stay a peer copy of the React ESLint plugins'
+      ).toBe(true);
+    }
   });
 });

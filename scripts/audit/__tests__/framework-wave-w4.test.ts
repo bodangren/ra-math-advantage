@@ -50,7 +50,7 @@
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import {
@@ -116,6 +116,7 @@ const PACKAGE_LOCK = JSON.parse(
 ) as {
   packages: Record<string, {
     version?: string;
+    peer?: boolean;
     dependencies?: Record<string, string>;
     devDependencies?: Record<string, string>;
   }>;
@@ -148,6 +149,50 @@ function allDeclaredRanges(manifest: AppManifest, pkg: string): string[] {
 
 function installedVersion(pkg: string): string | undefined {
   return PACKAGE_LOCK.packages[`node_modules/${pkg}`]?.version;
+}
+
+// The manifest fields that a declaration scan reads.
+const DECLARATION_FIELDS = [
+  'dependencies',
+  'devDependencies',
+  'peerDependencies',
+  'optionalDependencies',
+  'overrides',
+] as const;
+
+// Every manifest of the repository: the root plus each workspace folder.
+function manifestFiles(): string[] {
+  const files = [resolve(REPO_ROOT, 'package.json')];
+  for (const dir of ['apps', 'packages']) {
+    const parent = resolve(REPO_ROOT, dir);
+    if (!existsSync(parent)) continue;
+    for (const entry of readdirSync(parent, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      const file = resolve(parent, entry.name, 'package.json');
+      if (existsSync(file)) files.push(file);
+    }
+  }
+  return files;
+}
+
+// Each place a manifest declares `pkg`, nested override objects included. A key
+// such as `eslint@9` counts as a declaration of `eslint`.
+function manifestDeclarations(pkg: string): string[] {
+  const hits: string[] = [];
+  const matches = (key: string) => key === pkg || key.startsWith(`${pkg}@`);
+  const walk = (value: unknown, trail: string, display: string) => {
+    if (value === null || typeof value !== 'object') return;
+    for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+      if (matches(key)) hits.push(`${display}:${trail}.${key}`);
+      walk(child, `${trail}.${key}`, display);
+    }
+  };
+  for (const file of manifestFiles()) {
+    const manifest = JSON.parse(readFileSync(file, 'utf8')) as Record<string, unknown>;
+    const display = file.startsWith(`${REPO_ROOT}/`) ? file.slice(REPO_ROOT.length + 1) : file;
+    for (const field of DECLARATION_FIELDS) walk(manifest[field], field, display);
+  }
+  return hits.sort();
 }
 
 function semverFloor(range: string): { major: number; minor: number; patch: number } {
@@ -431,14 +476,18 @@ describe('framework-wave (W4) — Next.js 15 → 16 → removed (Task 3 / FR8; S
 });
 
 describe('framework-wave (W4) — eslint-config-next 15 → 16 (Task 3 / FR8)', () => {
-  it('eslint-config-next installed lockfile version is on the 16.x line', () => {
-    const v = installedVersion('eslint-config-next');
-    expect(v, 'eslint-config-next missing from lockfile').toBeDefined();
-    const f = semverFloor(`^${v}`);
+  it('eslint-config-next is absent from every manifest and from the lockfile (S1 removal supersedes the W4 16.x line)', () => {
     expect(
-      f.major,
-      `eslint-config-next major must be 16 after W4-T3, found ${f.major} in ${v}`
-    ).toBe(16);
+      manifestDeclarations('eslint-config-next'),
+      'manifest fields that declare eslint-config-next'
+    ).toEqual([]);
+    const stillThere = Object.keys(PACKAGE_LOCK.packages).filter((k) =>
+      k.endsWith('node_modules/eslint-config-next')
+    );
+    expect(
+      stillThere,
+      'eslint-config-next must not appear in the lockfile after S1 removed it'
+    ).toEqual([]);
   });
 
   it('each first-class app eslint-config-next manifest range uses a ^ prefix and admits 16.x (W3 alignment must not pin 15 in a way that blocks W4)', () => {
@@ -497,14 +546,15 @@ describe('framework-wave (W4) — TypeScript 5 → 6 (Task 4 / FR8)', () => {
 });
 
 describe('framework-wave (W4) — ESLint 9 → 10 (Task 4 / FR8)', () => {
-  it('eslint installed lockfile version is on the 10.x line', () => {
-    const v = installedVersion('eslint');
-    expect(v, 'eslint missing from lockfile').toBeDefined();
-    const f = semverFloor(`^${v}`);
-    expect(
-      f.major,
-      `eslint major must be 10 after W4-T4, found ${f.major} in ${v}`
-    ).toBe(10);
+  it('eslint is absent from every manifest; the lockfile keeps only a peer copy (S1 supersedes the W4 10.x line)', () => {
+    expect(manifestDeclarations('eslint'), 'manifest fields that declare eslint').toEqual([]);
+    const key = 'node_modules/eslint';
+    if (PACKAGE_LOCK.packages[key]) {
+      expect(
+        PACKAGE_LOCK.packages[key].peer,
+        'node_modules/eslint must stay a peer copy of the React ESLint plugins'
+      ).toBe(true);
+    }
   });
 
   it('every workspace eslint manifest range admits a 10.x release (reconcile ^9.39.4 / ^9)', () => {
@@ -525,14 +575,17 @@ describe('framework-wave (W4) — ESLint 9 → 10 (Task 4 / FR8)', () => {
 });
 
 describe('framework-wave (W4) — @eslint/js 9 → 10 (Task 4 / FR8)', () => {
-  it('@eslint/js installed lockfile version is on the 10.x line', () => {
-    const v = installedVersion('@eslint/js');
-    expect(v, '@eslint/js missing from lockfile').toBeDefined();
-    const f = semverFloor(`^${v}`);
-    expect(
-      f.major,
-      `@eslint/js major must be 10 after W4-T4, found ${f.major} in ${v}`
-    ).toBe(10);
+  it('@eslint/js is absent from every manifest; the lockfile keeps only a peer copy (S1 supersedes the W4 10.x line)', () => {
+    expect(manifestDeclarations('@eslint/js'), 'manifest fields that declare @eslint/js').toEqual(
+      []
+    );
+    const key = 'node_modules/@eslint/js';
+    if (PACKAGE_LOCK.packages[key]) {
+      expect(
+        PACKAGE_LOCK.packages[key].peer,
+        'node_modules/@eslint/js must stay a peer copy of the React ESLint plugins'
+      ).toBe(true);
+    }
   });
 
   it('every workspace @eslint/js manifest range admits a 10.x release (reconcile ^9)', () => {
@@ -629,11 +682,34 @@ describe('framework-wave (W4) — package-wave-matrix assigns every W4 family to
 
   it('W4 framework families are past their pre-W4 majors (sanity: this Red suite is not vacuous)', () => {
     const checked: Array<{ pkg: string; installed: string; preW4Major: number }> = [];
+    // S1 removed next and eslint-config-next, and it leaves eslint and @eslint/js as
+    // peer-only lockfile copies. A removed package gets an absence check, not a
+    // version check (strategy 14.2 durability contract).
+    const removedPackages = new Set(['next', 'eslint-config-next', 'eslint', '@eslint/js']);
     for (const pkg of expectedFamilies) {
+      if (removedPackages.has(pkg)) {
+        expect(
+          manifestDeclarations(pkg),
+          `${pkg} must be absent from every manifest after S1`
+        ).toEqual([]);
+        if (pkg === 'next' || pkg === 'eslint-config-next') {
+          expect(
+            Object.keys(PACKAGE_LOCK.packages).filter((k) =>
+              k.endsWith(`node_modules/${pkg}`)
+            ),
+            `${pkg} must not appear in the lockfile after S1 removed it`
+          ).toEqual([]);
+        } else if (PACKAGE_LOCK.packages[`node_modules/${pkg}`]) {
+          expect(
+            PACKAGE_LOCK.packages[`node_modules/${pkg}`].peer,
+            `node_modules/${pkg} must stay a peer copy of the React ESLint plugins`
+          ).toBe(true);
+        }
+        continue;
+      }
       const v = installedVersion(pkg);
-      // next was removed in S1 (vinext-oxc-toolchain_20261114); its guard is the
-      // absence assertion above. @types/node has no pre-W4 major floor here.
-      if (!v || pkg === 'next' || pkg === '@types/node') continue;
+      // @types/node has no pre-W4 major floor here.
+      if (!v || pkg === '@types/node') continue;
       const f = semverFloor(`^${v}`);
       const preW4Major = (() => {
         switch (pkg) {
