@@ -272,7 +272,7 @@ deploy waits until vinext-oxc-toolchain_20261114 S1 moves danielson to vinext 1.
 - Given old documents that block the BM2 schema, When the deploy fails for that reason, Then the evidence file records the tables and the counts, and the second deploy passes after the D10 cleanup.
 - Given the Worker `bus-math-v2`, When `npx wrangler secret list --name bus-math-v2` runs, Then it lists the secrets of the Runtime Variables table and no `AUTH_JWT_SECRET`.
 - Given a built RSC server chunk of BM2 that lacks "Cannot handle action key" or "Cannot transport a detached buffer", or a failed smoke test with no version that has a fixed tag, When `deployApp('bm2')` runs, Then the first case stops the deploy before `npx convex deploy`, and the second case runs no rollback and turns workers.dev OFF (D13).
-- Given that `vinext-oxc-toolchain_20261114` S1 is complete, When `npm run deploy:app -- danielson` runs, Then it deploys the Worker `danielson` with no Convex deploy, and the smoke test passes on the workers.dev URL.
+- Given that `vinext-oxc-toolchain_20261114` S1 is complete, When `npm run deploy:app -- danielson` runs, Then it deploys the Worker `danielson` and the smoke test passes on the workers.dev URL. The S1 inventory decides the Convex deploy of `apps/danielson` (the app has a `convex/` folder).
 
 **Estimate:** M
 **Priority:** Must
