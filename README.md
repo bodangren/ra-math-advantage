@@ -111,8 +111,8 @@ track order.
    (planned: math-app-course-precalc_20261114).
    AP Calculus and AP Statistics come later. The old apps retire with no redirects
    (planned: math-app-retire-old-apps_20261114). BM2 stays a separate app.
-2. **Danielson app.** `apps/danielson` comes in from `github.com/bodangren/hdkwa-danielson`
-   with its history (planned: danielson-app-import_20261114).
+2. **Danielson app.** `apps/danielson` is in the tree since the merge of 2026-11-16. The app
+   holds no code from `hdkwa-danielson`.
 3. **Students across years.** One student account and one history across courses and
    years (planned: math-app-student-history_20261114). A license covers one seat for one
    year (planned: math-app-seat-licensing_20261114).
@@ -121,7 +121,7 @@ track order.
    (planned: bm2-convex-auth-v2_20261114).
 5. **Graph source.** The skill graph comes from the mastery-advantage repository
    (`github.com/Reading-Advantage-Thailand/mastery-advantage`), with the contract
-   kst-srs.v3.2 (planned: kst-v32-runtime_20261114, math-graph-consume_20261114).
+   kst-srs.v3.2 (planned: kst-srs-v3-2-im3-runtime-migration_20260710, math-graph-consume_20261114).
 6. **AI layer.** AI calls go through OpenRouter with `@openrouter/sdk`. Each role has one
    model variable. `openrouter/free` is for development only. Evaluation roles use
    structured output. Prompts contain no PII. Zero data retention applies only where a

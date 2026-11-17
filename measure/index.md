@@ -32,7 +32,7 @@ Each app owns its own product vision, guidelines, and design system. The root-le
 
 Today each math course is a separate app. One math app `apps/math` with the four courses as
 data replaces them (planned: math-app-base_20261114, math-app-retire-old-apps_20261114).
-`apps/danielson` comes in by import (planned: danielson-app-import_20261114).
+`apps/danielson` is in the tree since the merge of 2026-11-16.
 
 ### Product Definition
 

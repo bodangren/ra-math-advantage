@@ -10,15 +10,16 @@ Carry out the direction of 2026-11-14 through Measure tracks, in the order below
 
 1. `vinext-oxc-toolchain_20261114`: vinext 1.x with no `next`, oxlint, oxfmt, and tsrs.
 2. `openrouter-sdk-ai-layer_20261114`: the OpenRouter SDK AI layer (after 1).
-3. `danielson-app-import_20261114`, Phases S1 and S2 (after 1). Phase S3 waits for
-   `prod-deploy-pipeline_20261114`.
+3. `danielson-app-import_20261114` is archived (superseded, PM 2026-11-16). `apps/danielson`
+   is in the tree; its deploy is part of `prod-deploy-pipeline_20261114`.
 4. The track set `unified-math-app_20261114`: `math-app-base_20261114`, then the three
    course imports, then `math-app-retire-old-apps_20261114`,
    `math-app-student-history_20261114`, and `math-app-seat-licensing_20261114`.
 5. `bm2-convex-auth-v2_20261114` (after 4).
-6. `prod-deploy-pipeline_20261114` (after 4 and 5). Then Phase S3 of
-   `danielson-app-import_20261114`.
-7. `kst-v32-runtime_20261114` (after 4).
+6. `prod-deploy-pipeline_20261114` (after 4 and 5). It also owns the deploy of
+   `apps/danielson` (Phase S3 of the archived `danielson-app-import_20261114`, superseded
+   PM 2026-11-16).
+7. `kst-v32-runtime_20261114` is archived (superseded, PM 2026-11-16); `kst-srs-v3-2-im3-runtime-migration_20260710` replaces it (after 4).
 8. `math-graph-consume_20261114` (after 7 and the first release of the math graph).
 9. Practice Primitives Tracks A to F (after 5 and 6).
 

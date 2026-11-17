@@ -11,7 +11,7 @@ Verification and Checkpointing Protocol)
 
 Do not start S1 until both conditions are true:
 
-- `kst-v32-runtime_20261114` is closed in `measure/tracks.md`.
+- `kst-srs-v3-2-im3-runtime-migration_20260710` is complete in `measure/tracks.md`.
 - A folder `/home/daniebo/Desktop/handoff/a58-math-graph-release-us-hs-<label>/` exists. The
   `<label>` follows the label pattern of `release-path.md`
   (`^math-us-hs-[0-9]{8}-r[0-9]{2}$`). Use the folder with the highest label (the date, then

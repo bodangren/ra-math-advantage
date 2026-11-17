@@ -324,6 +324,6 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
 - Custom domains and routes.
 - CI deploys with GitHub secrets (a later track).
 - The first school accounts and licenses in production.
-- The deploy of `apps/danielson` (`danielson-app-import_20261114`, Phase 3, which uses this
-  pipeline).
+- The deploy of `apps/danielson` is owned by this track. It is Phase 3 of the archived
+  `danielson-app-import_20261114` and uses this pipeline.
 - The Convex project `danielson`.

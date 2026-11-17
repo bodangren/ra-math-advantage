@@ -34,8 +34,8 @@ Planned changes:
   (planned: math-app-course-im2_20261114) (planned: math-app-course-precalc_20261114)
   (planned: math-app-retire-old-apps_20261114).
 - BM2 stays a separate app.
-- `apps/danielson`, the Danielson Framework professional development site, comes in by
-  import (planned: danielson-app-import_20261114).
+- `apps/danielson`, the Danielson Framework professional development site, is in the tree
+  since the merge of 2026-11-16.
 
 ## Shared Features (Platform-Level)
 
@@ -43,7 +43,7 @@ These features exist across the apps via shared packages in `packages/`:
 
 - **Practice Contract** (`practice-core`): Unified submission envelope, timing telemetry, SRS rating
 - **SRS Engine** (`srs-engine`): FSRS scheduler, review processor, queue primitives
-- **Knowledge Space** (`knowledge-space-core`, `knowledge-space-practice`): graph schemas, readiness, knowledge state, placement, planner, projections. The contract is kst-srs.v2; the move to kst-srs.v3.2 is planned (planned: kst-v32-runtime_20261114).
+- **Knowledge Space** (`knowledge-space-core`, `knowledge-space-practice`): graph schemas, readiness, knowledge state, placement, planner, projections. The contract is kst-srs.v2; the move to kst-srs.v3.2 is planned (planned: kst-srs-v3-2-im3-runtime-migration_20260710).
 - **Auth** (`core-auth`): JWT sessions, password hashing, role-based access. Convex Auth v2 replaces it (planned: math-app-base_20261114, bm2-convex-auth-v2_20261114).
 - **App Shell** (`app-shell`): Shared auth context, providers, layout, header components
 - **Convex Infrastructure** (`core-convex`): Client config, admin auth, query helpers

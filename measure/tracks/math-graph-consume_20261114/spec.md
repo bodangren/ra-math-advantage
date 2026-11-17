@@ -2,7 +2,7 @@
 
 Type: Chore
 Spec format: Story-shaped (one story for each phase)
-Depends on: `kst-v32-runtime_20261114` (closed); the first release of the merged math
+Depends on: `kst-srs-v3-2-im3-runtime-migration_20260710` (closed); the first release of the merged math
 graph in the hand-off folder (see "External Dependencies")
 
 ## Overview

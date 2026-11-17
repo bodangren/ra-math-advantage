@@ -160,7 +160,7 @@ new practice targets.
 ## Current Measure Tracks
 
 - Track 1 (`wire-kst-pipeline_20260521`) completed the v2 production wiring. `kst-srs-v3-core-correctness_20260710` delivered the v3 correctness layer; the remaining evidence/calibration, planner/session, and runtime cutover work continues in the ordered v3.1/v3.2 tracks.
-- `kst-v32-runtime_20261114` defines additional runtime migration work (planned: kst-v32-runtime_20261114).
+- The IM3 runtime migration track defines the remaining runtime work (planned: kst-srs-v3-2-im3-runtime-migration_20260710).
 - `math-graph-consume_20261114` switches the math app to the released mastery-advantage graph (planned: math-graph-consume_20261114).
 - Track 2 defines `knowledge-space-core`.
 - Track 6 defines reusable blueprint and generator contracts in `knowledge-space-practice`.

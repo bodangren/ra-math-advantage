@@ -9,6 +9,28 @@ full runtime chain; shared packages remain canonical. Existing Convex data must
 migrate online through widen–migrate–narrow deployments with dry runs,
 resumable batches, verification, and rollback.
 
+## Scope carried from kst-v32-runtime_20261114 (PM 2026-11-16)
+
+The archived track `kst-v32-runtime_20261114` held three items that this track now owns.
+The list below gives the text of those items from section "Decisions" of the archived
+`spec.md`.
+
+- K2a Efficacy metrics (§13.5): `efficacy-core` keeps the v2 stability index for its reports.
+  The formula moves to `packages/efficacy-core/src/metrics/stability-index.ts` as
+  `stabilityIndex(stability)`, with the same values. `measure/tech-debt.md` gets a row: the
+  efficacy retention metrics use a stability index, not the v3.2 retention.
+- K6 Rating mapper (§8.4 and §13.3): `srs-rating.ts` follows §8.4 (stages 1 to 5). The comment
+  of the misconception cap (stage 5) cites §13.3, as MIGRATION item 6 (first bullet) requires.
+  This part of item 6 changes no behavior.
+- K11 Placement, the new parts (§11.2 and §11.4): two probes for each decision, a third on a
+  mixed result, the budget of 24, the `high` confidence value, and S₀ card synthesis. One
+  synthesized `srs_cards` row is written for each objective, with
+  `S₀ = H(confidence) × masteryEstimate` and `H = { low: 5, medium: 15, high: 30 }`.
+  `srs_cards` gets `source = "placement"` and `placement_results` gets `evidenceType`.
+
+The next strategy of this track turns these three items into tasks. The contract constants
+19/81 and -0.5 and ts-fsrs 6 stay (PM decision D1, 2026-11-16).
+
 ## Functional Requirements
 
 1. Inventory every IM3 v2 field, index, query, mutation, projection, UI route,
