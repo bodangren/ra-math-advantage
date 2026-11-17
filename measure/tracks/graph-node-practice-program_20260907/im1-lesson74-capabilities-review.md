@@ -87,7 +87,7 @@ Retain `.015` as a rejected and inactive historical duplicate. Remove its direct
 
 Add one deterministic source identity for the missing source group:
 
-`math.im1.example.7.4.source-003`
+`math.im1.example.7.4.016`
 
 Use the title `Example 3: Model and solve contextual systems by scaled elimination`. Map it to `Example 3, Problems 13-14`. Keep it draft and inactive. The mixed exercises do not need a worked-example node.
 

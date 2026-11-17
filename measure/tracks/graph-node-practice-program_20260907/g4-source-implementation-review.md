@@ -55,7 +55,7 @@ The change adds it to `math.im1.skill.2.3.solve-literal-equations-for-a-specifie
 
 Example 3 `.020` applies and solves an absolute-value equation. It does not graph the solution set. Remove it from the graph-solution blueprint.
 
-Example 1 `math.im1.example.2.5.source-001` explicitly solves and graphs simple absolute-value equations. Use this source for `math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu`.
+Example 1 `math.im1.example.2.5.022` explicitly solves and graphs simple absolute-value equations. Use this source for `math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu`.
 
 Example 4 `.021` performs the inverse task. It writes an absolute-value equation from a graph. Keep the source node. Do not map it to the current graph-solution capability. Record the missing inverse-task capability for later source inventory work.
 

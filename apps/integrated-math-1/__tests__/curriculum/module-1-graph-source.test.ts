@@ -46,7 +46,7 @@ describe('IM1 Module 1 graph source coverage', () => {
 
   it('maps the six existing objective blueprints to their current exact examples', () => {
     const expected = new Map([
-      ['math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express', ['math.im1.example.1.1.001', 'math.im1.example.1.1.002', 'math.im1.example.1.1.source-003']],
+      ['math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express', ['math.im1.example.1.1.001', 'math.im1.example.1.1.002', 'math.im1.example.1.1.007']],
       ['math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio', ['math.im1.example.1.2.007', 'math.im1.example.1.2.008', 'math.im1.example.1.2.009']],
       ['math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr', ['math.im1.example.1.3.013', 'math.im1.example.1.3.014', 'math.im1.example.1.3.015']],
       ['math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume', ['math.im1.example.1.4.019', 'math.im1.example.1.4.020']],

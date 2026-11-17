@@ -860,7 +860,7 @@
       }
     },
     {
-      "id": "math.im2.example.10.6.source-001",
+      "id": "math.im2.example.10.6.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Add and Subtract Like Radicals",
       "domain": "math.im2",
@@ -884,7 +884,7 @@
       ]
     },
     {
-      "id": "math.im2.example.10.6.source-002",
+      "id": "math.im2.example.10.6.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Simplify Before Adding or Subtracting",
       "domain": "math.im2",
@@ -908,7 +908,7 @@
       ]
     },
     {
-      "id": "math.im2.example.10.6.source-003",
+      "id": "math.im2.example.10.6.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Apply Radical Operations to Real-World Problems",
       "domain": "math.im2",
@@ -932,7 +932,7 @@
       ]
     },
     {
-      "id": "math.im2.example.10.6.source-004",
+      "id": "math.im2.example.10.6.004",
       "kind": "worked_example",
       "title": "Example 4 \u2014 Multiply Radical Expressions",
       "domain": "math.im2",
@@ -956,7 +956,7 @@
       ]
     },
     {
-      "id": "math.im2.example.10.6.source-005",
+      "id": "math.im2.example.10.6.005",
       "kind": "worked_example",
       "title": "Example 5 \u2014 Distribute a Radical Over a Binomial",
       "domain": "math.im2",
@@ -980,7 +980,7 @@
       ]
     },
     {
-      "id": "math.im2.example.10.7.source-001",
+      "id": "math.im2.example.10.7.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Solve Exponential Equations with Common Bases",
       "domain": "math.im2",
@@ -1004,7 +1004,7 @@
       ]
     },
     {
-      "id": "math.im2.example.10.7.source-002",
+      "id": "math.im2.example.10.7.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Solve Equations with Exponent Operations",
       "domain": "math.im2",
@@ -1028,7 +1028,7 @@
       ]
     },
     {
-      "id": "math.im2.example.10.7.source-003",
+      "id": "math.im2.example.10.7.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Exponential Equations in Applied Contexts",
       "domain": "math.im2",
@@ -1394,7 +1394,7 @@
       }
     },
     {
-      "id": "math.im2.example.11.4.source-004",
+      "id": "math.im2.example.11.4.022",
       "kind": "worked_example",
       "title": "Example 4 \u2014 Cubes of Binomials",
       "domain": "math.im2",
@@ -1562,7 +1562,7 @@
       }
     },
     {
-      "id": "math.im2.example.11.7.source-001",
+      "id": "math.im2.example.11.7.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Factor Difference of Squares",
       "domain": "math.im2",
@@ -1586,7 +1586,7 @@
       ]
     },
     {
-      "id": "math.im2.example.11.7.source-002",
+      "id": "math.im2.example.11.7.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Factor by Grouping",
       "domain": "math.im2",
@@ -1610,7 +1610,7 @@
       ]
     },
     {
-      "id": "math.im2.example.11.7.source-003",
+      "id": "math.im2.example.11.7.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Apply Difference of Squares to Area Problems",
       "domain": "math.im2",
@@ -1634,7 +1634,7 @@
       ]
     },
     {
-      "id": "math.im2.example.11.7.source-004",
+      "id": "math.im2.example.11.7.004",
       "kind": "worked_example",
       "title": "Example 4 \u2014 Identify Perfect Square Trinomials",
       "domain": "math.im2",
@@ -1658,7 +1658,7 @@
       ]
     },
     {
-      "id": "math.im2.example.11.7.source-005",
+      "id": "math.im2.example.11.7.005",
       "kind": "worked_example",
       "title": "Example 5 \u2014 Factor Perfect Square Trinomials",
       "domain": "math.im2",
@@ -1826,7 +1826,7 @@
       }
     },
     {
-      "id": "math.im2.example.12.2.source-005",
+      "id": "math.im2.example.12.2.009",
       "kind": "worked_example",
       "title": "Example 5 \u2014 Transformations in Real-World Contexts",
       "domain": "math.im2",
@@ -2012,7 +2012,7 @@
       }
     },
     {
-      "id": "math.im2.example.12.4.source-007",
+      "id": "math.im2.example.12.4.019",
       "kind": "worked_example",
       "title": "Example 7 \u2014 Write a Quadratic Function Given Three Points",
       "domain": "math.im2",
@@ -2144,7 +2144,7 @@
       }
     },
     {
-      "id": "math.im2.example.12.6.source-001",
+      "id": "math.im2.example.12.6.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Solve Quadratic Equations with the Quadratic Formula",
       "domain": "math.im2",
@@ -2168,7 +2168,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.6.source-002",
+      "id": "math.im2.example.12.6.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Solve Equations Requiring Rearrangement",
       "domain": "math.im2",
@@ -2192,7 +2192,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.6.source-003",
+      "id": "math.im2.example.12.6.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Apply Quadratic Equations to Real-World Problems",
       "domain": "math.im2",
@@ -2216,7 +2216,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.6.source-004",
+      "id": "math.im2.example.12.6.004",
       "kind": "worked_example",
       "title": "Example 4 \u2014 Use the Discriminant",
       "domain": "math.im2",
@@ -2240,7 +2240,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.7.source-001",
+      "id": "math.im2.example.12.7.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Solve Systems by Graphing",
       "domain": "math.im2",
@@ -2264,7 +2264,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.7.source-002",
+      "id": "math.im2.example.12.7.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Solve Systems Algebraically",
       "domain": "math.im2",
@@ -2288,7 +2288,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.7.source-003",
+      "id": "math.im2.example.12.7.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Real-World Systems",
       "domain": "math.im2",
@@ -2312,7 +2312,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.8.source-001",
+      "id": "math.im2.example.12.8.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Identify the Model Type from a Table",
       "domain": "math.im2",
@@ -2336,7 +2336,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.8.source-002",
+      "id": "math.im2.example.12.8.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Model Data with a Quadratic Function",
       "domain": "math.im2",
@@ -2360,7 +2360,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.8.source-003",
+      "id": "math.im2.example.12.8.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Use Regression to Find the Best Model",
       "domain": "math.im2",
@@ -2384,7 +2384,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.9.source-001",
+      "id": "math.im2.example.12.9.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Add and Subtract Functions",
       "domain": "math.im2",
@@ -2408,7 +2408,7 @@
       ]
     },
     {
-      "id": "math.im2.example.12.9.source-002",
+      "id": "math.im2.example.12.9.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Compose Functions",
       "domain": "math.im2",
@@ -4274,7 +4274,7 @@
       ]
     },
     {
-      "id": "math.im2.example.4.7.source-003",
+      "id": "math.im2.example.4.7.030",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Real-World Applications",
       "domain": "math.im2",
@@ -4844,7 +4844,7 @@
       }
     },
     {
-      "id": "math.im2.example.6.1.source-006",
+      "id": "math.im2.example.6.1.006",
       "kind": "worked_example",
       "title": "Example 6 \u2014 More Area Problems",
       "domain": "math.im2",
@@ -4868,7 +4868,7 @@
       ]
     },
     {
-      "id": "math.im2.example.6.1.source-007",
+      "id": "math.im2.example.6.1.007",
       "kind": "worked_example",
       "title": "Example 7 \u2014 Find Diagonal Lengths",
       "domain": "math.im2",
@@ -5162,7 +5162,7 @@
       }
     },
     {
-      "id": "math.im2.example.6.4.source-003",
+      "id": "math.im2.example.6.4.021",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Surface Area of Prisms with Variables",
       "domain": "math.im2",
@@ -5186,7 +5186,7 @@
       ]
     },
     {
-      "id": "math.im2.example.6.4.source-006",
+      "id": "math.im2.example.6.4.022",
       "kind": "worked_example",
       "title": "Example 6 \u2014 Surface Area of Cones with Variables",
       "domain": "math.im2",
@@ -5354,7 +5354,7 @@
       }
     },
     {
-      "id": "math.im2.example.6.6.source-003",
+      "id": "math.im2.example.6.6.029",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Volume with Variables",
       "domain": "math.im2",
@@ -5378,7 +5378,7 @@
       ]
     },
     {
-      "id": "math.im2.example.6.6.source-004",
+      "id": "math.im2.example.6.6.030",
       "kind": "worked_example",
       "title": "Example 4 \u2014 More Volume Problems",
       "domain": "math.im2",
@@ -5402,7 +5402,7 @@
       ]
     },
     {
-      "id": "math.im2.example.6.6.source-005",
+      "id": "math.im2.example.6.6.031",
       "kind": "worked_example",
       "title": "Example 5 \u2014 Volume of Pyramids with Variables",
       "domain": "math.im2",
@@ -5840,7 +5840,7 @@
       }
     },
     {
-      "id": "math.im2.example.7.2.source-004",
+      "id": "math.im2.example.7.2.010",
       "kind": "worked_example",
       "title": "Example 4 \u2014 Probability of Complements",
       "domain": "math.im2",
@@ -5918,7 +5918,7 @@
       }
     },
     {
-      "id": "math.im2.example.7.3.source-004",
+      "id": "math.im2.example.7.3.013",
       "kind": "worked_example",
       "title": "Example 4 \u2014 Spinner Probability",
       "domain": "math.im2",
@@ -5942,7 +5942,7 @@
       ]
     },
     {
-      "id": "math.im2.example.7.3.source-005",
+      "id": "math.im2.example.7.3.014",
       "kind": "worked_example",
       "title": "Example 5 \u2014 Assumptions in Geometric Probability",
       "domain": "math.im2",
@@ -6116,7 +6116,7 @@
       }
     },
     {
-      "id": "math.im2.example.7.7.source-001",
+      "id": "math.im2.example.7.7.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Conditional Probability",
       "domain": "math.im2",
@@ -6140,7 +6140,7 @@
       ]
     },
     {
-      "id": "math.im2.example.7.8.source-001",
+      "id": "math.im2.example.7.8.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Create Two-Way Frequency and Relative Frequency Tables",
       "domain": "math.im2",
@@ -6164,7 +6164,7 @@
       ]
     },
     {
-      "id": "math.im2.example.7.8.source-002",
+      "id": "math.im2.example.7.8.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 College Student Survey with Independence Test",
       "domain": "math.im2",
@@ -6188,7 +6188,7 @@
       ]
     },
     {
-      "id": "math.im2.example.7.8.source-003",
+      "id": "math.im2.example.7.8.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Movie Theater Ticket Analysis",
       "domain": "math.im2",
@@ -6410,7 +6410,7 @@
       }
     },
     {
-      "id": "math.im2.example.8.2.source-007",
+      "id": "math.im2.example.8.2.013",
       "kind": "worked_example",
       "title": "Example 7 \u2014 Identify Symmetry Type",
       "domain": "math.im2",
@@ -6434,7 +6434,7 @@
       ]
     },
     {
-      "id": "math.im2.example.8.2.source-008",
+      "id": "math.im2.example.8.2.014",
       "kind": "worked_example",
       "title": "Example 8 \u2014 Determine Even, Odd, or Neither",
       "domain": "math.im2",
@@ -6728,7 +6728,7 @@
       }
     },
     {
-      "id": "math.im2.example.8.6.033-phase-8",
+      "id": "math.im2.example.8.6.036",
       "kind": "worked_example",
       "title": "Examples 3 and 4 \u2014 Graph Greatest Integer Functions",
       "domain": "math.im2",
@@ -6770,7 +6770,7 @@
       }
     },
     {
-      "id": "math.im2.example.8.7.source-001",
+      "id": "math.im2.example.8.7.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Describe Translations",
       "domain": "math.im2",
@@ -6794,7 +6794,7 @@
       ]
     },
     {
-      "id": "math.im2.example.8.7.source-002",
+      "id": "math.im2.example.8.7.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Write Equations from Graphs",
       "domain": "math.im2",
@@ -6818,7 +6818,7 @@
       ]
     },
     {
-      "id": "math.im2.example.8.7.source-003",
+      "id": "math.im2.example.8.7.003",
       "kind": "worked_example",
       "title": "Examples 3 and 4 \u2014 Describe Dilations and Reflections",
       "domain": "math.im2",
@@ -6842,7 +6842,7 @@
       ]
     },
     {
-      "id": "math.im2.example.8.7.source-005",
+      "id": "math.im2.example.8.7.004",
       "kind": "worked_example",
       "title": "Example 5 \u2014 Describe Combined Transformations",
       "domain": "math.im2",
@@ -6866,7 +6866,7 @@
       ]
     },
     {
-      "id": "math.im2.example.8.7.source-006",
+      "id": "math.im2.example.8.7.005",
       "kind": "worked_example",
       "title": "Example 6 \u2014 Real-World Transformation Problems",
       "domain": "math.im2",
@@ -6890,7 +6890,7 @@
       ]
     },
     {
-      "id": "math.im2.example.8.7.source-007",
+      "id": "math.im2.example.8.7.006",
       "kind": "worked_example",
       "title": "Example 7 \u2014 Write Equations from Graphs",
       "domain": "math.im2",
@@ -7184,7 +7184,7 @@
       }
     },
     {
-      "id": "math.im2.example.9.3.source-007",
+      "id": "math.im2.example.9.3.019",
       "kind": "worked_example",
       "title": "Example 7 \u2014 Real-World Point-Slope Applications",
       "domain": "math.im2",
@@ -7388,7 +7388,7 @@
       }
     },
     {
-      "id": "math.im2.example.9.6.source-001",
+      "id": "math.im2.example.9.6.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Solve Systems of Two Linear Inequalities",
       "domain": "math.im2",
@@ -7412,7 +7412,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.6.source-002",
+      "id": "math.im2.example.9.6.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Solve Systems with Three or More Inequalities",
       "domain": "math.im2",
@@ -7436,7 +7436,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.6.source-003",
+      "id": "math.im2.example.9.6.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Real-World Applications",
       "domain": "math.im2",
@@ -7460,7 +7460,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.7.source-001",
+      "id": "math.im2.example.9.7.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Find Maximum and Minimum on a Bounded Feasible Region",
       "domain": "math.im2",
@@ -7484,7 +7484,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.7.source-002",
+      "id": "math.im2.example.9.7.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Optimization with Unbounded and Multi-Constraint Regions",
       "domain": "math.im2",
@@ -7508,7 +7508,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.7.source-003",
+      "id": "math.im2.example.9.7.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Real-World Linear Programming",
       "domain": "math.im2",
@@ -7532,7 +7532,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.8.source-001",
+      "id": "math.im2.example.9.8.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Solve Using Elimination",
       "domain": "math.im2",
@@ -7556,7 +7556,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.8.source-002",
+      "id": "math.im2.example.9.8.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Systems with Missing Variables",
       "domain": "math.im2",
@@ -7580,7 +7580,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.8.source-003",
+      "id": "math.im2.example.9.8.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Real-World Applications",
       "domain": "math.im2",
@@ -7604,7 +7604,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.9.source-001",
+      "id": "math.im2.example.9.9.001",
       "kind": "worked_example",
       "title": "Example 1 \u2014 Solve Absolute Value Equations by Graphing",
       "domain": "math.im2",
@@ -7628,7 +7628,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.9.source-002",
+      "id": "math.im2.example.9.9.002",
       "kind": "worked_example",
       "title": "Example 2 \u2014 Solve Absolute Value Equations Using a Graphing Calculator",
       "domain": "math.im2",
@@ -7652,7 +7652,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.9.source-003",
+      "id": "math.im2.example.9.9.003",
       "kind": "worked_example",
       "title": "Example 3 \u2014 Solve Absolute Value Equations Algebraically",
       "domain": "math.im2",
@@ -7676,7 +7676,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.9.source-004",
+      "id": "math.im2.example.9.9.004",
       "kind": "worked_example",
       "title": "Example 4 \u2014 Solve Absolute Value Inequalities by Graphing",
       "domain": "math.im2",
@@ -7700,7 +7700,7 @@
       ]
     },
     {
-      "id": "math.im2.example.9.9.source-005",
+      "id": "math.im2.example.9.9.005",
       "kind": "worked_example",
       "title": "Example 5 \u2014 Solve Absolute Value Inequalities Using a Graphing Calculator",
       "domain": "math.im2",
@@ -51530,10 +51530,10 @@
       "derived": false
     },
     {
-      "id": "math.im2.example.4.7.source-003.containment",
+      "id": "math.im2.example.4.7.030.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.4.7",
-      "targetId": "math.im2.example.4.7.source-003",
+      "targetId": "math.im2.example.4.7.030",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51546,10 +51546,10 @@
       }
     },
     {
-      "id": "math.im2.example.6.1.source-006.containment",
+      "id": "math.im2.example.6.1.006.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.6.1",
-      "targetId": "math.im2.example.6.1.source-006",
+      "targetId": "math.im2.example.6.1.006",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51562,10 +51562,10 @@
       }
     },
     {
-      "id": "math.im2.example.6.1.source-007.containment",
+      "id": "math.im2.example.6.1.007.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.6.1",
-      "targetId": "math.im2.example.6.1.source-007",
+      "targetId": "math.im2.example.6.1.007",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51578,10 +51578,10 @@
       }
     },
     {
-      "id": "math.im2.example.6.4.source-003.containment",
+      "id": "math.im2.example.6.4.021.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.6.4",
-      "targetId": "math.im2.example.6.4.source-003",
+      "targetId": "math.im2.example.6.4.021",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51594,10 +51594,10 @@
       }
     },
     {
-      "id": "math.im2.example.6.4.source-006.containment",
+      "id": "math.im2.example.6.4.022.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.6.4",
-      "targetId": "math.im2.example.6.4.source-006",
+      "targetId": "math.im2.example.6.4.022",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51610,10 +51610,10 @@
       }
     },
     {
-      "id": "math.im2.example.6.6.source-003.containment",
+      "id": "math.im2.example.6.6.029.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.6.6",
-      "targetId": "math.im2.example.6.6.source-003",
+      "targetId": "math.im2.example.6.6.029",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51626,10 +51626,10 @@
       }
     },
     {
-      "id": "math.im2.example.6.6.source-004.containment",
+      "id": "math.im2.example.6.6.030.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.6.6",
-      "targetId": "math.im2.example.6.6.source-004",
+      "targetId": "math.im2.example.6.6.030",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51642,10 +51642,10 @@
       }
     },
     {
-      "id": "math.im2.example.6.6.source-005.containment",
+      "id": "math.im2.example.6.6.031.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.6.6",
-      "targetId": "math.im2.example.6.6.source-005",
+      "targetId": "math.im2.example.6.6.031",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51658,10 +51658,10 @@
       }
     },
     {
-      "id": "math.im2.example.7.2.source-004.containment",
+      "id": "math.im2.example.7.2.010.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.7.2",
-      "targetId": "math.im2.example.7.2.source-004",
+      "targetId": "math.im2.example.7.2.010",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51674,10 +51674,10 @@
       }
     },
     {
-      "id": "math.im2.example.7.3.source-004.containment",
+      "id": "math.im2.example.7.3.013.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.7.3",
-      "targetId": "math.im2.example.7.3.source-004",
+      "targetId": "math.im2.example.7.3.013",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51690,10 +51690,10 @@
       }
     },
     {
-      "id": "math.im2.example.7.3.source-005.containment",
+      "id": "math.im2.example.7.3.014.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.7.3",
-      "targetId": "math.im2.example.7.3.source-005",
+      "targetId": "math.im2.example.7.3.014",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51706,10 +51706,10 @@
       }
     },
     {
-      "id": "math.im2.example.7.7.source-001.containment",
+      "id": "math.im2.example.7.7.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.7.7",
-      "targetId": "math.im2.example.7.7.source-001",
+      "targetId": "math.im2.example.7.7.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51722,10 +51722,10 @@
       }
     },
     {
-      "id": "math.im2.example.7.8.source-001.containment",
+      "id": "math.im2.example.7.8.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.7.8",
-      "targetId": "math.im2.example.7.8.source-001",
+      "targetId": "math.im2.example.7.8.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51738,10 +51738,10 @@
       }
     },
     {
-      "id": "math.im2.example.7.8.source-002.containment",
+      "id": "math.im2.example.7.8.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.7.8",
-      "targetId": "math.im2.example.7.8.source-002",
+      "targetId": "math.im2.example.7.8.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51754,10 +51754,10 @@
       }
     },
     {
-      "id": "math.im2.example.7.8.source-003.containment",
+      "id": "math.im2.example.7.8.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.7.8",
-      "targetId": "math.im2.example.7.8.source-003",
+      "targetId": "math.im2.example.7.8.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51770,10 +51770,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.2.source-007.containment",
+      "id": "math.im2.example.8.2.013.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.2",
-      "targetId": "math.im2.example.8.2.source-007",
+      "targetId": "math.im2.example.8.2.013",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51786,10 +51786,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.7.source-001.containment",
+      "id": "math.im2.example.8.7.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.7",
-      "targetId": "math.im2.example.8.7.source-001",
+      "targetId": "math.im2.example.8.7.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51802,10 +51802,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.7.source-002.containment",
+      "id": "math.im2.example.8.7.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.7",
-      "targetId": "math.im2.example.8.7.source-002",
+      "targetId": "math.im2.example.8.7.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51818,10 +51818,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.7.source-003.containment",
+      "id": "math.im2.example.8.7.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.7",
-      "targetId": "math.im2.example.8.7.source-003",
+      "targetId": "math.im2.example.8.7.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51834,10 +51834,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.7.source-005.containment",
+      "id": "math.im2.example.8.7.004.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.7",
-      "targetId": "math.im2.example.8.7.source-005",
+      "targetId": "math.im2.example.8.7.004",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51850,10 +51850,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.7.source-006.containment",
+      "id": "math.im2.example.8.7.005.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.7",
-      "targetId": "math.im2.example.8.7.source-006",
+      "targetId": "math.im2.example.8.7.005",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51866,10 +51866,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.3.source-007.containment",
+      "id": "math.im2.example.9.3.019.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.3",
-      "targetId": "math.im2.example.9.3.source-007",
+      "targetId": "math.im2.example.9.3.019",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51882,10 +51882,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.6.source-001.containment",
+      "id": "math.im2.example.9.6.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.6",
-      "targetId": "math.im2.example.9.6.source-001",
+      "targetId": "math.im2.example.9.6.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51898,10 +51898,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.6.source-002.containment",
+      "id": "math.im2.example.9.6.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.6",
-      "targetId": "math.im2.example.9.6.source-002",
+      "targetId": "math.im2.example.9.6.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51914,10 +51914,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.6.source-003.containment",
+      "id": "math.im2.example.9.6.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.6",
-      "targetId": "math.im2.example.9.6.source-003",
+      "targetId": "math.im2.example.9.6.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51930,10 +51930,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.7.source-001.containment",
+      "id": "math.im2.example.9.7.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.7",
-      "targetId": "math.im2.example.9.7.source-001",
+      "targetId": "math.im2.example.9.7.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51946,10 +51946,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.7.source-002.containment",
+      "id": "math.im2.example.9.7.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.7",
-      "targetId": "math.im2.example.9.7.source-002",
+      "targetId": "math.im2.example.9.7.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51962,10 +51962,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.7.source-003.containment",
+      "id": "math.im2.example.9.7.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.7",
-      "targetId": "math.im2.example.9.7.source-003",
+      "targetId": "math.im2.example.9.7.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51978,10 +51978,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.8.source-001.containment",
+      "id": "math.im2.example.9.8.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.8",
-      "targetId": "math.im2.example.9.8.source-001",
+      "targetId": "math.im2.example.9.8.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -51994,10 +51994,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.8.source-002.containment",
+      "id": "math.im2.example.9.8.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.8",
-      "targetId": "math.im2.example.9.8.source-002",
+      "targetId": "math.im2.example.9.8.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52010,10 +52010,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.8.source-003.containment",
+      "id": "math.im2.example.9.8.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.8",
-      "targetId": "math.im2.example.9.8.source-003",
+      "targetId": "math.im2.example.9.8.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52026,10 +52026,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.9.source-001.containment",
+      "id": "math.im2.example.9.9.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.9",
-      "targetId": "math.im2.example.9.9.source-001",
+      "targetId": "math.im2.example.9.9.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52042,10 +52042,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.9.source-002.containment",
+      "id": "math.im2.example.9.9.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.9",
-      "targetId": "math.im2.example.9.9.source-002",
+      "targetId": "math.im2.example.9.9.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52058,10 +52058,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.9.source-003.containment",
+      "id": "math.im2.example.9.9.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.9",
-      "targetId": "math.im2.example.9.9.source-003",
+      "targetId": "math.im2.example.9.9.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52074,10 +52074,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.9.source-004.containment",
+      "id": "math.im2.example.9.9.004.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.9",
-      "targetId": "math.im2.example.9.9.source-004",
+      "targetId": "math.im2.example.9.9.004",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52090,10 +52090,10 @@
       }
     },
     {
-      "id": "math.im2.example.9.9.source-005.containment",
+      "id": "math.im2.example.9.9.005.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.9.9",
-      "targetId": "math.im2.example.9.9.source-005",
+      "targetId": "math.im2.example.9.9.005",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52106,10 +52106,10 @@
       }
     },
     {
-      "id": "math.im2.example.10.6.source-001.containment",
+      "id": "math.im2.example.10.6.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.10.6",
-      "targetId": "math.im2.example.10.6.source-001",
+      "targetId": "math.im2.example.10.6.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52122,10 +52122,10 @@
       }
     },
     {
-      "id": "math.im2.example.10.6.source-002.containment",
+      "id": "math.im2.example.10.6.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.10.6",
-      "targetId": "math.im2.example.10.6.source-002",
+      "targetId": "math.im2.example.10.6.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52138,10 +52138,10 @@
       }
     },
     {
-      "id": "math.im2.example.10.6.source-003.containment",
+      "id": "math.im2.example.10.6.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.10.6",
-      "targetId": "math.im2.example.10.6.source-003",
+      "targetId": "math.im2.example.10.6.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52154,10 +52154,10 @@
       }
     },
     {
-      "id": "math.im2.example.10.6.source-004.containment",
+      "id": "math.im2.example.10.6.004.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.10.6",
-      "targetId": "math.im2.example.10.6.source-004",
+      "targetId": "math.im2.example.10.6.004",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52170,10 +52170,10 @@
       }
     },
     {
-      "id": "math.im2.example.10.6.source-005.containment",
+      "id": "math.im2.example.10.6.005.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.10.6",
-      "targetId": "math.im2.example.10.6.source-005",
+      "targetId": "math.im2.example.10.6.005",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52186,10 +52186,10 @@
       }
     },
     {
-      "id": "math.im2.example.10.7.source-001.containment",
+      "id": "math.im2.example.10.7.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.10.7",
-      "targetId": "math.im2.example.10.7.source-001",
+      "targetId": "math.im2.example.10.7.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52202,10 +52202,10 @@
       }
     },
     {
-      "id": "math.im2.example.10.7.source-002.containment",
+      "id": "math.im2.example.10.7.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.10.7",
-      "targetId": "math.im2.example.10.7.source-002",
+      "targetId": "math.im2.example.10.7.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52218,10 +52218,10 @@
       }
     },
     {
-      "id": "math.im2.example.10.7.source-003.containment",
+      "id": "math.im2.example.10.7.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.10.7",
-      "targetId": "math.im2.example.10.7.source-003",
+      "targetId": "math.im2.example.10.7.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52234,10 +52234,10 @@
       }
     },
     {
-      "id": "math.im2.example.11.4.source-004.containment",
+      "id": "math.im2.example.11.4.022.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.11.4",
-      "targetId": "math.im2.example.11.4.source-004",
+      "targetId": "math.im2.example.11.4.022",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52250,10 +52250,10 @@
       }
     },
     {
-      "id": "math.im2.example.11.7.source-001.containment",
+      "id": "math.im2.example.11.7.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.11.7",
-      "targetId": "math.im2.example.11.7.source-001",
+      "targetId": "math.im2.example.11.7.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52266,10 +52266,10 @@
       }
     },
     {
-      "id": "math.im2.example.11.7.source-002.containment",
+      "id": "math.im2.example.11.7.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.11.7",
-      "targetId": "math.im2.example.11.7.source-002",
+      "targetId": "math.im2.example.11.7.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52282,10 +52282,10 @@
       }
     },
     {
-      "id": "math.im2.example.11.7.source-003.containment",
+      "id": "math.im2.example.11.7.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.11.7",
-      "targetId": "math.im2.example.11.7.source-003",
+      "targetId": "math.im2.example.11.7.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52298,10 +52298,10 @@
       }
     },
     {
-      "id": "math.im2.example.11.7.source-004.containment",
+      "id": "math.im2.example.11.7.004.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.11.7",
-      "targetId": "math.im2.example.11.7.source-004",
+      "targetId": "math.im2.example.11.7.004",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52314,10 +52314,10 @@
       }
     },
     {
-      "id": "math.im2.example.11.7.source-005.containment",
+      "id": "math.im2.example.11.7.005.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.11.7",
-      "targetId": "math.im2.example.11.7.source-005",
+      "targetId": "math.im2.example.11.7.005",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52330,10 +52330,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.2.source-005.containment",
+      "id": "math.im2.example.12.2.009.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.2",
-      "targetId": "math.im2.example.12.2.source-005",
+      "targetId": "math.im2.example.12.2.009",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52346,10 +52346,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.4.source-007.containment",
+      "id": "math.im2.example.12.4.019.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.4",
-      "targetId": "math.im2.example.12.4.source-007",
+      "targetId": "math.im2.example.12.4.019",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52362,10 +52362,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.6.source-001.containment",
+      "id": "math.im2.example.12.6.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.6",
-      "targetId": "math.im2.example.12.6.source-001",
+      "targetId": "math.im2.example.12.6.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52378,10 +52378,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.6.source-002.containment",
+      "id": "math.im2.example.12.6.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.6",
-      "targetId": "math.im2.example.12.6.source-002",
+      "targetId": "math.im2.example.12.6.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52394,10 +52394,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.6.source-003.containment",
+      "id": "math.im2.example.12.6.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.6",
-      "targetId": "math.im2.example.12.6.source-003",
+      "targetId": "math.im2.example.12.6.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52410,10 +52410,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.6.source-004.containment",
+      "id": "math.im2.example.12.6.004.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.6",
-      "targetId": "math.im2.example.12.6.source-004",
+      "targetId": "math.im2.example.12.6.004",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52426,10 +52426,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.7.source-001.containment",
+      "id": "math.im2.example.12.7.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.7",
-      "targetId": "math.im2.example.12.7.source-001",
+      "targetId": "math.im2.example.12.7.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52442,10 +52442,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.7.source-002.containment",
+      "id": "math.im2.example.12.7.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.7",
-      "targetId": "math.im2.example.12.7.source-002",
+      "targetId": "math.im2.example.12.7.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52458,10 +52458,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.7.source-003.containment",
+      "id": "math.im2.example.12.7.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.7",
-      "targetId": "math.im2.example.12.7.source-003",
+      "targetId": "math.im2.example.12.7.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52474,10 +52474,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.8.source-001.containment",
+      "id": "math.im2.example.12.8.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.8",
-      "targetId": "math.im2.example.12.8.source-001",
+      "targetId": "math.im2.example.12.8.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52490,10 +52490,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.8.source-002.containment",
+      "id": "math.im2.example.12.8.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.8",
-      "targetId": "math.im2.example.12.8.source-002",
+      "targetId": "math.im2.example.12.8.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52506,10 +52506,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.8.source-003.containment",
+      "id": "math.im2.example.12.8.003.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.8",
-      "targetId": "math.im2.example.12.8.source-003",
+      "targetId": "math.im2.example.12.8.003",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52522,10 +52522,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.9.source-001.containment",
+      "id": "math.im2.example.12.9.001.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.9",
-      "targetId": "math.im2.example.12.9.source-001",
+      "targetId": "math.im2.example.12.9.001",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52538,10 +52538,10 @@
       }
     },
     {
-      "id": "math.im2.example.12.9.source-002.containment",
+      "id": "math.im2.example.12.9.002.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.12.9",
-      "targetId": "math.im2.example.12.9.source-002",
+      "targetId": "math.im2.example.12.9.002",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52602,10 +52602,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.2.source-008.containment",
+      "id": "math.im2.example.8.2.014.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.2",
-      "targetId": "math.im2.example.8.2.source-008",
+      "targetId": "math.im2.example.8.2.014",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52666,10 +52666,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.7.source-007.containment",
+      "id": "math.im2.example.8.7.006.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.7",
-      "targetId": "math.im2.example.8.7.source-007",
+      "targetId": "math.im2.example.8.7.006",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -52682,10 +52682,10 @@
       }
     },
     {
-      "id": "math.im2.example.8.6.033-phase-8.containment",
+      "id": "math.im2.example.8.6.036.containment",
       "type": "contains",
       "sourceId": "math.im2.lesson.8.6",
-      "targetId": "math.im2.example.8.6.033-phase-8",
+      "targetId": "math.im2.example.8.6.036",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",

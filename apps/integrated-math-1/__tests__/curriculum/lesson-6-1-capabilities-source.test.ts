@@ -9,7 +9,7 @@ import catalog from '../../curriculum/skill-graph/blueprints.json';
 import gapQueue from '../../curriculum/skill-graph/generator-gap-queue.json';
 
 const source = readFileSync(resolve(import.meta.dirname, '../../curriculum/modules/module-6-lesson-1'), 'utf8');
-const multiplicationSources = ['math.im1.example.6.1.source-008', 'math.im1.example.6.1.source-009', 'math.im1.example.6.1.source-010'];
+const multiplicationSources = ['math.im1.example.6.1.008', 'math.im1.example.6.1.009', 'math.im1.example.6.1.010'];
 const lesson62Reuses = new Set([
   'math.im1.skill.6.1.write-inequalities-from-contextual-statements',
   'math.im1.skill.6.1.solve-contextual-inequalities',

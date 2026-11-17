@@ -29,9 +29,9 @@ Use these existing example titles:
 
 Add these source identities:
 
-- `math.im1.example.6.1.source-008`
-- `math.im1.example.6.1.source-009`
-- `math.im1.example.6.1.source-010`
+- `math.im1.example.6.1.008`
+- `math.im1.example.6.1.009`
+- `math.im1.example.6.1.010`
 
 Each new identity must record its historical example number. The source presents Examples 8 through 10 under one joint heading, `Solve each inequality. Graph the solution on a number line.` Do not invent a distinct method for each number.
 

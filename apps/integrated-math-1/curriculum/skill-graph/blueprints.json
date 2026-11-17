@@ -5,7 +5,7 @@
       "sourceNodeIds": [
         "math.im1.example.1.1.001",
         "math.im1.example.1.1.002",
-        "math.im1.example.1.1.source-003"
+        "math.im1.example.1.1.007"
       ],
       "alignmentNodeIds": [],
       "rendererKey": "fill-in-the-blank",
@@ -2871,7 +2871,7 @@
     {
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
       "sourceNodeIds": [
-        "math.im1.example.2.5.source-001"
+        "math.im1.example.2.5.022"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-1",
@@ -2902,8 +2902,8 @@
     {
       "nodeId": "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
       "sourceNodeIds": [
-        "math.im1.example.2.5.source-001",
-        "math.im1.example.2.5.source-002",
+        "math.im1.example.2.5.022",
+        "math.im1.example.2.5.023",
         "math.im1.example.2.5.020"
       ],
       "alignmentNodeIds": [
@@ -3073,7 +3073,7 @@
         "math.im1.example.3.4.015",
         "math.im1.example.3.4.016",
         "math.im1.example.3.4.017",
-        "math.im1.example.3.4.source-004"
+        "math.im1.example.3.4.022"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.f-if-b-4",
@@ -3760,7 +3760,7 @@
       },
       "sourceNodeIds": [
         "math.im1.example.7.4.014",
-        "math.im1.example.7.4.source-003"
+        "math.im1.example.7.4.016"
       ]
     },
     {
@@ -4731,8 +4731,8 @@
       "sourceNodeIds": [
         "math.im1.example.4.2.009",
         "math.im1.example.4.2.010",
-        "math.im1.example.4.2.source-007",
-        "math.im1.example.4.2.source-008"
+        "math.im1.example.4.2.012",
+        "math.im1.example.4.2.013"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -4745,7 +4745,7 @@
     {
       "nodeId": "math.im1.skill.4.2.solve-for-an-unknown-coordinate-given-two-points-and-a-targe",
       "sourceNodeIds": [
-        "math.im1.example.4.2.source-009"
+        "math.im1.example.4.2.014"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -5414,7 +5414,7 @@
     {
       "nodeId": "math.im1.skill.5.2.model-contexts-in-point-slope-form",
       "sourceNodeIds": [
-        "math.im1.example.5.2.source-004"
+        "math.im1.example.5.2.014"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -5440,7 +5440,7 @@
     {
       "nodeId": "math.im1.skill.5.2.write-standard-form-equations-from-two-points",
       "sourceNodeIds": [
-        "math.im1.example.5.2.source-006"
+        "math.im1.example.5.2.015"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6165,9 +6165,9 @@
     {
       "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-with-positive-factors",
       "sourceNodeIds": [
-        "math.im1.example.6.1.source-008",
-        "math.im1.example.6.1.source-009",
-        "math.im1.example.6.1.source-010"
+        "math.im1.example.6.1.008",
+        "math.im1.example.6.1.009",
+        "math.im1.example.6.1.010"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6180,9 +6180,9 @@
     {
       "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-with-negative-factors",
       "sourceNodeIds": [
-        "math.im1.example.6.1.source-008",
-        "math.im1.example.6.1.source-009",
-        "math.im1.example.6.1.source-010"
+        "math.im1.example.6.1.008",
+        "math.im1.example.6.1.009",
+        "math.im1.example.6.1.010"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6195,9 +6195,9 @@
     {
       "nodeId": "math.im1.skill.6.1.graph-solved-one-step-inequalities-on-number-lines",
       "sourceNodeIds": [
-        "math.im1.example.6.1.source-008",
-        "math.im1.example.6.1.source-009",
-        "math.im1.example.6.1.source-010",
+        "math.im1.example.6.1.008",
+        "math.im1.example.6.1.009",
+        "math.im1.example.6.1.010",
         "math.im1.example.6.2.009",
         "math.im1.example.6.2.010"
       ],
@@ -6358,7 +6358,7 @@
       "sourceNodeIds": [
         "math.im1.example.6.3.013",
         "math.im1.example.6.3.016",
-        "math.im1.example.6.3.source-004",
+        "math.im1.example.6.3.017",
         "math.im1.example.6.4.017",
         "math.im1.example.6.4.018",
         "math.im1.example.6.4.020",
@@ -6377,7 +6377,7 @@
       "sourceNodeIds": [
         "math.im1.example.6.3.013",
         "math.im1.example.6.3.016",
-        "math.im1.example.6.3.source-004",
+        "math.im1.example.6.3.017",
         "math.im1.example.6.4.017",
         "math.im1.example.6.4.018",
         "math.im1.example.6.4.020",
@@ -6396,7 +6396,7 @@
       "sourceNodeIds": [
         "math.im1.example.6.3.013",
         "math.im1.example.6.3.016",
-        "math.im1.example.6.3.source-004"
+        "math.im1.example.6.3.017"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6411,7 +6411,7 @@
       "sourceNodeIds": [
         "math.im1.example.6.3.013",
         "math.im1.example.6.3.016",
-        "math.im1.example.6.3.source-004"
+        "math.im1.example.6.3.017"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6426,7 +6426,7 @@
       "sourceNodeIds": [
         "math.im1.example.6.3.013",
         "math.im1.example.6.3.016",
-        "math.im1.example.6.3.source-004",
+        "math.im1.example.6.3.017",
         "math.im1.example.6.4.017",
         "math.im1.example.6.4.018",
         "math.im1.example.6.4.020",
@@ -6443,8 +6443,8 @@
     {
       "nodeId": "math.im1.skill.6.3.write-compound-inequalities-from-number-line-graphs",
       "sourceNodeIds": [
-        "math.im1.example.6.3.source-005",
-        "math.im1.example.6.3.source-006"
+        "math.im1.example.6.3.018",
+        "math.im1.example.6.3.019"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6844,7 +6844,7 @@
         "math.im1.example.7.1.004",
         "math.im1.example.7.1.007",
         "math.im1.example.7.2.009",
-        "math.im1.example.7.4.source-003"
+        "math.im1.example.7.4.016"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6860,7 +6860,7 @@
         "math.im1.example.7.1.004",
         "math.im1.example.7.1.007",
         "math.im1.example.7.2.009",
-        "math.im1.example.7.4.source-003"
+        "math.im1.example.7.4.016"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",

@@ -40,7 +40,7 @@ Each candidate is draft and inactive. Each blueprint is source-only. Each edge i
 
 ## Source identities
 
-The change preserves the seven prior IDs `.007` through `.013`. It corrects their broad titles to the visible source headings. The old extraction omitted Examples 4 and 6. These examples now use `math.im1.example.5.2.source-004` and `math.im1.example.5.2.source-006`. The new IDs do not replace an occupied ID.
+The change preserves the seven prior IDs `.007` through `.013`. It corrects their broad titles to the visible source headings. The old extraction omitted Examples 4 and 6. These examples now use `math.im1.example.5.2.014` and `math.im1.example.5.2.015`. The new IDs do not replace an occupied ID.
 
 ## Verification
 

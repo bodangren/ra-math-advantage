@@ -16,9 +16,9 @@ const examples = [
   ['math.im1.example.4.2.008', 4, 'Example 4: Determine Whether a Function Is Linear'],
   ['math.im1.example.4.2.009', 5, 'Example 5: Find the Slope Through Two Points'],
   ['math.im1.example.4.2.010', 6, 'Example 6: Find the Slope Through Two Points'],
-  ['math.im1.example.4.2.source-007', 7, 'Example 7: Find the Slope Through Two Points'],
-  ['math.im1.example.4.2.source-008', 8, 'Example 8: Find the Slope Through Two Points'],
-  ['math.im1.example.4.2.source-009', 9, 'Example 9: Find an Unknown Coordinate Given Slope'],
+  ['math.im1.example.4.2.012', 7, 'Example 7: Find the Slope Through Two Points'],
+  ['math.im1.example.4.2.013', 8, 'Example 8: Find the Slope Through Two Points'],
+  ['math.im1.example.4.2.014', 9, 'Example 9: Find an Unknown Coordinate Given Slope'],
   ['math.im1.example.4.2.011', 10, 'Example 10: Slope in Real-World Contexts'],
 ] as const;
 const skills = [
@@ -26,8 +26,8 @@ const skills = [
   ['math.im1.skill.4.2.calculate-the-rate-of-change-from-a-graph', 'Calculate the rate of change from a graph', ['math.im1.example.4.2.006']],
   ['math.im1.skill.4.2.calculate-the-rate-of-change-from-real-world-data', 'Calculate the rate of change from real-world data', []],
   ['math.im1.skill.4.2.determine-whether-a-function-is-linear-by-checking-for-a-con', 'Determine whether a function is linear by checking for a constant rate of change', ['math.im1.example.4.2.007', 'math.im1.example.4.2.008']],
-  ['math.im1.skill.4.2.compute-the-slope-of-a-line-passing-through-two-given-points', 'Compute the slope of a line passing through two given points', ['math.im1.example.4.2.009', 'math.im1.example.4.2.010', 'math.im1.example.4.2.source-007', 'math.im1.example.4.2.source-008']],
-  ['math.im1.skill.4.2.solve-for-an-unknown-coordinate-given-two-points-and-a-targe', 'Solve for an unknown coordinate given two points and a target slope', ['math.im1.example.4.2.source-009']],
+  ['math.im1.skill.4.2.compute-the-slope-of-a-line-passing-through-two-given-points', 'Compute the slope of a line passing through two given points', ['math.im1.example.4.2.009', 'math.im1.example.4.2.010', 'math.im1.example.4.2.012', 'math.im1.example.4.2.013']],
+  ['math.im1.skill.4.2.solve-for-an-unknown-coordinate-given-two-points-and-a-targe', 'Solve for an unknown coordinate given two points and a target slope', ['math.im1.example.4.2.014']],
 ] as const;
 
 describe('Lesson 4-2 source capabilities', () => {

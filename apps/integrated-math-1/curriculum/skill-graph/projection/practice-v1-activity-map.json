@@ -14,7 +14,7 @@
       "sourceNodeIds": [
         "math.im1.example.1.1.001",
         "math.im1.example.1.1.002",
-        "math.im1.example.1.1.source-003"
+        "math.im1.example.1.1.007"
       ],
       "rendererKey": "fill-in-the-blank",
       "mode": "worked_example",
@@ -64,7 +64,7 @@
       "sourceNodeIds": [
         "math.im1.example.1.1.001",
         "math.im1.example.1.1.002",
-        "math.im1.example.1.1.source-003"
+        "math.im1.example.1.1.007"
       ],
       "rendererKey": "fill-in-the-blank",
       "mode": "guided_practice",
@@ -108,7 +108,7 @@
       "sourceNodeIds": [
         "math.im1.example.1.1.001",
         "math.im1.example.1.1.002",
-        "math.im1.example.1.1.source-003"
+        "math.im1.example.1.1.007"
       ],
       "rendererKey": "fill-in-the-blank",
       "mode": "independent_practice",

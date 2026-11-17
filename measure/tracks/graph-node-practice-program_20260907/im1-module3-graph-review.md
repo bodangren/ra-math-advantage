@@ -18,7 +18,7 @@ The class-period plan has 12 assessed objectives. The graph had only objectives 
 
 This patch restores the six omitted objectives as draft skill nodes. Each node has the deterministic assembler identifier for its objective text. Each node occurs in both node stores. No new node is approved.
 
-The patch also restores Lesson 3-4 Example 4. The existing sequence skipped this source example. The new identifier is `math.im1.example.3.4.source-004`. Existing example identifiers stay unchanged.
+The patch also restores Lesson 3-4 Example 4. The existing sequence skipped this source example. The new identifier is `math.im1.example.3.4.022`. Existing example identifiers stay unchanged.
 
 All 33 worked-example titles now match the headings in the lesson bodies. The old titles copied a class-period group title into each example. This made one example appear to teach several different procedures.
 

@@ -46,9 +46,9 @@ The titles for Examples 1 through 6 now match the lesson headings:
 
 The new source identities restore Examples 7 through 9 without changing occupied IDs:
 
-- `math.im1.example.4.2.source-007`
-- `math.im1.example.4.2.source-008`
-- `math.im1.example.4.2.source-009`
+- `math.im1.example.4.2.012`
+- `math.im1.example.4.2.013`
+- `math.im1.example.4.2.014`
 
 Examples 7 and 8 belong to the source section `Examples 5 through 8 — Find the Slope Through Two Points`. Example 9 has its own unknown-coordinate section. Existing Example 10 keeps ID `math.im1.example.4.2.011`.
 

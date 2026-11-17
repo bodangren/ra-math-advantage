@@ -14,12 +14,12 @@ const examples = [
   ['math.im1.example.6.3.014', 'Example 2: Model, Solve, and Graph Contextual Compound Inequalities', 2],
   ['math.im1.example.6.3.015', 'Example 2: Model, Solve, and Graph Contextual Compound Inequalities (schedule repeat)', 2],
   ['math.im1.example.6.3.016', 'Example 3: Solve and Graph Compound Inequalities', 3],
-  ['math.im1.example.6.3.source-004', 'Example 4: Solve and Graph Compound Inequalities', 4],
-  ['math.im1.example.6.3.source-005', 'Example 5: Write Compound Inequalities from Graphs', 5],
-  ['math.im1.example.6.3.source-006', 'Example 6: Write Compound Inequalities from Graphs', 6],
+  ['math.im1.example.6.3.017', 'Example 4: Solve and Graph Compound Inequalities', 4],
+  ['math.im1.example.6.3.018', 'Example 5: Write Compound Inequalities from Graphs', 5],
+  ['math.im1.example.6.3.019', 'Example 6: Write Compound Inequalities from Graphs', 6],
 ] as const;
-const solveSources = ['math.im1.example.6.3.013', 'math.im1.example.6.3.016', 'math.im1.example.6.3.source-004'];
-const graphSources = ['math.im1.example.6.3.source-005', 'math.im1.example.6.3.source-006'];
+const solveSources = ['math.im1.example.6.3.013', 'math.im1.example.6.3.016', 'math.im1.example.6.3.017'];
+const graphSources = ['math.im1.example.6.3.018', 'math.im1.example.6.3.019'];
 const lesson64SolveSources = ['math.im1.example.6.4.017', 'math.im1.example.6.4.018', 'math.im1.example.6.4.020', 'math.im1.example.6.4.021'];
 const lesson64Reuses = new Set([
   'math.im1.skill.6.3.solve-and-compound-inequalities-as-intersections',

@@ -94,12 +94,12 @@ describe('IM1 Modules 1 and 2 stored example reconciliation', () => {
     expect(sources('math.im1.skill.2.3.solve-literal-equations-for-a-specified-variable-and-solve-e')).toContain('math.im1.example.2.3.015');
 
     expect(sources('math.im1.skill.2.5.solve-absolute-value-equations-of-the-form')).toEqual([
-      'math.im1.example.2.5.source-001',
-      'math.im1.example.2.5.source-002',
+      'math.im1.example.2.5.022',
+      'math.im1.example.2.5.023',
       'math.im1.example.2.5.020',
     ]);
     expect(sources('math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu')).toEqual([
-      'math.im1.example.2.5.source-001',
+      'math.im1.example.2.5.022',
     ]);
 
     expect(sources('math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl')).toContain('math.im1.example.2.6.024');

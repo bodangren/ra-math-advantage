@@ -10504,7 +10504,7 @@
       }
     },
     {
-      "id": "math.im1.example.4.2.source-007",
+      "id": "math.im1.example.4.2.012",
       "kind": "worked_example",
       "title": "Example 7: Find the Slope Through Two Points",
       "domain": "math.im1",
@@ -10522,7 +10522,7 @@
       }
     },
     {
-      "id": "math.im1.example.4.2.source-008",
+      "id": "math.im1.example.4.2.013",
       "kind": "worked_example",
       "title": "Example 8: Find the Slope Through Two Points",
       "domain": "math.im1",
@@ -10540,7 +10540,7 @@
       }
     },
     {
-      "id": "math.im1.example.4.2.source-009",
+      "id": "math.im1.example.4.2.014",
       "kind": "worked_example",
       "title": "Example 9: Find an Unknown Coordinate Given Slope",
       "domain": "math.im1",
@@ -13361,7 +13361,7 @@
       }
     },
     {
-      "id": "math.im1.example.1.1.source-003",
+      "id": "math.im1.example.1.1.007",
       "kind": "worked_example",
       "title": "Example 3: Real-World Applications",
       "domain": "math.im1",
@@ -13379,7 +13379,7 @@
       }
     },
     {
-      "id": "math.im1.example.1.1.source-008",
+      "id": "math.im1.example.1.1.008",
       "kind": "worked_example",
       "title": "Example 8: Multi-Step Real-World Problem",
       "domain": "math.im1",
@@ -13397,7 +13397,7 @@
       }
     },
     {
-      "id": "math.im1.example.2.5.source-001",
+      "id": "math.im1.example.2.5.022",
       "kind": "worked_example",
       "title": "Example 1: Solve and Graph Simple Absolute Value Equations",
       "domain": "math.im1",
@@ -13415,7 +13415,7 @@
       }
     },
     {
-      "id": "math.im1.example.2.5.source-002",
+      "id": "math.im1.example.2.5.023",
       "kind": "worked_example",
       "title": "Example 2: Identify Equations with No Solution",
       "domain": "math.im1",
@@ -13433,7 +13433,7 @@
       }
     },
     {
-      "id": "math.im1.example.3.4.source-004",
+      "id": "math.im1.example.3.4.022",
       "kind": "worked_example",
       "title": "Example 4: Find and Interpret Intercepts from a Table",
       "domain": "math.im1",
@@ -14443,7 +14443,7 @@
       }
     },
     {
-      "id": "math.im1.example.5.2.source-004",
+      "id": "math.im1.example.5.2.014",
       "kind": "worked_example",
       "title": "Example 4: Model Real-World Situations in Point-Slope Form",
       "domain": "math.im1",
@@ -14461,7 +14461,7 @@
       }
     },
     {
-      "id": "math.im1.example.5.2.source-006",
+      "id": "math.im1.example.5.2.015",
       "kind": "worked_example",
       "title": "Example 6: Write Standard Form Given Two Points",
       "domain": "math.im1",
@@ -15431,7 +15431,7 @@
       }
     },
     {
-      "id": "math.im1.example.6.1.source-008",
+      "id": "math.im1.example.6.1.008",
       "kind": "worked_example",
       "title": "Example 8: Solve and Graph Inequalities by Multiplication and Division",
       "domain": "math.im1",
@@ -15449,7 +15449,7 @@
       }
     },
     {
-      "id": "math.im1.example.6.1.source-009",
+      "id": "math.im1.example.6.1.009",
       "kind": "worked_example",
       "title": "Example 9: Solve and Graph Inequalities by Multiplication and Division",
       "domain": "math.im1",
@@ -15467,7 +15467,7 @@
       }
     },
     {
-      "id": "math.im1.example.6.1.source-010",
+      "id": "math.im1.example.6.1.010",
       "kind": "worked_example",
       "title": "Example 10: Solve and Graph Inequalities by Multiplication and Division",
       "domain": "math.im1",
@@ -15859,7 +15859,7 @@
       }
     },
     {
-      "id": "math.im1.example.6.3.source-004",
+      "id": "math.im1.example.6.3.017",
       "kind": "worked_example",
       "title": "Example 4: Solve and Graph Compound Inequalities",
       "domain": "math.im1",
@@ -15877,7 +15877,7 @@
       }
     },
     {
-      "id": "math.im1.example.6.3.source-005",
+      "id": "math.im1.example.6.3.018",
       "kind": "worked_example",
       "title": "Example 5: Write Compound Inequalities from Graphs",
       "domain": "math.im1",
@@ -15895,7 +15895,7 @@
       }
     },
     {
-      "id": "math.im1.example.6.3.source-006",
+      "id": "math.im1.example.6.3.019",
       "kind": "worked_example",
       "title": "Example 6: Write Compound Inequalities from Graphs",
       "domain": "math.im1",
@@ -16813,7 +16813,7 @@
       }
     },
     {
-      "id": "math.im1.example.7.4.source-003",
+      "id": "math.im1.example.7.4.016",
       "kind": "worked_example",
       "title": "Example 3: Model and solve contextual systems by scaled elimination",
       "domain": "math.im1",

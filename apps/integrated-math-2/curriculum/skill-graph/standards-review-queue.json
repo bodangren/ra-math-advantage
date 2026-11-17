@@ -6544,7 +6544,7 @@
       "reason": "The teaching alignment requires review against the source lesson."
     },
     {
-      "nodeId": "math.im2.example.4.7.source-003",
+      "nodeId": "math.im2.example.4.7.030",
       "title": "Example 3 \u2014 Real-World Applications",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
@@ -6562,61 +6562,61 @@
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.6.1.source-006",
+      "nodeId": "math.im2.example.6.1.006",
       "title": "Example 6 \u2014 More Area Problems",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.6.1.source-007",
+      "nodeId": "math.im2.example.6.1.007",
       "title": "Example 7 \u2014 Find Diagonal Lengths",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.6.4.source-003",
+      "nodeId": "math.im2.example.6.4.021",
       "title": "Example 3 \u2014 Surface Area of Prisms with Variables",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.6.4.source-006",
+      "nodeId": "math.im2.example.6.4.022",
       "title": "Example 6 \u2014 Surface Area of Cones with Variables",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.6.6.source-003",
+      "nodeId": "math.im2.example.6.6.029",
       "title": "Example 3 \u2014 Volume with Variables",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.6.6.source-004",
+      "nodeId": "math.im2.example.6.6.030",
       "title": "Example 4 \u2014 More Volume Problems",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.6.6.source-005",
+      "nodeId": "math.im2.example.6.6.031",
       "title": "Example 5 \u2014 Volume of Pyramids with Variables",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.7.2.source-004",
+      "nodeId": "math.im2.example.7.2.010",
       "title": "Example 4 \u2014 Probability of Complements",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.7.3.source-004",
+      "nodeId": "math.im2.example.7.3.013",
       "title": "Example 4 \u2014 Spinner Probability",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.7.3.source-005",
+      "nodeId": "math.im2.example.7.3.014",
       "title": "Example 5 \u2014 Assumptions in Geometric Probability",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
@@ -6628,37 +6628,37 @@
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.7.7.source-001",
+      "nodeId": "math.im2.example.7.7.001",
       "title": "Example 1 \u2014 Conditional Probability",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.7.8.source-001",
+      "nodeId": "math.im2.example.7.8.001",
       "title": "Example 1 \u2014 Create Two-Way Frequency and Relative Frequency Tables",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.7.8.source-002",
+      "nodeId": "math.im2.example.7.8.002",
       "title": "Example 2 \u2014 College Student Survey with Independence Test",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.7.8.source-003",
+      "nodeId": "math.im2.example.7.8.003",
       "title": "Example 3 \u2014 Movie Theater Ticket Analysis",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.2.source-007",
+      "nodeId": "math.im2.example.8.2.013",
       "title": "Example 7 \u2014 Identify Symmetry Type",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.2.source-008",
+      "nodeId": "math.im2.example.8.2.014",
       "title": "Example 8 \u2014 Determine Even, Odd, or Neither",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
@@ -6682,301 +6682,301 @@
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.6.033-phase-8",
+      "nodeId": "math.im2.example.8.6.036",
       "title": "Examples 3 and 4 \u2014 Graph Greatest Integer Functions",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.7.source-001",
+      "nodeId": "math.im2.example.8.7.001",
       "title": "Example 1 \u2014 Describe Translations",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.7.source-002",
+      "nodeId": "math.im2.example.8.7.002",
       "title": "Example 2 \u2014 Write Equations from Graphs",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.7.source-003",
+      "nodeId": "math.im2.example.8.7.003",
       "title": "Examples 3 and 4 \u2014 Describe Dilations and Reflections",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.7.source-005",
+      "nodeId": "math.im2.example.8.7.004",
       "title": "Example 5 \u2014 Describe Combined Transformations",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.7.source-006",
+      "nodeId": "math.im2.example.8.7.005",
       "title": "Example 6 \u2014 Real-World Transformation Problems",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.8.7.source-007",
+      "nodeId": "math.im2.example.8.7.006",
       "title": "Example 7 \u2014 Write Equations from Graphs",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.3.source-007",
+      "nodeId": "math.im2.example.9.3.019",
       "title": "Example 7 \u2014 Real-World Point-Slope Applications",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.6.source-001",
+      "nodeId": "math.im2.example.9.6.001",
       "title": "Example 1 \u2014 Solve Systems of Two Linear Inequalities",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.6.source-002",
+      "nodeId": "math.im2.example.9.6.002",
       "title": "Example 2 \u2014 Solve Systems with Three or More Inequalities",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.6.source-003",
+      "nodeId": "math.im2.example.9.6.003",
       "title": "Example 3 \u2014 Real-World Applications",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.7.source-001",
+      "nodeId": "math.im2.example.9.7.001",
       "title": "Example 1 \u2014 Find Maximum and Minimum on a Bounded Feasible Region",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.7.source-002",
+      "nodeId": "math.im2.example.9.7.002",
       "title": "Example 2 \u2014 Optimization with Unbounded and Multi-Constraint Regions",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.7.source-003",
+      "nodeId": "math.im2.example.9.7.003",
       "title": "Example 3 \u2014 Real-World Linear Programming",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.8.source-001",
+      "nodeId": "math.im2.example.9.8.001",
       "title": "Example 1 \u2014 Solve Using Elimination",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.8.source-002",
+      "nodeId": "math.im2.example.9.8.002",
       "title": "Example 2 \u2014 Systems with Missing Variables",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.8.source-003",
+      "nodeId": "math.im2.example.9.8.003",
       "title": "Example 3 \u2014 Real-World Applications",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.9.source-001",
+      "nodeId": "math.im2.example.9.9.001",
       "title": "Example 1 \u2014 Solve Absolute Value Equations by Graphing",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.9.source-002",
+      "nodeId": "math.im2.example.9.9.002",
       "title": "Example 2 \u2014 Solve Absolute Value Equations Using a Graphing Calculator",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.9.source-003",
+      "nodeId": "math.im2.example.9.9.003",
       "title": "Example 3 \u2014 Solve Absolute Value Equations Algebraically",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.9.source-004",
+      "nodeId": "math.im2.example.9.9.004",
       "title": "Example 4 \u2014 Solve Absolute Value Inequalities by Graphing",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.9.9.source-005",
+      "nodeId": "math.im2.example.9.9.005",
       "title": "Example 5 \u2014 Solve Absolute Value Inequalities Using a Graphing Calculator",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.10.6.source-001",
+      "nodeId": "math.im2.example.10.6.001",
       "title": "Example 1 \u2014 Add and Subtract Like Radicals",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.10.6.source-002",
+      "nodeId": "math.im2.example.10.6.002",
       "title": "Example 2 \u2014 Simplify Before Adding or Subtracting",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.10.6.source-003",
+      "nodeId": "math.im2.example.10.6.003",
       "title": "Example 3 \u2014 Apply Radical Operations to Real-World Problems",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.10.6.source-004",
+      "nodeId": "math.im2.example.10.6.004",
       "title": "Example 4 \u2014 Multiply Radical Expressions",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.10.6.source-005",
+      "nodeId": "math.im2.example.10.6.005",
       "title": "Example 5 \u2014 Distribute a Radical Over a Binomial",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.10.7.source-001",
+      "nodeId": "math.im2.example.10.7.001",
       "title": "Example 1 \u2014 Solve Exponential Equations with Common Bases",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.10.7.source-002",
+      "nodeId": "math.im2.example.10.7.002",
       "title": "Example 2 \u2014 Solve Equations with Exponent Operations",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.10.7.source-003",
+      "nodeId": "math.im2.example.10.7.003",
       "title": "Example 3 \u2014 Exponential Equations in Applied Contexts",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.11.4.source-004",
+      "nodeId": "math.im2.example.11.4.022",
       "title": "Example 4 \u2014 Cubes of Binomials",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.11.7.source-001",
+      "nodeId": "math.im2.example.11.7.001",
       "title": "Example 1 \u2014 Factor Difference of Squares",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.11.7.source-002",
+      "nodeId": "math.im2.example.11.7.002",
       "title": "Example 2 \u2014 Factor by Grouping",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.11.7.source-003",
+      "nodeId": "math.im2.example.11.7.003",
       "title": "Example 3 \u2014 Apply Difference of Squares to Area Problems",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.11.7.source-004",
+      "nodeId": "math.im2.example.11.7.004",
       "title": "Example 4 \u2014 Identify Perfect Square Trinomials",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.11.7.source-005",
+      "nodeId": "math.im2.example.11.7.005",
       "title": "Example 5 \u2014 Factor Perfect Square Trinomials",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.2.source-005",
+      "nodeId": "math.im2.example.12.2.009",
       "title": "Example 5 \u2014 Transformations in Real-World Contexts",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.4.source-007",
+      "nodeId": "math.im2.example.12.4.019",
       "title": "Example 7 \u2014 Write a Quadratic Function Given Three Points",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.6.source-001",
+      "nodeId": "math.im2.example.12.6.001",
       "title": "Example 1 \u2014 Solve Quadratic Equations with the Quadratic Formula",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.6.source-002",
+      "nodeId": "math.im2.example.12.6.002",
       "title": "Example 2 \u2014 Solve Equations Requiring Rearrangement",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.6.source-003",
+      "nodeId": "math.im2.example.12.6.003",
       "title": "Example 3 \u2014 Apply Quadratic Equations to Real-World Problems",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.6.source-004",
+      "nodeId": "math.im2.example.12.6.004",
       "title": "Example 4 \u2014 Use the Discriminant",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.7.source-001",
+      "nodeId": "math.im2.example.12.7.001",
       "title": "Example 1 \u2014 Solve Systems by Graphing",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.7.source-002",
+      "nodeId": "math.im2.example.12.7.002",
       "title": "Example 2 \u2014 Solve Systems Algebraically",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.7.source-003",
+      "nodeId": "math.im2.example.12.7.003",
       "title": "Example 3 \u2014 Real-World Systems",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.8.source-001",
+      "nodeId": "math.im2.example.12.8.001",
       "title": "Example 1 \u2014 Identify the Model Type from a Table",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.8.source-002",
+      "nodeId": "math.im2.example.12.8.002",
       "title": "Example 2 \u2014 Model Data with a Quadratic Function",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.8.source-003",
+      "nodeId": "math.im2.example.12.8.003",
       "title": "Example 3 \u2014 Use Regression to Find the Best Model",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.9.source-001",
+      "nodeId": "math.im2.example.12.9.001",
       "title": "Example 1 \u2014 Add and Subtract Functions",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
     },
     {
-      "nodeId": "math.im2.example.12.9.source-002",
+      "nodeId": "math.im2.example.12.9.002",
       "title": "Example 2 \u2014 Compose Functions",
       "issue": "ALIGNMENT_MISSING",
       "reason": "Source heading restored. Standard alignment is pending content review. This node is not ready for mastery planning."
