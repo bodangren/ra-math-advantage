@@ -6,7 +6,7 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "oxlint --config ../../.oxlintrc.json . --max-warnings 0",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit",
     "curriculum:audit": "tsx scripts/curriculum-audit.ts",
     "curriculum:generate": "tsx scripts/generate-curriculum-remediation-artifacts.ts",
     "test": "vitest run",
