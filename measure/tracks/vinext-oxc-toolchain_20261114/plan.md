@@ -115,7 +115,7 @@ _Story ref: spec.md#story-s1_
     - [x] Make the danielson browser capture. Save one screenshot, one accessibility snapshot, and the console error list under `measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-m2-danielson`.
     - [x] Record that the pre-merge `gates/baseline/` folder (26 names) is historical and is not a comparison base. Record that a phase run whose workspace set differs from the `baseline-m2` set (27 names) is a new failure (strategy 6.4 and 14.4).
     - [x] Commit the evidence file: `measure(vinext-oxc): record the 6-app S1 baseline`.
-- [~] Task: S1 Test (Red) — add the S1 gate tests (Red commit: abbe15f1; Green marks `[x]` when the S1 cases pass)
+- [x] Task: S1 Test (Red) — add the S1 gate tests (Red commit: abbe15f1; Green marks `[x]` when the S1 cases pass)
     - Sync merge 2b2d9952 of origin/master 2e353ef9 (Daniel's order, 2026-11-16): 1130 commits, adds apps/danielson and oxlint tooling; the S1 baseline, cases, and gates need a re-check before S1 Verify. Green's commit C WIP is in a named stash.
     - [x] Create `scripts/__tests__/oxc-toolchain-gates.test.ts` with `describe('S1 vinext 1.x')`.
     - [x] Add `'__tests__/oxc-toolchain-gates.test.ts'` to `include` in `scripts/vitest.config.ts`. (The discovery check listed no file, so the config also got a `root` option from `import.meta.url`. Strategy section 5 names this fix.)
@@ -172,6 +172,11 @@ _Story ref: spec.md#story-s1_
         - Deviation (accepted): `findNextDeclarations` became one scanner, `scanDeclarations(entries, isKey)`, with a name predicate. Case 3 keeps its message strings and its `next`/`next@` rule. Case 9 and case 9b share the scanner (Q1 default).
     - [x] Before the first r5 `s1` gate, rename the folder `measure/runs/vinext-oxc-toolchain_20261114/gates/s1` to `gates/s1-premerge` with `mv`. It holds the pre-merge S1 results (26 names). Do not delete it. Do not set `GATES_RESUME=1` for the first run of a label (strategy 14.4).
         - Result: `mv` done on 2026-11-18. `gates/` now holds `baseline` (26 names), `baseline-m2` (27 names), and `s1-premerge` (26 names). The folder holds the pre-merge runs of 2026-11-15. It is gitignored, so the rename makes no commit. `GATES_RESUME=1` is not set for the first run of a label.
+    - Green result (Jr Green, 2026-11-18): all 11 cases of the S1 describe pass. Red rerun before the change: exit 1, 6 failed (case 1, 2, 3, 4, 7, 8), 5 passed (log `jr-green-red-rerun.log`). Green run after the danielson move: `npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x'` exit 0, 11 passed, 24 skipped (log `jr-green-s1-run1.log`, heavy-run `job ended exit 0`).
+    - `GREEN_TEST_COMMAND` (`npx vitest run --config scripts/vitest.config.ts`) exit 1: 1 failed, 34 passed of 35. The only failure is `remediate-concept-blueprints > production scan reports the honest count for the current repo state`, a baseline failure of section 10 (accepted with Q3). Log `jr-green-full-scripts.log`.
+    - Gates with `GATES_BASE=baseline-m2` (2026-11-18): `lint s1` NEWFAIL=0 (27 workspaces, exit 0). `test s1` NEWFAIL=0, exit 0 (steps scripts-suite 1 and audit-suites 1, both baseline). `checks-all s1` exit 1, NEWFAIL=1 with two lines: `NEW FAILURE: audit high 11 -> 21` (registry advisory drift, Q2, section 10) and `NEW FAILURE: typecheck apps/integrated-math-3 has a new diagnostic` (the npm error trailer of the approved 8 GB heap script `b9d27742`; `comm` proves only `npm error command sh -c NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit` is new and all 55 TS keys match `baseline-m2`; section 10). Workspace-set check: `workspaces-lint=27`, `workspaces-test=27`, `workspaces-typecheck=27`, `workspaces-build=27`, no `comm` line, run set equals disk set. `grep 'Failed to resolve import "next' gates/s1/test-*.log gates/s1/step-*.log` prints nothing.
+    - Checks K1 to K5 (strategy 14.2, one JSON run, log `w4-green.json`): K1 8 of 8 titles pass with the exact set (titles 1, 2, 3, 5, 8, A, B, C). K2 15 tests, 0 failed. K3 35 tests, 1 failed: only `@types/node: every workspace declaration shares a single major-version floor (W3 must hold; W4 must not re-introduce drift)`, the one failure the K3 contract allows at Green (`packages/knowledge-space-practice` still declares `^22.20.1`; box 229 owns the move). K4 `jsplugins_changed=0 jsplugins_count=3`, and `git diff d4752739 --name-only -- .oxlintrc.json` prints nothing. K5: `audit-suites` holds 7 failed tests in 3 files (audit-contract 4, framework-wave-w4 1, in-range-wave-w3 2), a subset of the 24 baseline failures, all listed in section 10.
+    - Danielson live check: `npx vinext build` exit 0 (log `jr-green-danielson-build2.log`), `npx tsc --noEmit` exit 0 (log `jr-green-danielson-tsc.log`), and dev on 4106 through `heavy-run.sh` gives `GET /` 307 with `location: http://localhost:4106/auth/login?redirect=%2F` (baseline match); the port is free after the stop (log `jr-green-4106.log`).
 - [x] Task: S1 Implement — move vinext to 1.x and remove `next` (dcde148d)
     - [ ] In `.github/workflows/ci.yml` and `.github/workflows/cloudflare-deploy.yml`, change each `node-version: '20'` to `'24'`.
     - [ ] In the root `package.json`, set `vinext` to `^1.4.5` and `react-server-dom-webpack` to `^19.3.1`.
@@ -190,15 +195,15 @@ _Story ref: spec.md#story-s1_
     - [x] Fix only what a failing gate needs. Use the held-package rule.
         - Deviation: the 5 app `eslint.config.mjs` files stopped importing `eslint-config-next` (and the `@typescript-eslint/no-explicit-any` override block). Reason: `eslint-config-next` loads `next/dist/compiled/babel/eslint-parser` at config time, so no app lint config could load after `next` was removed, and the lint gate had a new failure (exit 2) in the 4 apps that passed at baseline. S2 migrates these files in the next phase, so the rule loss is transitional. Evidence section 8 records it.
     - [x] Commit: `chore(deps): upgrade vinext to 1.x and remove next`. (dcde148d)
-    - Deviation (2026-11-17): the merge added `apps/danielson`. These sub-boxes are part of this task.
-        - [ ] In `apps/danielson/package.json`, remove `next` `^16.0.0` from `dependencies`. Set `vinext` to `^1.4.5` and `react` and `react-dom` to `^19.3.1`.
-        - [ ] In `apps/danielson/tsconfig.json`, add `vinext/types` to `compilerOptions.types`. Remove the `{ "name": "next" }` plugin entry.
-        - [ ] In `apps/danielson/package.json`, move `@types/node` `^22` to the latest 24.x version.
-        - [ ] In `apps/danielson/package.json`, set `@vitejs/plugin-react` and `vite` to the same range as the other 5 apps in this task.
-        - [ ] Run `npx vinext check` in `apps/danielson`. Record the score and each issue in section 8.
-        - [ ] Add the danielson build and its dev port 4106 to the S1 sweep.
-        - [ ] In `.github/workflows/business-math-deploy.yml`, change `node-version: '22'` to `'24'`, next to the `ci.yml` and `cloudflare-deploy.yml` changes of the step above.
-        - [ ] No app is ever excluded from a glob, a test, or a gate to make the phase pass (strategy R18).
+    - Deviation (2026-11-17): the merge added `apps/danielson`. These sub-boxes are part of this task. Green commits: `3c5f6a32 chore(deps): move danielson to vinext 1.x and Node 24 CI` and `050e916b chore(deps): add the danielson vite config that vinext 1.x build requires`.
+        - [x] In `apps/danielson/package.json`, remove `next` `^16.0.0` from `dependencies`. Set `vinext` to `^1.4.5` and `react` and `react-dom` to `^19.3.1`.
+        - [x] In `apps/danielson/tsconfig.json`, add `vinext/types` to `compilerOptions.types`. Remove the `{ "name": "next" }` plugin entry.
+        - [x] In `apps/danielson/package.json`, move `@types/node` `^22` to the latest 24.x version. (`^24.19.2`, the registry latest 24.x and the range of the other workspaces.)
+        - [x] In `apps/danielson/package.json`, set `@vitejs/plugin-react` and `vite` to the same range as the other 5 apps in this task. (`@vitejs/plugin-react` was already `^6.0.0`; `vite` moved `^8.0.0` to `^8.3.8`.)
+        - [x] Run `npx vinext check` in `apps/danielson`. Record the score and each issue in section 8. (Exit 0, 100% compatible, 0 issues, log `jr-green-danielson-vinext-check.log`; section 8 row added.)
+        - [x] Add the danielson build and its dev port 4106 to the S1 sweep. (`baseline-m2` holds `apps/danielson` in all four `.exit` files; the S1 build sweep runs it; `PROJECT_DEV_URL` names 4106; the Green 4106 check gives 307 to `/auth/login`.)
+        - [x] In `.github/workflows/business-math-deploy.yml`, change `node-version: '22'` to `'24'`, next to the `ci.yml` and `cloudflare-deploy.yml` changes of the step above. (Case 7 passes; exit 0.)
+        - [x] No app is ever excluded from a glob, a test, or a gate to make the phase pass (strategy R18). (Danielson is read from disk by cases 1 to 4, is swept by all four gates, and the workspace-set check gives 27 names for each script.)
 - [x] Task: S1 Implement — update all other dependencies (WIP 7b5eb2fb, fixes 62f3fa60 + 933cca0d, gate refinement 21c70826; gates lint/test/checks-all s1 all exit 0 NEWFAIL=0 at the task-3 commit 4173b71f)
         - Machine-move triage result: real new failure, class `Failed to resolve import
           "next/..."` (strategy risk R4). Fixed in 62f3fa60: the 5 app `vitest.config.ts`
@@ -232,18 +237,18 @@ _Story ref: spec.md#story-s1_
     - [ ] Update each major-version family in its own commit, for example `chore(deps): upgrade vitest to 5` with `@vitest/*`.
     - [ ] Run all gates before each commit. Use the held-package rule.
     - [ ] Record each change in section 3.
-- [~] Task: S1 Implement — move the audit suites forward (4173b71f)
-    - [ ] Issue #2, check K1 (strategy 14.2): in `scripts/audit/__tests__/framework-wave-w4-audit.test.ts`, make the 8 tests of `-t 'post-W4 major lines'` pass. Titles 1, 2, 3, and 5 stay. Titles 4, 6, and 7 become titles A, B, and C of strategy 14.2, copied verbatim. Title 8 stays. It turns green when the danielson move removes the key `node_modules/next`.
-    - [ ] Issue #2, check K2 (strategy 14.2): the whole file has at least 15 tests and 0 failed tests. This includes the test at file line 249, "every W4 framework major installed lockfile version satisfies its w4-framework-targets.json target_version range". Give `eslint-config-next`, `eslint`, and `@eslint/js` the absence rule in its loop. Keep the fixture entries.
-    - [ ] Issue #2, check K3 (strategy 14.2; question Q2 of strategy 15.3, default yes): in `scripts/audit/__tests__/framework-wave-w4.test.ts`, give the 5 tests at lines 406, 434, 500, 528, and 630 the same rule. Its `@types/node` test (line 560) follows the `@types/node` move.
-    - [ ] Follow the durability contract of strategy 14.2 (R9 and R20). The version floors stay for the required packages. Each removed package gets an absence check. No `it(` or `expect(` line disappears unless it names a removed package.
-    - [ ] Follow the peer-only rule of strategy 14.2. S1 asserts manifest absence for `eslint` and `@eslint/js`. It also asserts `peer: true` for each lockfile copy. The two React ESLint plugins stay, because the root `.oxlintrc.json` loads them as `jsPlugins`. No test asserts lockfile absence of `eslint` or `@eslint/js`.
-    - [ ] Run the audit suites. Find each assertion that passed in the baseline and fails now only because S1 changed or removed a package.
-    - [ ] Change each such assertion to the durable contract of lessons-learned 2026-06-07. The declared range admits the installed version.
-    - [ ] The durable contract also requires: no range is `latest`, `*`, or empty, and the old security floor stays a minimum.
-    - [ ] For a removed package, assert that no manifest declares it.
-    - [ ] Do not change an assertion that failed in the baseline. It stays in section 10. The tests of checks K1 to K3 are the one exception.
-    - [ ] Commit: `test(audit): move the audit suites forward for vinext 1.x`.
+- [x] Task: S1 Implement — move the audit suites forward (4173b71f; Green: `cd6567fe test(audit): move the W4 audit forward for S1 (issue #2)`)
+    - [x] Issue #2, check K1 (strategy 14.2): in `scripts/audit/__tests__/framework-wave-w4-audit.test.ts`, make the 8 tests of `-t 'post-W4 major lines'` pass. Titles 1, 2, 3, and 5 stay. Titles 4, 6, and 7 become titles A, B, and C of strategy 14.2, copied verbatim. Title 8 stays. It turns green when the danielson move removes the key `node_modules/next`. (Green JSON run: 8 selected, 8 passed, 0 failed, the exact title set.)
+    - [x] Issue #2, check K2 (strategy 14.2): the whole file has at least 15 tests and 0 failed tests. This includes the test at file line 249, "every W4 framework major installed lockfile version satisfies its w4-framework-targets.json target_version range". Give `eslint-config-next`, `eslint`, and `@eslint/js` the absence rule in its loop. Keep the fixture entries. (15 tests, 0 failed.)
+    - [x] Issue #2, check K3 (strategy 14.2; question Q2 of strategy 15.3, default yes): in `scripts/audit/__tests__/framework-wave-w4.test.ts`, give the 5 tests at lines 406, 434, 500, 528, and 630 the same rule. Its `@types/node` test (line 560) follows the `@types/node` move. (35 tests, 1 failed: only the `@types/node` title, which the K3 contract allows at Green; `packages/knowledge-space-practice` still declares `^22.20.1` and box 229 owns that move.)
+    - [x] Follow the durability contract of strategy 14.2 (R9 and R20). The version floors stay for the required packages. Each removed package gets an absence check. No `it(` or `expect(` line disappears unless it names a removed package.
+    - [x] Follow the peer-only rule of strategy 14.2. S1 asserts manifest absence for `eslint` and `@eslint/js`. It also asserts `peer: true` for each lockfile copy. The two React ESLint plugins stay, because the root `.oxlintrc.json` loads them as `jsPlugins`. No test asserts lockfile absence of `eslint` or `@eslint/js`.
+    - [x] Run the audit suites. Find each assertion that passed in the baseline and fails now only because S1 changed or removed a package. (The `audit-suites` step of `test s1`: 7 failed of 192, a subset of the 24 baseline failures.)
+    - [x] Change each such assertion to the durable contract of lessons-learned 2026-06-07. The declared range admits the installed version.
+    - [x] The durable contract also requires: no range is `latest`, `*`, or empty, and the old security floor stays a minimum.
+    - [x] For a removed package, assert that no manifest declares it.
+    - [x] Do not change an assertion that failed in the baseline. It stays in section 10. The tests of checks K1 to K3 are the one exception.
+    - [x] Commit: `test(audit): move the audit suites forward for vinext 1.x`. (Green landed it as `cd6567fe test(audit): move the W4 audit forward for S1 (issue #2)`, the orchestrator-directed message.)
 - [ ] Task: S1 Verify — run the gates after the upgrade
     - [ ] Run each gate. Confirm that no gate has a new failure.
     - [ ] Confirm that the scripts suite passes, with the S1 case set of strategy 6.2 (cases 1 to 9, with 5b and 9b: 11 tests). Run the closure checks K1 to K5 of strategy 14.2. Confirm that they hold.
