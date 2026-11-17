@@ -108,7 +108,7 @@ _Story ref: spec.md#story-s1_
     - [x] Request `/` with `curl -s -o /dev/null -w '%{http_code}'`. Record the status code. Stop the server. (All 5 apps gave 200. Each port was free after the stop.)
     - [x] Time `npm run build` for each app on vinext 0.0.55. Record the times in section 5.
     - [x] Commit the evidence file: `measure(vinext-oxc): record the S1 baseline`.
-- [ ] Task: S1 Baseline (6 apps) — capture `baseline-m2` on the merged tree
+- [~] Task: S1 Baseline (6 apps) — capture `baseline-m2` on the merged tree
     - [ ] Run `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint baseline-m2`, then `test baseline-m2`, then `checks-all baseline-m2`, one at a time. `gates.sh` sends each job through `heavy-run.sh` itself (strategy section 2). A label that starts with `baseline` records only.
     - [ ] Run the danielson `npm run build`. Record the exit code, and the first error line when it fails.
     - [ ] Start danielson on port 4106 and request `/`. Record the status code, and the `location` header of a redirect.
@@ -145,6 +145,7 @@ _Story ref: spec.md#story-s1_
     - Rehearsal of the probes for Green (not a test): the three probe files ran against the `vinext@1.4.5` and `@vinext/types@1.0.2` packages from the registry, in a folder outside the repository, with `tsc` 6.0.3. The valid probe gave exit code 0. The invalid probe gave `TS2345` (`push(123)`) and `TS2741` (`<Link />`). The missing-module probe gave `TS2307` for `next/does-not-exist` only. The vinext types are strict, so case 5b holds on vinext 1.x.
     - Deviation for Green: the case 7 test reads the workflows with `js-yaml`. The package is not a root dependency. It is only a transitive dependency of `@eslint/eslintrc` through `apps/bus-math-v2`, and S2 removes `@eslint/eslintrc`. Green adds `js-yaml` to the root `devDependencies` in the S1 manifest commit. The S5 tests need it too.
     - Deviation for the older scripts test: the `root` option makes `scripts/__tests__/remediate-concept-blueprints.test.ts` run for the first time. It passes (log `scripts-suite-older-test.log`).
+    - [ ] Follow-up Red commit for the 6-app tree (strategy section 14.3). Run the discovery check first. Extend cases 1 to 4 to `apps/danielson`, with the `APP_DIRS` sentinel. Extend case 7 to the five workflow files, with its sentinels. Add the nested-vinext rule to case 8. Add the issue #2 case 9 with its seeded-fault case 9b. Add two guard cases for the `gates.sh` workspace-set rule to `scripts/__tests__/vinext-oxc-gates-script.test.ts`. Record the W4 command result in the Red log. Commit: `test(vinext-oxc): extend the S1 gate tests for the 6-app tree (Red)`.
 - [x] Task: S1 Implement — move vinext to 1.x and remove `next` (dcde148d)
     - [ ] In `.github/workflows/ci.yml` and `.github/workflows/cloudflare-deploy.yml`, change each `node-version: '20'` to `'24'`.
     - [ ] In the root `package.json`, set `vinext` to `^1.4.5` and `react-server-dom-webpack` to `^19.3.1`.
@@ -234,53 +235,49 @@ _Story ref: spec.md#story-s1_
     - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Package refresh and vinext 1.x' as complete`.
 
-Phase note (2026-11-17): phase_base_sha for S1 r4 is 3e141e058d67e0ddc98b844795d9dacf45c84ac9, recorded in the run log and the role handoffs. No plan line carries a phase SHA.
+Phase note (2026-11-17): the S1 phase base is captured after the r5 strategy commit (strategy section 4). The run log and the role handoff hold it. No plan line carries a phase SHA.
 
 ## Phase S2: ESLint to oxlint
 _S2 is superseded by eslint-to-oxlint-migration_20260820 (Daniel's oxlint move is done), PM 2026-11-16._
 _Story ref: spec.md#story-s2_
 
 - [ ] Task: S2 Contract — record the lint change
-    - [ ] In `measure/tech-stack.md`, add a dated note. The note names oxlint ^1.93.0, the `.oxlintrc.json` file in each linted workspace, and native rules only.
-    - [ ] Use this corrected layout (strategy 13.8 item 4). The merged tree has one root `.oxlintrc.json`. There is no per-workspace copy, so the count is one file, not 25.
-    - [ ] Every workspace lint script names the root config: `../../.oxlintrc.json`.
-    - [ ] A workspace config and the root config must not disagree about one rule. The S2 cases read each lint script and its config target (strategy R17).
-    - [ ] The app lint script is `oxlint -c .oxlintrc.json --max-warnings 0 .`.
-    - [ ] The package lint script is `oxlint -c .oxlintrc.json --max-warnings 0 src`.
-    - [ ] `oxlint` `^1.93.0` goes in the root `devDependencies` only.
-    - [ ] Time `npm run lint` with ESLint for each of the 19 workspaces with an ESLint config. Record "before" in section 5.
+    - [ ] In `measure/tech-stack.md`, add a dated note. The note names the oxlint version of the root `package.json`, the one root `.oxlintrc.json`, and native rules only.
+    - [ ] Use the single-root layout (strategy 13.8 item 4, checked 2026-11-17). The tree has one root `.oxlintrc.json` and no per-workspace copy. No `eslint.config.*` file is tracked.
+    - [ ] 26 of the 27 workspace lint scripts name `../../.oxlintrc.json`. `packages/_template` runs an `echo` line and stays as it is.
+    - [ ] The app lint script is `oxlint --config ../../.oxlintrc.json . --max-warnings 0`.
+    - [ ] The package lint script is `oxlint --config ../../.oxlintrc.json src --max-warnings 0`.
+    - [ ] No second `.oxlintrc.json` exists outside `node_modules`. The S2 cases read each lint script and its `--config` target (strategy R17).
+    - [ ] `oxlint` stays in the root `devDependencies` only. S1 sets its range to the latest version.
+    - [ ] Open: no `eslint.config.*` file remains, so no ESLint "before" lint timing can run on this tree. The S2 refresh decides how to fill the "before" value of the lint row in section 5.
 - [ ] Task: S2 Test (Red) — add the S2 gate tests
     - [ ] Add `describe('S2 oxlint')` to the test file.
     - [ ] Normal case 1: no manifest declares `eslint`, `typescript-eslint`, `eslint-config-next`, `@eslint/js`, or `@eslint/eslintrc`. The root `overrides` has no `eslint` key.
     - [ ] Normal case 2: no `eslint.config.*` file exists under `apps/` or `packages/`, outside `node_modules`.
-    - [ ] Normal case 3: each workspace with a lint script has `.oxlintrc.json`. Its lint script is the target form.
-    - [ ] Edge case 4: a probe with `const unused = 1;` fails `oxlint -c <repo>/packages/knowledge-space-core/.oxlintrc.json --max-warnings 0 <probe>`. The exit code is non-zero, and the output contains `no-unused-vars`.
+    - [ ] Normal case 3: each workspace lint script, except `packages/_template`, is in the target form and names `../../.oxlintrc.json`. No `.oxlintrc.json` other than the root exists outside `node_modules`.
+    - [ ] Edge case 4: a probe with `const unused = 1;` fails `oxlint --config <repo>/.oxlintrc.json --max-warnings 0 <probe>`. The exit code is non-zero, and the output contains `no-unused-vars`.
     - [ ] Edge case 5: the same probe with `/* oxlint-disable */` as its first line exits with code 0.
-    - [ ] Run the scripts suite. Confirm that cases 1 to 5 fail.
+    - [ ] Run the scripts suite. Record each case that fails. Cases 1 to 3 already pass at the merged tree (strategy section 8), so the S2 refresh re-derives the Red set.
     - [ ] Commit: `test(vinext-oxc): add the S2 gate tests (Red)`.
-- [ ] Task: S2 Implement — migrate each ESLint config
-    - [ ] In each of the 19 workspaces with `eslint.config.mjs`, run `npx --yes @oxlint/migrate@1.93.0 eslint.config.mjs --js-plugins=false --details --replace-eslint-comments --output-file .oxlintrc.json`.
-    - [ ] Record each rule from the `--details` output in section 6.
-    - [ ] Record each comment that the tool cannot replace in section 8.
-    - [ ] Copy `packages/knowledge-space-core/.oxlintrc.json` to the 6 workspaces of the target layout.
-    - [ ] Commit: `chore(lint): add oxlint configs from the ESLint configs`.
-- [ ] Task: S2 Implement — switch the lint scripts and remove ESLint
-    - [ ] Add `oxlint` `^1.93.0` to the root `devDependencies`.
-    - [ ] Set the 25 lint scripts to the target forms.
-    - [ ] Delete the 19 `eslint.config.mjs` files.
-    - [ ] Remove the 5 ESLint packages from each manifest. Remove `eslint` from the root `overrides`.
-    - [ ] Run `npm install`.
-    - [ ] Commit: `chore(lint): replace ESLint with oxlint`.
+- [ ] Task: S2 Implement — record the migration that the lint track made (rewritten 2026-11-17)
+    - [ ] `eslint-to-oxlint-migration_20260820` made the migration. Run no `@oxlint/migrate` command. Make no per-workspace `.oxlintrc.json`.
+    - [ ] The S2 refresh decides how to fill evidence sections 6 and 8, because no ESLint config remains for the `--details` output.
+- [ ] Task: S2 Implement — confirm the lint switch (made by the lint track)
+    - [ ] Confirm that `oxlint` is in the root `devDependencies`, and only there.
+    - [ ] Confirm that 26 lint scripts (6 apps and 20 packages) are in the target forms of the S2 Contract.
+    - [ ] Confirm that no `eslint.config.*` file is tracked, that no manifest declares the 5 ESLint packages, and that the root `overrides` has no `eslint` key.
+    - [ ] Record that the lockfile keeps `eslint`, `@eslint/js`, and `@eslint/eslintrc` as peers of `eslint-plugin-react` and `eslint-plugin-react-hooks` (root `devDependencies`). The S2 refresh decides whether S2 removes the two plugins (strategy section 8).
+    - [ ] Run `npm install` only when a manifest changed. Commit only a change that this task makes.
 - [ ] Task: S2 Implement — reach zero warnings
     - [ ] Run `npm run lint` in each workspace.
     - [ ] Fix each finding when the fix does not change behavior.
     - [ ] When a fix changes behavior, add `// oxlint-disable-next-line <rule> -- <reason>` above the line. Record it in section 8.
     - [ ] Commit: `fix(lint): resolve the oxlint findings`.
 - [ ] Task: S2 Verify — run the gates after the lint change
-    - [ ] Confirm that all 25 lint scripts exit with code 0 and report zero warnings.
+    - [ ] Confirm that all 26 oxlint lint scripts exit with code 0 and report zero warnings.
     - [ ] Run the other gates. Confirm that no gate has a new failure.
     - [ ] Confirm that the scripts suite passes.
-    - [ ] Time `npm run lint` with oxlint for the same 19 workspaces. Record "after" in section 5.
+    - [ ] Time `npm run lint` with oxlint for the 26 workspaces that run it. Record "after" in section 5.
     - [ ] Commit the evidence file: `measure(vinext-oxc): record the S2 results`.
 - [ ] Task: S2 Docs & Doctor
     - [ ] In `measure/tech-debt.md`, set the row "math-content package lint gate missing" to `Resolved`. Add this track id to its note.

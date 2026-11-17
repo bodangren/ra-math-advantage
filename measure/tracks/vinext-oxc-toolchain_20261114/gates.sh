@@ -9,6 +9,7 @@
 # Records each result under measure/runs/vinext-oxc-toolchain_20261114/gates/<label> (gitignored).
 # A label that starts with "baseline" only records (for example "baseline-m2").
 # Any other label compares with the folder that GATES_BASE names (default "baseline").
+# A compare also fails when the workspace set of a script differs from the set of the base.
 # GATES_RESUME=1 keeps the results of an earlier run with the same label and runs only the
 # jobs that have no result (or an infrastructure exit code).
 # Output names: <script>.exit, <script>-<workspace>.log, <gate>.steps, step-<name>.log,
@@ -69,7 +70,7 @@ run_job() { # $1 kind, $2 name, $3 log file, rest: command
 }
 
 sweep() { # $1 script name
-  local s=$1 ws name code bc rec
+  local s=$1 ws name code bc rec diffnames
   [ "$RESUME" = 1 ] || : > "$OUT/$s.exit"
   touch "$OUT/$s.exit"
   for ws in apps/* packages/*; do
@@ -103,6 +104,16 @@ sweep() { # $1 script name
   done
   if [ "$(grep -vc ' n/a$' "$OUT/$s.exit")" -eq 0 ]; then
     echo "NEW FAILURE: $s ran in no workspace"; newfail=1
+  fi
+  # The loop above visits the folders of the current tree only. A workspace that the base
+  # lists and this run lacks (or the reverse) is a new failure (revision r5, F2). The check
+  # needs the base exit file: a missing base keeps the rule of the "Missing comparison base".
+  if ! is_record_only && [ -f "$BASE/$s.exit" ]; then
+    diffnames=$(LC_ALL=C comm -3 <(awk '{print $1}' "$BASE/$s.exit" | LC_ALL=C sort -u) \
+      <(awk '{print $1}' "$OUT/$s.exit" | LC_ALL=C sort -u) | tr -d '\t' | tr '\n' ' ')
+    if [ -n "$diffnames" ]; then
+      echo "NEW FAILURE: $s workspace set differs from the baseline: $diffnames"; newfail=1
+    fi
   fi
 }
 
