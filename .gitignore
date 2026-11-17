@@ -6,6 +6,7 @@ node_modules/
 
 # testing
 /coverage
+**/coverage/
 /playwright-report
 **/playwright-report/
 **/test-results/
@@ -65,11 +66,16 @@ __pycache__/
 apps/*/scale-report.json
 apps/*/scale-evaluation.json
 
+# scratch capture scripts and generated evidence output (kept on disk, not tracked)
+/tmp/
+/outputs/
+
 # Junk files created by misfired CLI flag invocations (e.g. `build-graph --db`
 # treated as a literal filename rather than a flag). See
 # code-review-remediation_20260624 FR-15.
 /--db
 /--symbol
+/=
 *-cli-arg-junk
 
 # Throwaway JSDoc automation scratch files (do not commit)
