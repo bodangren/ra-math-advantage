@@ -7,7 +7,8 @@
 # each step. Reason: heavy-run.sh caps a p2 job at 1800 s, and a whole gate needs more.
 # Run a gate in the background and read its log. A gate takes a long time.
 # Records each result under measure/runs/vinext-oxc-toolchain_20261114/gates/<label> (gitignored).
-# The label "baseline" only records. Any other label compares with the baseline.
+# A label that starts with "baseline" only records (for example "baseline-m2").
+# Any other label compares with the folder that GATES_BASE names (default "baseline").
 # GATES_RESUME=1 keeps the results of an earlier run with the same label and runs only the
 # jobs that have no result (or an infrastructure exit code).
 # Output names: <script>.exit, <script>-<workspace>.log, <gate>.steps, step-<name>.log,
@@ -52,6 +53,10 @@ base_code() { # $1 file, $2 name
 
 is_infra() { [[ "$INFRA" == *" $1 "* ]]; }
 
+# A label that starts with "baseline" records only (revision r4: the pre-merge tree
+# had one baseline label; the 6-app tree needs a second one).
+is_record_only() { case "$LABEL" in baseline*) return 0 ;; *) return 1 ;; esac; }
+
 # One heavy-run.sh job. Sets JOB_CODE.
 run_job() { # $1 kind, $2 name, $3 log file, rest: command
   local kind=$1 name=$2 log=$3 t0 t1
@@ -84,7 +89,7 @@ sweep() { # $1 script name
     if is_infra "$code"; then
       echo "INFRA FAILURE: $s $ws exit $code"; infra=1; continue
     fi
-    [ "$LABEL" = baseline ] && continue
+    if is_record_only; then continue; fi
     bc=$(base_code "$BASE/$s.exit" "$ws")
     if [ "$code" = n/a ] && [ -n "$bc" ] && [ "$bc" != n/a ]; then
       echo "NEW FAILURE: $s script removed in $ws"; newfail=1
@@ -115,7 +120,7 @@ step() { # $1 name, rest: command
   if is_infra "$c"; then
     echo "INFRA FAILURE: step $n exit $c"; infra=1; return
   fi
-  [ "$LABEL" = baseline ] && return
+  if is_record_only; then return; fi
   bc=$(base_code "$BASE/$GATE.steps" "$n")
   if [ "$c" != 0 ]; then
     if [ "${bc:-x}" = 0 ] || [ "${bc:-x}" = x ] || [[ "$MUST_PASS" == *" $n "* ]]; then
@@ -156,7 +161,7 @@ audit_step() {
   fi
   node -e 'const m=require(process.argv[1]).metadata.vulnerabilities;console.log(`critical=${m.critical} high=${m.high} moderate=${m.moderate} low=${m.low}`)' "$OUT/audit.json" > "$OUT/audit.txt"
   echo "audit: $(cat "$OUT/audit.txt")"
-  [ "$LABEL" = baseline ] && return
+  if is_record_only; then return; fi
   local f c b
   for f in critical high; do
     c=$(sed -n "s/.*$f=\([0-9][0-9]*\).*/\1/p" "$OUT/audit.txt")
@@ -181,7 +186,7 @@ H=${HEAVY_RUN:-$HOME/Desktop/advantage-pr/scripts/jobs/heavy-run.sh}
 RESUME=${GATES_RESUME:-0}
 GATES=$REPO/measure/runs/vinext-oxc-toolchain_20261114/gates
 OUT=$GATES/$LABEL
-BASE=$GATES/baseline
+BASE=$GATES/${GATES_BASE:-baseline}
 mkdir -p "$OUT"
 MUST_PASS=" next-absent "
 # Exit codes of heavy-run.sh itself (usage, deny list, temp file, memory, disk, time limit, lock).
@@ -218,7 +223,7 @@ case "$GATE" in
 esac
 echo "NEWFAIL=$newfail"
 [ "$infra" = 0 ] || { echo "INFRA=1"; exit 3; }
-[ "$LABEL" = baseline ] && exit 0
+if is_record_only; then exit 0; fi
 exit "$newfail"
 }
 
