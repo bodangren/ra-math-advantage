@@ -85,28 +85,43 @@ function relative(file: string): string {
   return path.relative(REPO_ROOT, file) || '.';
 }
 
-// Collect each place that a manifest declares `next`, including nested override objects.
-function findNextDeclarations(manifestPath: string): string[] {
-  const manifest = readJson(manifestPath);
+// The five manifest fields that a dependency scan reads.
+const DEPENDENCY_FIELDS = [
+  'dependencies',
+  'devDependencies',
+  'peerDependencies',
+  'optionalDependencies',
+  'overrides',
+];
+
+type ManifestEntry = { display: string; manifest: Json };
+
+// `next` also appears under a nested override key such as `next@16` (case 3).
+const isNextKey = (key: string) => key === 'next' || key.startsWith('next@');
+
+// Collect each place that a manifest set declares a name that `isKey` accepts, including
+// nested override objects. One scanner serves case 3 and case 9 (strategy 14.3, Q1).
+function scanDeclarations(entries: ManifestEntry[], isKey: (key: string) => boolean): string[] {
   const found: string[] = [];
-  const isNextKey = (key: string) => key === 'next' || key.startsWith('next@');
-  const walk = (value: unknown, trail: string) => {
+  const walk = (value: unknown, trail: string, display: string) => {
     if (value === null || typeof value !== 'object') return;
     for (const [key, child] of Object.entries(value as Json)) {
-      if (isNextKey(key)) found.push(`${relative(manifestPath)}:${trail}.${key}`);
-      walk(child, `${trail}.${key}`);
+      if (isKey(key)) found.push(`${display}:${trail}.${key}`);
+      walk(child, `${trail}.${key}`, display);
     }
   };
-  for (const field of [
-    'dependencies',
-    'devDependencies',
-    'peerDependencies',
-    'optionalDependencies',
-    'overrides',
-  ]) {
-    walk(manifest[field], field);
+  for (const entry of entries) {
+    for (const field of DEPENDENCY_FIELDS) walk(entry.manifest[field], field, entry.display);
   }
-  return found;
+  return found.sort();
+}
+
+// Read a manifest file list into the shape that scanDeclarations reads.
+function manifestEntries(files: string[], base = REPO_ROOT): ManifestEntry[] {
+  return files.map((file) => ({
+    display: path.relative(base, file) || file,
+    manifest: readJson(file),
+  }));
 }
 
 // Probe project helper (plan "Probe Test Helper").
@@ -201,7 +216,9 @@ afterEach(() => {
 describe('S1 vinext 1.x', () => {
   it('case 1: vinext resolves to a 1.x release from the root, each app, and app-shell', () => {
     expect(APP_DIRS.map(relative)).toContain('apps/integrated-math-3');
-    expect(APP_DIRS.length).toBeGreaterThanOrEqual(5);
+    // Sentinel: the app set is read from the disk, and it holds the sixth app (A4).
+    expect(APP_DIRS.map(relative)).toContain('apps/danielson');
+    expect(APP_DIRS.length).toBeGreaterThanOrEqual(6);
     const majors: Record<string, number> = {};
     for (const dir of RESOLVE_FROM_DIRS) {
       const found = findInstalledPackageJson(dir, 'vinext');
@@ -242,17 +259,20 @@ describe('S1 vinext 1.x', () => {
       ...APP_DIRS.map((d) => path.join(d, 'package.json')),
       ...PACKAGE_DIRS.map((d) => path.join(d, 'package.json')),
     ];
-    // Sentinel: the scan read the manifests that matter (A4).
+    // Sentinel: the scan read the manifests that matter (A4). The count covers the root,
+    // 6 apps, and 21 packages.
     expect(manifests).toContain(path.join(IM3_DIR, 'package.json'));
     expect(manifests).toContain(path.join(APP_SHELL_DIR, 'package.json'));
-    expect(manifests.length).toBeGreaterThanOrEqual(1 + 5 + 20);
-    const declarations = manifests.flatMap(findNextDeclarations);
+    expect(manifests).toContain(path.join(REPO_ROOT, 'apps', 'danielson', 'package.json'));
+    expect(manifests.length).toBeGreaterThanOrEqual(28);
+    const declarations = scanDeclarations(manifestEntries(manifests), isNextKey);
     expect(declarations, 'manifest fields that declare next').toEqual([]);
   });
 
   it('case 4: each app and app-shell tsconfig loads vinext/types and has no next plugin', () => {
     const tsconfigs = [...APP_DIRS, APP_SHELL_DIR].map((d) => path.join(d, 'tsconfig.json'));
-    expect(tsconfigs.length).toBeGreaterThanOrEqual(6);
+    // Sentinel: 6 apps plus the shared shell package (A4).
+    expect(tsconfigs.length).toBeGreaterThanOrEqual(7);
     const missingTypes: string[] = [];
     const nextPlugins: string[] = [];
     for (const file of tsconfigs) {
@@ -335,9 +355,14 @@ describe('S1 vinext 1.x', () => {
         }
       }
     }
-    // Sentinel: the two workflows that the plan edits each have a setup-node step (A4).
+    // Sentinel: the parse produced one entry for each file on the disk (A4). A filter that
+    // drops a workflow fails here, not only on the content check.
+    expect(Object.keys(stepsByFile).sort(), 'workflow files read').toEqual(files);
+    // Sentinels: the two workflows that the plan edits each have a setup-node step, and
+    // jsdoc-typed-params.yml has none. The zero proves that the parse read that file.
     expect(stepsByFile['ci.yml'] ?? 0).toBeGreaterThanOrEqual(1);
     expect(stepsByFile['cloudflare-deploy.yml'] ?? 0).toBeGreaterThanOrEqual(1);
+    expect(stepsByFile['jsdoc-typed-params.yml'] ?? -1).toBe(0);
     expect(wrongNode, 'setup-node steps with a node-version that is not 24').toEqual([]);
   });
 
@@ -351,6 +376,13 @@ describe('S1 vinext 1.x', () => {
     expect(keys).toContain('packages/app-shell');
     const nextPackages = keys.filter((key) => key.endsWith('node_modules/next'));
     expect(nextPackages, 'lockfile package keys that end with node_modules/next').toEqual([]);
+    // A nested copy shadows the root vinext at runtime (risk R16). The only key that ends
+    // with node_modules/vinext is the root one.
+    const vinextPackages = keys.filter((key) => key.endsWith('node_modules/vinext'));
+    expect(
+      vinextPackages,
+      'lockfile package keys that end with node_modules/vinext',
+    ).toEqual(['node_modules/vinext']);
     const workspaceKeys = keys.filter((key) => !key.includes('node_modules/'));
     const listing: string[] = [];
     for (const key of workspaceKeys) {
@@ -366,5 +398,55 @@ describe('S1 vinext 1.x', () => {
       }
     }
     expect(listing, 'lockfile workspace entries that list next').toEqual([]);
+  });
+
+  it('case 9: no manifest or lockfile workspace entry declares eslint or @eslint/js', () => {
+    const manifests = [
+      path.join(REPO_ROOT, 'package.json'),
+      ...APP_DIRS.map((d) => path.join(d, 'package.json')),
+      ...PACKAGE_DIRS.map((d) => path.join(d, 'package.json')),
+    ];
+    // The same sentinels as case 3 (A4).
+    expect(manifests).toContain(path.join(APP_SHELL_DIR, 'package.json'));
+    expect(manifests).toContain(path.join(REPO_ROOT, 'apps', 'danielson', 'package.json'));
+    expect(manifests.length).toBeGreaterThanOrEqual(28);
+    const isLintPackage = (key: string) => key === 'eslint' || key === '@eslint/js';
+    // (a) No workspace manifest declares either name, nested overrides included.
+    const declared = scanDeclarations(manifestEntries(manifests), isLintPackage);
+    expect(declared, 'manifest fields that declare eslint or @eslint/js').toEqual([]);
+    // (b) No lockfile workspace entry lists either name. Those entries are the lockfile copy
+    // of the manifests. (c) This case asserts nothing about keys under node_modules/. The
+    // two packages stay as peer copies of the React ESLint plugins (strategy 14.2).
+    const lock = readJson(path.join(REPO_ROOT, 'package-lock.json')) as {
+      packages: Record<string, Record<string, unknown>>;
+    };
+    const listing: string[] = [];
+    for (const [key, entry] of Object.entries(lock.packages)) {
+      if (key.includes('node_modules/')) continue;
+      for (const field of DEPENDENCY_FIELDS.slice(0, 4)) {
+        const map = (entry[field] ?? {}) as Record<string, string>;
+        for (const name of ['eslint', '@eslint/js']) {
+          if (name in map) listing.push(`${key || '(root)'}:${field}.${name}`);
+        }
+      }
+    }
+    expect(listing, 'lockfile workspace entries that list eslint or @eslint/js').toEqual([]);
+  });
+
+  it('case 9b: the case 9 scan reports exactly the two seeded faults', () => {
+    // Seeded fault: one workspace declares eslint, and the root overrides @eslint/js. This
+    // proves that case 9 can fail (A4).
+    const isLintPackage = (key: string) => key === 'eslint' || key === '@eslint/js';
+    const hits = scanDeclarations(
+      [
+        { display: 'package.json', manifest: { overrides: { '@eslint/js': '^10.0.0' } } },
+        { display: 'apps/x/package.json', manifest: { devDependencies: { eslint: '^10.0.0' } } },
+      ],
+      isLintPackage,
+    );
+    expect(hits).toEqual([
+      'apps/x/package.json:devDependencies.eslint',
+      'package.json:overrides.@eslint/js',
+    ]);
   });
 });

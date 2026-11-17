@@ -250,3 +250,47 @@ describe('gates.sh repository root (#4)', () => {
     expect(r.output).toContain('package.json');
   });
 });
+
+// The r5 workspace-set rule (strategy 14.4). A base workspace that the run lacks, or a run
+// workspace that the base lacks, is a new failure. The existing repository-root case above
+// covers the missing base (NEWFAIL=0).
+describe('gates.sh workspace set (#5)', () => {
+  function seedBase(repo: string, name: string, names: string[]): string {
+    const base = path.join(repo, 'measure', 'runs', TRACK_SLUG, 'gates', name);
+    fs.mkdirSync(base, { recursive: true });
+    fs.writeFileSync(path.join(base, 'lint.exit'), names.map((n) => `${n} 0`).join('\n') + '\n');
+    return name;
+  }
+
+  it('flags a base workspace that the run lacks', () => {
+    const repo = makeFakeRepo();
+    const wrapper = makeFakeWrapper();
+    const cwd = makeTempDir('gates-cwd-');
+    const base = seedBase(repo, 'base-superset', ['apps/x', 'apps/ghost']);
+    const gatesSh = path.join(repo, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+    const r = runGate(gatesSh, 'lint', 'scripttest', cwd, {
+      HEAVY_RUN: wrapper,
+      GATES_BASE: base,
+    });
+    expect(r.status, r.output).toBe(1);
+    expect(r.output).toContain('NEW FAILURE: lint workspace set differs from the baseline:');
+    expect(r.output).toContain('apps/ghost');
+    expect(r.output).toContain('NEWFAIL=1');
+  });
+
+  it('flags a run workspace that the base lacks', () => {
+    const repo = makeFakeRepo();
+    const wrapper = makeFakeWrapper();
+    const cwd = makeTempDir('gates-cwd-');
+    const base = seedBase(repo, 'base-subset', ['apps/ghost']);
+    const gatesSh = path.join(repo, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+    const r = runGate(gatesSh, 'lint', 'scripttest', cwd, {
+      HEAVY_RUN: wrapper,
+      GATES_BASE: base,
+    });
+    expect(r.status, r.output).toBe(1);
+    expect(r.output).toContain('NEW FAILURE: lint workspace set differs from the baseline:');
+    expect(r.output).toContain('apps/x');
+    expect(r.output).toContain('NEWFAIL=1');
+  });
+});
