@@ -263,11 +263,16 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
 **I want** BM2 to deploy with the same command
 **So that** each app has one release path
 
+S3 also deploys `apps/danielson` (Worker name `danielson`) under the pipeline. The danielson
+deploy waits until vinext-oxc-toolchain_20261114 S1 moves danielson to vinext 1.x
+(GHSA-xqc2-xf4c-x3h3). It was Phase 3 of the archived `danielson-app-import_20261114`.
+
 **Acceptance Criteria:**
 - Given `npm run deploy:app -- bm2`, When it runs, Then it deploys `quiet-swan-141` and the Worker `bus-math-v2`, and the smoke test passes on the workers.dev URL.
 - Given old documents that block the BM2 schema, When the deploy fails for that reason, Then the evidence file records the tables and the counts, and the second deploy passes after the D10 cleanup.
 - Given the Worker `bus-math-v2`, When `npx wrangler secret list --name bus-math-v2` runs, Then it lists the secrets of the Runtime Variables table and no `AUTH_JWT_SECRET`.
 - Given a built RSC server chunk of BM2 that lacks "Cannot handle action key" or "Cannot transport a detached buffer", or a failed smoke test with no version that has a fixed tag, When `deployApp('bm2')` runs, Then the first case stops the deploy before `npx convex deploy`, and the second case runs no rollback and turns workers.dev OFF (D13).
+- Given that `vinext-oxc-toolchain_20261114` S1 is complete, When `npm run deploy:app -- danielson` runs, Then it deploys the Worker `danielson` with no Convex deploy, and the smoke test passes on the workers.dev URL.
 
 **Estimate:** M
 **Priority:** Must
@@ -324,6 +329,4 @@ variable on the Convex deployment; `CONVEX_CLOUD_URL` is a system variable of Co
 - Custom domains and routes.
 - CI deploys with GitHub secrets (a later track).
 - The first school accounts and licenses in production.
-- The deploy of `apps/danielson` is owned by this track. It is Phase 3 of the archived
-  `danielson-app-import_20261114` and uses this pipeline.
 - The Convex project `danielson`.
