@@ -108,7 +108,7 @@ _Story ref: spec.md#story-s1_
     - [x] Request `/` with `curl -s -o /dev/null -w '%{http_code}'`. Record the status code. Stop the server. (All 5 apps gave 200. Each port was free after the stop.)
     - [x] Time `npm run build` for each app on vinext 0.0.55. Record the times in section 5.
     - [x] Commit the evidence file: `measure(vinext-oxc): record the S1 baseline`.
-- [x] Task: S1 Baseline (6 apps) — capture `baseline-m2` on the merged tree
+- [x] Task: S1 Baseline (6 apps) — capture `baseline-m2` on the merged tree (bbd37b97)
     - [x] Run `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint baseline-m2`, then `test baseline-m2`, then `checks-all baseline-m2`, one at a time. `gates.sh` sends each job through `heavy-run.sh` itself (strategy section 2). A label that starts with `baseline` records only.
     - [x] Run the danielson `npm run build`. Record the exit code, and the first error line when it fails.
     - [x] Start danielson on port 4106 and request `/`. Record the status code, and the `location` header of a redirect.
@@ -249,7 +249,7 @@ _Story ref: spec.md#story-s1_
     - [x] For a removed package, assert that no manifest declares it.
     - [x] Do not change an assertion that failed in the baseline. It stays in section 10. The tests of checks K1 to K3 are the one exception.
     - [x] Commit: `test(audit): move the audit suites forward for vinext 1.x`. (Green landed it as `cd6567fe test(audit): move the W4 audit forward for S1 (issue #2)`, the orchestrator-directed message.)
-- [x] Task: S1 Verify — run the gates after the upgrade
+- [x] Task: S1 Verify — run the gates after the upgrade (ea024eee)
     - [x] Run each gate. Confirm that no gate has a new failure. (`lint s1` NEWFAIL=0 exit 0; `test s1` NEWFAIL=0 exit 0; `checks-all s1` NEWFAIL=1 exit 1 with only the two accepted lines: the Q1 IM3 npm trailer and the Q2 audit drift. Evidence section 10 holds both proofs.)
     - [x] Confirm that the scripts suite passes, with the S1 case set of strategy 6.2 (cases 1 to 9, with 5b and 9b: 11 tests). Run the closure checks K1 to K5 of strategy 14.2. Confirm that they hold. (`GREEN_TEST_COMMAND` exit 1: 1 failed, 34 passed of 35; the only failure is the pre-existing `remediate-concept-blueprints`, and all 11 S1 cases pass. K1 8 of 8 titles, K2 15 tests 0 failed, K3 35 tests 0 failed (`w4_failed=0` after `ab3c4586`), K4 `jsplugins_changed=0 jsplugins_count=3` with no `.oxlintrc.json` diff, K5 the 5 audit-suite failures are baseline rows. Logs `w4-verify.json`, `jr-green-full-scripts.log`.)
     - [x] Confirm that all 6 apps pass `npm run build`, danielson included. (The `checks-all` build sweep: exit 0 for 26 workspaces and `n/a` for `packages/practice-test-engine`, the baseline set. The 18 timed runs also all exit 0.)
@@ -259,7 +259,7 @@ _Story ref: spec.md#story-s1_
     - [x] Confirm that `npm audit` has no new critical or high finding. (`gates/s1-audit-verify.json`: critical=0 high=21 total=32 against the re-captured base of 2026-11-18: critical=0 high=22 total=33. No advisory of this run is missing from the base.)
     - [x] Time `npm run build` for each app on vinext 1.x. Record the times in section 5. (Section 5 holds the six medians: IM1 6.6 s, IM2 9.5 s, IM3 12.0 s, PreCalc 10.8 s, BM2 14.8 s, danielson 6.0 s. All 18 runs exit 0. Log `build-times-verify.txt`.)
     - [x] Commit the evidence file: `measure(vinext-oxc): record the S1 results`. (Landed with this edit.)
-- [x] Task: S1 Docs & Doctor
+- [x] Task: S1 Docs & Doctor (ea024eee)
     - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0. Log `jr-green-generate.log`. It rewrote no file outside the 6 known dirty generated files; those stay unstaged.)
     - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0. Log `jr-green-doctor.log`. Output: "All checks passed".)
 - [ ] Task: Measure - User Manual Verification 'Phase S1: Package refresh and vinext 1.x' (Protocol in workflow.md)
