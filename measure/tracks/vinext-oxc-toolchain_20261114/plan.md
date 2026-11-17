@@ -108,6 +108,13 @@ _Story ref: spec.md#story-s1_
     - [x] Request `/` with `curl -s -o /dev/null -w '%{http_code}'`. Record the status code. Stop the server. (All 5 apps gave 200. Each port was free after the stop.)
     - [x] Time `npm run build` for each app on vinext 0.0.55. Record the times in section 5.
     - [x] Commit the evidence file: `measure(vinext-oxc): record the S1 baseline`.
+- [ ] Task: S1 Baseline (6 apps) — capture `baseline-m2` on the merged tree
+    - [ ] Run `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint baseline-m2`, then `test baseline-m2`, then `checks-all baseline-m2`, one at a time. `gates.sh` sends each job through `heavy-run.sh` itself (strategy section 2). A label that starts with `baseline` records only.
+    - [ ] Run the danielson `npm run build`. Record the exit code, and the first error line when it fails.
+    - [ ] Start danielson on port 4106 and request `/`. Record the status code, and the `location` header of a redirect.
+    - [ ] Make the danielson browser capture. Save one screenshot, one accessibility snapshot, and the console error list under `measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-m2-danielson`.
+    - [ ] Record that the pre-merge `gates/baseline/` folder is historical, and that a workspace present in one baseline and absent in the other is a new failure (strategy 13.2 and 6.4).
+    - [ ] Commit the evidence file: `measure(vinext-oxc): record the 6-app S1 baseline`.
 - [~] Task: S1 Test (Red) — add the S1 gate tests (Red commit: abbe15f1; Green marks `[x]` when the S1 cases pass)
     - Sync merge 2b2d9952 of origin/master 2e353ef9 (Daniel's order, 2026-11-16): 1130 commits, adds apps/danielson and oxlint tooling; the S1 baseline, cases, and gates need a re-check before S1 Verify. Green's commit C WIP is in a named stash.
     - [x] Create `scripts/__tests__/oxc-toolchain-gates.test.ts` with `describe('S1 vinext 1.x')`.
@@ -156,6 +163,15 @@ _Story ref: spec.md#story-s1_
     - [x] Fix only what a failing gate needs. Use the held-package rule.
         - Deviation: the 5 app `eslint.config.mjs` files stopped importing `eslint-config-next` (and the `@typescript-eslint/no-explicit-any` override block). Reason: `eslint-config-next` loads `next/dist/compiled/babel/eslint-parser` at config time, so no app lint config could load after `next` was removed, and the lint gate had a new failure (exit 2) in the 4 apps that passed at baseline. S2 migrates these files in the next phase, so the rule loss is transitional. Evidence section 8 records it.
     - [x] Commit: `chore(deps): upgrade vinext to 1.x and remove next`. (dcde148d)
+    - Deviation (2026-11-17): the merge added `apps/danielson`. These sub-boxes are part of this task.
+        - [ ] In `apps/danielson/package.json`, remove `next` `^16.0.0` from `dependencies`. Set `vinext` to `^1.4.5` and `react` and `react-dom` to `^19.3.1`.
+        - [ ] In `apps/danielson/tsconfig.json`, add `vinext/types` to `compilerOptions.types`. Remove the `{ "name": "next" }` plugin entry.
+        - [ ] In `apps/danielson/package.json`, move `@types/node` `^22` to the latest 24.x version.
+        - [ ] In `apps/danielson/package.json`, set `@vitejs/plugin-react` and `vite` to the same range as the other 5 apps in this task.
+        - [ ] Run `npx vinext check` in `apps/danielson`. Record the score and each issue in section 8.
+        - [ ] Add the danielson build and its dev port 4106 to the S1 sweep.
+        - [ ] In `.github/workflows/business-math-deploy.yml`, change `node-version: '22'` to `'24'`, next to the `ci.yml` and `cloudflare-deploy.yml` changes of the step above.
+        - [ ] No app is ever excluded from a glob, a test, or a gate to make the phase pass (strategy R18).
 - [x] Task: S1 Implement — update all other dependencies (WIP 7b5eb2fb, fixes 62f3fa60 + 933cca0d, gate refinement 21c70826; gates lint/test/checks-all s1 all exit 0 NEWFAIL=0 at the task-3 commit 4173b71f)
         - Machine-move triage result: real new failure, class `Failed to resolve import
           "next/..."` (strategy risk R4). Fixed in 62f3fa60: the 5 app `vitest.config.ts`
@@ -189,7 +205,10 @@ _Story ref: spec.md#story-s1_
     - [ ] Update each major-version family in its own commit, for example `chore(deps): upgrade vitest to 5` with `@vitest/*`.
     - [ ] Run all gates before each commit. Use the held-package rule.
     - [ ] Record each change in section 3.
-- [x] Task: S1 Implement — move the audit suites forward (4173b71f)
+- [~] Task: S1 Implement — move the audit suites forward (4173b71f)
+    - [ ] Issue #2 (strategy 13.3): make these four W4 titles pass in `scripts/audit/__tests__/framework-wave-w4-audit.test.ts`: `eslint-config-next installed lockfile version is on the 16.x line`, `eslint installed lockfile version is on the 10.x line`, `@eslint/js installed lockfile version is on the 10.x line`, `next installed lockfile version is absent`.
+    - [ ] Follow the durability contract of strategy 13.3. The version floors stay for the required packages. Each removed package gets an absence check. No `it(` or `expect(` line disappears unless it names a removed package.
+    - [ ] Follow the S1/S2 split of strategy 13.3. S1 asserts manifest absence for `eslint` and `@eslint/js`, because they remain peer dependencies of the React ESLint plugins. S2 asserts lockfile absence after it removes them.
     - [ ] Run the audit suites. Find each assertion that passed in the baseline and fails now only because S1 changed or removed a package.
     - [ ] Change each such assertion to the durable contract of lessons-learned 2026-06-07. The declared range admits the installed version.
     - [ ] The durable contract also requires: no range is `latest`, `*`, or empty, and the old security floor stays a minimum.
@@ -198,8 +217,8 @@ _Story ref: spec.md#story-s1_
     - [ ] Commit: `test(audit): move the audit suites forward for vinext 1.x`.
 - [ ] Task: S1 Verify — run the gates after the upgrade
     - [ ] Run each gate. Confirm that no gate has a new failure.
-    - [ ] Confirm that the scripts suite passes, with cases 1 to 6.
-    - [ ] Confirm that all 5 apps pass `npm run build`.
+    - [ ] Confirm that the scripts suite passes, with the r4 case set (cases 1 to 8, with the issue #2 audit case).
+    - [ ] Confirm that all 6 apps pass `npm run build`, danielson included.
     - [ ] Confirm that `/` of each app gives the baseline status code.
     - [ ] Run both bundle audits. If a budget fails, do not change the budget. Stop the phase and report the sizes to the user.
     - [ ] If the baseline ran the IM3 E2E suite, run it again. Confirm the baseline result.
@@ -215,14 +234,17 @@ _Story ref: spec.md#story-s1_
     - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Package refresh and vinext 1.x' as complete`.
 
+Phase note (2026-11-17): phase_base_sha for S1 r4 is 3e141e058d67e0ddc98b844795d9dacf45c84ac9, recorded in the run log and the role handoffs. No plan line carries a phase SHA.
+
 ## Phase S2: ESLint to oxlint
 _S2 is superseded by eslint-to-oxlint-migration_20260820 (Daniel's oxlint move is done), PM 2026-11-16._
 _Story ref: spec.md#story-s2_
 
 - [ ] Task: S2 Contract — record the lint change
     - [ ] In `measure/tech-stack.md`, add a dated note. The note names oxlint ^1.93.0, the `.oxlintrc.json` file in each linted workspace, and native rules only.
-    - [ ] Use this target layout. Each workspace with a lint script has one `.oxlintrc.json`, for 25 files in total.
-    - [ ] 19 configs come from `@oxlint/migrate`. These 6 workspaces get a copy of `packages/knowledge-space-core/.oxlintrc.json`: activity-components, app-shell, math-content, practice-test-engine, rate-limiter, and `_template`.
+    - [ ] Use this corrected layout (strategy 13.8 item 4). The merged tree has one root `.oxlintrc.json`. There is no per-workspace copy, so the count is one file, not 25.
+    - [ ] Every workspace lint script names the root config: `../../.oxlintrc.json`.
+    - [ ] A workspace config and the root config must not disagree about one rule. The S2 cases read each lint script and its config target (strategy R17).
     - [ ] The app lint script is `oxlint -c .oxlintrc.json --max-warnings 0 .`.
     - [ ] The package lint script is `oxlint -c .oxlintrc.json --max-warnings 0 src`.
     - [ ] `oxlint` `^1.93.0` goes in the root `devDependencies` only.
