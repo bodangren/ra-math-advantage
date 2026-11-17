@@ -246,12 +246,19 @@ them.
 
 | Task | Tool before | Seconds before | Tool after | Seconds after | Ratio |
 |---|---|---|---|---|---|
-| `npm ci` (empty `node_modules`) | npm 11.17.0, lockfile of the baseline | 417.0 (includes a heavy-run load hold wait; an upper bound) | pending (S1 Verify) | pending | pending |
-| `npm run build` in `apps/integrated-math-1` (median of 3) | vinext 0.0.55 | 18.5 | pending (S1 Verify) | pending | pending |
-| `npm run build` in `apps/integrated-math-2` (median of 3) | vinext 0.0.55 | 18.1 | pending (S1 Verify) | pending | pending |
-| `npm run build` in `apps/integrated-math-3` (median of 3) | vinext 0.0.55 | 31.5 | pending (S1 Verify) | pending | pending |
-| `npm run build` in `apps/pre-calculus` (median of 3) | vinext 0.0.55 | 18.3 | pending (S1 Verify) | pending | pending |
-| `npm run build` in `apps/bus-math-v2` (median of 3) | vinext 0.0.55 | 43.4 | pending (S1 Verify) | pending | pending |
+| `npm ci` (empty `node_modules`) | npm 11.17.0, lockfile of the baseline | 417.0 (includes a heavy-run load hold wait; an upper bound) | not in the S1 Verify box list; the closeout gate runs it | pending (closeout) | pending |
+| `npm run build` in `apps/integrated-math-1` (median of 3) | vinext 0.0.55 | 18.5 | vinext 1.4.6 | 6.6 | 0.35 |
+| `npm run build` in `apps/integrated-math-2` (median of 3) | vinext 0.0.55 | 18.1 | vinext 1.4.6 | 9.5 | 0.52 |
+| `npm run build` in `apps/integrated-math-3` (median of 3) | vinext 0.0.55 | 31.5 | vinext 1.4.6 | 12.0 | 0.38 |
+| `npm run build` in `apps/pre-calculus` (median of 3) | vinext 0.0.55 | 18.3 | vinext 1.4.6 | 10.8 | 0.59 |
+| `npm run build` in `apps/bus-math-v2` (median of 3) | vinext 0.0.55 | 43.4 | vinext 1.4.6 | 14.8 | 0.34 |
+| `npm run build` in `apps/danielson` (median of 3) | vinext 0.0.55 (nested copy, pre-S1) | not timed at the baseline | vinext 1.4.6 | 6.0 | n/a |
+
+S1 method: three runs per app, `dist/` kept (vite empties `outDir`, so the dist state does
+not change the measurement), each run timed around `npm run build` inside one
+`heavy-run.sh` job. All 18 runs exit 0. Raw values: `build-times-verify.txt` in the run
+folder (IM1 6554/6531/6755 ms, IM2 9413/9477/9956, IM3 12558/11971/11838, PreCalc
+11114/10279/10795, BM2 14879/14761/14781, danielson 6424/4510/6004).
 
 ## 6. Rule gaps
 
@@ -598,6 +605,19 @@ The pre-merge rows above stay the only record. The S1 Verify task runs both audi
 - `NEW FAILURE: typecheck apps/integrated-math-3 has a new diagnostic` is the npm error trailer of the approved 8 GB heap script (`b9d27742`), not a code diagnostic. `comm` over the gate `key()` output shows one new line, `npm error command sh -c NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit`, and one gone line, `npm error command sh -c tsc --noEmit`. All 55 `TS` keys match `baseline-m2`. The `checks-all s1` run holds these two explained lines and no other new failure.
 - The scripts suite at Green: 1 failed, 34 passed of 35. The failure is the baseline row above (`remediate-concept-blueprints`, "production scan reports the honest count for the current repo state"). The 11 S1 cases pass.
 - The audit suites at Green: 7 failed of 192 in 3 files (audit-contract 4, framework-wave-w4 1, in-range-wave-w3 2). Each maps to a baseline row above. `security-wave-w2` (7 at baseline) and `framework-wave-w4-audit` (5 at baseline) now pass.
+
+### S1 Verify run (2026-11-18)
+
+- The `@types/node` move of `packages/knowledge-space-practice` to `^24.19.2` (commit `ab3c4586`) changed two lockfile keys only: `packages/knowledge-space-practice/node_modules/@types/node` 22.20.5 to 24.19.2, and its `undici-types` 6.21.0 removed. `npm install` exit 0.
+- Gates re-run after that change: `lint s1` NEWFAIL=0 exit 0; `test s1` NEWFAIL=0 exit 0 (scripts-suite 1 failed, the `remediate-concept-blueprints` baseline row; audit-suites 5 failed of 192, a subset of the 24 baseline rows); `checks-all s1` NEWFAIL=1 exit 1 with the same two explained lines as the Green run (Q1 npm trailer, Q2 audit drift). The build sweep gives exit 0 for 26 workspaces and `n/a` for `packages/practice-test-engine`, the baseline set. The workspace-set compare inside the gate reports no difference.
+- Closure checks at Verify: K1 8 of 8 titles (log `w4-verify.json`), K2 15 tests 0 failed, **K3 35 tests 0 failed (`w4_failed=0`)** after the `@types/node` move, K4 `jsplugins_changed=0 jsplugins_count=3` with no `.oxlintrc.json` diff since `d4752739`, K5 the 5 audit-suite failures above, all baseline rows.
+- `GREEN_TEST_COMMAND` at Verify: exit 1, 1 failed, 34 passed of 35. The only failure is the baseline `remediate-concept-blueprints` row above. The acceptance role judges it.
+- `npm audit --json` at Verify (file `gates/s1-audit-verify.json`): critical=0 high=21 moderate=6 low=5 (total 32). The re-captured base of 2026-11-18 gives critical=0 high=22 moderate=6 low=5 (total 33). No advisory of this run is missing from the re-captured base. No new critical or high finding.
+- Bundle audits at Verify: `bundle-size:audit` in `apps/integrated-math-3` exit 0, `[OK] server/ssr/index.js → index.js: 292.85 KB (threshold 700.00 KB)` (baseline 531.83 KB, smaller). `bundle:audit` in `apps/bus-math-v2` exit 1 as at baseline: `[EXCEEDS] Total dist/server: 9104.78 KB (threshold 3000.00 KB)` (baseline 11299.69 KB, smaller) and `[OK] server/index.js → index.js: 1154.38 KB (threshold 2500.00 KB)` (baseline EXCEEDS at 2690.45 KB, now inside budget). No entry is over budget that passed at baseline, and no budget changed.
+- Dev status at Verify: 4101, 4102, 4103, 4104, and 4105 answer 200; 4106 answers 307 to `http://localhost:4106/auth/login?redirect=%2F`. Every port is free after the stop. Each app matched its baseline code.
+- IM3 E2E at Verify: not run. The baseline recorded "not run locally", so the box does not run it.
+- Build times at Verify: section 5 holds the six medians. All 18 runs exit 0.
+- Docs and Doctor at S1: `npm run generate` exit 0 (log `jr-green-generate.log`; it rewrote no file outside the 6 known dirty generated files) and `npm run doctor` exit 0 with "All checks passed" (log `jr-green-doctor.log`).
 
 ## 11. Summary for other repositories
 
