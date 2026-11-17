@@ -101,6 +101,93 @@ The browser capture files are `measure/runs/vinext-oxc-toolchain_20261114/ux-bas
 port 4105 comes from the backend, not from the runtime. The UX role compares with it as the
 baseline.
 
+### Merged tree (baseline-m2, 2026-11-17)
+
+The capture ran on the merged tree at commit `3f05afe3`, after `npm ci`. The labels are
+`lint baseline-m2`, `test baseline-m2`, and `checks-all baseline-m2`. A label that starts with
+`baseline` records only, so the capture made no comparison.
+
+Each cell is an exit code. `n/a` means that the workspace has no such script. A non-zero code
+is a pre-existing failure of the merged tree. The merged-tree part of section 10 lists each
+one. The four `.exit` files hold 27 names each: 6 apps and 21 packages.
+
+| Workspace | lint | typecheck | test | build |
+|---|---|---|---|---|
+| `apps/bus-math-v2` | 0 | n/a | 1 | 0 |
+| `apps/danielson` | 0 | 0 | 0 | 0 |
+| `apps/integrated-math-1` | 0 | 0 | 1 | 0 |
+| `apps/integrated-math-2` | 0 | 0 | 0 | 0 |
+| `apps/integrated-math-3` | 0 | 2 | 1 | 0 |
+| `apps/pre-calculus` | 0 | 2 | 1 | 0 |
+| `packages/activity-components` | 0 | 0 | 0 | 0 |
+| `packages/activity-runtime` | 0 | 0 | 0 | 0 |
+| `packages/ai-tutoring` | 0 | 0 | 0 | 0 |
+| `packages/app-shell` | 0 | 0 | 0 | 0 |
+| `packages/component-approval` | 0 | 0 | 0 | 0 |
+| `packages/core-auth` | 0 | 0 | 0 | 0 |
+| `packages/core-convex` | 0 | 0 | 0 | 0 |
+| `packages/efficacy-core` | 0 | 0 | 0 | 0 |
+| `packages/graphing-core` | 0 | 0 | 0 | 0 |
+| `packages/knowledge-space-core` | 0 | 0 | 0 | 0 |
+| `packages/knowledge-space-practice` | 0 | 0 | 0 | 0 |
+| `packages/lesson-renderer` | 0 | 0 | 0 | 0 |
+| `packages/math-content` | 0 | 0 | 1 | 0 |
+| `packages/practice-core` | 0 | 0 | 0 | 0 |
+| `packages/practice-test-engine` | 0 | 0 | 0 | n/a |
+| `packages/rate-limiter` | 0 | 0 | 0 | 0 |
+| `packages/srs-engine` | 0 | 0 | 0 | 0 |
+| `packages/study-hub-core` | 0 | 0 | 0 | 0 |
+| `packages/teacher-reporting-core` | 0 | 0 | 0 | 0 |
+| `packages/_template` | 0 | 0 | 1 | 0 |
+| `packages/workbook-pipeline` | 0 | 0 | 0 | 0 |
+
+Every workspace lint exits 0. The merge removed the pre-merge lint failures: the 5 app configs
+no longer load `eslint-config-next`, and the 4 packages run `oxlint` with the root config
+(section 3, section 8).
+
+Steps of the `test` and `checks-all` gates:
+
+| Step | Exit code | Note |
+|---|---|---|
+| `scripts-suite` | 1 | 7 of 31 tests fail: the six red S1 cases and `remediate-concept-blueprints` (section 10) |
+| `audit-suites` | 1 | 24 of 192 tests fail in 5 files (section 10) |
+| `typecheck-bm2` | 0 | pass |
+| `boundary` | 0 | pass |
+| `ci-check` | 0 | pass |
+| `tree` | 0 | pass |
+| `next-absent` | 1 | Red by design: `next` is installed on the merged tree. S1 removes it |
+| `measure-contract` | 1 | FAIL: A12 regression (section 10) |
+
+Other results of the merged-tree capture:
+
+| Check | Result |
+|---|---|
+| `npm audit --json` | critical=0 high=11 moderate=6 low=5 |
+| Bundle audits | Not part of the merged-tree capture. The pre-merge values above stay the only record. The S1 Verify task runs both audits again (strategy 6.3 step 7) |
+| `npm run build --workspace=apps/danielson` | exit 0. Vite 8.3.8. 577 client modules and 2280 server modules, 5 of 5 phases passed. Log `measure/runs/vinext-oxc-toolchain_20261114/danielson-build.log` |
+| Dev server `GET /` on port 4106 (danielson) | 307, `location: http://localhost:4106/auth/login?redirect=%2F`. The redirect is the login gate: a baseline fact, not a finding. Port 4106 is free after the stop |
+| Browser capture, `http://localhost:4106/` | final URL `http://localhost:4106/auth/login?redirect=%2F`, title "Danielson Teacher Growth", 39 accessibility nodes, 1 console error, 0 page errors |
+
+The danielson capture folder is
+`measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-m2-danielson/`. It holds
+`danielson-screenshot.png` (28322 bytes, full page), `danielson-snapshot.txt`,
+`danielson-console-errors.txt`, `page.html`, and `capture-result.json`. The agent-browser CLI
+is not installed on this machine (section 8). The capture used Playwright 1.60.0 with the
+installed Chrome. The single console error is `Failed to load resource: the server responded
+with a status of 404 ()`, a missing resource at the login gate. There is no hydration error
+and no module error.
+
+The merged-tree record of the five other apps holds their gate exit codes only. Their dev
+status rows and browser capture rows above come from the pre-merge run of 2026-11-15.
+
+**Comparison base.** The pre-merge folder
+`measure/runs/vinext-oxc-toolchain_20261114/gates/baseline/` holds 26 names and no
+`apps/danielson`. It is historical. It is not a comparison base, and no role deletes it. The
+base for every S1 gate is `baseline-m2`, with 27 names. A phase run whose workspace set
+differs from the `baseline-m2` set is a new failure. Plan box 116 and strategy 6.4 and 14.4
+record this rule. `GATES_BASE` unset selects the 26-name `baseline` folder, so the gate fails
+on `apps/danielson` at once.
+
 ## 3. Package changes
 
 Filled by the S1 Implement tasks. The lockfile is the root `package-lock.json` only.
@@ -197,6 +284,12 @@ Phase S3 fills this section.
 These failures exist before any package change. The track does not fix them, except the S2
 lint failures. The key of a diagnostic is the workspace, the file, and the code, without line
 and column.
+
+### Pre-merge tree (labels `baseline`, 2026-11-14 and 2026-11-15; historical)
+
+The table below records the pre-merge tree of 5 apps and 21 packages. It is historical. The
+pre-merge `gates/baseline/` folder holds 26 names. The S1 gates do not compare with it
+(strategy 13.2). No role deletes it, and no rule of this track reads it as a base.
 
 | Gate | Workspace | File | Diagnostic code |
 |---|---|---|---|
@@ -358,6 +451,141 @@ and column.
 | bundle audit | `apps/bus-math-v2` | `scripts/bundle-size-audit.mjs` | [EXCEEDS] Total dist/server: 11299.69 KB (threshold: 3000.00 KB) |
 | bundle audit | `apps/bus-math-v2` | `scripts/bundle-size-audit.mjs` | [EXCEEDS] server/index.js → index.js: 2690.45 KB (threshold: 2500.00 KB) |
 | E2E | `apps/integrated-math-3` | (not run) | not run locally (section 8) |
+
+### Merged tree (baseline-m2, 2026-11-17)
+
+The capture of section 2 (label `baseline-m2`) holds these failures. Each row gives the gate,
+the workspace, the file, and the code. The key of a diagnostic is the workspace, the file,
+and the code, without line and column (strategy 7). Counts are the number of occurrences in
+the log of that workspace.
+
+The merged tree holds 6 apps and 21 packages. `apps/danielson` adds no failure: its lint,
+typecheck, test, and build all exit 0. Every workspace lint exits 0, so this part has no lint
+row. The 5 audit-suite files below hold the 24 failing audit tests of `step-audit-suites.log`.
+
+| Gate | Workspace | File | Diagnostic code |
+|---|---|---|---|
+| typecheck | `apps/integrated-math-3` | `__tests__/components/activities/algebraic/StepByStepSolverActivity.test.tsx` | TS2322 (x3) |
+| typecheck | `apps/integrated-math-3` | `__tests__/components/activities/algebraic/StepByStepper.test.tsx` | TS2322 (x1) |
+| typecheck | `apps/integrated-math-3` | `__tests__/components/lesson/ActivityRenderer-quadratic-formula.test.tsx` | TS2322 (x8) |
+| typecheck | `apps/integrated-math-3` | `__tests__/components/lesson/PhaseRenderer-quadratic-formula.test.tsx` | TS2305 (x1), TS2322 (x9) |
+| typecheck | `apps/integrated-math-3` | `__tests__/convex/quadratic-formula-allocation.test.ts` | TS2305 (x8) |
+| typecheck | `apps/integrated-math-3` | `__tests__/convex/quadratic-formula-server-writer.test.ts` | TS2305 (x9) |
+| typecheck | `apps/integrated-math-3` | `__tests__/convex/seed/seed-lesson-1-6.test.ts` | TS2339 (x1) |
+| typecheck | `apps/integrated-math-3` | `__tests__/curriculum/lesson-1-6-binding-projection.test.ts` | TS2305 (x1), TS2352 (x3) |
+| typecheck | `apps/integrated-math-3` | `__tests__/curriculum/lesson-1-8-reconciliation.test.ts` | TS2352 (x1) |
+| typecheck | `apps/integrated-math-3` | `__tests__/lib/activities/quadratic-formula-check.test.ts` | TS2305 (x1) |
+| typecheck | `apps/integrated-math-3` | `__tests__/lib/activities/schemas/index.test.ts` | TS2322 (x1) |
+| typecheck | `apps/integrated-math-3` | `__tests__/lib/activities/schemas/step-by-step-solver.schema.test.ts` | TS2367 (x1) |
+| typecheck | `apps/integrated-math-3` | `__tests__/lib/activities/server-grading-quadratic-formula.test.ts` | TS2305 (x2), TS2353 (x2) |
+| typecheck | `apps/integrated-math-3` | `app/api/activities/quadratic-formula/attempt/route.ts` | TS2339 (x2) |
+| typecheck | `apps/integrated-math-3` | `app/api/activities/quadratic-formula/check/route.ts` | TS2339 (x1) |
+| typecheck | `apps/pre-calculus` | `__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts` | TS2307 (x3), TS2339 (x1) |
+| test | `apps/bus-math-v2` | `__tests__/app/api/learning-evidence/bm2-pilot/teacher-consumer.red.test.ts` | 2 failing test(s) |
+| test | `apps/bus-math-v2` | `__tests__/components/teacher/SubmissionDetailModal.test.tsx` | 1 failing test(s) |
+| test | `apps/bus-math-v2` | `__tests__/convex/bm2-manual-source-production-flow.test.ts` | 1 failing test(s) |
+| test | `apps/bus-math-v2` | `__tests__/convex/learningEvidence-bounded-authority.red.test.ts` | 3 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/ci/standards-integrity-ci-wiring.test.ts` | suite failed to load |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-10-1-capabilities-source.test.ts` | 4 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-10-1-source.test.ts` | 4 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-10-2-capabilities-source.test.ts` | 4 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-10-2-source.test.ts` | 3 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-10-3-capabilities-source.test.ts` | 4 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-10-3-source.test.ts` | 4 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-10-4-capabilities-source.test.ts` | 6 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-7-4-capabilities-source.test.ts` | 2 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-9-6-capabilities-source.test.ts` | 4 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-9-7-capabilities-source.test.ts` | 5 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/lesson-9-7-source.test.ts` | 5 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/module-2-graph-source.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/curriculum/projected-prerequisites-consistency.test.ts` | 2 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/practice/vertical-slice.test.tsx` | 5 failing test(s) |
+| test | `apps/integrated-math-1` | `__tests__/setup/convex-provider.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/app/api/activities/submissions/route.test.ts` | 6 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/app/api/activities/submissions/selected-route.test.ts` | 3 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/activities/algebraic/StepByStepSolverActivity.test.tsx` | 4 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/activities/algebraic/StepByStepper.test.tsx` | 2 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/activities/graphing/GraphingExplorer.test.tsx` | 5 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/activities/graphing/GraphingExplorerActivity-pilot.test.tsx` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/activities/graphing/InteractiveTableOfValues.test.tsx` | 2 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/lesson/ActivityRenderer-graphing-explorer.test.tsx` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/lesson/ActivityRenderer-quadratic-formula.test.tsx` | 6 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/lesson/PhaseRenderer-quadratic-formula.test.tsx` | 7 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/components/student/PracticeCardRenderer.test.tsx` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/activities-server-owned-recovery.red.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/exports-authorization.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/learningEvidence-attempt-ordering.red.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/learningEvidence-bounded-authority.red.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/learningEvidence-production-factory.red.test.ts` | 4 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/learningEvidence-submission-authority.red.test.ts` | 12 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/quadratic-formula-allocation.test.ts` | 36 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/quadratic-formula-server-writer.test.ts` | 58 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/queue/im3-pilot-queue.test.ts` | 3 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/seed/domain-range-worked-phase-link.test.ts` | 2 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/seed/seed-lesson-1-6.test.ts` | 5 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/seed/seed-lesson-1-pilot-upgrade.test.ts` | 8 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/seed/seed-practice-items-idempotence.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/convex/seed/seed.test.ts` | 2 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/curriculum/lesson-1-6-binding-projection.test.ts` | 5 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/curriculum/lesson-1-6-discriminant-source.test.ts` | 2 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/curriculum/lesson-1-6-worked-source.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/curriculum/lesson-1-8-reconciliation.test.ts` | 2 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/lib/activities/quadratic-formula-check.test.ts` | 8 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/lib/activities/registry.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/lib/activities/schemas/fill-in-the-blank.schema.test.ts` | 1 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/lib/activities/schemas/step-by-step-solver.schema.test.ts` | 2 failing test(s) |
+| test | `apps/integrated-math-3` | `__tests__/lib/activities/server-grading-quadratic-formula.test.ts` | 3 failing test(s) |
+| test | `apps/integrated-math-3` | `curriculum/skill-graph/__tests__/lesson-1-1-reconciliation.test.ts` | 7 failing test(s) |
+| test | `apps/integrated-math-3` | `curriculum/skill-graph/__tests__/module-1-integration.test.ts` | 11 failing test(s) |
+| test | `apps/integrated-math-3` | `curriculum/skill-graph/__tests__/pilot-projection.test.ts` | 2 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/app/api/activities/precalculus-pilot/submissions/route.acceptance.test.ts` | 2 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/app/api/teacher/course/topic11-surface-real-flow.test.ts` | suite failed to load |
+| test | `apps/pre-calculus` | `__tests__/app/student-dashboard.practice-sequence.test.tsx` | 2 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/app/student/saved-practice-dashboard.test.tsx` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/app/student/topic11-selected-lesson-page.test.tsx` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/app/teacher/topic11-dashboard.test.tsx` | 2 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/convex-module-paths.red.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic12-source-link.acceptance.test.ts` | 7 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic13-source-link.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic14-source-link.acceptance.test.ts` | 4 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic15-least-polynomial-degree-projection.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic15-polynomial-inequality-projection.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic15-polynomial-inequality-readiness.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic15-projection.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic16-equation-end-behavior-blueprint.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic16-equation-end-behavior-projection.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/seed/topic16-equation-end-behavior-readiness.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/topic11-pilot-publication-boundary.test.ts` | 3 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/topic11-real-production-flow.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/topic11-teacher-first-publication.test.ts` | 2 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/topic11-teacher-publication-authorization.test.ts` | 7 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/topic11-trusted-teacher-flow.test.ts` | 8 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/topic15-least-polynomial-degree-activity-constants.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/topic15-polynomial-inequality-activity-constants.acceptance.test.ts` | 1 failing test(s) |
+| test | `apps/pre-calculus` | `__tests__/convex/topic16-equation-end-behavior-activity-constants.acceptance.test.ts` | 1 failing test(s) |
+| test | `packages/math-content` | `src/knowledge-space/__tests__/cross-course-rate-cleanup.test.ts` | 1 failing test(s) |
+| test | `packages/math-content` | `src/problem-families/im1/__tests__/scaffold.test.ts` | 1 failing test(s) |
+| test | `packages/math-content` | `src/schemas/__tests__/quadratic-formula-activity.schema.test.ts` | 1 failing test(s) |
+| test | `packages/_template` | (no test file) | vitest exit 1: "No test files found" |
+| test (scripts suite) | `scripts` | `__tests__/oxc-toolchain-gates.test.ts` | 6 failing tests: case 1, case 2, case 3, case 4, case 7, case 8 |
+| test (scripts suite) | `scripts` | `__tests__/remediate-concept-blueprints.test.ts` | 1 failing test: `production scan reports the honest count for the current repo state` |
+| test (audit suites) | `scripts/audit` | `__tests__/audit-contract.test.ts` | 4 failing test(s) |
+| test (audit suites) | `scripts/audit` | `__tests__/framework-wave-w4-audit.test.ts` | 5 failing test(s) |
+| test (audit suites) | `scripts/audit` | `__tests__/framework-wave-w4.test.ts` | 6 failing test(s) |
+| test (audit suites) | `scripts/audit` | `__tests__/in-range-wave-w3.test.ts` | 2 failing test(s) |
+| test (audit suites) | `scripts/audit` | `__tests__/security-wave-w2.test.ts` | 7 failing test(s) |
+| next-absent | `repository` | `npm ls next --all` | exit 1: `next` 16.2.7 is installed. Red by design: S1 removes it |
+| measure-contract | `repository` | `tests/measure_orchestrator_audit.sh` | FAIL: A12 regression: AGENTS.md must document automation-supervisor.py as a peer-reviewed component |
+
+The 6 red S1 cases in `__tests__/oxc-toolchain-gates.test.ts` are the S1 Test (Red) cases of
+the plan. They fail at `baseline-m2`, so `key()` holds their titles in the base log, and the
+`s1` gate does not report them as new. This is the reason the gate cannot close issue #2 by
+itself (strategy 14.2, checks K1 to K5). Cases 5, 5b, and 6 pass at `baseline-m2` and are not
+in this table. Cases 9 and 9b do not exist at this capture: they land in the follow-up Red
+commit of this run.
+
+The bundle audits have no merged-tree row. They were not part of the capture of 2026-11-17.
+The pre-merge rows above stay the only record. The S1 Verify task runs both audits again.
 
 ## 11. Summary for other repositories
 

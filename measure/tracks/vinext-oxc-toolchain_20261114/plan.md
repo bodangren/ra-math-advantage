@@ -108,13 +108,13 @@ _Story ref: spec.md#story-s1_
     - [x] Request `/` with `curl -s -o /dev/null -w '%{http_code}'`. Record the status code. Stop the server. (All 5 apps gave 200. Each port was free after the stop.)
     - [x] Time `npm run build` for each app on vinext 0.0.55. Record the times in section 5.
     - [x] Commit the evidence file: `measure(vinext-oxc): record the S1 baseline`.
-- [~] Task: S1 Baseline (6 apps) — capture `baseline-m2` on the merged tree
-    - [ ] Run `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint baseline-m2`, then `test baseline-m2`, then `checks-all baseline-m2`, one at a time. `gates.sh` sends each job through `heavy-run.sh` itself (strategy section 2). A label that starts with `baseline` records only.
-    - [ ] Run the danielson `npm run build`. Record the exit code, and the first error line when it fails.
-    - [ ] Start danielson on port 4106 and request `/`. Record the status code, and the `location` header of a redirect.
-    - [ ] Make the danielson browser capture. Save one screenshot, one accessibility snapshot, and the console error list under `measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-m2-danielson`.
-    - [ ] Record that the pre-merge `gates/baseline/` folder (26 names) is historical and is not a comparison base. Record that a phase run whose workspace set differs from the `baseline-m2` set (27 names) is a new failure (strategy 6.4 and 14.4).
-    - [ ] Commit the evidence file: `measure(vinext-oxc): record the 6-app S1 baseline`.
+- [x] Task: S1 Baseline (6 apps) — capture `baseline-m2` on the merged tree
+    - [x] Run `bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint baseline-m2`, then `test baseline-m2`, then `checks-all baseline-m2`, one at a time. `gates.sh` sends each job through `heavy-run.sh` itself (strategy section 2). A label that starts with `baseline` records only.
+    - [x] Run the danielson `npm run build`. Record the exit code, and the first error line when it fails.
+    - [x] Start danielson on port 4106 and request `/`. Record the status code, and the `location` header of a redirect.
+    - [x] Make the danielson browser capture. Save one screenshot, one accessibility snapshot, and the console error list under `measure/runs/vinext-oxc-toolchain_20261114/ux-baseline-m2-danielson`.
+    - [x] Record that the pre-merge `gates/baseline/` folder (26 names) is historical and is not a comparison base. Record that a phase run whose workspace set differs from the `baseline-m2` set (27 names) is a new failure (strategy 6.4 and 14.4).
+    - [x] Commit the evidence file: `measure(vinext-oxc): record the 6-app S1 baseline`.
 - [~] Task: S1 Test (Red) — add the S1 gate tests (Red commit: abbe15f1; Green marks `[x]` when the S1 cases pass)
     - Sync merge 2b2d9952 of origin/master 2e353ef9 (Daniel's order, 2026-11-16): 1130 commits, adds apps/danielson and oxlint tooling; the S1 baseline, cases, and gates need a re-check before S1 Verify. Green's commit C WIP is in a named stash.
     - [x] Create `scripts/__tests__/oxc-toolchain-gates.test.ts` with `describe('S1 vinext 1.x')`.
