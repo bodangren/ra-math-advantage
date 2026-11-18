@@ -5,11 +5,11 @@ track: vinext-oxc-toolchain_20261114
 phase: Phase S2: ESLint to oxlint
 baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
 role_base_sha: e6284e3ce3b714a99f748418b8be7c96b2c8dfa9
-head: 777d74c695203e813ec0cd4a62b1693548a31be6
-commits: 119a8de3, 777d74c6
+head: ab8a99222c0745bac62bba643125eb1e3a3a3e70
+commits: 119a8de3, 777d74c6, ab8a9922
 tests_run: S2 oxlint 7 passed 49 skipped; S2 adversarial 7 passed 49 skipped; S1 adversarial 7 passed 49 skipped; S1 vinext 1.x 11 passed 45 skipped; full scripts suite 55 passed 1 failed (pre-existing remediate-concept-blueprints); gates.sh test s2 RESUME=1 BASE=baseline-m2 NEWFAIL=0 after a forced scripts-suite re-run
-files_changed: none (verification only; no fix commit needed)
-plan_updates: none (S2 plan ticks already recorded in 777d74c6)
+files_changed: measure/tracks/vinext-oxc-toolchain_20261114/plan.md (two task-tick SHA evidence notes only)
+plan_updates: S2 confirm-the-switch tick cites d891a9c9, S2 reach-zero-warnings tick cites 119a8de3 and 777d74c6 (commit ab8a9922)
 known_failures: remediate-concept-blueprints production-scan count (pre-existing, also fails on baseline-m2, unrelated to S2)
 handoff: r3 commits verified complete against every brief item, so r5 makes no fix commit and no plan change. 119a8de3 holds the 49-entry allow-list (scripts/__tests__/fixtures/lint-disable-allowlist.json, blanket total 7) and adv 7; 777d74c6 holds the tech-debt row, tech-stack.md oxlint line, raw timing s2-lint-timing-r3.txt named in oxc-evidence.md, the corrected plan line 309 claim, the [b] deferred:orchestrator manual-verification tick, and the phase note superseding strategy section 8 rows case 7 and on-<n>-files. adv 7 fails on (a) unlisted carrier (expect unlisted toEqual []), (b) stale entry (expect stale toEqual []), (c) blanket growth or changed directives (expect changed toEqual []) plus unrecorded hidden rules via strip-and-lint; adv 6 seeded-fault proof intact. No carrier file changed (e6284e3c..HEAD touches only measure/ and scripts/__tests__/). Red b6344565 is an ancestor of HEAD, inside phase_base_sha..HEAD. Gate note: the first RESUME=1 run reused the stale adversarial-era scripts-suite log (NEWFAIL=1); per precedent I dropped that one step record and re-ran, giving NEWFAIL=0 with only the pre-existing remediate failure. Heavy-run.sh queued past the tool timeout for the adversarial filter, so filters after the first ran direct with slot ok (9 of 12 busy). measure/tracks.md left for closeout. Questions with defaults: (1) Accept this verification-only round with no r5 fix commit? Default: yes. (2) Accept the forced scripts-suite re-run as the valid gate result? Default: yes.
 dispositions: F1=CONTEST(resolved before this round: 119a8de3 pins all 49 carriers, adv 7 passes, gate NEWFAIL=0); F2=CONTEST(s2-lint-timing-r3.txt is tracked and named in oxc-evidence.md); F3=CONTEST(tech-stack.md line 138 names oxlint); F5=CONTEST(phase note supersedes strategy section 8 rows case 7 and on-<n>-files); F6=CONTEST(plan S2 manual verification is [b] deferred:orchestrator)
