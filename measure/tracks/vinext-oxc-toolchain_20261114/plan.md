@@ -270,7 +270,7 @@ _Story ref: spec.md#story-s1_
 
 Phase note (2026-11-17): the S1 phase base is captured after the r6 strategy commit (strategy section 4). The run log and the role handoff hold it. No plan line carries a phase SHA.
 
-## Phase S2: ESLint to oxlint
+## Phase S2: ESLint to oxlint [checkpoint: c36867b9]
 _S2 confirms and records the oxlint move that eslint-to-oxlint-migration_20260820 made. That track is superseded by S2 (PM 2026-11-18)._
 _Story ref: spec.md#story-s2_
 
@@ -322,11 +322,11 @@ _Story ref: spec.md#story-s2_
     - [x] Ran `npm run generate`. Exit code 0; only the 6 known dirty generated files changed, left unstaged.
     - [x] Ran `npm run doctor`. Exit code 0 ("All checks passed").
     - [x] Corrected `spec.md` line 252 to name the 3 kept `jsPlugins` (077b77dc).
-- [x] Task: Measure - User Manual Verification 'Phase S2: ESLint to oxlint' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase S2: ESLint to oxlint' (Protocol in workflow.md) (c36867b9)
     - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (S2 oxlint 7 pass, S2 adversarial 13 pass, phase acceptance at 6cbdbbdf; PM is the confirming user, orchestrator default 2026-11-19. S2 has no user-facing change.)
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`.
-    - [ ] Append `[checkpoint: <sha>]` to the Phase S2 heading.
-    - [ ] Commit: `measure(plan): Mark phase 'Phase S2: ESLint to oxlint' as complete`.
+    - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`. (c36867b9)
+    - [x] Append `[checkpoint: c36867b9]` to the Phase S2 heading. (c36867b9)
+    - [x] Commit: `measure(plan): Mark phase 'Phase S2: ESLint to oxlint' as complete`. (this commit)
 
 Phase note (2026-11-19, S2 remediation): strategy section 8 rows "case 7" ("Zero warnings by blanket disable") and "on <n> files" ("Oxlint reads no file") are superseded by adv 6/adv 7 and case 4 (Review A F5, adversarial F2). The strategy role owns the revision; no strategy file changes in S2.
 
