@@ -1004,6 +1004,59 @@ function directiveKindsOfFile(content: string): { kinds: string[]; total: number
   return { kinds: [...kinds].sort(), total, blocks };
 }
 
+// The pin of one allow-list against the carrier files: a carrier that no entry names,
+// an entry whose file lost its directive, and an entry whose kinds, directive count,
+// or blanket blocks changed. Pure, so the adversarial cases can drive it with seeded
+// files and seeded entries.
+function allowlistPinViolations(
+  entries: DisableAllowlistEntry[],
+  files: string[],
+): { unlisted: string[]; stale: string[]; changed: string[] } {
+  const byPath = new Map(entries.map((entry) => [entry.path, entry]));
+  const unlisted = files.map((file) => relative(file)).filter((rel) => !byPath.has(rel));
+  const stale: string[] = [];
+  const changed: string[] = [];
+  for (const entry of entries) {
+    const abs = path.join(REPO_ROOT, entry.path);
+    if (!fs.existsSync(abs)) {
+      stale.push(`${entry.path} (file is gone)`);
+      continue;
+    }
+    const current = directiveKindsOfFile(fs.readFileSync(abs, 'utf8'));
+    if (current.total === 0) {
+      stale.push(`${entry.path} (no directive left)`);
+      continue;
+    }
+    if (JSON.stringify(current.kinds) !== JSON.stringify([...entry.kinds].sort())) {
+      changed.push(`${entry.path} (kinds ${current.kinds} vs recorded ${entry.kinds})`);
+    } else if (current.total !== entry.directiveCount) {
+      changed.push(
+        `${entry.path} (directive count ${current.total} vs recorded ${entry.directiveCount})`,
+      );
+    } else if (current.blocks > entry.blanketBlocks) {
+      changed.push(
+        `${entry.path} (blanket blocks ${current.blocks} vs recorded ${entry.blanketBlocks})`,
+      );
+    }
+  }
+  return { unlisted, stale, changed };
+}
+
+// A widened entry (attack e): a recorded hiddenRules rule that the file's directives do
+// not actually hide. Without this check, an entry could pre-authorize a rule, and a later
+// directive that hides that rule would pass the sweep silently.
+function widenedAllowlistRules(
+  entries: DisableAllowlistEntry[],
+  surfacedByReal: Map<string, Set<string>>,
+): string[] {
+  return entries.flatMap((entry) => {
+    const surfaced = surfacedByReal.get(entry.path) ?? new Set<string>();
+    return entry.hiddenRules
+      .filter((rule) => !surfaced.has(rule))
+      .map((rule) => `${entry.path} records ${rule}, which its directives do not hide`);
+  });
+}
+
 describe('S2 adversarial', () => {
   it('adv 1: the case 1 scan reports each ESLint-family field, nested overrides, and version-suffixed keys', () => {
     // Seeded faults in memory: one declaration per dependency field, a
@@ -1297,39 +1350,12 @@ describe('S2 adversarial', () => {
       // The allow-list pin (F1, option B): only the recorded pre-existing carrier
       // files may hold a directive, each exactly as recorded.
       const allowlist = readDisableAllowlist();
-      const byPath = new Map(allowlist.map((entry) => [entry.path, entry]));
       const files = lintedFilesWithDisableDirectives();
-      const unlisted = files
-        .map((file) => relative(file))
-        .filter((rel) => !byPath.has(rel));
+      const { unlisted, stale, changed } = allowlistPinViolations(allowlist, files);
       expect(unlisted, 'carrier files that the allow-list does not name').toEqual([]);
-      const stale: string[] = [];
-      const changed: string[] = [];
-      for (const entry of allowlist) {
-        const abs = path.join(REPO_ROOT, entry.path);
-        if (!fs.existsSync(abs)) {
-          stale.push(`${entry.path} (file is gone)`);
-          continue;
-        }
-        const current = directiveKindsOfFile(fs.readFileSync(abs, 'utf8'));
-        if (current.total === 0) {
-          stale.push(`${entry.path} (no directive left)`);
-          continue;
-        }
-        if (JSON.stringify(current.kinds) !== JSON.stringify([...entry.kinds].sort())) {
-          changed.push(`${entry.path} (kinds ${current.kinds} vs recorded ${entry.kinds})`);
-        } else if (current.total !== entry.directiveCount) {
-          changed.push(
-            `${entry.path} (directive count ${current.total} vs recorded ${entry.directiveCount})`,
-          );
-        } else if (current.blocks > entry.blanketBlocks) {
-          changed.push(
-            `${entry.path} (blanket blocks ${current.blocks} vs recorded ${entry.blanketBlocks})`,
-          );
-        }
-      }
       expect(stale, 'stale allow-list entries: the file no longer holds the directive').toEqual([]);
       expect(changed, 'allow-list entries whose directives changed').toEqual([]);
+      const byPath = new Map(allowlist.map((entry) => [entry.path, entry]));
       // The attack: strip every disable comment from each carrier file into a temp
       // copy inside the same workspace (so every override glob of the original path
       // applies to the copy too), then lint the copies with the root config. A finding
@@ -1380,6 +1406,261 @@ describe('S2 adversarial', () => {
           [...new Set(unrecorded.map(({ real, rule }) => `${real} hides ${rule}`))],
           `hidden findings that the allow-list does not record (strip the comment, lint the copy)\n${run.output}`,
         ).toEqual([]);
+        // Attack e (a widened entry): every recorded hiddenRules rule must actually be
+        // hidden by the file's directives, so no entry can pre-authorize a rule that
+        // nothing hides yet.
+        const surfacedByReal = new Map<string, Set<string>>();
+        for (const { real, rule } of decoded) {
+          if (!surfacedByReal.has(real)) surfacedByReal.set(real, new Set());
+          surfacedByReal.get(real)?.add(rule);
+        }
+        expect(
+          widenedAllowlistRules(allowlist, surfacedByReal),
+          'allow-list entries that record a rule their directives do not hide',
+        ).toEqual([]);
+      }
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it('adv 8: the pin fails each seeded attack on the allow-list, and the controls pass', () => {
+    // Attacks on the allow-list pin (F1, option B): a new carrier in every spelling,
+    // a stale entry, blanket growth, a changed directive, and a widened entry. Each
+    // attack is seeded inside apps/ (so the root config applies), never in a real
+    // file, and each has a paired control that must pass.
+    const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv8-'));
+    tempDirs.push(seedRoot);
+    const write = (name: string, content: string): string => {
+      const file = path.join(seedRoot, name);
+      fs.writeFileSync(file, content);
+      return file;
+    };
+    const bare = 'const keep = 1;\nconst unused = 2;\nexport { keep };\n';
+    // Attack a: a new carrier under each spelling. Every one hides the same finding.
+    const carriers = [
+      write('a-block-eslint.ts', `/* eslint-disable */\n${bare}`),
+      write('a-block-oxlint.ts', `/* oxlint-disable */\n${bare}`),
+      write(
+        'a-next-eslint.ts',
+        'const keep = 1;\n// eslint-disable-next-line no-unused-vars -- probe\nconst unused = 2;\nexport { keep };\n',
+      ),
+      write(
+        'a-next-oxlint.ts',
+        'const keep = 1;\n// oxlint-disable-next-line no-unused-vars\nconst unused = 2;\nexport { keep };\n',
+      ),
+      write(
+        'a-trailing-eslint.ts',
+        'const keep = 1;\nconst unused = 2; // eslint-disable-line\nexport { keep };\n',
+      ),
+      write(
+        'a-jsx-wrap.tsx',
+        'export function P() {\n  const unused = 1;\n  {/* eslint-disable */}\n  return <div>{unused}</div>;\n}\n',
+      ),
+    ];
+    const carrierPaths = carriers.map(relative);
+    const files = lintedFilesWithDisableDirectives();
+    for (const relPath of carrierPaths) {
+      expect(files.map(relative), 'the carrier scan must see each spelling').toContain(relPath);
+    }
+    // No entry names them, so each must be unlisted.
+    const withNoEntries = allowlistPinViolations([], files);
+    for (const relPath of carrierPaths) {
+      expect(withNoEntries.unlisted, `a new carrier must be unlisted: ${relPath}`).toContain(
+        relPath,
+      );
+    }
+    // Control: correct entries name them, so the pin reports nothing for them.
+    const entryFor = (
+      relPath: string,
+      extra: Partial<DisableAllowlistEntry> = {},
+    ): DisableAllowlistEntry => {
+      const current = directiveKindsOfFile(fs.readFileSync(path.join(REPO_ROOT, relPath), 'utf8'));
+      return {
+        path: relPath,
+        kinds: current.kinds,
+        directiveCount: current.total,
+        blanketBlocks: current.blocks,
+        hiddenRules: [],
+        reason: 'seed',
+        ...extra,
+      };
+    };
+    const carrierEntries = carrierPaths.map((relPath) => entryFor(relPath));
+    const withCarrierEntries = allowlistPinViolations(carrierEntries, files);
+    for (const relPath of carrierPaths) {
+      expect(withCarrierEntries.unlisted, `control: ${relPath}`).not.toContain(relPath);
+    }
+    expect(withCarrierEntries.stale, 'control: no stale entry').toEqual([]);
+    expect(withCarrierEntries.changed, 'control: no changed entry').toEqual([]);
+    // Attack b: a stale entry whose file lost its directive, and one whose file is gone.
+    const noDirective = write('b-plain.ts', bare);
+    const staleEntry: DisableAllowlistEntry = {
+      path: relative(noDirective),
+      kinds: ['next-line'],
+      directiveCount: 1,
+      blanketBlocks: 0,
+      hiddenRules: [],
+      reason: 'seed',
+    };
+    const withStale = allowlistPinViolations([staleEntry], files);
+    expect(withStale.stale, 'an entry whose file lost the directive must be stale').toEqual([
+      `${relative(noDirective)} (no directive left)`,
+    ]);
+    const goneEntry: DisableAllowlistEntry = {
+      ...staleEntry,
+      path: 'apps/integrated-math-3/.no-such-carrier.ts',
+    };
+    const withGone = allowlistPinViolations([goneEntry], files);
+    expect(withGone.stale, 'an entry whose file is gone must be stale').toEqual([
+      'apps/integrated-math-3/.no-such-carrier.ts (file is gone)',
+    ]);
+    // Control: drop the stale entries and neither is stale.
+    const withoutStale = allowlistPinViolations([], files);
+    expect(withoutStale.stale).toEqual([]);
+    // Attack c: blanket growth in a listed file. The file gains a blanket block, so
+    // its kinds change, and the pin fails it.
+    fs.writeFileSync(carriers[2], `/* eslint-disable */\n${fs.readFileSync(carriers[2], 'utf8')}`);
+    // carrierEntries[2] still records the pre-growth kinds, so the pin must fail it.
+    const grown = allowlistPinViolations([carrierEntries[2]], files);
+    expect(grown.changed, 'blanket growth must fail the pin').toEqual([
+      `${carrierPaths[2]} (kinds block,next-line vs recorded next-line)`,
+    ]);
+    // The blanket-block clause itself: same kinds and count, a lowered recorded count
+    // of blocks. The pin must fail on the block growth alone.
+    const bothBlocks = write(
+      'c-two-blocks.ts',
+      '/* eslint-disable */\nconst keep = 1;\n/* eslint-disable */\nconst unused = 2;\nexport { keep };\n',
+    );
+    const twoBlocksEntry: DisableAllowlistEntry = {
+      path: relative(bothBlocks),
+      kinds: ['block'],
+      directiveCount: 2,
+      blanketBlocks: 0,
+      hiddenRules: [],
+      reason: 'seed',
+    };
+    const twoBlocks = allowlistPinViolations([twoBlocksEntry], files);
+    expect(twoBlocks.changed, 'the blanket-block clause must fail on block growth alone').toEqual([
+      `${relative(bothBlocks)} (blanket blocks 2 vs recorded 0)`,
+    ]);
+    // Control: the recorded blanketBlocks matches, so the pin holds.
+    const twoBlocksControl = allowlistPinViolations(
+      [{ ...twoBlocksEntry, blanketBlocks: 2 }],
+      files,
+    );
+    expect(twoBlocksControl.changed).toEqual([]);
+    // Attack d: a listed file whose next-line directive now hides a different rule.
+    // The live sweep: strip the carrier, lint the copy, decode the surfaced rule.
+    const dCarrier = write(
+      'd-next.ts',
+      'const keep = 1;\n// eslint-disable-next-line no-unused-vars -- probe\nconst unused = 2;\nexport { keep };\n',
+    );
+    expect(runOxlintProbe(dCarrier).status, 'the seeded directive hides the finding').toBe(0);
+    const dStripped = write(
+      'd-stripped.ts',
+      stripDisableComments(fs.readFileSync(dCarrier, 'utf8')),
+    );
+    const dSurfaced = runOxlintProbe(dStripped);
+    expect(dSurfaced.status, 'the stripped copy must surface the finding').not.toBe(0);
+    const dRule = (dSurfaced.output.match(/: (?:error|warning) ([^\s:]+(?:\([^)]*\))?)/) ?? [])[1];
+    expect(dRule, 'the surfaced rule decodes').toBe('eslint(no-unused-vars)');
+    // An entry that records a different rule, or no rule, must not cover the finding.
+    const wrongRule: DisableAllowlistEntry = {
+      path: relative(dCarrier),
+      kinds: ['next-line'],
+      directiveCount: 1,
+      blanketBlocks: 0,
+      hiddenRules: ['typescript(no-explicit-any)'],
+      reason: 'seed',
+    };
+    expect(
+      wrongRule.hiddenRules.includes(dRule ?? ''),
+      'a different recorded rule must not cover the finding',
+    ).toBe(false);
+    const emptyRules: DisableAllowlistEntry = { ...wrongRule, hiddenRules: [] };
+    expect(
+      emptyRules.hiddenRules.includes(dRule ?? ''),
+      'an empty rule list must not cover the finding',
+    ).toBe(false);
+    // Control: the exact surfaced rule covers the finding.
+    const exactRules: DisableAllowlistEntry = { ...wrongRule, hiddenRules: [dRule ?? ''] };
+    expect(exactRules.hiddenRules.includes(dRule ?? ''), 'the exact rule covers the finding').toBe(
+      true,
+    );
+    // Attack e: a widened entry. A glob path does not name the file, so the file stays
+    // unlisted and the guard holds.
+    const globEntry: DisableAllowlistEntry = { ...exactRules, path: 'apps/**' };
+    const withGlob = allowlistPinViolations([globEntry], files);
+    expect(withGlob.unlisted, 'a glob entry must not name the carrier').toContain(carrierPaths[3]);
+    // A widened entry that pre-authorizes a rule the file does not hide passes the
+    // unrecorded predicate, so the exactness check must flag the extra rule.
+    const widenedEntry: DisableAllowlistEntry = {
+      ...exactRules,
+      hiddenRules: [dRule ?? '', 'react-hooks-js(purity)'],
+    };
+    expect(
+      widenedEntry.hiddenRules.includes(dRule ?? ''),
+      'a widened entry still covers the real finding',
+    ).toBe(true);
+    const surfacedByReal = new Map<string, Set<string>>([
+      [relative(dCarrier), new Set([dRule ?? ''])],
+    ]);
+    expect(
+      widenedAllowlistRules([exactRules], surfacedByReal),
+      'control: the exact entry has no widened rule',
+    ).toEqual([]);
+    expect(
+      widenedAllowlistRules([widenedEntry], surfacedByReal),
+      'a widened entry must be flagged',
+    ).toEqual([
+      `${relative(dCarrier)} records react-hooks-js(purity), which its directives do not hide`,
+    ]);
+  });
+
+  it(
+    'adv 9: a mid-line or multi-line disable in a listed file still fails the pin and the sweep',
+    () => {
+      // F2r2: oxlint honors a /* disable */ comment that shares its line with code and
+      // a comment that spans lines, but the pin counts only whole-line and // forms,
+      // and the sweep strips only those. A listed carrier can hide a new finding
+      // behind either form without failing adv 7. Live controls first, so the case is
+      // not vacuous.
+      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv9-'));
+      tempDirs.push(seedRoot);
+      const write = (name: string, content: string): string => {
+        const file = path.join(seedRoot, name);
+        fs.writeFileSync(file, content);
+        return file;
+      };
+      const bare = 'const keep = 1;\nconst unused = 2;\nexport { keep };\n';
+      const bareFile = write('bare.ts', bare);
+      const bareRun = runOxlintProbe(bareFile);
+      expect(bareRun.status, 'control: without a directive the finding surfaces').not.toBe(0);
+      expect(bareRun.output).toContain('no-unused-vars');
+      const forms = [
+        ['inline', 'const keep = 1; /* eslint-disable */\nconst unused = 2;\nexport { keep };\n'],
+        ['multiline', 'const keep = 1;\n/* eslint-disable\n */\nconst unused = 2;\nexport { keep };\n'],
+      ] as const;
+      for (const [name, content] of forms) {
+        // Live proof: the comment hides the finding, so a guard that ignores the form
+        // leaves a real hole.
+        const file = write(`${name}.ts`, content);
+        const hidden = runOxlintProbe(file);
+        expect(hidden.status, `${name}: the seeded comment must hide the finding`).toBe(0);
+        // Required: the pin counts the directive, so a listed file that gains it fails
+        // the kinds or the blanket-block clause.
+        const counted = directiveKindsOfFile(content);
+        expect(
+          counted.total,
+          `${name}: directiveKindsOfFile must count the mid-line or multi-line directive`,
+        ).toBe(1);
+        expect(counted.blocks, `${name}: the blanket form must count as a block`).toBe(1);
+        // Required: the sweep strips the comment, so the hidden finding surfaces.
+        const stripped = stripDisableComments(content);
+        const copy = write(`${name}-stripped.ts`, stripped);
+        const surfaced = runOxlintProbe(copy);
+        expect(surfaced.status, `${name}: the stripped copy must surface the finding`).not.toBe(0);
+        expect(surfaced.output, `${name}: the surfaced finding`).toContain('no-unused-vars');
       }
     },
     TOOL_TIMEOUT_MS,
