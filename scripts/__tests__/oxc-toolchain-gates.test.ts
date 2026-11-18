@@ -139,11 +139,12 @@ function makeProbeProject(files: Record<string, string>, tsconfig: Json): string
   return tmp;
 }
 
-function runTool(args: string[]): { status: number | null; output: string } {
+function runTool(args: string[], env: NodeJS.ProcessEnv = {}): { status: number | null; output: string } {
   const result = spawnSync('npx', ['--no-install', ...args], {
     cwd: REPO_ROOT,
     encoding: 'utf8',
     timeout: TOOL_TIMEOUT_MS,
+    env: { ...process.env, ...env },
   });
   return {
     status: result.status,
@@ -151,9 +152,21 @@ function runTool(args: string[]): { status: number | null; output: string } {
   };
 }
 
-// The S1 type-check command for a probe (the S3 Red commit changes it to the tsrs command).
-function typecheckProbe(tmp: string) {
-  return runTool(['tsc', '-p', path.join(tmp, 'tsconfig.json')]);
+// The S3 type-check command for a probe (plan S3 Test Red, strategy 16.3).
+// TSRS_FAST=1 selects the fast tsrs path. The probe file path selects the probe;
+// oxlint discovers the probe tsconfig.json from the file folder upward.
+function typecheckProbe(tmp: string, probeFile: string) {
+  return runTool(
+    [
+      'oxlint',
+      '--config',
+      path.join(REPO_ROOT, '.oxlintrc.json'),
+      '--type-aware',
+      '--type-check',
+      path.join(tmp, probeFile),
+    ],
+    { TSRS_FAST: '1' },
+  );
 }
 
 function probeTsconfig(files: string[]): Json {
@@ -292,7 +305,7 @@ describe('S1 vinext 1.x', () => {
     () => {
       expect(runTool(['tsc', '--version']).status, 'precondition: tsc --version').toBe(0);
       const tmp = makeProbeProject({ 'probe.tsx': VALID_NEXT_PROBE }, probeTsconfig(['probe.tsx']));
-      const { status, output } = typecheckProbe(tmp);
+      const { status, output } = typecheckProbe(tmp, 'probe.tsx');
       expect(output).not.toContain('TS2688');
       expect(status, output).toBe(0);
     },
@@ -304,7 +317,7 @@ describe('S1 vinext 1.x', () => {
     () => {
       expect(runTool(['tsc', '--version']).status, 'precondition: tsc --version').toBe(0);
       const tmp = makeProbeProject({ 'probe.tsx': INVALID_ARGS_PROBE }, probeTsconfig(['probe.tsx']));
-      const { status, output } = typecheckProbe(tmp);
+      const { status, output } = typecheckProbe(tmp, 'probe.tsx');
       for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
       // vinext/types must resolve, and next/* must resolve. If the types were `any`, no
       // TS2741 and no TS2345 would appear.
@@ -321,7 +334,7 @@ describe('S1 vinext 1.x', () => {
     () => {
       expect(runTool(['tsc', '--version']).status, 'precondition: tsc --version').toBe(0);
       const tmp = makeProbeProject({ 'probe.ts': MISSING_MODULE_PROBE }, probeTsconfig(['probe.ts']));
-      const { status, output } = typecheckProbe(tmp);
+      const { status, output } = typecheckProbe(tmp, 'probe.ts');
       for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
       // At Red, an unresolved vinext/types gives TS2688. Without this rule, the case
       // would fail for the wrong reason.
@@ -433,6 +446,193 @@ describe('S1 vinext 1.x', () => {
       'package.json:overrides.@eslint/js',
     ]);
   });
+});
+
+// ---------------------------------------------------------------------------
+// S3 tsrs cases (strategy 16.3). Every case below is red at this base: the alias
+// `typescript6` is absent, 27 typecheck scripts call `tsc --noEmit`, 20 package
+// build scripts call `tsc --noEmit`, `tsrs` is absent, 6 workflow `run` lines
+// call `tsc`, and 28 manifests declare `typescript`. TYPESCRIPT_KEEP_LIST tracks
+// only manifests that declare the package named `typescript`; it never names
+// `typescript6` (strategy 16.2).
+// ---------------------------------------------------------------------------
+
+// The final keep set of workspaces that declare the package named `typescript`.
+// Red starts empty; Green sets the Convex-driven keep set (strategy 16.3 case 5).
+const TYPESCRIPT_KEEP_LIST: string[] = [];
+// Workspaces whose typecheck script stays `tsc --noEmit` for a blocking
+// conformance gap. A subset of TYPESCRIPT_KEEP_LIST. Red starts empty.
+const TSC_FALLBACK_LIST: string[] = [];
+// The package that provides the S2 disable-comment parser API (strategy 16.2).
+const SCAN_PARSER_PACKAGE = 'typescript6';
+
+// The target typecheck script of one workspace: the app form for apps, the
+// package form (src in place of .) for packages.
+function targetTypecheckScript(rel: string): string {
+  return rel.startsWith('apps/')
+    ? 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .'
+    : 'TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src';
+}
+
+// The S3 probe tsconfig (plan line 360): strict, noEmit, no types, files list.
+function s3ProbeTsconfig(files: string[]): Json {
+  return {
+    compilerOptions: { strict: true, noEmit: true, types: [] },
+    files,
+  };
+}
+
+const S3_TYPE_MISMATCH_PROBE = 'export const n: number = "x";\n';
+const S3_VALID_PROBE = 'export const n: number = 1;\n';
+
+describe('S3 tsrs', () => {
+  it('case 0: the S2 disable scan keeps the 6.0 parser API through the alias', () => {
+    // The alias declaration uses the exact compatibility spec (strategy 16.2).
+    const root = readJson(path.join(REPO_ROOT, 'package.json'));
+    expect((root.devDependencies ?? {}) as Json, 'root devDependencies').toMatchObject({
+      [SCAN_PARSER_PACKAGE]: 'npm:@typescript/typescript6@^6.0.2',
+    });
+    // createRequire (already imported) resolves the alias, so a missing alias
+    // cannot break module load; the resolve itself is the positive assertion.
+    const req = createRequire(path.join(REPO_ROOT, 'package.json'));
+    const pkgPath = req.resolve(`${SCAN_PARSER_PACKAGE}/package.json`);
+    const version = String(readJson(pkgPath).version);
+    expect(Number.parseInt(version.split('.')[0], 10), `${SCAN_PARSER_PACKAGE} major`).toBe(6);
+    // The legacy compiler API that the S2 scan calls still exists.
+    const parser = req(SCAN_PARSER_PACKAGE) as {
+      createSourceFile?: unknown;
+      getLeadingCommentRanges?: unknown;
+      getTrailingCommentRanges?: unknown;
+      ScriptKind?: { TSX?: unknown };
+    };
+    expect(typeof parser.createSourceFile, 'createSourceFile is a function').toBe('function');
+    expect(typeof parser.getLeadingCommentRanges, 'getLeadingCommentRanges is a function').toBe(
+      'function',
+    );
+    expect(typeof parser.getTrailingCommentRanges, 'getTrailingCommentRanges is a function').toBe(
+      'function',
+    );
+    expect(parser.ScriptKind?.TSX, 'ScriptKind.TSX is defined').toBeDefined();
+  });
+
+  it('case 1: each workspace typecheck script is the tsrs target form', () => {
+    const wrong: string[] = [];
+    const missing: string[] = [];
+    for (const dir of WORKSPACE_DIRS) {
+      const rel = relative(dir);
+      const scripts = (readJson(path.join(dir, 'package.json')).scripts ?? {}) as Record<
+        string,
+        string
+      >;
+      const script = scripts.typecheck;
+      if (typeof script !== 'string') {
+        missing.push(rel);
+        continue;
+      }
+      if (TSC_FALLBACK_LIST.includes(rel)) {
+        if (!script.includes('tsc --noEmit')) wrong.push(`${rel}: fallback must run tsc`);
+      } else if (script !== targetTypecheckScript(rel)) {
+        wrong.push(`${rel}: ${script}`);
+      }
+    }
+    // bus-math-v2 has no typecheck script, so the missing list names it (A4).
+    expect(missing, 'workspaces without a typecheck script').toEqual([]);
+    expect(wrong, 'typecheck scripts that are not the tsrs target form').toEqual([]);
+  });
+
+  it('case 2: no package build script contains tsc', () => {
+    const hits: string[] = [];
+    for (const dir of PACKAGE_DIRS) {
+      const scripts = (readJson(path.join(dir, 'package.json')).scripts ?? {}) as Record<
+        string,
+        string
+      >;
+      if (typeof scripts.build === 'string' && scripts.build.includes('tsc')) {
+        hits.push(`${relative(dir)}: ${scripts.build}`);
+      }
+    }
+    expect(hits, 'package build scripts that contain tsc').toEqual([]);
+  });
+
+  it('case 3: tsrs resolves from the repository root', () => {
+    // Positive case: the resolve itself proves the tool is installed (A4).
+    const req = createRequire(path.join(REPO_ROOT, 'package.json'));
+    const found = req.resolve('tsrs/package.json');
+    expect(found).toContain(path.join('node_modules', 'tsrs', 'package.json'));
+  });
+
+  it('case 4: no run line in the CI workflows contains tsc', () => {
+    const workflowDir = path.join(REPO_ROOT, '.github', 'workflows');
+    const files = fs.readdirSync(workflowDir).filter((f) => /\.ya?ml$/.test(f)).sort();
+    // A command form, not a bare word (A7): npx tsc, or tsc with a project flag.
+    const tscCommandRe = /\b(npx\s+(-\S+\s+)*tsc\b|tsc\s+(-p|--project|--noEmit)\b)/;
+    const parsedByFile: Record<string, number> = {};
+    const hits: string[] = [];
+    for (const file of files) {
+      const doc = loadYaml(fs.readFileSync(path.join(workflowDir, file), 'utf8')) as {
+        jobs?: Record<string, { steps?: Array<{ run?: string }> }>;
+      };
+      parsedByFile[file] = 0;
+      for (const [jobName, job] of Object.entries(doc.jobs ?? {})) {
+        for (const step of job.steps ?? []) {
+          if (typeof step.run !== 'string') continue;
+          parsedByFile[file] += 1;
+          for (const line of step.run.split('\n')) {
+            if (tscCommandRe.test(line)) hits.push(`${file}:${jobName}: ${line.trim()}`);
+          }
+        }
+      }
+    }
+    // Sentinel: the parse produced one entry for each file on the disk (A4). A
+    // filter that drops a workflow fails here, not only on the content check.
+    expect(Object.keys(parsedByFile).sort(), 'workflow files read').toEqual(files);
+    expect(hits, 'workflow run lines that call tsc').toEqual([]);
+  });
+
+  it('case 5: the manifests that declare typescript are exactly TYPESCRIPT_KEEP_LIST', () => {
+    const manifests = [
+      path.join(REPO_ROOT, 'package.json'),
+      ...APP_DIRS.map((d) => path.join(d, 'package.json')),
+      ...PACKAGE_DIRS.map((d) => path.join(d, 'package.json')),
+    ];
+    // The same sentinels as S1 case 3 (A4).
+    expect(manifests).toContain(path.join(IM3_DIR, 'package.json'));
+    expect(manifests).toContain(path.join(APP_SHELL_DIR, 'package.json'));
+    expect(manifests).toContain(path.join(REPO_ROOT, 'apps', 'danielson', 'package.json'));
+    expect(manifests.length).toBeGreaterThanOrEqual(28);
+    const isTypescript = (key: string) => key === 'typescript';
+    // Only the package named `typescript` counts; `typescript6` never does.
+    const declared = scanDeclarations(manifestEntries(manifests), isTypescript);
+    expect(declared, 'manifest fields that declare typescript').toEqual(TYPESCRIPT_KEEP_LIST);
+  });
+
+  it(
+    'case 6: a probe that assigns a string to a number fails the tsrs type check with TS2322',
+    () => {
+      expect(runTool(['tsrs', '--version']).status, 'precondition: tsrs --version').toBe(0);
+      const tmp = makeProbeProject(
+        { 'probe.ts': S3_TYPE_MISMATCH_PROBE },
+        s3ProbeTsconfig(['probe.ts']),
+      );
+      const { status, output } = typecheckProbe(tmp, 'probe.ts');
+      for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
+      expect(status, output).not.toBe(0);
+      expect(output).toContain('TS2322');
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it(
+    'case 7: a probe that assigns a number to a number passes the tsrs type check',
+    () => {
+      expect(runTool(['tsrs', '--version']).status, 'precondition: tsrs --version').toBe(0);
+      const tmp = makeProbeProject({ 'probe.ts': S3_VALID_PROBE }, s3ProbeTsconfig(['probe.ts']));
+      const { status, output } = typecheckProbe(tmp, 'probe.ts');
+      for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
+      expect(status, output).toBe(0);
+    },
+    TOOL_TIMEOUT_MS,
+  );
 });
 
 // The lockfile shape that the S1 case 8 scan reads.
@@ -639,7 +839,7 @@ describe('S1 adversarial', () => {
         { 'probe.ts': anyAttackProbe, 'next-any.d.ts': "declare module 'next/navigation';\n" },
         tsconfig,
       );
-      const attack = typecheckProbe(tmp);
+      const attack = typecheckProbe(tmp, 'probe.ts');
       for (const phrase of ABSENT_TOOL_PHRASES) expect(attack.output).not.toContain(phrase);
       expect(attack.output).not.toContain('TS2688');
       expect(attack.output).not.toContain('TS2307');
@@ -650,7 +850,7 @@ describe('S1 adversarial', () => {
       expect(attack.output).not.toMatch(/TS2741|TS2345/);
       // Paired control: the real vinext/types are strict, so the same probe fails.
       const real = makeProbeProject({ 'probe.ts': anyAttackProbe }, probeTsconfig(['probe.ts']));
-      const realRun = typecheckProbe(real);
+      const realRun = typecheckProbe(real, 'probe.ts');
       expect(realRun.output, 'vinext/types did not resolve').not.toContain('TS2688');
       expect(realRun.status, realRun.output).not.toBe(0);
       expect(realRun.output, 'the real types must reject push(123) with TS2345').toMatch(/TS2345/);
