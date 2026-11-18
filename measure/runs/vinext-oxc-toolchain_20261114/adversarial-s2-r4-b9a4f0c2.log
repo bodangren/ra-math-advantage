@@ -1,0 +1,151 @@
+S2 adversarial testing r4 (re-run after the Green r7 tokenizer remediation)
+===========================================================================
+
+Track: vinext-oxc-toolchain_20261114. Phase: Phase S2: ESLint to oxlint.
+Route: opencode-go/glm-5.3#high (ra-quota pick adversarial, 2026-11-19).
+phase_base_sha 43d42193a1fea8628ed09f73b18bc0d8f9fe167e.
+role_base_sha 54aa79e33442a94201500a997c1b410dbfd2f241.
+Pre-adversarial HEAD: 54aa79e3. Audited HEAD after my test commit: b9a4f0c2.
+Slot check before the role: ok, 6 of 12 busy. Every heavy job ran through
+heavy-run.sh, one at a time, in the foreground.
+
+Method
+------
+I attacked the Green r7 tokenizer helpers (DISABLE_TEXT_RE and the text
+prefilter at scripts/__tests__/oxc-toolchain-gates.test.ts:902 and :930,
+scriptKindForFile at :907, disableCommentRanges at :924,
+stripDisableComments at :971, directiveKindsOfFile at :1055) with seeded
+files in temp folders under apps/integrated-math-3, each with paired bare
+controls. For each form I compared three things: what oxlint honors (a
+live probe with the root config), what the pin counts, and what the strip
+removes. The probe scripts run the exact helper code of the test file
+(transpiled from lines 899-981 and 1047-1073 at HEAD), so the data is the
+pipeline's own behavior. About 30 forms over five probe rounds, plus a
+49-carrier sweep replica.
+
+Re-check of adv 1 to 12 at this HEAD
+-----------------------------------
+All pass. Adv 10 (the F1r3 CRLF guard) and adv 11 (the F2r3 in-string /*
+guard) now pass live, so the r3 blockers are remediated and both are
+withdrawn. The sweep replica over the real tree at this HEAD: 49 carriers,
+43 files with surfaced findings, 86 decoded rules, MISSING none, EXTRAS
+none, no parse diagnostic.
+
+Attack table (live oxlint behavior vs the tokenizer helpers)
+-----------------------------------------------------------
+(a) Prefilter spellings. Oxlint does not honor uppercase, mixed case, a
+space around the hyphen, or a U+2011 hyphen: each probe exits 1 with the
+finding live. The pin counts none of them (the prefilter is
+case-sensitive and exact), so the two agree and no hole exists. A BOM at
+file start hides nothing from either: oxlint honors the disable, the pin
+counts it, and the strip surfaces the finding.
+(b) Parse failures and extensions. A file with a syntax error stays loud:
+oxlint reports only the parse error (exit 1) and applies no rule finding,
+so nothing hides behind a disable there; the pin counts the disable
+(conservative) and the stripped copy keeps the parse error. An
+unterminated /* comment makes oxlint fail loudly ('Unterminated multiline
+comment'); the strip blanks it to EOF, and nothing is lost. A .mts or .cts
+file gets no rule from the config globs (a bare control exits 0), so
+nothing can hide there; the tokenizer parses and counts them. A .js file
+holding JSX lints under oxlint, and a disable in its JSX expression
+container is honored exactly as in .tsx; the ScriptKind.JS parse of the
+tokenizer finds the comment anyway. A .ts file holding a <number> cast
+parses, and the disable above it strips and surfaces.
+(c) Positions. A comment-only file counts 1 through the end-of-file
+token. A shebang line (in .js and .mjs) hides nothing from either side: a
+disable after it is honored, counted, and stripped. A comment inside a
+type annotation is honored mid-line. A comment inside a function-body
+block and a comment in a JSX attribute position are not honored by oxlint
+(the finding stays live) while the pin counts them: the conservative
+direction, pinned.
+(d) A regex holding disable text (`/eslint-disable/`) is not honored and
+not counted: the scanner eats it as one token. A regex holding `\/*`
+above a real disable no longer swallows the comment: the disable strips
+and the finding surfaces (the F2r3 class, closed).
+(e) A template substitution `${/* eslint-disable */ 1}` is honored by
+oxlint, counted by the pin, and stripped with the finding surfaced.
+(f) Duplicated ranges: a mid-line comment shared by the trivia of two
+adjacent tokens counts exactly once (the pos-end dedupe holds).
+
+New coverage
+------------
+Adv 13 (commit b9a4f0c2) pins the r4 data: group 1 pins each honored form
+(shebang .js/.mjs, BOM, .mjs, .cjs, template substitution, the .js JSX
+container, the regex-star-slash form, the type-annotation mid-line form,
+the deduped adjacent form) with the live honor probe, the pin count, and
+the stripped-copy surface; group 2 pins the counted-but-not-honored
+shapes (a function-body block, a JSX attribute, an unterminated comment,
+a syntax-error file) as staying loud with a conservative count; group 3
+pins the unhonored spellings (uppercase, mixed case, a spaced hyphen, a
+U+2011 hyphen, regex text) as staying live and uncounted, so a future
+oxlint that starts to honor one of them fails the live probe before the
+prefilter can go blind.
+
+Findings
+--------
+No blocking finding. F1r3 and F2r3 are withdrawn (remediated by Green
+r7). F4r3 stays accepted as a documented limitation (the strip comment
+at scripts/__tests__/oxc-toolchain-gates.test.ts:964-970 documents it,
+and adv 12 pins both fault classes live). Two Nits:
+
+- F1r4 [Nit]: SOURCE_EXT_RE (scripts/__tests__/oxc-toolchain-gates.test.ts:984)
+  hardcodes the extension set of the root config override globs. Live
+  probes show .mts and .cts get no rule, so the exclusion is consistent
+  today, but nothing ties the two sets: a later glob change that adds
+  .mts or .cts would lint those files while the carrier scan stays blind.
+  Default: note only.
+- F2r4 [Nit]: directiveKindsOfFile classifies a block comment whose text
+  merely contains 'disable-line' as trailing
+  (scripts/__tests__/oxc-toolchain-gates.test.ts:1064-1069), so a blanket
+  disable that mentions disable-line in prose adds no blanket block. The
+  kinds and count clauses still fail on any change, so no hole exists.
+  Default: accept.
+
+Test runs (all heavy jobs through heavy-run.sh, foreground)
+----------------------------------------------------------
+- -t 'S2 adversarial' -> 13 passed, 49 skipped (adv 1 to 13 all pass).
+- -t 'S2 oxlint' -> 7 passed.
+- npx tsc --noEmit -> exit 0.
+- Full scripts suite -> 61 passed, 1 failed: the pre-existing
+  remediate-concept-blueprints baseline row only.
+
+PROJECT_TESTS gate (test s2, GATES_BASE=baseline-m2). The s2 test.steps
+held the stale scripts-suite record of the run before my test commit
+(that job's exact inputs changed), so this run removed only that record
+(it held code 1) and ran GATES_RESUME=1, which re-ran only the
+scripts-suite job (61 passed, 1 failed: the pre-existing row, same
+diagnostic key as the baseline) and re-compared the 27 workspace test
+records and the audit-suites step. The gate printed NEWFAIL=0, exit 0
+(measure/runs/vinext-oxc-toolchain_20261114/adversarial-gate-test-s2-r4.log).
+
+Weak-assertion review of the r7 helpers: the token walk covers
+punctuation trivia through getChildren, the prefiler only skips files
+with no disable text (a file whose only disable text sits in a string
+still parses and counts conservatively), and no documentation assertion
+stands in for live behavior. Every new guard keeps a live seeded
+control.
+
+Scope: git diff --stat 54aa79e3..b9a4f0c2 holds only
+scripts/__tests__/oxc-toolchain-gates.test.ts (115 insertions, 0
+deletions). No production file, manifest, lockfile, config, lint script,
+fixture entry, or carrier file was touched. The 6 dirty generated files
+were never staged.
+
+PM rule compliance: no `openchamber` or `opencode` command ran in this
+role.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: 54aa79e33442a94201500a997c1b410dbfd2f241
+head: b9a4f0c2 (the test commit; the artifacts commit follows in measure/runs/)
+commits: b9a4f0c2 test(vinext-oxc): extend the S2 adversarial tests (r4); artifacts commit: measure(runs): add the S2 adversarial r4 result
+tests_run: -t 'S2 adversarial' 13 passed 49 skipped (adv 1 to 12 re-check pass, the F1r3 and F2r3 guards adv 10 and adv 11 now pass, and the new adv 13 passes); -t 'S2 oxlint' 7 passed; npx tsc --noEmit exit 0; full scripts suite (heavy-run.sh) 61 passed 1 failed (the pre-existing remediate-concept-blueprints baseline row only); PROJECT_TESTS test s2 NEWFAIL=0 exit 0 (after the stale scripts-suite step record was dropped so the step re-ran)
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts (test commit); measure/runs/vinext-oxc-toolchain_20261114/adversarial-s2-r4-b9a4f0c2.{json,log} and adversarial-gate-test-s2-r4.log (artifacts commit)
+plan_updates: none (the S2 adversarial re-run is not a plan task; the orchestrator records the verdict)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure only; every S2 adversarial test passes at this HEAD
+handoff: verdict pass; the Green r7 tokenizer closes F1r3 (CRLF) and F2r3 (in-string /*), both withdrawn, and the r4 attack set (about 30 live forms: prefilter spellings, parse failures and extensions, token-walk positions, regex and template holders, duplicate trivia) finds no new hole; the 49-carrier sweep replica is exact (0 missing, 0 extras, no parse diagnostic); Nits F1r4 (SOURCE_EXT_RE at scripts/__tests__/oxc-toolchain-gates.test.ts:984 hardcodes the override-glob extension set; a later glob change that adds .mts or .cts would blind the scan) and F2r4 (a block comment whose text contains 'disable-line' classifies as trailing at :1064-1069) default to accept; questions Q1 (F1r4 disposition, default note only) and Q2 (F2r4 disposition, default accept)
+END_MEASURE_AGENT_RESULT

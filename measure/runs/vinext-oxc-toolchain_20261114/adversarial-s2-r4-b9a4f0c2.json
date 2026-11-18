@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S2: ESLint to oxlint",
+  "baseline_sha": "43d42193a1fea8628ed09f73b18bc0d8f9fe167e",
+  "role_base_sha": "54aa79e33442a94201500a997c1b410dbfd2f241",
+  "audited_head_sha": "b9a4f0c2",
+  "status": "pass",
+  "summary": "Re-run after the Green r7 tokenizer remediation (fde3eda2): the sweep is no longer blind for any briefed form. Adv 10 and adv 11, the committed guards for the r3 defects F1r3 (CRLF) and F2r3 (in-string /*), now pass live, so both blockers are withdrawn. The re-check of adv 1 to 12 passes, and the r4 attack set (about 30 seeded forms under apps/integrated-math-3, each with a live oxlint probe against the exact tokenizer logic of the test file) found no new hole: every honored form (shebang in .js and .mjs, BOM, .mjs, .cjs, template substitution, the JSX expression container in .js and .tsx, a regex holding \\/* above a real disable, the mid-line type-annotation form, adjacent-token trivia) is counted exactly once and stripped with the finding surfaced; the unhonored spellings (uppercase, mixed case, a spaced hyphen, a U+2011 hyphen, regex text) stay live and the pin counts none of them; a comment-only file counts through the end-of-file token; parse-broken files (a syntax error, an unterminated comment) stay loud in the original and the stripped copy, and oxlint applies no rule finding to a parse-error file, so nothing hides there. The 49-carrier sweep replica at this HEAD reports 43 files with surfaced findings, 86 decoded rules, 0 missing, 0 extras, and no parse diagnostic. Two Nits remain (the SOURCE_EXT_RE extension-set coupling and a classify quirk); both default to accept and neither opens a hole. The new adv 13 pins the verified-good forms and the unhonored spellings as live regression tripwires (commit b9a4f0c2).",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1r4 [Nit] adversarial-testing: SOURCE_EXT_RE (scripts/__tests__/oxc-toolchain-gates.test.ts:984) hardcodes the extension set {js,jsx,mjs,cjs,ts,tsx} that the root config override globs also hardcode. Live probes show a bare .mts or .cts file exits 0 under the root config (no rule applies to it), so the scan's exclusion is consistent today and nothing can hide in an .mts or .cts file. But no guard ties the two sets together: a later config change that adds .mts or .cts to an override glob would lint those files while lintedFilesWithDisableDirectives and the adv 7 sweep stay blind to their carriers. The pin covers a listed carrier of any parsed extension (allowlistPinViolations parses by entry.path), but the scan never lists such a carrier. No hole exists today. Default disposition: note only; no change in this phase.",
+    "F2r4 [Nit] adversarial-testing: directiveKindsOfFile classifies a block comment whose text merely contains 'disable-line' as trailing (scripts/__tests__/oxc-toolchain-gates.test.ts:1064-1069; live probe: the span '/* eslint-disable // eslint-disable-line */' decodes kinds=[trailing], blocks=0). A blanket disable whose comment text mentions disable-line in prose therefore counts as a trailing directive and adds no blanket block, so the blanket-growth clause does not cover that specific shape. The kinds and directive-count clauses still fail on any change to such a file, so no hole exists. Default disposition: accept; no helper change."
+  ],
+  "evidence": [
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' at b9a4f0c2 -> 13 passed, 49 skipped: adv 1 to 12 all pass (the F1r3 and F2r3 guards adv 10 and adv 11 now pass), and the new adv 13 passes",
+    "F1r3 withdrawn: the CRLF forms of adv 10 (a trailing // eslint-disable-line and a // eslint-disable-next-line on a CRLF file) are honored live, counted by the pin, and stripped with the finding surfaced; the r7 comment ranges are line-ending free, so the LF twins and the CRLF forms behave the same",
+    "F2r3 withdrawn: the in-string /* swallow form of adv 11 strips without a parse error and surfaces eslint(no-unused-vars); the paired control still strips and surfaces, so the tokenizer no longer spans from string text into a comment",
+    "the r4 probe set (the briefed classes a to f): about 30 seeded forms under apps/integrated-math-3, each run live with the root config against the exact tokenizer logic transpiled from scripts/__tests__/oxc-toolchain-gates.test.ts:899-981 and 1047-1073; every honored form (shebang in .js and .mjs, BOM, .mjs, .cjs, the template substitution ${/* eslint-disable */ 1}, the JSX expression container in .js and .tsx, a regex holding \\/* above a real disable, the mid-line type-annotation form, adjacent-token trivia deduped to one count) is counted and stripped with the finding surfaced (/tmp/opencode/adv-s2-r4-probes.out, -probes2.out, -probes3.out, -probes4.out)",
+    "unhonored spellings stay live and uncounted: uppercase, mixed case, the spaced hyphen, the U+2011 hyphen, and regex text each leave the finding reported (exit 1) while the pin counts 0; pinned as the adv 13 group 3 tripwire, so a future oxlint that honors one of them fails the live probe before the prefilter can go blind",
+    "position and parse probes: a comment-only file counts 1 through the end-of-file token; a shebang line shifts nothing; .mts and .cts parse and count (no rule applies to them, so nothing hides); a comment inside a function-body block and a comment in a JSX attribute position are not honored by oxlint but are counted, the conservative direction; a syntax-error file and an unterminated comment stay loud (exit 1) in the original and the stripped copy, and oxlint reports only the parse error there, so no rule finding can hide behind a parse error (/tmp/opencode/adv-s2-r4-probes5.out)",
+    "sweep replica at this HEAD with the r7 strip: 49 carriers, 43 files with surfaced findings, 86 decoded rules, missing 0, extras 0, unmapped 0, no parse diagnostic (/tmp/opencode/adv-s2-r4-sweep-replica.out)",
+    "F4r3 stays accepted as a documented limitation: the strip comment at scripts/__tests__/oxc-toolchain-gates.test.ts:964-970 documents the non-retroactive and enable-region over-attribution, and adv 12 still pins both fault classes live; F3r3 shrank to the two conservative shapes (a function-body block, a JSX attribute) that adv 13 group 2 pins",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed (no case regression)",
+    "npx tsc --noEmit -> exit 0",
+    "full scripts suite through heavy-run.sh -> 61 passed, 1 failed: the pre-existing remediate-concept-blueprints baseline row only (the 13 S2 adversarial tests all pass in the same run)",
+    "PROJECT_TESTS gate: the s2 test.steps held the stale scripts-suite record of the run before my test commit (that job's exact inputs changed), so this run removed only that record and ran GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s2; the gate re-ran only the scripts-suite job (61 passed, 1 failed: the pre-existing row) and re-compared the 27 workspace test records and the audit-suites step; it printed NEWFAIL=0, exit 0 (measure/runs/vinext-oxc-toolchain_20261114/adversarial-gate-test-s2-r4.log)"
+  ],
+  "commands": [
+    "git rev-parse HEAD (b9a4f0c2 after the test commit)",
+    "node /tmp/opencode/adv-s2-r4-probes.mjs (about 30 seeded forms: oxlint honor vs pin count vs strip result, with per-extension bare controls)",
+    "node /tmp/opencode/adv-s2-r4-probes2.mjs (full raw oxlint output for the parse-error, JSX, and attribute rows)",
+    "node /tmp/opencode/adv-s2-r4-probes3.mjs (the .js JSX container and shebang forms with corrected bare controls)",
+    "node /tmp/opencode/adv-s2-r4-probes4.mjs (the .js and .tsx container twins, BOM, unterminated, comment-only file)",
+    "node -e probes5 (the syntax-error, type-annotation, and bare controls)",
+    "node /tmp/opencode/adv-s2-r4-sweep-replica.mjs (the 49-carrier exactness computation at HEAD)",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial'",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint'",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx tsc --noEmit",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts",
+    "GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s2"
+  ],
+  "changed_files": [
+    "scripts/__tests__/oxc-toolchain-gates.test.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "Every briefed r4 form is handled exactly or conservatively: the 49-carrier sweep replica reports 0 missing and 0 extras with no parse diagnostic, and adv 10 to 12 all pass live at b9a4f0c2."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 5,
+      "evidence": "Adv 13 pins each new form with a live oxlint probe, the pin count, and a stripped-copy surface, and its group 3 tripwire (unhonored spellings must stay live and uncounted) fails first if a future oxlint widens what it honors."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff --stat 54aa79e3..b9a4f0c2 holds only scripts/__tests__/oxc-toolchain-gates.test.ts (115 insertions, 0 deletions); the fixture, the 49 carriers, and all production files are untouched."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every claim names a probe output, a vitest selection result, a gate log, or a file:line: the 13-passed adversarial selection, the 61-passed full suite, NEWFAIL=0 in adversarial-gate-test-s2-r4.log, and SOURCE_EXT_RE at scripts/__tests__/oxc-toolchain-gates.test.ts:984."
+    }
+  ]
+}
