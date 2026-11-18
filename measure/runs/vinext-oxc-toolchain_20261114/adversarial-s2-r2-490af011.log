@@ -1,0 +1,154 @@
+Adversarial testing log, round 2 after remediation: Phase S2 (vinext-oxc-toolchain_20261114)
+Role: measure-adversarial-testing. Route: opencode-go/glm-5.3#high.
+Audited test commit: 490af011. role_base_sha: 4326142c2c082059c9eeaaa18148d888613f2c50.
+phase_base_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e.
+Date: 2026-11-19.
+
+Context: the earlier run (adversarial-s2-b6344565.json) raised blocker F1.
+The PM accepted option B (2026-11-19). Green pinned the 49 carrier files in
+scripts/__tests__/fixtures/lint-disable-allowlist.json (commit 119a8de3) and
+remediated adv 7 into an allow-list pin. This round attacks the new pin.
+
+FINAL VERDICT: fail. The remediation holds against every attack the brief
+seeds, each with a paired control. One new defect found and committed as a
+failing guard. One blocker (F1r2) routes to Green. One Nit (F2r2).
+
+Confirmed first: adv 1 to 6 of the earlier round still hold at this HEAD.
+Run: npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial'
+-> 7 passed before the new cases (adv 7 passes on the real tree now).
+
+Attacks on the new allow-list pin (each seeded in a temp folder under
+apps/integrated-math-3, never in a real file; each has a paired control;
+committed as the passing adv 8, scripts/__tests__/oxc-toolchain-gates.test.ts:1426):
+1. (a) A new carrier file under each spelling: /* eslint-disable */ block,
+   /* oxlint-disable */ block, // eslint-disable-next-line,
+   // oxlint-disable-next-line, trailing // eslint-disable-line, and the
+   JSX-wrapped {/* eslint-disable */} block in a .tsx. The carrier scan sees
+   each one and the pin lists each one as unlisted. Control: correct entries
+   for all six pass clean (no unlisted, no stale, no changed). Guard holds.
+2. (b) A stale allow-list entry: an entry whose file lost the directive
+   reports "(no directive left)"; an entry whose file is gone reports
+   "(file is gone)". Control: drop the entries and neither is stale.
+   Guard holds.
+3. (c) Blanket growth in a listed file: the file gains a blanket block, so
+   the kinds clause fails ("kinds block,next-line vs recorded next-line").
+   The blanket-block clause alone fails "blanket blocks 2 vs recorded 0"
+   when only the recorded block count is wrong. Control: blanketBlocks 2
+   passes. Guard holds.
+4. (d) A listed file whose next-line directive now hides a different rule:
+   the live sweep strips the carrier, lints the copy, and decodes
+   eslint(no-unused-vars). An entry that records
+   typescript(no-explicit-any) does not cover the finding; an empty rule
+   list does not cover it; the exact rule covers it. Guard holds.
+5. (e) An allow-list edit that silently widens an entry:
+   - A glob path ("apps/**") does not name the file, so the carrier stays
+     unlisted. Guard holds.
+   - An empty hiddenRules list fails the sweep. Guard holds.
+   - A hiddenRules superset (the true rule plus a rule nothing hides)
+     passes the unrecorded predicate silently. GAP, now closed: adv 7
+     gained the exactness assertion widenedAllowlistRules, which fails an
+     entry that records a rule the file does not hide. Verified on the real
+     tree first with a node replica of the sweep: 49 carriers, 43 files
+     surface findings, EXTRAS 0, MISSING 0, unlisted empty, stale empty.
+     The fixture is exact, so adv 7 passes with the new assertion.
+
+New defect (blocker F1r2, committed as the failing guard adv 9,
+scripts/__tests__/oxc-toolchain-gates.test.ts:1621):
+- oxlint honors two directive forms that the pin and the sweep do not see:
+  a mid-line block disable (code before the comment on the same line, for
+  example "const keep = 1; /* eslint-disable */") and a block disable that
+  spans lines ("/* eslint-disable\n */"). Live proof under
+  apps/integrated-math-3: each seeded form exits 0 under the root config
+  while the paired bare control exits 1 with eslint(no-unused-vars).
+- Why the guard misses them: WHOLE_LINE_DISABLE_RE
+  (scripts/__tests__/oxc-toolchain-gates.test.ts:901) requires the comment
+  to close its own line, and the trailing branch of directiveKindsOfFile
+  (:996) matches only // forms, so directiveKindsOfFile (:981) counts
+  neither form. stripDisableComments (:907) strips neither form, so the
+  sweep lints the copy with the comment still in place and never surfaces
+  the hidden rule. The kinds, count, and blanket-block pins stay
+  unchanged. A listed carrier file can therefore hide a new live finding
+  without failing adv 7. The guard comment "a new blanket block ... fail
+  adv 7" (:958) is false for these two blanket forms.
+- The real tree holds neither form today: rg over the source files of
+  apps/ and packages/ finds exactly one non-whole-line directive, the
+  trailing // eslint-disable-line at
+  apps/bus-math-v2/hooks/usePhaseCompletion.ts:148. The hole is latent,
+  not live.
+- Green must extend the directive counting and the strip to mid-line and
+  multi-line block comments in both spellings, so adv 9 passes.
+
+Nonblocking finding F2r2 (Nit):
+- The fixture itself can be widened without an independent anchor: an
+  entry whose directiveCount or blanketBlocks is raised inside
+  scripts/__tests__/fixtures/lint-disable-allowlist.json passes the pin.
+  Every other widening path now fails (glob, empty list, superset; see
+  attack 5). Default disposition: accept; the review of the fixture diff
+  is the defense. Per the Hashing and Scope Policy of AGENTS.md, no hash
+  anchor is added.
+
+Test evidence (commands and results):
+- npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' ->
+  8 passed, 1 failed (adv 9), 49 skipped. The failure is the new guard.
+- npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' ->
+  7 passed.
+- npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial' ->
+  7 passed; -t 'S1 vinext 1.x' -> 11 passed (no S1 regression).
+- npx tsc --noEmit -> exit 0.
+- Full scripts suite through heavy-run.sh -> 56 passed, 2 failed: adv 9
+  and the pre-existing remediate-concept-blueprints baseline row
+  (/tmp/opencode/adv-s2-r2-full-suite.log).
+- Real-tree sweep replica (node): 49 carriers, 43 files with surfaced
+  findings, EXTRAS 0, MISSING 0, unlisted [], stale [].
+- Mid-line and multi-line probes under apps/integrated-math-3: seeded
+  forms exit 0; paired bare controls exit 1 with eslint(no-unused-vars).
+
+PROJECT_TESTS gate (test s2, GATES_BASE=baseline-m2). Method: the
+gates/s2 folder held the scripts-suite record of the 01:53 run at
+4326142c. My two test commits changed exactly that job's inputs, so the
+run removed only the recorded scripts-suite line (it held code 1) and ran
+GATES_RESUME=1, so the gate re-ran only the scripts-suite job and
+re-compared every other record (27 workspace test records and the
+audit-suites step) with baseline-m2.
+- Gate run (adversarial-gate-test-s2-r2.log): the fresh scripts-suite job
+  failed with 2 tests (adv 9 and the baseline row), the compare printed
+  "NEW FAILURE: step scripts-suite has a new diagnostic", NEWFAIL=1,
+  exit 1. No other job printed a failure line. The gate fails on the
+  defect, which is the correct outcome of this role.
+
+Audit of the remediated guard (weak-assertion review): adv 7 keeps its
+seeded pipeline control (the stripped seed surfaces no-unused-vars before
+the real-tree scan) and the version and entry-count sentinels; each new
+pin clause has a seeded failing-side proof with a control in adv 8; the
+exactness assertion is data-driven. No documentation assertion stands in
+for live behavior. One gap found and committed as the failing adv 9
+(F1r2).
+
+Questions for the orchestrator (each with a default):
+- Q1: does the PM accept the severity of F1r2 as a Blocker for Green now,
+  or as a follow-up track item, given that no real file uses either form
+  today? Default: Blocker now; the guard adv 9 stays failing until Green
+  extends the regexes of stripDisableComments and directiveKindsOfFile,
+  which is a test-file change of a few lines.
+- Q2: does the PM accept the residual of F2r2 (count inflation inside the
+  fixture) with the fixture diff review as the defense? Default: accept,
+  no change, no hash anchor per the Hashing and Scope Policy.
+
+PM rule compliance: no bare `openchamber` or `opencode` command (and no
+npx of them) ran in this role.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: 4326142c2c082059c9eeaaa18148d888613f2c50
+head: 490af011 (test commits; the artifacts commit follows in measure/runs/)
+commits: 118cd71e and 490af011 test(vinext-oxc): extend the S2 adversarial tests; artifacts commit: measure(runs): add the S2 adversarial r2 result
+tests_run: -t 'S2 adversarial' 8 passed 1 failed (adv 9, the committed defect guard); -t 'S2 oxlint' 7 passed; -t 'S1 adversarial' 7 passed; -t 'S1 vinext 1.x' 11 passed; npx tsc --noEmit exit 0; full scripts suite (heavy-run.sh) 56 passed 2 failed (adv 9 plus the pre-existing remediate-concept-blueprints baseline row); PROJECT_TESTS test s2 NEWFAIL=1 exit 1 (one new diagnostic: adv 9; the resume re-ran only the scripts-suite job after its stale record was dropped)
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts (test commits); measure/runs/vinext-oxc-toolchain_20261114/adversarial-s2-r2-490af011.{json,log} and adversarial-gate-test-s2-r2.log (artifacts commit)
+plan_updates: none (the S2 adversarial re-run is not a plan task; the orchestrator records F1r2 and routes it)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure plus the new adv 9 failure, which is the committed guard for blocker F1r2 and stays failing until Green resolves F1r2
+handoff: verdict fail; the F1 remediation (option B) holds against every seeded attack (unlisted carrier in six spellings, stale entry in both forms, blanket growth through both clauses, a changed hidden rule, glob and empty-list widening, each with a control; the hiddenRules superset hole is closed by the new exactness assertion in adv 7 and the fixture verified exact); blocker F1r2 routes to Green: mid-line and multi-line block disables evade both the pin (directiveKindsOfFile, scripts/__tests__/oxc-toolchain-gates.test.ts:981) and the sweep (stripDisableComments, :907; WHOLE_LINE_DISABLE_RE, :901), oxlint honors both forms (live probes), no real file uses either form today, the failing guard is adv 9 at :1621; Nit F2r2: fixture count inflation has no independent anchor, default accept with the fixture diff review as the defense; questions Q1 (severity of F1r2, default: Blocker now) and Q2 (accept the F2r2 residual, default: accept, no hash anchor)
+END_MEASURE_AGENT_RESULT

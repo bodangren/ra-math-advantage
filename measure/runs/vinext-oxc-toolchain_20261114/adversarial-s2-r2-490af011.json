@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S2: ESLint to oxlint",
+  "baseline_sha": "43d42193a1fea8628ed09f73b18bc0d8f9fe167e",
+  "role_base_sha": "4326142c2c082059c9eeaaa18148d888613f2c50",
+  "audited_head_sha": "490af011",
+  "status": "fail",
+  "summary": "Re-run after the F1 remediation (PM option B, commit 119a8de3): the allow-list pin adv 7 now passes on the real tree (49 entries, 43 files with hidden findings, all recorded exactly), and the earlier attacks adv 1 to 6 still hold at this HEAD (7 passed before the new cases). The five briefed attacks on the new guard were seeded in temp folders under apps/ with paired controls, committed as the passing adv 8: (a) a new carrier file fails the pin under each spelling (eslint and oxlint, whole-file block, next-line, trailing disable-line, and the JSX-wrapped block form) and the paired control entries pass clean; (b) a stale entry fails in both forms (the file lost the directive, the file is gone); (c) blanket growth fails through the kinds clause and through the blanket-block clause alone (blocks 2 vs recorded 0, with a passing control at 2); (d) a listed file whose next-line directive hides a different rule fails the live sweep (the stripped copy surfaces eslint(no-unused-vars), which an entry that records typescript(no-explicit-any) or an empty rule list does not cover); (e) a glob path entry and an empty rule list both fail, and a hiddenRules superset that would pass the unrecorded predicate silently is now caught by a new exactness assertion inside adv 7 (widenedAllowlistRules), verified exact on the real tree: a node replica of the sweep over all 49 carriers reported 0 extras and 0 missing, unlisted empty, stale empty. One new defect was found and committed as the failing guard adv 9: oxlint honors a mid-line block disable (code before the comment on the same line) and a block disable that spans lines, but the pin counts neither form (WHOLE_LINE_DISABLE_RE at scripts/__tests__/oxc-toolchain-gates.test.ts:901 requires the comment to close its line; the trailing branch at :996 matches only // forms) and the sweep strips neither (stripDisableComments at :907), so a listed carrier file can hide a new live finding without failing adv 7; the real tree holds neither form today (the only non-whole-line directive is the trailing // eslint-disable-line at apps/bus-math-v2/hooks/usePhaseCompletion.ts:148), so the hole is latent. The full scripts suite shows 56 passed, 2 failed: adv 9 and the pre-existing remediate-concept-blueprints row; the PROJECT_TESTS gate (test s2, GATES_RESUME=1, GATES_BASE=baseline-m2, after dropping the stale scripts-suite record) reports one new diagnostic, adv 9, NEWFAIL=1, exit 1, with the 27 workspace records and the audit-suites step compared clean.",
+  "blocking_findings": [
+    "F1r2 [Blocker] adversarial-testing: the adv 7 allow-list pin (F1 option B) misses two directive forms, so a listed carrier file can hide a new live oxlint finding without failing the guard. oxlint honors a mid-line block comment (for example `const keep = 1; /* eslint-disable */`) and a block comment that spans lines: live probes under apps/integrated-math-3 exit 0 with each form while the paired bare controls exit 1 with eslint(no-unused-vars). But `directiveKindsOfFile` counts neither form (scripts/__tests__/oxc-toolchain-gates.test.ts:981-1004: the whole-line regex at :901 requires the comment to close its own line, and the trailing branch at :996 matches only `//` forms), and `stripDisableComments` strips neither form (scripts/__tests__/oxc-toolchain-gates.test.ts:907-913), so the kinds, directive-count, and blanket-block pins stay unchanged and the sweep never surfaces the newly hidden rule. The guard comment claims 'a new blanket block ... fail adv 7' (scripts/__tests__/oxc-toolchain-gates.test.ts:958), which is false for these two blanket forms. The real tree holds neither form today (rg over the source files of apps/ and packages/: the only non-whole-line directive is the trailing `// eslint-disable-line` at apps/bus-math-v2/hooks/usePhaseCompletion.ts:148), so the hole is latent, not live. This also keeps open the strategy section 8 risk 'Zero warnings by blanket disable' (measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md:539). The committed failing guard is 'S2 adversarial > adv 9' (scripts/__tests__/oxc-toolchain-gates.test.ts:1621). Green must extend the directive counting and the strip to mid-line and multi-line block comments in both spellings, so the pin and the sweep see them."
+  ],
+  "nonblocking_findings": [
+    "F2r2 [Nit] adversarial-testing: the allow-list fixture itself can be widened without an independent anchor. An entry whose directiveCount or blanketBlocks is raised inside scripts/__tests__/fixtures/lint-disable-allowlist.json passes the pin, because the pin compares each file only against the fixture. The other widening paths now fail: a glob path leaves the carrier unlisted, an empty hiddenRules list fails the sweep, and a hiddenRules superset fails the new exactness assertion in adv 7 (the real fixture is exact: 49 entries, 0 extras, 0 missing). Default disposition: accept; the review of the fixture diff is the defense for count inflation. Per the Hashing and Scope Policy of AGENTS.md, no hash anchor is added."
+  ],
+  "evidence": [
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' at 490af011 -> 8 passed, 1 failed, 49 skipped; the failure is adv 9, the committed guard for F1r2; adv 1 to 6 pass, so the earlier attacks still hold at this HEAD",
+    "adv 8 attack a: six seeded carriers (eslint block, oxlint block, eslint next-line, oxlint next-line, trailing eslint-disable-line, JSX-wrapped block in a .tsx) each appear in the carrier scan and each is unlisted under the pin; paired control entries for all six pass clean (no unlisted, no stale, no changed)",
+    "adv 8 attack b: an entry whose file lost the directive reports '(no directive left)' and an entry whose file is gone reports '(file is gone)'; dropping the entries clears both",
+    "adv 8 attack c: a listed file that gains a blanket block fails the kinds clause ('kinds block,next-line vs recorded next-line'), and the blanket-block clause alone fails 'blanket blocks 2 vs recorded 0' with a passing control at blanketBlocks 2",
+    "adv 8 attack d, live sweep: the seeded carrier exits 0, the stripped copy exits 1 with eslint(no-unused-vars); an entry that records typescript(no-explicit-any) does not cover it, an empty rule list does not cover it, the exact rule covers it",
+    "adv 8 attack e: a glob entry 'apps/**' leaves the carrier unlisted; a hiddenRules superset passes the unrecorded predicate but widenedAllowlistRules flags 'records react-hooks-js(purity), which its directives do not hide'",
+    "adv 7 exactness on the real tree passes: a node replica of the sweep (49 carriers, stripped copies linted with the root config) reported surfaced files 43, EXTRAS 0, MISSING 0, unlisted [], stale []; the in-test assertion widenedAllowlistRules(allowlist, surfacedByReal) returned []",
+    "F1r2 live proof: a mid-line carrier and a multi-line carrier under apps/integrated-math-3 each exit 0 under the root config while the paired bare control exits 1 with eslint(no-unused-vars); the guard strip keeps both comments verbatim (verified by running the guard regexes of stripDisableComments over the seeded content through node)",
+    "the real tree holds no mid-line or multi-line disable: rg over the source files of apps/ and packages/ finds one non-whole-line directive, the trailing // eslint-disable-line at apps/bus-math-v2/hooks/usePhaseCompletion.ts:148",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed; -t 'S1 adversarial' -> 7 passed; -t 'S1 vinext 1.x' -> 11 passed (no S1 regression)",
+    "npx tsc --noEmit -> exit 0",
+    "full scripts suite through heavy-run.sh -> 56 passed, 2 failed: adv 9 (the committed guard) and the pre-existing remediate-concept-blueprints baseline row (/tmp/opencode/adv-s2-r2-full-suite.log)",
+    "PROJECT_TESTS gate: after dropping the stale scripts-suite record (its record held the 4326142c run, whose inputs changed), GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s2 -> 'NEW FAILURE: step scripts-suite has a new diagnostic', NEWFAIL=1, exit 1; the 27 workspace test records and the audit-suites step compared clean (measure/runs/vinext-oxc-toolchain_20261114/adversarial-gate-test-s2-r2.log)",
+    "weak-assertion review of the remediated guard: adv 7 keeps its seeded pipeline control (the stripped seed surfaces no-unused-vars before the real-tree scan), the version and entry-count sentinels stay, each new pin clause has a seeded failing-side proof in adv 8, and no documentation assertion stands in for live behavior"
+  ],
+  "commands": [
+    "git rev-parse HEAD (490af011 after the two test commits)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial'",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint'",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial'",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x'",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts",
+    "npx oxlint --config .oxlintrc.json --max-warnings 0 <seeded inline, multiline, and bare probes under apps/integrated-math-3> (the F1r2 live proof and the adv 8 sweep controls)",
+    "node <sweep replica> (the 49-carrier exactness computation)",
+    "rg -n '(eslint|oxlint)-disable' apps/ packages/ -g '*.{js,jsx,mjs,cjs,ts,tsx}' (the mid-line and multi-line tree scan)",
+    "npx tsc --noEmit",
+    "GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s2",
+    "python3 ~/Desktop/advantage-pr/scripts/jobs/slot check (ok, 10 of 12 busy)"
+  ],
+  "changed_files": [
+    "scripts/__tests__/oxc-toolchain-gates.test.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 3,
+      "evidence": "The pin now does what option B requires on unlisted carriers, stale entries, blanket growth, changed directives, and widened entries (adv 8 passes with controls), but the adv 9 guard fails: two blanket disable forms evade both the pin and the sweep (scripts/__tests__/oxc-toolchain-gates.test.ts:1621)."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "Each pin clause has a seeded failing-side proof with a paired control (adv 8, scripts/__tests__/oxc-toolchain-gates.test.ts:1426), and the hiddenRules superset hole is closed by the exactness assertion in adv 7, but the suppression-coverage claim itself fails until Green strengthens the strip (adv 9)."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff --stat 4326142c..490af011 holds only scripts/__tests__/oxc-toolchain-gates.test.ts; the fixture, the 49 carrier files, and all production files are untouched."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every claim names a command result or a file:line: the 8/1 vitest selection, the 56/2 full suite, the NEWFAIL=1 gate log at measure/runs/vinext-oxc-toolchain_20261114/adversarial-gate-test-s2-r2.log, and the 0-extras 0-missing sweep replica."
+    }
+  ]
+}
