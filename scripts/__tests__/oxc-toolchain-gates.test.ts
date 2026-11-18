@@ -450,3 +450,226 @@ describe('S1 vinext 1.x', () => {
     ]);
   });
 });
+
+// The five ESLint-family names that S2 removes from the manifests (plan S2 case 1).
+const ESLINT_FAMILY = [
+  'eslint',
+  'typescript-eslint',
+  'eslint-config-next',
+  '@eslint/js',
+  '@eslint/eslintrc',
+];
+
+// An override key such as `eslint@10` carries the same name with a version suffix.
+const isEslintFamily = (key: string): boolean =>
+  ESLINT_FAMILY.some((name) => key === name || key.startsWith(`${name}@`));
+
+const WORKSPACE_DIRS = [...APP_DIRS, ...PACKAGE_DIRS];
+
+// Directory names that the recursive find skips. None holds a tracked config file.
+const SKIP_DIRS = new Set([
+  'node_modules',
+  '.git',
+  '.next',
+  'dist',
+  'coverage',
+  '.convex',
+  'playwright-report',
+]);
+
+// Find each file below `root` whose name `matches` accepts. Skip build and install folders.
+function findFiles(root: string, matches: (name: string) => boolean): string[] {
+  const found: string[] = [];
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const abs = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (!SKIP_DIRS.has(entry.name)) walk(abs);
+      } else if (entry.isFile() && matches(entry.name)) {
+        found.push(abs);
+      }
+    }
+  };
+  walk(root);
+  return found.sort();
+}
+
+function lintScript(dir: string): string | null {
+  const scripts = (readJson(path.join(dir, 'package.json')).scripts ?? {}) as Record<string, string>;
+  return typeof scripts.lint === 'string' ? scripts.lint : null;
+}
+
+type JsPluginEntry = { name?: string; specifier: string };
+
+// The S2 case 9 scan. One hit for each clause (a), (b), (c) that the lockfile breaks.
+// Clause (a): no ESLint config package. Clause (b): each ESLint copy is absent or peer-only.
+// Clause (c): each jsPlugins specifier resolves from the repository root.
+function scanLockfileLintHygiene(lock: Json, jsPlugins: JsPluginEntry[]): string[] {
+  const packages = (lock.packages ?? {}) as Record<string, Json>;
+  const keys = Object.keys(packages);
+  const hits: string[] = [];
+  for (const name of ['eslint-config-next', 'typescript-eslint']) {
+    for (const key of keys) {
+      if (key === `node_modules/${name}` || key.endsWith(`/node_modules/${name}`)) {
+        hits.push(`a:${key}`);
+      }
+    }
+  }
+  for (const name of ['eslint', '@eslint/js', '@eslint/eslintrc']) {
+    for (const key of keys) {
+      if (key !== `node_modules/${name}` && !key.endsWith(`/node_modules/${name}`)) continue;
+      if (packages[key].peer !== true) hits.push(`b:${key}`);
+    }
+  }
+  for (const plugin of jsPlugins) {
+    if (!(`node_modules/${plugin.specifier}` in packages)) hits.push(`c:${plugin.specifier}`);
+  }
+  return hits.sort();
+}
+
+// The root config applies its rules through `files` globs on apps/ and packages/ paths.
+// A probe in the system temp folder matches no glob, so the probe lives under apps/.
+function makeLintProbe(content: string): string {
+  const dir = fs.mkdtempSync(path.join(REPO_ROOT, 'apps', '.oxlint-probe-'));
+  tempDirs.push(dir);
+  const file = path.join(dir, 'probe.ts');
+  fs.writeFileSync(file, content);
+  return file;
+}
+
+function runOxlintProbe(file: string) {
+  return runTool([
+    'oxlint',
+    '--config',
+    path.join(REPO_ROOT, '.oxlintrc.json'),
+    '--max-warnings',
+    '0',
+    file,
+  ]);
+}
+
+describe('S2 oxlint', () => {
+  it('case 1: no manifest declares an ESLint package and the root overrides have no eslint key', () => {
+    const manifests = [
+      path.join(REPO_ROOT, 'package.json'),
+      ...WORKSPACE_DIRS.map((dir) => path.join(dir, 'package.json')),
+    ];
+    // Sentinels: the scan read the root, 6 apps, and 21 packages (A4).
+    expect(manifests).toContain(path.join(APP_SHELL_DIR, 'package.json'));
+    expect(manifests).toContain(path.join(REPO_ROOT, 'apps', 'danielson', 'package.json'));
+    expect(manifests.length).toBeGreaterThanOrEqual(28);
+    const declarations = scanDeclarations(manifestEntries(manifests), isEslintFamily);
+    expect(declarations, 'manifest fields that declare an ESLint package').toEqual([]);
+    const root = readJson(path.join(REPO_ROOT, 'package.json'));
+    const overrideKeys = Object.keys((root.overrides ?? {}) as Json);
+    expect(overrideKeys, 'keys of the root overrides').not.toContain('eslint');
+  });
+
+  it('case 2: no eslint.config.* file exists under apps/ or packages/', () => {
+    // Sentinel: the same walk finds the manifest of each app, so an empty result is real (A4).
+    const appManifests = findFiles(path.join(REPO_ROOT, 'apps'), (name) => name === 'package.json');
+    expect(appManifests.length).toBeGreaterThanOrEqual(APP_DIRS.length);
+    expect(APP_DIRS.length).toBeGreaterThanOrEqual(6);
+    const configs = WORKSPACE_DIRS.flatMap((dir) =>
+      findFiles(dir, (name) => /^eslint\.config\./.test(name)),
+    );
+    expect(configs.map(relative), 'files named eslint.config.* in the workspaces').toEqual([]);
+  });
+
+  it('case 3: each workspace lint script is the target form, and only the root config exists', () => {
+    const entries = WORKSPACE_DIRS.map((dir) => ({
+      dir,
+      rel: relative(dir),
+      lint: lintScript(dir),
+    })).filter((entry): entry is { dir: string; rel: string; lint: string } => entry.lint !== null);
+    // Sentinels: 27 workspaces have a lint script, and the template package is one of them.
+    expect(entries.length).toBeGreaterThanOrEqual(27);
+    expect(entries.map((entry) => entry.rel)).toContain('packages/_template');
+    expect(entries.map((entry) => entry.rel)).toContain('apps/danielson');
+    const wrong: string[] = [];
+    for (const { rel, lint } of entries) {
+      if (rel === 'packages/_template') {
+        // The template package keeps its echo line (plan S2 Contract).
+        if (!lint.startsWith('echo ')) wrong.push(`${rel}: ${lint}`);
+        continue;
+      }
+      const expected = rel.startsWith('apps/')
+        ? 'oxlint --config ../../.oxlintrc.json . --max-warnings 0'
+        : 'oxlint --config ../../.oxlintrc.json src --max-warnings 0';
+      if (lint !== expected) wrong.push(`${rel}: ${lint}`);
+    }
+    expect(wrong, 'lint scripts that are not in the target form').toEqual([]);
+    // 26 of the 27 scripts name the root config. The template package is the exception.
+    const named = entries.filter((entry) => entry.lint.includes('../../.oxlintrc.json'));
+    expect(named.length, 'lint scripts that name ../../.oxlintrc.json').toBe(entries.length - 1);
+    const configs = findFiles(REPO_ROOT, (name) => name === '.oxlintrc.json');
+    expect(configs.map(relative), 'files named .oxlintrc.json outside node_modules').toEqual([
+      '.oxlintrc.json',
+    ]);
+  });
+
+  it(
+    'case 4: the root config reports an unused variable in a workspace file with a non-zero exit',
+    () => {
+      expect(runTool(['oxlint', '--version']).status, 'precondition: oxlint --version').toBe(0);
+      const file = makeLintProbe('const unused = 1;\n');
+      const { status, output } = runOxlintProbe(file);
+      for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
+      expect(status, output).not.toBe(0);
+      expect(output).toContain('no-unused-vars');
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it(
+    'case 5: the same probe with an oxlint-disable comment on its first line exits 0',
+    () => {
+      expect(runTool(['oxlint', '--version']).status, 'precondition: oxlint --version').toBe(0);
+      const file = makeLintProbe('/* oxlint-disable */\nconst unused = 1;\n');
+      const { status, output } = runOxlintProbe(file);
+      for (const phrase of ABSENT_TOOL_PHRASES) expect(output).not.toContain(phrase);
+      expect(status, output).toBe(0);
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it('case 9: the lockfile has no ESLint config package, and each jsPlugin resolves', () => {
+    const lock = readJson(path.join(REPO_ROOT, 'package-lock.json'));
+    const keys = Object.keys((lock.packages ?? {}) as Json);
+    // Sentinels: the lockfile read the workspace entries that the check needs (A4).
+    expect(keys).toContain('apps/integrated-math-3');
+    expect(keys).toContain('packages/app-shell');
+    const jsPlugins = (readJson(path.join(REPO_ROOT, '.oxlintrc.json')).jsPlugins ??
+      []) as JsPluginEntry[];
+    // K4 of strategy 14.2 records three jsPlugins entries at this HEAD.
+    expect(jsPlugins.length, 'jsPlugins entries of the root config').toBeGreaterThanOrEqual(3);
+    for (const plugin of jsPlugins) expect(typeof plugin.specifier).toBe('string');
+    const hits = scanLockfileLintHygiene(lock, jsPlugins);
+    expect(hits, 'lockfile ESLint-hygiene hits').toEqual([]);
+  });
+
+  it('case 9b: the case 9 scan reports exactly the three seeded faults', () => {
+    // One seeded fault for each clause: (a) typescript-eslint stays, (b) eslint is not
+    // peer-only, and (c) a jsPlugins specifier has no lockfile key. The scan must report
+    // all three, so case 9 cannot pass vacuously (A4).
+    const jsPlugins: JsPluginEntry[] = [
+      { name: 'react-js', specifier: 'eslint-plugin-react' },
+      { name: 'missing-js', specifier: 'oxlint-plugin-missing' },
+    ];
+    const lock: Json = {
+      packages: {
+        '': {},
+        'node_modules/eslint-plugin-react': { version: '7.37.5' },
+        'node_modules/typescript-eslint': { version: '8.0.0' },
+        'node_modules/eslint': { version: '9.0.0' },
+      },
+    };
+    const hits = scanLockfileLintHygiene(lock, jsPlugins);
+    expect(hits).toHaveLength(3);
+    expect(hits).toEqual([
+      'a:node_modules/typescript-eslint',
+      'b:node_modules/eslint',
+      'c:oxlint-plugin-missing',
+    ]);
+  });
+});
