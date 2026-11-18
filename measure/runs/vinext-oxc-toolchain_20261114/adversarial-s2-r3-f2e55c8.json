@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S2: ESLint to oxlint",
+  "baseline_sha": "43d42193a1fea8628ed09f73b18bc0d8f9fe167e",
+  "role_base_sha": "f617412fcb1a24de89ca5f776509fa5c1f1579f7",
+  "audited_head_sha": "f2e55c8c",
+  "status": "fail",
+  "summary": "Re-run after the Green r6 helper rewrite (35ffb32b): adv 9 now passes, so the F1r2 mid-line and multi-line hole is closed on the real tree (sweep replica at HEAD: 49 carriers, 43 files with surfaced findings, 0 missing, 0 extras, no parse diagnostic). The re-check of adv 1 to 9 passes, and the twelve briefed attack forms were seeded in temp folders under apps/ with paired controls. Nine forms hold: a star-slash inside a string before the disable, adjacent block comments on one line, two disables on one line, the tight /*eslint-disable*/ form, the wide-whitespace rule form, the JSX {/* eslint-disable */} expression container mid-line, the CRLF whole-line block form, a fault above a file-level disable (not retroactive), and a fault after eslint-enable (region ends) are each honored exactly as the helpers count and strip them, pinned as the passing adv 12. Two new defects were found and committed as the failing guards adv 10 and adv 11. Adv 10 (F1r3, Blocker): oxlint honors a trailing // eslint-disable-line and a // eslint-disable-next-line on a CRLF file (live probes exit 0), the pin counts both (so kinds and directive count stay pinned), but TRAILING_DISABLE_RE (scripts/__tests__/oxc-toolchain-gates.test.ts:905) does not match a line that ends with a carriage return, so stripDisableComments keeps the directive verbatim and the sweep copy stays clean; a listed CRLF carrier can hide a live finding behind either form without the sweep surfacing it, and when the entry records no hidden rules the whole guard passes silently. No real carrier uses CRLF today (byte scan of all 49 fixture entries), so the hole is latent, the same state F1r2 was in when it was ruled a Blocker. Adv 11 (F2r3, Major): a string that holds /* above a real disable makes BLOCK_COMMENT_RE span from inside the string to the disable's */, so the strip deletes the code between them and breaks the string; the copy then reports 'error: Unterminated string' and never surfaces the finding the real disable hides (live: the seeded file exits 0 under oxlint, the stripped copy reports only the parse error). The decode regex then reads the parse error as a rule named Unterminated, so the guard fails loudly with a misleading diagnostic, the hidden rule stays unverified, and the natural fix response (recording Unterminated in the fixture) would open the exact fixture-widening path that F2r2 left unanchored. Two conservative over-counts are recorded as Nits: disable text inside a string literal, a template literal, JSX text position, or a // line inside a block comment is not honored by oxlint (live probes exit 1) but is counted by the pin, and the strip's global removal over-attributes live faults that sit above the first disable or after an eslint-enable as hidden.",
+  "blocking_findings": [
+    "F1r3 [Blocker] adversarial-testing: the sweep is blind for // disable forms on a CRLF file, so a listed carrier can hide a live oxlint finding without adv 7 surfacing it. oxlint honors a trailing disable-line and a disable-next-line on CRLF files: live probes under apps/integrated-math-3 with CRLF line ends exit 0 while the paired bare CRLF control exits 1 with eslint(no-unused-vars). The pin still counts both forms (directiveKindsOfFile, scripts/__tests__/oxc-toolchain-gates.test.ts:986), so kinds and directive count stay pinned, but TRAILING_DISABLE_RE at scripts/__tests__/oxc-toolchain-gates.test.ts:905 has no multiline flag and its .* cannot cross a carriage return, so the line-level branch of stripDisableComments (scripts/__tests__/oxc-toolchain-gates.test.ts:913-915) keeps the directive verbatim; the stripped copy exits 0 and the decode in adv 7 (:1395-1402) decodes nothing. For a listed carrier whose entry records no hiddenRules (6 of the 49 entries do), a conversion to CRLF plus a fault behind a trailing or next-line disable passes the kinds pin, the count pin, the blanket pin, the unrecorded sweep check, and the widened check, all silently. No real carrier uses CRLF today (byte scan of the 49 fixture entries: none), so the hole is latent, the same state F1r2 held when it was ruled a Blocker. Rationale: the guard comment at :907 claims 'Remove every disable comment', which is false for CRLF // forms; the committed failing guard is adv 10 at scripts/__tests__/oxc-toolchain-gates.test.ts:1672. Green must make the trailing strip handle a carriage return at the line end, in both spellings, without weakening the LF path (the LF twins in adv 10 are the paired controls)."
+  ],
+  "nonblocking_findings": [
+    "F2r3 [Major] adversarial-testing: a string that holds /* above a real disable breaks the sweep copy, so the hidden finding never surfaces and the guard fails with a misleading rule name. Live proof: the seeded file 'const s = \"a /* b\"; /* eslint-disable */ const unused = 2;' exits 0 under the root config (the real disable hides the finding), and stripDisableComments (scripts/__tests__/oxc-toolchain-gates.test.ts:910-916) spans BLOCK_COMMENT_RE from the in-string /* to the disable's */, deleting the code between them and leaving an unterminated string; the copy reports only 'error: Unterminated string'. The decode regex at :1397 reads that parse error as a rule named Unterminated, so adv 7 fails loudly with a diagnostic that names no real rule, and the natural fixture response (recording Unterminated in hiddenRules) would pass the unrecorded and widened checks while the true hidden rule stays unverified, widening the fixture through the path F2r2 left unanchored. The paired control (the same file without the in-string /*) strips and surfaces, so the in-string /* is the only trigger. No real carrier triggers it today (sweep replica over all 49 carriers: no parse diagnostic). Rationale: the strip must not corrupt the copy; the committed failing guard is adv 11 at scripts/__tests__/oxc-toolchain-gates.test.ts:1738.",
+    "F3r3 [Nit] adversarial-testing: the pin counts disable text that oxlint does not honor. Live probes show oxlint does not honor a disable inside a string literal, inside a template literal, in JSX text position (react(jsx-no-comment-textnodes) fires instead), or as a // line inside a block comment (each probe exits 1 with the finding reported). directiveKindsOfFile counts all four, and the // line inside a block comment counts twice (once for the span, once for the line regex). The direction is conservative: such a file is flagged as a carrier and must be allow-listed, and nothing hides behind the text, so no hole exists. Default disposition: accept the over-count; do not make the helpers string-aware unless F2r3 is fixed at the same time.",
+    "F4r3 [Nit] adversarial-testing: the sweep over-attributes live faults as hidden. Live probes show a blanket block disable is not retroactive (a fault above it stays live) and eslint-enable ends the blanket region (a fault after it stays live). The strip removes every disable globally, so the copy surfaces those live faults too, and the decode marks them as hidden, which forces the allow-list to record a rule the file does not hide. Both fault classes stay visible to the workspace lint gate itself, so no silent hole exists. Default disposition: accept; document the limitation in the helper comment, no region-aware strip."
+  ],
+  "evidence": [
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' at f2e55c8c -> 10 passed, 2 failed, 49 skipped; adv 1 to 9 all pass (the F1r2 remediation holds), adv 12 passes, the failures are adv 10 and adv 11, the committed guards for F1r3 and F2r3",
+    "F1r3 live proof: probes n and o under apps/ exit 0 with the root config (a CRLF trailing eslint-disable-line and a CRLF eslint-disable-next-line each hide no-unused-vars) while the bare CRLF control exits 1; stripDisableComments keeps both directives verbatim (strip result holds the intact '// eslint-disable-line' and '// eslint-disable-next-line' lines) and both stripped copies exit 0; the LF twins strip and surface (/tmp/opencode/adv-s2-r3-probes.out)",
+    "F2r3 live proof: the swallow probe exits 0 (the real disable hides the finding), the stripped copy reports only 'apps/.../swallow-stripped.ts:1:11: error: Unterminated string' and no rule; the paired control without the in-string /* strips and surfaces eslint(no-unused-vars) (/tmp/opencode/adv-s2-r3-probes2.out)",
+    "the real tree is clean at HEAD for both holes: a byte scan of all 49 allow-list entries finds no carriage return in any carrier, and the sweep replica (node, strip each carrier into a temp copy inside its workspace, lint all copies with the root config) reports 43 files with surfaced findings, MISSING none, EXTRAS none, no parse diagnostic (/tmp/opencode/adv-s2-r3-sweep-replica.out)",
+    "verified-good forms, live probes: a string holding */ before a mid-line disable, adjacent block comments on one line, two disables on one line, the tight /*eslint-disable*/, the wide-whitespace /*  oxlint-disable  no-unused-vars  */ form, the CRLF whole-line block, and the JSX {/* eslint-disable */} mid-line wrap each hide the finding (exit 0) and each stripped copy surfaces eslint(no-unused-vars); pinned as the passing adv 12",
+    "JSX position proof: oxlint honors the disable inside a JSX expression container when the fault sits below it (exit 0, the stripped copy surfaces) and does not honor it in JSX text position (react(jsx-no-comment-textnodes) fires, the finding stays reported); the adv 8 a-jsx-wrap carrier holds no hidden finding because its variable is used in the JSX, which adv 8 never claimed otherwise",
+    "live semantic pins: a fault above a file-level disable stays reported (the disable is not retroactive) and a fault after /* eslint-enable */ stays reported (the region ends); both pinned in adv 12; the strip's global removal makes the sweep copy surface them too, which is the F4r3 over-attribution",
+    "conservative over-count proof: a disable inside a string, inside a template, in JSX text position, or a // eslint-disable-next-line inside a block comment each leaves the finding reported (exit 1) while directiveKindsOfFile counts 1, 1, 1, and 2 directives respectively; the strip removes the text without hiding anything",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed (no case 1 to 9 regression)",
+    "npx tsc --noEmit -> exit 0",
+    "full scripts suite through heavy-run.sh -> 58 passed, 3 failed: adv 10, adv 11 (the committed guards), and the pre-existing remediate-concept-blueprints baseline row (/tmp/opencode/adv-s2-r3-full-suite.log)",
+    "PROJECT_TESTS gate: the s2 test.steps held the stale scripts-suite record of the run before my test commit (its inputs changed), so this run removed only that record and ran GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s2; the gate re-ran only the scripts-suite job and re-compared the 27 workspace test records and the audit-suites step; it printed 'NEW FAILURE: step scripts-suite has a new diagnostic', NEWFAIL=1, exit 1 (measure/runs/vinext-oxc-toolchain_20261114/adversarial-gate-test-s2-r3.log); no other job printed a failure line"
+  ],
+  "commands": [
+    "git rev-parse HEAD (f2e55c8c after the test commit)",
+    "node /tmp/opencode/adv-s2-r3-probes.mjs (17 seeded forms: oxlint honor vs helper count vs strip result)",
+    "node /tmp/opencode/adv-s2-r3-probes2.mjs (the swallow form with full output, the .tsx JSX forms)",
+    "node /tmp/opencode/adv-s2-r3-probes3.mjs (the JSX expression container with the fault below the comment)",
+    "node /tmp/opencode/adv-s2-r3-sweep-replica.mjs (the 49-carrier exactness computation at HEAD)",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial'",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint'",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx tsc --noEmit",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts",
+    "python3 <byte scan of the 49 fixture entries for carriage returns>",
+    "git diff --stat f617412f..f2e55c8c (scope: one test file, 189 insertions)",
+    "GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s2"
+  ],
+  "changed_files": [
+    "scripts/__tests__/oxc-toolchain-gates.test.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 4,
+      "evidence": "The r6 helpers handle every briefed form except the two committed defects: adv 12 pins seven verified-good forms live, and the 49-carrier sweep replica reports 0 missing and 0 extras, but a CRLF trailing disable and an in-string /* each still blind the sweep (adv 10 and adv 11 fail)."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "Each new claim has a live oxlint control with a paired pipeline control (the LF twins in adv 10, the no-swallow control in adv 11), and both defects are committed as failing guards, so neither can pass vacuously."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff --stat f617412f..f2e55c8c holds only scripts/__tests__/oxc-toolchain-gates.test.ts (189 insertions, 0 deletions); the fixture, the 49 carriers, and all production files are untouched."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every claim names a probe output, a vitest selection result, or a file:line: the 10/2 adversarial selection, the 58/3 full suite, the 0-missing 0-extras sweep replica, and TRAILING_DISABLE_RE at scripts/__tests__/oxc-toolchain-gates.test.ts:905."
+    }
+  ]
+}

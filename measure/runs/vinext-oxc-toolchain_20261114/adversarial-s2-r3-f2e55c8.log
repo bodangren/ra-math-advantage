@@ -1,0 +1,169 @@
+S2 adversarial testing r3 (re-run after the Green r6 remediation)
+===============================================================
+
+Track: vinext-oxc-toolchain_20261114. Phase: Phase S2: ESLint to oxlint.
+Route: opencode-go/glm-5.3#high (ra-quota pick adversarial, 2026-11-19).
+phase_base_sha 43d42193a1fea8628ed09f73b18bc0d8f9fe167e.
+role_base_sha f617412fcb1a24de89ca5f776509fa5c1f1579f7.
+Pre-adversarial HEAD: f617412f. Audited HEAD after my test commit: f2e55c8c.
+Slot check before the role: 12 of 12 busy; this session holds one slot, and
+every heavy job ran through heavy-run.sh, one at a time, in the foreground.
+
+Method
+------
+I attacked the Green r6 helpers (BLOCK_COMMENT_RE at
+scripts/__tests__/oxc-toolchain-gates.test.ts:903, BLOCK_DISABLE_RE at :904,
+TRAILING_DISABLE_RE at :905, stripDisableComments at :910, and
+directiveKindsOfFile at :986) with seeded files in temp folders under
+apps/, each with a paired control, and I compared three things for each
+form: what oxlint honors (live probe with the root config), what the pin
+counts, and what the strip removes. A 17-form probe script, three focused
+re-probes, and a 49-carrier sweep replica produced the data.
+
+Re-check of adv 1 to 9 at this HEAD
+-----------------------------------
+All pass. Adv 9 now passes, so the F1r2 remediation (Green r6, 35ffb32b)
+closes the mid-line and multi-line hole. The sweep replica over the real
+tree at HEAD: 49 carriers, 43 files with surfaced findings, MISSING none,
+EXTRAS none, no parse diagnostic.
+
+Attack table (live oxlint behavior vs the helpers)
+--------------------------------------------------
+Form                                       oxlint   pin count   strip
+1  */-like text in a string above the      honors   1 block      ok
+   mid-line disable
+2  adjacent block comments on one line     honors   1 block      ok
+3  two disables on one line                 honors   2 blocks     ok
+4  tight /*eslint-disable*/                 honors   1 block      ok
+5  wide-whitespace /*  oxlint-disable      honors   1 block      ok
+   no-unused-vars  */
+6  JSX {/* eslint-disable */} mid-line     honors   1 block      ok
+   (fault below the comment, .tsx)
+7  CRLF whole-line block disable            honors   1 block      ok
+8  disable inside a string literal         ignores  1 phantom    text cut,
+                                                              nothing hides
+9  disable inside a template literal        ignores  1 phantom    text cut,
+                                                              nothing hides
+10 disable in JSX text position (.tsx)     ignores  1 phantom    text cut,
+                                                              jsx-no-comment-
+                                                              textnodes stays
+11 // disable inside a block comment       ignores  2 phantom   comment cut,
+                                                              nothing hides
+12 CRLF trailing // eslint-disable-line     honors   1 trailing  BLIND: the
+                                                              directive stays
+13 CRLF // eslint-disable-next-line        honors   1 next      BLIND: the
+                                                              directive stays
+14 a string that holds /* above a real     honors   1 block      BROKEN: the
+    disable, fault below the disable                             span swallows
+                                                              code, the copy
+                                                              reports
+                                                              'Unterminated
+                                                              string'
+15 fault above a file-level disable        live     n/a         over-attributed
+                                           (reported)           as hidden
+16 fault after /* eslint-enable */          live     n/a         over-attributed
+                                           (reported)           as hidden
+
+Findings
+--------
+F1r3 [Blocker]: forms 12 and 13. oxlint honors both CRLF // forms, the pin
+counts both, but TRAILING_DISABLE_RE (:905) has no multiline flag and its
+.* cannot cross a carriage return, so stripDisableComments (:913-915)
+keeps the directive verbatim and the sweep copy stays clean. A listed CRLF
+carrier whose entry records no hidden rules (6 of the 49 entries do) can
+hide a live finding behind either form and pass every clause of adv 7
+silently. No real carrier uses CRLF today (byte scan of all 49 entries),
+so the hole is latent, the state F1r2 held when it was ruled a Blocker.
+Committed failing guard: adv 10 (:1672).
+
+F2r3 [Major]: form 14. BLOCK_COMMENT_RE spans from the in-string /* to
+the real disable's */, so the strip deletes the code between them and
+breaks the string. The copy reports only 'error: Unterminated string';
+the hidden finding never surfaces, and the decode (:1397) reads the parse
+error as a rule named Unterminated. The guard fails loudly with a
+misleading diagnostic today, but the natural fixture response (recording
+Unterminated in hiddenRules) would pass the guard while the true hidden
+rule stays unverified, which widens the fixture through the path F2r2
+left unanchored. Committed failing guard: adv 11 (:1738).
+
+F3r3 [Nit]: forms 8 to 11. The pin counts disable text that oxlint
+ignores (a // line inside a block comment counts twice). Conservative
+direction: such a file is flagged as a carrier and nothing hides behind
+the text. Default disposition: accept.
+
+F4r3 [Nit]: forms 15 and 16. The strip removes every disable globally, so
+the copy also surfaces live faults that sit above the first disable or
+after an eslint-enable, and the decode marks them as hidden. Both classes
+stay visible to the workspace lint gate itself, so no silent hole exists.
+Default disposition: accept and document.
+
+Verified-good forms 1 to 7 are pinned as the passing adv 12, so a
+regression on any spelling reopens the F1r2 hole visibly.
+
+Test runs (all heavy jobs through heavy-run.sh, foreground)
+----------------------------------------------------------
+- -t 'S2 adversarial' -> 10 passed, 2 failed (adv 10, adv 11), 49 skipped.
+- -t 'S2 oxlint' -> 7 passed.
+- npx tsc --noEmit -> exit 0.
+- Full scripts suite -> 58 passed, 3 failed: adv 10, adv 11, and the
+  pre-existing remediate-concept-blueprints baseline row
+  (/tmp/opencode/adv-s2-r3-full-suite.log).
+
+PROJECT_TESTS gate (test s2, GATES_BASE=baseline-m2). The s2 test.steps
+held the stale scripts-suite record of the run before my test commit,
+whose exact inputs my commit changed, so this run removed only that
+record (it held code 1) and ran GATES_RESUME=1, which re-ran only the
+scripts-suite job and re-compared the 27 workspace test records and the
+audit-suites step with baseline-m2. The gate printed 'NEW FAILURE: step
+scripts-suite has a new diagnostic', NEWFAIL=1, exit 1. No other job
+printed a failure line. The gate fails on the defects, which is the
+correct outcome of this role
+(measure/runs/vinext-oxc-toolchain_20261114/adversarial-gate-test-s2-r3.log).
+
+Weak-assertion review of the r6 helpers: every new guard keeps a live
+seeded control (the bare CRLF control, the string and template controls,
+the swallow paired control, the LF twins), each failing assertion
+prints the strip result, and no documentation assertion stands in for
+live behavior. The decode of a parse error as a rule name is filed as
+part of F2r3.
+
+Scope: git diff --stat f617412f..f2e55c8c holds only
+scripts/__tests__/oxc-toolchain-gates.test.ts (189 insertions, 0
+deletions). No production file, manifest, lockfile, config, lint script,
+fixture entry, or carrier file was touched. The 6 dirty generated files
+were never staged.
+
+Questions for the orchestrator (each with a default):
+- Q1: does the PM keep F2r3 as a Major (loud failure, misleading
+  diagnostic, fixture-pollution risk) or raise it to a Blocker beside
+  F1r3, given that a colluding fixture response would make it silent?
+  Default: keep Major; adv 11 stays failing until Green fixes the strip,
+  and the fixture diff review guards the pollution path.
+- Q2: does the PM accept the F4r3 over-attribution (the sweep decodes
+  live faults above the first disable or after an enable as hidden) as a
+  documented limitation, or does it require a region-aware strip?
+  Default: accept; the workspace lint gate reports those faults live, so
+  a region-aware strip adds complexity without closing a silent hole.
+- Q3: does the PM accept the F3r3 phantom counting (disable text inside
+  strings, templates, JSX text, and // lines inside block comments) as
+  the conservative direction? Default: accept, no helper change unless
+  Green fixes F2r3 with a string-aware strip at the same time.
+
+PM rule compliance: no bare `openchamber` or `opencode` command (and no
+npx of them) ran in this role.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: f617412fcb1a24de89ca5f776509fa5c1f1579f7
+head: f2e55c8c (the test commit; the artifacts commit follows in measure/runs/)
+commits: f2e55c8c test(vinext-oxc): extend the S2 adversarial tests (r3); artifacts commit: measure(runs): add the S2 adversarial r3 result
+tests_run: -t 'S2 adversarial' 10 passed 2 failed (adv 10 and adv 11, the committed defect guards; adv 1 to 9 and adv 12 pass); -t 'S2 oxlint' 7 passed; npx tsc --noEmit exit 0; full scripts suite (heavy-run.sh) 58 passed 3 failed (adv 10, adv 11, plus the pre-existing remediate-concept-blueprints baseline row); PROJECT_TESTS test s2 NEWFAIL=1 exit 1 (one new diagnostic step: scripts-suite, after the stale record was dropped so the step re-ran)
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts (test commit); measure/runs/vinext-oxc-toolchain_20261114/adversarial-s2-r3-f2e55c8.{json,log} and adversarial-gate-test-s2-r3.log (artifacts commit)
+plan_updates: none (the S2 adversarial re-run is not a plan task; the orchestrator records F1r3 and F2r3 and routes them)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure plus the new adv 10 and adv 11 failures, which are the committed guards for F1r3 and F2r3 and stay failing until Green resolves them
+handoff: verdict fail; the F1r2 remediation holds (adv 9 passes, sweep replica exact: 0 missing, 0 extras) and nine briefed forms are pinned as verified-good in the passing adv 12; blocker F1r3 routes to Green: TRAILING_DISABLE_RE (scripts/__tests__/oxc-toolchain-gates.test.ts:905) misses a carriage return at the line end, so the sweep keeps CRLF // disable forms and a listed CRLF carrier can hide a live finding silently (failing guard adv 10 at :1672); Major F2r3 routes to Green: an in-string /* makes BLOCK_COMMENT_RE swallow code, the copy breaks with 'Unterminated string', the hidden rule never surfaces, and the decode reads the parse error as a rule (failing guard adv 11 at :1738); Nits F3r3 (phantom counting, conservative) and F4r3 (over-attribution of live faults) default accept; questions Q1 (F2r3 severity, default Major), Q2 (F4r3 disposition, default accept), Q3 (F3r3 disposition, default accept)
+END_MEASURE_AGENT_RESULT
