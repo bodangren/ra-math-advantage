@@ -173,6 +173,27 @@ anti-slop configuration is `oxlint.anti-slop.config.ts` and contains 15
 generic rules. The generic plugin is enabled without the optional Effect rule
 group because no workspace declares a direct `effect` dependency.
 
+### S2 lint contract (2026-11-18, `vinext-oxc-toolchain_20261114`)
+
+The S2 task records the lint change of this track. The root `package.json`
+declares `oxlint` `^1.79.0` in `devDependencies`. The installed version is
+1.93.0. No other manifest declares `oxlint` or an `oxlint` plugin.
+
+The tree has one `.oxlintrc.json`, at the root. No `eslint.config.*` file is
+tracked. No second `.oxlintrc.json` exists outside `node_modules`. The config
+uses native oxlint rules and three `jsPlugins` compatibility adapters:
+`oxlint-plugin-eslint`, `eslint-plugin-react`, and `eslint-plugin-react-hooks`.
+The adapters are the r6 exception of strategy section 14.2. Do not remove them
+or their `jsPlugins` entries.
+
+The app lint script is `oxlint --config ../../.oxlintrc.json . --max-warnings 0`.
+The package lint script is `oxlint --config ../../.oxlintrc.json src --max-warnings 0`.
+26 of the 27 workspace lint scripts name `../../.oxlintrc.json`.
+`packages/_template` keeps its `echo` line.
+
+Open: no ESLint config remains. No ESLint "before" lint timing can run. The S2
+Verify task fills the "before" cell of the lint row in evidence section 5.
+
 ## Environment Variables
 
 `apps/integrated-math-3/.env.example`:

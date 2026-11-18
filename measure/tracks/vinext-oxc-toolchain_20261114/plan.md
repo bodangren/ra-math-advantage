@@ -274,16 +274,16 @@ Phase note (2026-11-17): the S1 phase base is captured after the r6 strategy com
 _S2 confirms and records the oxlint move that eslint-to-oxlint-migration_20260820 made. That track is superseded by S2 (PM 2026-11-18)._
 _Story ref: spec.md#story-s2_
 
-- [ ] Task: S2 Contract — record the lint change
-    - [ ] In `measure/tech-stack.md`, add a dated note. The note names the oxlint version of the root `package.json`, the one root `.oxlintrc.json`, and native rules only.
-    - [ ] Use the single-root layout (strategy 13.8 item 4, checked 2026-11-17). The tree has one root `.oxlintrc.json` and no per-workspace copy. No `eslint.config.*` file is tracked.
-    - [ ] 26 of the 27 workspace lint scripts name `../../.oxlintrc.json`. `packages/_template` runs an `echo` line and stays as it is.
-    - [ ] The app lint script is `oxlint --config ../../.oxlintrc.json . --max-warnings 0`.
-    - [ ] The package lint script is `oxlint --config ../../.oxlintrc.json src --max-warnings 0`.
-    - [ ] No second `.oxlintrc.json` exists outside `node_modules`. The S2 cases read each lint script and its `--config` target (strategy R17).
-    - [ ] `oxlint` stays in the root `devDependencies` only. S1 sets its range to the latest version.
-    - [ ] Open: no `eslint.config.*` file remains, so no ESLint "before" lint timing can run on this tree. The S2 refresh decides how to fill the "before" value of the lint row in section 5.
-- [ ] Task: S2 Test (Red) — add the S2 gate tests
+- [x] Task: S2 Contract — record the lint change
+    - [x] In `measure/tech-stack.md`, add a dated note. The note names the oxlint version of the root `package.json`, the one root `.oxlintrc.json`, and native rules only. (Added the section "S2 lint contract (2026-11-18, `vinext-oxc-toolchain_20261114`)". It names `oxlint` `^1.79.0` (installed 1.93.0), the root `.oxlintrc.json`, the native rules, and three `jsPlugins` adapters. The tree holds three adapters, not two: `oxlint-plugin-eslint`, `eslint-plugin-react`, and `eslint-plugin-react-hooks`. K4 records `jsplugins_count=3`.)
+    - [x] Use the single-root layout (strategy 13.8 item 4, checked 2026-11-17). The tree has one root `.oxlintrc.json` and no per-workspace copy. No `eslint.config.*` file is tracked. (`find . -name .oxlintrc.json -not -path '*/node_modules/*'` prints `./.oxlintrc.json` only. `find . -name 'eslint.config.*' -not -path '*/node_modules/*'` prints nothing.)
+    - [x] 26 of the 27 workspace lint scripts name `../../.oxlintrc.json`. `packages/_template` runs an `echo` line and stays as it is. (Count of the 6 apps and 21 packages: 27 lint scripts, 26 with the config, `packages/_template` with `echo 'No lint configured for template package'`.)
+    - [x] The app lint script is `oxlint --config ../../.oxlintrc.json . --max-warnings 0`. (Confirmed in the 6 apps.)
+    - [x] The package lint script is `oxlint --config ../../.oxlintrc.json src --max-warnings 0`. (Confirmed in the 20 packages with a lint script.)
+    - [x] No second `.oxlintrc.json` exists outside `node_modules`. The S2 cases read each lint script and its `--config` target (strategy R17). (The `find` above prints one path. S2 case 3 reads each script and the config path.)
+    - [x] `oxlint` stays in the root `devDependencies` only. S1 sets its range to the latest version. (Root `devDependencies`: `oxlint` `^1.79.0`, `@oxlint/plugins` `^1.79.0`, `oxlint-plugin-eslint` `^1.79.0`. No app or package manifest declares an `oxlint` name. Installed copy: 1.93.0.)
+    - [x] Open: no `eslint.config.*` file remains, so no ESLint "before" lint timing can run on this tree. The S2 refresh decides how to fill the "before" value of the lint row in section 5. (Recorded as an open item in the note. Default for S2 Verify: write "n/a — no ESLint config remains".)
+- [~] Task: S2 Test (Red) — add the S2 gate tests
     - [ ] Add `describe('S2 oxlint')` to the test file.
     - [ ] Normal case 1: no manifest declares `eslint`, `typescript-eslint`, `eslint-config-next`, `@eslint/js`, or `@eslint/eslintrc`. The root `overrides` has no `eslint` key.
     - [ ] Normal case 2: no `eslint.config.*` file exists under `apps/` or `packages/`, outside `node_modules`.
