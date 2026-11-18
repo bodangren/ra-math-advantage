@@ -1,5 +1,7 @@
 # ESLint to Oxlint Migration Plan
 
+Superseded by vinext-oxc-toolchain_20261114 Phase S2 (PM 2026-11-18). S2 confirms and records the rest of the oxlint move.
+
 ## Execution Rules
 
 Complete the phases and tasks in order. Follow the task and phase protocols in
@@ -477,13 +479,13 @@ because its source backlog is outside this track.
   - [x] Do not mark the track complete while an unapproved acceptance difference remains.
 
 - [~] Task: Address review findings before manual completion
-    - [~] Add a diagnostic-producing case for every active policy entry and rerun dual-engine parity. Nine configuration-only policy entries require explicit owner approval.
+    - [x] Add a diagnostic-producing case for every active policy entry and rerun dual-engine parity. Nine configuration-only policy entries require explicit owner approval. PM approved the 9 exceptions on 2026-11-18.
     - [x] Correct the package-test override so its exceptions apply only to the documented shared packages.
     - [x] Revert the six authentication-page source edits from the migration cutover.
-    - [ ] Reconcile application typecheck and test results against a clean pre-migration baseline or record explicit owner approval.
+    - [x] Reconcile application typecheck and test results against a clean pre-migration baseline or record explicit owner approval. PM accepted the variances as pre-existing on 2026-11-18: vinext-oxc S1 baseline-m2 failures are bus-math-v2 7, im1 54, im3 218, pre-calculus 52.
     - [x] Add baseline and parity-report links to the track index.
     - [x] Update the review evidence and keep manual-verification tasks pending until explicit confirmation.
-    - [ ] Obtain owner approval for the explicit parity exceptions and the remaining application gate variances.
+    - [x] Obtain owner approval for the explicit parity exceptions and the remaining application gate variances. PM 2026-11-18.
 
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs & Doctor' (Protocol in workflow.md)
   - [ ] Run the automated tests required by the phase protocol.

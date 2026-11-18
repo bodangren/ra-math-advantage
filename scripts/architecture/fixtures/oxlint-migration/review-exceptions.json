@@ -5,56 +5,56 @@
     {
       "policyId": "app-production:react-hooks/config",
       "targetRule": "react-hooks-js/config",
-      "status": "pending-owner-approval",
-      "reason": "The JavaScript plugin validates compiler rule options. The migrated policy has no rule options, so it has no source-triggered diagnostic case."
+      "status": "approved",
+      "reason": "The JavaScript plugin validates compiler rule options. The migrated policy has no rule options, so it has no source-triggered diagnostic case. Approved by the PM on 2026-11-18."
     },
     {
       "policyId": "app-production:react-hooks/gating",
       "targetRule": "react-hooks-js/gating",
-      "status": "pending-owner-approval",
-      "reason": "The JavaScript plugin validates dynamic gating only when a dynamicGating option is configured. The migrated policy has no rule options, so it has no source-triggered diagnostic case."
+      "status": "approved",
+      "reason": "The JavaScript plugin validates dynamic gating only when a dynamicGating option is configured. The migrated policy has no rule options, so it has no source-triggered diagnostic case. Approved by the PM on 2026-11-18."
     },
     {
       "policyId": "app-production:react-hooks/preserve-manual-memoization",
       "targetRule": "react-hooks-js/preserve-manual-memoization",
-      "status": "pending-owner-approval",
-      "reason": "The installed JavaScript plugin did not produce this diagnostic for the source-only probes under the migrated policy options."
+      "status": "approved",
+      "reason": "The installed JavaScript plugin did not produce this diagnostic for the source-only probes under the migrated policy options. Approved by the PM on 2026-11-18."
     },
     {
       "policyId": "app-test:react-hooks/config",
       "targetRule": "react-hooks-js/config",
-      "status": "pending-owner-approval",
-      "reason": "The JavaScript plugin validates compiler rule options. The migrated policy has no rule options, so it has no source-triggered diagnostic case."
+      "status": "approved",
+      "reason": "The JavaScript plugin validates compiler rule options. The migrated policy has no rule options, so it has no source-triggered diagnostic case. Approved by the PM on 2026-11-18."
     },
     {
       "policyId": "app-test:react-hooks/gating",
       "targetRule": "react-hooks-js/gating",
-      "status": "pending-owner-approval",
-      "reason": "The JavaScript plugin validates dynamic gating only when a dynamicGating option is configured. The migrated policy has no rule options, so it has no source-triggered diagnostic case."
+      "status": "approved",
+      "reason": "The JavaScript plugin validates dynamic gating only when a dynamicGating option is configured. The migrated policy has no rule options, so it has no source-triggered diagnostic case. Approved by the PM on 2026-11-18."
     },
     {
       "policyId": "app-test:react-hooks/preserve-manual-memoization",
       "targetRule": "react-hooks-js/preserve-manual-memoization",
-      "status": "pending-owner-approval",
-      "reason": "The installed JavaScript plugin did not produce this diagnostic for the source-only probes under the migrated policy options."
+      "status": "approved",
+      "reason": "The installed JavaScript plugin did not produce this diagnostic for the source-only probes under the migrated policy options. Approved by the PM on 2026-11-18."
     },
     {
       "policyId": "im3-test:react-hooks/config",
       "targetRule": "react-hooks-js/config",
-      "status": "pending-owner-approval",
-      "reason": "The JavaScript plugin validates compiler rule options. The migrated policy has no rule options, so it has no source-triggered diagnostic case."
+      "status": "approved",
+      "reason": "The JavaScript plugin validates compiler rule options. The migrated policy has no rule options, so it has no source-triggered diagnostic case. Approved by the PM on 2026-11-18."
     },
     {
       "policyId": "im3-test:react-hooks/gating",
       "targetRule": "react-hooks-js/gating",
-      "status": "pending-owner-approval",
-      "reason": "The JavaScript plugin validates dynamic gating only when a dynamicGating option is configured. The migrated policy has no rule options, so it has no source-triggered diagnostic case."
+      "status": "approved",
+      "reason": "The JavaScript plugin validates dynamic gating only when a dynamicGating option is configured. The migrated policy has no rule options, so it has no source-triggered diagnostic case. Approved by the PM on 2026-11-18."
     },
     {
       "policyId": "im3-test:react-hooks/preserve-manual-memoization",
       "targetRule": "react-hooks-js/preserve-manual-memoization",
-      "status": "pending-owner-approval",
-      "reason": "The installed JavaScript plugin did not produce this diagnostic for the source-only probes under the migrated policy options."
+      "status": "approved",
+      "reason": "The installed JavaScript plugin did not produce this diagnostic for the source-only probes under the migrated policy options. Approved by the PM on 2026-11-18."
     }
   ]
 }

@@ -16,6 +16,8 @@ This track is not ready for manual completion.
 The approval guard in the migration harness is Red until an owner approves the
 nine explicit exceptions. Manual-verification tasks remain pending.
 
+2026-11-18: the PM approved the nine exceptions and accepted the application variances as pre-existing.
+
 ## Result
 
 The blocking lint engine is Oxlint 1.79.0. The migration preserves the recorded

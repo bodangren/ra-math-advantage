@@ -271,7 +271,7 @@ _Story ref: spec.md#story-s1_
 Phase note (2026-11-17): the S1 phase base is captured after the r6 strategy commit (strategy section 4). The run log and the role handoff hold it. No plan line carries a phase SHA.
 
 ## Phase S2: ESLint to oxlint
-_S2 is superseded by eslint-to-oxlint-migration_20260820 (Daniel's oxlint move is done), PM 2026-11-16._
+_S2 confirms and records the oxlint move that eslint-to-oxlint-migration_20260820 made. That track is superseded by S2 (PM 2026-11-18)._
 _Story ref: spec.md#story-s2_
 
 - [ ] Task: S2 Contract — record the lint change
