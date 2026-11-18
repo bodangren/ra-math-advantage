@@ -330,6 +330,9 @@ _Story ref: spec.md#story-s2_
 
 Phase note (2026-11-19, S2 remediation): strategy section 8 rows "case 7" ("Zero warnings by blanket disable") and "on <n> files" ("Oxlint reads no file") are superseded by adv 6/adv 7 and case 4 (Review A F5, adversarial F2). The strategy role owns the revision; no strategy file changes in S2.
 
+### S2 remediation sub-box (Jr Green rounds)
+- Round 2 (2026-11-19, `35ffb32b`): counted and stripped mid-line and multi-line block disable comments in both spellings (Review A F7, adversarial F1r2). Adv 9 passes as written. The fixture stays exact: all 49 entries match under the old and new counts, so no entry changed. Accepted residual: adversarial F2r2 stays; no count anchor exists, and the fixture diff review is the defense. Gates: S2 adversarial 9 pass, S2 oxlint 7 pass, S1 adversarial 7 pass, S1 vinext 1.x 11 pass, full scripts suite 57 pass with only the pre-existing remediate-concept-blueprints failure, `npx tsc --noEmit` exit 0, `test s2` NEWFAIL=0.
+
 ## Phase S3: TypeScript 7 and tsrs
 _Story ref: spec.md#story-s3_
 
