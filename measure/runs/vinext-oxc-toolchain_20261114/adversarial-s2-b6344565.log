@@ -1,0 +1,178 @@
+Adversarial testing log: Phase S2 (vinext-oxc-toolchain_20261114)
+Role: measure-adversarial-testing. Route: opencode-go/glm-5.3#high.
+Audited test commit: b6344565. role_base_sha: 6e754bd663e0108e6e8e4ce163f7988d430d7bbd.
+phase_base_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e.
+Date: 2026-11-19.
+
+FINAL VERDICT: fail. Six attacks hold. One defect found and committed as a
+failing guard. One blocker (F1) routes to Green.
+
+Attacks attempted (brief list; each attack has a paired control on the real tree;
+no "not applicable" mark):
+1. Bring an ESLint-family manifest declaration back (all manifest fields,
+   overrides with version suffixes).
+   - adv 1: in-memory manifest with each family name in each of the five
+     dependency fields, version-suffixed override keys (eslint@10,
+     eslint-config-next@16.2.0, @eslint/js@10, @eslint/eslintrc@4,
+     typescript-eslint@8), a nested override object, and a declaration
+     re-entered inside an override value. The case 1 scanner
+     (scanDeclarations with isEslintFamily) reports all 10 hits, sorted.
+     Paired control: the same scan over the 28 real manifests returns [].
+     Guard holds.
+2. A second `.oxlintrc.json` or an `eslint.config.*` under apps/ or packages/.
+   - adv 2: seeded temp tree with `.oxlintrc.json` in a workspace root and one
+     level deeper, `eslint.config.mjs`, `eslint.config.js`, and a nested
+     `eslint.config.cjs`. The case 3 walk (findFiles, SKIP_DIRS) finds every
+     seeded file; a copy under node_modules stays invisible, which is the walk
+     rule. Paired control: the real tree holds only the root `.oxlintrc.json`
+     and no `eslint.config.*` file. Guard holds.
+3. A lint script that drops `--config ../../.oxlintrc.json` or
+   `--max-warnings 0`, or a workspace with no lint script.
+   - adv 3: eight seeded mutant scripts (dropped --config, wrong config target,
+     dropped --max-warnings 0, budget raised to 1, npx prefix, package form in
+     an app, app form in a package, template echo replaced). The extracted
+     case 3 rule (lintScriptForm) rejects every mutant and passes the two real
+     target forms plus the template echo. Paired control: every real lint
+     script passes. A workspace that loses its lint script leaves the entries
+     set, so the count sentinel (>= 27) and the apps/danielson sentinel of
+     case 3 fail. Guard holds.
+4. A config that lints no file (vacuous pass).
+   - adv 4: a copy of the root config with every override glob rewritten to
+     `nomatch/**`. The unused-variable probe then passes vacuously (exit 0, no
+     no-unused-vars), so the case 4 guard shape (non-zero exit plus
+     no-unused-vars) fails on the mutant: the attack cannot produce a false
+     green. Paired control: the real config fails the same probe. The mirror
+     attack also proves the makeLintProbe placement under apps/ is
+     load-bearing: the same probe in the system temp folder matches no glob
+     and passes vacuously. Guard holds (case 4 is the vacuous-pass defense).
+5. A lockfile that loses `peer: true` on eslint copies or loses a jsPlugins
+   key.
+   - adv 5: seeded in-memory lockfile with (a) `node_modules/eslint-config-next`
+     and a nested `packages/x/node_modules/typescript-eslint`, (b) a non-peer
+     `node_modules/eslint` and a non-peer nested
+     `apps/danielson/node_modules/@eslint/js`, (c) a jsPlugins specifier with
+     no lockfile key. The case 9 scan (scanLockfileLintHygiene) reports all
+     five hits. Control: the same lockfile with `peer: true` everywhere and
+     the key added reports no hit. Guard holds.
+6. A disable comment variant that hides a real finding.
+   - adv 6: every variant hides the probe finding, with the oxlint spelling
+     and the eslint spelling, in block, next-line, and trailing form
+     (`/* oxlint-disable */`, `/* eslint-disable */`,
+     `/* eslint-disable no-unused-vars */`, `// eslint-disable-next-line`,
+     `// oxlint-disable-next-line`, `// eslint-disable-line`). Paired
+     control: the bare probe fails with no-unused-vars.
+   - adv 7 (the defect): the guard strips every disable comment from each
+     carrier file into a temp copy inside the same workspace, then lints the
+     copies with the root config. A seeded control proves the pipeline is not
+     vacuous. The real tree FAILS: 43 files hide live oxlint findings.
+     DEFECT FOUND. Details in F1.
+
+Blocking finding F1 (defect, routes to Green):
+- The S2 guards do not scan source files for disable comments, and the real
+  tree hides live oxlint findings behind them. Strategy section 8 names the
+  defense for the risk "Zero warnings by blanket disable": case 7, "no source
+  file under apps/ or packages/ has `/* oxlint-disable` (block form). Each
+  `oxlint-disable-next-line` has ` -- ` and a reason" (test-strategy.md:539).
+  The plan S2 Test (Red) task (plan.md:286-297) holds cases 1, 2, 3, 4, 5, 9,
+  and 9b only. No case scans the sources, and the strategy's proposed case 7
+  would itself be vacuous, because the tree uses the `eslint-disable`
+  spellings, not `oxlint-disable`.
+- Facts at this HEAD: 49 tracked files under apps/ and packages/ hold a
+  disable directive (7 blanket block disables, 53 eslint-disable-next-line,
+  3 oxlint-disable-next-line, 1 eslint-disable-line; 44 of the 56 next-line
+  directives lack a ` -- ` reason). 43 of the 49 hide live findings under the
+  root config: for example
+  apps/integrated-math-2/components/student/TriangleOrderingPractice.tsx:1
+  (`/* eslint-disable next/no-img-element */`) hides
+  `next(no-img-element)` at 125:8, and the four `lib/convex/server.ts` copies
+  hide `typescript(no-explicit-any)` errors. The hidden findings include
+  errors (no-explicit-any, no-html-link-for-pages, rules-of-hooks,
+  react-hooks purity) and warnings (exhaustive-deps, no-unused-vars,
+  no-img-element).
+- This disproves the zero-findings claim of the S2 Implement task:
+  "No finding: every oxlint log has empty output with exit 0, so no
+  behavior-preserving fix was needed" (plan.md:309). The logs are empty
+  because 43 files suppress their findings, not because the code is clean.
+  The paired control holds: all 27 workspace lint scripts exit 0
+  (gates/s2/lint.exit, 27 lines of code 0).
+- The committed guard adv 7 (scripts/__tests__/oxc-toolchain-gates.test.ts,
+  line 1210) fails on the 43-file list and stays failing until Green resolves
+  F1.
+
+Nonblocking finding F2 (Nit):
+- Strategy section 8, risk "Oxlint reads no file", cites a defense "Each lint
+  log has a labeled count `on <n> files`. Parse `<n>`. It is above 0."
+  (test-strategy.md:540). No S2 case parses a file count, and oxlint 1.93.0
+  prints no per-run file count: a clean run prints nothing (verified:
+  `npx oxlint --config .oxlintrc.json --max-warnings 0 <clean file>` gives
+  empty output, exit 0). The defense as written cannot exist. The real
+  defense is the case 4 probe plus the exact-form lint scripts. Default
+  disposition: no change; record the row as superseded by case 4 at the next
+  strategy revision.
+
+Test evidence (commands and results):
+- npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' ->
+  6 passed, 1 failed (adv 7), 49 skipped. The failure is the intended defect.
+- npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' ->
+  7 passed (the lintScriptForm extraction changed no assertion).
+- npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial' ->
+  7 passed; -t 'S1 vinext 1.x' -> 11 passed (no S1 regression).
+- Full scripts suite (heavy-run.sh): 54 passed, 2 failed: adv 7 and the
+  pre-existing remediate-concept-blueprints baseline row.
+- Disable sweep (research, /tmp/opencode/adv-sweep.txt): stripped copies of
+  the 49 carrier files, one oxlint run, exit 1, findings in 43 files when
+  the copies keep their workspace globs.
+- Probe controls: `/* eslint-disable */` on a probe under apps/ exits 0;
+  the same probe without the comment exits 1 with no-unused-vars.
+
+PROJECT_TESTS gate (test s2, GATES_BASE=baseline-m2). Method, recorded for
+transparency, the same method as the S1 adversarial run: the gates/s2 folder
+held the Verify-era records of 2026-11-18 23:43 to 23:49 at 6e754bd6. Since
+then the only gate input that changed is scripts/__tests__ (commit b6344565).
+The run removed the recorded line of exactly that one job (it held code 1)
+and ran GATES_RESUME=1, so the gate re-ran only the scripts-suite job and
+re-compared every other record (27 workspace test records and the
+audit-suites step) with baseline-m2.
+- Gate run (adversarial-gate-test-s2.log): the fresh scripts-suite job
+  failed with 2 tests (adv 7 and the baseline row), the compare printed
+  "NEW FAILURE: step scripts-suite has a new diagnostic", NEWFAIL=1, exit 1.
+  No other job printed a failure line. The gate fails on the defect, which is
+  the correct outcome of this role. The pre-existing baseline rows of the 6
+  failing workspaces and the audit-suites step compared clean.
+
+Audit of the existing S2 guard tests (weak-assertion review): the probes run
+real oxlint through npx --no-install with the real root config; the manifest,
+config-walk, and lockfile cases read the real files with disk-read sets,
+count sentinels, and key-list sentinels; case 9b seeds one fault per clause,
+so case 9 cannot pass vacuously; case 4 pairs a failing probe with a passing
+disable probe. One guard gap found and covered by adv 7 (F1). No
+documentation assertion stands in for live behavior.
+
+Questions for the orchestrator (each with a default):
+- Q1: how does the PM want F1 resolved? Option A: Green fixes the 43 files
+  inside S2 (largest; some fixes, for example exhaustive-deps arrays and
+  <img> to <Image>, can change behavior and need their own review). Option
+  B: the PM approves an allow-list contract: adv 7 becomes an allow-list
+  guard that names each of the 43 files with the hidden rule and a reason,
+  and the debt goes to measure/tech-debt.md. Option C: a remediation track
+  takes the 43 files. Default: option B (smallest honest change; S2 stays
+  guard-only, no behavior changes, the guard still blocks new carriers).
+
+PM rule compliance: no bare `openchamber` or `opencode` command (and no npx
+of them) ran in this role.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: 6e754bd663e0108e6e8e4ce163f7988d430d7bbd
+head: b6344565 (test commit; the artifacts commit follows in measure/runs/)
+commits: b6344565 test(vinext-oxc): add the S2 adversarial tests; artifacts commit: measure(runs): add the S2 adversarial result
+tests_run: -t 'S2 adversarial' 6 passed 1 failed (adv 7, the committed defect guard); -t 'S2 oxlint' 7 passed; -t 'S1 adversarial' 7 passed; -t 'S1 vinext 1.x' 11 passed; full scripts suite (heavy-run.sh) 54 passed 2 failed (adv 7 plus the pre-existing remediate-concept-blueprints baseline row); PROJECT_TESTS test s2 NEWFAIL=1 exit 1 (one new diagnostic: adv 7; the resume re-ran only the scripts-suite job)
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts (test commit); measure/runs/vinext-oxc-toolchain_20261114/adversarial-s2-b6344565.{json,log} and adversarial-gate-test-s2.log (artifacts commit)
+plan_updates: none (the S2 adversarial review is not a plan task; the orchestrator records F1 and routes it)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure (evidence section 10) plus the new adv 7 failure, which is the committed guard for blocker F1 and stays failing until Green resolves F1
+handoff: verdict fail; blocker F1 (43 files hide live oxlint findings behind eslint/oxlint disable comments; no S2 guard scanned sources; strategy section 8 case 7 never landed in the plan; plan.md:309 zero-findings claim disproved; adv 7 at scripts/__tests__/oxc-toolchain-gates.test.ts:1210 is the failing guard) routes to Green with question Q1 and default option B (allow-list contract plus tech-debt entry); Nit F2 (strategy section 8 "on <n> files" row names a defense oxlint 1.93.0 cannot print) with default no-change; the gates/s2 folder now holds a fresh scripts-suite record at b6344565 and the gate folder keeps 27 workspace names; the 6 dirty generated files stay unstaged
+END_MEASURE_AGENT_RESULT

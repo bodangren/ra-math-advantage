@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S2: ESLint to oxlint",
+  "baseline_sha": "43d42193a1fea8628ed09f73b18bc0d8f9fe167e",
+  "role_base_sha": "6e754bd663e0108e6e8e4ce163f7988d430d7bbd",
+  "audited_head_sha": "b6344565",
+  "status": "fail",
+  "summary": "Seven adversarial cases cover the six attacks of the brief against the S2 oxlint guards, each with a paired control on the real tree. Five attacks hold: the case 1 scanner reports an ESLint-family declaration in each of the five manifest fields, in nested override objects, and under version-suffixed keys (eslint@10, eslint-config-next@16.2.0, @eslint/js@10, @eslint/eslintrc@4, typescript-eslint@8); the case 2 and case 3 walks find a seeded second .oxlintrc.json, a nested .oxlintrc.json, and eslint.config.{mjs,js,cjs} files in a temp tree while a node_modules copy stays invisible; the extracted case 3 rule rejects all eight seeded mutant lint scripts (dropped --config, wrong config target, dropped --max-warnings 0, budget 1, npx prefix, wrong lint path, template echo replaced) and a dropped lint script fails the count and danielson sentinels; a mutant root config whose override globs match no file makes the case 4 probe pass vacuously, so the case 4 guard shape fails on the mutant and cannot false-green, and a probe outside apps/ and packages/ proves the apps/ placement of the probe is load-bearing; the case 9 scan reports a seeded eslint-config-next key, a nested typescript-eslint key, a non-peer root eslint copy, a non-peer nested @eslint/js copy, and a missing jsPlugins key, while the same lockfile with peer: true everywhere reports nothing. The sixth attack found a real defect, committed as the failing guard adv 7: no S2 case scans workspace sources for disable comments, the strategy section 8 defense for 'Zero warnings by blanket disable' (case 7) never landed in the plan, and 43 of the 49 tracked files that hold an eslint-disable or oxlint-disable directive hide live oxlint findings under the root config, including blanket blocks such as apps/integrated-math-2/components/student/TriangleOrderingPractice.tsx:1 hiding next(no-img-element). This disproves the plan S2 Implement claim 'No finding: every oxlint log has empty output with exit 0, so no behavior-preserving fix was needed' (plan.md:309). Filter run: 6 passed, 1 failed (adv 7, intended). The S2 oxlint, S1 adversarial, and S1 vinext filters still pass in full. Full scripts suite: 54 passed, 2 failed (adv 7 plus the pre-existing remediate-concept-blueprints baseline row). PROJECT_TESTS gate (GATES_RESUME=1 GATES_BASE=baseline-m2 gates.sh test s2, fresh re-run of exactly the scripts-suite job whose inputs changed) prints NEWFAIL=1 exit 1 with the single new diagnostic adv 7. No manifest, lockfile, config, or production file changed: 6e754bd6..b6344565 holds the one test file only. No 'not applicable' mark was used on any attack.",
+  "blocking_findings": [
+    "F1 [Blocker] adversarial-testing: the S2 guard set has no source-file disable-comment scan, and 43 tracked files under apps/ and packages/ hide live oxlint findings behind eslint-disable and oxlint-disable comments, so the S2 zero-warnings state is maintained partly by legacy suppressions, not by clean code. Strategy section 8 names the defense for the risk 'Zero warnings by blanket disable': case 7, no blanket oxlint-disable in sources and a reason on each disable-next-line (measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md:539). The plan S2 Test (Red) task holds cases 1, 2, 3, 4, 5, 9, and 9b only (measure/tracks/vinext-oxc-toolchain_20261114/plan.md:286-297), so the defense is unimplemented; the proposed case 7 would itself be vacuous because the tree uses the eslint-disable spellings. Facts: 49 files hold a directive (7 blanket blocks, 53 eslint-disable-next-line, 3 oxlint-disable-next-line, 1 eslint-disable-line; 44 of 56 next-line directives lack a -- reason); 43 hide live findings, for example apps/integrated-math-2/components/student/TriangleOrderingPractice.tsx:1 hiding next(no-img-element) at 125:8, four lib/convex/server.ts copies hiding typescript(no-explicit-any) errors, and apps/pre-calculus/app/student/dashboard/page.tsx hiding next(no-html-link-for-pages) and react-hooks-js(purity). This disproves the claim 'No finding: every oxlint log has empty output with exit 0, so no behavior-preserving fix was needed' (measure/tracks/vinext-oxc-toolchain_20261114/plan.md:309) while the paired control holds: all 27 workspace lint scripts exit 0 (gates/s2/lint.exit). The committed failing guard is 'S2 adversarial > adv 7: no disable comment in the linted surface hides a live oxlint finding' (scripts/__tests__/oxc-toolchain-gates.test.ts:1210). Green must resolve F1: fix the 43 files, or convert adv 7 into a PM-approved allow-list guard with the debt recorded, or move the 43 files to a remediation track (question Q1, default: allow-list plus tech-debt entry)."
+  ],
+  "nonblocking_findings": [
+    "F2 [Nit] adversarial-testing: strategy section 8, risk 'Oxlint reads no file', cites the defense 'Each lint log has a labeled count on <n> files. Parse <n>. It is above 0' (measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md:540). No S2 case parses a file count, and oxlint 1.93.0 prints no per-run file count: a clean run prints nothing at all (verified with npx oxlint --config .oxlintrc.json --max-warnings 0 on a clean file), so the defense as written cannot exist. The actual defenses are the case 4 probe and the exact-form lint scripts. Default disposition: no change; mark the row superseded by case 4 at the next strategy revision."
+  ],
+  "evidence": [
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' -> 6 passed, 1 failed, 49 skipped; the failure is adv 7, the committed guard for F1 (run at b6344565)",
+    "adv 7 decoded failure list: exactly 43 real files, from apps/bus-math-v2 (25 files), apps/integrated-math-1 (3), apps/integrated-math-2 (1), apps/integrated-math-3 (10), apps/pre-calculus (3), apps/danielson (1), packages/activity-components (1); the run output names each hidden rule",
+    "adv 7 seeded control: a probe with /* eslint-disable */ exits 0 under the root config, and the same probe stripped of the comment exits non-zero with no-unused-vars, so the guard pipeline is not vacuous (A4)",
+    "adv 1: scanDeclarations with isEslintFamily returns exactly the 10 seeded hits across the five dependency fields, version-suffixed override keys, a nested override object, and a declaration re-entered inside an override value; the same scan over the 28 real manifests returns []",
+    "adv 2: the case 3 walk finds the seeded apps/a/.oxlintrc.json, apps/a/deep/.oxlintrc.json, and the case 2 walk finds apps/a/eslint.config.mjs, packages/b/eslint.config.js, packages/b/nested/eslint.config.cjs; a copy under node_modules stays invisible; the real tree holds only the root .oxlintrc.json and no eslint.config.*",
+    "adv 3: lintScriptForm rejects all eight seeded mutant scripts and passes the two target forms, the template echo, and every real lint script; a danielson-filtered entries set falls below the 27 sentinel",
+    "adv 4: a root-config copy whose override globs all match nomatch makes the unused-variable probe exit 0 with no no-unused-vars, so the case 4 guard shape fails on the mutant; the real config fails the same probe; a probe in the system temp folder also exits 0, proving the apps/ probe placement is load-bearing",
+    "adv 5: scanLockfileLintHygiene returns the five seeded hits (a:node_modules/eslint-config-next, a:packages/x/node_modules/typescript-eslint, b:node_modules/eslint, b:apps/danielson/node_modules/@eslint/js, c:eslint-plugin-react-hooks) and returns [] on the clean control lock",
+    "adv 6: all six disable-comment variants (both spellings, block, next-line, and trailing form) hide the probe finding; the bare probe fails with no-unused-vars",
+    "Disable inventory at this HEAD: 49 tracked files hold a directive (7 blanket blocks, 53 eslint-disable-next-line, 3 oxlint-disable-next-line, 1 eslint-disable-line; 44 of 56 next-line directives lack a -- reason); 6 of the 49 are inert under the current config",
+    "Full scripts suite through heavy-run.sh: 54 passed, 2 failed: adv 7 and the pre-existing remediate-concept-blueprints baseline row",
+    "PROJECT_TESTS gate: GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s2 (after removing the stale scripts-suite record of the 2026-11-18 Verify-era run, the only job whose inputs commit b6344565 changed) -> 'NEW FAILURE: step scripts-suite has a new diagnostic', NEWFAIL=1, exit 1; the 27 workspace records and the audit-suites step compared clean (measure/runs/vinext-oxc-toolchain_20261114/adversarial-gate-test-s2.log)",
+    "Paired control for F1: all 27 workspace lint runs exit 0 (measure/runs/vinext-oxc-toolchain_20261114/gates/s2/lint.exit, 27 records of code 0)",
+    "Weak-assertion review of the existing S2 guards: the probes run real oxlint through npx --no-install with the real root config; the manifest, walk, and lockfile cases read the real files with sentinels; case 9b seeds one fault per clause; case 4 pairs a failing probe with a passing disable probe; no documentation assertion stands in for live behavior; the one gap is F1"
+  ],
+  "commands": [
+    "git rev-parse HEAD (b6344565 after the test commit)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial'",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint'",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial'",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x'",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts",
+    "grep -rlE '(eslint|oxlint)-disable' apps/ packages/ (49 tracked carrier files)",
+    "npx oxlint --config .oxlintrc.json --max-warnings 0 <stripped copies> (the 43-file hidden-finding sweep)",
+    "GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s2",
+    "python3 ~/Desktop/advantage-pr/scripts/jobs/slot check (ok, 6 of 8 busy)"
+  ],
+  "changed_files": [
+    "scripts/__tests__/oxc-toolchain-gates.test.ts"
+  ],
+  "test_strategy_violations": [
+    "S2 strategy section 8, risk 'Zero warnings by blanket disable', names case 7 as the defense (measure/tracks/vinext-oxc-toolchain_20261114/test-strategy.md:539). No such case exists in the plan S2 Test (Red) task or in the test file, and the proposed case 7 text would miss the real tree because it names only the oxlint-disable spelling. F1 is the finding; adv 7 is the committed failing guard."
+  ],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 3,
+      "evidence": "The 7 S2 guards pass and hold against the five seeded attacks, but adv 7 fails on 43 real files (scripts/__tests__/oxc-toolchain-gates.test.ts:1210), so the zero-findings claim of plan.md:309 is wrong at the edges."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "Cases 1 to 5, 9, and 9b prove their claims with sentinels and seeded faults, but no guard proved the absence of hidden suppressions until the new failing adv 7, so the central 'no finding' claim had no failing-first test."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff --stat 43d42193..b6344565 holds measure artifacts, tech docs, and the two scripts/__tests__ files only; 6e754bd6..b6344565 (this role) holds only scripts/__tests__/oxc-toolchain-gates.test.ts."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every claim names a command result or a file:line, including the 43-file decoded list, the gate log NEWFAIL=1 exit 1, and the paired control gates/s2/lint.exit with 27 records of code 0."
+    }
+  ]
+}
