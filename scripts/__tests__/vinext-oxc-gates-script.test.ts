@@ -295,6 +295,89 @@ describe('gates.sh workspace set (#5)', () => {
   });
 });
 
+// The S3 errno guard (strategy 16.7). A job log that names ENOSPC or EDQUOT is
+// an infrastructure failure, not a new diagnostic. A normal TS2322 line stays a
+// new failure. The first two cases fail before the gates.sh change and pass
+// after it; the third passes both before and after (it guards against
+// over-classification).
+describe('gates.sh errno classification (S3)', () => {
+  // A fake repo whose only lint script prints `line` and exits 1.
+  function makeErrnoRepo(line: string): string {
+    const tmp = makeTempDir('gates-errno-');
+    fs.writeFileSync(
+      path.join(tmp, 'package.json'),
+      JSON.stringify({ name: 'fake-repo', private: true, workspaces: ['apps/*', 'packages/*'] }),
+    );
+    const trackDir = path.join(tmp, 'measure', 'tracks', TRACK_SLUG);
+    fs.mkdirSync(trackDir, { recursive: true });
+    fs.copyFileSync(GATES_SH, path.join(trackDir, 'gates.sh'));
+    const appDir = path.join(tmp, 'apps', 'x');
+    fs.mkdirSync(appDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(appDir, 'package.json'),
+      JSON.stringify({
+        name: 'fake-x',
+        private: true,
+        scripts: { lint: `node -e 'console.log(${JSON.stringify(line)}); process.exit(1)'` },
+      }),
+    );
+    return tmp;
+  }
+
+  // A heavy-job wrapper that really runs the command, so the job log holds the
+  // lint output. The other wrapper in this file exits 0 without running it.
+  function makeExecWrapper(): string {
+    const tmp = makeTempDir('gates-exec-wrapper-');
+    const wrapper = path.join(tmp, 'heavy-run.sh');
+    fs.writeFileSync(wrapper, '#!/usr/bin/env bash\n"$@"\n');
+    fs.chmodSync(wrapper, 0o755);
+    return wrapper;
+  }
+
+  function seedOkBase(repo: string, name: string): string {
+    const base = path.join(repo, 'measure', 'runs', TRACK_SLUG, 'gates', name);
+    fs.mkdirSync(base, { recursive: true });
+    fs.writeFileSync(path.join(base, 'lint.exit'), 'apps/x 0\n');
+    fs.writeFileSync(path.join(base, 'lint-x.log'), '');
+    return name;
+  }
+
+  function runErrnoGate(repo: string, extraEnv: NodeJS.ProcessEnv = {}) {
+    const wrapper = makeExecWrapper();
+    const cwd = makeTempDir('gates-cwd-');
+    const gatesSh = path.join(repo, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+    return runGate(gatesSh, 'lint', 'scripttest', cwd, { HEAVY_RUN: wrapper, ...extraEnv });
+  }
+
+  it('classifies an ENOSPC job log as infrastructure', () => {
+    const repo = makeErrnoRepo('ENOSPC: no space left on device, write');
+    const r = runErrnoGate(repo);
+    expect(r.status, r.output).toBe(3);
+    expect(r.output).toContain('INFRA FAILURE:');
+    expect(r.output).toContain('INFRA=1');
+    expect(r.output).not.toContain('NEW FAILURE');
+  });
+
+  it('classifies an EDQUOT job log as infrastructure', () => {
+    const repo = makeErrnoRepo('EDQUOT: disk quota exceeded');
+    const r = runErrnoGate(repo);
+    expect(r.status, r.output).toBe(3);
+    expect(r.output).toContain('INFRA FAILURE:');
+    expect(r.output).toContain('INFRA=1');
+    expect(r.output).not.toContain('NEW FAILURE');
+  });
+
+  it('still reports a normal TS2322 line as a new failure, not infrastructure', () => {
+    const repo = makeErrnoRepo(
+      "probe.ts(1,14): error TS2322: Type 'string' is not assignable to type 'number'.",
+    );
+    const base = seedOkBase(repo, 'base-ok');
+    const r = runErrnoGate(repo, { GATES_BASE: base });
+    expect(r.status, r.output).toBe(1);
+    expect(r.output).toContain('NEWFAIL=1');
+    expect(r.output).not.toContain('INFRA=1');
+  });
+});
 // The S1 adversarial cases for the sweep (strategy 13.7, R18: no app is ever excluded
 // from a gate to make the phase pass). Each case seeds the named exclusion in a fake
 // repository and asserts that gates.sh reports a new failure. The allowed outcome of the
