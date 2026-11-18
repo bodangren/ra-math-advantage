@@ -8,24 +8,24 @@
 
 ## Phase 1: Contract and Schema Definition [checkpoint: c925d38]
 
-- [x] Task 1.1: Define walkthrough and formal-observation schemas
+- [x] Task 1.1: Define walkthrough and formal-observation schemas — `c925d388`
     - [x] Define draft and submitted records
     - [x] Define three target outcomes and optional evidence notes
     - [x] Define Q1 and Q4 record types and observer permissions
-- [x] Task 1.2: Define the ranked queue contract
+- [x] Task 1.2: Define the ranked queue contract — `c925d388`
     - [x] Define candidate, priority input, reason, and deterministic tie-break fields
     - [x] Define grouping of Track 2 due skills by teacher
     - [x] Define the fewer-than-three shortfall result
-- [x] Task 1.3: Define submission and publication transitions
+- [x] Task 1.3: Define submission and publication transitions — `c925d388`
     - [x] Define draft save, resume, discard, and submit behavior
     - [x] Define immediate publication and idempotency rules
-- [x] Task 1.4: Define the amendment contract
+- [x] Task 1.4: Define the amendment contract — `c925d388`
     - [x] Define original record, author, reason, changed fields, and event time
     - [x] Define superseded evidence behavior without double counting
-- [x] Task 1.5: Define annual continuity
+- [x] Task 1.5: Define annual continuity — `c925d388`
     - [x] Define school-year labels without state reset or record cloning
     - [x] Define cross-year query and report inputs
-- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md) — `f9a8ca03`
     - User directed full-track continuation on 2026-08-19.
 
 ## Phase 2: Test [checkpoint: 09d6f8b]
@@ -47,7 +47,7 @@
     - [x] Reject direct update, delete, cross-scope amendment, and conflicting replay
     - [x] Preserve original bytes and prevent evidence double counting
     - [x] Prove that the school-year boundary does not reset KST or SRS state
-- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md) — `cdbdaa23`
     - User directed full-track continuation on 2026-08-19.
 
 ## Phase 3: Implement [checkpoint: 566a9eaf]
@@ -69,19 +69,19 @@
 - [x] Task 3.5: Implement annual continuity and bounded history reads — `9b570c84`, `566a9eaf`
     - [x] Keep KST and SRS state continuous across year labels
     - [x] Paginate historical observations and amendments
-- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md) — `4b2646d3`
     - User directed full-track continuation on 2026-08-19.
 
 ## Phase 4: Generate Docs and Doctor [checkpoint: 566a9eaf]
 
-- [x] Task 4.1: Run focused and workspace quality gates
+- [x] Task 4.1: Run focused and workspace quality gates — `4b2646d3`
     - [x] Run queue, form, formal-observation, amendment, carryover, coverage, lint, typecheck, and build gates
     - [x] Run authorization, idempotency, and accessibility tests
-- [x] Task 4.2: Generate route, schema, ownership, and dependency facts
+- [x] Task 4.2: Generate route, schema, ownership, and dependency facts — `4b2646d3`
     - [x] Run `npm run generate`
     - [x] Confirm that generated facts contain the observation surfaces
-- [x] Task 4.3: Run boundaries and Measure Doctor
+- [x] Task 4.3: Run boundaries and Measure Doctor — `4b2646d3`
     - [x] Run inventory parity, monorepo boundaries, and `npm run doctor`
     - [x] Inspect for unrelated active-track changes
-- [x] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+- [x] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md) — `4b2646d3`
     - User directed full-track continuation on 2026-08-19.

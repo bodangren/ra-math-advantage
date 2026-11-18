@@ -1,12 +1,12 @@
 # Review plan
 
-- [x] Establish scope and run baseline checks.
-- [x] Review authentication, authorization, data access, and progress.
-- [x] Review curriculum, calculations, assessment, and workbook coverage.
-- [x] Review knowledge graph, practice, and learning evidence.
-- [x] Review student and teacher interfaces, accessibility, and unused code.
-- [x] Review tests, architecture, development workflow, and deployment.
-- [x] Verify findings and write the final report with review limits.
+- [x] Establish scope and run baseline checks. [8fed657a]
+- [x] Review authentication, authorization, data access, and progress. [8fed657a]
+- [x] Review curriculum, calculations, assessment, and workbook coverage. [8fed657a]
+- [x] Review knowledge graph, practice, and learning evidence. [8fed657a]
+- [x] Review student and teacher interfaces, accessibility, and unused code. [8fed657a]
+- [x] Review tests, architecture, development workflow, and deployment. [8fed657a]
+- [x] Verify findings and write the final report with review limits. [8fed657a]
 
 Application fixes require a separate implementation plan. Existing workspace changes belong to other work.
 

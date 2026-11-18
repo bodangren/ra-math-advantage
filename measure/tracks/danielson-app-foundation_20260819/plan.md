@@ -22,10 +22,10 @@
     - [x] Define additive role resolution
     - [x] Define subject exclusion for private data, evaluation writes, and supervisor-side PIP actions
     - [x] Define cross-organization denial
-- [x] Task 1.4: Define the production bootstrap and administration boundaries
+- [x] Task 1.4: Define the production bootstrap and administration boundaries — `74496b9f`
     - [x] Define the first organization and system-administrator seed path
     - [x] Keep authorization in each administration mutation
-- [x] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' — user directed full-track continuation
+- [x] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' — user directed full-track continuation `849f2201`
 
 ## Phase 2: Test [checkpoint: 6cffd96]
 
@@ -50,7 +50,7 @@
 - [x] Task 2.6: Write workspace and architecture contract tests — `bc10524`
     - [x] Test workspace inventory, commands, manifest ownership, dependencies, and quality gates
     - [x] Test that shared packages do not import the new application
-- [x] Task 2.7: Measure - User Manual Verification 'Phase 2: Test' — user directed full-track continuation
+- [x] Task 2.7: Measure - User Manual Verification 'Phase 2: Test' — user directed full-track continuation `6cffd96d`
 
 ## Phase 3: Implement [checkpoint: 8d57514]
 
@@ -71,7 +71,7 @@
 - [x] Task 3.5: Implement the role-aware application shell — `8d57514`
     - [x] Show only actions permitted by the resolved roles and scope
     - [x] Keep all security decisions on the server boundary
-- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' — user directed full-track continuation
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' — user directed full-track continuation `f43e2ce2`
 
 ## Phase 4: Generate Docs and Doctor [checkpoint: 08a18fc3]
 
@@ -88,4 +88,4 @@
     - [x] Review the implementation against the specification and plan
     - [x] Correct the security, replay, test, scale, usability, and accessibility findings
     - [x] Confirm that the corrections satisfy the review
-- [x] Task 4.5: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' — user directed full-track continuation
+- [x] Task 4.5: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' — user directed full-track continuation `f43e2ce2`

@@ -8,50 +8,50 @@
 
 ## Phase 1: Contract and Schema Definition
 
-- [x] Task 1.1: Define the app-owned source data
+- [x] Task 1.1: Define the app-owned source data — `eecd713d`
     - [x] Record the Danielson 2022 source and license boundary
     - [x] Record the 63 standalone TLAC techniques
     - [x] Define stable skill IDs and source labels
-- [x] Task 1.2: Define the app-owned graph contract
+- [x] Task 1.2: Define the app-owned graph contract — `eecd713d`
     - [x] Map product terms to existing node kinds
     - [x] Define stable IDs and `contains` edge rules
     - [x] Reserve GBF prerequisite ownership for Track 6
-- [x] Task 1.3: Define the teacher-proficiency evidence contract
+- [x] Task 1.3: Define the teacher-proficiency evidence contract — `eecd713d`
     - [x] Define rated and `not_enough_evidence` outcomes
     - [x] Define source, target, time, version, provenance, and idempotency fields
     - [x] Keep comments and responses outside the evidence contract
-- [x] Task 1.4: Define rating and formal-observation adapters
+- [x] Task 1.4: Define rating and formal-observation adapters — `eecd713d`
     - [x] Define the point and SRS rating maps
     - [x] Define Q1 component fan-out with shared provenance
     - [x] Define direct walkthrough target behavior
-- [x] Task 1.5: Define KST and SRS persistence ports
+- [x] Task 1.5: Define KST and SRS persistence ports — `eecd713d`
     - [x] Reuse canonical card, review-log, proficiency, and graph interfaces
     - [x] Define the 180-day stable-skill interval cap
     - [x] Define priority projections for Track 3
-- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md) — `eecd713d`
     - User directed full-track continuation on 2026-08-19.
 
 ## Phase 2: Test
 
-- [x] Task 2.1: Write source-data and graph Red tests
+- [x] Task 2.1: Write source-data and graph Red tests — `1febf2b9`
     - [x] Test exact Danielson and TLAC counts
     - [x] Test source labels and stable IDs
     - [x] Reject duplicate, dangling, invalid, and cyclic structures
-- [x] Task 2.2: Write rating-map and proficiency Red tests
+- [x] Task 2.2: Write rating-map and proficiency Red tests — `1febf2b9`
     - [x] Test `1 → 70`, `2 → 80`, `3 → 90`, and `4 → 100`
     - [x] Test the four SRS rating mappings
     - [x] Test that one rating below 3 remains visible and blocks all-proficient status
-- [x] Task 2.3: Write no-evidence adversarial tests
+- [x] Task 2.3: Write no-evidence adversarial tests — `1febf2b9`
     - [x] Snapshot proficiency, KST, and SRS state before and after the event
     - [x] Prove byte-equivalence and zero downstream writes
-- [x] Task 2.4: Write provenance and fan-out Red tests
+- [x] Task 2.4: Write provenance and fan-out Red tests — `1febf2b9`
     - [x] Test Q1 fan-out to all component child skills
     - [x] Test one shared observation ID and provenance group
     - [x] Test direct walkthrough updates only for rated targets
-- [x] Task 2.5: Write idempotency, scheduling, and comment-isolation tests
+- [x] Task 2.5: Write idempotency, scheduling, and comment-isolation tests — `1febf2b9`
     - [x] Test replay, conflict, deterministic time, and the 180-day cap
     - [x] Inject comments and prove that all proficiency and scheduling outputs remain unchanged
-- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md) — `1febf2b9`
     - User directed full-track continuation on 2026-08-19.
 
 ## Phase 3: Implement [checkpoint: 7e733a0]
@@ -73,7 +73,7 @@
     - [x] Connect app persistence to canonical card and review-log ports
     - [x] Produce due, overdue, proficiency, and evidence-gap projections
     - [x] Enforce the stable-skill interval cap
-- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' — user directed full-track continuation
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' — user directed full-track continuation `d140771f`
 
 ## Phase 4: Generate Docs and Doctor [checkpoint: 7e733a0]
 
@@ -90,4 +90,4 @@
     - [x] Review the implementation against the specification and plan
     - [x] Correct authorization, idempotency, event-order, SRS, KST, source, and write-scope findings
     - [x] Confirm that no actionable finding remains
-- [x] Task 4.5: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' — user directed full-track continuation
+- [x] Task 4.5: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' — user directed full-track continuation `d140771f`

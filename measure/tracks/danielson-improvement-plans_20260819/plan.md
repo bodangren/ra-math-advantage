@@ -10,44 +10,44 @@
 
 ## Phase 1: Contract and Schema Definition [checkpoint: f9ab7ef]
 
-- [x] Task 1.1: Define the normalized PIP source contract
+- [x] Task 1.1: Define the normalized PIP source contract — `f9ab7ef6`
     - [x] Preserve each supplied form field and fixed text section
     - [x] Define the normalized form version
-- [x] Task 1.2: Define plan and target schemas
+- [x] Task 1.2: Define plan and target schemas — `f9ab7ef6`
     - [x] Define teacher, department, supervisor, dates, narrative fields, targets, and expected standards
     - [x] Define stable Danielson and GBF or TLAC source references
-- [x] Task 1.3: Define the lifecycle and authorization matrix
+- [x] Task 1.3: Define the lifecycle and authorization matrix — `f9ab7ef6`
     - [x] Define proposed, active, and closed states
     - [x] Define supervisor proposal and SLT approval and closure permissions
     - [x] Define one-active-plan and organization-scope rules
-- [x] Task 1.4: Define acknowledgment and version contracts
+- [x] Task 1.4: Define acknowledgment and version contracts — `f9ab7ef6`
     - [x] Define teacher and supervisor acknowledgment records
     - [x] Define immutable approval and material-revision behavior
-- [x] Task 1.5: Define cadence, progress, and report projections
+- [x] Task 1.5: Define cadence, progress, and report projections — `f9ab7ef6`
     - [x] Define seven-day target intervals and high priority
     - [x] Define on-track, off-track, days-remaining, and outcome fields
     - [x] Exclude no-evidence outcomes and all comments
-- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md) — `d2dbed26`
     - User directed full-track continuation on 2026-08-19.
 
 ## Phase 2: Test [checkpoint: 9f4b078, ce125841]
 
-- [x] Task 2.1: Write source and schema Red tests
+- [x] Task 2.1: Write source and schema Red tests — `9f4b0783`
     - [x] Test every supplied form field, required value, date, target, and fixed text section
     - [x] Reject an invalid source form
-- [x] Task 2.2: Write proposal and approval authorization Red tests
+- [x] Task 2.2: Write proposal and approval authorization Red tests — `ce125841`
     - [x] Test HOD, coach, school-head, SLT, system-administrator, teacher, and cross-organization cases
     - [x] Prove that a proposal is inactive until SLT approval
-- [x] Task 2.3: Write immutable version and acknowledgment Red tests
+- [x] Task 2.3: Write immutable version and acknowledgment Red tests — `ce125841`
     - [x] Reject update or delete of an approved plan
     - [x] Test a new version and one teacher and supervisor acknowledgment
-- [x] Task 2.4: Write cadence and progress Red tests
+- [x] Task 2.4: Write cadence and progress Red tests — `ce125841`
     - [x] Test seven-day active-target intervals and evidence due status
     - [x] Test rated evidence and no-evidence or comment non-interference
-- [x] Task 2.5: Write closure and no-automated-discipline tests
+- [x] Task 2.5: Write closure and no-automated-discipline tests — `ce125841`
     - [x] Test both closure outcomes, actor, time, note, and report projection
     - [x] Prove that no retention or disciplinary recommendation is produced
-- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md) — `50badb31`
     - User directed full-track continuation on 2026-08-19.
 
 ## Phase 3: Implement [checkpoint: ad541ed3]
@@ -67,19 +67,19 @@
 - [x] Task 3.5: Implement Track 4 projection and SLT closure — `2bd4e4e7`, `aeffaa55`, `6e8e580d`, `77991d4e`, `ad541ed3`
     - [x] Show plan status, days, targets, evidence, support, criteria, and outcome
     - [x] Record successful or insufficient-improvement closure without an automated recommendation
-- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md) — `ad541ed3`
     - User directed full-track continuation on 2026-08-19.
 
 ## Phase 4: Generate Docs and Doctor [checkpoint: e0ef7aa5]
 
-- [x] Task 4.1: Run focused and workspace quality gates
+- [x] Task 4.1: Run focused and workspace quality gates — `e0ef7aa5`
     - [x] Run PIP source, authorization, version, cadence, progress, closure, accessibility, coverage, lint, typecheck, and build gates
     - [x] Run private-data and no-automated-discipline adversarial tests
-- [x] Task 4.2: Generate schema, route, ownership, and source facts
+- [x] Task 4.2: Generate schema, route, ownership, and source facts — `e0ef7aa5`
     - [x] Run `npm run generate`
     - [x] Confirm that generated facts identify restricted PIP surfaces
-- [x] Task 4.3: Run boundaries and Measure Doctor
+- [x] Task 4.3: Run boundaries and Measure Doctor — `e0ef7aa5`
     - [x] Run inventory parity, monorepo boundaries, and `npm run doctor`
     - [x] Inspect the final access and immutable-record behavior
-- [x] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+- [x] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md) — `e0ef7aa5`
     - User directed full-track continuation on 2026-08-19.

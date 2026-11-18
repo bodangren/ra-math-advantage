@@ -6,13 +6,13 @@ The current IM3 source and test changes are committed in `8142bd70d`. The commit
 
 Review status: complete as an assessment. The results below record the original review. Runtime remediation is tracked in `fix-plan.md` and `fixes.md`.
 
-- [x] Record scope and current workspace state.
-- [x] Run app checks and inspect test failures.
-- [x] Review authentication, authorization, backend data, and routes.
-- [x] Review student, teacher, parent, and activity flows.
-- [x] Review curriculum, answers, graph structure, and practice projections.
-- [x] Review shared dependencies, unused code, deployment, and workflow controls.
-- [x] Write the final findings and verification limits.
+- [x] Record scope and current workspace state. [8fed657a]
+- [x] Run app checks and inspect test failures. [8fed657a]
+- [x] Review authentication, authorization, backend data, and routes. [8fed657a]
+- [x] Review student, teacher, parent, and activity flows. [8fed657a]
+- [x] Review curriculum, answers, graph structure, and practice projections. [8fed657a]
+- [x] Review shared dependencies, unused code, deployment, and workflow controls. [8fed657a]
+- [x] Write the final findings and verification limits. [8fed657a]
 
 ## Results
 
