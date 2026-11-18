@@ -1620,7 +1620,7 @@ describe('S2 adversarial', () => {
   it(
     'adv 9: a mid-line or multi-line disable in a listed file still fails the pin and the sweep',
     () => {
-      // F2r2: oxlint honors a /* disable */ comment that shares its line with code and
+      // F1r2: oxlint honors a /* disable */ comment that shares its line with code and
       // a comment that spans lines, but the pin counts only whole-line and // forms,
       // and the sweep strips only those. A listed carrier can hide a new finding
       // behind either form without failing adv 7. Live controls first, so the case is
