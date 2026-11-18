@@ -384,12 +384,12 @@ _Story ref: spec.md#story-s3_
     - [x] Time `tsc --noEmit` on TypeScript 7.0.2 for each workspace. Record the times in section 5. (Medians: IM3 22.4 s to 4.0 s, BM2 17.9 s to 2.6 s. Raw: `s3-tsc7-raw.txt`.)
     - [x] Commit: `chore(deps): upgrade typescript to 7`. (ccfe3571. The commit also installs the `typescript6` alias and the line-9 import switch, because the test file cannot load the parser API from TypeScript 7. The plan allows the move; the S2 filters ran green in the same commit: `S2 adversarial` 13 pass, `S2 oxlint` 7 pass.)
     - Note: root `"@typescript/native": "npm:typescript@^7.0.2"` is kept. It is not the registry name that strategy 16.2 rejected (E404). It is a local alias, and it is needed: without it the `@typescript/old` copy of typescript 6.0.3 wins the root `.bin/tsc` link and `npx tsc --version` prints `Version 6.0.3`. Evidence section 8.
-- [ ] Task: S3 Implement — switch the typecheck scripts to tsrs
-    - [ ] Add `tsrs` `0.25.0-ts7.1.0-beta` to the root `devDependencies`. Run `npm install`.
-    - [ ] Set the typecheck scripts, the package `build` scripts, and the bus-math-v2 typecheck script to the target forms.
-    - [ ] If oxlint reports that `--type-aware` needs `oxlint-tsgolint`, add `oxlint-tsgolint` `^7.0.2007` to the root `devDependencies`. Record it in section 8.
-    - [ ] In `.github/workflows/ci.yml` and `cloudflare-deploy.yml`, replace each `cd <dir> && npx tsc --noEmit` with `npm run typecheck --workspace=<dir>`.
-    - [ ] Commit: `chore(typecheck): run the type check through oxlint and tsrs`.
+- [x] Task: S3 Implement — switch the typecheck scripts to tsrs (c0426865)
+    - [x] Add `tsrs` `0.25.0-ts7.1.0-beta` to the root `devDependencies`. Run `npm install`. (The first install wrote the lockfile entries but not the platform package; a second `npm install` placed `@tsrs/linux-x64-gnu`. Evidence section 8.)
+    - [x] Set the typecheck scripts, the package `build` scripts, and the bus-math-v2 typecheck script to the target forms. (26 workspaces on the tsrs form; 4 apps on `tsc --noEmit` with a blocking gap: BM2, IM1, IM3, PreCalc. Evidence section 7.)
+    - [x] If oxlint reports that `--type-aware` needs `oxlint-tsgolint`, add `oxlint-tsgolint` `^7.0.2007` to the root `devDependencies`. Record it in section 8. (Not needed: `tsrs` 0.25.0-ts7.1.0-beta provides the executable.)
+    - [x] In `.github/workflows/ci.yml` and `cloudflare-deploy.yml`, replace each `cd <dir> && npx tsc --noEmit` with `npm run typecheck --workspace=<dir>`. (Also `business-math-deploy.yml`, so no run line in any workflow calls `tsc`. `node scripts/validate-ci.mjs` exits 0.)
+    - [x] Commit: `chore(typecheck): run the type check through oxlint and tsrs`. (c0426865.)
 - [ ] Task: S3 Implement — compare tsrs with tsc on the same compiler line
     - [ ] Run `npx tsrs --version` and `npx --yes -p typescript@7.1.0-beta tsc --version`. Record both versions at the top of section 7.
     - [ ] If the tsrs version names a TypeScript line other than 7.1.0-beta, use `tsc` from that line in the next steps. Record the line.
