@@ -334,7 +334,7 @@ Phase note (2026-11-19, S2 remediation): strategy section 8 rows "case 7" ("Zero
 - Round 2 (2026-11-19, `35ffb32b`): counted and stripped mid-line and multi-line block disable comments in both spellings (Review A F7, adversarial F1r2). Adv 9 passes as written. The fixture stays exact: all 49 entries match under the old and new counts, so no entry changed. Accepted residual: adversarial F2r2 stays; no count anchor exists, and the fixture diff review is the defense. Gates: S2 adversarial 9 pass, S2 oxlint 7 pass, S1 adversarial 7 pass, S1 vinext 1.x 11 pass, full scripts suite 57 pass with only the pre-existing remediate-concept-blueprints failure, `npx tsc --noEmit` exit 0, `test s2` NEWFAIL=0.
 - Round 3 (2026-11-19, `fde3eda2`): replaced the comment regexes with the TypeScript parser (`typescript` 6.0.3): each file parses with the ScriptKind of its extension, comment ranges come from token trivia, and only text inside a real comment range counts as a directive. This closes F1r3 (CRLF trailing forms now strip) and F2r3 (an in-string `/*` no longer swallows code; the strip blanks ranges with spaces and keeps newlines, so positions stay). Adv 10 and adv 11 pass as written; adv 1 to 9 and adv 12 hold. F3r3 is resolved by the tokenizer (disable text in strings and templates never counts). F4r3 stays an accepted limitation, noted in the helper comment. The fixture stays exact: all 49 entries match under the tokenizer, so no entry changed. Gates: S2 adversarial 12 pass, S2 oxlint 7 pass, S1 adversarial 7 pass, S1 vinext 1.x 11 pass, full scripts suite 60 pass with only the pre-existing remediate-concept-blueprints failure, `npx tsc --noEmit` (repo root) exit 0, `test s2` NEWFAIL=0 (the stale scripts-suite step record was dropped first, so the step re-ran).
 - [x] Adversarial r4 at b9a4f0c2 passed (adv 13 added; Nits F1r4 and F2r4 accepted). (b9a4f0c2)
-- [x] Recorded deviation (Review A F9, 2026-11-19): the test file imports the installed `typescript` package for the comment scan, against test-strategy section 5 (lines 221-222). The S3 strategy refresh reconciles section 5 with the S3 contract (plan line 342: the kept `typescript` package uses 7.0.2) before S3 Red, and checks that the scan API stays available. (fde3eda2)
+- [x] Recorded deviation (Review A F9, 2026-11-19): the test file imports the installed `typescript` package for the comment scan, against test-strategy section 5 (lines 221-222). The S3 strategy refresh reconciles section 5 with the S3 contract (plan line 342: the kept `typescript` package uses 7.0.2) before S3 Red, and checks that the scan API stays available. (fde3eda2) Resolved by strategy r7 section 16.2.
 
 ## Phase S3: TypeScript 7 and tsrs
 _Story ref: spec.md#story-s3_
@@ -342,7 +342,7 @@ _Story ref: spec.md#story-s3_
 - [ ] Task: S3 Contract — record the type-check change
     - [ ] In `measure/tech-stack.md`, add a dated note. The note names TypeScript 7.0.2, tsrs `0.25.0-ts7.1.0-beta`, `TSRS_FAST=1`, and the oxlint type-check gate.
     - [ ] The note also says that tsrs uses the TypeScript 7.1.0-beta compiler line, and the kept `typescript` package uses 7.0.2.
-    - [ ] Use this target layout. The app typecheck script is `TSRS_FAST=1 oxlint -c .oxlintrc.json --type-aware --type-check --max-warnings 0 .`.
+    - [ ] Use this target layout. The app typecheck script is `TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .`.
     - [ ] The package typecheck script is the same command with `src` in place of `.`.
     - [ ] Each package `build` script that is `tsc --noEmit` now becomes `npm run typecheck`.
     - [ ] bus-math-v2 gets the app typecheck script.
@@ -350,18 +350,20 @@ _Story ref: spec.md#story-s3_
     - [ ] Each CI typecheck step becomes `npm run typecheck --workspace=<app folder>`.
     - [ ] Time `tsc --noEmit` on TypeScript 6.0.3 for each workspace. Record "before" in section 5.
 - [ ] Task: S3 Test (Red) — add the S3 gate tests
-    - [ ] Add `describe('S3 tsrs')` to the test file. Add two constants: `TYPESCRIPT_KEEP_LIST = []` and `TSC_FALLBACK_LIST = []`.
+    - [ ] Add `describe('S3 tsrs')` to the test file. Add two constants: `TYPESCRIPT_KEEP_LIST = []` and `TSC_FALLBACK_LIST = []`. Add `SCAN_PARSER_PACKAGE = 'typescript6'`. State that `TYPESCRIPT_KEEP_LIST` tracks only manifests that declare the package named `typescript`.
+    - [ ] Case 0: the S2 disable scan keeps the 6.0 parser API through the alias. Use `createRequire`, already imported, so a missing alias cannot break module load. Assert that the root `package.json` declares `devDependencies.typescript6` as `npm:@typescript/typescript6@^6.0.2`. Assert that `createRequire` from the repository root resolves `typescript6/package.json`, and that its `version` has major 6, parsed as an integer (A3). Assert that the required module exposes `createSourceFile`, `getLeadingCommentRanges`, and `getTrailingCommentRanges` as functions, and defines `ScriptKind.TSX`.
     - [ ] Normal case 1: each workspace typecheck script is the target form. A workspace in `TSC_FALLBACK_LIST` has `tsc --noEmit`.
     - [ ] Normal case 2: no package `build` script contains `tsc`.
     - [ ] Normal case 3: `tsrs/package.json` resolves from the repository root.
     - [ ] Normal case 4: no `run` line in `.github/workflows/*.yml` contains `tsc`.
     - [ ] Normal case 5: the manifests that declare `typescript` are exactly the paths in `TYPESCRIPT_KEEP_LIST`.
-    - [ ] Edge case 6: a probe `export const n: number = "x";` runs with `TSRS_FAST=1 npx --no-install oxlint --type-aware --type-check <tmp>`. The exit code is non-zero, and the output contains `TS2322`.
+    - [ ] Edge case 6: a probe `export const n: number = "x";` runs with `TSRS_FAST=1 npx --no-install oxlint --config ../../.oxlintrc.json --type-aware --type-check <tmp>`. The exit code is non-zero, and the output contains `TS2322`.
     - [ ] The probe `tsconfig.json` has `"strict": true`, `"noEmit": true`, `"types": []`, and a `"files"` list with the probe file.
     - [ ] Edge case 7: the probe `export const n: number = 1;` exits with code 0.
-    - [ ] Change S1 edge cases 5 and 6 to use the S3 type-check command.
+    - [ ] Change S1 edge cases 5 and 6 to use the S3 type-check command. Both cases stay red until Green (16.3 and section 9).
     - [ ] Run the scripts suite. Confirm that cases 1 to 7 fail.
-    - [ ] Commit: `test(vinext-oxc): add the S3 gate tests (Red)`.
+    - [ ] Test-infrastructure guard: `gates.sh` classifies `EDQUOT` and `ENOSPC` output as infrastructure. Add three guard cases to `scripts/__tests__/vinext-oxc-gates-script.test.ts` that feed a fake job log with `ENOSPC: no space left on device`, with `EDQUOT: disk quota exceeded`, and with a normal `TS2322` line. The first two expect `INFRA FAILURE:` and exit 3 with `INFRA=1`, and no `NEW FAILURE: ... has a new diagnostic`. The third expects `NEWFAIL=1` and no `INFRA=1`. Then change `gates.sh`: add `has_infra_output()`; drop the errno lines in `key()`; set `JOB_CODE=290` in `run_job()` when a log matches, with `290` added to `INFRA`; keep the labeled last lines `NEWFAIL=<n>` and `INFRA=1`. Run `bash -n`. Falsification: remove the helper and the two infra cases fail; remove the `key()` filter and a stale log becomes a new diagnostic.
+    - [ ] Commit: `test(vinext-oxc): add the S3 gate tests (Red)`. Add the `typescript6` alias to the root `devDependencies` in the Red or Implement commit that first needs it. Keep the static import at line 9 on `typescript` until the alias lands, so the Red run loads. Switch the import to `typescript6` in the same commit that installs the alias. Then run the S2 filters (16.2).
 - [ ] Task: S3 Implement — move to TypeScript 7
     - [ ] Set `typescript` to `^7.0.2` in the root `devDependencies`, the root `overrides`, and each workspace that declares it.
     - [ ] Run `npm install`.
@@ -402,11 +404,13 @@ _Story ref: spec.md#story-s3_
     - [ ] Do not keep `typescript` for editors. The repository has no `.vscode/settings.json`, so editors use their bundled TypeScript. Record this in section 9.
     - [ ] Run `npm ls typescript --all`. If an installed package has a non-optional peer on `typescript`, keep `typescript` in the root `devDependencies`. Record the package in section 9.
     - [ ] Set `TYPESCRIPT_KEEP_LIST` in the test file to the final keep list.
+    - [ ] Record the `typescript6` alias in evidence section 9 with the reason "S2 disable-comment scan; TypeScript 7 ships no JavaScript API". Do not add `typescript6` to `TYPESCRIPT_KEEP_LIST` or to `TSC_FALLBACK_LIST`.
     - [ ] Do not run `convex deploy`. Do not run `convex dev` against a cloud deployment.
     - [ ] Commit: `chore(deps): keep typescript only where the Convex CLI needs it`.
 - [ ] Task: S3 Verify — run the gates after the type-check change
     - [ ] Run each gate. Confirm that no gate has a new failure.
     - [ ] Confirm that the scripts suite passes.
+    - [ ] Confirm that `GREEN_TEST_COMMAND` exits 1 for the one Q3 row (16.5). Confirm that the S2 filters stay green after the import switch.
     - [ ] Add the temporary file `apps/integrated-math-3/convex/__oxc_probe__.ts` with `export const n: number = "x";`.
     - [ ] Run the IM3 typecheck. Confirm that the output contains `TS2322` for the probe file. Delete the probe file. Do not commit it.
     - [ ] Time the tsrs typecheck for each workspace. Record "after" in section 5.
