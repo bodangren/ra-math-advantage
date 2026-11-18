@@ -1667,4 +1667,193 @@ describe('S2 adversarial', () => {
     },
     TOOL_TIMEOUT_MS,
   );
+
+  it(
+    'adv 10: a CRLF line ending must not blind the sweep for the // disable forms',
+    () => {
+      // F1r3: oxlint honors a trailing disable-line and a disable-next-line on a
+      // file with CRLF line ends, but TRAILING_DISABLE_RE does not match a line
+      // that ends with a carriage return, so stripDisableComments keeps the
+      // directive and the sweep copy stays clean. A listed CRLF carrier can hide
+      // a live finding behind either form without the sweep surfacing it. Live
+      // controls first, so the case is not vacuous.
+      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv10-'));
+      tempDirs.push(seedRoot);
+      const write = (name: string, content: string): string => {
+        const file = path.join(seedRoot, name);
+        fs.writeFileSync(file, content);
+        return file;
+      };
+      // Control: CRLF alone must not hide anything.
+      const bare = 'const keep = 1;\r\nconst unused = 2;\r\nexport { keep };\r\n';
+      const bareRun = runOxlintProbe(write('bare-crlf.ts', bare));
+      expect(bareRun.status, 'control: CRLF alone must surface the finding').not.toBe(0);
+      expect(bareRun.output).toContain('no-unused-vars');
+      // The two attacked forms, each with its LF twin as the paired control.
+      const forms = [
+        ['crlf-trailing', 'const keep = 1;\r\nconst unused = 2; // eslint-disable-line\r\nexport { keep };\r\n'],
+        ['crlf-next', 'const keep = 1;\r\n// eslint-disable-next-line\r\nconst unused = 2;\r\nexport { keep };\r\n'],
+      ] as const;
+      const lfTwins = [
+        ['lf-trailing', 'const keep = 1;\nconst unused = 2; // eslint-disable-line\nexport { keep };\n'],
+        ['lf-next', 'const keep = 1;\n// eslint-disable-next-line\nconst unused = 2;\nexport { keep };\n'],
+      ] as const;
+      for (const [name, content] of forms) {
+        // Live proof: oxlint honors the directive although the file uses CRLF.
+        const hidden = runOxlintProbe(write(`${name}.ts`, content));
+        expect(hidden.status, `${name}: the CRLF directive must hide the finding`).toBe(0);
+        // Required: the pin counts the directive, so the kinds stay visible.
+        const counted = directiveKindsOfFile(content);
+        expect(counted.total, `${name}: the pin must count the CRLF directive`).toBe(1);
+        // Required: the sweep strips the directive, so the copy surfaces the
+        // finding. This is the assertion that fails until F1r3 is fixed.
+        const stripped = stripDisableComments(content);
+        const copy = write(`${name}-stripped.ts`, stripped);
+        const surfaced = runOxlintProbe(copy);
+        expect(
+          surfaced.status,
+          `${name}: the stripped copy must surface the finding (strip result ${JSON.stringify(stripped)})`,
+        ).not.toBe(0);
+        expect(surfaced.output, `${name}: the surfaced finding`).toContain('no-unused-vars');
+      }
+      for (const [name, content] of lfTwins) {
+        // Paired control: the LF twins strip and surface, so the pipeline works
+        // and the CR at the line end is the only trigger of the blindness.
+        const stripped = stripDisableComments(content);
+        const copy = write(`${name}-stripped.ts`, stripped);
+        const surfaced = runOxlintProbe(copy);
+        expect(surfaced.status, `control ${name}: the LF twin must strip and surface`).not.toBe(0);
+        expect(surfaced.output, `control ${name}`).toContain('no-unused-vars');
+      }
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it(
+    'adv 11: a string that holds /* before a real disable must not blind the sweep',
+    () => {
+      // F2r3: BLOCK_COMMENT_RE starts inside the string literal, so the span runs
+      // from the in-string /* to the real disable's */. The strip then deletes
+      // the code between them, breaks the string, and the copy reports a parse
+      // error, so the finding that the real disable hides never surfaces.
+      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv11-'));
+      tempDirs.push(seedRoot);
+      const write = (name: string, content: string): string => {
+        const file = path.join(seedRoot, name);
+        fs.writeFileSync(file, content);
+        return file;
+      };
+      // Controls first: a disable inside a string literal or a template literal
+      // is string text, not a comment, so oxlint must not honor it (verified
+      // 2026-11-19, oxlint 1.93.0). Counting such text is the conservative
+      // direction, because nothing hides behind it.
+      const inString = 'const s = "/* eslint-disable */";\nconst unused = 2;\nexport { s };\n';
+      const stringRun = runOxlintProbe(write('in-string.ts', inString));
+      expect(stringRun.status, 'control: a disable inside a string must not hide').not.toBe(0);
+      expect(stringRun.output).toContain('no-unused-vars');
+      const inTemplate = 'const t = `/* eslint-disable */`;\nconst unused = 2;\nexport default t;\n';
+      const templateRun = runOxlintProbe(write('in-template.ts', inTemplate));
+      expect(templateRun.status, 'control: a disable inside a template must not hide').not.toBe(0);
+      expect(templateRun.output).toContain('no-unused-vars');
+      // The attacked form: a string that holds /* sits above a real disable, and
+      // the fault sits below the disable.
+      const content = 'const s = "a /* b";\n/* eslint-disable */\nconst unused = 2;\nexport { s };\n';
+      // Live proof: oxlint honors the real disable, so the finding is hidden.
+      const hidden = runOxlintProbe(write('swallow.ts', content));
+      expect(hidden.status, 'the real disable must hide the finding').toBe(0);
+      // Required: the pin counts the directive.
+      const counted = directiveKindsOfFile(content);
+      expect(counted.total, 'the pin must count the disable').toBe(1);
+      expect(counted.blocks, 'the disable must count as a block').toBe(1);
+      // Required: the sweep strips the disable without breaking the copy, so the
+      // hidden finding surfaces. This is the assertion that fails until F2r3 is
+      // fixed: the copy today reports an unterminated string and no rule.
+      const stripped = stripDisableComments(content);
+      const copy = write('swallow-stripped.ts', stripped);
+      const surfaced = runOxlintProbe(copy);
+      expect(surfaced.output, 'the stripped copy must not report a parse error').not.toContain(
+        'Unterminated string',
+      );
+      expect(surfaced.status, 'the stripped copy must surface the finding').not.toBe(0);
+      expect(surfaced.output, 'the surfaced finding').toContain('no-unused-vars');
+      // Paired control: the same file without the in-string /* strips and
+      // surfaces, so the pipeline works and the in-string /* is the trigger.
+      const control = 'const s = "a b";\n/* eslint-disable */\nconst unused = 2;\nexport { s };\n';
+      const controlStripped = stripDisableComments(control);
+      const controlCopy = write('control-stripped.ts', controlStripped);
+      const controlRun = runOxlintProbe(controlCopy);
+      expect(controlRun.status, 'control: without the in-string /* the strip surfaces').not.toBe(0);
+      expect(controlRun.output, 'control').toContain('no-unused-vars');
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it(
+    'adv 12: the verified-good disable forms stay honored, counted, and stripped',
+    () => {
+      // The r3 probe set that the guard already handles: each form must stay
+      // honored by oxlint (live), counted by the pin, and stripped by the sweep,
+      // with the surfaced finding. A regression on any form reopens the F1r2
+      // hole through a new spelling.
+      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv12-'));
+      tempDirs.push(seedRoot);
+      const write = (name: string, content: string): string => {
+        const file = path.join(seedRoot, name);
+        fs.writeFileSync(file, content);
+        return file;
+      };
+      // Each entry: a form, the expected directive count, and the expected kinds.
+      const forms = [
+        [
+          'star-slash-in-string.ts',
+          'const s = "a */ b"; /* eslint-disable */ const unused = 2;\nexport { s };\n',
+        ],
+        [
+          'adjacent-blocks.ts',
+          '/* keep */ /* eslint-disable */ const unused = 2;\nexport {};\n',
+        ],
+        [
+          'two-disables-one-line.ts',
+          '/* eslint-disable */ /* eslint-disable */ const unused = 2;\nexport {};\n',
+        ],
+        ['tight-block.ts', '/*eslint-disable*/\nconst unused = 2;\nexport {};\n'],
+        ['wide-whitespace.ts', '/*  oxlint-disable  no-unused-vars  */\nconst unused = 2;\nexport {};\n'],
+        [
+          'jsx-wrap-midline.tsx',
+          'export function P() {\n  {/* eslint-disable */} const unused = 2;\n  return <div />;\n}\n',
+        ],
+        [
+          'crlf-block.ts',
+          'const keep = 1;\r\n/* eslint-disable */\r\nconst unused = 2;\r\nexport { keep };\r\n',
+        ],
+      ] as const;
+      for (const [name, content] of forms) {
+        // Live: oxlint honors the form, so the finding stays hidden.
+        const hidden = runOxlintProbe(write(name, content));
+        expect(hidden.status, `${name}: oxlint must honor the form`).toBe(0);
+        // The pin counts the form.
+        const counted = directiveKindsOfFile(content);
+        expect(counted.total, `${name}: the pin must count the form`).toBeGreaterThanOrEqual(1);
+        // The sweep strips the form, so the copy surfaces the finding.
+        const copy = write(name.replace('.', '-stripped.'), stripDisableComments(content));
+        const surfaced = runOxlintProbe(copy);
+        expect(surfaced.status, `${name}: the stripped copy must surface the finding`).not.toBe(0);
+        expect(surfaced.output, `${name}: the surfaced finding`).toContain('no-unused-vars');
+      }
+      // Live semantic pins that the sweep decode relies on (verified 2026-11-19,
+      // oxlint 1.93.0): a blanket block disable does not act retroactively, and
+      // eslint-enable ends the blanket region. Each fault below the pin stays
+      // live in the original file, so the workspace lint gate itself reports it.
+      const retroactive = 'const unused = 1;\n/* eslint-disable */\nconst unused2 = 2;\nexport {};\n';
+      const retroRun = runOxlintProbe(write('retroactive.ts', retroactive));
+      expect(retroRun.status, 'a fault above the disable stays live').not.toBe(0);
+      expect(retroRun.output).toContain('no-unused-vars');
+      const enableForm =
+        '/* eslint-disable */\nconst unused = 1;\n/* eslint-enable */\nconst unused2 = 2;\nexport {};\n';
+      const enableRun = runOxlintProbe(write('enable-form.ts', enableForm));
+      expect(enableRun.status, 'a fault after eslint-enable stays live').not.toBe(0);
+      expect(enableRun.output).toContain('no-unused-vars');
+    },
+    TOOL_TIMEOUT_MS,
+  );
 });
