@@ -194,6 +194,26 @@ The package lint script is `oxlint --config ../../.oxlintrc.json src --max-warni
 Open: no ESLint config remains. No ESLint "before" lint timing can run. The S2
 Verify task fills the "before" cell of the lint row in evidence section 5.
 
+### S3 type-check contract (2026-11-19, `vinext-oxc-toolchain_20261114`)
+
+The S3 task records the type-check change of this track. The root
+`package.json` declares `typescript` `^7.0.2` in `devDependencies` and in
+`overrides`. The root declares `tsrs` `0.25.0-ts7.1.0-beta` (exact) in
+`devDependencies` only. No workspace manifest declares `tsrs`.
+
+tsrs `0.25.0-ts7.1.0-beta` uses the TypeScript 7.1.0-beta compiler line.
+The kept `typescript` package uses 7.0.2.
+
+The app typecheck script is `TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .`.
+The package typecheck script is the same command with `src` in place of `.`.
+Each package `build` script that is `tsc --noEmit` now becomes `npm run typecheck`.
+bus-math-v2 gets the app typecheck script. Each CI typecheck step becomes
+`npm run typecheck --workspace=<app folder>`.
+
+The oxlint type-check gate runs with `TSRS_FAST=1`. When oxlint reports that
+`--type-aware` needs `oxlint-tsgolint`, the root `devDependencies` add
+`oxlint-tsgolint` `^7.0.2007`, and evidence section 8 records it.
+
 ## Environment Variables
 
 `apps/integrated-math-3/.env.example`:

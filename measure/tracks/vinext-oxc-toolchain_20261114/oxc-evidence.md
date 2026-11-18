@@ -301,6 +301,51 @@ this tree (section 8).
 | `npm run lint` in `packages/teacher-reporting-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
 | `npm run lint` in `packages/workbook-pipeline` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
 
+### S3 type-check "before" timing (2026-11-19)
+
+Method: the plan "Timing Method". One warm `tsc --noEmit` run per workspace, then
+3 timed runs with bash `time` and `TIMEFORMAT=%R`, in one `heavy-run.sh` job with
+no concurrent heavy job. `tsconfig.tsbuildinfo` deleted before each run. The
+command is the workspace `typecheck` script (`npm run typecheck
+--workspace=<ws>`), except bus-math-v2, which has no `typecheck` script and runs
+`npx --no-install tsc --noEmit -p apps/bus-math-v2/tsconfig.json`. TypeScript is
+6.0.3 (`npx tsc --version` prints `Version 6.0.3`). The table holds the median of
+the 3 runs. The values include the npm overhead (about 0.5 s). Raw values:
+`s3-tsc-before-raw.txt` in the run folder (force-added). The warm exits of
+`apps/integrated-math-3` (exit 2) and `apps/pre-calculus` (exit 2) are the
+pre-existing failures of section 10 (merged-tree part); the exit 2 is the
+cacheless form of the 1-vs-2 artifact of plan line 226.
+
+| Task | Tool before | Seconds before | Tool after | Seconds after | Ratio |
+|---|---|---|---|---|---|
+| `tsc --noEmit` in `apps/bus-math-v2` (median of 3) | tsc 6.0.3 | 17.9 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `apps/danielson` (median of 3) | tsc 6.0.3 | 5.8 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `apps/integrated-math-1` (median of 3) | tsc 6.0.3 | 9.1 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `apps/integrated-math-2` (median of 3) | tsc 6.0.3 | 7.8 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `apps/integrated-math-3` (median of 3) | tsc 6.0.3 | 22.4 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `apps/pre-calculus` (median of 3) | tsc 6.0.3 | 13.9 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/activity-components` (median of 3) | tsc 6.0.3 | 4.8 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/activity-runtime` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/ai-tutoring` (median of 3) | tsc 6.0.3 | 0.9 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/app-shell` (median of 3) | tsc 6.0.3 | 1.5 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/component-approval` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/core-auth` (median of 3) | tsc 6.0.3 | 0.9 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/core-convex` (median of 3) | tsc 6.0.3 | 1.0 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/efficacy-core` (median of 3) | tsc 6.0.3 | 1.4 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/graphing-core` (median of 3) | tsc 6.0.3 | 0.7 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/knowledge-space-core` (median of 3) | tsc 6.0.3 | 2.1 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/knowledge-space-practice` (median of 3) | tsc 6.0.3 | 2.3 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/lesson-renderer` (median of 3) | tsc 6.0.3 | 1.4 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/math-content` (median of 3) | tsc 6.0.3 | 3.7 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/practice-core` (median of 3) | tsc 6.0.3 | 1.3 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/practice-test-engine` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/rate-limiter` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/srs-engine` (median of 3) | tsc 6.0.3 | 1.8 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/study-hub-core` (median of 3) | tsc 6.0.3 | 0.9 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/teacher-reporting-core` (median of 3) | tsc 6.0.3 | 0.7 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/_template` (median of 3) | tsc 6.0.3 | 0.4 | tsrs typecheck (S3 Verify) | pending | pending |
+| `tsc --noEmit` in `packages/workbook-pipeline` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
+
 ## 6. Rule gaps
 
 ### S2 Red gate exception (2026-11-18)

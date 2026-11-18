@@ -339,16 +339,16 @@ Phase note (2026-11-19, S2 remediation): strategy section 8 rows "case 7" ("Zero
 ## Phase S3: TypeScript 7 and tsrs
 _Story ref: spec.md#story-s3_
 
-- [ ] Task: S3 Contract — record the type-check change
-    - [ ] In `measure/tech-stack.md`, add a dated note. The note names TypeScript 7.0.2, tsrs `0.25.0-ts7.1.0-beta`, `TSRS_FAST=1`, and the oxlint type-check gate.
-    - [ ] The note also says that tsrs uses the TypeScript 7.1.0-beta compiler line, and the kept `typescript` package uses 7.0.2.
-    - [ ] Use this target layout. The app typecheck script is `TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .`.
-    - [ ] The package typecheck script is the same command with `src` in place of `.`.
-    - [ ] Each package `build` script that is `tsc --noEmit` now becomes `npm run typecheck`.
-    - [ ] bus-math-v2 gets the app typecheck script.
-    - [ ] `tsrs` `0.25.0-ts7.1.0-beta` (exact) goes in the root `devDependencies` only.
-    - [ ] Each CI typecheck step becomes `npm run typecheck --workspace=<app folder>`.
-    - [ ] Time `tsc --noEmit` on TypeScript 6.0.3 for each workspace. Record "before" in section 5.
+- [x] Task: S3 Contract — record the type-check change
+    - [x] In `measure/tech-stack.md`, add a dated note. The note names TypeScript 7.0.2, tsrs `0.25.0-ts7.1.0-beta`, `TSRS_FAST=1`, and the oxlint type-check gate.
+    - [x] The note also says that tsrs uses the TypeScript 7.1.0-beta compiler line, and the kept `typescript` package uses 7.0.2.
+    - [x] Use this target layout. The app typecheck script is `TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .`.
+    - [x] The package typecheck script is the same command with `src` in place of `.`.
+    - [x] Each package `build` script that is `tsc --noEmit` now becomes `npm run typecheck`.
+    - [x] bus-math-v2 gets the app typecheck script.
+    - [x] `tsrs` `0.25.0-ts7.1.0-beta` (exact) goes in the root `devDependencies` only.
+    - [x] Each CI typecheck step becomes `npm run typecheck --workspace=<app folder>`.
+    - [x] Time `tsc --noEmit` on TypeScript 6.0.3 for each workspace. Record "before" in section 5. (27 workspaces, medians in section 5, raw `s3-tsc-before-raw.txt`; IM3 22.4 s, BM2 17.9 s; warm exits of IM3 and PreCalc are the section 10 pre-existing failures)
 - [ ] Task: S3 Test (Red) — add the S3 gate tests
     - [ ] Add `describe('S3 tsrs')` to the test file. Add two constants: `TYPESCRIPT_KEEP_LIST = []` and `TSC_FALLBACK_LIST = []`. Add `SCAN_PARSER_PACKAGE = 'typescript6'`. State that `TYPESCRIPT_KEEP_LIST` tracks only manifests that declare the package named `typescript`.
     - [ ] Case 0: the S2 disable scan keeps the 6.0 parser API through the alias. Use `createRequire`, already imported, so a missing alias cannot break module load. Assert that the root `package.json` declares `devDependencies.typescript6` as `npm:@typescript/typescript6@^6.0.2`. Assert that `createRequire` from the repository root resolves `typescript6/package.json`, and that its `version` has major 6, parsed as an integer (A3). Assert that the required module exposes `createSourceFile`, `getLeadingCommentRanges`, and `getTrailingCommentRanges` as functions, and defines `ScriptKind.TSX`.

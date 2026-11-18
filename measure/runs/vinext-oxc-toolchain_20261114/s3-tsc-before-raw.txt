@@ -1,0 +1,137 @@
+tsc version: Version 6.0.3
+== apps/bus-math-v2 :: npx --no-install tsc --noEmit -p apps/bus-math-v2/tsconfig.json
+warm exit=0
+run1 seconds=17.540
+run2 seconds=18.801
+run3 seconds=17.941
+== apps/danielson :: npm run typecheck --workspace=apps/danielson
+warm exit=0
+run1 seconds=5.794
+run2 seconds=6.091
+run3 seconds=5.849
+== apps/integrated-math-1 :: npm run typecheck --workspace=apps/integrated-math-1
+warm exit=0
+run1 seconds=9.500
+run2 seconds=9.071
+run3 seconds=8.977
+== apps/integrated-math-2 :: npm run typecheck --workspace=apps/integrated-math-2
+warm exit=0
+run1 seconds=7.840
+run2 seconds=7.902
+run3 seconds=7.601
+== apps/integrated-math-3 :: npm run typecheck --workspace=apps/integrated-math-3
+warm exit=2
+run1 seconds=22.948
+run2 seconds=22.350
+run3 seconds=22.399
+== apps/pre-calculus :: npm run typecheck --workspace=apps/pre-calculus
+warm exit=2
+run1 seconds=13.936
+run2 seconds=13.699
+run3 seconds=13.949
+== packages/activity-components :: npm run typecheck --workspace=packages/activity-components
+warm exit=0
+run1 seconds=4.840
+run2 seconds=4.838
+run3 seconds=4.557
+== packages/activity-runtime :: npm run typecheck --workspace=packages/activity-runtime
+warm exit=0
+run1 seconds=0.609
+run2 seconds=0.618
+run3 seconds=0.630
+== packages/ai-tutoring :: npm run typecheck --workspace=packages/ai-tutoring
+warm exit=0
+run1 seconds=0.925
+run2 seconds=0.896
+run3 seconds=0.897
+== packages/app-shell :: npm run typecheck --workspace=packages/app-shell
+warm exit=0
+run1 seconds=1.533
+run2 seconds=1.496
+run3 seconds=1.464
+== packages/component-approval :: npm run typecheck --workspace=packages/component-approval
+warm exit=0
+run1 seconds=0.632
+run2 seconds=0.641
+run3 seconds=0.673
+== packages/core-auth :: npm run typecheck --workspace=packages/core-auth
+warm exit=0
+run1 seconds=0.903
+run2 seconds=0.949
+run3 seconds=1.120
+== packages/core-convex :: npm run typecheck --workspace=packages/core-convex
+warm exit=0
+run1 seconds=1.049
+run2 seconds=0.970
+run3 seconds=0.949
+== packages/efficacy-core :: npm run typecheck --workspace=packages/efficacy-core
+warm exit=0
+run1 seconds=1.379
+run2 seconds=1.377
+run3 seconds=1.383
+== packages/graphing-core :: npm run typecheck --workspace=packages/graphing-core
+warm exit=0
+run1 seconds=0.652
+run2 seconds=0.652
+run3 seconds=0.695
+== packages/knowledge-space-core :: npm run typecheck --workspace=packages/knowledge-space-core
+warm exit=0
+run1 seconds=2.001
+run2 seconds=2.066
+run3 seconds=2.059
+== packages/knowledge-space-practice :: npm run typecheck --workspace=packages/knowledge-space-practice
+warm exit=0
+run1 seconds=2.246
+run2 seconds=2.274
+run3 seconds=2.536
+== packages/lesson-renderer :: npm run typecheck --workspace=packages/lesson-renderer
+warm exit=0
+run1 seconds=1.839
+run2 seconds=1.332
+run3 seconds=1.363
+== packages/math-content :: npm run typecheck --workspace=packages/math-content
+warm exit=0
+run1 seconds=3.737
+run2 seconds=3.918
+run3 seconds=3.696
+== packages/practice-core :: npm run typecheck --workspace=packages/practice-core
+warm exit=0
+run1 seconds=1.292
+run2 seconds=1.331
+run3 seconds=1.265
+== packages/practice-test-engine :: npm run typecheck --workspace=packages/practice-test-engine
+warm exit=0
+run1 seconds=0.585
+run2 seconds=0.566
+run3 seconds=0.595
+== packages/rate-limiter :: npm run typecheck --workspace=packages/rate-limiter
+warm exit=0
+run1 seconds=0.563
+run2 seconds=0.559
+run3 seconds=0.577
+== packages/srs-engine :: npm run typecheck --workspace=packages/srs-engine
+warm exit=0
+run1 seconds=1.738
+run2 seconds=1.836
+run3 seconds=1.794
+== packages/study-hub-core :: npm run typecheck --workspace=packages/study-hub-core
+warm exit=0
+run1 seconds=0.882
+run2 seconds=0.831
+run3 seconds=0.862
+== packages/teacher-reporting-core :: npm run typecheck --workspace=packages/teacher-reporting-core
+warm exit=0
+run1 seconds=0.696
+run2 seconds=0.688
+run3 seconds=0.683
+== packages/_template :: npm run typecheck --workspace=packages/_template
+warm exit=0
+run1 seconds=0.426
+run2 seconds=0.444
+run3 seconds=0.438
+== packages/workbook-pipeline :: npm run typecheck --workspace=packages/workbook-pipeline
+warm exit=0
+run1 seconds=0.629
+run2 seconds=0.629
+run3 seconds=0.608
+done
