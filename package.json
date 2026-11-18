@@ -53,6 +53,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "oxlint": "^1.79.0",
+    "tsrs": "0.25.0-ts7.1.0-beta",
     "oxlint-plugin-eslint": "^1.79.0"
   },
   "overrides": {

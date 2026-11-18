@@ -6,7 +6,7 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "oxlint --config ../../.oxlintrc.json . --max-warnings 0",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "curriculum:build": "node scripts/build-curriculum.mjs && node scripts/build-calendar.mjs",

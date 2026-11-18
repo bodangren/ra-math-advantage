@@ -8,8 +8,8 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "lint": "echo 'No lint configured for template package'",
-    "typecheck": "tsc --noEmit",
-    "build": "tsc --noEmit"
+    "typecheck": "TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src",
+    "build": "npm run typecheck"
   },
   "devDependencies": {
     "typescript": "^7.0.2"

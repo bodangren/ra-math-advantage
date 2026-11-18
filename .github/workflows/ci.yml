@@ -129,7 +129,7 @@ jobs:
           CI: true
 
       - name: Run IM3 typecheck
-        run: cd apps/integrated-math-3 && npx tsc --noEmit
+        run: npm run typecheck --workspace=apps/integrated-math-3
         env:
           CI: true
 
@@ -179,7 +179,7 @@ jobs:
           CI: true
 
       - name: Run BM2 typecheck
-        run: cd apps/bus-math-v2 && npx tsc --noEmit
+        run: npm run typecheck --workspace=apps/bus-math-v2
         env:
           CI: true
 
@@ -252,13 +252,13 @@ jobs:
           CI: true
 
       - name: Run ${{ matrix.app.name }} typecheck
-        run: cd ${{ matrix.app.dir }} && npx tsc --noEmit
+        run: npm run typecheck --workspace=${{ matrix.app.dir }}
         env:
           CI: true
 
       - name: Check IM2 backend types and content bundle
         if: matrix.app.name == 'IM2'
-        run: cd apps/integrated-math-2 && npx tsc --noEmit -p convex/tsconfig.json && npm run curriculum:check
+        run: npm run typecheck --workspace=apps/integrated-math-2 && npm run curriculum:check
         env:
           CI: true
 

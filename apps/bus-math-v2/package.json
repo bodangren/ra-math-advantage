@@ -10,7 +10,8 @@
     "lint": "oxlint --config ../../.oxlintrc.json . --max-warnings 0",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "bundle:audit": "node scripts/bundle-size-audit.mjs"
+    "bundle:audit": "node scripts/bundle-size-audit.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",

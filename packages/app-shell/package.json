@@ -16,8 +16,8 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0",
-    "typecheck": "tsc --noEmit",
-    "build": "tsc --noEmit"
+    "typecheck": "TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src",
+    "build": "npm run typecheck"
   },
   "dependencies": {
     "@math-platform/core-auth": "*",

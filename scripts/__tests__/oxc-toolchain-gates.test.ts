@@ -461,8 +461,17 @@ describe('S1 vinext 1.x', () => {
 // Red starts empty; Green sets the Convex-driven keep set (strategy 16.3 case 5).
 const TYPESCRIPT_KEEP_LIST: string[] = [];
 // Workspaces whose typecheck script stays `tsc --noEmit` for a blocking
-// conformance gap. A subset of TYPESCRIPT_KEEP_LIST. Red starts empty.
-const TSC_FALLBACK_LIST: string[] = [];
+// conformance gap. A subset of TYPESCRIPT_KEEP_LIST. Green sets the four apps whose
+// tsrs check reports diagnostics that the workspace tsc project does not: tsrs
+// discovers the nearest tsconfig for each file, so it checks `convex/` files
+// through `convex/tsconfig.json` and imported package sources through their own
+// config (evidence section 7, "blocking" rows).
+const TSC_FALLBACK_LIST: string[] = [
+  'apps/bus-math-v2',
+  'apps/integrated-math-1',
+  'apps/integrated-math-3',
+  'apps/pre-calculus',
+];
 // The package that provides the S2 disable-comment parser API (strategy 16.2).
 const SCAN_PARSER_PACKAGE = 'typescript6';
 

@@ -41,7 +41,7 @@ jobs:
           CI: true
 
       - name: Run typecheck
-        run: cd apps/integrated-math-3 && npx tsc --noEmit
+        run: npm run typecheck --workspace=apps/integrated-math-3
         env:
           CI: true
 

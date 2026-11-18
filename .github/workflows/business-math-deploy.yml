@@ -32,7 +32,8 @@ jobs:
         working-directory: .
         run: node scripts/check-monorepo-boundaries.mjs
       - name: Check types
-        run: npx --no-install tsc --noEmit
+        working-directory: .
+        run: npm run typecheck --workspace=apps/bus-math-v2
       - name: Lint
         run: npm run lint
       - name: Test

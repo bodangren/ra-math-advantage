@@ -11,7 +11,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 src",
     "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0"
   },
   "dependencies": {},
