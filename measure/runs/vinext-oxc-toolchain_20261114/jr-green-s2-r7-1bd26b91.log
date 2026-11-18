@@ -1,0 +1,15 @@
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: pass
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: d3822d47e0d7d5273496fb4bdaeb9ea931f8f087
+head: 1bd26b91ad03cd0fcb1050d3e5185af82e8c9644
+commits: fde3eda2 test(vinext-oxc): detect disable comments with the TypeScript scanner; 1bd26b91 measure(plan): record the S2 remediation round 3
+tests_run: S2 adversarial 12 pass; S2 oxlint 7 pass; S1 adversarial 7 pass; S1 vinext 1.x 11 pass; full scripts suite 60 pass with only the pre-existing remediate-concept-blueprints failure; npx tsc --noEmit (repo root) exit 0; GATES_RESUME=1 GATES_BASE=baseline-m2 gates.sh test s2 NEWFAIL=0 exit 0 (stale scripts-suite step record dropped first, step re-ran: 60 pass, same 1 pre-existing failure)
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts (helpers only: typescript import, scriptKindForFile, disableCommentRanges, tokenizer stripDisableComments, tokenizer directiveKindsOfFile; no test body and no assertion changed); fixture scripts/__tests__/fixtures/lint-disable-allowlist.json unchanged (all 49 entries match under the tokenizer)
+plan_updates: plan.md S2 remediation sub-box round 3 with SHA fde3eda2; F3r3 resolved by the tokenizer; F4r3 accepted limitation noted in the helper comment
+known_failures: remediate-concept-blueprints production-scan honest-count row (pre-existing S1 Q3 baseline failure, also fails at baseline-m2, not new)
+handoff: Green round 3 done. Tokenizer design: (1) each file parses with ts.createSourceFile and the ScriptKind of its extension (TSX/JSX use the JSX-aware scan); (2) disableCommentRanges walks every child including punctuation tokens through getChildren and keeps only text inside real comment ranges, so strings, templates, and JSX text never count; (3) the strip blanks each disable range with spaces of the same length and keeps newlines and CRLF, so no code moves and positions stay. Adv 10 and adv 11 pass as written; adv 1-9 and adv 12 hold. The 49-entry fixture needed no change: every entry matches under the tokenizer. Routed findings: none (no dispositions block applies).
+END_MEASURE_AGENT_RESULT
