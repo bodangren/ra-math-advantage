@@ -1,0 +1,110 @@
+Adversarial testing log: Phase S1 (vinext-oxc-toolchain_20261114)
+Role: measure-adversarial-testing. Route: opencode-go/glm-5.3#high.
+Audited test commit: 8e1bf30d. role_base_sha: 831804c10ff310eeafd53c189ae87121e359a8b0.
+phase_base_sha: d475273969aee1e1248d4aa3b13e55fb3726b63f.
+
+FINAL VERDICT: pass. Seven adversarial cases added, all pass. No blocking finding.
+No implementation defect found: each attack is caught by an S1 guard.
+
+Attacks attempted (strategy 13.7 row "Adversarial", R18 mandatory scope; no "not
+applicable" mark):
+1. Make `next` resolve again.
+   - adv 1 (R1): hoisted `next` copy in a temp tree. The case 2 walker
+     (findInstalledPackageJson) and createRequire resolve both catch it from the root,
+     two app folders, and packages/app-shell. Paired control: the real tree resolves
+     no `next`. Guard holds.
+   - adv 3 (R1): in-memory manifests with `next` in each of the five dependency
+     fields plus a nested `next@16.2.7` override key. The case 3 scanner
+     (scanDeclarations, isNextKey) reports all six hits. Guard holds.
+   - adv 4 (R1, R16): in-memory lockfile seeded with `node_modules/next`,
+     `apps/danielson/node_modules/next`, the nested 0.0.55
+     `apps/danielson/node_modules/vinext`, and a workspace entry that lists `next`.
+     The extracted case 8 scanner (scanLockfileNextHygiene) reports each rule's
+     fault. Guard holds.
+2. Pass the probes with `any`.
+   - adv 5 (R3): a probe tsconfig without vinext/types plus a shorthand ambient
+     `declare module 'next/navigation';` (any types). The push(123) probe then passes
+     with exit 0 and no TS2345, so the case 5b guard (non-zero exit, TS2741|TS2345)
+     fails on the fault: the attack cannot produce a false green. Paired control: with
+     the real vinext/types the same probe fails with TS2345. Guard holds.
+3. Drop apps/danielson from a glob, a test list, or a gate.
+   - adv 2 (R16, R18): a nested 0.0.55 vinext copy under apps/danielson in a temp
+     tree. The disk-read scan (the APP_DIRS rule) reports it; a scan set that drops
+     danielson reports nothing, so the case 1 sentinel that pins apps/danielson into
+     the disk-read set is load-bearing, and it holds at HEAD. Guard holds.
+   - adv 6 (R18): a sweep whose tree drops apps/danielson against a baseline that
+     lists it. gates.sh prints NEW FAILURE with the name apps/danielson, NEWFAIL=1.
+     Guard holds.
+   - adv 7 (R18, A4): apps/danielson stays in the tree but loses its lint script.
+     gates.sh prints NEW FAILURE: lint script removed in apps/danielson, NEWFAIL=1.
+     Guard holds.
+
+Test evidence (commands and results):
+- npx vitest list --config scripts/vitest.config.ts --filesOnly -> names the 3 files.
+- npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial' -> 7 passed,
+  42 skipped, exit 0.
+- npx vitest run --config scripts/vitest.config.ts -t 'adv 5' --reporter=verbose ->
+  1 passed (1899 ms, two real tsc probe runs).
+- npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x' -> 11 passed
+  (guard intact after the case 8 scanner extraction).
+- Full scripts suite through heavy-run.sh: 48 passed, 1 failed. The only failure is
+  the pre-existing remediate-concept-blueprints baseline row (known failure).
+
+PROJECT_TESTS gate (test s1, GATES_BASE=baseline-m2). Method, recorded for
+transparency: the gates/s1 folder holds the Verify-era results of 2026-11-18 04:14 to
+04:22 (27 workspace records, steps). Since then only these gate inputs changed
+(git diff ea024eee..HEAD --name-only): the math-content source and test (bede55e8,
+d08ecd38) and scripts/__tests__ (a329d7d5, 8e1bf30d). The run removed the recorded
+lines of exactly those two jobs (both held code 1) and ran GATES_RESUME=1, so the
+gate re-ran only them and re-compared every other record with baseline-m2. A full
+fresh sweep of unchanged inputs adds no signal.
+
+- Gate run 1 (adversarial-gate-test-s1.log): scripts-suite re-ran fresh at 21:57
+  (48 passed, 1 failed: the remediate-concept-blueprints baseline row) and its key
+  compare was clean. packages/math-content re-ran and hit transient write errors
+  ("Error: Unknown system error -122", EDQUOT): 89 of 91 test files failed on the
+  write error. The gate printed
+  "NEW FAILURE: test packages/math-content has a new diagnostic" and NEWFAIL=1,
+  exit 1. Infrastructure failure of the machine at that moment, not a code fault:
+  the disk had 684 GB free afterward. Recorded as nonblocking finding F1 (Nit):
+  the INFRA exit list of gates.sh does not cover a tool run that fails this way.
+- Gate run 2 (adversarial-gate-test-s1-run2.log): only the math-content job re-ran
+  (56 s). Result: NEWFAIL=0, exit 0. The math-content diagnostics match the
+  baseline keys; the EDQUOT artifacts are gone (0 "Unknown system error" lines).
+
+Audit of the existing S1 guard tests (weak-assertion review): the probes run real
+`tsc` through `npx --no-install` against a real node_modules symlink; the manifest,
+lockfile, and workflow cases read the real files with disk-read sets and count or
+key-list sentinels; the gates-script harness copies the real gates.sh and drives its
+real logic. No vacuous pass and no documentation-assertion stand-in found.
+
+One nonblocking finding (F1, Nit), no blocking finding:
+- F1 [Nit] gates.sh: the INFRA exit list (64 65 70 75 77 124 201) does not cover a
+  workspace tool run that fails on a transient machine write error. A vitest run
+  that hits EDQUOT (errno -122) exits 1, so the gate reports a new diagnostic instead
+  of INFRA=1, and only a manual re-run resolves it. Evidence:
+  adversarial-gate-test-s1.log ("NEW FAILURE: test packages/math-content has a new
+  diagnostic" after 89 EDQUOT file failures) and the clean re-run. Default
+  disposition: no change; the strategy section 2 re-run rule covers it.
+
+Question for the orchestrator (with default):
+- Q1: does the PM want gates.sh to classify a tool run whose output holds write
+  errors (for example "Unknown system error -122") as INFRA, so the gate prints
+  INFRA=1 instead of a new failure? Default: no change. The gate stays conservative
+  and the resume re-run resolves it.
+
+MEASURE_AGENT_RESULT
+role: measure-adversarial-testing
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+baseline_sha: d475273969aee1e1248d4aa3b13e55fb3726b63f
+role_base_sha: 831804c10ff310eeafd53c189ae87121e359a8b0
+head: 8e1bf30d (test commit; the artifacts commit follows in measure/runs/)
+commits: 8e1bf30d test(vinext-oxc): add the S1 adversarial tests; artifacts commit: measure(runs): add the S1 adversarial result
+tests_run: -t 'S1 adversarial' 7 passed exit 0; -t 'S1 vinext 1.x' 11 passed exit 0; full scripts suite (heavy-run.sh) 48 passed 1 known failure (remediate-concept-blueprints baseline row); PROJECT_TESTS test s1 gate run 1 NEWFAIL=1 on a transient EDQUOT write failure, run 2 NEWFAIL=0 exit 0
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts, scripts/__tests__/vinext-oxc-gates-script.test.ts (test commit); measure/runs/vinext-oxc-toolchain_20261114/adversarial-8e1bf30d.{json,log} (artifacts commit)
+plan_updates: none (the S1 adversarial review is not a plan task; the orchestrator records the result)
+known_failures: the pre-existing remediate-concept-blueprints scripts-suite failure (evidence section 10). No new failure from this role.
+handoff: verdict pass; no implementation defect; all three R18 attacks are covered by the 7 new cases (selectable with -t 'S1 adversarial'); one Nit (gates.sh INFRA list vs transient write errors) with default no-change; one question Q1 for the PM with default no; the gates/s1 run state now holds fresh records for scripts-suite and packages/math-content at 8e1bf30d, and the gate folder keeps 27 workspace names; the 6 dirty generated files stay unstaged
+END_MEASURE_AGENT_RESULT

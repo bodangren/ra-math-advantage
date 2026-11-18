@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S1: Package refresh and vinext 1.x",
+  "baseline_sha": "d475273969aee1e1248d4aa3b13e55fb3726b63f",
+  "role_base_sha": "831804c10ff310eeafd53c189ae87121e359a8b0",
+  "audited_head_sha": "8e1bf30d",
+  "status": "pass",
+  "summary": "Seven adversarial cases cover the three mandatory attacks of strategy 13.7 (R18): make next resolve again (hoisted copy, manifest fields, lockfile keys), pass the probes with any types, and drop apps/danielson from a test list or a gate. Each seeded fault is caught by the S1 guard logic: the case 2 walker and require.resolve find a hoisted next copy in a temp tree; the case 3 scanner reports next in all five manifest fields and a nested next@16.2.7 override; the extracted case 8 scanner reports node_modules/next, a nested next, the nested 0.0.55 danielson vinext copy, and a workspace entry that lists next; a shorthand ambient any module makes the push(123) probe pass, which turns the case 5b guard red, so any types cannot produce a false green; the disk-read scan reports the nested 0.x vinext copy while a danielson-filtered scan hides it, so the case 1 sentinel is load-bearing and holds; gates.sh reports NEW FAILURE when the sweep tree drops apps/danielson and when its lint script is removed. All 7 adversarial tests pass, the 11 S1 guard cases still pass, the full scripts suite holds only the known remediate-concept-blueprints baseline failure, and the PROJECT_TESTS gate (GATES_RESUME=1 GATES_BASE=baseline-m2 gates.sh test s1, with fresh re-runs of exactly the two jobs whose inputs changed) prints NEWFAIL=0 and exits 0. No blocking finding, no implementation defect, no production file changed: 831804c1..8e1bf30d holds the two test files only. No 'not applicable' mark was used on any mandatory attack.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Nit] adversarial-testing: gates.sh does not classify a workspace tool run that fails on a transient machine write error as INFRA. A vitest run that hits EDQUOT (errno -122) exits 1, so the gate reports a new diagnostic instead of INFRA=1, and only a manual resume re-run resolves it. Rationale: the INFRA exit list (64 65 70 75 77 124 201) covers heavy-run.sh exit codes only, not in-run write errors of the tool it launches. Evidence: adversarial-gate-test-s1.log printed 'NEW FAILURE: test packages/math-content has a new diagnostic' after 89 'Unknown system error -122' write failures, and the same job re-ran clean (adversarial-gate-test-s1-run2.log, NEWFAIL=0)."
+  ],
+  "evidence": [
+    "npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial' -> 7 passed, 42 skipped, exit 0 (run at 8e1bf30d)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'adv 5' --reporter=verbose -> 1 passed in 1899 ms (two real tsc probe runs)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x' -> 11 passed, exit 0 (the case 8 scanner extraction changed no assertion)",
+    "Full scripts suite (heavy-run.sh): 48 passed, 1 failed; the failure is the pre-existing remediate-concept-blueprints baseline row",
+    "PROJECT_TESTS gate run 2: GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s1 -> NEWFAIL=0, exit 0 (adversarial-gate-test-s1-run2.log)",
+    "adv 1: findInstalledPackageJson and createRequire().resolve('next/package.json') both report the seeded hoisted next copy from the temp root, two app folders, and packages/app-shell; the paired control finds no next in the real tree",
+    "adv 3: scanDeclarations with isNextKey returns exactly the six seeded hits, one per dependency field plus the nested next@16.2.7 override key",
+    "adv 4: scanLockfileNextHygiene returns both seeded next keys, both vinext keys (not equal to ['node_modules/vinext']), and the apps/danielson:optionalDependencies listing",
+    "adv 5: with types: [] plus a shorthand ambient next/navigation module, the push(123) probe exits 0 with no TS2345; with vinext/types the same probe exits non-zero with TS2345",
+    "adv 2: the disk-read scan reports apps/danielson for the nested 0.0.55 vinext copy; a danielson-filtered scan reports nothing; APP_DIRS at HEAD still contains apps/danielson",
+    "adv 6: gates.sh on a fake repo whose tree lacks apps/danielson prints NEW FAILURE: lint workspace set differs from the baseline: apps/danielson, NEWFAIL=1, exit 1",
+    "adv 7: gates.sh on a fake repo where apps/danielson has no lint script prints NEW FAILURE: lint script removed in apps/danielson, NEWFAIL=1, exit 1",
+    "Weak-assertion review of the existing guards: the probes run real tsc through npx --no-install on a real node_modules symlink; the manifest, lockfile, and workflow cases read the real files with disk-read sets and sentinels; no vacuous pass found"
+  ],
+  "commands": [
+    "git rev-parse HEAD (8e1bf30d after the test commit)",
+    "npx vitest list --config scripts/vitest.config.ts --filesOnly",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial'",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x'",
+    "bash ~/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts",
+    "git diff ea024eee..HEAD --name-only (input drift check for the gate resume: only math-content source and scripts/__tests__ changed)",
+    "GATES_RESUME=1 GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s1 (run 1 and run 2)"
+  ],
+  "changed_files": [
+    "scripts/__tests__/oxc-toolchain-gates.test.ts",
+    "scripts/__tests__/vinext-oxc-gates-script.test.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "All 11 S1 guard cases and all 7 new adversarial cases pass at 8e1bf30d, and the test s1 gate prints NEWFAIL=0 on the two fresh jobs."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 5,
+      "evidence": "Each adversarial case seeds a fault and asserts the guard reports it; adv 2 also proves the fault is invisible without danielson, so the case 1 sentinel is load-bearing."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git show --stat 8e1bf30d holds only the two scripts/__tests__ files (311 insertions); no manifest, lockfile, config, or production file changed."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every claim names a command result in this JSON and the .log file, including both gate runs and the EDQUOT root cause."
+    }
+  ]
+}
