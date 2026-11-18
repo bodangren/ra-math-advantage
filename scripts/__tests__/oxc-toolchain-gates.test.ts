@@ -795,15 +795,8 @@ describe('S2 oxlint', () => {
     expect(entries.map((entry) => entry.rel)).toContain('apps/danielson');
     const wrong: string[] = [];
     for (const { rel, lint } of entries) {
-      if (rel === 'packages/_template') {
-        // The template package keeps its echo line (plan S2 Contract).
-        if (!lint.startsWith('echo ')) wrong.push(`${rel}: ${lint}`);
-        continue;
-      }
-      const expected = rel.startsWith('apps/')
-        ? 'oxlint --config ../../.oxlintrc.json . --max-warnings 0'
-        : 'oxlint --config ../../.oxlintrc.json src --max-warnings 0';
-      if (lint !== expected) wrong.push(`${rel}: ${lint}`);
+      const violation = lintScriptForm(rel, lint);
+      if (violation !== null) wrong.push(violation);
     }
     expect(wrong, 'lint scripts that are not in the target form').toEqual([]);
     // 26 of the 27 scripts name the root config. The template package is the exception.
@@ -879,4 +872,417 @@ describe('S2 oxlint', () => {
       'c:oxlint-plugin-missing',
     ]);
   });
+});
+
+// ---------------------------------------------------------------------------
+// S2 adversarial helpers (strategy section 8: the R17 row and the blanket-disable
+// row; anti-patterns A3, A4, A7). Each case seeds a fault in a temp folder or in
+// memory, drives the exact guard logic, and asserts that the guard reports the
+// fault. A guard that cannot fail is vacuous (A4). No case edits a real manifest,
+// lockfile, config, or source file.
+// ---------------------------------------------------------------------------
+
+// The per-entry rule of the S2 case 3 form check, extracted so the S2 adversarial
+// cases drive the exact guard logic against seeded mutant scripts.
+function lintScriptForm(rel: string, lint: string): string | null {
+  if (rel === 'packages/_template') {
+    // The template package keeps its echo line (plan S2 Contract).
+    return lint.startsWith('echo ') ? null : `${rel}: ${lint}`;
+  }
+  const expected = rel.startsWith('apps/')
+    ? 'oxlint --config ../../.oxlintrc.json . --max-warnings 0'
+    : 'oxlint --config ../../.oxlintrc.json src --max-warnings 0';
+  return lint === expected ? null : `${rel}: ${lint}`;
+}
+
+// A whole-line disable comment, including the JSX comment form. Every block disable
+// in this tree closes on its own line (checked 2026-11-19), so a line-by-line strip
+// is exact.
+const WHOLE_LINE_DISABLE_RE = /^\{?\s*\/\*\s*(?:eslint|oxlint)-disable[\s\S]*?\*\/\s*\}?$/;
+const TRAILING_DISABLE_RE = /\s*\/\/\s*(?:eslint|oxlint)-disable\S*.*$/;
+
+// Remove every disable comment: whole-line comments are dropped, trailing comments
+// are cut from their line. The code under the comment stays, so a finding that the
+// comment hid must surface in the stripped copy.
+function stripDisableComments(content: string): string {
+  return content
+    .split('\n')
+    .filter((line) => !WHOLE_LINE_DISABLE_RE.test(line.trim()))
+    .map((line) => line.replace(TRAILING_DISABLE_RE, ''))
+    .join('\n');
+}
+
+// The source extensions that the root config's override globs lint.
+const SOURCE_EXT_RE = /\.(js|jsx|mjs|cjs|ts|tsx)$/;
+// Folders that no workspace lint script lints: the SKIP_DIRS build and install folders
+// plus the Convex codegen folders (root config ignorePatterns).
+const DISABLE_SCAN_SKIP = new Set([...SKIP_DIRS, '_generated']);
+
+// findFiles with a caller-provided skip set.
+function findFilesSkipping(
+  root: string,
+  matches: (name: string) => boolean,
+  skip: Set<string>,
+): string[] {
+  const found: string[] = [];
+  const walk = (dir: string) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const abs = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (!skip.has(entry.name)) walk(abs);
+      } else if (entry.isFile() && matches(entry.name)) {
+        found.push(abs);
+      }
+    }
+  };
+  walk(root);
+  return found.sort();
+}
+
+// The files under apps/ and packages/ that the workspace lint scripts lint and that hold
+// a disable comment. The walk mirrors the lint surface of the root config: source
+// extensions, outside the ignored folders.
+function lintedFilesWithDisableDirectives(): string[] {
+  const found: string[] = [];
+  for (const dir of WORKSPACE_DIRS) {
+    for (const file of findFilesSkipping(dir, (name) => SOURCE_EXT_RE.test(name), DISABLE_SCAN_SKIP)) {
+      if (/(eslint|oxlint)-disable/.test(fs.readFileSync(file, 'utf8'))) found.push(file);
+    }
+  }
+  return found;
+}
+
+describe('S2 adversarial', () => {
+  it('adv 1: the case 1 scan reports each ESLint-family field, nested overrides, and version-suffixed keys', () => {
+    // Seeded faults in memory: one declaration per dependency field, a
+    // version-suffixed override key for each family name, a nested override object,
+    // and a declaration re-entered inside an override value. A scanner weakened to
+    // two fields, or blind to nested override keys and their children, misses a
+    // hit (A4).
+    const hits = scanDeclarations(
+      [
+        {
+          display: 'package.json',
+          manifest: {
+            dependencies: { eslint: '^10.0.0' },
+            devDependencies: { 'eslint-config-next': '^16.0.0' },
+            peerDependencies: { '@eslint/js': '^10.0.0' },
+            optionalDependencies: { '@eslint/eslintrc': '^4.0.0' },
+            overrides: {
+              'typescript-eslint@8': '^8.0.0',
+              'eslint-config-next@16.2.0': '^16.2.0',
+              '@eslint/js@10': '^10.0.0',
+              '@eslint/eslintrc@4': '^4.0.0',
+              'eslint@10': { devDependencies: { eslint: '^10.0.0' } },
+            },
+          },
+        },
+      ],
+      isEslintFamily,
+    );
+    expect(hits, 'the scan must report every seeded ESLint-family declaration').toEqual([
+      'package.json:dependencies.eslint',
+      'package.json:devDependencies.eslint-config-next',
+      'package.json:optionalDependencies.@eslint/eslintrc',
+      'package.json:overrides.@eslint/eslintrc@4',
+      'package.json:overrides.@eslint/js@10',
+      'package.json:overrides.eslint-config-next@16.2.0',
+      'package.json:overrides.eslint@10',
+      'package.json:overrides.eslint@10.devDependencies.eslint',
+      'package.json:overrides.typescript-eslint@8',
+      'package.json:peerDependencies.@eslint/js',
+    ]);
+    // Paired control on the real tree: the same scan over the real manifests reports
+    // nothing (guard holds at HEAD).
+    const manifests = [
+      path.join(REPO_ROOT, 'package.json'),
+      ...WORKSPACE_DIRS.map((dir) => path.join(dir, 'package.json')),
+    ];
+    expect(scanDeclarations(manifestEntries(manifests), isEslintFamily)).toEqual([]);
+  });
+
+  it('adv 2: the case 2 and case 3 walks find a second .oxlintrc.json and an eslint.config.* in seeded workspaces', () => {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'oxc-adv-cfg2-'));
+    tempDirs.push(tmp);
+    const wsA = path.join(tmp, 'apps', 'a');
+    const wsB = path.join(tmp, 'packages', 'b');
+    fs.mkdirSync(path.join(wsA, 'deep'), { recursive: true });
+    fs.mkdirSync(path.join(wsB, 'nested'), { recursive: true });
+    for (const ws of [wsA, wsB]) fs.writeFileSync(path.join(ws, 'package.json'), '{"name":"x"}');
+    // The seeded faults: a second oxlint config and an eslint config in a workspace
+    // root, and the same names deeper in the tree. A copy under node_modules stays
+    // invisible, because the walk rule is "outside node_modules".
+    fs.mkdirSync(path.join(wsA, 'node_modules'), { recursive: true });
+    fs.writeFileSync(path.join(wsA, 'node_modules', 'eslint.config.js'), 'x');
+    fs.writeFileSync(path.join(wsA, '.oxlintrc.json'), '{}');
+    fs.writeFileSync(path.join(wsA, 'deep', '.oxlintrc.json'), '{}');
+    fs.writeFileSync(path.join(wsA, 'eslint.config.mjs'), 'export default {}');
+    fs.writeFileSync(path.join(wsB, 'eslint.config.js'), 'export default {}');
+    fs.writeFileSync(path.join(wsB, 'nested', 'eslint.config.cjs'), 'module.exports = {}');
+    const oxlintConfigs = findFiles(tmp, (name) => name === '.oxlintrc.json');
+    expect(oxlintConfigs.map((file) => path.relative(tmp, file))).toEqual([
+      'apps/a/.oxlintrc.json',
+      'apps/a/deep/.oxlintrc.json',
+    ]);
+    const eslintConfigs = [wsA, wsB].flatMap((dir) =>
+      findFiles(dir, (name) => /^eslint\.config\./.test(name)),
+    );
+    expect(eslintConfigs.map((file) => path.relative(tmp, file))).toEqual([
+      'apps/a/eslint.config.mjs',
+      'packages/b/eslint.config.js',
+      'packages/b/nested/eslint.config.cjs',
+    ]);
+    // Paired control on the real tree: only the root .oxlintrc.json exists, and no
+    // eslint.config.* file exists under apps/ or packages/ (guards hold at HEAD).
+    expect(findFiles(REPO_ROOT, (name) => name === '.oxlintrc.json').map(relative)).toEqual([
+      '.oxlintrc.json',
+    ]);
+    expect(
+      WORKSPACE_DIRS.flatMap((dir) =>
+        findFiles(dir, (name) => /^eslint\.config\./.test(name)),
+      ).map(relative),
+    ).toEqual([]);
+  });
+
+  it('adv 3: the case 3 form rule reports each mutant lint script, and a dropped lint script fails the sentinels', () => {
+    // Seeded mutant scripts: a dropped --config, a wrong config target, a dropped
+    // --max-warnings 0, a raised budget, a prefixed runner, the wrong lint path, and
+    // the template echo line replaced by an oxlint call. Each mutant is one way to
+    // weaken the lint gate, and the rule must reject each one.
+    const mutants: Array<[string, string]> = [
+      ['apps/x', 'oxlint . --max-warnings 0'],
+      ['apps/x', 'oxlint --config .oxlintrc.json . --max-warnings 0'],
+      ['apps/x', 'oxlint --config ../../.oxlintrc.json .'],
+      ['apps/x', 'oxlint --config ../../.oxlintrc.json . --max-warnings 1'],
+      ['apps/x', 'npx oxlint --config ../../.oxlintrc.json . --max-warnings 0'],
+      ['apps/x', 'oxlint --config ../../.oxlintrc.json src --max-warnings 0'],
+      ['packages/y', 'oxlint --config ../../.oxlintrc.json . --max-warnings 0'],
+      ['packages/_template', 'oxlint --config ../../.oxlintrc.json src --max-warnings 0'],
+    ];
+    for (const [rel, lint] of mutants) {
+      expect(lintScriptForm(rel, lint), `the rule must reject: ${rel}: ${lint}`).not.toBeNull();
+    }
+    // Controls: the two target forms and the template echo line pass.
+    expect(lintScriptForm('apps/x', 'oxlint --config ../../.oxlintrc.json . --max-warnings 0')).toBeNull();
+    expect(lintScriptForm('packages/y', 'oxlint --config ../../.oxlintrc.json src --max-warnings 0')).toBeNull();
+    expect(
+      lintScriptForm('packages/_template', "echo 'No lint configured for template package'"),
+    ).toBeNull();
+    // Paired control on the real tree: every real lint script passes the rule.
+    const entries = WORKSPACE_DIRS.map((dir) => ({
+      rel: relative(dir),
+      lint: lintScript(dir),
+    })).filter((entry): entry is { rel: string; lint: string } => entry.lint !== null);
+    expect(
+      entries
+        .map(({ rel, lint }) => lintScriptForm(rel, lint))
+        .filter((violation): violation is string => violation !== null),
+    ).toEqual([]);
+    // The dropped-script attack: a workspace that loses its lint script leaves the
+    // entries set, so the count sentinel and the named sentinel of case 3 fail (A4).
+    const dropped = entries.filter((entry) => entry.rel !== 'apps/danielson');
+    expect(dropped.length, 'a danielson-filtered entries set is below the sentinel count').toBeLessThan(27);
+    expect(dropped.map((entry) => entry.rel)).not.toContain('apps/danielson');
+  });
+
+  it(
+    'adv 4: a mutant config that lints no file makes the probe pass, so case 4 is the vacuous-pass defense',
+    () => {
+      expect(runTool(['oxlint', '--version']).status, 'precondition: oxlint --version').toBe(0);
+      // The seeded fault: every override glob of a copy of the root config matches no
+      // file. Such a config lints nothing, so every probe passes vacuously.
+      const config = readJson(path.join(REPO_ROOT, '.oxlintrc.json'));
+      for (const override of (config.overrides ?? []) as Array<{ files?: string[] }>) {
+        override.files = ['nomatch/**/*.{js,jsx,mjs,cjs,ts,tsx}'];
+      }
+      const cfgTmp = fs.mkdtempSync(path.join(REPO_ROOT, '.oxlint-adv-cfg-'));
+      tempDirs.push(cfgTmp);
+      const mutantConfig = path.join(cfgTmp, 'mutant.oxlintrc.json');
+      fs.writeFileSync(mutantConfig, JSON.stringify(config));
+      const probe = makeLintProbe('const unused = 1;\n');
+      const mutant = runTool(['oxlint', '--config', mutantConfig, '--max-warnings', '0', probe]);
+      for (const phrase of ABSENT_TOOL_PHRASES) expect(mutant.output).not.toContain(phrase);
+      expect(mutant.status, 'the mutant config lints no file, so the probe passes vacuously').toBe(0);
+      expect(mutant.output).not.toContain('no-unused-vars');
+      // The case 4 guard shape fails on the mutant (it needs a non-zero exit and the
+      // no-unused-vars text), so this attack cannot produce a false green.
+      expect(!(mutant.status !== 0 && mutant.output.includes('no-unused-vars'))).toBe(true);
+      // Paired control: the real config fails the same probe (case 4 holds).
+      const real = runOxlintProbe(probe);
+      expect(real.status).not.toBe(0);
+      expect(real.output).toContain('no-unused-vars');
+      // The mirror attack: a probe outside apps/ and packages/ matches no glob, so the
+      // makeLintProbe placement under apps/ is load-bearing. A guard that moved the
+      // probe to the system temp folder would pass vacuously.
+      const outside = fs.mkdtempSync(path.join(os.tmpdir(), 'oxc-adv-out-'));
+      tempDirs.push(outside);
+      const outsideFile = path.join(outside, 'probe.ts');
+      fs.writeFileSync(outsideFile, 'const unused = 1;\n');
+      const outsideRun = runTool([
+        'oxlint',
+        '--config',
+        path.join(REPO_ROOT, '.oxlintrc.json'),
+        '--max-warnings',
+        '0',
+        outsideFile,
+      ]);
+      expect(outsideRun.status, 'a probe outside apps/ and packages/ must pass vacuously').toBe(0);
+      expect(outsideRun.output).not.toContain('no-unused-vars');
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it('adv 5: the case 9 scan reports each seeded lockfile fault, including nested copies', () => {
+    // The jsPlugins set of the real root config (K4 of strategy 14.2).
+    const jsPlugins: JsPluginEntry[] = [
+      { name: 'eslint-js', specifier: 'oxlint-plugin-eslint' },
+      { name: 'react-js', specifier: 'eslint-plugin-react' },
+      { name: 'react-hooks-js', specifier: 'eslint-plugin-react-hooks' },
+    ];
+    // The seeded faults: (a) an eslint-config-next key at the root and a
+    // typescript-eslint key nested under a workspace, (b) a non-peer eslint copy at the
+    // root and a non-peer @eslint/js copy nested, (c) one jsPlugins specifier with no
+    // lockfile key. The @eslint/js root copy with peer: true is the clean control.
+    const lock: Json = {
+      packages: {
+        '': {},
+        'node_modules/eslint': { version: '9.39.5' },
+        'node_modules/@eslint/js': { version: '9.39.5', peer: true },
+        'apps/danielson/node_modules/@eslint/js': { version: '9.39.5' },
+        'node_modules/eslint-config-next': { version: '16.2.0' },
+        'packages/x/node_modules/typescript-eslint': { version: '8.0.0' },
+        'node_modules/oxlint-plugin-eslint': { version: '1.93.0' },
+        'node_modules/eslint-plugin-react': { version: '7.37.5' },
+      },
+    };
+    const hits = scanLockfileLintHygiene(lock, jsPlugins);
+    expect(hits, 'the scan must report every seeded lockfile fault').toEqual([
+      'a:node_modules/eslint-config-next',
+      'a:packages/x/node_modules/typescript-eslint',
+      'b:apps/danielson/node_modules/@eslint/js',
+      'b:node_modules/eslint',
+      'c:eslint-plugin-react-hooks',
+    ]);
+    // Control: the same lockfile with peer: true on every ESLint copy and the missing
+    // jsPlugins key added reports no hit, so the hits above come from the faults only.
+    const clean: Json = {
+      packages: {
+        '': {},
+        'node_modules/eslint': { version: '9.39.5', peer: true },
+        'node_modules/@eslint/js': { version: '9.39.5', peer: true },
+        'apps/danielson/node_modules/@eslint/js': { version: '9.39.5', peer: true },
+        'node_modules/oxlint-plugin-eslint': { version: '1.93.0' },
+        'node_modules/eslint-plugin-react': { version: '7.37.5' },
+        'node_modules/eslint-plugin-react-hooks': { version: '7.1.1' },
+      },
+    };
+    expect(scanLockfileLintHygiene(clean, jsPlugins)).toEqual([]);
+  });
+
+  it(
+    'adv 6: every disable-comment variant hides a live finding, so a source scan is the only defense',
+    () => {
+      expect(runTool(['oxlint', '--version']).status, 'precondition: oxlint --version').toBe(0);
+      // Paired control: the bare probe fails (the same proof as case 4).
+      const bare = runOxlintProbe(makeLintProbe('const unused = 1;\n'));
+      expect(bare.status).not.toBe(0);
+      expect(bare.output).toContain('no-unused-vars');
+      // Each variant suppresses the finding, with the oxlint spelling and with the
+      // eslint spelling, in block, next-line, and trailing form (verified 2026-11-19,
+      // oxlint 1.93.0). No manifest or script guard can see a comment, so the defense
+      // must scan the source files: adv 7.
+      const variants = [
+        '/* oxlint-disable */\nconst unused = 1;\n',
+        '/* eslint-disable */\nconst unused = 1;\n',
+        '/* eslint-disable no-unused-vars */\nconst unused = 1;\n',
+        '// eslint-disable-next-line\nconst unused = 1;\n',
+        '// oxlint-disable-next-line\nconst unused = 1;\n',
+        'const unused = 1; // eslint-disable-line\n',
+      ];
+      for (const content of variants) {
+        const run = runOxlintProbe(makeLintProbe(content));
+        expect(run.status, `this variant must hide the finding: ${JSON.stringify(content)}`).toBe(0);
+      }
+    },
+    TOOL_TIMEOUT_MS,
+  );
+
+  it(
+    'adv 7: no disable comment in the linted surface hides a live oxlint finding',
+    () => {
+      // Seeded control, run first: the same pipeline must catch a seeded hidden finding,
+      // so an empty result on the real tree below is a real pass, not a vacuous one (A4).
+      // The seed folder lives inside apps/integrated-math-3, so the root config's app
+      // rules apply to it.
+      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv-seed-'));
+      tempDirs.push(seedRoot);
+      const seedFile = path.join(seedRoot, 'seed.ts');
+      fs.writeFileSync(seedFile, '/* eslint-disable */\nconst unused = 1;\n');
+      const hidden = runTool([
+        'oxlint',
+        '--config',
+        path.join(REPO_ROOT, '.oxlintrc.json'),
+        '--max-warnings',
+        '0',
+        seedFile,
+      ]);
+      expect(hidden.status, 'the seeded disable comment must hide the finding').toBe(0);
+      fs.writeFileSync(seedFile, stripDisableComments(fs.readFileSync(seedFile, 'utf8')));
+      const surfaced = runTool([
+        'oxlint',
+        '--config',
+        path.join(REPO_ROOT, '.oxlintrc.json'),
+        '--max-warnings',
+        '0',
+        seedFile,
+      ]);
+      expect(surfaced.status, 'the stripped seed must surface the finding').not.toBe(0);
+      expect(surfaced.output).toContain('no-unused-vars');
+      // The attack: strip every disable comment from each carrier file into a temp
+      // copy inside the same workspace (so every override glob of the original path
+      // applies to the copy too), then lint the copies with the root config. A finding
+      // on a copy is a live finding that the comment hides in the real tree.
+      const files = lintedFilesWithDisableDirectives();
+      const rootByWorkspace = new Map<string, string>();
+      const tempToReal = new Map<string, string>();
+      for (const file of files) {
+        const workspace = [...WORKSPACE_DIRS]
+          .sort((a, b) => b.length - a.length)
+          .find((dir) => file.startsWith(`${dir}${path.sep}`));
+        if (!workspace) throw new Error(`no workspace folder for ${relative(file)}`);
+        let tempRoot = rootByWorkspace.get(workspace);
+        if (!tempRoot) {
+          tempRoot = fs.mkdtempSync(path.join(workspace, '.oxlint-adv-'));
+          rootByWorkspace.set(workspace, tempRoot);
+          tempDirs.push(tempRoot);
+        }
+        const copy = path.join(tempRoot, path.relative(workspace, file));
+        fs.mkdirSync(path.dirname(copy), { recursive: true });
+        fs.writeFileSync(copy, stripDisableComments(fs.readFileSync(file, 'utf8')));
+        // oxlint prints paths relative to the working folder, so the map key is the
+        // copy path relative to the repository root.
+        tempToReal.set(relative(copy), relative(file));
+      }
+      if (tempToReal.size > 0) {
+        const run = runTool([
+          'oxlint',
+          '--config',
+          path.join(REPO_ROOT, '.oxlintrc.json'),
+          '--max-warnings',
+          '0',
+          ...rootByWorkspace.values(),
+        ]);
+        const decoded = run.output
+          .split('\n')
+          .map((line) => line.match(/^(\S+):\d+:\d+: (?:error|warning) /))
+          .filter((match): match is RegExpMatchArray => match !== null)
+          .map((match) => tempToReal.get(match[1]) ?? match[1]);
+        expect(
+          [...new Set(decoded)],
+          `disable comments that hide live oxlint findings (strip the comment, lint the copy)\n${run.output}`,
+        ).toEqual([]);
+      }
+    },
+    TOOL_TIMEOUT_MS,
+  );
 });
