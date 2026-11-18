@@ -1,0 +1,584 @@
+{
+  "version": 1,
+  "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)",
+  "entries": [
+    {
+      "path": "apps/bus-math-v2/__tests__/components/hero.test.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "next(no-img-element)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/__tests__/components/lesson/PhaseRenderer.test.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "next(no-img-element)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/app/api/lessons/[lessonId]/progress/route.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/app/api/phases/complete/route.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/app/api/progress/assessment/route.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/app/dev/component-review/harness/practice/[componentId]/page.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/app/student/lesson/[lessonSlug]/page.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/AdjustmentPractice.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/BalanceSheetPractice.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/BreakEvenMastery.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/CashFlowPractice.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/ClosingEntryPractice.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/IncomeStatementPractice.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/MarkupMarginMastery.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/MonthEndClosePractice.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/activities/exercises/StraightLineMastery.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/student/MatchingGame.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(exhaustive-deps)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/student/answer-inputs/AccountingEquationInput.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/student/answer-inputs/ClassificationInput.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/components/student/answer-inputs/NormalBalanceInput.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/convex/component_approvals.ts",
+      "kinds": [
+        "block",
+        "next-line"
+      ],
+      "directiveCount": 3,
+      "blanketBlocks": 2,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/convex/seed.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/convex/srs.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/hooks/usePhaseCompletion.ts",
+      "kinds": [
+        "trailing"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/lib/activities/registry.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/bus-math-v2/lib/practice/error-analysis/providers.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/danielson/lib/convex/server.ts",
+      "kinds": [
+        "block"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 1,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-1/convex/seed.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-1/convex/student.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-1/convex/teacher.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-1/lib/convex/server.ts",
+      "kinds": [
+        "block"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 1,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-2/components/student/TriangleOrderingPractice.tsx",
+      "kinds": [
+        "block"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 1,
+      "hiddenRules": [
+        "next(no-img-element)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/__tests__/convex/seed/all-lesson-contracts.test.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/app/teacher/lessons/page.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/components/dev/review-harness/ActivityReviewHarness.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "eslint(no-unused-vars)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/components/student/PracticeSessionProvider.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "eslint(no-unused-vars)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/convex/edgeCalibration.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/convex/objectiveProficiency.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/convex/seed/seed_demo_e2e.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/convex/teacher/srs_mutations.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/e2e/fixtures.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "react-hooks(rules-of-hooks)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/lib/auth/server.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 3,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "eslint(no-unused-vars)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/lib/convex/server.ts",
+      "kinds": [
+        "block"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 1,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/integrated-math-3/lib/teacher/content-authoring/composer-state.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 3,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/pre-calculus/app/student/dashboard/page.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 2,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "next(no-html-link-for-pages)",
+        "react-hooks-js(purity)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/pre-calculus/app/student/lessons/[topic]/page.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "next(no-html-link-for-pages)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "apps/pre-calculus/lib/convex/server.ts",
+      "kinds": [
+        "block"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 1,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "packages/activity-components/src/__tests__/a11y/graphing-solver-a11y.test.tsx",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    },
+    {
+      "path": "packages/activity-components/src/registry/index.ts",
+      "kinds": [
+        "next-line"
+      ],
+      "directiveCount": 1,
+      "blanketBlocks": 0,
+      "hiddenRules": [
+        "typescript(no-explicit-any)"
+      ],
+      "reason": "pre-existing at the oxlint move; tracked in measure/tech-debt.md (vinext-oxc S2, 2026-11-19)"
+    }
+  ]
+}

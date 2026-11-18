@@ -952,6 +952,58 @@ function lintedFilesWithDisableDirectives(): string[] {
   return found;
 }
 
+// The allow-list of pre-existing disable directives (F1, option B): one entry per
+// tracked file that holds a directive, with the directive kinds, the directive and
+// blanket-block counts, and the live rules the directives hide. A carrier file that
+// the list does not name, a stale entry, a new blanket block, or a hidden rule that
+// the entry does not record all fail adv 7.
+interface DisableAllowlistEntry {
+  path: string;
+  kinds: string[];
+  directiveCount: number;
+  blanketBlocks: number;
+  hiddenRules: string[];
+  reason: string;
+}
+
+function readDisableAllowlist(): DisableAllowlistEntry[] {
+  const doc = readJson(
+    path.join(REPO_ROOT, 'scripts', '__tests__', 'fixtures', 'lint-disable-allowlist.json'),
+  ) as { version: number; entries: DisableAllowlistEntry[] };
+  expect(doc.version, 'allow-list version').toBe(1);
+  expect(doc.entries.length, 'allow-list entry count').toBeGreaterThan(0);
+  return doc.entries;
+}
+
+// The directive kinds of one file: 'block' for a whole-file `/* disable */` line,
+// 'next-line' for a `disable-next-line` comment in either comment spelling,
+// 'trailing' for a `disable-line` comment. Mirrors the allow-list inventory.
+function directiveKindsOfFile(content: string): { kinds: string[]; total: number; blocks: number } {
+  const kinds = new Set<string>();
+  let total = 0;
+  let blocks = 0;
+  for (const line of content.split('\n')) {
+    const trimmed = line.trim();
+    if (WHOLE_LINE_DISABLE_RE.test(trimmed)) {
+      total += 1;
+      if (trimmed.includes('disable-next-line')) kinds.add('next-line');
+      else if (trimmed.includes('disable-line')) kinds.add('trailing');
+      else {
+        kinds.add('block');
+        blocks += 1;
+      }
+    } else {
+      const trailing = line.match(/\/\/\s*((?:eslint|oxlint)-disable\S*)/);
+      if (trailing) {
+        total += 1;
+        if (trailing[1].includes('disable-next-line')) kinds.add('next-line');
+        else kinds.add('trailing');
+      }
+    }
+  }
+  return { kinds: [...kinds].sort(), total, blocks };
+}
+
 describe('S2 adversarial', () => {
   it('adv 1: the case 1 scan reports each ESLint-family field, nested overrides, and version-suffixed keys', () => {
     // Seeded faults in memory: one declaration per dependency field, a
@@ -1208,7 +1260,7 @@ describe('S2 adversarial', () => {
   );
 
   it(
-    'adv 7: no disable comment in the linted surface hides a live oxlint finding',
+    'adv 7: every disable comment in the linted surface is pinned by the allow-list',
     () => {
       // Seeded control, run first: the same pipeline must catch a seeded hidden finding,
       // so an empty result on the real tree below is a real pass, not a vacuous one (A4).
@@ -1238,11 +1290,51 @@ describe('S2 adversarial', () => {
       ]);
       expect(surfaced.status, 'the stripped seed must surface the finding').not.toBe(0);
       expect(surfaced.output).toContain('no-unused-vars');
+      // The seed proved the pipeline. Remove it before the real-tree scan, so the
+      // scan sees only tracked files.
+      fs.rmSync(seedRoot, { recursive: true, force: true });
+      tempDirs.splice(tempDirs.indexOf(seedRoot), 1);
+      // The allow-list pin (F1, option B): only the recorded pre-existing carrier
+      // files may hold a directive, each exactly as recorded.
+      const allowlist = readDisableAllowlist();
+      const byPath = new Map(allowlist.map((entry) => [entry.path, entry]));
+      const files = lintedFilesWithDisableDirectives();
+      const unlisted = files
+        .map((file) => relative(file))
+        .filter((rel) => !byPath.has(rel));
+      expect(unlisted, 'carrier files that the allow-list does not name').toEqual([]);
+      const stale: string[] = [];
+      const changed: string[] = [];
+      for (const entry of allowlist) {
+        const abs = path.join(REPO_ROOT, entry.path);
+        if (!fs.existsSync(abs)) {
+          stale.push(`${entry.path} (file is gone)`);
+          continue;
+        }
+        const current = directiveKindsOfFile(fs.readFileSync(abs, 'utf8'));
+        if (current.total === 0) {
+          stale.push(`${entry.path} (no directive left)`);
+          continue;
+        }
+        if (JSON.stringify(current.kinds) !== JSON.stringify([...entry.kinds].sort())) {
+          changed.push(`${entry.path} (kinds ${current.kinds} vs recorded ${entry.kinds})`);
+        } else if (current.total !== entry.directiveCount) {
+          changed.push(
+            `${entry.path} (directive count ${current.total} vs recorded ${entry.directiveCount})`,
+          );
+        } else if (current.blocks > entry.blanketBlocks) {
+          changed.push(
+            `${entry.path} (blanket blocks ${current.blocks} vs recorded ${entry.blanketBlocks})`,
+          );
+        }
+      }
+      expect(stale, 'stale allow-list entries: the file no longer holds the directive').toEqual([]);
+      expect(changed, 'allow-list entries whose directives changed').toEqual([]);
       // The attack: strip every disable comment from each carrier file into a temp
       // copy inside the same workspace (so every override glob of the original path
       // applies to the copy too), then lint the copies with the root config. A finding
-      // on a copy is a live finding that the comment hides in the real tree.
-      const files = lintedFilesWithDisableDirectives();
+      // on a copy is a live finding that the comment hides in the real tree; it passes
+      // only when the allow-list records that rule for that file.
       const rootByWorkspace = new Map<string, string>();
       const tempToReal = new Map<string, string>();
       for (const file of files) {
@@ -1274,12 +1366,19 @@ describe('S2 adversarial', () => {
         ]);
         const decoded = run.output
           .split('\n')
-          .map((line) => line.match(/^(\S+):\d+:\d+: (?:error|warning) /))
+          .map((line) => line.match(/^(\S+):\d+:\d+: (?:error|warning) ([^\s:]+(?:\([^)]*\))?)/))
           .filter((match): match is RegExpMatchArray => match !== null)
-          .map((match) => tempToReal.get(match[1]) ?? match[1]);
+          .map((match) => {
+            const real = tempToReal.get(match[1]) ?? match[1];
+            return { real, rule: match[2] ?? '' };
+          });
+        const unrecorded = decoded.filter(({ real, rule }) => {
+          const entry = byPath.get(real);
+          return !entry || !entry.hiddenRules.includes(rule);
+        });
         expect(
-          [...new Set(decoded)],
-          `disable comments that hide live oxlint findings (strip the comment, lint the copy)\n${run.output}`,
+          [...new Set(unrecorded.map(({ real, rule }) => `${real} hides ${rule}`))],
+          `hidden findings that the allow-list does not record (strip the comment, lint the copy)\n${run.output}`,
         ).toEqual([]);
       }
     },
