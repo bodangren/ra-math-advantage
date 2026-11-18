@@ -260,6 +260,43 @@ not change the measurement), each run timed around `npm run build` inside one
 folder (IM1 6554/6531/6755 ms, IM2 9413/9477/9956, IM3 12558/11971/11838, PreCalc
 11114/10279/10795, BM2 14879/14761/14781, danielson 6424/4510/6004).
 
+### S2 lint timing (2026-11-18)
+
+Method: the plan "Timing Method". One warm `npm run lint` run per workspace, then
+3 timed runs with bash `time` and `TIMEFORMAT=%R`. The table holds the median of
+the 3 runs. The values include the npm overhead (about 0.5 s). Raw values:
+`s2-lint-timing.sh` output in the run folder. "Before" is `n/a` for every row:
+no ESLint config remains, so no ESLint timing can run on this tree (section 8).
+
+| Task | Tool before | Seconds before | Tool after | Seconds after | Ratio |
+|---|---|---|---|---|---|
+| `npm run lint` in `apps/bus-math-v2` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 9.2 | n/a |
+| `npm run lint` in `apps/danielson` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 2.3 | n/a |
+| `npm run lint` in `apps/integrated-math-1` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 1.2 | n/a |
+| `npm run lint` in `apps/integrated-math-2` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 1.5 | n/a |
+| `npm run lint` in `apps/integrated-math-3` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 4.5 | n/a |
+| `npm run lint` in `apps/pre-calculus` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 3.3 | n/a |
+| `npm run lint` in `packages/activity-components` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
+| `npm run lint` in `packages/activity-runtime` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/ai-tutoring` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/app-shell` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/component-approval` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/core-auth` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/core-convex` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/efficacy-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/graphing-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/knowledge-space-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
+| `npm run lint` in `packages/knowledge-space-practice` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/lesson-renderer` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/math-content` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
+| `npm run lint` in `packages/practice-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/practice-test-engine` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.5 | n/a |
+| `npm run lint` in `packages/rate-limiter` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/srs-engine` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
+| `npm run lint` in `packages/study-hub-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/teacher-reporting-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/workbook-pipeline` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+
 ## 6. Rule gaps
 
 ### S2 Red gate exception (2026-11-18)
