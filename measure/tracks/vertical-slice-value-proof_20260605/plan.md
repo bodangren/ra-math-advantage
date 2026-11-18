@@ -42,5 +42,5 @@
 
 - [x] Mark this track as superseded in `metadata.json`. [8fed657a]
 - [x] Mark this track as superseded in `measure/tracks.md`. [5f68dd3a]
-- [x] Preserve this plan as the reason that no duplicate implementation should [8fed657a]
-  be started.
+- [x] Preserve this plan as the reason that no duplicate implementation should
+  be started. [8fed657a]

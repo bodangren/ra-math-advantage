@@ -2,7 +2,7 @@
 
 ## Phase 1: Contract and Schema
 
-- [~] Task 1: Record the anti-slop integration contract
+- [x] Task 1: Record the anti-slop integration contract [3a078a21]
   - [x] Record the Oxlint version and the generic-rule scope in `measure/tech-stack.md`.
   - [x] Record the separate command and the no-Effect decision.
 

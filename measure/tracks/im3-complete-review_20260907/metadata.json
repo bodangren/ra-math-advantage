@@ -6,5 +6,5 @@
   "remediation_started_at": "2026-09-07",
   "assessment_completed_at": "2026-09-07",
   "remediation_verified_at": "2026-09-07",
-  "integration_status": "pending_scoped_commits"
+  "integration_status": "committed 8142bd70d"
 }
