@@ -135,7 +135,7 @@ PII in prompts (planned: openrouter-sdk-ai-layer_20261114).
 | Playwright ^1.56 | E2E tests |
 | Testing Library | Component tests (React) |
 | @testing-library/jest-dom | DOM matchers |
-| ESLint | Lint (`eslint . --max-warnings 0`) |
+| oxlint | Lint (`oxlint --config .oxlintrc.json --max-warnings 0`) |
 
 ## Monorepo Quality Tooling
 

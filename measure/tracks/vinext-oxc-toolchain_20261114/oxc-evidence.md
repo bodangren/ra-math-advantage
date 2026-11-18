@@ -260,22 +260,26 @@ not change the measurement), each run timed around `npm run build` inside one
 folder (IM1 6554/6531/6755 ms, IM2 9413/9477/9956, IM3 12558/11971/11838, PreCalc
 11114/10279/10795, BM2 14879/14761/14781, danielson 6424/4510/6004).
 
-### S2 lint timing (2026-11-18)
+### S2 lint timing (2026-11-18; re-run 2026-11-19)
 
 Method: the plan "Timing Method". One warm `npm run lint` run per workspace, then
 3 timed runs with bash `time` and `TIMEFORMAT=%R`. The table holds the median of
 the 3 runs. The values include the npm overhead (about 0.5 s). Raw values:
-`s2-lint-timing.sh` output in the run folder. "Before" is `n/a` for every row:
-no ESLint config remains, so no ESLint timing can run on this tree (section 8).
+`s2-lint-timing-r3.txt` in the run folder (force-added; the 2026-11-19 re-run
+through `heavy-run.sh`). The re-run medians replaced 6 values of the first run
+(BM2 9.2 to 8.9, IM3 4.5 to 4.6, PreCalc 3.3 to 3.2, knowledge-space-practice 0.6
+to 0.7, practice-core 0.6 to 0.7, practice-test-engine 0.5 to 0.6). "Before" is
+`n/a` for every row: no ESLint config remains, so no ESLint timing can run on
+this tree (section 8).
 
 | Task | Tool before | Seconds before | Tool after | Seconds after | Ratio |
 |---|---|---|---|---|---|
-| `npm run lint` in `apps/bus-math-v2` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 9.2 | n/a |
+| `npm run lint` in `apps/bus-math-v2` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 8.9 | n/a |
 | `npm run lint` in `apps/danielson` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 2.3 | n/a |
 | `npm run lint` in `apps/integrated-math-1` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 1.2 | n/a |
 | `npm run lint` in `apps/integrated-math-2` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 1.5 | n/a |
-| `npm run lint` in `apps/integrated-math-3` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 4.5 | n/a |
-| `npm run lint` in `apps/pre-calculus` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 3.3 | n/a |
+| `npm run lint` in `apps/integrated-math-3` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 4.6 | n/a |
+| `npm run lint` in `apps/pre-calculus` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 3.2 | n/a |
 | `npm run lint` in `packages/activity-components` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
 | `npm run lint` in `packages/activity-runtime` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
 | `npm run lint` in `packages/ai-tutoring` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
@@ -286,11 +290,11 @@ no ESLint config remains, so no ESLint timing can run on this tree (section 8).
 | `npm run lint` in `packages/efficacy-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
 | `npm run lint` in `packages/graphing-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
 | `npm run lint` in `packages/knowledge-space-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
-| `npm run lint` in `packages/knowledge-space-practice` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
+| `npm run lint` in `packages/knowledge-space-practice` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
 | `npm run lint` in `packages/lesson-renderer` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
 | `npm run lint` in `packages/math-content` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
-| `npm run lint` in `packages/practice-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
-| `npm run lint` in `packages/practice-test-engine` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.5 | n/a |
+| `npm run lint` in `packages/practice-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
+| `npm run lint` in `packages/practice-test-engine` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
 | `npm run lint` in `packages/rate-limiter` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |
 | `npm run lint` in `packages/srs-engine` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.7 | n/a |
 | `npm run lint` in `packages/study-hub-core` (median of 3) | ESLint (no config remains) | n/a | oxlint 1.93.0 | 0.6 | n/a |

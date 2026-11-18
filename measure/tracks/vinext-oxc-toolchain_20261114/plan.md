@@ -304,11 +304,12 @@ _Story ref: spec.md#story-s2_
     - [x] Confirmed that no `eslint.config.*` file is tracked, that no manifest declares the 5 ESLint packages, and that the root `overrides` (`{"typescript":"^6"}`) has no `eslint` key.
     - [x] Recorded in section 8 that the lockfile keeps `eslint` 9.39.5, `@eslint/js` 9.39.5, and `@eslint/eslintrc` 3.3.7 as peer-only copies (`peer: true`); both React plugins and all 3 `jsPlugins` entries stay.
     - [x] No manifest changed, so no `npm install` ran. The task makes no file change, so it makes no commit.
-- [x] Task: S2 Implement — reach zero warnings (no findings; no commit)
+- [x] Task: S2 Implement — reach zero warnings (exit 0; findings pinned by the allow-list)
     - [x] Ran `npm run lint` in each workspace through `gates.sh lint s2` (one `heavy-run.sh` job each): all 27 exit 0, `NEWFAIL=0`.
-    - [x] No finding: every oxlint log has empty output with exit 0, so no behavior-preserving fix was needed.
-    - [x] No behavior-changing fix was needed, so no `oxlint-disable-next-line` comment was added and section 8 records zero findings.
-    - [x] Skipped the `fix(lint)` commit: there is no finding to fix (plan allows the skip).
+    - [x] Correction (S2 remediation, 2026-11-19): the 27 lint scripts exit 0 with zero warnings, and 49 tracked files carry pre-existing disable directives (7 blanket blocks, 44 next-line directives without a reason). The zero-warning state rests partly on these suppressions, not on clean code alone.
+    - [x] Pinned all 49 carriers by `scripts/__tests__/fixtures/lint-disable-allowlist.json`: adv 7 fails on an unlisted carrier file, a stale entry, a new blanket block, or a hidden rule the entry does not record (F1, option B; `119a8de3`).
+    - [x] No behavior-changing fix was needed in S2, so no code file changed; the debt is recorded in `measure/tech-debt.md` ("Lint disable directives hide live oxlint findings") for a later track.
+    - [x] Skipped the `fix(lint)` commit: S2 changes no linted file (plan allows the skip).
 - [x] Task: S2 Verify — run the gates after the lint change (91050201)
     - [x] Confirmed that all 26 oxlint lint scripts exit 0 with empty output (zero warnings); `lint s2` gives `NEWFAIL=0` over 27 workspaces.
     - [x] Ran the other gates: `test s2` gives `NEWFAIL=0`; `checks-all s2` gives `NEWFAIL=1` with only the two S1-accepted lines (IM3 npm trailer, audit drift); workspace sets give `workspaces-<script>=27` four times with no `comm` line.
@@ -321,11 +322,13 @@ _Story ref: spec.md#story-s2_
     - [x] Ran `npm run generate`. Exit code 0; only the 6 known dirty generated files changed, left unstaged.
     - [x] Ran `npm run doctor`. Exit code 0 ("All checks passed").
     - [x] Corrected `spec.md` line 252 to name the 3 kept `jsPlugins` (077b77dc).
-- [ ] Task: Measure - User Manual Verification 'Phase S2: ESLint to oxlint' (Protocol in workflow.md)
+- [b] Task: Measure - User Manual Verification 'Phase S2: ESLint to oxlint' (Protocol in workflow.md) — deferred:orchestrator (Review A F6)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S2 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S2: ESLint to oxlint' as complete`.
+
+Phase note (2026-11-19, S2 remediation): strategy section 8 rows "case 7" ("Zero warnings by blanket disable") and "on <n> files" ("Oxlint reads no file") are superseded by adv 6/adv 7 and case 4 (Review A F5, adversarial F2). The strategy role owns the revision; no strategy file changes in S2.
 
 ## Phase S3: TypeScript 7 and tsrs
 _Story ref: spec.md#story-s3_
