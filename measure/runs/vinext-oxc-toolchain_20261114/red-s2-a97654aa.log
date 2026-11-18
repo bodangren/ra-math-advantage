@@ -1,0 +1,15 @@
+MEASURE_AGENT_RESULT
+role: measure-mid-red
+status: blocked
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+head: a97654aa5e8c70f32378e8487e8cafffa9b14e3a
+commits: 335cd77d, a329d7d5, a97654aa
+tests_run: npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed, 0 failed (35 skipped); npx vitest run --config scripts/vitest.config.ts -> 1 failed, 41 passed (42 tests)
+files_changed: measure/tech-stack.md, measure/tracks/vinext-oxc-toolchain_20261114/plan.md, scripts/__tests__/oxc-toolchain-gates.test.ts
+plan_updates: S2 Contract marked [x] with task SHA 335cd77d and 8 sub-boxes ticked; S2 Test (Red) stays [~] with Red commit a329d7d5 and 10 sub-boxes ticked; all S2 Test boxes record guard evidence
+known_failures: pre-existing failure remediate-concept-blueprints "production scan reports the honest count for the current repo state" (1 test); the S2 Red set is empty, so RED_TEST_COMMAND exits 0 and the role gate reports "expected failure, exit 0"
+handoff: Guards (pass at HEAD): case 1 (no ESLint-family manifest declaration, root overrides have no eslint key), case 2 (no eslint.config.* under apps/ or packages/), case 3 (26 of 27 lint scripts name ../../.oxlintrc.json, packages/_template keeps echo, one root .oxlintrc.json), case 4 (unused-variable probe under apps/ exits 1 with no-unused-vars), case 5 (same probe with /* oxlint-disable */ exits 0), case 9 (lockfile has no eslint-config-next or typescript-eslint key, eslint/@eslint/js/@eslint/eslintrc are peer:true, three jsPlugins resolve), case 9b (in-memory lockfile with one seeded fault per clause gives exactly 3 hits). Red (fail at HEAD): none. The migration landed before S2, so no specified S2 case fails. I did not weaken a case and did not invent a failure. Note: the root config holds 3 jsPlugins, not 2 as the PM brief said; K4 records 3. Question 1: the role gate enforces a non-zero RED_TEST_COMMAND, but every S2 case passes. Options: (1) accept the guard-only Red and let the orchestrator record the gate exit 1 as a known exception, default; (2) extend the S2 case list with a case that fails now, which needs a fabricated or out-of-scope contract; (3) hold S2 Red until S1 Review B closes. Default: option 1. Question 2: spec.md line 252 says S2 uses native rules only, but strategy r6 and plan line 304 keep the jsPlugins. Should S2 Docs or the orchestrator update spec line 252? Default: leave spec.md unchanged and let strategy 14.2 govern.
+END_MEASURE_AGENT_RESULT
