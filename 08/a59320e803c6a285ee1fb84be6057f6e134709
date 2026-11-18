@@ -1,0 +1,10 @@
+Phase 1: Queue Coverage and Real Review Targets
+
+Summary: Updated listReviewQueue to discover example and practice targets from persisted lesson curriculum data (phase_sections + phase_versions). Added lib/activities/review-queue.ts helper module with resolveComponentKind, buildActivityPlacementMap, and assembleReviewQueueItem. Activities placed in worked_example phases are surfaced as 'example'; activities in guided_practice/independent_practice/assessment are surfaced as 'practice'. Unreviewed targets now appear even when no component_approvals row exists. Existing filters for componentKind, status, and stale state are preserved.
+
+Files changed:
+- convex/dev.ts (refactored listReviewQueue)
+- lib/activities/review-queue.ts (new)
+- __tests__/lib/activities/review-queue.test.ts (new)
+- __tests__/app/api/dev/review-queue/route.test.ts (added example/practice coverage test)
+- conductor/tracks.md (marked track in progress)

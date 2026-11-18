@@ -1,0 +1,10 @@
+Checkpoint: glm-4.7 completed fix-graphing-test-types_20260412
+
+- Fixed 11 TypeScript errors in GraphingExplorer.test.tsx by adding 'as const' to comparisonAnswer prop
+- Fixed 1 TypeScript error in PhaseCompleteButton.test.tsx by properly typing Promise resolver
+- All TypeScript compilation now passes with 0 errors
+- Test suite: 1008 passing, 8 pre-existing failures (equivalence validator)
+- Updated tech-debt.md: 2 items marked as resolved
+- Updated lessons-learned.md: added 'as const' pattern lesson
+
+Model: glm-4.7

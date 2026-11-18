@@ -1,0 +1,1 @@
+Track: module-8-seed_20260415\nPhase: 1 - Seed Lesson 8-1\nModel: k2p5\nSummary: Implemented idempotent seed mutation for Module 8 Lesson 1 (Random Sampling) with 13 phases, comprehension-quiz activities for worked examples, and graphing-explorer explore. Added metadata/sequence/idempotency tests. Wired into seed.ts. Lint, seed tests, curriculum consistency tests, and build pass.

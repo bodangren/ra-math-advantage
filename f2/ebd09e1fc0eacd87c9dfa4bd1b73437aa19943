@@ -1,0 +1,6 @@
+Phase 3 Checkpoint: Instructional Language and Guidelines
+
+Verification: STUDENT_DAILY_PRACTICE_COPY and TEACHER_DAILY_PRACTICE_COPY
+defined in lib/srs/contract.ts. Tests verify no speed rankings, no comparative
+language, all strings non-empty. Module-level JSDoc documents triage rules,
+versioning strategy, and import guidelines.

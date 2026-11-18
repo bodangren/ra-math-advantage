@@ -1,0 +1,34 @@
+Task: Create TableOfValues component
+
+Summary:
+Implemented a styled math table component for displaying coordinate pairs and function values. The component supports highlighting specific cells and uses monospace font for numerical data, following the e-textbook design system.
+
+Files Created:
+- components/textbook/TableOfValues.tsx (53 lines)
+- __tests__/components/textbook/TableOfValues.test.tsx (267 lines)
+
+Files Modified:
+- components/textbook/index.ts (added TableOfValues export)
+
+Implementation Details:
+- Props: headers (required, array of strings), data (required, 2D array of string/number), highlightCells (optional, array of {row, col})
+- Highlighting: Cells specified in highlightCells prop get bg-accent/20 background and font-semibold
+- Typography: Numeric values (typeof cell === 'number') get font-mono-num class
+- Structure: HTML table with thead for headers, tbody for data rows
+- Styling: Full width, border-collapse, rounded corners, overflow hidden, hover effect on rows
+- Cell Styling: px-4 py-3 padding, bottom border, last row has no bottom border
+- Responsive: Wrapped in overflow-x-auto div for horizontal scroll on small screens
+- Accessibility: Proper table structure, columnheader roles for headers, cell roles for data
+
+Test Coverage (19 tests):
+- Basic rendering (headers, rows, empty table)
+- Cell highlighting (single cell, multiple cells, no highlights)
+- Font-mono-num (applied to numbers, applied to data cells)
+- Visual styling (table structure, header styling, cell spacing)
+- Accessibility (table role, header roles, cell roles)
+- Edge cases (single column, single row, decimals, negatives, zeros)
+
+All tests passing, lint passing, typecheck passing.
+
+Why:
+TableOfValues provides a clean, accessible way to display mathematical data such as function tables, coordinate pairs, and value sets. The highlighting feature allows instructors to draw attention to specific values (e.g., vertex points, intercepts), and the monospace font ensures numerical data is easy to read and compare. This component is essential for algebra and function lessons where students need to analyze tabular data.

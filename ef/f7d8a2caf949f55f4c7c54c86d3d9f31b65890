@@ -1,0 +1,4 @@
+Task: Create update-password page
+Summary: Client component for setting new password with confirm field and error handling
+Files: app/auth/update-password/page.tsx, __tests__/app/auth/update-password.test.tsx
+Why: Allows users (after teacher reset) to set their new password

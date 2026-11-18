@@ -1,0 +1,12 @@
+Task: Add Convex tables and mutations for flashcard SRS review
+
+Summary: Added term_mastery, due_reviews, and study_preferences tables to the Convex schema with proper indexes. Implemented processReview, getDueTerms, and getTermMasteryByUnit handlers in convex/study.ts with full test coverage.
+
+Files changed:
+- convex/schema.ts (new tables: term_mastery, due_reviews, study_preferences)
+- convex/study.ts (new handlers: processReviewHandler, getDueTermsHandler, getTermMasteryByUnitHandler)
+- __tests__/convex/schema-study.test.ts (schema validation tests)
+- __tests__/convex/study.test.ts (handler unit tests)
+- conductor/tracks/study-hub-flashcards_20260416/plan.md (mark Phase 2 in-progress)
+
+Why: Enables persistent term mastery tracking and FSRS-scheduled review management for the Student Study Hub flashcards feature.

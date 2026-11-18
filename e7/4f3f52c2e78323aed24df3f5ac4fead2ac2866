@@ -1,0 +1,20 @@
+Task: Build review queue filters and list
+
+Summary:
+- Created API route /api/dev/review-queue with GET and POST handlers
+- Added requireDeveloperRequestClaims() to lib/auth/server.ts for API route auth
+- Created ReviewQueueClient, ReviewQueueList, ReviewDecisionPanel components
+- Implemented filters for componentKind, status, and onlyStale
+- Implemented decision panel with approve/needs-changes/reject actions
+- Added issue tags (9 types) and priority selection
+- API requires admin role and validates comment requirement for non-approved statuses
+
+Files created:
+- app/api/dev/review-queue/route.ts
+- components/dev/review-queue/index.tsx
+- __tests__/app/api/dev/review-queue/route.test.ts
+
+Files modified:
+- lib/auth/server.ts (added requireDeveloperRequestClaims)
+
+Tests: 13 passing for API route

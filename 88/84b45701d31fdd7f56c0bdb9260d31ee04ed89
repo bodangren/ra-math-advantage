@@ -1,0 +1,7 @@
+Phase 1 Checkpoint: Queue Query Implementation
+
+Verification:
+- 4 new integration tests for getDailyPracticeQueue
+- 27 queue-related tests passing (4 convex/queue + 23 lib/srs/queue)
+- Lint passing
+- Files changed: convex/queue/queue.ts, __tests__/convex/queue/queue.test.ts

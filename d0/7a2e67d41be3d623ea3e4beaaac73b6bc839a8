@@ -1,0 +1,7 @@
+Task: Extend middleware.ts for dev-route admin guard
+
+Summary: Created middleware.ts at project root with JWT extraction from cookie, signature verification, and admin role check for /dev/component-approval/:path*. Non-matching routes pass through unchanged. Added 7 unit tests covering pass-through, missing cookie, invalid token, non-admin, and admin access.
+
+Files modified:
+- middleware.ts (new)
+- __tests__/middleware.test.ts (new)

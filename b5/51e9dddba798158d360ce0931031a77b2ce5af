@@ -1,0 +1,22 @@
+Phase 1: Dashboard Enhancements
+
+Summary:
+- Added estimatedMinutes to UnitLessonProgressRow interface and computation in buildPublishedUnitProgressRows
+- Added isLocked property to StudentDashboardLesson for lesson lock/unlock state
+- Added continueUrl to StudentDashboardViewModel for smart navigation
+- Updated UI to render estimated time per lesson and lock icons for locked lessons
+
+Files Changed:
+- app/student/dashboard/page.tsx - Updated UI to show estimated time and lock icons
+- lib/student/dashboard.ts - Added isLocked, continueUrl, and isLessonUnlocked logic
+- lib/progress/published-curriculum.ts - Added estimatedMinutes to PhaseVersionLike and computation
+- __tests__/lib/student/dashboard.test.ts - New test file with 10 tests
+
+Core Changes:
+- isLessonUnlocked(): First lesson is always unlocked; subsequent lessons require prior lesson to be complete
+- continueUrl: Points to first incomplete phase for returning students, or completion summary when all done
+- estimatedMinutes: Summed from phase_versions.estimatedMinutes for each lesson
+
+Tests: 10 new tests passing (dashboard.test.ts)
+Build: Passed
+Lint: Passed

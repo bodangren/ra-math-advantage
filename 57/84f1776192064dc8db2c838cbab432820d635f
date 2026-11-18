@@ -1,0 +1,11 @@
+Phase 2: Convex Queries for Reporting
+
+- Extracted getTeacherCourseOverviewDataHandler, getTeacherGradebookDataHandler, and getSubmissionDetailHandler from internalQuery wrappers in convex/teacher.ts for testability
+- Added comprehensive tests in __tests__/convex/teacher/gradebook-queries.test.ts covering:
+  * Authorization failures (unauthorized teacher, student outside org)
+  * Empty data edge cases (no lessons, no published versions, no progress)
+  * Course overview: student list, module mastery aggregation, color coding
+  * Gradebook: per-lesson status, competency badges, progress filtering
+  * Submission detail: phase evidence, practice submissions, spreadsheet evidence, latest submission selection
+- Mock DB factory supports withIndex, filter with q.eq/q.field/q.or chaining
+- All 14 new tests passing; full suite: 3094 tests, 6 pre-existing equivalence validator failures

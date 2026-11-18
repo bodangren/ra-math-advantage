@@ -1,0 +1,18 @@
+Monorepo Tooling Shell - Phase 2-3 Verification:
+
+Phase 2 Verification:
+- Template package created at packages/_template/
+- README.md documents copy/paste workflow for new packages
+- scripts/run-workspace.mjs provides workspace command fan-out
+- ws:im3:* scripts added for npm workspace delegation
+- Scripts pass lint
+
+Phase 3 Verification (IM3 Baseline):
+- lint: 35 pre-existing @typescript-eslint/no-explicit-any errors (tech-debt #47)
+- test: 11 failed equivalence tests (tech-debt #41), 3351 passed
+- build: PASS
+- typecheck: pre-existing errors in teacher.ts and workflow-validation.test.ts
+
+Track Status: COMPLETE
+Exit gate: met - IM3 baseline unchanged, workspace tooling in place
+Next track: move-im3-app-to-apps_20260417

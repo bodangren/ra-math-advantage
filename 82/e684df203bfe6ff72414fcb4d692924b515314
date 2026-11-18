@@ -1,0 +1,31 @@
+Phase 2 Checkpoint: Fill-in-the-Blank (Partial)
+
+Completed Tasks:
+1. Implement fill-in-the-blank base component with {{blank:id}} parsing
+2. Add guided and practice modes with MathInputField
+
+Files Created:
+- components/activities/blanks/FillInTheBlank.tsx (326 lines)
+- components/activities/blanks/FillInTheBlankActivity.tsx (45 lines)
+- __tests__/components/activities/blanks/FillInTheBlank.test.tsx (148 lines)
+
+Files Modified:
+- lib/activities/registry.ts (added FillInTheBlankActivity registration)
+- conductor/tracks/supporting-activities_20260406/plan.md
+- conductor/lessons-learned.md
+
+Commits in Phase:
+- 8b325bc feat(blanks): Implement FillInTheBlank component with template parsing
+- 8e58d24 conductor(plan): Mark task 'Implement fill-in-the-blank base component' as complete
+- c0ce06f feat(blanks): Add guided and practice mode tests for FillInTheBlank
+- e306dfc conductor(plan): Mark task 'Add guided and practice modes' as complete
+- a6e2d1d feat(blanks): Register FillInTheBlankActivity in registry
+- 82e684d docs(conductor): Update lessons-learned with FillInTheBlank pattern
+
+Remaining in Phase 2:
+- Word bank drag-and-drop (optional)
+- buildFillInSubmission() specialized function
+- Phase completion verification
+
+Test Results: 1262 passing (6 known equivalence failures)
+Build: Passing

@@ -1,0 +1,9 @@
+Task: Port requireRequestSessionClaims and role-variant guards
+
+Summary: Added missing requireTeacherRequestClaims function to lib/auth/server.ts following the existing pattern of requireStudentRequestClaims. Admin roles are treated as teacher-compatible. Created comprehensive unit tests in __tests__/lib/auth/server-guards.test.ts covering requireRequestSessionClaims, requireStudentRequestClaims, requireTeacherRequestClaims, and requireDeveloperRequestClaims with 401/403/claims success cases.
+
+Files changed:
+- lib/auth/server.ts
+- __tests__/lib/auth/server-guards.test.ts
+
+Why: The Security & Auth Hardening track requires fail-closed request guards for all roles. requireTeacherRequestClaims was missing despite being referenced in the spec.

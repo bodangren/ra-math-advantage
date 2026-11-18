@@ -1,0 +1,25 @@
+Phase 3: Time-Aware SRS Rating Adapter
+
+Summary:
+Implemented a deterministic SRS rating adapter that maps practice submission correctness and timing features to FSRS-style ratings (Again, Hard, Good, Easy).
+
+Key behaviors:
+- Base rating derived from submission parts: incorrect/misconceptions → Again, hints/reveals → Hard, clean correct → Good
+- Timing applied conservatively as a modifier only when reliable
+- Fast + clean + reliable → Easy upgrade
+- Slow/very_slow + reliable → Hard downgrade
+- Timing never overrides correctness (Again stays Again)
+
+Files changed:
+- lib/practice/srs-rating.ts (new)
+- __tests__/lib/practice/srs-rating.test.ts (new, 19 tests)
+- conductor/tracks/practice-timing-baselines_20260415/plan.md
+- conductor/tracks.md
+- conductor/current_directive.md
+- conductor/lessons-learned.md
+
+Verification:
+- All 19 srs-rating tests pass
+- All 88 practice lib tests pass
+- Lint passes
+- No new TypeScript errors (pre-existing only)

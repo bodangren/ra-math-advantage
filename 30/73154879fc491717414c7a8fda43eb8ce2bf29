@@ -1,0 +1,15 @@
+Task: Add srs_cards, srs_review_log, srs_sessions tables to convex/schema.ts
+
+Summary: Added three new Convex tables for SRS persistence with all specified fields and indexes.
+- srs_cards: student SRS card state with 5 indexes
+- srs_review_log: immutable append-only review log with 3 indexes
+- srs_sessions: daily practice session tracking with 2 indexes
+
+Files modified:
+- convex/schema.ts
+- __tests__/convex/schema-srs.test.ts (new)
+
+Verification:
+- 6 schema validation tests pass
+- npm run lint passes
+- No new TypeScript errors introduced

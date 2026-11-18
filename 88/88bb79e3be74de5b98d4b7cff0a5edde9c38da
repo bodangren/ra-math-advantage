@@ -1,0 +1,16 @@
+Task: Create lib/srs/contract.ts module + re-export verification tests
+
+Summary: Added lib/srs/contract.ts as the canonical SRS product contract module.
+Re-exports types from lib/practice/srs-rating.ts, objective-proficiency.ts,
+timing-baseline.ts, and contract.ts. Defined new types: SrsCardState,
+SrsReviewLogEntry, SrsSessionConfig, SrsSession. Added instructional language
+constants (STUDENT_DAILY_PRACTICE_COPY, TEACHER_DAILY_PRACTICE_COPY) and
+module-level JSDoc with triage handling rules. Wrote 26 unit tests in
+__tests__/lib/srs/contract.test.ts verifying re-exports compile and new types
+accept valid data.
+
+Files changed:
+- lib/srs/contract.ts (new)
+- __tests__/lib/srs/contract.test.ts (new)
+- conductor/tracks/srs-product-contract_20260416/plan.md
+- conductor/tracks.md

@@ -1,0 +1,37 @@
+Task: Create ReflectionCard component
+
+Summary:
+Implemented a CAP Reflection card component that displays the three reflection dimensions (Courage, Adaptability, Persistence) with their respective prompts in a visually engaging grid layout. Each dimension has a distinct icon and color scheme.
+
+Files Created:
+- components/textbook/ReflectionCard.tsx (70 lines)
+- __tests__/components/textbook/ReflectionCard.test.tsx (232 lines)
+
+Files Modified:
+- components/textbook/index.ts (added ReflectionCard export)
+
+Implementation Details:
+- Props: courage (required: { prompt: string }), adaptability (required), persistence (required)
+- Dimension Configuration:
+  * Courage: Shield icon, red color scheme
+  * Adaptability: Zap icon, blue color scheme
+  * Persistence: Target icon, green color scheme
+- Layout: Card container with centered title, 3-column grid (1-column on mobile)
+- Visual: Each dimension in a rounded container with border, colored background, icon in circle
+- Typography: font-display (Lora) for title and dimension names
+- Spacing: Proper padding and margins, gap between grid items
+- Accessibility: Proper heading structure (h3 for card title, h4 for dimensions)
+- Responsiveness: Grid changes from 1 column (mobile) to 3 columns (md and up)
+
+Test Coverage (16 tests):
+- Basic rendering (card title, each dimension, all three dimensions)
+- Visual layout (card layout, grid/flex layout, distinct visual treatment)
+- Icons (renders icons for each dimension)
+- Visual styling (proper spacing, distinct colors)
+- Accessibility (heading structure, subheadings)
+- Edge cases (empty prompts, long prompts, multiline prompts)
+
+All tests passing, lint passing, typecheck passing.
+
+Why:
+ReflectionCard provides a structured, visually appealing way to present CAP (Courage, Adaptability, Persistence) reflection prompts at the end of lessons. The distinct color coding and icons help students quickly identify each dimension, while the grid layout makes all three dimensions equally visible. This supports the instructional model's emphasis on metacognition and self-reflection, helping students develop awareness of their learning behaviors and attitudes.

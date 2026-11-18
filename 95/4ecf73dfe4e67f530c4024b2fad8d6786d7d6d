@@ -1,0 +1,23 @@
+feat(gradebook): implement Phase 2 - grid, drill-down, CSV export
+
+Task: Implement Module 1 gradebook grid, cell drill-down navigation, and CSV export
+
+Summary:
+- Created comprehensive unit tests for lib/teacher/gradebook.ts (30 tests covering computeLessonStatus, computeCellColor, buildGradebookCell, sortRowsByName, cellBgClass, cellColorLabel, applyStudentRowUpdate, assembleGradebookRows)
+- Created unit tests for lib/teacher/gradebook-export.ts (10 tests covering CSV generation, escaping, options)
+- Created integration tests for app/teacher/gradebook/page.tsx (8 tests covering grid rendering, percentages, color coding, navigation, empty state)
+- Implemented GradebookExportButton client component for CSV download
+- Added cell drill-down navigation linking to /teacher/students?id=xxx&lesson=N
+
+Files created:
+- __tests__/lib/teacher/gradebook.test.ts (30 tests)
+- __tests__/lib/teacher/gradebook-export.test.ts (10 tests)
+- __tests__/app/teacher/gradebook.test.tsx (8 tests)
+- lib/teacher/gradebook-export.ts (CSV generation)
+- components/teacher/GradebookExportButton.tsx (download button)
+
+Files modified:
+- lib/teacher/gradebook.ts (fix computeLessonStatus to count skipped as completed)
+- app/teacher/gradebook/page.tsx (add cell links, export button, fix headers)
+
+Total: 48 new tests, all passing. Build passes.

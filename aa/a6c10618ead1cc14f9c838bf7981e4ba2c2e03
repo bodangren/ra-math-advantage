@@ -1,0 +1,18 @@
+Track: convex-srs-schema_20260416 Phase 3: ReviewLogStore Adapter
+
+Summary:
+- Implemented convex/srs/reviews.ts with insert-only saveReview mutation and read queries getReviewsByCard/getReviewsByStudent using Convex indexes.
+- Implemented lib/srs/convexReviewLogStore.ts mapping SrsReviewLogEntry to/from Convex srs_review_log table.
+- Fixed Phase 2 bug: convex/srs/cards.ts imported ./_generated/server which does not exist; corrected to ../_generated/server.
+- Fixed lastReview validator/schema mismatch: changed from v.union(v.string(), v.null()) to v.optional(v.string()) to match schema, with boundary normalization.
+- Added __tests__/lib/srs/convexReviewLogStore.test.ts with 4 unit tests covering saveReview, getReviewsByCard, and getReviewsByStudent.
+
+Files changed:
+- convex/srs/cards.ts
+- convex/srs/reviews.ts (new)
+- lib/srs/convexReviewLogStore.ts (new)
+- __tests__/lib/srs/convexReviewLogStore.test.ts (new)
+
+Verification:
+- npm run lint: passed
+- npm test: 2726 passed, 6 pre-existing failures (equivalence validator)

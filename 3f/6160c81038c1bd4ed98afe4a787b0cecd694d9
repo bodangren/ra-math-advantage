@@ -1,0 +1,17 @@
+Task: Seed competency_standards records for Module 1
+
+Summary: Implemented internalMutation for seeding 6 Module 1 competency standards with idempotent insertion pattern.
+
+Files created:
+- convex/seed/seed-standards.ts - internalMutation that seeds standards (idempotent)
+- __tests__/convex/seed/seed-standards.test.ts - 12 tests validating standards
+
+Standards seeded:
+- HSA-SSE.B.3 (Algebra): Choosing and producing equivalent forms
+- HSA-REI.B.4 (Algebra): Solving quadratic equations
+- HSA-APR.B.3 (Algebra): Identifying zeros of polynomials
+- HSA-CED.A.1 (Algebra): Creating equations in one variable
+- N-CN.A.1 (Number): Knowing the definition of complex numbers
+- N-CN.C.7 (Number): Solving quadratics with complex solutions
+
+Why: Standards are required before lesson_standards can link lessons to competency standards in later phases.

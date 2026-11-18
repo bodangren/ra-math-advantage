@@ -1,0 +1,14 @@
+Phase Skip UI Wiring - MiniMax-M2.7
+
+Task: Wire existing phase skip infrastructure to PhaseCompleteButton UI
+Files changed:
+- __tests__/components/lesson/PhaseCompleteButton.test.tsx (added skip tests)
+- components/lesson/PhaseCompleteButton.tsx (added phaseType prop, skip button, handleSkip)
+- components/lesson/LessonRenderer.tsx (pass phaseType to PhaseCompleteButton)
+- conductor/tracks.md (added new track)
+- conductor/tracks/phase-skip-ui_20260414/ (new track artifacts)
+
+Why: Phase skip mutation and isSkippable() helper existed but UI not wired.
+The tech debt item was 'Phase skip infrastructure ready but UI not wired'.
+Tests: 20 PhaseCompleteButton tests pass. Full suite: 1645 passing (6 known equivalence failures).
+Build: passes. Lint: passes.

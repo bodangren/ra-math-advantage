@@ -1,0 +1,20 @@
+Phase 3: Submission and SRS Update Flow
+
+Summary:
+- Created SubmissionFeedback component for correct/incorrect feedback with 2-second display
+- Updated PracticeCardRenderer to not auto-advance on submit (parent controls advancement)
+- Updated PracticeSessionProvider to integrate PracticeCardRenderer, handle submissions via submitActivity, show feedback, and advance/complete cards
+- Created API route /api/practice/complete for completing daily practice sessions
+- Added tests for SubmissionFeedback, PracticeSessionProvider submission flow, and practice complete API route
+
+Files created:
+- components/student/SubmissionFeedback.tsx
+- __tests__/components/student/SubmissionFeedback.test.tsx
+- __tests__/components/student/PracticeSessionProvider.test.tsx
+- app/api/practice/complete/route.ts
+- __tests__/app/api/practice/complete/route.test.ts
+
+Files modified:
+- components/student/PracticeCardRenderer.tsx
+- components/student/PracticeSessionProvider.tsx
+- __tests__/components/student/PracticeCardRenderer.test.tsx

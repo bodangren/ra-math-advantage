@@ -1,0 +1,7 @@
+Task: Write type export verification test
+
+Summary: Added export-verification.test.ts that witnesses every exported type from lib/srs/contract.ts and verifies public signatures in adapters.ts, scheduler.ts, review-processor.ts, and queue.ts use only exported or built-in types. Confirms no internal-only types leak into public interfaces.
+
+Files changed:
+- __tests__/lib/srs/export-verification.test.ts (new)
+- conductor/tracks/cross-course-extraction_20260416/plan.md

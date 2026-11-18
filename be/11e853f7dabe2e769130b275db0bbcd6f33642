@@ -1,0 +1,31 @@
+Task: Create DefinitionCard component
+
+Summary:
+Implemented a card component for vocabulary terms that displays the term prominently with its definition and optional related terms. The component follows the e-textbook design system with proper typography, spacing, and accessibility.
+
+Files Created:
+- components/textbook/DefinitionCard.tsx (28 lines)
+- __tests__/components/textbook/DefinitionCard.test.tsx (181 lines)
+
+Files Modified:
+- components/textbook/index.ts (added DefinitionCard export)
+
+Implementation Details:
+- Props: term (required), definition (required), relatedTerms (optional, array of strings)
+- Visual: Card-like appearance with rounded border, subtle shadow, proper padding and margins
+- Structure: article element with h3 heading containing strong element for term
+- Typography: font-display (Lora) for term, proper line heights for definition
+- Related Terms: Optional section with border separator, bulleted list below definition
+- Accessibility: Proper heading structure (h3), semantic article element, proper list structure
+
+Test Coverage (18 tests):
+- Basic rendering (term prominence, definition, no related terms)
+- Related terms (renders when provided, list structure, single term, empty array)
+- Visual styling (card appearance, typography, spacing)
+- Accessibility (heading structure, article element, list structure)
+- Edge cases (empty definition, multiline definition, long term, many related terms, special characters)
+
+All tests passing, lint passing, typecheck passing.
+
+Why:
+DefinitionCard is essential for the vocabulary-focused sections of the e-textbook. Students need clear, visually distinct presentation of key terms with their definitions and connections to related concepts. This component provides a consistent, accessible way to present vocabulary throughout the curriculum.

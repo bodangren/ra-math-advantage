@@ -1,0 +1,28 @@
+Task: Create UnitProgressCard component
+
+Summary: Implemented UnitProgressCard component for displaying unit completion status with lesson breakdown.
+
+Changes:
+- Created components/dashboard/UnitProgressCard.tsx with:
+  - Unit number and title display
+  - Progress bar with percentage
+  - Lesson breakdown (completed of total)
+  - Status indicator (In Progress/Completed)
+  - Color coding: orange for in-progress, green for completed
+  - Icon indicators (Clock for in-progress, CheckCircle for completed)
+  - Proper ARIA attributes for accessibility (progressbar role)
+- Updated components/dashboard/index.ts to export UnitProgressCard
+- Created comprehensive test suite (__tests__/components/dashboard/UnitProgressCard.test.tsx) with 13 tests covering:
+  - Unit metadata rendering (number, title)
+  - Progress bar width and behavior (0%, 100%, intermediate values)
+  - Lesson breakdown display
+  - Completion state handling
+  - Accessibility (ARIA roles and labels)
+  - Edge cases (single lesson, many lessons)
+
+Why: Unit progress cards help both students and teachers track progress through course units at a glance, providing clear visual feedback on completion status.
+
+Files created/modified:
+- components/dashboard/UnitProgressCard.tsx (new)
+- components/dashboard/index.ts (modified)
+- __tests__/components/dashboard/UnitProgressCard.test.tsx (new)

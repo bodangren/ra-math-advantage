@@ -1,0 +1,26 @@
+Code Review #5 — 6-phase audit of monorepo extraction Waves 2-4
+
+Scope: BM2 consume-core-packages, extract-component-approval, extract-graphing-core, app-import-migration, extract-activity-runtime, extract-core-auth-convex.
+
+Verification: tsc clean, eslint clean, build pass, 3249/3255 tests pass (6 .todo).
+
+Critical fixes:
+- BM2 timingSafeEquals: was short-circuiting on length mismatch, leaking timing info about expected signature length. Fixed to iterate max-length with XOR padding.
+- BM2 generateRandomPassword: modulo bias (256 % 56 != 0). Fixed with rejection sampling.
+
+Medium fixes:
+- practice-core submission.schema.ts aligned with contract.ts (partId .trim().min(1), hintsUsed/revealStepsSeen/changedCount .int().nonnegative())
+- practice-core exported missing PracticeSubmissionInput type
+- srs-engine moved import type to file top
+- IM3 replaced local ObjectivePriority duplicate with package import
+
+Notable architectural findings:
+1. BM2 SRS is NOT duplicating the package — it uses fundamentally different data models. Needs dedicated migration track.
+2. BM2 lib/auth/server.ts is intentionally app-specific (Next.js cookie/redirect wrappers). Correct.
+3. BM2 lib/practice/engine/ is BM2 business-domain code (accounting exercises). Stays app-local per scope.
+4. IM3 lib/practice/objective-proficiency.ts contains original 456-line proficiency computation not in any package.
+
+Remaining high-priority issues tracked in tech-debt.md:
+- Misconception summary N+1 (Critical)
+- BM2 auth/practice/srs duplication (High)
+- practice-core dual schema files (Medium)

@@ -1,0 +1,15 @@
+Task: Batch SRS queue resolution to eliminate N+1 queries
+
+Summary: Refactored convex/queue/queue.ts to replace sequential per-item database lookups with batched parallel reads.
+
+Changes:
+- Replaced resolveQueueItem (sequential per-item) with resolveQueueItems (bulk parallel)
+- Standard document lookups now use Promise.all over deduplicated IDs
+- Practice item queries now use Promise.all over unique problemFamilyIds
+- Activity lookups now use Promise.all over deduplicated activity IDs
+- Added .take(100) defensive bound to srs_cards query
+- Added 3 new tests verifying batched call patterns
+
+Files modified:
+- convex/queue/queue.ts
+- __tests__/convex/queue/queue.test.ts

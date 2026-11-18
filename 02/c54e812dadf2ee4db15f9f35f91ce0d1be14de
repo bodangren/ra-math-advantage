@@ -1,0 +1,4 @@
+Task: Create auth error page
+Summary: Displays authentication error message from URL search params with link back to login
+Files: app/auth/error/page.tsx, __tests__/app/auth/error.test.tsx
+Why: Standard auth error display for failed authentication flows

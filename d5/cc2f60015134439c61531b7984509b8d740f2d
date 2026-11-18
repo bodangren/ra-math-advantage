@@ -1,0 +1,36 @@
+Task: Create StepRevealContainer component
+
+Summary:
+Implemented an interactive step-by-step container for worked examples that supports three modes: teaching (all visible), guided, and practice (reveal one at a time). The component includes smooth animations and full keyboard accessibility.
+
+Files Created:
+- components/textbook/StepRevealContainer.tsx (71 lines)
+- __tests__/components/textbook/StepRevealContainer.test.tsx (239 lines)
+
+Files Modified:
+- components/textbook/index.ts (added StepRevealContainer export)
+
+Implementation Details:
+- Props: mode (required: 'teaching' | 'guided' | 'practice'), steps (required: array of { content: ReactNode })
+- Mode Behavior:
+  * teaching: All steps visible initially, no reveal button
+  * guided/practice: Only first step visible, 'Show Next Step' button reveals remaining steps one at a time
+- State: useState tracks number of visible steps
+- Animation: Tailwind animate-in classes (fade-in, slide-in-from-bottom-2, duration-300)
+- Button: 'Show Next Step' with ChevronDown icon, visible only in guided/practice modes when more steps remain
+- Step Number: Circular badge with primary background, sequential numbering
+- Accessibility: Button has type='button', aria-label, focus ring, keyboard support (Enter/Space)
+- Client Component: Uses 'use client' directive for state management
+
+Test Coverage (16 tests):
+- Teaching mode (all visible, no button, step numbers)
+- Guided mode (only first step, reveals one at a time, button hides after all revealed)
+- Practice mode (same as guided)
+- Animation (applies classes on reveal)
+- Keyboard accessibility (navigable, Enter/Space activation)
+- Edge cases (single step, empty array, complex content)
+
+All tests passing, lint passing, typecheck passing.
+
+Why:
+StepRevealContainer is essential for the interactive worked example experience. In teaching mode, instructors can show all steps at once for explanation. In guided and practice modes, students reveal steps progressively, which supports active learning and prevents them from seeing the solution before attempting the problem themselves. The animation provides visual feedback as new content appears, enhancing the learning experience.

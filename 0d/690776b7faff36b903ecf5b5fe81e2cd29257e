@@ -1,0 +1,17 @@
+Task: Integrate KaTeX for math rendering
+
+Summary:
+Implemented KaTeX-based math rendering components (MathBlock and MathInline) for the e-textbook design system. KaTeX and @matejmazur/react-katex were already present in dependencies.
+
+Changes:
+- Created components/textbook/MathBlock.tsx - Display math component with centering
+- Created components/textbook/MathInline.tsx - Inline math component
+- Updated components/textbook/index.ts - Export both components
+- Created __tests__/components/textbook/MathBlock.test.tsx - 4 test cases
+- Created __tests__/components/textbook/MathInline.test.tsx - 5 test cases
+- Updated app/globals.css - Added KaTeX CSS import
+
+Core 'why':
+The e-textbook needs high-quality math rendering for mathematical expressions. KaTeX is the industry-standard choice for web-based math rendering due to its speed and accuracy. These components provide the foundation for all math content in the textbook.
+
+Test results: 9/9 tests passed

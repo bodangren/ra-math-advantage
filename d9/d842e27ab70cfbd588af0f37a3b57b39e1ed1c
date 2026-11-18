@@ -1,0 +1,15 @@
+Phase 2 Complete: Card Rendering and Activity Integration
+
+Created:
+- PracticeCardRenderer.tsx: Wrapper component that accepts ResolvedQueueItem, renders activity via ActivityRenderer, wires usePracticeTiming hook, shows CardProgressBar
+- CardProgressBar.tsx: Accessible progress bar with aria-valuenow/min/max attributes
+- CardProgressBar.test.tsx: 9 tests covering counter display and accessibility
+- PracticeCardRenderer.test.tsx: 7 tests covering activity rendering, progress display, timing instrumentation, and submission handling
+
+Key decisions:
+- Used existing ActivityRenderer (which handles registry lookup + timing) rather than duplicating logic
+- PracticeCardRenderer builds PracticeSubmissionEnvelope with timing from usePracticeTiming
+- onComplete called after submission envelope is built
+
+Files created: 4
+Files modified: 1 (plan.md)

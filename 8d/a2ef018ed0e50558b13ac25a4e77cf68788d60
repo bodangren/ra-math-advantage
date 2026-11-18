@@ -1,0 +1,3 @@
+Task: Create PhaseRenderer
+Files: components/lesson/PhaseRenderer.tsx, lib/activities/registry.ts, test
+Why: Core section-to-component dispatch; registry enables Tracks 5-7 to register activities without modifying PhaseRenderer.

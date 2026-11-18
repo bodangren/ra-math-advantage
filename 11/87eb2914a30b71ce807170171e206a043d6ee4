@@ -1,0 +1,7 @@
+Phase 1 'Comprehension Quiz' complete for supporting-activities track.
+
+Implemented: ComprehensionQuiz component with teaching/guided/practice modes, all question types (multiple_choice, true_false, short_answer, select_all), submission envelope with practice.v1 contract. 21 passing tests. Component registered in activity registry as 'comprehension-quiz'.
+
+Tests: 1247 passing (was 1226), 7 known equivalence failures (unchanged)
+Build: passing
+Lint: passing

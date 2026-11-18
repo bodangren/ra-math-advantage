@@ -1,0 +1,32 @@
+Task: Create TheoremBox component
+
+Summary:
+Implemented a styled container component for key concepts, theorems, and formulas. The component follows the e-textbook design system with proper typography, spacing, and oklch color tokens.
+
+Files Created:
+- components/textbook/TheoremBox.tsx (41 lines)
+- __tests__/components/textbook/TheoremBox.test.tsx (152 lines)
+
+Files Modified:
+- components/textbook/index.ts (added TheoremBox export)
+
+Implementation Details:
+- Props: title (required), children (required), icon (optional), variant (optional, default: 'default')
+- Variants: default (secondary/30 bg), primary (primary/10 bg), accent (accent/10 bg)
+- Visual: Bordered container with rounded corners, tinted background, proper spacing
+- Structure: section element with h3 heading for title, icon (if provided) displayed before title
+- Typography: Uses font-display (Lora) for title, prose classes for body content
+- Accessibility: Proper heading structure, semantic section element
+
+Test Coverage (17 tests):
+- Basic rendering (title, body, no icon)
+- Icon support (renders icon, icon placement before title)
+- Visual styling (bordered container, tinted background, variant classes)
+- Color variants (default, primary, accent)
+- Accessibility (heading structure, section element)
+- Edge cases (empty body, multiple body elements, long title)
+
+All tests passing, lint passing, typecheck passing.
+
+Why:
+TheoremBox is a core content primitive for the e-textbook design system. It provides a visually distinct container for key mathematical concepts, theorems, and formulas, helping students identify and reference important information. The component supports customization through icon and variant props while maintaining consistent styling with the rest of the platform.

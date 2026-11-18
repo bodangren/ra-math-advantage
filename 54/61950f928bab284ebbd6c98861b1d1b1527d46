@@ -1,0 +1,21 @@
+Code Review #9 — 6-phase audit (AI tutoring extraction + BM2 adoption + IM3 chatbot + teacher-reporting wiring)
+
+Scope: Commits 407b818..6a86839 (6 commits)
+- Phase 1: Extract AI tutoring package from BM2
+- Phase 2: BM2 adoption of ai-tutoring imports
+- Phase 3: IM3 chatbot implementation via package primitives
+- Phase 4: teacher-reporting-core adoption in IM3/BM2
+- Phase 5: Workbook manifest timestamp update
+- Phase 6: Plan/docs reconciliation
+
+Critical findings (2 fixed):
+- Rate limiting completely broken: fetchInternalMutation admin auth has no user identity
+- isRetryableError default return true masked programming errors as transient
+
+High findings (6 fixed):
+- HTTP headers wrong project name
+- CSV escaping inconsistency
+- Hardcoded isUnitTest=orderIndex===11
+- + 3 others
+
+Remaining open issues tracked in tech-debt.md (8 items: 1 high, 4 medium, 3 low)

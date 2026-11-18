@@ -1,0 +1,35 @@
+Task: Create CalloutBox component with variants
+
+Summary:
+Implemented a rich callout component with four variants (important, tip, remember, caution), each with distinct icons and color schemes. This component provides visual emphasis for important information, tips, reminders, and cautions throughout the e-textbook.
+
+Files Created:
+- components/textbook/CalloutBox.tsx (54 lines)
+- __tests__/components/textbook/CalloutBox.test.tsx (227 lines)
+
+Files Modified:
+- components/textbook/index.ts (added CalloutBox export)
+
+Implementation Details:
+- Props: variant (required: 'important' | 'tip' | 'remember' | 'caution'), title (optional), children (required)
+- Variant Configuration:
+  * important: AlertTriangle icon, destructive color (red/warning)
+  * tip: Lightbulb icon, accent color (teal)
+  * remember: Info icon, blue color
+  * caution: AlertCircle icon, amber color
+- Visual: Bounded container with rounded corners, variant-specific background and border colors
+- Structure: aside element with icon + title heading (h4) when title provided
+- Typography: font-display (Lora) for title, prose classes for body content
+- Icon: Displayed before title with variant-specific color
+
+Test Coverage (24 tests):
+- Basic rendering (title, body, no title)
+- Variants (4 variants × 3 tests each: icon, styling, color scheme)
+- Visual styling (border, background, icon placement, spacing)
+- Accessibility (heading structure, aside element)
+- Edge cases (empty body, multiple elements, long title)
+
+All tests passing, lint passing, typecheck passing.
+
+Why:
+CalloutBox provides a flexible, visually distinct way to highlight important information, tips, reminders, and cautions throughout lesson content. The variant system allows students to quickly identify the type of information being presented (critical warnings vs. helpful tips vs. things to remember). This component replaces any basic callout functionality with a richer, more accessible implementation.

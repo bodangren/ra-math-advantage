@@ -1,0 +1,5 @@
+Task: Port ContentBlockErrorBoundary
+Files created:
+  - components/lesson/ContentBlockErrorBoundary.tsx — React class error boundary isolating block render errors
+  - __tests__/components/lesson/ContentBlockErrorBoundary.test.tsx — 4 tests
+Why: Prevents one broken content block from crashing the whole phase.

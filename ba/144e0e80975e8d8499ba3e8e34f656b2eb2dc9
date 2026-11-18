@@ -1,0 +1,8 @@
+fix(test): SpeedRoundGame wrong-answer feedback regex ambiguity
+
+Fixed a failing test where the regex /✗|Wrong!|wrong|x/i incorrectly matched
+the 'x' in 'Complex Number' term heading, causing multiple element matches.
+Changed to exact '✗' text match to eliminate false positives.
+
+Files changed:
+- __tests__/components/student/SpeedRoundGame.test.tsx

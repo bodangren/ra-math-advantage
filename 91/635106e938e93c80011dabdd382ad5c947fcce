@@ -1,0 +1,4 @@
+Task: Create app/api/auth/login/route.ts
+Summary: POST handler verifies username/password against Convex credentials, signs JWT session token, sets httpOnly bm_session cookie.
+Files: app/api/auth/login/route.ts, __tests__/app/api/auth/login.test.ts
+Why: Auth entry point — all sessions begin here.

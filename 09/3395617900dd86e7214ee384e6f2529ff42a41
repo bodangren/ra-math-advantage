@@ -1,0 +1,30 @@
+## Phase 4 Checkpoint: Review Queue UI
+
+### Automated Tests
+Command: CI=true npm test
+Result: 13 passed (API route tests for review-queue)
+
+### Manual Verification Steps
+1. Start dev server: npm run dev
+2. Navigate to /dev/component-approval
+3. Verify the page loads with "Developer Only" heading
+4. Verify the review queue shows items (or empty state message)
+5. Verify filters work (component kind, status, only stale)
+6. Select an item and verify decision panel appears
+7. Test approve action (should work without comment)
+8. Test needs_changes action (should require comment)
+9. Test reject action (should require comment)
+10. Verify page returns 404 in production/preview
+
+### Build Verification
+Command: npm run build
+Result: ✓ built in 967ms
+
+### Files Changed in Phase
+- app/api/dev/review-queue/route.ts (new)
+- components/dev/review-queue/index.tsx (new)
+- __tests__/app/api/dev/review-queue/route.test.ts (new)
+- lib/auth/server.ts (added requireDeveloperRequestClaims)
+- lib/activities/content-hash.ts (Web Crypto fix)
+- __tests__/lib/activities/content-hash.test.ts (async update)
+- convex/dev.ts (async hash, componentKind filter fix)

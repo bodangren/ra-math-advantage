@@ -1,0 +1,4 @@
+Task: Create app/layout.tsx
+Summary: Created root layout with ConvexClientProvider → AuthProvider → ThemeProvider hierarchy. Created HeaderSimple (sticky nav with IM3 branding) and Footer components adapted from bus-math-v2 with math-specific content.
+Files: app/layout.tsx, components/header-simple.tsx, components/footer.tsx, __tests__/app/layout.test.tsx
+Why: Root layout is required for Next.js App Router; provider order is critical for auth/theme context availability throughout the app.

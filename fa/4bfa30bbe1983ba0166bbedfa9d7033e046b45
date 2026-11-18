@@ -1,0 +1,3 @@
+task: Update globals.css and product-guidelines.md with orange brand theme
+files: app/globals.css, conductor/product-guidelines.md
+why: User approved orange direction (academic universities — MIT, Stanford, Caltech) before implementing public pages. oklch primary moved from blue-violet (264) to warm orange (40). Teal accent replaces amber for complementary contrast.

@@ -1,0 +1,25 @@
+## Phase 5 Checkpoint: Component Review Harnesses
+
+### Automated Tests
+Command: CI=true npm test -- --run __tests__/components/dev/review-harness/
+Result: 56 passed (4 test files)
+
+### Manual Verification Steps
+1. Navigate to /dev/component-approval
+2. Select an item from the queue
+3. Click 'Harness' tab to view component harness
+4. Verify example/practice/activity harnesses render based on componentKind
+5. Test mode switching in ExampleReviewHarness
+6. Test attempt simulation in PracticeReviewHarness
+7. Test callback triggers in ActivityReviewHarness
+8. Verify Decision/Harness tab toggle works
+
+### Build Verification
+Command: npm run build
+Result: ✓ built in 943ms
+
+### Files Changed in Phase
+- components/dev/review-harness/ (new - 4 files)
+- components/dev/review-queue/index.tsx (modified)
+- __tests__/components/dev/review-harness/ (new - 4 test files)
+- conductor/lessons-learned.md (updated)

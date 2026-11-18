@@ -1,0 +1,11 @@
+Phase 2: Content Hashing and Stale Approval
+
+Summary: Replaced placeholder hash for example/practice components with real computeComponentContentHash calls. Added hash stability tests for example and practice kinds. Added stale detection tests for activity, example, and practice review targets.
+
+Files changed:
+- convex/dev.ts: Removed conditional placeholder, always compute real content hash
+- __tests__/lib/activities/content-hash.test.ts: +6 tests for example/practice hash stability
+- __tests__/lib/activities/review-queue.test.ts: +5 tests for stale detection across all kinds
+- conductor/tech-debt.md: Marked placeholder hash as resolved
+- conductor/tracks/harden-manual-approval_20260415/metadata.json: Status -> in_progress
+- conductor/tracks/harden-manual-approval_20260415/plan.md: Phase 2 tasks marked complete

@@ -1,0 +1,4 @@
+Task: Create app/globals.css
+Summary: Created global stylesheet with oklch CSS custom properties for light/dark themes (blue-violet palette for Integrated Math 3), Tailwind directives, font imports (Lora/DM Sans/Fira Code), staggered fade-up animations, and utility classes. Also created vitest.config.ts and vitest.setup.ts for the test infrastructure.
+Files: app/globals.css, vitest.config.ts, vitest.setup.ts, __tests__/app/globals-css.test.ts
+Why: Foundation for all page styling; theme adapted from bus-math-v2 with math-appropriate colors instead of accounting green.

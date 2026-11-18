@@ -1,0 +1,37 @@
+Task: Create VocabularyHighlight component
+
+Summary:
+Implemented an inline vocabulary highlight component that displays terms with a tooltip showing their definition. The component supports hover, click, and keyboard interactions with full accessibility support.
+
+Files Created:
+- components/textbook/VocabularyHighlight.tsx (71 lines)
+- __tests__/components/textbook/VocabularyHighlight.test.tsx (230 lines)
+
+Files Modified:
+- components/textbook/index.ts (added VocabularyHighlight export)
+
+Implementation Details:
+- Props: term (required), definition (required), children (optional, defaults to term)
+- State: useState tracks tooltip open/closed state
+- Interactions:
+  * Hover: Shows tooltip on mouseEnter, hides on mouseLeave
+  * Click: Toggles tooltip visibility
+  * Keyboard: Enter or Space toggles tooltip
+- Visual: Accent-colored background with bottom border, Info icon, cursor pointer
+- Tooltip: Absolute positioned div with term (bold) and definition, z-50 for layering
+- Animation: Tailwind animate-in (fade-in, slide-in-from-top-2, duration-200)
+- Accessibility: role='button', tabIndex=0, aria-expanded, aria-label, aria-describedby
+- Client Component: Uses 'use client' directive for state management
+
+Test Coverage (22 tests):
+- Basic rendering (term inline, custom children, definition hidden initially)
+- Tooltip behavior (show on hover, hide on leave, show on click, toggle on click)
+- Keyboard accessibility (focusable, Enter/Space activation, toggle on Enter, ignore other keys)
+- ARIA attributes (role, aria-expanded, aria-describedby updates)
+- Visual styling (term highlighting, tooltip styling)
+- Edge cases (long term, long definition, special characters, multiline definition)
+
+All tests passing, lint passing, typecheck passing.
+
+Why:
+VocabularyHighlight provides an elegant way to embed vocabulary definitions directly within lesson content. Students can hover or click on highlighted terms to see their definitions without leaving the flow of reading. This just-in-time learning approach reinforces vocabulary acquisition and reduces cognitive load by providing contextually relevant definitions exactly when needed.

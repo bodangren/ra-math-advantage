@@ -1,0 +1,14 @@
+Task: Create seed function convex/seed/seed-lesson-4-1.ts and tests
+
+Summary: Implemented Phase 1 of module-4-seed track by creating the idempotent seed mutation for Lesson 4-1 (Operations on Functions) and corresponding tests.
+
+Files created:
+- convex/seed/seed-lesson-4-1.ts (seed mutation with 12 phases: explore, vocab, learn x2, worked_example x6, discourse, reflection)
+- __tests__/convex/seed/seed-lesson-4-1.test.ts (14 tests verifying metadata, phase sequence, and activity component keys)
+
+Files modified:
+- conductor/tracks.md (marked Module 4 seed as in-progress)
+- conductor/tracks/module-4-seed_20260415/metadata.json (status: in_progress)
+- conductor/tracks/module-4-seed_20260415/plan.md (marked Phase 1 tasks complete)
+
+Why: Curriculum seeding pipeline requires each lesson to have an idempotent Convex mutation and tests before integration.

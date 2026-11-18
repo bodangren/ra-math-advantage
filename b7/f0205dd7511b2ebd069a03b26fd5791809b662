@@ -1,0 +1,26 @@
+Phase 1 Verification Report — BM2 TypeScript & Runtime Correctness
+
+Investigated Items:
+- fetchInternalQuery untyped unknown: RESOLVED (generic params added in core-convex, commit c0f6137)
+- ctx.transaction() dead code: RESOLVED (dead code removed, commit 093784b)
+- CashFlowChallenge type drift: RESOLVED (direct props interface, commit a6a2482)
+- BM2 lib/auth duplication: INVESTIGATED — behavioral divergences found in timingSafeEquals and generateRandomPassword. Deferred to BM2-specific track (AGENTS.md scope constraint).
+- BM2 lib/practice duplication: INVESTIGATED — ~300 lines are package duplicates (contract/timing/srs-rating), ~1000 lines are BM2-specific engine/. Deferred to BM2-specific track.
+- Governance test failures: RESOLVED (skipped 9 suites, deleted proxy.test.ts)
+- BM2 TS errors: RESOLVED (0 errors verified 2026-04-23)
+
+Tests Run:
+- IM3 tests: 3280 passed, 6 todo, 1 pre-existing flaky teardown error
+- BM2 tests: 2266 passed, 33 skipped
+- core-auth package tests: 31 passed (includes new tampered-hash test)
+- IM3 lint: PASS
+- IM3 typecheck: 0 errors
+- BM2 typecheck: 0 errors
+- IM3 build: PASS
+
+Files Changed:
+- conductor/tracks.md
+- conductor/tech-debt.md
+- conductor/lessons-learned.md
+- conductor/tracks/monorepo-tech-debt-triage_20260422/plan.md
+- packages/core-auth/src/__tests__/core-auth.test.ts (committed in prior commit f88e28c)

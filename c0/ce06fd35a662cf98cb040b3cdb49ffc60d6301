@@ -1,0 +1,13 @@
+Task: Add guided and practice modes to FillInTheBlank (Phase 2, Task 2)
+
+Summary: Added comprehensive tests for guided and practice modes.
+
+Changes:
+- Updated __tests__/components/activities/blanks/FillInTheBlank.test.tsx
+- Updated conductor/tracks/supporting-activities_20260406/plan.md
+
+Tests added:
+- guided mode: shows one blank at a time with placeholder, progress indicator, math input
+- practice mode: shows all blanks at once, submit disabled until answered
+
+All 14 tests passing.

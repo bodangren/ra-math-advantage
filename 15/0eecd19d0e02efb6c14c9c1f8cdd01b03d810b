@@ -1,0 +1,9 @@
+Task: FSRS Stability Normalization
+
+Summary: Implemented stabilityToRetention sigmoid normalization function to convert FSRS stability (days) into 0-1 retention strength. Added comprehensive unit tests covering edge cases (NaN, Infinity, negative values, custom scaleFactor).
+
+Files:
+- lib/practice/srs-proficiency.ts (new)
+- __tests__/lib/practice/srs-proficiency.test.ts (new)
+
+Why: This is the foundation for the objective proficiency measurement pipeline, enabling card states to feed into existing computeObjectiveProficiency.

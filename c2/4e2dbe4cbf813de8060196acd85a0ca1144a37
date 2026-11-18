@@ -1,0 +1,8 @@
+Track 11 Phase 4: Intervention Mutations
+
+Implemented three teacher-facing SRS intervention mutations in convex/teacher/srs-mutations.ts:
+- updateObjectivePriority: Changes objective policy (essential/triaged etc.) with teacher authorization
+- resetStudentCards: Resets a student's SRS card to 'new' state and logs the reset action
+- addExtraCards: Creates an additional new card for a student on a specific objective
+
+All mutations validate teacher class ownership and student enrollment. Added comprehensive unit tests in __tests__/convex/teacher/srs-mutations.test.ts covering success paths, auth failures, and edge cases.

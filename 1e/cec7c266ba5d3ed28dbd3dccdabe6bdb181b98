@@ -1,0 +1,20 @@
+Task: Add Convex behavior tests for dev approval functions + Strengthen review mutation trust boundary
+
+Summary:
+- Extracted handler functions from convex/dev.ts (listReviewQueueHandler, submitReviewHandler, getAuditContextHandler) to enable direct unit testing.
+- Added comprehensive behavior tests in __tests__/convex/dev.test.ts covering:
+  * Unreviewed activity/example/practice discovery in review queue
+  * Stale detection when content hash changes
+  * submitReview inserts component_reviews and updates activity approval
+  * submitReview upserts component_approvals for example/practice kinds
+  * getAuditContext returns unresolved needs_changes and rejected reviews
+- Added auth boundary documentation block at top of convex/dev.ts explaining:
+  * No convex/auth.config.ts means ctx.auth.getUserIdentity() is unavailable
+  * Authentication enforced at Next.js route layer via requireDeveloperRequestClaims
+  * submitReview accepts createdBy arg because trusted server route has already authenticated
+- Existing API route tests already provide regression coverage for 401/403 unauthorized access.
+
+Files changed:
+- convex/dev.ts
+- __tests__/convex/dev.test.ts (new)
+- conductor/tracks/harden-manual-approval_20260415/plan.md

@@ -1,0 +1,21 @@
+Phase 4: Adapter Verification - Checkpoint Report
+
+Phase Scope: Implement non-Convex CardStore/ReviewLogStore stub, write integration tests proving scheduler/review-processor/queue compatibility, and verify type exports.
+
+Files Modified:
+- lib/srs/__tests__/rest-adapter-stub.ts (new stub)
+- __tests__/lib/srs/rest-adapter-stub.test.ts (new unit tests)
+- __tests__/lib/srs/rest-adapter-integration.test.ts (new integration tests)
+- __tests__/lib/srs/export-verification.test.ts (new type export verification)
+- __tests__/app/teacher/students.test.tsx (TS fix)
+- __tests__/convex/timing-baseline.test.ts (TS fix)
+- __tests__/lib/student/dashboard.test.ts (TS fix)
+- vite.config.ts (remove unused ts-expect-error)
+- conductor/tracks.md (status update)
+- conductor/tracks/cross-course-extraction_20260416/plan.md (task tracking)
+
+Test Coverage: All new code has corresponding tests. 26 new tests added (13 stub + 6 integration + 7 export verification).
+
+Automated Tests: CI=true npm run test passed. Lint passed. TypeScript typecheck passed. npm run build passed.
+
+Quality Gates: All pass.

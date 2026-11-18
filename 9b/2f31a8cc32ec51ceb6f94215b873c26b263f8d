@@ -1,0 +1,8 @@
+Phase 5: Seed Lesson 8-5
+
+- Created convex/seed/seed-lesson-8-5.ts with 10 phases (explore, vocab, learn, 2x worked_example, learn, 2x worked_example, discourse, reflection)
+- Created __tests__/convex/seed/seed-lesson-8-5.test.ts with 15 tests for phase sequence and curriculum alignment
+- Updated convex/seed.ts switch case and getLessons() for lesson 8-5
+- Fixed missing module-8-lesson-3 entry in getLessons() discovered during review
+- All module 8 seed tests pass (71 tests)
+- Lint and build pass; pre-existing RSC chunk warning remains

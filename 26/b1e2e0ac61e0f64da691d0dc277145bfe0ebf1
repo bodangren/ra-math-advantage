@@ -1,0 +1,9 @@
+Task: Port getAuthorizedTeacher helper, Port getStudentInTeacherOrg helper, Verify org-scoped data access across all Convex functions
+
+Summary: Implemented getAuthorizedTeacher and getStudentInTeacherOrg in convex/auth.ts with 100% test coverage. Applied authorization to teacher-scoped queries in convex/teacher.ts. getSubmissionDetail now requires userId and verifies teacher authorization + student org membership. getLessonErrorSummary now derives org from authorized teacher instead of trusting client-supplied org ID. Deviations documented in plan.
+
+Files modified:
+- convex/auth.ts (exported helpers)
+- convex/teacher.ts (applied guards, signature changes)
+- __tests__/convex/auth-helpers.test.ts (8 tests)
+- conductor/tracks/security-auth-hardening_20260416/plan.md

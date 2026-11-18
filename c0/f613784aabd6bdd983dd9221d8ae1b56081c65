@@ -1,0 +1,12 @@
+Task: Investigate BM2 fetchInternalQuery untyped unknown
+
+Summary: Added generic type parameters <Query extends FunctionReference<'query'>>
+and <Mutation extends FunctionReference<'mutation'>> to all four fetch wrapper
+functions in core-convex. Return types now infer from the Convex function reference
+instead of defaulting to unknown.
+
+Files changed:
+- packages/core-convex/src/query.ts
+- packages/core-convex/src/__tests__/query.test.ts
+
+Impact: ~89 BM2 TypeScript errors resolved (289 -> 200).

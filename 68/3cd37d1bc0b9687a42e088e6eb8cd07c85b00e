@@ -1,0 +1,34 @@
+Task: Create ExampleHeader component
+
+Summary:
+Implemented a styled header component for worked examples that displays the example number, title, and optional difficulty badge. This component provides visual separation for examples within lesson content.
+
+Files Created:
+- components/textbook/ExampleHeader.tsx (34 lines)
+- __tests__/components/textbook/ExampleHeader.test.tsx (156 lines)
+
+Files Modified:
+- components/textbook/index.ts (added ExampleHeader export)
+
+Implementation Details:
+- Props: number (required), title (required), difficulty (optional: 'basic' | 'intermediate' | 'advanced')
+- Difficulty Configuration:
+  * basic: green color scheme, 'Basic' label
+  * intermediate: blue color scheme, 'Intermediate' label
+  * advanced: purple color scheme, 'Advanced' label
+- Visual: Horizontal flex layout with bottom border separator
+- Typography: font-display (Lora) for heading, muted text for 'Example X:' prefix
+- Badge: Rounded pill shape with variant-specific background and border colors
+- Spacing: Proper margins and padding between elements
+
+Test Coverage (19 tests):
+- Basic rendering (example number, title, no difficulty badge)
+- Difficulty badge (renders when provided, basic/intermediate/advanced, different colors)
+- Visual styling (distinct appearance, typography, spacing, horizontal layout)
+- Accessibility (heading structure, screen reader support)
+- Edge cases (example number 0, large number, empty title, long title, special characters)
+
+All tests passing, lint passing, typecheck passing.
+
+Why:
+ExampleHeader provides clear visual separation for worked examples within lessons, making it easy for students to identify and reference specific examples. The difficulty badge helps students understand the complexity level of each example, allowing them to focus on appropriate content based on their current understanding.

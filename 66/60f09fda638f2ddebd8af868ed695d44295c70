@@ -1,0 +1,15 @@
+extract-srs-engine Phase 1 Complete
+
+Task: Create packages/srs-engine structure and move canonical SRS modules
+Created: 7 new files in packages/srs-engine/
+Tests: 18 passing (scheduler: 8, adapters: 10)
+IM3 Status: lint pass, typecheck pass, 3355/3362 tests passing (pre-existing failures)
+
+Key Decisions:
+- Defined SRS types locally (SrsRating, PracticeTimingBaseline, etc.) rather than importing from practice-core to maintain package isolation
+- ts-fsrs updated to ^5.0.0 for learning_steps support
+- pnpm-workspace.yaml created for pnpm workspace support
+
+Known Gaps:
+- objective-proficiency types not in practice-core (tracked separately)
+- ts-fsrs v4 vs v5 API difference resolved by upgrading

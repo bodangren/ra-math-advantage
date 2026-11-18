@@ -1,0 +1,13 @@
+Task: Extend MarkdownRenderer to auto-detect and render math expressions
+
+Summary: Created MarkdownRenderer component and parse-math-segments utility
+that splits markdown content by math delimiters and renders via KaTeX.
+
+Files created:
+- components/textbook/MarkdownRenderer.tsx — main component, splits content into segments
+- lib/textbook/parse-math-segments.ts — utility to tokenize block/inline math
+- __tests__/components/textbook/MarkdownRenderer.test.tsx — 13 tests covering all math notations and existing markdown
+
+Why: Lesson content contains LaTeX math expressions that must render correctly.
+Approach: No new npm packages — used string segmentation to extract math blocks
+and render via existing MathBlock/MathInline components.

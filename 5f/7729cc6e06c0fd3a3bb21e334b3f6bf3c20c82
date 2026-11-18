@@ -1,0 +1,4 @@
+Task: Create app/api/auth/session/route.ts
+Summary: GET handler reads bm_session cookie, verifies JWT, fetches profile via internal.auth.getAccountSettingsContext, returns authenticated user + profile.
+Files: app/api/auth/session/route.ts, __tests__/app/api/auth/session.test.ts
+Why: Used by AuthProvider to hydrate client-side session state on page load.

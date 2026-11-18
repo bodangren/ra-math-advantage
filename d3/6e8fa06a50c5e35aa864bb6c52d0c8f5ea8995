@@ -1,0 +1,20 @@
+Track 11 Phase 2: Weak Objectives and Struggling Students
+
+Verification Report:
+- Added getWeakObjectivesHandler and getStrugglingStudentsHandler to convex/teacher/srs-queries.ts
+- getWeakObjectives queries class proficiency via getTeacherClassProficiency, filters to <50% proficient, sorts by priority (essential first) then proficiency ascending
+- getStrugglingStudents aggregates srs_cards per student, computes overdue count and avg retention, identifies weakest objective by lowest avg stability, sorts by urgency
+- Added internalQuery wrappers with teacher authorization checks
+- Wrote 11 new tests in __tests__/convex/teacher/srs-dashboard.test.ts (100% pass rate: 23/23)
+- Fixed pre-existing TypeScript errors in TeacherObjectiveDiagnosticCard.test.tsx and lib/srs/contract.test.ts (missing TeacherProficiencyView fields)
+- Lint: passing
+- Build: passing
+- TypeScript: no new errors introduced
+
+Files modified:
+- convex/teacher/srs-queries.ts
+- __tests__/convex/teacher/srs-dashboard.test.ts
+- __tests__/components/teacher/TeacherObjectiveDiagnosticCard.test.tsx
+- __tests__/lib/srs/contract.test.ts
+- conductor/tracks.md
+- conductor/tracks/teacher-srs-dashboard_20260416/plan.md

@@ -1,0 +1,6 @@
+Task: Create PhaseContainer component
+Summary: Styled wrapper for a single phase's content block.
+Files created:
+  - components/textbook/PhaseContainer.tsx — maps PhaseType to bg/border/label via getPhaseDisplayInfo; accessible section with aria-label
+  - __tests__/components/textbook/PhaseContainer.test.tsx — 17 tests covering all 10 phase types, label correctness, visual treatment, accessibility
+Why: PhaseContainer gives each phase section a distinct visual identity so students know immediately what kind of activity/content they're in.

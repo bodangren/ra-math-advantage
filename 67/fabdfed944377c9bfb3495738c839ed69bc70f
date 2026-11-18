@@ -1,0 +1,19 @@
+Track: srs-core-library_20260416 Phase 2: Review Processor
+
+Summary:
+- Implemented lib/srs/review-processor.ts to bridge practice submissions through srs-rating.ts to FSRS card state updates.
+- Added 12 unit tests covering incorrect/correct submissions, hint usage, timing upgrades, missing timing, review log capture, and metadata preservation.
+- Generates submissionId as {activityId}-{attemptNumber} consistent with error-analysis module.
+- Preserves timing_missing audit reason when submission lacks timing data.
+
+Files changed:
+- lib/srs/review-processor.ts (new)
+- __tests__/lib/srs/review-processor.test.ts (new)
+- conductor/tracks/srs-core-library_20260416/plan.md
+- conductor/tracks.md
+- conductor/current_directive.md
+
+Verification:
+- npx vitest run __tests__/lib/srs/review-processor.test.ts: 12/12 passed
+- npm run lint: passed
+- npm run typecheck: no new errors (pre-existing only)

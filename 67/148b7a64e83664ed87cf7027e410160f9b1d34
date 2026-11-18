@@ -1,0 +1,20 @@
+Task: Author corrected lesson 1-7 — Quadratic Inequalities
+
+Summary:
+Rewrote curriculum/modules/module-1-lesson-7 to match Phase 2 plan specifications.
+The previous version had incorrect examples and lacked the sign chart method.
+
+Changes:
+- Updated Explore phase to focus on parabola above/below x-axis inquiry
+- Added comprehensive Learn section on sign chart / number line method
+- Example 1: x^2 - 5x + 6 > 0 solved graphically
+- Example 2: x^2 - 5x + 6 > 0 solved algebraically via sign chart
+- Example 3: 2x^2 + x - 3 ≤ 0 using sign chart method
+- Example 4: Real-world football height-above-threshold context
+- Updated Think About It, In-Class Quick Check (with proper math), CAP Reflection
+
+Files modified:
+- curriculum/modules/module-1-lesson-7 (rewritten)
+- conductor/tracks/module-1-seed_20260406/plan.md (task marked complete)
+
+Phase 2 content authoring complete. Next: Phase completion verification.

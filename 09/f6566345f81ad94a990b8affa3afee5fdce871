@@ -1,0 +1,7 @@
+Task: Wire sessionId through completion flow
+
+- PracticeSessionProvider now sends { sessionId } in POST body to /api/practice/complete
+- API route parses and validates sessionId, returns 400 if missing
+- completeDailySession mutation accepts sessionId and verifies exact session ownership
+- Added tests for missing sessionId, wrong student, and already-completed session
+- Prevents race condition where wrong session could be completed

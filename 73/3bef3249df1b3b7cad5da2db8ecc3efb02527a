@@ -1,0 +1,12 @@
+Phase 3: Activity Submission Integration
+
+Changes:
+- ActivityRenderer.tsx: uses usePracticeTiming hook; wraps onSubmit to inject timing into valid practice.v1 envelopes using safeParse; guards teaching mode
+- LessonRenderer.tsx: handleActivitySubmit now accepts payload and forwards full envelope fields to submitActivity
+- lib/activities/submission.ts: accepts PracticeTimingSummary and passes to buildPracticeSubmissionEnvelope
+- GraphingExplorer.tsx: imports canonical PracticeSubmissionEnvelope; maps mode to canonical values
+- lib/activities/schemas/graphing-explorer.schema.ts: buildGraphingSubmission maps mode to canonical values
+- lib/activities/schemas/step-by-step-solver.schema.ts: buildAlgebraicSubmission maps mode to canonical values
+- Tests: ActivityRenderer-timing.test.tsx (8 tests), ActivityRenderer-activity-families.test.tsx (4 tests), updated LessonRenderer-activity-submission and graphing-explorer-build-submission tests
+
+Verification: npm run test (2387 passing, 6 known equivalence failures), npm run lint (passing), npm run build (passing)

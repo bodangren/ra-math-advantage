@@ -1,0 +1,13 @@
+Track: module-9-seed_20260415 Phase 1: Seed Lesson 9-1
+
+Summary: Added Module 9 Lesson 9-1 (Angles and Angle Measure) curriculum seed.
+
+Files changed:
+- convex/seed/seed-lesson-9-1.ts (new) - idempotent seed mutation with 12 phases
+- __tests__/convex/seed/seed-lesson-9-1.test.ts (new) - phase sequence and activity tests
+- convex/seed.ts - wired seedLesson9_1 into orchestration and getLessons()
+- conductor/tracks/module-9-seed_20260415/plan.md - marked Phase 1 tasks complete
+- conductor/tracks.md - marked Phase 1 complete
+- conductor/current_directive.md - updated status summary
+
+Why: Begin Module 9 curriculum seeding per current directive. Follows established module seed pattern with comprehension-quiz activities for worked examples and discourse, graphing-explorer for explore phase.

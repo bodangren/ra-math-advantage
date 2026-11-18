@@ -1,0 +1,12 @@
+Phase 4: Competency Heatmaps
+
+- lib/teacher/competency-heatmap.ts: pure logic for heatmap assembly and student detail
+- __tests__/lib/teacher/competency-heatmap.test.ts: 15 tests covering color logic, heatmap rows, detail assembly
+- convex/teacher.ts: getTeacherCompetencyHeatmapData and getTeacherStudentCompetencyDetail handlers
+- __tests__/convex/teacher/gradebook-queries.test.ts: 7 additional query tests for competency handlers
+- components/teacher/CompetencyHeatmapGrid.tsx + StudentCompetencyDetailGrid.tsx: ported UI components
+- __tests__/components/teacher/*: 18 component tests
+- app/teacher/competency/page.tsx + CompetencyHeatmapClient.tsx: course-wide heatmap page
+- app/teacher/students/[studentId]/competency/page.tsx: individual student drill-down page
+
+Build passes. 3266/3273 tests passing (7 pre-existing equivalence validator failures).

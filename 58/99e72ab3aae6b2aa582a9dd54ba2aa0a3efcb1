@@ -1,0 +1,26 @@
+Phase 6: End-to-End Verification and Documentation
+
+## Summary
+Completed Phase 6 of the component-approval track which focused on verification and documentation.
+
+## Changes
+1. Fixed lint errors in StepByStepSolverActivity.tsx (unused variables with eslint-disable comments)
+2. Created developer-notes.md documenting:
+   - How to run the review site locally
+   - Approval status semantics and stale approval behavior
+   - How unresolved review notes feed LLM audits
+   - LLM restrictions on approval
+3. Updated index.md to link to developer notes
+4. Updated plan.md with Phase 6 task status
+
+## Integration Test Coverage Note
+Full Convex integration tests (unreviewed queue, approving stores summary/history, stale detection, LLM audit context) require convex-test package which is not currently installed. Unit tests cover:
+- Route guard (isDevApprovalEnabledForRequest) - covered by developer.test.ts
+- Content hashing - covered by content-hash.test.ts
+- Schema validators - covered by component-reviews.test.ts
+- UI components - covered by review-harness tests
+
+## Quality Gates
+- Lint: PASSED
+- Tests: 1227 passing, 6 known failures (equivalence validator)
+- Build: PASSED

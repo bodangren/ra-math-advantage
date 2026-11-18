@@ -1,0 +1,9 @@
+Task: Phase 1 - Queue Query Implementation
+
+Summary: Implemented getDailyPracticeQueue internalQuery in convex/queue/queue.ts that fetches a student's SRS cards, joins with objective policies via competency_standards, and calls buildDailyQueue to return an ordered daily practice queue.
+
+Files modified:
+- convex/queue/queue.ts (new: query handler and internalQuery export)
+- __tests__/convex/queue/queue.test.ts (new: 4 integration tests covering empty queue, ordered items, policy joining, and argument verification)
+
+Why: Daily Practice Queue Engine Phase 1 requires a Convex-backed query to bridge card storage with the pure buildDailyQueue function.

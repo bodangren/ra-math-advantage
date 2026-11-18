@@ -1,0 +1,14 @@
+Phase 1 Checkpoint: Fail-Closed API Route Guards
+
+Verification Summary:
+- All 3 tasks in Phase 1 completed
+- Files changed: lib/auth/server.ts, __tests__/lib/auth/server-guards.test.ts, app/api/auth/change-password/route.ts, app/api/phases/complete/route.ts, app/api/phases/skip/route.ts, app/api/dev/review-queue/route.ts, __tests__/app/api/auth/change-password.test.ts, __tests__/app/api/phases/skip/route.test.ts
+- Test coverage: 19 server guard tests, 4 change-password tests, 7 phases/complete tests, 5 phases/skip tests, 14 review-queue tests
+- Full test suite: passed (6 known equivalence validator failures)
+- Build: passing
+- Lint: 22 pre-existing any errors, no new errors
+
+Manual verification plan:
+1. Verify change-password endpoint rejects deactivated credentials
+2. Verify phases/complete and phases/skip reject malformed bodies with detailed Zod errors
+3. Verify dev/review-queue POST validates componentKind, componentId, and status via Zod

@@ -1,0 +1,4 @@
+Task: Create login page
+Summary: Client component login form with username/password fields, error display, and forgot-password link
+Files: app/auth/login/page.tsx, __tests__/app/auth/login.test.tsx
+Why: Core authentication entry point using useAuth() context

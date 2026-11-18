@@ -1,0 +1,17 @@
+Task: Module 6 Phase 6 - Module Integration and Verification
+
+Summary:
+- Added Module 6 CCSS standards (HSF-BF.B.5, HSF-LE.A.4, HSF-IF.C.7e) to seed-standards.ts
+- Created seed-lesson-standards.ts with idempotent seedModule6LessonStandards mutation
+- Wired seedModule6LessonStandards into seed.ts orchestration
+- Added tests for new standards and lesson-standard links
+- Verified with lint, seed tests, curriculum consistency tests, and build
+
+Files changed:
+- convex/seed/seed-standards.ts
+- convex/seed/seed-lesson-standards.ts (new)
+- convex/seed.ts
+- __tests__/convex/seed/seed-standards.test.ts
+- __tests__/convex/seed/seed-lesson-standards.test.ts (new)
+
+Why: Completes Module 6 curriculum seed by linking logarithmic function standards to lessons and establishes the lesson_standards seeding pipeline pattern.

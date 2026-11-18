@@ -1,0 +1,6 @@
+Task: Create LessonPageLayout component
+Summary: Responsive top-level layout for lesson pages.
+Files created:
+  - components/textbook/LessonPageLayout.tsx — client component with sticky progress bar, collapsible phase nav sidebar, lesson header, and constrained main content area
+  - __tests__/components/textbook/LessonPageLayout.test.tsx — 17 tests covering header, sidebar, progress bar, accessibility, mobile toggle
+Why: LessonPageLayout is the top-level shell that all lesson content renders inside. The sticky progress bar and phase sidebar give students persistent orientation throughout a lesson.

@@ -1,0 +1,6 @@
+Task: Build submission envelope assembly and register component
+
+- Added buildAlgebraicSubmission() to step-by-step-solver.schema.ts with AlgebraicSubmissionInput interface
+- Created StepByStepSolverActivity.tsx component that wraps StepByStepper
+- Updated registry.ts to register 'step-by-step-solver' and add to MODULE_1_KEYS
+- All tests pass (6 known equivalence failures remain)

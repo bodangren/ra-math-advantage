@@ -1,0 +1,7 @@
+Phase 2 Checkpoint: New Type Definitions
+
+Verification: Types SrsCardState, SrsReviewLogEntry, SrsSessionConfig,
+SrsSession defined in lib/srs/contract.ts. All tested in
+__tests__/lib/srs/contract.test.ts (26 tests passing). Types use ISO strings
+only (no Date objects). Compile-time rejection of invalid shapes verified via
+TypeScript.

@@ -1,0 +1,4 @@
+Task: Create confirm page
+Summary: Simple confirmation/status page after account creation
+Files: app/auth/confirm/page.tsx, __tests__/app/auth/confirm.test.tsx
+Why: Standard auth flow page for post-registration confirmation

@@ -1,0 +1,10 @@
+Task: Verify no stack trace leaks in production
+
+Summary: Audited all 10 API routes in app/api/ for stack trace and internal error message exposure. Fixed 3 routes that leaked error.message in 500 responses: app/api/dev/review-queue/route.ts POST, app/api/practice/complete/route.ts, and app/api/activities/submit/route.ts. Updated corresponding tests to assert generic error messages. All other routes already return generic 500 messages or don't have catch blocks.
+
+Files modified:
+- app/api/dev/review-queue/route.ts
+- app/api/practice/complete/route.ts
+- app/api/activities/submit/route.ts
+- __tests__/app/api/practice/complete/route.test.ts
+- __tests__/app/api/activities/submit/route.test.ts

@@ -1,0 +1,21 @@
+Task: Implement find_intercepts variant
+
+Summary: Added support for the find_intercepts variant in GraphingExplorer component. This variant focuses on x-intercept identification with special handling for functions with no real intercepts.
+
+Changes:
+- __tests__/components/activities/graphing/GraphingExplorer.test.tsx: Added comprehensive tests for find_intercepts variant covering teaching, guided, and practice modes. Updated test assertions to use queryAllByText and correct decimal format (e.g., '-2.0, 0.0' instead of '-2, 0').
+- components/activities/graphing/GraphingExplorer.tsx:
+  - Updated heading to show 'Find the X-Intercepts' for find_intercepts variant
+  - Added hasRealIntercepts() function to detect if a quadratic function has real x-intercepts
+  - Improved regex parsing to handle equations without x-term (e.g., 'y = x^2 + 4')
+  - Modified handlePointAdd to automatically record intercepts when points placed on x-axis (|y| < 1.0)
+  - Modified handlePointRemove to remove intercepts when points removed
+  - Added UI message for functions with no real intercepts
+  - Added feedback display showing 'Correct!' or 'Incorrect' for find_intercepts variant
+  - Updated submission to include intercepts in answers.intercepts
+
+Why: Module 1 lessons require students to find and identify x-intercepts of quadratic functions. This variant provides focused UI and validation for this specific task, including special handling for edge cases like functions with no real intercepts.
+
+Test Coverage: All 40 tests passing (29 existing + 11 new find_intercepts tests)
+
+Note: Pre-existing lint error in GraphingCanvas.tsx (unused FunctionPlot import) not related to this change.

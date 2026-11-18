@@ -1,0 +1,13 @@
+Task: Audit Conductor seed tracks against curriculum sources
+
+Summary:
+- Corrected Module 2 lesson title and phase-count drift for lessons 2-2 through 2-5.
+- Normalized module overview titles to canonical curriculum lesson headings across Modules 1-9.
+- Aligned Module 1 seed titles and Conductor track references with current lesson source headings.
+- Added a curriculum consistency regression test covering canonical lesson titles, seed-track title references, seed/test titles, and seed spec phase counts.
+- Recorded residual tech debt that Module 1 seed implementation still compresses current curriculum examples and should be remediated in a dedicated track.
+
+Verification:
+- npm run curriculum:audit
+- npm test -- __tests__/curriculum/lesson-title-consistency.test.ts __tests__/convex/seed
+- npm run lint

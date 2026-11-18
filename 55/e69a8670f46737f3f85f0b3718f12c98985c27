@@ -1,0 +1,4 @@
+Task: Create forgot-password page
+Summary: Informational page telling users to contact their teacher/admin for password resets (no email-based recovery)
+Files: app/auth/forgot-password/page.tsx, __tests__/app/auth/forgot-password.test.tsx
+Why: No email system - password resets handled by teachers/admins

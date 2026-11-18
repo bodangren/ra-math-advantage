@@ -1,0 +1,8 @@
+Task: Implement a non-Convex CardStore adapter stub (REST API-backed)
+
+Summary: Created RestAdapterStub implementing CardStore and ReviewLogStore interfaces using in-memory maps to simulate async REST round-trips. Includes comprehensive unit tests covering CRUD operations, filtering by student/objective/due date, and review log retrieval with date filtering and sorting.
+
+Files changed:
+- lib/srs/__tests__/rest-adapter-stub.ts (new)
+- __tests__/lib/srs/rest-adapter-stub.test.ts (new)
+- conductor/tracks/cross-course-extraction_20260416/plan.md

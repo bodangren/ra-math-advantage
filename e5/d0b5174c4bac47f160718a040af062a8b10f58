@@ -1,0 +1,12 @@
+Task: Audit and update existing API routes
+
+Summary: Audited all API routes under app/api/ for fail-closed auth guards and Zod validation. Updated change-password to use requireActiveRequestSessionClaims (was using non-fail-closed getRequestSessionClaims). Added Zod safeParse validation to change-password, phases/complete, phases/skip, and dev/review-queue POST routes. Existing routes activities/submit, practice/complete, auth/login, auth/logout, and auth/session were verified as appropriately guarded or exempt by design.
+
+Files changed:
+- app/api/auth/change-password/route.ts
+- app/api/phases/complete/route.ts
+- app/api/phases/skip/route.ts
+- app/api/dev/review-queue/route.ts
+- __tests__/app/api/auth/change-password.test.ts
+
+Why: All sensitive API routes must use fail-closed guards and validate input to prevent unauthorized access and malformed data.

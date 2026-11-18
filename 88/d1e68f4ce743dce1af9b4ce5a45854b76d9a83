@@ -1,0 +1,21 @@
+Phase 1 Checkpoint: Seed Lesson 6-1
+
+Summary:
+- Created seed function convex/seed/seed-lesson-6-1.ts with 14 phases (explore, vocab, learn, 4xworked_example, learn, 4xworked_example, discourse, reflection)
+- Created tests __tests__/convex/seed/seed-lesson-6-1.test.ts validating phase sequence, counts, and activity mappings
+- Updated convex/seed.ts orchestration to include module-6-lesson-1
+- Fixed pre-existing curriculum mismatch in seed-lesson-5-2.ts (merged split Example 1 parts into single worked_example phase)
+- Updated corresponding test and seed.ts metadata for lesson 5-2
+- All curriculum consistency tests pass
+- Lint passes; build passes
+
+Files changed:
+- __tests__/convex/seed/seed-lesson-6-1.test.ts (new)
+- convex/seed/seed-lesson-6-1.ts (new)
+- convex/seed.ts
+- convex/seed/seed-lesson-5-2.ts
+- __tests__/convex/seed/seed-lesson-5-2.test.ts
+- conductor/tracks/module-6-seed_20260415/plan.md
+- conductor/tracks.md
+- conductor/current_directive.md
+- conductor/lessons-learned.md

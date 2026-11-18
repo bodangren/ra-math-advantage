@@ -1,0 +1,6 @@
+Task: Update developer documentation
+
+Summary: Updated component-approval developer-notes.md with comprehensive coverage of real queue discovery (examples and practice from persisted curriculum), deterministic content hashing behavior for all component kinds, and a new 'Remaining Limitations' section documenting known open issues tracked in tech-debt.md (createdBy trust boundary, race conditions, N+1 hashes, missing Convex auth, componentKind validation).
+
+Files modified:
+- conductor/tracks/component-approval_20260413/developer-notes.md

@@ -1,0 +1,12 @@
+Task: Seed Lesson 7-6 (Phase 6 of Module 7 Curriculum Seed)
+
+Summary: Created idempotent seed function for Module 7 Lesson 6 (Solving Rational Equations and Inequalities) with 13 phases, including explore, vocabulary, two learn phases, seven worked examples with step-by-step-solver activities, discourse with comprehension-quiz, and reflection. Wired seed into convex/seed.ts orchestration.
+
+Files created:
+- convex/seed/seed-lesson-7-6.ts
+- __tests__/convex/seed/seed-lesson-7-6.test.ts
+
+Files modified:
+- convex/seed.ts
+
+Tests: 14 new tests passing. All 602 seed tests passing. 12 curriculum consistency tests passing. Lint and build pass.

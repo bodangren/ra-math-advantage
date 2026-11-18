@@ -1,0 +1,7 @@
+Task: Add textbook typography and spacing to globals.css
+Summary: Extended globals.css with .textbook-content scope.
+Files modified:
+  - app/globals.css — .textbook-content with heading hierarchy (h1-h4), clamp() responsive sizing, KaTeX math spacing, print styles (@media print hides nav/sidebar/progress bar)
+Files created:
+  - __tests__/app/globals-css-textbook.test.ts — 9 tests verifying textbook CSS scope, heading hierarchy, font-display usage, KaTeX spacing, clamp() scaling, print block, dark mode
+Why: Textbook content needs a dedicated CSS scope so lesson page typography is distinct from app chrome and renders correctly both on-screen and in print.

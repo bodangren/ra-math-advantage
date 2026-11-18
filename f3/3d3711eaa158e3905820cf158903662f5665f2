@@ -1,0 +1,3 @@
+Task: Create LessonRenderer
+Files: components/lesson/LessonRenderer.tsx, test
+Why: Top-level orchestrator that composes LessonPageLayout + LessonStepper + PhaseRenderer + PhaseCompleteButton with phase navigation state.
