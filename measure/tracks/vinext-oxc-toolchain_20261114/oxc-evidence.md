@@ -346,6 +346,50 @@ cacheless form of the 1-vs-2 artifact of plan line 226.
 | `tsc --noEmit` in `packages/_template` (median of 3) | tsc 6.0.3 | 0.4 | tsrs typecheck (S3 Verify) | pending | pending |
 | `tsc --noEmit` in `packages/workbook-pipeline` (median of 3) | tsc 6.0.3 | 0.6 | tsrs typecheck (S3 Verify) | pending | pending |
 
+### S3 TypeScript 7.0.2 timing (2026-11-19)
+
+Method: the plan "Timing Method". One warm `tsc --noEmit` run per workspace, then
+3 timed runs with bash `time` and `TIMEFORMAT=%R`, in one `heavy-run.sh` job with
+no concurrent heavy job. `tsconfig.tsbuildinfo` deleted before each run. TypeScript
+is 7.0.2 (`npx --no-install tsc --version` prints `Version 7.0.2`). The command is
+the workspace `typecheck` script (`npm run typecheck --workspace=<ws>`), except
+bus-math-v2, which has no `typecheck` script at this commit and runs
+`npx --no-install tsc --noEmit -p apps/bus-math-v2/tsconfig.json`. The table holds
+the median of the 3 runs. The values include the npm overhead (about 0.5 s). Raw
+values: `s3-tsc7-raw.txt` in the run folder (force-added). The same tree holds the
+same diagnostic key set under 6.0.3 and 7.0.2 (section 8); only the exit code moves
+from 2 to 1 for a failing workspace.
+
+| Task | Tool after | Seconds after |
+|---|---|---|
+| `tsc --noEmit` in `apps/bus-math-v2` (median of 3) | tsc 7.0.2 | 2.6 |
+| `tsc --noEmit` in `apps/danielson` (median of 3) | tsc 7.0.2 | 1.1 |
+| `tsc --noEmit` in `apps/integrated-math-1` (median of 3) | tsc 7.0.2 | 2.0 |
+| `tsc --noEmit` in `apps/integrated-math-2` (median of 3) | tsc 7.0.2 | 1.9 |
+| `tsc --noEmit` in `apps/integrated-math-3` (median of 3) | tsc 7.0.2 | 4.0 |
+| `tsc --noEmit` in `apps/pre-calculus` (median of 3) | tsc 7.0.2 | 3.0 |
+| `tsc --noEmit` in `packages/activity-components` (median of 3) | tsc 7.0.2 | 0.8 |
+| `tsc --noEmit` in `packages/activity-runtime` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/ai-tutoring` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/app-shell` (median of 3) | tsc 7.0.2 | 0.3 |
+| `tsc --noEmit` in `packages/component-approval` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/core-auth` (median of 3) | tsc 7.0.2 | 0.3 |
+| `tsc --noEmit` in `packages/core-convex` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/efficacy-core` (median of 3) | tsc 7.0.2 | 0.3 |
+| `tsc --noEmit` in `packages/graphing-core` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/knowledge-space-core` (median of 3) | tsc 7.0.2 | 0.4 |
+| `tsc --noEmit` in `packages/knowledge-space-practice` (median of 3) | tsc 7.0.2 | 0.5 |
+| `tsc --noEmit` in `packages/lesson-renderer` (median of 3) | tsc 7.0.2 | 0.3 |
+| `tsc --noEmit` in `packages/math-content` (median of 3) | tsc 7.0.2 | 0.7 |
+| `tsc --noEmit` in `packages/practice-core` (median of 3) | tsc 7.0.2 | 0.3 |
+| `tsc --noEmit` in `packages/practice-test-engine` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/rate-limiter` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/srs-engine` (median of 3) | tsc 7.0.2 | 0.4 |
+| `tsc --noEmit` in `packages/study-hub-core` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/teacher-reporting-core` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/_template` (median of 3) | tsc 7.0.2 | 0.2 |
+| `tsc --noEmit` in `packages/workbook-pipeline` (median of 3) | tsc 7.0.2 | 0.2 |
+
 ## 6. Rule gaps
 
 ### S2 Red gate exception (2026-11-18)
@@ -408,6 +452,9 @@ Phase S3 fills this section.
 | `tsc` (`apps/integrated-math-3`) | On the S1 tree the default Node heap exhausts: exit 134, `FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory`. Reproduces alone in 18 s. With 8 GB the check completes with the 55 baseline diagnostics (exit 1 warm, exit 2 cacheless; plan records this 1-vs-2 artifact). | The `typecheck` script sets `NODE_OPTIONS=--max-old-space-size=8192` (commit `b9d27742`). The npm error trailer echoes the script text, so the `s1` gate keys one extra line for IM3: `npm error command sh -c NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit`. `comm` against `baseline-m2` shows only that line is new; all 55 TS keys match. Recorded in section 10. | none |
 | `npm install` (root) | `^1.4.5` re-resolves `vinext` to 1.4.6 (published 2026-11-16), because danielson's manifest change forces a re-resolve. | Kept with Q4: the range `^1.4.5` admits it and 1.4.6 is the registry latest (R8). The 1.4.5 and 1.4.6 type files match except one optional property (`_vinextHydrationHref`) in `dist/shims/router.d.ts`. The lockfile diff holds only two changed keys (`node_modules/vinext` 1.4.5 to 1.4.6, danielson `@types/node` 22.20.5 to 24.19.2) and no added key. | none |
 | vitest (`apps/danielson`) | After `next` left, 13 `vi.mock('next/...')` lines in 11 danielson files cannot resolve `next/*` (risk R4). | `apps/danielson/vitest.config.ts` got the same 24-entry `next/*` to `vinext/shims/*` alias map as the other 5 apps. The `test s1` danielson workspace exits 0. | none |
+| `typescript6` alias (S3) | TypeScript 7 ships no JavaScript compiler API (`npm view typescript@7.0.2 exports main` shows no `./lib/typescript.js`). The S2 disable-comment scan calls `createSourceFile`, `getChildren`, `getLeadingCommentRanges`, and `getTrailingCommentRanges`. | Root devDependency `"typescript6": "npm:@typescript/typescript6@^6.0.2"` (strategy 16.2). Test file line 9 imports `typescript6`. No call site in the scan changed. Release notes: `https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/` (2026-07-08; "it does not ship with an API"; the compatibility package "re-exports the TypeScript 6.0 API"). | none |
+| `@typescript/native` bin shadow (S3) | `@typescript/typescript6` 6.0.2 depends on `@typescript/old` (`npm:typescript@^6`, installed 6.0.3). That package also provides a `tsc` bin, and npm links it at the root `.bin` ahead of `typescript@7.0.2`. Without the alias `npx tsc --version` printed `Version 6.0.3`, so the S3 `tsc` runs and the strategy 16.4 version check fail. | Root devDependency `"@typescript/native": "npm:typescript@^7.0.2"`. It is a local npm alias, not the registry name `@typescript/native` (which returns E404). Its `tsc` bin wins the root `.bin` link: `npx tsc --version` prints `Version 7.0.2`. Commands: without the alias the version prints 6.0.3; with it 7.0.2. | none |
+| TypeScript 7 tsconfig sweep (S3) | TypeScript 7 rejects some options (release notes: `target: es5`, `downlevelIteration`, `moduleResolution: node`, `module: amd`, `baseUrl`, `esModuleInterop: false`, and others). | No option of this tree is rejected. All 33 configs run (27 workspace `tsconfig.json` and 6 `apps/*/convex/tsconfig.json`). No tsconfig file changed. Each failing config holds the same file-plus-code key set under 6.0.3 and 7.0.2: IM3 55, PreCalc 4 (section 10 rows); IM1 convex 21, BM2 convex 87, IM3 convex 6, PreCalc convex 2 (convex configs are outside the baseline gate and are pre-existing at parity). The exit code of a failing config moves from 2 to 1. | none |
 
 ## 9. Keep list
 

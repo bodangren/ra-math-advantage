@@ -27,7 +27,7 @@
     "@math-platform/srs-engine": "*"
   },
   "devDependencies": {
-    "typescript": "^6",
+    "typescript": "^7.0.2",
     "vitest": "^4.1.8"
   }
 }

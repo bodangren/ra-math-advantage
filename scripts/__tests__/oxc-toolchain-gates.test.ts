@@ -6,7 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 import { load as loadYaml } from 'js-yaml';
-import * as ts from 'typescript';
+import * as ts from 'typescript6';
 
 // Resolve from the test file, never from the working folder (lessons-learned 2026-05-03).
 // This file reads nothing under measure/tracks/ (closeout moves the track folder).

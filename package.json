@@ -43,7 +43,9 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^6.3.0",
     "react-server-dom-webpack": "^19.3.1",
-    "typescript": "^6",
+    "typescript": "^7.0.2",
+    "typescript6": "npm:@typescript/typescript6@^6.0.2",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "vinext": "^1.4.5",
     "js-yaml": "^5.5.0",
     "@oxlint/plugins": "^1.79.0",
@@ -54,6 +56,6 @@
     "oxlint-plugin-eslint": "^1.79.0"
   },
   "overrides": {
-    "typescript": "^6"
+    "typescript": "^7.0.2"
   }
 }
