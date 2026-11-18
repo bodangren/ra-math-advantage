@@ -21,6 +21,11 @@ has_script() {
   node -e 'const s=require(process.argv[1]).scripts||{};process.exit(s[process.argv[2]]?0:1)' "$PWD/$1/package.json" "$2"
 }
 
+# A job log that names a disk-space errno is an infrastructure failure, not a
+# diagnostic. /tmp is a 16 GB memory disk near its quota, so a tool can write
+# ENOSPC or EDQUOT into a log and still exit with a normal code (strategy 16.7).
+has_infra_output() { grep -qE 'ENOSPC|EDQUOT' "$1" 2>/dev/null; }
+
 # Diagnostic keys of one log: line and column numbers and timings removed.
 # S1 (vinext-oxc-toolchain_20261114) key refinement: tsc diagnostic lines collapse to
 # the spec "New failure" key (file + TS code) instead of the full message text. The
@@ -37,6 +42,7 @@ has_script() {
 # absent at random (the source of the earlier "input is not in sorted order" warnings).
 key() {
   grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)' "$1" 2>/dev/null |
+    grep -vE 'ENOSPC|EDQUOT' |
     grep -v '^[[:space:]]*✓' |
     LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g; s/[[:space:]]+$//' | LC_ALL=C sort -u
 }
@@ -58,13 +64,15 @@ is_infra() { [[ "$INFRA" == *" $1 "* ]]; }
 # had one baseline label; the 6-app tree needs a second one).
 is_record_only() { case "$LABEL" in baseline*) return 0 ;; *) return 1 ;; esac; }
 
-# One heavy-run.sh job. Sets JOB_CODE.
+# One heavy-run.sh job. Sets JOB_CODE. A log that names ENOSPC or EDQUOT gets
+# code 290 (infrastructure), even when the tool exited normally (strategy 16.7).
 run_job() { # $1 kind, $2 name, $3 log file, rest: command
   local kind=$1 name=$2 log=$3 t0 t1
   shift 3
   t0=$(date +%s)
   "$H" "$@" > "$log" 2>&1
   JOB_CODE=$?
+  if has_infra_output "$log"; then JOB_CODE=290; fi
   t1=$(date +%s)
   echo "$kind $name $((t1 - t0)) exit=$JOB_CODE" >> "$OUT/timing.txt"
 }
@@ -201,7 +209,7 @@ BASE=$GATES/${GATES_BASE:-baseline}
 mkdir -p "$OUT"
 MUST_PASS=" next-absent "
 # Exit codes of heavy-run.sh itself (usage, deny list, temp file, memory, disk, time limit, lock).
-INFRA=" 64 65 70 75 77 124 201 "
+INFRA=" 64 65 70 75 77 124 201 290 "
 newfail=0
 infra=0
 JOB_CODE=0
