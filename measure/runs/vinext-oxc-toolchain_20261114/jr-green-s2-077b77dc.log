@@ -5,7 +5,7 @@ track: vinext-oxc-toolchain_20261114
 phase: Phase S2: ESLint to oxlint
 baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
 role_base_sha: 779ce28ce623cff7c753a019d3c5baafa9053549
-head: 077b77dc9d8f5615b643333933ed55a194d71dec
+head: d891a9c9aea3b972dc0c84d7c8621eb83bcee63c
 commits: 6b33da07 measure(vinext-oxc): record the S2 migration; 91050201 measure(vinext-oxc): record the S2 results; 077b77dc docs(vinext-oxc): record the S2 docs and close the math-content lint debt
 tests_run: RED rerun `npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint'`: 7 passed, 0 failed (guard-only; migration landed before S2, PM-accepted). `lint s2` (GATES_BASE=baseline-m2): NEWFAIL=0, 27 workspaces exit 0. `test s2`: NEWFAIL=0. `checks-all s2`: NEWFAIL=1 with only the two S1-accepted lines. Full scripts suite: 48 passed, 1 failed (pre-existing remediate-concept-blueprints only). K1 8/8, K2 15 tests 0 failed, K3 35 tests 0 failed, K4 jsplugins_changed=0 jsplugins_count=3 with no .oxlintrc.json diff vs 43d42193. `npm run generate` exit 0. `npm run doctor` exit 0.
 files_changed: measure/tracks/vinext-oxc-toolchain_20261114/oxc-evidence.md (sections 5, 6, 8); measure/tech-debt.md (math-content lint row Resolved); measure/tracks/vinext-oxc-toolchain_20261114/spec.md (line 252 jsPlugins fix); measure/tracks/vinext-oxc-toolchain_20261114/plan.md (S2 ticks, in plan-evidence commit)
