@@ -1,0 +1,15 @@
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: pass
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: 291aed186e114f62a6287dd720f1374bb2d18307
+head: 096d395094ebfda6feedfe1a7f5c1ad1435c5bf1
+commits: 35ffb32b test(vinext-oxc): count and strip mid-line and multi-line disable comments; 096d3950 measure(plan): record the S2 remediation round 2
+tests_run: S2 adversarial 9 passed 49 skipped exit 0; S2 oxlint 7 passed 51 skipped exit 0; S1 adversarial 7 passed 51 skipped exit 0; S1 vinext 1.x 11 passed 47 skipped exit 0; full scripts suite 57 passed 1 failed exit 1; npx tsc --noEmit exit 0; GATES_RESUME=1 GATES_BASE=baseline-m2 gates.sh test s2 NEWFAIL=0 exit 0
+files_changed: scripts/__tests__/oxc-toolchain-gates.test.ts (helpers only: BLOCK_COMMENT_RE and BLOCK_DISABLE_RE replace WHOLE_LINE_DISABLE_RE; stripDisableComments cuts each disable block span in any position; directiveKindsOfFile classifies each span; comments at old lines 898, 904, 955, 978 updated; adv 9 untouched)
+plan_updates: S2 remediation sub-box round 2 note with SHA 35ffb32b; fixture re-derived against the tree: 49 entries, 0 diffs, no entry changed; adversarial F2r2 recorded as accepted residual (fixture diff review is the defense); Review A F4 stays for closeout
+known_failures: remediate-concept-blueprints production scan (pre-existing S1 Q3 baseline row, only failure in the full scripts suite); gates/s2/test.steps stale scripts-suite record dropped before the gate re-run so it re-ran
+handoff: Review A F7 and adversarial F1r2 fixed in 35ffb32b (adv 9 passes as written, adv 1-8 unchanged, fixture exact). Accepted residual: adversarial F2r2 stays per orchestrator default. Review A F4 (measure/tracks.md:157) stays for the S2 closeout. Phase base 43d42193a1fea8628ed09f73b18bc0d8f9fe167e is an ancestor of HEAD. Final HEAD 096d395094ebfda6feedfe1a7f5c1ad1435c5bf1.
+END_MEASURE_AGENT_RESULT
