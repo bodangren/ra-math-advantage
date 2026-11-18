@@ -262,7 +262,18 @@ folder (IM1 6554/6531/6755 ms, IM2 9413/9477/9956, IM3 12558/11971/11838, PreCal
 
 ## 6. Rule gaps
 
-Phase S2 fills this section.
+### S2 Red gate exception (2026-11-18)
+
+Known exception (PM 2026-11-18): the S2 Red role gate exits 1 with
+`'RED_TEST_COMMAND failed (expected failure, exit 0)'`. All 7 S2 cases (1-5, 9, 9b)
+pass at `43d42193`. Cause: the superseded track
+`eslint-to-oxlint-migration_20260820` made the oxlint move. Strategy sections 8
+and 13.8 predicted the passes. S2 is guard-only. S2 Green (record, zero warnings,
+verify, docs) runs after the S1 checkpoint.
+
+The root `.oxlintrc.json` holds 3 `jsPlugins`: `oxlint-plugin-eslint`,
+`eslint-plugin-react`, and `eslint-plugin-react-hooks`. S2 keeps all 3 (strategy
+14.2). Case 9 checks that each specifier has a `node_modules/<specifier>` key.
 
 ## 7. Conformance gaps
 

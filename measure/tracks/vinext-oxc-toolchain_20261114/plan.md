@@ -294,6 +294,7 @@ _Story ref: spec.md#story-s2_
     - [x] Edge case 9b: the scan of case 9 runs on an in-memory lockfile with one seeded fault for each clause. It returns exactly 3 hits. (Guard: pass. Hits: `a:node_modules/typescript-eslint`, `b:node_modules/eslint`, `c:oxlint-plugin-missing`.)
     - [x] Run the scripts suite. Record each case that fails. Cases 1 to 3 and case 9 already pass at the merged tree (strategy section 8), so the S2 refresh re-derives the Red set. The refresh cannot drop case 9 or case 9b. (`npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint'`: 7 passed, 0 failed. No S2 case fails at this tree. All 7 cases are guards. The migration landed before S2, so the Red set is empty. This task records the guards and does not drop or weaken a case.)
     - [x] Commit: `test(vinext-oxc): add the S2 gate tests (Red)`. (a329d7d5.)
+    Known exception (PM 2026-11-18): the S2 Red gate exits 1 with `'RED_TEST_COMMAND failed (expected failure, exit 0)'`, because all 7 S2 cases pass at 43d42193 after the superseded lint track made the oxlint move, so S2 is guard-only.
 - [ ] Task: S2 Implement — record the migration that the lint track made (rewritten 2026-11-17)
     - [ ] `eslint-to-oxlint-migration_20260820` made the migration. Run no `@oxlint/migrate` command. Make no per-workspace `.oxlintrc.json`.
     - [ ] The S2 refresh decides how to fill evidence sections 6 and 8, because no ESLint config remains for the `--details` output.
@@ -319,6 +320,7 @@ _Story ref: spec.md#story-s2_
     - [ ] In `measure/tech-debt.md`, set the row "math-content package lint gate missing" to `Resolved`. Add this track id to its note.
     - [ ] Run `npm run generate`. Confirm exit code 0.
     - [ ] Run `npm run doctor`. Confirm exit code 0.
+    - [ ] Correct `spec.md` line 252 (`'S2 uses native oxlint rules only'`) to match strategy 14.2 and plan line 304: the 3 jsPlugins stay (PM 2026-11-18).
 - [ ] Task: Measure - User Manual Verification 'Phase S2: ESLint to oxlint' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`.
