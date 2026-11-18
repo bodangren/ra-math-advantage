@@ -1,11 +1,12 @@
 # Test Strategy: vinext-oxc-toolchain_20261114
 
 Track: `vinext-oxc-toolchain_20261114` (Chore, 5 phases S1 to S5)
-Strategy revision: r6 (2026-11-17), `role_base_sha` e341753803ed005b932355d1d78af565a759f245.
-Scope of revision r6: six apps and 27 workspace folders. Section 13 records r4. Section 14
-records r5. Section 15 records r6. A later section wins when an earlier rule disagrees with it.
-Detail level: S1 has full detail. S2 to S5 have the risks, the Red commands, and the gates.
-Refresh this file at the start of each later phase if the plan changed.
+Strategy revision: r7 (2026-11-19), `role_base_sha` 7ac6c9d68486dd920b63618162ec0d4bd6f6ba3a.
+Scope of revision r7: the S3 refresh at the S2 checkpoint. Section 16 records r7. Section 13
+records r4. Section 14 records r5. Section 15 records r6. A later section wins when an earlier
+rule disagrees with it. Detail level: S1 has full detail. S2 to S5 have the risks, the Red
+commands, and the gates. Refresh this file at the start of each later phase if the plan changed.
+Revision r7 replaced section 5 lines 221-222. Section 16.9 sets the S3 `phase_base_sha` point.
 
 ## 1. What this strategy proves
 
@@ -218,8 +219,13 @@ The helper and the paths follow plan "Probe Test Helper". This strategy adds the
   file list from `fs.readdirSync`. It then asserts that the parsed map has one entry for
   each name in that list. A filter that drops a file fails the map check, not only the
   content check.
-- **No `typescript` import in the test file.** S3 removes the package. Read tsconfig files
-  with a comment-stripping JSON parse.
+- **The disable-comment parser is a TypeScript 6 API under an alias.** The test file imports
+  `typescript6` (`npm:@typescript/typescript6@^6.0.2` in the root `devDependencies`). TypeScript
+  7 does not ship the JavaScript compiler API (release notes 2026-07-08; `npm view typescript@7
+  exports main`). Keep `ts.createSourceFile`, `getChildren`, `getLeadingCommentRanges`, and
+  `getTrailingCommentRanges` at their S2 call sites. A text regex must not replace them
+  (F1r3, F2r3, F3r3). S3 case 0 proves the alias and the 49-entry fixture still work. The
+  package named `typescript` is checked by plan case 5 only.
 - **No read under `measure/tracks/`.** Closeout moves the folder (A9). The evidence file is
   checked by the orchestrator script of section 6.4, not by vitest.
 - **Resolve from the test file.** Use `fileURLToPath(import.meta.url)` for `REPO_ROOT`.
@@ -1272,3 +1278,264 @@ self-consistency test and the sibling file. Checks K2 to K5 of section 14.2 cove
 | S1 | A5 | The words "issue #2 closed" need K1 to K5 at one commit. The A5 and A6 detectors at closeout reject a registry or plan claim of closure on 8/8 alone. |
 | S1, S2 | A7 | The K4 compare reads the parsed `jsPlugins` array, not a text line. No bare-word filter. |
 | S2 | A4 | S2 case 9b seeds one fault for each clause of S2 case 9 in memory, and expects three hits. Case 9 cannot pass vacuously. |
+
+## 16. Revision r7 (2026-11-19) — S3 refresh
+
+**Revision record.** This refresh uses role base `7ac6c9d68486dd920b63618162ec0d4bd6f6ba3a`,
+the S2 checkpoint. It closes Review A F9 of plan line 337. It re-derives the S3 Red set, decides
+the parse API, sets the gates, and lists the plan amendments. This section wins when an earlier
+rule disagrees with it. Section 4 and 16.9 split the capture rule: section 4 covers S1 and S2;
+16.9 covers S3. The S3 risk class stays **high** (section 3).
+
+### 16.1 Facts checked for this revision
+
+| Fact | Command and result |
+|------|--------------------|
+| The installed `typescript` is 6.0.3. | `node -e "console.log(require('./node_modules/typescript/package.json').version)"` → `6.0.3`. |
+| TypeScript 7 keeps no legacy JavaScript compiler API. | `npm view typescript@7.0.2 exports main` → `.` is `./lib/version.cjs`; subpaths are `./unstable/fs`, `./unstable/ast`, `./unstable/sync`, `./unstable/async`, `./unstable/proto`, `./unstable/ast/*`, and `./package.json`. No `main`; no `./lib/typescript.js`. `npm view typescript@7 exports main` is the same. |
+| The 7.1.0-beta API is new and different. | `npm view typescript@7.1.0-beta exports main` → `.` is `./lib/version.cjs`; subpaths are `./ast`, `./ast/scanner`, `./ast/visitor`, `./fs`, `./sync`, `./async`, and others. The version is `7.1.0-beta`. |
+| The release notes confirm the API gap and name the fix. | "Announcing TypeScript 7.0", 2026-07-08: "it does not ship with an API"; 7.1 will ship "a new (and different) API". The official compatibility package `@typescript/typescript6` "re-exports the TypeScript 6.0 API". The named install is `typescript@npm:@typescript/typescript6`. URL: `https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/`. |
+| The compatibility package exists. | `npm view @typescript/typescript6 version` → `6.0.2`. |
+| The S2 scan uses the legacy API. | Test file line 9: `import * as ts from 'typescript';`. Lines 907-958 call `ts.ScriptKind`, `ts.createSourceFile`, `node.getChildren`, `ts.getLeadingCommentRanges`, and `ts.getTrailingCommentRanges`. |
+| The S2 fixture and adversarial cases stay exact. | `require('./scripts/__tests__/fixtures/lint-disable-allowlist.json').entries.length` → `49`. The describe `S2 adversarial` holds adv 1 to adv 13. |
+| No S3 test exists yet. | `grep -c "describe('S3 tsrs'" scripts/__tests__/oxc-toolchain-gates.test.ts` → `0`. The discovery check names the three script test files. |
+| The tools are absent at HEAD. | `node_modules/tsrs`, `node_modules/oxlint-tsgolint`, and `node_modules/oxc-parser` do not exist. `npm view tsrs@0.25.0-ts7.1.0-beta version` → `0.25.0-ts7.1.0-beta`. |
+| The workspace state at HEAD. | 27 typecheck scripts call `tsc --noEmit` (IM3 adds the 8 GB heap flag). 20 package `build` scripts call `tsc --noEmit`. 28 manifests declare `typescript ^6`. Six `run` lines in the workflows contain a `tsc --noEmit` command: four in `ci.yml`, one in `business-math-deploy.yml`, one in `cloudflare-deploy.yml`. |
+
+### 16.2 F9 decision: keep the 6.0 parse API under a distinct alias (path c)
+
+**Rule.** Add `"typescript6": "npm:@typescript/typescript6@^6.0.2"` to the root
+`devDependencies` only. In the S3 Green commit that installs the alias, change test file line 9
+to `import * as ts from 'typescript6';`. Change no call site in lines 907-958. Do not add
+`typescript6` to `TYPESCRIPT_KEEP_LIST`; that list tracks manifests that declare the package
+named `typescript` (plan case 5). Add `SCAN_PARSER_PACKAGE = 'typescript6'` to the test file.
+
+**Why not path (a) with `typescript` 7.0.2.** The 7.x main entry is `lib/version.cjs`. It has no
+`createSourceFile`, `getChildren`, comment-range functions, or `ScriptKind`. An import from
+`typescript@7.0.2` breaks the S2 scan. A plain upgrade to 6.x also breaks the S3 contract, which
+sets `typescript` to 7.0.2 for `tsc`.
+
+**Why not alias the name `typescript` itself.** The alias package exposes `tsc6`, not `tsc`
+(release notes). Plan lines 368 and 380 need `npx tsc` to run TypeScript 7. The release notes
+propose `@typescript/native` for that second binary, but `npm view @typescript/native version`
+returns E404. A same-name alias also collides with root `overrides.typescript` and with the
+kept workspaces that declare `typescript ^7.0.2`. A distinct name avoids both faults.
+
+**Why not rewrite the scan.** `oxc-parser` is not installed, and `oxlint` exposes no comment AST.
+A text regex reopens F1r3 (CRLF trailing forms), F2r3 (an in-string `/*`), and F3r3 (disable text
+in strings and templates). Plan lines 334-335 closed those faults with the tokenizer. The alias
+keeps that behavior.
+
+**The test that proves the S2 scan still runs.** Add S3 case 0, named
+`case 0: the S2 disable scan keeps the 6.0 parser API through the alias`, in
+`describe('S3 tsrs')`. The test uses `createRequire` (already imported at line 2), so a missing
+alias cannot break module load. It asserts:
+
+1. The root `package.json` declares `devDependencies.typescript6` as
+   `npm:@typescript/typescript6@^6.0.2`.
+2. `createRequire` from the repository root resolves `typescript6/package.json`, and its
+   `version` has major 6. Parse the major as an integer (A3).
+3. The required module exposes `createSourceFile`, `getLeadingCommentRanges`, and
+   `getTrailingCommentRanges` as functions, and defines `ScriptKind.TSX`.
+
+After the import switch, run the S2 adversarial filter
+(`npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial'`, 13 pass) and the S2
+oxlint filter (`-t 'S2 oxlint'`, 7 pass) in the same commit. The allow-list check reads the
+49-entry fixture and requires every entry to match under the aliased parser. Falsification:
+remove the alias or point the import at TypeScript 7 and case 0 fails on the resolve or the API
+assertion; drop one fixture entry, change one `hiddenRules` value, or alter one disable form and
+the S2 adversarial or allow-list case fails. No S2 case or fixture entry may be dropped to make
+S3 pass.
+
+**Evidence.** Record the alias in evidence section 9 with the reason "S2 disable-comment scan;
+TypeScript 7 ships no JavaScript API". Record the release-notes URL in section 8. Keep `typescript`
+7.0.2 in the workspaces that plan lines 393-406 name. The root alias is a test dependency only.
+
+**Section 5 replacement.** The new rule at section 5 lines 221-222 is the source of truth for the
+parser. It is repeated here for review. No text regex replaces the parser API.
+
+### 16.3 S3 Red set re-derived at role base `7ac6c9d`
+
+The S3 describe does not exist at this base. Mid Red adds it. Run the discovery check of section
+5 first. Every case below has a named reason. A case that passes is a guard; record it and do not
+weaken it. **No case in this set is a guard at this base. S3 is a real Red phase** (S2 was
+guard-only; plan line 295).
+
+| Case | Assertion | Base state | Expected Red failure to record |
+|------|-----------|-----------|--------------------------------|
+| 0 (strategy) | Alias `typescript6` declared, resolved, and API-live (16.2) | red: the alias is absent | `createRequire` cannot resolve `typescript6`; a positive case, so the reason is named. |
+| 1 (plan) | Each workspace typecheck script has the target form: `TSRS_FAST=1 oxlint --config ../../.oxlintrc.json --type-aware --type-check --max-warnings 0 .` for apps and `src` for packages | red: 27 scripts call `tsc --noEmit`; BM2 has no script | The list of folders whose script is not the target form. BM2 is listed as missing until Green adds its script. Do not reduce this to a count-only regex (A3). Use `--config ../../.oxlintrc.json`, not `-c .oxlintrc.json` (section 14.6). |
+| 2 (plan) | No package `build` script contains `tsc` | red: 20 scripts call `tsc --noEmit` | The list of 20 `packages/*` entries. Do not reduce this to a count-only regex (A3). |
+| 3 (plan) | `tsrs/package.json` resolves from the repository root | red: `tsrs` is absent | The module-resolution error for `tsrs/package.json`. It is a positive case, so absence is the named reason. |
+| 4 (plan) | No `run` line in `.github/workflows/*.yml` contains `tsc` | red: 6 lines call `npx tsc --noEmit` | The list of `file:line` hits. Enumerate the files first. Assert one map entry per YAML file, so a dropped file fails (section 5). Match a command form, not a bare word (A7). |
+| 5 (plan) | The manifests that declare `typescript` equal `TYPESCRIPT_KEEP_LIST` (initial `[]`) | red: 28 declarations | The 28 paths. `typescript6` is not in this list. At Green the list holds the final Convex-driven keep set. |
+| 6 (plan) | Probe `export const n: number = "x";` exits non-zero with `TS2322` under the tsrs command | red: `tsrs --version` precondition fails | The precondition line. The probe body must assert the exit code, `TS2322`, and no `ABSENT_TOOL_PHRASES` (section 5). It must not pass while the tool is absent (A4). |
+| 7 (plan) | Probe `export const n: number = 1;` exits 0 under the tsrs command | red: same precondition | The precondition line. It is a positive case; absence is the named reason. |
+| S1 5 and 6 | Plan line 362 changes S1 edge cases 5 and 6 to the S3 command | red until Green | Both cases fail on the missing tsrs. Record this as planned (section 9). Do not drop them. |
+
+`RED_TEST_COMMAND` is `npx vitest run --config scripts/vitest.config.ts -t 'S3 tsrs'`. It exits 1.
+Mid Red copies the first failing line of each case into the Red log. Do not run the `test` gate
+between Red and Green (section 9).
+
+### 16.4 S3 risks and the tests that defend each (risk: high)
+
+| Risk | Defense and falsification |
+|------|---------------------------|
+| TypeScript 7 rejects a tsconfig option | Run `npx tsc --version` first; require 7.0.2. Run `tsc -p` per workspace and per app `convex/tsconfig.json` (plan lines 368-369). Record the first error line in the commit note and in evidence section 8. Check the named hard errors of the release notes: `target: es5`, `downlevelIteration`, `moduleResolution: node/node10` or `classic`, `module: amd/umd/systemjs/none`, `baseUrl`, `esModuleInterop: false`, `allowSyntheticDefaultImports: false`, `alwaysStrict: false`, and the new `rootDir` and `types` defaults. Falsifies when a rejected option stays in a tsconfig at closeout, or when a `tsc -p` run has no version line. |
+| tsrs beta conformance gaps (evidence section 7 tables) | The seeded TS2322 probe must appear in the `tsc` 7.1.0-beta, tsrs, and `tsc` 7.0.2 outputs. The section 7 header holds the `git rev-parse HEAD` of all three runs and both version lines. Parse file, line, and TS code into the gap table and the compiler-version table (section 7). A tsrs-only diagnostic gets a behavior-neutral fix or a fallback workspace in `TSC_FALLBACK_LIST`, and a `blocking` row. `TSC_FALLBACK_LIST` is a subset of `TYPESCRIPT_KEEP_LIST`. Falsifies when a `none` claim has no self-check, or a gap row lacks file, line, code, or disposition (A5). |
+| Convex typecheck behavior | Run `npx convex typecheck` in each app with and without the kept package (plan lines 394-402). Record the exit code, the output, and the CLI file and line in section 9. Keep `typescript ^7.0.2` only when the command fails without it. If 7.0.2 also fails, use the newest 6.x and record a held package. If only the Convex self-check skips, keep no package. Never run `convex deploy` or `convex dev` against a cloud deployment. Falsifies when a keep row has no failing command output, or when the final keep list disagrees with plan case 5. |
+| CI workflow lines | Case 4 plus `node scripts/validate-ci.mjs`. Assert each replaced step runs `npm run typecheck --workspace=<dir>`. Keep the file-map sentinel of case 4. Falsifies when a `run` line still calls `tsc`, or when a workflow file is dropped from the map (A7). |
+| TS2322 live probe | At S3 Verify add `apps/integrated-math-3/convex/__oxc_probe__.ts` with `export const n: number = "x";` (plan lines 410-411). Run the IM3 typecheck; the output names the probe file and holds `TS2322`. Delete the probe and do not commit it. Repeat the per-workspace probe loop of section 8. Falsifies when a typecheck gate passes while a probe is present, or when `git status --porcelain` shows a probe after the run. |
+| Timing before and after | Before: `tsc --noEmit` on TypeScript 6.0.3 (plan line 351). After: the tsrs typecheck (plan line 412). Use the timing method of plan lines 52-59: one warm run, three timed runs, the median, a deleted `tsconfig.tsbuildinfo` before each `tsc` run, and no concurrent heavy job. Record the tool name and the seconds in evidence section 5. Falsifies when a row has no tool name, no seconds, or a median from fewer than three timed runs (A3). |
+| A second lint config or a broken oxlint call after the script change | The S3 target command uses `--config ../../.oxlintrc.json` (section 14.6). Run the S2 oxlint filter (7 pass) and the S2 adversarial filter (13 pass) after the import switch. Falsifies when a second config appears, or when a probe with `const unused = 1;` passes (S2 case 4). |
+
+### 16.5 S3 gate values and closeout
+
+| Variable | S3 value |
+|----------|----------|
+| `RED_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts -t 'S3 tsrs'`; exit 1 at Red, exit 0 at Green. |
+| `GREEN_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts`. See the known-failure rule below. |
+| Gate labels | `lint s3`, `test s3`, `checks-all s3`. |
+| `GATES_BASE` | `baseline-m2` for all three gates. Do not use `s1` or `s2` as the base. |
+| `PROJECT_LINT` | `GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint s3` |
+| `PROJECT_CHECKS` | `GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh checks-all s3` |
+| `PROJECT_TESTS` | `GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s3` |
+| `UX_REQUIRED` | `never`. S3 changes no runtime. The live proof is the gate sweep plus the TS2322 probes (16.4). |
+| `W4_AUDIT_COMMAND` | Not an S3 gate. It closed in S1 (section 14.2). |
+
+**Green gate.** The S3 filter exits 0 with case 0 and cases 1 to 7 green. The S2 filters stay
+green (13 and 7). Each phase gate prints `NEWFAIL=0`. The `checks-all` gate may print the two
+S1-accepted lines (the IM3 npm trailer and the advisory drift) only. Any other line stops the
+phase. `node scripts/validate-ci.mjs` exits 0.
+
+**Known pre-existing failure.** `GREEN_TEST_COMMAND` exits 1. The one failing title is
+`remediate-concept-blueprints > production scan reports the honest count for the current repo
+state` (plan line 176, evidence line 660, S1 question Q3). Parse the summary and require exactly
+that one failure. A second failure stops the phase. Do not fix that row in S3.
+
+**Closeout gate.** The Green gate; `npm ci` succeeded; workspace-set check prints
+`workspaces-<script>=27` four times with no `comm` line; evidence sections 5, 7, 8, 9, and 10
+have content; section 7 holds both tables with the version and commit header; `npm run generate`
+and `npm run doctor` exit 0. Only the six known dirty generated files may remain unstaged
+(16.9). `measure/runs/` is gitignored. No push before closeout.
+
+### 16.6 Review gates for S3
+
+| Review | Applies | What the reviewer does and why |
+|--------|---------|--------------------------------|
+| Review A | Yes | Independence: not the Red author. Reads the gate, test, and evidence diff. Checks 16.2 (the alias), that no S2 adversarial case or fixture entry was dropped, and that each Red case has a named reason. S3 changes gates that later phases trust. |
+| Review B | Yes | Independence: not the Green implementer. tsrs is a 0.x prerelease with a native binary, and `npx --yes` pulls a prerelease compiler from the cache. Read the exact pins, the source, the install scripts, `npm ls typescript tsrs --all`, and the `npm audit` totals. |
+| Review C | No | No user or API surface changes. Script names stay as S2 left them. Root script names are the S5 Review C (section 3). |
+| Adversarial | Yes, highest risk | Independence: a third role. Try a typecheck script that runs no type check (omit `--type-check`, `--max-warnings 0`, or `TSRS_FAST=1`), a config that lints no file, a probe that passes while tsrs is absent, a keep list that drops a workspace, a fallback list outside the keep list, and a `none` claim without the seeded probe. A gate that finds nothing must look the same as a clean repository to this role. |
+| UX browser | No | No runtime change, so no new render to compare. The live complement is the gate sweep, the TS2322 probes, and `validate-ci.mjs`. |
+
+### 16.7 The gates.sh infrastructure change for the first S3 round
+
+**Owner: Red, as a test-infrastructure task.** Red owns `gates.sh` and its regression suite
+(section 12 and 14.4). The classifier must be correct before any S3 gate runs. `/tmp` is a 16 GB
+memory disk near its quota, so a tool can write `ENOSPC` or `EDQUOT` into a job log and still exit
+with a normal code. Green owns manifests and product config, not the gate harness.
+
+**Plan location.** Add one box to the S3 Test (Red) task (plan lines 352-364), after the box
+"Run the scripts suite. Confirm that cases 1 to 7 fail." The plan owner writes:
+
+> - [ ] Test-infrastructure guard: `gates.sh` classifies `EDQUOT` and `ENOSPC` output as
+>   infrastructure. Add three guard cases to
+>   `scripts/__tests__/vinext-oxc-gates-script.test.ts` that feed a fake job log with
+>   `ENOSPC: no space left on device`, with `EDQUOT: disk quota exceeded`, and with a normal
+>   `TS2322` line. The first two expect `INFRA FAILURE:` and exit 3 with `INFRA=1`, and no
+>   `NEW FAILURE: ... has a new diagnostic`. The third expects `NEWFAIL=1` and no `INFRA=1`.
+>   Then change `gates.sh`: add `has_infra_output()`; drop the errno lines in `key()`; set
+>   `JOB_CODE=290` in `run_job()` when a log matches, with `290` added to `INFRA`; keep the
+>   labeled last lines `NEWFAIL=<n>` and `INFRA=1`. Run `bash -n`. Falsification: remove the
+>   helper and the two infra cases fail; remove the `key()` filter and a stale log becomes a
+>   new diagnostic.
+
+Red writes the three guard cases first. They fail before the `gates.sh` change and pass after
+it. This is a nested Red-to-Green step inside the S3 Red round. No baseline file name or format
+changes, so `baseline-m2` stays valid. `GATES_RESUME=1` re-runs a job recorded with `290`,
+because `is_infra` rejects that code. Do not delete a gate output folder.
+
+### 16.8 Plan amendments (listed for the plan owner; this role does not edit plan.md)
+
+1. Line 337: append "Resolved by strategy r7 section 16.2." Keep the F9 deviation as history.
+2. Lines 343-346: replace `-c .oxlintrc.json` with `--config ../../.oxlintrc.json` in the app and
+   package typecheck target forms (section 14.6).
+3. Line 352: add S3 case 0 and its three assertions from 16.2.
+4. Line 353: add `SCAN_PARSER_PACKAGE = 'typescript6'`. State that `TYPESCRIPT_KEEP_LIST` tracks
+   only manifests that declare the package named `typescript`.
+5. Line 359: require the probe command to be `TSRS_FAST=1 npx --no-install oxlint --config
+   ../../.oxlintrc.json --type-aware --type-check <tmp>`.
+6. Line 362: keep the planned change to S1 cases 5 and 6. Note that both cases stay red until
+   Green (16.3 and section 9).
+7. Line 364: add the `typescript6` alias to the root `devDependencies` in the Red or Implement
+   commit that first needs it. Keep the static import at line 9 on `typescript` until the alias
+   lands, so the Red run loads. Switch the import to `typescript6` in the same commit that
+   installs the alias, then run the S2 filters (16.2).
+8. Lines 393-406: record the alias in evidence section 9 with the reason from 16.2. Do not add
+   `typescript6` to `TYPESCRIPT_KEEP_LIST` or to `TSC_FALLBACK_LIST`.
+9. Add the `gates.sh` box of 16.7 to the S3 Test (Red) task.
+10. Line 407: state that `GREEN_TEST_COMMAND` exits 1 for the one Q3 row (16.5), and that the
+    S2 filters stay green after the import switch.
+11. No plan line carries a phase SHA (F5). `phase_base_sha` lives in the run log and the
+    role handoff only.
+
+### 16.9 S3 `phase_base_sha` capture
+
+`role_base_sha` `7ac6c9d` predates this strategy. The S2 checkpoint `c36867b9` also predates it.
+The r6 value `e3417538` predates it. Do not use any of them as `phase_base_sha`.
+
+1. Land the strategy commit first: `measure(strategy): refresh the S3 test strategy`. It holds
+   `test-strategy.md` only.
+2. **Captured point.** Immediately after that commit returns, before any other commit and before
+   the first S3 task commit (plan line 342), run `git status --porcelain`. Only these six entries
+   may appear, each with status ` M`: `apps/integrated-math-1/.next/types/routes.d.ts`,
+   `apps/integrated-math-2/.next/types/routes.d.ts`,
+   `apps/integrated-math-3/.next/types/routes.d.ts`,
+   `apps/pre-calculus/.next/types/routes.d.ts`,
+   `apps/bus-math-v2/lib/workbooks-manifest.json`, and `measure/generated/routes.md`. Any other
+   entry stops the capture. A staged file, an untracked file, or another modified file also stops
+   it. `measure/runs/` is gitignored.
+3. Run `git rev-parse HEAD`. Store the value as `phase_base_sha` for S3 in the orchestrator run
+   log and in the role handoff. Do not write it into `plan.md` or `spec.md` (F5).
+4. The log commit `measure(runs): add the S3 strategy log` may follow the capture. It holds only
+   the log file. It changes no workspace file, so the captured SHA stays the base.
+5. Capture before the S3 Contract commit and before any manifest or test change. A
+   `phase_base_sha` that is not a descendant of the strategy commit is invalid. Stop and report.
+
+### 16.10 Anti-pattern coverage for S3
+
+Every row has a falsification condition. A case with no falsification condition is not in the
+S3 suite.
+
+| Anti-pattern | S3 defense | Falsifies when |
+|--------------|-----------|----------------|
+| A1 | No supervisor substring heuristic is used. The role gate reads structured task markers and the labeled gate lines. | A `[~]` task with a key word in its prose is counted as done. |
+| A2 | S3 makes no publish or consent decision. No publish gate is changed. | A gate treats a draft-to-publish step as passing without a consent artifact. |
+| A3 | Parse version majors from `package.json` as integers. Parse `NEWFAIL=<n>`, `critical=<n>`, `high=<n>`, and timing medians as labeled integers. The fixture check parses `entries.length` as 49. | A digit-only or substring match passes a wrong version, count, or time. |
+| A4 | Case 0 checks the alias and the API. Cases 6 and 7 have the `tsrs --version` precondition. The negative probe asserts exit code, `TS2322`, and no `ABSENT_TOOL_PHRASES`. The collector self-check seeds TS2322 in all three outputs. The workflow map needs one entry per file. | A tool is absent and a case still passes; a probe map is empty; a collector reports `none` without seeing the seeded fault. |
+| A5 | A `none` claim in section 7 needs the same-commit self-check. Each section 9 keep row names a failing `npx convex typecheck` output. Plan and registry prose says "passes" only after a command exits 0. | A claim has no command output at that commit. |
+| A6 | The registry and evidence summary do not say "resolved" while an S2 or S3 adversarial case is red. Run the A5 and A6 detectors at closeout. | A "resolved" claim survives a red adversarial case. |
+| A7 | Case 4 matches a command form in a `run` line. It never filters on a bare English word. The file map is enumerated before it is checked. The new-failure compare uses diagnostic keys. | A workflow with `npx tsc` is dropped by a filter, or a coarse compare hides a new diagnostic. |
+| A8 | Green moves tasks from `[~]` to `[x]` with a SHA. The role gate reads the markers. | A marker uses a space or is set without the work. |
+| A9 | The test file reads nothing under `measure/tracks/`. The orchestrator checks the evidence file. | A test path breaks after closeout moves the track folder. |
+| A10 | Only the six known dirty generated files may appear at capture. Stage no generated file that S3 did not cause. | A generated file enters a commit or a gate fails on stale generated facts. |
+| A11 | `bash tests/measure_orchestrator_audit.sh` stays in the `checks-all` gate (gates.sh line 229). | The guard suite disappears from the gate. |
+| A12 | The AGENTS.md peer-review rule is not changed in S3. A supervisor change needs its own reviewed flow. | An S3 commit edits the supervisor or its AGENTS.md rule. |
+
+### 16.11 Artifact tests, live tests, and intentionally-red suites
+
+**Artifact and document tests.** Plan cases 1, 4, and 5 read manifest text, workflow text, and
+keep-list constants. The evidence checks read section 7 and section 9 tables. These tests prove
+that a text exists. They do not prove that a tool works.
+
+**Live behavior tests.** Case 0 resolves a real module and calls its parser API. Cases 6 and 7
+run the tsrs probe. The TS2322 live probe runs a real typecheck on a real file. `npx convex
+typecheck` runs the Convex CLI. The `lint`, `test`, and `checks-all` gates run real workspaces.
+Each document check has one of these as its live complement (section 1).
+
+**Intentionally-red suites.** At the S3 Red commit only `describe('S3 tsrs')` is red. S1 cases 5
+and 6 turn red by plan line 362; this is planned. Do not run the `test` gate between Red and
+Green. Pre-existing failures in evidence section 10, the Q3 row, and the two S1-accepted
+`checks-all` lines are not intentionally red. Nobody fixes them in S3. After Green the S3 filter
+exits 0; `GREEN_TEST_COMMAND` exits 1 for the one Q3 row only (16.5).
