@@ -275,6 +275,28 @@ The root `.oxlintrc.json` holds 3 `jsPlugins`: `oxlint-plugin-eslint`,
 `eslint-plugin-react`, and `eslint-plugin-react-hooks`. S2 keeps all 3 (strategy
 14.2). Case 9 checks that each specifier has a `node_modules/<specifier>` key.
 
+### S2 Green record (2026-11-18)
+
+S2 ran no `@oxlint/migrate` command. The superseded track
+`eslint-to-oxlint-migration_20260820` made the migration. No `eslint.config.*`
+file remains, so the migrate tool has no input. S2 made no per-workspace
+`.oxlintrc.json`. The tree holds one root `.oxlintrc.json`.
+
+Rule inventory of the root config at this HEAD:
+
+| Item | Value |
+|------|-------|
+| Native plugins | `typescript`, `react`, `import`, `jsx-a11y`, `nextjs` |
+| `jsPlugins` | `oxlint-plugin-eslint`, `eslint-plugin-react`, `eslint-plugin-react-hooks` |
+| `overrides` blocks | 10 (3 for `apps/`, 7 for `packages/`) |
+| Rule entries across `overrides` | 667 |
+| `oxlint` installed version | 1.93.0 (range `^1.79.0`) |
+
+Rule gaps: none derivable. No ESLint config remains to diff against the
+migrated output. The `--details` output of a migration run does not exist for
+this tree. Each lint rule that the repository enforces is an entry of the root
+config above.
+
 ## 7. Conformance gaps
 
 Phase S3 fills this section.
@@ -294,6 +316,9 @@ Phase S3 fills this section.
 | `gates.sh` `key()` helper | The comparison prints `comm: input is not in sorted order` warnings for each compared log. | Noise only. The parse reads the labeled last line `NEWFAIL=<n>` (strategy section 2). | none |
 | `vinext check` (`apps/danielson`) | No issue. | Exit 0, 100% compatible (9 supported, 0 partial, 0 issues). Imports 5/5 fully supported: `next/link` 24 files, `next/navigation` 23, `next/server` 9, `next/headers` 3, `next/image` 1. Structure: 26 pages, 1 layout, 21 route handler. Proof that no `next` declaration remains: S1 case 3 finds no manifest declaration, case 8 finds no `node_modules/next` lockfile key, and case 9 finds no `eslint` or `@eslint/js` declaration. Log `jr-green-danielson-vinext-check.log`. | none |
 | `vinext build` (1.4.6, `apps/danielson`) | vinext 1.4.6 refuses to build with no Vite config: `No Vite config was found for this project. Run vinext init to create one, then retry vinext build.` | `apps/danielson/vite.config.ts` loads the `vinext()` plugin only (commit `050e916b`). danielson has no `wrangler.jsonc` and no Cloudflare deploy, so no cloudflare plugin and no `dotenv` import. The build then exits 0 (log `jr-green-danielson-build2.log`). | none |
+| oxlint migration input (S2) | No `eslint.config.*` file remains, so `@oxlint/migrate` has no input and no `--details` output. S2 records the migrated root config as-is (section 6). | none |
+| ESLint "before" lint timing (S2) | No ESLint config remains, so no ESLint timing can run on this tree. Section 5 writes `n/a` for each "before" lint value. | none |
+| Peer-only `eslint` copies (S2) | `eslint` 9.39.5, `@eslint/js` 9.39.5, and `@eslint/eslintrc` 3.3.7 stay in the lockfile with `peer: true`. They are peers of `eslint-plugin-react` and `eslint-plugin-react-hooks`, which the root config loads as `jsPlugins`. S2 keeps them (strategy 14.2, question Q1). | none |
 | `tsc` (`apps/integrated-math-3`) | On the S1 tree the default Node heap exhausts: exit 134, `FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory`. Reproduces alone in 18 s. With 8 GB the check completes with the 55 baseline diagnostics (exit 1 warm, exit 2 cacheless; plan records this 1-vs-2 artifact). | The `typecheck` script sets `NODE_OPTIONS=--max-old-space-size=8192` (commit `b9d27742`). The npm error trailer echoes the script text, so the `s1` gate keys one extra line for IM3: `npm error command sh -c NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit`. `comm` against `baseline-m2` shows only that line is new; all 55 TS keys match. Recorded in section 10. | none |
 | `npm install` (root) | `^1.4.5` re-resolves `vinext` to 1.4.6 (published 2026-11-16), because danielson's manifest change forces a re-resolve. | Kept with Q4: the range `^1.4.5` admits it and 1.4.6 is the registry latest (R8). The 1.4.5 and 1.4.6 type files match except one optional property (`_vinextHydrationHref`) in `dist/shims/router.d.ts`. The lockfile diff holds only two changed keys (`node_modules/vinext` 1.4.5 to 1.4.6, danielson `@types/node` 22.20.5 to 24.19.2) and no added key. | none |
 | vitest (`apps/danielson`) | After `next` left, 13 `vi.mock('next/...')` lines in 11 danielson files cannot resolve `next/*` (risk R4). | `apps/danielson/vitest.config.ts` got the same 24-entry `next/*` to `vinext/shims/*` alias map as the other 5 apps. The `test s1` danielson workspace exits 0. | none |
