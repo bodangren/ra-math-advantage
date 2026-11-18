@@ -283,7 +283,7 @@ _Story ref: spec.md#story-s2_
     - [x] No second `.oxlintrc.json` exists outside `node_modules`. The S2 cases read each lint script and its `--config` target (strategy R17). (The `find` above prints one path. S2 case 3 reads each script and the config path.)
     - [x] `oxlint` stays in the root `devDependencies` only. S1 sets its range to the latest version. (Root `devDependencies`: `oxlint` `^1.79.0`, `@oxlint/plugins` `^1.79.0`, `oxlint-plugin-eslint` `^1.79.0`. No app or package manifest declares an `oxlint` name. Installed copy: 1.93.0.)
     - [x] Open: no `eslint.config.*` file remains, so no ESLint "before" lint timing can run on this tree. The S2 refresh decides how to fill the "before" value of the lint row in section 5. (Recorded as an open item in the note. Default for S2 Verify: write "n/a — no ESLint config remains".)
-- [~] Task: S2 Test (Red) — add the S2 gate tests (Red commit: a329d7d5; Green marks `[x]` when the S2 cases pass)
+- [x] Task: S2 Test (Red) — add the S2 gate tests (Red commit: a329d7d5; Green marks `[x]` when the S2 cases pass: 7 passed at 077b77dc)
     - [x] Add `describe('S2 oxlint')` to the test file. (Added to `scripts/__tests__/oxc-toolchain-gates.test.ts`, after the S1 describe block.)
     - [x] Normal case 1: no manifest declares `eslint`, `typescript-eslint`, `eslint-config-next`, `@eslint/js`, or `@eslint/eslintrc`. The root `overrides` has no `eslint` key. (Guard: pass. The scan reads the root, 6 apps, and 21 packages. Override keys with a version suffix, such as `eslint@10`, also match.)
     - [x] Normal case 2: no `eslint.config.*` file exists under `apps/` or `packages/`, outside `node_modules`. (Guard: pass. A sentinel proves that the walk finds the app manifests.)
@@ -295,32 +295,32 @@ _Story ref: spec.md#story-s2_
     - [x] Run the scripts suite. Record each case that fails. Cases 1 to 3 and case 9 already pass at the merged tree (strategy section 8), so the S2 refresh re-derives the Red set. The refresh cannot drop case 9 or case 9b. (`npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint'`: 7 passed, 0 failed. No S2 case fails at this tree. All 7 cases are guards. The migration landed before S2, so the Red set is empty. This task records the guards and does not drop or weaken a case.)
     - [x] Commit: `test(vinext-oxc): add the S2 gate tests (Red)`. (a329d7d5.)
     Known exception (PM 2026-11-18): the S2 Red gate exits 1 with `'RED_TEST_COMMAND failed (expected failure, exit 0)'`, because all 7 S2 cases pass at 43d42193 after the superseded lint track made the oxlint move, so S2 is guard-only.
-- [ ] Task: S2 Implement — record the migration that the lint track made (rewritten 2026-11-17)
-    - [ ] `eslint-to-oxlint-migration_20260820` made the migration. Run no `@oxlint/migrate` command. Make no per-workspace `.oxlintrc.json`.
-    - [ ] The S2 refresh decides how to fill evidence sections 6 and 8, because no ESLint config remains for the `--details` output.
-- [ ] Task: S2 Implement — confirm the lint switch (made by the lint track)
-    - [ ] Confirm that `oxlint` is in the root `devDependencies`, and only there.
-    - [ ] Confirm that 26 lint scripts (6 apps and 20 packages) are in the target forms of the S2 Contract.
-    - [ ] Confirm that no `eslint.config.*` file is tracked, that no manifest declares the 5 ESLint packages, and that the root `overrides` has no `eslint` key.
-    - [ ] Record that the lockfile keeps `eslint`, `@eslint/js`, and `@eslint/eslintrc` as peer-only copies (`peer: true`) of `eslint-plugin-react` and `eslint-plugin-react-hooks` (root `devDependencies`). The root `.oxlintrc.json` loads both plugins as `jsPlugins`, so S2 keeps them (strategy 14.2, question Q1). Do not remove a plugin or a `jsPlugins` entry.
-    - [ ] Run `npm install` only when a manifest changed. Commit only a change that this task makes.
-- [ ] Task: S2 Implement — reach zero warnings
-    - [ ] Run `npm run lint` in each workspace.
-    - [ ] Fix each finding when the fix does not change behavior.
-    - [ ] When a fix changes behavior, add `// oxlint-disable-next-line <rule> -- <reason>` above the line. Record it in section 8.
-    - [ ] Commit: `fix(lint): resolve the oxlint findings`.
-- [ ] Task: S2 Verify — run the gates after the lint change
-    - [ ] Confirm that all 26 oxlint lint scripts exit with code 0 and report zero warnings.
-    - [ ] Run the other gates. Confirm that no gate has a new failure.
-    - [ ] Confirm that the scripts suite passes.
-    - [ ] Run the closure checks K1 to K4 of strategy 14.2 again, with the S2 phase base. Confirm that they hold.
-    - [ ] Time `npm run lint` with oxlint for the 26 workspaces that run it. Record "after" in section 5.
-    - [ ] Commit the evidence file: `measure(vinext-oxc): record the S2 results`.
-- [ ] Task: S2 Docs & Doctor
-    - [ ] In `measure/tech-debt.md`, set the row "math-content package lint gate missing" to `Resolved`. Add this track id to its note.
-    - [ ] Run `npm run generate`. Confirm exit code 0.
-    - [ ] Run `npm run doctor`. Confirm exit code 0.
-    - [ ] Correct `spec.md` line 252 (`'S2 uses native oxlint rules only'`) to match strategy 14.2 and plan line 304: the 3 jsPlugins stay (PM 2026-11-18).
+- [x] Task: S2 Implement — record the migration that the lint track made (rewritten 2026-11-17) (6b33da07)
+    - [x] `eslint-to-oxlint-migration_20260820` made the migration. Ran no `@oxlint/migrate` command. Made no per-workspace `.oxlintrc.json` (one root `.oxlintrc.json` only).
+    - [x] The S2 refresh filled evidence sections 6 (rule inventory: 10 overrides, 667 entries, 3 jsPlugins; no gaps derivable) and 8 (no migrate input, `n/a` before-timing, peer-only copies kept).
+- [x] Task: S2 Implement — confirm the lint switch (made by the lint track) (confirm-only; no commit)
+    - [x] Confirmed that `oxlint` `^1.79.0` (installed 1.93.0) is in the root `devDependencies`, and in no workspace manifest.
+    - [x] Confirmed that 26 lint scripts (6 apps and 20 packages) are in the target forms; `packages/_template` keeps its `echo` line.
+    - [x] Confirmed that no `eslint.config.*` file is tracked, that no manifest declares the 5 ESLint packages, and that the root `overrides` (`{"typescript":"^6"}`) has no `eslint` key.
+    - [x] Recorded in section 8 that the lockfile keeps `eslint` 9.39.5, `@eslint/js` 9.39.5, and `@eslint/eslintrc` 3.3.7 as peer-only copies (`peer: true`); both React plugins and all 3 `jsPlugins` entries stay.
+    - [x] No manifest changed, so no `npm install` ran. The task makes no file change, so it makes no commit.
+- [x] Task: S2 Implement — reach zero warnings (no findings; no commit)
+    - [x] Ran `npm run lint` in each workspace through `gates.sh lint s2` (one `heavy-run.sh` job each): all 27 exit 0, `NEWFAIL=0`.
+    - [x] No finding: every oxlint log has empty output with exit 0, so no behavior-preserving fix was needed.
+    - [x] No behavior-changing fix was needed, so no `oxlint-disable-next-line` comment was added and section 8 records zero findings.
+    - [x] Skipped the `fix(lint)` commit: there is no finding to fix (plan allows the skip).
+- [x] Task: S2 Verify — run the gates after the lint change (91050201)
+    - [x] Confirmed that all 26 oxlint lint scripts exit 0 with empty output (zero warnings); `lint s2` gives `NEWFAIL=0` over 27 workspaces.
+    - [x] Ran the other gates: `test s2` gives `NEWFAIL=0`; `checks-all s2` gives `NEWFAIL=1` with only the two S1-accepted lines (IM3 npm trailer, audit drift); workspace sets give `workspaces-<script>=27` four times with no `comm` line.
+    - [x] Confirmed that the scripts suite gives 48 passed and 1 failed: only the pre-existing `remediate-concept-blueprints` row; all 7 S2 cases pass.
+    - [x] Ran K1 to K4 with the S2 phase base `43d42193`: K1 8/8, K2 15 tests 0 failed, K3 35 tests 0 failed, K4 `jsplugins_changed=0 jsplugins_count=3` with no `.oxlintrc.json` diff.
+    - [x] Timed `npm run lint` for the 26 workspaces (1 warm + 3 timed runs, medians in section 5); "before" is `n/a — no ESLint config remains`.
+    - [x] Committed the evidence file: `measure(vinext-oxc): record the S2 results` (91050201).
+- [x] Task: S2 Docs & Doctor (077b77dc)
+    - [x] In `measure/tech-debt.md`, restored the row "math-content package lint gate missing" as `Resolved` with this track id (077b77dc).
+    - [x] Ran `npm run generate`. Exit code 0; only the 6 known dirty generated files changed, left unstaged.
+    - [x] Ran `npm run doctor`. Exit code 0 ("All checks passed").
+    - [x] Corrected `spec.md` line 252 to name the 3 kept `jsPlugins` (077b77dc).
 - [ ] Task: Measure - User Manual Verification 'Phase S2: ESLint to oxlint' (Protocol in workflow.md)
     - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`.
