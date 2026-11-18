@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, describe, expect, it } from 'vitest';
 import { load as loadYaml } from 'js-yaml';
+import * as ts from 'typescript';
 
 // Resolve from the test file, never from the working folder (lessons-learned 2026-05-03).
 // This file reads nothing under measure/tracks/ (closeout moves the track folder).
@@ -895,24 +896,88 @@ function lintScriptForm(rel: string, lint: string): string | null {
   return lint === expected ? null : `${rel}: ${lint}`;
 }
 
-// A block comment span, from /* to the next */. One span is one comment, wherever
-// it sits: whole-line, mid-line (code shares the line), or spanning lines. A span
-// whose text names a disable directive in either spelling (eslint or oxlint) is a
-// disable comment, including the block spellings of disable-next-line and
-// disable-line, with or without a rule list and a ` -- reason`.
-const BLOCK_COMMENT_RE = /\/\*[\s\S]*?\*\//g;
-const BLOCK_DISABLE_RE = /(?:eslint|oxlint)-disable(?:-next-line|-line)?/;
-const TRAILING_DISABLE_RE = /\s*\/\/\s*(?:eslint|oxlint)-disable\S*.*$/;
+// A disable directive is text that names a disable in either spelling (eslint or
+// oxlint): `disable`, `disable-next-line`, or `disable-line`, with or without a
+// rule list and a ` -- reason`. Only text inside a real comment range counts.
+const DISABLE_TEXT_RE = /(?:eslint|oxlint)-disable(?:-next-line|-line)?/;
 
-// Remove every disable comment: each disable block span is cut wherever it sits,
-// then trailing // comments are cut from their line. The code under the comment
-// stays, so a finding that the comment hid must surface in the stripped copy.
-function stripDisableComments(content: string): string {
-  return content
-    .replace(BLOCK_COMMENT_RE, (span) => (BLOCK_DISABLE_RE.test(span) ? '' : span))
-    .split('\n')
-    .map((line) => line.replace(TRAILING_DISABLE_RE, ''))
-    .join('\n');
+// The TypeScript ScriptKind of a linted file, from its extension. TSX and JSX
+// files use the JSX-aware scan; every other linted extension uses the standard
+// scan. Unknown extensions fall back to JS.
+function scriptKindForFile(fileName: string): ts.ScriptKind {
+  const ext = fileName.slice(fileName.lastIndexOf('.')).toLowerCase();
+  if (ext === '.tsx') return ts.ScriptKind.TSX;
+  if (ext === '.jsx') return ts.ScriptKind.JSX;
+  if (ext === '.ts' || ext === '.mts' || ext === '.cts') return ts.ScriptKind.TS;
+  return ts.ScriptKind.JS;
+}
+
+// Every disable comment range in a file, from the TypeScript parser (rung 5 of
+// the Ponytail rule: the installed `typescript` package). The walk visits every
+// child including punctuation tokens through getChildren, not forEachChild: a
+// comment that leads a `}` or another punctuator is trivia of a token that
+// forEachChild never visits, for example `{/* eslint-disable */}` in TSX.
+// Trivia scanning treats strings, templates, and JSX text as non-comment tokens,
+// so disable text inside them never counts (F3r3). A `//` line inside a block
+// comment is block text, not a second directive. Positions are UTF-16 offsets
+// into content, so slicing and blanking keep their length.
+function disableCommentRanges(
+  fileName: string,
+  content: string,
+): Array<{ pos: number; end: number; text: string }> {
+  // Prefilter: a file without disable text needs no parse. This keeps the
+  // full-tree walk as cheap as the old text scan; only candidate files parse.
+  if (!/(?:eslint|oxlint)-disable/.test(content)) return [];
+  const sourceFile = ts.createSourceFile(
+    fileName,
+    content,
+    ts.ScriptTarget.Latest,
+    true,
+    scriptKindForFile(fileName),
+  );
+  const seen = new Set<string>();
+  const ranges: Array<{ pos: number; end: number; text: string }> = [];
+  const add = (pos: number, end: number) => {
+    const key = `${pos}-${end}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    const text = content.slice(pos, end);
+    if (DISABLE_TEXT_RE.test(text)) ranges.push({ pos, end, text });
+  };
+  const visit = (node: ts.Node): void => {
+    for (const range of ts.getLeadingCommentRanges(content, node.getFullStart()) ?? []) {
+      add(range.pos, range.end);
+    }
+    for (const range of ts.getTrailingCommentRanges(content, node.getEnd()) ?? []) {
+      add(range.pos, range.end);
+    }
+    for (const child of node.getChildren(sourceFile)) visit(child);
+  };
+  visit(sourceFile);
+  ranges.sort((a, b) => a.pos - b.pos);
+  return ranges;
+}
+
+// Remove every disable comment: replace each disable range with spaces of the
+// same length, keeping `\r` and `\n`, so no code is deleted and line and column
+// positions stay. The code under the comment stays, so a finding that the comment
+// hid must surface in the stripped copy. Limitation (F4r3): the strip removes
+// every disable in the file at once, although a blanket block disable is not
+// retroactive and `eslint-enable` ends the blanket region. The sweep copy can
+// therefore surface a live fault that sits above the first disable or after an
+// enable, and the decode marks it as hidden. Both fault classes stay visible to
+// the workspace lint gate itself, so no silent hole exists; the allow-list
+// simply records them.
+function stripDisableComments(content: string, fileName = 'probe.tsx'): string {
+  const ranges = disableCommentRanges(fileName, content);
+  if (ranges.length === 0) return content;
+  const chars = content.split('');
+  for (const range of ranges) {
+    for (let i = range.pos; i < range.end; i++) {
+      if (chars[i] !== '\r' && chars[i] !== '\n') chars[i] = ' ';
+    }
+  }
+  return chars.join('');
 }
 
 // The source extensions that the root config's override globs lint.
@@ -949,7 +1014,7 @@ function lintedFilesWithDisableDirectives(): string[] {
   const found: string[] = [];
   for (const dir of WORKSPACE_DIRS) {
     for (const file of findFilesSkipping(dir, (name) => SOURCE_EXT_RE.test(name), DISABLE_SCAN_SKIP)) {
-      if (/(eslint|oxlint)-disable/.test(fs.readFileSync(file, 'utf8'))) found.push(file);
+      if (disableCommentRanges(file, fs.readFileSync(file, 'utf8')).length > 0) found.push(file);
     }
   }
   return found;
@@ -979,11 +1044,18 @@ function readDisableAllowlist(): DisableAllowlistEntry[] {
   return doc.entries;
 }
 
-// The directive kinds of one file: 'block' for a blanket `/* disable */` span in
+// The directive kinds of one file: 'block' for a blanket `disable` comment in
 // any position (whole-line, mid-line, or spanning lines), 'next-line' for a
 // `disable-next-line` comment in either comment spelling, 'trailing' for a
-// `disable-line` comment. Mirrors the allow-list inventory.
-function directiveKindsOfFile(content: string): { kinds: string[]; total: number; blocks: number } {
+// `disable-line` comment. Only real comment ranges count (disableCommentRanges),
+// so CRLF line ends need no special case and disable text in strings, templates,
+// or JSX text never counts. Mirrors the allow-list inventory. The optional file
+// name selects the parse ScriptKind; the default parses as TSX, which finds the
+// comment ranges of every seeded probe form.
+function directiveKindsOfFile(
+  content: string,
+  fileName = 'probe.tsx',
+): { kinds: string[]; total: number; blocks: number } {
   const kinds = new Set<string>();
   let total = 0;
   let blocks = 0;
@@ -996,13 +1068,7 @@ function directiveKindsOfFile(content: string): { kinds: string[]; total: number
       blocks += 1;
     }
   };
-  for (const span of content.match(BLOCK_COMMENT_RE) ?? []) {
-    if (BLOCK_DISABLE_RE.test(span)) classify(span);
-  }
-  for (const line of content.split('\n')) {
-    const trailing = line.match(/\/\/\s*((?:eslint|oxlint)-disable\S*)/);
-    if (trailing) classify(trailing[1]);
-  }
+  for (const range of disableCommentRanges(fileName, content)) classify(range.text);
   return { kinds: [...kinds].sort(), total, blocks };
 }
 
@@ -1024,7 +1090,7 @@ function allowlistPinViolations(
       stale.push(`${entry.path} (file is gone)`);
       continue;
     }
-    const current = directiveKindsOfFile(fs.readFileSync(abs, 'utf8'));
+    const current = directiveKindsOfFile(fs.readFileSync(abs, 'utf8'), entry.path);
     if (current.total === 0) {
       stale.push(`${entry.path} (no directive left)`);
       continue;
