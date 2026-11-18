@@ -367,37 +367,20 @@ describe('S1 vinext 1.x', () => {
   });
 
   it('case 8: the lockfile has no next package and no workspace entry that lists next', () => {
-    const lock = readJson(path.join(REPO_ROOT, 'package-lock.json')) as {
-      packages: Record<string, Record<string, unknown>>;
-    };
+    const lock = readJson(path.join(REPO_ROOT, 'package-lock.json')) as LockfilePackages;
     const keys = Object.keys(lock.packages);
     // Sentinel: the lockfile has the workspace entries that the check reads (A4).
     expect(keys).toContain('apps/integrated-math-3');
     expect(keys).toContain('packages/app-shell');
-    const nextPackages = keys.filter((key) => key.endsWith('node_modules/next'));
-    expect(nextPackages, 'lockfile package keys that end with node_modules/next').toEqual([]);
+    const { nextKeys, vinextKeys, workspaceListing } = scanLockfileNextHygiene(lock);
+    expect(nextKeys, 'lockfile package keys that end with node_modules/next').toEqual([]);
     // A nested copy shadows the root vinext at runtime (risk R16). The only key that ends
     // with node_modules/vinext is the root one.
-    const vinextPackages = keys.filter((key) => key.endsWith('node_modules/vinext'));
     expect(
-      vinextPackages,
+      vinextKeys,
       'lockfile package keys that end with node_modules/vinext',
     ).toEqual(['node_modules/vinext']);
-    const workspaceKeys = keys.filter((key) => !key.includes('node_modules/'));
-    const listing: string[] = [];
-    for (const key of workspaceKeys) {
-      const entry = lock.packages[key];
-      for (const field of [
-        'dependencies',
-        'devDependencies',
-        'peerDependencies',
-        'optionalDependencies',
-      ]) {
-        const map = (entry[field] ?? {}) as Record<string, string>;
-        if ('next' in map) listing.push(`${key || '(root)'}:${field}`);
-      }
-    }
-    expect(listing, 'lockfile workspace entries that list next').toEqual([]);
+    expect(workspaceListing, 'lockfile workspace entries that list next').toEqual([]);
   });
 
   it('case 9: no manifest or lockfile workspace entry declares eslint or @eslint/js', () => {
@@ -449,6 +432,230 @@ describe('S1 vinext 1.x', () => {
       'package.json:overrides.@eslint/js',
     ]);
   });
+});
+
+// The lockfile shape that the S1 case 8 scan reads.
+type LockfilePackages = { packages: Record<string, Record<string, unknown>> };
+
+// The S1 case 8 scan, extracted so the S1 adversarial lockfile case drives the exact
+// guard logic against a seeded lockfile (mutation test, strategy 13.7 R1 and R16).
+function scanLockfileNextHygiene(lock: LockfilePackages): {
+  nextKeys: string[];
+  vinextKeys: string[];
+  workspaceListing: string[];
+} {
+  const keys = Object.keys(lock.packages);
+  const nextKeys = keys.filter((key) => key.endsWith('node_modules/next'));
+  const vinextKeys = keys.filter((key) => key.endsWith('node_modules/vinext'));
+  const workspaceKeys = keys.filter((key) => !key.includes('node_modules/'));
+  const workspaceListing: string[] = [];
+  for (const key of workspaceKeys) {
+    const entry = lock.packages[key];
+    for (const field of [
+      'dependencies',
+      'devDependencies',
+      'peerDependencies',
+      'optionalDependencies',
+    ]) {
+      const map = (entry[field] ?? {}) as Record<string, string>;
+      if ('next' in map) workspaceListing.push(`${key || '(root)'}:${field}`);
+    }
+  }
+  return { nextKeys, vinextKeys, workspaceListing };
+}
+
+// The S1 adversarial cases (strategy 13.7 row "Adversarial", risks R1, R3, R16, R18).
+// Each case seeds a fault in a temp folder or in memory, runs the same scanner that the
+// S1 guard uses, and asserts that the guard reports the fault. A guard that cannot fail
+// is vacuous (A4). No case edits a real manifest, lockfile, or node_modules folder.
+describe('S1 adversarial', () => {
+  // A temp tree helper for the resolution attacks. Each folder gets a package.json so
+  // that createRequire can resolve from it.
+  function writeTempPackage(dir: string, manifest: Record<string, unknown> = {}) {
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'package.json'), JSON.stringify(manifest));
+  }
+
+  function writeTempInstalled(dir: string, name: string, version: string) {
+    const pkgDir = path.join(dir, 'node_modules', name);
+    fs.mkdirSync(pkgDir, { recursive: true });
+    fs.writeFileSync(path.join(pkgDir, 'package.json'), JSON.stringify({ name, version }));
+  }
+
+  it('adv 1 (R1): the case 2 walker and require.resolve catch a hoisted next copy in a temp tree', () => {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'oxc-adv-'));
+    tempDirs.push(tmp);
+    writeTempPackage(tmp, { name: 'adv-root', private: true });
+    // The seeded fault: a hoisted next copy, for example re-installed by an auto-installed
+    // peer (the geist path of the S1 Implement task).
+    writeTempInstalled(tmp, 'vinext', '1.4.5');
+    writeTempInstalled(tmp, 'next', '16.2.7');
+    const appDirs = ['integrated-math-3', 'danielson'].map((name) => {
+      const dir = path.join(tmp, 'apps', name);
+      writeTempPackage(dir, { name, private: true });
+      return dir;
+    });
+    const shellDir = path.join(tmp, 'packages', 'app-shell');
+    writeTempPackage(shellDir, { name: '@math-platform/app-shell', private: true });
+    for (const dir of [tmp, ...appDirs, shellDir]) {
+      // Paired precondition: vinext resolves from the same folders (strategy section 5).
+      const vinext = findInstalledPackageJson(dir, 'vinext');
+      expect(vinext, `precondition: vinext does not resolve from ${dir}`).not.toBeNull();
+      expect(Number.parseInt(String(readJson(vinext as string).version).split('.')[0], 10)).toBe(1);
+      // The guard logic of case 2 reports the hoisted copy from every workspace depth.
+      expect(findInstalledPackageJson(dir, 'next'), `walker missed next from ${dir}`).not.toBeNull();
+      const resolved = createRequire(path.join(dir, 'package.json')).resolve('next/package.json');
+      expect(resolved).toContain(path.join('node_modules', 'next', 'package.json'));
+    }
+    // Paired control on the real tree: no folder resolves next at HEAD (guard holds).
+    for (const dir of RESOLVE_FROM_DIRS) {
+      expect(findInstalledPackageJson(dir, 'next'), `real tree resolved next from ${relative(dir)}`).toBeNull();
+    }
+  });
+
+  it('adv 2 (R16, R18): a nested 0.x vinext copy under apps/danielson is caught only when danielson is scanned', () => {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'oxc-adv-'));
+    tempDirs.push(tmp);
+    writeTempPackage(tmp, { name: 'adv-root', private: true });
+    writeTempInstalled(tmp, 'vinext', '1.4.5');
+    for (const name of ['danielson', 'other']) writeTempPackage(path.join(tmp, 'apps', name));
+    // The seeded fault: the pre-merge state of apps/danielson, a nested 0.0.55 copy that
+    // shadows the root 1.x release at runtime.
+    writeTempInstalled(path.join(tmp, 'apps', 'danielson'), 'vinext', '0.0.55');
+    // The scan set is read from the disk, the same rule as APP_DIRS (strategy section 5).
+    const advAppDirs = fs
+      .readdirSync(path.join(tmp, 'apps'), { withFileTypes: true })
+      .filter((d) => d.isDirectory() && fs.existsSync(path.join(tmp, 'apps', d.name, 'package.json')))
+      .map((d) => path.join(tmp, 'apps', d.name))
+      .sort();
+    expect(advAppDirs.map((dir) => path.relative(tmp, dir))).toEqual([
+      'apps/danielson',
+      'apps/other',
+    ]);
+    const majorsOf = (dirs: string[]) => {
+      const majors: Record<string, number> = {};
+      for (const dir of dirs) {
+        const found = findInstalledPackageJson(dir, 'vinext');
+        expect(found, `vinext does not resolve from ${dir}`).not.toBeNull();
+        majors[path.relative(tmp, dir)] = Number.parseInt(String(readJson(found as string).version).split('.')[0], 10);
+      }
+      return Object.entries(majors)
+        .filter(([, major]) => major !== 1)
+        .map(([rel]) => rel);
+    };
+    // The disk-read scan reports the fault: case 1 fails under the seeded copy.
+    expect(majorsOf(advAppDirs), 'disk-read scan must report the nested 0.x copy').toEqual([
+      'apps/danielson',
+    ]);
+    // The attack: a scan set that drops apps/danielson reports nothing. The fault hides in
+    // the excluded folder, so the case 1 sentinel that pins apps/danielson into the
+    // disk-read set is the load-bearing defense.
+    const filteredDirs = advAppDirs.filter((dir) => path.basename(dir) !== 'danielson');
+    expect(majorsOf(filteredDirs), 'a danielson-filtered scan hides the fault').toEqual([]);
+    // The sentinel holds at HEAD: the real APP_DIRS is read from the disk and holds danielson.
+    expect(APP_DIRS.map(relative)).toContain('apps/danielson');
+    expect(APP_DIRS.length).toBeGreaterThanOrEqual(6);
+  });
+
+  it('adv 3 (R1): the case 3 scan reports a next declaration in each manifest field and a nested next@ override', () => {
+    // Seeded faults in memory: a next declaration in each of the five manifest fields,
+    // plus a nested override key that carries a version suffix. A scanner weakened to
+    // two fields, or blind to nested override keys, misses a hit (A4).
+    const hits = scanDeclarations(
+      [
+        {
+          display: 'package.json',
+          manifest: {
+            devDependencies: { next: '^16.0.0' },
+            overrides: { next: '^16.0.0', 'next@16.2.7': { conflicts: ['eslint'] } },
+          },
+        },
+        { display: 'apps/danielson/package.json', manifest: { dependencies: { next: '^16.0.0' } } },
+        { display: 'packages/app-shell/package.json', manifest: { peerDependencies: { next: '^16' } } },
+        { display: 'packages/x/package.json', manifest: { optionalDependencies: { next: '^16' } } },
+      ],
+      isNextKey,
+    );
+    expect(hits, 'the scan must report every seeded next declaration').toEqual([
+      'apps/danielson/package.json:dependencies.next',
+      'package.json:devDependencies.next',
+      'package.json:overrides.next',
+      'package.json:overrides.next@16.2.7',
+      'packages/app-shell/package.json:peerDependencies.next',
+      'packages/x/package.json:optionalDependencies.next',
+    ]);
+  });
+
+  it('adv 4 (R1, R16): the case 8 scan reports a lockfile next key, a nested vinext key, and a workspace entry that lists next', () => {
+    // Seeded faults in memory: the pre-merge lockfile shape. Each rule of case 8 has one
+    // fault, and each rule must report it.
+    const seeded: LockfilePackages = {
+      packages: {
+        '': { devDependencies: { vinext: '^1.4.5' } },
+        'node_modules/vinext': { version: '1.4.5' },
+        'node_modules/next': { version: '16.2.7' },
+        'apps/danielson': { optionalDependencies: { next: '16.2.7' } },
+        'apps/danielson/node_modules/vinext': { version: '0.0.55' },
+        'apps/danielson/node_modules/next': { version: '16.2.7' },
+      },
+    };
+    const { nextKeys, vinextKeys, workspaceListing } = scanLockfileNextHygiene(seeded);
+    expect([...nextKeys].sort(), 'the no-next-key rule must report both seeded keys').toEqual([
+      'apps/danielson/node_modules/next',
+      'node_modules/next',
+    ]);
+    expect([...vinextKeys].sort(), 'the nested-vinext rule must report the 0.0.55 copy').toEqual([
+      'apps/danielson/node_modules/vinext',
+      'node_modules/vinext',
+    ]);
+    // The guard is not vacuous: the seeded vinext key set is not the allowed single key.
+    expect([...vinextKeys].sort()).not.toEqual(['node_modules/vinext']);
+    expect(workspaceListing, 'the workspace-listing rule must report the seeded entry').toEqual([
+      'apps/danielson:optionalDependencies',
+    ]);
+  });
+
+  it(
+    'adv 5 (R3): with any-typed next modules the invalid probe passes, so the case 5b guard fails on the fault',
+    () => {
+      expect(runTool(['tsc', '--version']).status, 'precondition: tsc --version').toBe(0);
+      // The attack probe uses no JSX, so no React types are needed.
+      const anyAttackProbe = [
+        "import { useRouter } from 'next/navigation';",
+        '',
+        'export function Probe() {',
+        '  const router = useRouter();',
+        '  router.push(123);',
+        '  return null;',
+        '}',
+        '',
+      ].join('\n');
+      // The seeded fault: shorthand ambient modules make every next/* import `any`.
+      // This is the degradation that would make the S1 type gate vacuous.
+      const tsconfig = probeTsconfig(['probe.ts', 'next-any.d.ts']);
+      (tsconfig.compilerOptions as Json).types = [];
+      const tmp = makeProbeProject(
+        { 'probe.ts': anyAttackProbe, 'next-any.d.ts': "declare module 'next/navigation';\n" },
+        tsconfig,
+      );
+      const attack = typecheckProbe(tmp);
+      for (const phrase of ABSENT_TOOL_PHRASES) expect(attack.output).not.toContain(phrase);
+      expect(attack.output).not.toContain('TS2688');
+      expect(attack.output).not.toContain('TS2307');
+      // Under the any fault the probe passes with no TS2345. The case 5b guard asserts
+      // the opposite (non-zero exit, TS2741 or TS2345), so the guard fails here: the
+      // attack cannot produce a false green.
+      expect(attack.status, 'the any fault must make the probe pass').toBe(0);
+      expect(attack.output).not.toMatch(/TS2741|TS2345/);
+      // Paired control: the real vinext/types are strict, so the same probe fails.
+      const real = makeProbeProject({ 'probe.ts': anyAttackProbe }, probeTsconfig(['probe.ts']));
+      const realRun = typecheckProbe(real);
+      expect(realRun.output, 'vinext/types did not resolve').not.toContain('TS2688');
+      expect(realRun.status, realRun.output).not.toBe(0);
+      expect(realRun.output, 'the real types must reject push(123) with TS2345').toMatch(/TS2345/);
+    },
+    TOOL_TIMEOUT_MS,
+  );
 });
 
 // The five ESLint-family names that S2 removes from the manifests (plan S2 case 1).

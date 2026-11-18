@@ -294,3 +294,85 @@ describe('gates.sh workspace set (#5)', () => {
     expect(r.output).toContain('NEWFAIL=1');
   });
 });
+
+// The S1 adversarial cases for the sweep (strategy 13.7, R18: no app is ever excluded
+// from a gate to make the phase pass). Each case seeds the named exclusion in a fake
+// repository and asserts that gates.sh reports a new failure. The allowed outcome of the
+// attack is never an exclusion.
+describe('S1 adversarial: gates.sh workspace set', () => {
+  // A fake repo whose tree the sweep visits. `lintScripts` maps a workspace name to
+  // whether its package.json has a lint script.
+  function makeAdvRepo(lintScripts: Record<string, boolean>): string {
+    const tmp = makeTempDir('gates-adv-');
+    fs.writeFileSync(
+      path.join(tmp, 'package.json'),
+      JSON.stringify({ name: 'fake-repo', private: true }),
+    );
+    const trackDir = path.join(tmp, 'measure', 'tracks', TRACK_SLUG);
+    fs.mkdirSync(trackDir, { recursive: true });
+    fs.copyFileSync(GATES_SH, path.join(trackDir, 'gates.sh'));
+    for (const [name, hasLint] of Object.entries(lintScripts)) {
+      const dir = path.join(tmp, 'apps', name);
+      fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(
+        path.join(dir, 'package.json'),
+        JSON.stringify({
+          name: `fake-${name}`,
+          private: true,
+          scripts: hasLint ? { lint: 'node --version' } : {},
+        }),
+      );
+    }
+    return tmp;
+  }
+
+  function seedExitFile(repo: string, name: string, rows: Array<[string, string]>): string {
+    const base = path.join(repo, 'measure', 'runs', TRACK_SLUG, 'gates', name);
+    fs.mkdirSync(base, { recursive: true });
+    fs.writeFileSync(
+      path.join(base, 'lint.exit'),
+      rows.map(([ws, code]) => `${ws} ${code}`).join('\n') + '\n',
+    );
+    return name;
+  }
+
+  it('adv 6 (R18): a sweep whose tree drops apps/danielson reports a new failure that names it', () => {
+    // The attack: the run tree holds apps/x only; the baseline holds apps/danielson too.
+    const repo = makeAdvRepo({ x: true });
+    const wrapper = makeFakeWrapper();
+    const cwd = makeTempDir('gates-cwd-');
+    const base = seedExitFile(repo, 'base-with-danielson', [
+      ['apps/x', '0'],
+      ['apps/danielson', '0'],
+    ]);
+    const gatesSh = path.join(repo, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+    const r = runGate(gatesSh, 'lint', 'scripttest', cwd, {
+      HEAVY_RUN: wrapper,
+      GATES_BASE: base,
+    });
+    expect(r.status, r.output).toBe(1);
+    expect(r.output).toContain('NEW FAILURE: lint workspace set differs from the baseline:');
+    expect(r.output).toContain('apps/danielson');
+    expect(r.output).toContain('NEWFAIL=1');
+  });
+
+  it('adv 7 (R18, A4): removing the danielson lint script is a new failure, not a pass', () => {
+    // The attack: apps/danielson stays in the tree, but its lint script is removed, so
+    // the sweep records n/a. Section 7 counts a removed script as a new failure.
+    const repo = makeAdvRepo({ x: true, danielson: false });
+    const wrapper = makeFakeWrapper();
+    const cwd = makeTempDir('gates-cwd-');
+    const base = seedExitFile(repo, 'base-danielson-lints', [
+      ['apps/x', '0'],
+      ['apps/danielson', '0'],
+    ]);
+    const gatesSh = path.join(repo, 'measure', 'tracks', TRACK_SLUG, 'gates.sh');
+    const r = runGate(gatesSh, 'lint', 'scripttest', cwd, {
+      HEAVY_RUN: wrapper,
+      GATES_BASE: base,
+    });
+    expect(r.status, r.output).toBe(1);
+    expect(r.output).toContain('NEW FAILURE: lint script removed in apps/danielson');
+    expect(r.output).toContain('NEWFAIL=1');
+  });
+});
