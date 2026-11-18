@@ -249,7 +249,7 @@ in this order:
 - The React Compiler rules that the tech-debt row "IM3 React 19 react-hooks v6 violations"
   names. S2 records their oxlint status only.
 - A change of npm, Vite, or Vitest to other tools.
-- oxlint JS plugins (`jsPlugins`). S2 uses native oxlint rules only.
+- oxlint JS plugins (`jsPlugins`) beyond the 3 that the root config loads. S2 keeps `oxlint-plugin-eslint`, `eslint-plugin-react`, and `eslint-plugin-react-hooks` (strategy 14.2 and plan line 304).
 - Markdown and MDX formatting. S4 formats code and config files only.
 - Generated files, curriculum content, and Measure records in the format scope.
 - A new lint script for `packages/lesson-renderer`.
