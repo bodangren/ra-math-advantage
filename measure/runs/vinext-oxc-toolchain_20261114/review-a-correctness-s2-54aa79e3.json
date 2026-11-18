@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "role": "review-a",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S2: ESLint to oxlint",
+  "baseline_sha": "43d42193a1fea8628ed09f73b18bc0d8f9fe167e",
+  "role_base_sha": "54aa79e33442a94201500a997c1b410dbfd2f241",
+  "audited_head_sha": "54aa79e33442a94201500a997c1b410dbfd2f241",
+  "status": "pass",
+  "summary": "Re-review of the S2 remediation round 3 at 54aa79e3. All three routed adversarial findings are fixed by fde3eda2 and verified live. The helpers now use the TypeScript 6.0.3 tokenizer (ts.createSourceFile, comment ranges from token trivia, ScriptKind per extension). My direct node check drives the exact committed helper code over 80 assertions: CRLF trailing // disable-line and CRLF // disable-next-line strip and the stripped copies surface no-unused-vars (live oxlint probes, F1r3 closed), an in-string /* above a real disable no longer swallows code (the strip blanks only the real comment range with equal-length spaces, the copy surfaces the finding with no parse error, F2r3 closed), disable text in a string and in a template never counts (F3r3 closed for the forms the plan claims), mid-line and multi-line blocks in both spellings, rule lists, -- reason, the .tsx JSX {/* eslint-disable */} wrap, and a // line inside a block comment count once. The text prefilter is complete: I probed live every case and spacing variant oxlint honors (lowercase eslint and oxlint in both comment styles, the tight //eslint-disable-line form); oxlint rejects the uppercase, mixed-case, and spaced forms, so no honored spelling escapes the prefilter. No case weakened in fde3eda2: the diff touches only the helper zone and its callers, no it( or expect( line changed, and adv 1 to 12 pass as written (S2 adversarial 12 pass). The fixture matches the tree exactly: my independent recheck with the committed tokenizer gives 49 carriers against 49 entries with zero unlisted, stale, kind, count, or blanket mismatches. Every plan and log claim since f617412f re-verified in a detached worktree at 54aa79e3: S2 adversarial 12 pass, S2 oxlint 7 pass, S1 adversarial 7 pass, S1 vinext 1.x 11 pass, npx tsc --noEmit exit 0, full scripts suite 60 pass with only the pre-existing remediate-concept-blueprints row. Three new Nits and one Major process gap recorded; none blocks. The Major: fde3eda2 adds `import * as ts from 'typescript'` to the test file although test-strategy section 5 forbids that import ('S3 removes the package'), and no plan or log line records the deviation; the S3 contract itself contradicts the rule's premise ('the kept typescript package uses 7.0.2'), so the strategy role must reconcile. My r3 F8 is resolved by this round (both latent guard weaknesses fixed and live-proven). F4 stays for the S2 closeout.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F4 [Nit] review-a: measure/tracks.md line 157 still lists 'Track: ESLint to Oxlint Migration' as [~] with no superseded marker, although plan line 274 and oxc-evidence section 6 record the supersede (PM 2026-11-18). Rationale: unchanged since my r2; the Green handoff records 'measure/tracks.md left for closeout'; the orchestrator fixes the row at the S2 closeout.",
+    "F9 [Major] review-a: fde3eda2 adds `import * as ts from 'typescript'` (scripts/__tests__/oxc-toolchain-gates.test.ts:9) but test-strategy section 5 (test-strategy.md:221-222) says 'No `typescript` import in the test file. S3 removes the package.' No plan or log line records this as a deviation, and the rule's premise conflicts with the plan's own S3 contract ('the kept `typescript` package uses 7.0.2', plan line 342), so the rule and the plan contradict each other before this commit. If S3 removes the package per section 5, every scripts test fails at import (61 tests, loud, not silent); if S3 keeps the package at 7.0.2, the import survives only if that release keeps the ts.createSourceFile comment-range API. Rationale: the plan's precedent for superseded strategy rows (plan line 331: 'The strategy role owns the revision') requires a plan record of the supersede; this round made the change without the record. Default disposition: record the deviation in the S2 remediation sub-box at closeout, and have the S3 refresh revise section 5 or the S3 contract so they agree before the S3 Red.",
+    "F10 [Nit] review-a: the helper comment at scripts/__tests__/oxc-toolchain-gates.test.ts:920-921 claims 'Trivia scanning treats strings, templates, and JSX text as non-comment tokens, so disable text inside them never counts (F3r3)', and the Green r7 handoff (jr-green-s2-r7-1bd26b91.log line 14) repeats 'strings, templates, and JSX text never count'. The claim is false for JSX text: my direct check shows ts.getLeadingCommentRanges and ts.getTrailingCommentRanges re-scan JSX text with the standard scanner, so '<div>// eslint-disable-next-line</div>' counts as a next-line directive and '<div>/* eslint-disable */</div>' counts as a block (s2-jsx-debug.mjs, s2-tokenizer-edge-check.mjs). The plan sub-box line is accurate because it claims only strings and templates. Rationale: conservative over-count, the same accepted direction as F3r3; oxlint fires react(jsx-no-comment-textnodes) instead of honoring the text (live probe exit 1), nothing hides, and the fixture recheck proves no tracked file holds the form (49 carriers against 49 entries). Default disposition: correct the comment and the handoff wording at the next remediation touch; no behavior change.",
+    "F11 [Nit] review-a: directiveKindsOfFile classifies on the whole comment text (scripts/__tests__/oxc-toolchain-gates.test.ts:1062-1069), so a blanket /* eslint-disable block whose body contains the literal text 'disable-next-line' (or 'disable-line') is labeled 'next-line' (or 'trailing') and blanketBlocks stays 0. Verified by direct node check: the block-with-line-inside form returns kinds ['next-line'], blocks 0, total 1. Rationale: the directive count and the strip stay correct, so every hidden fault still surfaces in the sweep copy and the unrecorded-sweep check fires; only the recorded kind label can misreport, and no tracked carrier holds the form (all 49 fixture kinds match). Default disposition: accept as a conservative label gap, or classify on the directive head at the next remediation round."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD printed 54aa79e33442a94201500a997c1b410dbfd2f241 at audit start, equal to the audited HEAD. A parallel adversarial r4 works in the main checkout and committed b9a4f0c2 (adv 13, 115 insertions to the same test file) during my runs, after my audited HEAD. Per the brief I ran every suite command in a detached worktree at 54aa79e3 (git worktree add --detach /tmp/opencode/rev-a-wt-s2r7, node_modules symlinked) and removed it after (git worktree remove --force). The 6 modified working-tree files are the known generated files (workbooks-manifest, 4 routes.d.ts, measure/generated/routes.md).",
+    "F1r3 fixed and live-proven: fde3eda2 (git show, full diff read) replaces TRAILING_DISABLE_RE and BLOCK_COMMENT_RE with disableCommentRanges (tokenizer) and a blanking strip. My live probe pair: the CRLF trailing // eslint-disable-line file and the CRLF // eslint-disable-next-line file each hide no-unused-vars under the root config (exit 0), and each stripped copy surfaces eslint(no-unused-vars) (exit non-zero, no parse error). The committed guard adv 10 passes as written with its LF twins (scripts/__tests__/oxc-toolchain-gates.test.ts:1738-1796).",
+    "F2r3 fixed and live-proven: the swallow form 'const s = \"a /* b\"; /* eslint-disable */ const unused = 2;' hides the finding (exit 0); the stripped copy keeps 'const s = \"a /* b\";' verbatim, blanks only the real disable range, and surfaces no-unused-vars with no 'Unterminated string' diagnostic. The committed guard adv 11 passes as written (:1799-1855).",
+    "F3r3 closed for the claimed forms: my node check on the exact committed helpers gives kinds total 0 and a no-op strip for disable text in a string literal and in a template literal. A // disable inside a block comment counts once, not twice (the old code counted 2). JSX text is the one form still counted (F10), conservative, live-verified: oxlint reports no-unused-vars and does not honor the text.",
+    "Prefilter completeness (brief item 2) verified live: oxlint honors the lowercase eslint and oxlint spellings in both comment styles, the tight 'const x = 1;//eslint-disable-line' form, and the block, next-line, and disable-line directives with rule lists and -- reason; every honored form is counted by the helpers (helpers counted >= 1). oxlint rejects 'ESLINT-DISABLE-NEXT-LINE', 'Eslint-Disable-Next-Line', '/* ESLINT-DISABLE */', '/* OXLINT-DISABLE */', '/* eslint -disable */', '/* eslint- disable */', and '/** eslint-disable */' (each probe exits 1 with no-unused-vars), so the case-sensitive prefilter misses no honored spelling.",
+    "No case weakened in fde3eda2 (brief item 3): git show fde3eda2 -- the test file prints 96 insertions and 30 deletions, all in the import line and the helper zone (old lines 6-1105); the describe blocks start after that zone. A grep of the removed lines finds no it( line (the two hits are .split('\\n') calls). git diff f2e55c8c..fde3eda2 shows only helper hunks; adv 9 (from 35ffb32b), adv 10, adv 11, and adv 12 (from f2e55c8c) are byte-identical after the fix.",
+    "Fixture exactness (brief item 4): s2-tokenizer-allowlist-recheck.mjs walks apps/ and packages/ with the committed tokenizer (SKIP_DIRS plus _generated, source extensions), finds 49 carriers against 49 fixture entries, and matches every entry's kinds, directiveCount, and blanketBlocks: 0 failed. The fixture file itself is unchanged since 119a8de3 (git log on the fixture path prints only that commit; git diff f2e55c8c..54aa79e3 -- the fixture is empty).",
+    "Plan and log claims since f617412f (brief item 5): the round 3 sub-box (1bd26b91, plan line 335) and jr-green-s2-r7-1bd26b91.log re-verified claim by claim. True: the tokenizer replaces the regexes (diff); each file parses with the ScriptKind of its extension (scriptKindForFile, :907-913); comment ranges come from token trivia (:924-959); F1r3 and F2r3 closed (live probes); adv 10 and adv 11 pass as written (12 passed); adv 1 to 9 and adv 12 hold (suite); F3r3 resolved for strings and templates (node check); F4r3 accepted limitation noted in the helper comment (:964-970); the fixture stays exact (recheck); the gate numbers (12/7/7/11 pass, full suite 60 pass with only the known row, tsc exit 0) match my re-runs. The gates.sh 'test s2 NEWFAIL=0' claim is the Green role's own gate record; its input (the scripts suite at the same tree) is what I re-verified. One log line over-claims (F10: the handoff says JSX text never counts).",
+    "Suite re-runs (brief item 6), all in the detached worktree at 54aa79e3 through heavy-run.sh, one at a time: -t 'S2 adversarial' 12 passed 49 skipped exit 0; -t 'S2 oxlint' 7 passed 54 skipped exit 0; -t 'S1 adversarial' 7 passed exit 0; -t 'S1 vinext 1.x' 11 passed exit 0; npx tsc --noEmit exit 0 (no output); full scripts suite 60 passed 1 failed exit 1, the only failure the pre-existing remediate-concept-blueprints honest-count row (accepted S1 Q3).",
+    "Scope verified: git diff --name-only 43d42193..54aa79e3 -- apps packages prints nothing; the phase diff touches the scripts test file, the fixture (added once at 119a8de3), the plan, and runs artifacts only. The phase changed the scripts contract tests, so the framework anti-pattern checks apply: A4 (adv 10 and adv 11 each hold live controls and paired twins, the adv 7 sweep seeds a control first, none vacuous), A3 (the counts I parse are labeled integers from vitest and my recheck), A5 (the false-claim scan found exactly one over-claim, F10, recorded).",
+    "My r3 F8 resolved: both latent guard weaknesses it attributed are fixed by this round and live-proven above, so the finding does not carry. F4 re-verified at the audited HEAD: measure/tracks.md still lists the superseded lint track as [~] with no marker.",
+    "F9 mechanism read: test-strategy.md:221-222 forbids a typescript import in the test file and gives the reason 'S3 removes the package'; the test file imports typescript at :9 after fde3eda2; the tsconfig reads still use the comment-stripping JSON parse (:23), so the rule's second sentence holds. The plan S3 contract (plan line 342) says 'the kept typescript package uses 7.0.2', which contradicts the rule's premise. Root package.json declares typescript ^6 (installed 6.0.3)."
+  ],
+  "commands": [
+    "git rev-parse HEAD -> 54aa79e3 at audit start (b9a4f0c2 later, parallel adversarial r4)",
+    "git show fde3eda2 -- scripts/__tests__/oxc-toolchain-gates.test.ts (full fix diff, helper zone only)",
+    "node measure/runs/vinext-oxc-toolchain_20261114/s2-tokenizer-edge-check.mjs -> EDGE FORMS: 80 checks, 0 failed",
+    "node measure/runs/vinext-oxc-toolchain_20261114/s2-jsx-debug.mjs -> JSX text comment-range behavior (F10 proof)",
+    "node measure/runs/vinext-oxc-toolchain_20261114/s2-live-probes.mjs -> LIVE PROBES: 0 failed (F1r3/F2r3 strips surface; 10 spelling probes)",
+    "node measure/runs/vinext-oxc-toolchain_20261114/s2-tokenizer-allowlist-recheck.mjs -> FIXTURE RECHECK: 0 failed (49 carriers vs 49 entries)",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' (worktree at 54aa79e3) -> 12 passed, 49 skipped",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed, 54 skipped",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial' -> 7 passed",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x' -> 11 passed",
+    "heavy-run.sh npx tsc --noEmit -> exit 0",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -> 60 passed, 1 failed (the pre-existing row), exit 1",
+    "git diff --name-only 43d42193..54aa79e3 -- apps packages -> empty",
+    "git worktree add --detach /tmp/opencode/rev-a-wt-s2r7 54aa79e3; git worktree remove --force (after the runs)",
+    "python3 ~/Desktop/advantage-pr/scripts/jobs/slot check -> ok, 7 of 12 busy"
+  ],
+  "changed_files": [
+    "measure/runs/vinext-oxc-toolchain_20261114/review-a-correctness-s2-54aa79e3.json",
+    "measure/runs/vinext-oxc-toolchain_20261114/review-a-correctness-s2-54aa79e3.log",
+    "measure/runs/vinext-oxc-toolchain_20261114/s2-tokenizer-edge-check.mjs",
+    "measure/runs/vinext-oxc-toolchain_20261114/s2-live-probes.mjs",
+    "measure/runs/vinext-oxc-toolchain_20261114/s2-tokenizer-allowlist-recheck.mjs",
+    "measure/runs/vinext-oxc-toolchain_20261114/s2-jsx-debug.mjs"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "Every briefed defect is fixed and live-proven: the F1r3 CRLF pair and the F2r3 swallow form each surface no-unused-vars in their stripped copies (s2-live-probes.mjs, 0 failed), and every oxlint-honored spelling is counted by the prefilter (10 live spelling probes)."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 5,
+      "evidence": "adv 10 and adv 11 pass as written with paired live controls (the LF twins at scripts/__tests__/oxc-toolchain-gates.test.ts:1763-1793, the no-swallow control at :1847-1852), and my 80-check edge suite drives the exact committed helper code."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git show fde3eda2 touches only the helper zone of one test file (96 insertions, 30 deletions), and git diff --name-only 43d42193..54aa79e3 -- apps packages prints nothing."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 4,
+      "evidence": "Every gate claim in the plan sub-box and the Green log was re-run and matches, but the Green handoff line 14 over-claims ('JSX text never count', disproved by s2-jsx-debug.mjs) and the strategy-rule deviation behind F9 is unrecorded in the plan."
+    }
+  ]
+}

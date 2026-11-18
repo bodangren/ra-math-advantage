@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "role": "measure-phase-acceptance",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S2: ESLint to oxlint",
+  "baseline_sha": "43d42193a1fea8628ed09f73b18bc0d8f9fe167e",
+  "role_base_sha": "6cbdbbdf16f2b79e09ac4c05d9112cd9bed9dafe",
+  "audited_head_sha": "6cbdbbdf16f2b79e09ac4c05d9112cd9bed9dafe",
+  "status": "pass",
+  "summary": "S2 acceptance passes at HEAD 6cbdbbdf. The S2 filter re-run gives 7 passed, exit 0; the S2 adversarial filter gives 13 passed, exit 0; npx tsc --noEmit exits 0; and the lint sweep over all 27 workspaces exits 0 with zero warnings (21 packages through the root npm run lint, 6 apps through the app-kind sweep, each through heavy-run.sh). Every S2 task tick in plan.md is [x] with a commit SHA that resolves as an ancestor of HEAD, except the recorded [b] deferred:orchestrator manual verification task. Every story-S2 acceptance criterion has live evidence at this HEAD: all 27 workspace lint scripts run oxlint against the one root .oxlintrc.json (6 app forms, 20 package forms, 1 template echo, read by an independent manifest scan), the unused-variable probe fails oxlint with no-unused-vars (case 4 passes live), no manifest declares eslint, typescript-eslint, eslint-config-next, @eslint/js, or @eslint/eslintrc (case 1 passes live), and evidence section 6 records the rule inventory (10 overrides, 667 entries, 3 jsPlugins) with the guard-only Red exception (PM 2026-11-18). spec.md line 252 names the 3 kept jsPlugins exactly as the root config holds them. The disable-directive allow-list is exact: scripts/__tests__/fixtures/lint-disable-allowlist.json holds 49 entries, the adversarial r4 sweep replica gives 49 carriers with 0 mismatches, and adv 7 passes live in the 13-pass filter run. measure/tech-debt.md holds the Open row 'Lint disable directives hide live oxlint findings' and the Resolved row 'math-content package lint gate missing', both verified live. Prerequisites: review-a-correctness-s2-54aa79e3.json is PASS at 54aa79e3 and adversarial-s2-r4-b9a4f0c2.json is PASS at b9a4f0c2; git diff 54aa79e3..6cbdbbdf --name-only holds only the test file (b9a4f0c2, 115 insertions, test-only) and measure/runs paths (6cbdbbdf), so both results target the same implementation content this audit accepted. No fake-gate masking, no artifact-only claim, no stale intentional red, no plan-SHA mismatch, no missing caller update, and no A3 to A7 violation. The remaining open items are the recorded checkpoint work: the [b] manual verification task, the Review A F9 deviation record (typescript import vs test-strategy section 5, orchestrator default accepted), the Review A F4 supersede marker at measure/tracks.md line 156 for closeout, and the accepted Nits F10/F11 and F1r4/F2r4.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Nit] phase-acceptance: the S2 checkpoint must record the Review A F9 deviation before it marks the phase complete. fde3eda2 adds 'import * as ts from \"typescript\"' at scripts/__tests__/oxc-toolchain-gates.test.ts:9 while test-strategy.md:221-222 says 'No typescript import in the test file. S3 removes the package', and the plan S3 contract (plan.md line 342) keeps the typescript package at 7.0.2, so the strategy rule and the plan contradict each other. No plan line records the supersede yet. Rationale: the orchestrator default (2026-11-19) is to record the deviation in the S2 plan at the checkpoint, and the S3 strategy refresh reconciles section 5 with the S3 contract before S3 Red; the checkpoint plan-completion commit must carry that record.",
+    "F2 [Nit] phase-acceptance: measure/tracks.md line 156 still lists 'Track: ESLint to Oxlint Migration' as [~] with no superseded marker, although plan.md line 274 and oxc-evidence.md section 6 record the supersede (PM 2026-11-18). Rationale: unchanged since Review A F4; the registry row is closeout work and the checkpoint must fix it with the S2 closeout.",
+    "F3 [Nit] phase-acceptance: the helper comment at scripts/__tests__/oxc-toolchain-gates.test.ts:920-921 and the Green r7 handoff line (jr-green-s2-r7-1bd26b91.log) claim that JSX text never counts as a disable directive. The claim is false for JSX text (Review A F10 live probe: ts comment ranges re-scan JSX text, so the form counts, a conservative over-count; oxlint fires react(jsx-no-comment-textnodes) and hides nothing; no tracked carrier holds the form). Rationale: accepted by the recorded orchestrator decision; correct the comment wording at the next remediation touch of the file, no behavior change.",
+    "F4 [Nit] phase-acceptance: the S2 remediation sub-box in plan.md (lines 333 to 335) records Green rounds 2 and 3 but not the adversarial r4 round (b9a4f0c2, 13 pass, F1r4 and F2r4 accepted). The result artifact adversarial-s2-r4-b9a4f0c2.json is committed at 6cbdbbdf, so the record exists. Rationale: the checkpoint plan-completion commit can add one sub-box line for round 4 so the plan and the runs folder agree.",
+    "F5 [Nit] phase-acceptance: adversarial F1r4 and F2r4 stay accepted. SOURCE_EXT_RE (scripts/__tests__/oxc-toolchain-gates.test.ts:984) hardcodes the same extension set as the root config override globs with no guard tying the two together, and directiveKindsOfFile (lines 1062 to 1069) classifies a blanket block whose text contains 'disable-line' as trailing. Both are conservative today with no hole (live probes in adversarial-s2-r4-b9a4f0c2.json), and the kinds and count clauses still fail on any change to such a file. Rationale: accepted by the recorded default dispositions; note only."
+  ],
+  "evidence": [
+    "HEAD is current and immutable for this audit: git rev-parse HEAD -> 6cbdbbdf16f2b79e09ac4c05d9112cd9bed9dafe; the working tree holds only the known generated artifacts left unstaged (5 routes.d.ts files, measure/generated/routes.md, a generatedAt refresh in apps/bus-math-v2/lib/workbooks-manifest.json)",
+    "Prerequisite applicability: git diff 54aa79e3..6cbdbbdf --name-only -> only scripts/__tests__/oxc-toolchain-gates.test.ts (b9a4f0c2, 115 insertions, 0 deletions, test-only) and 3 measure/runs/vinext-oxc-toolchain_20261114 paths (6cbdbbdf); nothing else changed after the Review A HEAD, so review-a-correctness-s2-54aa79e3.json (PASS) applies, and adversarial-s2-r4-b9a4f0c2.json (PASS) targets b9a4f0c2 whose only successor is the measure/runs artifact commit; the acceptance records the exact HEAD 6cbdbbdf and names the allowed test-only commit b9a4f0c2",
+    "S2 filter at HEAD: heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed, 55 skipped, exit 0; the plan line 295 claim (7 passed, 0 failed) holds",
+    "Adversarial filter at HEAD: heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' -> 13 passed, 49 skipped, exit 0; adv 1 to 13 all pass, so the guard-only Red exception, the r2 and r3 remediations, and the r4 tripwires hold at the audited HEAD; no stale intentional red in the aggregate suite",
+    "Type check at HEAD: heavy-run.sh npx tsc --noEmit -> exit 0, no output",
+    "Lint at HEAD, all 27 workspaces: heavy-run.sh npm run lint (root, --kind package) -> 21 packages, each oxlint --config ../../.oxlintrc.json, exit 0, zero warnings; heavy-run.sh node scripts/architecture/run-workspace-quality.mjs --kind app --capability lint -> 6 apps, each oxlint --config ../../.oxlintrc.json ., exit 0, zero warnings; total 27, zero findings, matching the gates.sh lint s2 record of NEWFAIL=0 over 27 workspaces (91050201)",
+    "Lint script forms read independently from disk: python3 scan of apps/*/package.json and packages/*/package.json -> 27 lint scripts: 'oxlint --config ../../.oxlintrc.json . --max-warnings 0' in the 6 apps, 'oxlint --config ../../.oxlintrc.json src --max-warnings 0' in 20 packages, and the echo line of packages/_template",
+    "Root config read independently: python3 over .oxlintrc.json -> jsPlugins [oxlint-plugin-eslint, eslint-plugin-react, eslint-plugin-react-hooks] (3, matching spec.md line 252 as corrected by 077b77dc), 10 overrides blocks, 667 rule entries, matching evidence section 6",
+    "Allow-list exactness: python3 over scripts/__tests__/fixtures/lint-disable-allowlist.json -> version 1, 49 entries; the adversarial r4 sweep replica at b9a4f0c2 gives 49 carriers against 49 entries with 0 missing, 0 extras, 0 kind or count mismatches; adv 7 passes live in the 13-pass filter run",
+    "Tech-debt rows verified: rg over measure/tech-debt.md -> line 43 'Lint disable directives hide live oxlint findings' Medium Open with the 49-file inventory and the fixture named; line 44 'math-content package lint gate missing' Resolved with this track id, and packages/math-content ran in the live root lint sweep with exit 0",
+    "Plan task lines: every S2 task line in plan.md lines 277 to 324 is [x] with a commit SHA (335cd77d, a329d7d5 with Green 077b77dc, 6b33da07, confirm-only d891a9c9, 119a8de3 and 777d74c6, 91050201, 077b77dc), every S2 sub-box is [x], and the manual verification task (line 325) is the recorded [b] deferred:orchestrator; git merge-base --is-ancestor confirms each cited SHA (13 SHAs checked) is an ancestor of HEAD",
+    "Red gate exception is a recorded decision: red-s2-a97654aa.log holds the mid-red result block with the guard-only state and question 1; oxc-evidence.md section 6 records the PM 2026-11-18 exception; plan.md line 297 records it on the ticked task",
+    "Phase scope is exact: git diff 43d42193..HEAD --name-only -- apps packages prints nothing; the phase diff holds only the scripts test files, the fixture, measure docs (tech-debt, tech-stack, spec, plan, oxc-evidence), and measure/runs paths; the S2 migration itself landed in the superseded lint track before the phase base, which the plan records (S2 Implement, rewritten 2026-11-17)",
+    "Every blocking finding of every S2 round is resolved or accepted by a recorded decision: adversarial F1r2 and F1r3 and F2r3 were fixed (35ffb32b, fde3eda2) and withdrawn in adversarial-s2-r4-b9a4f0c2.json; F2r2 is accepted in the plan round-2 sub-box; F4r3 is a documented limitation in the helper comment with adv 12 pinning both fault classes; Review A F9 has the recorded orchestrator default (checkpoint record plus S3 strategy refresh); F10, F11, F1r4, and F2r4 are accepted Nits in the brief of this run",
+    "Registry honesty: measure/tracks.md makes no resolution claim for this track ([~] active, spec summary only, no 'resolved' wording); the superseded lint track row at line 156 is under-marked (F2 for closeout), the opposite of an overstatement",
+    "A3: every count in this audit uses a labeled integer parse (python3 len() over the fixture and the manifest scans; vitest reported counts), no rg digit-presence check; A4: no 'markers consistent' check exists in the S2 surface, not applicable; A5: the plan claims 'S2 oxlint 7 passed, 0 failed' (line 295) and the filter re-run gives exactly 7 passed; A6: no tracks.md resolution claim exists to check; A7: the -t filters 'S2 oxlint' and 'S2 adversarial' select their full describes (7 and 13 tests, 55 and 49 skipped of 62), each passes, and no real hit is dropped"
+  ],
+  "commands": [
+    "git rev-parse HEAD -> 6cbdbbdf16f2b79e09ac4c05d9112cd9bed9dafe",
+    "git diff 54aa79e3..6cbdbbdf --name-only -> 1 test file + 3 measure/runs files; git show b9a4f0c2 --stat -> 115 insertions, 0 deletions, test file only",
+    "git merge-base --is-ancestor <sha> HEAD for 13 plan-cited SHAs (all true)",
+    "git diff 43d42193..HEAD --name-only -- apps packages -> empty",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed, 55 skipped, exit 0",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' -> 13 passed, 49 skipped, exit 0",
+    "heavy-run.sh npx tsc --noEmit -> exit 0, no output",
+    "heavy-run.sh npm run lint -> 21 packages, oxlint, exit 0, zero warnings",
+    "heavy-run.sh node scripts/architecture/run-workspace-quality.mjs --kind app --capability lint -> 6 apps, oxlint, exit 0, zero warnings",
+    "python3 json scans -> fixture 49 entries; .oxlintrc.json 3 jsPlugins, 10 overrides, 667 rules; 27 lint scripts (6 app, 20 package, 1 template echo)",
+    "rg 'Lint disable directives|math-content package lint gate missing' measure/tech-debt.md -> line 43 Open, line 44 Resolved",
+    "python3 measure_interphase_checks.py role-gate --repo . --role measure-phase-acceptance --track vinext-oxc-toolchain_20261114 --phase 'Phase S2: ESLint to oxlint' --baseline 43d42193a1fea8628ed09f73b18bc0d8f9fe167e --log-file measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s2-6cbdbbdf.log --result-file measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s2-6cbdbbdf.json",
+    "python3 measure_interphase_checks.py audit-result --role measure-phase-acceptance --file measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s2-6cbdbbdf.json"
+  ],
+  "changed_files": [
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s2-6cbdbbdf.json",
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s2-6cbdbbdf.log"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "All 27 workspaces lint clean live at HEAD (21 packages via the root npm run lint and 6 apps via the app-kind sweep, each exit 0 with zero warnings), and the unused-variable probe still fails oxlint (S2 case 4 passed live)."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 5,
+      "evidence": "The 7 S2 cases and the 13 adversarial cases pass live at HEAD, adv 7 proves the 49-entry allow-list against the real tree, and adv 13 pins the unhonored spellings as tripwires."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff 43d42193..HEAD --name-only -- apps packages prints nothing; the phase holds only the scripts test files, the fixture, measure docs, and measure/runs artifacts."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every claim in this result names a command result or a file:line, including the independent .oxlintrc.json read (3 jsPlugins, 667 entries) and the 49-entry fixture count."
+    }
+  ],
+  "reviewer_ratings": [
+    {
+      "reviewer_role": "review-a",
+      "reviewer_route": "opencode-go/glm-5.3#high",
+      "agreed": true,
+      "score": 5,
+      "evidence": "I re-ran its four suite commands at the advanced HEAD with identical results (7 and 13 pass, tsc exit 0, lint clean) and confirmed each of its open findings live: the typescript import at scripts/__tests__/oxc-toolchain-gates.test.ts:9 against test-strategy.md:221, the tracks.md line 156 marker, and the JSX-text comment claim."
+    },
+    {
+      "reviewer_role": "adversarial",
+      "reviewer_route": "opencode-go/glm-5.3#high",
+      "agreed": true,
+      "score": 5,
+      "evidence": "Its 13-pass selection reproduces exactly at HEAD, its test-only commit b9a4f0c2 is the only commit between the Review A HEAD and the audited HEAD, and its two Nits (SOURCE_EXT_RE coupling at line 984, the classify quirk at lines 1062 to 1069) are accurate conservative gaps that I kept as accepted Nits."
+    }
+  ]
+}

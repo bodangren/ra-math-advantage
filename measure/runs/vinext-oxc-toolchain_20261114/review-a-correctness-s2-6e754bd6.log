@@ -1,0 +1,83 @@
+Review A correctness audit of S2 (final; the provisional block above was replaced).
+Track vinext-oxc-toolchain_20261114, phase "Phase S2: ESLint to oxlint".
+Baseline 43d42193a1fea8628ed09f73b18bc0d8f9fe167e, role_base_sha = audited HEAD 6e754bd663e0108e6e8e4ce163f7988d430d7bbd.
+
+Scope: the S2 diff 43d42193..6e754bd6, S2 correctness only: the S2 tests, every plan tick
+and evidence claim of plan.md lines 273-328, oxc-evidence.md sections 5, 6, 8, the spec.md
+line 252 correction, the tech-debt row, K1-K4 of strategy 14.2, and the anti-patterns of
+test-strategy.md 13.9 (A3, A4, A7) and measure/anti-patterns.md.
+
+Checked and verified (commands in the result JSON):
+1. Provenance: HEAD equals 6e754bd6. No commit after it. Each Green commit content matches
+   its plan subject (git show --stat for 335cd77d, a329d7d5, a97654aa, 6f08d40a, 831804c1,
+   6b33da07, 91050201, 077b77dc, 6d43e1e6, d891a9c9, 6e754bd6).
+2. S2 test re-run: npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' ->
+   7 passed, 42 skipped, exit 0. All 7 cases are guards; the Red set is empty; the plan
+   line 297 known exception matches red-s2-a97654aa.log and the PM 2026-11-18 decision.
+3. Vacuous-pass check (A4): case 9b seeds one fault per clause and expects exactly 3 hits;
+   the shared manifest scanner has a seeded-fault proof (S1 case 9b, lines 415-440);
+   cases 1-3 hold count and membership sentinels; the case 4/5 probe pair is self-checking.
+4. Probes lint real files: the probe lives under apps/.oxlint-probe-*/probe.ts, matches the
+   apps/**/*.{js,jsx,mjs,cjs,ts,tsx} override, which holds no-unused-vars (parsed
+   .oxlintrc.json). Direct oxlint runs: an empty path exits 1 with "No files found to
+   lint", so case 4's non-zero expectation is real and case 5 cannot pass for the wrong
+   reason.
+5. Contract claims re-derived: one root .oxlintrc.json, no eslint.config.*, 26 of 27 lint
+   scripts in the target form plus the template echo, no eslint-family declaration in 28
+   manifests, root overrides keys exactly ["typescript"], oxlint only in the root
+   devDependencies (^1.79.0, installed 1.93.0), config inventory 10 overrides / 667
+   entries / 3 jsPlugins, lockfile peer-only copies (eslint 9.39.5, @eslint/js 9.39.5,
+   @eslint/eslintrc 3.3.7, all dev+peer) with no eslint-config-next or typescript-eslint.
+6. K1-K4 re-run: K1 w4_passed=8 w4_failed=0; K2 15/0; K3 35/0; K4 jsplugins_changed=0
+   jsplugins_count=3 with no .oxlintrc.json diff vs 43d42193. All match plan line 316.
+7. Gates records: gates/s2 lint and test exit rows are identical to baseline-m2 (NEWFAIL=0
+   claims hold); jr-green-verify-checks.log holds NEWFAIL=1 with exactly the two
+   S1-accepted lines; full scripts suite re-run gives 48 passed / 1 failed, only the
+   pre-existing remediate-concept-blueprints row.
+8. Lint spot checks through heavy-run.sh: IM3 exit 0, math-content exit 0. npm run doctor
+   exit 0 ("All checks passed"). npm run generate not re-run (it writes tracked generated
+   files; the role limit forbids it); the Green log records exit 0 and the current dirty
+   set is exactly the 6 known dirty generated files.
+9. spec.md line 252 names the 3 kept jsPlugins and matches strategy 14.2 and plan 305.
+   The tech-debt row is Resolved with this track id; d3eaf4bd did remove it.
+10. Anti-patterns: A3 no violation (labeled integers, structured lengths); A4 no
+    violation (sentinels and seeded faults); A7 no violation (anchored name and
+    name@ filters, exact describe title in the -t filter).
+
+Findings (full text in the result JSON):
+F1 [Major] tests: the strategy S2 defense "Case 7" (no block-form /* oxlint-disable in
+   source files; each disable-next-line has a reason) has no test case. The tree is clean
+   today (3 disable-next-line hits, each with a reason), so no claim is false, but the
+   named guard is absent from a guard-only phase.
+F2 [Major] evidence: oxc-evidence.md:267-268 claims the raw lint timing values are in the
+   run folder; no raw output exists (only the script, and /measure/runs/ is gitignored).
+   The 26 medians have no saved raw record.
+F3 [Nit] docs: tech-stack.md:138 still lists ESLint as the lint engine in the Testing
+   table, contradicting the S2 note in the same file (added by this phase).
+F4 [Nit] registry: tracks.md:157 still lists eslint-to-oxlint-migration_20260820 as [~]
+   with no superseded marker, though plan line 274 and evidence section 6 record the
+   supersession (PM 2026-11-18).
+F5 [Nit] strategy: the 13.9 S2 "on <n> files" labeled-count defense is not implemented
+   in any log or test; oxlint 1.93.0 covers the risk natively (zero files exits 1), so
+   the defense text is stale, not the behavior.
+
+Verdict: pass. No blocking findings. Five nonblocking findings (2 Major, 3 Nit), routed
+for disposition. No question needs the user; defaults are recorded in the handoff line.
+
+MEASURE_AGENT_RESULT
+role: measure-review-a-correctness
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: 6e754bd663e0108e6e8e4ce163f7988d430d7bbd
+head: 6e754bd663e0108e6e8e4ce163f7988d430d7bbd
+commits: none (audit only)
+tests_run: npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed, 0 failed, exit 0; full scripts suite -> 48 passed, 1 failed (only the pre-existing remediate-concept-blueprints row); K1 8/8, K2 15/0, K3 35/0, K4 jsplugins_changed=0 jsplugins_count=3; heavy-run.sh lint spot checks IM3 and math-content -> exit 0; npm run doctor -> exit 0
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/review-a-correctness-s2-6e754bd6.json, measure/runs/vinext-oxc-toolchain_20261114/review-a-correctness-s2-6e754bd6.log
+plan_updates: none
+known_failures: none from this audit. Pre-existing recorded items unchanged: the S2 Red-gate exit 1 (guard-only exception, PM 2026-11-18, plan line 297), the remediate-concept-blueprints scripts-suite row, the IM3 typecheck npm-trailer line, and the audit high 11 -> 21 registry drift (both explained in oxc-evidence section 10).
+handoff: Verdict pass with 5 nonblocking findings (F1, F2 Major; F3 to F5 Nit) and 1 gate-state item (F6). Defaults if no answer: F1 -> let Green add the blanket-disable guard case to the S2 describe (strategy 8, line 539) or let the parallel adversarial role add it; F2 -> re-run s2-lint-timing.sh and commit the raw output, or change the evidence sentence to cite the script as the method; F3 -> Green corrects the tech-stack.md:138 row at the S2 docs touchpoint; F4 -> the orchestrator updates the tracks.md row for eslint-to-oxlint-migration_20260820 at the S2 closeout; F5 -> record in the strategy that oxlint 1.93.0 fails a zero-file path natively, at the next strategy revision; F6 -> the role-gate exits 1 only because plan line 324 (S2 User Manual Verification) is `[ ]` and not deferred; the orchestrator marks it `[b] ... deferred:orchestrator` (the same form the S1 row held at 831804c1) and re-runs the gate.
+END_MEASURE_AGENT_RESULT
+
+Gate result (after the block above): the audit-result validator exits 0 ("PASS: audit result is valid") with --role measure-review-a-correctness --file review-a-correctness-s2-6e754bd6.json. The role-gate with --result-file review-a-correctness-s2-6e754bd6.json exits 1 with the single feedback line "current phase still has 1 non-deferred incomplete tasks": the open S2 User Manual Verification task of plan.md lines 324-328. The result-file checks themselves pass (no other feedback line). The gate passes after the orchestrator marks that task `[b] ... deferred:orchestrator`, the form the S1 row held when the review-b role-gate ran at 831804c1. This audit role may not edit plan.md, so the marker stays with the orchestrator (handoff item F6).

@@ -1,0 +1,73 @@
+Review A (measure-review-a-correctness) - S2 re-run after remediation round 3
+Track: vinext-oxc-toolchain_20261114. Phase: "Phase S2: ESLint to oxlint".
+phase_base_sha 43d42193a1fea8628ed09f73b18bc0d8f9fe167e. role_base_sha 54aa79e33442a94201500a997c1b410dbfd2f241.
+audited_head_sha 54aa79e33442a94201500a997c1b410dbfd2f241 (HEAD at audit start).
+
+Audit range read: 43d42193..54aa79e3. New since my r3 at f617412f: f2e55c8c
+(adversarial r3 tests, adv 10 to 12), d3822d47 (adversarial r3 result),
+fde3eda2 (the fix: TypeScript tokenizer helpers), 1bd26b91 (plan sub-box round
+3), 54aa79e3 (Green r7 log).
+
+Verdict: PASS. No blocking finding. Nonblocking: F4 (standing, closeout), F9
+(Major, unrecorded strategy deviation: typescript import), F10 (Nit, false
+comment and handoff claim about JSX text), F11 (Nit, kind label can misreport).
+My r3 F8 is resolved (both latent weaknesses fixed and live-proven).
+
+Checks run:
+- F1r3: CRLF trailing // eslint-disable-line and CRLF // eslint-disable-next-line.
+  Live: originals hide no-unused-vars (exit 0); stripped copies surface it.
+  Edge suite: strip removes the directive, keeps every CRLF line break.
+- F2r3: in-string /* above a real disable. Live: original hides; stripped copy
+  keeps 'const s = "a /* b";' verbatim, surfaces the finding, no parse error.
+- F3r3: strings and templates never count (total 0, no-op strip). A // disable
+  inside a block comment counts once (the old code counted twice). JSX text is
+  still counted by the trivia scan: conservative over-count, oxlint fires
+  jsx-no-comment-textnodes and honors nothing (F10 documents the false claim).
+- Prefilter: 10 live spelling probes. oxlint honors only the lowercase eslint
+  and oxlint spellings (both comment styles, tight forms, rule lists, reason).
+  Uppercase, mixed-case, spaced, and jsdoc forms are rejected by oxlint, so the
+  case-sensitive prefilter misses no honored spelling.
+- No case weakened in fde3eda2: diff reads helper zone only; no it( or expect(
+  line changed; adv 9 to 12 byte-identical after the fix.
+- Fixture: independent recheck with the committed tokenizer: 49 carriers
+  against 49 entries, every kinds, directiveCount, and blanketBlocks field
+  matches. Fixture file unchanged since 119a8de3.
+- Plan and log claims since f617412f: all true, except the Green handoff line
+  "JSX text never count" (F10) and the unrecorded strategy-rule deviation (F9).
+
+Suite re-runs (detached worktree at 54aa79e3, heavy-run.sh, one at a time):
+- -t 'S2 adversarial': 12 passed, 49 skipped, exit 0.
+- -t 'S2 oxlint': 7 passed, 54 skipped, exit 0.
+- -t 'S1 adversarial': 7 passed, exit 0.
+- -t 'S1 vinext 1.x': 11 passed, exit 0.
+- npx tsc --noEmit: exit 0.
+- Full scripts suite: 60 passed, 1 failed, exit 1. The only failure is the
+  pre-existing remediate-concept-blueprints honest-count row (accepted S1 Q3).
+
+Provenance: a parallel adversarial r4 committed b9a4f0c2 (adv 13) in the main
+checkout during my runs, after my audited HEAD. All my suite runs were in the
+detached worktree, so no run read its edits. The worktree was removed after.
+The 6 modified working-tree files are the known generated files.
+
+Questions (each with a default):
+- Q1 (F9, typescript import): fde3eda2 imports typescript in the test file,
+  which test-strategy section 5 forbids ("S3 removes the package"), but the S3
+  contract says the package is kept at 7.0.2. Default: record the deviation in
+  the S2 sub-box at closeout and let the S3 refresh revise section 5 so the two
+  agree before the S3 Red. Alternative: route the import to the user now.
+- Q2 (F10/F11): fix the JSX-text comment wording and the classify head at a
+  later round, or accept both as conservative gaps. Default: accept both now;
+  correct the comment wording at the next remediation touch.
+
+MEASURE_AGENT_RESULT
+role: measure-review-a-correctness
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+commits: fde3eda2, 1bd26b91, 54aa79e3 (audited; parallel r4 b9a4f0c2 is outside my range)
+tests_run: S2 adversarial 12 passed 49 skipped exit 0; S2 oxlint 7 passed exit 0; S1 adversarial 7 passed exit 0; S1 vinext 1.x 11 passed exit 0; npx tsc --noEmit exit 0; full scripts suite 60 passed 1 failed exit 1 (only the pre-existing remediate-concept-blueprints row); s2-tokenizer-edge-check.mjs 80 checks 0 failed; s2-live-probes.mjs 0 failed; s2-tokenizer-allowlist-recheck.mjs 49/49 0 failed. All suite runs in a detached worktree at 54aa79e3.
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/review-a-correctness-s2-54aa79e3.json; review-a-correctness-s2-54aa79e3.log; s2-tokenizer-edge-check.mjs; s2-live-probes.mjs; s2-tokenizer-allowlist-recheck.mjs; s2-jsx-debug.mjs (audit artifacts only; no production, test, plan, or registry file edited)
+plan_updates: none (audit only). Verdict PASS. F1r3, F2r3, F3r3 fixed and live-proven; no case weakened; fixture exact 49/49; plan and log claims true except two wording items.
+known_failures: remediate-concept-blueprints honest-count row (pre-existing S1 Q3 baseline failure, accepted)
+handoff: PASS at 54aa79e3. All three routed adversarial findings are closed and verified live; my r3 F8 is resolved. Nonblocking: F4 (tracks.md superseded row, for closeout), F9 (Major: typescript import in the test file deviates from test-strategy section 5 unrecorded, and section 5 conflicts with the S3 contract "kept typescript package 7.0.2" - record the deviation and let the S3 refresh reconcile; default above), F10 (helper comment and Green handoff falsely claim JSX text never counts; conservative over-count, no hole), F11 (classify labels a blanket block that contains 'disable-next-line' text as next-line; label-only gap, no hole). The parallel adversarial r4 committed b9a4f0c2 after my HEAD; my runs used a detached worktree, so my results are unaffected. Question Q1 default: record the F9 deviation at closeout, reconcile section 5 at the S3 refresh.
+END_MEASURE_AGENT_RESULT

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "role": "review-a",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S2: ESLint to oxlint",
+  "baseline_sha": "43d42193a1fea8628ed09f73b18bc0d8f9fe167e",
+  "role_base_sha": "4326142c2c082059c9eeaaa18148d888613f2c50",
+  "audited_head_sha": "4326142c2c082059c9eeaaa18148d888613f2c50",
+  "status": "fail",
+  "summary": "Re-review of the S2 remediation at 4326142c. The PM option B remediation is sound and verified: the 49-entry allow-list matches the tree exactly (49 carriers, 0 path, kind, count, or blanket mismatches; 64 directives, 7 blanket blocks, 44 of 56 next-line directives without a reason), no other test case got weaker in 119a8de3, the raw timing record s2-lint-timing-r3.txt exists and its 6 replaced medians match, every plan tick and evidence line changed since 6e754bd6 is true, no apps/ or packages/ file changed in the phase diff, and both targeted suites pass at the audited HEAD (S2 oxlint 7 passed exit 0; S2 adversarial 7 passed exit 0). I withdraw the contested findings F1, F2, F3, F5, and F6 because each Green contest holds, and the adversarial F1 is resolved while the adversarial F2 is correctly recorded in the plan phase note. One new blocker stands: the adv 7 pin does not count or strip a mid-line or multi-line disable comment, so a pinned carrier can hide a new live oxlint finding behind either form while the guard passes (A4). The parallel adversarial run committed the failing guard adv 9 after my HEAD (490af011) and its live controls prove oxlint honors both evading forms; the defect sits in the remediation lines at my HEAD (directiveKindsOfFile, scripts/__tests__/oxc-toolchain-gates.test.ts:981-1005; stripDisableComments, lines 907-913). No current carrier uses either form, so the recorded phase state stays true. The full scripts suite at the audited HEAD is 55 passed, 1 failed (only the pre-existing remediate-concept-blueprints row); my heavy-run.sh run picked up the parallel commits and shows 56 passed, 2 failed (adv 9 plus the known row).",
+  "blocking_findings": [
+    "F7 [Blocker] review-a: the allow-list pin of adv 7 does not count or strip a mid-line or multi-line disable comment, so a pinned carrier file can hide a new live oxlint finding behind either form while adv 7 passes. directiveKindsOfFile (scripts/__tests__/oxc-toolchain-gates.test.ts:981-1005 at the audited HEAD) counts only a whole-line block comment (WHOLE_LINE_DISABLE_RE, line 901) and a // -trailing comment, and stripDisableComments (lines 907-913) strips only those two forms. oxlint 1.93.0 honors both evading forms: the live controls of adv 9 (committed after the audited HEAD, at 490af011) pass, hiding no-unused-vars behind a seeded mid-line 'const keep = 1; /* eslint-disable */' and a multi-line form with exit 0, and the committed guard fails at 'directiveKindsOfFile must count the mid-line or multi-line directive: expected +0 to be 1' (my full-suite run). I re-ran the strip logic of the audited HEAD directly: both stripped copies keep the disable comment, so the sweep's temp copy stays suppressed and the hidden rule never surfaces. No current carrier uses either form (the in-code claim at lines 898-899 holds; my kinds recount matched all 49 entries exactly), so the recorded phase state stays true, but the guard that PM option B relies on is evadable. Rationale: route to Green: widen WHOLE_LINE_DISABLE_RE, directiveKindsOfFile, and stripDisableComments to count and strip mid-line and multi-line block comments, so the already-committed adv 9 passes."
+  ],
+  "nonblocking_findings": [
+    "F4 [Nit] review-a: measure/tracks.md line 157 still lists 'Track: ESLint to Oxlint Migration' as [~] with no superseded marker, although plan line 274 and oxc-evidence section 6 record the supersede (PM 2026-11-18). Rationale: unchanged since my earlier pass; the Green r5 handoff records 'measure/tracks.md left for closeout'; the orchestrator fixes the row at the S2 closeout (the same default as before)."
+  ],
+  "evidence": [
+    "F1 withdrawn: 119a8de3 implements the disable-comment guard as adv 7 with the PM-approved allow-list (option B); I verified 49 entries against 49 carrier files by command (rg -l over apps/ and packages/ gives 49; python3 cross-check gives 0 path, kind, count, and blanket mismatches); the plan phase note supersedes the strategy case-7 row; adv 7 passes on my re-run (7 passed, exit 0).",
+    "F2 withdrawn: measure/runs/vinext-oxc-toolchain_20261114/s2-lint-timing-r3.txt is tracked and named in oxc-evidence.md; all 26 rows hold warm=done with t1/t2/t3 and the 6 replaced medians match the raw values (BM2 8.922, IM3 4.557, PreCalc 3.174, knowledge-space-practice 0.650, practice-core 0.654, practice-test-engine 0.574).",
+    "F3 withdrawn: measure/tech-stack.md line 138 now reads 'oxlint | Lint (`oxlint --config .oxlintrc.json --max-warnings 0`)' (commit 777d74c6).",
+    "F5 withdrawn: the plan phase note (777d74c6) records the strategy section 8 rows 'case 7' and 'on <n> files' as superseded by adv 6/adv 7 and case 4; the strategy role owns the revision. The adversarial F2 is covered by the same note, so it is correctly recorded.",
+    "F6 withdrawn: the S2 User Manual Verification task now reads '[b] ... deferred:orchestrator (Review A F6)' in plan.md at the audited HEAD (commit 777d74c6), the form the S1 row held.",
+    "Adversarial F1 resolved: the false 'No finding' plan claim is corrected in 777d74c6; the tech-debt row 'Lint disable directives hide live oxlint findings' holds the 43 live hiders and its rule breakdown matches the allow-list counter exactly (24 typescript(no-explicit-any), 10 react-hooks(exhaustive-deps), 3 next(no-img-element), 3 eslint(no-unused-vars), 2 next(no-html-link-for-pages), 1 react-hooks(rules-of-hooks), 1 react-hooks-js(purity) = 44 hidden-rule hits across 43 files); 6 of the 49 carriers hide nothing.",
+    "Provenance: git rev-parse HEAD printed 4326142c2c082059c9eeaaa18148d888613f2c50 at audit start; a parallel adversarial run added the test-only commits 118cd71e and 490af011 mid-audit (02:10 and 02:12), and this audit judges 43d42193..4326142c only, per the brief.",
+    "Targeted re-runs at the audited HEAD (02:04, before the parallel commits): npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed, 49 skipped, exit 0; -t 'S2 adversarial' -> 7 passed, 49 skipped, exit 0 (56 collected tests, matching the audited HEAD's file).",
+    "Full scripts suite through heavy-run.sh (picked up 490af011, 58 tests): 56 passed, 2 failed, exit 1; the failures are adv 9 and the pre-existing remediate-concept-blueprints row. The only pre-existing-code change in 4326142c..490af011 is a verbatim move of the adv 7 pin block into allowlistPinViolations plus additive cases, so the suite at the audited HEAD is 55 passed, 1 failed (the remediate row only), matching jr-green-s2-r5-777d74c6.log (tests_run line: 'full scripts suite 55 passed 1 failed').",
+    "F7 mechanism verified by command: node -e re-ran the strip logic of the audited HEAD on both evading forms; each stripped copy still holds 'eslint-disable', so the sweep never surfaces the hidden finding. The live controls of adv 9 prove oxlint honors both forms (they passed before the counting assertion failed in my full-suite run).",
+    "No other case got weaker in 119a8de3: git show 119a8de3 lists 7 deleted lines, all inside adv 7's own body (title, map line, decode mapping, expect); the 113 insertions add the allow-list helpers, the pin clauses, and the fixture. adv 6 keeps its seeded-fault proof (it passed in my -t 'S2 adversarial' run).",
+    "Plan claims verified by command: '49 tracked files carry pre-existing disable directives (7 blanket blocks, 44 next-line directives without a reason)' -> 64 directives, 7 blanket blocks, 56 next-line directives, 44 without a '--' marker (python3 over the 49 carrier files).",
+    "Scope verified: git diff --name-only 43d42193..4326142c -- apps packages prints nothing; the phase diff touches measure docs, the two scripts/__tests__ files, and the fixture only. Red b6344565 is an ancestor inside the phase diff."
+  ],
+  "commands": [
+    "git rev-parse HEAD (4326142c at audit start; 490af011 after the parallel commits)",
+    "git log --oneline 43d42193..HEAD and git show --stat 119a8de3 / 777d74c6 / ab8a9922",
+    "git show 119a8de3 -- scripts/__tests__/oxc-toolchain-gates.test.ts (7 deleted lines, all inside adv 7)",
+    "git diff 4326142c..490af011 (verbatim pin move plus additive adv 8/adv 9)",
+    "git diff --name-only 43d42193..4326142c -- apps packages (empty)",
+    "rg -l --no-messages -g '*.{js,jsx,mjs,cjs,ts,tsx}' '(eslint|oxlint)-disable' apps packages | wc -l -> 49",
+    "python3 cross-check of scripts/__tests__/fixtures/lint-disable-allowlist.json (49/49 paths, kinds, counts, blanket blocks; 64 directives; 7 blocks; rule counter 24/10/3/3/2/1/1)",
+    "python3 count of disable-next-line lines and '--' reason markers (56 and 44)",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint' -> 7 passed, exit 0",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial' -> 7 passed, exit 0",
+    "bash /home/daniebo/Desktop/advantage-pr/scripts/jobs/heavy-run.sh npx vitest run --config scripts/vitest.config.ts -> 56 passed, 2 failed (adv 9 + remediate), exit 1",
+    "node -e strip-logic check: mid-line and multi-line disable comments survive stripDisableComments",
+    "python3 /home/daniebo/Desktop/advantage-pr/scripts/jobs/slot check -> ok"
+  ],
+  "changed_files": [
+    "measure/runs/vinext-oxc-toolchain_20261114/review-a-correctness-s2-4326142c.json",
+    "measure/runs/vinext-oxc-toolchain_20261114/review-a-correctness-s2-4326142c.log"
+  ],
+  "test_strategy_violations": [
+    "S2 strategy section 8, risk 'Zero warnings by blanket disable': the implemented defense (adv 7 with the option B allow-list, superseding the named case 7) does not see a mid-line or multi-line blanket disable, so the named risk is only partially covered (F7)."
+  ],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "retry_implementation",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 3,
+      "evidence": "The pin holds on unlisted carriers, stale entries, blanket growth, changed directives, and unrecorded hidden rules (verified by code read and the seeded adv 8 passing after my HEAD), but adv 9 proves a live evasion: directiveKindsOfFile returns 0 for the mid-line form at scripts/__tests__/oxc-toolchain-gates.test.ts:981."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 3,
+      "evidence": "The remediation claims now have machine checks (adv 7's strip-and-lint decoded the 44 hidden-rule hits; my targeted re-runs pass 7/7), but no test at the audited HEAD covered the mid-line or multi-line form until the parallel adversarial committed the failing adv 9."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "git diff --name-only 43d42193..4326142c -- apps packages prints nothing; the phase diff holds measure docs, the two scripts/__tests__ files, and the fixture only."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every remediation claim has a command result or file:line: the 49/49 allow-list cross-check, the raw timing medians, the 56/44 next-line count, and the node -e strip check for F7."
+    }
+  ]
+}

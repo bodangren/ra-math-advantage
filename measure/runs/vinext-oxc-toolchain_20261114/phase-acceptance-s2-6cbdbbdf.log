@@ -1,0 +1,124 @@
+Phase Acceptance audit log — Phase S2: ESLint to oxlint
+Track: vinext-oxc-toolchain_20261114
+Role: measure-phase-acceptance (route opencode-go/glm-5.3#high)
+Audited HEAD: 6cbdbbdf16f2b79e09ac4c05d9112cd9bed9dafe (immutable; no commit made)
+Phase base: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+Date: 2026-11-19
+Result artifact: measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s2-6cbdbbdf.json
+
+Verdict: PASS (no blocking finding; five checkpoint Nits recorded).
+
+1. Position checks
+- git rev-parse HEAD -> 6cbdbbdf16f2b79e09ac4c05d9112cd9bed9dafe. The audited HEAD is
+  current.
+- Working tree: only the known generated artifacts left unstaged (4 routes.d.ts,
+  measure/generated/routes.md, a generatedAt refresh in
+  apps/bus-math-v2/lib/workbooks-manifest.json). None is part of the audited HEAD.
+- slot check: ok (9 of 12 busy, MemAvailable 22428 MB).
+
+2. Prerequisite results read (both under measure/runs/vinext-oxc-toolchain_20261114/)
+- review-a-correctness-s2-54aa79e3.json: PASS at 54aa79e3 (role gate exit 0).
+- adversarial-s2-r4-b9a4f0c2.json: PASS at b9a4f0c2 (NEWFAIL=0, gate 0, 13 pass).
+- Gate table check: test-strategy.md lines 126 to 139 say Review B is covered by the
+  Review A lockfile check for S2 and Review C has no S2 surface (script names do not
+  change), so Review A plus adversarial is the complete S2 gate set. UX browser review is
+  not an S2 gate item; the manual verification protocol is the recorded [b]
+  deferred:orchestrator task (plan.md line 325).
+
+3. Review HEAD applicability (decision with evidence)
+- git diff 54aa79e3..6cbdbbdf --name-only: scripts/__tests__/oxc-toolchain-gates.test.ts
+  (commit b9a4f0c2, git show --stat: 115 insertions, 0 deletions, test-only) and 3
+  measure/runs/vinext-oxc-toolchain_20261114 paths (commit 6cbdbbdf, artifacts only).
+  Nothing else changed after the Review A HEAD, so the Review A PASS applies to the
+  audited HEAD. The adversarial result targets b9a4f0c2, whose only successor commit
+  (6cbdbbdf) touches only measure/runs. Both prerequisites target the same
+  implementation content this audit accepted. Allowed test-only commit named: b9a4f0c2.
+
+4. Test runs at HEAD 6cbdbbdf (each through heavy-run.sh, one at a time, no redirection)
+- S2 filter: npx vitest run --config scripts/vitest.config.ts -t 'S2 oxlint'
+  -> 7 passed, 55 skipped, exit 0. The plan line 295 claim (7 passed, 0 failed) holds.
+- Adversarial filter: -t 'S2 adversarial' -> 13 passed, 49 skipped, exit 0. All 13
+  adversarial cases pass at the audited HEAD; no stale intentional red remains.
+- npx tsc --noEmit -> exit 0, no output.
+- npm run lint (root, --kind package) -> 21 packages, each
+  oxlint --config ../../.oxlintrc.json, exit 0, zero warnings.
+- node scripts/architecture/run-workspace-quality.mjs --kind app --capability lint
+  -> 6 apps, each oxlint --config ../../.oxlintrc.json ., exit 0, zero warnings.
+  Total: all 27 workspaces lint clean with zero findings at the audited HEAD, matching
+  the gates.sh lint s2 record (NEWFAIL=0 over 27 workspaces, plan line 308 and 314).
+
+5. Story S2 acceptance criteria (spec.md lines 126 to 131)
+- Migration with a .oxlintrc.json and no ESLint config: the migration landed in the
+  superseded track eslint-to-oxlint-migration_20260820 before the phase base, so no
+  @oxlint/migrate input exists. oxc-evidence.md section 6 records this deviation, the
+  PM 2026-11-18 supersede, and the rule inventory. One root .oxlintrc.json, no
+  per-workspace copy, no eslint.config.* file (case 2 passes live).
+- Every workspace lint script exits 0 with zero warnings: verified live over all 27
+  workspaces (section 4 above). The 27 script forms read independently: 6 apps
+  ('oxlint --config ../../.oxlintrc.json . --max-warnings 0'), 20 packages (same with
+  'src'), packages/_template keeps its echo line.
+- The unused-variable probe exits non-zero: S2 case 4 passes live in the 7-pass filter
+  run (probe under apps/, exit 1 with no-unused-vars under the root config).
+- No manifest declares eslint, typescript-eslint, eslint-config-next, @eslint/js, or
+  @eslint/eslintrc: S2 case 1 passes live.
+- Rule gaps: evidence section 6 records the inventory (10 overrides, 667 rule entries,
+  3 jsPlugins: oxlint-plugin-eslint, eslint-plugin-react, eslint-plugin-react-hooks)
+  and 'Rule gaps: none derivable'. Independent python3 read of .oxlintrc.json confirms
+  3 jsPlugins, 10 overrides, 667 entries. spec.md line 252 names the same 3 kept
+  jsPlugins (corrected by 077b77dc), so plan, spec, and config agree.
+
+6. Brief-specific checks
+- Disable-directive allow-list: scripts/__tests__/fixtures/lint-disable-allowlist.json
+  holds version 1 and exactly 49 entries (python3 len). The adversarial r4 sweep
+  replica at b9a4f0c2 gives 49 carriers against 49 entries, 0 missing, 0 extras, no
+  kind or count mismatch, and adv 7 passes live in the 13-pass filter run. Exact at 49.
+- Tech-debt rows: measure/tech-debt.md line 43 'Lint disable directives hide live oxlint
+  findings' Medium Open (added by the S2 remediation, 119a8de3/777d74c6); line 44
+  'math-content package lint gate missing' Resolved with this track id (077b77dc), and
+  packages/math-content ran clean in the live root lint sweep.
+- Plan ticks: every S2 task line (plan.md lines 277 to 324) is [x] with a commit SHA;
+  all 13 cited SHAs (335cd77d, a329d7d5, a97654aa, 6b33da07, d891a9c9, 119a8de3,
+  777d74c6, 91050201, 077b77dc, 35ffb32b, fde3eda2, 1bd26b91, b9a4f0c2) resolve as
+  ancestors of HEAD (git merge-base --is-ancestor). Every S2 sub-box is [x]. The only
+  open task is the recorded [b] deferred:orchestrator manual verification (line 325),
+  which the orchestrator runs in the checkpoint round.
+- Red gate exception: red-s2-a97654aa.log holds the guard-only result block and
+  question 1; oxc-evidence.md section 6 and plan.md line 297 record the PM 2026-11-18
+  exception. The full-suite known failure of the Green rounds is the pre-existing
+  remediate-concept-blueprints row, recorded in evidence section 10 (line 660) and
+  accepted at S1 Q3. The Green r7 log confirms: 60 pass with only that row, tsc exit 0,
+  test s2 NEWFAIL=0.
+- Phase scope: git diff 43d42193..HEAD --name-only -- apps packages prints nothing. The
+  phase diff holds only the scripts test files, the fixture, measure docs (tech-debt,
+  tech-stack, spec, plan, oxc-evidence), and measure/runs artifacts.
+- Anti-pattern scan: A3 (labeled integer parses used for every count), A4 (no 'markers
+  consistent' check in the S2 surface), A5 (the plan claims match the live filter
+  results), A6 (measure/tracks.md makes no resolution claim; the superseded lint row at
+  line 156 is under-marked, the opposite of an overstatement), A7 (the -t filters select
+  their full describes, 7 and 13 tests, nothing dropped).
+
+7. Open findings routed to the checkpoint (all nonblocking)
+- F1: record the Review A F9 deviation (typescript import at
+  scripts/__tests__/oxc-toolchain-gates.test.ts:9 vs test-strategy.md:221-222) in the
+  S2 plan at the checkpoint; the S3 strategy refresh reconciles section 5 with the S3
+  contract before S3 Red (orchestrator default 2026-11-19).
+- F2: measure/tracks.md line 156 supersede marker for the lint track (closeout).
+- F3: F10 comment wording (JSX text claim) at the next remediation touch; accepted.
+- F4: plan sub-box line for the adversarial r4 round; the result artifact is committed.
+- F5: F1r4 and F2r4 accepted Nits; note only.
+
+MEASURE_AGENT_RESULT
+role: measure-phase-acceptance
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S2: ESLint to oxlint
+baseline_sha: 43d42193a1fea8628ed09f73b18bc0d8f9fe167e
+role_base_sha: 6cbdbbdf16f2b79e09ac4c05d9112cd9bed9dafe
+audited_head_sha: 6cbdbbdf16f2b79e09ac4c05d9112cd9bed9dafe
+commits: none (audit only; artifacts written under measure/runs/)
+tests_run: heavy-run.sh npx vitest -t 'S2 oxlint' -> 7 passed, 55 skipped, exit 0; heavy-run.sh npx vitest -t 'S2 adversarial' -> 13 passed, 49 skipped, exit 0; heavy-run.sh npx tsc --noEmit -> exit 0; heavy-run.sh npm run lint -> 21 packages exit 0 zero warnings; heavy-run.sh node scripts/architecture/run-workspace-quality.mjs --kind app --capability lint -> 6 apps exit 0 zero warnings (27 workspaces total, zero findings); role-gate exit 0; audit-result exit 0
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s2-6cbdbbdf.json, measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s2-6cbdbbdf.log
+plan_updates: none (audit only)
+known_failures: none in the S2 surface; the pre-existing remediate-concept-blueprints row stays the only accepted scripts-suite failure (evidence section 10, accepted S1 Q3)
+handoff: S2 acceptance passes at 6cbdbbdf. The checkpoint round owns: (1) the [b] manual verification protocol task (plan.md line 325), the checkpoint commit, the heading marker, and the phase-complete commit; (2) F1 record the Review A F9 deviation (typescript import vs test-strategy section 5) in the plan and have the S3 strategy refresh reconcile section 5 with the S3 contract before S3 Red; (3) F2 the measure/tracks.md line 156 supersede marker at closeout; (4) F4 optionally add the adversarial r4 sub-box line; F3, F5, and the adversarial residuals F2r2 and F4r3 stay accepted as recorded. No question for the user; no default needed.
+END_MEASURE_AGENT_RESULT

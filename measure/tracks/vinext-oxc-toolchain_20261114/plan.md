@@ -322,8 +322,8 @@ _Story ref: spec.md#story-s2_
     - [x] Ran `npm run generate`. Exit code 0; only the 6 known dirty generated files changed, left unstaged.
     - [x] Ran `npm run doctor`. Exit code 0 ("All checks passed").
     - [x] Corrected `spec.md` line 252 to name the 3 kept `jsPlugins` (077b77dc).
-- [b] Task: Measure - User Manual Verification 'Phase S2: ESLint to oxlint' (Protocol in workflow.md) — deferred:orchestrator (Review A F6)
-    - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
+- [x] Task: Measure - User Manual Verification 'Phase S2: ESLint to oxlint' (Protocol in workflow.md)
+    - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (S2 oxlint 7 pass, S2 adversarial 13 pass, phase acceptance at 6cbdbbdf; PM is the confirming user, orchestrator default 2026-11-19. S2 has no user-facing change.)
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S2`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S2 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S2: ESLint to oxlint' as complete`.
@@ -333,6 +333,8 @@ Phase note (2026-11-19, S2 remediation): strategy section 8 rows "case 7" ("Zero
 ### S2 remediation sub-box (Jr Green rounds)
 - Round 2 (2026-11-19, `35ffb32b`): counted and stripped mid-line and multi-line block disable comments in both spellings (Review A F7, adversarial F1r2). Adv 9 passes as written. The fixture stays exact: all 49 entries match under the old and new counts, so no entry changed. Accepted residual: adversarial F2r2 stays; no count anchor exists, and the fixture diff review is the defense. Gates: S2 adversarial 9 pass, S2 oxlint 7 pass, S1 adversarial 7 pass, S1 vinext 1.x 11 pass, full scripts suite 57 pass with only the pre-existing remediate-concept-blueprints failure, `npx tsc --noEmit` exit 0, `test s2` NEWFAIL=0.
 - Round 3 (2026-11-19, `fde3eda2`): replaced the comment regexes with the TypeScript parser (`typescript` 6.0.3): each file parses with the ScriptKind of its extension, comment ranges come from token trivia, and only text inside a real comment range counts as a directive. This closes F1r3 (CRLF trailing forms now strip) and F2r3 (an in-string `/*` no longer swallows code; the strip blanks ranges with spaces and keeps newlines, so positions stay). Adv 10 and adv 11 pass as written; adv 1 to 9 and adv 12 hold. F3r3 is resolved by the tokenizer (disable text in strings and templates never counts). F4r3 stays an accepted limitation, noted in the helper comment. The fixture stays exact: all 49 entries match under the tokenizer, so no entry changed. Gates: S2 adversarial 12 pass, S2 oxlint 7 pass, S1 adversarial 7 pass, S1 vinext 1.x 11 pass, full scripts suite 60 pass with only the pre-existing remediate-concept-blueprints failure, `npx tsc --noEmit` (repo root) exit 0, `test s2` NEWFAIL=0 (the stale scripts-suite step record was dropped first, so the step re-ran).
+- [x] Adversarial r4 at b9a4f0c2 passed (adv 13 added; Nits F1r4 and F2r4 accepted). (b9a4f0c2)
+- [x] Recorded deviation (Review A F9, 2026-11-19): the test file imports the installed `typescript` package for the comment scan, against test-strategy section 5 (lines 221-222). The S3 strategy refresh reconciles section 5 with the S3 contract (plan line 342: the kept `typescript` package uses 7.0.2) before S3 Red, and checks that the scan API stays available. (fde3eda2)
 
 ## Phase S3: TypeScript 7 and tsrs
 _Story ref: spec.md#story-s3_
