@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "role": "measure-phase-acceptance",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S1: Package refresh and vinext 1.x",
+  "baseline_sha": "d475273969aee1e1248d4aa3b13e55fb3726b63f",
+  "role_base_sha": "413a21385b8ca08c85dd040fc907ffa8259eefc6",
+  "audited_head_sha": "413a21385b8ca08c85dd040fc907ffa8259eefc6",
+  "status": "pass",
+  "summary": "S1 acceptance passes at HEAD 413a2138. The S1 filter re-run gives 11 passed, exit 0; the S1 adversarial filter gives 7 passed, exit 0; the full scripts suite gives 48 passed and 1 failed, and the only failure is the pre-existing remediate-concept-blueprints baseline row. Every S1 task line in plan.md is [x] with a commit SHA, except the recorded [b] deferred:orchestrator manual verification. Every story-S1 acceptance criterion has evidence at this HEAD: the baseline-m2 capture (27 workspaces), all 6 apps build with exit 0 on vinext 1.4.6, the type probes resolve next/* through vinext/types while no manifest or lockfile key holds next (live tests plus an independent node scan of package-lock.json), no S1 package was held, and each setup-node step in the workflows uses Node 24. The two accepted NEW FAILURE lines of the checks-all gate (the IM3 npm trailer of the approved 8 GB heap script and the registry audit drift) were re-checked against their logs and proofs: both IM3 typecheck logs hold 55 error-TS lines, and the re-captured baseline audit gives high=22 total=33 against the s1 run high=21 total=32. The older prerequisite reviews apply: git diff bede55e8..HEAD --name-only holds only test files, one test fixture, measure docs, and measure/runs paths, so the implementation content that review-a and review-c judged is unchanged; review-b and the adversarial result are even closer (831804c1..HEAD and 8e1bf30d..HEAD hold only the two test files and measure/runs paths), and the ux-browser result ran at the exact audited HEAD. No fake-gate masking, no artifact-only claim, no stale intentional red in the aggregate suite, no plan-SHA mismatch (all cited SHAs resolve as ancestors of HEAD), no missing caller update, and no A3 to A7 violation. Two nonblocking record nits remain.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Nit] phase-acceptance: measure/tracks/vinext-oxc-toolchain_20261114/oxc-evidence.md section 4 (Held packages, line 236) keeps the placeholder text 'The S1 Implement tasks fill this section.' although those tasks are complete. No S1 package was held (section 3 records every range move; @types/node ^24.19.2 and vite ^8.3.8 are plan-specified targets, not held packages), so the section should record 'none'. Rationale: the Evidence File Contract requires each phase to fill its 11 sections, and an empty placeholder weakens the record for other repositories.",
+    "F2 [Nit] phase-acceptance: plan.md S1 sub-boxes under the two S1 Implement tasks (lines 181-191 and lines 230-239) remain [ ] although each parent task is [x] with its commit SHA. The work is proven: the S1 cases 1 to 8 pass live at HEAD, section 3 of oxc-evidence.md records each change, and the deviation notes name the commits (dcde148d, 3c5f6a32, 050e916b, WIP 7b5eb2fb, 62f3fa60, 933cca0d, 21c70826, 4173b71f). Rationale: the checkbox record is inconsistent, so a later reader cannot tell from the boxes alone whether the steps ran."
+  ],
+  "evidence": [
+    "HEAD is current and immutable for this audit: git rev-parse HEAD -> 413a21385b8ca08c85dd040fc907ffa8259eefc6, and the working tree holds only generated artifacts left unstaged (5 routes.d.ts files, measure/generated/routes.md, and a generatedAt timestamp refresh in apps/bus-math-v2/lib/workbooks-manifest.json) plus the gitignored ux-s1-* captures",
+    "S1 filter at HEAD: heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x' -> 11 passed, 38 skipped, exit 0; the 38 skipped are the S2 describe (7) and the S1 adversarial describe (7) added after the recorded Green run (24 skipped then), so the plan line 175 claim 'exit 0, 11 passed' still holds",
+    "Adversarial filter at HEAD: heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial' -> 7 passed, 42 skipped, exit 0",
+    "Full scripts suite at HEAD: heavy-run.sh npx vitest run --config scripts/vitest.config.ts -> 48 passed, 1 failed, exit 1; the only failure is __tests__/remediate-concept-blueprints.test.ts 'production scan reports the honest count for the current repo state', the pre-existing baseline row of evidence section 10",
+    "Prerequisite review applicability: git diff bede55e8..HEAD --name-only holds only packages/math-content/src/knowledge-space/__tests__/cross-course-rate-cleanup.test.ts (test file, d08ecd38), scripts/__tests__ test files (a329d7d5, 8e1bf30d), scripts/architecture/fixtures/oxlint-migration/review-exceptions.json (test fixture, 5bcb3eec), measure docs (39f8be16, a950b11a, 5bcb3eec, 43d42193, 335cd77d, 831804c1, a97654aa), and measure/runs paths (6f08d40a, 413a2138); no apps/, packages/ source, manifest, workflow, or config file changed, so the implementation content that review-a and review-c judged at bede55e8 is unchanged; the allowed commits are named above and the acceptance records HEAD 413a2138",
+    "Review-b applicability: git diff 831804c1..HEAD --name-only holds only the two scripts/__tests__ files (8e1bf30d) and the measure/runs adversarial result (413a2138), both inside the test-only allowance",
+    "Lockfile and manifest scan at HEAD: node -e over package-lock.json prints keys ['node_modules/vinext'] with version 1.4.6; rg '\"vinext\"' package.json prints only \"vinext\": \"^1.4.5\" and no \"next\" key exists in the root manifest",
+    "CI Node 24 at HEAD: rg 'node-version' .github/workflows/*.yml prints '24' in ci.yml (7 steps), cloudflare-deploy.yml (1 step), and business-math-deploy.yml (1 step); scale-benchmarks.yml already had 24.4.0; S1 case 7 passes live",
+    "checks-all s1 accepted lines re-checked: jr-green-verify-checks.log holds exactly 'NEW FAILURE: typecheck apps/integrated-math-3 has a new diagnostic' and 'NEW FAILURE: audit high 11 -> 21' with NEWFAIL=1 GATE_EXIT=1; rg -c 'error TS' over gates/s1/typecheck-integrated-math-3.log and gates/baseline-m2/typecheck-integrated-math-3.log gives 55 and 55; git show b9d27742 changes only the typecheck script line to NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit; gates/s1/audit.txt gives critical=0 high=21 moderate=6 low=5 and gates/baseline-m2-audit-20261118.json gives critical=0 high=22 total=33, so no new critical or high finding",
+    "Plan task lines: every S1 top-level task line in measure/tracks/vinext-oxc-toolchain_20261114/plan.md is [x] with a commit SHA (68518169, b8a0ec66, bbd37b97, abbe15f1, dcde148d, 7b5eb2fb/62f3fa60/933cca0d/21c70826/4173b71f, 4173b71f/cd6567fe, ea024eee, ea024eee) or the recorded [b] deferred:orchestrator manual verification (line 265); git merge-base --is-ancestor confirms each cited SHA is an ancestor of HEAD",
+    "Registry honesty: measure/tracks.md makes no resolution claim for this track ([~] active, spec summary only); measure/tech-debt.md row 42 (added by be7c0061 in this phase) records the IM3 8 GB heap issue as Open with the b9d27742 workaround named",
+    "UX at the exact audited HEAD: ux-browser-413a2138.json is status pass with ux-s1-4103/4105/4106 captures on disk (screenshots, snapshots, link navigation results, responsive checks, console logs)",
+    "A3: the phase surface uses labeled integer parses (Number.parseInt(version.split('.')[0], 10) in the test cases; gates.sh line 178 extracts '<field>=<integer>' with sed), not bare digit-presence checks; A4: no 'markers consistent' check exists in this phase surface, not applicable; A7: the -t filters are exact describe names ('S1 vinext 1.x', 'S1 adversarial'), each selects its full describe and drops no real hit"
+  ],
+  "commands": [
+    "git rev-parse HEAD -> 413a21385b8ca08c85dd040fc907ffa8259eefc6",
+    "git diff bede55e8..HEAD --name-only; git diff 831804c1..HEAD --name-only; git diff d4752739..HEAD --name-only (67 files, all test, fixture, measure-doc, or measure/runs paths outside the S1 implementation files already reviewed at bede55e8)",
+    "git merge-base --is-ancestor <sha> HEAD for each plan-cited SHA (all true)",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x' -> 11 passed, 38 skipped, exit 0",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial' -> 7 passed, 42 skipped, exit 0",
+    "heavy-run.sh npx vitest run --config scripts/vitest.config.ts -> 48 passed, 1 failed, exit 1 (only the remediate-concept-blueprints baseline row)",
+    "node -e lockfile scan -> keys ['node_modules/vinext'], version 1.4.6",
+    "rg 'node-version' .github/workflows/*.yml -> all '24' or '24.4.0'",
+    "rg -c 'error TS' gates/s1/typecheck-integrated-math-3.log gates/baseline-m2/typecheck-integrated-math-3.log -> 55 and 55",
+    "tail gates/s1/audit.txt -> critical=0 high=21 moderate=6 low=5; python3 read of gates/baseline-m2-audit-20261118.json -> 0 critical, 22 high, 33 total",
+    "python3 measure_interphase_checks.py role-gate --repo . --role measure-phase-acceptance --track vinext-oxc-toolchain_20261114 --phase 'Phase S1: Package refresh and vinext 1.x' --baseline d475273969aee1e1248d4aa3b13e55fb3726b63f --log-file measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s1-413a2138.log --result-file measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s1-413a2138.json",
+    "python3 measure_interphase_checks.py audit-result --role measure-phase-acceptance --file measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s1-413a2138.json"
+  ],
+  "changed_files": [
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s1-413a2138.json",
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s1-413a2138.log"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/glm-5.3#high",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 5,
+      "evidence": "The S1 filter passes live at HEAD (11 passed, exit 0) and the lockfile scan shows only node_modules/vinext 1.4.6 with no next key."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 5,
+      "evidence": "Cases 1 to 8 read the real manifests, tsconfigs, workflows, and lockfile, cases 5, 5b, and 6 run real tsc probes, and the 7 adversarial cases seed faults that each guard catches."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 4,
+      "evidence": "The phase diff holds the planned S1 files, but it also carries the A-58 curriculum fix (bede55e8, 3f05afe3, d8b285e3) and clerical measure-tracks backfills (39f8be16, a950b11a) that the brief already ruled as known side work."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 5,
+      "evidence": "Every claim in this result names a command result or a file:line, including the 55/55 error-TS re-count and the audit base recapture (0 critical, 22 high, 33 total)."
+    }
+  ],
+  "reviewer_ratings": [
+    {
+      "reviewer_role": "review-a",
+      "reviewer_route": "opencode-go/muse-spark-1.3-contributor#high",
+      "agreed": true,
+      "score": 5,
+      "evidence": "Its central claims hold at HEAD: the S1 filter, the full-suite 1-known-failure state, the lockfile scan, and the audit compare were each re-run or re-read by this audit."
+    },
+    {
+      "reviewer_role": "review-b",
+      "reviewer_route": "opencode-go/glm-5.3#high",
+      "agreed": true,
+      "score": 4,
+      "evidence": "The subtractive-lockfile verdict matches my independent scan (only node_modules/vinext 1.4.6, no next key), but I did not re-run its full sha512 integrity survey."
+    },
+    {
+      "reviewer_role": "review-c",
+      "reviewer_route": "opencode-go/muse-spark-1.3-contributor#high",
+      "agreed": true,
+      "score": 4,
+      "evidence": "The phase-diff file list holds no route, handler, or page file, which I verified from git diff --name-only; I did not re-start the dev servers, but the ux-browser result at the exact HEAD confirms the 200/307 statuses."
+    },
+    {
+      "reviewer_role": "adversarial",
+      "reviewer_route": "opencode-go/glm-5.3#high",
+      "agreed": true,
+      "score": 5,
+      "evidence": "I re-ran both its filters and the full suite at HEAD with identical results, and its one Nit (gates.sh EDQUOT classification) is an accurate observation outside S1 scope."
+    },
+    {
+      "reviewer_role": "ux-browser",
+      "reviewer_route": "opencode-go/glm-5.3#high",
+      "agreed": true,
+      "score": 5,
+      "evidence": "It ran at the exact audited HEAD 413a2138 and its ux-s1-4103/4105/4106 captures are on disk in the run folder."
+    }
+  ]
+}

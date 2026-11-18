@@ -1,0 +1,37 @@
+Review B security audit of S1 (run r2; run r1 died in a server restart).
+Track vinext-oxc-toolchain_20261114, phase "Phase S1: Package refresh and vinext 1.x".
+Baseline d475273969aee1e1248d4aa3b13e55fb3726b63f, audited HEAD 831804c10ff310eeafd53c189ae87121e359a8b0.
+
+Scope: the S1 diff d4752739..831804c1, restricted to package refresh, vinext 1.x, lockfile, configs, scripts. Security, supply-chain, and data risk only.
+
+Checked:
+1. Provenance: phase_base_sha, role_base_sha, audited_head_sha present; HEAD equals 831804c1. Commits after bede55e8 are Measure docs, the A-58 curriculum data fix, and the S2 Red tests; none changes S1 implementation (a329d7d5: 223 insertions, 0 deletions, a new S2 describe only).
+2. Lockfile: 0 added package keys; the diff removes the whole next 16 tree (with @next/swc and sharp native binaries, @vercel/og, satori, resvg-wasm); all changed resolved lines are registry.npmjs.org with sha512 integrity; whole-lockfile sweep: 0 non-registry http, 0 missing integrity outside workspace links. No .npmrc change; one root lockfile only.
+3. Mandatory R16 key check: only node_modules/vinext (1.4.6) exists; no node_modules/next key; npm ls next --all prints (empty); all 7 consumers dedupe on 1.4.6.
+4. Install scripts: no new hasInstallScript package; the native-binary surface shrank.
+5. npm audit: s1 advisories (32) are a strict subset of the re-captured base (33); base-only: image-size (left with next); critical=0 both. The stale baseline audit.txt (high=11) is registry drift, explained in oxc-evidence.md:615, accepted as the Q2 known failure.
+6. Auth, headers, middleware, routes, convex, wrangler: no file changed in the range. The only workflow change sets Node 22 to 24 in a dispatch-only deploy job; secrets stay in the GitHub secrets context.
+7. Secrets: no secret-shaped string in configs, run logs, or track docs; .env.local stays gitignored; the "Using secrets defined in .env.local" lines are Convex CLI notices with no value.
+8. Test run at HEAD: npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x' -> 11 passed, 31 skipped, exit 0. Gates s1 step 'next-absent 0'.
+9. A2: no draft-to-publish gate in the diff; not applicable.
+10. A6: tracks.md claims no resolved security state for this track; the evidence file records the audit drift honestly. No overstatement.
+
+Verdict: pass. No blocking findings, no nonblocking findings.
+
+MEASURE_AGENT_RESULT
+role: measure-review-b-security
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+baseline_sha: d475273969aee1e1248d4aa3b13e55fb3726b63f
+role_base_sha: 831804c10ff310eeafd53c189ae87121e359a8b0
+head: 831804c10ff310eeafd53c189ae87121e359a8b0
+commits: none (audit only)
+tests_run: npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x' -> 11 passed, 31 skipped, exit 0; npm ls next --all -> (empty); npm ls vinext --all -> 7 consumers on 1.4.6; audit set compare -> s1 subset of base
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/review-b-security-831804c1.json, measure/runs/vinext-oxc-toolchain_20261114/review-b-security-831804c1.log
+plan_updates: none
+known_failures: none from this audit. Pre-existing recorded items unchanged: the Q2 audit-drift NEWFAIL line (explained by the re-captured base), the IM3 typecheck trailer line, and the measure-contract step failure (section 10).
+handoff: none
+END_MEASURE_AGENT_RESULT
+
+Gate result (after the block above): audit-result validator exit 0 ("PASS: audit result is valid"). role-gate exit 0 ("PASS: review-b gate passed") with --result-file review-b-security-831804c1.json. The brief's command line lacked --result-file; without that flag the script prints "FAIL: --result-file is required for audit roles" and exits 1.

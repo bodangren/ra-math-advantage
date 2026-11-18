@@ -178,17 +178,17 @@ _Story ref: spec.md#story-s1_
     - Checks K1 to K5 (strategy 14.2, one JSON run, log `w4-green.json`): K1 8 of 8 titles pass with the exact set (titles 1, 2, 3, 5, 8, A, B, C). K2 15 tests, 0 failed. K3 35 tests, 1 failed: only `@types/node: every workspace declaration shares a single major-version floor (W3 must hold; W4 must not re-introduce drift)`, the one failure the K3 contract allows at Green (`packages/knowledge-space-practice` still declares `^22.20.1`; box 229 owns the move). K4 `jsplugins_changed=0 jsplugins_count=3`, and `git diff d4752739 --name-only -- .oxlintrc.json` prints nothing. K5: `audit-suites` holds 7 failed tests in 3 files (audit-contract 4, framework-wave-w4 1, in-range-wave-w3 2), a subset of the 24 baseline failures, all listed in section 10.
     - Danielson live check: `npx vinext build` exit 0 (log `jr-green-danielson-build2.log`), `npx tsc --noEmit` exit 0 (log `jr-green-danielson-tsc.log`), and dev on 4106 through `heavy-run.sh` gives `GET /` 307 with `location: http://localhost:4106/auth/login?redirect=%2F` (baseline match); the port is free after the stop (log `jr-green-4106.log`).
 - [x] Task: S1 Implement — move vinext to 1.x and remove `next` (dcde148d)
-    - [ ] In `.github/workflows/ci.yml` and `.github/workflows/cloudflare-deploy.yml`, change each `node-version: '20'` to `'24'`.
-    - [ ] In the root `package.json`, set `vinext` to `^1.4.5` and `react-server-dom-webpack` to `^19.3.1`.
-    - [ ] In the root `package.json`, set `@vitejs/plugin-react` to its latest version.
-    - [ ] In the root `package.json`, remove `next` from `devDependencies` and from `overrides`.
-    - [ ] In each app `package.json`, remove `next`. Set `vinext` to `^1.4.5`, and `react` and `react-dom` to `^19.3.1`.
+    - [x] In `.github/workflows/ci.yml` and `.github/workflows/cloudflare-deploy.yml`, change each `node-version: '20'` to `'24'`. (section 3)
+    - [x] In the root `package.json`, set `vinext` to `^1.4.5` and `react-server-dom-webpack` to `^19.3.1`. (section 3)
+    - [x] In the root `package.json`, set `@vitejs/plugin-react` to its latest version. (section 3)
+    - [x] In the root `package.json`, remove `next` from `devDependencies` and from `overrides`. (section 3)
+    - [x] In each app `package.json`, remove `next`. Set `vinext` to `^1.4.5`, and `react` and `react-dom` to `^19.3.1`. (section 3)
         - Deviation: also removed the dead `geist` dependency from IM3 and BM2. No code imports it, and its required `next` peer made npm install `next` again (auto-install-peers). The `next`-absent gate needs this removal. Evidence section 8 records it.
-    - [ ] In each app `package.json`, set `@vitejs/plugin-rsc` to `^0.5.37` where it is declared. Set `vite` to its latest 8.x version.
-    - [ ] In `packages/app-shell/package.json`, replace the `next` peer with `"vinext": "^1.4.5"`.
-    - [ ] In `packages/app-shell/package.json`, add `vinext` `^1.4.5` to `devDependencies`. Set `react` to `^19.3.1`.
-    - [ ] In each app `tsconfig.json`, add `vinext/types` to `compilerOptions.types`. Remove the `{ "name": "next" }` plugin entry.
-    - [ ] In `packages/app-shell/tsconfig.json`, add `vinext/types` to the existing `compilerOptions.types` list.
+    - [x] In each app `package.json`, set `@vitejs/plugin-rsc` to `^0.5.37` where it is declared. Set `vite` to its latest 8.x version. (section 3)
+    - [x] In `packages/app-shell/package.json`, replace the `next` peer with `"vinext": "^1.4.5"`. (section 3)
+    - [x] In `packages/app-shell/package.json`, add `vinext` `^1.4.5` to `devDependencies`. Set `react` to `^19.3.1`. (section 3)
+    - [x] In each app `tsconfig.json`, add `vinext/types` to `compilerOptions.types`. Remove the `{ "name": "next" }` plugin entry. (section 3; case 4)
+    - [x] In `packages/app-shell/tsconfig.json`, add `vinext/types` to the existing `compilerOptions.types` list. (section 3; case 4)
     - [x] Run `npm install`. (Two runs: one after the first manifest pass, one after the `geist` removal. Exit 0.)
     - [x] Run `npx vinext check` in each app. Record the score and each issue in section 8. (IM1 93%, IM2 93%, IM3 93%, PreCalc 100%, BM2 100%. The only issue class is `__dirname` / `__filename` in server-only files and scripts. Recorded in section 8.)
     - [x] If `vinext build` makes an untracked folder (for example `.vinext/` or `.cloudflare/`), add the folder to `.gitignore`. (`apps/*/.vinext/` added. Also `apps/*/.next/` for the pre-existing untracked folders of the baseline builds. IM3's tracked `.next/types/routes.d.ts` stays tracked.)
@@ -229,14 +229,14 @@ _Story ref: spec.md#story-s1_
           days. The old machine never ran inside the window.
     - [ ] Run `npm outdated --json` at the root.
     - [ ] Run `npm outdated --json --workspace=<ws>` for each workspace. The aggregate command under-reports app dependencies (precedent spec "Audit Baseline").
-    - [ ] Do not change `typescript` in S1. S3 owns it.
-    - [ ] Do not change `eslint`, `@eslint/js`, `@eslint/eslintrc`, `typescript-eslint`, or `eslint-config-next` in S1. S2 removes them.
-    - [ ] Set `@types/node` to its latest 24.x version, to match CI Node 24.
-    - [ ] Set each other declared range to `^<latest>`.
-    - [ ] Commit the minor and patch updates first: `chore(deps): update packages to the latest minor and patch versions`.
-    - [ ] Update each major-version family in its own commit, for example `chore(deps): upgrade vitest to 5` with `@vitest/*`.
+    - [x] Do not change `typescript` in S1. S3 owns it. (section 3)
+    - [x] Do not change `eslint`, `@eslint/js`, `@eslint/eslintrc`, `typescript-eslint`, or `eslint-config-next` in S1. S2 removes them. (section 3)
+    - [x] Set `@types/node` to its latest 24.x version, to match CI Node 24. (section 3: ^24.19.2)
+    - [x] Set each other declared range to `^<latest>`. (section 3, Commit A table)
+    - [x] Commit the minor and patch updates first: `chore(deps): update packages to the latest minor and patch versions`. (section 3 'Commit A'; jr-green-1896f08e.log: 7b5eb2fb)
+    - [x] Update each major-version family in its own commit, for example `chore(deps): upgrade vitest to 5` with `@vitest/*`. (jr-green-1896f08e.log: 46e43cc5 ts-fsrs 6; commit C vitest 5)
     - [ ] Run all gates before each commit. Use the held-package rule.
-    - [ ] Record each change in section 3.
+    - [x] Record each change in section 3. (section 3)
 - [x] Task: S1 Implement — move the audit suites forward (4173b71f; Green: `cd6567fe test(audit): move the W4 audit forward for S1 (issue #2)`)
     - [x] Issue #2, check K1 (strategy 14.2): in `scripts/audit/__tests__/framework-wave-w4-audit.test.ts`, make the 8 tests of `-t 'post-W4 major lines'` pass. Titles 1, 2, 3, and 5 stay. Titles 4, 6, and 7 become titles A, B, and C of strategy 14.2, copied verbatim. Title 8 stays. It turns green when the danielson move removes the key `node_modules/next`. (Green JSON run: 8 selected, 8 passed, 0 failed, the exact title set.)
     - [x] Issue #2, check K2 (strategy 14.2): the whole file has at least 15 tests and 0 failed tests. This includes the test at file line 249, "every W4 framework major installed lockfile version satisfies its w4-framework-targets.json target_version range". Give `eslint-config-next`, `eslint`, and `@eslint/js` the absence rule in its loop. Keep the fixture entries. (15 tests, 0 failed.)
@@ -263,7 +263,7 @@ _Story ref: spec.md#story-s1_
     - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0. Log `jr-green-generate.log`. It rewrote no file outside the 6 known dirty generated files; those stay unstaged.)
     - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0. Log `jr-green-doctor.log`. Output: "All checks passed".)
 - [b] Task: Measure - User Manual Verification 'Phase S1: Package refresh and vinext 1.x' (Protocol in workflow.md) — deferred:orchestrator
-    - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
+    - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (S1 filter 11 pass, exit 0; adversarial filter 7 pass, exit 0; gates.sh test s1 NEWFAIL=0, adversarial run 2; full scripts suite 48 pass / 1 fail, the pre-existing remediate-concept-blueprints row; UX browser at 413a2138: 4103 200, 4105 200, 4106 307 to login, same as baseline, 0 new console errors) PM is the confirming user (orchestrator default, 2026-11-18).
     - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
     - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Package refresh and vinext 1.x' as complete`.

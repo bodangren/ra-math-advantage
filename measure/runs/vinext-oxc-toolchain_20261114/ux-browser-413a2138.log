@@ -1,0 +1,15 @@
+MEASURE_AGENT_RESULT
+role: measure-ux-browser-review
+status: pass
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+baseline_sha: d475273969aee1e1248d4aa3b13e55fb3726b63f
+role_base_sha: 413a21385b8ca08c85dd040fc907ffa8259eefc6
+head: 413a21385b8ca08c85dd040fc907ffa8259eefc6
+commits: 26 in d4752739..413a2138; user-facing: apps/danielson vinext config, IM1/IM2 curriculum data, IM3 package.json, package-lock.json
+tests_run: 3 browser smokes (4103 IM3, 4105 BM2, 4106 danielson): dev status poll, page load, snapshot, screenshot, console compare vs baseline, one internal link, 375px responsive probe; role-gate and audit-result validator exit codes in the final reply
+files_changed: none in implementation; audit wrote only measure/runs/vinext-oxc-toolchain_20261114/ux-s1-* captures, ux-browser-413a2138.json/.log, and helper scripts ux-capture.mjs/ux-responsive-check.mjs/ux-smoke.sh/ux-start.sh
+plan_updates: none
+known_failures: IM3 /curriculum raises a Server Components render error and 500 because no local Convex backend runs; same missing-backend class as the BM2 baseline error, excluded by the strategy; no EDQUOT write error occurred
+handoff: PASS, no findings. PM load-watch rule (2026-11-18) applied: the 4103 run had already started, the PM order let it finish, then its process group stopped and port 4103 confirmed free; the 4105 and 4106 smokes each ran whole (server start, poll, captures, link follow, stop) through heavy-run.sh one at a time under the heavy lock. Question 1 for the orchestrator: should a later phase re-check the IM3 /curriculum page with a live Convex backend to confirm the real error state UX? Default: no action, record it as environment behavior. Question 2: the baseline 4103/4105 snapshots predate the origin/master merge, so footer semantics improved under 2c40e557; should the track refresh those two baseline captures? Default: no, attribute the diff as done here.
+END_MEASURE_AGENT_RESULT

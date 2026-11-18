@@ -1,0 +1,120 @@
+Phase Acceptance audit log — Phase S1: Package refresh and vinext 1.x
+Track: vinext-oxc-toolchain_20261114
+Role: measure-phase-acceptance (route opencode-go/glm-5.3#high)
+Audited HEAD: 413a21385b8ca08c85dd040fc907ffa8259eefc6 (immutable; no commit made)
+Phase base: d475273969aee1e1248d4aa3b13e55fb3726b63f
+Date: 2026-11-18
+Result artifact: measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s1-413a2138.json
+
+Verdict: PASS (provisional run refined to the final verdict below; no blocking finding).
+
+1. Position checks
+- git rev-parse HEAD -> 413a21385b8ca08c85dd040fc907ffa8259eefc6 (audited HEAD is current).
+- Working tree holds only generated artifacts left unstaged (5 apps' .next/types/routes.d.ts,
+  measure/generated/routes.md, and a generatedAt timestamp refresh in
+  apps/bus-math-v2/lib/workbooks-manifest.json) plus the gitignored ux-s1-* captures.
+  None of these is part of the audited HEAD.
+- slot check: ok (5 of 8 busy).
+
+2. Prerequisite results read (all under measure/runs/vinext-oxc-toolchain_20261114/)
+- review-a-correctness-bede55e8.json: pass, audited bede55e8.
+- review-c-ux-api-bede55e8.json: pass, audited bede55e8.
+- review-b-security-831804c1.json: pass, audited 831804c1.
+- adversarial-8e1bf30d.json: pass, tests at 8e1bf30d, artifacts at 413a2138.
+- ux-browser-413a2138.json: pass, audited 413a2138 (the exact audited HEAD).
+
+3. Older review HEAD applicability (decision with evidence)
+- git diff bede55e8..HEAD --name-only: test file d08ecd38 (cross-course-rate-cleanup.test.ts),
+  test files a329d7d5 and 8e1bf30d (scripts/__tests__), test fixture 5bcb3eec
+  (scripts/architecture/fixtures/oxlint-migration/review-exceptions.json), measure docs
+  (39f8be16, a950b11a, 5bcb3eec, 43d42193, 335cd77d, 831804c1, a97654aa), and measure/runs
+  paths (6f08d40a, 413a2138). No apps/, packages/ source, manifest, workflow, or config file
+  changed after bede55e8, so the implementation content that review-a and review-c judged is
+  unchanged. Accepted: no review must re-run.
+- The strict test-only allowance covers d08ecd38, a329d7d5, 8e1bf30d, 6f08d40a, and 413a2138.
+  The measure-doc commits (track records of other tracks, tech-stack note, plan records) are
+  documentation, not implementation; the git diff above is the evidence.
+- git diff 831804c1..HEAD --name-only: only the two scripts/__tests__ files and the
+  measure/runs adversarial result. Review-b applies without qualification.
+
+4. Test runs at HEAD 413a2138 (each through heavy-run.sh, one at a time)
+- S1 filter: npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x'
+  -> 11 passed, 38 skipped, exit 0. The plan line 175 claim (11 passed, exit 0) holds; the
+  skip count grew from 24 to 38 because the S2 describe (7 tests, a329d7d5) and the S1
+  adversarial describe (7 tests, 8e1bf30d) were added after the recorded Green run.
+- Adversarial filter: -t 'S1 adversarial' -> 7 passed, 42 skipped, exit 0.
+- Full scripts suite: npx vitest run --config scripts/vitest.config.ts
+  -> 48 passed, 1 failed, exit 1. The only failure is
+  __tests__/remediate-concept-blueprints.test.ts 'production scan reports the honest count for
+  the current repo state', the pre-existing baseline row (evidence section 10, ruled before
+  this audit). No stale intentional-red test in the aggregate suite.
+
+5. Story S1 acceptance criteria (spec.md lines 111 to 116)
+- Baseline recorded for each workspace: evidence section 2 and section 10 with the
+  baseline-m2 capture (27 workspaces); gates/baseline-m2 on disk.
+- All apps build on vinext 1.x exit 0: gates/s1/build.exit (26 workspaces exit 0,
+  practice-test-engine n/a), 18 timed runs exit 0 (build-times-verify.txt); lockfile scan:
+  node_modules/vinext 1.4.6 is the only vinext/next key.
+- Types resolve through vinext/types, no workspace can resolve next: S1 cases 1 to 6 pass
+  live at HEAD; the 7 adversarial cases pass; node scan of package-lock.json prints only
+  node_modules/vinext; rg over the root package.json finds no "next" key.
+- Held packages: none held; evidence section 4 keeps a placeholder (Nit F1).
+- CI Node 24: rg 'node-version' .github/workflows/*.yml prints '24' for ci.yml (7 steps),
+  cloudflare-deploy.yml, and business-math-deploy.yml; case 7 passes live.
+
+6. Gate claims re-checked (fake-gate masking check)
+- jr-green-verify-checks.log holds exactly the two accepted NEW FAILURE lines and
+  NEWFAIL=1 GATE_EXIT=1: the IM3 typecheck trailer and the audit drift.
+- IM3 trailer proof re-checked: rg -c 'error TS' gives 55 in gates/s1 and 55 in
+  gates/baseline-m2; git show b9d27742 changes only the typecheck script line to
+  NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit.
+- Audit drift proof re-checked: gates/s1/audit.txt gives critical=0 high=21 moderate=6 low=5;
+  gates/baseline-m2-audit-20261118.json gives critical=0 high=22 total=33. No new critical or
+  high finding.
+
+7. Plan record checks (plan.md Phase S1, line 85)
+- Every S1 task line is [x] with a commit SHA (68518169, b8a0ec66, bbd37b97, abbe15f1,
+  dcde148d, 7b5eb2fb/62f3fa60/933cca0d/21c70826/4173b71f, 4173b71f/cd6567fe, ea024eee,
+  ea024eee) or the recorded [b] deferred:orchestrator deferral (line 265).
+- Every cited SHA resolves: git merge-base --is-ancestor <sha> HEAD is true for each.
+- A5: the PASS claims in the plan match the runs at HEAD (see section 4).
+- A3: labeled integer parses only (Number.parseInt in the tests; gates.sh extracts
+  '<field>=<integer>' with sed). A4: no 'markers consistent' check in this phase surface.
+- A6: measure/tracks.md claims no resolution for this track; measure/tech-debt.md row 42
+  records the IM3 heap issue as Open with the workaround named.
+- A7: the -t filters are exact describe names; no real hit is dropped.
+- Nit F2: unchecked sub-boxes under the two S1 Implement parent tasks (plan lines 181-191
+  and 230-239) although the parents are [x] with SHAs; the S1 cases prove the work.
+
+8. Remaining steps before the checkpoint commit (owned by the orchestrator)
+1. Run the S1 User Manual Verification protocol (the [b] deferred task, plan line 265):
+   the automated tests, the manual verification plan, and the user confirmation.
+2. Fix or disposition the two Nit findings (F1 evidence section 4 placeholder, F2 unchecked
+   sub-boxes) in the checkpoint-round plan/evidence edit, or record them as DECLINE.
+3. Make the checkpoint commit: measure(checkpoint): Checkpoint end of Phase S1.
+4. Append [checkpoint: <sha>] to the Phase S1 heading.
+5. Commit: measure(plan): Mark phase 'Phase S1: Package refresh and vinext 1.x' as complete.
+
+9. Questions for the user (each with a default)
+- Q1 (F1/F2 handling): should the orchestrator fix the two record Nits inside the checkpoint
+  round, or only record them? Default: fix them in the checkpoint-round plan edit, because
+  both are one-line record corrections and acceptance does not block on Nits.
+- Q2 (dirty generated file): apps/bus-math-v2/lib/workbooks-manifest.json holds an uncommitted
+  generatedAt timestamp refresh outside the 6 files the plan names. Default: leave it
+  unstaged; it is a generated artifact and the checkpoint commit must not stage it.
+
+MEASURE_AGENT_RESULT
+role: measure-phase-acceptance
+status: complete
+track: vinext-oxc-toolchain_20261114
+phase: Phase S1: Package refresh and vinext 1.x
+baseline_sha: d475273969aee1e1248d4aa3b13e55fb3726b63f
+role_base_sha: 413a21385b8ca08c85dd040fc907ffa8259eefc6
+head: 413a21385b8ca08c85dd040fc907ffa8259eefc6
+commits: none (audit only, immutable HEAD)
+tests_run: heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S1 vinext 1.x' -> 11 passed, 38 skipped, exit 0; heavy-run.sh npx vitest run --config scripts/vitest.config.ts -t 'S1 adversarial' -> 7 passed, 42 skipped, exit 0; heavy-run.sh npx vitest run --config scripts/vitest.config.ts -> 48 passed, 1 failed, exit 1 (only the pre-existing remediate-concept-blueprints baseline row)
+files_changed: measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s1-413a2138.json and phase-acceptance-s1-413a2138.log (result artifacts only)
+plan_updates: none (audit only)
+known_failures: remediate-concept-blueprints full-suite row (pre-existing, section 10); checks-all s1 NEWFAIL=1 with the two accepted lines (IM3 npm trailer of the approved 8 GB heap script, registry audit drift 11->21 against the re-captured base 22); the 3 pre-existing math-content baseline failures of baseline-m2; npm audit drift recorded at oxc-evidence.md section 10
+handoff: PASS. No blocking finding. Two Nits (F1 evidence section 4 placeholder, F2 unchecked S1 sub-boxes) route to the orchestrator's checkpoint-round plan edit. Next steps: the S1 User Manual Verification protocol (the [b] deferred:orchestrator task), then the checkpoint commit, the [checkpoint: <sha>] heading line, and the phase-complete commit. Questions Q1 (fix the Nits in the checkpoint round; default fix) and Q2 (leave the workbooks-manifest.json generatedAt refresh unstaged; default leave unstaged) go to the user with those defaults.
+END_MEASURE_AGENT_RESULT
