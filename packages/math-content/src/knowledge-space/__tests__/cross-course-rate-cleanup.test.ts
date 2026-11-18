@@ -7,7 +7,7 @@ const crossCourseEdges = JSON.parse(
 
 const LEGACY_RATE_SKILL =
   'math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change';
-const ORIGINAL_EDGE_COUNT = 5_024;
+const ORIGINAL_EDGE_COUNT = 4_815;
 const LEGACY_RATE_EDGE_IDS = [
   'cross-course.edge.2935',
   'cross-course.edge.2938',
@@ -62,6 +62,7 @@ it('removes all cross-course edges for the legacy rate-of-change skill', () => {
 
   const edgeIds = edges.map(edge => edge.id);
   expect(new Set(edgeIds).size).toBe(edgeIds.length);
-  expect(edges).toHaveLength(4_996);
+  // 4,787 after bede55e8 removed 208 edges with null IM2 endpoints (A-58).
+  expect(edges).toHaveLength(4_787);
   expect(edges.length + LEGACY_RATE_EDGE_IDS.length).toBe(ORIGINAL_EDGE_COUNT);
 });
