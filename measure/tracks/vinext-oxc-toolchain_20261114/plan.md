@@ -375,14 +375,15 @@ _Story ref: spec.md#story-s3_
         - case 6: red. `AssertionError: precondition: tsrs --version: expected 1 to be +0 // Object.is equality`.
         - case 7: red. `AssertionError: precondition: tsrs --version: expected 1 to be +0 // Object.is equality`.
         - S1 case 5, 5b, 6 (planned, share the S3 command): red on the missing tsrs. `AssertionError: Failed to find type-aware linter executable. You may need to add the tsrs or oxlint-tsgolint package to your project?` (5); `expected 'Failed to find type-aware linter exec…' to match /TS2741|TS2345/` (5b); `expected 'Failed to find type-aware linter exec…' to match /TS2307/` (6).
-- [ ] Task: S3 Implement — move to TypeScript 7
-    - [ ] Set `typescript` to `^7.0.2` in the root `devDependencies`, the root `overrides`, and each workspace that declares it.
-    - [ ] Run `npm install`.
-    - [ ] Run `npx tsc --noEmit -p <tsconfig>` for each workspace. For each app, also run it for `<app>/convex/tsconfig.json`.
-    - [ ] Fix each tsconfig option that TypeScript 7 rejects. Use the replacement that the TypeScript 7 release notes name.
-    - [ ] Fix each new failure.
-    - [ ] Time `tsc --noEmit` on TypeScript 7.0.2 for each workspace. Record the times in section 5.
-    - [ ] Commit: `chore(deps): upgrade typescript to 7`.
+- [x] Task: S3 Implement — move to TypeScript 7 (ccfe3571)
+    - [x] Set `typescript` to `^7.0.2` in the root `devDependencies`, the root `overrides`, and each workspace that declares it. (26 workspace manifests plus the root; `packages/practice-test-engine` declares no `typescript` and keeps none.)
+    - [x] Run `npm install`. (`added 1 package, and audited 854 packages in 3s`, exit 0.)
+    - [x] Run `npx tsc --noEmit -p <tsconfig>` for each workspace. For each app, also run it for `<app>/convex/tsconfig.json`. (33 configs: 27 workspace and 6 `convex/tsconfig.json`. Each failing config holds the same file-plus-code key set as 6.0.3. Raw: `tsc7-sweep.txt` and `tsc-diff.txt` in the run folder.)
+    - [x] Fix each tsconfig option that TypeScript 7 rejects. Use the replacement that the TypeScript 7 release notes name. (No option rejected. No tsconfig changed. Evidence section 8.)
+    - [x] Fix each new failure. (None. `tsc-diff.txt` reports `new_keys=0 gone_keys=0` for all 33 configs.)
+    - [x] Time `tsc --noEmit` on TypeScript 7.0.2 for each workspace. Record the times in section 5. (Medians: IM3 22.4 s to 4.0 s, BM2 17.9 s to 2.6 s. Raw: `s3-tsc7-raw.txt`.)
+    - [x] Commit: `chore(deps): upgrade typescript to 7`. (ccfe3571. The commit also installs the `typescript6` alias and the line-9 import switch, because the test file cannot load the parser API from TypeScript 7. The plan allows the move; the S2 filters ran green in the same commit: `S2 adversarial` 13 pass, `S2 oxlint` 7 pass.)
+    - Note: root `"@typescript/native": "npm:typescript@^7.0.2"` is kept. It is not the registry name that strategy 16.2 rejected (E404). It is a local alias, and it is needed: without it the `@typescript/old` copy of typescript 6.0.3 wins the root `.bin/tsc` link and `npx tsc --version` prints `Version 6.0.3`. Evidence section 8.
 - [ ] Task: S3 Implement — switch the typecheck scripts to tsrs
     - [ ] Add `tsrs` `0.25.0-ts7.1.0-beta` to the root `devDependencies`. Run `npm install`.
     - [ ] Set the typecheck scripts, the package `build` scripts, and the bus-math-v2 typecheck script to the target forms.
