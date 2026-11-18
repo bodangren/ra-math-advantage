@@ -349,21 +349,32 @@ _Story ref: spec.md#story-s3_
     - [x] `tsrs` `0.25.0-ts7.1.0-beta` (exact) goes in the root `devDependencies` only.
     - [x] Each CI typecheck step becomes `npm run typecheck --workspace=<app folder>`.
     - [x] Time `tsc --noEmit` on TypeScript 6.0.3 for each workspace. Record "before" in section 5. (27 workspaces, medians in section 5, raw `s3-tsc-before-raw.txt`; IM3 22.4 s, BM2 17.9 s; warm exits of IM3 and PreCalc are the section 10 pre-existing failures)
-- [ ] Task: S3 Test (Red) — add the S3 gate tests
-    - [ ] Add `describe('S3 tsrs')` to the test file. Add two constants: `TYPESCRIPT_KEEP_LIST = []` and `TSC_FALLBACK_LIST = []`. Add `SCAN_PARSER_PACKAGE = 'typescript6'`. State that `TYPESCRIPT_KEEP_LIST` tracks only manifests that declare the package named `typescript`.
-    - [ ] Case 0: the S2 disable scan keeps the 6.0 parser API through the alias. Use `createRequire`, already imported, so a missing alias cannot break module load. Assert that the root `package.json` declares `devDependencies.typescript6` as `npm:@typescript/typescript6@^6.0.2`. Assert that `createRequire` from the repository root resolves `typescript6/package.json`, and that its `version` has major 6, parsed as an integer (A3). Assert that the required module exposes `createSourceFile`, `getLeadingCommentRanges`, and `getTrailingCommentRanges` as functions, and defines `ScriptKind.TSX`.
-    - [ ] Normal case 1: each workspace typecheck script is the target form. A workspace in `TSC_FALLBACK_LIST` has `tsc --noEmit`.
-    - [ ] Normal case 2: no package `build` script contains `tsc`.
-    - [ ] Normal case 3: `tsrs/package.json` resolves from the repository root.
-    - [ ] Normal case 4: no `run` line in `.github/workflows/*.yml` contains `tsc`.
-    - [ ] Normal case 5: the manifests that declare `typescript` are exactly the paths in `TYPESCRIPT_KEEP_LIST`.
-    - [ ] Edge case 6: a probe `export const n: number = "x";` runs with `TSRS_FAST=1 npx --no-install oxlint --config ../../.oxlintrc.json --type-aware --type-check <tmp>`. The exit code is non-zero, and the output contains `TS2322`.
-    - [ ] The probe `tsconfig.json` has `"strict": true`, `"noEmit": true`, `"types": []`, and a `"files"` list with the probe file.
-    - [ ] Edge case 7: the probe `export const n: number = 1;` exits with code 0.
-    - [ ] Change S1 edge cases 5 and 6 to use the S3 type-check command. Both cases stay red until Green (16.3 and section 9).
-    - [ ] Run the scripts suite. Confirm that cases 1 to 7 fail.
-    - [ ] Test-infrastructure guard: `gates.sh` classifies `EDQUOT` and `ENOSPC` output as infrastructure. Add three guard cases to `scripts/__tests__/vinext-oxc-gates-script.test.ts` that feed a fake job log with `ENOSPC: no space left on device`, with `EDQUOT: disk quota exceeded`, and with a normal `TS2322` line. The first two expect `INFRA FAILURE:` and exit 3 with `INFRA=1`, and no `NEW FAILURE: ... has a new diagnostic`. The third expects `NEWFAIL=1` and no `INFRA=1`. Then change `gates.sh`: add `has_infra_output()`; drop the errno lines in `key()`; set `JOB_CODE=290` in `run_job()` when a log matches, with `290` added to `INFRA`; keep the labeled last lines `NEWFAIL=<n>` and `INFRA=1`. Run `bash -n`. Falsification: remove the helper and the two infra cases fail; remove the `key()` filter and a stale log becomes a new diagnostic.
-    - [ ] Commit: `test(vinext-oxc): add the S3 gate tests (Red)`. Add the `typescript6` alias to the root `devDependencies` in the Red or Implement commit that first needs it. Keep the static import at line 9 on `typescript` until the alias lands, so the Red run loads. Switch the import to `typescript6` in the same commit that installs the alias. Then run the S2 filters (16.2).
+- [~] Task: S3 Test (Red) — add the S3 gate tests (Red commit: 9c65b44a; Green marks `[x]` when the S3 cases pass)
+    - [x] Add `describe('S3 tsrs')` to the test file. Add two constants: `TYPESCRIPT_KEEP_LIST = []` and `TSC_FALLBACK_LIST = []`. Add `SCAN_PARSER_PACKAGE = 'typescript6'`. State that `TYPESCRIPT_KEEP_LIST` tracks only manifests that declare the package named `typescript`.
+    - [x] Case 0: the S2 disable scan keeps the 6.0 parser API through the alias. Use `createRequire`, already imported, so a missing alias cannot break module load. Assert that the root `package.json` declares `devDependencies.typescript6` as `npm:@typescript/typescript6@^6.0.2`. Assert that `createRequire` from the repository root resolves `typescript6/package.json`, and that its `version` has major 6, parsed as an integer (A3). Assert that the required module exposes `createSourceFile`, `getLeadingCommentRanges`, and `getTrailingCommentRanges` as functions, and defines `ScriptKind.TSX`.
+    - [x] Normal case 1: each workspace typecheck script is the target form. A workspace in `TSC_FALLBACK_LIST` has `tsc --noEmit`.
+    - [x] Normal case 2: no package `build` script contains `tsc`.
+    - [x] Normal case 3: `tsrs/package.json` resolves from the repository root.
+    - [x] Normal case 4: no `run` line in `.github/workflows/*.yml` contains `tsc`.
+    - [x] Normal case 5: the manifests that declare `typescript` are exactly the paths in `TYPESCRIPT_KEEP_LIST`.
+    - [x] Edge case 6: a probe `export const n: number = "x";` runs with `TSRS_FAST=1 npx --no-install oxlint --config ../../.oxlintrc.json --type-aware --type-check <tmp>`. The exit code is non-zero, and the output contains `TS2322`.
+    - [x] The probe `tsconfig.json` has `"strict": true`, `"noEmit": true`, `"types": []`, and a `"files"` list with the probe file.
+    - [x] Edge case 7: the probe `export const n: number = 1;` exits with code 0.
+    - [x] Change S1 edge cases 5 and 6 to use the S3 type-check command. Both cases stay red until Green (16.3 and section 9). (Case 5b shares the helper and stays red too; recorded as planned.)
+    - [x] Run the scripts suite. Confirm that cases 1 to 7 fail. (`-t 'S3 tsrs'`: 8 failed of 8, exit 1; each case fails with its named reason, recorded below.)
+    - [x] Test-infrastructure guard: `gates.sh` classifies `EDQUOT` and `ENOSPC` output as infrastructure. (Test commit 90b31fe0, fix commit 4f4fc3c4. Pre-change the two infra cases fail with `NEW FAILURE: lint apps/x exit 1`, exit 1. Post-change all 3 guard cases pass and the file holds 18 of 18. `bash -n` passes.) Add three guard cases to `scripts/__tests__/vinext-oxc-gates-script.test.ts` that feed a fake job log with `ENOSPC: no space left on device`, with `EDQUOT: disk quota exceeded`, and with a normal `TS2322` line. The first two expect `INFRA FAILURE:` and exit 3 with `INFRA=1`, and no `NEW FAILURE: ... has a new diagnostic`. The third expects `NEWFAIL=1` and no `INFRA=1`. Then change `gates.sh`: add `has_infra_output()`; drop the errno lines in `key()`; set `JOB_CODE=290` in `run_job()` when a log matches, with `290` added to `INFRA`; keep the labeled last lines `NEWFAIL=<n>` and `INFRA=1`. Run `bash -n`. Falsification: remove the helper and the two infra cases fail; remove the `key()` filter and a stale log becomes a new diagnostic.
+    - [x] Commit: `test(vinext-oxc): add the S3 gate tests (Red)`. (9c65b44a.) Add the `typescript6` alias to the root `devDependencies` in the Red or Implement commit that first needs it. Keep the static import at line 9 on `typescript` until the alias lands, so the Red run loads. Switch the import to `typescript6` in the same commit that installs the alias. Then run the S2 filters (16.2). (S2 adversarial 13 pass, S2 oxlint 7 pass at 9c65b44a.)
+    - Red command: `npx vitest run --config scripts/vitest.config.ts -t 'S3 tsrs'`. It exits with code 1. Log: `measure/runs/vinext-oxc-toolchain_20261114/red-s3-<head>.log`.
+    - Red result of each case (first failing line):
+        - case 0: red. `AssertionError: root devDependencies: expected { …(11) } to match object { Object (typescript6) }`.
+        - case 1: red. `AssertionError: workspaces without a typecheck script: expected [ 'apps/bus-math-v2' ] to deeply equal []`.
+        - case 2: red. `AssertionError: package build scripts that contain tsc: expected [ …(20) ] to deeply equal []`.
+        - case 3: red. `Error: Cannot find module 'tsrs/package.json'`.
+        - case 4: red. `AssertionError: workflow run lines that call tsc: expected [ …(6) ] to deeply equal []`.
+        - case 5: red. `AssertionError: manifest fields that declare typescript: expected [ …(28) ] to deeply equal []`.
+        - case 6: red. `AssertionError: precondition: tsrs --version: expected 1 to be +0 // Object.is equality`.
+        - case 7: red. `AssertionError: precondition: tsrs --version: expected 1 to be +0 // Object.is equality`.
+        - S1 case 5, 5b, 6 (planned, share the S3 command): red on the missing tsrs. `AssertionError: Failed to find type-aware linter executable. You may need to add the tsrs or oxlint-tsgolint package to your project?` (5); `expected 'Failed to find type-aware linter exec…' to match /TS2741|TS2345/` (5b); `expected 'Failed to find type-aware linter exec…' to match /TS2307/` (6).
 - [ ] Task: S3 Implement — move to TypeScript 7
     - [ ] Set `typescript` to `^7.0.2` in the root `devDependencies`, the root `overrides`, and each workspace that declares it.
     - [ ] Run `npm install`.
