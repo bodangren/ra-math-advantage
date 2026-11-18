@@ -895,19 +895,22 @@ function lintScriptForm(rel: string, lint: string): string | null {
   return lint === expected ? null : `${rel}: ${lint}`;
 }
 
-// A whole-line disable comment, including the JSX comment form. Every block disable
-// in this tree closes on its own line (checked 2026-11-19), so a line-by-line strip
-// is exact.
-const WHOLE_LINE_DISABLE_RE = /^\{?\s*\/\*\s*(?:eslint|oxlint)-disable[\s\S]*?\*\/\s*\}?$/;
+// A block comment span, from /* to the next */. One span is one comment, wherever
+// it sits: whole-line, mid-line (code shares the line), or spanning lines. A span
+// whose text names a disable directive in either spelling (eslint or oxlint) is a
+// disable comment, including the block spellings of disable-next-line and
+// disable-line, with or without a rule list and a ` -- reason`.
+const BLOCK_COMMENT_RE = /\/\*[\s\S]*?\*\//g;
+const BLOCK_DISABLE_RE = /(?:eslint|oxlint)-disable(?:-next-line|-line)?/;
 const TRAILING_DISABLE_RE = /\s*\/\/\s*(?:eslint|oxlint)-disable\S*.*$/;
 
-// Remove every disable comment: whole-line comments are dropped, trailing comments
-// are cut from their line. The code under the comment stays, so a finding that the
-// comment hid must surface in the stripped copy.
+// Remove every disable comment: each disable block span is cut wherever it sits,
+// then trailing // comments are cut from their line. The code under the comment
+// stays, so a finding that the comment hid must surface in the stripped copy.
 function stripDisableComments(content: string): string {
   return content
+    .replace(BLOCK_COMMENT_RE, (span) => (BLOCK_DISABLE_RE.test(span) ? '' : span))
     .split('\n')
-    .filter((line) => !WHOLE_LINE_DISABLE_RE.test(line.trim()))
     .map((line) => line.replace(TRAILING_DISABLE_RE, ''))
     .join('\n');
 }
@@ -955,8 +958,9 @@ function lintedFilesWithDisableDirectives(): string[] {
 // The allow-list of pre-existing disable directives (F1, option B): one entry per
 // tracked file that holds a directive, with the directive kinds, the directive and
 // blanket-block counts, and the live rules the directives hide. A carrier file that
-// the list does not name, a stale entry, a new blanket block, or a hidden rule that
-// the entry does not record all fail adv 7.
+// the list does not name, a stale entry, a new blanket block in any block form
+// (whole-line, mid-line, or multi-line), or a hidden rule that the entry does not
+// record all fail adv 7.
 interface DisableAllowlistEntry {
   path: string;
   kinds: string[];
@@ -975,31 +979,29 @@ function readDisableAllowlist(): DisableAllowlistEntry[] {
   return doc.entries;
 }
 
-// The directive kinds of one file: 'block' for a whole-file `/* disable */` line,
-// 'next-line' for a `disable-next-line` comment in either comment spelling,
-// 'trailing' for a `disable-line` comment. Mirrors the allow-list inventory.
+// The directive kinds of one file: 'block' for a blanket `/* disable */` span in
+// any position (whole-line, mid-line, or spanning lines), 'next-line' for a
+// `disable-next-line` comment in either comment spelling, 'trailing' for a
+// `disable-line` comment. Mirrors the allow-list inventory.
 function directiveKindsOfFile(content: string): { kinds: string[]; total: number; blocks: number } {
   const kinds = new Set<string>();
   let total = 0;
   let blocks = 0;
-  for (const line of content.split('\n')) {
-    const trimmed = line.trim();
-    if (WHOLE_LINE_DISABLE_RE.test(trimmed)) {
-      total += 1;
-      if (trimmed.includes('disable-next-line')) kinds.add('next-line');
-      else if (trimmed.includes('disable-line')) kinds.add('trailing');
-      else {
-        kinds.add('block');
-        blocks += 1;
-      }
-    } else {
-      const trailing = line.match(/\/\/\s*((?:eslint|oxlint)-disable\S*)/);
-      if (trailing) {
-        total += 1;
-        if (trailing[1].includes('disable-next-line')) kinds.add('next-line');
-        else kinds.add('trailing');
-      }
+  const classify = (text: string) => {
+    total += 1;
+    if (text.includes('disable-next-line')) kinds.add('next-line');
+    else if (text.includes('disable-line')) kinds.add('trailing');
+    else {
+      kinds.add('block');
+      blocks += 1;
     }
+  };
+  for (const span of content.match(BLOCK_COMMENT_RE) ?? []) {
+    if (BLOCK_DISABLE_RE.test(span)) classify(span);
+  }
+  for (const line of content.split('\n')) {
+    const trailing = line.match(/\/\/\s*((?:eslint|oxlint)-disable\S*)/);
+    if (trailing) classify(trailing[1]);
   }
   return { kinds: [...kinds].sort(), total, blocks };
 }
