@@ -82,7 +82,7 @@ The test file finds `REPO_ROOT` from `fileURLToPath(import.meta.url)`, not from
 - When `npm run generate` changes a file under `measure/generated/`, stage the file only
   when `git diff` shows a change that the current phase caused.
 
-## Phase S1: Package refresh and vinext 1.x
+## Phase S1: Package refresh and vinext 1.x [checkpoint: ee8a64b1]
 _Story ref: spec.md#story-s1_
 
 - Deviation (2026-11-15): merged `origin/master` (RSC hotfix, GHSA-xqc2-xf4c-x3h3,
@@ -262,11 +262,11 @@ _Story ref: spec.md#story-s1_
 - [x] Task: S1 Docs & Doctor (ea024eee)
     - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0. Log `jr-green-generate.log`. It rewrote no file outside the 6 known dirty generated files; those stay unstaged.)
     - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0. Log `jr-green-doctor.log`. Output: "All checks passed".)
-- [b] Task: Measure - User Manual Verification 'Phase S1: Package refresh and vinext 1.x' (Protocol in workflow.md) — deferred:orchestrator
+- [x] Task: Measure - User Manual Verification 'Phase S1: Package refresh and vinext 1.x' (Protocol in workflow.md) (ee8a64b1)
     - [x] Run the protocol: the automated tests, the manual verification plan, and the user confirmation. (S1 filter 11 pass, exit 0; adversarial filter 7 pass, exit 0; gates.sh test s1 NEWFAIL=0, adversarial run 2; full scripts suite 48 pass / 1 fail, the pre-existing remediate-concept-blueprints row; UX browser at 413a2138: 4103 200, 4105 200, 4106 307 to login, same as baseline, 0 new console errors) PM is the confirming user (orchestrator default, 2026-11-18).
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`.
-    - [ ] Append `[checkpoint: <sha>]` to the Phase S1 heading.
-    - [ ] Commit: `measure(plan): Mark phase 'Phase S1: Package refresh and vinext 1.x' as complete`.
+    - [x] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S1`. (ee8a64b1)
+    - [x] Append `[checkpoint: ee8a64b1]` to the Phase S1 heading. (ee8a64b1)
+    - [x] Commit: `measure(plan): Mark phase 'Phase S1: Package refresh and vinext 1.x' as complete`. (this commit)
 
 Phase note (2026-11-17): the S1 phase base is captured after the r6 strategy commit (strategy section 4). The run log and the role handoff hold it. No plan line carries a phase SHA.
 
