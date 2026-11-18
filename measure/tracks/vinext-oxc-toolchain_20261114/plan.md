@@ -298,13 +298,13 @@ _Story ref: spec.md#story-s2_
 - [x] Task: S2 Implement — record the migration that the lint track made (rewritten 2026-11-17) (6b33da07)
     - [x] `eslint-to-oxlint-migration_20260820` made the migration. Ran no `@oxlint/migrate` command. Made no per-workspace `.oxlintrc.json` (one root `.oxlintrc.json` only).
     - [x] The S2 refresh filled evidence sections 6 (rule inventory: 10 overrides, 667 entries, 3 jsPlugins; no gaps derivable) and 8 (no migrate input, `n/a` before-timing, peer-only copies kept).
-- [x] Task: S2 Implement — confirm the lint switch (made by the lint track) (confirm-only; no commit)
+- [x] Task: S2 Implement — confirm the lint switch (made by the lint track) (confirm-only; no commit; marked complete in d891a9c9)
     - [x] Confirmed that `oxlint` `^1.79.0` (installed 1.93.0) is in the root `devDependencies`, and in no workspace manifest.
     - [x] Confirmed that 26 lint scripts (6 apps and 20 packages) are in the target forms; `packages/_template` keeps its `echo` line.
     - [x] Confirmed that no `eslint.config.*` file is tracked, that no manifest declares the 5 ESLint packages, and that the root `overrides` (`{"typescript":"^6"}`) has no `eslint` key.
     - [x] Recorded in section 8 that the lockfile keeps `eslint` 9.39.5, `@eslint/js` 9.39.5, and `@eslint/eslintrc` 3.3.7 as peer-only copies (`peer: true`); both React plugins and all 3 `jsPlugins` entries stay.
     - [x] No manifest changed, so no `npm install` ran. The task makes no file change, so it makes no commit.
-- [x] Task: S2 Implement — reach zero warnings (exit 0; findings pinned by the allow-list)
+- [x] Task: S2 Implement — reach zero warnings (exit 0; findings pinned by the allow-list; 119a8de3, 777d74c6)
     - [x] Ran `npm run lint` in each workspace through `gates.sh lint s2` (one `heavy-run.sh` job each): all 27 exit 0, `NEWFAIL=0`.
     - [x] Correction (S2 remediation, 2026-11-19): the 27 lint scripts exit 0 with zero warnings, and 49 tracked files carry pre-existing disable directives (7 blanket blocks, 44 next-line directives without a reason). The zero-warning state rests partly on these suppressions, not on clean code alone.
     - [x] Pinned all 49 carriers by `scripts/__tests__/fixtures/lint-disable-allowlist.json`: adv 7 fails on an unlisted carrier file, a stale entry, a new blanket block, or a hidden rule the entry does not record (F1, option B; `119a8de3`).
