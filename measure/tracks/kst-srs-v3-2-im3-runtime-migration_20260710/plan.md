@@ -81,6 +81,8 @@ deployment in advance.
     phase verification note. Do not create a new report format.
   - [ ] Obtain explicit user approval for post-window narrowing.
   - [ ] Stop if any check fails or approval is absent.
+  - Result (3.8 read 2026-11-18, read-only, production deployment accurate-labrador-817): no production cutover record, no migration run. srs_runtime_controls has 0 documents; getRuntimeMode returns mode v3_2 from the code fallback with approvedAt null. srs_migration_runs is empty and the migrations component getStatus returns []. Unmigrated rows: practice_variants 2 of 91, practice_items 2 of 200 (seed content, no learner data); srs_cards, srs_review_log, placement_results, srs_sessions hold 0 rows. srs_runtime_comparisons holds 0 rows, so the comparison gate is unproven. The plan's "existing bounded migration verification query" does not exist, and srs_sessions has no defined migration. Phase 3B stays blocked (PM 2026-11-18).
+  - [b] Write the cutover record and run the 5 migrations on production. — deferred:daniel (production write; the PM asks Daniel when this track comes up in registry order)
 - [ ] Task 3.9: Write narrowing tests before production edits.
   - [ ] Update `apps/integrated-math-3/__tests__/convex/schema-srs.test.ts` to
     require `variantKey` and reject the two legacy identity fields after
