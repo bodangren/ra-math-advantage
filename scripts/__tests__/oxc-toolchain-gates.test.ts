@@ -1922,4 +1922,119 @@ describe('S2 adversarial', () => {
     },
     TOOL_TIMEOUT_MS,
   );
+
+  it(
+    'adv 13: the tokenizer edge forms stay honored, counted, and stripped, and unhonored spellings stay live',
+    () => {
+      // The r4 probe set: forms that the r7 tokenizer must keep handling, live
+      // against oxlint (verified 2026-11-19, oxlint 1.93.0). Group 1: oxlint
+      // honors the form, so the pin must count it and the strip must surface
+      // the finding. Group 2: oxlint does not honor it, so the finding must
+      // stay live and the file must stay loud; the pin counts it, which is the
+      // conservative direction. Group 3: oxlint does not honor the spelling,
+      // and the pin counts nothing. If a future oxlint starts to honor a group 3
+      // spelling, the prefilter would go blind, and this test fails on the live
+      // probe first.
+      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv13-'));
+      tempDirs.push(seedRoot);
+      const write = (name: string, content: string): string => {
+        const file = path.join(seedRoot, name);
+        fs.writeFileSync(file, content);
+        return file;
+      };
+      // Group 1: honored forms. Each hides the finding, the pin counts at least
+      // one directive, and the stripped copy surfaces the finding.
+      const honored: Array<[string, string]> = [
+        ['shebang.js', '#!/usr/bin/env node\n/* eslint-disable */\nconst unused = 2;\nexport {};\n'],
+        ['shebang-mjs.mjs', '#!/usr/bin/env node\n/* eslint-disable */\nconst unused = 2;\nexport {};\n'],
+        ['bom.ts', '﻿/* eslint-disable */\nconst unused = 2;\nexport {};\n'],
+        ['ext-mjs.mjs', '/* eslint-disable */\nconst unused = 2;\nexport {};\n'],
+        ['ext-cjs.cjs', '/* eslint-disable */\nconst unused = 2;\nmodule.exports = {};\n'],
+        ['template-substitution.ts', 'const t = `${/* eslint-disable */ 1}`;\nconst unused = 2;\nexport { t };\n'],
+        ['jsx-in-js.js', 'export function P() {\n  {/* eslint-disable */}\n  const unused = 1;\n  return <div />;\n}\n'],
+        ['regex-star-slash.ts', 'const r = /a\\/*b/;\n/* eslint-disable */\nconst unused = 2;\nexport { r };\n'],
+        ['type-annotation.ts', 'const x: /* eslint-disable */ number = 1;\nconst unused = 2;\nexport { x };\n'],
+        ['dup-adjacent.ts', 'const keep = 1; /* eslint-disable */ const unused = 2;\nexport { keep };\n'],
+      ];
+      for (const [name, content] of honored) {
+        const hidden = runOxlintProbe(write(name, content));
+        expect(hidden.status, `${name}: oxlint must honor the form`).toBe(0);
+        const counted = directiveKindsOfFile(content, name);
+        expect(counted.total, `${name}: the pin must count the form`).toBeGreaterThanOrEqual(1);
+        const copy = write(name.replace('.', '-stripped.'), stripDisableComments(content, name));
+        const surfaced = runOxlintProbe(copy);
+        expect(surfaced.status, `${name}: the stripped copy must surface the finding`).not.toBe(0);
+        expect(surfaced.output, `${name}: the surfaced finding`).toContain('no-unused-vars');
+      }
+      // The dedupe pin: leading and trailing trivia of adjacent tokens must not
+      // count the same comment twice.
+      const dupAdjacent = honored.find(([name]) => name === 'dup-adjacent.ts')?.[1] ?? '';
+      expect(
+        directiveKindsOfFile(dupAdjacent, 'dup-adjacent.ts').total,
+        'a mid-line comment shared by two tokens must count once',
+      ).toBe(1);
+      // A file that holds only the directive: the walk must reach the comment
+      // through the end-of-file token.
+      expect(
+        directiveKindsOfFile('/* eslint-disable */\n', 'only-comment.ts').total,
+        'a comment-only file must count its directive',
+      ).toBe(1);
+      // The tokenizer must parse the .mts and .cts extensions. No rule of the
+      // root config applies to them, so oxlint hides nothing there; the count
+      // is the conservative leg.
+      expect(
+        directiveKindsOfFile('/* eslint-disable */\nconst unused = 2;\n', 'probe.mts').total,
+      ).toBe(1);
+      expect(
+        directiveKindsOfFile('/* eslint-disable */\nconst unused = 2;\n', 'probe.cts').total,
+      ).toBe(1);
+      // Group 2: counted but not honored. The finding must stay live, and a
+      // parse-broken file must stay loud, so nothing hides silently.
+      const countedNotHonored: Array<[string, string]> = [
+        ['empty-block.ts', 'function f() {/* eslint-disable */}\nconst unused = 2;\nexport {};\n'],
+        [
+          'jsx-attribute.tsx',
+          'export function P() {\n  const unused = 1;\n  return <div id="a" /* eslint-disable */ className="b" />;\n}\n',
+        ],
+        ['unterminated.ts', '/* eslint-disable\nconst unused = 2;\nexport {};\n'],
+        ['syntax-error.ts', 'const = 5;\n/* eslint-disable */\nconst unused = 2;\nexport {};\n'],
+      ];
+      for (const [name, content] of countedNotHonored) {
+        const live = runOxlintProbe(write(name, content));
+        expect(live.status, `${name}: oxlint must not hide the file`).not.toBe(0);
+        const counted = directiveKindsOfFile(content, name);
+        expect(counted.total, `${name}: the pin must still count the conservative directive`).toBe(1);
+        if (name === 'empty-block.ts' || name === 'jsx-attribute.tsx') {
+          expect(live.output, `${name}: the finding must stay live`).toContain('no-unused-vars');
+        }
+      }
+      // A parse-broken form stays loud in the stripped copy too, so the sweep
+      // cannot turn it into a silent pass. The unterminated form blanks to EOF,
+      // so only the syntax-error form keeps its parse error here.
+      const syntaxError = countedNotHonored.find(([name]) => name === 'syntax-error.ts')?.[1] ?? '';
+      const syntaxCopy = write('syntax-error-stripped.ts', stripDisableComments(syntaxError, 'syntax-error.ts'));
+      const syntaxStrippedRun = runOxlintProbe(syntaxCopy);
+      expect(syntaxStrippedRun.status, 'the stripped copy must stay loud').not.toBe(0);
+      // Group 3: unhonored spellings. The finding stays live and the pin counts
+      // nothing, so the prefilter and oxlint agree.
+      const unhonored: Array<[string, string]> = [
+        ['case-upper.ts', '/* ESLINT-DISABLE */\nconst unused = 2;\nexport {};\n'],
+        ['case-mixed.ts', '/* Eslint-Disable */\nconst unused = 2;\nexport {};\n'],
+        ['case-next-upper.ts', '// ESLINT-DISABLE-NEXT-LINE\nconst unused = 2;\nexport {};\n'],
+        ['spaced-hyphen.ts', '/* eslint - disable */\nconst unused = 2;\nexport {};\n'],
+        ['unicode-hyphen.ts', '/* eslint‑disable */\nconst unused = 2;\nexport {};\n'],
+        ['regex-holding.ts', 'const r = /eslint-disable/;\nconst unused = 2;\nexport { r };\n'],
+      ];
+      for (const [name, content] of unhonored) {
+        const live = runOxlintProbe(write(name, content));
+        expect(live.status, `${name}: oxlint must not honor the spelling`).not.toBe(0);
+        expect(live.output, `${name}: the finding must stay live`).toContain('no-unused-vars');
+        expect(
+          directiveKindsOfFile(content, name).total,
+          `${name}: the pin must not count the unhonored spelling`,
+        ).toBe(0);
+      }
+    },
+    TOOL_TIMEOUT_MS,
+  );
 });
