@@ -1,0 +1,119 @@
+Measure Jr Green log — vinext-oxc-toolchain_20261114, Phase S5: Gate rules and CI
+Date: 2026-11-20. Role base: bc8e238c (bc8e238ca8f78d29441cc345543ceb1f3b8e933b).
+Phase base: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6 (confirmed ancestor of HEAD).
+Node: v24.19.0 (Node 24 is the active node). npm ci ran on this node.
+
+RED_TEST_COMMAND rerun before the change:
+`npx vitest run --config scripts/vitest.config.ts -t 'S5 gate rules'` gave exit 1 with
+6 failed (cases 1, 2, 3, 4, 7, 10) and 4 passed (cases 5, 6, 8, 9), 95 skipped. The
+failure reasons match the Red log `red-s5-9879f0a0.log`.
+
+GREEN_TEST_COMMAND after the change:
+`npx vitest run --config scripts/vitest.config.ts -t 'S5 gate rules'` gives exit 0 with
+10 passed and 95 skipped of 105.
+Companion filters: `S4 oxfmt` 5 passed; `S3 tsrs` 8 passed; `S3 adversarial` 14 passed;
+`S2 adversarial` 13 passed. All exit 0.
+
+Commits (in order):
+- 732a9d90 docs(gates): name the Oxc gates in the guardrails and the workflow
+- f9e8a879 ci: run the format check
+- 4f73155b ci: remove the deploy job from the CI workflow
+- f54a49ca measure(tech-debt): record the failing Scale Benchmarks workflow
+- bfef104b measure(record): correct the S4 claims carried into S5
+- afc0408e measure(plan): mark the S5 Contract and apply-gate tasks complete
+- 2b2e7ff1 chore(gates): remove the last calls to ESLint and tsc
+- 48ffa028 measure(plan): mark the S5 sweep task complete
+- b8733002 measure(vinext-oxc): write the evidence summary
+- b9dda0ad measure(plan): mark the S5 evidence summary complete
+- 09ca840d test(ci): read the last job section in the IM2 CI wiring test
+- 8337aa23 test(ci): pin the deploy gate to the dispatched workflow
+- 87e8a165 measure(vinext-oxc): record the S5 results
+- d04944f4 measure(plan): mark the S5 Verify and Docs tasks complete
+HEAD before this log commit: d04944f4.
+
+Scope (no committed Red test, S1-S5 case, or 49-entry fixture changed):
+- S5 Contract and sweep edits: AGENTS.md, measure/workflow.md, measure/tech-stack.md,
+  README.md, INTEGRATION.md, apps/bus-math-v2/DEVELOPMENT.md, apps/danielson/README.md,
+  packages/_template/README.md, root package.json, .github/workflows/ci.yml,
+  measure/tech-debt.md, scripts/architecture/quality-inventory.mjs.
+- S4 record fixes F1-F8 (strategy 18.7): oxc-evidence.md, plan.md, test-strategy.md.
+- Evidence: section 11 summary and the section 2 S5 Green run.
+- Two test updates that the S5 diff made necessary:
+  - 09ca840d: `apps/integrated-math-2/__tests__/ci/standards-integrity-ci-wiring.test.ts`
+    accepts the end of the file in `extractJobSection`. The deploy removal leaves
+    `app-foundations` as the last job. The assertions are unchanged.
+  - 8337aa23: `apps/integrated-math-3/__tests__/ci-cd/workflow-validation.test.ts` keeps
+    the production-environment gate and reads it from `cloudflare-deploy.yml`; it adds the
+    rule that `ci.yml` has no deploy job. No assertion was dropped or loosened.
+- Architecture parity (with the root script change): `scripts/architecture/quality-inventory.mjs`
+  accepts the new fan-out forms of the root `lint` and `typecheck` scripts, and the two
+  architecture tests of that contract follow. Without this change
+  `node scripts/architecture/check-quality-parity.mjs` fails with 20 missing workspaces,
+  and the CI boundary job would fail. This is a deviation that the plan does not name; it
+  is in the docs commit 732a9d90 and recorded in the handoff.
+- New files: none. Only this log is new.
+
+S5 Verify results (GATES_BASE=baseline-m2, labels s5):
+- lint s5: exit 0, NEWFAIL=0. 27 workspaces, each exit 0.
+- test s5: exit 0, NEWFAIL=0. scripts-suite 1 (104 passed, 1 failed of 105: the
+  pre-existing Q3 `remediate-concept-blueprints` row) and audit-suites 1 (187 passed,
+  5 failed of 192: section 10 baseline rows). Both step codes equal baseline-m2, and
+  neither log holds a new diagnostic key.
+- checks-all s5: exit 0, NEWFAIL=0. Steps boundary 0, ci-check 0, tree 0, next-absent 0,
+  measure-contract 1 (pre-existing). `audit: critical=0 high=9 moderate=7 low=5` against
+  baseline high=11. Typecheck sweep: only IM3 and PreCalc are nonzero, with baseline keys.
+  Build sweep: 26 workspaces exit 0, `practice-test-engine` n/a (baseline set).
+- Root scripts: format:check 0 on 3717 files; lint 0; typecheck 1 with the 59 pre-existing
+  tsc diagnostics of IM3 (55) and PreCalc (4). The checks-all typecheck compare gives
+  NEWFAIL=0 for both.
+- npm ci: first run registry ETIMEDOUT, second run exit 0. `@tsrs/linux-x64-gnu` present.
+- Evidence AC7: 11 sections, each with a non-empty body.
+- Docs & Doctor: `npm run generate` exit 0 and `npm run doctor` exit 0.
+- The 6 generated files stay unstaged: 4 `apps/*/.next/types/routes.d.ts`,
+  `apps/bus-math-v2/lib/workbooks-manifest.json`, and `measure/generated/routes.md`.
+
+Known failures (unchanged, section 10):
+- The scripts suite holds the one pre-existing `remediate-concept-blueprints` failure (S1 Q3).
+- Audit suites hold 5 baseline failures in 2 files.
+- IM1 test exit 1 (`im1-im2-precalc` job absent at baseline-m2 too), IM3 and PreCalc
+  typecheck diagnostics, and the `measure-contract` step failure are baseline rows.
+- Root `npm run typecheck` exits 1 because of the IM3 and PreCalc fallback diagnostics.
+  The workspace-level compare proves no new failure. This is a deviation from strategy
+  18.4 ("root typecheck exits 0"): the new fan-out form runs the 4 `TSC_FALLBACK_LIST`
+  apps, which are red at the baseline.
+
+Handoff:
+- Tasks flipped [x]: S5 Contract (732a9d90; f9e8a879, 4f73155b, f54a49ca, bfef104b),
+  S5 Implement apply-gate (732a9d90, f9e8a879, 4f73155b, f54a49ca), S5 sweep (2b2e7ff1),
+  S5 evidence summary (b8733002), S5 Verify (87e8a165; 09ca840d, 8337aa23),
+  S5 Docs & Doctor (87e8a165). The S5 Test task stays [x] from Red.
+- Task flipped [b]: "Measure - User Manual Verification 'Phase S5: Gate rules and CI'"
+  with (deferred:closeout-steward), the same as S4. The checkpoint commit, the heading
+  SHA, and the plan-complete commit belong to the closeout role.
+- Review A: check the S5 case set (10 cases), the two test updates, the
+  `quality-inventory.mjs` parity change, and the 7 S4 record items in `bfef104b`.
+- Review B: `ci.yml` holds no deploy job and no wrangler line. `cloudflare-deploy.yml`
+  keeps `workflow_dispatch` and `environment: production`.
+- Review C: root scripts are `lint` = `npm run lint --workspaces --if-present`,
+  `typecheck` = `npm run typecheck --workspaces --if-present`, `format` = `oxfmt`,
+  `format:check` = `oxfmt --check`. No root `ws:*` script names `tsc`.
+- Immutable phase base: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6.
+  Final Green HEAD before this log: d04944f4 (this log commit follows it).
+
+MEASURE_AGENT_RESULT
+role: measure-jr-green
+status: green
+track: vinext-oxc-toolchain_20261114
+phase: Phase S5: Gate rules and CI
+phase_base_sha: 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6
+final_head: d04944f4 (log commit follows)
+commits: 732a9d90, f9e8a879, 4f73155b, f54a49ca, bfef104b, afc0408e, 2b2e7ff1, 48ffa028, b8733002, b9dda0ad, 09ca840d, 8337aa23, 87e8a165, d04944f4
+tests_run: RED rerun exit 1 (6 failed, 4 passed); GREEN exit 0 (10 passed, 95 skipped); companions S4 5, S3 tsrs 8, S3 adversarial 14, S2 adversarial 13, all pass
+gates: lint s5 NEWFAIL=0 exit 0; test s5 NEWFAIL=0 exit 0; checks-all s5 NEWFAIL=0 exit 0; audit critical=0 high=9 moderate=7 low=5
+files_changed: AGENTS.md, measure/workflow.md, measure/tech-stack.md, README.md, INTEGRATION.md, apps/bus-math-v2/DEVELOPMENT.md, apps/danielson/README.md, packages/_template/README.md, package.json, .github/workflows/ci.yml, measure/tech-debt.md, measure/tracks/vinext-oxc-toolchain_20261114/{oxc-evidence.md,plan.md,test-strategy.md}, scripts/architecture/{quality-inventory.mjs,__tests__/live-quality-parity.test.mjs,__tests__/oxlint-migration.test.mjs}, apps/integrated-math-2/__tests__/ci/standards-integrity-ci-wiring.test.ts, apps/integrated-math-3/__tests__/ci-cd/workflow-validation.test.ts
+new_files: none (this log only)
+plan_updates: S5 Contract, apply-gate, sweep, evidence summary, Verify, and Docs & Doctor are [x] with SHA evidence; the User Manual Verification task is [b] (deferred:closeout-steward)
+known_failures: Q3 remediate-concept-blueprints row; 5 audit-suite baseline rows; IM1 test, IM3/PreCalc typecheck diagnostics, measure-contract step; root npm run typecheck exit 1 from the fallback apps (workspace compare NEWFAIL=0)
+deviations: quality-inventory.mjs and two architecture tests follow the new root script forms (732a9d90); root typecheck exit 1 versus strategy 18.4 (pre-existing fallback diagnostics)
+handoff: Review A checks the 10 cases, the two test updates, the parity change, and bfef104b. Review B checks the deploy removal and cloudflare-deploy.yml. Review C checks the four root script names. phase_base_sha 3ff2f6ea2d706c26e7b750e3202d36891f2a83d6; final Green HEAD d04944f4 before this log.
+END_MEASURE_AGENT_RESULT
