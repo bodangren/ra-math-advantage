@@ -21,10 +21,18 @@ has_script() {
   node -e 'const s=require(process.argv[1]).scripts||{};process.exit(s[process.argv[2]]?0:1)' "$PWD/$1/package.json" "$2"
 }
 
-# A job log that names a disk-space errno is an infrastructure failure, not a
-# diagnostic. /tmp is a 16 GB memory disk near its quota, so a tool can write
-# ENOSPC or EDQUOT into a log and still exit with a normal code (strategy 16.7).
-has_infra_output() { grep -qE 'ENOSPC|EDQUOT' "$1" 2>/dev/null; }
+# A real disk-full system message. S3 adversarial F1: a job log that only names
+# the errno word (a failing test title, a quoted line) is a normal diagnostic,
+# not an infrastructure failure. Only the system message forms count: the
+# libuv/Node text ("ENOSPC: no space left on device"), the errno name after
+# "Error:", and the Node error fields (`errno: -28`, `code: 'ENOSPC'`).
+# -28 is ENOSPC and -122 is EDQUOT on Linux.
+DISK_FULL_RE="ENOSPC: no space left on device|EDQUOT: disk quota exceeded|Error: (ENOSPC|EDQUOT)|errno: -(28|122)|code: ['\"]?(ENOSPC|EDQUOT)['\"]?"
+
+# A job log that holds a real disk-full message is an infrastructure failure,
+# not a diagnostic. /tmp is a 16 GB memory disk near its quota, so a tool can
+# write the message into a log and still exit with a normal code (strategy 16.7).
+has_infra_output() { grep -qE "$DISK_FULL_RE" "$1" 2>/dev/null; }
 
 # Diagnostic keys of one log: line and column numbers and timings removed.
 # S1 (vinext-oxc-toolchain_20261114) key refinement: tsc diagnostic lines collapse to
@@ -33,7 +41,10 @@ has_infra_output() { grep -qE 'ENOSPC|EDQUOT' "$1" 2>/dev/null; }
 # inferred type inside the message; the spec defines the key as workspace + file + code,
 # so message drift must not count as a new failure. The `npm error code <n>` trailer is
 # normalized to `npm error code` (the exit code itself is tracked in the .exit files).
-# All other lines keep their full-text key. Success lines (vitest ✓ lines) are not
+# All other lines keep their full-text key. A line that holds a real disk-full
+# system message is dropped (it is an infrastructure failure, see DISK_FULL_RE),
+# but a line that only names the errno word stays a normal diagnostic key.
+# Success lines (vitest ✓ lines) are not
 # diagnostics and are dropped: vitest 5 changed their trailing whitespace, which made
 # passing tests look like new diagnostics. Trailing whitespace is stripped on all
 # remaining lines for the same reason. The baseline logs are re-keyed with the same
@@ -42,7 +53,7 @@ has_infra_output() { grep -qE 'ENOSPC|EDQUOT' "$1" 2>/dev/null; }
 # absent at random (the source of the earlier "input is not in sorted order" warnings).
 key() {
   grep -E 'TS[0-9]+|error|ERROR|FAIL|AssertionError|Failed to resolve|[0-9] (warning|error)' "$1" 2>/dev/null |
-    grep -vE 'ENOSPC|EDQUOT' |
+    grep -vE "$DISK_FULL_RE" |
     grep -v '^[[:space:]]*✓' |
     LC_ALL=C sed -E 's/^([^ (]+)\([0-9]+,[0-9]+\): error (TS[0-9]+):.*/\1 \2/; s/^npm error code [0-9]+$/npm error code/; s/\([0-9]+,[0-9]+\)//g; s/:[0-9]+:[0-9]+//g; s/ in [0-9.]+ ?m?s//g; s/[0-9.]+ ?m?s( |$)/\1/g; s/[[:space:]]+$//' | LC_ALL=C sort -u
 }
