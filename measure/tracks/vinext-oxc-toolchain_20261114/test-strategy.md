@@ -1,13 +1,14 @@
 # Test Strategy: vinext-oxc-toolchain_20261114
 
 Track: `vinext-oxc-toolchain_20261114` (Chore, 5 phases S1 to S5)
-Strategy revision: r8 (2026-11-19), `role_base_sha` 25036aefddd03718c8a3c8591095b186e5799c5d.
-Scope of revision r8: the S4 refresh at the S3 checkpoint. Section 17 records r8. Section 16
-records r7. Section 13 records r4. Section 14 records r5. Section 15 records r6. A later section
-wins when an earlier rule disagrees with it. Detail level: S1 has full detail. S2 to S5 have the
-risks, the Red commands, and the gates. Refresh this file at the start of each later phase if the
-plan changed. Revision r7 replaced section 5 lines 221-222. Section 16.9 sets the S3
-`phase_base_sha` point. Section 17.8 sets the S4 `phase_base_sha` point.
+Strategy revision: r9 (2026-11-19), `role_base_sha` 5ca9187b388970d6ebc3feca54be45570ef9fbfa.
+Scope of revision r9: the S5 refresh at the S4 checkpoint. Section 18 records r9. Section 17
+records r8. Section 16 records r7. Section 13 records r4. Section 14 records r5. Section 15
+records r6. A later section wins when an earlier rule disagrees with it. Detail level: S1 has
+full detail. S2 to S5 have the risks, the Red commands, and the gates. Refresh this file at the
+start of each later phase if the plan changed. Revision r7 replaced section 5 lines 221-222.
+Section 16.9 sets the S3 `phase_base_sha` point. Section 17.8 sets the S4 `phase_base_sha`
+point. Section 18.8 sets the S5 `phase_base_sha` point.
 
 ## 1. What this strategy proves
 
@@ -1795,5 +1796,296 @@ S4 filter exits 0; `GREEN_TEST_COMMAND` exits 1 for the one Q3 row only (17.4).
    require the output path of the generator, and the dry run puts two manifests in the change set.
 6. Does this refresh need a plan owner to apply the eight amendments of 17.7? Default: yes. This
    role did not edit `plan.md`.
+
+No question blocks the strategy. Each default is applied in this revision.
+
+## 18. Revision r9 (2026-11-19) — S5 refresh
+
+**Revision record.** This refresh uses role base
+`5ca9187b388970d6ebc3feca54be45570ef9fbfa`, the S4 checkpoint and `origin/master`. It re-derives
+the S5 Red set at that base, records the risks, the gates, and the review gates, and carries the
+seven S4 record-only items into S5. It resolves the fallback-script conflict with a stated
+default. It defines the S5 `phase_base_sha` point. This section wins when an earlier rule
+disagrees with it. S5 risk stays `medium` (section 3 and 18.5).
+
+### 18.1 Facts checked at the role base
+
+| Fact | Command and result |
+|------|--------------------|
+| HEAD equals the S4 checkpoint and `origin/master`. | `git rev-parse HEAD` → `5ca9187b388970d6ebc3feca54be45570ef9fbfa`. `git rev-parse origin/master` gives the same value. `git log --oneline -1` → `measure(plan): mark Phase S4 complete`. |
+| Six dirty generated files are present. | `git status --porcelain` → ` M` for the four `apps/*/.next/types/routes.d.ts`, `apps/bus-math-v2/lib/workbooks-manifest.json`, and `measure/generated/routes.md`. No staged or untracked entry. Leave these files unstaged. |
+| The graph is not fresh. | `graph.db` has an 2026-08-08 mtime. `build-graph` is on PATH. The 24-hour freshness rule fails, so no graph probe runs. Plan lines 8-9 record no blast-radius lines. |
+| The AGENTS.md guardrails still name the old gates. | `AGENTS.md:134` holds the TDD line with `npm run lint`. `AGENTS.md:135` names `npx tsc --noEmit`. Both lines match plan lines 638-640. |
+| The workflow quality gates still name the old gates. | `measure/workflow.md:113-114` hold "No linting errors (`npm run lint`)" and "TypeScript compiles without errors". Lines 124-129 hold the Daily Development block. Line 133 holds the Before Committing command. |
+| The root scripts keep an architecture runner and six tsc fallbacks. | Root `package.json:8-14`: `lint`, `typecheck`, `build`, and `test` call `run-workspace-quality.mjs`. `format` is `oxfmt`, and `format:check` is `oxfmt --check`. Lines 15-38 hold 6 `ws:*:typecheck` scripts; each ends with `|| npx tsc --noEmit --project ...`. Plan lines 649-650 replace these two forms. |
+| The S3 fallback is named by two lists in two forms. | `TYPESCRIPT_KEEP_LIST` holds 4 manifest field paths, for example `apps/bus-math-v2/package.json:devDependencies.typescript`. `TSC_FALLBACK_LIST` holds 4 folder paths: BM2, IM1, IM3, and PreCalc. The fallback list is a subset of the keep list (test file lines 541-558, S3 case 5). |
+| The deploy job is still in ci.yml. | `ci.yml:275-312` holds `# Phase 6: Deploy` and the `deploy` job with `cloudflare/wrangler-action@v3` and `deploy --config wrangler.jsonc`. No `format:check` step sits in `boundary-check`. Every `node-version` is `"24"`. |
+| The dispatch deploy workflow stays. | `cloudflare-deploy.yml:4` holds `workflow_dispatch`, and line 11 holds the `deploy-production` job. S5 removes only the ci.yml deploy job (spec D7). |
+| Two planned markers remain. | `README.md:131` and `measure/tech-stack.md:20` hold `(planned: vinext-oxc-toolchain_20261114)`. No other tracked file holds that marker. |
+| One tech-debt row fits. | `measure/tech-debt.md` holds 45 lines. The 50-line limit allows the one row of plan line 654. |
+| The S5 describe does not exist yet. | `grep -c "describe('S5 gate rules')" scripts/__tests__/oxc-toolchain-gates.test.ts` → 0. Mid Red adds it. |
+| No banned command form sits in the S5 scan paths. | The S5 case 9 regex over `.github/workflows/*.yml`, the root `package.json`, `scripts/` outside `__tests__/`, and `measure/scripts/` returns no hit. Case 9 is a guard at this base. |
+| The S4 carry claims are stale or false. | `oxc-evidence.md:247-248` says the typecheck and build sweeps hold the baseline exit codes; 3 workspaces differ. `plan.md:518` says the fixture is not in the format commit; `dec3be20` holds it. `plan.md:479` and the timing section say 18 ignore patterns; `.oxfmtrc.json` holds 17. `plan.md:550` calls `npm run format` idempotent; oxfmt 0.78.0 needs a second pass on 4 files. `plan.md:474` and `test-strategy.md:1685` state an anchor falsification that does not hold. `test-strategy.md:1617` says S4 changes no workflow YAML; the diff holds 5 formatted workflow files. |
+
+18.11 records the applied defaults. The dry-run counts of 17.1 are a S4 record. S5 runs no new
+format dry run.
+
+### 18.2 S5 Red set re-derived at role base `5ca9187b`
+
+The S5 describe does not exist at this base. Mid Red adds it. Run the discovery check of section
+5 first. **Cases 1 to 4, case 7, and the added case 10 are red. Cases 5, 6, 8, and 9 are guards and
+pass at Red.** S5 is a real Red phase, not a guard-only phase like S2.
+
+| Case | Assertion (plan lines 657-664; additions from sections 8 and 10) | Base state and expected Red failure | Falsification condition |
+|------|------------------------------------------------------------------|-------------------------------------|-------------------------|
+| 1 | `AGENTS.md`, `measure/workflow.md`, `measure/tech-stack.md`, the root `package.json`, and each workflow contain none of `npx tsc`, `tsc --noEmit`, `eslint .`, `eslint src`, and `vinext lint`. | Red. `AGENTS.md:135` and the 6 root `ws:*:typecheck` lines match. Record the file paths and the matched command forms. | A bare word such as `tsc` passes the case. Parse the five exact command forms and name each hit (A3, A7). |
+| 2 | `ci.yml` has a step with `run: npm run format:check`. | Red. `boundary-check` has no such step. Record the missing step line. | A grep for `format` passes on the script name in `package.json`. Parse the job steps of `ci.yml` and require the exact `run` value. |
+| 3 | Root scripts `lint`, `typecheck`, `format`, and `format:check` match the target forms. No root `ws:*` script contains `tsc`. | Red. `lint` and `typecheck` call the architecture runner, and 6 `ws:*:typecheck` lines hold `npx tsc --noEmit`. Record each wrong key and each flagged script. | The case scans workspace manifests and thus fails on the 4 S3 fallback apps. Scope the `tsc` assertion to root `ws:*` scripts only (18.11 default 1). |
+| 4 | The Quality Gates section of `measure/workflow.md` names `npm run format:check`, `npm run lint`, and `npm run typecheck`. | Red. None of the three exact names appears in lines 106-115. Record the missing names. | A bare word `lint` passes. Require three exact script names inside that section (A7). |
+| 5 | `node scripts/validate-ci.mjs` exits 0. | Guard. It exits 0 at this base. It must stay 0 after the deploy removal. | A removed job leaves a `needs` entry with no target, and the command still exits 0. |
+| 6 | `git grep -n -E "npx tsc|tsc --noEmit|eslint \.|eslint src|vinext lint" -- measure/scripts` finds no match (exit 1). | Guard. No match at this base. | A `measure/scripts` file calls a removed tool and the case still passes. Add a sentinel that proves the scan ran over a non-empty folder (A4). |
+| 7 | `ci.yml` has no job key `deploy` and no line with `wrangler-action` or `wrangler deploy`. | Red. `ci.yml:275-312` holds all three forms. Record the job key and the line numbers. | A renamed job such as `production` escapes the case. Assert the exact job-key set from a YAML parse, not a word filter (A7). |
+| 8 | Each `node-version` in the workflows has a major of 22 or more. | Guard. All values are `"24"` after S1. | A value of `"20"` or a non-integer string passes. Parse the integer and require `>= 22` (A3). |
+| 9 (added, section 8) | Command-form regexes over workflows, the root `package.json`, `scripts/` outside `__tests__/`, and `measure/scripts/` match nothing. The 4 fallback workspace manifests are the only path exclusion. | Guard. No hit at this base. Do not drop this case when the Red set is re-derived (section 8). | A seeded command form in a live script is missed, or a fallback manifest is excluded by a bare word (A7). |
+| 10 (added, section 10) | `git grep -n 'planned: vinext-oxc-toolchain_20261114' -- README.md measure/tech-stack.md measure/index.md` finds nothing. The two documents state the current versions. | Red. `README.md:131` and `measure/tech-stack.md:20` hold the marker. Record both paths. | A marker in another tracked file is missed, or the version claim has no `npm ls` complement (A5). |
+
+`RED_TEST_COMMAND` is `npx vitest run --config scripts/vitest.config.ts -t 'S5 gate rules'`. It
+exits 1 at Red. Mid Red copies the first failing line of each red case into the Red log. Case 10
+turns green only when the S5 Contract removes both markers. Do not mark the S5 Test task green
+early. Do not run the `test` gate between Red and Green (section 9).
+
+**Fallback naming and scope.** The plan text of cases 1 and 3 ("No `ws:*` script contains `tsc`")
+is correct only for the root scripts. The four workspace typecheck scripts of
+`TSC_FALLBACK_LIST` keep `tsc --noEmit` under S3 AC4 and plan line 679. `TYPESCRIPT_KEEP_LIST`
+names manifest fields that declare the `typescript` package; it is not the list of scripts that
+call `tsc`. Default: keep the four fallback scripts, remove the fallback from the 6 root
+`ws:*:typecheck` lines, and add a guard that all four fallback scripts still contain
+`tsc --noEmit` while no other workspace script does (18.11 default 1).
+
+### 18.3 S5 risks and the tests that defend each
+
+Guardrails for this phase: no live script, document, or workflow calls a removed tool. The 4 S3
+fallback workspaces keep their `tsc --noEmit` script. The `deploy` job leaves `ci.yml`, and
+`cloudflare-deploy.yml` keeps `workflow_dispatch`. Only the 6 dirty generated files stay unstaged.
+Changed-contract risks are the root script names, the CI job graph, and the planned markers.
+
+| Risk | Defense and falsification |
+|------|---------------------------|
+| A command call stays in another spelling | Case 9 command-form regex plus case 6 `git grep`. Falsifies when a seeded form in a live script passes. No bare English filter (A7). |
+| The S3 fallback is deleted by mistake | Guard: the 4 `TSC_FALLBACK_LIST` scripts keep `tsc --noEmit`, and `TSC_FALLBACK_LIST` stays a subset of `TYPESCRIPT_KEEP_LIST`. Falsifies when a fallback script loses `tsc` or a non-fallback script keeps it. |
+| Root script names break later tracks | Case 3 exact values plus live `npm run lint`, `npm run typecheck`, and `npm run format:check`. Falsifies when a name of the contract in section 3 is absent or a command exits non-zero. |
+| The deploy job is removed but a deploy path stays | Case 7, `node scripts/validate-ci.mjs` exit 0, and a parse of `cloudflare-deploy.yml` that requires `workflow_dispatch` and no `push` trigger. Falsifies when a workflow deploys on push. |
+| A removed step breaks the job graph | Parse `ci.yml`; each `needs` entry names an existing job. Falsifies on a dangling `needs` while `validate-ci.mjs` exits 0. |
+| A planned marker stays after the work | Case 10 plus a live compare of the written versions with `npm ls vinext oxlint oxfmt tsrs`. Falsifies when a marker remains or a version claim has no command output (A5). |
+| AGENTS.md or workflow.md drops a rule | `git diff <phase_base_sha> -- AGENTS.md measure/workflow.md` changes only the named lines. Falsifies when a third line changes or a named line is absent. |
+| A registry or evidence claim overstates (A5, A6) | Run the A5 and A6 detectors of `measure/anti-patterns.md` at closeout. Falsifies when "resolved" or "all pass" survives a red gate. |
+| The tech-debt row breaks the 50-line limit | Parse line count before and after the add. Require `<= 50`. Falsifies on a 51-line file. |
+| A S4 carry item is not fixed | The S5 Contract commit diff names each of the 7 items of 18.6. Falsifies when an amended claim survives in `oxc-evidence.md`, `plan.md`, or `test-strategy.md`. |
+
+### 18.4 S5 gate values and closeout
+
+| Variable | S5 value |
+|----------|----------|
+| `RED_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts -t 'S5 gate rules'`; exit 1 at Red, exit 0 at Green. |
+| `GREEN_TEST_COMMAND` | `npx vitest run --config scripts/vitest.config.ts`. See the known failure below. |
+| Gate labels | `lint s5`, `test s5`, `checks-all s5`. |
+| `GATES_BASE` | `baseline-m2` for all three gates. Do not use `s1` to `s4` as the base. |
+| `PROJECT_LINT` | `npm run format:check && bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh lint s5` (section 2, line 62). |
+| `PROJECT_CHECKS` | `GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh checks-all s5`. |
+| `PROJECT_TESTS` | `GATES_BASE=baseline-m2 bash measure/tracks/vinext-oxc-toolchain_20261114/gates.sh test s5`. |
+| `UX_REQUIRED` | `never`. S5 changes no runtime. The live proof is the root-script run, the CI validation, and the gate sweep. |
+| `W4_AUDIT_COMMAND` | Not an S5 gate. It closed in S1 (section 14.2). |
+
+**Green gate.** The S5 filter exits 0 with cases 1 to 10 green. The S2 filters (13 and 7), the
+S3 filters (14 and 8), and the S4 filter (5) stay green. Each phase gate prints `NEWFAIL=0`.
+`npm run format:check`, `npm run lint`, and `npm run typecheck` exit 0 at the root.
+`node scripts/validate-ci.mjs` exits 0.
+
+**Known pre-existing failure.** `GREEN_TEST_COMMAND` exits 1. The one failing title is
+`remediate-concept-blueprints > production scan reports the honest count for the current repo
+state` (S1 question Q3). Parse the summary and require exactly that one failure. The audit-suite
+baseline rows stay in evidence section 10. A second failure stops the phase. Do not fix these
+rows in S5.
+
+**Closeout gate.** The Green gate; `npm ci` on Node 24; the test and build sweeps with
+`NEWFAIL=0`; the workspace-set check with `workspaces-<script>=27` four times and no `comm` line;
+no `deploy` job in `ci.yml`; `cloudflare-deploy.yml` with `workflow_dispatch`; two planned markers
+removed; one `Open` tech-debt row with the file at `<= 50` lines; evidence content in all 11
+sections; `npm run generate` and `npm run doctor` exit 0; only the 6 dirty generated files unstaged;
+`measure/runs/` gitignored; no push before closeout. The S5 Contract owns the 7 carry fixes of
+18.6.
+
+### 18.5 Review gates for S5
+
+Risk classification of all phases stays as section 3: S1 `critical`, S2 `medium`, S3 `high`, S4
+`medium`, S5 `medium`. S5 is `medium` because it changes documents, root script names, and CI
+text only. It changes no app runtime and no API payload. The deterministic gates, the CI parser,
+and the A5 and A6 detectors defend the main fault. A false edit in a rule or a workflow is the
+main fault, and Review A/B/C plus the adversarial pass catch it.
+
+| Review or gate | Applies | What the reviewer does and why |
+|----------------|---------|--------------------------------|
+| Review A (independent gate review) | Yes | Not the Red author. Reads the gate, test, evidence, and S5 Contract diff. Checks all red reasons, the 10-case set, the fallback guard, and that no S1-S4 case was dropped. S5 closes the last gate that later tracks trust. |
+| Security review (Review B) | Yes | The phase removes the `deploy` job from `ci.yml`. Review B checks that no `CLOUDFLARE_API_TOKEN` or `CLOUDFLARE_ACCOUNT_ID` exposure stays, that `cloudflare-deploy.yml` keeps `workflow_dispatch`, and that no `pull_request_target` or new secret use appears. Reason: section 3 lines 132-133. |
+| UX/API review (Review C) | Yes | The root script names `lint`, `typecheck`, `format`, and `format:check` are an interface. Later track plans read those names. Review C checks the exact values and the absence of `vinext lint`. Reason: section 3 lines 139-140. No user-facing page changes. |
+| Adversarial testing | Yes | The reviewer tries other spellings of `tsc` and `eslint` in scripts and workflows, tries to re-add a deploy path under a new job name, and tries to leave a planned marker in another document. The allowed outcome is never a hidden call or a deploy on push. Reason: section 3 lines 153-154. |
+| Browser review (UX) | No | No runtime change exists, so no new render appears. The live complement is the root-script run, the CI validation, and the gate sweep. A "not applicable" mark here is not a review failure for S5. |
+
+### 18.6 S5 list carried from S4
+
+All seven items are record-only. They hide no gate failure. Source:
+`review-a-s4-d6b60a19.json` (F1-F7) and `phase-acceptance-s4-d6b60a19.json` (PA1, PA2), as
+recorded in plan lines 625-632. The S5 Contract task owns each fix. This strategy role only lists
+them.
+
+| Item | Source and state | Owner | Plan line it needs |
+|------|------------------|-------|--------------------|
+| F1 | `oxc-evidence.md:247-248` claim on typecheck exits is false for 3 workspaces: BM2 `n/a` to 0, IM3 2 to 1, PreCalc 2 to 1. Open. | S5 Contract, as a record edit. | Evidence section 2, at line 247-248. Text in 18.7 item 1. |
+| F2 / PA1 | `plan.md:518` says the fixture is not in the format commit. `dec3be20` includes it. Open. | S5 Contract, as a record edit. | `plan.md:518`. Text in 18.7 item 2. |
+| F3 / PA2 | `plan.md:479` and the timing evidence section say 18 ignore patterns. `.oxfmtrc.json` holds 17. Open. | S5 Contract, as a record edit. | `plan.md:479` and evidence section 5. Text in 18.7 item 3. |
+| F4 | `plan.md:550` calls `npm run format` idempotent. oxfmt 0.78.0 needs a second pass on 4 files. Open. | S5 Contract, as a record edit. | `plan.md:550`. Text in 18.7 item 4. One evidence sentence. No tech-debt row. |
+| F5 | The anchor falsification claim at `plan.md:474` and `test-strategy.md:1685` does not hold. Open. | S5 Contract, as a record edit. | `plan.md:474-475`. Text in 18.7 item 5. May drop the claim. |
+| F6 | `test-strategy.md:1617` (S4 CI risk) contradicts its yml fact row. The diff holds 5 formatted workflow YAML files. Open. | S5 Contract, as a record edit. | `test-strategy.md:1617`, amended by 18.7 item 6. This revision supersedes that row. |
+| F7 | Keep the before-sweep logs under their own gates label. The `s4` label overwrote them. Open. | S5 Contract, as a record edit. | Evidence section 8. Text in 18.7 item 7. |
+| Residuals | `gates.sh` sweep age guard (Review A F8), npm trailer-only errno lines (adversarial F3r2), and the errno data form in an assertion diff (adversarial F2r2). Accepted residuals. | Record only. No owner change. | Evidence section 8. Text in 18.7 item 8. Do not weaken a committed adversarial case. |
+
+### 18.7 Plan amendments (listed for the plan owner; this role does not edit plan.md)
+
+The S5 Contract owns these fixes. Each item names the exact text to write.
+
+1. In `oxc-evidence.md`, replace the sentence of lines 247-248 with:
+   > Steps of `checks-all s4`: `boundary` 0, `ci-check` 0, `tree` 0, `next-absent` 0,
+   > and `measure-contract` 1 (pre-existing). The typecheck and build sweeps differ from
+   > `baseline-m2` in three workspaces: bus-math-v2 `n/a` to 0, integrated-math-3 2 to 1,
+   > and pre-calculus 2 to 1. Each change is an improvement and holds no new diagnostic.
+2. At `plan.md:518`, replace the last sentence with:
+   > The fixture canonical JSON before and after the format is equal, with 49 entries. The
+   > fixture `scripts/__tests__/fixtures/lint-disable-allowlist.json` is in the format commit
+   > `dec3be20`; its content is unchanged.
+3. At `plan.md:479` and in evidence section 5, state:
+   > `.oxfmtrc.json` holds `$schema` and 17 `ignorePatterns` entries. The two
+   > `**/workbooks-manifest.json` paths and the other 15 patterns are the full list.
+4. At `plan.md:550`, replace the idempotence sentence with:
+   > `npm run format` reaches a second-pass fixed point. The first pass formats the tree;
+   > the second pass changes 4 files; the third pass changes none. The fixed point is the
+   > third pass, and `npm run format:check` then exits 0.
+   Add one sentence to evidence section 8 with the same fact. Do not add a tech-debt row.
+5. At `plan.md:474-475`, drop the clause "remove the anchors and the refutation case fails"
+   from both the plan and `test-strategy.md:1685`. Replace with:
+   > Falsification: remove the two `DISK_FULL_RE` alternatives and the two infra cases fail.
+   > The refutation case pins the title form and is not an anchor test.
+6. At `test-strategy.md:1617`, replace the S4 CI risk row with the fact of `17.1`: the format
+   diff holds 5 workflow YAML files, all inside `apps/`, and S4 edits no `.github/workflows/`
+   path in a commit. Section 18 supersedes this row for S5.
+7. In evidence section 8, record:
+   > The before-sweep logs of S4 live under the `gates/s4-before` label. A later `s4` run
+   > does not overwrite them. The label is separate from the after-sweep label.
+8. In evidence section 8, keep one record line for each accepted residual: the sweep age guard,
+   the npm trailer-only errno lines, and the errno data form inside an assertion diff. Do not
+   edit a committed adversarial case to close a residual.
+
+9. At `plan.md:659`, replace the `tsc` sentence of S5 case 3 with the scope of 18.2:
+   > No root `ws:*` script contains `tsc`. The 4 workspace typecheck scripts in
+   > `TSC_FALLBACK_LIST` keep `tsc --noEmit` under S3 AC4 and plan line 679. Use
+   > `TSC_FALLBACK_LIST` for script paths and `TYPESCRIPT_KEEP_LIST` for manifest fields.
+
+### 18.8 S5 `phase_base_sha` capture
+
+`role_base_sha` `5ca9187b388970d6ebc3feca54be45570ef9fbfa` is the S4 checkpoint. It predates the
+strategy commit of this revision. Do not use it as `phase_base_sha`. The r8 base
+`25036aefddd03718c8a3c8591095b186e5799c5d`, the r7 base `7ac6c9d`, and the S4 checkpoint
+`c343e4b1` also predate it. No SHA written in this file is a capture point.
+
+1. Land the strategy commit first: `measure(strategy): refresh the S5 test strategy`. It holds
+   `test-strategy.md` only.
+2. **Captured point.** Immediately after that commit returns, before any other commit and before
+   the first S5 task commit (plan line 637), run `git status --porcelain`. Only these six entries
+   may appear, each with status ` M`: `apps/integrated-math-1/.next/types/routes.d.ts`,
+   `apps/integrated-math-2/.next/types/routes.d.ts`,
+   `apps/integrated-math-3/.next/types/routes.d.ts`,
+   `apps/pre-calculus/.next/types/routes.d.ts`, `apps/bus-math-v2/lib/workbooks-manifest.json`,
+   and `measure/generated/routes.md`. Any other entry stops the capture. A staged file, an
+   untracked file, or another modified file also stops it. `measure/runs/` is gitignored.
+3. Run `git rev-parse HEAD`. Store the value as `phase_base_sha` for S5 in the orchestrator run
+   log and in the role handoff. Do not write it into `plan.md` or `spec.md` (F5). The log commit
+   of 18.8 step 4 changes no workspace file, so the captured SHA stays the base.
+4. The log commit `measure(runs): add the S5 strategy log` may follow the capture. It holds only
+   the log file, staged with `git add -f`.
+5. Capture before the S5 Contract commit and before any manifest, config, document, or test
+   change. A `phase_base_sha` that is not the strategy commit, or not a descendant of it, is
+   invalid. Stop and report.
+
+### 18.9 Anti-pattern coverage
+
+The summary lists the A-class each phase defends. The detailed table gives every S5 defense a
+falsification condition. A case with no falsification condition is not in the S5 suite. The
+catalog in `measure/anti-patterns.md` runs from A1 to A12; all twelve are considered for S5.
+
+| Phase | Anti-patterns | Defense summary and falsification |
+|-------|---------------|-----------------------------------|
+| S1 | A3, A4, A5, A7, A9, A10 | Section 6 and 14.9. Integer majors, sentinels, evidence tied to logs, anchored forms, no `measure/tracks/` reads, generated drift control. Falsifies on a wrong count, an empty set, an unbacked claim, a dropped app, or a staged generated file. |
+| S2 | A3, A4, A7 | Section 8 and 14.9. Labeled file counts, per-config probes, path-based allow-list. Falsifies when a config lints no file or a bare-word filter hides a rule. |
+| S3 | A3, A4, A5, A7, A11, A12 | Section 16.10. Aliased parser API, seeded probes, same-commit claims, command-form matches, guard suite, unchanged supervisor rule. Falsifies on an absent tool, an empty collector, a bare-word match, or a supervisor edit. |
+| S4 | A1 to A12 | Section 17.9. Pre-format file list, canonical fixture, anchored errno forms, blame proof, no workflow edit. Falsifies on an unlisted file, a changed fixture, a prose title marked INFRA, or a workflow commit. |
+| S5 | A1 to A12 | Detailed table below. Falsifies on a hidden command form, an empty scan, an unbacked version claim, an overstated registry, a dropped generated guard, or a missing guard suite. |
+
+| Anti-pattern | S5 defense | Falsifies when |
+|--------------|-----------|----------------|
+| A1 | The role gate reads structured `[~]` and `[x]` markers and the labeled `NEWFAIL=<n>` lines. No substring of a task title decides a phase state. | A `[~]` task with a key word in its prose counts as done, or a `NEWFAIL` line is parsed by a bare digit. |
+| A2 | S5 makes no publish or consent decision. The `deploy` job leaves `ci.yml`; no draft-to-publish gate changes. | A gate treats a publish step as passing without a consent artifact, or a deploy runs on push. |
+| A3 | Node major parses as an integer with `>= 22` (case 8). The blame SHA is 40 characters. Marker and regex hit lists have named counts. `tech-debt.md` line count parses as an integer `<= 50`. | A string `"20"`, a short SHA, or a 51-line file passes. |
+| A4 | Case 6 gets a sentinel that proves the scan ran. The `needs` parse names each job. The version claim has an `npm ls` complement. The 4 fallback scripts are asserted present, not absent. | An empty scan, a missing job, or a dropped fallback script passes as green. |
+| A5 | Each "passes" claim names a command at that commit: case 5, case 10 live complement, the root-script run, and the evidence summary. The A5 detector runs at closeout. | A claim has no command output, or the evidence names a version that `npm ls` does not show. |
+| A6 | The registry and evidence say "resolved" only after the S5 gates pass. The A6 detector runs at closeout. | An "all pass" claim survives a red gate or a red S4 carry item. |
+| A7 | The case 9 command forms are anchored. Case 7 parses job keys from YAML. The fallback exclusion is a named path list. No English word filters a real hit. | A title that names `eslint` in prose is dropped, or a renamed deploy job escapes the case. |
+| A8 | Green moves tasks from `[~]` to `[x]` with a SHA. The role gate reads the markers. | A marker uses a space or is set without the work. |
+| A9 | The S5 test reads no file under `measure/tracks/`. The orchestrator checks the evidence file. | A test path breaks after closeout moves the track folder. |
+| A10 | Only the 6 dirty generated files may appear at capture. No role stages one. `npm run generate` rewrites only these files. | A generated file enters a commit or a gate fails on stale generated facts. |
+| A11 | `bash tests/measure_orchestrator_audit.sh` stays in the `checks-all` gate. | The guard suite disappears from the gate. |
+| A12 | The AGENTS.md edit changes only the two named guardrail lines. A supervisor change needs its own reviewed flow. | An S5 commit edits the supervisor or its AGENTS.md peer-review rule. |
+
+### 18.10 Artifact tests, live tests, fixtures, and red-suite handling
+
+**Artifact and document tests.** Cases 1 to 4, 6, 7, 8, and 10 read document or YAML text.
+They prove that a rule or a script name exists. The planned-marker grep, the tech-debt line count,
+and the S5 Contract diff are artifact checks. They do not prove that a tool works (section 1).
+
+**Live behavior tests.** Case 5 runs `validate-ci.mjs` on the real workflows. The root
+`npm run lint`, `npm run typecheck`, and `npm run format:check` run the real tools. `npm ci` on
+Node 24, the three gate sweeps, `npm run generate`, and `npm run doctor` run real checks. S5 Verify
+runs the test and build gates for each workspace. Each artifact check has one of these as its live
+complement.
+
+**Fixtures and mocks.** S5 uses no mock and no seeded probe folder. The 49-entry allow-list of S2
+and the probe folders of S3 are not part of the S5 case set. The fake job logs of the S4 gate-script
+guards stay in their file and are labeled mocks. No S5 case edits them.
+
+**Intentionally-red aggregate suite.** At the S5 Red commit only `describe('S5 gate rules')` is
+red, with cases 1, 2, 3, 4, 7, and 10. The aggregate scripts suite is red by design until Green.
+Do not run the `test` gate between Red and Green. Guards 5, 6, 8, and 9 stay green. The Q3 row,
+the audit-suite baseline rows, and the `measure-contract` line are not intentionally red. Nobody
+fixes them in S5. After Green the S5 filter exits 0; `GREEN_TEST_COMMAND` exits 1 for the one Q3
+row only (18.4).
+
+### 18.11 Questions with applied defaults
+
+1. S5 cases 1 and 3 ban `tsc` in root files, but the 4 S3 fallback apps keep `tsc --noEmit`.
+   Default: scope the ban to root `ws:*` scripts and the named documents and workflows. Keep the
+   4 fallback scripts. Use `TSC_FALLBACK_LIST` for script paths and `TYPESCRIPT_KEEP_LIST` for
+   manifest fields. Add the presence guard of 18.2. Plan amendment 9 of 18.7 carries the text.
+2. Does S5 stay `medium` risk? Default: yes. The change is documents, root scripts, and CI text.
+   Review B, Review C, and the adversarial pass cover the added surfaces (18.5).
+3. Does `cloudflare-deploy.yml` stay after the ci.yml deploy job is removed? Default: yes. It is
+   the only dispatch deploy workflow (spec D7, plan line 652).
+4. Does the `Open` tech-debt row fit? Default: yes. The file holds 45 lines, so one row stays
+   within the 50-line limit.
+5. Does S5 need the security, UX/API, and adversarial review roles? Default: yes for all three.
+   Browser review stays out. Reasons are in 18.5 and match section 3.
+6. Who fixes the 7 S4 carry items? Default: the S5 Contract task. This strategy role only lists
+   them and proposes the text of 18.7. No strategy role edits `plan.md` in S5.
+7. Where is the S5 `phase_base_sha` captured? Default: immediately after the strategy commit and
+   before the S5 Contract commit (18.8). No SHA in this file is that capture point.
+8. Does this refresh block on a user decision? Default: no. Every question above has a default,
+   and each default is applied in this revision.
 
 No question blocks the strategy. Each default is applied in this revision.
