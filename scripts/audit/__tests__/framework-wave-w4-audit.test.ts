@@ -373,17 +373,17 @@ describe('framework-wave (W4) adversarial audit — W4 majors on post-W4 major l
     vinext: 1,
     vite: 8,
     '@vitejs/plugin-react': 6,
-    typescript: 6,
+    typescript: 7,
   };
 
   for (const [pkg, expectedMajor] of Object.entries(expectedPostW4Major)) {
-    it(`${pkg} installed lockfile version is on the ${expectedMajor}.x line (post-W4; vinext updated forward by S1)`, () => {
+    it(`${pkg} installed lockfile version is on the ${expectedMajor}.x line (post-W4; vinext moved by S1, typescript by S3)`, () => {
       const v = installedVersion(pkg);
       expect(v, `${pkg} missing from lockfile`).toBeDefined();
       const [maj] = v!.split('.').map((n) => parseInt(n, 10));
       expect(
         maj,
-        `${pkg} major must be ${expectedMajor} after W4 (vinext: after S1), found ${maj} in ${v}`
+        `${pkg} major must be ${expectedMajor} after W4 and the forward moves (S1 vinext, S3 typescript), found ${maj} in ${v}`
       ).toBe(expectedMajor);
     });
   }

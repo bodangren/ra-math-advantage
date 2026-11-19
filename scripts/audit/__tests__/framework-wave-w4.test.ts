@@ -518,29 +518,34 @@ describe('framework-wave (W4) — eslint-config-next 15 → 16 (Task 3 / FR8)', 
 // ===========================================================================
 
 describe('framework-wave (W4) — TypeScript 5 → 6 (Task 4 / FR8)', () => {
-  it('typescript installed lockfile version is on the 6.x line', () => {
+  // S3 of vinext-oxc-toolchain_20261114 moves the workspace to TypeScript 7.0.2. The
+  // W4 6.x line is superseded by that forward move. The assertions keep their strength:
+  // one major line, and every declared range admits the installed release.
+  it('typescript installed lockfile version is on the 7.x line (S3 supersedes the W4 6.x line)', () => {
     const v = installedVersion('typescript');
     expect(v, 'typescript missing from lockfile').toBeDefined();
     const f = semverFloor(`^${v}`);
     expect(
       f.major,
-      `typescript major must be 6 after W4-T4, found ${f.major} in ${v}`
-    ).toBe(6);
+      `typescript major must be 7 after S3, found ${f.major} in ${v}`
+    ).toBe(7);
   });
 
-  it('every workspace typescript manifest range admits a 6.x release (reconcile leftover ^5)', () => {
+  it('every workspace typescript manifest range admits the installed 7.x release (S3 supersedes the W4 6.x line)', () => {
+    const installed = installedVersion('typescript');
+    expect(installed, 'typescript missing from lockfile').toBeDefined();
     const manifests = getAppManifests(REPO_ROOT);
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
       for (const r of allDeclaredRanges(m, 'typescript')) {
-        if (!satisfies('6.0.0', r)) {
+        if (!satisfies(installed!, r)) {
           offenders.push({ workspace: m.workspace_path, range: r });
         }
       }
     }
     expect(
       offenders,
-      `every workspace typescript range must admit 6.0.0 after W4-T4, found: ${JSON.stringify(offenders)}`
+      `every workspace typescript range must admit the installed ${installed} after S3, found: ${JSON.stringify(offenders)}`
     ).toEqual([]);
   });
 });

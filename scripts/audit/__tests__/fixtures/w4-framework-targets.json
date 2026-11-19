@@ -5,7 +5,7 @@
   "purpose": "Phase 4 — Coordinated Framework & Toolchain Majors (FR7/FR8). Enumerates the post-W4 concrete target version for every W4-framework family and the manifest-owner set. The w4 Red-phase TDD suite asserts (a) this fixture exists, (b) it carries every W4-framework family from the matrix, (c) every listed target satisfies the spec target_after_all_waves major floor, and (d) the installed lockfile version equals the target. Green behavior: a w4 Green commit (per-migration commits T1/T2/T3/T4) refreshes the lockfile to these versions and re-runs the audit contract.",
   "framework_families_count": 8,
   "registry_stub_baseline": "scripts/audit/__tests__/fixtures/registry-stub.json",
-  "compatibility_requirement": "Every target must satisfy the post-W4 declared manifest range for every owner workspace. Vinext 1.4.5, Vite 8.x, @vitejs/plugin-react 6.x, Next removed (absence guard), eslint-config-next 16.x, TypeScript 6.x, ESLint 10.x, @eslint/js 10.x. @types/node stays at a single major floor across the workspace (post-W3 invariant).",
+  "compatibility_requirement": "Every target must satisfy the post-W4 declared manifest range for every owner workspace. Vinext 1.4.5, Vite 8.x, @vitejs/plugin-react 6.x, Next removed (absence guard), eslint-config-next 16.x, TypeScript 7.x (S3 forward move), ESLint 10.x, @eslint/js 10.x. @types/node stays at a single major floor across the workspace (post-W3 invariant).",
   "per_migration_scope": {
     "W4-T1_vinext": [
       "vinext"
@@ -111,7 +111,7 @@
     },
     {
       "package": "typescript",
-      "target_version": "6.0.0",
+      "target_version": "7.0.2",
       "owners": [
         "apps/bus-math-v2",
         "apps/integrated-math-1",
@@ -124,7 +124,7 @@
       "peer_dependencies": [
         "@types/node >= ^22"
       ],
-      "notes": "T4 isolated toolchain; run `tsc --noEmit` together with vitest (test-strategy.md §3, §5)."
+      "notes": "T4 isolated toolchain; run `tsc --noEmit` together with vitest (test-strategy.md §3, §5). S3 of vinext-oxc-toolchain_20261114 moves the target to 7.0.2 and the typecheck command to tsrs (oxlint --type-aware --type-check)."
     },
     {
       "package": "eslint",
