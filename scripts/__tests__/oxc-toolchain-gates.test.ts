@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { load as loadYaml } from 'js-yaml';
 import * as ts from 'typescript6';
 
@@ -128,6 +128,44 @@ function manifestEntries(files: string[], base = REPO_ROOT): ManifestEntry[] {
 // Probe project helper (plan "Probe Test Helper").
 const tempDirs: string[] = [];
 
+// The prefixes of the seed folders that this file creates inside the repository. S3
+// adversarial F1r2: an interrupted run leaves a folder behind, and the next run fails
+// red on adv 7, because the folder holds carrier files that the allow-list does not
+// name. One constant holds the list, so the seeding helper and the startup sweep agree.
+const PROBE_DIR_PREFIXES = ['.oxlint-adv', '.oxlint-probe-'];
+
+// Create a seed folder under `parent` and register it for afterEach. The prefix must
+// start with a PROBE_DIR_PREFIXES entry, so the beforeAll sweep can remove a leak.
+function seedDir(parent: string, prefix: string): string {
+  if (!PROBE_DIR_PREFIXES.some((known) => prefix.startsWith(known))) {
+    throw new Error(`seed prefix ${prefix} is not in PROBE_DIR_PREFIXES`);
+  }
+  const dir = fs.mkdtempSync(path.join(parent, prefix));
+  tempDirs.push(dir);
+  return dir;
+}
+
+// Remove a seed folder that an interrupted run left behind. The sweep reads one
+// directory level in each parent, matches the exact prefix, and skips a folder that
+// holds a tracked file. It never walks the tree, so a real path cannot be removed.
+function sweepStaleProbeDirs(): void {
+  for (const parent of [REPO_ROOT, ...WORKSPACE_DIRS]) {
+    if (!fs.existsSync(parent)) continue;
+    for (const entry of fs.readdirSync(parent, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue;
+      if (!PROBE_DIR_PREFIXES.some((prefix) => entry.name.startsWith(prefix))) continue;
+      const target = path.join(parent, entry.name);
+      // The tracked-path guard: git names every tracked path under `target`, and a
+      // git call that fails skips the folder (the safe direction).
+      const tracked = spawnSync('git', ['-C', REPO_ROOT, 'ls-files', '--', relative(target)], {
+        encoding: 'utf8',
+      });
+      if (tracked.status !== 0 || (tracked.stdout ?? '').trim() !== '') continue;
+      fs.rmSync(target, { recursive: true, force: true });
+    }
+  }
+}
+
 function makeProbeProject(files: Record<string, string>, tsconfig: Json): string {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'oxc-gate-'));
   tempDirs.push(tmp);
@@ -225,6 +263,12 @@ afterEach(() => {
     const dir = tempDirs.pop();
     if (dir) fs.rmSync(dir, { recursive: true, force: true });
   }
+});
+
+// The startup sweep (F1r2): before the suite seeds any folder, remove the folders that
+// an earlier interrupted run left behind.
+beforeAll(() => {
+  sweepStaleProbeDirs();
 });
 
 describe('S1 vinext 1.x', () => {
@@ -1248,8 +1292,7 @@ function scanLockfileLintHygiene(lock: Json, jsPlugins: JsPluginEntry[]): string
 // The root config applies its rules through `files` globs on apps/ and packages/ paths.
 // A probe in the system temp folder matches no glob, so the probe lives under apps/.
 function makeLintProbe(content: string): string {
-  const dir = fs.mkdtempSync(path.join(REPO_ROOT, 'apps', '.oxlint-probe-'));
-  tempDirs.push(dir);
+  const dir = seedDir(path.join(REPO_ROOT, 'apps'), '.oxlint-probe-');
   const file = path.join(dir, 'probe.ts');
   fs.writeFileSync(file, content);
   return file;
@@ -1778,8 +1821,7 @@ describe('S2 adversarial', () => {
       for (const override of (config.overrides ?? []) as Array<{ files?: string[] }>) {
         override.files = ['nomatch/**/*.{js,jsx,mjs,cjs,ts,tsx}'];
       }
-      const cfgTmp = fs.mkdtempSync(path.join(REPO_ROOT, '.oxlint-adv-cfg-'));
-      tempDirs.push(cfgTmp);
+      const cfgTmp = seedDir(REPO_ROOT, '.oxlint-adv-cfg-');
       const mutantConfig = path.join(cfgTmp, 'mutant.oxlintrc.json');
       fs.writeFileSync(mutantConfig, JSON.stringify(config));
       const probe = makeLintProbe('const unused = 1;\n');
@@ -1897,8 +1939,7 @@ describe('S2 adversarial', () => {
       // so an empty result on the real tree below is a real pass, not a vacuous one (A4).
       // The seed folder lives inside apps/integrated-math-3, so the root config's app
       // rules apply to it.
-      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv-seed-'));
-      tempDirs.push(seedRoot);
+      const seedRoot = seedDir(IM3_DIR, '.oxlint-adv-seed-');
       const seedFile = path.join(seedRoot, 'seed.ts');
       fs.writeFileSync(seedFile, '/* eslint-disable */\nconst unused = 1;\n');
       const hidden = runTool([
@@ -1948,9 +1989,8 @@ describe('S2 adversarial', () => {
         if (!workspace) throw new Error(`no workspace folder for ${relative(file)}`);
         let tempRoot = rootByWorkspace.get(workspace);
         if (!tempRoot) {
-          tempRoot = fs.mkdtempSync(path.join(workspace, '.oxlint-adv-'));
+          tempRoot = seedDir(workspace, '.oxlint-adv-');
           rootByWorkspace.set(workspace, tempRoot);
-          tempDirs.push(tempRoot);
         }
         const copy = path.join(tempRoot, path.relative(workspace, file));
         fs.mkdirSync(path.dirname(copy), { recursive: true });
@@ -2006,8 +2046,7 @@ describe('S2 adversarial', () => {
     // a stale entry, blanket growth, a changed directive, and a widened entry. Each
     // attack is seeded inside apps/ (so the root config applies), never in a real
     // file, and each has a paired control that must pass.
-    const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv8-'));
-    tempDirs.push(seedRoot);
+    const seedRoot = seedDir(IM3_DIR, '.oxlint-adv8-');
     const write = (name: string, content: string): string => {
       const file = path.join(seedRoot, name);
       fs.writeFileSync(file, content);
@@ -2203,8 +2242,7 @@ describe('S2 adversarial', () => {
       // and the sweep strips only those. A listed carrier can hide a new finding
       // behind either form without failing adv 7. Live controls first, so the case is
       // not vacuous.
-      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv9-'));
-      tempDirs.push(seedRoot);
+      const seedRoot = seedDir(IM3_DIR, '.oxlint-adv9-');
       const write = (name: string, content: string): string => {
         const file = path.join(seedRoot, name);
         fs.writeFileSync(file, content);
@@ -2253,8 +2291,7 @@ describe('S2 adversarial', () => {
       // directive and the sweep copy stays clean. A listed CRLF carrier can hide
       // a live finding behind either form without the sweep surfacing it. Live
       // controls first, so the case is not vacuous.
-      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv10-'));
-      tempDirs.push(seedRoot);
+      const seedRoot = seedDir(IM3_DIR, '.oxlint-adv10-');
       const write = (name: string, content: string): string => {
         const file = path.join(seedRoot, name);
         fs.writeFileSync(file, content);
@@ -2312,8 +2349,7 @@ describe('S2 adversarial', () => {
       // from the in-string /* to the real disable's */. The strip then deletes
       // the code between them, breaks the string, and the copy reports a parse
       // error, so the finding that the real disable hides never surfaces.
-      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv11-'));
-      tempDirs.push(seedRoot);
+      const seedRoot = seedDir(IM3_DIR, '.oxlint-adv11-');
       const write = (name: string, content: string): string => {
         const file = path.join(seedRoot, name);
         fs.writeFileSync(file, content);
@@ -2371,8 +2407,7 @@ describe('S2 adversarial', () => {
       // honored by oxlint (live), counted by the pin, and stripped by the sweep,
       // with the surfaced finding. A regression on any form reopens the F1r2
       // hole through a new spelling.
-      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv12-'));
-      tempDirs.push(seedRoot);
+      const seedRoot = seedDir(IM3_DIR, '.oxlint-adv12-');
       const write = (name: string, content: string): string => {
         const file = path.join(seedRoot, name);
         fs.writeFileSync(file, content);
@@ -2445,8 +2480,7 @@ describe('S2 adversarial', () => {
       // and the pin counts nothing. If a future oxlint starts to honor a group 3
       // spelling, the prefilter would go blind, and this test fails on the live
       // probe first.
-      const seedRoot = fs.mkdtempSync(path.join(IM3_DIR, '.oxlint-adv13-'));
-      tempDirs.push(seedRoot);
+      const seedRoot = seedDir(IM3_DIR, '.oxlint-adv13-');
       const write = (name: string, content: string): string => {
         const file = path.join(seedRoot, name);
         fs.writeFileSync(file, content);
