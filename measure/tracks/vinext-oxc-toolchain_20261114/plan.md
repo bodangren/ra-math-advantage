@@ -446,15 +446,15 @@ S3 remediation sub-box (Jr Green rounds)
 ## Phase S4: oxfmt
 _Story ref: spec.md#story-s4_
 
-- [ ] Task: S4 Contract — record the format change
-    - [ ] In `measure/tech-stack.md`, add a dated note. The note names oxfmt 0.78.0, the default oxfmt style, the format-check gate, and `.git-blame-ignore-revs`.
-    - [ ] Use this target `.oxfmtrc.json` at the repository root. It has `"$schema": "./node_modules/oxfmt/configuration_schema.json"` and no style options.
-    - [ ] Its `ignorePatterns` list is: `**/*.md`, `**/*.mdx`, `measure/**`, `**/curriculum/**`, `kst-srs.v2/**`, `**/convex/_generated/**`, `**/package-lock.json`, `**/dist/**`, `**/build/**`, `**/.vinext/**`, `**/.next/**`, `**/coverage/**`, `**/playwright-report/**`, `**/test-results/**`, `.agents/**`, `.claude/**`, `**/workbooks-manifest.json`.
-    - [ ] Search `scripts/`, `apps/*/scripts/`, and `packages/*/scripts/` for `writeFileSync` and `writeFile(`.
-    - [ ] Add each tracked output path of these scripts to `ignorePatterns` when the list does not cover it yet. Script output must not fail the format check after a rerun.
-    - [ ] The root scripts are `"format": "oxfmt"` and `"format:check": "oxfmt --check"`.
-    - [ ] `oxfmt` `0.78.0` (exact) goes in the root `devDependencies`.
-    - [ ] Keep `oxfmt` `0.78.0` exact. Record `npm view oxfmt version` as `0.79.0` in evidence section 3 and section 11. If the PM chooses 0.79.0, change the pin in the same commit as the config. Re-run this revision's version check.
+- [~] Task: S4 Contract — record the format change
+    - [x] In `measure/tech-stack.md`, add a dated note. The note names oxfmt 0.78.0, the default oxfmt style, the format-check gate, and `.git-blame-ignore-revs`. (Done: section "S4 format contract (2026-11-19)".)
+    - [x] Use this target `.oxfmtrc.json` at the repository root. It has `"$schema": "./node_modules/oxfmt/configuration_schema.json"` and no style options. (Target recorded; Green applies: the config file itself lands in the Implement commit.)
+    - [x] Its `ignorePatterns` list is: `**/*.md`, `**/*.mdx`, `measure/**`, `**/curriculum/**`, `kst-srs.v2/**`, `**/convex/_generated/**`, `**/package-lock.json`, `**/dist/**`, `**/build/**`, `**/.vinext/**`, `**/.next/**`, `**/coverage/**`, `**/playwright-report/**`, `**/test-results/**`, `.agents/**`, `.claude/**`, `**/workbooks-manifest.json`. (Target recorded; Green applies.)
+    - [x] Search `scripts/`, `apps/*/scripts/`, and `packages/*/scripts/` for `writeFileSync` and `writeFile(`. (Done: 13 hits in `scripts/`, 12 hits in `apps/*/scripts/`; no `packages/*/scripts/` file uses either call.)
+    - [x] Add each tracked output path of these scripts to `ignorePatterns` when the list does not cover it yet. Script output must not fail the format check after a rerun. (Done: the output paths are listed for Green in evidence section 3; each tracked path has cover, including `**/workbooks-manifest.json` for both manifests. Green writes the config file.)
+    - [x] The root scripts are `"format": "oxfmt"` and `"format:check": "oxfmt --check"`. (Target recorded; Green applies.)
+    - [x] `oxfmt` `0.78.0` (exact) goes in the root `devDependencies`. (Target recorded; Green applies.)
+    - [x] Keep `oxfmt` `0.78.0` exact. Record `npm view oxfmt version` as `0.79.0` in evidence section 3 and section 11. If the PM chooses 0.79.0, change the pin in the same commit as the config. Re-run this revision's version check. (Done: `npm view oxfmt version` gives `0.79.0`; `npm view oxfmt@0.78.0 version` gives `0.78.0`. Recorded in evidence section 3 "S4 Contract" and section 11.)
 - [ ] Task: S4 Test (Red) — add the S4 gate tests
     - [ ] Add `describe('S4 oxfmt')` to the test file.
     - [ ] Normal case 1: `npx --no-install oxfmt --check` at the repository root exits with code 0.

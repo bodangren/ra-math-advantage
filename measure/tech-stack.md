@@ -216,6 +216,20 @@ The oxlint type-check gate runs with `TSRS_FAST=1`. When oxlint reports that
 `--type-aware` needs `oxlint-tsgolint`, the root `devDependencies` add
 `oxlint-tsgolint` `^7.0.2007`, and evidence section 8 records it.
 
+### S4 format contract (2026-11-19, `vinext-oxc-toolchain_20261114`)
+
+The S4 task records the format change of this track. The root `package.json`
+will declare `oxfmt` `0.78.0` (exact) in `devDependencies`. The registry latest
+is `0.79.0` (`npm view oxfmt version`, checked 2026-11-19). No other manifest
+declares `oxfmt`.
+
+The repository uses the default oxfmt style. The root `.oxfmtrc.json` holds
+`$schema` and `ignorePatterns` only. It holds no style option. The root scripts
+are `"format": "oxfmt"` and `"format:check": "oxfmt --check"`. The
+`format:check` script is the format gate. The format-only commit
+`style: format the repo with oxfmt` goes in `.git-blame-ignore-revs`, so blame
+skips it.
+
 ## Environment Variables
 
 `apps/integrated-math-3/.env.example`:

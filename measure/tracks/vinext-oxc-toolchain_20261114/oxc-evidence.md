@@ -269,6 +269,35 @@ Filled by the S1 Implement tasks. The lockfile is the root `package-lock.json` o
 Not changed, by plan: `typescript` (S3), `eslint`, `@eslint/js`, `@eslint/eslintrc`,
 `typescript-eslint`, `eslint-config-next` (S2 removes them).
 
+### S4 Contract (2026-11-19)
+
+Target pin (Green applies it in the Implement commit): `oxfmt` `0.78.0` exact in
+the root `devDependencies` only. The registry latest is `0.79.0`
+(`npm view oxfmt version`, checked 2026-11-19; `npm view oxfmt@0.78.0 version`
+gives `0.78.0`). No manifest declares `oxfmt` at this commit. Root scripts
+(target): `"format": "oxfmt"` and `"format:check": "oxfmt --check"`. Config
+(target): the root `.oxfmtrc.json` holds `$schema` and `ignorePatterns` only.
+No `.oxfmtrc.json` and no `.git-blame-ignore-revs` are tracked at this commit.
+
+`writeFileSync`/`writeFile(` search (plan line 453): `scripts/` (course edges,
+cross-course edges, align-standards, skill inventory, remediation, measure
+docs, architecture reports) and `apps/*/scripts/` (BM2 workbook manifest, IM2
+curriculum builds, IM3 curriculum audit and remediation artifacts, pre-calculus
+source and curriculum syncs). No `packages/*/scripts/` file uses either call.
+Tracked output paths and their ignore cover:
+
+| Tracked output path | Ignore cover |
+|---|---|
+| `apps/*/curriculum/**` (edges, nodes, standard-edges, review queues, implementation artifacts) | `**/curriculum/**` |
+| `measure/**` (generated reports, skill-graph audit notes) | `measure/**` |
+| `apps/bus-math-v2/lib/workbooks-manifest.json` and `apps/integrated-math-3/lib/workbooks-manifest.json` (the BM2 file is dirty at HEAD; the BM2 script writes `process.cwd()/lib/workbooks-manifest.json`, so one glob covers both) | `**/workbooks-manifest.json` |
+| Pre-calculus `source/**/*.md` | `**/*.md` |
+
+`remediate-concept-blueprints.ts` rewrites source blueprint files in place, so
+no new path needs cover. `scale/run.mjs` writes the caller-given
+`options.out` path. No tracked output path lacks cover. Green creates the
+config file.
+
 ## 4. Held packages
 
 None. S1 held no package (phase acceptance 413a2138, 2026-11-18).
@@ -991,4 +1020,6 @@ The pre-merge rows above stay the only record. The S1 Verify task runs both audi
 
 ## 11. Summary for other repositories
 
-Phase S5 fills this section.
+Phase S5 fills this section. S4 contract record (2026-11-19): the format pin is
+`oxfmt` `0.78.0` exact; the registry latest is `0.79.0`
+(`npm view oxfmt version`).
