@@ -622,6 +622,14 @@ _Story ref: spec.md#story-s4_
 
 Phase note (2026-11-19): the r8 strategy commit lands before the S4 phase base capture (strategy section 17). The run log and the role handoff hold `phase_base_sha`. No plan line carries a phase SHA.
 Phase note (2026-11-19, Red retry): Strategy 17.7 item 3 (probe name in the clean-file output) is superseded: oxfmt 0.78.0 prints no file name for a clean file; case 5 asserts the summary line and the file count.
+Phase note (2026-11-19, S4 checkpoint): S5 carry items are record-only; they hide no gate failure. Source: `review-a-s4-d6b60a19.json` (F1-F7) and `phase-acceptance-s4-d6b60a19.json` (PA1, PA2).
+- F1 (`oxc-evidence.md:247`): correct the claim that the typecheck sweep holds the baseline exit codes; 3 workspaces differ, each an improvement.
+- F2 / PA1 (`plan.md:518`): correct the claim that the fixture is not in the format commit; `dec3be20` includes it.
+- F3 / PA2 (`plan.md:479` and the timing evidence section): state 17 ignorePatterns, not 18.
+- F4 (`plan.md:550`): define idempotence as the second-pass fixed point; oxfmt 0.78.0 needs a second pass on 4 files.
+- F5 (`plan.md:474`, `test-strategy.md:1685`): name the discriminating input for the anchor falsification, or drop that claim.
+- F6 (`test-strategy.md:1617`): align the S4 risk row with the yml fact row; the diff holds 5 formatted workflow YAML files.
+- F7: keep the before-sweep logs under their own gates label; the s4 label overwrote them.
 
 ## Phase S5: Gate rules and CI
 _Story ref: spec.md#story-s5_

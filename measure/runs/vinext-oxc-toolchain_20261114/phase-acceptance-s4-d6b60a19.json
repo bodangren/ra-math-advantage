@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "role": "measure-phase-acceptance",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S4: oxfmt",
+  "baseline_sha": "85208f3a72cd739d661a938bfc75df6d77f71964",
+  "role_base_sha": "d6b60a19f32c75d2d2738d09f5ae5d1352347b00",
+  "audited_head_sha": "d6b60a19f32c75d2d2738d09f5ae5d1352347b00",
+  "status": "pass",
+  "summary": "Audit of Phase S4: oxfmt at d6b60a19, over the 25-commit range 85208f3a..d6b60a19. Verdict: PASS. Seven S4 tasks hold their commits (2cda0dec, 1acf85c4 with 4c4bd10e and 97ef1021, d0d4ad71, e5f474b5, dec3be20, 2046b47f, e65553da, 39ce245f, 7019c7b5); only the deferred [b] user-manual task is open, as the brief says. The five Red cases pass at HEAD: -t 'S4 oxfmt' gives 5 passed and 90 skipped. npm run format:check exits 0 on 3717 files. The config holds $schema and the 17 ignorePatterns of plan.md:452; the root scripts are exactly oxfmt and oxfmt --check; oxfmt is pinned to the exact 0.78.0. The format commit dec3be20 holds 3499 files, zero ignore-pattern hits, and none of the six dirty generated paths. .git-blame-ignore-revs works: plain blame gives dec3be20 and the ignore file gives ccfe3571. Review A ran at d6b60a19, the same SHA as HEAD and as role_base_sha, so no implementation commit came after the review. The single commit after the Green head fc299733 is d6b60a19, a measure/runs log, so the Green result still applies. I re-derived the gate result with the gates.sh key(): every s4 test log and step log yields zero keys absent from baseline-m2. lint, test, and build exits are identical to baseline-m2 over 27 workspaces each; typecheck differs in 3 workspaces, and each difference is an improvement (n/a to 0, 2 to 1, 2 to 1). The fixture canonical JSON is equal at 85208f3a and at HEAD, with 49 entries. The S2 adversarial (13), S3 tsrs (8), and S3 adversarial (14) filters still pass. Two record-only evidence errors go to the S5 list. No blocker.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "PA1 [Nit] phase-acceptance: plan.md:518 (the S4 Verify fixture box) says 'The fixture file is not in the format commit'. The fixture is in it: `git show --name-only dec3be20` lists scripts/__tests__/fixtures/lint-disable-allowlist.json at name-list line 3423, and the raw text changed while the canonical JSON stayed equal. Rationale: this is the same item as Review A F2 and it hides no failure, because the plan box's own check (canonical JSON equal, 49 entries) passes and test-strategy 17.1 lists the fixture in the pre-format change set. Record-only for the S5 list: correct the sentence.",
+    "PA2 [Nit] phase-acceptance: plan.md:479 and oxc-evidence.md (S4 oxfmt timing, 'The 18 ignore patterns are') state 18 ignorePatterns. The config file and the plan.md:452 list hold 17. Rationale: this is Review A F3. The file matches the target list entry for entry, so no gate reads a wrong list; a wrong count invites a false mismatch check later. Record-only for the S5 list."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD and git rev-parse d6b60a19 both give d6b60a19f32c75d2d2738d09f5ae5d1352347b00. role_base_sha equals it. phase_base 85208f3a is an ancestor of HEAD. git log --oneline 85208f3a..HEAD gives 25 commits.",
+    "Task-to-commit map, each SHA resolved with git log -1 --format=%s: 2cda0dec (S4 Contract); 1acf85c4, 4c4bd10e, 97ef1021 (S4 Test Red and the classifier guard) with the Red retry d0d4ad71; e5f474b5 (config); dec3be20 (format); 2046b47f (blame ignore); e65553da (the 17-test regression fix); 39ce245f (the key() refinement); 7019c7b5 (S4 Verify and S4 Docs & Doctor evidence).",
+    "Plan state: every S4 box is [x] except the [b] deferred 'Measure - User Manual Verification' task and its four open sub-boxes (user confirmation, checkpoint commit, heading marker, phase-complete commit). The checkpoint round owns those.",
+    "Red filter at HEAD: npx vitest run --config scripts/vitest.config.ts -t 'S4 oxfmt' gives 1 test file passed and 2 skipped, 5 passed and 90 skipped (95), exit 0, run through heavy-run.sh.",
+    "Companion filters at HEAD: -t 'S2 adversarial' 13 passed and 82 skipped; -t 'S3 tsrs' 8 passed and 87 skipped; -t 'S3 adversarial' 14 passed and 81 skipped.",
+    "Guard file: npx vitest run --config scripts/vitest.config.ts scripts/__tests__/vinext-oxc-gates-script.test.ts gives 26 passed of 26.",
+    "Format gate: npm run format:check prints 'Checking formatting...', 'All matched files use the correct format.', and 'Finished in 201ms on 3717 files using 12 threads.', exit 0. The plan claims 3717 files at plan.md:516 and 593.",
+    "Config and pin: node reads .oxfmtrc.json as $schema plus 17 ignorePatterns, equal to the plan.md:452 list. package.json scripts.format is oxfmt, scripts['format:check'] is oxfmt --check, devDependencies.oxfmt is the exact 0.78.0.",
+    "Format commit: `git show --name-only dec3be20` gives 3499 names. A node match of the 17 ignorePatterns against those names gives 0 hits. None of the six dirty generated paths is in the list.",
+    "Blame: git blame -L 47,47 package.json gives dec3be20; git blame --ignore-revs-file .git-blame-ignore-revs -L 47,47 package.json gives ccfe3571. ccfe3571 is older than dec3be20.",
+    "Gate re-derivation: I sourced gates.sh and ran its key() over every measure/runs/.../gates/s4/test-*.log and step-*.log against the same-named baseline-m2 log. comm -13 gives 0 new keys in total and 0 files without a base log. This confirms the NEWFAIL=0 claims at plan.md:516, 588-595, and 617 at the key level.",
+    "Exit comparison, baseline-m2 versus s4: lint.exit, test.exit, and build.exit are identical; each holds 27 workspaces per side. typecheck.exit differs in 3 workspaces: apps/bus-math-v2 n/a to 0 (it gained a typecheck script), apps/integrated-math-3 2 to 1, and apps/pre-calculus 2 to 1. No difference adds a failure.",
+    "Step comparison: s4 test.steps is 'scripts-suite 1' and 'audit-suites 1', equal to baseline-m2. s4 checks-all.steps is boundary 0, ci-check 0, tree 0, next-absent 0, measure-contract 1; baseline-m2 also holds typecheck-bm2 0 (absent in s4 now that bus-math-v2 has its own typecheck script) and next-absent 1. Both differences are improvements.",
+    "Known exception confirmed: gates/s4/step-scripts-suite.log holds exactly one FAIL title, 'remediate-concept-blueprints > production scan reports the honest count for the current repo state', with 'Tests 1 failed | 94 passed (95)' (S1 Q3). The baseline-m2 log held 7 failures and the same title.",
+    "Fixture: node parses scripts/__tests__/fixtures/lint-disable-allowlist.json at HEAD and at 85208f3a, sorts keys, and gets two equal canonical strings, entries.length 49, and a different raw text.",
+    "Audit step: gates/s4/audit.txt is 'critical=0 high=9 moderate=7 low=5', as plan.md:590 and oxc-evidence.md:238 state.",
+    "Prerequisite binding: red-s4-8a3a7aca.log holds role_base 9b3a0d25 and head 8a3a7aca; red-s4-r2-524a1c7a.log holds role_base 107cdc18 and head 524a1c7a; jr-green-s4-fc299733.log holds head fc299733. git log --oneline fc299733..HEAD holds only d6b60a19, which touches measure/runs/vinext-oxc-toolchain_20261114/jr-green-s4-fc299733.log. That is a measure/runs-only commit, so the Green result still applies at the audited HEAD.",
+    "Review gate binding: review-a-s4-d6b60a19.json holds status pass, role_base_sha d6b60a19, audited_head_sha d6b60a19, and retry_recommendation none. HEAD equals that SHA, so no implementation commit came after the review.",
+    "Working tree: git status --porcelain holds 8 entries. Six are the known dirty generated paths, unstaged. The other two are the Review A JSON and log, staged and not committed, as the brief says; the log also has a small unstaged edit that adds the delivery note.",
+    "Scope: no measure/tracks.md change and no contract-test or filter change beyond gates.sh key() and DISK_FULL_RE, so A3, A4, A6, and A7 apply only where the phase diff touched them. A3 holds: case 5 parses the labeled count with /on (\\d+) files/ and requires the integer 1, and case 3 checks a labeled SHA length of 40. A7 holds: the two new DISK_FULL_RE alternatives are full-line anchored, so a prose title stays a diagnostic key (the refutation case passes).",
+    "Accepted residuals from Review A, re-read and left record-only: F1 (oxc-evidence.md:247 says the typecheck sweep holds the baseline exit codes; 3 workspaces differ, and I re-checked that each difference is an improvement), F4 (4 files need a second oxfmt pass; the committed tree is a fixed point at format:check exit 0), F5 (the anchor falsification text for the refutation case does not discriminate), F6 (the S4 CI risk row contradicts its own yml fact row), and F7 (the before-sweep logs were overwritten by the s4 label; I re-derived the no-loss property over every recorded log)."
+  ],
+  "commands": [
+    "git rev-parse HEAD; git rev-parse d6b60a19; git merge-base --is-ancestor 85208f3a HEAD; git log --oneline 85208f3a..d6b60a19",
+    "for s in 2cda0dec 1acf85c4 4c4bd10e 97ef1021 d0d4ad71 e5f474b5 dec3be20 2046b47f e65553da 39ce245f 7019c7b5 fc299733 d6b60a19; git log -1 --format='%s' $s",
+    "heavy-run.sh -c \"npx vitest run --config scripts/vitest.config.ts -t 'S4 oxfmt'\" -> 5 passed | 90 skipped",
+    "heavy-run.sh -c \"npx vitest run --config scripts/vitest.config.ts -t 'S2 adversarial'\" -> 13 passed",
+    "heavy-run.sh -c \"npx vitest run --config scripts/vitest.config.ts -t 'S3 tsrs'\" -> 8 passed",
+    "heavy-run.sh -c \"npx vitest run --config scripts/vitest.config.ts -t 'S3 adversarial'\" -> 14 passed",
+    "heavy-run.sh -c \"npx vitest run --config scripts/vitest.config.ts scripts/__tests__/vinext-oxc-gates-script.test.ts\" -> 26 passed",
+    "npm run format:check -> exit 0, 3717 files",
+    "node -e (read .oxfmtrc.json and package.json; 17 patterns, oxfmt 0.78.0, exact scripts)",
+    "node -e (match the 17 patterns against git show --name-only dec3be20; 3499 names, 0 hits, none of the 6 dirty paths)",
+    "git blame -L 47,47 package.json; git blame --ignore-revs-file .git-blame-ignore-revs -L 47,47 package.json",
+    "bash -c 'source gates.sh; comm -13 <(key baseline-m2/<log>) <(key s4/<log>)' over every test and step log -> 0 new keys",
+    "diff baseline-m2/{lint,test,build,typecheck}.exit s4/... -> 0 diffs except 3 typecheck workspaces; workspace word counts 54 per side",
+    "grep '^ FAIL ' gates/s4/step-scripts-suite.log; cat gates/s4/test.steps gates/s4/checks-all.steps gates/s4/audit.txt",
+    "node -e (fixture canonical compare at 85208f3a and HEAD; 49 entries, equal, raw text differs)",
+    "git show --stat --oneline fc299733; git log --oneline fc299733..HEAD; git show --name-only d6b60a19",
+    "git status --porcelain; git diff --cached --stat; git diff --stat"
+  ],
+  "changed_files": [
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s4-d6b60a19.json",
+    "measure/runs/vinext-oxc-toolchain_20261114/phase-acceptance-s4-d6b60a19.log"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/deepseek-v4.1-flash",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 4,
+      "evidence": "Every S4 deliverable is in place and proven: format:check exits 0 on 3717 files, dec3be20 holds 3499 files with 0 ignore-pattern hits, the blame ignore file changes package.json:47 from dec3be20 to ccfe3571, and the five Red cases pass; the one edge is that oxfmt 0.78.0 needs a second pass on 4 files, which no guard covers (Review A F4)."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "Each S4 claim has a failing-first case (red-s4-8a3a7aca.log and red-s4-r2-524a1c7a.log give the five named AssertionErrors, and -t 'S4 oxfmt' now gives 5 passed), case 5 parses /on (\\d+) files/ and requires 1 so a zero-file check fails, and the 26-case guard file passes; the falsification text for the anchor refutation case does not discriminate (Review A F5)."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "The phase diff is the planned change only: the config, the format commit, the blame file, the 12-file regression fix that the format commit required, the key() refinement, and Measure records; no production source changed after dec3be20 and the six dirty generated files stayed unstaged."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 4,
+      "evidence": "Every gate-critical number reproduces (3499 files, 3717 scanned, 94 passed and 1 failed of 95, 26 guard cases, 5 S4 cases, 49 fixture entries, 0 new keys, exits equal to baseline-m2), but two evidence sentences are wrong (plan.md:518 fixture claim, the 18-pattern count) and one before-sweep artifact was overwritten (Review A F7)."
+    }
+  ],
+  "reviewer_ratings": [
+    {
+      "reviewer_role": "review-a",
+      "reviewer_route": "opencode-go/deepseek-v4.1-flash",
+      "agreed": true,
+      "score": 5,
+      "evidence": "I re-checked the load-bearing points and each one holds: -t 'S4 oxfmt' 5 passed, format:check exit 0 on 3717 files, 3499 format files with 0 ignore hits, blame dec3be20 to ccfe3571, 0 new keys over every s4 test and step log, 26 guard cases, 49 equal fixture entries, and the two evidence errors it named (F2 at plan.md:518, F3 at plan.md:479)."
+    }
+  ]
+}

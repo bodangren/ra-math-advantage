@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "role": "measure-review-a-correctness",
+  "track": "vinext-oxc-toolchain_20261114",
+  "phase": "Phase S4: oxfmt",
+  "baseline_sha": "85208f3a72cd739d661a938bfc75df6d77f71964",
+  "role_base_sha": "d6b60a19f32c75d2d2738d09f5ae5d1352347b00",
+  "audited_head_sha": "d6b60a19f32c75d2d2738d09f5ae5d1352347b00",
+  "status": "pass",
+  "summary": "Audit of Phase S4 at d6b60a19, over the 25-commit range 85208f3a..d6b60a19. Verdict: PASS, with six record-only findings for the S5 list. (1) The format commit dec3be20 is format-only and I proved it: a detached worktree at the parent a468fa96, formatted with the repo's .oxfmtrc.json, yields exactly the 3499 files of dec3be20 with byte-identical content, after the two passes that oxfmt 0.78.0 needs for 4 files. The commit holds zero paths that match an ignorePatterns entry and none of the six dirty generated paths. .oxfmtrc.json (e5f474b5) holds $schema and the 17 patterns of plan.md:452; oxfmt is pinned to the exact 0.78.0 in root devDependencies; the lockfile has one node_modules/oxfmt key at 0.78.0; the root format and format:check scripts have the target values; .git-blame-ignore-revs (2046b47f) works (plain blame package.json:47 gives dec3be20, the ignore file gives ccfe3571). (2) The test fix e65553da keeps each assertion's meaning: all 12 files pass (bus-math-v2 6, integrated-math-2 2, integrated-math-3 92 in 7 files). The three quote-tolerant changes are bounded: the IM2 script rewrites use the formatted tokens only; the IM3 teacher-flow pattern uses one quote pair and one value with the set of keys and values unchanged; the IM3 seed helper builds the exact inline or 10-space layout per record, so a wrong flag fails the toContain. The CSS matcher is narrower (anchored, m flag), not wider. (3) The key() refinement 39ce245f changes only key(); the exit-code comparison is intact. Over every recorded log (baseline, baseline-m2, s1, s1-premerge, s2, s3, s4) all 2021 ' FAIL ' title lines survive key(), and every s4 test log and step log yields zero keys absent from baseline-m2. DISK_FULL_RE (97ef1021) adds the two full-line anchored forms; the three guard cases and the 23 other cases of the file pass (26 of 26). (4) The five S4 Red cases pass for the right reason: -t 'S4 oxfmt' gives 5 passed, 90 skipped. Case 5 parses the labeled count 'on (\\d+) files' and requires 1; my mutants reproduce the Red retry claims (bad probe exit 1 and names the probe, missing target exit 2 with the absent-target phrase, clean probe exit 0 with 'on 1 files'). Case 2 compares exact script values; case 3 checks a 40-character SHA and the commit subject. (5) Plan and evidence numbers match the artifacts: 3499 files, 3717 scanned, audit critical=0 high=9 moderate=7 low=5, test steps scripts-suite 1 and audit-suites 1, scripts suite 94 passed and 1 failed of 95, audit-suites 5 failed in 2 files, fixture canonical JSON equal with 49 entries, format:check exit 0, doctor exit 0, no push (HEAD is 26 ahead of origin/master). The six findings are prose claims that the artifacts contradict and hide no failure: the fixture IS in the format commit; the plan says 18 ignorePatterns where the file and the plan list hold 17; 'the typecheck sweep holds the baseline exit codes' is false for 3 workspaces; the idempotence sentence omits that 4 files need a second pass; the anchor falsification of the refutation case does not hold; and the strategy S4 CI risk row contradicts its own yml fact row.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "F1 [Minor] review-a: oxc-evidence.md:247 says 'The typecheck sweep and the build sweep hold the baseline exit codes'. The typecheck sweep does not hold them: gates/baseline-m2/typecheck.exit and gates/s4/typecheck.exit differ in 3 workspaces (apps/bus-math-v2 n/a->0, apps/integrated-math-3 2->1, apps/pre-calculus 2->1). The baseline step typecheck-bm2 (0) is also absent from s4/checks-all.steps, because apps/bus-math-v2 now has a typecheck script. The build sweep does hold (0 diffs). Rationale: the gate result NEWFAIL=0 is still correct, because every difference is an improvement or a new script and the sweep compares keys for the 2->1 workspaces, so no failure is hidden. Record-only: correct the sentence at the next evidence touch.",
+    "F2 [Nit] review-a: plan.md:518 says 'The fixture file is not in the format commit'. The fixture is in it: dec3be20 reformats scripts/__tests__/fixtures/lint-disable-allowlist.json (raw text changes, canonical JSON equal, 49 entries). Rationale: test-strategy 17.1 itself lists the fixture in the pre-format change set (log line 3427). The canonical compare still proves the semantic content is unchanged, so this hides no failure. Record-only.",
+    "F3 [Nit] review-a: plan.md:479 says '$schema plus the 18 ignorePatterns of line 452'. The config and the plan list at plan.md:452 hold 17 patterns. Rationale: a wrong count in evidence invites a false mismatch check later. The file matches the target list exactly. Record-only.",
+    "F4 [Nit] review-a: plan.md:550 says 'npm run format is idempotent (the second run changed nothing)'. From the pre-format tree one pass leaves 4 files that a second pass changes: apps/danielson/lib/foundation/admin-route.ts, apps/integrated-math-3/__tests__/convex/selected-worked-lesson-consumer.test.tsx, apps/pre-calculus/__tests__/components/student/PrecalculusTopic11DailyCurriculumPilot.red.test.tsx, and packages/activity-components/src/schemas/discriminant-analyzer.schema.ts. The committed content equals the second-pass output and is a fixed point: npm run format:check exits 0 and a further pass changes nothing. Rationale: a developer who runs one pass after an edit can see format:check fail, so the sentence overstates the tool. It hides no gate failure, because CI and the gate read the committed tree. Record-only: state 'the second run reached the fixed point'.",
+    "F5 [Nit] review-a: plan.md:474 and test-strategy.md:1685 give the falsification 'remove the anchors and the refutation case fails'. The refutation line is ' FAIL  __tests__/disk.test.ts > handles the spawn ENOSPC write path'; the unanchored alternative Error: spawn (ENOSPC|EDQUOT) still requires the literal 'Error: ' before 'spawn', so removing the anchors leaves the case green. Rationale: the case does catch an alternative without the 'Error: ' prefix, but it does not test the anchors. The anchoring has a real effect only on a bare line that starts with the message. Record-only: name the discriminating input, or drop the second half of the claim.",
+    "F6 [Nit] review-a: test-strategy.md:1617 (S4 risk row) says the S4 diff 'has no .github/workflows/ path and no measure/ path other than the run log and the evidence file'. The phase diff holds 5 formatted workflow YAML files (js-yaml parses each side to an equal object) and the plan-required measure paths measure/tech-stack.md, plan.md, oxc-evidence.md, and gates.sh. Rationale: the row contradicts the strategy's own fact row (6 yml files in the change set) and would make a reviewer flag planned edits as scope breaks. Record-only for S5.",
+    "F7 [Nit] review-a: plan.md:610 and oxc-evidence.md:284 say 'the before sweep still holds its 33 S4 keys'. No artifact supports a re-check: the after sweep with label s4 overwrote the before-sweep logs under gates/s4 (test logs dated 19:53 to 20:11, after the 18:50 fix), so the 33-key set exists only as a sentence in the Green log jr-green-s4-93181be8.log. Rationale: I re-derived the no-loss property independently over every recorded log (2021 FAIL lines, 0 lost) and the after run yields zero new keys, so the substance holds and no failure is hidden. Record-only: keep the before logs under a separate label next time."
+  ],
+  "evidence": [
+    "Provenance: git rev-parse HEAD and git rev-parse d6b60a19 both give d6b60a19f32c75d2d2738d09f5ae5d1352347b00; role_base_sha equals it; phase_base 85208f3a72cd739d661a938bfc75df6d77f71964 resolves; git rev-list --count gives 25 commits.",
+    "Format-only proof: git worktree add --detach /tmp/opencode/s4-prev a468fa96; node_modules/.bin/oxfmt there gives 'Finished in 234ms on 3717 files', 3499 changed; after the passes, all 3499 worktree files are byte-identical to git show dec3be20:<path>, and the two file sets are equal (only-in-commit 0, only-in-formatted 0). oxfmt --check then exits 0 on 3717 files.",
+    "Ignore and generated paths: node matched all 17 .oxfmtrc.json patterns against the 3499 names of dec3be20 (0 hits); the 6 dirty generated paths are absent from the commit; git status --porcelain at HEAD holds only those 6 entries.",
+    "Non-idempotence measured: a scratch dir at /tmp/opencode/s4-det seeds the 4 files from a468fa96 with the repo config; pass 1 output differs from dec3be20 for all 4, and pass 2 equals dec3be20 for all 4; passes 3 to 5 change nothing.",
+    "Config and pin: cat .oxfmtrc.json (17 patterns, $schema only style key); git show e5f474b5 -- package.json adds \"format\": \"oxfmt\", \"format:check\": \"oxfmt --check\", and \"oxfmt\": \"0.78.0\"; the lockfile lists node_modules/oxfmt and 19 @oxfmt/binding-* keys, all 0.78.0; npx --no-install oxfmt --version gives 'Version: 0.78.0'.",
+    "Blame: git blame -L 47,47 package.json gives dec3be20f; git blame --ignore-revs-file .git-blame-ignore-revs -L 47,47 package.json gives ccfe35717 (2026-11-19 06:29:59), an ancestor of dec3be20.",
+    "Test fix re-run through heavy-run.sh: bus-math-v2 3 files give 6 passed; integrated-math-2 2 files give 2 passed; integrated-math-3 7 files give 92 passed. git show e65553da --stat gives 12 files, 43 insertions and 26 deletions.",
+    "Teacher-flow pattern: the new ERE is /(\\w+):\\s*([\"'])([^\"']+)\\2/g with destructuring [, key, , value]; the test still asserts entries.length > 0, kebab-case values, unique values, and the 12 locked-in values.",
+    "Seed helper: descriptionSnippet returns 'code: \"<code>\",\\n        description:' plus either ' \"<desc>\"' or '\\n          \"<desc>\"' from the per-record wrapped flag, so each record pins one exact layout.",
+    "key() no-loss check: for every test-*.log and step-*.log under gates/{baseline,baseline-m2,s1,s1-premerge,s2,s3,s4}, every line matching '^ FAIL ' (2021 lines) is present in the key() output of its log (0 lost).",
+    "New-key check with the current key(): for every gates/s4/test-*.log the set of keys absent from the matching gates/baseline-m2 log is empty; for scripts-suite and audit-suites the only-current sets are empty (2 and 10 current keys, 14 and 42 baseline keys).",
+    "Exit comparison: gates/s4 vs gates/baseline-m2 exit files hold 27 workspaces each; lint 0 diffs, test 0 diffs, build 0 diffs, typecheck 3 diffs (bus-math-v2 n/a->0, integrated-math-3 2->1, pre-calculus 2->1).",
+    "Gate evidence: gates/s4/audit.txt is 'critical=0 high=9 moderate=7 low=5' against baseline high=11; gates/s4/test.steps is 'scripts-suite 1' and 'audit-suites 1', equal to baseline-m2; step-scripts-suite.log gives 'Tests 1 failed | 94 passed (95)'; step-audit-suites.log gives 'Tests 5 failed | 187 passed (192)' in 2 failed files.",
+    "S4 filter and guard cases: npx vitest run --config scripts/vitest.config.ts -t 'S4 oxfmt' gives 5 passed | 90 skipped; the same file scripts/__tests__/vinext-oxc-gates-script.test.ts gives 26 passed.",
+    "Case 4 and 5 mutants with oxfmt 0.78.0 in a scratch dir: a clean probe gives status 0 and 'All matched files use the correct format.' with 'on 1 files'; 'const  a={b:1}' gives status 1 and names the probe; a missing target gives status 2 with 'Expected at least one target file' and 'may have been excluded by ignore rules'.",
+    "Discriminating-input analysis for the guard case: the anchored forms match 'No space left on device (os error 28)' and 'Error: spawn ENOSPC'; the unanchored alternative on the committed prose line still has no literal 'Error: ' before 'spawn', so it does not match (F5).",
+    "Fixture: JSON.parse at 85208f3a and at HEAD both give 49 entries; canonical JSON (sorted keys) is equal; raw text differs; git show dec3be20 --name-only lists scripts/__tests__/fixtures/lint-disable-allowlist.json (F2).",
+    "Workflows: js-yaml parses each of the 5 changed .github/workflows files at 85208f3a and at HEAD to an equal object; the ci.yml hunks move '24' and 'npm' from single to double quotes.",
+    "CSS: a token comparison of the 6 changed globals.css files differs only in '-.025em' vs '-0.025em' and '#FAF9F6' vs '#faf9f6' (numerically and case equal).",
+    "Scope: git diff --name-only dec3be20..HEAD holds the 12 test files of e65553da, .git-blame-ignore-revs, gates.sh, plan.md, oxc-evidence.md, and 2 run logs; no production source changed after the format commit.",
+    "Docs and state: npm run format:check prints 'All matched files use the correct format.' on 3717 files (exit 0); bash measure/scripts/doctor.sh prints 'All checks passed.' (exit 0); git rev-parse origin/master gives 25036aef, so HEAD is 26 ahead and no push happened; no .oxlint-probe-* folder remains."
+  ],
+  "commands": [
+    "git rev-parse HEAD; git rev-parse d6b60a19; git log --oneline 85208f3a..d6b60a19 (25 commits)",
+    "git worktree add --detach /tmp/opencode/s4-prev a468fa96; node_modules/.bin/oxfmt (2 passes); node byte compare against git show dec3be20:<path> (3499/3499 identical)",
+    "git show dec3be20 --name-only --format= | node (ignore-pattern match, 0 hits; set equality with the formatted worktree)",
+    "node (scratch dir /tmp/opencode/s4-det): seed 4 files from a468fa96; oxfmt --config .oxfmtrc.json x4; compare each pass to dec3be20",
+    "node_modules/.bin/oxfmt --check on the 4 files at HEAD; npm run format:check (exit 0, 3717 files)",
+    "git blame -L 47,47 package.json; git blame --ignore-revs-file .git-blame-ignore-revs -L 47,47 package.json",
+    "heavy-run.sh -c '... bus-math-v2 3 files; integrated-math-2 2 files; integrated-math-3 7 files' -> 6 passed, 2 passed, 92 passed",
+    "npx vitest run --config scripts/vitest.config.ts -t 'S4 oxfmt' -> 5 passed | 90 skipped",
+    "npx vitest run --config scripts/vitest.config.ts scripts/__tests__/vinext-oxc-gates-script.test.ts -> 26 passed",
+    "bash -c 'source gates.sh; key <log>' over every log under gates/*/, compared with each log's ' FAIL ' lines (2021 lines, 0 lost)",
+    "node key() set comparison gates/s4 vs gates/baseline-m2 for test-*.log and step-*.log (0 only-current keys)",
+    "node compare of lint/test/typecheck/build .exit files and test/checks-all .steps files (3 typecheck diffs, others 0)",
+    "node (fixture canonical compare at 85208f3a and at HEAD; 49 entries, equal)",
+    "node js-yaml compare of the 5 changed .github/workflows files (equal objects); node token compare of the 6 changed globals.css files",
+    "bash measure/scripts/doctor.sh -> All checks passed (exit 0)",
+    "git status --porcelain (only the 6 dirty generated paths); git rev-parse origin/master (25036aef, no push)"
+  ],
+  "changed_files": [
+    "measure/runs/vinext-oxc-toolchain_20261114/review-a-s4-d6b60a19.json",
+    "measure/runs/vinext-oxc-toolchain_20261114/review-a-s4-d6b60a19.log"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "route": "opencode-go/deepseek-v4.1-flash",
+  "ratings": [
+    {
+      "axis": "correctness",
+      "score": 4,
+      "evidence": "The format commit is format-only and exact: the parent worktree formatted with the repo config reproduces all 3499 files byte for byte (0 set differences), format:check exits 0, and no runtime change appears (js-yaml and CSS token compares equal); the only edge is the 4 files that need a second pass."
+    },
+    {
+      "axis": "test_meaning",
+      "score": 4,
+      "evidence": "The 5 S4 cases and 3 classifier cases are real: case 5 parses 'on (\\d+) files' and requires 1, case 2 compares exact script values, case 3 checks a 40-character SHA with the commit subject, and the mutants fail as claimed; the guard refutation case does not test the anchors as its falsification text says (F5)."
+    },
+    {
+      "axis": "scope_discipline",
+      "score": 5,
+      "evidence": "The phase diff outside the format commit is exactly the 12 test files of e65553da, .git-blame-ignore-revs, gates.sh, plan.md, oxc-evidence.md, and the run logs; no production source changed after dec3be20 and the 6 dirty generated files stayed unstaged."
+    },
+    {
+      "axis": "evidence_quality",
+      "score": 3,
+      "evidence": "Most numbers reproduce (3499 files, 3717 scanned, 94+1 of 95, 5 failed of 192, 49 entries, audit 0/9/7/5, 26 guard cases, 5 S4 cases), but 5 prose claims do not match the artifacts (F1 to F5) and one proof artifact was overwritten (F7)."
+    }
+  ]
+}
