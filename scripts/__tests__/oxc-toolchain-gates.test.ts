@@ -457,9 +457,18 @@ describe('S1 vinext 1.x', () => {
 // `typescript6` (strategy 16.2).
 // ---------------------------------------------------------------------------
 
-// The final keep set of workspaces that declare the package named `typescript`.
-// Red starts empty; Green sets the Convex-driven keep set (strategy 16.3 case 5).
-const TYPESCRIPT_KEEP_LIST: string[] = [];
+// The final keep set of workspaces that declare the package named `typescript`, in
+// the scan form of `scanDeclarations`. These are the four `TSC_FALLBACK_LIST` apps:
+// their `tsc --noEmit` gate needs the package, and the Convex CLI looks for
+// `node_modules/@typescript/native/bin/tsc` or `node_modules/typescript/bin/tsc` from
+// the app folder (evidence section 9). The four workspace folders of this list are
+// exactly `TSC_FALLBACK_LIST`, so the fallback list is a subset of the keep set.
+const TYPESCRIPT_KEEP_LIST: string[] = [
+  'apps/bus-math-v2/package.json:devDependencies.typescript',
+  'apps/integrated-math-1/package.json:devDependencies.typescript',
+  'apps/integrated-math-3/package.json:devDependencies.typescript',
+  'apps/pre-calculus/package.json:devDependencies.typescript',
+];
 // Workspaces whose typecheck script stays `tsc --noEmit` for a blocking
 // conformance gap. A subset of TYPESCRIPT_KEEP_LIST. Green sets the four apps whose
 // tsrs check reports diagnostics that the workspace tsc project does not: tsrs

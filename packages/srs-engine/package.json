@@ -36,7 +36,6 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "typescript": "^7.0.2",
     "vitest": "^4.1.8"
   }
 }

@@ -43,7 +43,6 @@
     "@math-platform/knowledge-space-practice": "*"
   },
   "devDependencies": {
-    "typescript": "^7.0.2",
     "vitest": "^4.1.8"
   }
 }

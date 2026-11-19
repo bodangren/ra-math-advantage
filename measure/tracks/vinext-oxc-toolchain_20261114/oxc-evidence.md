@@ -554,7 +554,65 @@ this section rests on an empty collector (A5).
 
 ## 9. Keep list
 
-Phase S3 fills this section.
+### Convex CLI typecheck lookup (S3)
+
+File: `node_modules/convex/dist/esm/cli/lib/typecheck.js` (convex 1.50.0).
+
+| Line | Content |
+|---|---|
+| 110 | `export function findTypeScriptCompilerPath(fs, typescriptCompiler)` |
+| 116-118 | `case "tsgo"`: `node_modules/@typescript/native-preview/bin/tsgo` |
+| 122-128 | `case "tsc"`: first `node_modules/@typescript/native/bin/tsc` ("TypeScript 7's recommended alias when the TypeScript 6 API is also installed"), then `node_modules/typescript/bin/tsc` |
+| 90-94 | `No \`${typescriptCompiler}\` binary found, so skipping typecheck.` and `handleResult("cantTypeCheck", ...)` |
+
+The paths are relative, so the CLI finds a compiler only when the app folder holds
+`node_modules/...`; a hoisted root copy is not found. This tree has no nested copies.
+
+`npx convex typecheck` per app, 2026-11-19, with the keep manifests in place:
+
+| App | Exit | Result |
+|---|---|---|
+| `apps/bus-math-v2` | 1 | CLI prints `No \`tsc\` binary found, so skipping typecheck.` then `Unable to typecheck; is TypeScript installed?` |
+| `apps/danielson` | 1 | same skip line |
+| `apps/integrated-math-1` | 1 | tsc 7.0.2 runs through `node_modules/@typescript/native/bin/tsc` and reports the pre-existing convex project diagnostics (katex CSS side-effect import) |
+| `apps/integrated-math-2` | 1 | same skip line |
+| `apps/integrated-math-3` | 1 | tsc 7.0.2 runs and reports the pre-existing convex project diagnostics |
+| `apps/pre-calculus` | 1 | tsc 7.0.2 runs and reports the pre-existing convex project diagnostics |
+
+No app passes the CLI check at this commit, so the command cannot select the keep
+set. The decision rests on three facts:
+
+1. `TSC_FALLBACK_LIST` must be a subset of `TYPESCRIPT_KEEP_LIST`, so the four
+   fallback apps keep `typescript` ^7.0.2.
+2. Their `tsc --noEmit` gate runs the package.
+3. The Convex CLI prefers the `@typescript/native` alias path, which is the same
+   alias the root bin pin uses (section 8).
+
+No held package: no app needs a 6.x copy. The failures are pre-existing code
+diagnostics, not a compiler-version problem.
+
+### Final `TYPESCRIPT_KEEP_LIST`
+
+The test constant holds the four entries
+`apps/{bus-math-v2,integrated-math-1,integrated-math-3,pre-calculus}/package.json:devDependencies.typescript`.
+`TYPESCRIPT_KEEP_LIST` names the same four folders as `TSC_FALLBACK_LIST`.
+
+### Removed
+
+`typescript` is removed from the root `devDependencies`, from the root `overrides`,
+and from 22 workspace manifests (danielson, integrated-math-2, and 20 packages).
+`packages/practice-test-engine` never declared it. `npm ls typescript --all` shows no
+non-optional peer: `convex-helpers` 0.1.135 is the only package with a `typescript`
+peer, and its `peerDependenciesMeta` marks it optional. No `.vscode/settings.json`
+exists, so editors use their bundled TypeScript.
+
+### The `typescript6` alias
+
+`"typescript6": "npm:@typescript/typescript6@^6.0.2"` in the root `devDependencies`.
+Reason: the S2 disable-comment scan needs the TypeScript 6 parser API and TypeScript 7
+ships no JavaScript API. It is not in `TYPESCRIPT_KEEP_LIST` and not in
+`TSC_FALLBACK_LIST`. `@typescript/native` (section 8) stays for the root `tsc` bin pin
+and the Convex CLI preference.
 
 ## 10. Pre-existing failures
 

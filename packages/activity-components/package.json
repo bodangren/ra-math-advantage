@@ -47,7 +47,6 @@
     "@types/react": "^19.3.0",
     "katex": "^0.19.1",
     "react": "^19",
-    "typescript": "^7.0.2",
     "vitest": "^4.1.8"
   }
 }
