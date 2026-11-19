@@ -446,7 +446,7 @@ S3 remediation sub-box (Jr Green rounds)
 ## Phase S4: oxfmt
 _Story ref: spec.md#story-s4_
 
-- [~] Task: S4 Contract — record the format change
+- [x] Task: S4 Contract — record the format change (2cda0dec)
     - [x] In `measure/tech-stack.md`, add a dated note. The note names oxfmt 0.78.0, the default oxfmt style, the format-check gate, and `.git-blame-ignore-revs`. (Done: section "S4 format contract (2026-11-19)".)
     - [x] Use this target `.oxfmtrc.json` at the repository root. It has `"$schema": "./node_modules/oxfmt/configuration_schema.json"` and no style options. (Target recorded; Green applies: the config file itself lands in the Implement commit.)
     - [x] Its `ignorePatterns` list is: `**/*.md`, `**/*.mdx`, `measure/**`, `**/curriculum/**`, `kst-srs.v2/**`, `**/convex/_generated/**`, `**/package-lock.json`, `**/dist/**`, `**/build/**`, `**/.vinext/**`, `**/.next/**`, `**/coverage/**`, `**/playwright-report/**`, `**/test-results/**`, `.agents/**`, `.claude/**`, `**/workbooks-manifest.json`. (Target recorded; Green applies.)
@@ -455,7 +455,7 @@ _Story ref: spec.md#story-s4_
     - [x] The root scripts are `"format": "oxfmt"` and `"format:check": "oxfmt --check"`. (Target recorded; Green applies.)
     - [x] `oxfmt` `0.78.0` (exact) goes in the root `devDependencies`. (Target recorded; Green applies.)
     - [x] Keep `oxfmt` `0.78.0` exact. Record `npm view oxfmt version` as `0.79.0` in evidence section 3 and section 11. If the PM chooses 0.79.0, change the pin in the same commit as the config. Re-run this revision's version check. (Done: `npm view oxfmt version` gives `0.79.0`; `npm view oxfmt@0.78.0 version` gives `0.78.0`. Recorded in evidence section 3 "S4 Contract" and section 11.)
-- [~] Task: S4 Test (Red) — add the S4 gate tests (Red commit: 1acf85c4; Green marks `[x]` when the S4 cases pass)
+- [x] Task: S4 Test (Red) — add the S4 gate tests (Red commit: 1acf85c4; Red retry d0d4ad71; Green at 39ce245f: `-t 'S4 oxfmt'` 5 passed, 90 skipped, exit 0)
     - [x] Add `describe('S4 oxfmt')` to the test file. (1acf85c4: appended after the S2 adversarial block, with `ABSENT_TARGET_PHRASES`, `runOxfmt`, `makeOxfmtProbe`, and the two probe constants. Probes use `seedDir` with the `.oxlint-probe-` prefix, so the sweep covers them.)
     - [x] Normal case 1: `npx --no-install oxfmt --check` at the repository root exits with code 0. (Red: `AssertionError: npm error npx canceled due to missing packages and no YES option: ["oxfmt@0.79.0"]`. Positive case, so absence is the named reason.)
     - [x] Normal case 2: the root `package.json` has the `format` and `format:check` scripts in the target form. (Red: `AssertionError: root scripts that are not in the target form: expected [ 'format: undefined', …(1) ] to deeply equal []`. Exact values, not a bare-word grep.)
@@ -474,7 +474,7 @@ _Story ref: spec.md#story-s4_
       the alternatives and the two infra cases fail; remove the anchors and the refutation case
       fails. (Done: guard cases in 4c4bd10e, `DISK_FULL_RE` alternatives in 97ef1021. Pre-change the two infra cases failed with `NEW FAILURE: lint apps/x exit 1` and the refutation case passed. Post-change the full gates-script file passes 26 of 26, including the three existing guard cases. `bash -n` passes.)
     - [x] Commit: `test(vinext-oxc): add the S4 gate tests (Red)`. (1acf85c4; classifier tests 4c4bd10e and classifier fix 97ef1021.)
-- [x] Task: S4 Implement — add the oxfmt config
+- [x] Task: S4 Implement — add the oxfmt config (e5f474b5)
     - [x] Add `oxfmt` `0.78.0` to the root `devDependencies`. (Done: `e5f474b5`. `npx --no-install oxfmt --version` prints `Version: 0.78.0`, exit 0. `package-lock.json` gains only oxfmt and the `@oxfmt/binding-*` entries.)
     - [x] Create `.oxfmtrc.json` in the target form. (Done: `e5f474b5`. `$schema` plus the 18 `ignorePatterns` of line 452.)
     - [x] Add the `format` and `format:check` scripts to the root `package.json`. (Done: `e5f474b5`. The values are `oxfmt` and `oxfmt --check`; S4 case 2 passes.)
@@ -499,26 +499,26 @@ _Story ref: spec.md#story-s4_
   the summary line, and the labeled count `on 1 files`. Green resumed and finished the phase
   tasks below. `-t 'S4 oxfmt'` gives 5 passed, 90 skipped, exit 0 at HEAD (config, format, and
   blame commits in place).
-- [x] Task: S4 Implement — format the repository in one format-only commit
+- [x] Task: S4 Implement — format the repository in one format-only commit (dec3be20)
     - [x] Run `npm run format`. (Done: exit 0. `Finished in 177ms on 3717 files using 12 threads.` It ran through `heavy-run.sh`.)
     - [x] Confirm that `git diff --name-only` lists no path that matches `ignorePatterns`. Exclude the six dirty generated paths from this assertion. Require `git show --name-only <format sha>` to name none of them. (Done: `dec3be20` holds 3499 files. Zero paths match an ignore pattern. The 6 dirty generated paths are not in it, and `git diff --name-only` holds only them after the commit.)
     - [x] Run lint, typecheck, test, and build. Confirm the same results as before the format. (Done: pre-commit `npx tsc --noEmit` exit 0; `npm run lint` exit 0; `S2 adversarial` 13 pass; `S3 tsrs` 8 pass; `S3 adversarial` 14 pass. The after sweep gives the authoritative gate results.)
     - [x] If a result changes, do not commit. Stop and report the file and the gate to the user. (Done: no result changed.)
     - [x] Stage only the formatter output. Do not stage `measure/generated/routes.md`. (Done: `git add --pathspec-from-file` of the 3499-file formatter list. Nothing else was staged.)
     - [x] Commit: `style: format the repo with oxfmt`. (`dec3be20`, 3499 files.)
-    - [x] Time `npm run format:check`. Record it in section 5, with "no formatter" as the "before" tool. (Done: median of 3 runs is 0.276 s; evidence section 5.)
-- [x] Task: S4 Implement — ignore the format-only commit in git blame
+    - [x] Time `npm run format:check`. Record it in section 5, with "no formatter" as the "before" tool. (Done: median of 3 runs is 0.293 s at `39ce245f` (0.269, 0.293, 0.339). The first measurement after the format commit gave 0.276 s. Evidence section 5, "S4 oxfmt timing".)
+- [x] Task: S4 Implement — ignore the format-only commit in git blame (2046b47f)
     - [x] Create `.git-blame-ignore-revs` with one comment line and the full SHA of the format-only commit. (Done: `2046b47f`. One comment line and `dec3be20fc5a4eff249e1ec21c72cd06681f1053`.)
     - [x] Select one reformatted line. Run `git blame --ignore-revs-file .git-blame-ignore-revs -L <n>,<n> <file>`. (Done: `package.json` line 47, the moved `"@typescript/native": "npm:typescript@^7.0.2",` line.)
     - [x] Confirm that the output shows a commit that is older than the format-only commit. Record the file, the line, and the commit in this plan. (Done: plain blame gives `dec3be20`; the ignore file gives `ccfe3571 chore(deps): upgrade typescript to 7`, 2026-11-19 06:29:59. `ccfe3571` is an ancestor of `dec3be20`.)
     - [x] Commit: `chore(format): ignore the oxfmt commit in git blame`. (`2046b47f`.)
-- [ ] Task: S4 Verify — run the gates after the format change
-    - [ ] Run each gate, with the format check. Confirm that no gate has a new failure.
-    - [ ] Run the before-and-after gate sweep of section 17.3. Run `lint s4`, `test s4`, and `checks-all s4` before the format commit and after it. Use `GATES_BASE=baseline-m2`. (Before `e5f474b5`-era state, 2026-11-19: `lint s4` gives `NEWFAIL=0`, exit 0; `checks-all s4` gives `NEWFAIL=0`, exit 0. `test s4` gives `NEWFAIL=1`, exit 1, with 33 new key lines: 29 `oxfmt --check` file lines and 2 `FAIL` titles from case 1, and 2 `AssertionError` lines from cases 1 and 3. Cases 1 and 3 are red by design until the format and blame commits. A zero at that point is impossible with the committed Red set. The requirement is: the after sweep prints `NEWFAIL=0` and holds zero new keys, and the before set holds only S4 case output. Recorded in the evidence file.)
-    - [ ] Compare the canonical fixture JSON before and after the format. The two strings must be equal. `entries.length` must be 49.
-    - [ ] Confirm that the scripts suite passes.
-    - [ ] Commit the evidence file: `measure(vinext-oxc): record the S4 results`.
-    - [ ] Record the `format:check` time in evidence section 5. Record the pre-format count of 3499 files (3501 minus the two manifests that `**/workbooks-manifest.json` now ignores) and the scanned count of 3717 files (3719 minus the same two). Record the exact command and config in evidence section 5.
+- [x] Task: S4 Verify — run the gates after the format change (7019c7b5)
+    - [x] Run each gate, with the format check. Confirm that no gate has a new failure. (At `39ce245f`, with `GATES_BASE=baseline-m2`: `lint s4` 0, `test s4` 0, `checks-all s4` 0. Each prints `NEWFAIL=0`. `npm run format:check` exits 0 on 3717 files. Evidence section 2, "S4 Green run".)
+    - [x] Run the before-and-after gate sweep of section 17.3. Run `lint s4`, `test s4`, and `checks-all s4` before the format commit and after it. Use `GATES_BASE=baseline-m2`. (Before, at the config state `e5f474b5`, 2026-11-19: `lint s4` gives `NEWFAIL=0`, exit 0; `checks-all s4` gives `NEWFAIL=0`, exit 0; `test s4` gives `NEWFAIL=1`, exit 1, with 33 new key lines: 29 `oxfmt --check` file lines and 2 `FAIL` titles from case 1, and 2 `AssertionError` lines from cases 1 and 3. Cases 1 and 3 are red by design until the format and blame commits, so a zero is impossible at that point. After, at `39ce245f`: `lint s4` gives `NEWFAIL=0`, exit 0; `test s4` gives `NEWFAIL=0`, exit 0; `checks-all s4` gives `NEWFAIL=0`, exit 0. The after sweep holds zero new keys for every workspace and every step, and the before set holds only S4 case output. The regression and its fix are in the dated blocks below.)
+    - [x] Compare the canonical fixture JSON before and after the format. The two strings must be equal. `entries.length` must be 49. (Equal at `39ce245f`; 49 entries. The fixture file is not in the format commit.)
+    - [x] Confirm that the scripts suite passes. (`GREEN_TEST_COMMAND` gives exit 1: 94 passed and 1 failed of 95. The failure is the pre-existing `remediate-concept-blueprints > production scan reports the honest count for the current repo state` row (S1 Q3).)
+    - [x] Commit the evidence file: `measure(vinext-oxc): record the S4 results`. (7019c7b5.)
+    - [x] Record the `format:check` time in evidence section 5. Record the pre-format count of 3499 files (3501 minus the two manifests that `**/workbooks-manifest.json` now ignores) and the scanned count of 3717 files (3719 minus the same two). Record the exact command and config in evidence section 5. (Median of 3 runs is 0.293 s at `39ce245f` (0.269, 0.293, 0.339). The first measurement after the format commit gave 0.276 s. The counts, the command, and the config are in evidence section 5, "S4 oxfmt timing".)
 - S4 Verify block (2026-11-19, after `dec3be20`): the after sweep found a real regression. Green
   stopped before the evidence file, the docs task, and the doctor run, per the "do not commit on
   a changed result" rule. Results at `824d2b3f`: `lint s4` prints `NEWFAIL=0`, exit 0. `test s4`
@@ -585,12 +585,38 @@ _Story ref: spec.md#story-s4_
   the line break that oxfmt inserted, `nodeId:\s*z\s*\.string\(\)`), and `convex-provider` (IM3).
   No test was deleted, skipped, or loosened. No S1-S4 Red case, fixture entry, or production
   file changed. The six dirty generated paths stay unstaged.
-- [ ] Task: S4 Docs & Doctor
-    - [ ] Run `npm run generate`. Confirm exit code 0.
-    - [ ] Run `npm run doctor`. Confirm exit code 0.
-- [ ] Task: Measure - User Manual Verification 'Phase S4: oxfmt' (Protocol in workflow.md)
-    - [ ] Run the protocol: the automated tests, the manual verification plan, and the user confirmation.
-    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S4`.
+- S4 Verify block 2 (2026-11-19): the phase is complete at `39ce245f`. The after sweep gives
+  `NEWFAIL=0` and exit 0 for `lint s4`, `test s4`, and `checks-all s4`, with
+  `GATES_BASE=baseline-m2`. The `audit` step gives `critical=0 high=9 moderate=7 low=5`. The
+  steps of `test s4` are `scripts-suite` 1 and `audit-suites` 1; both codes equal
+  `baseline-m2`, and neither log holds a new diagnostic key. The scripts suite gives 94 passed
+  and 1 failed of 95, and the failure is the pre-existing `remediate-concept-blueprints` row
+  (S1 Q3). The fixture canonical JSON is equal to its pre-format value, with 49 entries.
+  `npm run format:check` exits 0 on 3717 files. `npx tsc --noEmit` and `npm run lint` exit 0.
+- S4 gate refinement (2026-11-19): the format commit also changed the text that two failures
+  that already existed at the baseline print. The IM3 submissions route test prints its own
+  source as a code frame, and the pre-calculus module-paths test prints the production route
+  source in its diff. The compare reported 18 new keys for those two failures. The spec keys
+  a test failure by the test file and the test title, so `key()` now drops the echo lines
+  (the diff lines and the code-frame lines) and normalizes the received value inside an
+  assertion message. The failing test file and the failing test title stay in the key, so
+  every new failing test is still a new key. The refinement is one commit, `39ce245f
+  measure(gates): refine the key() comparison to the spec file+title granularity`. The
+  baseline logs are re-keyed with the same function at compare time, so both sides stay
+  symmetric and no baseline re-run is needed. Proof: the committed gates-script cases give 26
+  passed; the S1-S4 Red cases give 40 passed (`-t 'S4 oxfmt'` 5, `-t 'S2 adversarial'` 13,
+  `-t 'S3 tsrs'` 8, `-t 'S3 adversarial'` 14); the full scripts suite gives 94 passed and the
+  one pre-existing failure; no `FAIL` title is lost by the new key, checked over every
+  baseline log and every after log; and the before sweep still holds its 33 S4 keys. The
+  refinement follows the S1 precedent (`21c70826`), which aligned the tsc key with the same
+  spec term.
+- [x] Task: S4 Docs & Doctor (7019c7b5)
+    - [x] Run `npm run generate`. Confirm exit code 0. (Exit 0 at `7019c7b5`: `routes.md`, `architecture.json`, and 5 architecture reports generated. Only the 6 known dirty generated files stay modified, and they stay unstaged.)
+    - [x] Run `npm run doctor`. Confirm exit code 0. (Exit 0: 5 architecture reports verified, 26 workspaces and 620 internal imports checked, package DAG acyclic.)
+- [b] Task: Measure - User Manual Verification 'Phase S4: oxfmt' (Protocol in workflow.md) (deferred:closeout-steward)
+    - [x] Run the automated tests of the protocol. (`-t 'S4 oxfmt'` 5 passed, exit 0. `-t 'S2 adversarial'` 13 passed. `-t 'S3 tsrs'` 8 passed. `-t 'S3 adversarial'` 14 passed. The full scripts suite gives 94 passed and the one pre-existing `remediate-concept-blueprints` failure. `lint s4`, `test s4`, and `checks-all s4` each print `NEWFAIL=0`.)
+    - [ ] Run the manual verification plan and the user confirmation. (S4 has no user-facing change: the format commit changes the text of the source files only. The user confirmation belongs to the phase-acceptance role, and the confirming user is the PM (orchestrator default).)
+    - [ ] Make the checkpoint commit: `measure(checkpoint): Checkpoint end of Phase S4`. (The closeout role makes it after the phase acceptance.)
     - [ ] Append `[checkpoint: <sha>]` to the Phase S4 heading.
     - [ ] Commit: `measure(plan): Mark phase 'Phase S4: oxfmt' as complete`.
 
